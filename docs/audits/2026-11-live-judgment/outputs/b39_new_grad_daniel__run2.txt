@@ -1,0 +1,49 @@
+# b39_new_grad_daniel, run 2
+Resume: ../../../docs/design/2026-11-bar/resumes/1-new-grad-daniel.txt (354 words, sha256 3462ee9e636e)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0158; 34.5s
+Case note: New grad (bar persona).
+
+## Band: Needs more context (score 66; model wrote 66, label "Needs Clarity")
+## Verdict
+Your software engineering internship and full-stack capstone point toward the Software Engineer role in your objective. The capstone's authentication and shopping cart are worth keeping because they show concrete functionality, not just a technology list.
+One-line read: The projects show working applications, while internship bullets leave the actual changes unclear.
+Takeaway: Name the inventory features
+Biggest gap example: "Fixed bugs and performed code reviews" leaves out the kinds of issues you addressed, so a reviewer cannot see what technical problems you handled.
+
+## Fixes (Two Critical Misses. Start with this one.; lead: "Either one could cost you the interview on its own."); severity added (added); added ["no_evidence_latest_role"]; promoted []
+1. [Critical Miss] In the Cardinal Health inventory application bullet, name a feature you developed and what it allowed users to do.
+   why: A concrete feature gives the React and Spring Boot work a recognizable purpose.
+   excerpt (EXPERIENCE): "- Responsible for developing features for an internal inventory management web application using React and Spring Boot"
+2. [Critical Miss] In the Cardinal Health internship, add how many users your work served or a measurable result, if you can verify it.
+   why: Software engineering reviewers look for the scope or results of recent work. The internship lists development and testing duties, but it doesn't show their scale or a measurable result.
+   excerpt (EXPERIENCE): "Software Engineering Intern, Cardinal Health, Dublin, OH"
+3. [fix] In the unit testing bullet, identify a behavior or component you tested and a case the tests covered.
+   why: That detail lets a reviewer understand the testing work rather than only its intended purpose.
+   excerpt (EXPERIENCE): "- Wrote unit tests to improve code quality and reliability"
+Severity check answer: {"critical_misses":[{"source":"new","kind":"no_evidence_latest_role","fix":"In the Cardinal Health internship, add how many users your work served or a measurable result, if you can verify it.","why":"Software engineering reviewers look for the scope or results of recent work. The internship lists development and testing duties, but it doesn't show their scale or a measurable result.","excerpt":"Software Engineering Intern, Cardinal Health, Dublin, OH","section":"EXPERIENCE","effort":"moderate"}],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The capstone identifies a team of 4 and an Agile working method, giving context for how the application was built.
+Other strengths: ["The finance tracker names Python, matplotlib, and SQLite alongside its expense-tracking and visualization functions.","The education section names the Computer Science and Engineering degree and relevant coursework, including operating systems and database systems."]
+
+## Gaps
+- The inventory application bullet does not name an individual feature, leaving the nature of your development work unclear.
+- The unit testing bullet states its purpose but not what behavior was tested or how you approached the tests.
+- The objective names a Software Engineer target but could say more about the web-development work that distinguishes your background.
+
+## Next steps
+- Revise the internship bullets using a feature, test case, or bug you can describe accurately.
+- Expand one BuckeyeBites feature with an implementation detail, then trim less informative project wording if space is tight.
+- Replace the generic objective with a short statement connecting your Software Engineer target to your internship and web projects.
+
+## Role fit
+Level: Entry-level software engineering, based on the graduate objective, internship, and project work.
+Best fit: ["Software Engineer","Software Engineering Intern"]
+Positioning: Lead with the software internship and campus ordering project when tailoring for Software Engineer roles. Use specific features and implementation choices to connect the listed technologies to work you performed.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":2},{"kind":"question_moved","path":"ideas.questions[2]","fix":0},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"section_review.Summary.missing","of":"gaps[2]"},{"kind":"repeat_dropped","path":"section_review.Summary.fix","of":"first_impression"},{"kind":"repeat_dropped","path":"section_review.Work Experience.fix","of":"top_fixes[1]"}]

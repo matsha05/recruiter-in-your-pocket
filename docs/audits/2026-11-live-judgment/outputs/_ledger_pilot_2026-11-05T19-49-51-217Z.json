@@ -1,0 +1,21 @@
+{
+  "batch": "holes",
+  "model": "gpt-6.1-terra",
+  "effort": "medium",
+  "today": "2026-11-05",
+  "budget_usd": 0.3,
+  "spent_usd": 0.04527975,
+  "calls": 2,
+  "runs": [
+    {
+      "stem": "h2_thin_resume__run1",
+      "outcome": "repair_failed",
+      "cost_usd": 0.04527975,
+      "score": null,
+      "band": null,
+      "critical": null,
+      "added": null,
+      "repaired": false
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+# b14_teacher_to_instructional_designer, run 1
+Resume: ../../../tests/resumes/blindpick/synth_bp_teacher_to_instructional_designer_1.txt (164 words, sha256 834ed54c2de6)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0134; 26.9s
+Case note: Career changer.
+
+## Band: Needs more context (score 68; model wrote 68, label "Needs Clarity")
+## Verdict
+Your current role combines high school math teaching with digital learning design. The self-paced Canvas module is worth keeping prominent because it shows a concrete move from classroom content to online instruction.
+One-line read: The teaching context is clear, but the design work needs more detail.
+Takeaway: Explain the Canvas module
+Biggest gap example: "Lead the math department's professional learning community" names a leadership responsibility but doesn't show what you do with the group or what it produces.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the Canvas module bullet, add an example of a learning activity or feedback you built into the functions unit.
+   why: A reader could then see what you designed, not just the platform and format.
+   excerpt (EXPERIENCE): "- Redesigned the Algebra II unit on functions into a self-paced online module in Canvas"
+2. [fix] In the professional learning community bullet, name a topic you led and any work the group completed on it.
+   why: That would make your department leadership more tangible without overstating your role.
+   excerpt (EXPERIENCE): "- Lead the math department's professional learning community"
+3. [fix] In the exam-review video bullet, identify a topic covered and describe how students use the walkthroughs to prepare.
+   why: A specific example would help a reviewer understand the instructional work behind the videos.
+   excerpt (EXPERIENCE): "- Created video walkthroughs that students use for exam review"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+Naming five sections of 28 to 32 students gives a reviewer a concrete picture of your current teaching assignment.
+Other strengths: ["The inclusion-class experience and common assessments show collaboration in the earlier middle school role.","The in-progress instructional design certificate and Storyline workshop make your current development in learning design visible."]
+
+## Gaps
+- The Canvas bullet doesn't describe the learning activities or feedback within the module, making the design work difficult to distinguish from moving content online.
+- The exam-review videos have no example of their content or how students use them, so their instructional purpose remains broad.
+- The professional learning community bullet doesn't identify a topic you led or work the group completed, leaving your department role abstract.
+
+## Next steps
+- Expand the Canvas and video bullets using details you can verify from those materials.
+- Add a concrete example to the department learning community bullet, then review the assessment bullet for useful context.
+- Reorder your existing experience bullets so the work most relevant to your intended role appears first.
+
+## Role fit
+Level: The current Mathematics Teacher role includes math department professional learning community leadership.
+Best fit: ["Mathematics Teacher"]
+Positioning: If you want to move toward digital learning design, put the Canvas module and review videos near the top of your current role. Keep the teaching context so readers can see the learners and subjects behind that work.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":1},{"kind":"question_dropped","path":"ideas.questions[3]","reason":"duplicates_keep"},{"kind":"question_moved","path":"ideas.questions[4]","fix":2},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"gaps[2]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"section_review.Work Experience.missing","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"section_review.Work Experience.fix","of":"top_fixes[1]"}]

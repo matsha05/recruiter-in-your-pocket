@@ -1,0 +1,49 @@
+# b23_pharmacy_tech_table, run 2
+Resume: resumes/b_pharmacy_tech_table.txt (209 words, sha256 872695c37eba)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0131; 27.1s
+Case note: Tables rendered to tab-separated text.
+
+## Band: Clear and specific (score 85; model wrote 85, label "Strong")
+## Verdict
+Inpatient sterile compounding and retail pharmacy are both visible immediately. The separate duties table makes a reviewer connect each responsibility back to its employer and dates.
+One-line read: Recent pharmacy duties include workload and staffing details, with one clear result.
+Takeaway: Connect duties to employers
+Biggest gap example: "Ran the immunization scheduling during the 2021 flu and COVID seasons" does not explain how you handled scheduling, so the nature of your responsibility is unclear.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] Move each entry in Duties and Results beneath its matching job in Experience, keeping the existing volumes and stockout result.
+   why: A reader can then see the employer and dates alongside the work without cross-referencing two tables.
+   excerpt (DUTIES AND RESULTS): "Prepare IV admixtures and chemotherapy in the cleanroom under USP 797 and 800"
+2. [fix] In the retail prescription bullet, explain what your verification step covered and how it related to the pharmacist's review.
+   why: Verification can mean different things in a pharmacy workflow, so the detail would help a reviewer understand your responsibility.
+   excerpt (DUTIES AND RESULTS): "Filled and verified prescriptions for a store doing 350 scripts a day"
+3. [fix] In the immunization scheduling bullet, name the scheduling tasks you handled during the flu and COVID seasons.
+   why: The seasons establish when the work happened, but not what running the schedule involved.
+   excerpt (DUTIES AND RESULTS): "Ran the immunization scheduling during the 2021 flu and COVID seasons"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+About 120 IV admixture and chemotherapy doses per shift gives readers a sense of the cleanroom workload under USP 797 and 800.
+Other strengths: ["Training 5 technicians since 2023 shows that teaching sterile compounding is part of your current role.","The CPhT, California license and sterile compounding credential are listed with issuers and years, making them easy to locate."]
+
+## Gaps
+- The immunization scheduling entry doesn't describe the tasks you handled, leaving its day-to-day demands unclear.
+- The resume doesn't define what a stockout report counted, which makes the reported change harder to interpret.
+- The retail insurance entry doesn't say how you handled rejections or prior authorizations, so readers can't see the work behind the daily volume.
+
+## Next steps
+- Place the duties under the three corresponding jobs and keep the inpatient role first.
+- Revise the retail entries with your actual verification and immunization scheduling tasks.
+- Check what the stockout reports counted and add a brief definition if it helps readers interpret the 2024 figures.
+
+## Role fit
+Level: Your current title is Pharmacy Technician II, with technician training included in the role.
+Best fit: ["Pharmacy Technician II","Pharmacy Technician"]
+Positioning: For inpatient applications, put cleanroom preparation, cabinet restocking and the 2024 stockout figures near the top of the current role. For retail applications, bring prescription processing and insurance work forward while retaining the inpatient experience.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[0]","line":"fix-0","criticalMiss":true},{"kind":"question_moved","path":"ideas.questions[1]","fix":1},{"kind":"question_dropped","path":"ideas.questions[2]","reason":"duplicates_keep"},{"kind":"question_moved","path":"ideas.questions[3]","fix":0},{"kind":"question_moved","path":"ideas.questions[4]","fix":2},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"ideas.questions[0]"}]

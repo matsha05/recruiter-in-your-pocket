@@ -1,0 +1,807 @@
+{
+  "case_id": "h4c_one_paragraph",
+  "batch": "holes",
+  "run": 1,
+  "note": "A resume pasted as one paragraph with no line breaks.",
+  "resume_file": "resumes/h4c_one_paragraph.txt",
+  "resume_sha256": "f511920a68961c81af3613491765d7123205582245e9adc00a8bf837d18c66ea",
+  "resume_chars": 1025,
+  "resume_words": 147,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T19:54:02.524Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7321,
+        "completion_tokens": 2293,
+        "total_tokens": 9614,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 432,
+        "reasoning_tokens": 424
+      },
+      "cost_usd": 0.0123523,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 26632
+    },
+    {
+      "kind": "repair",
+      "usage": {
+        "prompt_tokens": 10104,
+        "completion_tokens": 3392,
+        "total_tokens": 13496,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 3215,
+        "reasoning_tokens": 1528
+      },
+      "cost_usd": 0.02132605,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 38771
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.0009745,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1365
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 82,
+    "score_label": "Strong",
+    "score_comment_short": "Recent dispatch work has concrete scale and a stated delivery improvement.",
+    "score_comment_long": "The current role names the drivers, depots, reporting cadence, and on-time result. Some customer-facing work remains described as tasks. Explain the changes behind the delivery result and the decisions involved in exceptions.",
+    "score_plain": "Your recent role gives reviewers a useful picture of the dispatch work you handle. A few more specifics would help them understand how you solve problems within it.",
+    "first_impression": "Your current role combines dispatch coordination, delivery reporting, customer contact, and training. The supplied text runs together, so those responsibilities take more effort to scan than they should.",
+    "biggest_gap_example": "\"resolve delivery exceptions with customers by phone and email\" does not say which exceptions you handled or what you could decide yourself, leaving your authority unclear.",
+    "first_impression_takeaway": "Explain delivery exception decisions",
+    "summary": "Improving the on-time rate from 91% to 96% in 2024 is worth keeping prominent because it gives the dispatch work a concrete result. Your roles connect freight handling, parcel customer service, and coordination across two depots. The current title and responsibilities place you at coordinator level, with training duties also shown. What changed to achieve the on-time result is not yet clear, so a reviewer cannot see which practices you brought to that improvement.",
+    "strengths": [
+      "Daily dispatch for 18 drivers across two depots gives a clear picture of your current responsibilities.",
+      "Training 4 new coordinators on dispatch software shows that your work includes helping colleagues learn the system.",
+      "Handling 60 to 80 customer calls per day shows the pace of your parcel service role."
+    ],
+    "gaps": [
+      "The delivery improvement does not explain what you changed, leaving the method behind the result unclear.",
+      "The damaged and lost package claims work does not say which steps you handled, making your responsibility within the claims process difficult to judge.",
+      "Excel appears in Skills without an example of its use, so its relevance to your operations work is uncertain."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the on-time delivery achievement, add the dispatch or follow-up change you made to improve the rate, if you can verify it.",
+        "why": "The result is already stated; the missing detail is how you achieved it.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "improved on-time rate from 91% to 96% in 2024",
+          "section": "Experience"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Experience"
+      },
+      {
+        "fix": "In the delivery exceptions description, name an example of an exception and the decisions you could make when resolving it.",
+        "why": "That would distinguish your own authority from the customer communication channel.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "resolve delivery exceptions with customers by phone and email",
+          "section": "Experience"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Experience"
+      },
+      {
+        "fix": "In the Dominion Parcel claims description, specify which stages of a damaged or lost package claim you handled.",
+        "why": "A reviewer could then see whether your work involved intake, investigation, resolution, or another part of the process.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "handled claims for damaged or lost packages",
+          "section": "Experience"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "Experience"
+      }
+    ],
+    "next_steps": [
+      "Revise the River City Logistics entry first, adding the actions behind the 2024 delivery result and an example of exception handling.",
+      "Expand the Dominion Parcel claims description with the steps you personally performed.",
+      "Check your original file and use separate role headings and bullets if it also presents the content as continuous text."
+    ],
+    "subscores": {
+      "impact": 82,
+      "clarity": 80,
+      "story": 83,
+      "readability": 78
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "It identifies logistics and customer service as your areas of work.",
+        "missing": "It does not mention the dispatch coordination that defines your current role.",
+        "fix": "Add a brief reference to coordinating drivers and depots, and check that the stated years remain current."
+      },
+      "Work Experience": {
+        "grade": "B+",
+        "priority": "High",
+        "working": "The current role includes dispatch scale, reporting, training, and a stated on-time delivery improvement.",
+        "missing": "The actions behind the delivery improvement and your authority when handling exceptions are not described.",
+        "fix": "Add a specific practice behind the 2024 result and an example of an exception you resolved."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "Salesforce and Excel are named alongside dispatch and scheduling skills.",
+        "missing": "The experience section does not show how you used Excel.",
+        "fix": "If relevant, connect Excel to a task you performed in an existing role."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The degree, field, school, and year are included.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Dispatch coordination across two depots",
+        "On-time delivery tracking and weekly reporting",
+        "Parcel customer service and claims",
+        "Training new coordinators on dispatch software"
+      ],
+      "underplayed": [
+        "Methods used to improve on-time delivery",
+        "Decision-making in delivery exceptions",
+        "Stages handled in package claims"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Operations Coordinator"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Coordinator level, with responsibility for dispatch reporting and training new coordinators.",
+        "industry_signals": [
+          "Logistics",
+          "Parcel delivery"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Lead with your current dispatch responsibilities and the 2024 on-time delivery result. Use the earlier parcel service and warehouse roles to show your familiarity with freight and customer issues."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "Which delivery exceptions could you resolve yourself, and which needed escalation?",
+          "archetype": "TENSION POINT",
+          "why": "The answer would explain your decision-making authority when customers reported delivery problems."
+        },
+        {
+          "question": "What did you change in dispatch or follow-up when the on-time rate improved in 2024?",
+          "archetype": "IMPROVEMENT",
+          "why": "It would connect the stated delivery result to the work you performed."
+        },
+        {
+          "question": "What did you teach the new coordinators to do in the dispatch software?",
+          "archetype": "SCALING",
+          "why": "A concrete training example would show what those colleagues learned from you."
+        },
+        {
+          "question": "Which steps did you handle after a customer reported a damaged or lost package?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "This would define your part in the claims process without assuming you handled every stage."
+        },
+        {
+          "question": "How did you coordinate dispatch between the two depots when priorities conflicted?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "An example could show how you handled competing delivery needs."
+        }
+      ]
+    }
+  },
+  "initial_validation_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the evidence grounding contract at summary unsupported narrative facts: unsupported direction binding: improve on-time rate from 91% to 96 in 2024 is worth keeping prominent because it."
+  },
+  "model_output_repaired": {
+    "contract_version": "v2",
+    "score": 82,
+    "score_label": "Strong",
+    "score_comment_short": "Your recent dispatch work has clear responsibilities and a stated improvement.",
+    "score_comment_long": "The current role names the drivers, depots, reporting cadence, and delivery result. Some customer-facing work remains described as tasks. Explaining how you handled exceptions and improved delivery performance would make those entries more useful.",
+    "score_plain": "Your recent role gives a reviewer a concrete picture of your dispatch responsibilities. More detail about how you handled the work would make your contribution easier to assess.",
+    "first_impression": "Your current work covers dispatch, delivery reporting, customer exceptions, and training. The supplied text runs together, making those responsibilities less easy to scan.",
+    "biggest_gap_example": "\"resolve delivery exceptions with customers by phone and email\" does not say which exceptions you handled or what you could decide yourself, leaving your authority unclear.",
+    "first_impression_takeaway": "Explain delivery exception decisions",
+    "summary": "You coordinate daily dispatch for 18 drivers across two depots, giving your current role a clear operating context. Your work connects delivery reporting and customer exceptions with training new coordinators. The resume states that you \"improved on-time rate from 91% to 96% in 2024\", a result worth keeping visible. This is a coordinator-level story, though explaining what you did to achieve that change would make your approach easier to understand.",
+    "strengths": [
+      "Weekly reporting to the regional manager shows who received your delivery updates and how often.",
+      "Training 4 new coordinators on dispatch software shows that you helped colleagues learn a system used in the role.",
+      "Handling 60 to 80 customer calls per day shows the pace of your parcel service work."
+    ],
+    "gaps": [
+      "The exception-handling description does not identify the problems you resolved or the decisions available to you.",
+      "The damaged and lost package claims entry does not say which stages you handled, leaving your part in the process unclear.",
+      "The training description names the software but not the tasks you taught, so the content of that training is unclear."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the on-time delivery achievement, describe what you did to improve performance, if you can verify it.",
+        "why": "The result is already stated; the missing detail is the work behind it.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "improved on-time rate from 91% to 96% in 2024",
+          "section": "Experience"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Experience"
+      },
+      {
+        "fix": "In the delivery exceptions description, add an example of an exception and the decisions you could make when resolving it.",
+        "why": "That would show your authority as well as how you contacted customers.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "resolve delivery exceptions with customers by phone and email",
+          "section": "Experience"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Experience"
+      },
+      {
+        "fix": "In the Dominion Parcel claims description, specify which stages of a damaged or lost package claim you handled.",
+        "why": "A reviewer could then see whether your work involved intake, investigation, resolution, or another part of the process.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "handled claims for damaged or lost packages",
+          "section": "Experience"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "Experience"
+      }
+    ],
+    "next_steps": [
+      "Revise the River City Logistics entry first, adding your actions behind the 2024 delivery result and an example of exception handling.",
+      "Expand the Dominion Parcel claims description with the steps you personally performed.",
+      "Compare the supplied text with your original file; if the roles also run together there, separate the headings and responsibilities."
+    ],
+    "subscores": {
+      "impact": 82,
+      "clarity": 80,
+      "story": 83,
+      "readability": 78
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "It identifies logistics and customer service as your areas of work.",
+        "missing": "It does not mention the dispatch coordination that defines your current role.",
+        "fix": "Add a brief reference to coordinating drivers and depots, and check that the stated years remain current."
+      },
+      "Work Experience": {
+        "grade": "B+",
+        "priority": "High",
+        "working": "The current role includes dispatch scale, reporting, training, and a stated on-time delivery improvement.",
+        "missing": "The actions behind the delivery improvement and your authority when handling exceptions are not described.",
+        "fix": "Add what you did to improve delivery performance and an example of an exception you resolved."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "Salesforce and Excel are named alongside dispatch and scheduling skills.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The degree, field, school, and year are included.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Dispatch coordination across two depots",
+        "On-time delivery tracking and weekly reporting",
+        "Parcel customer service and claims",
+        "Training new coordinators on dispatch software"
+      ],
+      "underplayed": [
+        "Actions behind the on-time delivery improvement",
+        "Decision-making in delivery exceptions",
+        "Stages handled in package claims"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Operations Coordinator"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Coordinator level, with responsibility for dispatch reporting and training new coordinators.",
+        "industry_signals": [
+          "Logistics",
+          "Parcel delivery"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Lead with your current dispatch responsibilities and the 2024 on-time delivery result. Use the earlier parcel service and warehouse roles to show your familiarity with freight and customer issues."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What did you do to improve on-time delivery in 2024?",
+          "archetype": "IMPROVEMENT",
+          "why": "It would connect the stated delivery result to the work you performed."
+        },
+        {
+          "question": "Which delivery exceptions could you resolve yourself, and which needed escalation?",
+          "archetype": "TENSION POINT",
+          "why": "The answer would explain your authority when customers reported delivery problems."
+        },
+        {
+          "question": "Which steps did you handle after a customer reported a damaged or lost package?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "This would define your part in the claims process without assuming you handled every stage."
+        },
+        {
+          "question": "Which dispatch software tasks did you teach the new coordinators?",
+          "archetype": "SCALING",
+          "why": "A concrete example would show what those colleagues learned from you."
+        },
+        {
+          "question": "Did dispatch priorities ever differ between the two depots, and how did you coordinate if they did?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "If priorities differed, an example could show how you coordinated between the depots."
+        }
+      ]
+    }
+  },
+  "repaired": true,
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 82,
+    "score_label": "Mostly clear",
+    "score_comment_short": "Your recent dispatch work has clear responsibilities and a stated improvement.",
+    "score_comment_long": "The current role names the drivers, depots, reporting cadence, and delivery result. Some customer-facing work remains described as tasks. Explaining how you handled exceptions and improved delivery performance would make those entries more useful.",
+    "score_plain": "Your recent role gives a reviewer a concrete picture of your dispatch responsibilities. More detail about how you handled the work would make your contribution easier to assess.",
+    "first_impression": "Your current work covers dispatch, delivery reporting, customer exceptions, and training. The supplied text runs together, making those responsibilities less easy to scan.",
+    "biggest_gap_example": "\"resolve delivery exceptions with customers by phone and email\" does not say which exceptions you handled or what you could decide yourself, leaving your authority unclear.",
+    "first_impression_takeaway": "Explain delivery exception decisions",
+    "summary": "You coordinate daily dispatch for 18 drivers across two depots, giving your current role a clear operating context. Your work connects delivery reporting and customer exceptions with training new coordinators. The resume states that you \"improved on-time rate from 91% to 96% in 2024\", a result worth keeping visible. This is a coordinator-level story, though explaining what you did to achieve that change would make your approach easier to understand.",
+    "strengths": [
+      "Weekly reporting to the regional manager shows who received your delivery updates and how often.",
+      "Training 4 new coordinators on dispatch software shows that you helped colleagues learn a system used in the role.",
+      "Handling 60 to 80 customer calls per day shows the pace of your parcel service work."
+    ],
+    "gaps": [
+      "The exception-handling description does not identify the problems you resolved or the decisions available to you.",
+      "The damaged and lost package claims entry does not say which stages you handled, leaving your part in the process unclear.",
+      "The training description names the software but not the tasks you taught, so the content of that training is unclear."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the on-time delivery achievement, describe what you did to improve performance, if you can verify it.",
+        "why": "The result is already stated; the missing detail is the work behind it.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "improved on-time rate from 91% to 96% in 2024",
+          "section": "Experience"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Experience"
+      }
+    ],
+    "next_steps": [
+      "Revise the River City Logistics entry first, adding your actions behind the 2024 delivery result and an example of exception handling.",
+      "Expand the Dominion Parcel claims description with the steps you personally performed.",
+      "Compare the supplied text with your original file; if the roles also run together there, separate the headings and responsibilities."
+    ],
+    "subscores": {
+      "impact": 82,
+      "clarity": 80,
+      "story": 83,
+      "readability": 78
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "Section not present.",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Skills": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No skills section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Education": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No education section present",
+        "fix": "Add this section if the job asks for it or it helps explain your qualifications."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Dispatch coordination across two depots",
+        "On-time delivery tracking and weekly reporting",
+        "Parcel customer service and claims",
+        "Training new coordinators on dispatch software"
+      ],
+      "underplayed": [
+        "Actions behind the on-time delivery improvement",
+        "Decision-making in delivery exceptions",
+        "Stages handled in package claims"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Operations Coordinator"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Coordinator level, with responsibility for dispatch reporting and training new coordinators.",
+        "industry_signals": [
+          "Logistics"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with your current dispatch responsibilities and the 2024 on-time delivery result. Use the earlier parcel service and warehouse roles to show your familiarity with freight and customer issues."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What did you do to improve on-time delivery in 2024?",
+          "archetype": "IMPROVEMENT",
+          "why": "It would connect the stated delivery result to the work you performed."
+        },
+        {
+          "question": "Which delivery exceptions could you resolve yourself, and which needed escalation?",
+          "archetype": "TENSION POINT",
+          "why": "The answer would explain your authority when customers reported delivery problems."
+        },
+        {
+          "question": "Which steps did you handle after a customer reported a damaged or lost package?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "This would define your part in the claims process without assuming you handled every stage."
+        },
+        {
+          "question": "Which dispatch software tasks did you teach the new coordinators?",
+          "archetype": "SCALING",
+          "why": "A concrete example would show what those colleagues learned from you."
+        },
+        {
+          "question": "Did dispatch priorities ever differ between the two depots, and how did you coordinate if they did?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "If priorities differed, an example could show how you coordinated between the depots."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 82
+  },
+  "severity": {
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "promoted": [],
+    "replaced": [],
+    "skipped": [],
+    "critical_count": 1,
+    "more_critical": false,
+    "validation_attempts": 0,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "latency_ms": 1465,
+    "call_latency_ms": 1365,
+    "cost_usd": 0.0009745,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 82,
+    "score_label": "Mostly clear",
+    "score_comment_short": "Your recent dispatch work has clear responsibilities and a stated improvement.",
+    "score_comment_long": "The current role names the drivers, depots, reporting cadence, and delivery result. Some customer-facing work remains described as tasks. Explaining how you handled exceptions and improved delivery performance would make those entries more useful.",
+    "score_plain": "Your recent role gives a reviewer a concrete picture of your dispatch responsibilities. More detail about how you handled the work would make your contribution easier to assess.",
+    "first_impression": "Your current work covers dispatch, delivery reporting, customer exceptions, and training. The supplied text runs together, making those responsibilities less easy to scan.",
+    "biggest_gap_example": "\"resolve delivery exceptions with customers by phone and email\" does not say which exceptions you handled or what you could decide yourself, leaving your authority unclear.",
+    "first_impression_takeaway": "Explain delivery exception decisions",
+    "summary": "You coordinate daily dispatch for 18 drivers across two depots, giving your current role a clear operating context. Your work connects delivery reporting and customer exceptions with training new coordinators. The resume states that you \"improved on-time rate from 91% to 96% in 2024\", a result worth keeping visible. This is a coordinator-level story, though explaining what you did to achieve that change would make your approach easier to understand.",
+    "strengths": [
+      "Weekly reporting to the regional manager shows who received your delivery updates and how often.",
+      "Training 4 new coordinators on dispatch software shows that you helped colleagues learn a system used in the role.",
+      "Handling 60 to 80 customer calls per day shows the pace of your parcel service work."
+    ],
+    "gaps": [
+      "The exception-handling description does not identify the problems you resolved or the decisions available to you.",
+      "The damaged and lost package claims entry does not say which stages you handled, leaving your part in the process unclear.",
+      "The training description names the software but not the tasks you taught, so the content of that training is unclear."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the on-time delivery achievement, describe what you did to improve performance, if you can verify it.",
+        "why": "The result is already stated; the missing detail is the work behind it.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "improved on-time rate from 91% to 96% in 2024",
+          "section": "Experience"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Experience",
+        "critical": true
+      }
+    ],
+    "next_steps": [
+      "Revise the River City Logistics entry first, adding your actions behind the 2024 delivery result and an example of exception handling.",
+      "Expand the Dominion Parcel claims description with the steps you personally performed.",
+      "Compare the supplied text with your original file; if the roles also run together there, separate the headings and responsibilities."
+    ],
+    "subscores": {
+      "impact": 82,
+      "clarity": 80,
+      "story": 83,
+      "readability": 78
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "Section not present.",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Skills": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No skills section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Education": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No education section present",
+        "fix": "Add this section if the job asks for it or it helps explain your qualifications."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Dispatch coordination across two depots",
+        "On-time delivery tracking and weekly reporting",
+        "Parcel customer service and claims",
+        "Training new coordinators on dispatch software"
+      ],
+      "underplayed": [
+        "Actions behind the on-time delivery improvement",
+        "Decision-making in delivery exceptions",
+        "Stages handled in package claims"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Operations Coordinator"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Coordinator level, with responsibility for dispatch reporting and training new coordinators.",
+        "industry_signals": [
+          "Logistics"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with your current dispatch responsibilities and the 2024 on-time delivery result. Use the earlier parcel service and warehouse roles to show your familiarity with freight and customer issues."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What did you do to improve on-time delivery in 2024?",
+          "archetype": "IMPROVEMENT",
+          "why": "It would connect the stated delivery result to the work you performed."
+        },
+        {
+          "question": "Which delivery exceptions could you resolve yourself, and which needed escalation?",
+          "archetype": "TENSION POINT",
+          "why": "The answer would explain your authority when customers reported delivery problems."
+        },
+        {
+          "question": "Which steps did you handle after a customer reported a damaged or lost package?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "This would define your part in the claims process without assuming you handled every stage."
+        },
+        {
+          "question": "Which dispatch software tasks did you teach the new coordinators?",
+          "archetype": "SCALING",
+          "why": "A concrete example would show what those colleagues learned from you."
+        },
+        {
+          "question": "Did dispatch priorities ever differ between the two depots, and how did you coordinate if they did?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "If priorities differed, an example could show how you coordinated between the depots."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 82,
+    "more_critical": false
+  },
+  "presentation": {
+    "score": 82,
+    "band": "Mostly clear",
+    "score_label_from_model": "Strong",
+    "model_score_before_calibration": 82,
+    "verdict": "Your current work covers dispatch, delivery reporting, customer exceptions, and training. The supplied text runs together, making those responsibilities less easy to scan.",
+    "one_line_read": "Your recent dispatch work has clear responsibilities and a stated improvement.",
+    "takeaway": "Explain delivery exception decisions",
+    "biggest_gap_example": "\"resolve delivery exceptions with customers by phone and email\" does not say which exceptions you handled or what you could decide yourself, leaving your authority unclear.",
+    "critical_count": {
+      "count": 1,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "One Critical Miss. Fix it first.",
+      "lead": "It's the one most likely to cost you the interview."
+    },
+    "fixes": [
+      {
+        "fix": "In the on-time delivery achievement, describe what you did to improve performance, if you can verify it.",
+        "why": "The result is already stated; the missing detail is the work behind it.",
+        "excerpt": "improved on-time rate from 91% to 96% in 2024",
+        "section": "Experience",
+        "critical": true,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "Weekly reporting to the regional manager shows who received your delivery updates and how often.",
+    "strengths": [
+      "Weekly reporting to the regional manager shows who received your delivery updates and how often.",
+      "Training 4 new coordinators on dispatch software shows that you helped colleagues learn a system used in the role.",
+      "Handling 60 to 80 customer calls per day shows the pace of your parcel service work."
+    ],
+    "gaps": [
+      "The exception-handling description does not identify the problems you resolved or the decisions available to you.",
+      "The damaged and lost package claims entry does not say which stages you handled, leaving your part in the process unclear.",
+      "The training description names the software but not the tasks you taught, so the content of that training is unclear."
+    ],
+    "next_steps": [
+      "Revise the River City Logistics entry first, adding your actions behind the 2024 delivery result and an example of exception handling.",
+      "Expand the Dominion Parcel claims description with the steps you personally performed.",
+      "Compare the supplied text with your original file; if the roles also run together there, separate the headings and responsibilities."
+    ],
+    "seniority_read": "Coordinator level, with responsibility for dispatch reporting and training new coordinators.",
+    "best_fit_roles": [
+      "Operations Coordinator"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "Lead with your current dispatch responsibilities and the 2024 on-time delivery result. Use the earlier parcel service and warehouse roles to show your familiarity with freight and customer issues.",
+    "severity_added": [],
+    "severity_promoted": [],
+    "severity_outcome": "none (none)",
+    "severity_answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[0]",
+          "fix": 0
+        },
+        {
+          "kind": "question_dropped",
+          "path": "ideas.questions[3]",
+          "reason": "duplicates_keep"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "biggest_gap_example",
+          "of": "ideas.questions[1]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[1]",
+          "of": "ideas.questions[2]"
+        }
+      ],
+      "fix_questions": [
+        [
+          "What did you do to improve on-time delivery in 2024?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.03465285,
+  "latency_ms": 67796
+}

@@ -1,0 +1,919 @@
+{
+  "case_id": "b36_product_designer_unrelated",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Current job outside the field.",
+  "resume_file": "../../../tests/resumes/blindpick/synth_bp_product_designer_unrelated_1.txt",
+  "resume_sha256": "1bdb9ae79f9dbe3ee5291318e6f8912d3364acecf7899188406d07eba1db153f",
+  "resume_chars": 974,
+  "resume_words": 147,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T20:13:12.696Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7512,
+        "completion_tokens": 2409,
+        "total_tokens": 9921,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 623,
+        "reasoning_tokens": 512
+      },
+      "cost_usd": 0.01317105,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 28420
+    },
+    {
+      "kind": "repair",
+      "usage": {
+        "prompt_tokens": 10279,
+        "completion_tokens": 2847,
+        "total_tokens": 13126,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 3390,
+        "reasoning_tokens": 963
+      },
+      "cost_usd": 0.0188198,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 32835
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.00216325,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 3686
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 80,
+    "score_label": "Strong",
+    "score_comment_short": "Specific design work and release context stand out, though results are largely absent.",
+    "score_comment_long": "The Loop Fitness role names a booking flow, collaborators and an app design system. Most bullets stop before explaining what changed or how the work was used. Add a few concrete details to those existing bullets.",
+    "score_plain": "A reviewer can identify your product design work and the settings in which you did it. The resume leaves more questions about the effect of that work and your recent design activity.",
+    "first_impression": "The first app design system at Loop Fitness is worth keeping prominent because it shows you built a shared design resource. Your current cafe role appears before your most relevant design work, so your present design activity is less clear.",
+    "biggest_gap_example": "\"Ran usability tests with members before launches\" does not say what you learned or changed, leaving the value of the testing hard to assess.",
+    "first_impression_takeaway": "Explain the usability findings",
+    "summary": "At Loop Fitness, you designed a mobile booking flow and worked with two engineers and a product manager on weekly releases. That combination places you in product design work alongside a delivery team, with earlier agency work adding web and client presentation experience. The Product Designer title and responsibilities support that level, while the bullets leave the effect of your design decisions mostly unstated. A reviewer may also wonder what design work, if any, you have done since February 2024.",
+    "strengths": [
+      "Naming iOS and Android gives the booking project a clear platform context.",
+      "The first Figma design system distinguishes a reusable app resource from individual screen work.",
+      "The portfolio address is easy to find alongside your contact details."
+    ],
+    "gaps": [
+      "The booking-flow bullet does not identify the user problem or a design decision, making the project difficult to assess beyond its subject.",
+      "The design-system bullet does not explain what it included or who used it, so its practical reach is unclear.",
+      "The resume does not describe any design activity after the Loop Fitness role, leaving your recent connection to the field uncertain."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the Loop Fitness booking-flow bullet, add the member problem you were designing for and one design decision you made.",
+        "why": "That would show what you contributed beyond working on a named flow.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Designed the class booking flow for the iOS and Android apps",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the Loop Fitness design-system bullet, name the components or conventions you created and who used them.",
+        "why": "A reader could then understand what the system contained and how it fit into app development.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Created the app's first design system in Figma",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the member-testing bullet, add an example of a finding and any design change you made in response.",
+        "why": "This would connect the testing activity to a concrete product decision without assuming every test led to a change.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Ran usability tests with members before launches",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the Loop Fitness bullets using details you can verify about the booking flow, design system and member tests.",
+      "Review the Brightpath bullets and identify one client presentation or design problem you can describe more specifically.",
+      "Update the opening line with any real, relevant design activity since Loop Fitness, if applicable."
+    ],
+    "subscores": {
+      "impact": 70,
+      "clarity": 82,
+      "story": 76,
+      "readability": 84
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The opening identifies product design, web and mobile work, and startup experience.",
+        "missing": "It does not address your more recent move into cafe work or any current design activity.",
+        "fix": "If you have relevant recent design activity, incorporate it into the opening without implying a role you did not hold."
+      },
+      "Work Experience": {
+        "grade": "B",
+        "priority": "High",
+        "working": "Loop Fitness names the product area, platforms, collaborators and release cadence.",
+        "missing": "The design bullets rarely explain the problems addressed, choices made or changes observed.",
+        "fix": "Expand selected Loop Fitness bullets with a specific design decision or finding you can verify."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "Figma, Principle, research, prototyping and design systems are easy to scan.",
+        "missing": "The list does not distinguish tools from design practices.",
+        "fix": "Group tools and design practices separately if that improves the layout."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The degree, field, school and year are stated.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Mobile app design for iOS and Android",
+        "Figma design system creation",
+        "Usability testing with members",
+        "Collaboration with engineers and a product manager"
+      ],
+      "underplayed": [
+        "Design choices behind the class booking flow",
+        "How the app design system was used",
+        "Findings from member usability tests"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Product Designer"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your most recent design title is Product Designer, following a Junior Product Designer role.",
+        "industry_signals": [
+          "Fitness apps",
+          "Design agency",
+          "Cafe service"
+        ],
+        "company_stage_fit": "The summary describes design work for startups, though the stage of each employer is not specified."
+      },
+      "positioning_suggestion": "Keep Product Designer as the focus of the opening and give the Loop Fitness work more room than the cafe responsibilities. If you have continued relevant design work since that role, describe it accurately on the resume."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What difficulty were members facing when you designed the class booking flow?",
+          "archetype": "TENSION POINT",
+          "why": "The answer would give the mobile project a user problem, not just a feature name."
+        },
+        {
+          "question": "Which components or conventions did you create for the Figma design system?",
+          "archetype": "SCALING",
+          "why": "That would show what the shared resource actually contained."
+        },
+        {
+          "question": "What did a member usability test reveal, and did you make a design change afterward?",
+          "archetype": "IMPROVEMENT",
+          "why": "A concrete finding would make the testing work easier to understand."
+        },
+        {
+          "question": "How did you coordinate design decisions with the engineers and product manager during weekly releases?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The team and cadence are named, but the collaboration itself is not described."
+        },
+        {
+          "question": "What did one Brightpath prototype help a client review or discuss?",
+          "archetype": "DOMAIN LIFT",
+          "why": "An example could make the client presentation work more tangible."
+        }
+      ]
+    }
+  },
+  "initial_validation_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the evidence grounding contract at next_steps[1] unsupported narrative facts: one client."
+  },
+  "model_output_repaired": {
+    "contract_version": "v2",
+    "score": 80,
+    "score_label": "Strong",
+    "score_comment_short": "Specific design projects and team context stand out, but results remain unclear.",
+    "score_comment_long": "The Loop Fitness role names a booking flow, collaborators and an app design system. Most bullets stop before explaining what changed or how the work was used. Add concrete details to those existing bullets.",
+    "score_plain": "Your product design work is easy to identify, but a reader has limited information about what the designs changed. More detail could help them assess your contribution.",
+    "first_impression": "The first app design system at Loop Fitness is worth keeping prominent because it shows you built a shared design resource. Your current cafe role appears before your design work, so your recent connection to design is less clear.",
+    "biggest_gap_example": "\"Ran usability tests with members before launches\" does not say what you learned or changed, leaving the value of the testing unclear.",
+    "first_impression_takeaway": "Explain the usability findings",
+    "summary": "At Loop Fitness, you designed a booking flow for iOS and Android and created the app's first design system in Figma. Your work alongside engineers and a product manager, plus earlier agency projects, places you at the Product Designer level stated in your title. The bullets rarely explain the design choices behind those projects or what followed, which makes the work harder to assess. A reader may also wonder whether you have continued any design activity since leaving Loop Fitness.",
+    "strengths": [
+      "The weekly release cadence and named collaborators show how your design work fit into a product team.",
+      "Marketing sites and app screens at Brightpath show work across web and app formats.",
+      "The portfolio address is easy to find alongside your contact details."
+    ],
+    "gaps": [
+      "The booking-flow bullet does not identify the user problem, so the purpose of the design is unclear.",
+      "The design-system bullet does not say what it contained or who used it, leaving its practical use unclear.",
+      "No design activity is described after Loop Fitness, leaving your recent connection to the field uncertain."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the Loop Fitness booking-flow bullet, add the member problem you were designing for and a design choice you made.",
+        "why": "That would show what you contributed beyond working on a named flow.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Designed the class booking flow for the iOS and Android apps",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the Loop Fitness design-system bullet, name the components or conventions you created and who used them, if applicable.",
+        "why": "A reader could understand what the system contained and how it fit into app development.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Created the app's first design system in Figma",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the member-testing bullet, add a finding and any design change you made in response.",
+        "why": "A concrete example would show how you used what you learned without assuming every test led to a change.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Ran usability tests with members before launches",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the Loop Fitness bullets with details you can verify about the booking flow, design system and member tests.",
+      "Review the Brightpath prototypes bullet and add what the presentations asked clients to review, if you can verify it.",
+      "If you have relevant recent design activity, describe it accurately in the opening or experience section."
+    ],
+    "subscores": {
+      "impact": 71,
+      "clarity": 82,
+      "story": 77,
+      "readability": 85
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The opening identifies product design, web and mobile work, and startup experience.",
+        "missing": "It does not mention any design activity more recent than the Loop Fitness role.",
+        "fix": "If you have relevant recent design activity, incorporate it without implying a role you did not hold."
+      },
+      "Work Experience": {
+        "grade": "B",
+        "priority": "High",
+        "working": "Loop Fitness names the product area, platforms, collaborators and release cadence.",
+        "missing": "The design bullets rarely explain the problems addressed, choices made or changes observed.",
+        "fix": "Expand selected Loop Fitness bullets with a specific design decision or finding you can verify."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "Figma, Principle, research, prototyping and design systems are easy to scan.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The degree, field, school and year are stated.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Mobile app design for iOS and Android",
+        "Figma design system creation",
+        "Usability testing with members",
+        "Collaboration with engineers and a product manager"
+      ],
+      "underplayed": [
+        "Design choices behind the class booking flow",
+        "How the app design system was used",
+        "Findings from member usability tests"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Product Designer"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your most recent design title is Product Designer, following a Junior Product Designer role.",
+        "industry_signals": [
+          "Fitness apps",
+          "Design agency",
+          "Cafe service"
+        ],
+        "company_stage_fit": "The summary describes design work for startups, though it does not specify each employer's stage."
+      },
+      "positioning_suggestion": "Keep Product Designer as the focus of the opening and give the Loop Fitness work more room than the cafe responsibilities. If you have continued relevant design work since that role, describe it accurately on the resume."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What problem was the booking flow intended to address, and which design choices did you make?",
+          "archetype": "TENSION POINT",
+          "why": "The answer would give the mobile project a user problem, not just a feature name."
+        },
+        {
+          "question": "Which components or conventions did you create for the Figma design system?",
+          "archetype": "SCALING",
+          "why": "That would show what the shared resource contained."
+        },
+        {
+          "question": "What did members notice during usability tests, and did you change a design afterward?",
+          "archetype": "IMPROVEMENT",
+          "why": "A concrete finding would make the testing work easier to understand."
+        },
+        {
+          "question": "How did you coordinate design work with the engineers and product manager during weekly releases?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The team and cadence are named, but the collaboration itself is not described."
+        },
+        {
+          "question": "What did your prototypes allow clients to review during presentations?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The answer could make the Brightpath presentation work more tangible."
+        }
+      ]
+    }
+  },
+  "repaired": true,
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 80,
+    "score_label": "Mostly clear",
+    "score_comment_short": "Specific design projects and team context stand out, but results remain unclear.",
+    "score_comment_long": "The Loop Fitness role names a booking flow, collaborators and an app design system. Most bullets stop before explaining what changed or how the work was used. Add concrete details to those existing bullets.",
+    "score_plain": "Your product design work is easy to identify, but a reader has limited information about what the designs changed. More detail could help them assess your contribution.",
+    "first_impression": "The first app design system at Loop Fitness is worth keeping prominent because it shows you built a shared design resource. Your current cafe role appears before your design work, so your recent connection to design is less clear.",
+    "biggest_gap_example": "\"Ran usability tests with members before launches\" does not say what you learned or changed, leaving the value of the testing unclear.",
+    "first_impression_takeaway": "Explain the usability findings",
+    "summary": "At Loop Fitness, you designed a booking flow for iOS and Android and created the app's first design system in Figma. Your work alongside engineers and a product manager, plus earlier agency projects, places you at the Product Designer level stated in your title. The bullets rarely explain the design choices behind those projects or what followed, which makes the work harder to assess. A reader may also wonder whether you have continued any design activity since leaving Loop Fitness.",
+    "strengths": [
+      "The weekly release cadence and named collaborators show how your design work fit into a product team.",
+      "Marketing sites and app screens at Brightpath show work across web and app formats.",
+      "The portfolio address is easy to find alongside your contact details."
+    ],
+    "gaps": [
+      "The booking-flow bullet does not identify the user problem, so the purpose of the design is unclear.",
+      "The design-system bullet does not say what it contained or who used it, leaving its practical use unclear.",
+      "No design activity is described after Loop Fitness, leaving your recent connection to the field uncertain."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the Loop Fitness booking-flow bullet, add the member problem you were designing for and a design choice you made.",
+        "why": "That would show what you contributed beyond working on a named flow.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Designed the class booking flow for the iOS and Android apps",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the Loop Fitness design-system bullet, name the components or conventions you created and who used them, if applicable.",
+        "why": "A reader could understand what the system contained and how it fit into app development.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Created the app's first design system in Figma",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the member-testing bullet, add a finding and any design change you made in response.",
+        "why": "A concrete example would show how you used what you learned without assuming every test led to a change.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Ran usability tests with members before launches",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the Loop Fitness bullets with details you can verify about the booking flow, design system and member tests.",
+      "Review the Brightpath prototypes bullet and add what the presentations asked clients to review, if you can verify it.",
+      "If you have relevant recent design activity, describe it accurately in the opening or experience section."
+    ],
+    "subscores": {
+      "impact": 71,
+      "clarity": 82,
+      "story": 77,
+      "readability": 85
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "B",
+        "priority": "High",
+        "working": "Loop Fitness names the product area, platforms, collaborators and release cadence.",
+        "missing": "The design bullets rarely explain the problems addressed, choices made or changes observed.",
+        "fix": "Expand selected Loop Fitness bullets with a specific design decision or finding you can verify."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "Figma, Principle, research, prototyping and design systems are easy to scan.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The degree, field, school and year are stated.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Mobile app design for iOS and Android",
+        "Figma design system creation",
+        "Usability testing with members",
+        "Collaboration with engineers and a product manager"
+      ],
+      "underplayed": [
+        "Design choices behind the class booking flow",
+        "How the app design system was used",
+        "Findings from member usability tests"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Product Designer"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your most recent design title is Product Designer, following a Junior Product Designer role.",
+        "industry_signals": [],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Keep Product Designer as the focus of the opening and give the Loop Fitness work more room than the cafe responsibilities. If you have continued relevant design work since that role, describe it accurately on the resume."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What problem was the booking flow intended to address, and which design choices did you make?",
+          "archetype": "TENSION POINT",
+          "why": "The answer would give the mobile project a user problem, not just a feature name."
+        },
+        {
+          "question": "Which components or conventions did you create for the Figma design system?",
+          "archetype": "SCALING",
+          "why": "That would show what the shared resource contained."
+        },
+        {
+          "question": "What did members notice during usability tests, and did you change a design afterward?",
+          "archetype": "IMPROVEMENT",
+          "why": "A concrete finding would make the testing work easier to understand."
+        },
+        {
+          "question": "How did you coordinate design work with the engineers and product manager during weekly releases?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The team and cadence are named, but the collaboration itself is not described."
+        },
+        {
+          "question": "What did your prototypes allow clients to review during presentations?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The answer could make the Brightpath presentation work more tangible."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 80
+  },
+  "severity": {
+    "outcome": "added",
+    "reason": "added",
+    "added": [
+      "no_recent_work"
+    ],
+    "promoted": [],
+    "replaced": [],
+    "skipped": [],
+    "critical_count": 2,
+    "more_critical": false,
+    "validation_attempts": 1,
+    "answer": {
+      "critical_misses": [
+        {
+          "source": "new",
+          "kind": "no_recent_work",
+          "fix": "Add recent product design work, such as a freelance or personal project, if true.",
+          "why": "A product design hiring manager may look for current design skills. The resume shows a current cafe role but no design work after Loop Fitness; a freelance project or personal app design project could show those skills if true.",
+          "excerpt": "March 2021 - February 2024",
+          "section": "Experience",
+          "effort": "moderate"
+        }
+      ],
+      "more_critical": false
+    },
+    "latency_ms": 3933,
+    "call_latency_ms": 3686,
+    "cost_usd": 0.00216325,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 80,
+    "score_label": "Mostly clear",
+    "score_comment_short": "Specific design projects and team context stand out, but results remain unclear.",
+    "score_comment_long": "The Loop Fitness role names a booking flow, collaborators and an app design system. Most bullets stop before explaining what changed or how the work was used. Add concrete details to those existing bullets.",
+    "score_plain": "Your product design work is easy to identify, but a reader has limited information about what the designs changed. More detail could help them assess your contribution.",
+    "first_impression": "The first app design system at Loop Fitness is worth keeping prominent because it shows you built a shared design resource. Your current cafe role appears before your design work, so your recent connection to design is less clear.",
+    "biggest_gap_example": "\"Ran usability tests with members before launches\" does not say what you learned or changed, leaving the value of the testing unclear.",
+    "first_impression_takeaway": "Explain the usability findings",
+    "summary": "At Loop Fitness, you designed a booking flow for iOS and Android and created the app's first design system in Figma. Your work alongside engineers and a product manager, plus earlier agency projects, places you at the Product Designer level stated in your title. The bullets rarely explain the design choices behind those projects or what followed, which makes the work harder to assess. A reader may also wonder whether you have continued any design activity since leaving Loop Fitness.",
+    "strengths": [
+      "The weekly release cadence and named collaborators show how your design work fit into a product team.",
+      "Marketing sites and app screens at Brightpath show work across web and app formats.",
+      "The portfolio address is easy to find alongside your contact details."
+    ],
+    "gaps": [
+      "The booking-flow bullet does not identify the user problem, so the purpose of the design is unclear.",
+      "The design-system bullet does not say what it contained or who used it, leaving its practical use unclear.",
+      "No design activity is described after Loop Fitness, leaving your recent connection to the field uncertain."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the Loop Fitness booking-flow bullet, add the member problem you were designing for and a design choice you made.",
+        "why": "That would show what you contributed beyond working on a named flow.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Designed the class booking flow for the iOS and Android apps",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": true
+      },
+      {
+        "fix": "Add recent product design work, such as a freelance or personal project, if true.",
+        "why": "A product design hiring manager may look for current design skills. The resume shows a current cafe role but no design work after Loop Fitness; a freelance project or personal app design project could show those skills if true.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "March 2021 - February 2024",
+          "section": "Experience"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Experience",
+        "critical": true
+      },
+      {
+        "fix": "In the Loop Fitness design-system bullet, name the components or conventions you created and who used them, if applicable.",
+        "why": "A reader could understand what the system contained and how it fit into app development.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Created the app's first design system in Figma",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      }
+    ],
+    "more_critical": false,
+    "next_steps": [
+      "Revise the Loop Fitness bullets with details you can verify about the booking flow, design system and member tests.",
+      "Review the Brightpath prototypes bullet and add what the presentations asked clients to review, if you can verify it.",
+      "If you have relevant recent design activity, describe it accurately in the opening or experience section."
+    ],
+    "subscores": {
+      "impact": 71,
+      "clarity": 82,
+      "story": 77,
+      "readability": 85
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "B",
+        "priority": "High",
+        "working": "Loop Fitness names the product area, platforms, collaborators and release cadence.",
+        "missing": "The design bullets rarely explain the problems addressed, choices made or changes observed.",
+        "fix": "Expand selected Loop Fitness bullets with a specific design decision or finding you can verify."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "Figma, Principle, research, prototyping and design systems are easy to scan.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The degree, field, school and year are stated.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 80,
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Mobile app design for iOS and Android",
+        "Figma design system creation",
+        "Usability testing with members",
+        "Collaboration with engineers and a product manager"
+      ],
+      "underplayed": [
+        "Design choices behind the class booking flow",
+        "How the app design system was used",
+        "Findings from member usability tests"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Product Designer"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your most recent design title is Product Designer, following a Junior Product Designer role.",
+        "industry_signals": [],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Keep Product Designer as the focus of the opening and give the Loop Fitness work more room than the cafe responsibilities. If you have continued relevant design work since that role, describe it accurately on the resume."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What problem was the booking flow intended to address, and which design choices did you make?",
+          "archetype": "TENSION POINT",
+          "why": "The answer would give the mobile project a user problem, not just a feature name."
+        },
+        {
+          "question": "Which components or conventions did you create for the Figma design system?",
+          "archetype": "SCALING",
+          "why": "That would show what the shared resource contained."
+        },
+        {
+          "question": "What did members notice during usability tests, and did you change a design afterward?",
+          "archetype": "IMPROVEMENT",
+          "why": "A concrete finding would make the testing work easier to understand."
+        },
+        {
+          "question": "How did you coordinate design work with the engineers and product manager during weekly releases?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The team and cadence are named, but the collaboration itself is not described."
+        },
+        {
+          "question": "What did your prototypes allow clients to review during presentations?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The answer could make the Brightpath presentation work more tangible."
+        }
+      ]
+    }
+  },
+  "presentation": {
+    "score": 80,
+    "band": "Mostly clear",
+    "score_label_from_model": "Strong",
+    "model_score_before_calibration": 80,
+    "verdict": "The first app design system at Loop Fitness is worth keeping prominent because it shows you built a shared design resource. Your current cafe role appears before your design work, so your recent connection to design is less clear.",
+    "one_line_read": "Specific design projects and team context stand out, but results remain unclear.",
+    "takeaway": "Explain the usability findings",
+    "biggest_gap_example": "\"Ran usability tests with members before launches\" does not say what you learned or changed, leaving the value of the testing unclear.",
+    "critical_count": {
+      "count": 2,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "Two Critical Misses. Start with this one.",
+      "lead": "Either one could cost you the interview on its own."
+    },
+    "fixes": [
+      {
+        "fix": "In the Loop Fitness booking-flow bullet, add the member problem you were designing for and a design choice you made.",
+        "why": "That would show what you contributed beyond working on a named flow.",
+        "excerpt": "- Designed the class booking flow for the iOS and Android apps",
+        "section": "EXPERIENCE",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "Add recent product design work, such as a freelance or personal project, if true.",
+        "why": "A product design hiring manager may look for current design skills. The resume shows a current cafe role but no design work after Loop Fitness; a freelance project or personal app design project could show those skills if true.",
+        "excerpt": "March 2021 - February 2024",
+        "section": "Experience",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the Loop Fitness design-system bullet, name the components or conventions you created and who used them, if applicable.",
+        "why": "A reader could understand what the system contained and how it fit into app development.",
+        "excerpt": "- Created the app's first design system in Figma",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "The weekly release cadence and named collaborators show how your design work fit into a product team.",
+    "strengths": [
+      "The weekly release cadence and named collaborators show how your design work fit into a product team.",
+      "Marketing sites and app screens at Brightpath show work across web and app formats.",
+      "The portfolio address is easy to find alongside your contact details."
+    ],
+    "gaps": [
+      "The booking-flow bullet does not identify the user problem, so the purpose of the design is unclear.",
+      "The design-system bullet does not say what it contained or who used it, leaving its practical use unclear.",
+      "No design activity is described after Loop Fitness, leaving your recent connection to the field uncertain."
+    ],
+    "next_steps": [
+      "Revise the Loop Fitness bullets with details you can verify about the booking flow, design system and member tests.",
+      "Review the Brightpath prototypes bullet and add what the presentations asked clients to review, if you can verify it.",
+      "If you have relevant recent design activity, describe it accurately in the opening or experience section."
+    ],
+    "seniority_read": "Your most recent design title is Product Designer, following a Junior Product Designer role.",
+    "best_fit_roles": [
+      "Product Designer"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "Keep Product Designer as the focus of the opening and give the Loop Fitness work more room than the cafe responsibilities. If you have continued relevant design work since that role, describe it accurately on the resume.",
+    "severity_added": [
+      "no_recent_work"
+    ],
+    "severity_promoted": [],
+    "severity_outcome": "added (added)",
+    "severity_answer": {
+      "critical_misses": [
+        {
+          "source": "new",
+          "kind": "no_recent_work",
+          "fix": "Add recent product design work, such as a freelance or personal project, if true.",
+          "why": "A product design hiring manager may look for current design skills. The resume shows a current cafe role but no design work after Loop Fitness; a freelance project or personal app design project could show those skills if true.",
+          "excerpt": "March 2021 - February 2024",
+          "section": "Experience",
+          "effort": "moderate"
+        }
+      ],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[0]",
+          "fix": 0
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[1]",
+          "fix": 2
+        },
+        {
+          "kind": "question_dropped",
+          "path": "ideas.questions[3]",
+          "reason": "duplicates_keep"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[0]",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[1]",
+          "of": "top_fixes[2]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[2]",
+          "of": "first_impression"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Work Experience.working",
+          "of": "strengths[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Work Experience.missing",
+          "of": "top_fixes[0]"
+        }
+      ],
+      "fix_questions": [
+        [
+          "What problem was the booking flow intended to address, and which design choices did you make?"
+        ],
+        [],
+        [
+          "Which components or conventions did you create for the Figma design system?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0341541,
+  "latency_ms": 65722
+}

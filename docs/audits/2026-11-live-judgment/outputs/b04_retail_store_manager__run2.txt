@@ -1,0 +1,45 @@
+# b04_retail_store_manager, run 2
+Resume: ../../../tests/resumes/blindpick/synth_bp_retail_store_manager_1.txt (179 words, sha256 44e7ec6fe998)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0126; 27.1s
+
+## Band: Clear and specific (score 87; model wrote 87, label "Strong")
+## Verdict
+You manage a $9.4M home and garden store with 42 employees. The drop in annual turnover is worth keeping because it connects a staffing change to a stated result.
+One-line read: The current role pairs store scale with several specific results and practical changes.
+Takeaway: Identify the other turnaround
+Biggest gap example: "turned around two underperforming stores" does not identify the other store or explain its turnaround, so a reviewer may struggle to connect that claim to your roles.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the introduction, identify the two stores and connect each turnaround to the relevant role and verified changes.
+   why: That lets a reviewer trace the opening claim to the work described below it.
+   excerpt (Summary): "Retail store manager who has turned around two underperforming stores in a 60-store regional chain."
+2. [fix] In the customer satisfaction bullet, add a specific customer-service practice you introduced or maintained, if you can verify one.
+   why: The ranking shows where the store stood, but a practice would show more about your management approach.
+   excerpt (EXPERIENCE): "- Ranked 3rd of 60 stores on the 2025 customer satisfaction survey"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The 2024 and 2025 same-store sales figures sit alongside the garden center layout reset, giving the sales story a concrete action.
+Other strengths: ["Weekly cycle counts are tied to a reduction in shrink from 2.1% to 1.3% of sales, showing how you approached inventory control.","Your promotion path at Carolina Home & Garden shows increasing responsibility across department and store operations."]
+
+## Gaps
+- The introduction does not identify both stores or distinguish your contribution at each, leaving the turnaround claim difficult to place.
+- The customer satisfaction ranking does not explain what you did to influence the customer experience.
+- The training bullet names ordering and replenishment but not what you taught or how department leads used it.
+
+## Next steps
+- Check which roles and stores support the two turnaround claim, then connect them in the introduction and experience entries.
+- Revise the customer satisfaction and department-lead training bullets using specific practices you can verify.
+- Explain your part in the work. Keep 'supported' or 'assisted' where those words describe it accurately.
+
+## Role fit
+Level: Store management level, with prior assistant manager and department supervisor roles.
+Best fit: ["Store Manager","Assistant Store Manager"]
+Positioning: Lead with store management and retain the figures for sales, turnover, and shrink. Tie the two-store claim to the relevant experience before using it as the central introduction.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_dropped","path":"ideas.questions[2]","reason":"duplicates_keep"},{"kind":"question_moved","path":"ideas.questions[3]","fix":1},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"gaps[2]","of":"ideas.questions[4]"},{"kind":"repeat_dropped","path":"section_review.Summary.fix","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"section_review.Work Experience.missing","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"section_review.Work Experience.fix","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"next_steps[0]","of":"top_fixes[0]"}]

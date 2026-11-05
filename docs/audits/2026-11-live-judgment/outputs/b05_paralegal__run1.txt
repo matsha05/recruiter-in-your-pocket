@@ -1,0 +1,50 @@
+# b05_paralegal, run 1
+Resume: ../../../tests/resumes/blindpick/synth_bp_paralegal_1.txt (144 words, sha256 1860914f19aa)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0335; repair ran; 63.2s
+
+Validator refused the first draft: OPENAI_RESPONSE_SHAPE_INVALID The model response failed the evidence grounding contract at first_impression unsupported narrative facts: 250,000.
+
+## Band: Mostly clear (score 80; model wrote 80, label "Strong")
+## Verdict
+You present as a senior litigation paralegal with commercial and employment casework. The reference to two jury trials in 2025 is useful because it gives the trial preparation work a concrete setting.
+One-line read: Recent litigation work has concrete scope, but several responsibilities need explanation.
+Takeaway: Explain your deadline process
+Biggest gap example: "Track court deadlines in the firm's docketing system" doesn't explain how you handle deadline changes, leaving your part in that process unclear.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the Relativity production bullet, specify which production tasks you personally manage, if you can verify them.
+   why: A reviewer can see that you manage productions, but not what that work involves.
+   excerpt (EXPERIENCE): "- Manage document productions"
+2. [fix] In the jury trial bullet, add an example of support you provided beyond preparing binders and exhibits, if applicable.
+   why: A specific task would show how you contributed to the trials.
+   excerpt (EXPERIENCE): "- Prepare trial binders and exhibits; supported two jury trials in 2025"
+3. [fix] In the docketing bullet, describe what you do when a court deadline changes.
+   why: That detail would make your deadline-tracking responsibility more concrete.
+   excerpt (EXPERIENCE): "- Track court deadlines in the firm's docketing system"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+Discovery requests, subpoenas and deposition outlines show the range of documents you draft for attorney review.
+Other strengths: ["The Summit role connects personal injury work with both medical records and deposition transcripts.","CM/ECF is named in Skills alongside experience filing through state and federal e-filing systems."]
+
+## Gaps
+- The production bullet doesn't specify the tasks you manage, so the nature of your Relativity work remains unclear.
+- The trial bullet doesn't distinguish any support beyond binders and exhibits, leaving your contribution to those trials less defined.
+- CaseMap and Westlaw appear in Skills without a description of their use, making it difficult to place them in your casework.
+
+## Next steps
+- Revise the production and trial bullets with specific tasks you can verify.
+- Add your approach to deadline changes to the existing docketing bullet.
+- Review the Skills list and connect CaseMap or Westlaw to a relevant experience bullet if you used either in that work.
+
+## Role fit
+Level: Your current title is Senior Litigation Paralegal, with work supporting four partners.
+Best fit: ["Senior Litigation Paralegal","Paralegal"]
+Positioning: Lead with the senior litigation role and keep the partner support and trial participation visible. Use the experience bullets to explain the work behind those responsibilities rather than adding a longer list of tools.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":1},{"kind":"question_moved","path":"ideas.questions[2]","fix":2},{"kind":"question_dropped","path":"ideas.questions[3]","reason":"duplicates_keep"},{"kind":"question_moved","path":"ideas.questions[4]","fix":1},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"next_steps[1]","of":"top_fixes[2]"}]

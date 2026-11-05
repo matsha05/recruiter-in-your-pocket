@@ -1,0 +1,741 @@
+{
+  "case_id": "b37_marketing_director_bad",
+  "batch": "breadth",
+  "run": 2,
+  "note": "Title above the work; key says no_recent_work, no_target_role, title_level_mismatch.",
+  "resume_file": "../../../tests/resumes/countcheck/synth_cc_marketing_director_bad_1.txt",
+  "resume_sha256": "f0624d59dceceb9ee73afca05ff983f8205d3da2ebe4712711eb2596bd129439",
+  "resume_chars": 1020,
+  "resume_words": 167,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T20:14:18.422Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7601,
+        "completion_tokens": 2450,
+        "total_tokens": 10051,
+        "cached_prompt_tokens": 7598,
+        "cache_write_prompt_tokens": 0,
+        "reasoning_tokens": 575
+      },
+      "cost_usd": 0.0126329,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 29216
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.0049095,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 9962
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 80,
+    "score_label": "Strong",
+    "score_comment_short": "Several recent bullets quantify workloads, though results and marketing authority remain unclear.",
+    "score_comment_long": "Posting frequency, product-copy volume, and property-record volume make the work concrete. The marketing title suggests broader responsibility than the listed duties explain. Add your actual decisions and responsibilities to the relevant bullets.",
+    "score_plain": "The workload figures help a reviewer understand what you handled. For broader marketing roles, the resume leaves questions about your authority and results.",
+    "first_impression": "Your recent marketing role combines Instagram, website copy, order packing, and customer emails. The director title stands out, but the bullets don't yet explain whether the role included broader marketing decisions.",
+    "biggest_gap_example": "\"Flagged missing documents for the closing team\" doesn't say what you did after flagging them, so your part in the closing process is difficult to judge.",
+    "first_impression_takeaway": "Explain your marketing decisions",
+    "summary": "Writing descriptions for 40 candle scents gives a reviewer a concrete sense of your website content work. Alongside regular Instagram posting, it points to hands-on marketing and customer-facing work rather than an explicitly described department leadership role. Earlier, you entered property records and flagged missing documents for a closing team. The resume doesn't establish whether you set marketing priorities or supervised others, which matters when comparing the director title with the work described.",
+    "strengths": [
+      "The Instagram bullet gives both a posting range and follower count, helping a reader understand the account you worked on.",
+      "Entering 150 property records a day makes the volume of your data entry work tangible.",
+      "Training 4 new baristas shows you had a role in teaching others, even though the resume doesn't describe formal supervision."
+    ],
+    "gaps": [
+      "The candle company's marketing bullets don't describe how content was planned or selected, leaving your decision-making role unclear.",
+      "No result is stated for the website copy or Instagram work, so a reader cannot tell what changed after publication.",
+      "The skills list doesn't connect Canva, Shopify, or Excel to particular tasks, making it difficult to assess how you used them."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the Instagram bullet, explain who chose the content and what part you played in planning it, if you can verify those details.",
+        "why": "That would help a reviewer distinguish publishing posts from setting the account's direction.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the product-description bullet, describe how you developed the copy and add a verified response to it, if one is available.",
+        "why": "The number of scents is useful; the approach and any documented response would show more about the writing work.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Wrote product descriptions for 40 candle scents on the website",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the missing-documents bullet, explain what you checked and whether you had any follow-up responsibility after alerting the closing team.",
+        "why": "This would make your role in handling incomplete records easier to understand.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Flagged missing documents for the closing team",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the Instagram and product-copy bullets using details you can verify about your work.",
+      "Add the document-checking and follow-up details to the title-company role.",
+      "Review the skills list and connect tools to relevant experience bullets only where you actually used them."
+    ],
+    "subscores": {
+      "impact": 70,
+      "clarity": 80,
+      "story": 77,
+      "readability": 88
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "Section not present.",
+        "fix": "Add only if it helps your story."
+      },
+      "Work Experience": {
+        "grade": "B",
+        "priority": "High",
+        "working": "The recent roles include concrete posting, writing, and record-entry volumes.",
+        "missing": "The marketing bullets don't explain planning authority or give results for the published content.",
+        "fix": "Add your verified part in content planning and any documented response to the copy."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The list names marketing tools alongside data entry and customer service.",
+        "missing": "The experience bullets don't show which tasks involved Canva, Shopify, or Excel.",
+        "fix": "Connect each tool to an experience bullet where you can accurately describe its use."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The biology degree, institution, and year are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Social media posting",
+        "Product-description writing",
+        "Property-record data entry",
+        "Customer shipping inquiries"
+      ],
+      "underplayed": [
+        "How Instagram content was planned",
+        "The writing process for candle descriptions",
+        "Follow-up on missing closing documents"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Data Entry Clerk",
+          "Director of Marketing"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "The most recent title is Director of Marketing, although the listed work is primarily hands-on and does not describe team or budget responsibility.",
+        "industry_signals": [
+          "Candle retail",
+          "Property title services",
+          "Higher education"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "For marketing applications, bring your content work forward and explain your actual role in choosing what was published. For data entry applications, lead with the property-record volume and explain your document checks."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "Who chose the Instagram topics, and what part did you play in those choices?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The answer could clarify how much of the account's content you planned."
+        },
+        {
+          "question": "How did you distinguish the 40 candle scents in their product descriptions?",
+          "archetype": "DOMAIN LIFT",
+          "why": "An example could make the writing work more specific."
+        },
+        {
+          "question": "What kinds of missing documents did you flag, and what happened after you alerted the closing team?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "This could explain the handoff without assuming you resolved the issue."
+        },
+        {
+          "question": "What did you check for accuracy while entering property records into the county title system?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "The daily volume is stated, but your checking process isn't."
+        },
+        {
+          "question": "What shipping questions did you handle yourself, and which needed someone else's help?",
+          "archetype": "TENSION POINT",
+          "why": "This could clarify the decisions available to you when answering customers."
+        }
+      ]
+    }
+  },
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 80,
+    "score_label": "Mostly clear",
+    "score_comment_short": "Several recent bullets quantify workloads, though results and marketing authority remain unclear.",
+    "score_comment_long": "Posting frequency, product-copy volume, and property-record volume make the work concrete. The marketing title suggests broader responsibility than the listed duties explain. Add your actual decisions and responsibilities to the relevant bullets.",
+    "score_plain": "The workload figures help a reviewer understand what you handled. For broader marketing roles, the resume leaves questions about your authority and results.",
+    "first_impression": "Your recent marketing role combines Instagram, website copy, order packing, and customer emails. The director title stands out, but the bullets don't yet explain whether the role included broader marketing decisions.",
+    "biggest_gap_example": "\"Flagged missing documents for the closing team\" doesn't say what you did after flagging them, so your part in the closing process is difficult to judge.",
+    "first_impression_takeaway": "Explain your marketing decisions",
+    "summary": "Writing descriptions for 40 candle scents gives a reviewer a concrete sense of your website content work. Alongside regular Instagram posting, it points to hands-on marketing and customer-facing work rather than an explicitly described department leadership role. Earlier, you entered property records and flagged missing documents for a closing team. The resume doesn't establish whether you set marketing priorities or supervised others, which matters when comparing the director title with the work described.",
+    "strengths": [
+      "The Instagram bullet gives both a posting range and follower count, helping a reader understand the account you worked on.",
+      "Entering 150 property records a day makes the volume of your data entry work tangible.",
+      "Training 4 new baristas shows you had a role in teaching others, even though the resume doesn't describe formal supervision."
+    ],
+    "gaps": [
+      "The candle company's marketing bullets don't describe how content was planned or selected, leaving your decision-making role unclear.",
+      "No result is stated for the website copy or Instagram work, so a reader cannot tell what changed after publication.",
+      "The skills list doesn't connect Canva, Shopify, or Excel to particular tasks, making it difficult to assess how you used them."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the Instagram bullet, explain who chose the content and what part you played in planning it, if you can verify those details.",
+        "why": "That would help a reviewer distinguish publishing posts from setting the account's direction.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the product-description bullet, describe how you developed the copy and add a verified response to it, if one is available.",
+        "why": "The number of scents is useful; the approach and any documented response would show more about the writing work.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Wrote product descriptions for 40 candle scents on the website",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the missing-documents bullet, explain what you checked and whether you had any follow-up responsibility after alerting the closing team.",
+        "why": "This would make your role in handling incomplete records easier to understand.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Flagged missing documents for the closing team",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the Instagram and product-copy bullets using details you can verify about your work.",
+      "Add the document-checking and follow-up details to the title-company role.",
+      "Review the skills list and connect tools to relevant experience bullets only where you actually used them."
+    ],
+    "subscores": {
+      "impact": 70,
+      "clarity": 80,
+      "story": 77,
+      "readability": 88
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "B",
+        "priority": "High",
+        "working": "The recent roles include concrete posting, writing, and record-entry volumes.",
+        "missing": "The marketing bullets don't explain planning authority or give results for the published content.",
+        "fix": "Add your verified part in content planning and any documented response to the copy."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The list names marketing tools alongside data entry and customer service.",
+        "missing": "The experience bullets don't show which tasks involved Canva, Shopify, or Excel.",
+        "fix": "Connect each tool to an experience bullet where you can accurately describe its use."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The biology degree, institution, and year are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Social media posting",
+        "Product-description writing",
+        "Property-record data entry",
+        "Customer shipping inquiries"
+      ],
+      "underplayed": [
+        "How Instagram content was planned",
+        "The writing process for candle descriptions",
+        "Follow-up on missing closing documents"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Data Entry Clerk",
+          "Director of Marketing"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "The most recent title is Director of Marketing, although the listed work is primarily hands-on and does not describe team or budget responsibility.",
+        "industry_signals": [],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "For marketing applications, bring your content work forward and explain your actual role in choosing what was published. For data entry applications, lead with the property-record volume and explain your document checks."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "Who chose the Instagram topics, and what part did you play in those choices?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The answer could clarify how much of the account's content you planned."
+        },
+        {
+          "question": "How did you distinguish the 40 candle scents in their product descriptions?",
+          "archetype": "DOMAIN LIFT",
+          "why": "An example could make the writing work more specific."
+        },
+        {
+          "question": "What kinds of missing documents did you flag, and what happened after you alerted the closing team?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "This could explain the handoff without assuming you resolved the issue."
+        },
+        {
+          "question": "What did you check for accuracy while entering property records into the county title system?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "The daily volume is stated, but your checking process isn't."
+        },
+        {
+          "question": "What shipping questions did you handle yourself, and which needed someone else's help?",
+          "archetype": "TENSION POINT",
+          "why": "This could clarify the decisions available to you when answering customers."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 80
+  },
+  "severity": {
+    "outcome": "added",
+    "reason": "added",
+    "added": [
+      "no_recent_work"
+    ],
+    "promoted": [],
+    "replaced": [],
+    "skipped": [],
+    "critical_count": 2,
+    "more_critical": false,
+    "validation_attempts": 1,
+    "answer": {
+      "critical_misses": [
+        {
+          "source": "new",
+          "kind": "no_recent_work",
+          "fix": "Add one dated line covering January 2025 to today.",
+          "why": "A marketing hiring manager may look for recent activity, but the resume shows nothing after Lumen Candle Co. Name the period truthfully with a dated line such as \"Career break\" or \"Job search and coursework\". If true, list marketing coursework or a personal social media project to show current skills.",
+          "excerpt": "March 2024 - January 2025",
+          "section": "Experience",
+          "effort": "quick"
+        }
+      ],
+      "more_critical": false
+    },
+    "latency_ms": 10191,
+    "call_latency_ms": 9962,
+    "cost_usd": 0.0049095,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 80,
+    "score_label": "Mostly clear",
+    "score_comment_short": "Several recent bullets quantify workloads, though results and marketing authority remain unclear.",
+    "score_comment_long": "Posting frequency, product-copy volume, and property-record volume make the work concrete. The marketing title suggests broader responsibility than the listed duties explain. Add your actual decisions and responsibilities to the relevant bullets.",
+    "score_plain": "The workload figures help a reviewer understand what you handled. For broader marketing roles, the resume leaves questions about your authority and results.",
+    "first_impression": "Your recent marketing role combines Instagram, website copy, order packing, and customer emails. The director title stands out, but the bullets don't yet explain whether the role included broader marketing decisions.",
+    "biggest_gap_example": "\"Flagged missing documents for the closing team\" doesn't say what you did after flagging them, so your part in the closing process is difficult to judge.",
+    "first_impression_takeaway": "Explain your marketing decisions",
+    "summary": "Writing descriptions for 40 candle scents gives a reviewer a concrete sense of your website content work. Alongside regular Instagram posting, it points to hands-on marketing and customer-facing work rather than an explicitly described department leadership role. Earlier, you entered property records and flagged missing documents for a closing team. The resume doesn't establish whether you set marketing priorities or supervised others, which matters when comparing the director title with the work described.",
+    "strengths": [
+      "The Instagram bullet gives both a posting range and follower count, helping a reader understand the account you worked on.",
+      "Entering 150 property records a day makes the volume of your data entry work tangible.",
+      "Training 4 new baristas shows you had a role in teaching others, even though the resume doesn't describe formal supervision."
+    ],
+    "gaps": [
+      "The candle company's marketing bullets don't describe how content was planned or selected, leaving your decision-making role unclear.",
+      "No result is stated for the website copy or Instagram work, so a reader cannot tell what changed after publication.",
+      "The skills list doesn't connect Canva, Shopify, or Excel to particular tasks, making it difficult to assess how you used them."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the Instagram bullet, explain who chose the content and what part you played in planning it, if you can verify those details.",
+        "why": "That would help a reviewer distinguish publishing posts from setting the account's direction.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": true
+      },
+      {
+        "fix": "Add one dated line covering January 2025 to today.",
+        "why": "A marketing hiring manager may look for recent activity, but the resume shows nothing after Lumen Candle Co. Name the period truthfully with a dated line such as \"Career break\" or \"Job search and coursework\". If true, list marketing coursework or a personal social media project to show current skills.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "March 2024 - January 2025",
+          "section": "Experience"
+        },
+        "impact_level": "high",
+        "effort": "quick",
+        "section_ref": "Experience",
+        "critical": true
+      },
+      {
+        "fix": "In the product-description bullet, describe how you developed the copy and add a verified response to it, if one is available.",
+        "why": "The number of scents is useful; the approach and any documented response would show more about the writing work.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Wrote product descriptions for 40 candle scents on the website",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      }
+    ],
+    "more_critical": false,
+    "next_steps": [
+      "Revise the Instagram and product-copy bullets using details you can verify about your work.",
+      "Add the document-checking and follow-up details to the title-company role.",
+      "Review the skills list and connect tools to relevant experience bullets only where you actually used them."
+    ],
+    "subscores": {
+      "impact": 70,
+      "clarity": 80,
+      "story": 77,
+      "readability": 88
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "B",
+        "priority": "High",
+        "working": "The recent roles include concrete posting, writing, and record-entry volumes.",
+        "missing": "The marketing bullets don't explain planning authority or give results for the published content.",
+        "fix": "Add your verified part in content planning and any documented response to the copy."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The list names marketing tools alongside data entry and customer service.",
+        "missing": "The experience bullets don't show which tasks involved Canva, Shopify, or Excel.",
+        "fix": "Connect each tool to an experience bullet where you can accurately describe its use."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The biology degree, institution, and year are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 80,
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Social media posting",
+        "Product-description writing",
+        "Property-record data entry",
+        "Customer shipping inquiries"
+      ],
+      "underplayed": [
+        "How Instagram content was planned",
+        "The writing process for candle descriptions",
+        "Follow-up on missing closing documents"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Data Entry Clerk",
+          "Director of Marketing"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "The most recent title is Director of Marketing, although the listed work is primarily hands-on and does not describe team or budget responsibility.",
+        "industry_signals": [],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "For marketing applications, bring your content work forward and explain your actual role in choosing what was published. For data entry applications, lead with the property-record volume and explain your document checks."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "Who chose the Instagram topics, and what part did you play in those choices?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The answer could clarify how much of the account's content you planned."
+        },
+        {
+          "question": "How did you distinguish the 40 candle scents in their product descriptions?",
+          "archetype": "DOMAIN LIFT",
+          "why": "An example could make the writing work more specific."
+        },
+        {
+          "question": "What kinds of missing documents did you flag, and what happened after you alerted the closing team?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "This could explain the handoff without assuming you resolved the issue."
+        },
+        {
+          "question": "What did you check for accuracy while entering property records into the county title system?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "The daily volume is stated, but your checking process isn't."
+        },
+        {
+          "question": "What shipping questions did you handle yourself, and which needed someone else's help?",
+          "archetype": "TENSION POINT",
+          "why": "This could clarify the decisions available to you when answering customers."
+        }
+      ]
+    }
+  },
+  "presentation": {
+    "score": 80,
+    "band": "Mostly clear",
+    "score_label_from_model": "Strong",
+    "model_score_before_calibration": 80,
+    "verdict": "Your recent marketing role combines Instagram, website copy, order packing, and customer emails. The director title stands out, but the bullets don't yet explain whether the role included broader marketing decisions.",
+    "one_line_read": "Several recent bullets quantify workloads, though results and marketing authority remain unclear.",
+    "takeaway": "Explain your marketing decisions",
+    "biggest_gap_example": "\"Flagged missing documents for the closing team\" doesn't say what you did after flagging them, so your part in the closing process is difficult to judge.",
+    "critical_count": {
+      "count": 2,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "Two Critical Misses. Start with this one.",
+      "lead": "Either one could cost you the interview on its own."
+    },
+    "fixes": [
+      {
+        "fix": "In the Instagram bullet, explain who chose the content and what part you played in planning it, if you can verify those details.",
+        "why": "That would help a reviewer distinguish publishing posts from setting the account's direction.",
+        "excerpt": "- Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers",
+        "section": "EXPERIENCE",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "Add one dated line covering January 2025 to today.",
+        "why": "A marketing hiring manager may look for recent activity, but the resume shows nothing after Lumen Candle Co. Name the period truthfully with a dated line such as \"Career break\" or \"Job search and coursework\". If true, list marketing coursework or a personal social media project to show current skills.",
+        "excerpt": "March 2024 - January 2025",
+        "section": "Experience",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the product-description bullet, describe how you developed the copy and add a verified response to it, if one is available.",
+        "why": "The number of scents is useful; the approach and any documented response would show more about the writing work.",
+        "excerpt": "- Wrote product descriptions for 40 candle scents on the website",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "The Instagram bullet gives both a posting range and follower count, helping a reader understand the account you worked on.",
+    "strengths": [
+      "The Instagram bullet gives both a posting range and follower count, helping a reader understand the account you worked on.",
+      "Entering 150 property records a day makes the volume of your data entry work tangible.",
+      "Training 4 new baristas shows you had a role in teaching others, even though the resume doesn't describe formal supervision."
+    ],
+    "gaps": [
+      "The candle company's marketing bullets don't describe how content was planned or selected, leaving your decision-making role unclear.",
+      "No result is stated for the website copy or Instagram work, so a reader cannot tell what changed after publication.",
+      "The skills list doesn't connect Canva, Shopify, or Excel to particular tasks, making it difficult to assess how you used them."
+    ],
+    "next_steps": [
+      "Revise the Instagram and product-copy bullets using details you can verify about your work.",
+      "Add the document-checking and follow-up details to the title-company role.",
+      "Review the skills list and connect tools to relevant experience bullets only where you actually used them."
+    ],
+    "seniority_read": "The most recent title is Director of Marketing, although the listed work is primarily hands-on and does not describe team or budget responsibility.",
+    "best_fit_roles": [
+      "Data Entry Clerk",
+      "Director of Marketing"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "For marketing applications, bring your content work forward and explain your actual role in choosing what was published. For data entry applications, lead with the property-record volume and explain your document checks.",
+    "severity_added": [
+      "no_recent_work"
+    ],
+    "severity_promoted": [],
+    "severity_outcome": "added (added)",
+    "severity_answer": {
+      "critical_misses": [
+        {
+          "source": "new",
+          "kind": "no_recent_work",
+          "fix": "Add one dated line covering January 2025 to today.",
+          "why": "A marketing hiring manager may look for recent activity, but the resume shows nothing after Lumen Candle Co. Name the period truthfully with a dated line such as \"Career break\" or \"Job search and coursework\". If true, list marketing coursework or a personal social media project to show current skills.",
+          "excerpt": "March 2024 - January 2025",
+          "section": "Experience",
+          "effort": "quick"
+        }
+      ],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "keep_dropped",
+          "path": "strengths[0]",
+          "line": "fix-0",
+          "criticalMiss": true
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[0]",
+          "fix": 0
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[1]",
+          "fix": 2
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "biggest_gap_example",
+          "of": "ideas.questions[2]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[0]",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[1]",
+          "of": "first_impression"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Work Experience.missing",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Work Experience.fix",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Skills.missing",
+          "of": "gaps[2]"
+        }
+      ],
+      "fix_questions": [
+        [
+          "Who chose the Instagram topics, and what part did you play in those choices?"
+        ],
+        [],
+        [
+          "How did you distinguish the 40 candle scents in their product descriptions?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0175424,
+  "latency_ms": 39667
+}

@@ -1,0 +1,50 @@
+# b29_mechanical_engineer, run 2
+Resume: ../../../tests/resumes/blindpick/synth_bp_mechanical_engineer_1.txt (143 words, sha256 415a2cd89f45)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0329; repair ran; 63.8s
+
+Validator refused the first draft: OPENAI_RESPONSE_SHAPE_INVALID The model response failed the evidence grounding contract at first_impression unsupported narrative facts: leave, actual, choice, largely, out, view.
+
+## Band: Needs more context (score 65; model wrote 65, label "Needs Clarity")
+## Verdict
+Commercial furniture product design is the through-line, with SolidWorks, GD&T and supplier work prominent in your current role. Most bullets name activities rather than particular decisions or findings.
+One-line read: Named products and technical methods provide context, but results rarely appear.
+Takeaway: Explain your Arlo design decisions
+Biggest gap example: "Support manufacturing with engineering change orders" doesn't say what changes you supported or what you contributed to them.
+
+## Fixes (Two Critical Misses. Start with this one.; lead: "Either one could cost you the interview on its own."); severity added (added); added ["no_evidence_latest_role"]; promoted []
+1. [Critical Miss] In the Arlo platform bullet, name a component you worked on and a design decision you made.
+   why: That would show what leading the mechanical design involved beyond the product name.
+   excerpt (PROFESSIONAL EXPERIENCE): "- Lead mechanical design for the Arlo height-adjustable desk platform"
+2. [Critical Miss] In the Westhaven Mechanical Engineer II role, add a measurable result from your tolerance stack-ups or FEA, if you can verify it.
+   why: Hiring managers often look for the scope or results of an engineer's design work. Your current role shows analysis work, but it doesn't show its scale or a measurable result.
+   excerpt (Professional Experience): "- Run tolerance stack-ups and FEA on load-bearing components"
+3. [fix] In the supplier bullet, describe a tooling or first-article inspection task and your contribution to it.
+   why: An example would explain the technical work you did with those suppliers.
+   excerpt (PROFESSIONAL EXPERIENCE): "- Work with suppliers in Mexico and Taiwan on tooling and first-article inspection"
+Severity check answer: {"critical_misses":[{"source":"new","kind":"no_evidence_latest_role","fix":"In the Westhaven Mechanical Engineer II role, add a measurable result from your tolerance stack-ups or FEA, if you can verify it.","why":"Hiring managers often look for the scope or results of an engineer's design work. Your current role shows analysis work, but it doesn't show its scale or a measurable result.","excerpt":"- Run tolerance stack-ups and FEA on load-bearing components","section":"Professional Experience","effort":"moderate"}],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+Supplier work in Mexico and Taiwan places tooling and first-article inspection in an international manufacturing context.
+Other strengths: ["Tolerance stack-ups and FEA on load-bearing components identify the types of analysis involved in your current work.","BIFMA prototype testing connects your earlier design work to a recognized furniture standard."]
+
+## Gaps
+- The Arlo bullet doesn't identify a component or design decision within your responsibility, leaving the lead role broad.
+- The prototype testing bullet doesn't describe a finding, so its contribution to the storage products is unclear.
+- The supplier bullet names locations and activities but not your contribution to a particular tooling or inspection task.
+
+## Next steps
+- Revise the Arlo bullet around a design decision you can verify.
+- Add examples to the supplier and engineering change order bullets.
+- Review the testing and analysis bullets for findings you can describe accurately.
+
+## Role fit
+Level: Your current title is Mechanical Engineer II, with stated responsibility for leading the Arlo platform's mechanical design.
+Best fit: ["Mechanical Engineer II"]
+Positioning: Center your experience on the Arlo platform and a specific design choice. Keep supplier coordination and analysis visible alongside it.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[0]","line":"fix-2","criticalMiss":false},{"kind":"keep_dropped","path":"strengths[1]","line":"fix-1","criticalMiss":true},{"kind":"question_moved","path":"ideas.questions[1]","fix":2},{"kind":"question_dropped","path":"ideas.questions[2]","reason":"duplicates_keep"},{"kind":"question_moved","path":"ideas.questions[3]","fix":1},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[2]","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"section_review.Work Experience.missing","of":"first_impression"}]

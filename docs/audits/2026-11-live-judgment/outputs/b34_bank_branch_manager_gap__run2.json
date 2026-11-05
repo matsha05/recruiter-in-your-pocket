@@ -1,0 +1,914 @@
+{
+  "case_id": "b34_bank_branch_manager_gap",
+  "batch": "breadth",
+  "run": 2,
+  "note": "Gap with nothing after it.",
+  "resume_file": "../../../tests/resumes/blindpick/synth_bp_bank_branch_manager_gap_1.txt",
+  "resume_sha256": "1420c9932b5d35b979aa4d895b875e2ef456676f1017e3f83c5ee350ae9ca189",
+  "resume_chars": 839,
+  "resume_words": 129,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T20:12:13.929Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7472,
+        "completion_tokens": 2097,
+        "total_tokens": 9569,
+        "cached_prompt_tokens": 7469,
+        "cache_write_prompt_tokens": 0,
+        "reasoning_tokens": 309
+      },
+      "cost_usd": 0.01086145,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 24392
+    },
+    {
+      "kind": "repair",
+      "usage": {
+        "prompt_tokens": 10132,
+        "completion_tokens": 2509,
+        "total_tokens": 12641,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 3243,
+        "reasoning_tokens": 755
+      },
+      "cost_usd": 0.01694605,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 29162
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.00269825,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 4611
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 74,
+    "score_label": "Solid Foundation",
+    "score_comment_short": "Branch growth and team size are clear, while several responsibilities need more detail.",
+    "score_comment_long": "The deposit growth and management of 11 employees give the recent role substance. Audit oversight and customer escalations are less specific. Explaining what you handled in those areas would make the role easier to assess.",
+    "score_plain": "A reviewer can see branch management experience and a meaningful deposit result. They may still have questions about your approach to compliance and customer problems.",
+    "first_impression": "Your path at Magnolia Community Bank moves from personal banker to branch manager. The deposit increase is worth keeping prominent because it gives that progression a concrete business result.",
+    "biggest_gap_example": "\"Handled escalated customer complaints\" does not identify the issues you resolved or the decisions you could make, leaving the nature of those escalations unclear.",
+    "first_impression_takeaway": "Explain the customer escalations",
+    "summary": "Growing branch deposits from $48M to $63M over five years gives your management experience a concrete result. Your progression through banking roles also shows familiarity with accounts, lending applications and branch operations. The recent title and responsibilities place you at branch-manager level. The resume leaves the work behind the deposit growth unexplained, so a reviewer cannot yet see how you approached it.",
+    "strengths": [
+      "Managing a branch of 11 employees gives a reader a clear picture of your staff responsibility.",
+      "The move from Personal Banker to Assistant Branch Manager to Branch Manager shows progression within Magnolia Community Bank.",
+      "Consumer and small business account work shows that your experience covers more than one customer group."
+    ],
+    "gaps": [
+      "The audit and compliance bullet does not explain your part in preparing for or responding to reviews, which makes the work difficult to assess.",
+      "The referral coaching bullet names a regular activity but does not show what you taught or how you supported bankers.",
+      "Your most recent listed role ends in December 2024, and the resume does not describe any subsequent activity, which may prompt a timing question."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the deposit-growth bullet, add the specific actions you took to grow deposits, if you can verify them.",
+        "why": "The figures show the change, but your approach would help a reader understand how you achieved it.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Grew branch deposits from $48M to $63M over five years",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the audit and compliance bullet, describe what you oversaw during a review and any follow-up you handled.",
+        "why": "That would distinguish your responsibilities from the fact that reviews occurred.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Oversaw audits and compliance reviews for the branch",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the customer complaints bullet, name a representative issue and the authority you had to resolve it.",
+        "why": "A concrete example would show the kinds of decisions your branch role involved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Handled escalated customer complaints",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the branch manager bullets with the verified deposit-growth, review and complaint details you can recall.",
+      "Add an example of your referral coaching, then trim older bullets only if you need room.",
+      "Review the dates and add a real subsequent activity if one helps explain your timeline."
+    ],
+    "subscores": {
+      "impact": 76,
+      "clarity": 74,
+      "story": 75,
+      "readability": 73
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "C",
+        "priority": "Medium",
+        "working": "The opening names your banking field, branch-manager role and 12 years of experience.",
+        "missing": "It does not distinguish your background through the branch deposit result or staff responsibility.",
+        "fix": "Add a concise reference to the branch team or deposit growth already documented below."
+      },
+      "Work Experience": {
+        "grade": "B",
+        "priority": "High",
+        "working": "The dates, promotions and branch deposit figures make the career path easy to follow.",
+        "missing": "Several management bullets name duties without describing the work involved.",
+        "fix": "Expand the deposit, compliance and escalation bullets with specific details you can verify."
+      },
+      "Skills": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "Section not present.",
+        "fix": "Add only if it helps your story."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The finance degree, university and graduation year are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Branch staff management",
+        "Deposit growth",
+        "Retail banking operations",
+        "Consumer and small business accounts"
+      ],
+      "underplayed": [
+        "Work involved in audit and compliance oversight",
+        "Approach to coaching bankers on referrals",
+        "Decisions made on escalated customer complaints"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Branch Manager",
+          "Assistant Branch Manager"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Most recently a branch manager, with earlier assistant manager and personal banker roles.",
+        "industry_signals": [
+          "Retail banking"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Lead with your branch management work and the deposit figures. Use the experience section to explain your approach to staff coaching, compliance reviews and customer escalations."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What actions did you take to grow deposits at the Birmingham branch?",
+          "archetype": "IMPROVEMENT",
+          "why": "The deposit figures state the change but not your approach."
+        },
+        {
+          "question": "What did you oversee during a branch audit, and what follow-up did you handle?",
+          "archetype": "HIGH STAKES",
+          "why": "This could make your compliance responsibilities more concrete."
+        },
+        {
+          "question": "Which escalated customer issue did you handle, and what could you decide yourself?",
+          "archetype": "TENSION POINT",
+          "why": "An example could show the judgment your role required."
+        },
+        {
+          "question": "What did you teach bankers about referrals during or outside the weekly huddles?",
+          "archetype": "SCALING",
+          "why": "The answer could explain how you supported the branch staff."
+        },
+        {
+          "question": "What did supervising vault operations involve during your assistant branch manager role?",
+          "archetype": "DOMAIN LIFT",
+          "why": "That detail could make your earlier banking operations work more distinct."
+        }
+      ]
+    }
+  },
+  "initial_validation_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the evidence grounding contract at strengths[2] unsupported narrative facts: one customer group."
+  },
+  "model_output_repaired": {
+    "contract_version": "v2",
+    "score": 72,
+    "score_label": "Solid Foundation",
+    "score_comment_short": "Deposit growth and staff size stand out, but several duties lack detail.",
+    "score_comment_long": "The recent branch role includes a deposit result and the number of employees managed. Other bullets name responsibilities without explaining the work involved. Adding details to the audit and customer escalation bullets would help.",
+    "score_plain": "A reviewer can see branch management experience and a deposit result. They may still have questions about how you handled compliance reviews and customer issues.",
+    "first_impression": "Your path at Magnolia Community Bank moves from Personal Banker to Branch Manager. Managing 11 employees makes the size of your branch responsibility clear.",
+    "biggest_gap_example": "\"Handled escalated customer complaints\" does not identify the issues you resolved or the decisions you could make, leaving the nature of those escalations unclear.",
+    "first_impression_takeaway": "Explain your deposit growth",
+    "summary": "Branch deposits grew from $48M to $63M over five years, a concrete result worth keeping near the top. Your work spans account opening and help with loan applications as well as branch operations and banker coaching. Your most recent position is at branch-manager level. The deposit bullet doesn't say what you did to achieve that growth, leaving your approach unclear.",
+    "strengths": [
+      "The progression through banking roles at the same institution makes your career path easy to follow.",
+      "Weekly sales huddles and referral coaching show a regular part of how you worked with bankers.",
+      "Opening consumer and small business accounts identifies the account work you handled before becoming branch manager."
+    ],
+    "gaps": [
+      "The audit and compliance bullet does not explain what you oversaw during reviews or what follow-up you handled.",
+      "The complaint bullet leaves the types of customer problems and your authority to resolve them unclear.",
+      "Your most recent listed role ends in December 2024, with no subsequent activity described, which may prompt a timing question."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the deposit-growth bullet, add the specific actions you took to grow deposits, if you can verify them.",
+        "why": "The figures show the change, but your approach would help a reader understand how you achieved it.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Grew branch deposits from $48M to $63M over five years",
+          "section": "Work Experience"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Work Experience"
+      },
+      {
+        "fix": "In the audit and compliance bullet, describe what you oversaw during a review and any follow-up you handled.",
+        "why": "That would distinguish your responsibilities from the fact that reviews occurred.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Oversaw audits and compliance reviews for the branch",
+          "section": "Work Experience"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Work Experience"
+      },
+      {
+        "fix": "In the customer complaints bullet, name a representative issue and the authority you had to resolve it.",
+        "why": "An example would show the kinds of decisions your branch role involved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Handled escalated customer complaints",
+          "section": "Work Experience"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "Work Experience"
+      }
+    ],
+    "next_steps": [
+      "Revise the branch manager bullets with the verified deposit-growth, review and complaint details you can recall.",
+      "Add an example of your referral coaching, then trim older bullets only if you need room.",
+      "Review the dates and add a real subsequent activity if one helps explain your timeline."
+    ],
+    "subscores": {
+      "impact": 72,
+      "clarity": 73,
+      "story": 75,
+      "readability": 75
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "C",
+        "priority": "Medium",
+        "working": "The opening names your banking field, branch-manager role and 12 years of experience.",
+        "missing": "It does not distinguish your background through the branch deposit result or staff responsibility.",
+        "fix": "Add a concise reference to the branch team or deposit growth already documented below."
+      },
+      "Work Experience": {
+        "grade": "B",
+        "priority": "High",
+        "working": "The dates, promotions and branch deposit figures make the career path easy to follow.",
+        "missing": "Several management bullets name duties without describing the work involved.",
+        "fix": "Expand the deposit, compliance and escalation bullets with specific details you can verify."
+      },
+      "Skills": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "Section not present.",
+        "fix": "Add only if it helps your story."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The finance degree, university and graduation year are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Branch staff management",
+        "Deposit growth",
+        "Retail banking operations",
+        "Consumer and small business accounts"
+      ],
+      "underplayed": [
+        "Work involved in audit and compliance oversight",
+        "Approach to coaching bankers on referrals",
+        "Decisions made on escalated customer complaints"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Branch Manager",
+          "Assistant Branch Manager"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Most recently a branch manager, with earlier assistant manager and personal banker roles.",
+        "industry_signals": [
+          "Retail banking"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Lead with your branch management work and the deposit figures. Use the experience section to explain your approach to staff coaching, compliance reviews and customer escalations."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What actions did you take to grow deposits at the Birmingham branch?",
+          "archetype": "IMPROVEMENT",
+          "why": "The deposit figures state the change but not your approach."
+        },
+        {
+          "question": "What did you oversee during a branch audit, and what follow-up did you handle?",
+          "archetype": "HIGH STAKES",
+          "why": "This could make your compliance responsibilities more concrete."
+        },
+        {
+          "question": "Which escalated customer issue did you handle, and what could you decide yourself?",
+          "archetype": "TENSION POINT",
+          "why": "An example could show the judgment your role required."
+        },
+        {
+          "question": "What did you teach bankers about referrals during or outside the weekly huddles?",
+          "archetype": "SCALING",
+          "why": "The answer could explain how you supported the branch staff."
+        },
+        {
+          "question": "What did supervising vault operations involve during your assistant branch manager role?",
+          "archetype": "DOMAIN LIFT",
+          "why": "That detail could make your earlier banking operations work more distinct."
+        }
+      ]
+    }
+  },
+  "repaired": true,
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 72,
+    "score_label": "Mostly clear",
+    "score_comment_short": "Deposit growth and staff size stand out, but several duties lack detail.",
+    "score_comment_long": "The recent branch role includes a deposit result and the number of employees managed. Other bullets name responsibilities without explaining the work involved. Adding details to the audit and customer escalation bullets would help.",
+    "score_plain": "A reviewer can see branch management experience and a deposit result. They may still have questions about how you handled compliance reviews and customer issues.",
+    "first_impression": "Your path at Magnolia Community Bank moves from Personal Banker to Branch Manager. Managing 11 employees makes the size of your branch responsibility clear.",
+    "biggest_gap_example": "\"Handled escalated customer complaints\" does not identify the issues you resolved or the decisions you could make, leaving the nature of those escalations unclear.",
+    "first_impression_takeaway": "Explain your deposit growth",
+    "summary": "Branch deposits grew from $48M to $63M over five years, a concrete result worth keeping near the top. Your work spans account opening and help with loan applications as well as branch operations and banker coaching. Your most recent position is at branch-manager level. The deposit bullet doesn't say what you did to achieve that growth, leaving your approach unclear.",
+    "strengths": [
+      "The progression through banking roles at the same institution makes your career path easy to follow.",
+      "Weekly sales huddles and referral coaching show a regular part of how you worked with bankers.",
+      "Opening consumer and small business accounts identifies the account work you handled before becoming branch manager."
+    ],
+    "gaps": [
+      "The audit and compliance bullet does not explain what you oversaw during reviews or what follow-up you handled.",
+      "The complaint bullet leaves the types of customer problems and your authority to resolve them unclear.",
+      "Your most recent listed role ends in December 2024, with no subsequent activity described, which may prompt a timing question."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the deposit-growth bullet, add the specific actions you took to grow deposits, if you can verify them.",
+        "why": "The figures show the change, but your approach would help a reader understand how you achieved it.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Grew branch deposits from $48M to $63M over five years",
+          "section": "Work Experience"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Work Experience"
+      },
+      {
+        "fix": "In the audit and compliance bullet, describe what you oversaw during a review and any follow-up you handled.",
+        "why": "That would distinguish your responsibilities from the fact that reviews occurred.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Oversaw audits and compliance reviews for the branch",
+          "section": "Work Experience"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Work Experience"
+      },
+      {
+        "fix": "In the customer complaints bullet, name a representative issue and the authority you had to resolve it.",
+        "why": "An example would show the kinds of decisions your branch role involved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Handled escalated customer complaints",
+          "section": "Work Experience"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "Work Experience"
+      }
+    ],
+    "next_steps": [
+      "Revise the branch manager bullets with the verified deposit-growth, review and complaint details you can recall.",
+      "Add an example of your referral coaching, then trim older bullets only if you need room.",
+      "Review the dates and add a real subsequent activity if one helps explain your timeline."
+    ],
+    "subscores": {
+      "impact": 72,
+      "clarity": 73,
+      "story": 75,
+      "readability": 75
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "B",
+        "priority": "High",
+        "working": "The dates, promotions and branch deposit figures make the career path easy to follow.",
+        "missing": "Several management bullets name duties without describing the work involved.",
+        "fix": "Expand the deposit, compliance and escalation bullets with specific details you can verify."
+      },
+      "Skills": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No skills section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The finance degree, university and graduation year are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Branch staff management",
+        "Deposit growth",
+        "Retail banking operations",
+        "Consumer and small business accounts"
+      ],
+      "underplayed": [
+        "Work involved in audit and compliance oversight",
+        "Approach to coaching bankers on referrals",
+        "Decisions made on escalated customer complaints"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Branch Manager",
+          "Assistant Branch Manager"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Most recently a branch manager, with earlier assistant manager and personal banker roles.",
+        "industry_signals": [
+          "Retail banking"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with your branch management work and the deposit figures. Use the experience section to explain your approach to staff coaching, compliance reviews and customer escalations."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What actions did you take to grow deposits at the Birmingham branch?",
+          "archetype": "IMPROVEMENT",
+          "why": "The deposit figures state the change but not your approach."
+        },
+        {
+          "question": "What did you oversee during a branch audit, and what follow-up did you handle?",
+          "archetype": "HIGH STAKES",
+          "why": "This could make your compliance responsibilities more concrete."
+        },
+        {
+          "question": "Which escalated customer issue did you handle, and what could you decide yourself?",
+          "archetype": "TENSION POINT",
+          "why": "An example could show the judgment your role required."
+        },
+        {
+          "question": "What did you teach bankers about referrals during or outside the weekly huddles?",
+          "archetype": "SCALING",
+          "why": "The answer could explain how you supported the branch staff."
+        },
+        {
+          "question": "What did supervising vault operations involve during your assistant branch manager role?",
+          "archetype": "DOMAIN LIFT",
+          "why": "That detail could make your earlier banking operations work more distinct."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 72
+  },
+  "severity": {
+    "outcome": "added",
+    "reason": "added",
+    "added": [
+      "no_recent_work"
+    ],
+    "promoted": [],
+    "replaced": [],
+    "skipped": [],
+    "critical_count": 2,
+    "more_critical": false,
+    "validation_attempts": 1,
+    "answer": {
+      "critical_misses": [
+        {
+          "source": "new",
+          "kind": "no_recent_work",
+          "fix": "Add one dated line covering December 2024 to today.",
+          "why": "A hiring manager may look for current banking activity, but the resume ends with the branch role. Name the period truthfully with a dated line such as \"Career break\" or \"Job search and coursework\", and list banking coursework or volunteer financial education only if true.",
+          "excerpt": "May 2019 - December 2024",
+          "section": "Experience",
+          "effort": "quick"
+        }
+      ],
+      "more_critical": false
+    },
+    "latency_ms": 4816,
+    "call_latency_ms": 4611,
+    "cost_usd": 0.00269825,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 72,
+    "score_label": "Mostly clear",
+    "score_comment_short": "Deposit growth and staff size stand out, but several duties lack detail.",
+    "score_comment_long": "The recent branch role includes a deposit result and the number of employees managed. Other bullets name responsibilities without explaining the work involved. Adding details to the audit and customer escalation bullets would help.",
+    "score_plain": "A reviewer can see branch management experience and a deposit result. They may still have questions about how you handled compliance reviews and customer issues.",
+    "first_impression": "Your path at Magnolia Community Bank moves from Personal Banker to Branch Manager. Managing 11 employees makes the size of your branch responsibility clear.",
+    "biggest_gap_example": "\"Handled escalated customer complaints\" does not identify the issues you resolved or the decisions you could make, leaving the nature of those escalations unclear.",
+    "first_impression_takeaway": "Explain your deposit growth",
+    "summary": "Branch deposits grew from $48M to $63M over five years, a concrete result worth keeping near the top. Your work spans account opening and help with loan applications as well as branch operations and banker coaching. Your most recent position is at branch-manager level. The deposit bullet doesn't say what you did to achieve that growth, leaving your approach unclear.",
+    "strengths": [
+      "The progression through banking roles at the same institution makes your career path easy to follow.",
+      "Weekly sales huddles and referral coaching show a regular part of how you worked with bankers.",
+      "Opening consumer and small business accounts identifies the account work you handled before becoming branch manager."
+    ],
+    "gaps": [
+      "The audit and compliance bullet does not explain what you oversaw during reviews or what follow-up you handled.",
+      "The complaint bullet leaves the types of customer problems and your authority to resolve them unclear.",
+      "Your most recent listed role ends in December 2024, with no subsequent activity described, which may prompt a timing question."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the deposit-growth bullet, add the specific actions you took to grow deposits, if you can verify them.",
+        "why": "The figures show the change, but your approach would help a reader understand how you achieved it.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Grew branch deposits from $48M to $63M over five years",
+          "section": "Work Experience"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Work Experience",
+        "critical": true
+      },
+      {
+        "fix": "Add one dated line covering December 2024 to today.",
+        "why": "A hiring manager may look for current banking activity, but the resume ends with the branch role. Name the period truthfully with a dated line such as \"Career break\" or \"Job search and coursework\", and list banking coursework or volunteer financial education only if true.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "May 2019 - December 2024",
+          "section": "Experience"
+        },
+        "impact_level": "high",
+        "effort": "quick",
+        "section_ref": "Experience",
+        "critical": true
+      },
+      {
+        "fix": "In the audit and compliance bullet, describe what you oversaw during a review and any follow-up you handled.",
+        "why": "That would distinguish your responsibilities from the fact that reviews occurred.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Oversaw audits and compliance reviews for the branch",
+          "section": "Work Experience"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Work Experience",
+        "critical": false
+      }
+    ],
+    "more_critical": false,
+    "next_steps": [
+      "Revise the branch manager bullets with the verified deposit-growth, review and complaint details you can recall.",
+      "Add an example of your referral coaching, then trim older bullets only if you need room.",
+      "Review the dates and add a real subsequent activity if one helps explain your timeline."
+    ],
+    "subscores": {
+      "impact": 72,
+      "clarity": 73,
+      "story": 75,
+      "readability": 75
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "B",
+        "priority": "High",
+        "working": "The dates, promotions and branch deposit figures make the career path easy to follow.",
+        "missing": "Several management bullets name duties without describing the work involved.",
+        "fix": "Expand the deposit, compliance and escalation bullets with specific details you can verify."
+      },
+      "Skills": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No skills section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The finance degree, university and graduation year are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 72,
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Branch staff management",
+        "Deposit growth",
+        "Retail banking operations",
+        "Consumer and small business accounts"
+      ],
+      "underplayed": [
+        "Work involved in audit and compliance oversight",
+        "Approach to coaching bankers on referrals",
+        "Decisions made on escalated customer complaints"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Branch Manager",
+          "Assistant Branch Manager"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Most recently a branch manager, with earlier assistant manager and personal banker roles.",
+        "industry_signals": [
+          "Retail banking"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with your branch management work and the deposit figures. Use the experience section to explain your approach to staff coaching, compliance reviews and customer escalations."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What actions did you take to grow deposits at the Birmingham branch?",
+          "archetype": "IMPROVEMENT",
+          "why": "The deposit figures state the change but not your approach."
+        },
+        {
+          "question": "What did you oversee during a branch audit, and what follow-up did you handle?",
+          "archetype": "HIGH STAKES",
+          "why": "This could make your compliance responsibilities more concrete."
+        },
+        {
+          "question": "Which escalated customer issue did you handle, and what could you decide yourself?",
+          "archetype": "TENSION POINT",
+          "why": "An example could show the judgment your role required."
+        },
+        {
+          "question": "What did you teach bankers about referrals during or outside the weekly huddles?",
+          "archetype": "SCALING",
+          "why": "The answer could explain how you supported the branch staff."
+        },
+        {
+          "question": "What did supervising vault operations involve during your assistant branch manager role?",
+          "archetype": "DOMAIN LIFT",
+          "why": "That detail could make your earlier banking operations work more distinct."
+        }
+      ]
+    }
+  },
+  "presentation": {
+    "score": 72,
+    "band": "Mostly clear",
+    "score_label_from_model": "Solid Foundation",
+    "model_score_before_calibration": 72,
+    "verdict": "Your path at Magnolia Community Bank moves from Personal Banker to Branch Manager. Managing 11 employees makes the size of your branch responsibility clear.",
+    "one_line_read": "Deposit growth and staff size stand out, but several duties lack detail.",
+    "takeaway": "Explain your deposit growth",
+    "biggest_gap_example": "\"Handled escalated customer complaints\" does not identify the issues you resolved or the decisions you could make, leaving the nature of those escalations unclear.",
+    "critical_count": {
+      "count": 2,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "Two Critical Misses. Start with this one.",
+      "lead": "Either one could cost you the interview on its own."
+    },
+    "fixes": [
+      {
+        "fix": "In the deposit-growth bullet, add the specific actions you took to grow deposits, if you can verify them.",
+        "why": "The figures show the change, but your approach would help a reader understand how you achieved it.",
+        "excerpt": "- Grew branch deposits from $48M to $63M over five years",
+        "section": "Work Experience",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "Add one dated line covering December 2024 to today.",
+        "why": "A hiring manager may look for current banking activity, but the resume ends with the branch role. Name the period truthfully with a dated line such as \"Career break\" or \"Job search and coursework\", and list banking coursework or volunteer financial education only if true.",
+        "excerpt": "May 2019 - December 2024",
+        "section": "Experience",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the audit and compliance bullet, describe what you oversaw during a review and any follow-up you handled.",
+        "why": "That would distinguish your responsibilities from the fact that reviews occurred.",
+        "excerpt": "- Oversaw audits and compliance reviews for the branch",
+        "section": "Work Experience",
+        "critical": false,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "The progression through banking roles at the same institution makes your career path easy to follow.",
+    "strengths": [
+      "The progression through banking roles at the same institution makes your career path easy to follow.",
+      "Weekly sales huddles and referral coaching show a regular part of how you worked with bankers.",
+      "Opening consumer and small business accounts identifies the account work you handled before becoming branch manager."
+    ],
+    "gaps": [
+      "The audit and compliance bullet does not explain what you oversaw during reviews or what follow-up you handled.",
+      "The complaint bullet leaves the types of customer problems and your authority to resolve them unclear.",
+      "Your most recent listed role ends in December 2024, with no subsequent activity described, which may prompt a timing question."
+    ],
+    "next_steps": [
+      "Revise the branch manager bullets with the verified deposit-growth, review and complaint details you can recall.",
+      "Add an example of your referral coaching, then trim older bullets only if you need room.",
+      "Review the dates and add a real subsequent activity if one helps explain your timeline."
+    ],
+    "seniority_read": "Most recently a branch manager, with earlier assistant manager and personal banker roles.",
+    "best_fit_roles": [
+      "Branch Manager",
+      "Assistant Branch Manager"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "Lead with your branch management work and the deposit figures. Use the experience section to explain your approach to staff coaching, compliance reviews and customer escalations.",
+    "severity_added": [
+      "no_recent_work"
+    ],
+    "severity_promoted": [],
+    "severity_outcome": "added (added)",
+    "severity_answer": {
+      "critical_misses": [
+        {
+          "source": "new",
+          "kind": "no_recent_work",
+          "fix": "Add one dated line covering December 2024 to today.",
+          "why": "A hiring manager may look for current banking activity, but the resume ends with the branch role. Name the period truthfully with a dated line such as \"Career break\" or \"Job search and coursework\", and list banking coursework or volunteer financial education only if true.",
+          "excerpt": "May 2019 - December 2024",
+          "section": "Experience",
+          "effort": "quick"
+        }
+      ],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[2]",
+          "of": "top_fixes[1]"
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[0]",
+          "fix": 0
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[1]",
+          "fix": 2
+        },
+        {
+          "kind": "question_dropped",
+          "path": "ideas.questions[3]",
+          "reason": "duplicates_keep"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "biggest_gap_example",
+          "of": "ideas.questions[2]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[0]",
+          "of": "top_fixes[2]"
+        }
+      ],
+      "fix_questions": [
+        [
+          "What actions did you take to grow deposits at the Birmingham branch?"
+        ],
+        [],
+        [
+          "What did you oversee during a branch audit, and what follow-up did you handle?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.03050575,
+  "latency_ms": 58763
+}

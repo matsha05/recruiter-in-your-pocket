@@ -1,0 +1,43 @@
+# h3_strong_resume, run 1
+Resume: resumes/h3_strong_resume.txt (311 words, sha256 711aca17e0f7)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0145; 29.9s
+Case note: Senior product manager whose resume is already good.
+
+## Band: Clear and specific (score 89; model wrote 94, label "Top Tier")
+## Verdict
+Your current role spans a payments roadmap for four product teams and 11,000 business customers. The results are easy to find; the priorities behind that roadmap are less visible.
+One-line read: Recent work consistently connects product decisions to customer and business results.
+Takeaway: Explain your roadmap priorities
+Biggest gap example: "Own the payments platform roadmap" does not explain how you chose among competing priorities across the four teams.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the payments roadmap bullet, add an example of competing priorities you weighed and the choice you made.
+   why: That would show how you make decisions across the teams, beyond the size of the roadmap.
+   excerpt (EXPERIENCE): "- Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The payment failure bullet names network tokenization and smart retries alongside the change from 4.1% to 1.6%, making the work behind the result understandable.
+Other strengths: ["Your invoice redesign connects 40 customer interviews to a 38% reduction in disputes, showing how customer research informed a product change.","The processor integrations name Adyen and Stripe and show a reduction in new-market launch time from 9 months to 11 weeks."]
+
+## Gaps
+- The roadmap entry does not describe a tradeoff among the four teams, leaving your prioritization approach less visible.
+- The management bullet names promotions but not your work developing the product managers, so your management style is difficult to assess.
+- SQL and Amplitude appear in Skills without an example of their use, leaving their role in your product work unclear.
+
+## Next steps
+- Revisit the current roadmap bullet and choose one prioritization example you can describe accurately.
+- Add a concrete management practice to the bullet about the three product managers.
+- Review the Skills list and connect SQL or Amplitude to an existing product example if you used either there.
+
+## Role fit
+Level: Senior product manager with a multi-team platform roadmap and direct reports.
+Best fit: ["Senior Product Manager, Payments Platform","Product Manager, Billing"]
+Positioning: Lead with the combination of payments platform work and billing product results. For roles with people-management expectations, add a concrete example of how you support your product managers.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_dropped","path":"ideas.questions[2]","reason":"duplicates_keep"},{"kind":"question_dropped","path":"ideas.questions[4]","reason":"duplicates_keep"},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"first_impression"},{"kind":"repeat_dropped","path":"gaps[1]","of":"ideas.questions[1]"}]

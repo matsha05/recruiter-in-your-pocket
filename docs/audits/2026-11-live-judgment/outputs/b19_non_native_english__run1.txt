@@ -1,0 +1,48 @@
+# b19_non_native_english, run 1
+Resume: resumes/b_non_native_english.txt (237 words, sha256 b6a26fe36825)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0153; 29.8s
+
+## Band: Mostly clear (score 78; model wrote 78, label "Solid Foundation")
+## Verdict
+Your resume moves from senior accounting in Vietnam to accounts payable in Houston. The reduction in closing time from 12 days to 7 days is worth keeping because it shows a specific process change and result.
+One-line read: Specific accounting results stand out, while recent responsibilities need more detail.
+Takeaway: Name your month-end tasks
+Biggest gap example: "Help the controller for month end closing" leaves the actual tasks unclear, making it difficult to assess your recent close work.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the current month-end closing bullet, name the specific tasks or schedules you help the controller complete.
+   why: A reviewer can then see which parts of the close your current role involves.
+   excerpt (WORK EXPERIENCE): "- Help the controller for month end closing"
+2. [fix] In the weekly payment-run bullet, add the checks you perform before sending the run to the controller, if applicable.
+   why: This would show what preparing the payment run involves without implying you approve it.
+   excerpt (WORK EXPERIENCE): "- Prepare weekly payment run and send to controller for approve"
+3. [fix] In the close-improvement bullet, describe one change made through the checklist or template that helped shorten the close.
+   why: The time reduction is already stated; a concrete change would show how you approached the work.
+   excerpt (WORK EXPERIENCE): "- Reduce the month end closing from 12 days to 7 days by make new checklist and template"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+Processing around 400 vendor invoices every month in QuickBooks gives the current accounts payable role a concrete workload.
+Other strengths: ["The external audit bullet reports no major finding in 5 years, providing useful context for your work with auditors.","Payroll for 12 staff and monthly sales tax reporting show that the part-time bookkeeping role extended beyond recording transactions."]
+
+## Gaps
+- The payment-run bullet doesn't name the checks you perform before sending it to the controller, so your preparation work remains broad.
+- Your profile names two target roles but doesn't distinguish which accounting work you want to emphasize for each.
+- The US GAAP certificate is listed, but the resume doesn't show whether or how you have applied that training in your work.
+
+## Next steps
+- Revise the current close and payment-run bullets using the tasks and checks you can verify.
+- Add a concrete example of the checklist or template change at Minh Phat.
+- Adjust the profile for each application, emphasizing either accounts payable or broader staff accounting work.
+
+## Role fit
+Level: Your current title is Accounts Payable Clerk; your earlier Senior Accountant role included leading 3 junior accountants.
+Best fit: ["Staff Accountant","Accounts Payable Specialist"]
+Positioning: For accounts payable applications, lead with invoice processing, reconciliation and payment preparation. For staff accountant applications, bring the financial statements and close work forward while explaining your current close contribution.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":1},{"kind":"question_moved","path":"ideas.questions[2]","fix":2},{"kind":"question_dropped","path":"ideas.questions[4]","reason":"duplicates_keep"},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"section_review.Summary.missing","of":"gaps[1]"},{"kind":"repeat_dropped","path":"section_review.Work Experience.missing","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"section_review.Work Experience.fix","of":"top_fixes[1]"}]

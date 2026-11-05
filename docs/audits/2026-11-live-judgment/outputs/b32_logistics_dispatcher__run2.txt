@@ -1,0 +1,48 @@
+# b32_logistics_dispatcher, run 2
+Resume: ../../../tests/resumes/blindpick/synth_bp_logistics_dispatcher_1.txt (105 words, sha256 1ae1cc83222e)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0125; 27.7s
+
+## Band: Needs more context (score 62; model wrote 62, label "Needs Clarity")
+## Verdict
+Regional trucking dispatch is immediately clear, and naming McLeod TMS gives a reviewer a useful system reference. The experience bullets are brief enough that the work behind each duty is difficult to picture.
+One-line read: The dispatch role is clear, but most bullets describe duties without examples.
+Takeaway: Explain the driver issues
+Biggest gap example: "Handle driver issues on the road" does not say what kinds of issues you handle or what you can resolve yourself.
+
+## Fixes (Two Critical Misses. Start with this one.; lead: "Either one could cost you the interview on its own."); severity added (added); added ["no_evidence_latest_role"]; promoted []
+1. [Critical Miss] In the driver-dispatch bullet, explain how you assign drivers and which dispatch decisions you make yourself.
+   why: That would distinguish your actual dispatch responsibilities from the title alone.
+   excerpt (EXPERIENCE): "- Responsible for dispatching drivers"
+2. [Critical Miss] In the Crossroads Regional Freight load-tracking bullet, add how many loads you personally track in a typical week, if you can verify it.
+   why: Dispatch hiring managers often look for the volume a dispatcher handles. Your current role lists duties but doesn't show their scale or measurable results.
+   excerpt (EXPERIENCE): "- Track loads and update customers on delivery status"
+3. [fix] In the road-issues bullet, add a representative problem you handled and what you did to address it.
+   why: A concrete situation would show how you respond when a driver needs help.
+   excerpt (EXPERIENCE): "- Handle driver issues on the road"
+Severity check answer: {"critical_misses":[{"source":"new","kind":"no_evidence_latest_role","fix":"In the Crossroads Regional Freight load-tracking bullet, add how many loads you personally track in a typical week, if you can verify it.","why":"Dispatch hiring managers often look for the volume a dispatcher handles. Your current role lists duties but doesn't show their scale or measurable results.","excerpt":"- Track loads and update customers on delivery status","section":"EXPERIENCE","effort":"quick"}],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+Load tracking and delivery-status updates connect your dispatch work to customer communication.
+Other strengths: ["Working with the safety team on driver hours shows that dispatch coordination extends beyond assigning drivers.","Your earlier trailer-loading work adds a warehouse perspective to your freight background."]
+
+## Gaps
+- The driver dispatch bullet does not explain how assignments are made or what you decide, leaving the day-to-day work unclear.
+- The customer update bullet does not show what you communicate when a delivery changes, so the judgment involved is difficult to assess.
+- The safety-team bullet names driver hours but not your part in coordinating them, leaving the handoff unclear.
+
+## Next steps
+- Expand the current dispatch bullets using situations and responsibilities you can verify.
+- Review the Dispatch Assistant bullets and add the type of load information or paperwork you handled if useful.
+- Update the opening sentence to reflect the revised dispatch details, then check that the experience dates and tenure remain current.
+
+## Role fit
+Level: The current Dispatcher title indicates dispatcher-level work following a Dispatch Assistant role.
+Best fit: ["Dispatcher"]
+Positioning: Keep the regional trucking focus at the top. Use the current role to show how you coordinate drivers, customer updates and safety-related handoffs.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[0]","line":"fix-1","criticalMiss":true},{"kind":"question_moved","path":"ideas.questions[0]","fix":2},{"kind":"question_moved","path":"ideas.questions[1]","fix":0},{"kind":"question_dropped","path":"ideas.questions[2]","reason":"duplicates_keep"},{"kind":"question_moved","path":"ideas.questions[3]","fix":1},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"section_review.Work Experience.fix","of":"top_fixes[0]"}]

@@ -1,0 +1,45 @@
+# h4c_one_paragraph, run 1
+Resume: resumes/h4c_one_paragraph.txt (147 words, sha256 f511920a6896)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0347; repair ran; 67.8s
+Case note: A resume pasted as one paragraph with no line breaks.
+
+Validator refused the first draft: OPENAI_RESPONSE_SHAPE_INVALID The model response failed the evidence grounding contract at summary unsupported narrative facts: unsupported direction binding: improve on-time rate from 91% to 96 in 2024 is worth keeping prominent because it.
+
+## Band: Mostly clear (score 82; model wrote 82, label "Strong")
+## Verdict
+Your current work covers dispatch, delivery reporting, customer exceptions, and training. The supplied text runs together, making those responsibilities less easy to scan.
+One-line read: Your recent dispatch work has clear responsibilities and a stated improvement.
+Takeaway: Explain delivery exception decisions
+Biggest gap example: "resolve delivery exceptions with customers by phone and email" does not say which exceptions you handled or what you could decide yourself, leaving your authority unclear.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the on-time delivery achievement, describe what you did to improve performance, if you can verify it.
+   why: The result is already stated; the missing detail is the work behind it.
+   excerpt (Experience): "improved on-time rate from 91% to 96% in 2024"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+Weekly reporting to the regional manager shows who received your delivery updates and how often.
+Other strengths: ["Training 4 new coordinators on dispatch software shows that you helped colleagues learn a system used in the role.","Handling 60 to 80 customer calls per day shows the pace of your parcel service work."]
+
+## Gaps
+- The exception-handling description does not identify the problems you resolved or the decisions available to you.
+- The damaged and lost package claims entry does not say which stages you handled, leaving your part in the process unclear.
+- The training description names the software but not the tasks you taught, so the content of that training is unclear.
+
+## Next steps
+- Revise the River City Logistics entry first, adding your actions behind the 2024 delivery result and an example of exception handling.
+- Expand the Dominion Parcel claims description with the steps you personally performed.
+- Compare the supplied text with your original file; if the roles also run together there, separate the headings and responsibilities.
+
+## Role fit
+Level: Coordinator level, with responsibility for dispatch reporting and training new coordinators.
+Best fit: ["Operations Coordinator"]
+Positioning: Lead with your current dispatch responsibilities and the 2024 on-time delivery result. Use the earlier parcel service and warehouse roles to show your familiarity with freight and customer issues.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_dropped","path":"ideas.questions[3]","reason":"duplicates_keep"},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"ideas.questions[1]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"ideas.questions[2]"}]

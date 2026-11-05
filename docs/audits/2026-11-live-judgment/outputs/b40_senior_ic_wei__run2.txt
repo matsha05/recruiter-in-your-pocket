@@ -1,0 +1,49 @@
+# b40_senior_ic_wei, run 2
+Resume: ../../../docs/design/2026-11-bar/resumes/4-senior-ic-wei.txt (361 words, sha256 e95b41ee5391)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0142; 29.1s
+Case note: Senior IC (bar persona).
+
+## Band: Mostly clear (score 78; model wrote 86, label "Strong")
+## Verdict
+You lead a payments platform team and have worked directly on ledger architecture, payment reliability, and fraud scoring. Eliminating a class of duplicate-charge incidents is worth keeping prominent because it connects infrastructure work to a customer problem.
+One-line read: The payments work shows technical leadership, with a few important results left undefined.
+Takeaway: Explain your settlement roadmap contribution
+Biggest gap example: "Partnered with product and finance on the roadmap for multi-currency settlement" leaves your contribution to that roadmap unclear, making the cross-functional work difficult to assess.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the ledger redesign bullet, add a specific migration constraint you addressed and, if known, what changed after the transition.
+   why: The architecture is named, but a concrete constraint would show how you approached the move from the monolith.
+   excerpt (EXPERIENCE): "Led the redesign of the core ledger service from a monolithic Postgres-backed system"
+2. [fix] In the multi-currency settlement roadmap bullet, name a recommendation or tradeoff you contributed with product and finance.
+   why: That would make your part in the shared planning work easier to distinguish.
+   excerpt (EXPERIENCE): "- Partnered with product and finance on the roadmap for multi-currency settlement"
+3. [fix] In the reconciliation improvement bullet, add the extent of the break-rate or manual-effort reduction if you can verify it.
+   why: The resume already states both improvements; their magnitude would help a reviewer understand their importance.
+   excerpt (EXPERIENCE): "- Reduced reconciliation break rate and manual ops effort"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The fraud scoring pipeline's p99 latency under 50ms gives a concrete performance detail alongside Flink and Kafka.
+Other strengths: ["Design documents and architecture reviews adopted as team standards show that your written work influenced how the team operates.","Interviewing 100+ candidates and helping revise the backend hiring loop show participation in hiring beyond technical delivery."]
+
+## Gaps
+- The ledger redesign doesn't explain a key migration constraint or what changed after the transition, leaving its practical significance less defined.
+- The Sev1 bullet doesn't describe an incident response decision or what the postmortem led to, so your approach under pressure is less visible.
+- The reduction in reconciliation breaks and manual operations effort has no stated magnitude, making the size of that improvement difficult to assess.
+
+## Next steps
+- Revise the ledger and settlement bullets with the migration constraint and your roadmap contribution.
+- Check available records for the reconciliation improvement and add a verified figure if one exists.
+- Review the incident and mentoring bullets for one concrete example that adds a different dimension to your leadership.
+
+## Role fit
+Level: Staff-level technical lead, based on your current title and leadership of the ledger and settlement platform team.
+Best fit: ["Staff Software Engineer"]
+Positioning: Lead with your staff-level payments infrastructure work and retain the architecture details in the ledger bullet. Use the multi-currency roadmap and incident response examples to show how you work beyond the service boundary.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[3]","fix":2},{"kind":"question_moved","path":"ideas.questions[4]","fix":1},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"ideas.questions[2]"},{"kind":"repeat_dropped","path":"gaps[2]","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"section_review.Work Experience.missing","of":"top_fixes[0]"}]

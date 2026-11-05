@@ -1,0 +1,48 @@
+# b19_non_native_english, run 2
+Resume: resumes/b_non_native_english.txt (237 words, sha256 b6a26fe36825)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0137; 29.1s
+
+## Band: Mostly clear (score 77; model wrote 77, label "Solid Foundation")
+## Verdict
+Your recent work is in Houston accounts payable, following a senior accounting role in Vietnam. The close reduction from 12 days to 7 days is worth keeping because it shows a specific process change and result.
+One-line read: Earlier accounting results are specific, while recent responsibilities need more detail.
+Takeaway: Name your close tasks
+Biggest gap example: "Help the controller for month end closing" leaves the actual close tasks unclear, making it difficult to assess their relevance to a staff accountant role.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the Bayou month-end bullet, name the close tasks or documents you assist the controller with.
+   why: A reviewer could then see which parts of the close you handle rather than only the person you help.
+   excerpt (WORK EXPERIENCE): "- Help the controller for month end closing"
+2. [fix] In the vendor reconciliation bullet, add an example of a statement difference you investigate and how you resolve it.
+   why: That example would show what your vendor conversations involve beyond the communication channels.
+   excerpt (WORK EXPERIENCE): "- Reconcile vendor statement and solve the difference with vendors by email and phone"
+3. [fix] In the external audit bullet, name the records you prepared or questions you handled for the auditor, if applicable.
+   why: The five-year finding is useful, and your contribution would make the audit work easier to understand.
+   excerpt (WORK EXPERIENCE): "- Work with external auditor for year end audit, no major finding in 5 years"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+Processing around 400 vendor invoices every month in QuickBooks gives the current role a useful workload reference.
+Other strengths: ["The Vietnam role names a company with 150 employees and revenue about 20 million USD, giving context for the accounting work.","The US GAAP certificate and accounting degree make your formal accounting education easy to find."]
+
+## Gaps
+- The current month-end bullet doesn't name your contribution, so the extent of your recent close work is unclear.
+- The vendor reconciliation bullet doesn't explain the kinds of differences you resolve, leaving the complexity of that work open to interpretation.
+- The profile names two target positions but doesn't connect either to your recent US work or earlier financial reporting responsibilities.
+
+## Next steps
+- Revise the Bayou close and vendor reconciliation bullets using examples you can verify.
+- Add your specific audit contribution to the Minh Phat entry and keep the five-year finding.
+- Revise the profile for the position you are applying to, then proofread the payment approval and payroll bullets.
+
+## Role fit
+Level: Your current title is Accounts Payable Clerk; your earlier Senior Accountant role included leading three junior accountants.
+Best fit: ["Accounts Payable Clerk","Accounts Payable Specialist","Staff Accountant"]
+Positioning: For accounts payable applications, put the QuickBooks invoice volume and vendor reconciliation work near the top. For staff accountant applications, also make the financial statements and month-end close work easy to find.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":1},{"kind":"question_moved","path":"ideas.questions[3]","fix":2},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"gaps[2]","of":"score_comment_short"},{"kind":"repeat_dropped","path":"section_review.Education.working","of":"strengths[2]"}]

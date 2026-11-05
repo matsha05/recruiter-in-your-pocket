@@ -1,0 +1,714 @@
+{
+  "case_id": "b24_physical_therapist_strong",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../../../tests/resumes/countcheck/synth_cc_physical_therapist_strong_1.txt",
+  "resume_sha256": "7e013454a20249375bdb6727bacd79d8babaf49afa5b0b57f3dd11c862937163",
+  "resume_chars": 1049,
+  "resume_words": 154,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T20:07:55.709Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7565,
+        "completion_tokens": 2099,
+        "total_tokens": 9664,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 676,
+        "reasoning_tokens": 239
+      },
+      "cost_usd": 0.0116873,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 24449
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.00135325,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1040
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 85,
+    "score_label": "Strong",
+    "score_comment_short": "Your recent work pairs patient volume and program completion with a functional outcome.",
+    "score_comment_long": "The current role gives a clear picture of your patient load, mentoring and program work. The return-to-run program and function scores would be easier to interpret with a little more detail. Explain what the program involved and how the scores were reported.",
+    "score_plain": "Your resume gives a reviewer concrete reasons to consider your outpatient orthopedic work. A few targeted edits could make your clinical approach easier to understand.",
+    "first_impression": "Your current role combines sports rehabilitation with mentoring and scheduling. The return-to-run program stands out, though its contents aren't yet described.",
+    "biggest_gap_example": "\"Mentor 2 newer therapists and set the PT aide schedule\" doesn't explain what your mentoring covers, making that part of the senior role difficult to assess.",
+    "first_impression_takeaway": "Describe the mentoring work",
+    "summary": "The return-to-run program had 85 completions in 2025, a useful detail that shows patients participated in something you built. Your work centers on outpatient orthopedic and post-surgical rehabilitation, with a prior mix of orthopedic and neurological cases. The current title and mentoring responsibilities place you at a senior therapist level. A reviewer may still want to know how you structured the program before understanding what you contributed to its design.",
+    "strengths": [
+      "The 2025 patient-reported function result gives a concrete view of improvement among discharged patients.",
+      "Daily patient ranges in both roles show the pace of your outpatient work without relying on a generic caseload claim.",
+      "Leading a fall-prevention class for older adults adds group instruction to your individual treatment background."
+    ],
+    "gaps": [
+      "The resume doesn't identify the function-score measure or how the reported percentage was calculated, which makes the result harder to interpret.",
+      "The fall-prevention bullet doesn't say what the class covered or how you adapted it for participants.",
+      "The skills list names dry needling and two record systems, but doesn't show how you used them in your clinical work."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the return-to-run program bullet, add the main components you designed, such as how patients progressed through the program.",
+        "why": "The completion count shows participation, but the design details would show what you built.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Built a return-to-run program that 85 patients completed in 2025",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the patient-reported function bullet, name the measure used and explain which discharged patients were included in the percentage, if known.",
+        "why": "That context would help a reviewer understand what the improvement figure represents.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- In 2025, 92% of discharged patients improved their patient-reported function scores",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the mentoring bullet, add an example of the clinical or professional guidance you provide to newer therapists.",
+        "why": "An example would distinguish your mentoring from the separate aide-scheduling responsibility.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Mentor 2 newer therapists and set the PT aide schedule",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Expand the return-to-run bullet with the program features you can verify.",
+      "Check the source of the 2025 function-score figure and add the measure and patient group if available.",
+      "Revise the mentoring and fall-prevention bullets with one concrete example of what you taught or guided."
+    ],
+    "subscores": {
+      "impact": 86,
+      "clarity": 84,
+      "story": 85,
+      "readability": 88
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The opening identifies outpatient orthopedics, sports and post-surgical rehabilitation.",
+        "missing": "It doesn't mention your senior role or the return-to-run program.",
+        "fix": "Consider bringing your current senior role and program-building work into the opening."
+      },
+      "Work Experience": {
+        "grade": "B+",
+        "priority": "High",
+        "working": "Patient volumes, program completions and function scores make the clinical work concrete.",
+        "missing": "The program design, score measure and mentoring topics aren't described.",
+        "fix": "Add those details to the relevant current-role bullets where you can verify them."
+      },
+      "Skills": {
+        "grade": "A-",
+        "priority": "Low",
+        "working": "Clinical methods and the Epic and WebPT systems are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Both degrees, institutions and completion years are listed.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Outpatient orthopedic rehabilitation",
+        "Sports and post-surgical rehabilitation",
+        "Return-to-run program development",
+        "Patient-reported function improvement"
+      ],
+      "underplayed": [
+        "Mentoring newer therapists",
+        "Fall-prevention group instruction",
+        "Design of the return-to-run program"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Senior Physical Therapist",
+          "Physical Therapist"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current Senior Physical Therapist title is consistent with the mentoring and scheduling responsibilities listed.",
+        "industry_signals": [
+          "Outpatient physical rehabilitation",
+          "Hospital outpatient care"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Lead with your outpatient orthopedic focus and current senior title. Keep the program completion count and function-score result distinct, since the resume doesn't link the two."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What progression criteria or exercises did you include when you built the return-to-run program?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The answer could make the program-building work more concrete."
+        },
+        {
+          "question": "What topics do you cover when mentoring the two newer therapists?",
+          "archetype": "SCALING",
+          "why": "A specific example would show how you support their development."
+        },
+        {
+          "question": "Which patient-reported measure was used for the 2025 function-score result, and how was the percentage calculated?",
+          "archetype": "IMPROVEMENT",
+          "why": "The measure and calculation would help readers interpret the reported improvement."
+        },
+        {
+          "question": "How did you adapt the fall-prevention class for participants with different needs?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "An example could show how you approached group instruction for older adults."
+        },
+        {
+          "question": "How do you coordinate the PT aide schedule with treatment needs?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The answer could explain the practical decisions behind the scheduling duty."
+        }
+      ]
+    }
+  },
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 85,
+    "score_label": "Clear and specific",
+    "score_comment_short": "Your recent work pairs patient volume and program completion with a functional outcome.",
+    "score_comment_long": "The current role gives a clear picture of your patient load, mentoring and program work. The return-to-run program and function scores would be easier to interpret with a little more detail. Explain what the program involved and how the scores were reported.",
+    "score_plain": "Your resume gives a reviewer concrete reasons to consider your outpatient orthopedic work. A few targeted edits could make your clinical approach easier to understand.",
+    "first_impression": "Your current role combines sports rehabilitation with mentoring and scheduling. The return-to-run program stands out, though its contents aren't yet described.",
+    "biggest_gap_example": "\"Mentor 2 newer therapists and set the PT aide schedule\" doesn't explain what your mentoring covers, making that part of the senior role difficult to assess.",
+    "first_impression_takeaway": "Describe the mentoring work",
+    "summary": "The return-to-run program had 85 completions in 2025, a useful detail that shows patients participated in something you built. Your work centers on outpatient orthopedic and post-surgical rehabilitation, with a prior mix of orthopedic and neurological cases. The current title and mentoring responsibilities place you at a senior therapist level. A reviewer may still want to know how you structured the program before understanding what you contributed to its design.",
+    "strengths": [
+      "The 2025 patient-reported function result gives a concrete view of improvement among discharged patients.",
+      "Daily patient ranges in both roles show the pace of your outpatient work without relying on a generic caseload claim.",
+      "Leading a fall-prevention class for older adults adds group instruction to your individual treatment background."
+    ],
+    "gaps": [
+      "The resume doesn't identify the function-score measure or how the reported percentage was calculated, which makes the result harder to interpret.",
+      "The fall-prevention bullet doesn't say what the class covered or how you adapted it for participants.",
+      "The skills list names dry needling and two record systems, but doesn't show how you used them in your clinical work."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the return-to-run program bullet, add the main components you designed, such as how patients progressed through the program.",
+        "why": "The completion count shows participation, but the design details would show what you built.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Built a return-to-run program that 85 patients completed in 2025",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the patient-reported function bullet, name the measure used and explain which discharged patients were included in the percentage, if known.",
+        "why": "That context would help a reviewer understand what the improvement figure represents.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- In 2025, 92% of discharged patients improved their patient-reported function scores",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the mentoring bullet, add an example of the clinical or professional guidance you provide to newer therapists.",
+        "why": "An example would distinguish your mentoring from the separate aide-scheduling responsibility.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Mentor 2 newer therapists and set the PT aide schedule",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Expand the return-to-run bullet with the program features you can verify.",
+      "Check the source of the 2025 function-score figure and add the measure and patient group if available.",
+      "Revise the mentoring and fall-prevention bullets with one concrete example of what you taught or guided."
+    ],
+    "subscores": {
+      "impact": 86,
+      "clarity": 84,
+      "story": 85,
+      "readability": 88
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "B+",
+        "priority": "High",
+        "working": "Patient volumes, program completions and function scores make the clinical work concrete.",
+        "missing": "The program design, score measure and mentoring topics aren't described.",
+        "fix": "Add those details to the relevant current-role bullets where you can verify them."
+      },
+      "Skills": {
+        "grade": "A-",
+        "priority": "Low",
+        "working": "Clinical methods and the Epic and WebPT systems are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Both degrees, institutions and completion years are listed.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Outpatient orthopedic rehabilitation",
+        "Sports and post-surgical rehabilitation",
+        "Return-to-run program development",
+        "Patient-reported function improvement"
+      ],
+      "underplayed": [
+        "Mentoring newer therapists",
+        "Fall-prevention group instruction",
+        "Design of the return-to-run program"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Senior Physical Therapist",
+          "Physical Therapist"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current Senior Physical Therapist title is consistent with the mentoring and scheduling responsibilities listed.",
+        "industry_signals": [],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with your outpatient orthopedic focus and current senior title. Keep the program completion count and function-score result distinct, since the resume doesn't link the two."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What progression criteria or exercises did you include when you built the return-to-run program?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The answer could make the program-building work more concrete."
+        },
+        {
+          "question": "What topics do you cover when mentoring the two newer therapists?",
+          "archetype": "SCALING",
+          "why": "A specific example would show how you support their development."
+        },
+        {
+          "question": "Which patient-reported measure was used for the 2025 function-score result, and how was the percentage calculated?",
+          "archetype": "IMPROVEMENT",
+          "why": "The measure and calculation would help readers interpret the reported improvement."
+        },
+        {
+          "question": "How did you adapt the fall-prevention class for participants with different needs?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "An example could show how you approached group instruction for older adults."
+        },
+        {
+          "question": "How do you coordinate the PT aide schedule with treatment needs?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The answer could explain the practical decisions behind the scheduling duty."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 85
+  },
+  "severity": {
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "promoted": [],
+    "replaced": [],
+    "skipped": [],
+    "critical_count": 1,
+    "more_critical": false,
+    "validation_attempts": 0,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "latency_ms": 1041,
+    "call_latency_ms": 1040,
+    "cost_usd": 0.00135325,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 85,
+    "score_label": "Clear and specific",
+    "score_comment_short": "Your recent work pairs patient volume and program completion with a functional outcome.",
+    "score_comment_long": "The current role gives a clear picture of your patient load, mentoring and program work. The return-to-run program and function scores would be easier to interpret with a little more detail. Explain what the program involved and how the scores were reported.",
+    "score_plain": "Your resume gives a reviewer concrete reasons to consider your outpatient orthopedic work. A few targeted edits could make your clinical approach easier to understand.",
+    "first_impression": "Your current role combines sports rehabilitation with mentoring and scheduling. The return-to-run program stands out, though its contents aren't yet described.",
+    "biggest_gap_example": "\"Mentor 2 newer therapists and set the PT aide schedule\" doesn't explain what your mentoring covers, making that part of the senior role difficult to assess.",
+    "first_impression_takeaway": "Describe the mentoring work",
+    "summary": "The return-to-run program had 85 completions in 2025, a useful detail that shows patients participated in something you built. Your work centers on outpatient orthopedic and post-surgical rehabilitation, with a prior mix of orthopedic and neurological cases. The current title and mentoring responsibilities place you at a senior therapist level. A reviewer may still want to know how you structured the program before understanding what you contributed to its design.",
+    "strengths": [
+      "The 2025 patient-reported function result gives a concrete view of improvement among discharged patients.",
+      "Daily patient ranges in both roles show the pace of your outpatient work without relying on a generic caseload claim.",
+      "Leading a fall-prevention class for older adults adds group instruction to your individual treatment background."
+    ],
+    "gaps": [
+      "The resume doesn't identify the function-score measure or how the reported percentage was calculated, which makes the result harder to interpret.",
+      "The fall-prevention bullet doesn't say what the class covered or how you adapted it for participants.",
+      "The skills list names dry needling and two record systems, but doesn't show how you used them in your clinical work."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the return-to-run program bullet, add the main components you designed, such as how patients progressed through the program.",
+        "why": "The completion count shows participation, but the design details would show what you built.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Built a return-to-run program that 85 patients completed in 2025",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": true
+      },
+      {
+        "fix": "In the patient-reported function bullet, name the measure used and explain which discharged patients were included in the percentage, if known.",
+        "why": "That context would help a reviewer understand what the improvement figure represents.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- In 2025, 92% of discharged patients improved their patient-reported function scores",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      },
+      {
+        "fix": "In the mentoring bullet, add an example of the clinical or professional guidance you provide to newer therapists.",
+        "why": "An example would distinguish your mentoring from the separate aide-scheduling responsibility.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Mentor 2 newer therapists and set the PT aide schedule",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      }
+    ],
+    "next_steps": [
+      "Expand the return-to-run bullet with the program features you can verify.",
+      "Check the source of the 2025 function-score figure and add the measure and patient group if available.",
+      "Revise the mentoring and fall-prevention bullets with one concrete example of what you taught or guided."
+    ],
+    "subscores": {
+      "impact": 86,
+      "clarity": 84,
+      "story": 85,
+      "readability": 88
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "B+",
+        "priority": "High",
+        "working": "Patient volumes, program completions and function scores make the clinical work concrete.",
+        "missing": "The program design, score measure and mentoring topics aren't described.",
+        "fix": "Add those details to the relevant current-role bullets where you can verify them."
+      },
+      "Skills": {
+        "grade": "A-",
+        "priority": "Low",
+        "working": "Clinical methods and the Epic and WebPT systems are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Both degrees, institutions and completion years are listed.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Outpatient orthopedic rehabilitation",
+        "Sports and post-surgical rehabilitation",
+        "Return-to-run program development",
+        "Patient-reported function improvement"
+      ],
+      "underplayed": [
+        "Mentoring newer therapists",
+        "Fall-prevention group instruction",
+        "Design of the return-to-run program"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Senior Physical Therapist",
+          "Physical Therapist"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current Senior Physical Therapist title is consistent with the mentoring and scheduling responsibilities listed.",
+        "industry_signals": [],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with your outpatient orthopedic focus and current senior title. Keep the program completion count and function-score result distinct, since the resume doesn't link the two."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What progression criteria or exercises did you include when you built the return-to-run program?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The answer could make the program-building work more concrete."
+        },
+        {
+          "question": "What topics do you cover when mentoring the two newer therapists?",
+          "archetype": "SCALING",
+          "why": "A specific example would show how you support their development."
+        },
+        {
+          "question": "Which patient-reported measure was used for the 2025 function-score result, and how was the percentage calculated?",
+          "archetype": "IMPROVEMENT",
+          "why": "The measure and calculation would help readers interpret the reported improvement."
+        },
+        {
+          "question": "How did you adapt the fall-prevention class for participants with different needs?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "An example could show how you approached group instruction for older adults."
+        },
+        {
+          "question": "How do you coordinate the PT aide schedule with treatment needs?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The answer could explain the practical decisions behind the scheduling duty."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 85,
+    "more_critical": false
+  },
+  "presentation": {
+    "score": 85,
+    "band": "Clear and specific",
+    "score_label_from_model": "Strong",
+    "model_score_before_calibration": 85,
+    "verdict": "Your current role combines sports rehabilitation with mentoring and scheduling. The return-to-run program stands out, though its contents aren't yet described.",
+    "one_line_read": "Your recent work pairs patient volume and program completion with a functional outcome.",
+    "takeaway": "Describe the mentoring work",
+    "biggest_gap_example": "\"Mentor 2 newer therapists and set the PT aide schedule\" doesn't explain what your mentoring covers, making that part of the senior role difficult to assess.",
+    "critical_count": {
+      "count": 1,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "One Critical Miss. Fix it first.",
+      "lead": "It's the one most likely to cost you the interview."
+    },
+    "fixes": [
+      {
+        "fix": "In the return-to-run program bullet, add the main components you designed, such as how patients progressed through the program.",
+        "why": "The completion count shows participation, but the design details would show what you built.",
+        "excerpt": "- Built a return-to-run program that 85 patients completed in 2025",
+        "section": "EXPERIENCE",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the patient-reported function bullet, name the measure used and explain which discharged patients were included in the percentage, if known.",
+        "why": "That context would help a reviewer understand what the improvement figure represents.",
+        "excerpt": "- In 2025, 92% of discharged patients improved their patient-reported function scores",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the mentoring bullet, add an example of the clinical or professional guidance you provide to newer therapists.",
+        "why": "An example would distinguish your mentoring from the separate aide-scheduling responsibility.",
+        "excerpt": "- Mentor 2 newer therapists and set the PT aide schedule",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "The 2025 patient-reported function result gives a concrete view of improvement among discharged patients.",
+    "strengths": [
+      "The 2025 patient-reported function result gives a concrete view of improvement among discharged patients.",
+      "Daily patient ranges in both roles show the pace of your outpatient work without relying on a generic caseload claim.",
+      "Leading a fall-prevention class for older adults adds group instruction to your individual treatment background."
+    ],
+    "gaps": [
+      "The resume doesn't identify the function-score measure or how the reported percentage was calculated, which makes the result harder to interpret.",
+      "The fall-prevention bullet doesn't say what the class covered or how you adapted it for participants.",
+      "The skills list names dry needling and two record systems, but doesn't show how you used them in your clinical work."
+    ],
+    "next_steps": [
+      "Expand the return-to-run bullet with the program features you can verify.",
+      "Check the source of the 2025 function-score figure and add the measure and patient group if available.",
+      "Revise the mentoring and fall-prevention bullets with one concrete example of what you taught or guided."
+    ],
+    "seniority_read": "Your current Senior Physical Therapist title is consistent with the mentoring and scheduling responsibilities listed.",
+    "best_fit_roles": [
+      "Senior Physical Therapist",
+      "Physical Therapist"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "Lead with your outpatient orthopedic focus and current senior title. Keep the program completion count and function-score result distinct, since the resume doesn't link the two.",
+    "severity_added": [],
+    "severity_promoted": [],
+    "severity_outcome": "none (none)",
+    "severity_answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "keep_dropped",
+          "path": "strengths[0]",
+          "line": "fix-1",
+          "criticalMiss": false
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[0]",
+          "fix": 0
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[1]",
+          "fix": 2
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[2]",
+          "fix": 1
+        },
+        {
+          "kind": "question_dropped",
+          "path": "ideas.questions[3]",
+          "reason": "duplicates_keep"
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[4]",
+          "fix": 2
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "biggest_gap_example",
+          "of": "top_fixes[2]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[0]",
+          "of": "top_fixes[1]"
+        }
+      ],
+      "fix_questions": [
+        [
+          "What progression criteria or exercises did you include when you built the return-to-run program?"
+        ],
+        [
+          "Which patient-reported measure was used for the 2025 function-score result, and how was the percentage calculated?"
+        ],
+        [
+          "What topics do you cover when mentoring the two newer therapists?",
+          "How do you coordinate the PT aide schedule with treatment needs?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01304055,
+  "latency_ms": 25557
+}

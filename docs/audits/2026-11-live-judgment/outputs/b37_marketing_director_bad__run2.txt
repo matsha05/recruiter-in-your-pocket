@@ -1,0 +1,49 @@
+# b37_marketing_director_bad, run 2
+Resume: ../../../tests/resumes/countcheck/synth_cc_marketing_director_bad_1.txt (167 words, sha256 f0624d59dcec)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0175; 39.7s
+Case note: Title above the work; key says no_recent_work, no_target_role, title_level_mismatch.
+
+## Band: Mostly clear (score 80; model wrote 80, label "Strong")
+## Verdict
+Your recent marketing role combines Instagram, website copy, order packing, and customer emails. The director title stands out, but the bullets don't yet explain whether the role included broader marketing decisions.
+One-line read: Several recent bullets quantify workloads, though results and marketing authority remain unclear.
+Takeaway: Explain your marketing decisions
+Biggest gap example: "Flagged missing documents for the closing team" doesn't say what you did after flagging them, so your part in the closing process is difficult to judge.
+
+## Fixes (Two Critical Misses. Start with this one.; lead: "Either one could cost you the interview on its own."); severity added (added); added ["no_recent_work"]; promoted []
+1. [Critical Miss] In the Instagram bullet, explain who chose the content and what part you played in planning it, if you can verify those details.
+   why: That would help a reviewer distinguish publishing posts from setting the account's direction.
+   excerpt (EXPERIENCE): "- Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers"
+2. [Critical Miss] Add one dated line covering January 2025 to today.
+   why: A marketing hiring manager may look for recent activity, but the resume shows nothing after Lumen Candle Co. Name the period truthfully with a dated line such as "Career break" or "Job search and coursework". If true, list marketing coursework or a personal social media project to show current skills.
+   excerpt (Experience): "March 2024 - January 2025"
+3. [fix] In the product-description bullet, describe how you developed the copy and add a verified response to it, if one is available.
+   why: The number of scents is useful; the approach and any documented response would show more about the writing work.
+   excerpt (EXPERIENCE): "- Wrote product descriptions for 40 candle scents on the website"
+Severity check answer: {"critical_misses":[{"source":"new","kind":"no_recent_work","fix":"Add one dated line covering January 2025 to today.","why":"A marketing hiring manager may look for recent activity, but the resume shows nothing after Lumen Candle Co. Name the period truthfully with a dated line such as \"Career break\" or \"Job search and coursework\". If true, list marketing coursework or a personal social media project to show current skills.","excerpt":"March 2024 - January 2025","section":"Experience","effort":"quick"}],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The Instagram bullet gives both a posting range and follower count, helping a reader understand the account you worked on.
+Other strengths: ["Entering 150 property records a day makes the volume of your data entry work tangible.","Training 4 new baristas shows you had a role in teaching others, even though the resume doesn't describe formal supervision."]
+
+## Gaps
+- The candle company's marketing bullets don't describe how content was planned or selected, leaving your decision-making role unclear.
+- No result is stated for the website copy or Instagram work, so a reader cannot tell what changed after publication.
+- The skills list doesn't connect Canva, Shopify, or Excel to particular tasks, making it difficult to assess how you used them.
+
+## Next steps
+- Revise the Instagram and product-copy bullets using details you can verify about your work.
+- Add the document-checking and follow-up details to the title-company role.
+- Review the skills list and connect tools to relevant experience bullets only where you actually used them.
+
+## Role fit
+Level: The most recent title is Director of Marketing, although the listed work is primarily hands-on and does not describe team or budget responsibility.
+Best fit: ["Data Entry Clerk","Director of Marketing"]
+Positioning: For marketing applications, bring your content work forward and explain your actual role in choosing what was published. For data entry applications, lead with the property-record volume and explain your document checks.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[0]","line":"fix-0","criticalMiss":true},{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":2},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"ideas.questions[2]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"first_impression"},{"kind":"repeat_dropped","path":"section_review.Work Experience.missing","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"section_review.Work Experience.fix","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"section_review.Skills.missing","of":"gaps[2]"}]

@@ -1,0 +1,8 @@
+# h2_thin_resume, run 3
+Resume: resumes/h2_thin_resume.txt (126 words, sha256 0ae65e2abcb5)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: repair_failed; cost $0.0299; 
+Case note: Student: one internship, coursework, a club.
+
+Validator refused the first draft: OPENAI_RESPONSE_SHAPE_INVALID The model response failed the evidence grounding contract at section_review.Summary: the source contains this section; review its existing content; do not report it absent.
+Repair failed: OPENAI_RESPONSE_SHAPE_INVALID The model response failed the evidence grounding contract at section_review.Summary: the source contains this section; review its existing content; do not report it absent.

@@ -1,0 +1,49 @@
+# b37_marketing_director_bad, run 1
+Resume: ../../../tests/resumes/countcheck/synth_cc_marketing_director_bad_1.txt (167 words, sha256 f0624d59dcec)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0167; 33.7s
+Case note: Title above the work; key says no_recent_work, no_target_role, title_level_mismatch.
+
+## Band: Mostly clear (score 80; model wrote 80, label "Strong")
+## Verdict
+Your most recent title is Director of Marketing, but the bullets emphasize content production and order support. The 40 candle scent descriptions are worth keeping because they show the size of the writing assignment.
+One-line read: Recent bullets give useful work volumes, though results and marketing authority remain unclear.
+Takeaway: Explain your marketing decisions
+Biggest gap example: "- Answered customer emails about shipping" doesn't say which issues you resolved or what you could decide, making your customer-service responsibility difficult to assess.
+
+## Fixes (Three Critical Misses. Start with this one.; lead: "Any one of them could cost you the interview on its own."); severity added (added); added ["no_recent_work","title_level_mismatch"]; promoted []
+1. [Critical Miss] In the Instagram bullet, add which content or publishing decisions you made and any account result you can verify.
+   why: That would show how much of the account's direction belonged to you rather than only how often you posted.
+   excerpt (EXPERIENCE): "- Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers"
+2. [Critical Miss] Add one dated line covering January 2025 to today.
+   why: A marketing hiring manager may look for current skills, but the resume shows no activity after the Lumen role. Use a dated line such as "Career break" or "Job search and coursework" to name the period truthfully, and list freelance content work or marketing coursework only if true.
+   excerpt (Experience): "March 2024 - January 2025"
+3. [Critical Miss] In the Lumen Candle Co. Director of Marketing role, add any marketing strategy or leadership responsibilities you held, if true, alongside the content production and order support work.
+   why: A hiring manager may look for leadership and strategy behind a director title. The bullets show content production and customer support, but don't describe director-level responsibilities.
+   excerpt (Experience): "Director of Marketing"
+Severity check answer: {"critical_misses":[{"source":"new","kind":"no_recent_work","fix":"Add one dated line covering January 2025 to today.","why":"A marketing hiring manager may look for current skills, but the resume shows no activity after the Lumen role. Use a dated line such as \"Career break\" or \"Job search and coursework\" to name the period truthfully, and list freelance content work or marketing coursework only if true.","excerpt":"March 2024 - January 2025","section":"Experience","effort":"quick"},{"source":"new","kind":"title_level_mismatch","fix":"In the Lumen Candle Co. Director of Marketing role, add any marketing strategy or leadership responsibilities you held, if true, alongside the content production and order support work.","why":"A hiring manager may look for leadership and strategy behind a director title. The bullets show content production and customer support, but don't describe director-level responsibilities.","excerpt":"Director of Marketing","section":"Experience","effort":"moderate"}],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The Instagram bullet names both the posting cadence and the account's 2,100 followers, giving the work useful context.
+Other strengths: ["Entering 150 property records a day gives a concrete picture of the data-entry workload.","Training 4 new baristas adds a specific example of teaching others alongside your individual work."]
+
+## Gaps
+- The resume doesn't explain what marketing decisions came with the director title, leaving its level of authority unclear.
+- The candle product descriptions have no stated purpose beyond their placement on the website, so their role in the marketing work is unclear.
+- The skills list combines marketing, laboratory, and administrative tools without a stated target, making the intended next role less obvious.
+
+## Next steps
+- Revise the Lumen bullets with the marketing decisions and writing details you can verify.
+- Expand the closing-team bullet with a representative document issue and your handoff.
+- Choose a target role, then reorder the existing skills and experience details to put the most relevant work first.
+
+## Role fit
+Level: Your most recent title is director, while the described marketing work is primarily hands-on; management authority is not specified.
+Best fit: ["Director of Marketing","Data Entry Clerk"]
+Positioning: Choose whether to foreground marketing content or property-record work based on the role you want. For marketing applications, explain the authority behind your director title without claiming responsibilities the resume doesn't establish.
+
+## Integrity pass
+Structural gaps surfaced: [{"text":"The skills list combines marketing, laboratory, and administrative tools without a stated target, making the intended next role less obvious.","kind":"target_role"}]
+Decisions: [{"kind":"keep_dropped","path":"strengths[0]","line":"fix-0","criticalMiss":true},{"kind":"structural_gap_surfaced","path":"gaps[2]","structural":"target_role"},{"kind":"question_moved","path":"ideas.questions[0]","fix":2},{"kind":"question_dropped","path":"ideas.questions[4]","reason":"duplicates_keep"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"section_review.Work Experience.fix","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"section_review.Skills.missing","of":"gaps[2]"}]

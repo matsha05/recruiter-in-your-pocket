@@ -1,0 +1,49 @@
+# h1_bad_resume, run 1
+Resume: resumes/h1_bad_resume.txt (217 words, sha256 1eaa5e429b79)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0181; 43.2s
+Case note: Ten things wrong: filler objective, wrong target role, duty bullets, no results, five jobs in four years, two undated roles, typos, gap since June 2023, soft-skill skills list, references line.
+
+## Band: Needs more context (score 58; model wrote 58, label "Needs Clarity")
+## Verdict
+Your recent dated role is Shift Lead at a fuel and food store, with responsibility for opening and closing. The Marketing Manager objective points in a different direction from the experience that follows.
+One-line read: The work history is readable, but most bullets list duties without detail.
+Takeaway: Connect your work to marketing
+Biggest gap example: "Sold phones and accessories to customers" does not explain how you helped customers choose, leaving the sales work difficult to distinguish from a basic duty.
+
+## Fixes (Three Critical Misses. Start with this one.; lead: "Any one of them could cost you the interview on its own."); severity added (added); added ["no_recent_work"]; promoted [1]
+1. [Critical Miss] In the wireless sales bullet, explain how you helped customers choose phones or accessories, using a specific example you can verify.
+   why: That detail would show what your sales conversations involved rather than leaving the work at the transaction level.
+   excerpt (EXPERIENCE): "- Sold phones and accessories to customers"
+2. [Critical Miss] Add one dated line covering November 2021 to today, and include recent marketing work or study if true.
+   why: A marketing hiring manager may look for recent activity using marketing skills. Your wireless sales role ends in November 2021, and no later marketing activity is dated. Name the period truthfully with a dated line such as "Career break" or "Job search and coursework", and list marketing coursework or a freelance campaign only if true.
+   excerpt (Experience): "March 2021 - November 2021"
+3. [Critical Miss] Add your employment dates to the Warehouse Associate entry if you can verify them.
+   why: Dates would help a reviewer place the warehouse job alongside the other roles.
+   excerpt (EXPERIENCE): "Warehouse Associate"
+Severity check answer: {"critical_misses":[{"source":"new","kind":"no_recent_work","fix":"Add one dated line covering November 2021 to today, and include recent marketing work or study if true.","why":"A marketing hiring manager may look for recent activity using marketing skills. Your wireless sales role ends in November 2021, and no later marketing activity is dated. Name the period truthfully with a dated line such as \"Career break\" or \"Job search and coursework\", and list marketing coursework or a freelance campaign only if true.","excerpt":"March 2021 - November 2021","section":"Experience","effort":"moderate"},{"source":"fix_2","kind":"missing_dates","fix":"","why":"","excerpt":"","section":"","effort":"quick"}],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+Training new employees shows that your Shift Lead work included helping others learn the job.
+Other strengths: ["Selling phones and answering plan questions gives the resume a customer-facing sales thread.","Naming forklift use distinguishes the warehouse role from a general packing description."]
+
+## Gaps
+- The warehouse and delivery roles have no dates, so their place in your work history is unclear.
+- At least one experience bullet names activity without a result a recruiter can compare.
+- The skills list names Microsoft Office without saying how you used it, while several other entries are general traits.
+
+## Next steps
+- Revise the wireless sales and Shift Lead training bullets with examples you can verify.
+- Add verified dates for the warehouse and delivery jobs, and include any relevant activity after the last dated role if applicable.
+- Compare the extracted phrases "employes", "saftey procedures" and "timely manor" with your original file, then correct the resume if needed.
+
+## Role fit
+Level: The most recent dated title is Shift Lead; the described work is primarily front-line, with new employee training.
+Best fit: ["Shift Lead","Sales Associate"]
+Positioning: For a marketing-focused application, connect the objective to any relevant work, project or business coursework you can describe accurately. Otherwise, lead with your customer-facing sales and store responsibilities rather than implying marketing management experience.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_dropped","path":"ideas.questions[1]","reason":"duplicates_keep"},{"kind":"question_moved","path":"ideas.questions[2]","fix":0},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"section_review.Skills.missing","of":"gaps[2]"}]

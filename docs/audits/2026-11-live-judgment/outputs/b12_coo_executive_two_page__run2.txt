@@ -1,0 +1,51 @@
+# b12_coo_executive_two_page, run 2
+Resume: resumes/b_coo_executive.txt (463 words, sha256 213474e9b273)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0361; repair ran; 65.1s
+Case note: Executive, two pages.
+
+Validator refused the first draft: OPENAI_RESPONSE_SHAPE_INVALID The model response failed the evidence grounding contract: contradicted positive source evidence at section_review.Summary.missing.
+
+## Band: Clear and specific (score 89; model wrote 94, label "Top Tier")
+## Verdict
+Your current COO role covers 140 practices across 9 states, with a direct reporting line to the CEO. The results are prominent, though a few responsibilities leave your day-to-day decisions less visible.
+One-line read: Recent roles pair substantial operating responsibility with specific results and methods.
+Takeaway: Explain your rollout decisions
+Biggest gap example: "Led the Epic go-live across the clinics in 2013" does not describe the rollout decisions you handled, leaving your contribution to the implementation less distinct.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the COO board-reporting bullet, name the operating or financial topics you presented, if you can verify them.
+   why: The reporting relationship is clear, but the subjects would show what you brought to board discussions.
+   excerpt (EXECUTIVE EXPERIENCE): "report to the CEO and present to the board quarterly"
+2. [fix] In the EHR consolidation bullet, describe a decision you made as sponsor during the transition, if applicable.
+   why: The on-budget completion and duration are already stated; an example would make your sponsorship more concrete.
+   excerpt (EXECUTIVE EXPERIENCE): "Sponsored the EHR consolidation from 6 systems to 1 across all practices, finished on budget in 20 months"
+3. [fix] In the Epic go-live bullet, add an example of a rollout decision or issue you handled.
+   why: That detail would distinguish your leadership work from the fact that the implementation took place.
+   excerpt (EXECUTIVE EXPERIENCE): "Led the Epic go-live across the clinics in 2013"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+Reducing integration time from 7 months to 10 weeks through a standardized playbook shows how you changed the process.
+Other strengths: ["The compensation plan and clinical career ladder are linked to a drop in hygienist turnover from 34% to 19% over two years.","The surgery center turnaround names payer contract renegotiation and block scheduling, making the financial change easier to understand."]
+
+## Gaps
+- The quarterly board presentations have no stated topics, so a reviewer cannot tell which operating questions you bring to directors.
+- Your EHR consolidation bullet describes sponsorship and completion, but not the decisions you made during the transition.
+- The Epic go-live entry does not explain which rollout matters you handled, making that earlier leadership work less concrete.
+
+## Next steps
+- Review your COO board and EHR bullets and add the topics or decisions you can substantiate.
+- Revisit the Epic entry and choose one rollout detail you can accurately describe.
+- Consider moving the existing EBITDA margin figures into the opening summary for roles where financial performance is central.
+
+## Role fit
+Level: Your current title and responsibility for operations and the P&L place you at the COO level.
+Best fit: ["Chief Operating Officer","Senior Vice President, Operations"]
+Positioning: For COO roles in multi-site healthcare, keep practice growth and same-store margin together near the top. Use the integration and retention examples to show how you changed operations, then add a board topic or sponsorship decision where verified.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_dropped","path":"ideas.questions[0]","reason":"duplicates_keep"},{"kind":"question_moved","path":"ideas.questions[4]","fix":2},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"gaps[2]","of":"top_fixes[2]"}]

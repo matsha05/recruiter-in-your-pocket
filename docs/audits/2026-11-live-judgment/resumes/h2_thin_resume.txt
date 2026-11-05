@@ -1,0 +1,28 @@
+Priya Raman
+Ann Arbor, MI | priya.raman@example.com | 555-0163
+
+EDUCATION
+University of Michigan, Ann Arbor, MI
+B.S. in Information, expected May 2027
+GPA 3.6
+Relevant coursework: Introduction to Data Analysis, Database Systems, User Experience Research, Programming for Information Science, Statistics
+
+EXPERIENCE
+
+Data Analytics Intern
+Great Lakes Credit Union, Ann Arbor, MI
+June 2026 - August 2026
+- Assisted the analytics team with weekly reporting
+- Cleaned member survey data in Excel and SQL
+- Built a dashboard in Tableau for the marketing team
+- Presented findings to the team at the end of the internship
+
+ACTIVITIES
+
+Treasurer, Michigan Data Science Club
+September 2025 - Present
+- Manage the club budget and reimbursements
+- Help organize monthly speaker events
+
+SKILLS
+Excel, SQL, Tableau, Python (beginner), Google Sheets

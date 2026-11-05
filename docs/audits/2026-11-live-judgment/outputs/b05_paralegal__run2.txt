@@ -1,0 +1,48 @@
+# b05_paralegal, run 2
+Resume: ../../../tests/resumes/blindpick/synth_bp_paralegal_1.txt (144 words, sha256 1860914f19aa)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0127; 26.8s
+
+## Band: Mostly clear (score 80; model wrote 80, label "Strong")
+## Verdict
+Commercial and employment litigation are easy to spot, as are Relativity and trial preparation. The production size is worth keeping because it shows the scale of work you manage.
+One-line read: Recent bullets show substantial case support, though several leave the work unexplained.
+Takeaway: Explain your docketing process
+Biggest gap example: "Track court deadlines in the firm's docketing system" doesn't explain how you handle competing deadlines, leaving the responsibility difficult to assess.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the Relativity production bullet, add the specific production steps you manage, such as preparation or quality checks, if applicable.
+   why: The page count shows scale, while the steps would explain what managing a production involves for you.
+   excerpt (EXPERIENCE): "- Manage document productions of up to 250,000 pages in Relativity"
+2. [fix] In the jury-trial bullet, specify an example of the exhibits you prepared or the support you provided during trial.
+   why: A concrete example would help a reviewer understand your contribution to those trials.
+   excerpt (EXPERIENCE): "- Prepare trial binders and exhibits; supported two jury trials in 2025"
+3. [fix] In the court-deadline bullet, describe how you coordinate or escalate competing deadlines, if that is part of your work.
+   why: The current wording names the system but leaves the judgment involved in tracking deadlines unclear.
+   excerpt (EXPERIENCE): "- Track court deadlines in the firm's docketing system"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+Productions of up to 250,000 pages in Relativity show the scale of a responsibility you manage.
+Other strengths: ["Supporting two jury trials in 2025 gives the trial-preparation work a recent, concrete setting.","State and federal e-filing experience adds useful context to your earlier personal injury work."]
+
+## Gaps
+- The discovery bullet names the documents you draft but not an example of the issues or materials you use to prepare them.
+- The trial bullet doesn't distinguish what you prepared before trial from any support you provided during proceedings.
+- CaseMap and Westlaw appear in Skills without examples of how you used them, so their place in your case work is unclear.
+
+## Next steps
+- Expand the production and trial bullets with the specific work you can verify.
+- Revisit the discovery and docketing bullets for examples that show how you handle those assignments.
+- Review the summary and skills list against your revised experience, keeping the litigation work most relevant to your target role easy to find.
+
+## Role fit
+Level: Your current title is Senior Litigation Paralegal, with responsibility for document productions and support for four partners.
+Best fit: ["Senior Litigation Paralegal","Paralegal"]
+Positioning: Lead with your commercial and employment litigation work for roles in those areas. Keep the production size and recent jury-trial support visible, then add examples of the work behind each.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[0]","line":"fix-0","criticalMiss":true},{"kind":"keep_dropped","path":"strengths[1]","line":"fix-1","criticalMiss":false},{"kind":"question_moved","path":"ideas.questions[1]","fix":0},{"kind":"question_moved","path":"ideas.questions[2]","fix":2},{"kind":"question_moved","path":"ideas.questions[3]","fix":1},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"ideas.questions[4]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"section_review.Work Experience.fix","of":"first_impression"}]

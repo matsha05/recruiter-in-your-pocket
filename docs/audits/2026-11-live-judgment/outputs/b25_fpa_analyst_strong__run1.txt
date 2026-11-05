@@ -1,0 +1,48 @@
+# b25_fpa_analyst_strong, run 1
+Resume: ../../../tests/resumes/countcheck/synth_cc_fpa_analyst_strong_1.txt (138 words, sha256 e8604c5c0393)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0134; 26.6s
+
+## Band: Clear and specific (score 87; model wrote 87, label "Strong")
+## Verdict
+Your current role centers on division budgeting, forecasting, and pricing for a food business. The numbers are easy to find, though some of the work behind them remains compressed.
+One-line read: Recent finance work combines named responsibilities with specific scale and reported results.
+Takeaway: Explain your budget responsibilities
+Biggest gap example: "Own the $240M annual operating budget for the snacks division" names the budget but not which parts of the planning process you handle, leaving the extent of that ownership unclear.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the snacks division budget bullet, specify which planning and budget-management activities you personally handle.
+   why: The dollar amount is clear, but a reviewer cannot tell what owning the budget involves in practice.
+   excerpt (EXPERIENCE): "- Own the $240M annual operating budget for the snacks division"
+2. [fix] In the pricing bullet, explain your part in the 2025 review and how the price modeling was used, if you can verify those details.
+   why: That would connect your work to the reported gross margin gain without overstating your contribution.
+   excerpt (EXPERIENCE): "- Model price changes for 60 products; a 2025 pricing review added $3.1M in gross margin"
+3. [fix] In the monthly variance presentation bullet, identify a representative variance you discussed and what you recommended, if applicable.
+   why: The audience is named, but an example would show what you brought to those discussions.
+   excerpt (EXPERIENCE): "- Present monthly variance results to the division CFO and 4 brand leaders"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The $240M snacks division budget gives a clear picture of the financial responsibility in your current role.
+Other strengths: ["Monthly presentations to the division CFO and 4 brand leaders identify the audience for your variance reporting.","Automating the weekly sales flash in Power BI saved 6 hours a week, making the value of that work easy to understand."]
+
+## Gaps
+- The budget bullet doesn't distinguish activities such as building the plan, coordinating inputs, or monitoring changes, so the day-to-day responsibility is hard to assess.
+- The pricing review names a margin gain but doesn't explain your particular contribution to the review.
+- SQL, Anaplan, and NetSuite appear in Skills without examples of their use, leaving their connection to your finance work unclear.
+
+## Next steps
+- Expand the budget and pricing bullets with the specific work you can verify.
+- Add an example to the variance presentation bullet, then check that it fits alongside the existing monthly reporting detail.
+- Revise the opening sentence to reflect your division budget ownership and forecasting work.
+
+## Role fit
+Level: Senior analyst, based on your current title and division-level finance responsibilities.
+Best fit: ["Senior Financial Analyst, FP&A","Financial Analyst"]
+Positioning: Lead with the senior FP&A role and its division budget, forecast, and pricing work. Keep the Power BI automation result visible as a separate example of improving a recurring report.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[0]","line":"fix-0","criticalMiss":true},{"kind":"keep_dropped","path":"strengths[1]","line":"fix-2","criticalMiss":false},{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[2]","fix":1},{"kind":"question_moved","path":"ideas.questions[3]","fix":2},{"kind":"question_dropped","path":"ideas.questions[4]","reason":"duplicates_keep"},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"section_review.Skills.missing","of":"gaps[2]"}]

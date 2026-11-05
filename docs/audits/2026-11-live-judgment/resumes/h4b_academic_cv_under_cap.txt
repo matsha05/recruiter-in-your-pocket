@@ -1,0 +1,197 @@
+Dr. Amara Okonkwo-Fitzgerald
+Department of Molecular Biology, Riverbend State University
+Riverbend, OR | a.okonkwo@example.edu | 555-0160
+
+EDUCATION
+Ph.D., Molecular Biology, University of Cascadia, 2011. Dissertation: Regulation of mitochondrial fission during cellular stress. Advisor: Prof. H. Lindqvist.
+B.S., Biochemistry, summa cum laude, Pacific Crest College, 2005
+
+ACADEMIC APPOINTMENTS
+Associate Professor (with tenure), Department of Molecular Biology, Riverbend State University, 2019 - Present
+Assistant Professor, Department of Molecular Biology, Riverbend State University, 2013 - 2019
+Postdoctoral Fellow, Institute for Cell Dynamics, Northern Lakes University, 2011 - 2013
+
+RESEARCH INTERESTS
+Mitochondrial dynamics; organelle quality control; stress signaling in aging; live-cell imaging methods.
+
+GRANTS AND FELLOWSHIPS
+R01, National Institutes of Health, "Mitochondrial fission checkpoints in aging tissue," PI, 2021 - 2026, $1,875,000
+R21, National Institutes of Health, "Imaging organelle contact sites," PI, 2018 - 2020, $412,000
+CAREER Award, National Science Foundation, 2016 - 2021, $720,000
+Research Scholar Grant, American Cancer Society, co-PI, 2015 - 2019, $792,000
+Postdoctoral Fellowship, Life Sciences Research Foundation, 2011 - 2013
+
+HONORS AND AWARDS
+Riverbend State University Distinguished Research Award, 2023
+Society for Cell Biology Early Career Investigator Award, 2017
+Riverbend State Excellence in Graduate Mentoring Award, 2020
+
+PUBLICATIONS (peer reviewed; * denotes corresponding author; students and postdocs underlined in the original)
+
+1. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2026). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 107(2), 1037-1052.
+2. Hayashi T, Ruiz-Soto C, Farouk S, Okonkwo-Fitzgerald A*. (2026). ER-mitochondria contact sites: a genetic analysis in mouse cortical neurons. Cell Reports, 114(3), 1074-1090.
+3. Kowalczyk A, Chen W, Ruiz-Soto C, Okonkwo-Fitzgerald A*. (2026). Mitophagy receptors: a structural analysis in zebrafish embryos. eLife, 121(4), 1111-1128.
+4. Osei B, Kowalczyk A, Hayashi T, Okonkwo-Fitzgerald A*. (2026). Cristae remodeling: a proteomic analysis in human iPSC-derived cardiomyocytes. Nature Cell Biology, 128(5), 1148-1166.
+5. Ruiz-Soto C, Svensson K, Tanaka M, Okonkwo-Fitzgerald A*. (2026). Organelle inheritance in dividing cells: a quantitative analysis in yeast. PLOS Biology, 135(6), 1185-1204.
+6. Umar A, Delgado M, Jorgensen P, Okonkwo-Fitzgerald A*. (2026). Stress granule assembly: a live-cell analysis in cultured fibroblasts. Developmental Cell, 142(7), 1222-1242.
+7. Baptiste R, Marchetti G, Vargas J, Okonkwo-Fitzgerald A*. (2026). Calcium flux at contact sites: a genetic analysis in mouse cortical neurons. EMBO Journal, 149(8), 1259-1280.
+8. Farouk S, Tanaka M, Marchetti G, Okonkwo-Fitzgerald A*. (2025). Mitochondrial DNA segregation: a structural analysis in zebrafish embryos. Current Biology, 156(9), 1296-1318.
+9. Imani L, Farouk S, Baptiste R, Okonkwo-Fitzgerald A*. (2025). Peroxisome biogenesis: a proteomic analysis in human iPSC-derived cardiomyocytes. Journal of Biological Chemistry, 163(10), 1333-1347.
+10. Marchetti G, Nakamura Y, Osei B, Okonkwo-Fitzgerald A*. (2025). Lipid transfer proteins: a quantitative analysis in yeast. Journal of Cell Biology, 170(11), 1370-1385.
+11. Petrov D, Umar A, Delgado M, Okonkwo-Fitzgerald A*. (2025). OPA1 processing: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 177(12), 1407-1423.
+12. Svensson K, Grigorova E, Quintero F, Okonkwo-Fitzgerald A*. (2025). Cardiolipin remodeling: a genetic analysis in mouse cortical neurons. Cell Reports, 184(1), 1444-1461.
+13. Vargas J, Osei B, Grigorova E, Okonkwo-Fitzgerald A*. (2025). Fission machinery recruitment: a structural analysis in zebrafish embryos. eLife, 191(2), 1481-1499.
+14. Chen W, Vargas J, Svensson K, Okonkwo-Fitzgerald A*. (2025). Quality control in aged neurons: a proteomic analysis in human iPSC-derived cardiomyocytes. Nature Cell Biology, 198(3), 1518-1537.
+15. Grigorova E, Hayashi T, Imani L, Okonkwo-Fitzgerald A*. (2024). Live imaging of organelle dynamics: a quantitative analysis in yeast. PLOS Biology, 205(4), 1555-1575.
+16. Jorgensen P, Petrov D, Umar A, Okonkwo-Fitzgerald A*. (2024). Mitochondrial motility in axons: a live-cell analysis in cultured fibroblasts. Developmental Cell, 212(5), 1592-1613.
+17. Nakamura Y, Lindqvist H, Kowalczyk A, Okonkwo-Fitzgerald A*. (2024). Metabolic reprogramming under stress: a genetic analysis in mouse cortical neurons. EMBO Journal, 219(6), 1629-1651.
+18. Quintero F, Imani L, Lindqvist H, Okonkwo-Fitzgerald A*. (2024). Fusion-fission balance: a structural analysis in zebrafish embryos. Current Biology, 226(7), 1666-1680.
+19. Tanaka M, Quintero F, Nakamura Y, Okonkwo-Fitzgerald A*. (2024). Hypoxia signaling to mitochondria: a proteomic analysis in human iPSC-derived cardiomyocytes. Journal of Biological Chemistry, 233(8), 1703-1718.
+20. Lindqvist H, Baptiste R, Chen W, Okonkwo-Fitzgerald A*. (2024). Mitochondrial fission: a quantitative analysis in yeast. Journal of Cell Biology, 240(9), 1740-1756.
+21. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2024). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 247(10), 1777-1794.
+22. Hayashi T, Ruiz-Soto C, Farouk S, Okonkwo-Fitzgerald A*. (2023). ER-mitochondria contact sites: a genetic analysis in mouse cortical neurons. Cell Reports, 254(11), 1814-1832.
+23. Kowalczyk A, Chen W, Ruiz-Soto C, Okonkwo-Fitzgerald A*. (2023). Mitophagy receptors: a structural analysis in zebrafish embryos. eLife, 261(12), 1851-1870.
+24. Osei B, Kowalczyk A, Hayashi T, Okonkwo-Fitzgerald A*. (2023). Cristae remodeling: a proteomic analysis in human iPSC-derived cardiomyocytes. Nature Cell Biology, 268(1), 1888-1908.
+25. Ruiz-Soto C, Svensson K, Tanaka M, Okonkwo-Fitzgerald A*. (2023). Organelle inheritance in dividing cells: a quantitative analysis in yeast. PLOS Biology, 275(2), 1925-1946.
+26. Umar A, Delgado M, Jorgensen P, Okonkwo-Fitzgerald A*. (2023). Stress granule assembly: a live-cell analysis in cultured fibroblasts. Developmental Cell, 282(3), 1962-1984.
+27. Baptiste R, Marchetti G, Vargas J, Okonkwo-Fitzgerald A*. (2023). Calcium flux at contact sites: a genetic analysis in mouse cortical neurons. EMBO Journal, 289(4), 1999-2013.
+28. Farouk S, Tanaka M, Marchetti G, Okonkwo-Fitzgerald A*. (2023). Mitochondrial DNA segregation: a structural analysis in zebrafish embryos. Current Biology, 296(5), 2036-2051.
+29. Imani L, Farouk S, Baptiste R, Okonkwo-Fitzgerald A*. (2022). Peroxisome biogenesis: a proteomic analysis in human iPSC-derived cardiomyocytes. Journal of Biological Chemistry, 303(6), 2073-2089.
+30. Marchetti G, Nakamura Y, Osei B, Okonkwo-Fitzgerald A*. (2022). Lipid transfer proteins: a quantitative analysis in yeast. Journal of Cell Biology, 310(7), 2110-2127.
+31. Petrov D, Umar A, Delgado M, Okonkwo-Fitzgerald A*. (2022). OPA1 processing: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 317(8), 2147-2165.
+32. Svensson K, Grigorova E, Quintero F, Okonkwo-Fitzgerald A*. (2022). Cardiolipin remodeling: a genetic analysis in mouse cortical neurons. Cell Reports, 324(9), 2184-2203.
+33. Vargas J, Osei B, Grigorova E, Okonkwo-Fitzgerald A*. (2022). Fission machinery recruitment: a structural analysis in zebrafish embryos. eLife, 331(10), 2221-2241.
+34. Chen W, Vargas J, Svensson K, Okonkwo-Fitzgerald A*. (2022). Quality control in aged neurons: a proteomic analysis in human iPSC-derived cardiomyocytes. Nature Cell Biology, 338(11), 2258-2279.
+35. Grigorova E, Hayashi T, Imani L, Okonkwo-Fitzgerald A*. (2022). Live imaging of organelle dynamics: a quantitative analysis in yeast. PLOS Biology, 345(12), 2295-2317.
+36. Jorgensen P, Petrov D, Umar A, Okonkwo-Fitzgerald A*. (2021). Mitochondrial motility in axons: a live-cell analysis in cultured fibroblasts. Developmental Cell, 352(1), 2332-2346.
+37. Nakamura Y, Lindqvist H, Kowalczyk A, Okonkwo-Fitzgerald A*. (2021). Metabolic reprogramming under stress: a genetic analysis in mouse cortical neurons. EMBO Journal, 359(2), 2369-2384.
+38. Quintero F, Imani L, Lindqvist H, Okonkwo-Fitzgerald A*. (2021). Fusion-fission balance: a structural analysis in zebrafish embryos. Current Biology, 366(3), 2406-2422.
+39. Tanaka M, Quintero F, Nakamura Y, Okonkwo-Fitzgerald A*. (2021). Hypoxia signaling to mitochondria: a proteomic analysis in human iPSC-derived cardiomyocytes. Journal of Biological Chemistry, 373(4), 2443-2460.
+40. Lindqvist H, Baptiste R, Chen W, Okonkwo-Fitzgerald A*. (2021). Mitochondrial fission: a quantitative analysis in yeast. Journal of Cell Biology, 380(5), 2480-2498.
+41. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2021). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 387(6), 2517-2536.
+42. Hayashi T, Ruiz-Soto C, Farouk S, Okonkwo-Fitzgerald A*. (2021). ER-mitochondria contact sites: a genetic analysis in mouse cortical neurons. Cell Reports, 394(7), 2554-2574.
+43. Kowalczyk A, Chen W, Ruiz-Soto C, Okonkwo-Fitzgerald A*. (2020). Mitophagy receptors: a structural analysis in zebrafish embryos. eLife, 101(8), 2591-2612.
+44. Osei B, Kowalczyk A, Hayashi T, Okonkwo-Fitzgerald A*. (2020). Cristae remodeling: a proteomic analysis in human iPSC-derived cardiomyocytes. Nature Cell Biology, 108(9), 2628-2650.
+45. Ruiz-Soto C, Svensson K, Tanaka M, Okonkwo-Fitzgerald A*. (2020). Organelle inheritance in dividing cells: a quantitative analysis in yeast. PLOS Biology, 115(10), 2665-2679.
+46. Umar A, Delgado M, Jorgensen P, Okonkwo-Fitzgerald A*. (2020). Stress granule assembly: a live-cell analysis in cultured fibroblasts. Developmental Cell, 122(11), 2702-2717.
+47. Baptiste R, Marchetti G, Vargas J, Okonkwo-Fitzgerald A*. (2020). Calcium flux at contact sites: a genetic analysis in mouse cortical neurons. EMBO Journal, 129(12), 2739-2755.
+48. Farouk S, Tanaka M, Marchetti G, Okonkwo-Fitzgerald A*. (2020). Mitochondrial DNA segregation: a structural analysis in zebrafish embryos. Current Biology, 136(1), 2776-2793.
+49. Imani L, Farouk S, Baptiste R, Okonkwo-Fitzgerald A*. (2020). Peroxisome biogenesis: a proteomic analysis in human iPSC-derived cardiomyocytes. Journal of Biological Chemistry, 143(2), 2813-2831.
+50. Marchetti G, Nakamura Y, Osei B, Okonkwo-Fitzgerald A*. (2019). Lipid transfer proteins: a quantitative analysis in yeast. Journal of Cell Biology, 150(3), 2850-2869.
+51. Petrov D, Umar A, Delgado M, Okonkwo-Fitzgerald A*. (2019). OPA1 processing: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 157(4), 2887-2907.
+52. Svensson K, Grigorova E, Quintero F, Okonkwo-Fitzgerald A*. (2019). Cardiolipin remodeling: a genetic analysis in mouse cortical neurons. Cell Reports, 164(5), 2924-2945.
+53. Vargas J, Osei B, Grigorova E, Okonkwo-Fitzgerald A*. (2019). Fission machinery recruitment: a structural analysis in zebrafish embryos. eLife, 171(6), 2961-2983.
+54. Chen W, Vargas J, Svensson K, Okonkwo-Fitzgerald A*. (2019). Quality control in aged neurons: a proteomic analysis in human iPSC-derived cardiomyocytes. Nature Cell Biology, 178(7), 2998-3012.
+55. Grigorova E, Hayashi T, Imani L, Okonkwo-Fitzgerald A*. (2019). Live imaging of organelle dynamics: a quantitative analysis in yeast. PLOS Biology, 185(8), 3035-3050.
+56. Jorgensen P, Petrov D, Umar A, Okonkwo-Fitzgerald A*. (2019). Mitochondrial motility in axons: a live-cell analysis in cultured fibroblasts. Developmental Cell, 192(9), 3072-3088.
+57. Nakamura Y, Lindqvist H, Kowalczyk A, Okonkwo-Fitzgerald A*. (2018). Metabolic reprogramming under stress: a genetic analysis in mouse cortical neurons. EMBO Journal, 199(10), 3109-3126.
+58. Quintero F, Imani L, Lindqvist H, Okonkwo-Fitzgerald A*. (2018). Fusion-fission balance: a structural analysis in zebrafish embryos. Current Biology, 206(11), 3146-3164.
+59. Tanaka M, Quintero F, Nakamura Y, Okonkwo-Fitzgerald A*. (2018). Hypoxia signaling to mitochondria: a proteomic analysis in human iPSC-derived cardiomyocytes. Journal of Biological Chemistry, 213(12), 3183-3202.
+60. Lindqvist H, Baptiste R, Chen W, Okonkwo-Fitzgerald A*. (2018). Mitochondrial fission: a quantitative analysis in yeast. Journal of Cell Biology, 220(1), 3220-3240.
+61. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2018). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 227(2), 3257-3278.
+62. Hayashi T, Ruiz-Soto C, Farouk S, Okonkwo-Fitzgerald A*. (2018). ER-mitochondria contact sites: a genetic analysis in mouse cortical neurons. Cell Reports, 234(3), 3294-3316.
+63. Kowalczyk A, Chen W, Ruiz-Soto C, Okonkwo-Fitzgerald A*. (2018). Mitophagy receptors: a structural analysis in zebrafish embryos. eLife, 241(4), 3331-3345.
+64. Osei B, Kowalczyk A, Hayashi T, Okonkwo-Fitzgerald A*. (2017). Cristae remodeling: a proteomic analysis in human iPSC-derived cardiomyocytes. Nature Cell Biology, 248(5), 3368-3383.
+65. Ruiz-Soto C, Svensson K, Tanaka M, Okonkwo-Fitzgerald A*. (2017). Organelle inheritance in dividing cells: a quantitative analysis in yeast. PLOS Biology, 255(6), 3405-3421.
+66. Umar A, Delgado M, Jorgensen P, Okonkwo-Fitzgerald A*. (2017). Stress granule assembly: a live-cell analysis in cultured fibroblasts. Developmental Cell, 262(7), 3442-3459.
+67. Baptiste R, Marchetti G, Vargas J, Okonkwo-Fitzgerald A*. (2017). Calcium flux at contact sites: a genetic analysis in mouse cortical neurons. EMBO Journal, 269(8), 3479-3497.
+68. Farouk S, Tanaka M, Marchetti G, Okonkwo-Fitzgerald A*. (2017). Mitochondrial DNA segregation: a structural analysis in zebrafish embryos. Current Biology, 276(9), 3516-3535.
+69. Imani L, Farouk S, Baptiste R, Okonkwo-Fitzgerald A*. (2017). Peroxisome biogenesis: a proteomic analysis in human iPSC-derived cardiomyocytes. Journal of Biological Chemistry, 283(10), 3553-3573.
+70. Marchetti G, Nakamura Y, Osei B, Okonkwo-Fitzgerald A*. (2017). Lipid transfer proteins: a quantitative analysis in yeast. Journal of Cell Biology, 290(11), 3590-3611.
+71. Petrov D, Umar A, Delgado M, Okonkwo-Fitzgerald A*. (2016). OPA1 processing: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 297(12), 3627-3649.
+72. Svensson K, Grigorova E, Quintero F, Okonkwo-Fitzgerald A*. (2016). Cardiolipin remodeling: a genetic analysis in mouse cortical neurons. Cell Reports, 304(1), 3664-3678.
+73. Vargas J, Osei B, Grigorova E, Okonkwo-Fitzgerald A*. (2016). Fission machinery recruitment: a structural analysis in zebrafish embryos. eLife, 311(2), 3701-3716.
+74. Chen W, Vargas J, Svensson K, Okonkwo-Fitzgerald A*. (2016). Quality control in aged neurons: a proteomic analysis in human iPSC-derived cardiomyocytes. Nature Cell Biology, 318(3), 3738-3754.
+75. Grigorova E, Hayashi T, Imani L, Okonkwo-Fitzgerald A*. (2016). Live imaging of organelle dynamics: a quantitative analysis in yeast. PLOS Biology, 325(4), 3775-3792.
+76. Jorgensen P, Petrov D, Umar A, Okonkwo-Fitzgerald A*. (2016). Mitochondrial motility in axons: a live-cell analysis in cultured fibroblasts. Developmental Cell, 332(5), 3812-3830.
+77. Nakamura Y, Lindqvist H, Kowalczyk A, Okonkwo-Fitzgerald A*. (2016). Metabolic reprogramming under stress: a genetic analysis in mouse cortical neurons. EMBO Journal, 339(6), 3849-3868.
+
+INVITED TALKS AND SEMINARS
+
+1. "Organelle inheritance in dividing cells and the fate of the stressed cell." American Society for Cell Biology Annual Meeting, Lucca, Italy, 2026.
+2. "Lipid transfer proteins and the fate of the stressed cell." Keystone Symposium on Organelle Biology, Snowmass, CO, 2026.
+3. "Live imaging of organelle dynamics and the fate of the stressed cell." EMBO Workshop on Membrane Dynamics, Heidelberg, Germany, 2026.
+4. "Mitochondrial fission and the fate of the stressed cell." Cold Spring Harbor Meeting on Cell Dynamics, Cold Spring Harbor, NY, 2025.
+5. "Organelle inheritance in dividing cells and the fate of the stressed cell." Department of Biology seminar, Lakeview University, Lakeview, WI, 2025.
+6. "Lipid transfer proteins and the fate of the stressed cell." Institute of Molecular Medicine seminar, Harbor City, Harbor City, CA, 2025.
+7. "Live imaging of organelle dynamics and the fate of the stressed cell." Cell Biology Colloquium, Southern Ridge University, Asheville, NC, 2025.
+8. "Mitochondrial fission and the fate of the stressed cell." Biophysical Society Annual Meeting, San Diego, CA, 2024.
+9. "Organelle inheritance in dividing cells and the fate of the stressed cell." FASEB Science Research Conference on Mitochondrial Biology, Steamboat Springs, CO, 2024.
+10. "Lipid transfer proteins and the fate of the stressed cell." Gordon Research Conference on Mitochondria, Boston, MA, 2024.
+11. "Live imaging of organelle dynamics and the fate of the stressed cell." American Society for Cell Biology Annual Meeting, Lucca, Italy, 2024.
+12. "Mitochondrial fission and the fate of the stressed cell." Keystone Symposium on Organelle Biology, Snowmass, CO, 2023.
+13. "Organelle inheritance in dividing cells and the fate of the stressed cell." EMBO Workshop on Membrane Dynamics, Heidelberg, Germany, 2023.
+14. "Lipid transfer proteins and the fate of the stressed cell." Cold Spring Harbor Meeting on Cell Dynamics, Cold Spring Harbor, NY, 2023.
+15. "Live imaging of organelle dynamics and the fate of the stressed cell." Department of Biology seminar, Lakeview University, Lakeview, WI, 2023.
+16. "Mitochondrial fission and the fate of the stressed cell." Institute of Molecular Medicine seminar, Harbor City, Harbor City, CA, 2022.
+17. "Organelle inheritance in dividing cells and the fate of the stressed cell." Cell Biology Colloquium, Southern Ridge University, Asheville, NC, 2022.
+18. "Lipid transfer proteins and the fate of the stressed cell." Biophysical Society Annual Meeting, San Diego, CA, 2022.
+19. "Live imaging of organelle dynamics and the fate of the stressed cell." FASEB Science Research Conference on Mitochondrial Biology, Steamboat Springs, CO, 2022.
+20. "Mitochondrial fission and the fate of the stressed cell." Gordon Research Conference on Mitochondria, Boston, MA, 2021.
+21. "Organelle inheritance in dividing cells and the fate of the stressed cell." American Society for Cell Biology Annual Meeting, Lucca, Italy, 2021.
+22. "Lipid transfer proteins and the fate of the stressed cell." Keystone Symposium on Organelle Biology, Snowmass, CO, 2021.
+23. "Live imaging of organelle dynamics and the fate of the stressed cell." EMBO Workshop on Membrane Dynamics, Heidelberg, Germany, 2021.
+24. "Mitochondrial fission and the fate of the stressed cell." Cold Spring Harbor Meeting on Cell Dynamics, Cold Spring Harbor, NY, 2020.
+25. "Organelle inheritance in dividing cells and the fate of the stressed cell." Department of Biology seminar, Lakeview University, Lakeview, WI, 2020.
+26. "Lipid transfer proteins and the fate of the stressed cell." Institute of Molecular Medicine seminar, Harbor City, Harbor City, CA, 2020.
+27. "Live imaging of organelle dynamics and the fate of the stressed cell." Cell Biology Colloquium, Southern Ridge University, Asheville, NC, 2020.
+28. "Mitochondrial fission and the fate of the stressed cell." Biophysical Society Annual Meeting, San Diego, CA, 2019.
+29. "Organelle inheritance in dividing cells and the fate of the stressed cell." FASEB Science Research Conference on Mitochondrial Biology, Steamboat Springs, CO, 2019.
+30. "Lipid transfer proteins and the fate of the stressed cell." Gordon Research Conference on Mitochondria, Boston, MA, 2019.
+31. "Live imaging of organelle dynamics and the fate of the stressed cell." American Society for Cell Biology Annual Meeting, Lucca, Italy, 2019.
+32. "Mitochondrial fission and the fate of the stressed cell." Keystone Symposium on Organelle Biology, Snowmass, CO, 2018.
+33. "Organelle inheritance in dividing cells and the fate of the stressed cell." EMBO Workshop on Membrane Dynamics, Heidelberg, Germany, 2018.
+34. "Lipid transfer proteins and the fate of the stressed cell." Cold Spring Harbor Meeting on Cell Dynamics, Cold Spring Harbor, NY, 2018.
+35. "Live imaging of organelle dynamics and the fate of the stressed cell." Department of Biology seminar, Lakeview University, Lakeview, WI, 2018.
+36. "Mitochondrial fission and the fate of the stressed cell." Institute of Molecular Medicine seminar, Harbor City, Harbor City, CA, 2017.
+37. "Organelle inheritance in dividing cells and the fate of the stressed cell." Cell Biology Colloquium, Southern Ridge University, Asheville, NC, 2017.
+38. "Lipid transfer proteins and the fate of the stressed cell." Biophysical Society Annual Meeting, San Diego, CA, 2017.
+39. "Live imaging of organelle dynamics and the fate of the stressed cell." FASEB Science Research Conference on Mitochondrial Biology, Steamboat Springs, CO, 2017.
+
+TEACHING
+MB 310 Cell Biology (undergraduate, about 180 students a year), 2013 - Present
+MB 512 Organelle Biology (graduate seminar, 12 to 18 students), 2014 - Present
+MB 601 Responsible Conduct of Research (co-instructor), 2016 - Present
+Course redesign: converted MB 310 to a flipped format in 2019; student evaluations rose from 3.9 to 4.5 of 5 over the following three offerings.
+
+MENTORING
+Doctoral students supervised to completion: 7 (current placements: 3 postdoctoral fellows, 2 industry scientists, 1 assistant professor, 1 science policy fellow)
+Current doctoral students: 4
+Postdoctoral fellows supervised: 5 (2 now in faculty positions)
+Undergraduate researchers: 31, of whom 19 are coauthors on publications
+Doctoral committee member: 22 students across Molecular Biology, Biochemistry, and Neuroscience
+
+PROFESSIONAL SERVICE
+Editorial Board, Molecular Biology of the Cell, 2020 - Present
+Reviewing Editor, eLife, 2022 - Present
+Ad hoc reviewer for Journal of Cell Biology, Nature Cell Biology, Cell Reports, PLOS Biology, Current Biology, EMBO Journal, Developmental Cell, and Journal of Biological Chemistry (approximately 25 manuscripts a year)
+Study section member, NIH Membrane Biology and Protein Processing (MBPP), 2021 - 2025
+Ad hoc reviewer, NSF Molecular and Cellular Biosciences, 2017, 2019, 2022
+Program committee, American Society for Cell Biology Annual Meeting, 2023
+Organizer, Gordon Research Seminar on Mitochondria, 2019
+
+UNIVERSITY SERVICE
+Chair, Graduate Admissions Committee, Department of Molecular Biology, 2021 - Present
+Member, College of Science Promotion and Tenure Committee, 2022 - Present
+Member, University Research Computing Advisory Board, 2020 - 2023
+Faculty advisor, Riverbend State Women in Science student group, 2015 - Present
+Member, Departmental Diversity and Inclusion Committee, 2018 - 2021
+
+PROFESSIONAL MEMBERSHIPS
+American Society for Cell Biology (member since 2007)
+Biophysical Society
+American Society for Biochemistry and Molecular Biology
+
+PATENTS
+U.S. Patent 11,xxx,xxx (number withheld in this copy), "Fluorescent reporter for mitochondrial membrane contact," issued 2022, co-inventors Chen W, Lindqvist H.
+
+MEDIA AND OUTREACH
+Interviewed for the Riverbend Public Radio series on aging research, 2024
+Annual judge, Riverbend Regional Science Fair, 2014 - Present
+Lab tours for 6 to 8 local high school classes per year
+
+TECHNICAL SKILLS
+Live-cell confocal and lattice light-sheet microscopy; super-resolution (STORM, SIM); CRISPR screening; yeast and mammalian genetics; proteomics; image analysis in Fiji, CellProfiler, and Python.
+
+REFERENCES
+Available upon request.

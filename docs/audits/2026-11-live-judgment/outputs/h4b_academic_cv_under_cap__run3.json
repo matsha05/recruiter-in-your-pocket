@@ -1,0 +1,396 @@
+{
+  "case_id": "h4b_academic_cv_under_cap",
+  "batch": "holes",
+  "run": 3,
+  "note": "The same CV trimmed under the cap, to see what the model does with a CV shape.",
+  "resume_file": "resumes/h4b_academic_cv_under_cap.txt",
+  "resume_sha256": "adbd165f7ee34423e0602d7b81bde357a22a10bfde76e8434e30216c10430503",
+  "resume_chars": 23674,
+  "resume_words": 3253,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T19:53:24.419Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 21718,
+        "completion_tokens": 2466,
+        "total_tokens": 24184,
+        "cached_prompt_tokens": 21715,
+        "cache_write_prompt_tokens": 0,
+        "reasoning_tokens": 512
+      },
+      "cost_usd": 0.01341875,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 29156
+    },
+    {
+      "kind": "repair",
+      "usage": {
+        "prompt_tokens": 24551,
+        "completion_tokens": 2482,
+        "total_tokens": 27033,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 17662,
+        "reasoning_tokens": 615
+      },
+      "cost_usd": 0.0348348,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 28872
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 83,
+    "score_label": "Strong",
+    "score_comment_short": "Funding, teaching and mentoring are well documented, but publication records need checking.",
+    "score_comment_long": "The grants, course redesign and trainee placements give a detailed picture of your academic work. Repeated publication titles and author lists across years make the bibliography difficult to interpret. Checking those records and surfacing a few research findings would make the CV easier to assess.",
+    "score_plain": "This is a detailed academic CV with substantial support for a faculty application. A reviewer may still need help distinguishing publication records and understanding the findings behind them.",
+    "first_impression": "You present a tenured molecular biology faculty career with funded research, teaching and mentoring. The long publication list needs a closer check because some titles and author lists recur across different years.",
+    "biggest_gap_example": "\"Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts\" appears under multiple years with the same authors and journal, leaving the distinction between those records unclear.",
+    "first_impression_takeaway": "Check the repeated publications",
+    "summary": "Your $1,875,000 NIH R01 as PI places mitochondrial fission research at the center of the CV. The appointment and grant history point to tenured associate professor-level work, supported by teaching and trainee supervision. The MB 310 redesign is worth keeping: evaluations rose from 3.9 to 4.5 of 5 over the following three offerings. Publication titles describe methods and models, but they don't explain the findings, so a reader must look elsewhere to understand the research contributions.",
+    "strengths": [
+      "The R01 and R21 entries identify you as PI and give award amounts and dates, making your funding roles easy to follow.",
+      "The mentoring section records doctoral completions and current placements, as well as undergraduate coauthorship.",
+      "Editorial appointments and NIH study section service show how your work extends into research review."
+    ],
+    "gaps": [
+      "Repeated publication titles, authors and journals are listed under different years without an explanation, making individual records difficult to distinguish.",
+      "The CV does not summarize findings from the mitochondrial fission work, so the scientific contribution is less visible than the methods.",
+      "Your admissions committee chair entry gives the role and dates but not a particular responsibility or contribution."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "Check the repeated Drp1 publication entries against the original records, including their years, volumes and page ranges; correct any errors or distinguish legitimate separate papers.",
+        "why": "The same title and author list recur, so accurate citations matter before a reader can assess the bibliography.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts.",
+          "section": "PUBLICATIONS"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "PUBLICATIONS"
+      },
+      {
+        "fix": "Near the R01 entry, add a brief, verifiable finding from the funded mitochondrial fission work if one is available.",
+        "why": "The grant identifies the research question and award, but not what the work found.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "R01, National Institutes of Health, \"Mitochondrial fission checkpoints in aging tissue,\" PI, 2021 - 2026, $1,875,000",
+          "section": "GRANTS AND FELLOWSHIPS"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "GRANTS AND FELLOWSHIPS"
+      },
+      {
+        "fix": "Move the mentoring section ahead of the full publication and talk lists when the application values supervision, keeping the undergraduate coauthorship detail.",
+        "why": "That record is currently separated from your appointments by two long lists.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Undergraduate researchers: 31, of whom 19 are coauthors on publications",
+          "section": "MENTORING"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "MENTORING"
+      }
+    ],
+    "next_steps": [
+      "Compare recurring publication entries with the original bibliographic records and correct only confirmed discrepancies.",
+      "Add a concise finding beside the relevant grant, then review the admissions chair entry for a specific contribution you can document.",
+      "Reorder the existing teaching and mentoring sections for the application, while retaining the full lists if requested."
+    ],
+    "subscores": {
+      "impact": 87,
+      "clarity": 79,
+      "story": 84,
+      "readability": 78
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "Section not present.",
+        "fix": "Add only if it helps your story."
+      },
+      "Work Experience": {
+        "grade": "B+",
+        "priority": "High",
+        "working": "Academic appointments, grants, teaching and mentoring together show the range of your faculty work.",
+        "missing": "The appointment entries do not connect the roles to particular research findings or admissions contributions.",
+        "fix": "Add a documented finding near the relevant grant and a specific contribution under the admissions chair role."
+      },
+      "Skills": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Technical skills name microscopy methods, genetics, proteomics and image-analysis tools.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Both degrees include institutions and dates, and the Ph.D. entry names the dissertation topic.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Mitochondrial biology and organelle research",
+        "Principal investigator roles on NIH grants",
+        "Undergraduate and graduate teaching",
+        "Doctoral and postdoctoral supervision",
+        "Scientific editing and grant review service"
+      ],
+      "underplayed": [
+        "Findings from funded mitochondrial fission research",
+        "Contributions as graduate admissions committee chair",
+        "Undergraduate research coauthorship, which appears after the publication and talk lists"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Associate Professor (with tenure)"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Tenured associate professor with PI funding and faculty service responsibilities.",
+        "industry_signals": [
+          "Higher education",
+          "Molecular biology research"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "For a faculty application, keep the funding and corresponding-author roles prominent. Bring teaching and mentoring forward when those responsibilities are central to the role, and verify the publication records before tailoring the list."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What distinguishes the recurring Drp1 entries with the same authors and journal across different years?",
+          "archetype": "TENSION POINT",
+          "why": "The answer can help make the bibliography unambiguous."
+        },
+        {
+          "question": "What finding from the R01 best illustrates your work on mitochondrial fission checkpoints?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The grant entry names the topic but does not describe a finding."
+        },
+        {
+          "question": "What changes did you make when converting MB 310 to a flipped format?",
+          "archetype": "IMPROVEMENT",
+          "why": "A concrete teaching change would help explain the redesign alongside the evaluation figures."
+        },
+        {
+          "question": "What was your contribution as chair of the graduate admissions committee?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The current entry names the chair role without describing its work."
+        },
+        {
+          "question": "How did you support undergraduate researchers who became publication coauthors?",
+          "archetype": "SCALING",
+          "why": "An example could show how you supervised research participation across the group."
+        }
+      ]
+    }
+  },
+  "initial_validation_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the evidence grounding contract: contradicted positive source evidence at section_review.Summary.missing."
+  },
+  "model_output_repaired": {
+    "contract_version": "v2",
+    "score": 83,
+    "score_label": "Strong",
+    "score_comment_short": "Funded research, teaching and mentoring are detailed, but citation records need checking.",
+    "score_comment_long": "The grants, course redesign and trainee placements give a detailed picture of your academic work. Some publication titles and author lists recur across years. Check those records and add a research finding to help readers understand the work.",
+    "score_plain": "This is a detailed academic CV with substantial support for faculty applications. The bibliography and research findings would benefit from a closer pass.",
+    "first_impression": "Your CV brings together funded molecular biology research, teaching, mentoring and service. The repeated publication entries warrant a closer look before the list is used.",
+    "biggest_gap_example": "\"Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts\" appears in entries with the same authors and journal under different years, leaving their distinction unclear.",
+    "first_impression_takeaway": "Check the repeated publications",
+    "summary": "Your $1,875,000 NIH R01 as PI places mitochondrial fission research at the center of the CV. Your tenured associate professor appointment sits alongside documented teaching and trainee supervision. The MB 310 redesign is worth keeping: evaluations rose from 3.9 to 4.5 of 5 over the following three offerings. The research interests identify your topics, but a reader cannot quickly see a finding from the work.",
+    "strengths": [
+      "The R01 and R21 entries identify you as PI and give award amounts and dates, making your funding roles easy to follow.",
+      "Doctoral completion and placement details show what happened after students worked with you.",
+      "Editorial appointments and NIH study section membership show your participation in research review."
+    ],
+    "gaps": [
+      "Several publication entries repeat titles and author lists across years without an explanation, making the records difficult to distinguish.",
+      "The research interests name topics and methods but not a finding, so the scientific contribution is less visible.",
+      "The graduate admissions chair entry gives your title and dates without a specific responsibility or contribution."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "Compare the repeated Drp1 publication entries with the original records, including their years, volumes and page ranges; correct errors or distinguish separate papers.",
+        "why": "The same title and author list recur, so readers need reliable citations to interpret the bibliography.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts.",
+          "section": "PUBLICATIONS"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "PUBLICATIONS"
+      },
+      {
+        "fix": "In Research Interests, add one verified finding from your mitochondrial biology work if appropriate for the application.",
+        "why": "The current list identifies the subjects but doesn't tell a reader what the research found.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Mitochondrial dynamics; organelle quality control; stress signaling in aging; live-cell imaging methods.",
+          "section": "RESEARCH INTERESTS"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "RESEARCH INTERESTS"
+      },
+      {
+        "fix": "Under University Service, add a specific contribution you made as graduate admissions committee chair.",
+        "why": "The title alone leaves the work you performed in that role unspecified.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Chair, Graduate Admissions Committee, Department of Molecular Biology, 2021 - Present",
+          "section": "UNIVERSITY SERVICE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "UNIVERSITY SERVICE"
+      }
+    ],
+    "next_steps": [
+      "Check the recurring citations against the original publication records and correct confirmed discrepancies.",
+      "Revise the research interests and admissions chair entries using details you can verify.",
+      "For each application, consider moving teaching and mentoring ahead of the full publication and talk lists while retaining any required sections."
+    ],
+    "subscores": {
+      "impact": 87,
+      "clarity": 80,
+      "story": 84,
+      "readability": 79
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "Research Interests introduces mitochondrial dynamics, organelle quality control, aging and live-cell imaging.",
+        "missing": "It names the research areas but does not describe a finding.",
+        "fix": "Add a concise, verified finding if it helps the intended application."
+      },
+      "Work Experience": {
+        "grade": "B+",
+        "priority": "High",
+        "working": "Academic appointments, grants, teaching and mentoring show the range of your faculty work.",
+        "missing": "The admissions chair role does not describe a particular contribution.",
+        "fix": "Add an example of your work on the graduate admissions committee."
+      },
+      "Skills": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Technical Skills names microscopy methods, genetics, proteomics and image-analysis tools.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Both degrees include institutions and dates, and the Ph.D. entry names the dissertation topic.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Mitochondrial biology and organelle research",
+        "Principal investigator roles on NIH grants",
+        "Undergraduate and graduate teaching",
+        "Doctoral and postdoctoral supervision",
+        "Scientific editing and grant review service"
+      ],
+      "underplayed": [
+        "Findings from mitochondrial biology research",
+        "Contributions as graduate admissions committee chair",
+        "Undergraduate research coauthorship, which appears after the publication and talk lists"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Associate Professor (with tenure)"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Tenured associate professor with PI funding and faculty service responsibilities.",
+        "industry_signals": [
+          "Higher education",
+          "Molecular biology research"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "For a faculty application, keep the funding and corresponding-author roles prominent. Bring teaching and mentoring forward when those responsibilities are central to the role, and verify the publication records before tailoring the list."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What distinguishes the recurring Drp1 entries with the same authors and journal across different years?",
+          "archetype": "TENSION POINT",
+          "why": "The answer can help make the bibliography unambiguous."
+        },
+        {
+          "question": "What finding best illustrates your research on mitochondrial fission checkpoints?",
+          "archetype": "DOMAIN LIFT",
+          "why": "A finding would give readers more than the grant topic."
+        },
+        {
+          "question": "What was your contribution as chair of the graduate admissions committee?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The entry names the role without describing its work."
+        },
+        {
+          "question": "What changes did you make when converting MB 310 to a flipped format?",
+          "archetype": "IMPROVEMENT",
+          "why": "An example would explain the redesign alongside the evaluation figures."
+        },
+        {
+          "question": "How did you support undergraduate researchers who became publication coauthors?",
+          "archetype": "SCALING",
+          "why": "An example could show how you supervised their research participation."
+        }
+      ]
+    }
+  },
+  "outcome": "repair_failed",
+  "repair_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response used ambiguous source evidence: top_fixes[0].evidence.excerpt."
+  },
+  "cost_usd": 0.04825355
+}

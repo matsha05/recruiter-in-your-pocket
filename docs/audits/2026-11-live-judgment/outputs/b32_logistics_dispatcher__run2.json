@@ -1,0 +1,742 @@
+{
+  "case_id": "b32_logistics_dispatcher",
+  "batch": "breadth",
+  "run": 2,
+  "note": null,
+  "resume_file": "../../../tests/resumes/blindpick/synth_bp_logistics_dispatcher_1.txt",
+  "resume_sha256": "1ae1cc83222ef2e6ac1cdf904b53aa1b78b489a7cc233802856897605942428d",
+  "resume_chars": 730,
+  "resume_words": 105,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T20:11:40.553Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7392,
+        "completion_tokens": 1971,
+        "total_tokens": 9363,
+        "cached_prompt_tokens": 7389,
+        "cache_write_prompt_tokens": 0,
+        "reasoning_tokens": 198
+      },
+      "cost_usd": 0.01022745,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 23010
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.00226575,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 4561
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 62,
+    "score_label": "Needs Clarity",
+    "score_comment_short": "The dispatch role is clear, but most bullets describe duties without examples.",
+    "score_comment_long": "Your current role covers dispatch, load tracking, customer updates and driver issues. Most bullets leave the decisions and situations behind those duties unexplained. Adding a few concrete examples would make the work easier to assess.",
+    "score_plain": "A reviewer can identify your trucking background, but may struggle to compare your dispatch work with other applicants'. More detail about what you handle would make that comparison easier.",
+    "first_impression": "Regional trucking dispatch is immediately clear, and naming McLeod TMS gives a reviewer a useful system reference. The experience bullets are brief enough that the work behind each duty is difficult to picture.",
+    "biggest_gap_example": "\"Handle driver issues on the road\" does not say what kinds of issues you handle or what you can resolve yourself.",
+    "first_impression_takeaway": "Explain the driver issues",
+    "summary": "Your move from Dispatch Assistant to Dispatcher at Crossroads Regional Freight shows a path into regional trucking dispatch. The current role combines driver coordination with customer updates and work alongside the safety team. It reads as a dispatcher-level background, though the short bullets leave the decisions you make during a disrupted delivery unclear. An example would help a reviewer understand how you handle those situations.",
+    "strengths": [
+      "Load tracking and delivery-status updates connect your dispatch work to customer communication.",
+      "Working with the safety team on driver hours shows that dispatch coordination extends beyond assigning drivers.",
+      "Your earlier trailer-loading work adds a warehouse perspective to your freight background."
+    ],
+    "gaps": [
+      "The driver dispatch bullet does not explain how assignments are made or what you decide, leaving the day-to-day work unclear.",
+      "The customer update bullet does not show what you communicate when a delivery changes, so the judgment involved is difficult to assess.",
+      "The safety-team bullet names driver hours but not your part in coordinating them, leaving the handoff unclear."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the driver-dispatch bullet, explain how you assign drivers and which dispatch decisions you make yourself.",
+        "why": "That would distinguish your actual dispatch responsibilities from the title alone.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Responsible for dispatching drivers",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the road-issues bullet, add a representative problem you handled and what you did to address it.",
+        "why": "A concrete situation would show how you respond when a driver needs help.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Handle driver issues on the road",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the driver-hours bullet, describe the information you share with the safety team and what happens next.",
+        "why": "The collaboration becomes easier to understand when the handoff is visible.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Work with the safety team on driver hours",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Expand the current dispatch bullets using situations and responsibilities you can verify.",
+      "Review the Dispatch Assistant bullets and add the type of load information or paperwork you handled if useful.",
+      "Update the opening sentence to reflect the revised dispatch details, then check that the experience dates and tenure remain current."
+    ],
+    "subscores": {
+      "impact": 55,
+      "clarity": 64,
+      "story": 65,
+      "readability": 68
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The opening identifies dispatch and regional trucking immediately.",
+        "missing": "It does not distinguish the work you handle from a general dispatcher description.",
+        "fix": "After revising your experience, add a specific dispatch responsibility to the opening."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The progression at Crossroads Regional Freight is easy to follow.",
+        "missing": "Most bullets name tasks without showing the situations, decisions or handoffs involved.",
+        "fix": "Expand the current role with a driver-issue example and details of dispatch assignments."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "McLeod TMS, Excel and customer communication are easy to find.",
+        "missing": "The section does not explain how you use Excel in dispatch work.",
+        "fix": "If relevant, describe an actual Excel task in the experience section."
+      },
+      "Education": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "Section not present.",
+        "fix": "Add only if it helps your story."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Regional trucking dispatch",
+        "Load tracking and customer delivery updates",
+        "McLeod TMS",
+        "Coordination with a safety team on driver hours"
+      ],
+      "underplayed": [
+        "Decisions involved in assigning drivers",
+        "Examples of road issues handled",
+        "Specific contribution to driver-hours coordination"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Dispatcher"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "The current Dispatcher title indicates dispatcher-level work following a Dispatch Assistant role.",
+        "industry_signals": [
+          "Regional trucking",
+          "Freight distribution"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Keep the regional trucking focus at the top. Use the current role to show how you coordinate drivers, customer updates and safety-related handoffs."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "When a driver has an issue on the road, what can you resolve yourself and what needs escalation?",
+          "archetype": "TENSION POINT",
+          "why": "The answer could define your authority during disruptions."
+        },
+        {
+          "question": "How do you decide which driver to dispatch for a load?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The assignment process would make the dispatcher bullet more specific."
+        },
+        {
+          "question": "What information do you exchange with the safety team when coordinating driver hours?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The handoff would explain your part in that collaboration."
+        },
+        {
+          "question": "What do you tell customers when a delivery status changes, and how do you get the update?",
+          "archetype": "HIGH STAKES",
+          "why": "A concrete example would show how you communicate a changing delivery situation."
+        },
+        {
+          "question": "What load information did you enter as a Dispatch Assistant, and how was it used?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The answer could make your earlier freight work more informative."
+        }
+      ]
+    }
+  },
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 62,
+    "score_label": "Needs more context",
+    "score_comment_short": "The dispatch role is clear, but most bullets describe duties without examples.",
+    "score_comment_long": "Your current role covers dispatch, load tracking, customer updates and driver issues. Most bullets leave the decisions and situations behind those duties unexplained. Adding a few concrete examples would make the work easier to assess.",
+    "score_plain": "A reviewer can identify your trucking background, but may struggle to compare your dispatch work with other applicants'. More detail about what you handle would make that comparison easier.",
+    "first_impression": "Regional trucking dispatch is immediately clear, and naming McLeod TMS gives a reviewer a useful system reference. The experience bullets are brief enough that the work behind each duty is difficult to picture.",
+    "biggest_gap_example": "\"Handle driver issues on the road\" does not say what kinds of issues you handle or what you can resolve yourself.",
+    "first_impression_takeaway": "Explain the driver issues",
+    "summary": "Your move from Dispatch Assistant to Dispatcher at Crossroads Regional Freight shows a path into regional trucking dispatch. The current role combines driver coordination with customer updates and work alongside the safety team. It reads as a dispatcher-level background, though the short bullets leave the decisions you make during a disrupted delivery unclear. An example would help a reviewer understand how you handle those situations.",
+    "strengths": [
+      "Load tracking and delivery-status updates connect your dispatch work to customer communication.",
+      "Working with the safety team on driver hours shows that dispatch coordination extends beyond assigning drivers.",
+      "Your earlier trailer-loading work adds a warehouse perspective to your freight background."
+    ],
+    "gaps": [
+      "The driver dispatch bullet does not explain how assignments are made or what you decide, leaving the day-to-day work unclear.",
+      "The customer update bullet does not show what you communicate when a delivery changes, so the judgment involved is difficult to assess.",
+      "The safety-team bullet names driver hours but not your part in coordinating them, leaving the handoff unclear."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the driver-dispatch bullet, explain how you assign drivers and which dispatch decisions you make yourself.",
+        "why": "That would distinguish your actual dispatch responsibilities from the title alone.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Responsible for dispatching drivers",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the road-issues bullet, add a representative problem you handled and what you did to address it.",
+        "why": "A concrete situation would show how you respond when a driver needs help.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Handle driver issues on the road",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the driver-hours bullet, describe the information you share with the safety team and what happens next.",
+        "why": "The collaboration becomes easier to understand when the handoff is visible.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Work with the safety team on driver hours",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Expand the current dispatch bullets using situations and responsibilities you can verify.",
+      "Review the Dispatch Assistant bullets and add the type of load information or paperwork you handled if useful.",
+      "Update the opening sentence to reflect the revised dispatch details, then check that the experience dates and tenure remain current."
+    ],
+    "subscores": {
+      "impact": 55,
+      "clarity": 64,
+      "story": 65,
+      "readability": 68
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The progression at Crossroads Regional Freight is easy to follow.",
+        "missing": "Most bullets name tasks without showing the situations, decisions or handoffs involved.",
+        "fix": "Expand the current role with a driver-issue example and details of dispatch assignments."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "McLeod TMS, Excel and customer communication are easy to find.",
+        "missing": "The section does not explain how you use Excel in dispatch work.",
+        "fix": "If relevant, describe an actual Excel task in the experience section."
+      },
+      "Education": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No education section present",
+        "fix": "Add this section if the job asks for it or it helps explain your qualifications."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Regional trucking dispatch",
+        "Load tracking and customer delivery updates",
+        "McLeod TMS",
+        "Coordination with a safety team on driver hours"
+      ],
+      "underplayed": [
+        "Decisions involved in assigning drivers",
+        "Examples of road issues handled",
+        "Specific contribution to driver-hours coordination"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Dispatcher"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "The current Dispatcher title indicates dispatcher-level work following a Dispatch Assistant role.",
+        "industry_signals": [
+          "Regional trucking"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Keep the regional trucking focus at the top. Use the current role to show how you coordinate drivers, customer updates and safety-related handoffs."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "When a driver has an issue on the road, what can you resolve yourself and what needs escalation?",
+          "archetype": "TENSION POINT",
+          "why": "The answer could define your authority during disruptions."
+        },
+        {
+          "question": "How do you decide which driver to dispatch for a load?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The assignment process would make the dispatcher bullet more specific."
+        },
+        {
+          "question": "What information do you exchange with the safety team when coordinating driver hours?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The handoff would explain your part in that collaboration."
+        },
+        {
+          "question": "What do you tell customers when a delivery status changes, and how do you get the update?",
+          "archetype": "HIGH STAKES",
+          "why": "A concrete example would show how you communicate a changing delivery situation."
+        },
+        {
+          "question": "What load information did you enter as a Dispatch Assistant, and how was it used?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The answer could make your earlier freight work more informative."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 62
+  },
+  "severity": {
+    "outcome": "added",
+    "reason": "added",
+    "added": [
+      "no_evidence_latest_role"
+    ],
+    "promoted": [],
+    "replaced": [],
+    "skipped": [],
+    "critical_count": 2,
+    "more_critical": false,
+    "validation_attempts": 1,
+    "answer": {
+      "critical_misses": [
+        {
+          "source": "new",
+          "kind": "no_evidence_latest_role",
+          "fix": "In the Crossroads Regional Freight load-tracking bullet, add how many loads you personally track in a typical week, if you can verify it.",
+          "why": "Dispatch hiring managers often look for the volume a dispatcher handles. Your current role lists duties but doesn't show their scale or measurable results.",
+          "excerpt": "- Track loads and update customers on delivery status",
+          "section": "EXPERIENCE",
+          "effort": "quick"
+        }
+      ],
+      "more_critical": false
+    },
+    "latency_ms": 4623,
+    "call_latency_ms": 4561,
+    "cost_usd": 0.00226575,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 62,
+    "score_label": "Needs more context",
+    "score_comment_short": "The dispatch role is clear, but most bullets describe duties without examples.",
+    "score_comment_long": "Your current role covers dispatch, load tracking, customer updates and driver issues. Most bullets leave the decisions and situations behind those duties unexplained. Adding a few concrete examples would make the work easier to assess.",
+    "score_plain": "A reviewer can identify your trucking background, but may struggle to compare your dispatch work with other applicants'. More detail about what you handle would make that comparison easier.",
+    "first_impression": "Regional trucking dispatch is immediately clear, and naming McLeod TMS gives a reviewer a useful system reference. The experience bullets are brief enough that the work behind each duty is difficult to picture.",
+    "biggest_gap_example": "\"Handle driver issues on the road\" does not say what kinds of issues you handle or what you can resolve yourself.",
+    "first_impression_takeaway": "Explain the driver issues",
+    "summary": "Your move from Dispatch Assistant to Dispatcher at Crossroads Regional Freight shows a path into regional trucking dispatch. The current role combines driver coordination with customer updates and work alongside the safety team. It reads as a dispatcher-level background, though the short bullets leave the decisions you make during a disrupted delivery unclear. An example would help a reviewer understand how you handle those situations.",
+    "strengths": [
+      "Load tracking and delivery-status updates connect your dispatch work to customer communication.",
+      "Working with the safety team on driver hours shows that dispatch coordination extends beyond assigning drivers.",
+      "Your earlier trailer-loading work adds a warehouse perspective to your freight background."
+    ],
+    "gaps": [
+      "The driver dispatch bullet does not explain how assignments are made or what you decide, leaving the day-to-day work unclear.",
+      "The customer update bullet does not show what you communicate when a delivery changes, so the judgment involved is difficult to assess.",
+      "The safety-team bullet names driver hours but not your part in coordinating them, leaving the handoff unclear."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the driver-dispatch bullet, explain how you assign drivers and which dispatch decisions you make yourself.",
+        "why": "That would distinguish your actual dispatch responsibilities from the title alone.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Responsible for dispatching drivers",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": true
+      },
+      {
+        "fix": "In the Crossroads Regional Freight load-tracking bullet, add how many loads you personally track in a typical week, if you can verify it.",
+        "why": "Dispatch hiring managers often look for the volume a dispatcher handles. Your current role lists duties but doesn't show their scale or measurable results.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Track loads and update customers on delivery status",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE",
+        "critical": true
+      },
+      {
+        "fix": "In the road-issues bullet, add a representative problem you handled and what you did to address it.",
+        "why": "A concrete situation would show how you respond when a driver needs help.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Handle driver issues on the road",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      }
+    ],
+    "more_critical": false,
+    "next_steps": [
+      "Expand the current dispatch bullets using situations and responsibilities you can verify.",
+      "Review the Dispatch Assistant bullets and add the type of load information or paperwork you handled if useful.",
+      "Update the opening sentence to reflect the revised dispatch details, then check that the experience dates and tenure remain current."
+    ],
+    "subscores": {
+      "impact": 55,
+      "clarity": 64,
+      "story": 65,
+      "readability": 68
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The progression at Crossroads Regional Freight is easy to follow.",
+        "missing": "Most bullets name tasks without showing the situations, decisions or handoffs involved.",
+        "fix": "Expand the current role with a driver-issue example and details of dispatch assignments."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "McLeod TMS, Excel and customer communication are easy to find.",
+        "missing": "The section does not explain how you use Excel in dispatch work.",
+        "fix": "If relevant, describe an actual Excel task in the experience section."
+      },
+      "Education": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No education section present",
+        "fix": "Add this section if the job asks for it or it helps explain your qualifications."
+      }
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 62,
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Regional trucking dispatch",
+        "Load tracking and customer delivery updates",
+        "McLeod TMS",
+        "Coordination with a safety team on driver hours"
+      ],
+      "underplayed": [
+        "Decisions involved in assigning drivers",
+        "Examples of road issues handled",
+        "Specific contribution to driver-hours coordination"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Dispatcher"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "The current Dispatcher title indicates dispatcher-level work following a Dispatch Assistant role.",
+        "industry_signals": [
+          "Regional trucking"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Keep the regional trucking focus at the top. Use the current role to show how you coordinate drivers, customer updates and safety-related handoffs."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "When a driver has an issue on the road, what can you resolve yourself and what needs escalation?",
+          "archetype": "TENSION POINT",
+          "why": "The answer could define your authority during disruptions."
+        },
+        {
+          "question": "How do you decide which driver to dispatch for a load?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The assignment process would make the dispatcher bullet more specific."
+        },
+        {
+          "question": "What information do you exchange with the safety team when coordinating driver hours?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The handoff would explain your part in that collaboration."
+        },
+        {
+          "question": "What do you tell customers when a delivery status changes, and how do you get the update?",
+          "archetype": "HIGH STAKES",
+          "why": "A concrete example would show how you communicate a changing delivery situation."
+        },
+        {
+          "question": "What load information did you enter as a Dispatch Assistant, and how was it used?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The answer could make your earlier freight work more informative."
+        }
+      ]
+    }
+  },
+  "presentation": {
+    "score": 62,
+    "band": "Needs more context",
+    "score_label_from_model": "Needs Clarity",
+    "model_score_before_calibration": 62,
+    "verdict": "Regional trucking dispatch is immediately clear, and naming McLeod TMS gives a reviewer a useful system reference. The experience bullets are brief enough that the work behind each duty is difficult to picture.",
+    "one_line_read": "The dispatch role is clear, but most bullets describe duties without examples.",
+    "takeaway": "Explain the driver issues",
+    "biggest_gap_example": "\"Handle driver issues on the road\" does not say what kinds of issues you handle or what you can resolve yourself.",
+    "critical_count": {
+      "count": 2,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "Two Critical Misses. Start with this one.",
+      "lead": "Either one could cost you the interview on its own."
+    },
+    "fixes": [
+      {
+        "fix": "In the driver-dispatch bullet, explain how you assign drivers and which dispatch decisions you make yourself.",
+        "why": "That would distinguish your actual dispatch responsibilities from the title alone.",
+        "excerpt": "- Responsible for dispatching drivers",
+        "section": "EXPERIENCE",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the Crossroads Regional Freight load-tracking bullet, add how many loads you personally track in a typical week, if you can verify it.",
+        "why": "Dispatch hiring managers often look for the volume a dispatcher handles. Your current role lists duties but doesn't show their scale or measurable results.",
+        "excerpt": "- Track loads and update customers on delivery status",
+        "section": "EXPERIENCE",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the road-issues bullet, add a representative problem you handled and what you did to address it.",
+        "why": "A concrete situation would show how you respond when a driver needs help.",
+        "excerpt": "- Handle driver issues on the road",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "Load tracking and delivery-status updates connect your dispatch work to customer communication.",
+    "strengths": [
+      "Load tracking and delivery-status updates connect your dispatch work to customer communication.",
+      "Working with the safety team on driver hours shows that dispatch coordination extends beyond assigning drivers.",
+      "Your earlier trailer-loading work adds a warehouse perspective to your freight background."
+    ],
+    "gaps": [
+      "The driver dispatch bullet does not explain how assignments are made or what you decide, leaving the day-to-day work unclear.",
+      "The customer update bullet does not show what you communicate when a delivery changes, so the judgment involved is difficult to assess.",
+      "The safety-team bullet names driver hours but not your part in coordinating them, leaving the handoff unclear."
+    ],
+    "next_steps": [
+      "Expand the current dispatch bullets using situations and responsibilities you can verify.",
+      "Review the Dispatch Assistant bullets and add the type of load information or paperwork you handled if useful.",
+      "Update the opening sentence to reflect the revised dispatch details, then check that the experience dates and tenure remain current."
+    ],
+    "seniority_read": "The current Dispatcher title indicates dispatcher-level work following a Dispatch Assistant role.",
+    "best_fit_roles": [
+      "Dispatcher"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "Keep the regional trucking focus at the top. Use the current role to show how you coordinate drivers, customer updates and safety-related handoffs.",
+    "severity_added": [
+      "no_evidence_latest_role"
+    ],
+    "severity_promoted": [],
+    "severity_outcome": "added (added)",
+    "severity_answer": {
+      "critical_misses": [
+        {
+          "source": "new",
+          "kind": "no_evidence_latest_role",
+          "fix": "In the Crossroads Regional Freight load-tracking bullet, add how many loads you personally track in a typical week, if you can verify it.",
+          "why": "Dispatch hiring managers often look for the volume a dispatcher handles. Your current role lists duties but doesn't show their scale or measurable results.",
+          "excerpt": "- Track loads and update customers on delivery status",
+          "section": "EXPERIENCE",
+          "effort": "quick"
+        }
+      ],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "keep_dropped",
+          "path": "strengths[0]",
+          "line": "fix-1",
+          "criticalMiss": true
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[0]",
+          "fix": 2
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[1]",
+          "fix": 0
+        },
+        {
+          "kind": "question_dropped",
+          "path": "ideas.questions[2]",
+          "reason": "duplicates_keep"
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[3]",
+          "fix": 1
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "biggest_gap_example",
+          "of": "top_fixes[2]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[0]",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[1]",
+          "of": "top_fixes[1]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Work Experience.fix",
+          "of": "top_fixes[0]"
+        }
+      ],
+      "fix_questions": [
+        [
+          "How do you decide which driver to dispatch for a load?"
+        ],
+        [
+          "What do you tell customers when a delivery status changes, and how do you get the update?"
+        ],
+        [
+          "When a driver has an issue on the road, what can you resolve yourself and what needs escalation?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0124932,
+  "latency_ms": 27692
+}

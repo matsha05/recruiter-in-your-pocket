@@ -1,0 +1,708 @@
+{
+  "case_id": "b30_social_worker",
+  "batch": "breadth",
+  "run": 2,
+  "note": null,
+  "resume_file": "../../../tests/resumes/blindpick/synth_bp_social_worker_1.txt",
+  "resume_sha256": "220fc861657d503d71b84a4240b5f5bc70c869aa0f1b595da07293db985b982f",
+  "resume_chars": 897,
+  "resume_words": 127,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T20:10:46.346Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7453,
+        "completion_tokens": 2132,
+        "total_tokens": 9585,
+        "cached_prompt_tokens": 7450,
+        "cache_write_prompt_tokens": 0,
+        "reasoning_tokens": 235
+      },
+      "cost_usd": 0.0110355,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 24837
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.0013145,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1398
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 64,
+    "score_label": "Needs Clarity",
+    "score_comment_short": "The work is specific to child welfare, but most bullets describe duties.",
+    "score_comment_long": "Home visits, court reports, and family meetings show the range of your casework. The resume rarely explains how you handle that work or what followed. A few concrete examples would make the experience easier to assess.",
+    "score_plain": "A reader can identify your field and responsibilities quickly. They may need more detail to distinguish your casework from a standard job description.",
+    "first_impression": "Your current role centers on families involved with child protective services. Monthly family team meetings are worth keeping because they show a regular part of your work with families.",
+    "biggest_gap_example": "\"Write case plans and court reports\" does not explain what you document or how the reports are used, leaving a reader to guess at your part in the process.",
+    "first_impression_takeaway": "Explain your casework decisions",
+    "summary": "Your work moves from assistance intake to ongoing family services casework, with an Ohio LMSW and a Master of Social Work. The current role combines home visits, service coordination, and court documentation. It reads as a direct-service caseworker role rather than a supervisory one. A reviewer may still wonder how you navigate safety concerns and service needs in practice, making it difficult to assess the complexity of the cases you handle.",
+    "strengths": [
+      "Naming schools, courts, and mental health providers shows the range of people you coordinate with.",
+      "The intake role identifies housing, food, and utility assistance, making the client needs you screened for concrete.",
+      "Your Ohio LMSW and social work degree are easy to find and establish your stated professional qualification."
+    ],
+    "gaps": [
+      "The number of families in your caseload is not stated, so the volume of ongoing work is unclear.",
+      "The assessment bullet doesn't describe what you look for during home visits or how you document concerns.",
+      "The resume doesn't describe what followed from a service connection or family meeting, limiting the picture of your work beyond the activity."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the caseload bullet, add the number or range of families you typically carry, if you can verify it.",
+        "why": "That gives a reader a better sense of the volume of ongoing family work.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Carry a caseload of families involved with child protective services",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the home-visit assessment bullet, describe a safety concern you assess and how you document or communicate it.",
+        "why": "A concrete example would show how you conduct the assessment without assuming authority you haven't claimed.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Complete safety and risk assessments during home visits",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the service-coordination bullet, name a service need you worked on with one of the listed partners and what followed, if known.",
+        "why": "The named partners are useful, but an example would show what coordination involved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Coordinate services with schools, courts, and mental health providers",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Review the current caseworker bullets and add a verified caseload figure and a concrete home-visit example.",
+      "Choose a service coordination or intake example and describe what you did and what followed, where known.",
+      "Revisit the opening sentence after revising the experience section so it reflects the work you want to emphasize."
+    ],
+    "subscores": {
+      "impact": 55,
+      "clarity": 68,
+      "story": 64,
+      "readability": 69
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The opening identifies your license and focus on child welfare and family services.",
+        "missing": "It doesn't distinguish the particular casework you want to emphasize.",
+        "fix": "After revising your experience, add a brief detail about your home-visit or family-service work."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The roles show a move from assistance intake to ongoing family casework.",
+        "missing": "Most bullets name activities without showing a specific casework example or what followed.",
+        "fix": "Expand selected bullets with a verified example of an assessment, service connection, or court report."
+      },
+      "Skills": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "Section not present.",
+        "fix": "Add only if it helps your story."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Both degrees, institutions, and graduation years are listed.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Family services casework involving child protective services",
+        "Safety and risk assessments during home visits",
+        "Coordination with schools, courts, and mental health providers",
+        "Intake screening for housing, food, and utility assistance"
+      ],
+      "underplayed": [
+        "How safety concerns are documented or communicated",
+        "The substance and use of case plans and court reports",
+        "What followed from connections to county benefit programs"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Family Services Caseworker",
+          "Intake Specialist"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "The recent title and responsibilities indicate a direct-service caseworker role; supervisory responsibilities are not stated.",
+        "industry_signals": [
+          "Child welfare",
+          "Family services",
+          "Community services"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "For family services roles, put the home visits, case plans, and partner coordination at the center of the experience section. For intake-focused roles, retain the specific assistance needs you screened for and explain a benefit connection if you can verify the details."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What safety concerns have you encountered during home visits, and how did you document them?",
+          "archetype": "HIGH STAKES",
+          "why": "An example could make the assessment work more concrete."
+        },
+        {
+          "question": "What typically happens when a family needs services from both a school and a mental health provider?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "Your answer could show how you coordinate across the partners already named."
+        },
+        {
+          "question": "What information do you include in a court report, and who receives it?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "This would explain the reporting work without assuming a role in court decisions."
+        },
+        {
+          "question": "How do you prioritize home visits and case plans across your caseload?",
+          "archetype": "TENSION POINT",
+          "why": "Your approach could show how you handle competing family needs."
+        },
+        {
+          "question": "Can you recall a walk-in client you connected to a county benefit program and what happened next?",
+          "archetype": "DOMAIN LIFT",
+          "why": "A concrete example could bring the intake role beyond a list of services."
+        }
+      ]
+    }
+  },
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 64,
+    "score_label": "Needs more context",
+    "score_comment_short": "The work is specific to child welfare, but most bullets describe duties.",
+    "score_comment_long": "Home visits, court reports, and family meetings show the range of your casework. The resume rarely explains how you handle that work or what followed. A few concrete examples would make the experience easier to assess.",
+    "score_plain": "A reader can identify your field and responsibilities quickly. They may need more detail to distinguish your casework from a standard job description.",
+    "first_impression": "Your current role centers on families involved with child protective services. Monthly family team meetings are worth keeping because they show a regular part of your work with families.",
+    "biggest_gap_example": "\"Write case plans and court reports\" does not explain what you document or how the reports are used, leaving a reader to guess at your part in the process.",
+    "first_impression_takeaway": "Explain your casework decisions",
+    "summary": "Your work moves from assistance intake to ongoing family services casework, with an Ohio LMSW and a Master of Social Work. The current role combines home visits, service coordination, and court documentation. It reads as a direct-service caseworker role rather than a supervisory one. A reviewer may still wonder how you navigate safety concerns and service needs in practice, making it difficult to assess the complexity of the cases you handle.",
+    "strengths": [
+      "Naming schools, courts, and mental health providers shows the range of people you coordinate with.",
+      "The intake role identifies housing, food, and utility assistance, making the client needs you screened for concrete.",
+      "Your Ohio LMSW and social work degree are easy to find and establish your stated professional qualification."
+    ],
+    "gaps": [
+      "The number of families in your caseload is not stated, so the volume of ongoing work is unclear.",
+      "The assessment bullet doesn't describe what you look for during home visits or how you document concerns.",
+      "The resume doesn't describe what followed from a service connection or family meeting, limiting the picture of your work beyond the activity."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the caseload bullet, add the number or range of families you typically carry, if you can verify it.",
+        "why": "That gives a reader a better sense of the volume of ongoing family work.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Carry a caseload of families involved with child protective services",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the home-visit assessment bullet, describe a safety concern you assess and how you document or communicate it.",
+        "why": "A concrete example would show how you conduct the assessment without assuming authority you haven't claimed.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Complete safety and risk assessments during home visits",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the service-coordination bullet, name a service need you worked on with one of the listed partners and what followed, if known.",
+        "why": "The named partners are useful, but an example would show what coordination involved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Coordinate services with schools, courts, and mental health providers",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Review the current caseworker bullets and add a verified caseload figure and a concrete home-visit example.",
+      "Choose a service coordination or intake example and describe what you did and what followed, where known.",
+      "Revisit the opening sentence after revising the experience section so it reflects the work you want to emphasize."
+    ],
+    "subscores": {
+      "impact": 55,
+      "clarity": 68,
+      "story": 64,
+      "readability": 69
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The roles show a move from assistance intake to ongoing family casework.",
+        "missing": "Most bullets name activities without showing a specific casework example or what followed.",
+        "fix": "Expand selected bullets with a verified example of an assessment, service connection, or court report."
+      },
+      "Skills": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No skills section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Both degrees, institutions, and graduation years are listed.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Family services casework involving child protective services",
+        "Safety and risk assessments during home visits",
+        "Coordination with schools, courts, and mental health providers",
+        "Intake screening for housing, food, and utility assistance"
+      ],
+      "underplayed": [
+        "How safety concerns are documented or communicated",
+        "The substance and use of case plans and court reports",
+        "What followed from connections to county benefit programs"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Family Services Caseworker",
+          "Intake Specialist"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "The recent title and responsibilities indicate a direct-service caseworker role; supervisory responsibilities are not stated.",
+        "industry_signals": [
+          "Child welfare",
+          "Family services"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "For family services roles, put the home visits, case plans, and partner coordination at the center of the experience section. For intake-focused roles, retain the specific assistance needs you screened for and explain a benefit connection if you can verify the details."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What safety concerns have you encountered during home visits, and how did you document them?",
+          "archetype": "HIGH STAKES",
+          "why": "An example could make the assessment work more concrete."
+        },
+        {
+          "question": "What typically happens when a family needs services from both a school and a mental health provider?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "Your answer could show how you coordinate across the partners already named."
+        },
+        {
+          "question": "What information do you include in a court report, and who receives it?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "This would explain the reporting work without assuming a role in court decisions."
+        },
+        {
+          "question": "How do you prioritize home visits and case plans across your caseload?",
+          "archetype": "TENSION POINT",
+          "why": "Your approach could show how you handle competing family needs."
+        },
+        {
+          "question": "Can you recall a walk-in client you connected to a county benefit program and what happened next?",
+          "archetype": "DOMAIN LIFT",
+          "why": "A concrete example could bring the intake role beyond a list of services."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 64
+  },
+  "severity": {
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "promoted": [],
+    "replaced": [],
+    "skipped": [],
+    "critical_count": 1,
+    "more_critical": false,
+    "validation_attempts": 0,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "latency_ms": 1399,
+    "call_latency_ms": 1398,
+    "cost_usd": 0.0013145,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 64,
+    "score_label": "Needs more context",
+    "score_comment_short": "The work is specific to child welfare, but most bullets describe duties.",
+    "score_comment_long": "Home visits, court reports, and family meetings show the range of your casework. The resume rarely explains how you handle that work or what followed. A few concrete examples would make the experience easier to assess.",
+    "score_plain": "A reader can identify your field and responsibilities quickly. They may need more detail to distinguish your casework from a standard job description.",
+    "first_impression": "Your current role centers on families involved with child protective services. Monthly family team meetings are worth keeping because they show a regular part of your work with families.",
+    "biggest_gap_example": "\"Write case plans and court reports\" does not explain what you document or how the reports are used, leaving a reader to guess at your part in the process.",
+    "first_impression_takeaway": "Explain your casework decisions",
+    "summary": "Your work moves from assistance intake to ongoing family services casework, with an Ohio LMSW and a Master of Social Work. The current role combines home visits, service coordination, and court documentation. It reads as a direct-service caseworker role rather than a supervisory one. A reviewer may still wonder how you navigate safety concerns and service needs in practice, making it difficult to assess the complexity of the cases you handle.",
+    "strengths": [
+      "Naming schools, courts, and mental health providers shows the range of people you coordinate with.",
+      "The intake role identifies housing, food, and utility assistance, making the client needs you screened for concrete.",
+      "Your Ohio LMSW and social work degree are easy to find and establish your stated professional qualification."
+    ],
+    "gaps": [
+      "The number of families in your caseload is not stated, so the volume of ongoing work is unclear.",
+      "The assessment bullet doesn't describe what you look for during home visits or how you document concerns.",
+      "The resume doesn't describe what followed from a service connection or family meeting, limiting the picture of your work beyond the activity."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the caseload bullet, add the number or range of families you typically carry, if you can verify it.",
+        "why": "That gives a reader a better sense of the volume of ongoing family work.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Carry a caseload of families involved with child protective services",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE",
+        "critical": true
+      },
+      {
+        "fix": "In the home-visit assessment bullet, describe a safety concern you assess and how you document or communicate it.",
+        "why": "A concrete example would show how you conduct the assessment without assuming authority you haven't claimed.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Complete safety and risk assessments during home visits",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      },
+      {
+        "fix": "In the service-coordination bullet, name a service need you worked on with one of the listed partners and what followed, if known.",
+        "why": "The named partners are useful, but an example would show what coordination involved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Coordinate services with schools, courts, and mental health providers",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      }
+    ],
+    "next_steps": [
+      "Review the current caseworker bullets and add a verified caseload figure and a concrete home-visit example.",
+      "Choose a service coordination or intake example and describe what you did and what followed, where known.",
+      "Revisit the opening sentence after revising the experience section so it reflects the work you want to emphasize."
+    ],
+    "subscores": {
+      "impact": 55,
+      "clarity": 68,
+      "story": 64,
+      "readability": 69
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The roles show a move from assistance intake to ongoing family casework.",
+        "missing": "Most bullets name activities without showing a specific casework example or what followed.",
+        "fix": "Expand selected bullets with a verified example of an assessment, service connection, or court report."
+      },
+      "Skills": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No skills section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Both degrees, institutions, and graduation years are listed.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Family services casework involving child protective services",
+        "Safety and risk assessments during home visits",
+        "Coordination with schools, courts, and mental health providers",
+        "Intake screening for housing, food, and utility assistance"
+      ],
+      "underplayed": [
+        "How safety concerns are documented or communicated",
+        "The substance and use of case plans and court reports",
+        "What followed from connections to county benefit programs"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Family Services Caseworker",
+          "Intake Specialist"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "The recent title and responsibilities indicate a direct-service caseworker role; supervisory responsibilities are not stated.",
+        "industry_signals": [
+          "Child welfare",
+          "Family services"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "For family services roles, put the home visits, case plans, and partner coordination at the center of the experience section. For intake-focused roles, retain the specific assistance needs you screened for and explain a benefit connection if you can verify the details."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What safety concerns have you encountered during home visits, and how did you document them?",
+          "archetype": "HIGH STAKES",
+          "why": "An example could make the assessment work more concrete."
+        },
+        {
+          "question": "What typically happens when a family needs services from both a school and a mental health provider?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "Your answer could show how you coordinate across the partners already named."
+        },
+        {
+          "question": "What information do you include in a court report, and who receives it?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "This would explain the reporting work without assuming a role in court decisions."
+        },
+        {
+          "question": "How do you prioritize home visits and case plans across your caseload?",
+          "archetype": "TENSION POINT",
+          "why": "Your approach could show how you handle competing family needs."
+        },
+        {
+          "question": "Can you recall a walk-in client you connected to a county benefit program and what happened next?",
+          "archetype": "DOMAIN LIFT",
+          "why": "A concrete example could bring the intake role beyond a list of services."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 64,
+    "more_critical": false
+  },
+  "presentation": {
+    "score": 64,
+    "band": "Needs more context",
+    "score_label_from_model": "Needs Clarity",
+    "model_score_before_calibration": 64,
+    "verdict": "Your current role centers on families involved with child protective services. Monthly family team meetings are worth keeping because they show a regular part of your work with families.",
+    "one_line_read": "The work is specific to child welfare, but most bullets describe duties.",
+    "takeaway": "Explain your casework decisions",
+    "biggest_gap_example": "\"Write case plans and court reports\" does not explain what you document or how the reports are used, leaving a reader to guess at your part in the process.",
+    "critical_count": {
+      "count": 1,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "One Critical Miss. Fix it first.",
+      "lead": "It's the one most likely to cost you the interview."
+    },
+    "fixes": [
+      {
+        "fix": "In the caseload bullet, add the number or range of families you typically carry, if you can verify it.",
+        "why": "That gives a reader a better sense of the volume of ongoing family work.",
+        "excerpt": "- Carry a caseload of families involved with child protective services",
+        "section": "EXPERIENCE",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the home-visit assessment bullet, describe a safety concern you assess and how you document or communicate it.",
+        "why": "A concrete example would show how you conduct the assessment without assuming authority you haven't claimed.",
+        "excerpt": "- Complete safety and risk assessments during home visits",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the service-coordination bullet, name a service need you worked on with one of the listed partners and what followed, if known.",
+        "why": "The named partners are useful, but an example would show what coordination involved.",
+        "excerpt": "- Coordinate services with schools, courts, and mental health providers",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "Naming schools, courts, and mental health providers shows the range of people you coordinate with.",
+    "strengths": [
+      "Naming schools, courts, and mental health providers shows the range of people you coordinate with.",
+      "The intake role identifies housing, food, and utility assistance, making the client needs you screened for concrete.",
+      "Your Ohio LMSW and social work degree are easy to find and establish your stated professional qualification."
+    ],
+    "gaps": [
+      "The number of families in your caseload is not stated, so the volume of ongoing work is unclear.",
+      "The assessment bullet doesn't describe what you look for during home visits or how you document concerns.",
+      "The resume doesn't describe what followed from a service connection or family meeting, limiting the picture of your work beyond the activity."
+    ],
+    "next_steps": [
+      "Review the current caseworker bullets and add a verified caseload figure and a concrete home-visit example.",
+      "Choose a service coordination or intake example and describe what you did and what followed, where known.",
+      "Revisit the opening sentence after revising the experience section so it reflects the work you want to emphasize."
+    ],
+    "seniority_read": "The recent title and responsibilities indicate a direct-service caseworker role; supervisory responsibilities are not stated.",
+    "best_fit_roles": [
+      "Family Services Caseworker",
+      "Intake Specialist"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "For family services roles, put the home visits, case plans, and partner coordination at the center of the experience section. For intake-focused roles, retain the specific assistance needs you screened for and explain a benefit connection if you can verify the details.",
+    "severity_added": [],
+    "severity_promoted": [],
+    "severity_outcome": "none (none)",
+    "severity_answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "keep_dropped",
+          "path": "strengths[0]",
+          "line": "fix-2",
+          "criticalMiss": false
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[0]",
+          "fix": 1
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[1]",
+          "fix": 2
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[0]",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[1]",
+          "of": "top_fixes[1]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "next_steps[1]",
+          "of": "top_fixes[2]"
+        }
+      ],
+      "fix_questions": [
+        [],
+        [
+          "What safety concerns have you encountered during home visits, and how did you document them?"
+        ],
+        [
+          "What typically happens when a family needs services from both a school and a mental health provider?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01235,
+  "latency_ms": 26304
+}

@@ -1,0 +1,48 @@
+# b29_mechanical_engineer, run 1
+Resume: ../../../tests/resumes/blindpick/synth_bp_mechanical_engineer_1.txt (143 words, sha256 415a2cd89f45)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0156; 33.0s
+
+## Band: Needs more context (score 64; model wrote 64, label "Needs Clarity")
+## Verdict
+Your move from Mechanical Engineer I to II is easy to follow, and the Arlo desk platform gives your current work a useful product anchor. The individual bullets say less about what changed through your work.
+One-line read: The engineering work is specific, but most bullets stop at responsibilities.
+Takeaway: Explain your design decisions
+Biggest gap example: "Support manufacturing with engineering change orders" does not explain what changes you handled, so a reviewer cannot tell what manufacturing problems you helped address.
+
+## Fixes (Two Critical Misses. Start with this one.; lead: "Either one could cost you the interview on its own."); severity added (added); added ["no_evidence_latest_role"]; promoted []
+1. [Critical Miss] In the Arlo platform bullet, name the components or design decisions you led and a completed change, if you can verify one.
+   why: A specific example would make your design leadership easier to understand.
+   excerpt (PROFESSIONAL EXPERIENCE): "- Lead mechanical design for the Arlo height-adjustable desk platform"
+2. [Critical Miss] In the Westhaven Mechanical Engineer II role, add the number of components or products you personally designed, or a measurable design result, if you can verify it.
+   why: Hiring managers for mechanical engineering roles look for the scope and results of design work. Your current role shows what you work on, but not its size or a measurable outcome.
+   excerpt (PROFESSIONAL EXPERIENCE): "Mechanical Engineer II"
+3. [fix] In the supplier bullet, describe what you reviewed during tooling or first-article inspection and an issue you worked through.
+   why: That detail would show how you participated rather than leaving the collaboration undefined.
+   excerpt (PROFESSIONAL EXPERIENCE): "- Work with suppliers in Mexico and Taiwan on tooling and first-article inspection"
+Severity check answer: {"critical_misses":[{"source":"new","kind":"no_evidence_latest_role","fix":"In the Westhaven Mechanical Engineer II role, add the number of components or products you personally designed, or a measurable design result, if you can verify it.","why":"Hiring managers for mechanical engineering roles look for the scope and results of design work. Your current role shows what you work on, but not its size or a measurable outcome.","excerpt":"Mechanical Engineer II","section":"PROFESSIONAL EXPERIENCE","effort":"moderate"}],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+Supplier work in Mexico and Taiwan shows that your role extends beyond internal design tasks.
+Other strengths: ["BIFMA prototype testing ties your earlier engineering work to a named furniture standard.","SolidWorks, GD&T, and load-bearing component analysis give a reviewer concrete technical context."]
+
+## Gaps
+- The Arlo bullet does not identify the parts or design decisions you led, leaving the extent of your platform responsibility unclear.
+- The first-article inspection bullet does not say what you reviewed or resolved with suppliers, making your part in that process difficult to assess.
+- No project result or completed product change is described, so the reader cannot connect your work to what ultimately shipped or changed.
+
+## Next steps
+- Revise the Arlo and supplier bullets using specific examples you can verify.
+- Review the analysis, testing, and engineering change bullets for a useful design choice or completed change to add.
+- Adjust the opening profile to reflect the product-design details you want a reviewer to notice first.
+
+## Role fit
+Level: Your current Mechanical Engineer II title and stated design leadership indicate an individual contributor role with product-level responsibility.
+Best fit: ["Mechanical Engineer II","Mechanical Engineer I"]
+Positioning: Center the resume on mechanical product design for furniture, using the Arlo platform as the lead example. Connect your analysis and supplier work to specific components or issues where you can verify the details.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[0]","line":"fix-2","criticalMiss":false},{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":2},{"kind":"question_dropped","path":"ideas.questions[2]","reason":"duplicates_keep"},{"kind":"question_dropped","path":"ideas.questions[3]","reason":"duplicates_keep"},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"ideas.questions[4]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[2]"}]

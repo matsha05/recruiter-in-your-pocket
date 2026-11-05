@@ -1,0 +1,728 @@
+{
+  "case_id": "b02_teacher",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "resumes/b_teacher.txt",
+  "resume_sha256": "7d89b420ec093fb2b4c948a14fbcee2a65d2a90d95c146e4f916e2d0a37955ee",
+  "resume_chars": 1314,
+  "resume_words": 202,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T19:57:59.417Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7705,
+        "completion_tokens": 2023,
+        "total_tokens": 9728,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 816,
+        "reasoning_tokens": 156
+      },
+      "cost_usd": 0.0114823,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 25088
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.00155325,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1136
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 84,
+    "score_label": "Strong",
+    "score_comment_short": "Class sizes, reading growth, and team leadership make the teaching work concrete.",
+    "score_comment_long": "The current role includes a district assessment result and specific classroom and team responsibilities. The methods behind the reading result and contributions to the math pilot are less clear. Adding those details would make the work easier to understand.",
+    "score_plain": "Your resume gives a reviewer concrete reasons to consider you for elementary teaching roles. A few examples of how you teach and contribute to school programs would help distinguish your approach.",
+    "first_impression": "Your current role combines fourth-grade instruction with grade-level planning and a math curriculum pilot. The reading assessment result is worth keeping because it gives a reviewer a concrete view of student growth.",
+    "biggest_gap_example": "\"Served on the school's positive behavior support committee\" doesn't explain what you contributed, leaving a reviewer unsure how you participated.",
+    "first_impression_takeaway": "Explain your teaching approach",
+    "summary": "Fourth-grade teaching is the center of this resume, with responsibility for all core subjects and a class that includes English language learners. You also lead weekly planning and data meetings for the grade-level team and trained other teachers on a new math curriculum. That combination points to an experienced classroom teacher with team-level responsibilities. The resume doesn't yet explain the instructional choices behind the reading growth, so a reviewer has less to go on when considering how you approach literacy instruction.",
+    "strengths": [
+      "The class of 27 and the description of its English language learners help a reviewer picture your current classroom.",
+      "The family literacy night attendance of 140 families in 2019 shows the reach of an event you coordinated.",
+      "Your Washington K-8 certificate and English Language Learner endorsement make your qualifications easy to locate."
+    ],
+    "gaps": [
+      "The math pilot doesn't describe what you tested or shared with colleagues, making your contribution to its rollout less specific.",
+      "Your work on the positive behavior support committee is named but not explained, so its connection to classroom practice is unclear.",
+      "The homework club lists its schedule and attendance but not the support you provide to students there."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the reading growth bullet, add an instructional practice you used during the three years, if you can verify it.",
+        "why": "The assessment figures show growth, but a reviewer cannot see what your literacy instruction involved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the math curriculum bullet, describe what you piloted and one topic you covered when training the other fourth-grade teachers.",
+        "why": "Those details would distinguish testing the curriculum from sharing it with colleagues.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Piloted the district's new math curriculum in 2023 and trained the other 4th grade teachers on it",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the positive behavior support committee bullet, name a specific contribution you made to the committee's work.",
+        "why": "Membership alone doesn't show what you did alongside other staff.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Served on the school's positive behavior support committee",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revisit the reading and math bullets and add the instructional and training details you can verify.",
+      "Expand the committee and homework club entries with a concrete example of your work in each.",
+      "Check the revised resume against the priorities of each teaching role before submitting it."
+    ],
+    "subscores": {
+      "impact": 83,
+      "clarity": 84,
+      "story": 85,
+      "readability": 86
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The opening identifies your elementary teaching background, Title I setting, and K-8 certification.",
+        "missing": "It doesn't introduce your grade-level leadership or literacy work.",
+        "fix": "Consider adding a brief reference to either reading instruction or grade-level planning."
+      },
+      "Work Experience": {
+        "grade": "B+",
+        "priority": "High",
+        "working": "Class sizes, the assessment result, team meetings, and family event attendance make the roles concrete.",
+        "missing": "Several entries leave your teaching methods or specific contributions unexplained.",
+        "fix": "Expand the reading, math pilot, and behavior committee bullets with examples of your work."
+      },
+      "Skills": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "Section not present.",
+        "fix": "Add only if it helps your story."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Both degrees, institutions, and completion years are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Elementary classroom instruction across core subjects",
+        "Grade-level planning and data meetings",
+        "Math curriculum piloting and teacher training",
+        "Family literacy event coordination"
+      ],
+      "underplayed": [
+        "Instructional practices used in reading",
+        "Contributions to positive behavior support",
+        "Support provided through the homework club"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "4th Grade Teacher",
+          "2nd Grade Teacher"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Experienced classroom teacher with grade-level team leadership responsibilities.",
+        "industry_signals": [
+          "Elementary education",
+          "Public schools"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Lead with classroom teaching and the reading growth result when applying for elementary roles. For roles that value collaboration, bring the grade-level meetings and math training closer to the top."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What reading practices did you use during the period covered by the district assessment result?",
+          "archetype": "IMPROVEMENT",
+          "why": "An example would help explain your literacy instruction alongside the stated growth."
+        },
+        {
+          "question": "What did you test in the math curriculum pilot, and what did you share when training other teachers?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The answer can show both your classroom work and the content of the training."
+        },
+        {
+          "question": "What did you contribute to the positive behavior support committee?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "A specific contribution would explain your role beyond committee membership."
+        },
+        {
+          "question": "How do you adapt core-subject instruction for English language learners in your fourth-grade class?",
+          "archetype": "TENSION POINT",
+          "why": "A classroom example would connect your endorsement to your teaching practice."
+        },
+        {
+          "question": "What did coordinating the 2019 family literacy night involve?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The attendance is clear, but the planning work behind the event isn't described."
+        }
+      ]
+    }
+  },
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 84,
+    "score_label": "Mostly clear",
+    "score_comment_short": "Class sizes, reading growth, and team leadership make the teaching work concrete.",
+    "score_comment_long": "The current role includes a district assessment result and specific classroom and team responsibilities. The methods behind the reading result and contributions to the math pilot are less clear. Adding those details would make the work easier to understand.",
+    "score_plain": "Your resume gives a reviewer concrete reasons to consider you for elementary teaching roles. A few examples of how you teach and contribute to school programs would help distinguish your approach.",
+    "first_impression": "Your current role combines fourth-grade instruction with grade-level planning and a math curriculum pilot. The reading assessment result is worth keeping because it gives a reviewer a concrete view of student growth.",
+    "biggest_gap_example": "\"Served on the school's positive behavior support committee\" doesn't explain what you contributed, leaving a reviewer unsure how you participated.",
+    "first_impression_takeaway": "Explain your teaching approach",
+    "summary": "Fourth-grade teaching is the center of this resume, with responsibility for all core subjects and a class that includes English language learners. You also lead weekly planning and data meetings for the grade-level team and trained other teachers on a new math curriculum. That combination points to an experienced classroom teacher with team-level responsibilities. The resume doesn't yet explain the instructional choices behind the reading growth, so a reviewer has less to go on when considering how you approach literacy instruction.",
+    "strengths": [
+      "The class of 27 and the description of its English language learners help a reviewer picture your current classroom.",
+      "The family literacy night attendance of 140 families in 2019 shows the reach of an event you coordinated.",
+      "Your Washington K-8 certificate and English Language Learner endorsement make your qualifications easy to locate."
+    ],
+    "gaps": [
+      "The math pilot doesn't describe what you tested or shared with colleagues, making your contribution to its rollout less specific.",
+      "Your work on the positive behavior support committee is named but not explained, so its connection to classroom practice is unclear.",
+      "The homework club lists its schedule and attendance but not the support you provide to students there."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the reading growth bullet, add an instructional practice you used during the three years, if you can verify it.",
+        "why": "The assessment figures show growth, but a reviewer cannot see what your literacy instruction involved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the math curriculum bullet, describe what you piloted and one topic you covered when training the other fourth-grade teachers.",
+        "why": "Those details would distinguish testing the curriculum from sharing it with colleagues.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Piloted the district's new math curriculum in 2023 and trained the other 4th grade teachers on it",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the positive behavior support committee bullet, name a specific contribution you made to the committee's work.",
+        "why": "Membership alone doesn't show what you did alongside other staff.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Served on the school's positive behavior support committee",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revisit the reading and math bullets and add the instructional and training details you can verify.",
+      "Expand the committee and homework club entries with a concrete example of your work in each.",
+      "Check the revised resume against the priorities of each teaching role before submitting it."
+    ],
+    "subscores": {
+      "impact": 83,
+      "clarity": 84,
+      "story": 85,
+      "readability": 86
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "B+",
+        "priority": "High",
+        "working": "Class sizes, the assessment result, team meetings, and family event attendance make the roles concrete.",
+        "missing": "Several entries leave your teaching methods or specific contributions unexplained.",
+        "fix": "Expand the reading, math pilot, and behavior committee bullets with examples of your work."
+      },
+      "Skills": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No skills section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Both degrees, institutions, and completion years are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Elementary classroom instruction across core subjects",
+        "Grade-level planning and data meetings",
+        "Math curriculum piloting and teacher training",
+        "Family literacy event coordination"
+      ],
+      "underplayed": [
+        "Instructional practices used in reading",
+        "Contributions to positive behavior support",
+        "Support provided through the homework club"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "4th Grade Teacher",
+          "2nd Grade Teacher"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Experienced classroom teacher with grade-level team leadership responsibilities.",
+        "industry_signals": [
+          "Elementary education",
+          "Public schools"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with classroom teaching and the reading growth result when applying for elementary roles. For roles that value collaboration, bring the grade-level meetings and math training closer to the top."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What reading practices did you use during the period covered by the district assessment result?",
+          "archetype": "IMPROVEMENT",
+          "why": "An example would help explain your literacy instruction alongside the stated growth."
+        },
+        {
+          "question": "What did you test in the math curriculum pilot, and what did you share when training other teachers?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The answer can show both your classroom work and the content of the training."
+        },
+        {
+          "question": "What did you contribute to the positive behavior support committee?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "A specific contribution would explain your role beyond committee membership."
+        },
+        {
+          "question": "How do you adapt core-subject instruction for English language learners in your fourth-grade class?",
+          "archetype": "TENSION POINT",
+          "why": "A classroom example would connect your endorsement to your teaching practice."
+        },
+        {
+          "question": "What did coordinating the 2019 family literacy night involve?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The attendance is clear, but the planning work behind the event isn't described."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 84
+  },
+  "severity": {
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "promoted": [],
+    "replaced": [],
+    "skipped": [],
+    "critical_count": 1,
+    "more_critical": false,
+    "validation_attempts": 0,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "latency_ms": 1139,
+    "call_latency_ms": 1136,
+    "cost_usd": 0.00155325,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 84,
+    "score_label": "Mostly clear",
+    "score_comment_short": "Class sizes, reading growth, and team leadership make the teaching work concrete.",
+    "score_comment_long": "The current role includes a district assessment result and specific classroom and team responsibilities. The methods behind the reading result and contributions to the math pilot are less clear. Adding those details would make the work easier to understand.",
+    "score_plain": "Your resume gives a reviewer concrete reasons to consider you for elementary teaching roles. A few examples of how you teach and contribute to school programs would help distinguish your approach.",
+    "first_impression": "Your current role combines fourth-grade instruction with grade-level planning and a math curriculum pilot. The reading assessment result is worth keeping because it gives a reviewer a concrete view of student growth.",
+    "biggest_gap_example": "\"Served on the school's positive behavior support committee\" doesn't explain what you contributed, leaving a reviewer unsure how you participated.",
+    "first_impression_takeaway": "Explain your teaching approach",
+    "summary": "Fourth-grade teaching is the center of this resume, with responsibility for all core subjects and a class that includes English language learners. You also lead weekly planning and data meetings for the grade-level team and trained other teachers on a new math curriculum. That combination points to an experienced classroom teacher with team-level responsibilities. The resume doesn't yet explain the instructional choices behind the reading growth, so a reviewer has less to go on when considering how you approach literacy instruction.",
+    "strengths": [
+      "The class of 27 and the description of its English language learners help a reviewer picture your current classroom.",
+      "The family literacy night attendance of 140 families in 2019 shows the reach of an event you coordinated.",
+      "Your Washington K-8 certificate and English Language Learner endorsement make your qualifications easy to locate."
+    ],
+    "gaps": [
+      "The math pilot doesn't describe what you tested or shared with colleagues, making your contribution to its rollout less specific.",
+      "Your work on the positive behavior support committee is named but not explained, so its connection to classroom practice is unclear.",
+      "The homework club lists its schedule and attendance but not the support you provide to students there."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the reading growth bullet, add an instructional practice you used during the three years, if you can verify it.",
+        "why": "The assessment figures show growth, but a reviewer cannot see what your literacy instruction involved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": true
+      },
+      {
+        "fix": "In the math curriculum bullet, describe what you piloted and one topic you covered when training the other fourth-grade teachers.",
+        "why": "Those details would distinguish testing the curriculum from sharing it with colleagues.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Piloted the district's new math curriculum in 2023 and trained the other 4th grade teachers on it",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      },
+      {
+        "fix": "In the positive behavior support committee bullet, name a specific contribution you made to the committee's work.",
+        "why": "Membership alone doesn't show what you did alongside other staff.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Served on the school's positive behavior support committee",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      }
+    ],
+    "next_steps": [
+      "Revisit the reading and math bullets and add the instructional and training details you can verify.",
+      "Expand the committee and homework club entries with a concrete example of your work in each.",
+      "Check the revised resume against the priorities of each teaching role before submitting it."
+    ],
+    "subscores": {
+      "impact": 83,
+      "clarity": 84,
+      "story": 85,
+      "readability": 86
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "B+",
+        "priority": "High",
+        "working": "Class sizes, the assessment result, team meetings, and family event attendance make the roles concrete.",
+        "missing": "Several entries leave your teaching methods or specific contributions unexplained.",
+        "fix": "Expand the reading, math pilot, and behavior committee bullets with examples of your work."
+      },
+      "Skills": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No skills section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Both degrees, institutions, and completion years are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Elementary classroom instruction across core subjects",
+        "Grade-level planning and data meetings",
+        "Math curriculum piloting and teacher training",
+        "Family literacy event coordination"
+      ],
+      "underplayed": [
+        "Instructional practices used in reading",
+        "Contributions to positive behavior support",
+        "Support provided through the homework club"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "4th Grade Teacher",
+          "2nd Grade Teacher"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Experienced classroom teacher with grade-level team leadership responsibilities.",
+        "industry_signals": [
+          "Elementary education",
+          "Public schools"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with classroom teaching and the reading growth result when applying for elementary roles. For roles that value collaboration, bring the grade-level meetings and math training closer to the top."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What reading practices did you use during the period covered by the district assessment result?",
+          "archetype": "IMPROVEMENT",
+          "why": "An example would help explain your literacy instruction alongside the stated growth."
+        },
+        {
+          "question": "What did you test in the math curriculum pilot, and what did you share when training other teachers?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The answer can show both your classroom work and the content of the training."
+        },
+        {
+          "question": "What did you contribute to the positive behavior support committee?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "A specific contribution would explain your role beyond committee membership."
+        },
+        {
+          "question": "How do you adapt core-subject instruction for English language learners in your fourth-grade class?",
+          "archetype": "TENSION POINT",
+          "why": "A classroom example would connect your endorsement to your teaching practice."
+        },
+        {
+          "question": "What did coordinating the 2019 family literacy night involve?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The attendance is clear, but the planning work behind the event isn't described."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 84,
+    "more_critical": false
+  },
+  "presentation": {
+    "score": 84,
+    "band": "Mostly clear",
+    "score_label_from_model": "Strong",
+    "model_score_before_calibration": 84,
+    "verdict": "Your current role combines fourth-grade instruction with grade-level planning and a math curriculum pilot. The reading assessment result is worth keeping because it gives a reviewer a concrete view of student growth.",
+    "one_line_read": "Class sizes, reading growth, and team leadership make the teaching work concrete.",
+    "takeaway": "Explain your teaching approach",
+    "biggest_gap_example": "\"Served on the school's positive behavior support committee\" doesn't explain what you contributed, leaving a reviewer unsure how you participated.",
+    "critical_count": {
+      "count": 1,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "One Critical Miss. Fix it first.",
+      "lead": "It's the one most likely to cost you the interview."
+    },
+    "fixes": [
+      {
+        "fix": "In the reading growth bullet, add an instructional practice you used during the three years, if you can verify it.",
+        "why": "The assessment figures show growth, but a reviewer cannot see what your literacy instruction involved.",
+        "excerpt": "- Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years",
+        "section": "EXPERIENCE",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the math curriculum bullet, describe what you piloted and one topic you covered when training the other fourth-grade teachers.",
+        "why": "Those details would distinguish testing the curriculum from sharing it with colleagues.",
+        "excerpt": "- Piloted the district's new math curriculum in 2023 and trained the other 4th grade teachers on it",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the positive behavior support committee bullet, name a specific contribution you made to the committee's work.",
+        "why": "Membership alone doesn't show what you did alongside other staff.",
+        "excerpt": "- Served on the school's positive behavior support committee",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "The class of 27 and the description of its English language learners help a reviewer picture your current classroom.",
+    "strengths": [
+      "The class of 27 and the description of its English language learners help a reviewer picture your current classroom.",
+      "The family literacy night attendance of 140 families in 2019 shows the reach of an event you coordinated.",
+      "Your Washington K-8 certificate and English Language Learner endorsement make your qualifications easy to locate."
+    ],
+    "gaps": [
+      "The math pilot doesn't describe what you tested or shared with colleagues, making your contribution to its rollout less specific.",
+      "Your work on the positive behavior support committee is named but not explained, so its connection to classroom practice is unclear.",
+      "The homework club lists its schedule and attendance but not the support you provide to students there."
+    ],
+    "next_steps": [
+      "Revisit the reading and math bullets and add the instructional and training details you can verify.",
+      "Expand the committee and homework club entries with a concrete example of your work in each.",
+      "Check the revised resume against the priorities of each teaching role before submitting it."
+    ],
+    "seniority_read": "Experienced classroom teacher with grade-level team leadership responsibilities.",
+    "best_fit_roles": [
+      "4th Grade Teacher",
+      "2nd Grade Teacher"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "Lead with classroom teaching and the reading growth result when applying for elementary roles. For roles that value collaboration, bring the grade-level meetings and math training closer to the top.",
+    "severity_added": [],
+    "severity_promoted": [],
+    "severity_outcome": "none (none)",
+    "severity_answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[0]",
+          "fix": 0
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[1]",
+          "fix": 1
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[2]",
+          "fix": 2
+        },
+        {
+          "kind": "question_dropped",
+          "path": "ideas.questions[3]",
+          "reason": "duplicates_keep"
+        },
+        {
+          "kind": "question_dropped",
+          "path": "ideas.questions[4]",
+          "reason": "duplicates_keep"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "biggest_gap_example",
+          "of": "top_fixes[2]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[0]",
+          "of": "top_fixes[1]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[1]",
+          "of": "top_fixes[2]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Work Experience.working",
+          "of": "strengths[1]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Work Experience.fix",
+          "of": "first_impression"
+        }
+      ],
+      "fix_questions": [
+        [
+          "What reading practices did you use during the period covered by the district assessment result?"
+        ],
+        [
+          "What did you test in the math curriculum pilot, and what did you share when training other teachers?"
+        ],
+        [
+          "What did you contribute to the positive behavior support committee?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01303555,
+  "latency_ms": 26801
+}

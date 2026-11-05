@@ -1,0 +1,898 @@
+{
+  "case_id": "b12_coo_executive_two_page",
+  "batch": "breadth",
+  "run": 2,
+  "note": "Executive, two pages.",
+  "resume_file": "resumes/b_coo_executive.txt",
+  "resume_sha256": "213474e9b27355f8a085204e3dac05f65782d74d43b9b531cb2afd6a3afe1b79",
+  "resume_chars": 3018,
+  "resume_words": 463,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T20:02:38.628Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 8573,
+        "completion_tokens": 2441,
+        "total_tokens": 11014,
+        "cached_prompt_tokens": 8570,
+        "cache_write_prompt_tokens": 0,
+        "reasoning_tokens": 451
+      },
+      "cost_usd": 0.0126365,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 28399
+    },
+    {
+      "kind": "repair",
+      "usage": {
+        "prompt_tokens": 11437,
+        "completion_tokens": 2968,
+        "total_tokens": 14405,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 4548,
+        "reasoning_tokens": 1054
+      },
+      "cost_usd": 0.0208723,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 34834
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.002632,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1199
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 94,
+    "score_label": "Top Tier",
+    "score_comment_short": "Recent roles combine extensive operating responsibility with specific results and methods.",
+    "score_comment_long": "The COO section connects practice growth, integration, retention, and margin to concrete figures. A few executive responsibilities could explain more about the decisions behind them. Adding that detail selectively would make an already detailed record easier to assess.",
+    "score_plain": "The resume gives a reviewer substantial information for assessing senior healthcare operations roles. A few targeted additions could help distinguish how you work at the executive level.",
+    "first_impression": "Your current role spans 140 practices across 9 states, with CEO and board access stated upfront. The operating results are easy to find, though some executive decisions behind them remain less visible.",
+    "biggest_gap_example": "\"Led the Epic go-live across the clinics in 2013\" does not explain the rollout decisions you handled, leaving your contribution to the implementation less distinct.",
+    "first_impression_takeaway": "Explain your rollout decisions",
+    "summary": "Growing the dental organization from 38 to 140 practices sits alongside a rise in same-store EBITDA margin from 17% to 23%. That pairing is worth keeping because it shows growth and performance at the same time without needing to claim one caused the other. Your COO role also shows responsibility for integration, clinical retention, and a large operating model. The record reads at the COO level, although the subjects you bring to the board are not specified, which leaves your executive reporting less concrete.",
+    "strengths": [
+      "Reducing integration time from 7 months to 10 weeks through a standardized playbook shows how you changed the process.",
+      "The compensation plan and clinical career ladder are linked to a drop in hygienist turnover from 34% to 19% over two years.",
+      "The surgery center turnaround names both payer contract renegotiation and block scheduling, making the financial change easier to understand."
+    ],
+    "gaps": [
+      "The quarterly board presentations have no stated topics, so a reviewer cannot tell which operating questions you bring to directors.",
+      "Your sponsorship of the EHR consolidation does not describe the decisions you made during the transition.",
+      "The value-based contract shift states the covered population and group savings, but not which parts of the transition you directed."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the COO board-reporting bullet, name the operating or financial topics you presented, if you can verify them.",
+        "why": "The reporting relationship is clear, but the subjects would show what the board relied on you to explain.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "report to the CEO and present to the board quarterly",
+          "section": "EXECUTIVE EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXECUTIVE EXPERIENCE"
+      },
+      {
+        "fix": "In the EHR consolidation bullet, describe a decision you made as sponsor during the move from 6 systems to 1.",
+        "why": "The on-budget delivery and duration are already stated; a decision would make your sponsorship more concrete.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Sponsored the EHR consolidation from 6 systems to 1 across all practices, finished on budget in 20 months",
+          "section": "EXECUTIVE EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXECUTIVE EXPERIENCE"
+      },
+      {
+        "fix": "In the value-based contracts bullet, specify which part of the transition you directed while retaining the group attribution for shared savings.",
+        "why": "This would distinguish your work from the group's financial result without changing the credit described.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Led the shift to value-based contracts covering 85,000 attributed lives; the group earned $14M in shared savings over three years",
+          "section": "EXECUTIVE EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXECUTIVE EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Review the COO board and EHR bullets and add the topics or decisions you can substantiate.",
+      "Revisit the value-based contracting and Epic rollout bullets for the parts of each transition you directed.",
+      "Update the opening summary with the existing EBITDA margin figures if they fit the roles you are targeting."
+    ],
+    "subscores": {
+      "impact": 96,
+      "clarity": 93,
+      "story": 94,
+      "readability": 93
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "A-",
+        "priority": "Low",
+        "working": "The opening identifies your COO role, healthcare setting, practice growth, and margin improvement.",
+        "missing": "The margin change is quantified in the experience section but not in the opening.",
+        "fix": "Consider bringing the 17% to 23% EBITDA margin figures into the summary."
+      },
+      "Work Experience": {
+        "grade": "A",
+        "priority": "Medium",
+        "working": "Recent bullets combine operating scale with results in integration, retention, and financial performance.",
+        "missing": "Board presentation topics and some decisions behind major transitions are not described.",
+        "fix": "Add a selective example of an executive decision where it helps explain an existing bullet."
+      },
+      "Skills": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "Section not present.",
+        "fix": "Add only if it helps your story."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Both degrees, institutions, and graduation years are easy to locate.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Multi-site dental and clinic operations",
+        "Practice growth through acquisitions and de novo openings",
+        "Operating plans and P&L responsibility",
+        "Practice integration and clinical workforce retention",
+        "Value-based contracts and patient access"
+      ],
+      "underplayed": [
+        "Topics presented to the board",
+        "Decisions made as EHR consolidation sponsor",
+        "Specific leadership work in the value-based contract transition"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Chief Operating Officer",
+          "Senior Vice President, Operations"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current title and responsibility for operations and the P&L place you at the COO level.",
+        "industry_signals": [
+          "Dental services",
+          "Primary care and specialty clinics",
+          "Outpatient and ambulatory surgery"
+        ],
+        "company_stage_fit": "Your current employer is described as private equity backed; other company stages are not clear from the resume alone."
+      },
+      "positioning_suggestion": "For COO roles in multi-site healthcare, keep the practice growth and same-store margin figures together near the top. Use the integration and retention examples to show how you changed operations, then add a board topic or sponsorship decision where verified."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "Which operating topics did you bring to the board in your quarterly presentations?",
+          "archetype": "HIGH STAKES",
+          "why": "A concrete topic would give the board-reporting responsibility more substance."
+        },
+        {
+          "question": "What did you standardize in the 90-day playbook to shorten new-practice integration?",
+          "archetype": "IMPROVEMENT",
+          "why": "The time reduction is stated; an example would explain the change."
+        },
+        {
+          "question": "As EHR consolidation sponsor, which decisions did you make during the transition?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "This could clarify your part without overstating implementation ownership."
+        },
+        {
+          "question": "Which parts of the value-based contract transition did you direct?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The covered lives and group savings are clear, while your specific leadership work is less detailed."
+        },
+        {
+          "question": "During the Epic go-live, what rollout decisions or issues did you handle across the clinics?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "A specific example could make the older implementation bullet more informative."
+        }
+      ]
+    }
+  },
+  "initial_validation_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the evidence grounding contract: contradicted positive source evidence at section_review.Summary.missing."
+  },
+  "model_output_repaired": {
+    "contract_version": "v2",
+    "score": 94,
+    "score_label": "Top Tier",
+    "score_comment_short": "Recent roles pair substantial operating responsibility with specific results and methods.",
+    "score_comment_long": "The COO section connects practice growth, integration, retention, and margin to concrete figures. A few executive responsibilities could say more about the work behind them. Selective additions would make those contributions easier to assess.",
+    "score_plain": "The resume gives a reviewer substantial information for assessing senior healthcare operations roles. A few targeted edits could make your contributions to major transitions more distinct.",
+    "first_impression": "Your current COO role covers 140 practices across 9 states, with a direct reporting line to the CEO. The results are prominent, though a few responsibilities leave your day-to-day decisions less visible.",
+    "biggest_gap_example": "\"Led the Epic go-live across the clinics in 2013\" does not describe the rollout decisions you handled, leaving your contribution to the implementation less distinct.",
+    "first_impression_takeaway": "Explain your rollout decisions",
+    "summary": "You grew the dental organization from 38 to 140 practices while raising same-store EBITDA margin from 17% to 23%. Keeping those figures together shows growth and financial performance without claiming one caused the other. Your COO record also connects changes in integration and clinical retention to specific results. The resume reads at the COO level, although the topics you present to the board remain unclear.",
+    "strengths": [
+      "Reducing integration time from 7 months to 10 weeks through a standardized playbook shows how you changed the process.",
+      "The compensation plan and clinical career ladder are linked to a drop in hygienist turnover from 34% to 19% over two years.",
+      "The surgery center turnaround names payer contract renegotiation and block scheduling, making the financial change easier to understand."
+    ],
+    "gaps": [
+      "The quarterly board presentations have no stated topics, so a reviewer cannot tell which operating questions you bring to directors.",
+      "Your EHR consolidation bullet describes sponsorship and completion, but not the decisions you made during the transition.",
+      "The Epic go-live entry does not explain which rollout matters you handled, making that earlier leadership work less concrete."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the COO board-reporting bullet, name the operating or financial topics you presented, if you can verify them.",
+        "why": "The reporting relationship is clear, but the subjects would show what you brought to board discussions.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "report to the CEO and present to the board quarterly",
+          "section": "EXECUTIVE EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXECUTIVE EXPERIENCE"
+      },
+      {
+        "fix": "In the EHR consolidation bullet, describe a decision you made as sponsor during the transition, if applicable.",
+        "why": "The on-budget completion and duration are already stated; an example would make your sponsorship more concrete.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Sponsored the EHR consolidation from 6 systems to 1 across all practices, finished on budget in 20 months",
+          "section": "EXECUTIVE EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXECUTIVE EXPERIENCE"
+      },
+      {
+        "fix": "In the Epic go-live bullet, add an example of a rollout decision or issue you handled.",
+        "why": "That detail would distinguish your leadership work from the fact that the implementation took place.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Led the Epic go-live across the clinics in 2013",
+          "section": "EXECUTIVE EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXECUTIVE EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Review your COO board and EHR bullets and add the topics or decisions you can substantiate.",
+      "Revisit the Epic entry and choose one rollout detail you can accurately describe.",
+      "Consider moving the existing EBITDA margin figures into the opening summary for roles where financial performance is central."
+    ],
+    "subscores": {
+      "impact": 96,
+      "clarity": 93,
+      "story": 94,
+      "readability": 93
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The opening identifies your COO role, healthcare setting, practice growth, and same-store margin improvement.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Work Experience": {
+        "grade": "A",
+        "priority": "Medium",
+        "working": "Recent bullets combine operating scale with results in integration, retention, and financial performance.",
+        "missing": "Board presentation topics and some decisions behind major transitions are not described.",
+        "fix": "Add a selective example of an executive decision where it helps explain an existing bullet."
+      },
+      "Skills": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "Section not present.",
+        "fix": "Add only if it helps your story."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Both degrees, institutions, and graduation years are easy to locate.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Multi-site dental and clinic operations",
+        "Practice growth through acquisitions and de novo openings",
+        "Operating plans and P&L responsibility",
+        "Practice integration and clinical workforce retention",
+        "Value-based contracts and patient access"
+      ],
+      "underplayed": [
+        "Topics presented to the board",
+        "Decisions made as EHR consolidation sponsor",
+        "Rollout work during the Epic go-live"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Chief Operating Officer",
+          "Senior Vice President, Operations"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current title and responsibility for operations and the P&L place you at the COO level.",
+        "industry_signals": [
+          "Dental services",
+          "Primary care and specialty clinics",
+          "Outpatient and ambulatory surgery"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "For COO roles in multi-site healthcare, keep practice growth and same-store margin together near the top. Use the integration and retention examples to show how you changed operations, then add a board topic or sponsorship decision where verified."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What did you standardize in the 90-day playbook to shorten new-practice integration?",
+          "archetype": "IMPROVEMENT",
+          "why": "An example would explain the process change behind the stated time reduction."
+        },
+        {
+          "question": "What responsibilities did the 9 regional directors hold in the operating model you built?",
+          "archetype": "SCALING",
+          "why": "Their responsibilities would make the regional structure more tangible."
+        },
+        {
+          "question": "What changes helped reduce the third-available appointment wait across primary care?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "The wait-time result is clear; the work behind it is not described."
+        },
+        {
+          "question": "Which parts of the value-based contract transition did you direct?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The covered lives and group savings are stated, while your specific leadership work is less detailed."
+        },
+        {
+          "question": "What rollout decisions did you make while leading the Epic go-live?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "A specific decision could make the earlier implementation entry more informative."
+        }
+      ]
+    }
+  },
+  "repaired": true,
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 89,
+    "score_label": "Clear and specific",
+    "score_comment_short": "Recent roles pair substantial operating responsibility with specific results and methods.",
+    "score_comment_long": "The COO section connects practice growth, integration, retention, and margin to concrete figures. A few executive responsibilities could say more about the work behind them. Selective additions would make those contributions easier to assess.",
+    "score_plain": "The resume gives a reviewer substantial information for assessing senior healthcare operations roles. A few targeted edits could make your contributions to major transitions more distinct.",
+    "first_impression": "Your current COO role covers 140 practices across 9 states, with a direct reporting line to the CEO. The results are prominent, though a few responsibilities leave your day-to-day decisions less visible.",
+    "biggest_gap_example": "\"Led the Epic go-live across the clinics in 2013\" does not describe the rollout decisions you handled, leaving your contribution to the implementation less distinct.",
+    "first_impression_takeaway": "Explain your rollout decisions",
+    "summary": "You grew the dental organization from 38 to 140 practices while raising same-store EBITDA margin from 17% to 23%. Keeping those figures together shows growth and financial performance without claiming one caused the other. Your COO record also connects changes in integration and clinical retention to specific results. The resume reads at the COO level, although the topics you present to the board remain unclear.",
+    "strengths": [
+      "Reducing integration time from 7 months to 10 weeks through a standardized playbook shows how you changed the process.",
+      "The compensation plan and clinical career ladder are linked to a drop in hygienist turnover from 34% to 19% over two years.",
+      "The surgery center turnaround names payer contract renegotiation and block scheduling, making the financial change easier to understand."
+    ],
+    "gaps": [
+      "The quarterly board presentations have no stated topics, so a reviewer cannot tell which operating questions you bring to directors.",
+      "Your EHR consolidation bullet describes sponsorship and completion, but not the decisions you made during the transition.",
+      "The Epic go-live entry does not explain which rollout matters you handled, making that earlier leadership work less concrete."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the COO board-reporting bullet, name the operating or financial topics you presented, if you can verify them.",
+        "why": "The reporting relationship is clear, but the subjects would show what you brought to board discussions.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "report to the CEO and present to the board quarterly",
+          "section": "EXECUTIVE EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXECUTIVE EXPERIENCE"
+      },
+      {
+        "fix": "In the EHR consolidation bullet, describe a decision you made as sponsor during the transition, if applicable.",
+        "why": "The on-budget completion and duration are already stated; an example would make your sponsorship more concrete.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Sponsored the EHR consolidation from 6 systems to 1 across all practices, finished on budget in 20 months",
+          "section": "EXECUTIVE EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXECUTIVE EXPERIENCE"
+      },
+      {
+        "fix": "In the Epic go-live bullet, add an example of a rollout decision or issue you handled.",
+        "why": "That detail would distinguish your leadership work from the fact that the implementation took place.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Led the Epic go-live across the clinics in 2013",
+          "section": "EXECUTIVE EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXECUTIVE EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Review your COO board and EHR bullets and add the topics or decisions you can substantiate.",
+      "Revisit the Epic entry and choose one rollout detail you can accurately describe.",
+      "Consider moving the existing EBITDA margin figures into the opening summary for roles where financial performance is central."
+    ],
+    "subscores": {
+      "impact": 95,
+      "clarity": 93,
+      "story": 94,
+      "readability": 93
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The opening identifies your COO role, healthcare setting, practice growth, and same-store margin improvement.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Work Experience": {
+        "grade": "A",
+        "priority": "Medium",
+        "working": "Recent bullets combine operating scale with results in integration, retention, and financial performance.",
+        "missing": "Board presentation topics and some decisions behind major transitions are not described.",
+        "fix": "Add a selective example of an executive decision where it helps explain an existing bullet."
+      },
+      "Skills": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No skills section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Both degrees, institutions, and graduation years are easy to locate.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Multi-site dental and clinic operations",
+        "Practice growth through acquisitions and de novo openings",
+        "Operating plans and P&L responsibility",
+        "Practice integration and clinical workforce retention",
+        "Value-based contracts and patient access"
+      ],
+      "underplayed": [
+        "Topics presented to the board",
+        "Decisions made as EHR consolidation sponsor",
+        "Rollout work during the Epic go-live"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Chief Operating Officer",
+          "Senior Vice President, Operations"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current title and responsibility for operations and the P&L place you at the COO level.",
+        "industry_signals": [
+          "Dental services",
+          "Primary care and specialty clinics"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "For COO roles in multi-site healthcare, keep practice growth and same-store margin together near the top. Use the integration and retention examples to show how you changed operations, then add a board topic or sponsorship decision where verified."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What did you standardize in the 90-day playbook to shorten new-practice integration?",
+          "archetype": "IMPROVEMENT",
+          "why": "An example would explain the process change behind the stated time reduction."
+        },
+        {
+          "question": "What responsibilities did the 9 regional directors hold in the operating model you built?",
+          "archetype": "SCALING",
+          "why": "Their responsibilities would make the regional structure more tangible."
+        },
+        {
+          "question": "What changes helped reduce the third-available appointment wait across primary care?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "The wait-time result is clear; the work behind it is not described."
+        },
+        {
+          "question": "Which parts of the value-based contract transition did you direct?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The covered lives and group savings are stated, while your specific leadership work is less detailed."
+        },
+        {
+          "question": "What rollout decisions did you make while leading the Epic go-live?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "A specific decision could make the earlier implementation entry more informative."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "severity": {
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "promoted": [],
+    "replaced": [],
+    "skipped": [],
+    "critical_count": 1,
+    "more_critical": false,
+    "validation_attempts": 0,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "latency_ms": 1200,
+    "call_latency_ms": 1199,
+    "cost_usd": 0.002632,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 89,
+    "score_label": "Clear and specific",
+    "score_comment_short": "Recent roles pair substantial operating responsibility with specific results and methods.",
+    "score_comment_long": "The COO section connects practice growth, integration, retention, and margin to concrete figures. A few executive responsibilities could say more about the work behind them. Selective additions would make those contributions easier to assess.",
+    "score_plain": "The resume gives a reviewer substantial information for assessing senior healthcare operations roles. A few targeted edits could make your contributions to major transitions more distinct.",
+    "first_impression": "Your current COO role covers 140 practices across 9 states, with a direct reporting line to the CEO. The results are prominent, though a few responsibilities leave your day-to-day decisions less visible.",
+    "biggest_gap_example": "\"Led the Epic go-live across the clinics in 2013\" does not describe the rollout decisions you handled, leaving your contribution to the implementation less distinct.",
+    "first_impression_takeaway": "Explain your rollout decisions",
+    "summary": "You grew the dental organization from 38 to 140 practices while raising same-store EBITDA margin from 17% to 23%. Keeping those figures together shows growth and financial performance without claiming one caused the other. Your COO record also connects changes in integration and clinical retention to specific results. The resume reads at the COO level, although the topics you present to the board remain unclear.",
+    "strengths": [
+      "Reducing integration time from 7 months to 10 weeks through a standardized playbook shows how you changed the process.",
+      "The compensation plan and clinical career ladder are linked to a drop in hygienist turnover from 34% to 19% over two years.",
+      "The surgery center turnaround names payer contract renegotiation and block scheduling, making the financial change easier to understand."
+    ],
+    "gaps": [
+      "The quarterly board presentations have no stated topics, so a reviewer cannot tell which operating questions you bring to directors.",
+      "Your EHR consolidation bullet describes sponsorship and completion, but not the decisions you made during the transition.",
+      "The Epic go-live entry does not explain which rollout matters you handled, making that earlier leadership work less concrete."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the COO board-reporting bullet, name the operating or financial topics you presented, if you can verify them.",
+        "why": "The reporting relationship is clear, but the subjects would show what you brought to board discussions.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "report to the CEO and present to the board quarterly",
+          "section": "EXECUTIVE EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXECUTIVE EXPERIENCE",
+        "critical": true
+      },
+      {
+        "fix": "In the EHR consolidation bullet, describe a decision you made as sponsor during the transition, if applicable.",
+        "why": "The on-budget completion and duration are already stated; an example would make your sponsorship more concrete.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Sponsored the EHR consolidation from 6 systems to 1 across all practices, finished on budget in 20 months",
+          "section": "EXECUTIVE EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXECUTIVE EXPERIENCE",
+        "critical": false
+      },
+      {
+        "fix": "In the Epic go-live bullet, add an example of a rollout decision or issue you handled.",
+        "why": "That detail would distinguish your leadership work from the fact that the implementation took place.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Led the Epic go-live across the clinics in 2013",
+          "section": "EXECUTIVE EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXECUTIVE EXPERIENCE",
+        "critical": false
+      }
+    ],
+    "next_steps": [
+      "Review your COO board and EHR bullets and add the topics or decisions you can substantiate.",
+      "Revisit the Epic entry and choose one rollout detail you can accurately describe.",
+      "Consider moving the existing EBITDA margin figures into the opening summary for roles where financial performance is central."
+    ],
+    "subscores": {
+      "impact": 95,
+      "clarity": 93,
+      "story": 94,
+      "readability": 93
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The opening identifies your COO role, healthcare setting, practice growth, and same-store margin improvement.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Work Experience": {
+        "grade": "A",
+        "priority": "Medium",
+        "working": "Recent bullets combine operating scale with results in integration, retention, and financial performance.",
+        "missing": "Board presentation topics and some decisions behind major transitions are not described.",
+        "fix": "Add a selective example of an executive decision where it helps explain an existing bullet."
+      },
+      "Skills": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No skills section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Both degrees, institutions, and graduation years are easy to locate.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Multi-site dental and clinic operations",
+        "Practice growth through acquisitions and de novo openings",
+        "Operating plans and P&L responsibility",
+        "Practice integration and clinical workforce retention",
+        "Value-based contracts and patient access"
+      ],
+      "underplayed": [
+        "Topics presented to the board",
+        "Decisions made as EHR consolidation sponsor",
+        "Rollout work during the Epic go-live"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Chief Operating Officer",
+          "Senior Vice President, Operations"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current title and responsibility for operations and the P&L place you at the COO level.",
+        "industry_signals": [
+          "Dental services",
+          "Primary care and specialty clinics"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "For COO roles in multi-site healthcare, keep practice growth and same-store margin together near the top. Use the integration and retention examples to show how you changed operations, then add a board topic or sponsorship decision where verified."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What did you standardize in the 90-day playbook to shorten new-practice integration?",
+          "archetype": "IMPROVEMENT",
+          "why": "An example would explain the process change behind the stated time reduction."
+        },
+        {
+          "question": "What responsibilities did the 9 regional directors hold in the operating model you built?",
+          "archetype": "SCALING",
+          "why": "Their responsibilities would make the regional structure more tangible."
+        },
+        {
+          "question": "What changes helped reduce the third-available appointment wait across primary care?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "The wait-time result is clear; the work behind it is not described."
+        },
+        {
+          "question": "Which parts of the value-based contract transition did you direct?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The covered lives and group savings are stated, while your specific leadership work is less detailed."
+        },
+        {
+          "question": "What rollout decisions did you make while leading the Epic go-live?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "A specific decision could make the earlier implementation entry more informative."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89,
+    "more_critical": false
+  },
+  "presentation": {
+    "score": 89,
+    "band": "Clear and specific",
+    "score_label_from_model": "Top Tier",
+    "model_score_before_calibration": 94,
+    "verdict": "Your current COO role covers 140 practices across 9 states, with a direct reporting line to the CEO. The results are prominent, though a few responsibilities leave your day-to-day decisions less visible.",
+    "one_line_read": "Recent roles pair substantial operating responsibility with specific results and methods.",
+    "takeaway": "Explain your rollout decisions",
+    "biggest_gap_example": "\"Led the Epic go-live across the clinics in 2013\" does not describe the rollout decisions you handled, leaving your contribution to the implementation less distinct.",
+    "critical_count": {
+      "count": 1,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "One Critical Miss. Fix it first.",
+      "lead": "It's the one most likely to cost you the interview."
+    },
+    "fixes": [
+      {
+        "fix": "In the COO board-reporting bullet, name the operating or financial topics you presented, if you can verify them.",
+        "why": "The reporting relationship is clear, but the subjects would show what you brought to board discussions.",
+        "excerpt": "report to the CEO and present to the board quarterly",
+        "section": "EXECUTIVE EXPERIENCE",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the EHR consolidation bullet, describe a decision you made as sponsor during the transition, if applicable.",
+        "why": "The on-budget completion and duration are already stated; an example would make your sponsorship more concrete.",
+        "excerpt": "Sponsored the EHR consolidation from 6 systems to 1 across all practices, finished on budget in 20 months",
+        "section": "EXECUTIVE EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the Epic go-live bullet, add an example of a rollout decision or issue you handled.",
+        "why": "That detail would distinguish your leadership work from the fact that the implementation took place.",
+        "excerpt": "Led the Epic go-live across the clinics in 2013",
+        "section": "EXECUTIVE EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "Reducing integration time from 7 months to 10 weeks through a standardized playbook shows how you changed the process.",
+    "strengths": [
+      "Reducing integration time from 7 months to 10 weeks through a standardized playbook shows how you changed the process.",
+      "The compensation plan and clinical career ladder are linked to a drop in hygienist turnover from 34% to 19% over two years.",
+      "The surgery center turnaround names payer contract renegotiation and block scheduling, making the financial change easier to understand."
+    ],
+    "gaps": [
+      "The quarterly board presentations have no stated topics, so a reviewer cannot tell which operating questions you bring to directors.",
+      "Your EHR consolidation bullet describes sponsorship and completion, but not the decisions you made during the transition.",
+      "The Epic go-live entry does not explain which rollout matters you handled, making that earlier leadership work less concrete."
+    ],
+    "next_steps": [
+      "Review your COO board and EHR bullets and add the topics or decisions you can substantiate.",
+      "Revisit the Epic entry and choose one rollout detail you can accurately describe.",
+      "Consider moving the existing EBITDA margin figures into the opening summary for roles where financial performance is central."
+    ],
+    "seniority_read": "Your current title and responsibility for operations and the P&L place you at the COO level.",
+    "best_fit_roles": [
+      "Chief Operating Officer",
+      "Senior Vice President, Operations"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "For COO roles in multi-site healthcare, keep practice growth and same-store margin together near the top. Use the integration and retention examples to show how you changed operations, then add a board topic or sponsorship decision where verified.",
+    "severity_added": [],
+    "severity_promoted": [],
+    "severity_outcome": "none (none)",
+    "severity_answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "question_dropped",
+          "path": "ideas.questions[0]",
+          "reason": "duplicates_keep"
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[4]",
+          "fix": 2
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "biggest_gap_example",
+          "of": "top_fixes[2]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[0]",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[1]",
+          "of": "top_fixes[1]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[2]",
+          "of": "top_fixes[2]"
+        }
+      ],
+      "fix_questions": [
+        [],
+        [],
+        [
+          "What rollout decisions did you make while leading the Epic go-live?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0361408,
+  "latency_ms": 65052
+}

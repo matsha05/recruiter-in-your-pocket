@@ -1,0 +1,48 @@
+# b06_staff_accountant, run 1
+Resume: ../../../tests/resumes/blindpick/synth_bp_staff_accountant_1.txt (98 words, sha256 5ffd1542f9ef)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0134; 28.6s
+
+## Band: Needs more context (score 61; model wrote 61, label "Needs Clarity")
+## Verdict
+Your move from Accounts Payable Clerk to Staff Accountant at Rivermark gives the work history a clear direction. The current role lists core accounting duties, but offers little detail about how you carry them out.
+One-line read: The accounting duties are clear, but their detail is limited.
+Takeaway: Name your close tasks
+Biggest gap example: "Responsible for month-end close tasks" does not identify the tasks you handle, so a reviewer cannot tell what part of the close is yours.
+
+## Fixes (Two Critical Misses. Start with this one.; lead: "Either one could cost you the interview on its own."); severity added (added); added ["no_evidence_latest_role"]; promoted []
+1. [Critical Miss] In the month-end close bullet, name the close tasks you handle beyond the journal entries and reconciliations already listed.
+   why: That would distinguish your part of the close from the general responsibility.
+   excerpt (EXPERIENCE): "- Responsible for month-end close tasks"
+2. [Critical Miss] In the fixed asset schedules bullet, add how many assets you track, if you can verify it.
+   why: Accounting hiring managers often look for the scale of work handled. Your current role lists core duties but doesn't show their volume or measurable results.
+   excerpt (Experience): "- Maintain fixed asset schedules"
+3. [fix] In the annual audit bullet, specify the schedules, documents, or requests you help prepare or address.
+   why: A reviewer could see what your audit assistance actually involves without overstating your role.
+   excerpt (EXPERIENCE): "- Assist with the annual audit"
+Severity check answer: {"critical_misses":[{"source":"new","kind":"no_evidence_latest_role","fix":"In the fixed asset schedules bullet, add how many assets you track, if you can verify it.","why":"Accounting hiring managers often look for the scale of work handled. Your current role lists core duties but doesn't show their volume or measurable results.","excerpt":"- Maintain fixed asset schedules","section":"Experience","effort":"quick"}],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+Journal entries and account reconciliations show work directly relevant to a Staff Accountant role.
+Other strengths: ["QuickBooks, NetSuite, and named Excel functions give a reviewer concrete tools to look for.","The accounting degree includes the school and completion year, making your education easy to verify."]
+
+## Gaps
+- The reconciliation bullet doesn't identify the accounts involved, making it difficult to understand the work's range.
+- Fixed asset schedules are listed without the updates or reviews you perform, so the responsibility remains broad.
+- The skills section doesn't connect either accounting system to a particular task, leaving their use in your work unclear.
+
+## Next steps
+- Revise the current role first, using your actual close, reconciliation, and audit work to expand the relevant bullets.
+- Review the fixed asset and accounts payable bullets for a useful example of what you handle in each.
+- Connect QuickBooks or NetSuite to a specific experience bullet if you used it for that work.
+
+## Role fit
+Level: Your current title and duties indicate a staff accountant level.
+Best fit: ["Staff Accountant"]
+Positioning: Keep Staff Accountant as the lead title and use the current role to explain your accounting work in more detail. Retain the earlier accounts payable role to show the path into that position.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":2},{"kind":"question_dropped","path":"ideas.questions[2]","reason":"duplicates_keep"},{"kind":"question_moved","path":"ideas.questions[3]","fix":1},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"section_review.Education.working","of":"strengths[2]"}]

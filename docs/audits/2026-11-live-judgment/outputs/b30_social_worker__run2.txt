@@ -1,0 +1,48 @@
+# b30_social_worker, run 2
+Resume: ../../../tests/resumes/blindpick/synth_bp_social_worker_1.txt (127 words, sha256 220fc861657d)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0123; 26.3s
+
+## Band: Needs more context (score 64; model wrote 64, label "Needs Clarity")
+## Verdict
+Your current role centers on families involved with child protective services. Monthly family team meetings are worth keeping because they show a regular part of your work with families.
+One-line read: The work is specific to child welfare, but most bullets describe duties.
+Takeaway: Explain your casework decisions
+Biggest gap example: "Write case plans and court reports" does not explain what you document or how the reports are used, leaving a reader to guess at your part in the process.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the caseload bullet, add the number or range of families you typically carry, if you can verify it.
+   why: That gives a reader a better sense of the volume of ongoing family work.
+   excerpt (EXPERIENCE): "- Carry a caseload of families involved with child protective services"
+2. [fix] In the home-visit assessment bullet, describe a safety concern you assess and how you document or communicate it.
+   why: A concrete example would show how you conduct the assessment without assuming authority you haven't claimed.
+   excerpt (EXPERIENCE): "- Complete safety and risk assessments during home visits"
+3. [fix] In the service-coordination bullet, name a service need you worked on with one of the listed partners and what followed, if known.
+   why: The named partners are useful, but an example would show what coordination involved.
+   excerpt (EXPERIENCE): "- Coordinate services with schools, courts, and mental health providers"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+Naming schools, courts, and mental health providers shows the range of people you coordinate with.
+Other strengths: ["The intake role identifies housing, food, and utility assistance, making the client needs you screened for concrete.","Your Ohio LMSW and social work degree are easy to find and establish your stated professional qualification."]
+
+## Gaps
+- The number of families in your caseload is not stated, so the volume of ongoing work is unclear.
+- The assessment bullet doesn't describe what you look for during home visits or how you document concerns.
+- The resume doesn't describe what followed from a service connection or family meeting, limiting the picture of your work beyond the activity.
+
+## Next steps
+- Review the current caseworker bullets and add a verified caseload figure and a concrete home-visit example.
+- Choose a service coordination or intake example and describe what you did and what followed, where known.
+- Revisit the opening sentence after revising the experience section so it reflects the work you want to emphasize.
+
+## Role fit
+Level: The recent title and responsibilities indicate a direct-service caseworker role; supervisory responsibilities are not stated.
+Best fit: ["Family Services Caseworker","Intake Specialist"]
+Positioning: For family services roles, put the home visits, case plans, and partner coordination at the center of the experience section. For intake-focused roles, retain the specific assistance needs you screened for and explain a benefit connection if you can verify the details.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[0]","line":"fix-2","criticalMiss":false},{"kind":"question_moved","path":"ideas.questions[0]","fix":1},{"kind":"question_moved","path":"ideas.questions[1]","fix":2},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"next_steps[1]","of":"top_fixes[2]"}]

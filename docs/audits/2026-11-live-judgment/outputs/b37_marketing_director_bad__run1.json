@@ -1,0 +1,760 @@
+{
+  "case_id": "b37_marketing_director_bad",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Title above the work; key says no_recent_work, no_target_role, title_level_mismatch.",
+  "resume_file": "../../../tests/resumes/countcheck/synth_cc_marketing_director_bad_1.txt",
+  "resume_sha256": "f0624d59dceceb9ee73afca05ff983f8205d3da2ebe4712711eb2596bd129439",
+  "resume_chars": 1020,
+  "resume_words": 167,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T20:14:10.143Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7601,
+        "completion_tokens": 2259,
+        "total_tokens": 9860,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 712,
+        "reasoning_tokens": 344
+      },
+      "cost_usd": 0.0125323,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 26086
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.00413075,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 7129
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 80,
+    "score_label": "Strong",
+    "score_comment_short": "Recent bullets give useful work volumes, though results and marketing authority remain unclear.",
+    "score_comment_long": "The Instagram cadence, product-description count, and property-record volume make the recent work concrete. The marketing title suggests broader responsibility than its bullets explain. Add the decisions you made and any verifiable results to make that role easier to assess.",
+    "score_plain": "The score reflects specific work volumes across your recent roles, not a demonstrated record of marketing growth. A reviewer can see what you produced but may need more detail to assess a director-level application.",
+    "first_impression": "Your most recent title is Director of Marketing, but the bullets emphasize content production and order support. The 40 candle scent descriptions are worth keeping because they show the size of the writing assignment.",
+    "biggest_gap_example": "\"- Answered customer emails about shipping\" doesn't say which issues you resolved or what you could decide, making your customer-service responsibility difficult to assess.",
+    "first_impression_takeaway": "Explain your marketing decisions",
+    "summary": "At Lumen Candle Co., you combined Instagram posting and product writing with holiday fulfillment and shipping emails. Earlier, you entered property records and flagged missing closing documents, showing a separate administrative path. The marketing bullets describe hands-on work more clearly than director-level responsibility, so a reviewer may not know whether to consider you for content production or broader marketing leadership. Explaining your actual authority would help distinguish those paths.",
+    "strengths": [
+      "The Instagram bullet names both the posting cadence and the account's 2,100 followers, giving the work useful context.",
+      "Entering 150 property records a day gives a concrete picture of the data-entry workload.",
+      "Training 4 new baristas adds a specific example of teaching others alongside your individual work."
+    ],
+    "gaps": [
+      "The resume doesn't explain what marketing decisions came with the director title, leaving its level of authority unclear.",
+      "The candle product descriptions have no stated purpose beyond their placement on the website, so their role in the marketing work is unclear.",
+      "The skills list combines marketing, laboratory, and administrative tools without a stated target, making the intended next role less obvious."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the Instagram bullet, add which content or publishing decisions you made and any account result you can verify.",
+        "why": "That would show how much of the account's direction belonged to you rather than only how often you posted.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the product-description bullet, explain the assignment's purpose or the approach you used to distinguish the scents.",
+        "why": "The count is useful, but a reader can't yet tell what the writing needed to accomplish.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Wrote product descriptions for 40 candle scents on the website",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the missing-documents bullet, identify the kinds of documents you flagged and how you notified the closing team.",
+        "why": "A concrete example would make your part in preparing title records easier to understand.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Flagged missing documents for the closing team",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the Lumen bullets with the marketing decisions and writing details you can verify.",
+      "Expand the closing-team bullet with a representative document issue and your handoff.",
+      "Choose a target role, then reorder the existing skills and experience details to put the most relevant work first."
+    ],
+    "subscores": {
+      "impact": 72,
+      "clarity": 81,
+      "story": 78,
+      "readability": 87
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "Section not present.",
+        "fix": "Add only if it helps your story."
+      },
+      "Work Experience": {
+        "grade": "B",
+        "priority": "High",
+        "working": "Dates, employers, and several work volumes make the roles straightforward to scan.",
+        "missing": "The marketing entry doesn't explain your decision-making authority or any account result.",
+        "fix": "Add the marketing decisions you made and a verifiable result, if available, without changing the stated title."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The list names Instagram, Canva, Shopify, Excel, data entry, lab safety, and customer service.",
+        "missing": "The mixed list doesn't indicate which skills matter most for your next role.",
+        "fix": "Reorder the existing skills for the role you choose, retaining only those relevant to that application."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Your biology degree, university, and graduation year are stated.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Instagram posting and website product descriptions",
+        "Property-record entry and missing-document checks",
+        "Customer shipping inquiries and online order packing",
+        "Teaching-lab preparation"
+      ],
+      "underplayed": [
+        "Marketing decisions associated with the director title",
+        "The approach used to write candle scent descriptions",
+        "The handoff to the closing team when documents were missing"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Director of Marketing",
+          "Data Entry Clerk"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your most recent title is director, while the described marketing work is primarily hands-on; management authority is not specified.",
+        "industry_signals": [
+          "Candle retail and online orders",
+          "Property title services",
+          "University biology teaching labs",
+          "Coffee service"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Choose whether to foreground marketing content or property-record work based on the role you want. For marketing applications, explain the authority behind your director title without claiming responsibilities the resume doesn't establish."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "Which marketing decisions could you make independently at Lumen Candle Co.?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "This would help explain the director title."
+        },
+        {
+          "question": "How did you distinguish the 40 candle scents when writing their website descriptions?",
+          "archetype": "DOMAIN LIFT",
+          "why": "A writing example could show how you handled the product range."
+        },
+        {
+          "question": "What happened after you flagged a missing document to the closing team?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The handoff would show how your record checks fit into the closing process."
+        },
+        {
+          "question": "What was the most difficult shipping question you handled during your time at Lumen?",
+          "archetype": "TENSION POINT",
+          "why": "A specific issue could distinguish routine replies from more complex customer support."
+        },
+        {
+          "question": "How did you check property records for accuracy while entering 150 a day?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "Your answer could explain your approach to accuracy alongside the stated workload."
+        }
+      ]
+    }
+  },
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 80,
+    "score_label": "Mostly clear",
+    "score_comment_short": "Recent bullets give useful work volumes, though results and marketing authority remain unclear.",
+    "score_comment_long": "The Instagram cadence, product-description count, and property-record volume make the recent work concrete. The marketing title suggests broader responsibility than its bullets explain. Add the decisions you made and any verifiable results to make that role easier to assess.",
+    "score_plain": "The score reflects specific work volumes across your recent roles, not a demonstrated record of marketing growth. A reviewer can see what you produced but may need more detail to assess a director-level application.",
+    "first_impression": "Your most recent title is Director of Marketing, but the bullets emphasize content production and order support. The 40 candle scent descriptions are worth keeping because they show the size of the writing assignment.",
+    "biggest_gap_example": "\"- Answered customer emails about shipping\" doesn't say which issues you resolved or what you could decide, making your customer-service responsibility difficult to assess.",
+    "first_impression_takeaway": "Explain your marketing decisions",
+    "summary": "At Lumen Candle Co., you combined Instagram posting and product writing with holiday fulfillment and shipping emails. Earlier, you entered property records and flagged missing closing documents, showing a separate administrative path. The marketing bullets describe hands-on work more clearly than director-level responsibility, so a reviewer may not know whether to consider you for content production or broader marketing leadership. Explaining your actual authority would help distinguish those paths.",
+    "strengths": [
+      "The Instagram bullet names both the posting cadence and the account's 2,100 followers, giving the work useful context.",
+      "Entering 150 property records a day gives a concrete picture of the data-entry workload.",
+      "Training 4 new baristas adds a specific example of teaching others alongside your individual work."
+    ],
+    "gaps": [
+      "The resume doesn't explain what marketing decisions came with the director title, leaving its level of authority unclear.",
+      "The candle product descriptions have no stated purpose beyond their placement on the website, so their role in the marketing work is unclear.",
+      "The skills list combines marketing, laboratory, and administrative tools without a stated target, making the intended next role less obvious."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the Instagram bullet, add which content or publishing decisions you made and any account result you can verify.",
+        "why": "That would show how much of the account's direction belonged to you rather than only how often you posted.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the product-description bullet, explain the assignment's purpose or the approach you used to distinguish the scents.",
+        "why": "The count is useful, but a reader can't yet tell what the writing needed to accomplish.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Wrote product descriptions for 40 candle scents on the website",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the missing-documents bullet, identify the kinds of documents you flagged and how you notified the closing team.",
+        "why": "A concrete example would make your part in preparing title records easier to understand.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Flagged missing documents for the closing team",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the Lumen bullets with the marketing decisions and writing details you can verify.",
+      "Expand the closing-team bullet with a representative document issue and your handoff.",
+      "Choose a target role, then reorder the existing skills and experience details to put the most relevant work first."
+    ],
+    "subscores": {
+      "impact": 72,
+      "clarity": 81,
+      "story": 78,
+      "readability": 87
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "B",
+        "priority": "High",
+        "working": "Dates, employers, and several work volumes make the roles straightforward to scan.",
+        "missing": "The marketing entry doesn't explain your decision-making authority or any account result.",
+        "fix": "Add the marketing decisions you made and a verifiable result, if available, without changing the stated title."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The list names Instagram, Canva, Shopify, Excel, data entry, lab safety, and customer service.",
+        "missing": "The mixed list doesn't indicate which skills matter most for your next role.",
+        "fix": "Reorder the existing skills for the role you choose, retaining only those relevant to that application."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Your biology degree, university, and graduation year are stated.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Instagram posting and website product descriptions",
+        "Property-record entry and missing-document checks",
+        "Customer shipping inquiries and online order packing",
+        "Teaching-lab preparation"
+      ],
+      "underplayed": [
+        "Marketing decisions associated with the director title",
+        "The approach used to write candle scent descriptions",
+        "The handoff to the closing team when documents were missing"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Director of Marketing",
+          "Data Entry Clerk"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your most recent title is director, while the described marketing work is primarily hands-on; management authority is not specified.",
+        "industry_signals": [],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Choose whether to foreground marketing content or property-record work based on the role you want. For marketing applications, explain the authority behind your director title without claiming responsibilities the resume doesn't establish."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "Which marketing decisions could you make independently at Lumen Candle Co.?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "This would help explain the director title."
+        },
+        {
+          "question": "How did you distinguish the 40 candle scents when writing their website descriptions?",
+          "archetype": "DOMAIN LIFT",
+          "why": "A writing example could show how you handled the product range."
+        },
+        {
+          "question": "What happened after you flagged a missing document to the closing team?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The handoff would show how your record checks fit into the closing process."
+        },
+        {
+          "question": "What was the most difficult shipping question you handled during your time at Lumen?",
+          "archetype": "TENSION POINT",
+          "why": "A specific issue could distinguish routine replies from more complex customer support."
+        },
+        {
+          "question": "How did you check property records for accuracy while entering 150 a day?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "Your answer could explain your approach to accuracy alongside the stated workload."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 80
+  },
+  "severity": {
+    "outcome": "added",
+    "reason": "added",
+    "added": [
+      "no_recent_work",
+      "title_level_mismatch"
+    ],
+    "promoted": [],
+    "replaced": [],
+    "skipped": [],
+    "critical_count": 3,
+    "more_critical": false,
+    "validation_attempts": 1,
+    "answer": {
+      "critical_misses": [
+        {
+          "source": "new",
+          "kind": "no_recent_work",
+          "fix": "Add one dated line covering January 2025 to today.",
+          "why": "A marketing hiring manager may look for current skills, but the resume shows no activity after the Lumen role. Use a dated line such as \"Career break\" or \"Job search and coursework\" to name the period truthfully, and list freelance content work or marketing coursework only if true.",
+          "excerpt": "March 2024 - January 2025",
+          "section": "Experience",
+          "effort": "quick"
+        },
+        {
+          "source": "new",
+          "kind": "title_level_mismatch",
+          "fix": "In the Lumen Candle Co. Director of Marketing role, add any marketing strategy or leadership responsibilities you held, if true, alongside the content production and order support work.",
+          "why": "A hiring manager may look for leadership and strategy behind a director title. The bullets show content production and customer support, but don't describe director-level responsibilities.",
+          "excerpt": "Director of Marketing",
+          "section": "Experience",
+          "effort": "moderate"
+        }
+      ],
+      "more_critical": false
+    },
+    "latency_ms": 7414,
+    "call_latency_ms": 7129,
+    "cost_usd": 0.00413075,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 80,
+    "score_label": "Mostly clear",
+    "score_comment_short": "Recent bullets give useful work volumes, though results and marketing authority remain unclear.",
+    "score_comment_long": "The Instagram cadence, product-description count, and property-record volume make the recent work concrete. The marketing title suggests broader responsibility than its bullets explain. Add the decisions you made and any verifiable results to make that role easier to assess.",
+    "score_plain": "The score reflects specific work volumes across your recent roles, not a demonstrated record of marketing growth. A reviewer can see what you produced but may need more detail to assess a director-level application.",
+    "first_impression": "Your most recent title is Director of Marketing, but the bullets emphasize content production and order support. The 40 candle scent descriptions are worth keeping because they show the size of the writing assignment.",
+    "biggest_gap_example": "\"- Answered customer emails about shipping\" doesn't say which issues you resolved or what you could decide, making your customer-service responsibility difficult to assess.",
+    "first_impression_takeaway": "Explain your marketing decisions",
+    "summary": "At Lumen Candle Co., you combined Instagram posting and product writing with holiday fulfillment and shipping emails. Earlier, you entered property records and flagged missing closing documents, showing a separate administrative path. The marketing bullets describe hands-on work more clearly than director-level responsibility, so a reviewer may not know whether to consider you for content production or broader marketing leadership. Explaining your actual authority would help distinguish those paths.",
+    "strengths": [
+      "The Instagram bullet names both the posting cadence and the account's 2,100 followers, giving the work useful context.",
+      "Entering 150 property records a day gives a concrete picture of the data-entry workload.",
+      "Training 4 new baristas adds a specific example of teaching others alongside your individual work."
+    ],
+    "gaps": [
+      "The resume doesn't explain what marketing decisions came with the director title, leaving its level of authority unclear.",
+      "The candle product descriptions have no stated purpose beyond their placement on the website, so their role in the marketing work is unclear.",
+      "The skills list combines marketing, laboratory, and administrative tools without a stated target, making the intended next role less obvious."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the Instagram bullet, add which content or publishing decisions you made and any account result you can verify.",
+        "why": "That would show how much of the account's direction belonged to you rather than only how often you posted.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": true
+      },
+      {
+        "fix": "Add one dated line covering January 2025 to today.",
+        "why": "A marketing hiring manager may look for current skills, but the resume shows no activity after the Lumen role. Use a dated line such as \"Career break\" or \"Job search and coursework\" to name the period truthfully, and list freelance content work or marketing coursework only if true.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "March 2024 - January 2025",
+          "section": "Experience"
+        },
+        "impact_level": "high",
+        "effort": "quick",
+        "section_ref": "Experience",
+        "critical": true
+      },
+      {
+        "fix": "In the Lumen Candle Co. Director of Marketing role, add any marketing strategy or leadership responsibilities you held, if true, alongside the content production and order support work.",
+        "why": "A hiring manager may look for leadership and strategy behind a director title. The bullets show content production and customer support, but don't describe director-level responsibilities.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Director of Marketing",
+          "section": "Experience"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Experience",
+        "critical": true
+      }
+    ],
+    "more_critical": false,
+    "next_steps": [
+      "Revise the Lumen bullets with the marketing decisions and writing details you can verify.",
+      "Expand the closing-team bullet with a representative document issue and your handoff.",
+      "Choose a target role, then reorder the existing skills and experience details to put the most relevant work first."
+    ],
+    "subscores": {
+      "impact": 72,
+      "clarity": 81,
+      "story": 78,
+      "readability": 87
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "B",
+        "priority": "High",
+        "working": "Dates, employers, and several work volumes make the roles straightforward to scan.",
+        "missing": "The marketing entry doesn't explain your decision-making authority or any account result.",
+        "fix": "Add the marketing decisions you made and a verifiable result, if available, without changing the stated title."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The list names Instagram, Canva, Shopify, Excel, data entry, lab safety, and customer service.",
+        "missing": "The mixed list doesn't indicate which skills matter most for your next role.",
+        "fix": "Reorder the existing skills for the role you choose, retaining only those relevant to that application."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Your biology degree, university, and graduation year are stated.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 80,
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Instagram posting and website product descriptions",
+        "Property-record entry and missing-document checks",
+        "Customer shipping inquiries and online order packing",
+        "Teaching-lab preparation"
+      ],
+      "underplayed": [
+        "Marketing decisions associated with the director title",
+        "The approach used to write candle scent descriptions",
+        "The handoff to the closing team when documents were missing"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Director of Marketing",
+          "Data Entry Clerk"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your most recent title is director, while the described marketing work is primarily hands-on; management authority is not specified.",
+        "industry_signals": [],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Choose whether to foreground marketing content or property-record work based on the role you want. For marketing applications, explain the authority behind your director title without claiming responsibilities the resume doesn't establish."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "Which marketing decisions could you make independently at Lumen Candle Co.?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "This would help explain the director title."
+        },
+        {
+          "question": "How did you distinguish the 40 candle scents when writing their website descriptions?",
+          "archetype": "DOMAIN LIFT",
+          "why": "A writing example could show how you handled the product range."
+        },
+        {
+          "question": "What happened after you flagged a missing document to the closing team?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The handoff would show how your record checks fit into the closing process."
+        },
+        {
+          "question": "What was the most difficult shipping question you handled during your time at Lumen?",
+          "archetype": "TENSION POINT",
+          "why": "A specific issue could distinguish routine replies from more complex customer support."
+        },
+        {
+          "question": "How did you check property records for accuracy while entering 150 a day?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "Your answer could explain your approach to accuracy alongside the stated workload."
+        }
+      ]
+    }
+  },
+  "presentation": {
+    "score": 80,
+    "band": "Mostly clear",
+    "score_label_from_model": "Strong",
+    "model_score_before_calibration": 80,
+    "verdict": "Your most recent title is Director of Marketing, but the bullets emphasize content production and order support. The 40 candle scent descriptions are worth keeping because they show the size of the writing assignment.",
+    "one_line_read": "Recent bullets give useful work volumes, though results and marketing authority remain unclear.",
+    "takeaway": "Explain your marketing decisions",
+    "biggest_gap_example": "\"- Answered customer emails about shipping\" doesn't say which issues you resolved or what you could decide, making your customer-service responsibility difficult to assess.",
+    "critical_count": {
+      "count": 3,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "Three Critical Misses. Start with this one.",
+      "lead": "Any one of them could cost you the interview on its own."
+    },
+    "fixes": [
+      {
+        "fix": "In the Instagram bullet, add which content or publishing decisions you made and any account result you can verify.",
+        "why": "That would show how much of the account's direction belonged to you rather than only how often you posted.",
+        "excerpt": "- Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers",
+        "section": "EXPERIENCE",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "Add one dated line covering January 2025 to today.",
+        "why": "A marketing hiring manager may look for current skills, but the resume shows no activity after the Lumen role. Use a dated line such as \"Career break\" or \"Job search and coursework\" to name the period truthfully, and list freelance content work or marketing coursework only if true.",
+        "excerpt": "March 2024 - January 2025",
+        "section": "Experience",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the Lumen Candle Co. Director of Marketing role, add any marketing strategy or leadership responsibilities you held, if true, alongside the content production and order support work.",
+        "why": "A hiring manager may look for leadership and strategy behind a director title. The bullets show content production and customer support, but don't describe director-level responsibilities.",
+        "excerpt": "Director of Marketing",
+        "section": "Experience",
+        "critical": true,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "The Instagram bullet names both the posting cadence and the account's 2,100 followers, giving the work useful context.",
+    "strengths": [
+      "The Instagram bullet names both the posting cadence and the account's 2,100 followers, giving the work useful context.",
+      "Entering 150 property records a day gives a concrete picture of the data-entry workload.",
+      "Training 4 new baristas adds a specific example of teaching others alongside your individual work."
+    ],
+    "gaps": [
+      "The resume doesn't explain what marketing decisions came with the director title, leaving its level of authority unclear.",
+      "The candle product descriptions have no stated purpose beyond their placement on the website, so their role in the marketing work is unclear.",
+      "The skills list combines marketing, laboratory, and administrative tools without a stated target, making the intended next role less obvious."
+    ],
+    "next_steps": [
+      "Revise the Lumen bullets with the marketing decisions and writing details you can verify.",
+      "Expand the closing-team bullet with a representative document issue and your handoff.",
+      "Choose a target role, then reorder the existing skills and experience details to put the most relevant work first."
+    ],
+    "seniority_read": "Your most recent title is director, while the described marketing work is primarily hands-on; management authority is not specified.",
+    "best_fit_roles": [
+      "Director of Marketing",
+      "Data Entry Clerk"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "Choose whether to foreground marketing content or property-record work based on the role you want. For marketing applications, explain the authority behind your director title without claiming responsibilities the resume doesn't establish.",
+    "severity_added": [
+      "no_recent_work",
+      "title_level_mismatch"
+    ],
+    "severity_promoted": [],
+    "severity_outcome": "added (added)",
+    "severity_answer": {
+      "critical_misses": [
+        {
+          "source": "new",
+          "kind": "no_recent_work",
+          "fix": "Add one dated line covering January 2025 to today.",
+          "why": "A marketing hiring manager may look for current skills, but the resume shows no activity after the Lumen role. Use a dated line such as \"Career break\" or \"Job search and coursework\" to name the period truthfully, and list freelance content work or marketing coursework only if true.",
+          "excerpt": "March 2024 - January 2025",
+          "section": "Experience",
+          "effort": "quick"
+        },
+        {
+          "source": "new",
+          "kind": "title_level_mismatch",
+          "fix": "In the Lumen Candle Co. Director of Marketing role, add any marketing strategy or leadership responsibilities you held, if true, alongside the content production and order support work.",
+          "why": "A hiring manager may look for leadership and strategy behind a director title. The bullets show content production and customer support, but don't describe director-level responsibilities.",
+          "excerpt": "Director of Marketing",
+          "section": "Experience",
+          "effort": "moderate"
+        }
+      ],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [
+        {
+          "text": "The skills list combines marketing, laboratory, and administrative tools without a stated target, making the intended next role less obvious.",
+          "kind": "target_role"
+        }
+      ],
+      "decisions": [
+        {
+          "kind": "keep_dropped",
+          "path": "strengths[0]",
+          "line": "fix-0",
+          "criticalMiss": true
+        },
+        {
+          "kind": "structural_gap_surfaced",
+          "path": "gaps[2]",
+          "structural": "target_role"
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[0]",
+          "fix": 2
+        },
+        {
+          "kind": "question_dropped",
+          "path": "ideas.questions[4]",
+          "reason": "duplicates_keep"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[0]",
+          "of": "top_fixes[2]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[1]",
+          "of": "top_fixes[2]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Work Experience.fix",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Skills.missing",
+          "of": "gaps[2]"
+        }
+      ],
+      "fix_questions": [
+        [],
+        [],
+        [
+          "Which marketing decisions could you make independently at Lumen Candle Co.?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01666305,
+  "latency_ms": 33720
+}

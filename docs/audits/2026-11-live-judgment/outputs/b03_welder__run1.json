@@ -1,0 +1,396 @@
+{
+  "case_id": "b03_welder",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "resumes/b_welder.txt",
+  "resume_sha256": "b9732bf7b68078f8e956a420ac5c412e65809428f2714874ab4044ea5bd317f8",
+  "resume_chars": 1241,
+  "resume_words": 195,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T19:58:25.764Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7706,
+        "completion_tokens": 2361,
+        "total_tokens": 10067,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 817,
+        "reasoning_tokens": 497
+      },
+      "cost_usd": 0.01317355,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 27348
+    },
+    {
+      "kind": "repair",
+      "usage": {
+        "prompt_tokens": 10452,
+        "completion_tokens": 2900,
+        "total_tokens": 13352,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 3563,
+        "reasoning_tokens": 1422
+      },
+      "cost_usd": 0.01930105,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 33514
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 84,
+    "score_label": "Strong",
+    "score_comment_short": "Recent welding bullets give specific processes, tolerances, and an inspection result.",
+    "score_comment_long": "The Riverfront Tower inspection result stands out alongside the fit-up tolerance and named welding processes. Training and shutdown work are less developed. Bringing the inspection result into the opening and expanding those duties would make the experience easier to assess.",
+    "score_plain": "Your resume gives a reviewer concrete reasons to consider you for welding and fitting work. A few more details would help them understand your training and shutdown responsibilities.",
+    "first_impression": "Structural steel and pipe work are clear from the start. The Riverfront Tower inspection result is worth keeping because it puts a specific job and approximately 900 welds behind your quality record.",
+    "biggest_gap_example": "\"Worked nights and weekends on plant shutdowns\" shows availability but not what welding work you handled during those shutdowns.",
+    "first_impression_takeaway": "Describe your shutdown work",
+    "summary": "Your path runs from welder's helper to pipe welder and then Welder / Fitter, with both structural steel and process piping on the resume. Shop drawings, fit-up to within 1/16 inch, and named welding processes show hands-on work at the welder and fitter level. You also train new hires, though the resume doesn't say how you teach or check their work, which makes that responsibility difficult to assess.",
+    "strengths": [
+      "The AWS D1.1 and ASME Section IX entries distinguish your structural and pipe qualifications.",
+      "Carbon steel and stainless process piping in food plants and a water treatment facility show the settings and materials you have worked with.",
+      "Third-party UT and visual inspection on Riverfront Tower give a reviewer a concrete quality result tied to a named job."
+    ],
+    "gaps": [
+      "The shutdown bullet doesn't identify your tasks during those periods, leaving the nature of that work unclear.",
+      "The new-hire training bullet doesn't explain how you teach fit-up and tacking or check a trainee's work.",
+      "Your opening doesn't mention the Riverfront Tower result, so a useful inspection detail appears only farther down the page."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the plant shutdown bullet, name the welding or fitting tasks you personally handled during a shutdown.",
+        "why": "The current wording tells a reviewer when you worked, but not what you contributed.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Worked nights and weekends on plant shutdowns",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the new-hire training bullet, describe how you taught fit-up and tacking and checked a trainee's work, if applicable.",
+        "why": "That detail would distinguish your instruction from simply working alongside a new hire.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Train new hires on the shop's fit-up and tacking procedures",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "Bring the Riverfront Tower inspection result into the opening summary, retaining the qualifier on the weld count.",
+        "why": "A reviewer can see the third-party inspection record before reaching the experience bullets.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Passed every third-party UT and visual inspection on the Riverfront Tower job (about 900 welds)",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the shutdown and training bullets using details you can verify from those jobs.",
+      "Update the opening to feature the Riverfront Tower inspection record without changing its qualifier.",
+      "Review the welding processes, certifications, and job titles against each role you apply for."
+    ],
+    "subscores": {
+      "impact": 84,
+      "clarity": 84,
+      "story": 85,
+      "readability": 86
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The opening identifies structural steel, pipe, SMAW, FCAW, and 6G pipe qualifications.",
+        "missing": "It doesn't feature the named project's inspection record.",
+        "fix": "Add the Riverfront Tower result while preserving the stated weld-count qualifier."
+      },
+      "Work Experience": {
+        "grade": "B+",
+        "priority": "High",
+        "working": "The fit-up tolerance and third-party inspection result make the current work concrete.",
+        "missing": "The shutdown and new-hire training bullets leave the specific work less clear.",
+        "fix": "Describe your tasks on a shutdown and your approach to teaching shop procedures."
+      },
+      "Skills": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "Section not present.",
+        "fix": "Add only if it helps your story."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The welding technology certificate, school, and completion year are stated.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Structural steel welding and fit-up",
+        "Carbon steel and stainless process piping",
+        "SMAW and FCAW qualifications",
+        "Third-party UT and visual inspection on Riverfront Tower"
+      ],
+      "underplayed": [
+        "Training new hires on fit-up and tacking",
+        "Work during plant shutdowns"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Welder / Fitter",
+          "Pipe Welder"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Experienced hands-on welder and fitter, with new-hire training responsibilities in the current role.",
+        "industry_signals": [
+          "Commercial building construction",
+          "Food plants",
+          "Water treatment"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "For structural roles, foreground shop drawings, fit-up tolerance, and the Riverfront Tower inspections. For pipe roles, bring the process piping materials, 6G qualification, and pressure-piping x-ray record forward."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What welding or fitting tasks did you handle during a plant shutdown?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "Your current bullet gives the schedule but not the work performed."
+        },
+        {
+          "question": "How did you teach new hires the shop's fit-up and tacking procedures?",
+          "archetype": "SCALING",
+          "why": "An example would explain your part in preparing new hires for shop work."
+        },
+        {
+          "question": "What steps did you take before third-party inspection on the Riverfront Tower job?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The inspection record is stated; your preparation would add useful detail."
+        },
+        {
+          "question": "How did you check assemblies against shop drawings before welding?",
+          "archetype": "TENSION POINT",
+          "why": "A concrete checking method would complement the stated fit-up tolerance."
+        },
+        {
+          "question": "What joint work did you perform on the pressure piping jobs that passed x-ray?",
+          "archetype": "DOMAIN LIFT",
+          "why": "This could make the pipe-welding work more specific without changing the stated result."
+        }
+      ]
+    }
+  },
+  "initial_validation_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the evidence grounding contract: contradicted positive source evidence at section_review.Skills.missing."
+  },
+  "model_output_repaired": {
+    "contract_version": "v2",
+    "score": 84,
+    "score_label": "Strong",
+    "score_comment_short": "Recent welding bullets show processes, fit-up tolerance, and a specific inspection result.",
+    "score_comment_long": "Your current role names the materials, welding processes, fit-up tolerance, and a third-party inspection result. The training and shutdown entries leave more of your work to the reader's imagination. Expanding those entries would make them easier to assess.",
+    "score_plain": "Your resume gives a reviewer concrete details to consider for welding and fitting roles. A few targeted edits would explain more of what you did on shutdowns and when training new hires.",
+    "first_impression": "Structural steel, pipe work, and inspection history stand out quickly. The Riverfront Tower record, covering about 900 welds, gives that history a useful job-specific detail.",
+    "biggest_gap_example": "“Worked nights and weekends on plant shutdowns” shows your availability but not the tasks you handled during those shutdowns.",
+    "first_impression_takeaway": "Name your shutdown tasks",
+    "summary": "As a Welder / Fitter, you work on commercial structural assemblies and bring earlier experience with carbon steel and stainless process piping. Reading shop drawings and fitting assemblies within 1/16 inch show the preparation behind your welding work. Your shutdown entry names the schedule but not the tasks, leaving a reviewer to guess what you contributed during that work.",
+    "strengths": [
+      "The AWS D1.1 and ASME Section IX entries distinguish your structural steel and pipe qualifications.",
+      "Naming food plants and a water treatment facility shows where you worked on process piping.",
+      "Training new hires on fit-up and tacking adds a teaching responsibility to your current shop work."
+    ],
+    "gaps": [
+      "The shutdown entry doesn't say which tasks you performed, so its relevance to a particular job is difficult to judge.",
+      "Your new-hire training entry doesn't describe how you teach the procedures or check a trainee's work.",
+      "The opening omits the named project's inspection record, which appears later under your current job."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the plant shutdown bullet, name the tasks you personally handled during a shutdown.",
+        "why": "A reviewer can see when you worked, but not what you contributed during that period.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Worked nights and weekends on plant shutdowns",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the new-hire training bullet, describe how you taught fit-up and tacking and, if applicable, checked a trainee's work.",
+        "why": "That detail would show what your instruction involved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Train new hires on the shop's fit-up and tacking procedures",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "Bring the Riverfront Tower inspection result into the opening summary, retaining the qualifier on the weld count.",
+        "why": "The third-party inspection record would be visible before the reader reaches your experience.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Passed every third-party UT and visual inspection on the Riverfront Tower job (about 900 welds)",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the shutdown and training bullets using details you can verify from those jobs.",
+      "Update the opening with the Riverfront Tower inspection record without changing its qualifier.",
+      "Check the order of your welding processes and qualifications against each role you apply for."
+    ],
+    "subscores": {
+      "impact": 84,
+      "clarity": 84,
+      "story": 85,
+      "readability": 86
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The opening identifies structural steel, pipe, SMAW, FCAW, and 6G pipe qualifications.",
+        "missing": "It doesn't feature the named project's inspection record.",
+        "fix": "Add the Riverfront Tower result while preserving the stated weld-count qualifier."
+      },
+      "Work Experience": {
+        "grade": "B+",
+        "priority": "High",
+        "working": "The fit-up tolerance and third-party inspections make the current work concrete.",
+        "missing": "The shutdown and new-hire training entries leave the specific work less clear.",
+        "fix": "Describe your tasks on a shutdown and your approach to teaching shop procedures."
+      },
+      "Skills": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "SMAW, FCAW, shop drawing reading, and 6G pipe qualifications appear across the summary, experience, and certifications.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The welding technology certificate, school, and completion year are stated.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Structural steel welding and fit-up",
+        "Carbon steel and stainless process piping",
+        "SMAW and FCAW qualifications",
+        "Third-party UT and visual inspections on Riverfront Tower"
+      ],
+      "underplayed": [
+        "Training new hires on fit-up and tacking",
+        "Work during plant shutdowns"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Welder / Fitter",
+          "Pipe Welder"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Experienced hands-on welder and fitter, with new-hire training responsibilities in the current role.",
+        "industry_signals": [
+          "Commercial buildings",
+          "Food plants",
+          "Water treatment"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "For structural roles, foreground shop drawings, fit-up tolerance, and the Riverfront Tower inspections. For pipe roles, bring the process piping materials, 6G qualification, and pressure-piping x-ray record forward."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "Which tasks did you handle during a plant shutdown?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "Your current entry gives the schedule but not the work performed."
+        },
+        {
+          "question": "How did you teach new hires to fit up and tack assemblies?",
+          "archetype": "SCALING",
+          "why": "An example would explain your part in preparing new hires for shop work."
+        },
+        {
+          "question": "What, if anything, did you do to prepare for third-party inspections on Riverfront Tower?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The inspection record is stated; any preparation you performed could add useful detail."
+        },
+        {
+          "question": "How did you achieve fit-up within 1/16 inch when working from shop drawings?",
+          "archetype": "IMPROVEMENT",
+          "why": "Your approach would complement the stated tolerance."
+        },
+        {
+          "question": "What types of joints did you weld on the pressure-piping jobs that passed x-ray?",
+          "archetype": "DOMAIN LIFT",
+          "why": "This could make the pipe work more specific without changing the stated result."
+        }
+      ]
+    }
+  },
+  "outcome": "repair_failed",
+  "repair_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the evidence grounding contract at biggest_gap_example unsupported narrative facts: availability."
+  },
+  "cost_usd": 0.0324746
+}

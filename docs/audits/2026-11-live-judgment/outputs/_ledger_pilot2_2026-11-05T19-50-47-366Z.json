@@ -1,0 +1,21 @@
+{
+  "batch": "holes",
+  "model": "gpt-6.1-terra",
+  "effort": "medium",
+  "today": "2026-11-05",
+  "budget_usd": 0.3,
+  "spent_usd": 0.0141603,
+  "calls": 2,
+  "runs": [
+    {
+      "stem": "h6_unverifiable_claim__run1",
+      "outcome": "report",
+      "cost_usd": 0.0141603,
+      "score": 64,
+      "band": "Needs more context",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    }
+  ]
+}

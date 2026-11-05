@@ -1,0 +1,709 @@
+{
+  "case_id": "h1_bad_resume",
+  "batch": "holes",
+  "run": 2,
+  "note": "Ten things wrong: filler objective, wrong target role, duty bullets, no results, five jobs in four years, two undated roles, typos, gap since June 2023, soft-skill skills list, references line.",
+  "resume_file": "resumes/h1_bad_resume.txt",
+  "resume_sha256": "1eaa5e429b7924630129a05ca0abf276d687ce664ed89726eb783fa17e025fb8",
+  "resume_chars": 1366,
+  "resume_words": 217,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T19:51:13.482Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7790,
+        "completion_tokens": 2424,
+        "total_tokens": 10214,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 901,
+        "reasoning_tokens": 512
+      },
+      "cost_usd": 0.01359355,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 28295
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.004237,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 8572
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 58,
+    "score_label": "Needs Clarity",
+    "score_comment_short": "The resume lists practical duties, but gives little detail about how you performed them.",
+    "score_comment_long": "Store opening, customer sales, and training give a useful starting point. Most bullets stop at the task, and two roles have no dates. Add detail to the sales and training bullets and complete the timeline.",
+    "score_plain": "A reader can see the jobs you've held, but has limited information for comparing your work with a particular role. The Marketing Manager objective also needs a clearer connection to the experience listed.",
+    "first_impression": "Your recent dated role is Shift Lead, with responsibility for opening and closing a store. The Marketing Manager objective points in a different direction from the experience described.",
+    "biggest_gap_example": "“Trained new employes when needed” leaves out what you taught, so a reader cannot tell what the training involved.",
+    "first_impression_takeaway": "Explain the training you provided.",
+    "summary": "Your work spans store operations, wireless sales, warehousing, delivery, and food service. Opening and closing the store is worth keeping because it shows a specific responsibility in your Shift Lead role. The titles and duties point most directly toward shift lead and sales associate work, while the objective names a Marketing Manager position. The resume does not explain how your experience connects to marketing, which makes that target difficult to assess.",
+    "strengths": [
+      "At Buckeye Wireless, you sold phones and accessories and answered plan questions, giving the sales work a recognizable customer context.",
+      "The QuickStop role includes training new employees, which distinguishes it from a list of routine store duties.",
+      "Forklift use is named in the warehouse role, giving a reader a concrete picture of the work."
+    ],
+    "gaps": [
+      "The warehouse and delivery roles have no dates, so their place in your work history is unclear.",
+      "The objective names Marketing Manager, but the experience section does not describe marketing work or relevant projects.",
+      "The skills list names Microsoft Office without identifying which applications you used or what you used them for."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the QuickStop training bullet, name what you taught new employees and how you showed them the work.",
+        "why": "That would help a reader understand the responsibility behind training, rather than only knowing it happened.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Trained new employes when needed",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the Buckeye Wireless sales bullet, explain how you helped customers choose phones or accessories, if that was part of your work.",
+        "why": "A concrete example would show what you contributed to a sale beyond handling the transaction.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Sold phones and accessories to customers",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "Add the employment dates for the Warehouse Associate and Delivery Driver roles.",
+        "why": "Dates would let a reader place those jobs alongside your other roles without guessing.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Miami Valley Distribution, Vandalia, OH",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the QuickStop and Buckeye Wireless bullets using details you can verify about your training and sales work.",
+      "Add the missing job dates, then compare “employes,” “saftey,” and “timely manor” with your original file and correct the wording if needed.",
+      "Revisit the objective and skills list after deciding which role you want this version of the resume to address."
+    ],
+    "subscores": {
+      "impact": 55,
+      "clarity": 58,
+      "story": 56,
+      "readability": 61
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "D",
+        "priority": "High",
+        "working": "The objective states that you are seeking a Marketing Manager position.",
+        "missing": "It does not connect that goal to any marketing work or project on the resume.",
+        "fix": "Replace the generic objective with a brief statement tied to the role you are pursuing and experience you can substantiate."
+      },
+      "Work Experience": {
+        "grade": "D",
+        "priority": "High",
+        "working": "Job titles and employers make the range of work easy to identify.",
+        "missing": "Most bullets name tasks without explaining how you performed them, and the warehouse and delivery jobs lack dates.",
+        "fix": "Complete the timeline and add concrete detail to the training and wireless sales bullets."
+      },
+      "Skills": {
+        "grade": "D",
+        "priority": "Medium",
+        "working": "Customer service and Microsoft Office are named.",
+        "missing": "The list does not distinguish which Office applications you used, while several entries describe general traits.",
+        "fix": "Name the Office applications and relevant tasks you can substantiate, and remove traits that do not add useful detail."
+      },
+      "Education": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The college and business coursework are identified without claiming a completed degree.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Store opening and closing",
+        "Wireless product sales and plan questions",
+        "Customer complaints and payment handling",
+        "Order picking, packing, and forklift use"
+      ],
+      "underplayed": [
+        "What new employees learned during training",
+        "How customers were helped with wireless purchases",
+        "Specific tasks performed with Microsoft Office"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Shift Lead",
+          "Sales Associate"
+        ],
+        "stretch_roles": [
+          "Marketing Manager"
+        ],
+        "seniority_read": "The recent dated title is Shift Lead. The resume does not describe marketing management work.",
+        "industry_signals": [
+          "Fuel and food retail",
+          "Wireless retail",
+          "Distribution and warehousing",
+          "Food service"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "For shift or sales roles, put the store responsibilities and customer-facing work near the top. If you are targeting Marketing Manager positions, add any relevant marketing work or projects you can substantiate and explain how they relate to that goal."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What did you teach new employees at QuickStop, and how did you show them the work?",
+          "archetype": "SCALING",
+          "why": "The answer could make the training bullet more specific."
+        },
+        {
+          "question": "Which customer complaints could you resolve at QuickStop, and which needed someone else's help?",
+          "archetype": "TENSION POINT",
+          "why": "This could explain the decisions you handled at the store."
+        },
+        {
+          "question": "How did you help a Buckeye Wireless customer choose between phones or accessories?",
+          "archetype": "DOMAIN LIFT",
+          "why": "An example could show how you approached a sale."
+        },
+        {
+          "question": "What steps did you follow when opening or closing the QuickStop store?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The answer could give the Shift Lead responsibility more definition."
+        },
+        {
+          "question": "What checks did you use while picking and packing orders at Miami Valley Distribution?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "This could explain how you approached accuracy in warehouse work."
+        }
+      ]
+    }
+  },
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 58,
+    "score_label": "Needs more context",
+    "score_comment_short": "The resume lists practical duties, but gives little detail about how you performed them.",
+    "score_comment_long": "Store opening, customer sales, and training give a useful starting point. Most bullets stop at the task, and two roles have no dates. Add detail to the sales and training bullets and complete the timeline.",
+    "score_plain": "A reader can see the jobs you've held, but has limited information for comparing your work with a particular role. The Marketing Manager objective also needs a clearer connection to the experience listed.",
+    "first_impression": "Your recent dated role is Shift Lead, with responsibility for opening and closing a store. The Marketing Manager objective points in a different direction from the experience described.",
+    "biggest_gap_example": "“Trained new employes when needed” leaves out what you taught, so a reader cannot tell what the training involved.",
+    "first_impression_takeaway": "Explain the training you provided.",
+    "summary": "Your work spans store operations, wireless sales, warehousing, delivery, and food service. Opening and closing the store is worth keeping because it shows a specific responsibility in your Shift Lead role. The titles and duties point most directly toward shift lead and sales associate work, while the objective names a Marketing Manager position. The resume does not explain how your experience connects to marketing, which makes that target difficult to assess.",
+    "strengths": [
+      "At Buckeye Wireless, you sold phones and accessories and answered plan questions, giving the sales work a recognizable customer context.",
+      "The QuickStop role includes training new employees, which distinguishes it from a list of routine store duties.",
+      "Forklift use is named in the warehouse role, giving a reader a concrete picture of the work."
+    ],
+    "gaps": [
+      "The warehouse and delivery roles have no dates, so their place in your work history is unclear.",
+      "The objective names Marketing Manager, but the experience section does not describe marketing work or relevant projects.",
+      "The skills list names Microsoft Office without identifying which applications you used or what you used them for."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the Buckeye Wireless sales bullet, explain how you helped customers choose phones or accessories, if that was part of your work.",
+        "why": "A concrete example would show what you contributed to a sale beyond handling the transaction.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Sold phones and accessories to customers",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "Add the employment dates for the Warehouse Associate and Delivery Driver roles.",
+        "why": "Dates would let a reader place those jobs alongside your other roles without guessing.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Miami Valley Distribution, Vandalia, OH",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the QuickStop and Buckeye Wireless bullets using details you can verify about your training and sales work.",
+      "Add the missing job dates, then compare “employes,” “saftey,” and “timely manor” with your original file and correct the wording if needed.",
+      "Revisit the objective and skills list after deciding which role you want this version of the resume to address."
+    ],
+    "subscores": {
+      "impact": 55,
+      "clarity": 58,
+      "story": 56,
+      "readability": 61
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "D",
+        "priority": "High",
+        "working": "The objective states that you are seeking a Marketing Manager position.",
+        "missing": "It does not connect that goal to any marketing work or project on the resume.",
+        "fix": "Replace the generic objective with a brief statement tied to the role you are pursuing and experience you can substantiate."
+      },
+      "Work Experience": {
+        "grade": "D",
+        "priority": "High",
+        "working": "Job titles and employers make the range of work easy to identify.",
+        "missing": "Most bullets name tasks without explaining how you performed them, and the warehouse and delivery jobs lack dates.",
+        "fix": "Complete the timeline and add concrete detail to the training and wireless sales bullets."
+      },
+      "Skills": {
+        "grade": "D",
+        "priority": "Medium",
+        "working": "Customer service and Microsoft Office are named.",
+        "missing": "The list does not distinguish which Office applications you used, while several entries describe general traits.",
+        "fix": "Name the Office applications and relevant tasks you can substantiate, and remove traits that do not add useful detail."
+      },
+      "Education": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The college and business coursework are identified without claiming a completed degree.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Store opening and closing",
+        "Wireless product sales and plan questions",
+        "Customer complaints and payment handling",
+        "Order picking, packing, and forklift use"
+      ],
+      "underplayed": [
+        "What new employees learned during training",
+        "How customers were helped with wireless purchases",
+        "Specific tasks performed with Microsoft Office"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Shift Lead",
+          "Sales Associate"
+        ],
+        "stretch_roles": [
+          "Marketing Manager"
+        ],
+        "seniority_read": "The recent dated title is Shift Lead. The resume does not describe marketing management work.",
+        "industry_signals": [],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "For shift or sales roles, put the store responsibilities and customer-facing work near the top. If you are targeting Marketing Manager positions, add any relevant marketing work or projects you can substantiate and explain how they relate to that goal."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What did you teach new employees at QuickStop, and how did you show them the work?",
+          "archetype": "SCALING",
+          "why": "The answer could make the training bullet more specific."
+        },
+        {
+          "question": "Which customer complaints could you resolve at QuickStop, and which needed someone else's help?",
+          "archetype": "TENSION POINT",
+          "why": "This could explain the decisions you handled at the store."
+        },
+        {
+          "question": "How did you help a Buckeye Wireless customer choose between phones or accessories?",
+          "archetype": "DOMAIN LIFT",
+          "why": "An example could show how you approached a sale."
+        },
+        {
+          "question": "What steps did you follow when opening or closing the QuickStop store?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The answer could give the Shift Lead responsibility more definition."
+        },
+        {
+          "question": "What checks did you use while picking and packing orders at Miami Valley Distribution?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "This could explain how you approached accuracy in warehouse work."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 58
+  },
+  "severity": {
+    "outcome": "added",
+    "reason": "promoted",
+    "added": [],
+    "promoted": [
+      1
+    ],
+    "replaced": [],
+    "skipped": [],
+    "critical_count": 2,
+    "more_critical": false,
+    "validation_attempts": 0,
+    "answer": {
+      "critical_misses": [
+        {
+          "source": "fix_2",
+          "kind": "missing_dates",
+          "fix": "",
+          "why": "",
+          "excerpt": "",
+          "section": "",
+          "effort": "quick"
+        }
+      ],
+      "more_critical": false
+    },
+    "latency_ms": 8576,
+    "call_latency_ms": 8572,
+    "cost_usd": 0.004237,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 58,
+    "score_label": "Needs more context",
+    "score_comment_short": "The resume lists practical duties, but gives little detail about how you performed them.",
+    "score_comment_long": "Store opening, customer sales, and training give a useful starting point. Most bullets stop at the task, and two roles have no dates. Add detail to the sales and training bullets and complete the timeline.",
+    "score_plain": "A reader can see the jobs you've held, but has limited information for comparing your work with a particular role. The Marketing Manager objective also needs a clearer connection to the experience listed.",
+    "first_impression": "Your recent dated role is Shift Lead, with responsibility for opening and closing a store. The Marketing Manager objective points in a different direction from the experience described.",
+    "biggest_gap_example": "“Trained new employes when needed” leaves out what you taught, so a reader cannot tell what the training involved.",
+    "first_impression_takeaway": "Explain the training you provided.",
+    "summary": "Your work spans store operations, wireless sales, warehousing, delivery, and food service. Opening and closing the store is worth keeping because it shows a specific responsibility in your Shift Lead role. The titles and duties point most directly toward shift lead and sales associate work, while the objective names a Marketing Manager position. The resume does not explain how your experience connects to marketing, which makes that target difficult to assess.",
+    "strengths": [
+      "At Buckeye Wireless, you sold phones and accessories and answered plan questions, giving the sales work a recognizable customer context.",
+      "The QuickStop role includes training new employees, which distinguishes it from a list of routine store duties.",
+      "Forklift use is named in the warehouse role, giving a reader a concrete picture of the work."
+    ],
+    "gaps": [
+      "The warehouse and delivery roles have no dates, so their place in your work history is unclear.",
+      "The objective names Marketing Manager, but the experience section does not describe marketing work or relevant projects.",
+      "The skills list names Microsoft Office without identifying which applications you used or what you used them for."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the Buckeye Wireless sales bullet, explain how you helped customers choose phones or accessories, if that was part of your work.",
+        "why": "A concrete example would show what you contributed to a sale beyond handling the transaction.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Sold phones and accessories to customers",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": true
+      },
+      {
+        "fix": "Add the employment dates for the Warehouse Associate and Delivery Driver roles.",
+        "why": "Dates would let a reader place those jobs alongside your other roles without guessing.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Miami Valley Distribution, Vandalia, OH",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE",
+        "critical": true
+      }
+    ],
+    "next_steps": [
+      "Revise the QuickStop and Buckeye Wireless bullets using details you can verify about your training and sales work.",
+      "Add the missing job dates, then compare “employes,” “saftey,” and “timely manor” with your original file and correct the wording if needed.",
+      "Revisit the objective and skills list after deciding which role you want this version of the resume to address."
+    ],
+    "subscores": {
+      "impact": 55,
+      "clarity": 58,
+      "story": 56,
+      "readability": 61
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "D",
+        "priority": "High",
+        "working": "The objective states that you are seeking a Marketing Manager position.",
+        "missing": "It does not connect that goal to any marketing work or project on the resume.",
+        "fix": "Replace the generic objective with a brief statement tied to the role you are pursuing and experience you can substantiate."
+      },
+      "Work Experience": {
+        "grade": "D",
+        "priority": "High",
+        "working": "Job titles and employers make the range of work easy to identify.",
+        "missing": "Most bullets name tasks without explaining how you performed them, and the warehouse and delivery jobs lack dates.",
+        "fix": "Complete the timeline and add concrete detail to the training and wireless sales bullets."
+      },
+      "Skills": {
+        "grade": "D",
+        "priority": "Medium",
+        "working": "Customer service and Microsoft Office are named.",
+        "missing": "The list does not distinguish which Office applications you used, while several entries describe general traits.",
+        "fix": "Name the Office applications and relevant tasks you can substantiate, and remove traits that do not add useful detail."
+      },
+      "Education": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The college and business coursework are identified without claiming a completed degree.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Store opening and closing",
+        "Wireless product sales and plan questions",
+        "Customer complaints and payment handling",
+        "Order picking, packing, and forklift use"
+      ],
+      "underplayed": [
+        "What new employees learned during training",
+        "How customers were helped with wireless purchases",
+        "Specific tasks performed with Microsoft Office"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Shift Lead",
+          "Sales Associate"
+        ],
+        "stretch_roles": [
+          "Marketing Manager"
+        ],
+        "seniority_read": "The recent dated title is Shift Lead. The resume does not describe marketing management work.",
+        "industry_signals": [],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "For shift or sales roles, put the store responsibilities and customer-facing work near the top. If you are targeting Marketing Manager positions, add any relevant marketing work or projects you can substantiate and explain how they relate to that goal."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What did you teach new employees at QuickStop, and how did you show them the work?",
+          "archetype": "SCALING",
+          "why": "The answer could make the training bullet more specific."
+        },
+        {
+          "question": "Which customer complaints could you resolve at QuickStop, and which needed someone else's help?",
+          "archetype": "TENSION POINT",
+          "why": "This could explain the decisions you handled at the store."
+        },
+        {
+          "question": "How did you help a Buckeye Wireless customer choose between phones or accessories?",
+          "archetype": "DOMAIN LIFT",
+          "why": "An example could show how you approached a sale."
+        },
+        {
+          "question": "What steps did you follow when opening or closing the QuickStop store?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The answer could give the Shift Lead responsibility more definition."
+        },
+        {
+          "question": "What checks did you use while picking and packing orders at Miami Valley Distribution?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "This could explain how you approached accuracy in warehouse work."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 58,
+    "more_critical": false
+  },
+  "presentation": {
+    "score": 58,
+    "band": "Needs more context",
+    "score_label_from_model": "Needs Clarity",
+    "model_score_before_calibration": 58,
+    "verdict": "Your recent dated role is Shift Lead, with responsibility for opening and closing a store. The Marketing Manager objective points in a different direction from the experience described.",
+    "one_line_read": "The resume lists practical duties, but gives little detail about how you performed them.",
+    "takeaway": "Explain the training you provided.",
+    "biggest_gap_example": "“Trained new employes when needed” leaves out what you taught, so a reader cannot tell what the training involved.",
+    "critical_count": {
+      "count": 2,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "Two Critical Misses. Start with this one.",
+      "lead": "Either one could cost you the interview on its own."
+    },
+    "fixes": [
+      {
+        "fix": "In the Buckeye Wireless sales bullet, explain how you helped customers choose phones or accessories, if that was part of your work.",
+        "why": "A concrete example would show what you contributed to a sale beyond handling the transaction.",
+        "excerpt": "- Sold phones and accessories to customers",
+        "section": "EXPERIENCE",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "Add the employment dates for the Warehouse Associate and Delivery Driver roles.",
+        "why": "Dates would let a reader place those jobs alongside your other roles without guessing.",
+        "excerpt": "Miami Valley Distribution, Vandalia, OH",
+        "section": "EXPERIENCE",
+        "critical": true,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "At Buckeye Wireless, you sold phones and accessories and answered plan questions, giving the sales work a recognizable customer context.",
+    "strengths": [
+      "At Buckeye Wireless, you sold phones and accessories and answered plan questions, giving the sales work a recognizable customer context.",
+      "The QuickStop role includes training new employees, which distinguishes it from a list of routine store duties.",
+      "Forklift use is named in the warehouse role, giving a reader a concrete picture of the work."
+    ],
+    "gaps": [
+      "The warehouse and delivery roles have no dates, so their place in your work history is unclear.",
+      "The objective names Marketing Manager, but the experience section does not describe marketing work or relevant projects.",
+      "The skills list names Microsoft Office without identifying which applications you used or what you used them for."
+    ],
+    "next_steps": [
+      "Revise the QuickStop and Buckeye Wireless bullets using details you can verify about your training and sales work.",
+      "Add the missing job dates, then compare “employes,” “saftey,” and “timely manor” with your original file and correct the wording if needed.",
+      "Revisit the objective and skills list after deciding which role you want this version of the resume to address."
+    ],
+    "seniority_read": "The recent dated title is Shift Lead. The resume does not describe marketing management work.",
+    "best_fit_roles": [
+      "Shift Lead",
+      "Sales Associate"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "For shift or sales roles, put the store responsibilities and customer-facing work near the top. If you are targeting Marketing Manager positions, add any relevant marketing work or projects you can substantiate and explain how they relate to that goal.",
+    "severity_added": [],
+    "severity_promoted": [
+      1
+    ],
+    "severity_outcome": "added (promoted)",
+    "severity_answer": {
+      "critical_misses": [
+        {
+          "source": "fix_2",
+          "kind": "missing_dates",
+          "fix": "",
+          "why": "",
+          "excerpt": "",
+          "section": "",
+          "effort": "quick"
+        }
+      ],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "keep_dropped",
+          "path": "strengths[0]",
+          "line": "fix-0",
+          "criticalMiss": true
+        },
+        {
+          "kind": "question_dropped",
+          "path": "ideas.questions[0]",
+          "reason": "duplicates_keep"
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[2]",
+          "fix": 0
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[4]",
+          "fix": 1
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[0]",
+          "of": "top_fixes[1]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[1]",
+          "of": "first_impression"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Work Experience.missing",
+          "of": "top_fixes[1]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Skills.missing",
+          "of": "gaps[2]"
+        }
+      ],
+      "fix_questions": [
+        [
+          "How did you help a Buckeye Wireless customer choose between phones or accessories?"
+        ],
+        [
+          "What checks did you use while picking and packing orders at Miami Valley Distribution?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01783055,
+  "latency_ms": 37317
+}

@@ -1,0 +1,713 @@
+{
+  "case_id": "b23_pharmacy_tech_table",
+  "batch": "breadth",
+  "run": 2,
+  "note": "Tables rendered to tab-separated text.",
+  "resume_file": "resumes/b_pharmacy_tech_table.txt",
+  "resume_sha256": "872695c37eba2c67784784b9af67edda0387ea5b8bbb90cd54d25ac0f2941367",
+  "resume_chars": 1462,
+  "resume_words": 209,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T20:07:49.533Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7759,
+        "completion_tokens": 2225,
+        "total_tokens": 9984,
+        "cached_prompt_tokens": 7756,
+        "cache_write_prompt_tokens": 0,
+        "reasoning_tokens": 289
+      },
+      "cost_usd": 0.0115158,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 25708
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.001607,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1361
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 85,
+    "score_label": "Strong",
+    "score_comment_short": "Recent pharmacy duties include workload and staffing details, with one clear result.",
+    "score_comment_long": "The inpatient work shows sterile compounding volume, nursing-unit coverage and technician training. The reduction in stockout reports gives a reviewer a concrete result to notice. Linking duties to employers and explaining a few less detailed responsibilities would make the resume easier to assess.",
+    "score_plain": "Your recent work gives reviewers specific reasons to consider your pharmacy background. A few edits would make it easier to understand how you handled the work.",
+    "first_impression": "Inpatient sterile compounding and retail pharmacy are both visible immediately. The separate duties table makes a reviewer connect each responsibility back to its employer and dates.",
+    "biggest_gap_example": "\"Ran the immunization scheduling during the 2021 flu and COVID seasons\" does not explain how you handled scheduling, so the nature of your responsibility is unclear.",
+    "first_impression_takeaway": "Connect duties to employers",
+    "summary": "Stockout reports fell from 9 to 2 per week in 2024 alongside your work restocking cabinets for 6 nursing units. That detail is worth keeping because it gives the inpatient role a concrete result, not just a list of duties. Your current Pharmacy Technician II role combines cleanroom preparation, cabinet restocking and training, following retail pharmacy work. The resume doesn't explain what prescription verification involved, which may leave a reviewer unsure how that responsibility fits their setting.",
+    "strengths": [
+      "About 120 IV admixture and chemotherapy doses per shift gives readers a sense of the cleanroom workload under USP 797 and 800.",
+      "Training 5 technicians since 2023 shows that teaching sterile compounding is part of your current role.",
+      "The CPhT, California license and sterile compounding credential are listed with issuers and years, making them easy to locate."
+    ],
+    "gaps": [
+      "The immunization scheduling entry doesn't describe the tasks you handled, leaving its day-to-day demands unclear.",
+      "The resume doesn't define what a stockout report counted, which makes the reported change harder to interpret.",
+      "The retail insurance entry doesn't say how you handled rejections or prior authorizations, so readers can't see the work behind the daily volume."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "Move each entry in Duties and Results beneath its matching job in Experience, keeping the existing volumes and stockout result.",
+        "why": "A reader can then see the employer and dates alongside the work without cross-referencing two tables.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Prepare IV admixtures and chemotherapy in the cleanroom under USP 797 and 800",
+          "section": "DUTIES AND RESULTS"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "DUTIES AND RESULTS"
+      },
+      {
+        "fix": "In the retail prescription bullet, explain what your verification step covered and how it related to the pharmacist's review.",
+        "why": "Verification can mean different things in a pharmacy workflow, so the detail would help a reviewer understand your responsibility.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Filled and verified prescriptions for a store doing 350 scripts a day",
+          "section": "DUTIES AND RESULTS"
+        },
+        "impact_level": "high",
+        "effort": "quick",
+        "section_ref": "DUTIES AND RESULTS"
+      },
+      {
+        "fix": "In the immunization scheduling bullet, name the scheduling tasks you handled during the flu and COVID seasons.",
+        "why": "The seasons establish when the work happened, but not what running the schedule involved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Ran the immunization scheduling during the 2021 flu and COVID seasons",
+          "section": "DUTIES AND RESULTS"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "DUTIES AND RESULTS"
+      }
+    ],
+    "next_steps": [
+      "Place the duties under the three corresponding jobs and keep the inpatient role first.",
+      "Revise the retail entries with your actual verification and immunization scheduling tasks.",
+      "Check what the stockout reports counted and add a brief definition if it helps readers interpret the 2024 figures."
+    ],
+    "subscores": {
+      "impact": 83,
+      "clarity": 82,
+      "story": 86,
+      "readability": 84
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The opening identifies your certification, California license and retail and hospital background.",
+        "missing": "It doesn't indicate whether you want to emphasize inpatient or retail work.",
+        "fix": "Adjust the opening for the role you pursue, while keeping your license and certification visible."
+      },
+      "Work Experience": {
+        "grade": "B+",
+        "priority": "High",
+        "working": "The current role includes cleanroom volume, nursing-unit coverage, training and a stockout-report result.",
+        "missing": "Responsibilities sit apart from the employer and date information, and some retail tasks need more explanation.",
+        "fix": "Group duties under each job and explain the prescription verification and immunization scheduling work."
+      },
+      "Skills": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "Section not present.",
+        "fix": "Add only if it helps your story."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The degree, school and year appear alongside the relevant credentials.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Inpatient IV admixture and chemotherapy preparation under USP 797 and 800",
+        "Automated dispensing cabinet restocking for 6 nursing units",
+        "Retail prescription, insurance and prior authorization work",
+        "Sterile compounding training for new technicians"
+      ],
+      "underplayed": [
+        "The specific steps involved in prescription verification",
+        "The tasks involved in immunization scheduling",
+        "The work behind resolving insurance rejections and prior authorizations"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Pharmacy Technician II",
+          "Pharmacy Technician"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current title is Pharmacy Technician II, with technician training included in the role.",
+        "industry_signals": [
+          "Hospital inpatient pharmacy",
+          "Retail pharmacy"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "For inpatient applications, put cleanroom preparation, cabinet restocking and the 2024 stockout figures near the top of the current role. For retail applications, bring prescription processing and insurance work forward while retaining the inpatient experience."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What counted as a stockout report for the 6 nursing units?",
+          "archetype": "IMPROVEMENT",
+          "why": "A definition would help readers interpret the change reported in 2024."
+        },
+        {
+          "question": "What did your prescription verification involve before the pharmacist's review?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "This would distinguish your step from other parts of the prescription workflow."
+        },
+        {
+          "question": "What did you teach new technicians during sterile compounding training?",
+          "archetype": "DOMAIN LIFT",
+          "why": "A specific training topic would show what the instruction covered."
+        },
+        {
+          "question": "How did you prioritize IV admixture and chemotherapy preparation when demand varied?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "This could explain how you handled the cleanroom workload."
+        },
+        {
+          "question": "Who did you coordinate with while running immunization scheduling during the 2021 flu and COVID seasons?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The answer could make the scheduling responsibility more concrete."
+        }
+      ]
+    }
+  },
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 85,
+    "score_label": "Clear and specific",
+    "score_comment_short": "Recent pharmacy duties include workload and staffing details, with one clear result.",
+    "score_comment_long": "The inpatient work shows sterile compounding volume, nursing-unit coverage and technician training. The reduction in stockout reports gives a reviewer a concrete result to notice. Linking duties to employers and explaining a few less detailed responsibilities would make the resume easier to assess.",
+    "score_plain": "Your recent work gives reviewers specific reasons to consider your pharmacy background. A few edits would make it easier to understand how you handled the work.",
+    "first_impression": "Inpatient sterile compounding and retail pharmacy are both visible immediately. The separate duties table makes a reviewer connect each responsibility back to its employer and dates.",
+    "biggest_gap_example": "\"Ran the immunization scheduling during the 2021 flu and COVID seasons\" does not explain how you handled scheduling, so the nature of your responsibility is unclear.",
+    "first_impression_takeaway": "Connect duties to employers",
+    "summary": "Stockout reports fell from 9 to 2 per week in 2024 alongside your work restocking cabinets for 6 nursing units. That detail is worth keeping because it gives the inpatient role a concrete result, not just a list of duties. Your current Pharmacy Technician II role combines cleanroom preparation, cabinet restocking and training, following retail pharmacy work. The resume doesn't explain what prescription verification involved, which may leave a reviewer unsure how that responsibility fits their setting.",
+    "strengths": [
+      "About 120 IV admixture and chemotherapy doses per shift gives readers a sense of the cleanroom workload under USP 797 and 800.",
+      "Training 5 technicians since 2023 shows that teaching sterile compounding is part of your current role.",
+      "The CPhT, California license and sterile compounding credential are listed with issuers and years, making them easy to locate."
+    ],
+    "gaps": [
+      "The immunization scheduling entry doesn't describe the tasks you handled, leaving its day-to-day demands unclear.",
+      "The resume doesn't define what a stockout report counted, which makes the reported change harder to interpret.",
+      "The retail insurance entry doesn't say how you handled rejections or prior authorizations, so readers can't see the work behind the daily volume."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "Move each entry in Duties and Results beneath its matching job in Experience, keeping the existing volumes and stockout result.",
+        "why": "A reader can then see the employer and dates alongside the work without cross-referencing two tables.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Prepare IV admixtures and chemotherapy in the cleanroom under USP 797 and 800",
+          "section": "DUTIES AND RESULTS"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "DUTIES AND RESULTS"
+      },
+      {
+        "fix": "In the retail prescription bullet, explain what your verification step covered and how it related to the pharmacist's review.",
+        "why": "Verification can mean different things in a pharmacy workflow, so the detail would help a reviewer understand your responsibility.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Filled and verified prescriptions for a store doing 350 scripts a day",
+          "section": "DUTIES AND RESULTS"
+        },
+        "impact_level": "high",
+        "effort": "quick",
+        "section_ref": "DUTIES AND RESULTS"
+      },
+      {
+        "fix": "In the immunization scheduling bullet, name the scheduling tasks you handled during the flu and COVID seasons.",
+        "why": "The seasons establish when the work happened, but not what running the schedule involved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Ran the immunization scheduling during the 2021 flu and COVID seasons",
+          "section": "DUTIES AND RESULTS"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "DUTIES AND RESULTS"
+      }
+    ],
+    "next_steps": [
+      "Place the duties under the three corresponding jobs and keep the inpatient role first.",
+      "Revise the retail entries with your actual verification and immunization scheduling tasks.",
+      "Check what the stockout reports counted and add a brief definition if it helps readers interpret the 2024 figures."
+    ],
+    "subscores": {
+      "impact": 83,
+      "clarity": 82,
+      "story": 86,
+      "readability": 84
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "B+",
+        "priority": "High",
+        "working": "The current role includes cleanroom volume, nursing-unit coverage, training and a stockout-report result.",
+        "missing": "Responsibilities sit apart from the employer and date information, and some retail tasks need more explanation.",
+        "fix": "Group duties under each job and explain the prescription verification and immunization scheduling work."
+      },
+      "Skills": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No skills section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Education": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No education section present",
+        "fix": "Add this section if the job asks for it or it helps explain your qualifications."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Inpatient IV admixture and chemotherapy preparation under USP 797 and 800",
+        "Automated dispensing cabinet restocking for 6 nursing units",
+        "Retail prescription, insurance and prior authorization work",
+        "Sterile compounding training for new technicians"
+      ],
+      "underplayed": [
+        "The specific steps involved in prescription verification",
+        "The tasks involved in immunization scheduling",
+        "The work behind resolving insurance rejections and prior authorizations"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Pharmacy Technician II",
+          "Pharmacy Technician"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current title is Pharmacy Technician II, with technician training included in the role.",
+        "industry_signals": [],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "For inpatient applications, put cleanroom preparation, cabinet restocking and the 2024 stockout figures near the top of the current role. For retail applications, bring prescription processing and insurance work forward while retaining the inpatient experience."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What counted as a stockout report for the 6 nursing units?",
+          "archetype": "IMPROVEMENT",
+          "why": "A definition would help readers interpret the change reported in 2024."
+        },
+        {
+          "question": "What did your prescription verification involve before the pharmacist's review?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "This would distinguish your step from other parts of the prescription workflow."
+        },
+        {
+          "question": "What did you teach new technicians during sterile compounding training?",
+          "archetype": "DOMAIN LIFT",
+          "why": "A specific training topic would show what the instruction covered."
+        },
+        {
+          "question": "How did you prioritize IV admixture and chemotherapy preparation when demand varied?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "This could explain how you handled the cleanroom workload."
+        },
+        {
+          "question": "Who did you coordinate with while running immunization scheduling during the 2021 flu and COVID seasons?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The answer could make the scheduling responsibility more concrete."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 85
+  },
+  "severity": {
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "promoted": [],
+    "replaced": [],
+    "skipped": [],
+    "critical_count": 1,
+    "more_critical": false,
+    "validation_attempts": 0,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "latency_ms": 1362,
+    "call_latency_ms": 1361,
+    "cost_usd": 0.001607,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 85,
+    "score_label": "Clear and specific",
+    "score_comment_short": "Recent pharmacy duties include workload and staffing details, with one clear result.",
+    "score_comment_long": "The inpatient work shows sterile compounding volume, nursing-unit coverage and technician training. The reduction in stockout reports gives a reviewer a concrete result to notice. Linking duties to employers and explaining a few less detailed responsibilities would make the resume easier to assess.",
+    "score_plain": "Your recent work gives reviewers specific reasons to consider your pharmacy background. A few edits would make it easier to understand how you handled the work.",
+    "first_impression": "Inpatient sterile compounding and retail pharmacy are both visible immediately. The separate duties table makes a reviewer connect each responsibility back to its employer and dates.",
+    "biggest_gap_example": "\"Ran the immunization scheduling during the 2021 flu and COVID seasons\" does not explain how you handled scheduling, so the nature of your responsibility is unclear.",
+    "first_impression_takeaway": "Connect duties to employers",
+    "summary": "Stockout reports fell from 9 to 2 per week in 2024 alongside your work restocking cabinets for 6 nursing units. That detail is worth keeping because it gives the inpatient role a concrete result, not just a list of duties. Your current Pharmacy Technician II role combines cleanroom preparation, cabinet restocking and training, following retail pharmacy work. The resume doesn't explain what prescription verification involved, which may leave a reviewer unsure how that responsibility fits their setting.",
+    "strengths": [
+      "About 120 IV admixture and chemotherapy doses per shift gives readers a sense of the cleanroom workload under USP 797 and 800.",
+      "Training 5 technicians since 2023 shows that teaching sterile compounding is part of your current role.",
+      "The CPhT, California license and sterile compounding credential are listed with issuers and years, making them easy to locate."
+    ],
+    "gaps": [
+      "The immunization scheduling entry doesn't describe the tasks you handled, leaving its day-to-day demands unclear.",
+      "The resume doesn't define what a stockout report counted, which makes the reported change harder to interpret.",
+      "The retail insurance entry doesn't say how you handled rejections or prior authorizations, so readers can't see the work behind the daily volume."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "Move each entry in Duties and Results beneath its matching job in Experience, keeping the existing volumes and stockout result.",
+        "why": "A reader can then see the employer and dates alongside the work without cross-referencing two tables.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Prepare IV admixtures and chemotherapy in the cleanroom under USP 797 and 800",
+          "section": "DUTIES AND RESULTS"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "DUTIES AND RESULTS",
+        "critical": true
+      },
+      {
+        "fix": "In the retail prescription bullet, explain what your verification step covered and how it related to the pharmacist's review.",
+        "why": "Verification can mean different things in a pharmacy workflow, so the detail would help a reviewer understand your responsibility.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Filled and verified prescriptions for a store doing 350 scripts a day",
+          "section": "DUTIES AND RESULTS"
+        },
+        "impact_level": "high",
+        "effort": "quick",
+        "section_ref": "DUTIES AND RESULTS",
+        "critical": false
+      },
+      {
+        "fix": "In the immunization scheduling bullet, name the scheduling tasks you handled during the flu and COVID seasons.",
+        "why": "The seasons establish when the work happened, but not what running the schedule involved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Ran the immunization scheduling during the 2021 flu and COVID seasons",
+          "section": "DUTIES AND RESULTS"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "DUTIES AND RESULTS",
+        "critical": false
+      }
+    ],
+    "next_steps": [
+      "Place the duties under the three corresponding jobs and keep the inpatient role first.",
+      "Revise the retail entries with your actual verification and immunization scheduling tasks.",
+      "Check what the stockout reports counted and add a brief definition if it helps readers interpret the 2024 figures."
+    ],
+    "subscores": {
+      "impact": 83,
+      "clarity": 82,
+      "story": 86,
+      "readability": 84
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "B+",
+        "priority": "High",
+        "working": "The current role includes cleanroom volume, nursing-unit coverage, training and a stockout-report result.",
+        "missing": "Responsibilities sit apart from the employer and date information, and some retail tasks need more explanation.",
+        "fix": "Group duties under each job and explain the prescription verification and immunization scheduling work."
+      },
+      "Skills": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No skills section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Education": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No education section present",
+        "fix": "Add this section if the job asks for it or it helps explain your qualifications."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Inpatient IV admixture and chemotherapy preparation under USP 797 and 800",
+        "Automated dispensing cabinet restocking for 6 nursing units",
+        "Retail prescription, insurance and prior authorization work",
+        "Sterile compounding training for new technicians"
+      ],
+      "underplayed": [
+        "The specific steps involved in prescription verification",
+        "The tasks involved in immunization scheduling",
+        "The work behind resolving insurance rejections and prior authorizations"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Pharmacy Technician II",
+          "Pharmacy Technician"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current title is Pharmacy Technician II, with technician training included in the role.",
+        "industry_signals": [],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "For inpatient applications, put cleanroom preparation, cabinet restocking and the 2024 stockout figures near the top of the current role. For retail applications, bring prescription processing and insurance work forward while retaining the inpatient experience."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What counted as a stockout report for the 6 nursing units?",
+          "archetype": "IMPROVEMENT",
+          "why": "A definition would help readers interpret the change reported in 2024."
+        },
+        {
+          "question": "What did your prescription verification involve before the pharmacist's review?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "This would distinguish your step from other parts of the prescription workflow."
+        },
+        {
+          "question": "What did you teach new technicians during sterile compounding training?",
+          "archetype": "DOMAIN LIFT",
+          "why": "A specific training topic would show what the instruction covered."
+        },
+        {
+          "question": "How did you prioritize IV admixture and chemotherapy preparation when demand varied?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "This could explain how you handled the cleanroom workload."
+        },
+        {
+          "question": "Who did you coordinate with while running immunization scheduling during the 2021 flu and COVID seasons?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The answer could make the scheduling responsibility more concrete."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 85,
+    "more_critical": false
+  },
+  "presentation": {
+    "score": 85,
+    "band": "Clear and specific",
+    "score_label_from_model": "Strong",
+    "model_score_before_calibration": 85,
+    "verdict": "Inpatient sterile compounding and retail pharmacy are both visible immediately. The separate duties table makes a reviewer connect each responsibility back to its employer and dates.",
+    "one_line_read": "Recent pharmacy duties include workload and staffing details, with one clear result.",
+    "takeaway": "Connect duties to employers",
+    "biggest_gap_example": "\"Ran the immunization scheduling during the 2021 flu and COVID seasons\" does not explain how you handled scheduling, so the nature of your responsibility is unclear.",
+    "critical_count": {
+      "count": 1,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "One Critical Miss. Fix it first.",
+      "lead": "It's the one most likely to cost you the interview."
+    },
+    "fixes": [
+      {
+        "fix": "Move each entry in Duties and Results beneath its matching job in Experience, keeping the existing volumes and stockout result.",
+        "why": "A reader can then see the employer and dates alongside the work without cross-referencing two tables.",
+        "excerpt": "Prepare IV admixtures and chemotherapy in the cleanroom under USP 797 and 800",
+        "section": "DUTIES AND RESULTS",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the retail prescription bullet, explain what your verification step covered and how it related to the pharmacist's review.",
+        "why": "Verification can mean different things in a pharmacy workflow, so the detail would help a reviewer understand your responsibility.",
+        "excerpt": "Filled and verified prescriptions for a store doing 350 scripts a day",
+        "section": "DUTIES AND RESULTS",
+        "critical": false,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the immunization scheduling bullet, name the scheduling tasks you handled during the flu and COVID seasons.",
+        "why": "The seasons establish when the work happened, but not what running the schedule involved.",
+        "excerpt": "Ran the immunization scheduling during the 2021 flu and COVID seasons",
+        "section": "DUTIES AND RESULTS",
+        "critical": false,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "About 120 IV admixture and chemotherapy doses per shift gives readers a sense of the cleanroom workload under USP 797 and 800.",
+    "strengths": [
+      "About 120 IV admixture and chemotherapy doses per shift gives readers a sense of the cleanroom workload under USP 797 and 800.",
+      "Training 5 technicians since 2023 shows that teaching sterile compounding is part of your current role.",
+      "The CPhT, California license and sterile compounding credential are listed with issuers and years, making them easy to locate."
+    ],
+    "gaps": [
+      "The immunization scheduling entry doesn't describe the tasks you handled, leaving its day-to-day demands unclear.",
+      "The resume doesn't define what a stockout report counted, which makes the reported change harder to interpret.",
+      "The retail insurance entry doesn't say how you handled rejections or prior authorizations, so readers can't see the work behind the daily volume."
+    ],
+    "next_steps": [
+      "Place the duties under the three corresponding jobs and keep the inpatient role first.",
+      "Revise the retail entries with your actual verification and immunization scheduling tasks.",
+      "Check what the stockout reports counted and add a brief definition if it helps readers interpret the 2024 figures."
+    ],
+    "seniority_read": "Your current title is Pharmacy Technician II, with technician training included in the role.",
+    "best_fit_roles": [
+      "Pharmacy Technician II",
+      "Pharmacy Technician"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "For inpatient applications, put cleanroom preparation, cabinet restocking and the 2024 stockout figures near the top of the current role. For retail applications, bring prescription processing and insurance work forward while retaining the inpatient experience.",
+    "severity_added": [],
+    "severity_promoted": [],
+    "severity_outcome": "none (none)",
+    "severity_answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "keep_dropped",
+          "path": "strengths[0]",
+          "line": "fix-0",
+          "criticalMiss": true
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[1]",
+          "fix": 1
+        },
+        {
+          "kind": "question_dropped",
+          "path": "ideas.questions[2]",
+          "reason": "duplicates_keep"
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[3]",
+          "fix": 0
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[4]",
+          "fix": 2
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "biggest_gap_example",
+          "of": "top_fixes[2]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[0]",
+          "of": "top_fixes[2]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[1]",
+          "of": "ideas.questions[0]"
+        }
+      ],
+      "fix_questions": [
+        [
+          "How did you prioritize IV admixture and chemotherapy preparation when demand varied?"
+        ],
+        [
+          "What did your prescription verification involve before the pharmacist's review?"
+        ],
+        [
+          "Who did you coordinate with while running immunization scheduling during the 2021 flu and COVID seasons?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0131228,
+  "latency_ms": 27124
+}

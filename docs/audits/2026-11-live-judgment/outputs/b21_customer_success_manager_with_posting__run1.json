@@ -1,0 +1,440 @@
+{
+  "case_id": "b21_customer_success_manager_with_posting",
+  "batch": "breadth",
+  "run": 1,
+  "note": "The same resume with a posting attached.",
+  "resume_file": "../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt",
+  "resume_sha256": "fe00b25220442aa026e6aa909f700301c898f430bd2cf244eafbe182c75f316d",
+  "resume_chars": 1215,
+  "resume_words": 180,
+  "job_description_file": "resumes/b_posting_customer_success_manager.txt",
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T20:06:31.458Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7962,
+        "completion_tokens": 2677,
+        "total_tokens": 10639,
+        "cached_prompt_tokens": 7003,
+        "cache_write_prompt_tokens": 956,
+        "reasoning_tokens": 512
+      },
+      "cost_usd": 0.01493315,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 30827
+    },
+    {
+      "kind": "repair",
+      "usage": {
+        "prompt_tokens": 11077,
+        "completion_tokens": 3873,
+        "total_tokens": 14950,
+        "cached_prompt_tokens": 7003,
+        "cache_write_prompt_tokens": 4071,
+        "reasoning_tokens": 1716
+      },
+      "cost_usd": 0.0248069,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 44238
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 82,
+    "score_label": "Strong",
+    "score_comment_short": "Recent bullets show account scope and collaboration, but renewal results aren't stated.",
+    "score_comment_long": "Your current role names the account book, customer contacts, and work with Sales, Support, and Product. The onboarding checklist is used across the CS team. Renewal performance and the financial size of the book remain unclear. Adding those facts, if available, would make the recent role easier to assess.",
+    "score_plain": "The resume gives a reviewer a clear picture of your customer-facing work. For a role with retention targets, it leaves important performance questions unanswered.",
+    "first_impression": "You manage 48 mid-market accounts in payroll software and work across onboarding, reviews, renewals, and escalations. The checklist adopted by the whole CS team is worth keeping because it shows a contribution beyond your own accounts.",
+    "biggest_gap_example": "\"Partnered with Sales on renewal strategy for at-risk accounts\" doesn't say what you contributed to the strategy or what happened to those renewals.",
+    "first_impression_takeaway": "Explain your renewal work",
+    "summary": "Managing a mid-market payroll book is the center of your recent work, with earlier support experience in payroll and tax filing. Your progression from support specialist to customer success manager fits an individual-contributor customer success role. You also work with finance and HR contacts and bring Support, Product, and Sales into customer issues. Without retention results, a reviewer cannot compare your renewal performance with this job's targets.",
+    "strengths": [
+      "The 48-account book and named healthcare and manufacturing customers make your current portfolio concrete.",
+      "A 94% customer satisfaction score across 2021 gives the support role a stated result.",
+      "Training six new support hires shows responsibility for helping others learn the ticketing workflow."
+    ],
+    "gaps": [
+      "The resume doesn't state the ARR represented by your accounts, so the book cannot be compared financially with the job's approximately $4M portfolio.",
+      "QBRs are held with finance and HR leads, but their seniority isn't specified, leaving VP-level sponsor experience unclear.",
+      "Gainsight and Salesforce are listed as skills, but the resume doesn't say whether you use product usage data or a BI tool to identify risk."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the at-risk renewal bullet, describe your contribution to the Sales strategy and add verified retention or expansion results if available.",
+        "why": "The job assigns specific retention targets, so a partnership description alone doesn't show how your book performed.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Partnered with Sales on renewal strategy for at-risk accounts",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the 48-account portfolio bullet, add the book's ARR if you can verify it.",
+        "why": "Account count is useful, but it doesn't establish whether the portfolio is comparable to the role's financial responsibility.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Manage a book of 48 mid-market accounts across healthcare and manufacturing",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the QBR bullet, specify the seniority of the finance and HR contacts and an example of what you presented.",
+        "why": "That would help a reviewer assess your experience with the executive sponsors named in the job description.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Run quarterly business reviews with customer finance and HR leads",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the renewal and account-book bullets using financial figures you can verify.",
+      "Review the QBR and escalation bullets for a concrete presentation example and your contribution to resolving a payroll issue.",
+      "Update the skills section only if you can accurately name how you use product usage data or a BI tool."
+    ],
+    "subscores": {
+      "impact": 78,
+      "clarity": 84,
+      "story": 83,
+      "readability": 85
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The opening identifies B2B software, mid-market accounts, and the customer journey from onboarding through renewal.",
+        "missing": "It doesn't mention the payroll domain or the size of your current book.",
+        "fix": "Consider adding the 48-account portfolio or payroll context after revising the experience bullets."
+      },
+      "Work Experience": {
+        "grade": "B",
+        "priority": "High",
+        "working": "The current role names customer contacts, cross-functional partners, and a checklist adopted by the CS team.",
+        "missing": "Renewal performance and the financial size of the account book aren't stated.",
+        "fix": "Add verified portfolio and renewal details to the relevant Brightline bullets."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "Gainsight and Salesforce match tools named in the job description.",
+        "missing": "The list doesn't identify a BI tool or explain how you use product usage data.",
+        "fix": "Add a BI tool or usage-data work only if you have that experience."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The degree, institution, and year are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 68,
+      "jd_match_summary": "Your mid-market SaaS customer success work aligns with the core role. The resume does not establish retention or expansion performance, portfolio ARR, VP-level QBRs, or product usage analysis.",
+      "jd_keywords": {
+        "matched": [
+          "B2B SaaS customer success",
+          "Mid-market accounts",
+          "Onboarding",
+          "Quarterly business reviews",
+          "At-risk renewal strategy with Sales",
+          "Gainsight",
+          "Salesforce",
+          "Renewal forecasting"
+        ],
+        "missing": [
+          "Retention and expansion target results",
+          "Portfolio ARR",
+          "Product usage data analysis",
+          "BI tool",
+          "VP-level QBR sponsors",
+          "Feature request logging and prioritization",
+          "Analytics or data product experience"
+        ],
+        "match_count": 8,
+        "total_count": 15
+      },
+      "strongly_aligned": [
+        "Mid-market customer success in B2B software",
+        "Account onboarding through renewal",
+        "Quarterly business reviews with customer finance and HR leads",
+        "Renewal strategy for at-risk accounts with Sales",
+        "Gainsight and Salesforce listed in skills"
+      ],
+      "underplayed": [
+        "Your specific contribution to renewal strategy",
+        "The financial size of your current book",
+        "What you present in QBRs and the seniority of attendees"
+      ],
+      "missing": [
+        "Retention or expansion results against targets",
+        "Product usage analysis and BI tool experience",
+        "Feature request logging and prioritization, plus analytics or data product experience"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Customer Success Manager",
+          "Customer Success Manager, Mid-Market"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Current customer success manager with prior customer support and account coordination experience.",
+        "industry_signals": [
+          "Payroll software",
+          "Insurance",
+          "Healthcare and manufacturing customer accounts"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Lead with your mid-market payroll book, QBRs, and onboarding work for this role. If you can verify retention results, portfolio ARR, or usage-data work, add them to the relevant experience bullets rather than implying them from your tool list."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What did you contribute to the renewal plans for at-risk accounts, and what happened to those renewals?",
+          "archetype": "TENSION POINT",
+          "why": "Your partnership with Sales is stated, but your contribution and the renewal results aren't."
+        },
+        {
+          "question": "What did the onboarding checklist cover, and how did the CS team use it?",
+          "archetype": "SCALING",
+          "why": "The checklist's team-wide adoption is clear; its contents would explain what you built."
+        },
+        {
+          "question": "When a payroll run failed, what did you coordinate with Support and Product for the customer?",
+          "archetype": "HIGH STAKES",
+          "why": "A specific escalation example would show your part in a time-sensitive customer problem."
+        },
+        {
+          "question": "What did you present in a QBR, and what were the attendees' roles?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The job asks for executive sponsors, while your current bullet names finance and HR leads."
+        },
+        {
+          "question": "How did you use Gainsight or Salesforce when identifying accounts that needed attention?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The tools are listed, but their connection to account-risk work isn't described."
+        }
+      ]
+    }
+  },
+  "initial_validation_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the evidence grounding contract at score_plain unsupported narrative facts: picture, customerfacing."
+  },
+  "model_output_repaired": {
+    "contract_version": "v2",
+    "score": 81,
+    "score_label": "Strong",
+    "score_comment_short": "Your account book and team-wide checklist stand out, but renewal results remain unclear.",
+    "score_comment_long": "Your current role names the accounts you manage, the people you meet, and the teams you work with. The onboarding checklist is used by the whole CS team. Renewal performance and the financial size of your book aren't stated. Adding those details, if available, would help a reviewer assess your fit for this role.",
+    "score_plain": "Your resume shows relevant work with a mid-market customer portfolio. It doesn't yet give a reviewer retention figures to compare with this job's targets.",
+    "first_impression": "You work across onboarding, business reviews, renewals, and payroll escalations. The checklist used by the whole CS team is worth keeping because it shows a contribution beyond your own accounts.",
+    "biggest_gap_example": "\"- Partnered with Sales on renewal strategy for at-risk accounts\" doesn't say what you contributed to the strategy or what happened to those renewals.",
+    "first_impression_takeaway": "Explain your renewal contribution",
+    "summary": "Managing a book of 48 mid-market accounts anchors your move from support into customer success. Payroll and tax-filing work adds context to the escalations you now handle with Support and Product. The experience fits an individual-contributor customer success manager role. The financial value of your book isn't stated, making its scale difficult to compare with the posted role.",
+    "strengths": [
+      "The healthcare and manufacturing accounts give a reviewer a useful picture of the customers you serve.",
+      "A 94% customer satisfaction score across 2021 gives the support role a stated result.",
+      "Training six new support hires shows responsibility for helping others learn the ticketing workflow."
+    ],
+    "gaps": [
+      "The resume doesn't state retention or expansion results, so your performance can't be compared with the job's targets.",
+      "The seniority of your QBR attendees isn't specified, leaving experience with the requested executive sponsors unclear.",
+      "The skills list doesn't explain whether you use product usage data to identify risk, which is part of the posted role."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the at-risk renewal bullet, describe your contribution to the Sales strategy and add verified retention or expansion results if available.",
+        "why": "The job assigns retention targets, while the current bullet doesn't show how those renewals turned out.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Partnered with Sales on renewal strategy for at-risk accounts",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the account-book bullet, add the recurring revenue value of the portfolio if you can verify it.",
+        "why": "The account count is useful, but it doesn't show the financial responsibility attached to the book.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Manage a book of 48 mid-market accounts across healthcare and manufacturing",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the QBR bullet, specify the seniority of the finance and HR contacts and give an example of what you presented.",
+        "why": "Those details would help a reviewer understand your experience with the senior sponsors named in the job description.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Run quarterly business reviews with customer finance and HR leads",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the renewal and account-book bullets using financial details you can verify.",
+      "Add a concrete QBR example and review the payroll escalation bullet for your specific contribution.",
+      "Check whether your existing tool and onboarding bullets can accurately describe any work with product usage data or new-account onboarding."
+    ],
+    "subscores": {
+      "impact": 77,
+      "clarity": 83,
+      "story": 82,
+      "readability": 85
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The opening identifies B2B software, mid-market accounts, and work from onboarding through renewal.",
+        "missing": "It doesn't surface the size of your current book or your payroll background.",
+        "fix": "Consider bringing the 48-account book or payroll context into the opening after revising your experience."
+      },
+      "Work Experience": {
+        "grade": "B",
+        "priority": "High",
+        "working": "The current role names customer contacts, cross-functional partners, and a checklist adopted by the CS team.",
+        "missing": "The Brightline bullets don't state renewal results or the financial value of the portfolio.",
+        "fix": "Add verified portfolio and renewal details to the relevant bullets."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "Gainsight and Salesforce are listed and both appear in the job description.",
+        "missing": "The section doesn't explain how you use those tools to identify at-risk accounts.",
+        "fix": "If applicable, connect the tools to that work in an experience bullet."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The degree, institution, and year are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 68,
+      "jd_match_summary": "Your mid-market customer success work overlaps with the core responsibilities. The resume doesn't establish retention or expansion performance, the book's recurring revenue value, senior sponsor experience, or product usage analysis.",
+      "jd_keywords": {
+        "matched": [
+          "Mid-market accounts",
+          "B2B customer success",
+          "Onboarding",
+          "Quarterly business reviews",
+          "At-risk renewal strategy with Sales",
+          "Gainsight",
+          "Salesforce",
+          "Renewals"
+        ],
+        "missing": [
+          "Gross and net retention results",
+          "Expansion results",
+          "Book's recurring revenue value",
+          "Product usage data",
+          "Looker or similar analysis tool",
+          "VP-level QBR sponsors",
+          "Feature request logging and prioritization",
+          "Analytics or data product experience",
+          "SaaS-specific customer success tenure"
+        ],
+        "match_count": 8,
+        "total_count": 17
+      },
+      "strongly_aligned": [
+        "Mid-market customer success in B2B software",
+        "Work with accounts from onboarding through renewal",
+        "Quarterly business reviews with finance and HR leads",
+        "Renewal strategy for at-risk accounts with Sales",
+        "Gainsight and Salesforce listed in skills"
+      ],
+      "underplayed": [
+        "Your contribution to the renewal strategy",
+        "Your role in new-account onboarding",
+        "What you present in customer business reviews"
+      ],
+      "missing": [
+        "Retention and expansion results against targets",
+        "Product usage analysis and an analysis tool such as Looker",
+        "Feature request logging and prioritization; analytics or data product experience"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Customer Success Manager",
+          "Customer Success Manager, Mid-Market"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Current customer success manager with earlier customer support and account coordination experience.",
+        "industry_signals": [
+          "Payroll software",
+          "Insurance",
+          "Healthcare and manufacturing customer accounts"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Lead with your mid-market payroll book, QBRs, and onboarding work for this role. If you can verify renewal results or product usage work, add them to the relevant experience bullets rather than implying them from the skills list."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What did you contribute to renewal plans for at-risk accounts, and what happened to those renewals?",
+          "archetype": "TENSION POINT",
+          "why": "The partnership with Sales is stated, but your contribution and the renewal results aren't."
+        },
+        {
+          "question": "What did the onboarding checklist cover, and how did the CS team use it?",
+          "archetype": "SCALING",
+          "why": "Its team-wide adoption is clear; its contents would explain what you built."
+        },
+        {
+          "question": "When a payroll run failed, what did you coordinate with Support and Product for the customer?",
+          "archetype": "HIGH STAKES",
+          "why": "An example would show your part in a payroll escalation."
+        },
+        {
+          "question": "What did you present in a QBR, and what were the attendees' roles?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The job asks for senior sponsors, while your bullet names finance and HR leads."
+        },
+        {
+          "question": "Have you used Gainsight or Salesforce to spot at-risk accounts? If so, how?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The tools are listed, but their connection to account-risk work isn't described."
+        }
+      ]
+    }
+  },
+  "outcome": "repair_failed",
+  "repair_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the evidence grounding contract at job_alignment.missing[1] unsupported narrative facts: Looker."
+  },
+  "cost_usd": 0.03974005
+}

@@ -1,0 +1,712 @@
+{
+  "case_id": "b40_senior_ic_wei",
+  "batch": "breadth",
+  "run": 2,
+  "note": "Senior IC (bar persona).",
+  "resume_file": "../../../docs/design/2026-11-bar/resumes/4-senior-ic-wei.txt",
+  "resume_sha256": "e95b41ee5391398ba259810d134ff4a7392766f8e7fa117ad93d5d19b8ed94a5",
+  "resume_chars": 2597,
+  "resume_words": 361,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T20:15:50.830Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 8240,
+        "completion_tokens": 2072,
+        "total_tokens": 10312,
+        "cached_prompt_tokens": 8237,
+        "cache_write_prompt_tokens": 0,
+        "reasoning_tokens": 174
+      },
+      "cost_usd": 0.01077485,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 24723
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.00339575,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 4263
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 86,
+    "score_label": "Strong",
+    "score_comment_short": "The payments work shows technical leadership, with a few important results left undefined.",
+    "score_comment_long": "The ledger redesign, duplicate-charge prevention, and fraud pipeline give reviewers concrete work to assess. Some leadership bullets leave the technical choices or follow-through unclear. Add a few specifics to the existing bullets rather than expanding the resume broadly.",
+    "score_plain": "Your resume gives reviewers several concrete reasons to consider you for staff-level infrastructure work. A few more details about your decisions and their effects would make comparisons with other applicants easier.",
+    "first_impression": "You lead a payments platform team and have worked directly on ledger architecture, payment reliability, and fraud scoring. Eliminating a class of duplicate-charge incidents is worth keeping prominent because it connects infrastructure work to a customer problem.",
+    "biggest_gap_example": "\"Partnered with product and finance on the roadmap for multi-currency settlement\" leaves your contribution to that roadmap unclear, making the cross-functional work difficult to assess.",
+    "first_impression_takeaway": "Explain your settlement roadmap contribution",
+    "summary": "The move from a Postgres-backed ledger to an event-sourced architecture anchors a staff-level technical leadership story. Your work spans architecture, production incidents, and engineering standards rather than stopping at implementation. The earlier fraud pipeline adds a precise latency figure to the payments background. What remains less clear is how you balanced technical and business needs on the multi-currency roadmap, which matters for roles involving cross-functional planning.",
+    "strengths": [
+      "The fraud scoring pipeline's p99 latency under 50ms gives a concrete performance detail alongside Flink and Kafka.",
+      "Design documents and architecture reviews adopted as team standards show that your written work influenced how the team operates.",
+      "Interviewing 100+ candidates and helping revise the backend hiring loop show participation in hiring beyond technical delivery."
+    ],
+    "gaps": [
+      "The ledger redesign doesn't explain a key migration constraint or what changed after the transition, leaving its practical significance less defined.",
+      "The Sev1 bullet doesn't describe an incident response decision or what the postmortem led to, so your approach under pressure is less visible.",
+      "The reduction in reconciliation breaks and manual operations effort has no stated magnitude, making the size of that improvement difficult to assess."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the ledger redesign bullet, add a specific migration constraint you addressed and, if known, what changed after the transition.",
+        "why": "The architecture is named, but a concrete constraint would show how you approached the move from the monolith.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Led the redesign of the core ledger service from a monolithic Postgres-backed system",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the multi-currency settlement roadmap bullet, name a recommendation or tradeoff you contributed with product and finance.",
+        "why": "That would make your part in the shared planning work easier to distinguish.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Partnered with product and finance on the roadmap for multi-currency settlement",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the reconciliation improvement bullet, add the extent of the break-rate or manual-effort reduction if you can verify it.",
+        "why": "The resume already states both improvements; their magnitude would help a reviewer understand their importance.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Reduced reconciliation break rate and manual ops effort",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the ledger and settlement bullets with the migration constraint and your roadmap contribution.",
+      "Check available records for the reconciliation improvement and add a verified figure if one exists.",
+      "Review the incident and mentoring bullets for one concrete example that adds a different dimension to your leadership."
+    ],
+    "subscores": {
+      "impact": 86,
+      "clarity": 85,
+      "story": 87,
+      "readability": 87
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "Section not present.",
+        "fix": "Add only if it helps your story."
+      },
+      "Work Experience": {
+        "grade": "A-",
+        "priority": "High",
+        "working": "The Brightline roles show progression from building payment services to leading platform work, with specific technologies and results.",
+        "missing": "The ledger migration constraint and your contribution to the settlement roadmap aren't described.",
+        "fix": "Add those details to the relevant bullets while keeping the existing architecture and ownership facts."
+      },
+      "Skills": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The list names languages, infrastructure technologies, and distributed-systems topics, several of which also appear in experience.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Both computer science degrees include institutions and years.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Payments ledger and settlement infrastructure",
+        "Distributed systems architecture using Kafka and CockroachDB",
+        "Payment reliability and duplicate-charge prevention",
+        "Real-time fraud scoring with Flink and Kafka"
+      ],
+      "underplayed": [
+        "Your contribution to the multi-currency settlement roadmap",
+        "Specific guidance provided through mentoring",
+        "Decisions made during Sev1 incident response"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Staff Software Engineer"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Staff-level technical lead, based on your current title and leadership of the ledger and settlement platform team.",
+        "industry_signals": [
+          "Payments",
+          "Cloud infrastructure and object storage"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Lead with your staff-level payments infrastructure work and retain the architecture details in the ledger bullet. Use the multi-currency roadmap and incident response examples to show how you work beyond the service boundary."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What constraint made the ledger's move from the monolith particularly difficult?",
+          "archetype": "TENSION POINT",
+          "why": "A concrete constraint would explain the architecture work beyond the technology choices."
+        },
+        {
+          "question": "How did the idempotency framework fit into the different payment services that adopted it?",
+          "archetype": "SCALING",
+          "why": "An adoption detail could show how the framework worked across services."
+        },
+        {
+          "question": "During a Sev1 payment outage, what response decision did you make or recommend?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "One decision would make your incident leadership more tangible."
+        },
+        {
+          "question": "How large was the reduction in reconciliation breaks or manual operations effort, if recorded?",
+          "archetype": "IMPROVEMENT",
+          "why": "A verified magnitude would give context to the stated improvements."
+        },
+        {
+          "question": "What tradeoff did you contribute to the multi-currency settlement roadmap with product and finance?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "A specific contribution would distinguish your role in a shared roadmap."
+        }
+      ]
+    }
+  },
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 78,
+    "score_label": "Mostly clear",
+    "score_comment_short": "The payments work shows technical leadership, with a few important results left undefined.",
+    "score_comment_long": "The ledger redesign, duplicate-charge prevention, and fraud pipeline give reviewers concrete work to assess. Some leadership bullets leave the technical choices or follow-through unclear. Add a few specifics to the existing bullets rather than expanding the resume broadly.",
+    "score_plain": "Your resume gives reviewers several concrete reasons to consider you for staff-level infrastructure work. A few more details about your decisions and their effects would make comparisons with other applicants easier.",
+    "first_impression": "You lead a payments platform team and have worked directly on ledger architecture, payment reliability, and fraud scoring. Eliminating a class of duplicate-charge incidents is worth keeping prominent because it connects infrastructure work to a customer problem.",
+    "biggest_gap_example": "\"Partnered with product and finance on the roadmap for multi-currency settlement\" leaves your contribution to that roadmap unclear, making the cross-functional work difficult to assess.",
+    "first_impression_takeaway": "Explain your settlement roadmap contribution",
+    "summary": "The move from a Postgres-backed ledger to an event-sourced architecture anchors a staff-level technical leadership story. Your work spans architecture, production incidents, and engineering standards rather than stopping at implementation. The earlier fraud pipeline adds a precise latency figure to the payments background. What remains less clear is how you balanced technical and business needs on the multi-currency roadmap, which matters for roles involving cross-functional planning.",
+    "strengths": [
+      "The fraud scoring pipeline's p99 latency under 50ms gives a concrete performance detail alongside Flink and Kafka.",
+      "Design documents and architecture reviews adopted as team standards show that your written work influenced how the team operates.",
+      "Interviewing 100+ candidates and helping revise the backend hiring loop show participation in hiring beyond technical delivery."
+    ],
+    "gaps": [
+      "The ledger redesign doesn't explain a key migration constraint or what changed after the transition, leaving its practical significance less defined.",
+      "The Sev1 bullet doesn't describe an incident response decision or what the postmortem led to, so your approach under pressure is less visible.",
+      "The reduction in reconciliation breaks and manual operations effort has no stated magnitude, making the size of that improvement difficult to assess."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the ledger redesign bullet, add a specific migration constraint you addressed and, if known, what changed after the transition.",
+        "why": "The architecture is named, but a concrete constraint would show how you approached the move from the monolith.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Led the redesign of the core ledger service from a monolithic Postgres-backed system",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the multi-currency settlement roadmap bullet, name a recommendation or tradeoff you contributed with product and finance.",
+        "why": "That would make your part in the shared planning work easier to distinguish.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Partnered with product and finance on the roadmap for multi-currency settlement",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the reconciliation improvement bullet, add the extent of the break-rate or manual-effort reduction if you can verify it.",
+        "why": "The resume already states both improvements; their magnitude would help a reviewer understand their importance.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Reduced reconciliation break rate and manual ops effort",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the ledger and settlement bullets with the migration constraint and your roadmap contribution.",
+      "Check available records for the reconciliation improvement and add a verified figure if one exists.",
+      "Review the incident and mentoring bullets for one concrete example that adds a different dimension to your leadership."
+    ],
+    "subscores": {
+      "impact": 84,
+      "clarity": 84,
+      "story": 84,
+      "readability": 84
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "A-",
+        "priority": "High",
+        "working": "The Brightline roles show progression from building payment services to leading platform work, with specific technologies and results.",
+        "missing": "The ledger migration constraint and your contribution to the settlement roadmap aren't described.",
+        "fix": "Add those details to the relevant bullets while keeping the existing architecture and ownership facts."
+      },
+      "Skills": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The list names languages, infrastructure technologies, and distributed-systems topics, several of which also appear in experience.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Both computer science degrees include institutions and years.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Payments ledger and settlement infrastructure",
+        "Distributed systems architecture using Kafka and CockroachDB",
+        "Payment reliability and duplicate-charge prevention",
+        "Real-time fraud scoring with Flink and Kafka"
+      ],
+      "underplayed": [
+        "Your contribution to the multi-currency settlement roadmap",
+        "Specific guidance provided through mentoring",
+        "Decisions made during Sev1 incident response"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Staff Software Engineer"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Staff-level technical lead, based on your current title and leadership of the ledger and settlement platform team.",
+        "industry_signals": [
+          "Payments"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with your staff-level payments infrastructure work and retain the architecture details in the ledger bullet. Use the multi-currency roadmap and incident response examples to show how you work beyond the service boundary."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What constraint made the ledger's move from the monolith particularly difficult?",
+          "archetype": "TENSION POINT",
+          "why": "A concrete constraint would explain the architecture work beyond the technology choices."
+        },
+        {
+          "question": "How did the idempotency framework fit into the different payment services that adopted it?",
+          "archetype": "SCALING",
+          "why": "An adoption detail could show how the framework worked across services."
+        },
+        {
+          "question": "During a Sev1 payment outage, what response decision did you make or recommend?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "One decision would make your incident leadership more tangible."
+        },
+        {
+          "question": "How large was the reduction in reconciliation breaks or manual operations effort, if recorded?",
+          "archetype": "IMPROVEMENT",
+          "why": "A verified magnitude would give context to the stated improvements."
+        },
+        {
+          "question": "What tradeoff did you contribute to the multi-currency settlement roadmap with product and finance?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "A specific contribution would distinguish your role in a shared roadmap."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 78
+  },
+  "severity": {
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "promoted": [],
+    "replaced": [],
+    "skipped": [],
+    "critical_count": 1,
+    "more_critical": false,
+    "validation_attempts": 0,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "latency_ms": 4265,
+    "call_latency_ms": 4263,
+    "cost_usd": 0.00339575,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 78,
+    "score_label": "Mostly clear",
+    "score_comment_short": "The payments work shows technical leadership, with a few important results left undefined.",
+    "score_comment_long": "The ledger redesign, duplicate-charge prevention, and fraud pipeline give reviewers concrete work to assess. Some leadership bullets leave the technical choices or follow-through unclear. Add a few specifics to the existing bullets rather than expanding the resume broadly.",
+    "score_plain": "Your resume gives reviewers several concrete reasons to consider you for staff-level infrastructure work. A few more details about your decisions and their effects would make comparisons with other applicants easier.",
+    "first_impression": "You lead a payments platform team and have worked directly on ledger architecture, payment reliability, and fraud scoring. Eliminating a class of duplicate-charge incidents is worth keeping prominent because it connects infrastructure work to a customer problem.",
+    "biggest_gap_example": "\"Partnered with product and finance on the roadmap for multi-currency settlement\" leaves your contribution to that roadmap unclear, making the cross-functional work difficult to assess.",
+    "first_impression_takeaway": "Explain your settlement roadmap contribution",
+    "summary": "The move from a Postgres-backed ledger to an event-sourced architecture anchors a staff-level technical leadership story. Your work spans architecture, production incidents, and engineering standards rather than stopping at implementation. The earlier fraud pipeline adds a precise latency figure to the payments background. What remains less clear is how you balanced technical and business needs on the multi-currency roadmap, which matters for roles involving cross-functional planning.",
+    "strengths": [
+      "The fraud scoring pipeline's p99 latency under 50ms gives a concrete performance detail alongside Flink and Kafka.",
+      "Design documents and architecture reviews adopted as team standards show that your written work influenced how the team operates.",
+      "Interviewing 100+ candidates and helping revise the backend hiring loop show participation in hiring beyond technical delivery."
+    ],
+    "gaps": [
+      "The ledger redesign doesn't explain a key migration constraint or what changed after the transition, leaving its practical significance less defined.",
+      "The Sev1 bullet doesn't describe an incident response decision or what the postmortem led to, so your approach under pressure is less visible.",
+      "The reduction in reconciliation breaks and manual operations effort has no stated magnitude, making the size of that improvement difficult to assess."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the ledger redesign bullet, add a specific migration constraint you addressed and, if known, what changed after the transition.",
+        "why": "The architecture is named, but a concrete constraint would show how you approached the move from the monolith.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Led the redesign of the core ledger service from a monolithic Postgres-backed system",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": true
+      },
+      {
+        "fix": "In the multi-currency settlement roadmap bullet, name a recommendation or tradeoff you contributed with product and finance.",
+        "why": "That would make your part in the shared planning work easier to distinguish.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Partnered with product and finance on the roadmap for multi-currency settlement",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      },
+      {
+        "fix": "In the reconciliation improvement bullet, add the extent of the break-rate or manual-effort reduction if you can verify it.",
+        "why": "The resume already states both improvements; their magnitude would help a reviewer understand their importance.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Reduced reconciliation break rate and manual ops effort",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      }
+    ],
+    "next_steps": [
+      "Revise the ledger and settlement bullets with the migration constraint and your roadmap contribution.",
+      "Check available records for the reconciliation improvement and add a verified figure if one exists.",
+      "Review the incident and mentoring bullets for one concrete example that adds a different dimension to your leadership."
+    ],
+    "subscores": {
+      "impact": 84,
+      "clarity": 84,
+      "story": 84,
+      "readability": 84
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "A-",
+        "priority": "High",
+        "working": "The Brightline roles show progression from building payment services to leading platform work, with specific technologies and results.",
+        "missing": "The ledger migration constraint and your contribution to the settlement roadmap aren't described.",
+        "fix": "Add those details to the relevant bullets while keeping the existing architecture and ownership facts."
+      },
+      "Skills": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The list names languages, infrastructure technologies, and distributed-systems topics, several of which also appear in experience.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Both computer science degrees include institutions and years.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Payments ledger and settlement infrastructure",
+        "Distributed systems architecture using Kafka and CockroachDB",
+        "Payment reliability and duplicate-charge prevention",
+        "Real-time fraud scoring with Flink and Kafka"
+      ],
+      "underplayed": [
+        "Your contribution to the multi-currency settlement roadmap",
+        "Specific guidance provided through mentoring",
+        "Decisions made during Sev1 incident response"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Staff Software Engineer"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Staff-level technical lead, based on your current title and leadership of the ledger and settlement platform team.",
+        "industry_signals": [
+          "Payments"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with your staff-level payments infrastructure work and retain the architecture details in the ledger bullet. Use the multi-currency roadmap and incident response examples to show how you work beyond the service boundary."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What constraint made the ledger's move from the monolith particularly difficult?",
+          "archetype": "TENSION POINT",
+          "why": "A concrete constraint would explain the architecture work beyond the technology choices."
+        },
+        {
+          "question": "How did the idempotency framework fit into the different payment services that adopted it?",
+          "archetype": "SCALING",
+          "why": "An adoption detail could show how the framework worked across services."
+        },
+        {
+          "question": "During a Sev1 payment outage, what response decision did you make or recommend?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "One decision would make your incident leadership more tangible."
+        },
+        {
+          "question": "How large was the reduction in reconciliation breaks or manual operations effort, if recorded?",
+          "archetype": "IMPROVEMENT",
+          "why": "A verified magnitude would give context to the stated improvements."
+        },
+        {
+          "question": "What tradeoff did you contribute to the multi-currency settlement roadmap with product and finance?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "A specific contribution would distinguish your role in a shared roadmap."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 78,
+    "more_critical": false
+  },
+  "presentation": {
+    "score": 78,
+    "band": "Mostly clear",
+    "score_label_from_model": "Strong",
+    "model_score_before_calibration": 86,
+    "verdict": "You lead a payments platform team and have worked directly on ledger architecture, payment reliability, and fraud scoring. Eliminating a class of duplicate-charge incidents is worth keeping prominent because it connects infrastructure work to a customer problem.",
+    "one_line_read": "The payments work shows technical leadership, with a few important results left undefined.",
+    "takeaway": "Explain your settlement roadmap contribution",
+    "biggest_gap_example": "\"Partnered with product and finance on the roadmap for multi-currency settlement\" leaves your contribution to that roadmap unclear, making the cross-functional work difficult to assess.",
+    "critical_count": {
+      "count": 1,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "One Critical Miss. Fix it first.",
+      "lead": "It's the one most likely to cost you the interview."
+    },
+    "fixes": [
+      {
+        "fix": "In the ledger redesign bullet, add a specific migration constraint you addressed and, if known, what changed after the transition.",
+        "why": "The architecture is named, but a concrete constraint would show how you approached the move from the monolith.",
+        "excerpt": "Led the redesign of the core ledger service from a monolithic Postgres-backed system",
+        "section": "EXPERIENCE",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the multi-currency settlement roadmap bullet, name a recommendation or tradeoff you contributed with product and finance.",
+        "why": "That would make your part in the shared planning work easier to distinguish.",
+        "excerpt": "- Partnered with product and finance on the roadmap for multi-currency settlement",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the reconciliation improvement bullet, add the extent of the break-rate or manual-effort reduction if you can verify it.",
+        "why": "The resume already states both improvements; their magnitude would help a reviewer understand their importance.",
+        "excerpt": "- Reduced reconciliation break rate and manual ops effort",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "The fraud scoring pipeline's p99 latency under 50ms gives a concrete performance detail alongside Flink and Kafka.",
+    "strengths": [
+      "The fraud scoring pipeline's p99 latency under 50ms gives a concrete performance detail alongside Flink and Kafka.",
+      "Design documents and architecture reviews adopted as team standards show that your written work influenced how the team operates.",
+      "Interviewing 100+ candidates and helping revise the backend hiring loop show participation in hiring beyond technical delivery."
+    ],
+    "gaps": [
+      "The ledger redesign doesn't explain a key migration constraint or what changed after the transition, leaving its practical significance less defined.",
+      "The Sev1 bullet doesn't describe an incident response decision or what the postmortem led to, so your approach under pressure is less visible.",
+      "The reduction in reconciliation breaks and manual operations effort has no stated magnitude, making the size of that improvement difficult to assess."
+    ],
+    "next_steps": [
+      "Revise the ledger and settlement bullets with the migration constraint and your roadmap contribution.",
+      "Check available records for the reconciliation improvement and add a verified figure if one exists.",
+      "Review the incident and mentoring bullets for one concrete example that adds a different dimension to your leadership."
+    ],
+    "seniority_read": "Staff-level technical lead, based on your current title and leadership of the ledger and settlement platform team.",
+    "best_fit_roles": [
+      "Staff Software Engineer"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "Lead with your staff-level payments infrastructure work and retain the architecture details in the ledger bullet. Use the multi-currency roadmap and incident response examples to show how you work beyond the service boundary.",
+    "severity_added": [],
+    "severity_promoted": [],
+    "severity_outcome": "none (none)",
+    "severity_answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[0]",
+          "fix": 0
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[3]",
+          "fix": 2
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[4]",
+          "fix": 1
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "biggest_gap_example",
+          "of": "top_fixes[1]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[0]",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[1]",
+          "of": "ideas.questions[2]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[2]",
+          "of": "top_fixes[2]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Work Experience.missing",
+          "of": "top_fixes[0]"
+        }
+      ],
+      "fix_questions": [
+        [
+          "What constraint made the ledger's move from the monolith particularly difficult?"
+        ],
+        [
+          "What tradeoff did you contribute to the multi-currency settlement roadmap with product and finance?"
+        ],
+        [
+          "How large was the reduction in reconciliation breaks or manual operations effort, if recorded?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0141706,
+  "latency_ms": 29121
+}

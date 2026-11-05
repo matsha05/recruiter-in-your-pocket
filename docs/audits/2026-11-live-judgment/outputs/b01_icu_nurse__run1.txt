@@ -1,0 +1,48 @@
+# b01_icu_nurse, run 1
+Resume: ../../../tests/resumes/blindpick/synth_bp_icu_nurse_1.txt (153 words, sha256 a52d8cb03216)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0118; 26.3s
+
+## Band: Mostly clear (score 80; model wrote 80, label "Strong")
+## Verdict
+Your current role is clearly centered on medical ICU care, including ventilators and continuous renal replacement therapy. Charge, precepting, and committee work also appear, but receive much less space.
+One-line read: The ICU duties are specific, though charge and teaching work need more detail.
+Takeaway: Describe your committee contribution
+Biggest gap example: "Member of the unit's sepsis bundle compliance committee" identifies the group but not your contribution, leaving a reviewer unsure what you did there.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the charge-nurse bullet, add the specific shift responsibilities you handle when serving in that capacity.
+   why: Charge assignments differ, and the frequency alone doesn't show what falls to you.
+   excerpt (EXPERIENCE): "Serve as charge nurse two shifts per month"
+2. [fix] In the ICU orientation bullet, describe one way you precept new graduate nurses, such as a skill you teach or feedback you provide.
+   why: A concrete teaching example would help a reviewer understand your role in orientation.
+   excerpt (EXPERIENCE): "Precept new graduate nurses during their ICU orientation"
+3. [fix] In the sepsis committee bullet, name a contribution you made to its compliance work, if you can verify one.
+   why: Membership identifies the setting but doesn't explain your part in the work.
+   excerpt (EXPERIENCE): "Member of the unit's sepsis bundle compliance committee"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The combination of ventilated patients, vasoactive drips, and continuous renal replacement therapy names the care you manage rather than relying on an ICU title alone.
+Other strengths: ["Arizona multistate compact licensure and CCRN are easy to find near the top.","The telemetry role specifies 4 to 5 patients per shift and includes post-cardiac catheterization care, making the earlier bedside work concrete."]
+
+## Gaps
+- The orientation entry does not describe how you supported new graduates, so your teaching role is difficult to distinguish from a brief assignment.
+- The rapid response entry does not say what you did as part of the floor team, limiting the picture of your contribution during those calls.
+- Discharge education names medications but not the questions or needs you addressed with patients and families.
+
+## Next steps
+- Revise the charge and orientation entries using duties you can describe accurately.
+- Add your specific committee contribution, or keep the membership entry brief if you don't have a useful detail to add.
+- Review the telemetry bullets for a concrete rapid response or discharge-teaching example that fits the space available.
+
+## Role fit
+Level: Current staff nurse with recurring charge and precepting responsibilities.
+Best fit: ["Staff Nurse, Medical ICU","Staff Nurse, Telemetry"]
+Positioning: Keep the ICU patient load and therapies prominent when presenting your current bedside work. Add verified charge or precepting duties where they are relevant to the role you pursue.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":1},{"kind":"question_moved","path":"ideas.questions[2]","fix":2},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"ideas.questions[3]"},{"kind":"repeat_dropped","path":"gaps[2]","of":"ideas.questions[4]"},{"kind":"repeat_dropped","path":"section_review.Work Experience.working","of":"strengths[0]"},{"kind":"repeat_dropped","path":"section_review.Work Experience.missing","of":"first_impression"}]

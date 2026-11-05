@@ -1,0 +1,708 @@
+{
+  "case_id": "b01_icu_nurse",
+  "batch": "breadth",
+  "run": 2,
+  "note": null,
+  "resume_file": "../../../tests/resumes/blindpick/synth_bp_icu_nurse_1.txt",
+  "resume_sha256": "a52d8cb032163bcc7edaa524fe56cb06594cccf78f90a9ba023148de11fe18ef",
+  "resume_chars": 1029,
+  "resume_words": 153,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T19:57:59.416Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7539,
+        "completion_tokens": 2004,
+        "total_tokens": 9543,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 650,
+        "reasoning_tokens": 215
+      },
+      "cost_usd": 0.0111798,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 24042
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.001332,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1126
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 80,
+    "score_label": "Strong",
+    "score_comment_short": "The ICU duties are specific, though several contributions need more explanation.",
+    "score_comment_long": "The current role names patient load, treatments, charge shifts, and orientation work. Committee membership and precepting are less developed. Adding what you contributed in those roles would give readers a fuller picture.",
+    "score_plain": "Your resume gives a reviewer a clear picture of your ICU assignment. It leaves less detail about your charge, teaching, and committee responsibilities.",
+    "first_impression": "Your current work is immediately identifiable as medical ICU nursing, with ventilators, vasoactive drips, and continuous renal replacement therapy named. The two-patient assignment in a 24-bed ICU is worth keeping because it puts the bedside work in context.",
+    "biggest_gap_example": "\"Member of the unit's sepsis bundle compliance committee\" does not say what you contributed, so a reviewer cannot tell how you participated in the work.",
+    "first_impression_takeaway": "Explain your committee contribution",
+    "summary": "Your move from telemetry to medical ICU is supported by concrete descriptions of both patient assignments. The current staff nurse role includes charge shifts and orientation of new graduates alongside bedside care. Those added responsibilities suggest opportunities to show more of how you work with the unit. The resume doesn't yet explain what you handle as charge nurse, which makes that part of your role difficult to assess.",
+    "strengths": [
+      "Naming ventilated patients, vasoactive drips, and continuous renal replacement therapy shows the treatments involved in your current work.",
+      "The Arizona multistate compact license and CCRN are easy to find before the experience section.",
+      "The telemetry entry identifies post-cardiac catheterization patients and a 4 to 5 patient assignment, giving useful context for your earlier role."
+    ],
+    "gaps": [
+      "The orientation bullet doesn't describe how you help new graduates learn or how their progress is assessed.",
+      "The rapid response bullet identifies team participation but not your particular actions during a call.",
+      "Patient and family discharge education is listed without an example of the medication questions or needs you addressed."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the charge nurse bullet, add the responsibilities you handle during those shifts, such as assignment coordination if applicable.",
+        "why": "The frequency is already clear, but readers cannot tell what charge duty involves at your unit.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Serve as charge nurse two shifts per month",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the sepsis committee bullet, describe a contribution you made, such as a review, discussion, or change you helped with.",
+        "why": "Membership alone doesn't show your part in the committee's work.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Member of the unit's sepsis bundle compliance committee",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the precepting bullet, add an example of the clinical skills or judgment you help new graduates develop.",
+        "why": "That detail would make your teaching role more concrete without overstating your authority.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Precept new graduate nurses during their ICU orientation",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the charge and sepsis committee bullets using responsibilities and contributions you can verify.",
+      "Add a concrete teaching example to the new-graduate orientation bullet.",
+      "Review the telemetry bullets and add a specific rapid response or discharge education example if you have room."
+    ],
+    "subscores": {
+      "impact": 75,
+      "clarity": 83,
+      "story": 80,
+      "readability": 84
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "Section not present.",
+        "fix": "Add only if it helps your story."
+      },
+      "Work Experience": {
+        "grade": "B",
+        "priority": "High",
+        "working": "The ICU and telemetry entries state patient assignments and name relevant clinical care.",
+        "missing": "Charge duties and contributions to orientation and the sepsis committee are not described.",
+        "fix": "Expand those bullets with the actual work you performed."
+      },
+      "Skills": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "Section not present.",
+        "fix": "Add only if it helps your story."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The BSN, school, and graduation year are stated.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Medical ICU bedside care",
+        "Ventilated patient care and vasoactive drips",
+        "Continuous renal replacement therapy",
+        "Arizona multistate compact RN license and CCRN"
+      ],
+      "underplayed": [
+        "Charge nurse responsibilities",
+        "New-graduate precepting methods",
+        "Sepsis committee contribution"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Staff Nurse, Medical ICU"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Current staff nurse with recurring charge duties and responsibility for precepting new graduates.",
+        "industry_signals": [
+          "Hospital critical care",
+          "Hospital telemetry care"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Lead with the medical ICU assignment and the treatments you manage. For a specific posting, bring the most relevant charge, teaching, or committee details forward once you have described your contributions."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What responsibilities do you take on during your charge nurse shifts?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The resume gives the frequency but not the work involved."
+        },
+        {
+          "question": "What did you contribute to the sepsis bundle compliance committee?",
+          "archetype": "IMPROVEMENT",
+          "why": "A specific contribution would distinguish participation from membership."
+        },
+        {
+          "question": "Which ICU skills or clinical decisions do you help new graduates practice during orientation?",
+          "archetype": "DOMAIN LIFT",
+          "why": "An example would show what your precepting covers."
+        },
+        {
+          "question": "During a telemetry rapid response call, what actions did you take as part of the floor team?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "Your individual role in the team response is not described."
+        },
+        {
+          "question": "How did you prioritize care when managing ventilated patients alongside vasoactive drips or renal replacement therapy?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "A concrete example could show how you handle competing clinical needs."
+        }
+      ]
+    }
+  },
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 80,
+    "score_label": "Mostly clear",
+    "score_comment_short": "The ICU duties are specific, though several contributions need more explanation.",
+    "score_comment_long": "The current role names patient load, treatments, charge shifts, and orientation work. Committee membership and precepting are less developed. Adding what you contributed in those roles would give readers a fuller picture.",
+    "score_plain": "Your resume gives a reviewer a clear picture of your ICU assignment. It leaves less detail about your charge, teaching, and committee responsibilities.",
+    "first_impression": "Your current work is immediately identifiable as medical ICU nursing, with ventilators, vasoactive drips, and continuous renal replacement therapy named. The two-patient assignment in a 24-bed ICU is worth keeping because it puts the bedside work in context.",
+    "biggest_gap_example": "\"Member of the unit's sepsis bundle compliance committee\" does not say what you contributed, so a reviewer cannot tell how you participated in the work.",
+    "first_impression_takeaway": "Explain your committee contribution",
+    "summary": "Your move from telemetry to medical ICU is supported by concrete descriptions of both patient assignments. The current staff nurse role includes charge shifts and orientation of new graduates alongside bedside care. Those added responsibilities suggest opportunities to show more of how you work with the unit. The resume doesn't yet explain what you handle as charge nurse, which makes that part of your role difficult to assess.",
+    "strengths": [
+      "Naming ventilated patients, vasoactive drips, and continuous renal replacement therapy shows the treatments involved in your current work.",
+      "The Arizona multistate compact license and CCRN are easy to find before the experience section.",
+      "The telemetry entry identifies post-cardiac catheterization patients and a 4 to 5 patient assignment, giving useful context for your earlier role."
+    ],
+    "gaps": [
+      "The orientation bullet doesn't describe how you help new graduates learn or how their progress is assessed.",
+      "The rapid response bullet identifies team participation but not your particular actions during a call.",
+      "The opening does not yet bring together the experience and results most relevant to the job."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the charge nurse bullet, add the responsibilities you handle during those shifts, such as assignment coordination if applicable.",
+        "why": "The frequency is already clear, but readers cannot tell what charge duty involves at your unit.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Serve as charge nurse two shifts per month",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the sepsis committee bullet, describe a contribution you made, such as a review, discussion, or change you helped with.",
+        "why": "Membership alone doesn't show your part in the committee's work.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Member of the unit's sepsis bundle compliance committee",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the precepting bullet, add an example of the clinical skills or judgment you help new graduates develop.",
+        "why": "That detail would make your teaching role more concrete without overstating your authority.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Precept new graduate nurses during their ICU orientation",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the charge and sepsis committee bullets using responsibilities and contributions you can verify.",
+      "Add a concrete teaching example to the new-graduate orientation bullet.",
+      "Write a short opening that names the role you want, what you have led, and a relevant result you can verify."
+    ],
+    "subscores": {
+      "impact": 75,
+      "clarity": 83,
+      "story": 80,
+      "readability": 84
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "B",
+        "priority": "High",
+        "working": "The ICU and telemetry entries state patient assignments and name relevant clinical care.",
+        "missing": "Charge duties and contributions to orientation and the sepsis committee are not described.",
+        "fix": "Expand those bullets with the actual work you performed."
+      },
+      "Skills": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No skills section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The BSN, school, and graduation year are stated.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Medical ICU bedside care",
+        "Ventilated patient care and vasoactive drips",
+        "Continuous renal replacement therapy",
+        "Arizona multistate compact RN license and CCRN"
+      ],
+      "underplayed": [
+        "Charge nurse responsibilities",
+        "New-graduate precepting methods",
+        "Sepsis committee contribution"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Staff Nurse, Medical ICU"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Current staff nurse with recurring charge duties and responsibility for precepting new graduates.",
+        "industry_signals": [],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with the medical ICU assignment and the treatments you manage. For a specific posting, bring the most relevant charge, teaching, or committee details forward once you have described your contributions."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What responsibilities do you take on during your charge nurse shifts?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The resume gives the frequency but not the work involved."
+        },
+        {
+          "question": "What did you contribute to the sepsis bundle compliance committee?",
+          "archetype": "IMPROVEMENT",
+          "why": "A specific contribution would distinguish participation from membership."
+        },
+        {
+          "question": "Which ICU skills or clinical decisions do you help new graduates practice during orientation?",
+          "archetype": "DOMAIN LIFT",
+          "why": "An example would show what your precepting covers."
+        },
+        {
+          "question": "During a telemetry rapid response call, what actions did you take as part of the floor team?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "Your individual role in the team response is not described."
+        },
+        {
+          "question": "How did you prioritize care when managing ventilated patients alongside vasoactive drips or renal replacement therapy?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "A concrete example could show how you handle competing clinical needs."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 80
+  },
+  "severity": {
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "promoted": [],
+    "replaced": [],
+    "skipped": [],
+    "critical_count": 1,
+    "more_critical": false,
+    "validation_attempts": 0,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "latency_ms": 1130,
+    "call_latency_ms": 1126,
+    "cost_usd": 0.001332,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 80,
+    "score_label": "Mostly clear",
+    "score_comment_short": "The ICU duties are specific, though several contributions need more explanation.",
+    "score_comment_long": "The current role names patient load, treatments, charge shifts, and orientation work. Committee membership and precepting are less developed. Adding what you contributed in those roles would give readers a fuller picture.",
+    "score_plain": "Your resume gives a reviewer a clear picture of your ICU assignment. It leaves less detail about your charge, teaching, and committee responsibilities.",
+    "first_impression": "Your current work is immediately identifiable as medical ICU nursing, with ventilators, vasoactive drips, and continuous renal replacement therapy named. The two-patient assignment in a 24-bed ICU is worth keeping because it puts the bedside work in context.",
+    "biggest_gap_example": "\"Member of the unit's sepsis bundle compliance committee\" does not say what you contributed, so a reviewer cannot tell how you participated in the work.",
+    "first_impression_takeaway": "Explain your committee contribution",
+    "summary": "Your move from telemetry to medical ICU is supported by concrete descriptions of both patient assignments. The current staff nurse role includes charge shifts and orientation of new graduates alongside bedside care. Those added responsibilities suggest opportunities to show more of how you work with the unit. The resume doesn't yet explain what you handle as charge nurse, which makes that part of your role difficult to assess.",
+    "strengths": [
+      "Naming ventilated patients, vasoactive drips, and continuous renal replacement therapy shows the treatments involved in your current work.",
+      "The Arizona multistate compact license and CCRN are easy to find before the experience section.",
+      "The telemetry entry identifies post-cardiac catheterization patients and a 4 to 5 patient assignment, giving useful context for your earlier role."
+    ],
+    "gaps": [
+      "The orientation bullet doesn't describe how you help new graduates learn or how their progress is assessed.",
+      "The rapid response bullet identifies team participation but not your particular actions during a call.",
+      "The opening does not yet bring together the experience and results most relevant to the job."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the charge nurse bullet, add the responsibilities you handle during those shifts, such as assignment coordination if applicable.",
+        "why": "The frequency is already clear, but readers cannot tell what charge duty involves at your unit.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Serve as charge nurse two shifts per month",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": true
+      },
+      {
+        "fix": "In the sepsis committee bullet, describe a contribution you made, such as a review, discussion, or change you helped with.",
+        "why": "Membership alone doesn't show your part in the committee's work.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Member of the unit's sepsis bundle compliance committee",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      },
+      {
+        "fix": "In the precepting bullet, add an example of the clinical skills or judgment you help new graduates develop.",
+        "why": "That detail would make your teaching role more concrete without overstating your authority.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Precept new graduate nurses during their ICU orientation",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      }
+    ],
+    "next_steps": [
+      "Revise the charge and sepsis committee bullets using responsibilities and contributions you can verify.",
+      "Add a concrete teaching example to the new-graduate orientation bullet.",
+      "Write a short opening that names the role you want, what you have led, and a relevant result you can verify."
+    ],
+    "subscores": {
+      "impact": 75,
+      "clarity": 83,
+      "story": 80,
+      "readability": 84
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "B",
+        "priority": "High",
+        "working": "The ICU and telemetry entries state patient assignments and name relevant clinical care.",
+        "missing": "Charge duties and contributions to orientation and the sepsis committee are not described.",
+        "fix": "Expand those bullets with the actual work you performed."
+      },
+      "Skills": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No skills section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The BSN, school, and graduation year are stated.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Medical ICU bedside care",
+        "Ventilated patient care and vasoactive drips",
+        "Continuous renal replacement therapy",
+        "Arizona multistate compact RN license and CCRN"
+      ],
+      "underplayed": [
+        "Charge nurse responsibilities",
+        "New-graduate precepting methods",
+        "Sepsis committee contribution"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Staff Nurse, Medical ICU"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Current staff nurse with recurring charge duties and responsibility for precepting new graduates.",
+        "industry_signals": [],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with the medical ICU assignment and the treatments you manage. For a specific posting, bring the most relevant charge, teaching, or committee details forward once you have described your contributions."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What responsibilities do you take on during your charge nurse shifts?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The resume gives the frequency but not the work involved."
+        },
+        {
+          "question": "What did you contribute to the sepsis bundle compliance committee?",
+          "archetype": "IMPROVEMENT",
+          "why": "A specific contribution would distinguish participation from membership."
+        },
+        {
+          "question": "Which ICU skills or clinical decisions do you help new graduates practice during orientation?",
+          "archetype": "DOMAIN LIFT",
+          "why": "An example would show what your precepting covers."
+        },
+        {
+          "question": "During a telemetry rapid response call, what actions did you take as part of the floor team?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "Your individual role in the team response is not described."
+        },
+        {
+          "question": "How did you prioritize care when managing ventilated patients alongside vasoactive drips or renal replacement therapy?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "A concrete example could show how you handle competing clinical needs."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 80,
+    "more_critical": false
+  },
+  "presentation": {
+    "score": 80,
+    "band": "Mostly clear",
+    "score_label_from_model": "Strong",
+    "model_score_before_calibration": 80,
+    "verdict": "Your current work is immediately identifiable as medical ICU nursing, with ventilators, vasoactive drips, and continuous renal replacement therapy named. The two-patient assignment in a 24-bed ICU is worth keeping because it puts the bedside work in context.",
+    "one_line_read": "The ICU duties are specific, though several contributions need more explanation.",
+    "takeaway": "Explain your committee contribution",
+    "biggest_gap_example": "\"Member of the unit's sepsis bundle compliance committee\" does not say what you contributed, so a reviewer cannot tell how you participated in the work.",
+    "critical_count": {
+      "count": 1,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "One Critical Miss. Fix it first.",
+      "lead": "It's the one most likely to cost you the interview."
+    },
+    "fixes": [
+      {
+        "fix": "In the charge nurse bullet, add the responsibilities you handle during those shifts, such as assignment coordination if applicable.",
+        "why": "The frequency is already clear, but readers cannot tell what charge duty involves at your unit.",
+        "excerpt": "- Serve as charge nurse two shifts per month",
+        "section": "EXPERIENCE",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the sepsis committee bullet, describe a contribution you made, such as a review, discussion, or change you helped with.",
+        "why": "Membership alone doesn't show your part in the committee's work.",
+        "excerpt": "- Member of the unit's sepsis bundle compliance committee",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the precepting bullet, add an example of the clinical skills or judgment you help new graduates develop.",
+        "why": "That detail would make your teaching role more concrete without overstating your authority.",
+        "excerpt": "- Precept new graduate nurses during their ICU orientation",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "Naming ventilated patients, vasoactive drips, and continuous renal replacement therapy shows the treatments involved in your current work.",
+    "strengths": [
+      "Naming ventilated patients, vasoactive drips, and continuous renal replacement therapy shows the treatments involved in your current work.",
+      "The Arizona multistate compact license and CCRN are easy to find before the experience section.",
+      "The telemetry entry identifies post-cardiac catheterization patients and a 4 to 5 patient assignment, giving useful context for your earlier role."
+    ],
+    "gaps": [
+      "The orientation bullet doesn't describe how you help new graduates learn or how their progress is assessed.",
+      "The rapid response bullet identifies team participation but not your particular actions during a call.",
+      "The opening does not yet bring together the experience and results most relevant to the job."
+    ],
+    "next_steps": [
+      "Revise the charge and sepsis committee bullets using responsibilities and contributions you can verify.",
+      "Add a concrete teaching example to the new-graduate orientation bullet.",
+      "Write a short opening that names the role you want, what you have led, and a relevant result you can verify."
+    ],
+    "seniority_read": "Current staff nurse with recurring charge duties and responsibility for precepting new graduates.",
+    "best_fit_roles": [
+      "Staff Nurse, Medical ICU"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "Lead with the medical ICU assignment and the treatments you manage. For a specific posting, bring the most relevant charge, teaching, or committee details forward once you have described your contributions.",
+    "severity_added": [],
+    "severity_promoted": [],
+    "severity_outcome": "none (none)",
+    "severity_answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[0]",
+          "fix": 0
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[1]",
+          "fix": 1
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[2]",
+          "fix": 2
+        },
+        {
+          "kind": "question_dropped",
+          "path": "ideas.questions[4]",
+          "reason": "duplicates_keep"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "biggest_gap_example",
+          "of": "top_fixes[1]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[0]",
+          "of": "top_fixes[2]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[1]",
+          "of": "ideas.questions[3]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "next_steps[1]",
+          "of": "top_fixes[2]"
+        }
+      ],
+      "fix_questions": [
+        [
+          "What responsibilities do you take on during your charge nurse shifts?"
+        ],
+        [
+          "What did you contribute to the sepsis bundle compliance committee?"
+        ],
+        [
+          "Which ICU skills or clinical decisions do you help new graduates practice during orientation?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0125118,
+  "latency_ms": 26096
+}

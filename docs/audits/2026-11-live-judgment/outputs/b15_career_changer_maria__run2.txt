@@ -1,0 +1,46 @@
+# b15_career_changer_maria, run 2
+Resume: ../../../docs/design/2026-11-bar/resumes/2-career-changer-maria.txt (315 words, sha256 cf6e68aeefb5)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0144; 30.7s
+Case note: Career changer (bar persona).
+
+## Band: Needs more context (score 68; model wrote 68, label "Needs Clarity")
+## Verdict
+Your move from mathematics teaching into data analytics is immediately clear. The student dashboard is worth keeping prominent because the math department used it to decide which units needed re-teaching.
+One-line read: The projects show relevant tools, while most teaching bullets describe responsibilities.
+Takeaway: Show what the analysis found
+Biggest gap example: "Analyzed student assessment data to identify learning gaps and adjust instruction" does not show what you found or changed, leaving the analysis itself hard to assess.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the housing analysis bullets, add one finding you presented and explain how you compared housing and income data.
+   why: A reader can then see what your Python and SQL work helped you examine, rather than only the tools used.
+   excerpt (DATA PROJECTS): "- Analyzed 10 years of Austin housing and income data using Python and SQL"
+2. [fix] In the student dashboard bullets, explain how you prepared the pass-rate or quiz-score data for the Excel dashboard.
+   why: The department's use of the dashboard is already stated; the preparation detail would show more of your analytical work.
+   excerpt (DATA PROJECTS): "- Built an Excel dashboard tracking AP Statistics pass rates and quiz scores over three years"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+Teaching Algebra II and AP Statistics to approximately 150 students per year across 6 class periods makes your classroom responsibilities concrete.
+Other strengths: ["The housing capstone names 10 years of data and a Tableau dashboard by zip code, giving the project a defined subject and time range.","Mentoring 3 new teachers through the district induction program shows a responsibility beyond your own classes."]
+
+## Gaps
+- The housing project names a presentation but not the findings shared with instructors and peers, making its conclusions difficult to evaluate.
+- The assessment-data bullet doesn't give an example of an instructional adjustment, so the connection between analysis and teaching remains abstract.
+- The skills list includes several tools and methods, but it doesn't distinguish those demonstrated in the projects from those without an example on the resume.
+
+## Next steps
+- Expand the housing capstone with a verified finding and the comparison behind it.
+- Revise the assessment and student dashboard bullets using examples from your actual work.
+- Review the summary and skills list against the revised projects, putting demonstrated analytics work before general claims.
+
+## Role fit
+Level: The recent Mathematics Teacher title and department data lead responsibility show an experienced educator transitioning into analytics; the resume does not establish an analytics job level.
+Best fit: ["Mathematics Teacher"]
+Positioning: Lead the analytics transition with the housing capstone and student dashboard, then use the teaching experience to show how you applied assessment data. Keep the teacher title and describe the analytics work without presenting it as a prior analyst job.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":1},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"section_review.Skills.missing","of":"gaps[2]"},{"kind":"repeat_dropped","path":"next_steps[1]","of":"top_fixes[1]"}]

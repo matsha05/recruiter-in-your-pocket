@@ -1,0 +1,47 @@
+# b26_construction_pm_strong, run 1
+Resume: ../../../tests/resumes/countcheck/synth_cc_construction_pm_strong_1.txt (136 words, sha256 548c7db64c75)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0347; repair ran; 66.3s
+
+Validator refused the first draft: OPENAI_RESPONSE_SHAPE_INVALID The model response failed the evidence grounding contract at next_steps[2] unsupported narrative facts: one relevant project.
+
+## Band: Clear and specific (score 85; model wrote 85, label "Strong")
+## Verdict
+Commercial construction project management comes through immediately. The $14M grocery build finished 3 weeks ahead of schedule is worth keeping because it gives the delivery claim a clear scale and timeframe.
+One-line read: Project values and delivery results make recent work clear, but methods are brief.
+Takeaway: Explain your buyout decisions
+Biggest gap example: "Built the three-week look-ahead schedule with superintendents" doesn't explain what went into the schedule, leaving the coordination work difficult to assess.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the subcontractor buyout bullet, describe what you considered when comparing bids.
+   why: That would show more of your decision-making than the trade count alone.
+   excerpt (EXPERIENCE): "- Manage subcontractor bids and buyout for 20 to 30 trades per project"
+2. [fix] In the submittals and RFIs bullet, explain how you followed up when an item needed a response.
+   why: The project values establish context, while the follow-up would show what tracking involved.
+   excerpt (EXPERIENCE): "- Tracked submittals and RFIs for $5M to $20M office and retail projects"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The 20 to 30 trades per project in the buyout bullet makes the subcontractor workload tangible.
+Other strengths: ["Office and retail projects worth $5M to $20M give useful context for your assistant project manager role.","Procore, Bluebeam, and MS Project are easy to find in the skills section."]
+
+## Gaps
+- The early grocery store completion is stated, but your part in its scheduling isn't described.
+- The buyout bullet doesn't say how you evaluated bids, so the decisions involved remain unclear.
+- The earlier role names submittal and RFI tracking without explaining how you followed up when a response was needed.
+
+## Next steps
+- Revise the buyout bullet with a bid-comparison detail you can verify.
+- Add practical details to the look-ahead schedule and submittal-tracking bullets.
+- Review the opening statement and include a verified project value or result that fits your target role.
+
+## Role fit
+Level: Your current title and responsibilities indicate project manager level, following an assistant project manager role.
+Best fit: ["Project Manager"]
+Positioning: Lead with the commercial construction projects you currently manage. Keep the grocery delivery and change-order figures visible, and add practical details to the shorter responsibility bullets.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[0]","line":"fix-0","criticalMiss":true},{"kind":"keep_dropped","path":"strengths[1]","line":"fix-1","criticalMiss":false},{"kind":"question_moved","path":"ideas.questions[2]","fix":0},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"ideas.questions[4]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"ideas.questions[0]"},{"kind":"repeat_dropped","path":"gaps[2]","of":"top_fixes[1]"}]

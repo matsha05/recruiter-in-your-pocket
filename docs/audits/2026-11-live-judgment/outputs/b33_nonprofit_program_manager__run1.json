@@ -1,0 +1,704 @@
+{
+  "case_id": "b33_nonprofit_program_manager",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../../../tests/resumes/blindpick/synth_bp_nonprofit_program_manager_1.txt",
+  "resume_sha256": "eed001bb0dd40fc28e9488669ec9cea7f7a73eecaca46214d5f584dae2b6d5c9",
+  "resume_chars": 1025,
+  "resume_words": 146,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T20:11:47.129Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7524,
+        "completion_tokens": 2173,
+        "total_tokens": 9697,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 635,
+        "reasoning_tokens": 260
+      },
+      "cost_usd": 0.01200605,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 25442
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.00131075,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1283
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 67,
+    "score_label": "Needs Clarity",
+    "score_comment_short": "Your management responsibilities are clear, but program results and working details are sparse.",
+    "score_comment_long": "The current role names the staff you supervise and the students your program serves. Most bullets describe duties without showing how the work was carried out or what happened. Adding details to the summer program and reporting bullets would make the experience easier to assess.",
+    "score_plain": "A reviewer can see your youth workforce management background, but may have trouble comparing your accomplishments with those of other program managers.",
+    "first_impression": "Your path from tutoring to youth workforce management is easy to follow. The current role names a substantial staff, while the program itself is described mostly through responsibilities.",
+    "biggest_gap_example": "\"Recruit and onboard employer partners\" doesn't explain how you prepare employers to host students, leaving your contribution to those partnerships unclear.",
+    "first_impression_takeaway": "Explain the employer onboarding process",
+    "summary": "Managing a summer jobs program and supervising 4 coordinators and 20 seasonal staff gives your current role a clear management-level frame. The staff detail is worth keeping because it shows the people-management responsibilities behind the title. Your work connects students, employers and funders, but the resume doesn't say how the placements are arranged or what participants achieved. That makes it difficult to distinguish the program's reach and results from its stated purpose.",
+    "strengths": [
+      "The progression from Program Coordinator to Program Manager at Harbor Pathways makes your growth within youth workforce work easy to follow.",
+      "City and foundation grant reporting shows that your work includes communicating with different kinds of funders.",
+      "Salesforce Nonprofit Cloud is named in Skills, giving a reviewer a specific system to associate with your participant data work."
+    ],
+    "gaps": [
+      "The employer onboarding bullet doesn't describe what you do to prepare partners, so the nature of your partner management remains broad.",
+      "Participant outcomes are tracked, but the resume doesn't name them or state their results, leaving the program's effects unclear.",
+      "Program design appears in Skills without a corresponding example in Experience, making it difficult to see what you designed."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the summer jobs program bullet, add how many students the program serves in a program cycle and what you do to arrange placements, if you can verify both.",
+        "why": "That would help a reviewer understand the size of the program and your part in connecting students with employers.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Manage a summer jobs program placing high school students with local employers",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the employer-partner bullet, describe one part of your onboarding process, such as how you prepare an employer to host students.",
+        "why": "The current wording names the relationship but leaves the practical work behind it to the reader's imagination.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Recruit and onboard employer partners",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the Salesforce bullet, name the participant outcomes you track and add a verified result if one is available.",
+        "why": "A named outcome would show what the program monitors, while a result could show what students achieved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Track participant outcomes in Salesforce",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the summer jobs and employer-partner bullets using details you can verify about placements and onboarding.",
+      "Review your Salesforce and grant-reporting bullets for participant outcomes and reporting details you can accurately include.",
+      "Check whether an experience bullet can show your program design work, then align the Skills list with the examples on the page."
+    ],
+    "subscores": {
+      "impact": 59,
+      "clarity": 70,
+      "story": 72,
+      "readability": 74
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The opening identifies nonprofit youth workforce work and partnerships with schools and employers.",
+        "missing": "It doesn't distinguish your management responsibilities from the program's general purpose.",
+        "fix": "Consider mentioning staff supervision in the opening if management roles are your target."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "Titles, dates and staff supervision make your progression and current responsibilities readable.",
+        "missing": "The summer program, partner work and participant tracking lack details about how the work happens or what it produces.",
+        "fix": "Expand selected bullets with the placement process, employer onboarding and verified participant results."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The list names Salesforce Nonprofit Cloud alongside relevant program and partner work.",
+        "missing": "Program design is listed without an example of that work in Experience.",
+        "fix": "Connect program design to a specific experience bullet if you can describe work you did."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The degree, subject, institution and year are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Youth workforce program management",
+        "Supervision of coordinators and seasonal staff",
+        "Employer partner recruitment and onboarding",
+        "Grant reporting for city and foundation funders"
+      ],
+      "underplayed": [
+        "How student placements are arranged",
+        "The participant outcomes tracked in Salesforce",
+        "Program design work behind the Skills entry"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Program Manager, Youth Workforce",
+          "Program Coordinator"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current title and staff supervision indicate a program-management level.",
+        "industry_signals": [
+          "Nonprofit youth workforce programs",
+          "Education"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Lead with youth workforce program management and staff supervision for roles that value both. Use the experience bullets to explain how you work with employers and what participant data shows, where you can verify the details."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What challenges came up when matching high school students with local employers, and how did you handle them?",
+          "archetype": "TENSION POINT",
+          "why": "A concrete placement challenge could make your program management work more visible."
+        },
+        {
+          "question": "How did you divide responsibilities between the coordinators and seasonal staff you supervised?",
+          "archetype": "SCALING",
+          "why": "This could explain how you organized the staff already named on the resume."
+        },
+        {
+          "question": "What information did city and foundation funders need in their grant reports?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The answer could distinguish your reporting work across funder relationships."
+        },
+        {
+          "question": "Which participant outcomes did you track in Salesforce, and what did the records show?",
+          "archetype": "IMPROVEMENT",
+          "why": "This could turn a data-tracking duty into a more informative program example."
+        },
+        {
+          "question": "What did you organize for the annual career fair, from preparation through the event?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "A specific example could show the range of your coordinator responsibilities."
+        }
+      ]
+    }
+  },
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 67,
+    "score_label": "Needs more context",
+    "score_comment_short": "Your management responsibilities are clear, but program results and working details are sparse.",
+    "score_comment_long": "The current role names the staff you supervise and the students your program serves. Most bullets describe duties without showing how the work was carried out or what happened. Adding details to the summer program and reporting bullets would make the experience easier to assess.",
+    "score_plain": "A reviewer can see your youth workforce management background, but may have trouble comparing your accomplishments with those of other program managers.",
+    "first_impression": "Your path from tutoring to youth workforce management is easy to follow. The current role names a substantial staff, while the program itself is described mostly through responsibilities.",
+    "biggest_gap_example": "\"Recruit and onboard employer partners\" doesn't explain how you prepare employers to host students, leaving your contribution to those partnerships unclear.",
+    "first_impression_takeaway": "Explain the employer onboarding process",
+    "summary": "Managing a summer jobs program and supervising 4 coordinators and 20 seasonal staff gives your current role a clear management-level frame. The staff detail is worth keeping because it shows the people-management responsibilities behind the title. Your work connects students, employers and funders, but the resume doesn't say how the placements are arranged or what participants achieved. That makes it difficult to distinguish the program's reach and results from its stated purpose.",
+    "strengths": [
+      "The progression from Program Coordinator to Program Manager at Harbor Pathways makes your growth within youth workforce work easy to follow.",
+      "City and foundation grant reporting shows that your work includes communicating with different kinds of funders.",
+      "Salesforce Nonprofit Cloud is named in Skills, giving a reviewer a specific system to associate with your participant data work."
+    ],
+    "gaps": [
+      "The employer onboarding bullet doesn't describe what you do to prepare partners, so the nature of your partner management remains broad.",
+      "Participant outcomes are tracked, but the resume doesn't name them or state their results, leaving the program's effects unclear.",
+      "Program design appears in Skills without a corresponding example in Experience, making it difficult to see what you designed."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the summer jobs program bullet, add how many students the program serves in a program cycle and what you do to arrange placements, if you can verify both.",
+        "why": "That would help a reviewer understand the size of the program and your part in connecting students with employers.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Manage a summer jobs program placing high school students with local employers",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the employer-partner bullet, describe one part of your onboarding process, such as how you prepare an employer to host students.",
+        "why": "The current wording names the relationship but leaves the practical work behind it to the reader's imagination.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Recruit and onboard employer partners",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the Salesforce bullet, name the participant outcomes you track and add a verified result if one is available.",
+        "why": "A named outcome would show what the program monitors, while a result could show what students achieved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Track participant outcomes in Salesforce",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the summer jobs and employer-partner bullets using details you can verify about placements and onboarding.",
+      "Review your Salesforce and grant-reporting bullets for participant outcomes and reporting details you can accurately include.",
+      "Check whether an experience bullet can show your program design work, then align the Skills list with the examples on the page."
+    ],
+    "subscores": {
+      "impact": 59,
+      "clarity": 70,
+      "story": 72,
+      "readability": 74
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "Titles, dates and staff supervision make your progression and current responsibilities readable.",
+        "missing": "The summer program, partner work and participant tracking lack details about how the work happens or what it produces.",
+        "fix": "Expand selected bullets with the placement process, employer onboarding and verified participant results."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The list names Salesforce Nonprofit Cloud alongside relevant program and partner work.",
+        "missing": "Program design is listed without an example of that work in Experience.",
+        "fix": "Connect program design to a specific experience bullet if you can describe work you did."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The degree, subject, institution and year are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Youth workforce program management",
+        "Supervision of coordinators and seasonal staff",
+        "Employer partner recruitment and onboarding",
+        "Grant reporting for city and foundation funders"
+      ],
+      "underplayed": [
+        "How student placements are arranged",
+        "The participant outcomes tracked in Salesforce",
+        "Program design work behind the Skills entry"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Program Manager, Youth Workforce",
+          "Program Coordinator"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current title and staff supervision indicate a program-management level.",
+        "industry_signals": [
+          "Education"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with youth workforce program management and staff supervision for roles that value both. Use the experience bullets to explain how you work with employers and what participant data shows, where you can verify the details."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What challenges came up when matching high school students with local employers, and how did you handle them?",
+          "archetype": "TENSION POINT",
+          "why": "A concrete placement challenge could make your program management work more visible."
+        },
+        {
+          "question": "How did you divide responsibilities between the coordinators and seasonal staff you supervised?",
+          "archetype": "SCALING",
+          "why": "This could explain how you organized the staff already named on the resume."
+        },
+        {
+          "question": "What information did city and foundation funders need in their grant reports?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The answer could distinguish your reporting work across funder relationships."
+        },
+        {
+          "question": "Which participant outcomes did you track in Salesforce, and what did the records show?",
+          "archetype": "IMPROVEMENT",
+          "why": "This could turn a data-tracking duty into a more informative program example."
+        },
+        {
+          "question": "What did you organize for the annual career fair, from preparation through the event?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "A specific example could show the range of your coordinator responsibilities."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 67
+  },
+  "severity": {
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "promoted": [],
+    "replaced": [],
+    "skipped": [],
+    "critical_count": 1,
+    "more_critical": false,
+    "validation_attempts": 0,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "latency_ms": 1284,
+    "call_latency_ms": 1283,
+    "cost_usd": 0.00131075,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 67,
+    "score_label": "Needs more context",
+    "score_comment_short": "Your management responsibilities are clear, but program results and working details are sparse.",
+    "score_comment_long": "The current role names the staff you supervise and the students your program serves. Most bullets describe duties without showing how the work was carried out or what happened. Adding details to the summer program and reporting bullets would make the experience easier to assess.",
+    "score_plain": "A reviewer can see your youth workforce management background, but may have trouble comparing your accomplishments with those of other program managers.",
+    "first_impression": "Your path from tutoring to youth workforce management is easy to follow. The current role names a substantial staff, while the program itself is described mostly through responsibilities.",
+    "biggest_gap_example": "\"Recruit and onboard employer partners\" doesn't explain how you prepare employers to host students, leaving your contribution to those partnerships unclear.",
+    "first_impression_takeaway": "Explain the employer onboarding process",
+    "summary": "Managing a summer jobs program and supervising 4 coordinators and 20 seasonal staff gives your current role a clear management-level frame. The staff detail is worth keeping because it shows the people-management responsibilities behind the title. Your work connects students, employers and funders, but the resume doesn't say how the placements are arranged or what participants achieved. That makes it difficult to distinguish the program's reach and results from its stated purpose.",
+    "strengths": [
+      "The progression from Program Coordinator to Program Manager at Harbor Pathways makes your growth within youth workforce work easy to follow.",
+      "City and foundation grant reporting shows that your work includes communicating with different kinds of funders.",
+      "Salesforce Nonprofit Cloud is named in Skills, giving a reviewer a specific system to associate with your participant data work."
+    ],
+    "gaps": [
+      "The employer onboarding bullet doesn't describe what you do to prepare partners, so the nature of your partner management remains broad.",
+      "Participant outcomes are tracked, but the resume doesn't name them or state their results, leaving the program's effects unclear.",
+      "Program design appears in Skills without a corresponding example in Experience, making it difficult to see what you designed."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the summer jobs program bullet, add how many students the program serves in a program cycle and what you do to arrange placements, if you can verify both.",
+        "why": "That would help a reviewer understand the size of the program and your part in connecting students with employers.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Manage a summer jobs program placing high school students with local employers",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": true
+      },
+      {
+        "fix": "In the employer-partner bullet, describe one part of your onboarding process, such as how you prepare an employer to host students.",
+        "why": "The current wording names the relationship but leaves the practical work behind it to the reader's imagination.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Recruit and onboard employer partners",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      },
+      {
+        "fix": "In the Salesforce bullet, name the participant outcomes you track and add a verified result if one is available.",
+        "why": "A named outcome would show what the program monitors, while a result could show what students achieved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Track participant outcomes in Salesforce",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      }
+    ],
+    "next_steps": [
+      "Revise the summer jobs and employer-partner bullets using details you can verify about placements and onboarding.",
+      "Review your Salesforce and grant-reporting bullets for participant outcomes and reporting details you can accurately include.",
+      "Check whether an experience bullet can show your program design work, then align the Skills list with the examples on the page."
+    ],
+    "subscores": {
+      "impact": 59,
+      "clarity": 70,
+      "story": 72,
+      "readability": 74
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "Titles, dates and staff supervision make your progression and current responsibilities readable.",
+        "missing": "The summer program, partner work and participant tracking lack details about how the work happens or what it produces.",
+        "fix": "Expand selected bullets with the placement process, employer onboarding and verified participant results."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The list names Salesforce Nonprofit Cloud alongside relevant program and partner work.",
+        "missing": "Program design is listed without an example of that work in Experience.",
+        "fix": "Connect program design to a specific experience bullet if you can describe work you did."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The degree, subject, institution and year are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Youth workforce program management",
+        "Supervision of coordinators and seasonal staff",
+        "Employer partner recruitment and onboarding",
+        "Grant reporting for city and foundation funders"
+      ],
+      "underplayed": [
+        "How student placements are arranged",
+        "The participant outcomes tracked in Salesforce",
+        "Program design work behind the Skills entry"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Program Manager, Youth Workforce",
+          "Program Coordinator"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current title and staff supervision indicate a program-management level.",
+        "industry_signals": [
+          "Education"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with youth workforce program management and staff supervision for roles that value both. Use the experience bullets to explain how you work with employers and what participant data shows, where you can verify the details."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What challenges came up when matching high school students with local employers, and how did you handle them?",
+          "archetype": "TENSION POINT",
+          "why": "A concrete placement challenge could make your program management work more visible."
+        },
+        {
+          "question": "How did you divide responsibilities between the coordinators and seasonal staff you supervised?",
+          "archetype": "SCALING",
+          "why": "This could explain how you organized the staff already named on the resume."
+        },
+        {
+          "question": "What information did city and foundation funders need in their grant reports?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The answer could distinguish your reporting work across funder relationships."
+        },
+        {
+          "question": "Which participant outcomes did you track in Salesforce, and what did the records show?",
+          "archetype": "IMPROVEMENT",
+          "why": "This could turn a data-tracking duty into a more informative program example."
+        },
+        {
+          "question": "What did you organize for the annual career fair, from preparation through the event?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "A specific example could show the range of your coordinator responsibilities."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 67,
+    "more_critical": false
+  },
+  "presentation": {
+    "score": 67,
+    "band": "Needs more context",
+    "score_label_from_model": "Needs Clarity",
+    "model_score_before_calibration": 67,
+    "verdict": "Your path from tutoring to youth workforce management is easy to follow. The current role names a substantial staff, while the program itself is described mostly through responsibilities.",
+    "one_line_read": "Your management responsibilities are clear, but program results and working details are sparse.",
+    "takeaway": "Explain the employer onboarding process",
+    "biggest_gap_example": "\"Recruit and onboard employer partners\" doesn't explain how you prepare employers to host students, leaving your contribution to those partnerships unclear.",
+    "critical_count": {
+      "count": 1,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "One Critical Miss. Fix it first.",
+      "lead": "It's the one most likely to cost you the interview."
+    },
+    "fixes": [
+      {
+        "fix": "In the summer jobs program bullet, add how many students the program serves in a program cycle and what you do to arrange placements, if you can verify both.",
+        "why": "That would help a reviewer understand the size of the program and your part in connecting students with employers.",
+        "excerpt": "- Manage a summer jobs program placing high school students with local employers",
+        "section": "EXPERIENCE",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the employer-partner bullet, describe one part of your onboarding process, such as how you prepare an employer to host students.",
+        "why": "The current wording names the relationship but leaves the practical work behind it to the reader's imagination.",
+        "excerpt": "- Recruit and onboard employer partners",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the Salesforce bullet, name the participant outcomes you track and add a verified result if one is available.",
+        "why": "A named outcome would show what the program monitors, while a result could show what students achieved.",
+        "excerpt": "- Track participant outcomes in Salesforce",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "The progression from Program Coordinator to Program Manager at Harbor Pathways makes your growth within youth workforce work easy to follow.",
+    "strengths": [
+      "The progression from Program Coordinator to Program Manager at Harbor Pathways makes your growth within youth workforce work easy to follow.",
+      "City and foundation grant reporting shows that your work includes communicating with different kinds of funders.",
+      "Salesforce Nonprofit Cloud is named in Skills, giving a reviewer a specific system to associate with your participant data work."
+    ],
+    "gaps": [
+      "The employer onboarding bullet doesn't describe what you do to prepare partners, so the nature of your partner management remains broad.",
+      "Participant outcomes are tracked, but the resume doesn't name them or state their results, leaving the program's effects unclear.",
+      "Program design appears in Skills without a corresponding example in Experience, making it difficult to see what you designed."
+    ],
+    "next_steps": [
+      "Revise the summer jobs and employer-partner bullets using details you can verify about placements and onboarding.",
+      "Review your Salesforce and grant-reporting bullets for participant outcomes and reporting details you can accurately include.",
+      "Check whether an experience bullet can show your program design work, then align the Skills list with the examples on the page."
+    ],
+    "seniority_read": "Your current title and staff supervision indicate a program-management level.",
+    "best_fit_roles": [
+      "Program Manager, Youth Workforce",
+      "Program Coordinator"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "Lead with youth workforce program management and staff supervision for roles that value both. Use the experience bullets to explain how you work with employers and what participant data shows, where you can verify the details.",
+    "severity_added": [],
+    "severity_promoted": [],
+    "severity_outcome": "none (none)",
+    "severity_answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[0]",
+          "fix": 0
+        },
+        {
+          "kind": "question_dropped",
+          "path": "ideas.questions[2]",
+          "reason": "duplicates_keep"
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[3]",
+          "fix": 2
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "biggest_gap_example",
+          "of": "top_fixes[1]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[0]",
+          "of": "top_fixes[1]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[1]",
+          "of": "top_fixes[2]"
+        }
+      ],
+      "fix_questions": [
+        [
+          "What challenges came up when matching high school students with local employers, and how did you handle them?"
+        ],
+        [],
+        [
+          "Which participant outcomes did you track in Salesforce, and what did the records show?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0133168,
+  "latency_ms": 26798
+}

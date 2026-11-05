@@ -1,0 +1,35 @@
+Elena Vasquez
+Denver, CO | elena.vasquez@example.com | 555-0188 | linkedin.com/in/elenavasquez-example
+
+Senior Product Manager with nine years shipping B2B payments and billing products. Led the team that took Northwind Pay from launch to $48M ARR.
+
+EXPERIENCE
+
+Senior Product Manager, Payments Platform
+Northwind Software (public, 3,200 employees), Denver, CO
+March 2022 - Present
+- Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers
+- Led the launch of Northwind Pay, which grew from $0 to $48M ARR in 26 months and reached 31% attach rate on new accounts
+- Cut payment failure rate from 4.1% to 1.6% by leading the move to network tokenization and smart retries, recovering an estimated $6.2M in annual revenue for customers
+- Negotiated and shipped the Adyen and Stripe processor integrations, cutting new-market launch time from 9 months to 11 weeks
+- Built the pricing model for interchange-plus billing with Finance, adopted by 2,400 customers in the first year
+- Hired and manage 3 product managers; two were promoted within 18 months
+
+Product Manager, Billing
+Northwind Software, Denver, CO
+July 2019 - February 2022
+- Shipped usage-based billing for the core platform, used by 1,900 customers and generating $12M ARR by year two
+- Reduced invoice disputes 38% by redesigning the invoice detail page after 40 customer interviews
+- Ran the weekly billing bug triage with Support and Engineering, cutting the open P1 backlog from 31 to 4 in one quarter
+
+Associate Product Manager
+Peakline Fintech (Series B startup), Boulder, CO
+August 2017 - June 2019
+- Launched the merchant onboarding flow, raising completion from 52% to 79% over three releases
+- Wrote the PRDs and ran the beta for the first API product, signed by 14 design partners
+
+EDUCATION
+B.S., Industrial Engineering, Colorado State University, 2017
+
+SKILLS
+Payments and card networks, usage-based billing, pricing, SQL, Amplitude, Jira, roadmap planning, stakeholder management

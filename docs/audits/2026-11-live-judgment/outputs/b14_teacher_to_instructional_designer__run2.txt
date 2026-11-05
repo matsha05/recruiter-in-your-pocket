@@ -1,0 +1,48 @@
+# b14_teacher_to_instructional_designer, run 2
+Resume: ../../../tests/resumes/blindpick/synth_bp_teacher_to_instructional_designer_1.txt (164 words, sha256 834ed54c2de6)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0341; repair ran; 68.3s
+Case note: Career changer.
+
+Validator refused the first draft: OPENAI_RESPONSE_SHAPE_INVALID The model response failed the evidence grounding contract at summary unsupported narrative facts: Teaching Algebra II.
+
+## Band: Needs more context (score 66; model wrote 66, label "Needs Clarity")
+## Verdict
+You are a mathematics teacher with a growing digital learning portfolio. The stated teaching load gives a reader a concrete sense of your classroom setting.
+One-line read: The teaching load is clear, but the design projects need more detail.
+Takeaway: Explain the Canvas module
+Biggest gap example: "Lead the math department's professional learning community" does not explain what you organize or contribute, leaving the nature of that leadership unclear.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the functions module bullet, describe a learning activity or assessment you designed for the self-paced unit.
+   why: That would show what students encountered inside the Canvas module.
+   excerpt (EXPERIENCE): "- Redesigned the Algebra II unit on functions into a self-paced online module in Canvas"
+2. [fix] In the math department learning community bullet, specify what you organize or contribute as its lead.
+   why: A reader could then distinguish your responsibilities from the group's general purpose.
+   excerpt (EXPERIENCE): "- Lead the math department's professional learning community"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+Five sections of 28 to 32 students make the current teaching load clear.
+Other strengths: ["Co-teaching an inclusion class and writing common assessments with colleagues show work beyond individual classroom instruction.","The M.Ed. in Curriculum and Instruction and the in-progress instructional design certificate connect your studies to your stated design interest."]
+
+## Gaps
+- The portfolio link does not identify which projects it contains, so a reader cannot tell what examples to look for.
+- The exam-review videos are not described beyond their purpose, leaving their content and format unclear.
+- Apart from Canvas and the Storyline workshop, the listed tools are not connected to specific work, so their use is difficult to understand.
+
+## Next steps
+- Expand the Canvas module entry with an activity or assessment you can describe accurately.
+- Revise the learning community and video entries with examples from your work.
+- Review the opening and skills order against the kind of role you plan to pursue.
+
+## Role fit
+Level: Current Mathematics Teacher with responsibility for leading the math department's professional learning community.
+Best fit: ["Mathematics Teacher"]
+Positioning: For teaching roles, keep the subjects and section sizes prominent. If you pursue learning design work, bring the Canvas project forward and describe what you built.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":1},{"kind":"question_dropped","path":"ideas.questions[2]","reason":"duplicates_keep"},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"section_review.Skills.fix","of":"gaps[2]"},{"kind":"repeat_dropped","path":"next_steps[0]","of":"top_fixes[0]"}]

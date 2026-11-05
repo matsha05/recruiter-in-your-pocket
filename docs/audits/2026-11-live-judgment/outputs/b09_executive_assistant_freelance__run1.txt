@@ -1,0 +1,48 @@
+# b09_executive_assistant_freelance, run 1
+Resume: ../../../tests/resumes/blindpick/synth_bp_executive_assistant_freelance_1.txt (163 words, sha256 e2e2776e0968)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0149; 36.6s
+
+## Band: Mostly clear (score 80; model wrote 80, label "Strong")
+## Verdict
+Your recent work centers on founders, board materials, and investor meetings. The 40-attendee leadership offsite is worth keeping because it gives a concrete sense of an event you planned.
+One-line read: Recent roles name the leaders supported and the work, but few results.
+Takeaway: Explain the CEO handoffs
+Biggest gap example: "Served as the point of contact between the CEO and department heads" doesn't say what requests or information you handled, so your part in those exchanges is difficult to assess.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the CEO and department-head contact bullet, name the kinds of requests or information you handled.
+   why: That would show what being the contact involved beyond passing messages.
+   excerpt (EXPERIENCE): "- Served as the point of contact between the CEO and department heads"
+2. [fix] In the quarterly board-meeting bullet, specify which materials you prepared and your part in assembling them.
+   why: Board preparation can cover several kinds of work, and the current wording doesn't distinguish yours.
+   excerpt (EXPERIENCE): "- Prepared materials for quarterly board meetings"
+3. [fix] In the leadership-offsite bullet, add the planning responsibilities you personally handled.
+   why: The attendee count is useful; the planning details would show what you took on for that event.
+   excerpt (EXPERIENCE): "- Planned the annual leadership offsite for 40 attendees"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The Notion workspace for one client's board materials shows a specific tool applied to a recognizable executive-support task.
+Other strengths: ["The Parkway progression from Administrative Assistant to Executive Assistant to the CEO makes your move into senior-leader support easy to follow.","Google Workspace, Microsoft 365, Notion, Concur, and Zoom are named, giving a reader a concrete view of your listed tools."]
+
+## Gaps
+- The quarterly board-meeting bullet doesn't identify the materials you prepared, leaving the content of that responsibility unclear.
+- The investor-meeting bullet names time zones but not the logistics you coordinated, so the work behind those meetings remains broad.
+- The dates leave a period between Parkway and freelance work unexplained; if relevant activity belongs there, adding it could make the chronology easier to follow.
+
+## Next steps
+- Revise the Parkway bullets about board materials, department-head contact, and the offsite using details you can verify.
+- Review the freelance investor-meeting and Notion bullets for concrete tasks that distinguish those assignments.
+- Check the chronology and add any relevant, real activity between Parkway and freelance work if you want it represented.
+
+## Role fit
+Level: Executive assistant supporting founders and a CEO, with prior administrative assistant experience.
+Best fit: ["Freelance Executive Assistant","Executive Assistant to the CEO"]
+Positioning: Lead with executive support for founders and a CEO, then use the board and offsite examples to distinguish the work. Tailor the opening to a specific role once you have its requirements.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":2},{"kind":"question_dropped","path":"ideas.questions[2]","reason":"duplicates_keep"},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"ideas.questions[3]"}]

@@ -1,0 +1,48 @@
+# b02_teacher, run 2
+Resume: resumes/b_teacher.txt (202 words, sha256 7d89b420ec09)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0119; 25.9s
+
+## Band: Clear and specific (score 85; model wrote 85, label "Strong")
+## Verdict
+The 4th-grade role combines classroom teaching, team planning, and curriculum training. The reading-growth figure is worth keeping because it gives a concrete result beyond the list of responsibilities.
+One-line read: Classroom results and specific teaching responsibilities make this a strong first read.
+Takeaway: Explain your reading instruction
+Biggest gap example: "Served on the school's positive behavior support committee" does not say what you contributed, leaving a reviewer unable to distinguish your work on the committee.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the reading-growth bullet, add the instructional approach or intervention you used with the class.
+   why: The assessment result is specific, but the teaching behind it is not yet visible.
+   excerpt (EXPERIENCE): "- Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years"
+2. [fix] In the math curriculum pilot bullet, describe what you tested and how you trained the other 4th-grade teachers.
+   why: Those details would show what the pilot and training involved without adding unsupported results.
+   excerpt (EXPERIENCE): "- Piloted the district's new math curriculum in 2023 and trained the other 4th grade teachers on it"
+3. [fix] In the positive behavior support committee bullet, name a specific contribution you made to the committee's work.
+   why: Membership alone doesn't explain how you participated in behavior support.
+   excerpt (EXPERIENCE): "- Served on the school's positive behavior support committee"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The 27-student class and the share of English language learners give useful context for your current teaching.
+Other strengths: ["The family literacy night attendance of 140 families shows the reach of an event you coordinated.","Your Washington K-8 certificate and English Language Learner endorsement make your qualifications easy to locate."]
+
+## Gaps
+- The math curriculum pilot doesn't describe what you tested or how you trained the other teachers, leaving the work behind the pilot unclear.
+- Your committee service doesn't name a contribution, so its connection to student behavior support is difficult to assess.
+- The homework club lists attendance and frequency but not the kind of help you provided, making the activity less distinctive.
+
+## Next steps
+- Add the reading practices you can verify to the current teaching role.
+- Expand the math pilot and committee bullets with your actual contributions.
+- Review the homework club bullet and describe the help students received.
+
+## Role fit
+Level: An elementary classroom teacher with grade-level team leadership responsibilities.
+Best fit: ["4th Grade Teacher","2nd Grade Teacher"]
+Positioning: Lead with your classroom teaching and the reading-growth result for elementary teaching roles. Bring the English Language Learner endorsement and math curriculum training forward when they matter to the position.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_dropped","path":"ideas.questions[1]","reason":"duplicates_keep"},{"kind":"question_moved","path":"ideas.questions[2]","fix":1},{"kind":"question_moved","path":"ideas.questions[4]","fix":2},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[2]"}]

@@ -1,0 +1,56 @@
+# h5_mismatched_posting, run 1
+Resume: resumes/h5_data_analyst.txt (166 words, sha256 7bbdd7afb1b8), posting: resumes/h5_nursing_posting.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0568; repair ran; 76.0s
+Case note: Data analyst against a registered nurse posting.
+
+Validator refused the first draft: OPENAI_RESPONSE_SHAPE_INVALID The model response failed the evidence grounding contract at first_impression unsupported narrative facts: nursing, call, different, set, qualification, aren't, here.
+
+## Band: Mostly clear (score 84; model wrote 84, label "Strong")
+## Verdict
+Your current role combines Power BI reporting, SQL automation, and merchandising analysis. The replacement of a 3-day manual report makes the reporting change particularly easy to understand.
+One-line read: Recent analytics bullets show scale and results, though some methods remain unclear.
+Takeaway: Explain the claims summary
+Biggest gap example: "Produced the monthly claims summary for the operations director" does not say what the summary covered, leaving the analytical work unclear.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the VP of Sales analysis bullet, add an example of a business question you investigated.
+   why: A specific question would show what the executive relied on your analysis to examine.
+   excerpt (EXPERIENCE): "- Pull ad hoc analyses for the VP of Sales, about 10 requests a month"
+2. [fix] In the policy-data reconciliation bullet, describe how you reconciled records across the legacy systems.
+   why: The systems and tools are already named; the approach would make your contribution more concrete.
+   excerpt (EXPERIENCE): "- Cleaned and reconciled policy data from three legacy systems in Python and Excel"
+3. [fix] In the claims summary bullet, identify the claims information you presented to the operations director.
+   why: The recipient and cadence are clear, but a reader cannot tell what the report examined.
+   excerpt (EXPERIENCE): "- Produced the monthly claims summary for the operations director"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The 14 Power BI dashboards have named users in sales, merchandising, and finance, making their audience clear.
+Other strengths: ["The markdown analysis covers 2,100 SKUs and records adoption of the recommended schedule in two categories.","Python and Excel are connected to reconciliation across three legacy systems, rather than appearing only in the skills list."]
+
+## Gaps
+- The license and certifications required in the posting are not listed, leaving key eligibility requirements unaddressed.
+- No patient-care work or clinical rotations are described, so the resume cannot show how your experience relates to the unit's responsibilities.
+- The VP of Sales requests have a stated frequency, but their topics are absent, making the analyses difficult to picture.
+
+## Next steps
+- Revise the ad hoc analysis, policy reconciliation, and claims summary bullets with details you can verify.
+- Check whether any relevant clinical training, licensure, certifications, or patient-care work are absent from the resume, and add them only if they apply.
+- Review the revised document against the posting and distinguish your analytics work from any documented clinical qualifications.
+
+## Role fit
+Level: Recent Data Analyst experience, preceded by a Junior Analyst role.
+Best fit: ["Data Analyst"]
+Positioning: The posting centers on direct patient care, while your resume centers on analytics. If you have relevant clinical training, licensure, or certifications, include them accurately; otherwise, this version is better positioned for analytics roles.
+
+## Posting
+Match score: 5
+Summary: The resume describes analytics work rather than direct clinical care. It does not document the license, certification, clinical training, or care-documentation experience specified in the posting.
+Missing: ["Patient assignment of 5 to 6 patients"]
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[2]","line":"fix-1","criticalMiss":false},{"kind":"question_dropped","path":"ideas.questions[0]","reason":"duplicates_keep"},{"kind":"question_dropped","path":"ideas.questions[2]","reason":"duplicates_keep"},{"kind":"question_moved","path":"ideas.questions[3]","fix":1},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"gaps[2]","of":"top_fixes[0]"}]

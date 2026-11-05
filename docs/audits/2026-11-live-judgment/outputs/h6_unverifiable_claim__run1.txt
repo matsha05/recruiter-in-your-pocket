@@ -1,0 +1,49 @@
+# h6_unverifiable_claim, run 1
+Resume: resumes/h6_unverifiable_claim.txt (145 words, sha256 f523ae9848d4)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0142; 27.0s
+Case note: "Led a team of 40" with nothing supporting it.
+
+## Band: Needs more context (score 64; model wrote 64, label "Needs Clarity")
+## Verdict
+Your move from sorting-line team lead to operations manager is easy to follow. Leading a team of 40 is worth keeping near the top because it shows the size of your management responsibility.
+One-line read: The team size is clear, but most operations bullets remain broad.
+Takeaway: Name the processes you improved
+Biggest gap example: "Improved processes across the department" does not identify the processes or changes, so a reviewer cannot tell what your improvement work involved.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the department process bullet, name one process you improved, the change you made, and any result you can verify.
+   why: That would show what your improvement work actually looked like instead of leaving it at a general claim.
+   excerpt (EXPERIENCE): "- Improved processes across the department"
+2. [fix] In the daily fulfillment bullet, name the activities you oversaw and the operating decisions you handled.
+   why: A reviewer could then understand the reach of your current management role.
+   excerpt (EXPERIENCE): "- Oversaw daily fulfillment operations"
+3. [fix] In the scanning-system rollout bullet, describe the floor work you helped with and any concrete change you observed.
+   why: It would make your contribution to the rollout easier to distinguish from the broader project.
+   excerpt (EXPERIENCE): "- Helped roll out a new scanning system on the floor"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The progression from Team Lead to Operations Manager makes the move into management easy to trace.
+Other strengths: ["The scanning-system rollout places you in a floor-level technology change rather than only administrative work.","Scheduling, reporting, and weekend floor coverage show a range of duties in the assistant manager role."]
+
+## Gaps
+- The daily fulfillment bullet doesn't say which activities or operating decisions fell under your oversight, making the job difficult to compare with another manager role.
+- The leadership planning bullet doesn't explain what you contributed to the goals or planning discussions.
+- Excel and WMS are listed without examples of how you used them, so their relevance to your work is unclear.
+
+## Next steps
+- Revise the current role first, starting with the process change and daily fulfillment responsibilities.
+- Add your specific contribution to the scanning rollout, then review the planning and peak-season bullets for useful examples.
+- Update the summary to reflect the revised experience and connect Excel or WMS to actual work if you used them there.
+
+## Role fit
+Level: The current Operations Manager title and responsibility for a team of 40 indicate a management-level role.
+Best fit: ["Operations Manager","Assistant Operations Manager"]
+Positioning: Lead with fulfillment management and the team of 40 when targeting operations roles. Use a specific process change and your part in the scanning rollout to show how you work on the floor.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[1]","line":"fix-2","criticalMiss":false},{"kind":"question_moved","path":"ideas.questions[0]","fix":1},{"kind":"question_moved","path":"ideas.questions[1]","fix":0},{"kind":"question_moved","path":"ideas.questions[3]","fix":2},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"ideas.questions[2]"}]

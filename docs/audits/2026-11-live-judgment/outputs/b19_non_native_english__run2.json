@@ -1,0 +1,728 @@
+{
+  "case_id": "b19_non_native_english",
+  "batch": "breadth",
+  "run": 2,
+  "note": null,
+  "resume_file": "resumes/b_non_native_english.txt",
+  "resume_sha256": "b6a26fe36825d1810e73236e21445163948f02ce6be0d9328e9ccaf50cb59c16",
+  "resume_chars": 1515,
+  "resume_words": 237,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T20:06:02.319Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7751,
+        "completion_tokens": 2352,
+        "total_tokens": 10103,
+        "cached_prompt_tokens": 7748,
+        "cache_write_prompt_tokens": 0,
+        "reasoning_tokens": 441
+      },
+      "cost_usd": 0.0121504,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 27908
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.00159825,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1143
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 77,
+    "score_label": "Solid Foundation",
+    "score_comment_short": "Earlier accounting results are specific, while recent responsibilities need more detail.",
+    "score_comment_long": "The shorter month-end close and five years without a major audit finding give the senior accounting role substance. The current accounts payable role shows invoice volume but leaves some close and reconciliation work unexplained. Adding those details would connect the recent work to the roles you want.",
+    "score_plain": "A reviewer can see both accounting breadth and current US accounts payable work. The recent bullets leave questions about how much of your earlier accounting work carries into your current role.",
+    "first_impression": "Your recent work is in Houston accounts payable, following a senior accounting role in Vietnam. The close reduction from 12 days to 7 days is worth keeping because it shows a specific process change and result.",
+    "biggest_gap_example": "\"Help the controller for month end closing\" leaves the actual close tasks unclear, making it difficult to assess their relevance to a staff accountant role.",
+    "first_impression_takeaway": "Name your close tasks",
+    "summary": "Your accounting work spans vendor invoices in Houston and general ledger and financial statements in Vietnam. The Senior Accountant role included leading three junior accountants and working with an external auditor, while the current role is titled Accounts Payable Clerk. That history can support applications for accounts payable and staff accounting roles. More detail on your current close work would help a reviewer connect the two.",
+    "strengths": [
+      "Processing around 400 vendor invoices every month in QuickBooks gives the current role a useful workload reference.",
+      "The Vietnam role names a company with 150 employees and revenue about 20 million USD, giving context for the accounting work.",
+      "The US GAAP certificate and accounting degree make your formal accounting education easy to find."
+    ],
+    "gaps": [
+      "The current month-end bullet doesn't name your contribution, so the extent of your recent close work is unclear.",
+      "The vendor reconciliation bullet doesn't explain the kinds of differences you resolve, leaving the complexity of that work open to interpretation.",
+      "The profile names two target positions but doesn't connect either to your recent US work or earlier financial reporting responsibilities."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the Bayou month-end bullet, name the close tasks or documents you assist the controller with.",
+        "why": "A reviewer could then see which parts of the close you handle rather than only the person you help.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Help the controller for month end closing",
+          "section": "WORK EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "quick",
+        "section_ref": "WORK EXPERIENCE"
+      },
+      {
+        "fix": "In the vendor reconciliation bullet, add an example of a statement difference you investigate and how you resolve it.",
+        "why": "That example would show what your vendor conversations involve beyond the communication channels.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Reconcile vendor statement and solve the difference with vendors by email and phone",
+          "section": "WORK EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "WORK EXPERIENCE"
+      },
+      {
+        "fix": "In the external audit bullet, name the records you prepared or questions you handled for the auditor, if applicable.",
+        "why": "The five-year finding is useful, and your contribution would make the audit work easier to understand.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Work with external auditor for year end audit, no major finding in 5 years",
+          "section": "WORK EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "WORK EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the Bayou close and vendor reconciliation bullets using examples you can verify.",
+      "Add your specific audit contribution to the Minh Phat entry and keep the five-year finding.",
+      "Revise the profile for the position you are applying to, then proofread the payment approval and payroll bullets."
+    ],
+    "subscores": {
+      "impact": 78,
+      "clarity": 74,
+      "story": 78,
+      "readability": 77
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The profile states your accounting background in Vietnam and the United States and names the positions you want.",
+        "missing": "It doesn't distinguish your accounts payable work from your broader financial reporting background.",
+        "fix": "For each application, connect the relevant target position to the work you have already listed."
+      },
+      "Work Experience": {
+        "grade": "B",
+        "priority": "High",
+        "working": "Invoice volume, the close reduction, team leadership and audit finding give several roles useful detail.",
+        "missing": "Your current close contribution and the nature of the vendor differences are not described.",
+        "fix": "Expand those two Bayou bullets with the tasks and examples you can verify."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "QuickBooks, Excel functions and MISA are named alongside language proficiency.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The accounting degree and US GAAP certificate include institutions and dates.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Vendor invoice processing and purchase order matching",
+        "Vendor statement reconciliation and payment preparation",
+        "General ledger, fixed assets and monthly financial statements",
+        "Month-end close process improvement",
+        "QuickBooks and Excel"
+      ],
+      "underplayed": [
+        "Specific contributions to the current month-end close",
+        "How vendor statement differences are investigated",
+        "Work performed for the external auditor"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Accounts Payable Clerk",
+          "Accounts Payable Specialist",
+          "Staff Accountant"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current title is Accounts Payable Clerk; your earlier Senior Accountant role included leading three junior accountants.",
+        "industry_signals": [
+          "Industrial supply",
+          "Restaurant",
+          "Trading"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "For accounts payable applications, put the QuickBooks invoice volume and vendor reconciliation work near the top. For staff accountant applications, also make the financial statements and month-end close work easy to find."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What tasks do you assist the controller with during Bayou's month-end close?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The answer can distinguish your close contribution from the controller's responsibilities."
+        },
+        {
+          "question": "What kinds of vendor statement differences have you resolved, and how did you investigate one?",
+          "archetype": "TENSION POINT",
+          "why": "A concrete discrepancy would make the reconciliation work easier to picture."
+        },
+        {
+          "question": "What did you change in the checklist and template used for the shorter close at Minh Phat?",
+          "archetype": "IMPROVEMENT",
+          "why": "The resume gives the time reduction but not the changes behind it."
+        },
+        {
+          "question": "What records or explanations did you provide to the external auditor?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "This would describe your part in the audit alongside the stated finding."
+        },
+        {
+          "question": "How did you coordinate the work of the three junior accountants at Minh Phat?",
+          "archetype": "SCALING",
+          "why": "The answer could explain what leading the team involved."
+        }
+      ]
+    }
+  },
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 77,
+    "score_label": "Mostly clear",
+    "score_comment_short": "Earlier accounting results are specific, while recent responsibilities need more detail.",
+    "score_comment_long": "The shorter month-end close and five years without a major audit finding give the senior accounting role substance. The current accounts payable role shows invoice volume but leaves some close and reconciliation work unexplained. Adding those details would connect the recent work to the roles you want.",
+    "score_plain": "A reviewer can see both accounting breadth and current US accounts payable work. The recent bullets leave questions about how much of your earlier accounting work carries into your current role.",
+    "first_impression": "Your recent work is in Houston accounts payable, following a senior accounting role in Vietnam. The close reduction from 12 days to 7 days is worth keeping because it shows a specific process change and result.",
+    "biggest_gap_example": "\"Help the controller for month end closing\" leaves the actual close tasks unclear, making it difficult to assess their relevance to a staff accountant role.",
+    "first_impression_takeaway": "Name your close tasks",
+    "summary": "Your accounting work spans vendor invoices in Houston and general ledger and financial statements in Vietnam. The Senior Accountant role included leading three junior accountants and working with an external auditor, while the current role is titled Accounts Payable Clerk. That history can support applications for accounts payable and staff accounting roles. More detail on your current close work would help a reviewer connect the two.",
+    "strengths": [
+      "Processing around 400 vendor invoices every month in QuickBooks gives the current role a useful workload reference.",
+      "The Vietnam role names a company with 150 employees and revenue about 20 million USD, giving context for the accounting work.",
+      "The US GAAP certificate and accounting degree make your formal accounting education easy to find."
+    ],
+    "gaps": [
+      "The current month-end bullet doesn't name your contribution, so the extent of your recent close work is unclear.",
+      "The vendor reconciliation bullet doesn't explain the kinds of differences you resolve, leaving the complexity of that work open to interpretation.",
+      "The profile names two target positions but doesn't connect either to your recent US work or earlier financial reporting responsibilities."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the Bayou month-end bullet, name the close tasks or documents you assist the controller with.",
+        "why": "A reviewer could then see which parts of the close you handle rather than only the person you help.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Help the controller for month end closing",
+          "section": "WORK EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "quick",
+        "section_ref": "WORK EXPERIENCE"
+      },
+      {
+        "fix": "In the vendor reconciliation bullet, add an example of a statement difference you investigate and how you resolve it.",
+        "why": "That example would show what your vendor conversations involve beyond the communication channels.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Reconcile vendor statement and solve the difference with vendors by email and phone",
+          "section": "WORK EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "WORK EXPERIENCE"
+      },
+      {
+        "fix": "In the external audit bullet, name the records you prepared or questions you handled for the auditor, if applicable.",
+        "why": "The five-year finding is useful, and your contribution would make the audit work easier to understand.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Work with external auditor for year end audit, no major finding in 5 years",
+          "section": "WORK EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "WORK EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the Bayou close and vendor reconciliation bullets using examples you can verify.",
+      "Add your specific audit contribution to the Minh Phat entry and keep the five-year finding.",
+      "Revise the profile for the position you are applying to, then proofread the payment approval and payroll bullets."
+    ],
+    "subscores": {
+      "impact": 78,
+      "clarity": 74,
+      "story": 78,
+      "readability": 77
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The profile states your accounting background in Vietnam and the United States and names the positions you want.",
+        "missing": "It doesn't distinguish your accounts payable work from your broader financial reporting background.",
+        "fix": "For each application, connect the relevant target position to the work you have already listed."
+      },
+      "Work Experience": {
+        "grade": "B",
+        "priority": "High",
+        "working": "Invoice volume, the close reduction, team leadership and audit finding give several roles useful detail.",
+        "missing": "Your current close contribution and the nature of the vendor differences are not described.",
+        "fix": "Expand those two Bayou bullets with the tasks and examples you can verify."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "QuickBooks, Excel functions and MISA are named alongside language proficiency.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The accounting degree and US GAAP certificate include institutions and dates.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Vendor invoice processing and purchase order matching",
+        "Vendor statement reconciliation and payment preparation",
+        "General ledger, fixed assets and monthly financial statements",
+        "Month-end close process improvement",
+        "QuickBooks and Excel"
+      ],
+      "underplayed": [
+        "Specific contributions to the current month-end close",
+        "How vendor statement differences are investigated",
+        "Work performed for the external auditor"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Accounts Payable Clerk",
+          "Accounts Payable Specialist",
+          "Staff Accountant"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current title is Accounts Payable Clerk; your earlier Senior Accountant role included leading three junior accountants.",
+        "industry_signals": [
+          "Industrial supply",
+          "Restaurant",
+          "Trading"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "For accounts payable applications, put the QuickBooks invoice volume and vendor reconciliation work near the top. For staff accountant applications, also make the financial statements and month-end close work easy to find."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What tasks do you assist the controller with during Bayou's month-end close?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The answer can distinguish your close contribution from the controller's responsibilities."
+        },
+        {
+          "question": "What kinds of vendor statement differences have you resolved, and how did you investigate one?",
+          "archetype": "TENSION POINT",
+          "why": "A concrete discrepancy would make the reconciliation work easier to picture."
+        },
+        {
+          "question": "What did you change in the checklist and template used for the shorter close at Minh Phat?",
+          "archetype": "IMPROVEMENT",
+          "why": "The resume gives the time reduction but not the changes behind it."
+        },
+        {
+          "question": "What records or explanations did you provide to the external auditor?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "This would describe your part in the audit alongside the stated finding."
+        },
+        {
+          "question": "How did you coordinate the work of the three junior accountants at Minh Phat?",
+          "archetype": "SCALING",
+          "why": "The answer could explain what leading the team involved."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 77
+  },
+  "severity": {
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "promoted": [],
+    "replaced": [],
+    "skipped": [],
+    "critical_count": 1,
+    "more_critical": false,
+    "validation_attempts": 0,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "latency_ms": 1143,
+    "call_latency_ms": 1143,
+    "cost_usd": 0.00159825,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 77,
+    "score_label": "Mostly clear",
+    "score_comment_short": "Earlier accounting results are specific, while recent responsibilities need more detail.",
+    "score_comment_long": "The shorter month-end close and five years without a major audit finding give the senior accounting role substance. The current accounts payable role shows invoice volume but leaves some close and reconciliation work unexplained. Adding those details would connect the recent work to the roles you want.",
+    "score_plain": "A reviewer can see both accounting breadth and current US accounts payable work. The recent bullets leave questions about how much of your earlier accounting work carries into your current role.",
+    "first_impression": "Your recent work is in Houston accounts payable, following a senior accounting role in Vietnam. The close reduction from 12 days to 7 days is worth keeping because it shows a specific process change and result.",
+    "biggest_gap_example": "\"Help the controller for month end closing\" leaves the actual close tasks unclear, making it difficult to assess their relevance to a staff accountant role.",
+    "first_impression_takeaway": "Name your close tasks",
+    "summary": "Your accounting work spans vendor invoices in Houston and general ledger and financial statements in Vietnam. The Senior Accountant role included leading three junior accountants and working with an external auditor, while the current role is titled Accounts Payable Clerk. That history can support applications for accounts payable and staff accounting roles. More detail on your current close work would help a reviewer connect the two.",
+    "strengths": [
+      "Processing around 400 vendor invoices every month in QuickBooks gives the current role a useful workload reference.",
+      "The Vietnam role names a company with 150 employees and revenue about 20 million USD, giving context for the accounting work.",
+      "The US GAAP certificate and accounting degree make your formal accounting education easy to find."
+    ],
+    "gaps": [
+      "The current month-end bullet doesn't name your contribution, so the extent of your recent close work is unclear.",
+      "The vendor reconciliation bullet doesn't explain the kinds of differences you resolve, leaving the complexity of that work open to interpretation.",
+      "The profile names two target positions but doesn't connect either to your recent US work or earlier financial reporting responsibilities."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the Bayou month-end bullet, name the close tasks or documents you assist the controller with.",
+        "why": "A reviewer could then see which parts of the close you handle rather than only the person you help.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Help the controller for month end closing",
+          "section": "WORK EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "quick",
+        "section_ref": "WORK EXPERIENCE",
+        "critical": true
+      },
+      {
+        "fix": "In the vendor reconciliation bullet, add an example of a statement difference you investigate and how you resolve it.",
+        "why": "That example would show what your vendor conversations involve beyond the communication channels.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Reconcile vendor statement and solve the difference with vendors by email and phone",
+          "section": "WORK EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "WORK EXPERIENCE",
+        "critical": false
+      },
+      {
+        "fix": "In the external audit bullet, name the records you prepared or questions you handled for the auditor, if applicable.",
+        "why": "The five-year finding is useful, and your contribution would make the audit work easier to understand.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Work with external auditor for year end audit, no major finding in 5 years",
+          "section": "WORK EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "WORK EXPERIENCE",
+        "critical": false
+      }
+    ],
+    "next_steps": [
+      "Revise the Bayou close and vendor reconciliation bullets using examples you can verify.",
+      "Add your specific audit contribution to the Minh Phat entry and keep the five-year finding.",
+      "Revise the profile for the position you are applying to, then proofread the payment approval and payroll bullets."
+    ],
+    "subscores": {
+      "impact": 78,
+      "clarity": 74,
+      "story": 78,
+      "readability": 77
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The profile states your accounting background in Vietnam and the United States and names the positions you want.",
+        "missing": "It doesn't distinguish your accounts payable work from your broader financial reporting background.",
+        "fix": "For each application, connect the relevant target position to the work you have already listed."
+      },
+      "Work Experience": {
+        "grade": "B",
+        "priority": "High",
+        "working": "Invoice volume, the close reduction, team leadership and audit finding give several roles useful detail.",
+        "missing": "Your current close contribution and the nature of the vendor differences are not described.",
+        "fix": "Expand those two Bayou bullets with the tasks and examples you can verify."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "QuickBooks, Excel functions and MISA are named alongside language proficiency.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The accounting degree and US GAAP certificate include institutions and dates.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Vendor invoice processing and purchase order matching",
+        "Vendor statement reconciliation and payment preparation",
+        "General ledger, fixed assets and monthly financial statements",
+        "Month-end close process improvement",
+        "QuickBooks and Excel"
+      ],
+      "underplayed": [
+        "Specific contributions to the current month-end close",
+        "How vendor statement differences are investigated",
+        "Work performed for the external auditor"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Accounts Payable Clerk",
+          "Accounts Payable Specialist",
+          "Staff Accountant"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current title is Accounts Payable Clerk; your earlier Senior Accountant role included leading three junior accountants.",
+        "industry_signals": [
+          "Industrial supply",
+          "Restaurant",
+          "Trading"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "For accounts payable applications, put the QuickBooks invoice volume and vendor reconciliation work near the top. For staff accountant applications, also make the financial statements and month-end close work easy to find."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What tasks do you assist the controller with during Bayou's month-end close?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The answer can distinguish your close contribution from the controller's responsibilities."
+        },
+        {
+          "question": "What kinds of vendor statement differences have you resolved, and how did you investigate one?",
+          "archetype": "TENSION POINT",
+          "why": "A concrete discrepancy would make the reconciliation work easier to picture."
+        },
+        {
+          "question": "What did you change in the checklist and template used for the shorter close at Minh Phat?",
+          "archetype": "IMPROVEMENT",
+          "why": "The resume gives the time reduction but not the changes behind it."
+        },
+        {
+          "question": "What records or explanations did you provide to the external auditor?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "This would describe your part in the audit alongside the stated finding."
+        },
+        {
+          "question": "How did you coordinate the work of the three junior accountants at Minh Phat?",
+          "archetype": "SCALING",
+          "why": "The answer could explain what leading the team involved."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 77,
+    "more_critical": false
+  },
+  "presentation": {
+    "score": 77,
+    "band": "Mostly clear",
+    "score_label_from_model": "Solid Foundation",
+    "model_score_before_calibration": 77,
+    "verdict": "Your recent work is in Houston accounts payable, following a senior accounting role in Vietnam. The close reduction from 12 days to 7 days is worth keeping because it shows a specific process change and result.",
+    "one_line_read": "Earlier accounting results are specific, while recent responsibilities need more detail.",
+    "takeaway": "Name your close tasks",
+    "biggest_gap_example": "\"Help the controller for month end closing\" leaves the actual close tasks unclear, making it difficult to assess their relevance to a staff accountant role.",
+    "critical_count": {
+      "count": 1,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "One Critical Miss. Fix it first.",
+      "lead": "It's the one most likely to cost you the interview."
+    },
+    "fixes": [
+      {
+        "fix": "In the Bayou month-end bullet, name the close tasks or documents you assist the controller with.",
+        "why": "A reviewer could then see which parts of the close you handle rather than only the person you help.",
+        "excerpt": "- Help the controller for month end closing",
+        "section": "WORK EXPERIENCE",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the vendor reconciliation bullet, add an example of a statement difference you investigate and how you resolve it.",
+        "why": "That example would show what your vendor conversations involve beyond the communication channels.",
+        "excerpt": "- Reconcile vendor statement and solve the difference with vendors by email and phone",
+        "section": "WORK EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the external audit bullet, name the records you prepared or questions you handled for the auditor, if applicable.",
+        "why": "The five-year finding is useful, and your contribution would make the audit work easier to understand.",
+        "excerpt": "- Work with external auditor for year end audit, no major finding in 5 years",
+        "section": "WORK EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "Processing around 400 vendor invoices every month in QuickBooks gives the current role a useful workload reference.",
+    "strengths": [
+      "Processing around 400 vendor invoices every month in QuickBooks gives the current role a useful workload reference.",
+      "The Vietnam role names a company with 150 employees and revenue about 20 million USD, giving context for the accounting work.",
+      "The US GAAP certificate and accounting degree make your formal accounting education easy to find."
+    ],
+    "gaps": [
+      "The current month-end bullet doesn't name your contribution, so the extent of your recent close work is unclear.",
+      "The vendor reconciliation bullet doesn't explain the kinds of differences you resolve, leaving the complexity of that work open to interpretation.",
+      "The profile names two target positions but doesn't connect either to your recent US work or earlier financial reporting responsibilities."
+    ],
+    "next_steps": [
+      "Revise the Bayou close and vendor reconciliation bullets using examples you can verify.",
+      "Add your specific audit contribution to the Minh Phat entry and keep the five-year finding.",
+      "Revise the profile for the position you are applying to, then proofread the payment approval and payroll bullets."
+    ],
+    "seniority_read": "Your current title is Accounts Payable Clerk; your earlier Senior Accountant role included leading three junior accountants.",
+    "best_fit_roles": [
+      "Accounts Payable Clerk",
+      "Accounts Payable Specialist",
+      "Staff Accountant"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "For accounts payable applications, put the QuickBooks invoice volume and vendor reconciliation work near the top. For staff accountant applications, also make the financial statements and month-end close work easy to find.",
+    "severity_added": [],
+    "severity_promoted": [],
+    "severity_outcome": "none (none)",
+    "severity_answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[0]",
+          "fix": 0
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[1]",
+          "fix": 1
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[3]",
+          "fix": 2
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "biggest_gap_example",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[0]",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[1]",
+          "of": "top_fixes[1]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[2]",
+          "of": "score_comment_short"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Education.working",
+          "of": "strengths[2]"
+        }
+      ],
+      "fix_questions": [
+        [
+          "What tasks do you assist the controller with during Bayou's month-end close?"
+        ],
+        [
+          "What kinds of vendor statement differences have you resolved, and how did you investigate one?"
+        ],
+        [
+          "What records or explanations did you provide to the external auditor?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01374865,
+  "latency_ms": 29138
+}

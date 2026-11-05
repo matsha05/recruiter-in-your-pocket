@@ -1,0 +1,51 @@
+# b38_layoff_gap_james, run 2
+Resume: ../../../docs/design/2026-11-bar/resumes/3-layoff-gap-james.txt (313 words, sha256 9ff2c78d35a7)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0355; repair ran; 67.0s
+Case note: Layoff gap (bar persona).
+
+Validator refused the first draft: OPENAI_RESPONSE_SHAPE_INVALID The model response failed the evidence grounding contract at top_fixes[0].fix unsupported narrative facts: one client project.
+
+## Band: Mostly clear (score 83; model wrote 83, label "Strong")
+## Verdict
+Your Senior Marketing Manager role is easy to place: B2B SaaS, demand generation, a team of 4 and a $1.8M annual budget. The current freelance entry is broader, so it reveals less about the work you do now.
+One-line read: The Velocity role supplies clear scale and results, while recent consulting remains broad.
+Takeaway: Explain the ABM launch
+Biggest gap example: "Launched ABM program targeting enterprise accounts" doesn't describe the program's activities or what happened after launch, making its contribution difficult to assess.
+
+## Fixes (Two Critical Misses. Start with this one.; lead: "Either one could cost you the interview on its own."); severity added (added); added ["no_evidence_latest_role"]; promoted []
+1. [Critical Miss] In the freelance projects bullet, describe what you contributed to an email campaign and the type of business involved, if disclosable.
+   why: That example would give a reviewer a clearer picture of your current consulting work.
+   excerpt (Work Experience): "- Projects included website copy, email campaigns, and paid social setup"
+2. [Critical Miss] In the freelance marketing strategy and execution bullet, add the number of clients you supported or a measurable result, if you can verify it.
+   why: Marketing hiring managers often look for the scope or results of current work. The resume describes your consulting services but doesn't show client volume or outcomes.
+   excerpt (Professional Experience): "- Provided marketing strategy and execution support for small businesses and startups"
+3. [fix] In the Velocity ABM bullet, add the activities used to reach enterprise accounts and any verified result.
+   why: The launch is clear, but the description doesn't yet show what the program consisted of.
+   excerpt (Work Experience): "- Launched ABM program targeting enterprise accounts"
+Severity check answer: {"critical_misses":[{"source":"new","kind":"no_evidence_latest_role","fix":"In the freelance marketing strategy and execution bullet, add the number of clients you supported or a measurable result, if you can verify it.","why":"Marketing hiring managers often look for the scope or results of current work. The resume describes your consulting services but doesn't show client volume or outcomes.","excerpt":"- Provided marketing strategy and execution support for small businesses and startups","section":"Professional Experience","effort":"quick"}],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The $40M ARR company context gives your Velocity demand-generation role a useful business reference point.
+Other strengths: ["The HubSpot implementation and Marketo migration show work beyond campaign execution.","Bridgepoint's content, email and webinar programs show the range of marketing work you managed before Velocity."]
+
+## Gaps
+- The freelance entry lists services but doesn't explain your contribution to a particular piece of work, leaving your current responsibilities broad.
+- The webinar bullet names pipeline generation but not the program's approach or pipeline amount, making its contribution difficult to gauge.
+- The blog traffic increase has no magnitude or comparison period, leaving the word "significantly" open to interpretation.
+
+## Next steps
+- Revise the freelance entry with a specific example, keeping business details confidential if needed.
+- Expand the ABM and webinar bullets with activities and results you can substantiate.
+- Update the summary to bring your MQL result and team leadership forward, then check the skills list against roles you pursue.
+
+## Role fit
+Level: Senior marketing manager level, based on the Velocity title and responsibility for a team of 4 and an annual budget.
+Best fit: ["Senior Marketing Manager","Marketing Manager","Freelance Marketing Consultant"]
+Positioning: Lead with your B2B SaaS demand-generation work, including the MQL result and leadership responsibilities. Use a specific freelance example to connect that background to your current work.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":2},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"section_review.Work Experience.fix","of":"top_fixes[2]"}]

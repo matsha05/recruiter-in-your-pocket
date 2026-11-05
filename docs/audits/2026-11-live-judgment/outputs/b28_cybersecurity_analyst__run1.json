@@ -1,0 +1,734 @@
+{
+  "case_id": "b28_cybersecurity_analyst",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../../../tests/resumes/blindpick/synth_bp_cybersecurity_analyst_1.txt",
+  "resume_sha256": "3af143d6457f920bcfc404cff6c5ed95c9a5719c1320855f0e0d464650526db6",
+  "resume_chars": 1052,
+  "resume_words": 154,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T20:09:43.357Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7548,
+        "completion_tokens": 2408,
+        "total_tokens": 9956,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 659,
+        "reasoning_tokens": 551
+      },
+      "cost_usd": 0.01321105,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 28211
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.00134325,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1101
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 84,
+    "score_label": "Strong",
+    "score_comment_short": "Recent detection and response work includes clear results, while several technical bullets remain brief.",
+    "score_comment_long": "The Splunk detection rules and incident containment figures make the recent role concrete. The purple-team and automation bullets don't yet explain what you tested or built. Adding those details would make the technical work easier to assess.",
+    "score_plain": "Your resume gives a reviewer concrete reasons to consider you for detection and response work. More detail on the exercises and automation would help distinguish how you approach that work.",
+    "first_impression": "You come across as a senior security analyst focused on detection and incident response in banking. The fall in median containment time from 9 hours to 3 is worth keeping near the top because it makes the response work tangible.",
+    "biggest_gap_example": "\"Run monthly purple-team exercises with the red team\" doesn't say what you tested or produced, so a reviewer can't see your contribution beyond participation.",
+    "first_impression_takeaway": "Explain the purple-team exercises",
+    "summary": "Building 140+ Splunk detection rules mapped to MITRE ATT&CK, with a stated 35% reduction in false-positive alerts, gives your detection work a concrete result. Your current title and incident-response responsibilities point to senior analyst work, with mentoring on the night rotation. The earlier managed-security role adds experience monitoring alerts across 30 client environments. The automation bullet leaves the enrichment itself unspecified, which makes it harder to understand what you built.",
+    "strengths": [
+      "The phishing and credential-theft cases give a reviewer a specific view of your incident-response work.",
+      "Monthly exercises with the red team show a recurring connection between detection and testing.",
+      "Client-facing incident summaries show that your security operations work included communicating incidents to customers."
+    ],
+    "gaps": [
+      "The purple-team bullet doesn't identify a scenario or exercise output, leaving the technical focus unclear.",
+      "The alert-enrichment bullet doesn't say what information the automation added or where analysts used it.",
+      "The CrowdStrike Falcon bullet doesn't explain which EDR policies you tuned or what prompted the changes."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the purple-team bullet, name a representative scenario you tested and the output you contributed, if you can verify it.",
+        "why": "That would show what the recurring exercise involved and what you brought to it.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Run monthly purple-team exercises with the red team",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the alert-enrichment bullet, specify the information your Python and Splunk SOAR automation added and how analysts used it.",
+        "why": "The named tools are useful, but the current wording doesn't describe the workflow you built.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Automated alert enrichment with Python and the Splunk SOAR platform",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the CrowdStrike Falcon bullet, identify a policy you tuned and the problem or alert pattern that prompted the adjustment.",
+        "why": "A concrete example would show the judgment involved in your earlier SOC work.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Tuned EDR policies in CrowdStrike Falcon",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the purple-team and enrichment bullets using examples you can verify.",
+      "Add a specific CrowdStrike policy adjustment to the Northgate role.",
+      "Update the opening profile to surface the detection result or response work most relevant to your target role."
+    ],
+    "subscores": {
+      "impact": 86,
+      "clarity": 82,
+      "story": 84,
+      "readability": 86
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The opening identifies detection engineering, incident response, and financial services.",
+        "missing": "It doesn't bring forward a distinguishing result from your recent work.",
+        "fix": "Consider adding the false-positive reduction or containment-time change already stated in Experience."
+      },
+      "Work Experience": {
+        "grade": "B+",
+        "priority": "High",
+        "working": "The current role includes quantified detection and containment results, while Northgate names the client environment.",
+        "missing": "The exercise, enrichment, and EDR bullets leave the technical work largely undescribed.",
+        "fix": "Add a representative test, enrichment detail, and policy adjustment where you can verify them."
+      },
+      "Skills": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "Section not present.",
+        "fix": "Add only if it helps your story."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The degree, field, institution, and year are stated.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Splunk detection rules mapped to MITRE ATT&CK",
+        "Incident response for phishing and credential theft",
+        "Alert monitoring across client environments",
+        "EDR policy tuning in CrowdStrike Falcon"
+      ],
+      "underplayed": [
+        "Python and Splunk SOAR alert enrichment",
+        "Purple-team exercises with the red team",
+        "Mentoring analysts on the night rotation"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Senior Security Analyst, Detection and Response",
+          "Security Operations Analyst"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "The current senior analyst title is supported by detection work, incident-response leadership, and mentoring.",
+        "industry_signals": [
+          "Banking",
+          "Managed security services"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Keep detection engineering and incident response prominent for roles in that lane. Use the exercise and automation details to show how you work alongside the quantified results."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What containment tradeoffs did you face during a phishing or credential-theft incident?",
+          "archetype": "HIGH STAKES",
+          "why": "An example could show how you handled a consequential response decision."
+        },
+        {
+          "question": "What information did the Python and Splunk SOAR workflow add to alerts?",
+          "archetype": "SCALING",
+          "why": "The answer would make the automation's function visible."
+        },
+        {
+          "question": "Which scenario did you test with the red team, and what did you contribute to the exercise?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "A specific exercise would make your collaboration easier to understand."
+        },
+        {
+          "question": "Which CrowdStrike Falcon policy did you adjust, and what prompted the change?",
+          "archetype": "IMPROVEMENT",
+          "why": "This could turn the EDR bullet into a concrete example of tuning."
+        },
+        {
+          "question": "What do you help the night-rotation analysts handle when an alert is difficult to assess?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "A coaching example would show what your mentoring involves."
+        }
+      ]
+    }
+  },
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 84,
+    "score_label": "Mostly clear",
+    "score_comment_short": "Recent detection and response work includes clear results, while several technical bullets remain brief.",
+    "score_comment_long": "The Splunk detection rules and incident containment figures make the recent role concrete. The purple-team and automation bullets don't yet explain what you tested or built. Adding those details would make the technical work easier to assess.",
+    "score_plain": "Your resume gives a reviewer concrete reasons to consider you for detection and response work. More detail on the exercises and automation would help distinguish how you approach that work.",
+    "first_impression": "You come across as a senior security analyst focused on detection and incident response in banking. The fall in median containment time from 9 hours to 3 is worth keeping near the top because it makes the response work tangible.",
+    "biggest_gap_example": "\"Run monthly purple-team exercises with the red team\" doesn't say what you tested or produced, so a reviewer can't see your contribution beyond participation.",
+    "first_impression_takeaway": "Explain the purple-team exercises",
+    "summary": "Building 140+ Splunk detection rules mapped to MITRE ATT&CK, with a stated 35% reduction in false-positive alerts, gives your detection work a concrete result. Your current title and incident-response responsibilities point to senior analyst work, with mentoring on the night rotation. The earlier managed-security role adds experience monitoring alerts across 30 client environments. The automation bullet leaves the enrichment itself unspecified, which makes it harder to understand what you built.",
+    "strengths": [
+      "The phishing and credential-theft cases give a reviewer a specific view of your incident-response work.",
+      "Monthly exercises with the red team show a recurring connection between detection and testing.",
+      "Client-facing incident summaries show that your security operations work included communicating incidents to customers."
+    ],
+    "gaps": [
+      "The purple-team bullet doesn't identify a scenario or exercise output, leaving the technical focus unclear.",
+      "The alert-enrichment bullet doesn't say what information the automation added or where analysts used it.",
+      "The CrowdStrike Falcon bullet doesn't explain which EDR policies you tuned or what prompted the changes."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the purple-team bullet, name a representative scenario you tested and the output you contributed, if you can verify it.",
+        "why": "That would show what the recurring exercise involved and what you brought to it.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Run monthly purple-team exercises with the red team",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the alert-enrichment bullet, specify the information your Python and Splunk SOAR automation added and how analysts used it.",
+        "why": "The named tools are useful, but the current wording doesn't describe the workflow you built.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Automated alert enrichment with Python and the Splunk SOAR platform",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the CrowdStrike Falcon bullet, identify a policy you tuned and the problem or alert pattern that prompted the adjustment.",
+        "why": "A concrete example would show the judgment involved in your earlier SOC work.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Tuned EDR policies in CrowdStrike Falcon",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the purple-team and enrichment bullets using examples you can verify.",
+      "Add a specific CrowdStrike policy adjustment to the Northgate role.",
+      "Update the opening profile to surface the detection result or response work most relevant to your target role."
+    ],
+    "subscores": {
+      "impact": 86,
+      "clarity": 82,
+      "story": 84,
+      "readability": 86
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "B+",
+        "priority": "High",
+        "working": "The current role includes quantified detection and containment results, while Northgate names the client environment.",
+        "missing": "The exercise, enrichment, and EDR bullets leave the technical work largely undescribed.",
+        "fix": "Add a representative test, enrichment detail, and policy adjustment where you can verify them."
+      },
+      "Skills": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No skills section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The degree, field, institution, and year are stated.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Splunk detection rules mapped to MITRE ATT&CK",
+        "Incident response for phishing and credential theft",
+        "Alert monitoring across client environments",
+        "EDR policy tuning in CrowdStrike Falcon"
+      ],
+      "underplayed": [
+        "Python and Splunk SOAR alert enrichment",
+        "Purple-team exercises with the red team",
+        "Mentoring analysts on the night rotation"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Senior Security Analyst, Detection and Response",
+          "Security Operations Analyst"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "The current senior analyst title is supported by detection work, incident-response leadership, and mentoring.",
+        "industry_signals": [],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Keep detection engineering and incident response prominent for roles in that lane. Use the exercise and automation details to show how you work alongside the quantified results."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What containment tradeoffs did you face during a phishing or credential-theft incident?",
+          "archetype": "HIGH STAKES",
+          "why": "An example could show how you handled a consequential response decision."
+        },
+        {
+          "question": "What information did the Python and Splunk SOAR workflow add to alerts?",
+          "archetype": "SCALING",
+          "why": "The answer would make the automation's function visible."
+        },
+        {
+          "question": "Which scenario did you test with the red team, and what did you contribute to the exercise?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "A specific exercise would make your collaboration easier to understand."
+        },
+        {
+          "question": "Which CrowdStrike Falcon policy did you adjust, and what prompted the change?",
+          "archetype": "IMPROVEMENT",
+          "why": "This could turn the EDR bullet into a concrete example of tuning."
+        },
+        {
+          "question": "What do you help the night-rotation analysts handle when an alert is difficult to assess?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "A coaching example would show what your mentoring involves."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 84
+  },
+  "severity": {
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "promoted": [],
+    "replaced": [],
+    "skipped": [],
+    "critical_count": 1,
+    "more_critical": false,
+    "validation_attempts": 0,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "latency_ms": 1102,
+    "call_latency_ms": 1101,
+    "cost_usd": 0.00134325,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 84,
+    "score_label": "Mostly clear",
+    "score_comment_short": "Recent detection and response work includes clear results, while several technical bullets remain brief.",
+    "score_comment_long": "The Splunk detection rules and incident containment figures make the recent role concrete. The purple-team and automation bullets don't yet explain what you tested or built. Adding those details would make the technical work easier to assess.",
+    "score_plain": "Your resume gives a reviewer concrete reasons to consider you for detection and response work. More detail on the exercises and automation would help distinguish how you approach that work.",
+    "first_impression": "You come across as a senior security analyst focused on detection and incident response in banking. The fall in median containment time from 9 hours to 3 is worth keeping near the top because it makes the response work tangible.",
+    "biggest_gap_example": "\"Run monthly purple-team exercises with the red team\" doesn't say what you tested or produced, so a reviewer can't see your contribution beyond participation.",
+    "first_impression_takeaway": "Explain the purple-team exercises",
+    "summary": "Building 140+ Splunk detection rules mapped to MITRE ATT&CK, with a stated 35% reduction in false-positive alerts, gives your detection work a concrete result. Your current title and incident-response responsibilities point to senior analyst work, with mentoring on the night rotation. The earlier managed-security role adds experience monitoring alerts across 30 client environments. The automation bullet leaves the enrichment itself unspecified, which makes it harder to understand what you built.",
+    "strengths": [
+      "The phishing and credential-theft cases give a reviewer a specific view of your incident-response work.",
+      "Monthly exercises with the red team show a recurring connection between detection and testing.",
+      "Client-facing incident summaries show that your security operations work included communicating incidents to customers."
+    ],
+    "gaps": [
+      "The purple-team bullet doesn't identify a scenario or exercise output, leaving the technical focus unclear.",
+      "The alert-enrichment bullet doesn't say what information the automation added or where analysts used it.",
+      "The CrowdStrike Falcon bullet doesn't explain which EDR policies you tuned or what prompted the changes."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the purple-team bullet, name a representative scenario you tested and the output you contributed, if you can verify it.",
+        "why": "That would show what the recurring exercise involved and what you brought to it.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Run monthly purple-team exercises with the red team",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": true
+      },
+      {
+        "fix": "In the alert-enrichment bullet, specify the information your Python and Splunk SOAR automation added and how analysts used it.",
+        "why": "The named tools are useful, but the current wording doesn't describe the workflow you built.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Automated alert enrichment with Python and the Splunk SOAR platform",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      },
+      {
+        "fix": "In the CrowdStrike Falcon bullet, identify a policy you tuned and the problem or alert pattern that prompted the adjustment.",
+        "why": "A concrete example would show the judgment involved in your earlier SOC work.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Tuned EDR policies in CrowdStrike Falcon",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      }
+    ],
+    "next_steps": [
+      "Revise the purple-team and enrichment bullets using examples you can verify.",
+      "Add a specific CrowdStrike policy adjustment to the Northgate role.",
+      "Update the opening profile to surface the detection result or response work most relevant to your target role."
+    ],
+    "subscores": {
+      "impact": 86,
+      "clarity": 82,
+      "story": 84,
+      "readability": 86
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "B+",
+        "priority": "High",
+        "working": "The current role includes quantified detection and containment results, while Northgate names the client environment.",
+        "missing": "The exercise, enrichment, and EDR bullets leave the technical work largely undescribed.",
+        "fix": "Add a representative test, enrichment detail, and policy adjustment where you can verify them."
+      },
+      "Skills": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No skills section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The degree, field, institution, and year are stated.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Splunk detection rules mapped to MITRE ATT&CK",
+        "Incident response for phishing and credential theft",
+        "Alert monitoring across client environments",
+        "EDR policy tuning in CrowdStrike Falcon"
+      ],
+      "underplayed": [
+        "Python and Splunk SOAR alert enrichment",
+        "Purple-team exercises with the red team",
+        "Mentoring analysts on the night rotation"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Senior Security Analyst, Detection and Response",
+          "Security Operations Analyst"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "The current senior analyst title is supported by detection work, incident-response leadership, and mentoring.",
+        "industry_signals": [],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Keep detection engineering and incident response prominent for roles in that lane. Use the exercise and automation details to show how you work alongside the quantified results."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What containment tradeoffs did you face during a phishing or credential-theft incident?",
+          "archetype": "HIGH STAKES",
+          "why": "An example could show how you handled a consequential response decision."
+        },
+        {
+          "question": "What information did the Python and Splunk SOAR workflow add to alerts?",
+          "archetype": "SCALING",
+          "why": "The answer would make the automation's function visible."
+        },
+        {
+          "question": "Which scenario did you test with the red team, and what did you contribute to the exercise?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "A specific exercise would make your collaboration easier to understand."
+        },
+        {
+          "question": "Which CrowdStrike Falcon policy did you adjust, and what prompted the change?",
+          "archetype": "IMPROVEMENT",
+          "why": "This could turn the EDR bullet into a concrete example of tuning."
+        },
+        {
+          "question": "What do you help the night-rotation analysts handle when an alert is difficult to assess?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "A coaching example would show what your mentoring involves."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 84,
+    "more_critical": false
+  },
+  "presentation": {
+    "score": 84,
+    "band": "Mostly clear",
+    "score_label_from_model": "Strong",
+    "model_score_before_calibration": 84,
+    "verdict": "You come across as a senior security analyst focused on detection and incident response in banking. The fall in median containment time from 9 hours to 3 is worth keeping near the top because it makes the response work tangible.",
+    "one_line_read": "Recent detection and response work includes clear results, while several technical bullets remain brief.",
+    "takeaway": "Explain the purple-team exercises",
+    "biggest_gap_example": "\"Run monthly purple-team exercises with the red team\" doesn't say what you tested or produced, so a reviewer can't see your contribution beyond participation.",
+    "critical_count": {
+      "count": 1,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "One Critical Miss. Fix it first.",
+      "lead": "It's the one most likely to cost you the interview."
+    },
+    "fixes": [
+      {
+        "fix": "In the purple-team bullet, name a representative scenario you tested and the output you contributed, if you can verify it.",
+        "why": "That would show what the recurring exercise involved and what you brought to it.",
+        "excerpt": "- Run monthly purple-team exercises with the red team",
+        "section": "EXPERIENCE",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the alert-enrichment bullet, specify the information your Python and Splunk SOAR automation added and how analysts used it.",
+        "why": "The named tools are useful, but the current wording doesn't describe the workflow you built.",
+        "excerpt": "- Automated alert enrichment with Python and the Splunk SOAR platform",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the CrowdStrike Falcon bullet, identify a policy you tuned and the problem or alert pattern that prompted the adjustment.",
+        "why": "A concrete example would show the judgment involved in your earlier SOC work.",
+        "excerpt": "- Tuned EDR policies in CrowdStrike Falcon",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "The phishing and credential-theft cases give a reviewer a specific view of your incident-response work.",
+    "strengths": [
+      "The phishing and credential-theft cases give a reviewer a specific view of your incident-response work.",
+      "Monthly exercises with the red team show a recurring connection between detection and testing.",
+      "Client-facing incident summaries show that your security operations work included communicating incidents to customers."
+    ],
+    "gaps": [
+      "The purple-team bullet doesn't identify a scenario or exercise output, leaving the technical focus unclear.",
+      "The alert-enrichment bullet doesn't say what information the automation added or where analysts used it.",
+      "The CrowdStrike Falcon bullet doesn't explain which EDR policies you tuned or what prompted the changes."
+    ],
+    "next_steps": [
+      "Revise the purple-team and enrichment bullets using examples you can verify.",
+      "Add a specific CrowdStrike policy adjustment to the Northgate role.",
+      "Update the opening profile to surface the detection result or response work most relevant to your target role."
+    ],
+    "seniority_read": "The current senior analyst title is supported by detection work, incident-response leadership, and mentoring.",
+    "best_fit_roles": [
+      "Senior Security Analyst, Detection and Response",
+      "Security Operations Analyst"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "Keep detection engineering and incident response prominent for roles in that lane. Use the exercise and automation details to show how you work alongside the quantified results.",
+    "severity_added": [],
+    "severity_promoted": [],
+    "severity_outcome": "none (none)",
+    "severity_answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "keep_dropped",
+          "path": "strengths[1]",
+          "line": "fix-0",
+          "criticalMiss": true
+        },
+        {
+          "kind": "question_dropped",
+          "path": "ideas.questions[0]",
+          "reason": "duplicates_keep"
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[1]",
+          "fix": 1
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[2]",
+          "fix": 0
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[3]",
+          "fix": 2
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[4]",
+          "fix": 1
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "biggest_gap_example",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[0]",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[1]",
+          "of": "top_fixes[1]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[2]",
+          "of": "top_fixes[2]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Work Experience.fix",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "next_steps[1]",
+          "of": "top_fixes[2]"
+        }
+      ],
+      "fix_questions": [
+        [
+          "Which scenario did you test with the red team, and what did you contribute to the exercise?"
+        ],
+        [
+          "What information did the Python and Splunk SOAR workflow add to alerts?",
+          "What do you help the night-rotation analysts handle when an alert is difficult to assess?"
+        ],
+        [
+          "Which CrowdStrike Falcon policy did you adjust, and what prompted the change?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0145543,
+  "latency_ms": 29380
+}

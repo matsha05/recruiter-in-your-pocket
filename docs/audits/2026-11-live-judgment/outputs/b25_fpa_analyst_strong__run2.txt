@@ -1,0 +1,48 @@
+# b25_fpa_analyst_strong, run 2
+Resume: ../../../tests/resumes/countcheck/synth_cc_fpa_analyst_strong_1.txt (138 words, sha256 e8604c5c0393)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0134; 29.2s
+
+## Band: Clear and specific (score 88; model wrote 88, label "Strong")
+## Verdict
+You work across budgeting, forecasting and pricing for consumer brands. The $240M annual operating budget gives the current role useful context, while the short bullets leave some of the work behind it unexplained.
+One-line read: Recent bullets pair substantial financial responsibilities with specific results and audiences.
+Takeaway: Explain your variance analysis
+Biggest gap example: "Present monthly variance results to the division CFO and 4 brand leaders" names the audience but not the analysis or recommendations you bring to them.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the snacks division budget bullet, describe the planning decisions you make or the inputs you own.
+   why: That would show what owning the annual budget involves beyond its dollar value.
+   excerpt (EXPERIENCE): "Own the $240M annual operating budget for the snacks division"
+2. [fix] In the driver-based forecast bullet, name the main business drivers used in the model.
+   why: The accuracy improvement is clear; the drivers would help a reviewer understand how you built the forecast.
+   excerpt (EXPERIENCE): "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%"
+3. [fix] In the monthly variance presentation bullet, add an example of the analysis or recommendation you shared.
+   why: The audience is already clear, but the substance of your contribution to those discussions isn't.
+   excerpt (EXPERIENCE): "Present monthly variance results to the division CFO and 4 brand leaders"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The pricing bullet pairs 60 products with a stated gross-margin result from the 2025 review.
+Other strengths: ["Naming the division CFO and 4 brand leaders shows who receives your monthly variance results.","The Power BI sales flash includes a weekly time saving, making the automation's benefit easy to understand."]
+
+## Gaps
+- The budget bullet doesn't describe how you build or adjust the plan, leaving your planning process unclear.
+- The forecast bullet doesn't name its drivers, so the model's design remains difficult to assess.
+- The close reports cover 3 plants, but their contents and use aren't described.
+
+## Next steps
+- Expand the budget and forecast bullets with the planning inputs and model drivers you can verify.
+- Add a representative variance finding or recommendation to the presentation bullet.
+- Revise the opening summary to reflect your budget ownership and forecast work.
+
+## Role fit
+Level: Your current title and responsibilities indicate a senior individual-contributor FP&A role; the resume doesn't describe people management.
+Best fit: ["Senior Financial Analyst, FP&A","Financial Analyst"]
+Positioning: Lead with the combination of division budgeting, forecasting and product pricing. Keep the forecast accuracy and gross-margin figures visible, and add enough detail to show how you approach the budget and leadership reporting.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[1]","line":"fix-2","criticalMiss":false},{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":1},{"kind":"question_dropped","path":"ideas.questions[2]","reason":"duplicates_keep"},{"kind":"question_moved","path":"ideas.questions[3]","fix":2},{"kind":"question_dropped","path":"ideas.questions[4]","reason":"duplicates_keep"},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"next_steps[1]","of":"top_fixes[2]"}]

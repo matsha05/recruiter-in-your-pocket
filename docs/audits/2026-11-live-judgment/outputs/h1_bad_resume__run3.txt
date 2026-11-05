@@ -1,0 +1,48 @@
+# h1_bad_resume, run 3
+Resume: resumes/h1_bad_resume.txt (217 words, sha256 1eaa5e429b79)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0377; repair ran; 76.9s
+Case note: Ten things wrong: filler objective, wrong target role, duty bullets, no results, five jobs in four years, two undated roles, typos, gap since June 2023, soft-skill skills list, references line.
+
+Validator refused the first draft: OPENAI_RESPONSE_SHAPE_INVALID The model response failed the evidence grounding contract at score_plain unsupported narrative facts: retail, customerfacing.
+
+## Band: Needs more context (score 57; model wrote 57, label "Needs Clarity")
+## Verdict
+Marketing Manager is your stated goal, while the listed jobs cover store shifts, warehouse work, sales, and deliveries. The employment dates are incomplete.
+One-line read: Most bullets list tasks, while dates and work details remain incomplete.
+Takeaway: Explain your wireless sales
+Biggest gap example: "Sold phones and accessories to customers" does not explain what you discussed with buyers, leaving the sales work difficult to distinguish from a basic duty list.
+
+## Fixes (Two Critical Misses. Start with this one.; lead: "Either one could cost you the interview on its own."); severity added (promoted); added []; promoted [1]
+1. [Critical Miss] In the Buckeye Wireless sales bullet, explain what you discussed with customers when selling phones or accessories.
+   why: A specific conversation would show more of your part in the sale.
+   excerpt (EXPERIENCE): "- Sold phones and accessories to customers"
+2. [Critical Miss] Add your employment dates for Miami Valley Distribution if you can verify them.
+   why: Dates would place the warehouse role alongside the dated positions.
+   excerpt (EXPERIENCE): "Miami Valley Distribution, Vandalia, OH"
+Severity check answer: {"critical_misses":[{"source":"fix_2","kind":"missing_dates","fix":"","why":"","excerpt":"","section":"","effort":"quick"}],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+Opening and closing QuickStop shows a responsibility attached to your Shift Lead position.
+Other strengths: ["Selling phones and answering plan questions identifies the products and services you discussed at Buckeye Wireless.","Business coursework is listed without implying that you completed a degree."]
+
+## Gaps
+- Warehouse Associate and Delivery Driver have no dates, so their place in the employment sequence is unclear.
+- The phone sales bullet does not describe your conversations with buyers, making your approach difficult to understand.
+- Phrases such as "new employes" and "timely manor" should be compared with the original file because their intended wording is unclear.
+
+## Next steps
+- Revise the wireless sales and QuickStop training bullets using details you can verify.
+- Complete the dates for the warehouse and delivery jobs, then check the order of all roles.
+- Revisit the Marketing Manager objective and compare the unclear phrases with your original file.
+
+## Role fit
+Level: The recent Shift Lead title suggests shift-level responsibility; the resume does not describe marketing management work.
+Best fit: ["Shift Lead","Sales Associate"]
+Positioning: For Shift Lead or Sales Associate applications, bring the QuickStop and Buckeye Wireless details forward. If you pursue Marketing Manager positions, explain the connection using marketing work you can verify rather than relying on the objective alone.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[1]","line":"fix-0","criticalMiss":true},{"kind":"question_dropped","path":"ideas.questions[2]","reason":"duplicates_keep"},{"kind":"question_moved","path":"ideas.questions[3]","fix":0},{"kind":"question_moved","path":"ideas.questions[4]","fix":1},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"first_impression"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"section_review.Work Experience.missing","of":"first_impression"},{"kind":"repeat_dropped","path":"section_review.Education.working","of":"strengths[2]"}]

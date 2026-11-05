@@ -1,0 +1,49 @@
+# h6_unverifiable_claim, run 3
+Resume: resumes/h6_unverifiable_claim.txt (145 words, sha256 f523ae9848d4)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0123; 26.9s
+Case note: "Led a team of 40" with nothing supporting it.
+
+## Band: Needs more context (score 64; model wrote 64, label "Needs Clarity")
+## Verdict
+The move from Team Lead to Operations Manager is easy to follow. Leading 40 people is worth keeping near the top because it makes the current management role concrete.
+One-line read: The team size is clear, but most bullets leave the work unspecified.
+Takeaway: Name the process changes
+Biggest gap example: "Improved processes across the department" does not identify the processes or changes, leaving a reviewer unable to see what you improved.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the department process improvement bullet, name a process you changed, what you did differently, and how the improvement was observed.
+   why: A concrete example would show what your improvement work involved rather than leaving the claim at department level.
+   excerpt (EXPERIENCE): "- Improved processes across the department"
+2. [fix] In the daily fulfillment bullet, name the parts of the operation you oversaw and the decisions you handled.
+   why: That would help a reader understand what sat within your Operations Manager responsibilities.
+   excerpt (EXPERIENCE): "- Oversaw daily fulfillment operations"
+3. [fix] In the scanning system rollout bullet, describe the specific floor-level work you contributed.
+   why: The current wording identifies your involvement but not how you helped put the system into use.
+   excerpt (EXPERIENCE): "- Helped roll out a new scanning system on the floor"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The Team Lead, Assistant Operations Manager, and Operations Manager titles make your progression through operations roles easy to trace.
+Other strengths: ["The scanning system rollout shows involvement in a change on the floor, not just routine coverage.","Scheduling, reporting, Excel, and WMS give a reader a starting point for understanding your administrative and systems exposure."]
+
+## Gaps
+- The fulfillment bullet doesn't identify which parts of daily operations you oversaw, so the boundaries of the manager role remain unclear.
+- The leadership planning bullet doesn't say what goals you contributed to or what you brought to those discussions.
+- The scanning rollout doesn't explain your contribution, making it difficult to understand how you supported the change.
+
+## Next steps
+- Revise the current role first, starting with a specific process change and the areas of fulfillment you oversaw.
+- Add your contribution to the scanning rollout, then review the scheduling and reporting bullet for a useful example.
+- Update the summary to reflect the specific operations work you can substantiate in the experience section.
+
+## Role fit
+Level: The current Operations Manager title and leadership of 40 people indicate a management-level role.
+Best fit: ["Operations Manager","Assistant Operations Manager"]
+Positioning: Lead with fulfillment management and the team of 40. Use a specific process change and your scanning rollout contribution to show how you work beyond the role titles.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[1]","line":"fix-2","criticalMiss":false},{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":1},{"kind":"question_moved","path":"ideas.questions[2]","fix":2},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"ideas.questions[3]"},{"kind":"repeat_dropped","path":"gaps[2]","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"section_review.Skills.working","of":"strengths[2]"}]

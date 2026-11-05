@@ -1,0 +1,947 @@
+{
+  "case_id": "b35_marketing_coordinator_gap",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Gap with nothing after it.",
+  "resume_file": "../../../tests/resumes/blindpick/synth_bp_marketing_coordinator_gap_1.txt",
+  "resume_sha256": "eb744b698d829395ca7fb3ace93d0351860ad9281132916fbf232d42c03ebf78",
+  "resume_chars": 868,
+  "resume_words": 126,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T20:12:39.850Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7448,
+        "completion_tokens": 2281,
+        "total_tokens": 9729,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 559,
+        "reasoning_tokens": 380
+      },
+      "cost_usd": 0.01245105,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 26505
+    },
+    {
+      "kind": "repair",
+      "usage": {
+        "prompt_tokens": 10227,
+        "completion_tokens": 2886,
+        "total_tokens": 13113,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 3338,
+        "reasoning_tokens": 1024
+      },
+      "cost_usd": 0.0189498,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 33637
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.00268575,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 4730
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 68,
+    "score_label": "Needs Clarity",
+    "score_comment_short": "The email list and event schedule give scale, but results are absent.",
+    "score_comment_long": "The 120,000-subscriber email calendar and four annual trade shows make the coordinator role tangible. Most other bullets describe tasks without showing what the work produced. Adding verified details to the campaign report and event bullets would strengthen the fastest read.",
+    "score_plain": "A reviewer can identify your marketing responsibilities, but may need more detail to compare your contributions with those of other coordinators.",
+    "first_impression": "Your recent work spans email, events, copy, and social media for a consumer brand. The 120,000-subscriber list is worth keeping prominent because it puts the email work in context.",
+    "biggest_gap_example": "\"Tracked campaign results in a monthly report for the marketing director\" doesn't say which results you tracked or what the report showed, so the value of the reporting remains unclear.",
+    "first_impression_takeaway": "Explain the campaign report",
+    "summary": "At Juniper Outdoor Co., you managed an email calendar alongside trade shows, product copy, social scheduling, and campaign reporting. The range fits a marketing coordinator role, with earlier assistant work at a coffee roaster. Your role in preparing and coordinating marketing activity comes through, but the page says little about what the campaigns or events achieved. That makes it difficult to distinguish routine execution from work that changed a campaign or helped the team make a choice.",
+    "strengths": [
+      "Managing the weekly email calendar for 120,000 subscribers gives a reviewer a concrete sense of the audience you served.",
+      "Coordinating logistics for four trade shows a year shows recurring event work rather than a single occasion.",
+      "Website and seasonal catalog copy, plus blog and newsletter updates, show writing across several formats."
+    ],
+    "gaps": [
+      "The report to the marketing director names neither the campaign measures nor a finding, leaving its usefulness hard to assess.",
+      "The trade show bullet doesn't specify which logistics you handled, so the boundaries of your coordination are unclear.",
+      "Experience ends in March 2024, and the resume doesn't describe any subsequent activity, leaving your current status unclear."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the campaign reporting bullet, name the measures you tracked and a finding you reported, if you can verify one.",
+        "why": "A reader could then see what the marketing director learned from your report.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Tracked campaign results in a monthly report for the marketing director",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the trade show bullet, specify the logistics you coordinated, such as the arrangements you handled directly.",
+        "why": "The event count is already useful; the missing detail is what your coordination involved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Coordinated trade show logistics for four events a year",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the email calendar bullet, describe how you organized the schedule and add a verified campaign result if one is available.",
+        "why": "The list size establishes reach, while the process or a result would help explain your contribution.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Managed the weekly email calendar for a list of 120,000 subscribers",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the Juniper reporting and trade show bullets with the specific work and findings you can verify.",
+      "Expand the email calendar bullet, then move its 120,000-subscriber detail into the opening summary if it fits your target role.",
+      "Review the timeline after March 2024 and include any relevant current activity you want employers to understand."
+    ],
+    "subscores": {
+      "impact": 61,
+      "clarity": 70,
+      "story": 70,
+      "readability": 73
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "C",
+        "priority": "Medium",
+        "working": "It identifies marketing coordination across email, events, and social media.",
+        "missing": "It doesn't distinguish the scale of your email work from a general channel list.",
+        "fix": "Bring the 120,000-subscriber calendar into the opening if email is relevant to the roles you want."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The Juniper role gives a subscriber list size and a recurring trade show count.",
+        "missing": "The campaign report has no named finding, and several bullets leave the work itself broad.",
+        "fix": "Add a verified reporting finding and describe the logistics you handled for trade shows."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The list names email, design, scheduling, and analytics tools alongside copywriting.",
+        "missing": "The experience section doesn't connect these tools to particular tasks.",
+        "fix": "Where accurate, connect a listed tool to the experience bullet that describes its use."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Your marketing degree, university, and graduation year are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Email calendar management",
+        "Trade show logistics",
+        "Product and newsletter copy",
+        "Social media scheduling",
+        "Campaign reporting"
+      ],
+      "underplayed": [
+        "Findings from campaign reporting",
+        "Specific trade show coordination responsibilities",
+        "How the email calendar was organized"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Marketing Coordinator"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "The most recent title is Marketing Coordinator, following a Marketing Assistant role.",
+        "industry_signals": [
+          "Outdoor consumer products",
+          "Coffee"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Position the Juniper role around the combination of email, events, and campaign reporting. Use the subscriber count and event frequency already on the resume, then add verified details about your work where they help distinguish it."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "How did you organize the weekly email calendar and coordinate what went into each send?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The subscriber count is clear, but the calendar process is not."
+        },
+        {
+          "question": "Which trade show arrangements did you coordinate directly?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "This would describe the actual logistics behind the event count."
+        },
+        {
+          "question": "What campaign measures did you include in the director's report, and what finding stands out?",
+          "archetype": "IMPROVEMENT",
+          "why": "A concrete finding would make the reporting work easier to understand."
+        },
+        {
+          "question": "How did your product copy differ between the website and seasonal catalogs?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The answer could show how you adapted writing to each format."
+        },
+        {
+          "question": "What part of planning the in-store tasting events did you help with?",
+          "archetype": "TENSION POINT",
+          "why": "A specific contribution would give the assistant role more definition without overstating ownership."
+        }
+      ]
+    }
+  },
+  "initial_validation_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the evidence grounding contract: contradicted positive source evidence at score_comment_short."
+  },
+  "model_output_repaired": {
+    "contract_version": "v2",
+    "score": 67,
+    "score_label": "Needs Clarity",
+    "score_comment_short": "Audience size and event frequency help; campaign findings and responsibilities need detail.",
+    "score_comment_long": "The email list size and trade show frequency put two assignments in context. The report names a recipient but not what it showed. Add the measures and a finding you can verify.",
+    "score_plain": "A reviewer can identify your marketing responsibilities, but may have difficulty comparing your contributions with those of other coordinators.",
+    "first_impression": "A 120,000-subscriber email list makes the size of your coordinator work concrete. The Juniper role also covers events, copy, social posts, and reporting, though several bullets leave the details of execution to the reader.",
+    "biggest_gap_example": "\"Tracked campaign results in a monthly report for the marketing director\" doesn't say which measures or findings you reported, so a reader can't tell what the director learned.",
+    "first_impression_takeaway": "Explain the campaign report",
+    "summary": "At Juniper Outdoor Co., you managed the email calendar while coordinating trade shows and writing product copy. The mix fits a marketing coordinator role with hands-on channel and event work. Your report to the marketing director shows that you tracked campaign results, but it doesn't say what you found. That leaves a reviewer with little to assess beyond the responsibilities themselves.",
+    "strengths": [
+      "Coordinating trade show logistics for four events a year shows recurring event work rather than a single occasion.",
+      "Writing product copy for the website and seasonal catalogs shows that your work appeared in distinct formats.",
+      "The monthly report identifies the marketing director as its audience, which helps place the reporting work within the team."
+    ],
+    "gaps": [
+      "The campaign report doesn't name a measure or finding, leaving its contents unclear.",
+      "The trade show bullet doesn't specify which logistics you handled, so the boundaries of your coordination are unclear.",
+      "The skills list names several tools but doesn't connect them to particular work, making their use difficult to place."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the campaign reporting bullet, name the measures you tracked and a finding you reported, if you can verify one.",
+        "why": "A reader could then see what the marketing director learned from your report.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Tracked campaign results in a monthly report for the marketing director",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the trade show bullet, specify the logistics you coordinated, such as the arrangements you handled directly.",
+        "why": "The event frequency is already useful; the missing detail is what your coordination involved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Coordinated trade show logistics for four events a year",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the email calendar bullet, describe how you organized the schedule and what you coordinated for each send.",
+        "why": "The list size establishes the audience, while the process would help explain your day-to-day contribution.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Managed the weekly email calendar for a list of 120,000 subscribers",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the Juniper reporting and trade show bullets with the specific work and findings you can verify.",
+      "Expand the email calendar bullet, then consider bringing the subscriber count into your opening summary.",
+      "Connect a listed tool to an experience bullet where you can accurately describe how you used it."
+    ],
+    "subscores": {
+      "impact": 61,
+      "clarity": 69,
+      "story": 68,
+      "readability": 72
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "C",
+        "priority": "Medium",
+        "working": "It identifies marketing coordination across email, events, and social media.",
+        "missing": "It doesn't distinguish the size of your email work from a general channel list.",
+        "fix": "Bring the 120,000-subscriber calendar into the opening if email is relevant to the roles you want."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The Juniper role gives a subscriber list size and a recurring trade show count.",
+        "missing": "The campaign report has no named finding, and several bullets leave the work itself broad.",
+        "fix": "Add a verified reporting finding and describe the logistics you handled for trade shows."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The list names email, design, scheduling, and analytics tools alongside copywriting.",
+        "missing": "The experience section doesn't connect these tools to particular tasks.",
+        "fix": "Where accurate, connect a listed tool to the experience bullet that describes its use."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Your marketing degree, university, and graduation year are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Email calendar management",
+        "Trade show logistics",
+        "Product and newsletter copy",
+        "Social media scheduling",
+        "Campaign reporting"
+      ],
+      "underplayed": [
+        "Findings from campaign reporting",
+        "Specific trade show coordination responsibilities",
+        "How the email calendar was organized"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Marketing Coordinator"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "The most recent title is Marketing Coordinator, following a Marketing Assistant role.",
+        "industry_signals": [
+          "Outdoor consumer products",
+          "Coffee"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Position the Juniper role around the combination of email, events, and campaign reporting. Use the subscriber count and event frequency already on the resume, then add verified details about your work where they help distinguish it."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "Did priorities ever compete when you prepared the email calendar, and if so, how did you handle them?",
+          "archetype": "TENSION POINT",
+          "why": "An example could show how you organized the weekly schedule."
+        },
+        {
+          "question": "Which trade show arrangements did you coordinate directly?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "This would describe the logistics behind the event count."
+        },
+        {
+          "question": "What campaign measures did you include in the director's report, and what finding stands out?",
+          "archetype": "IMPROVEMENT",
+          "why": "A concrete finding would make the reporting work easier to understand."
+        },
+        {
+          "question": "How did your product copy differ between the website and seasonal catalogs?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The answer could show how you adapted writing to each format."
+        },
+        {
+          "question": "What part of planning the in-store tasting events did you help with, and who did you work with?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "A specific contribution would give the assistant role more definition without overstating ownership."
+        }
+      ]
+    }
+  },
+  "repaired": true,
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 67,
+    "score_label": "Needs more context",
+    "score_comment_short": "Audience size and event frequency help; campaign findings and responsibilities need detail.",
+    "score_comment_long": "The email list size and trade show frequency put two assignments in context. The report names a recipient but not what it showed. Add the measures and a finding you can verify.",
+    "score_plain": "A reviewer can identify your marketing responsibilities, but may have difficulty comparing your contributions with those of other coordinators.",
+    "first_impression": "A 120,000-subscriber email list makes the size of your coordinator work concrete. The Juniper role also covers events, copy, social posts, and reporting, though several bullets leave the details of execution to the reader.",
+    "biggest_gap_example": "\"Tracked campaign results in a monthly report for the marketing director\" doesn't say which measures or findings you reported, so a reader can't tell what the director learned.",
+    "first_impression_takeaway": "Explain the campaign report",
+    "summary": "At Juniper Outdoor Co., you managed the email calendar while coordinating trade shows and writing product copy. The mix fits a marketing coordinator role with hands-on channel and event work. Your report to the marketing director shows that you tracked campaign results, but it doesn't say what you found. That leaves a reviewer with little to assess beyond the responsibilities themselves.",
+    "strengths": [
+      "Coordinating trade show logistics for four events a year shows recurring event work rather than a single occasion.",
+      "Writing product copy for the website and seasonal catalogs shows that your work appeared in distinct formats.",
+      "The monthly report identifies the marketing director as its audience, which helps place the reporting work within the team."
+    ],
+    "gaps": [
+      "The campaign report doesn't name a measure or finding, leaving its contents unclear.",
+      "The trade show bullet doesn't specify which logistics you handled, so the boundaries of your coordination are unclear.",
+      "The skills list names several tools but doesn't connect them to particular work, making their use difficult to place."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the campaign reporting bullet, name the measures you tracked and a finding you reported, if you can verify one.",
+        "why": "A reader could then see what the marketing director learned from your report.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Tracked campaign results in a monthly report for the marketing director",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the trade show bullet, specify the logistics you coordinated, such as the arrangements you handled directly.",
+        "why": "The event frequency is already useful; the missing detail is what your coordination involved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Coordinated trade show logistics for four events a year",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the email calendar bullet, describe how you organized the schedule and what you coordinated for each send.",
+        "why": "The list size establishes the audience, while the process would help explain your day-to-day contribution.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Managed the weekly email calendar for a list of 120,000 subscribers",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the Juniper reporting and trade show bullets with the specific work and findings you can verify.",
+      "Expand the email calendar bullet, then consider bringing the subscriber count into your opening summary.",
+      "Connect a listed tool to an experience bullet where you can accurately describe how you used it."
+    ],
+    "subscores": {
+      "impact": 61,
+      "clarity": 69,
+      "story": 68,
+      "readability": 72
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The Juniper role gives a subscriber list size and a recurring trade show count.",
+        "missing": "The campaign report has no named finding, and several bullets leave the work itself broad.",
+        "fix": "Add a verified reporting finding and describe the logistics you handled for trade shows."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The list names email, design, scheduling, and analytics tools alongside copywriting.",
+        "missing": "The experience section doesn't connect these tools to particular tasks.",
+        "fix": "Where accurate, connect a listed tool to the experience bullet that describes its use."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Your marketing degree, university, and graduation year are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Email calendar management",
+        "Trade show logistics",
+        "Product and newsletter copy",
+        "Social media scheduling",
+        "Campaign reporting"
+      ],
+      "underplayed": [
+        "Findings from campaign reporting",
+        "Specific trade show coordination responsibilities",
+        "How the email calendar was organized"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Marketing Coordinator"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "The most recent title is Marketing Coordinator, following a Marketing Assistant role.",
+        "industry_signals": [
+          "Coffee"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Position the Juniper role around the combination of email, events, and campaign reporting. Use the subscriber count and event frequency already on the resume, then add verified details about your work where they help distinguish it."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "Did priorities ever compete when you prepared the email calendar, and if so, how did you handle them?",
+          "archetype": "TENSION POINT",
+          "why": "An example could show how you organized the weekly schedule."
+        },
+        {
+          "question": "Which trade show arrangements did you coordinate directly?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "This would describe the logistics behind the event count."
+        },
+        {
+          "question": "What campaign measures did you include in the director's report, and what finding stands out?",
+          "archetype": "IMPROVEMENT",
+          "why": "A concrete finding would make the reporting work easier to understand."
+        },
+        {
+          "question": "How did your product copy differ between the website and seasonal catalogs?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The answer could show how you adapted writing to each format."
+        },
+        {
+          "question": "What part of planning the in-store tasting events did you help with, and who did you work with?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "A specific contribution would give the assistant role more definition without overstating ownership."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 67
+  },
+  "severity": {
+    "outcome": "added",
+    "reason": "added",
+    "added": [
+      "no_recent_work"
+    ],
+    "promoted": [],
+    "replaced": [],
+    "skipped": [],
+    "critical_count": 2,
+    "more_critical": false,
+    "validation_attempts": 1,
+    "answer": {
+      "critical_misses": [
+        {
+          "source": "new",
+          "kind": "no_recent_work",
+          "fix": "Add one dated line covering March 2024 to today.",
+          "why": "Marketing hiring managers look for recent activity, but your latest role ends in March 2024 and no later activity is listed. Use a dated line such as \"Career break\" or \"Job search and coursework\" to name the period truthfully. If true, list email marketing coursework or volunteer campaign work to show current skills.",
+          "excerpt": "January 2021 - March 2024",
+          "section": "Experience",
+          "effort": "quick"
+        }
+      ],
+      "more_critical": false
+    },
+    "latency_ms": 4961,
+    "call_latency_ms": 4730,
+    "cost_usd": 0.00268575,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 67,
+    "score_label": "Needs more context",
+    "score_comment_short": "Audience size and event frequency help; campaign findings and responsibilities need detail.",
+    "score_comment_long": "The email list size and trade show frequency put two assignments in context. The report names a recipient but not what it showed. Add the measures and a finding you can verify.",
+    "score_plain": "A reviewer can identify your marketing responsibilities, but may have difficulty comparing your contributions with those of other coordinators.",
+    "first_impression": "A 120,000-subscriber email list makes the size of your coordinator work concrete. The Juniper role also covers events, copy, social posts, and reporting, though several bullets leave the details of execution to the reader.",
+    "biggest_gap_example": "\"Tracked campaign results in a monthly report for the marketing director\" doesn't say which measures or findings you reported, so a reader can't tell what the director learned.",
+    "first_impression_takeaway": "Explain the campaign report",
+    "summary": "At Juniper Outdoor Co., you managed the email calendar while coordinating trade shows and writing product copy. The mix fits a marketing coordinator role with hands-on channel and event work. Your report to the marketing director shows that you tracked campaign results, but it doesn't say what you found. That leaves a reviewer with little to assess beyond the responsibilities themselves.",
+    "strengths": [
+      "Coordinating trade show logistics for four events a year shows recurring event work rather than a single occasion.",
+      "Writing product copy for the website and seasonal catalogs shows that your work appeared in distinct formats.",
+      "The monthly report identifies the marketing director as its audience, which helps place the reporting work within the team."
+    ],
+    "gaps": [
+      "The campaign report doesn't name a measure or finding, leaving its contents unclear.",
+      "The trade show bullet doesn't specify which logistics you handled, so the boundaries of your coordination are unclear.",
+      "The skills list names several tools but doesn't connect them to particular work, making their use difficult to place."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the campaign reporting bullet, name the measures you tracked and a finding you reported, if you can verify one.",
+        "why": "A reader could then see what the marketing director learned from your report.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Tracked campaign results in a monthly report for the marketing director",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": true
+      },
+      {
+        "fix": "Add one dated line covering March 2024 to today.",
+        "why": "Marketing hiring managers look for recent activity, but your latest role ends in March 2024 and no later activity is listed. Use a dated line such as \"Career break\" or \"Job search and coursework\" to name the period truthfully. If true, list email marketing coursework or volunteer campaign work to show current skills.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "January 2021 - March 2024",
+          "section": "Experience"
+        },
+        "impact_level": "high",
+        "effort": "quick",
+        "section_ref": "Experience",
+        "critical": true
+      },
+      {
+        "fix": "In the trade show bullet, specify the logistics you coordinated, such as the arrangements you handled directly.",
+        "why": "The event frequency is already useful; the missing detail is what your coordination involved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Coordinated trade show logistics for four events a year",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      }
+    ],
+    "more_critical": false,
+    "next_steps": [
+      "Revise the Juniper reporting and trade show bullets with the specific work and findings you can verify.",
+      "Expand the email calendar bullet, then consider bringing the subscriber count into your opening summary.",
+      "Connect a listed tool to an experience bullet where you can accurately describe how you used it."
+    ],
+    "subscores": {
+      "impact": 61,
+      "clarity": 69,
+      "story": 68,
+      "readability": 72
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The Juniper role gives a subscriber list size and a recurring trade show count.",
+        "missing": "The campaign report has no named finding, and several bullets leave the work itself broad.",
+        "fix": "Add a verified reporting finding and describe the logistics you handled for trade shows."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The list names email, design, scheduling, and analytics tools alongside copywriting.",
+        "missing": "The experience section doesn't connect these tools to particular tasks.",
+        "fix": "Where accurate, connect a listed tool to the experience bullet that describes its use."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Your marketing degree, university, and graduation year are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 67,
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Email calendar management",
+        "Trade show logistics",
+        "Product and newsletter copy",
+        "Social media scheduling",
+        "Campaign reporting"
+      ],
+      "underplayed": [
+        "Findings from campaign reporting",
+        "Specific trade show coordination responsibilities",
+        "How the email calendar was organized"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Marketing Coordinator"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "The most recent title is Marketing Coordinator, following a Marketing Assistant role.",
+        "industry_signals": [
+          "Coffee"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Position the Juniper role around the combination of email, events, and campaign reporting. Use the subscriber count and event frequency already on the resume, then add verified details about your work where they help distinguish it."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "Did priorities ever compete when you prepared the email calendar, and if so, how did you handle them?",
+          "archetype": "TENSION POINT",
+          "why": "An example could show how you organized the weekly schedule."
+        },
+        {
+          "question": "Which trade show arrangements did you coordinate directly?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "This would describe the logistics behind the event count."
+        },
+        {
+          "question": "What campaign measures did you include in the director's report, and what finding stands out?",
+          "archetype": "IMPROVEMENT",
+          "why": "A concrete finding would make the reporting work easier to understand."
+        },
+        {
+          "question": "How did your product copy differ between the website and seasonal catalogs?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The answer could show how you adapted writing to each format."
+        },
+        {
+          "question": "What part of planning the in-store tasting events did you help with, and who did you work with?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "A specific contribution would give the assistant role more definition without overstating ownership."
+        }
+      ]
+    }
+  },
+  "presentation": {
+    "score": 67,
+    "band": "Needs more context",
+    "score_label_from_model": "Needs Clarity",
+    "model_score_before_calibration": 67,
+    "verdict": "A 120,000-subscriber email list makes the size of your coordinator work concrete. The Juniper role also covers events, copy, social posts, and reporting, though several bullets leave the details of execution to the reader.",
+    "one_line_read": "Audience size and event frequency help; campaign findings and responsibilities need detail.",
+    "takeaway": "Explain the campaign report",
+    "biggest_gap_example": "\"Tracked campaign results in a monthly report for the marketing director\" doesn't say which measures or findings you reported, so a reader can't tell what the director learned.",
+    "critical_count": {
+      "count": 2,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "Two Critical Misses. Start with this one.",
+      "lead": "Either one could cost you the interview on its own."
+    },
+    "fixes": [
+      {
+        "fix": "In the campaign reporting bullet, name the measures you tracked and a finding you reported, if you can verify one.",
+        "why": "A reader could then see what the marketing director learned from your report.",
+        "excerpt": "- Tracked campaign results in a monthly report for the marketing director",
+        "section": "EXPERIENCE",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "Add one dated line covering March 2024 to today.",
+        "why": "Marketing hiring managers look for recent activity, but your latest role ends in March 2024 and no later activity is listed. Use a dated line such as \"Career break\" or \"Job search and coursework\" to name the period truthfully. If true, list email marketing coursework or volunteer campaign work to show current skills.",
+        "excerpt": "January 2021 - March 2024",
+        "section": "Experience",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the trade show bullet, specify the logistics you coordinated, such as the arrangements you handled directly.",
+        "why": "The event frequency is already useful; the missing detail is what your coordination involved.",
+        "excerpt": "- Coordinated trade show logistics for four events a year",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "Coordinating trade show logistics for four events a year shows recurring event work rather than a single occasion.",
+    "strengths": [
+      "Coordinating trade show logistics for four events a year shows recurring event work rather than a single occasion.",
+      "Writing product copy for the website and seasonal catalogs shows that your work appeared in distinct formats.",
+      "The monthly report identifies the marketing director as its audience, which helps place the reporting work within the team."
+    ],
+    "gaps": [
+      "The campaign report doesn't name a measure or finding, leaving its contents unclear.",
+      "The trade show bullet doesn't specify which logistics you handled, so the boundaries of your coordination are unclear.",
+      "The skills list names several tools but doesn't connect them to particular work, making their use difficult to place."
+    ],
+    "next_steps": [
+      "Revise the Juniper reporting and trade show bullets with the specific work and findings you can verify.",
+      "Expand the email calendar bullet, then consider bringing the subscriber count into your opening summary.",
+      "Connect a listed tool to an experience bullet where you can accurately describe how you used it."
+    ],
+    "seniority_read": "The most recent title is Marketing Coordinator, following a Marketing Assistant role.",
+    "best_fit_roles": [
+      "Marketing Coordinator"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "Position the Juniper role around the combination of email, events, and campaign reporting. Use the subscriber count and event frequency already on the resume, then add verified details about your work where they help distinguish it.",
+    "severity_added": [
+      "no_recent_work"
+    ],
+    "severity_promoted": [],
+    "severity_outcome": "added (added)",
+    "severity_answer": {
+      "critical_misses": [
+        {
+          "source": "new",
+          "kind": "no_recent_work",
+          "fix": "Add one dated line covering March 2024 to today.",
+          "why": "Marketing hiring managers look for recent activity, but your latest role ends in March 2024 and no later activity is listed. Use a dated line such as \"Career break\" or \"Job search and coursework\" to name the period truthfully. If true, list email marketing coursework or volunteer campaign work to show current skills.",
+          "excerpt": "January 2021 - March 2024",
+          "section": "Experience",
+          "effort": "quick"
+        }
+      ],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "keep_dropped",
+          "path": "strengths[0]",
+          "line": "fix-2",
+          "criticalMiss": false
+        },
+        {
+          "kind": "keep_dropped",
+          "path": "strengths[2]",
+          "line": "fix-0",
+          "criticalMiss": true
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[1]",
+          "fix": 2
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[2]",
+          "fix": 0
+        },
+        {
+          "kind": "question_dropped",
+          "path": "ideas.questions[3]",
+          "reason": "duplicates_keep"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "biggest_gap_example",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[0]",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[1]",
+          "of": "top_fixes[2]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Work Experience.missing",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Work Experience.fix",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Skills.missing",
+          "of": "gaps[2]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Skills.fix",
+          "of": "gaps[2]"
+        }
+      ],
+      "fix_questions": [
+        [
+          "What campaign measures did you include in the director's report, and what finding stands out?"
+        ],
+        [],
+        [
+          "Which trade show arrangements did you coordinate directly?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0340866,
+  "latency_ms": 65430
+}
