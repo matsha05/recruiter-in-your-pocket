@@ -1,0 +1,49 @@
+# h2_thin_resume, run 1
+Resume: ../../../audits/2026-11-live-judgment/resumes/h2_thin_resume.txt (126 words, sha256 0ae65e2abcb5)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt ac4bb5a1
+Outcome: report; cost $0.0121; 26.1s
+Case note: Student: one internship, coursework, a club.
+
+## Band: Needs more context (score 64; model wrote 64, label "Needs Clarity")
+## Verdict
+Your credit union internship puts Excel, SQL, and Tableau in a work setting. The bullets are brief enough that the substance of the analysis is difficult to see.
+One-line read: The internship names relevant tools, but its bullets leave the analytical work thin.
+Takeaway: Explain the dashboard's subject
+Biggest gap example: "Built a dashboard in Tableau for the marketing team" names the tool and audience, but not what the dashboard showed, making its use hard to assess.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the Tableau dashboard bullet, name the information it displayed and what the marketing team used or intended to use it for.
+   why: The reader can then understand the work beyond the software and its audience.
+   excerpt (EXPERIENCE): "- Built a dashboard in Tableau for the marketing team"
+2. [fix] In the member survey bullet, describe a data issue you cleaned and how you used Excel or SQL to address it.
+   why: An example would make your contribution to preparing the survey data easier to assess.
+   excerpt (EXPERIENCE): "- Cleaned member survey data in Excel and SQL"
+3. [fix] In the internship presentation bullet, identify a finding you shared and the analysis it came from.
+   why: That would show what you communicated, rather than only that a presentation took place.
+   excerpt (EXPERIENCE): "- Presented findings to the team at the end of the internship"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+Cleaning member survey data in both Excel and SQL shows where you applied those tools.
+Other strengths: ["Weekly reporting gives the analytics support work a recurring cadence.","Managing the data science club's budget and reimbursements adds a financial responsibility alongside your coursework."]
+
+## Gaps
+- The dashboard's subject and intended use are absent, leaving its content unclear.
+- The survey bullet doesn't describe the data problems you handled, so the cleaning work could range from basic formatting to more involved preparation.
+- The findings presentation doesn't identify its conclusions, leaving the substance of your communication unclear.
+
+## Next steps
+- Revise the dashboard and survey bullets with details you can verify from the internship.
+- Add the subject of your end-of-internship findings and specify what went into the weekly reports.
+- Review the club bullets for a concrete budget responsibility or event contribution that distinguishes your work.
+
+## Role fit
+Level: Early career, with a completed analytics internship and a degree in progress.
+Best fit: ["Data Analytics Intern"]
+Positioning: Lead with the analytics internship and make the dashboard and survey assignments more specific. Keep the club treasurer role as a separate example of financial responsibility.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[0]","line":"fix-1","criticalMiss":false},{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":1},{"kind":"question_moved","path":"ideas.questions[2]","fix":2},{"kind":"question_dropped","path":"ideas.questions[3]","reason":"duplicates_keep"},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"gaps[2]","of":"top_fixes[2]"}]

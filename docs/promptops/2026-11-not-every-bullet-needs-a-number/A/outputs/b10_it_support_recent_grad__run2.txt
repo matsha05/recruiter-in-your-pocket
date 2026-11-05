@@ -1,0 +1,49 @@
+# b10_it_support_recent_grad, run 2
+Resume: ../../../../tests/resumes/blindpick/synth_bp_it_support_recent_grad_1.txt (119 words, sha256 6aac1aade9d7)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt ac4bb5a1
+Outcome: report; cost $0.0131; 28.8s
+Case note: First job.
+
+## Band: Needs more context (score 63; model wrote 63, label "Needs Clarity")
+## Verdict
+The help desk internship and CompTIA A+ point toward entry-level IT support. The retail role also includes device setup, but both jobs are described briefly.
+One-line read: The help desk work is relevant, but most bullets leave the tasks broad.
+Takeaway: Name the ticket issues
+Biggest gap example: "Answered help desk tickets from teachers and staff" identifies the users but not the issues you handled, making the work difficult to assess.
+
+## Fixes (Two Critical Misses. Start with this one.; lead: "Either one could cost you the interview on its own."); severity added (added); added ["no_recent_work"]; promoted []
+1. [Critical Miss] In Experience, add one dated line covering May 2025 to today, if you can verify it.
+   why: Desktop support hiring managers look for current technical activity. Your internship ends in May 2025, with no relevant activity dated after it; use a dated line such as "Career break" or "Job search and coursework" to name the period truthfully. Include volunteer IT support or a personal device setup project only if true.
+   excerpt (Experience): "January 2025 - May 2025"
+2. [Critical Miss] In the internship ticket bullet, name the types of issues you handled and what you did to resolve or route them.
+   why: A concrete example would show what your help desk work involved beyond receiving requests.
+   excerpt (EXPERIENCE): "- Answered help desk tickets from teachers and staff"
+3. [fix] In the classroom laptop bullet, add the setup steps you personally performed after imaging.
+   why: That detail would show what preparing a laptop for classroom use involved.
+   excerpt (EXPERIENCE): "- Imaged and set up laptops for classrooms"
+Severity check answer: {"critical_misses":[{"source":"new","kind":"no_recent_work","fix":"In Experience, add one dated line covering May 2025 to today, if you can verify it.","why":"Desktop support hiring managers look for current technical activity. Your internship ends in May 2025, with no relevant activity dated after it; use a dated line such as \"Career break\" or \"Job search and coursework\" to name the period truthfully. Include volunteer IT support or a personal device setup project only if true.","excerpt":"January 2025 - May 2025","section":"Experience","effort":"moderate"}],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+Active Directory appears in both the internship and skills section, connecting a named system to account work.
+Other strengths: ["The retail role includes helping customers choose laptops, printers, and accessories, which shows familiarity with common devices.","Your A.A.S. in Information Technology and CompTIA A+ provide a clear education and certification foundation for the stated direction."]
+
+## Gaps
+- The classroom laptop bullet does not explain the setup steps you performed, so the technical work behind imaging is difficult to judge.
+- Microsoft 365 administration is listed as a skill without an example of how you used it, leaving its context unclear.
+- The retail device setup bullet does not say what you configured for customers, making its connection to desktop support less specific.
+
+## Next steps
+- Revise the internship bullets using examples you can verify from ticket handling and laptop preparation.
+- Expand the retail setup bullet with the actual configuration tasks you performed.
+- Review the skills list and connect Microsoft 365 administration to relevant experience if you can describe its use accurately.
+
+## Role fit
+Level: Entry-level IT support, based on the help desk internship and stated target.
+Best fit: ["IT Help Desk Intern"]
+Positioning: Lead with the school help desk work and make the laptop setup process more concrete. Keep the retail device work visible as related customer-facing experience.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":1},{"kind":"question_moved","path":"ideas.questions[1]","fix":2},{"kind":"question_moved","path":"ideas.questions[3]","fix":1},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"section_review.Skills.missing","of":"gaps[1]"}]

@@ -1,0 +1,49 @@
+# h6_unverifiable_claim, run 1
+Resume: ../../../audits/2026-11-live-judgment/resumes/h6_unverifiable_claim.txt (145 words, sha256 f523ae9848d4)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt ac4bb5a1
+Outcome: report; cost $0.0203; 23.7s
+Case note: "Led a team of 40" with nothing supporting it.
+
+## Band: Needs more context (score 64; model wrote 64, label "Needs Clarity")
+## Verdict
+Your progression from sorting-line team lead to operations manager is easy to follow. The current role's team of 40 gives that progression a useful point of scale.
+One-line read: The team size is clear, but most operations bullets remain broad.
+Takeaway: Name the processes you improved
+Biggest gap example: "Worked with the leadership team on goals and planning" does not say what you contributed, leaving your part in planning unclear.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the department process bullet, name a process you improved, what you changed and what improved as a result, if you can verify it.
+   why: A concrete example would show what the improvement involved rather than asking the reader to infer it.
+   excerpt (EXPERIENCE): "- Improved processes across the department"
+2. [fix] In the daily fulfillment bullet, identify the operations you oversaw and the decisions you were responsible for.
+   why: The current wording doesn't show what your management work covered day to day.
+   excerpt (EXPERIENCE): "- Oversaw daily fulfillment operations"
+3. [fix] In the scanning-system rollout bullet, describe the tasks you helped with and any verified result of the rollout.
+   why: This would distinguish your contribution from the rollout as a whole without overstating your role.
+   excerpt (EXPERIENCE): "- Helped roll out a new scanning system on the floor"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The move from Assistant Operations Manager to Operations Manager at Gulf Coast Fulfillment makes your progression within the company visible.
+Other strengths: ["The scanning-system rollout adds a concrete example of work beyond routine scheduling and reporting.","The business administration degree and listed Excel and WMS skills give readers useful context for your operations background."]
+
+## Gaps
+- The department process bullet does not identify the processes or describe what improved, making the claim difficult to assess.
+- The leadership planning bullet leaves your contribution to goals and planning unspecified.
+- Excel and WMS are listed without examples of how you used them, so their relevance to the roles is not yet clear.
+
+## Next steps
+- Revise the current role first, adding a specific department process and the fulfillment activities you oversaw.
+- Expand the assistant manager role with your actual part in the scanning rollout and an example of your reporting work.
+- Review the summary and skills list against the revised experience, keeping the terms that describe your work.
+
+## Role fit
+Level: Manager level, based on the current Operations Manager title and leadership of a team of 40.
+Best fit: ["Operations Manager","Assistant Operations Manager"]
+Positioning: Position yourself around fulfillment management and the progression from sorting-line leadership. Use specific examples from the current role to explain what managing the operation involved.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[1]","line":"fix-2","criticalMiss":false},{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":1},{"kind":"question_moved","path":"ideas.questions[3]","fix":2},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"ideas.questions[2]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"ideas.questions[2]"},{"kind":"repeat_dropped","path":"section_review.Work Experience.working","of":"strengths[0]"}]

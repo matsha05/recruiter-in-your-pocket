@@ -1,0 +1,849 @@
+{
+  "case_id": "h6_unverifiable_claim",
+  "batch": "replay_counts",
+  "run": 1,
+  "note": "\"Led a team of 40\" with nothing supporting it.",
+  "resume_file": "../../../audits/2026-11-live-judgment/resumes/h6_unverifiable_claim.txt",
+  "resume_sha256": "f523ae9848d421f047135b3ca8cc16bd9eae87eabea7b39571b1276abb1d4378",
+  "resume_chars": 924,
+  "resume_words": 145,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T23:25:36.156Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7704,
+        "completion_tokens": 1965,
+        "total_tokens": 9669,
+        "cached_prompt_tokens": 7075,
+        "cache_write_prompt_tokens": 626,
+        "reasoning_tokens": 111
+      },
+      "cost_usd": 0.01096425,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 23362
+    },
+    {
+      "kind": "repair",
+      "usage": {
+        "prompt_tokens": 10443,
+        "completion_tokens": 3156,
+        "total_tokens": 13599,
+        "cached_prompt_tokens": 0,
+        "cache_write_prompt_tokens": 10440,
+        "reasoning_tokens": 1312
+      },
+      "cost_usd": 0.028833,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 36075
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.00132075,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1410
+    }
+  ],
+  "resume_prompt_sha256": "e09ca912f3bb567a3f321273d9d5ecf351a8373e18307feb4a85c0f69dc734e6",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 61,
+    "score_label": "Needs Clarity",
+    "score_comment_short": "Fulfillment leadership is clear, but most bullets stop at broad responsibilities.",
+    "score_comment_long": "Your roles show a path from the sorting line to managing fulfillment operations. The current role names a team of 40, but doesn't explain what the team did or describe a process change. Start by adding those details to the existing experience bullets.",
+    "score_plain": "A reader can place you in fulfillment operations, but may need more detail to compare your work with another manager's. More concrete examples would make the resume easier to assess.",
+    "first_impression": "Your progression at Gulf Coast Fulfillment is easy to follow. The sorting-line detail at Sunshine Parcel is worth keeping because it shows where your earlier team leadership took place.",
+    "biggest_gap_example": "\"Improved processes across the department\" doesn't name a process or the change you made, so a reader can't tell what you improved.",
+    "first_impression_takeaway": "Name the process you improved",
+    "summary": "You moved from Team Lead at Sunshine Parcel to Operations Manager at Gulf Coast Fulfillment. Scheduling, reporting and a scanning-system rollout sit alongside your current fulfillment responsibilities. The recent title and stated team leadership place you at manager level, though the bullets leave the team's work and reporting structure unclear. That makes it difficult to understand how your management responsibilities were organized.",
+    "strengths": [
+      "The Assistant Operations Manager role names both scheduling and reporting, giving a reader a starting point for understanding your work.",
+      "Helping roll out a scanning system on the floor adds a concrete technology-related assignment to your operations history.",
+      "Keeping a sorting line running during peak season shows the setting in which you handled earlier floor responsibilities."
+    ],
+    "gaps": [
+      "The current role doesn't say what the team of 40 did or who reported to you, leaving its structure unclear.",
+      "The leadership-planning bullet doesn't identify the goals you worked on or your contribution to planning.",
+      "The skills list names Excel and WMS, but the experience section doesn't show how you used either in your work."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the team leadership bullet, describe the team's fulfillment work and who reported directly to you.",
+        "why": "That will help a reader understand how the group was organized and what you managed.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Led a team of 40",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the department process bullet, name one process, the change you made and the observed result, if known.",
+        "why": "The stated improvement becomes easier to assess when a reader can see what changed.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Improved processes across the department",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the scanning-system rollout bullet, explain the tasks you helped with on the floor.",
+        "why": "This distinguishes your contribution from the rollout as a whole without overstating your role.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Helped roll out a new scanning system on the floor",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the current manager bullets first, using examples you can verify from the team's work and department process changes.",
+      "Add your specific rollout tasks and a planning example to the relevant existing experience bullets.",
+      "Then revise the summary to reflect the examples you've added, and connect Excel or WMS to a role if you used them there."
+    ],
+    "subscores": {
+      "impact": 53,
+      "clarity": 63,
+      "story": 65,
+      "readability": 68
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "C",
+        "priority": "Medium",
+        "working": "It identifies operations leadership and the team of 40.",
+        "missing": "The phrase about delivering results doesn't say what those results were.",
+        "fix": "After revising experience, replace the general results claim with a specific supported example."
+      },
+      "Work Experience": {
+        "grade": "C-",
+        "priority": "High",
+        "working": "Titles, employers and dates make the progression easy to follow.",
+        "missing": "Most bullets don't explain the work behind the responsibilities or the changes made.",
+        "fix": "Expand the current team and process bullets, then specify your part in the scanning rollout."
+      },
+      "Skills": {
+        "grade": "B-",
+        "priority": "Low",
+        "working": "Excel, WMS and scheduling give readers a concise list of relevant skills.",
+        "missing": "The section doesn't say how you applied the listed tools.",
+        "fix": "Connect the tools to an experience bullet where you can describe their actual use."
+      },
+      "Education": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The degree, field, university and year are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Fulfillment operations oversight",
+        "Team leadership on a sorting line",
+        "Scheduling and reporting support",
+        "Scanning-system rollout support"
+      ],
+      "underplayed": [
+        "The work and reporting structure of the team of 40",
+        "The process changes made across the department",
+        "Your contribution to leadership goals and planning"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Operations Manager",
+          "Assistant Operations Manager"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current Operations Manager title and stated team leadership indicate manager-level work; the reporting structure is not described.",
+        "industry_signals": [
+          "Fulfillment",
+          "Parcel operations"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Position your current role around fulfillment management, using the actual work of the team and a specific process change. Keep the scanning rollout as an example of your earlier floor-level contribution."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What work did the team of 40 handle, and who reported directly to you?",
+          "archetype": "SCALING",
+          "why": "The answer would explain the structure behind the current leadership claim."
+        },
+        {
+          "question": "Which department process did you change, and what happened afterward?",
+          "archetype": "IMPROVEMENT",
+          "why": "A concrete example would make the stated process improvement understandable."
+        },
+        {
+          "question": "What did you contribute to the scanning-system rollout on the floor?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "Your specific tasks would distinguish your contribution from the overall rollout."
+        },
+        {
+          "question": "What decisions or problems did you handle while covering the floor on weekends?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "An example would show what weekend coverage involved."
+        },
+        {
+          "question": "During peak season at Sunshine Parcel, what challenge threatened the sorting line, and how did you handle it?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "The answer could make the peak-season bullet more specific without assuming a result."
+        }
+      ]
+    }
+  },
+  "initial_validation_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the evidence grounding contract at summary unsupported narrative facts: unresolved relationship binding: You moved from Team Lead at Sunshine Parcel to Operations Manager at Gulf Coast Fulfillment.."
+  },
+  "model_output_repaired": {
+    "contract_version": "v2",
+    "score": 60,
+    "score_label": "Needs Clarity",
+    "score_comment_short": "Most bullets name responsibilities but don't show enough of the work.",
+    "score_comment_long": "Your experience is clearly centered on fulfillment and floor operations. Most bullets are broad, and the resume doesn't explain the process improvement it claims. Start with the current team's work and one specific process change.",
+    "score_plain": "A reader can place you in operations management, but may need more detail to compare your work with another manager's. Concrete examples would make the resume easier to assess.",
+    "first_impression": "The current Operations Manager title sets the direction quickly. The bullets identify daily fulfillment work but leave the operation itself difficult to picture.",
+    "biggest_gap_example": "\"- Improved processes across the department\" doesn't name a process or the change you made, so a reader can't tell what improved.",
+    "first_impression_takeaway": "Name the process you improved",
+    "summary": "At Gulf Coast Fulfillment, your assistant role includes supporting scheduling and reporting, followed by a current role overseeing daily fulfillment operations. Earlier, you kept the sorting line running during peak season at Sunshine Parcel, a useful detail because it places your work on the floor. The current Operations Manager title and stated team leadership suggest a manager-level role. What the team does and who reports to you aren't described, so your direct management responsibilities remain unclear.",
+    "strengths": [
+      "The assistant role names scheduling and reporting as work you supported, giving those responsibilities a concrete starting point.",
+      "Helping roll out a scanning system identifies a specific floor assignment rather than a general operations duty.",
+      "The separate titles and dates at Gulf Coast Fulfillment distinguish your assistant and manager roles."
+    ],
+    "gaps": [
+      "The goals and planning bullet doesn't identify what you worked on or contributed, leaving your part in leadership discussions unclear.",
+      "The scanning-system bullet doesn't describe the tasks you helped with, making your contribution difficult to distinguish from the rollout as a whole.",
+      "Excel and WMS appear in Skills but aren't connected to particular tasks in Experience, so their use is unclear."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the team leadership bullet, describe the team's fulfillment work and who reported directly to you.",
+        "why": "That would help a reader understand how the group was organized and what you managed.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Led a team of 40",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the department process bullet, name one process, the change you made and the observed result, if known.",
+        "why": "A specific example would show what the stated improvement involved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Improved processes across the department",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the scanning-system rollout bullet, explain the tasks you helped with on the floor.",
+        "why": "That would show your contribution without overstating your role in the rollout.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Helped roll out a new scanning system on the floor",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the current manager bullets using details you can verify about the team's work and a process change.",
+      "Add your specific rollout tasks and a planning example to the relevant experience bullets.",
+      "Update the summary to reflect the examples you've added, and connect Excel or WMS to a role if you used them there."
+    ],
+    "subscores": {
+      "impact": 52,
+      "clarity": 62,
+      "story": 64,
+      "readability": 67
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "C",
+        "priority": "Medium",
+        "working": "It identifies operations leadership and the team of 40.",
+        "missing": "The claim about delivering results doesn't say what those results were.",
+        "fix": "After revising Experience, replace the general results claim with a specific supported example."
+      },
+      "Work Experience": {
+        "grade": "C-",
+        "priority": "High",
+        "working": "Titles, employers and dates make the roles easy to follow.",
+        "missing": "Most bullets don't explain the work behind the responsibilities or the changes made.",
+        "fix": "Expand the current team and process bullets, then specify your part in the scanning rollout."
+      },
+      "Skills": {
+        "grade": "B-",
+        "priority": "Low",
+        "working": "Excel, WMS and scheduling give readers a concise list of relevant skills.",
+        "missing": "The section doesn't show how you applied the listed tools.",
+        "fix": "Connect the tools to an experience bullet where you can describe their actual use."
+      },
+      "Education": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The degree, field, university and year are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Fulfillment operations oversight",
+        "Sorting-line team leadership",
+        "Scheduling and reporting support",
+        "Scanning-system rollout support"
+      ],
+      "underplayed": [
+        "The work and reporting structure of the team of 40",
+        "The process changes made across the department",
+        "Your contribution to leadership goals and planning"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Operations Manager",
+          "Assistant Operations Manager"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current Operations Manager title and stated team leadership indicate manager-level work; the reporting structure is not described.",
+        "industry_signals": [
+          "Fulfillment",
+          "Parcel operations"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Position your current role around fulfillment management, using the actual work of the team and a specific process change. Keep the scanning rollout as an example of your earlier floor-level contribution."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What work did the team of 40 handle, and who reported directly to you?",
+          "archetype": "SCALING",
+          "why": "The answer would explain the structure behind the current leadership claim."
+        },
+        {
+          "question": "Which department process did you change, and what happened afterward?",
+          "archetype": "IMPROVEMENT",
+          "why": "A concrete example would make the stated process improvement understandable."
+        },
+        {
+          "question": "What did you contribute to the scanning-system rollout on the floor?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "Your specific tasks would distinguish your contribution from the overall rollout."
+        },
+        {
+          "question": "Which fulfillment activities did you oversee each day, and what decisions could you make?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "An example would explain what daily oversight involved."
+        },
+        {
+          "question": "How did you keep the sorting line running during peak season?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "The answer could add useful detail to the peak-season bullet without assuming a new result."
+        }
+      ]
+    }
+  },
+  "repaired": true,
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 60,
+    "score_label": "Needs more context",
+    "score_comment_short": "Most bullets name responsibilities but don't show enough of the work.",
+    "score_comment_long": "Your experience is clearly centered on fulfillment and floor operations. Most bullets are broad, and the resume doesn't explain the process improvement it claims. Start with the current team's work and one specific process change.",
+    "score_plain": "A reader can place you in operations management, but may need more detail to compare your work with another manager's. Concrete examples would make the resume easier to assess.",
+    "first_impression": "The current Operations Manager title sets the direction quickly. The bullets identify daily fulfillment work but leave the operation itself difficult to picture.",
+    "biggest_gap_example": "\"- Improved processes across the department\" doesn't name a process or the change you made, so a reader can't tell what improved.",
+    "first_impression_takeaway": "Name the process you improved",
+    "summary": "At Gulf Coast Fulfillment, your assistant role includes supporting scheduling and reporting, followed by a current role overseeing daily fulfillment operations. Earlier, you kept the sorting line running during peak season at Sunshine Parcel, a useful detail because it places your work on the floor. The current Operations Manager title and stated team leadership suggest a manager-level role. What the team does and who reports to you aren't described, so your direct management responsibilities remain unclear.",
+    "strengths": [
+      "The assistant role names scheduling and reporting as work you supported, giving those responsibilities a concrete starting point.",
+      "Helping roll out a scanning system identifies a specific floor assignment rather than a general operations duty.",
+      "The separate titles and dates at Gulf Coast Fulfillment distinguish your assistant and manager roles."
+    ],
+    "gaps": [
+      "The goals and planning bullet doesn't identify what you worked on or contributed, leaving your part in leadership discussions unclear.",
+      "The scanning-system bullet doesn't describe the tasks you helped with, making your contribution difficult to distinguish from the rollout as a whole.",
+      "Excel and WMS appear in Skills but aren't connected to particular tasks in Experience, so their use is unclear."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the team leadership bullet, describe the team's fulfillment work and who reported directly to you.",
+        "why": "That would help a reader understand how the group was organized and what you managed.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Led a team of 40",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the department process bullet, name one process, the change you made and the observed result, if known.",
+        "why": "A specific example would show what the stated improvement involved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Improved processes across the department",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the current manager bullets using details you can verify about the team's work and a process change.",
+      "Add your specific rollout tasks and a planning example to the relevant experience bullets.",
+      "Update the summary to reflect the examples you've added, and connect Excel or WMS to a role if you used them there."
+    ],
+    "subscores": {
+      "impact": 52,
+      "clarity": 62,
+      "story": 64,
+      "readability": 67
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "C",
+        "priority": "Medium",
+        "working": "It identifies operations leadership and the team of 40.",
+        "missing": "The claim about delivering results doesn't say what those results were.",
+        "fix": "After revising Experience, replace the general results claim with a specific supported example."
+      },
+      "Work Experience": {
+        "grade": "C-",
+        "priority": "High",
+        "working": "Titles, employers and dates make the roles easy to follow.",
+        "missing": "Most bullets don't explain the work behind the responsibilities or the changes made.",
+        "fix": "Expand the current team and process bullets, then specify your part in the scanning rollout."
+      },
+      "Skills": {
+        "grade": "B-",
+        "priority": "Low",
+        "working": "Excel, WMS and scheduling give readers a concise list of relevant skills.",
+        "missing": "The section doesn't show how you applied the listed tools.",
+        "fix": "Connect the tools to an experience bullet where you can describe their actual use."
+      },
+      "Education": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The degree, field, university and year are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Fulfillment operations oversight",
+        "Sorting-line team leadership",
+        "Scheduling and reporting support",
+        "Scanning-system rollout support"
+      ],
+      "underplayed": [
+        "The work and reporting structure of the team of 40",
+        "The process changes made across the department",
+        "Your contribution to leadership goals and planning"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Operations Manager",
+          "Assistant Operations Manager"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current Operations Manager title and stated team leadership indicate manager-level work; the reporting structure is not described.",
+        "industry_signals": [
+          "Fulfillment"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Position your current role around fulfillment management, using the actual work of the team and a specific process change. Keep the scanning rollout as an example of your earlier floor-level contribution."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What work did the team of 40 handle, and who reported directly to you?",
+          "archetype": "SCALING",
+          "why": "The answer would explain the structure behind the current leadership claim."
+        },
+        {
+          "question": "Which department process did you change, and what happened afterward?",
+          "archetype": "IMPROVEMENT",
+          "why": "A concrete example would make the stated process improvement understandable."
+        },
+        {
+          "question": "What did you contribute to the scanning-system rollout on the floor?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "Your specific tasks would distinguish your contribution from the overall rollout."
+        },
+        {
+          "question": "Which fulfillment activities did you oversee each day, and what decisions could you make?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "An example would explain what daily oversight involved."
+        },
+        {
+          "question": "How did you keep the sorting line running during peak season?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "The answer could add useful detail to the peak-season bullet without assuming a new result."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 60
+  },
+  "severity": {
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "promoted": [],
+    "replaced": [],
+    "led": null,
+    "skipped": [],
+    "critical_count": 1,
+    "more_critical": false,
+    "validation_attempts": 0,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "latency_ms": 1411,
+    "call_latency_ms": 1410,
+    "cost_usd": 0.00132075,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 60,
+    "score_label": "Needs more context",
+    "score_comment_short": "Most bullets name responsibilities but don't show enough of the work.",
+    "score_comment_long": "Your experience is clearly centered on fulfillment and floor operations. Most bullets are broad, and the resume doesn't explain the process improvement it claims. Start with the current team's work and one specific process change.",
+    "score_plain": "A reader can place you in operations management, but may need more detail to compare your work with another manager's. Concrete examples would make the resume easier to assess.",
+    "first_impression": "The current Operations Manager title sets the direction quickly. The bullets identify daily fulfillment work but leave the operation itself difficult to picture.",
+    "biggest_gap_example": "\"- Improved processes across the department\" doesn't name a process or the change you made, so a reader can't tell what improved.",
+    "first_impression_takeaway": "Name the process you improved",
+    "summary": "At Gulf Coast Fulfillment, your assistant role includes supporting scheduling and reporting, followed by a current role overseeing daily fulfillment operations. Earlier, you kept the sorting line running during peak season at Sunshine Parcel, a useful detail because it places your work on the floor. The current Operations Manager title and stated team leadership suggest a manager-level role. What the team does and who reports to you aren't described, so your direct management responsibilities remain unclear.",
+    "strengths": [
+      "The assistant role names scheduling and reporting as work you supported, giving those responsibilities a concrete starting point.",
+      "Helping roll out a scanning system identifies a specific floor assignment rather than a general operations duty.",
+      "The separate titles and dates at Gulf Coast Fulfillment distinguish your assistant and manager roles."
+    ],
+    "gaps": [
+      "The goals and planning bullet doesn't identify what you worked on or contributed, leaving your part in leadership discussions unclear.",
+      "The scanning-system bullet doesn't describe the tasks you helped with, making your contribution difficult to distinguish from the rollout as a whole.",
+      "Excel and WMS appear in Skills but aren't connected to particular tasks in Experience, so their use is unclear."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the team leadership bullet, describe the team's fulfillment work and who reported directly to you.",
+        "why": "That would help a reader understand how the group was organized and what you managed.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Led a team of 40",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": true
+      },
+      {
+        "fix": "In the department process bullet, name one process, the change you made and the observed result, if known.",
+        "why": "A specific example would show what the stated improvement involved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Improved processes across the department",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      }
+    ],
+    "next_steps": [
+      "Revise the current manager bullets using details you can verify about the team's work and a process change.",
+      "Add your specific rollout tasks and a planning example to the relevant experience bullets.",
+      "Update the summary to reflect the examples you've added, and connect Excel or WMS to a role if you used them there."
+    ],
+    "subscores": {
+      "impact": 52,
+      "clarity": 62,
+      "story": 64,
+      "readability": 67
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "C",
+        "priority": "Medium",
+        "working": "It identifies operations leadership and the team of 40.",
+        "missing": "The claim about delivering results doesn't say what those results were.",
+        "fix": "After revising Experience, replace the general results claim with a specific supported example."
+      },
+      "Work Experience": {
+        "grade": "C-",
+        "priority": "High",
+        "working": "Titles, employers and dates make the roles easy to follow.",
+        "missing": "Most bullets don't explain the work behind the responsibilities or the changes made.",
+        "fix": "Expand the current team and process bullets, then specify your part in the scanning rollout."
+      },
+      "Skills": {
+        "grade": "B-",
+        "priority": "Low",
+        "working": "Excel, WMS and scheduling give readers a concise list of relevant skills.",
+        "missing": "The section doesn't show how you applied the listed tools.",
+        "fix": "Connect the tools to an experience bullet where you can describe their actual use."
+      },
+      "Education": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The degree, field, university and year are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Fulfillment operations oversight",
+        "Sorting-line team leadership",
+        "Scheduling and reporting support",
+        "Scanning-system rollout support"
+      ],
+      "underplayed": [
+        "The work and reporting structure of the team of 40",
+        "The process changes made across the department",
+        "Your contribution to leadership goals and planning"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Operations Manager",
+          "Assistant Operations Manager"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current Operations Manager title and stated team leadership indicate manager-level work; the reporting structure is not described.",
+        "industry_signals": [
+          "Fulfillment"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Position your current role around fulfillment management, using the actual work of the team and a specific process change. Keep the scanning rollout as an example of your earlier floor-level contribution."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What work did the team of 40 handle, and who reported directly to you?",
+          "archetype": "SCALING",
+          "why": "The answer would explain the structure behind the current leadership claim."
+        },
+        {
+          "question": "Which department process did you change, and what happened afterward?",
+          "archetype": "IMPROVEMENT",
+          "why": "A concrete example would make the stated process improvement understandable."
+        },
+        {
+          "question": "What did you contribute to the scanning-system rollout on the floor?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "Your specific tasks would distinguish your contribution from the overall rollout."
+        },
+        {
+          "question": "Which fulfillment activities did you oversee each day, and what decisions could you make?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "An example would explain what daily oversight involved."
+        },
+        {
+          "question": "How did you keep the sorting line running during peak season?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "The answer could add useful detail to the peak-season bullet without assuming a new result."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 60,
+    "more_critical": false
+  },
+  "presentation": {
+    "score": 60,
+    "band": "Needs more context",
+    "score_label_from_model": "Needs Clarity",
+    "model_score_before_calibration": 60,
+    "verdict": "The current Operations Manager title sets the direction quickly. The bullets identify daily fulfillment work but leave the operation itself difficult to picture.",
+    "one_line_read": "Most bullets name responsibilities but don't show enough of the work.",
+    "takeaway": "Name the process you improved",
+    "biggest_gap_example": "\"- Improved processes across the department\" doesn't name a process or the change you made, so a reader can't tell what improved.",
+    "critical_count": {
+      "count": 1,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "One Critical Miss. Fix it first.",
+      "lead": "It's the one most likely to cost you the interview."
+    },
+    "fixes": [
+      {
+        "fix": "In the team leadership bullet, describe the team's fulfillment work and who reported directly to you.",
+        "why": "That would help a reader understand how the group was organized and what you managed.",
+        "excerpt": "- Led a team of 40",
+        "section": "EXPERIENCE",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the department process bullet, name one process, the change you made and the observed result, if known.",
+        "why": "A specific example would show what the stated improvement involved.",
+        "excerpt": "- Improved processes across the department",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "The assistant role names scheduling and reporting as work you supported, giving those responsibilities a concrete starting point.",
+    "strengths": [
+      "The assistant role names scheduling and reporting as work you supported, giving those responsibilities a concrete starting point.",
+      "Helping roll out a scanning system identifies a specific floor assignment rather than a general operations duty.",
+      "The separate titles and dates at Gulf Coast Fulfillment distinguish your assistant and manager roles."
+    ],
+    "gaps": [
+      "The goals and planning bullet doesn't identify what you worked on or contributed, leaving your part in leadership discussions unclear.",
+      "The scanning-system bullet doesn't describe the tasks you helped with, making your contribution difficult to distinguish from the rollout as a whole.",
+      "Excel and WMS appear in Skills but aren't connected to particular tasks in Experience, so their use is unclear."
+    ],
+    "next_steps": [
+      "Revise the current manager bullets using details you can verify about the team's work and a process change.",
+      "Add your specific rollout tasks and a planning example to the relevant experience bullets.",
+      "Update the summary to reflect the examples you've added, and connect Excel or WMS to a role if you used them there."
+    ],
+    "seniority_read": "Your current Operations Manager title and stated team leadership indicate manager-level work; the reporting structure is not described.",
+    "best_fit_roles": [
+      "Operations Manager",
+      "Assistant Operations Manager"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "Position your current role around fulfillment management, using the actual work of the team and a specific process change. Keep the scanning rollout as an example of your earlier floor-level contribution.",
+    "severity_added": [],
+    "severity_promoted": [],
+    "severity_outcome": "none (none)",
+    "severity_answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[0]",
+          "fix": 0
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[1]",
+          "fix": 1
+        },
+        {
+          "kind": "question_dropped",
+          "path": "ideas.questions[2]",
+          "reason": "duplicates_keep"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "biggest_gap_example",
+          "of": "top_fixes[1]"
+        }
+      ],
+      "fix_questions": [
+        [
+          "What work did the team of 40 handle, and who reported directly to you?"
+        ],
+        [
+          "Which department process did you change, and what happened afterward?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.041118,
+  "latency_ms": 61077
+}

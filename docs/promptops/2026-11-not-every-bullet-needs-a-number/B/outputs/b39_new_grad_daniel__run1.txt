@@ -1,0 +1,49 @@
+# b39_new_grad_daniel, run 1
+Resume: ../../../../docs/design/2026-11-bar/resumes/1-new-grad-daniel.txt (354 words, sha256 3462ee9e636e)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt e09ca912, severity prompt f1bb4571
+Outcome: report; cost $0.0172; 33.7s
+Case note: New grad (bar persona).
+
+## Band: Needs more context (score 66; model wrote 66, label "Needs Clarity")
+## Verdict
+The Cardinal Health internship and full-stack capstone make software development the immediate focus. The internship bullets are much less specific than the project description.
+One-line read: The internship names relevant technologies, but most bullets leave the work unspecified.
+Takeaway: Name the inventory features
+Biggest gap example: "- Fixed bugs and performed code reviews" doesn't say what you fixed or reviewed, so a reviewer can't judge the technical problems you handled.
+
+## Fixes (Two Critical Misses. Start with this one.; lead: "Either one could cost you the interview on its own."); severity added (added); added ["no_evidence_latest_role"]; promoted []
+1. [Critical Miss] In the Cardinal Health inventory application bullet, name a feature you developed and describe what it allowed users to do.
+   why: A concrete feature would show the kind of application work you handled with React and Spring Boot.
+   excerpt (EXPERIENCE): "- Responsible for developing features for an internal inventory management web application using React and Spring Boot"
+2. [Critical Miss] In the Cardinal Health unit tests bullet, add a measurable result, such as a change in test coverage, if you can verify it.
+   why: Software engineering managers often look for the scale or measurable outcomes of an intern's work. The role describes development and testing but doesn't quantify their reach or results.
+   excerpt (Experience): "- Wrote unit tests to improve code quality and reliability"
+3. [fix] In the bugs and code reviews bullet, describe one bug you fixed or the type of change you reviewed.
+   why: An example would give a reviewer a better sense of the technical issues you worked through.
+   excerpt (EXPERIENCE): "- Fixed bugs and performed code reviews"
+Severity check answer: {"critical_misses":[{"source":"new","kind":"no_evidence_latest_role","fix":"In the Cardinal Health unit tests bullet, add a measurable result, such as a change in test coverage, if you can verify it.","why":"Software engineering managers often look for the scale or measurable outcomes of an intern's work. The role describes development and testing but doesn't quantify their reach or results.","excerpt":"- Wrote unit tests to improve code quality and reliability","section":"Experience","effort":"moderate"}],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The inventory application connects React and Spring Boot to an internal business system, rather than listing them only as skills.
+Other strengths: ["The finance tracker describes expense tracking and spending visualization, giving the Python project a clear purpose.","Help desk work with students and faculty shows direct responsibility for hardware and software support."]
+
+## Gaps
+- The internship doesn't identify an inventory feature you developed, leaving the nature of your coding work unclear.
+- The cross-functional collaboration bullet doesn't name the people involved or a requirement you helped gather, making your contribution difficult to picture.
+- The skills list doesn't distinguish tools used in projects or the internship from those listed without context, which may leave a reviewer unsure where to focus.
+
+## Next steps
+- Revise the inventory feature and bug-fixing bullets using examples you can verify.
+- Add an example of a test or requirement you worked on, then remove the stand-up bullet if space is needed.
+- Rework the objective to name your software engineering target and the development work already shown in your internship and projects.
+
+## Role fit
+Level: Entry-level software engineering, supported by an internship and project work.
+Best fit: ["Software Engineer","Software Engineering Intern"]
+Positioning: Position the internship and capstone together as your main development experience. Use specific inventory features and project implementation details to make the connection to a future job description.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[0]","line":"fix-0","criticalMiss":true},{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":2},{"kind":"question_moved","path":"ideas.questions[2]","fix":0},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"section_review.Summary.missing","of":"first_impression"},{"kind":"repeat_dropped","path":"section_review.Summary.fix","of":"first_impression"},{"kind":"repeat_dropped","path":"section_review.Skills.fix","of":"gaps[2]"}]

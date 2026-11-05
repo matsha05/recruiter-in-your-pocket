@@ -1,0 +1,40 @@
+{
+  "description": "The five cases behind the proposal's three replay counts (docs/promptops/proposals/2026-11-not-every-bullet-needs-a-number.md), rerun through the production path with a candidate prompt. Paths are relative to this file; every resume is synthetic and reused read-only from the live judgment run.",
+  "cases": [
+    {
+      "id": "h2_thin_resume",
+      "batch": "replay_counts",
+      "resume": "../../../audits/2026-11-live-judgment/resumes/h2_thin_resume.txt",
+      "note": "Student: one internship, coursework, a club.",
+      "runs": 2
+    },
+    {
+      "id": "h6_unverifiable_claim",
+      "batch": "replay_counts",
+      "resume": "../../../audits/2026-11-live-judgment/resumes/h6_unverifiable_claim.txt",
+      "note": "\"Led a team of 40\" with nothing supporting it.",
+      "runs": 3
+    },
+    {
+      "id": "b10_it_support_recent_grad",
+      "batch": "replay_counts",
+      "resume": "../../../../tests/resumes/blindpick/synth_bp_it_support_recent_grad_1.txt",
+      "note": "First job.",
+      "runs": 2
+    },
+    {
+      "id": "b11_recent_grad_bad",
+      "batch": "replay_counts",
+      "resume": "../../../../tests/resumes/countcheck/synth_cc_recent_grad_bad_1.txt",
+      "note": "First job, weak; count-check key says no_evidence_latest_role, no_recent_work, title_level_mismatch.",
+      "runs": 2
+    },
+    {
+      "id": "b39_new_grad_daniel",
+      "batch": "replay_counts",
+      "resume": "../../../../docs/design/2026-11-bar/resumes/1-new-grad-daniel.txt",
+      "note": "New grad (bar persona).",
+      "runs": 2
+    }
+  ]
+}

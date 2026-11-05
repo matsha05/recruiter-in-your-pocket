@@ -1,0 +1,49 @@
+# b10_it_support_recent_grad, run 2
+Resume: ../../../../tests/resumes/blindpick/synth_bp_it_support_recent_grad_1.txt (119 words, sha256 6aac1aade9d7)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt e09ca912, severity prompt f1bb4571
+Outcome: report; cost $0.0145; 33.7s
+Case note: First job.
+
+## Band: Needs more context (score 64; model wrote 64, label "Needs Clarity")
+## Verdict
+Your path into IT runs from helping retail customers with devices to supporting teachers and staff. The internship is relevant to desktop support, but its short bullets leave much of the day-to-day work unexplained.
+One-line read: The support tasks are clear, but most bullets lack detail about the work.
+Takeaway: Describe the issues you handled
+Biggest gap example: "Answered help desk tickets from teachers and staff" does not say what issues you handled or how you resolved them, leaving your troubleshooting experience unclear.
+
+## Fixes (Three Critical Misses. Start with this one.; lead: "Any one of them could cost you the interview on its own."); severity added (added); added ["no_recent_work","no_evidence_latest_role"]; promoted []
+1. [Critical Miss] Add one dated line covering May 2025 to today.
+   why: Desktop support managers usually look for recent technical activity, but the resume doesn't explain the time after the internship. Use a dated line such as "Career break" or "Job search and coursework" if accurate, and list personal IT projects or volunteer technical support only if true.
+   excerpt (Experience): "January 2025 - May 2025"
+2. [Critical Miss] In the help desk ticket bullet, add an example of an issue you handled and the steps you took to address it.
+   why: That gives a reviewer a concrete picture of your troubleshooting work with teachers or staff.
+   excerpt (EXPERIENCE): "- Answered help desk tickets from teachers and staff"
+3. [Critical Miss] In the Chattahoochee County Schools internship, add how many tickets you handled or laptops you set up, if you can verify it.
+   why: Desktop support managers usually look for the volume of work handled or its results. The internship lists relevant tasks, but doesn't show their scale or measurable outcomes.
+   excerpt (Experience): "IT Help Desk Intern"
+Severity check answer: {"critical_misses":[{"source":"new","kind":"no_recent_work","fix":"Add one dated line covering May 2025 to today.","why":"Desktop support managers usually look for recent technical activity, but the resume doesn't explain the time after the internship. Use a dated line such as \"Career break\" or \"Job search and coursework\" if accurate, and list personal IT projects or volunteer technical support only if true.","excerpt":"January 2025 - May 2025","section":"Experience","effort":"moderate"},{"source":"new","kind":"no_evidence_latest_role","fix":"In the Chattahoochee County Schools internship, add how many tickets you handled or laptops you set up, if you can verify it.","why":"Desktop support managers usually look for the volume of work handled or its results. The internship lists relevant tasks, but doesn't show their scale or measurable outcomes.","excerpt":"IT Help Desk Intern","section":"Experience","effort":"quick"}],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The classroom laptop bullet names both imaging and setup, showing more than general familiarity with computers.
+Other strengths: ["Resetting passwords and accounts in Active Directory identifies a specific support task and system.","The retail role includes helping customers choose laptops, printers, and accessories, which shows experience discussing device needs with customers."]
+
+## Gaps
+- The internship does not explain what steps you took when preparing laptops, so the depth of your setup work is unclear.
+- Microsoft 365 administration and basic networking appear in Skills without examples elsewhere, leaving their practical use difficult to place.
+- The summary names both desktop support and a junior systems role without distinguishing your preparation for each, which may make targeting less direct.
+
+## Next steps
+- Expand the internship bullets with the ticket examples and laptop setup steps you can verify.
+- Revisit the retail device-setup bullet and describe a configuration task you actually performed.
+- Tailor the opening to the role you are applying for, then check that the skills list reflects your practical familiarity.
+
+## Role fit
+Level: Entry-level, based on the IT Help Desk Intern title and the support tasks described.
+Best fit: ["IT Help Desk Intern"]
+Positioning: For desktop support applications, lead with the school help desk and classroom laptop work. For a junior systems application, explain any account or administration tasks you performed beyond what is already listed, if applicable.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":1},{"kind":"question_dropped","path":"ideas.questions[1]","reason":"duplicates_keep"},{"kind":"question_moved","path":"ideas.questions[4]","fix":2},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"section_review.Work Experience.missing","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"section_review.Skills.missing","of":"gaps[1]"}]

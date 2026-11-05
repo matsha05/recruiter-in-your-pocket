@@ -1,0 +1,747 @@
+{
+  "case_id": "b11_recent_grad_bad",
+  "batch": "replay_counts",
+  "run": 1,
+  "note": "First job, weak; count-check key says no_evidence_latest_role, no_recent_work, title_level_mismatch.",
+  "resume_file": "../../../../tests/resumes/countcheck/synth_cc_recent_grad_bad_1.txt",
+  "resume_sha256": "b6050d2872696426733e52fefc3754f3902bd7b1192ea7b2f180c313e53e2468",
+  "resume_chars": 1001,
+  "resume_words": 151,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T23:24:11.970Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7572,
+        "completion_tokens": 2246,
+        "total_tokens": 9818,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 683,
+        "reasoning_tokens": 332
+      },
+      "cost_usd": 0.01243105,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 26599
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.0049463,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 10110
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "ac4bb5a15ca2e5b308bcc995a4c255623dfa20e3fd064ba124ef57c335630f22",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 64,
+    "score_label": "Needs Clarity",
+    "score_comment_short": "Marketing duties are broad, while research and earlier roles give more detail.",
+    "score_comment_long": "The research role names the data, tool, and study. The marketing bullets leave your contributions less clear, and the summary claims campaign leadership without explaining it in the experience section. Start by reconciling those two parts.",
+    "score_plain": "The resume gives a reviewer a starting point for an early-career marketing role. More detail about your credit union work would make it easier to understand what you could bring to a similar job.",
+    "first_impression": "Your credit union internship points toward marketing, but the summary calls you a manager who led campaigns. The experience section doesn't explain that leadership claim.",
+    "biggest_gap_example": "\"Helped with the member newsletter\" doesn't say what you contributed, so a reviewer cannot tell whether your work involved writing, design, editing, or another task.",
+    "first_impression_takeaway": "Explain the campaign leadership claim",
+    "summary": "Your credit union role sits alongside research, finance, and public-facing university work. The survey work covers data from 1,200 dairy farms and names Stata and the pricing study, giving a reader useful context for your analytical work. The listed titles point to an early-career background, while the opening describes campaign leadership at manager level. Without an example connecting those claims, a reviewer may be unsure how to place your marketing experience.",
+    "strengths": [
+      "The pricing study bullet identifies both the dataset and Stata, making the research assignment easy to understand.",
+      "Leading tours for groups of up to 25 prospective students shows a concrete public-speaking responsibility.",
+      "The credit union role includes newsletters, social media, and branch events, showing exposure to several marketing channels."
+    ],
+    "gaps": [
+      "The summary doesn't identify the credit union campaigns you led or explain how that work relates to the internship title.",
+      "The social media bullet doesn't describe the content you posted or your part in preparing it, leaving the work difficult to assess.",
+      "The listed experience ends in May 2024; the resume doesn't show subsequent work or activities that could explain your current direction."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the opening summary, identify a credit union campaign you led and your part from planning through launch, if you can substantiate that claim; otherwise align the wording with your documented internship work.",
+        "why": "A named example would help reconcile the manager-level opening with the Marketing Intern title.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Marketing manager who has led credit union campaigns from strategy to launch.",
+          "section": "Summary"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Summary"
+      },
+      {
+        "fix": "In the member newsletter bullet, specify what you contributed, such as writing, editing, or preparing content, if accurate.",
+        "why": "The current wording leaves your actual assignment open to several interpretations.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Helped with the member newsletter",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the social media bullet, describe the kind of posts you handled and whether you prepared any of the content.",
+        "why": "Posting alone doesn't show how much of the content work you performed.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Posted on the credit union's social media accounts",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revisit the summary and match its campaign claim to work you can describe in the credit union entry.",
+      "Expand the newsletter, social media, and branch-event bullets with the tasks you actually performed.",
+      "Review whether any real work or relevant activities after May 2024 belong in the resume."
+    ],
+    "subscores": {
+      "impact": 60,
+      "clarity": 64,
+      "story": 63,
+      "readability": 70
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "C",
+        "priority": "High",
+        "working": "It establishes marketing at a credit union as your intended direction.",
+        "missing": "The experience section does not explain the stated manager-level campaign leadership.",
+        "fix": "Name the campaign and your contribution if verifiable, or adjust the claim to match the work described."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The research entry names Stata, the survey population, and the study.",
+        "missing": "The credit union bullets don't specify your contributions to the newsletter or event planning.",
+        "fix": "Describe the particular tasks you handled in each marketing activity."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "Stata, Canva, and public speaking give a reader a concise view of relevant capabilities.",
+        "missing": "The experience entries don't show where Canva or survey design was used.",
+        "fix": "Connect either skill to an actual assignment if you used it in the work listed."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The degree, institution, and graduation date are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Credit union marketing activities across newsletters, social media, and events",
+        "Survey data cleaning in Stata",
+        "Literature summaries for agricultural research",
+        "Public speaking for prospective students"
+      ],
+      "underplayed": [
+        "Specific contributions to member communications",
+        "Role in planning branch events",
+        "Connection between research work and marketing applications"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Marketing Intern",
+          "Research Assistant"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "The listed marketing role is an internship; the summary's manager claim needs more context.",
+        "industry_signals": [
+          "Credit unions",
+          "Agricultural research",
+          "Higher education",
+          "Financial services"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Present the credit union work as the center of your marketing story, using precise descriptions of your contributions. Keep the research entry visible as a distinct analytical complement."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "Which credit union campaign did you lead, and how did that responsibility relate to your internship?",
+          "archetype": "TENSION POINT",
+          "why": "An example could connect the opening claim to the title in your work history."
+        },
+        {
+          "question": "What did you contribute to the member newsletter, and which parts were handled by others?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The answer would distinguish your work from the rest of the newsletter process."
+        },
+        {
+          "question": "What types of social media posts did you prepare or publish for the credit union?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The content itself would make your marketing work more concrete."
+        },
+        {
+          "question": "What did you handle while supporting branch event planning?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "A specific assignment would make the event bullet easier to interpret without overstating your role."
+        },
+        {
+          "question": "What checks did you use when cleaning the dairy farm survey data for the pricing study?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "Your approach to checking the data could add useful detail to the research entry."
+        }
+      ]
+    }
+  },
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 64,
+    "score_label": "Needs more context",
+    "score_comment_short": "Marketing duties are broad, while research and earlier roles give more detail.",
+    "score_comment_long": "The research role names the data, tool, and study. The marketing bullets leave your contributions less clear, and the summary claims campaign leadership without explaining it in the experience section. Start by reconciling those two parts.",
+    "score_plain": "The resume gives a reviewer a starting point for an early-career marketing role. More detail about your credit union work would make it easier to understand what you could bring to a similar job.",
+    "first_impression": "Your credit union internship points toward marketing, but the summary calls you a manager who led campaigns. The experience section doesn't explain that leadership claim.",
+    "biggest_gap_example": "\"Helped with the member newsletter\" doesn't say what you contributed, so a reviewer cannot tell whether your work involved writing, design, editing, or another task.",
+    "first_impression_takeaway": "Explain the campaign leadership claim",
+    "summary": "Your credit union role sits alongside research, finance, and public-facing university work. The survey work covers data from 1,200 dairy farms and names Stata and the pricing study, giving a reader useful context for your analytical work. The listed titles point to an early-career background, while the opening describes campaign leadership at manager level. Without an example connecting those claims, a reviewer may be unsure how to place your marketing experience.",
+    "strengths": [
+      "The pricing study bullet identifies both the dataset and Stata, making the research assignment easy to understand.",
+      "Leading tours for groups of up to 25 prospective students shows a concrete public-speaking responsibility.",
+      "The credit union role includes newsletters, social media, and branch events, showing exposure to several marketing channels."
+    ],
+    "gaps": [
+      "The summary doesn't identify the credit union campaigns you led or explain how that work relates to the internship title.",
+      "The social media bullet doesn't describe the content you posted or your part in preparing it, leaving the work difficult to assess.",
+      "The listed experience ends in May 2024; the resume doesn't show subsequent work or activities that could explain your current direction."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the opening summary, identify a credit union campaign you led and your part from planning through launch, if you can substantiate that claim; otherwise align the wording with your documented internship work.",
+        "why": "A named example would help reconcile the manager-level opening with the Marketing Intern title.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "No summary section present",
+          "section": "Summary"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Summary"
+      },
+      {
+        "fix": "In the member newsletter bullet, specify what you contributed, such as writing, editing, or preparing content, if accurate.",
+        "why": "The current wording leaves your actual assignment open to several interpretations.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Helped with the member newsletter",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the social media bullet, describe the kind of posts you handled and whether you prepared any of the content.",
+        "why": "Posting alone doesn't show how much of the content work you performed.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Posted on the credit union's social media accounts",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revisit the summary and match its campaign claim to work you can describe in the credit union entry.",
+      "Expand the newsletter, social media, and branch-event bullets with the tasks you actually performed.",
+      "Review whether any real work or relevant activities after May 2024 belong in the resume."
+    ],
+    "subscores": {
+      "impact": 60,
+      "clarity": 64,
+      "story": 63,
+      "readability": 70
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The research entry names Stata, the survey population, and the study.",
+        "missing": "The credit union bullets don't specify your contributions to the newsletter or event planning.",
+        "fix": "Describe the particular tasks you handled in each marketing activity."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "Stata, Canva, and public speaking give a reader a concise view of relevant capabilities.",
+        "missing": "The experience entries don't show where Canva or survey design was used.",
+        "fix": "Connect either skill to an actual assignment if you used it in the work listed."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The degree, institution, and graduation date are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Credit union marketing activities across newsletters, social media, and events",
+        "Survey data cleaning in Stata",
+        "Literature summaries for agricultural research",
+        "Public speaking for prospective students"
+      ],
+      "underplayed": [
+        "Specific contributions to member communications",
+        "Role in planning branch events",
+        "Connection between research work and marketing applications"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Marketing Intern",
+          "Research Assistant"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "The listed marketing role is an internship; the summary's manager claim needs more context.",
+        "industry_signals": [],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Present the credit union work as the center of your marketing story, using precise descriptions of your contributions. Keep the research entry visible as a distinct analytical complement."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "Which credit union campaign did you lead, and how did that responsibility relate to your internship?",
+          "archetype": "TENSION POINT",
+          "why": "An example could connect the opening claim to the title in your work history."
+        },
+        {
+          "question": "What did you contribute to the member newsletter, and which parts were handled by others?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The answer would distinguish your work from the rest of the newsletter process."
+        },
+        {
+          "question": "What types of social media posts did you prepare or publish for the credit union?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The content itself would make your marketing work more concrete."
+        },
+        {
+          "question": "What did you handle while supporting branch event planning?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "A specific assignment would make the event bullet easier to interpret without overstating your role."
+        },
+        {
+          "question": "What checks did you use when cleaning the dairy farm survey data for the pricing study?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "Your approach to checking the data could add useful detail to the research entry."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 64
+  },
+  "severity": {
+    "outcome": "added",
+    "reason": "added",
+    "added": [
+      "no_recent_work"
+    ],
+    "promoted": [],
+    "replaced": [],
+    "led": null,
+    "skipped": [],
+    "critical_count": 2,
+    "more_critical": false,
+    "validation_attempts": 1,
+    "answer": {
+      "critical_misses": [
+        {
+          "source": "new",
+          "kind": "no_recent_work",
+          "fix": "Add one dated line covering May 2024 to today, describing that period truthfully.",
+          "why": "Marketing hiring managers look for current skills, but your last marketing role ended in May 2024. A dated line such as \"Career break\" or \"Job search and coursework\" could explain the period. If true, include recent campaign projects or marketing coursework to show current skills.",
+          "excerpt": "June 2023 - May 2024",
+          "section": "Experience",
+          "effort": "quick"
+        }
+      ],
+      "more_critical": false
+    },
+    "latency_ms": 10180,
+    "call_latency_ms": 10110,
+    "cost_usd": 0.0049463,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:ac4bb5a1"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 64,
+    "score_label": "Needs more context",
+    "score_comment_short": "Marketing duties are broad, while research and earlier roles give more detail.",
+    "score_comment_long": "The research role names the data, tool, and study. The marketing bullets leave your contributions less clear, and the summary claims campaign leadership without explaining it in the experience section. Start by reconciling those two parts.",
+    "score_plain": "The resume gives a reviewer a starting point for an early-career marketing role. More detail about your credit union work would make it easier to understand what you could bring to a similar job.",
+    "first_impression": "Your credit union internship points toward marketing, but the summary calls you a manager who led campaigns. The experience section doesn't explain that leadership claim.",
+    "biggest_gap_example": "\"Helped with the member newsletter\" doesn't say what you contributed, so a reviewer cannot tell whether your work involved writing, design, editing, or another task.",
+    "first_impression_takeaway": "Explain the campaign leadership claim",
+    "summary": "Your credit union role sits alongside research, finance, and public-facing university work. The survey work covers data from 1,200 dairy farms and names Stata and the pricing study, giving a reader useful context for your analytical work. The listed titles point to an early-career background, while the opening describes campaign leadership at manager level. Without an example connecting those claims, a reviewer may be unsure how to place your marketing experience.",
+    "strengths": [
+      "The pricing study bullet identifies both the dataset and Stata, making the research assignment easy to understand.",
+      "Leading tours for groups of up to 25 prospective students shows a concrete public-speaking responsibility.",
+      "The credit union role includes newsletters, social media, and branch events, showing exposure to several marketing channels."
+    ],
+    "gaps": [
+      "The summary doesn't identify the credit union campaigns you led or explain how that work relates to the internship title.",
+      "The social media bullet doesn't describe the content you posted or your part in preparing it, leaving the work difficult to assess.",
+      "The listed experience ends in May 2024; the resume doesn't show subsequent work or activities that could explain your current direction."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the opening summary, identify a credit union campaign you led and your part from planning through launch, if you can substantiate that claim; otherwise align the wording with your documented internship work.",
+        "why": "A named example would help reconcile the manager-level opening with the Marketing Intern title.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "No summary section present",
+          "section": "Summary"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Summary",
+        "critical": true
+      },
+      {
+        "fix": "Add one dated line covering May 2024 to today, describing that period truthfully.",
+        "why": "Marketing hiring managers look for current skills, but your last marketing role ended in May 2024. A dated line such as \"Career break\" or \"Job search and coursework\" could explain the period. If true, include recent campaign projects or marketing coursework to show current skills.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "June 2023 - May 2024",
+          "section": "Experience"
+        },
+        "impact_level": "high",
+        "effort": "quick",
+        "section_ref": "Experience",
+        "critical": true
+      },
+      {
+        "fix": "In the member newsletter bullet, specify what you contributed, such as writing, editing, or preparing content, if accurate.",
+        "why": "The current wording leaves your actual assignment open to several interpretations.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Helped with the member newsletter",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      }
+    ],
+    "more_critical": false,
+    "next_steps": [
+      "Revisit the summary and match its campaign claim to work you can describe in the credit union entry.",
+      "Expand the newsletter, social media, and branch-event bullets with the tasks you actually performed.",
+      "Review whether any real work or relevant activities after May 2024 belong in the resume."
+    ],
+    "subscores": {
+      "impact": 60,
+      "clarity": 64,
+      "story": 63,
+      "readability": 70
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The research entry names Stata, the survey population, and the study.",
+        "missing": "The credit union bullets don't specify your contributions to the newsletter or event planning.",
+        "fix": "Describe the particular tasks you handled in each marketing activity."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "Stata, Canva, and public speaking give a reader a concise view of relevant capabilities.",
+        "missing": "The experience entries don't show where Canva or survey design was used.",
+        "fix": "Connect either skill to an actual assignment if you used it in the work listed."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The degree, institution, and graduation date are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 64,
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Credit union marketing activities across newsletters, social media, and events",
+        "Survey data cleaning in Stata",
+        "Literature summaries for agricultural research",
+        "Public speaking for prospective students"
+      ],
+      "underplayed": [
+        "Specific contributions to member communications",
+        "Role in planning branch events",
+        "Connection between research work and marketing applications"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Marketing Intern",
+          "Research Assistant"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "The listed marketing role is an internship; the summary's manager claim needs more context.",
+        "industry_signals": [],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Present the credit union work as the center of your marketing story, using precise descriptions of your contributions. Keep the research entry visible as a distinct analytical complement."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "Which credit union campaign did you lead, and how did that responsibility relate to your internship?",
+          "archetype": "TENSION POINT",
+          "why": "An example could connect the opening claim to the title in your work history."
+        },
+        {
+          "question": "What did you contribute to the member newsletter, and which parts were handled by others?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The answer would distinguish your work from the rest of the newsletter process."
+        },
+        {
+          "question": "What types of social media posts did you prepare or publish for the credit union?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The content itself would make your marketing work more concrete."
+        },
+        {
+          "question": "What did you handle while supporting branch event planning?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "A specific assignment would make the event bullet easier to interpret without overstating your role."
+        },
+        {
+          "question": "What checks did you use when cleaning the dairy farm survey data for the pricing study?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "Your approach to checking the data could add useful detail to the research entry."
+        }
+      ]
+    }
+  },
+  "presentation": {
+    "score": 64,
+    "band": "Needs more context",
+    "score_label_from_model": "Needs Clarity",
+    "model_score_before_calibration": 64,
+    "verdict": "Your credit union internship points toward marketing, but the summary calls you a manager who led campaigns. The experience section doesn't explain that leadership claim.",
+    "one_line_read": "Marketing duties are broad, while research and earlier roles give more detail.",
+    "takeaway": "Explain the campaign leadership claim",
+    "biggest_gap_example": "\"Helped with the member newsletter\" doesn't say what you contributed, so a reviewer cannot tell whether your work involved writing, design, editing, or another task.",
+    "critical_count": {
+      "count": 2,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "Two Critical Misses. Start with this one.",
+      "lead": "Either one could cost you the interview on its own."
+    },
+    "fixes": [
+      {
+        "fix": "In the opening summary, identify a credit union campaign you led and your part from planning through launch, if you can substantiate that claim; otherwise align the wording with your documented internship work.",
+        "why": "A named example would help reconcile the manager-level opening with the Marketing Intern title.",
+        "excerpt": "No summary section present",
+        "section": "Summary",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "Add one dated line covering May 2024 to today, describing that period truthfully.",
+        "why": "Marketing hiring managers look for current skills, but your last marketing role ended in May 2024. A dated line such as \"Career break\" or \"Job search and coursework\" could explain the period. If true, include recent campaign projects or marketing coursework to show current skills.",
+        "excerpt": "June 2023 - May 2024",
+        "section": "Experience",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the member newsletter bullet, specify what you contributed, such as writing, editing, or preparing content, if accurate.",
+        "why": "The current wording leaves your actual assignment open to several interpretations.",
+        "excerpt": "- Helped with the member newsletter",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "The pricing study bullet identifies both the dataset and Stata, making the research assignment easy to understand.",
+    "strengths": [
+      "The pricing study bullet identifies both the dataset and Stata, making the research assignment easy to understand.",
+      "Leading tours for groups of up to 25 prospective students shows a concrete public-speaking responsibility.",
+      "The credit union role includes newsletters, social media, and branch events, showing exposure to several marketing channels."
+    ],
+    "gaps": [
+      "The summary doesn't identify the credit union campaigns you led or explain how that work relates to the internship title.",
+      "The social media bullet doesn't describe the content you posted or your part in preparing it, leaving the work difficult to assess.",
+      "The listed experience ends in May 2024; the resume doesn't show subsequent work or activities that could explain your current direction."
+    ],
+    "next_steps": [
+      "Revisit the summary and match its campaign claim to work you can describe in the credit union entry.",
+      "Expand the newsletter, social media, and branch-event bullets with the tasks you actually performed.",
+      "Review whether any real work or relevant activities after May 2024 belong in the resume."
+    ],
+    "seniority_read": "The listed marketing role is an internship; the summary's manager claim needs more context.",
+    "best_fit_roles": [
+      "Marketing Intern",
+      "Research Assistant"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "Present the credit union work as the center of your marketing story, using precise descriptions of your contributions. Keep the research entry visible as a distinct analytical complement.",
+    "severity_added": [
+      "no_recent_work"
+    ],
+    "severity_promoted": [],
+    "severity_outcome": "added (added)",
+    "severity_answer": {
+      "critical_misses": [
+        {
+          "source": "new",
+          "kind": "no_recent_work",
+          "fix": "Add one dated line covering May 2024 to today, describing that period truthfully.",
+          "why": "Marketing hiring managers look for current skills, but your last marketing role ended in May 2024. A dated line such as \"Career break\" or \"Job search and coursework\" could explain the period. If true, include recent campaign projects or marketing coursework to show current skills.",
+          "excerpt": "June 2023 - May 2024",
+          "section": "Experience",
+          "effort": "quick"
+        }
+      ],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[0]",
+          "fix": 0
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[1]",
+          "fix": 2
+        },
+        {
+          "kind": "question_dropped",
+          "path": "ideas.questions[2]",
+          "reason": "duplicates_keep"
+        },
+        {
+          "kind": "question_dropped",
+          "path": "ideas.questions[3]",
+          "reason": "duplicates_keep"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "biggest_gap_example",
+          "of": "top_fixes[2]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[0]",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[1]",
+          "of": "top_fixes[2]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Work Experience.working",
+          "of": "strengths[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Work Experience.missing",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "next_steps[0]",
+          "of": "top_fixes[0]"
+        }
+      ],
+      "fix_questions": [
+        [
+          "Which credit union campaign did you lead, and how did that responsibility relate to your internship?"
+        ],
+        [],
+        [
+          "What did you contribute to the member newsletter, and which parts were handled by others?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01737735,
+  "latency_ms": 36852
+}

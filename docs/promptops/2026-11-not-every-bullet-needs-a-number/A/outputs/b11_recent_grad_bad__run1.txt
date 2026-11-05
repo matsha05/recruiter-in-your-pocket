@@ -1,0 +1,49 @@
+# b11_recent_grad_bad, run 1
+Resume: ../../../../tests/resumes/countcheck/synth_cc_recent_grad_bad_1.txt (151 words, sha256 b6050d287269)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt ac4bb5a1
+Outcome: report; cost $0.0174; 36.9s
+Case note: First job, weak; count-check key says no_evidence_latest_role, no_recent_work, title_level_mismatch.
+
+## Band: Needs more context (score 64; model wrote 64, label "Needs Clarity")
+## Verdict
+Your credit union internship points toward marketing, but the summary calls you a manager who led campaigns. The experience section doesn't explain that leadership claim.
+One-line read: Marketing duties are broad, while research and earlier roles give more detail.
+Takeaway: Explain the campaign leadership claim
+Biggest gap example: "Helped with the member newsletter" doesn't say what you contributed, so a reviewer cannot tell whether your work involved writing, design, editing, or another task.
+
+## Fixes (Two Critical Misses. Start with this one.; lead: "Either one could cost you the interview on its own."); severity added (added); added ["no_recent_work"]; promoted []
+1. [Critical Miss] In the opening summary, identify a credit union campaign you led and your part from planning through launch, if you can substantiate that claim; otherwise align the wording with your documented internship work.
+   why: A named example would help reconcile the manager-level opening with the Marketing Intern title.
+   excerpt (Summary): "No summary section present"
+2. [Critical Miss] Add one dated line covering May 2024 to today, describing that period truthfully.
+   why: Marketing hiring managers look for current skills, but your last marketing role ended in May 2024. A dated line such as "Career break" or "Job search and coursework" could explain the period. If true, include recent campaign projects or marketing coursework to show current skills.
+   excerpt (Experience): "June 2023 - May 2024"
+3. [fix] In the member newsletter bullet, specify what you contributed, such as writing, editing, or preparing content, if accurate.
+   why: The current wording leaves your actual assignment open to several interpretations.
+   excerpt (EXPERIENCE): "- Helped with the member newsletter"
+Severity check answer: {"critical_misses":[{"source":"new","kind":"no_recent_work","fix":"Add one dated line covering May 2024 to today, describing that period truthfully.","why":"Marketing hiring managers look for current skills, but your last marketing role ended in May 2024. A dated line such as \"Career break\" or \"Job search and coursework\" could explain the period. If true, include recent campaign projects or marketing coursework to show current skills.","excerpt":"June 2023 - May 2024","section":"Experience","effort":"quick"}],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The pricing study bullet identifies both the dataset and Stata, making the research assignment easy to understand.
+Other strengths: ["Leading tours for groups of up to 25 prospective students shows a concrete public-speaking responsibility.","The credit union role includes newsletters, social media, and branch events, showing exposure to several marketing channels."]
+
+## Gaps
+- The summary doesn't identify the credit union campaigns you led or explain how that work relates to the internship title.
+- The social media bullet doesn't describe the content you posted or your part in preparing it, leaving the work difficult to assess.
+- The listed experience ends in May 2024; the resume doesn't show subsequent work or activities that could explain your current direction.
+
+## Next steps
+- Revisit the summary and match its campaign claim to work you can describe in the credit union entry.
+- Expand the newsletter, social media, and branch-event bullets with the tasks you actually performed.
+- Review whether any real work or relevant activities after May 2024 belong in the resume.
+
+## Role fit
+Level: The listed marketing role is an internship; the summary's manager claim needs more context.
+Best fit: ["Marketing Intern","Research Assistant"]
+Positioning: Present the credit union work as the center of your marketing story, using precise descriptions of your contributions. Keep the research entry visible as a distinct analytical complement.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":2},{"kind":"question_dropped","path":"ideas.questions[2]","reason":"duplicates_keep"},{"kind":"question_dropped","path":"ideas.questions[3]","reason":"duplicates_keep"},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"section_review.Work Experience.working","of":"strengths[0]"},{"kind":"repeat_dropped","path":"section_review.Work Experience.missing","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"next_steps[0]","of":"top_fixes[0]"}]

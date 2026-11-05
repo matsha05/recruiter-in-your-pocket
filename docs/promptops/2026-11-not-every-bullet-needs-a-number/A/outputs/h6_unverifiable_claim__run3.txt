@@ -1,0 +1,46 @@
+# h6_unverifiable_claim, run 3
+Resume: ../../../audits/2026-11-live-judgment/resumes/h6_unverifiable_claim.txt (145 words, sha256 f523ae9848d4)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt ac4bb5a1
+Outcome: report; cost $0.0122; 25.7s
+Case note: "Led a team of 40" with nothing supporting it.
+
+## Band: Needs more context (score 62; model wrote 62, label "Needs Clarity")
+## Verdict
+Your progression from sorting-line Team Lead to Operations Manager is easy to follow. The team of 40 is worth keeping because it shows the size of your leadership responsibility; the fulfillment work itself is less detailed.
+One-line read: The team size is clear, but most operational work remains broadly described.
+Takeaway: Explain the process changes
+Biggest gap example: "Improved processes across the department" does not say which processes changed or what you did, so a reviewer cannot see how you approached the improvement.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the department process bullet, name one process you changed and describe what you did differently.
+   why: A specific change would show how you approached improvement rather than leaving the work at a department-wide label.
+   excerpt (EXPERIENCE): "- Improved processes across the department"
+2. [fix] In the daily fulfillment bullet, identify the activities you oversaw and the decisions you were responsible for.
+   why: That detail would help a reviewer understand what operations management involved at Gulf Coast Fulfillment.
+   excerpt (EXPERIENCE): "- Oversaw daily fulfillment operations"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+Your move from Assistant Operations Manager to Operations Manager at Gulf Coast Fulfillment makes your progression within the company visible.
+Other strengths: ["The scanning-system rollout adds a concrete example of floor-level change work.","Scheduling and reporting experience gives useful context for your operations background."]
+
+## Gaps
+- The daily fulfillment bullet doesn't name the activities you oversaw, leaving the breadth of your responsibility unclear.
+- The leadership planning bullet doesn't say what you contributed to the goals or plans, so your role in that work is difficult to assess.
+- Excel and WMS are listed without examples of use, making it unclear how they relate to your operations work.
+
+## Next steps
+- Revise the current Operations Manager bullets first, starting with the process change and daily fulfillment activities.
+- Add your specific contribution to the scanning rollout and revisit the planning bullet for an example of your input.
+- Check that the summary and skills reflect the details you can substantiate in your experience section.
+
+## Role fit
+Level: Your current title and leadership of a team of 40 indicate a manager-level role.
+Best fit: ["Operations Manager","Assistant Operations Manager"]
+Positioning: Center the resume on fulfillment operations and team leadership. Use the scanning rollout and a specific process change to show what your work looked like on the floor.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":1},{"kind":"question_moved","path":"ideas.questions[1]","fix":0},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"ideas.questions[2]"},{"kind":"repeat_dropped","path":"section_review.Skills.missing","of":"gaps[2]"}]

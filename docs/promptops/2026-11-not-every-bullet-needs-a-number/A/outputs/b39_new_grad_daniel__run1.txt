@@ -1,0 +1,48 @@
+# b39_new_grad_daniel, run 1
+Resume: ../../../../docs/design/2026-11-bar/resumes/1-new-grad-daniel.txt (354 words, sha256 3462ee9e636e)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt ac4bb5a1
+Outcome: report; cost $0.0334; repair ran; 58.7s
+Case note: New grad (bar persona).
+
+Validator refused the first draft: OPENAI_RESPONSE_SHAPE_INVALID The model response failed the evidence grounding contract at rewrites[0].better source fidelity.
+
+## Band: Needs more context (score 65; model wrote 65, label "Needs Clarity")
+## Verdict
+Your internship and capstone both point toward web development. The capstone's authentication and shopping cart are useful details because they give a reviewer concrete features to discuss.
+One-line read: Projects describe working applications, but most internship bullets remain broad responsibilities.
+Takeaway: Name the inventory features
+Biggest gap example: "Wrote unit tests to improve code quality and reliability" does not say what behavior you tested, leaving your testing work difficult to assess.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the Cardinal Health inventory bullet, name a feature you developed and what it allowed users to do.
+   why: The application and stack are visible, but an example would make your development work easier to understand.
+   excerpt (EXPERIENCE): "- Responsible for developing features for an internal inventory management web application using React and Spring Boot"
+2. [fix] In the BuckeyeBites authentication and cart bullet, explain a technical choice you made while implementing one feature.
+   why: The features are already named; an implementation detail would show more of your engineering approach.
+   excerpt (PROJECTS): "- Implemented user authentication and a shopping cart feature"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+BuckeyeBites names React, Node.js, Express, and MongoDB, making its technical stack easy to find.
+Other strengths: ["The finance tracker connects Python, matplotlib, and SQLite to an expense-tracking application.","Your help desk role includes documenting solutions as well as resolving tickets, showing how you handled support work."]
+
+## Gaps
+- The testing bullet does not name a case you covered, so the purpose of the tests remains broad.
+- The resume lists AWS and Jenkins without explaining where you used them, leaving their context unclear.
+- The help desk bullets do not describe a particular issue or solution, making that work difficult to distinguish.
+
+## Next steps
+- Revise the internship bullets using a specific inventory feature and bug you can describe accurately.
+- Expand one BuckeyeBites feature with an implementation detail, then check the project bullets for repetition.
+- Replace the generic objective with a brief Software Engineer introduction grounded in your internship and application work.
+
+## Role fit
+Level: Entry-level software engineer, based on the degree, internship, and projects.
+Best fit: ["Software Engineer","Software Engineering Intern"]
+Positioning: Lead with your software engineering internship and use BuckeyeBites to show the application features you have built. Keep the help desk role as supporting technical experience rather than the center of the story.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[2]","fix":1},{"kind":"question_dropped","path":"ideas.questions[4]","reason":"duplicates_keep"},{"kind":"repeat_dropped","path":"gaps[0]","of":"ideas.questions[1]"}]

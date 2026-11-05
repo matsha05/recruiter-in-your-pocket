@@ -1,0 +1,49 @@
+# b39_new_grad_daniel, run 2
+Resume: ../../../../docs/design/2026-11-bar/resumes/1-new-grad-daniel.txt (354 words, sha256 3462ee9e636e)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt ac4bb5a1
+Outcome: report; cost $0.0151; 30.2s
+Case note: New grad (bar persona).
+
+## Band: Needs more context (score 68; model wrote 68, label "Needs Clarity")
+## Verdict
+You have a computer science degree, a software engineering internship, and several projects. BuckeyeBites stands out because it names both user-facing features and the stack. The internship description is less specific about what you built.
+One-line read: Your projects show practical development, but the internship bullets leave key work unspecified.
+Takeaway: Name your internship features
+Biggest gap example: "Collaborated with cross-functional teams to gather requirements and deliver solutions" doesn't identify a requirement or solution, so a reviewer can't see what you contributed.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the Cardinal Health inventory application bullet, name a feature you developed and what it allowed users to do.
+   why: A specific feature would give the reader something concrete to assess beyond the application name and stack.
+   excerpt (EXPERIENCE): "- Responsible for developing features for an internal inventory management web application using React and Spring Boot"
+2. [fix] In the internship unit-test bullet, identify the behavior or component you tested and an example case.
+   why: That would show what your tests checked without assuming they produced a measured improvement.
+   excerpt (EXPERIENCE): "- Wrote unit tests to improve code quality and reliability"
+3. [fix] In the BuckeyeBites feature bullet, explain one implementation choice you made for authentication or the shopping cart.
+   why: The existing feature list describes what the app does; an implementation detail would show more of your engineering work.
+   excerpt (PROJECTS): "- Implemented user authentication and a shopping cart feature"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The internship names an internal inventory application and its React and Spring Boot stack, giving the work a technical setting.
+Other strengths: ["The finance tracker pairs Python and matplotlib with SQLite, showing a different application and storage approach from BuckeyeBites.","The help desk role connects student and faculty support with documented solutions, showing experience responding to users' technical issues."]
+
+## Gaps
+- The internship doesn't identify an inventory feature or bug, leaving the actual engineering work difficult to distinguish.
+- The unit-test bullet names an intended purpose but not what the tests covered, so the reader can't judge their technical focus.
+- The capstone lists authentication and a cart but doesn't explain how either was implemented, leaving your technical choices unclear.
+
+## Next steps
+- Revise the Cardinal Health bullets with a verified feature example and a test case.
+- Expand the BuckeyeBites feature description with a technical choice you can explain.
+- Replace the generic objective with a brief statement connecting your software engineering target to the internship and projects.
+
+## Role fit
+Level: Entry-level software engineer, supported by a recent degree, an internship, and project work.
+Best fit: ["Software Engineer"]
+Positioning: Lead with the software engineering internship and use BuckeyeBites to show additional full-stack work. Make your individual technical contributions more concrete before tailoring the resume to a particular posting.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[0]","line":"fix-0","criticalMiss":true},{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":1},{"kind":"question_moved","path":"ideas.questions[3]","fix":2},{"kind":"question_moved","path":"ideas.questions[4]","fix":0},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"ideas.questions[2]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[2]","of":"top_fixes[2]"}]
