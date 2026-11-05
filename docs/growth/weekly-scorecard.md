@@ -36,10 +36,12 @@ Status is one of: *on track* (at or above the success number's pace), *below*, *
 
 | Search Console | This week | Last week |
 | --- | --- | --- |
-| URLs indexed (of 32) | | |
+| URLs indexed (of 37) | | |
 | Impressions | | |
 | Clicks | | |
 | Top query we don't answer yet | | |
+
+See [Search Console and Bing setup](search-console-setup.md) for verification, sitemap, and indexing-request records.
 
 **Our own runs to subtract:** *list any test reports or purchases by us.*
 
