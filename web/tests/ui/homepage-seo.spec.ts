@@ -130,9 +130,9 @@ test.describe("homepage feedback and SEO contract", () => {
     await page.goto("/terms");
     await assertAnonymousBoundary();
 
+    // Help shows every answer under its question (Nov 4, 2026): nothing to open.
     await page.goto("/help");
-    await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true", { timeout: 30_000 });
-    await page.getByRole("button", { name: "Is the first report really free?", exact: true }).click();
+    await expect(page.getByRole("heading", { name: "Is the first report really free?", exact: true })).toBeVisible();
     await assertAnonymousBoundary();
   });
 
