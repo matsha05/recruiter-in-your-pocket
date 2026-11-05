@@ -207,6 +207,14 @@ The prompt for items 1.3 and 1.9 (`55bee48b`, committed as `1ddcc7b5`) passed th
 - Open product questions: whether "Nothing critical" should exist, and whether a report can carry more than one Critical Miss.
 - Next attempt: a gap needs advice on what to say or which real projects to add, not only "say what you've done since".
 
+### Not every good bullet needs a number — November 5 (not shipped)
+
+Two candidates from [the proposal](proposals/2026-11-not-every-bullet-needs-a-number.md), each run alone against production on the 10 synthetic golden fixtures plus the 12 labeled count-check resumes, judged by `critical-miss-judge-v4` after the severity check: [result](2026-11-not-every-bullet-needs-a-number-result.md).
+
+- Candidate A, the severity prompt's `no_evidence_latest_role` definition (`ac4bb5a1` against `f1bb4571`): severity gate PASS (8 of 8, 4 of 4, 0 vetoes); `compare` GATE: FAIL, preferred 1 of 22, production clear on the three resumes where the rule stopped firing (the recent grad, the operations assistant, the finance analyst). Intern-scale asks 0 of 8 (was 6 of 6).
+- Candidate B, the resume prompt's rule 10 and VOICE line (`e09ca912` against `83b2a2d1`): GATE: FAIL, preferred 2 of 22, production 7, 0 vetoes, both count checks pass. "Led a team of 40" kept 0 of 3 with the question present 3 of 3 (was 3 of 3 kept).
+- Spend $3.7366 (estimate $3.67; stop line $12). Receipts: `tests/fixtures/results/summary_*bullet_number*.md`, `tests/fixtures/results/judge/*bullet-number*`. Neither prompt changed.
+
 ### Previous bounded launch proof — October 30 (historical)
 
 The unchanged original ten-fixture `gpt-6.1-terra` run `eval_1793394208092` replays as **10 PASS, 0 WARN, 0 FAIL** through candidate `f9d3903813c2449b205ec39baec9f344650006e5`. Its original **9 PASS, 0 WARN, 1 FAIL** and all provider outputs remain retained; the sole final rejection was corrected by adding the editorial noun “description” to the existing assessment vocabulary with paired fabrication controls. No report prose or selected output was replaced. The replay is bound to source JSON SHA-256 `b6e20c5669bbeb80b7b612993339a6a38a8c033813e2bb60a2502fab4bb41111`.

@@ -1,0 +1,49 @@
+# b39_new_grad_daniel, run 2
+Resume: ../../../../docs/design/2026-11-bar/resumes/1-new-grad-daniel.txt (354 words, sha256 3462ee9e636e)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt e09ca912, severity prompt f1bb4571
+Outcome: report; cost $0.0158; 34.1s
+Case note: New grad (bar persona).
+
+## Band: Needs more context (score 66; model wrote 66, label "Needs Clarity")
+## Verdict
+Your software internship and computer science degree point toward entry-level engineering. BuckeyeBites adds useful detail: authentication and a shopping cart show what you implemented, not just the stack you used.
+One-line read: The projects name concrete features, but most internship bullets describe broad duties.
+Takeaway: Name the inventory features
+Biggest gap example: "Fixed bugs and performed code reviews" leaves the problems and your contributions unspecified, making the internship work difficult to distinguish.
+
+## Fixes (Two Critical Misses. Start with this one.; lead: "Either one could cost you the interview on its own."); severity added (added); added ["no_evidence_latest_role"]; promoted []
+1. [Critical Miss] In the Cardinal Health inventory bullet, name a feature you developed and what it allowed users to do.
+   why: A specific feature would give the React and Spring Boot work a clearer place in the application.
+   excerpt (EXPERIENCE): "- Responsible for developing features for an internal inventory management web application using React and Spring Boot"
+2. [Critical Miss] In the Cardinal Health internship, add how many users were served by the features you developed, if you can verify it.
+   why: Engineering hiring managers look for the scope or measurable results of recent work. The internship describes your duties but doesn't show the scale or a measurable outcome of your contributions.
+   excerpt (EXPERIENCE): "Software Engineering Intern, Cardinal Health, Dublin, OH"
+3. [fix] In the unit-testing bullet, identify a component or behavior you tested and an example of a case you covered.
+   why: That detail would show what your tests examined without assuming they improved reliability.
+   excerpt (EXPERIENCE): "- Wrote unit tests to improve code quality and reliability"
+Severity check answer: {"critical_misses":[{"source":"new","kind":"no_evidence_latest_role","fix":"In the Cardinal Health internship, add how many users were served by the features you developed, if you can verify it.","why":"Engineering hiring managers look for the scope or measurable results of recent work. The internship describes your duties but doesn't show the scale or a measurable outcome of your contributions.","excerpt":"Software Engineering Intern, Cardinal Health, Dublin, OH","section":"EXPERIENCE","effort":"moderate"}],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The inventory application bullet connects React and Spring Boot to a specific business application.
+Other strengths: ["BuckeyeBites names its team setting, technology stack and user-facing functionality, giving the project a recognizable shape.","The finance tracker describes both expense tracking and spending visualization, making the Python work more concrete than a language list alone."]
+
+## Gaps
+- The inventory application features aren't named, so the internship's technical contribution remains broad.
+- The unit-test bullet doesn't identify what was tested, leaving the testing work difficult to assess.
+- The skills list includes technologies such as Docker and Jenkins without examples of their use, making proficiency in them uncertain.
+
+## Next steps
+- Revise the internship bullets with a feature, test case and bug example you can verify.
+- Add one implementation detail to the BuckeyeBites project, keeping the existing stack and team information.
+- Shorten the objective and review the skills list so the technologies most relevant to your applications are easy to find.
+
+## Role fit
+Level: Entry-level, based on the software engineering internship and recent computer science degree.
+Best fit: ["Software Engineer"]
+Positioning: Lead with your software engineering internship and the full-stack work in BuckeyeBites. Use specific implementation examples to support the technologies listed in your skills section.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[0]","line":"fix-0","criticalMiss":true},{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":2},{"kind":"question_moved","path":"ideas.questions[2]","fix":0},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"ideas.questions[4]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[2]"}]

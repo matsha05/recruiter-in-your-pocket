@@ -1,0 +1,737 @@
+{
+  "case_id": "b10_it_support_recent_grad",
+  "batch": "replay_counts",
+  "run": 1,
+  "note": "First job.",
+  "resume_file": "../../../../tests/resumes/blindpick/synth_bp_it_support_recent_grad_1.txt",
+  "resume_sha256": "6aac1aade9d7a63c473e324e9d4010a6421ea06868ff0b898b625a8534cf26dc",
+  "resume_chars": 832,
+  "resume_words": 119,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T23:26:36.100Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7633,
+        "completion_tokens": 2080,
+        "total_tokens": 9713,
+        "cached_prompt_tokens": 7075,
+        "cache_write_prompt_tokens": 555,
+        "reasoning_tokens": 223
+      },
+      "cost_usd": 0.0114505,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 26087
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.003602,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 6985
+    }
+  ],
+  "resume_prompt_sha256": "e09ca912f3bb567a3f321273d9d5ecf351a8373e18307feb4a85c0f69dc734e6",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 62,
+    "score_label": "Needs Clarity",
+    "score_comment_short": "The support work is relevant, but most bullets stop at task descriptions.",
+    "score_comment_long": "The school help desk internship gives you direct IT support experience. The bullets name the work but rarely explain the problems handled or the steps involved. Add a few concrete examples from the internship first.",
+    "score_plain": "A reviewer can see an entry-level IT background, but may need more detail to compare your hands-on work with a desktop support opening.",
+    "first_impression": "You have a direct route into IT support through a school help desk internship. Classroom laptop imaging is worth keeping because it places your device setup work in a real support environment.",
+    "biggest_gap_example": "\"Answered help desk tickets from teachers and staff\" does not name the issues you handled, so a reviewer cannot tell what kinds of troubleshooting you performed.",
+    "first_impression_takeaway": "Name the ticket issues",
+    "summary": "Your IT Help Desk Intern role connects account support, classroom laptop setup, and requests from school staff. Earlier retail work adds customer-facing device setup to that entry-level IT story. The resume does not yet show what you did when a device or account problem needed troubleshooting, which makes the depth of your support work difficult to assess.",
+    "strengths": [
+      "Active Directory appears in both the skills list and an internship bullet, tying the tool to account work.",
+      "Helping customers choose laptops, printers, and accessories shows experience discussing equipment with users.",
+      "The A.A.S. in Information Technology and CompTIA A+ provide relevant training alongside the internship."
+    ],
+    "gaps": [
+      "The ticket bullet does not distinguish common requests from more complex issues, leaving your troubleshooting experience unclear.",
+      "The classroom laptop bullet does not explain the setup steps you performed after imaging.",
+      "Microsoft 365 administration is listed as a skill without an example of the administrative tasks you performed."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the school help desk ticket bullet, name the types of issues you handled and give an example of how you resolved or escalated one.",
+        "why": "That would show what a teacher or staff member could bring to you for help.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Answered help desk tickets from teachers and staff",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the classroom laptop bullet, describe the setup steps you personally performed after imaging.",
+        "why": "A reviewer could then see what preparing a laptop for classroom use involved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Imaged and set up laptops for classrooms",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "Connect Microsoft 365 administration in Skills to a specific task and setting, if you can verify one; otherwise describe the skill more narrowly.",
+        "why": "The current list does not show what administration work you performed.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Windows 10/11, Active Directory, Microsoft 365 administration, basic networking, ticketing systems",
+          "section": "SKILLS"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "SKILLS"
+      }
+    ],
+    "next_steps": [
+      "Expand the internship bullets with examples of ticket issues, laptop setup steps, and account requests you personally handled.",
+      "Review the retail device-setup bullet and specify the devices and setup tasks you can verify.",
+      "Check the skills list against your experience and adjust the summary to match the desktop support or junior systems jobs you pursue."
+    ],
+    "subscores": {
+      "impact": 55,
+      "clarity": 65,
+      "story": 62,
+      "readability": 70
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "It identifies your help desk background and the types of roles you want.",
+        "missing": "It does not distinguish your school support work from a general IT support description.",
+        "fix": "Add a short reference to classroom laptop setup or Active Directory account support."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The internship and retail roles both include direct work with devices and users.",
+        "missing": "The bullets provide few examples of problems, setup steps, or completed resolutions.",
+        "fix": "Expand selected bullets with the actual work you performed, starting with the internship."
+      },
+      "Skills": {
+        "grade": "C",
+        "priority": "Medium",
+        "working": "Windows, Active Directory, and ticketing systems are relevant to the support direction you name.",
+        "missing": "Several listed skills are not connected to a specific task elsewhere in the resume.",
+        "fix": "Use examples in Experience to substantiate skills you have applied, and narrow any entries that overstate your familiarity."
+      },
+      "Education": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The degree, field, school, and completion date are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "School help desk support for teachers and staff",
+        "Classroom laptop imaging and setup",
+        "Active Directory password and account resets",
+        "Customer-facing device setup in retail"
+      ],
+      "underplayed": [
+        "Troubleshooting performed on help desk requests",
+        "Steps involved in preparing classroom laptops",
+        "Practical use of Microsoft 365 administration"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "IT Help Desk Intern"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Entry-level, based on the IT Help Desk Intern title and the support tasks described.",
+        "industry_signals": [
+          "Education",
+          "Electronics retail"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Lead with the school help desk work and make the device and account tasks more concrete. Keep the retail setup experience as a supporting example of working with customers and devices."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What kinds of ticket issues could you resolve yourself, and which needed escalation?",
+          "archetype": "TENSION POINT",
+          "why": "The answer would distinguish your responsibilities on the school help desk."
+        },
+        {
+          "question": "What did you check after imaging a laptop before it was ready for a classroom?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "A concrete check could make the setup bullet more useful."
+        },
+        {
+          "question": "How did you handle a password or account reset in Active Directory from request to completion?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The steps would explain the account support you performed."
+        },
+        {
+          "question": "What devices did you set up at the retail service counter, and what did setup involve?",
+          "archetype": "DOMAIN LIFT",
+          "why": "That detail could connect your retail work more directly to device support."
+        },
+        {
+          "question": "Did you change any part of your laptop setup process during the internship, and what prompted the change?",
+          "archetype": "IMPROVEMENT",
+          "why": "A specific example, if one exists, could add depth without assuming an improvement."
+        }
+      ]
+    }
+  },
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 62,
+    "score_label": "Needs more context",
+    "score_comment_short": "The support work is relevant, but most bullets stop at task descriptions.",
+    "score_comment_long": "The school help desk internship gives you direct IT support experience. The bullets name the work but rarely explain the problems handled or the steps involved. Add a few concrete examples from the internship first.",
+    "score_plain": "A reviewer can see an entry-level IT background, but may need more detail to compare your hands-on work with a desktop support opening.",
+    "first_impression": "You have a direct route into IT support through a school help desk internship. Classroom laptop imaging is worth keeping because it places your device setup work in a real support environment.",
+    "biggest_gap_example": "\"Answered help desk tickets from teachers and staff\" does not name the issues you handled, so a reviewer cannot tell what kinds of troubleshooting you performed.",
+    "first_impression_takeaway": "Name the ticket issues",
+    "summary": "Your IT Help Desk Intern role connects account support, classroom laptop setup, and requests from school staff. Earlier retail work adds customer-facing device setup to that entry-level IT story. The resume does not yet show what you did when a device or account problem needed troubleshooting, which makes the depth of your support work difficult to assess.",
+    "strengths": [
+      "Active Directory appears in both the skills list and an internship bullet, tying the tool to account work.",
+      "Helping customers choose laptops, printers, and accessories shows experience discussing equipment with users.",
+      "The A.A.S. in Information Technology and CompTIA A+ provide relevant training alongside the internship."
+    ],
+    "gaps": [
+      "The ticket bullet does not distinguish common requests from more complex issues, leaving your troubleshooting experience unclear.",
+      "The classroom laptop bullet does not explain the setup steps you performed after imaging.",
+      "Microsoft 365 administration is listed as a skill without an example of the administrative tasks you performed."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the school help desk ticket bullet, name the types of issues you handled and give an example of how you resolved or escalated one.",
+        "why": "That would show what a teacher or staff member could bring to you for help.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Answered help desk tickets from teachers and staff",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the classroom laptop bullet, describe the setup steps you personally performed after imaging.",
+        "why": "A reviewer could then see what preparing a laptop for classroom use involved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Imaged and set up laptops for classrooms",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "Connect Microsoft 365 administration in Skills to a specific task and setting, if you can verify one; otherwise describe the skill more narrowly.",
+        "why": "The current list does not show what administration work you performed.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Windows 10/11, Active Directory, Microsoft 365 administration, basic networking, ticketing systems",
+          "section": "SKILLS"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "SKILLS"
+      }
+    ],
+    "next_steps": [
+      "Expand the internship bullets with examples of ticket issues, laptop setup steps, and account requests you personally handled.",
+      "Review the retail device-setup bullet and specify the devices and setup tasks you can verify.",
+      "Check the skills list against your experience and adjust the summary to match the desktop support or junior systems jobs you pursue."
+    ],
+    "subscores": {
+      "impact": 55,
+      "clarity": 65,
+      "story": 62,
+      "readability": 70
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "It identifies your help desk background and the types of roles you want.",
+        "missing": "It does not distinguish your school support work from a general IT support description.",
+        "fix": "Add a short reference to classroom laptop setup or Active Directory account support."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The internship and retail roles both include direct work with devices and users.",
+        "missing": "The bullets provide few examples of problems, setup steps, or completed resolutions.",
+        "fix": "Expand selected bullets with the actual work you performed, starting with the internship."
+      },
+      "Skills": {
+        "grade": "C",
+        "priority": "Medium",
+        "working": "Windows, Active Directory, and ticketing systems are relevant to the support direction you name.",
+        "missing": "Several listed skills are not connected to a specific task elsewhere in the resume.",
+        "fix": "Use examples in Experience to substantiate skills you have applied, and narrow any entries that overstate your familiarity."
+      },
+      "Education": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The degree, field, school, and completion date are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "School help desk support for teachers and staff",
+        "Classroom laptop imaging and setup",
+        "Active Directory password and account resets",
+        "Customer-facing device setup in retail"
+      ],
+      "underplayed": [
+        "Troubleshooting performed on help desk requests",
+        "Steps involved in preparing classroom laptops",
+        "Practical use of Microsoft 365 administration"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "IT Help Desk Intern"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Entry-level, based on the IT Help Desk Intern title and the support tasks described.",
+        "industry_signals": [
+          "Education"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with the school help desk work and make the device and account tasks more concrete. Keep the retail setup experience as a supporting example of working with customers and devices."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What kinds of ticket issues could you resolve yourself, and which needed escalation?",
+          "archetype": "TENSION POINT",
+          "why": "The answer would distinguish your responsibilities on the school help desk."
+        },
+        {
+          "question": "What did you check after imaging a laptop before it was ready for a classroom?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "A concrete check could make the setup bullet more useful."
+        },
+        {
+          "question": "How did you handle a password or account reset in Active Directory from request to completion?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The steps would explain the account support you performed."
+        },
+        {
+          "question": "What devices did you set up at the retail service counter, and what did setup involve?",
+          "archetype": "DOMAIN LIFT",
+          "why": "That detail could connect your retail work more directly to device support."
+        },
+        {
+          "question": "Did you change any part of your laptop setup process during the internship, and what prompted the change?",
+          "archetype": "IMPROVEMENT",
+          "why": "A specific example, if one exists, could add depth without assuming an improvement."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 62
+  },
+  "severity": {
+    "outcome": "added",
+    "reason": "added",
+    "added": [
+      "no_recent_work",
+      "no_evidence_latest_role"
+    ],
+    "promoted": [],
+    "replaced": [
+      1
+    ],
+    "led": "no_recent_work",
+    "skipped": [],
+    "critical_count": 3,
+    "more_critical": false,
+    "validation_attempts": 1,
+    "answer": {
+      "critical_misses": [
+        {
+          "source": "new",
+          "kind": "no_recent_work",
+          "fix": "Add one dated line covering May 2025 to today.",
+          "why": "IT support hiring managers usually look for recent practice. The resume shows an internship ending in May 2025 but doesn't explain the time afterward. Use a dated line such as \"Career break\" or \"Job search and coursework\", and list device setup projects or volunteer help desk work if true.",
+          "excerpt": "January 2025 - May 2025",
+          "section": "Experience",
+          "effort": "quick"
+        },
+        {
+          "source": "new",
+          "kind": "no_evidence_latest_role",
+          "fix": "In the Chattahoochee County Schools laptop bullet, add how many laptops you personally imaged and set up, if you can verify it.",
+          "why": "Desktop support hiring managers often look for the volume of devices or requests someone handled. The internship shows relevant tasks but doesn't show their scale or measurable results.",
+          "excerpt": "- Imaged and set up laptops for classrooms",
+          "section": "Experience",
+          "effort": "moderate"
+        }
+      ],
+      "more_critical": false
+    },
+    "latency_ms": 7054,
+    "call_latency_ms": 6985,
+    "cost_usd": 0.003602,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 62,
+    "score_label": "Needs more context",
+    "score_comment_short": "The support work is relevant, but most bullets stop at task descriptions.",
+    "score_comment_long": "The school help desk internship gives you direct IT support experience. The bullets name the work but rarely explain the problems handled or the steps involved. Add a few concrete examples from the internship first.",
+    "score_plain": "A reviewer can see an entry-level IT background, but may need more detail to compare your hands-on work with a desktop support opening.",
+    "first_impression": "You have a direct route into IT support through a school help desk internship. Classroom laptop imaging is worth keeping because it places your device setup work in a real support environment.",
+    "biggest_gap_example": "\"Answered help desk tickets from teachers and staff\" does not name the issues you handled, so a reviewer cannot tell what kinds of troubleshooting you performed.",
+    "first_impression_takeaway": "Name the ticket issues",
+    "summary": "Your IT Help Desk Intern role connects account support, classroom laptop setup, and requests from school staff. Earlier retail work adds customer-facing device setup to that entry-level IT story. The resume does not yet show what you did when a device or account problem needed troubleshooting, which makes the depth of your support work difficult to assess.",
+    "strengths": [
+      "Active Directory appears in both the skills list and an internship bullet, tying the tool to account work.",
+      "Helping customers choose laptops, printers, and accessories shows experience discussing equipment with users.",
+      "The A.A.S. in Information Technology and CompTIA A+ provide relevant training alongside the internship."
+    ],
+    "gaps": [
+      "The ticket bullet does not distinguish common requests from more complex issues, leaving your troubleshooting experience unclear.",
+      "The classroom laptop bullet does not explain the setup steps you performed after imaging.",
+      "Microsoft 365 administration is listed as a skill without an example of the administrative tasks you performed."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "Add one dated line covering May 2025 to today.",
+        "why": "IT support hiring managers usually look for recent practice. The resume shows an internship ending in May 2025 but doesn't explain the time afterward. Use a dated line such as \"Career break\" or \"Job search and coursework\", and list device setup projects or volunteer help desk work if true.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "January 2025 - May 2025",
+          "section": "Experience"
+        },
+        "impact_level": "high",
+        "effort": "quick",
+        "section_ref": "Experience",
+        "critical": true
+      },
+      {
+        "fix": "In the school help desk ticket bullet, name the types of issues you handled and give an example of how you resolved or escalated one.",
+        "why": "That would show what a teacher or staff member could bring to you for help.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Answered help desk tickets from teachers and staff",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": true
+      },
+      {
+        "fix": "In the Chattahoochee County Schools laptop bullet, add how many laptops you personally imaged and set up, if you can verify it.",
+        "why": "Desktop support hiring managers often look for the volume of devices or requests someone handled. The internship shows relevant tasks but doesn't show their scale or measurable results.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Imaged and set up laptops for classrooms",
+          "section": "Experience"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Experience",
+        "critical": true
+      }
+    ],
+    "more_critical": false,
+    "next_steps": [
+      "Expand the internship bullets with examples of ticket issues, laptop setup steps, and account requests you personally handled.",
+      "Review the retail device-setup bullet and specify the devices and setup tasks you can verify.",
+      "Check the skills list against your experience and adjust the summary to match the desktop support or junior systems jobs you pursue."
+    ],
+    "subscores": {
+      "impact": 55,
+      "clarity": 65,
+      "story": 62,
+      "readability": 70
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "It identifies your help desk background and the types of roles you want.",
+        "missing": "It does not distinguish your school support work from a general IT support description.",
+        "fix": "Add a short reference to classroom laptop setup or Active Directory account support."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The internship and retail roles both include direct work with devices and users.",
+        "missing": "The bullets provide few examples of problems, setup steps, or completed resolutions.",
+        "fix": "Expand selected bullets with the actual work you performed, starting with the internship."
+      },
+      "Skills": {
+        "grade": "C",
+        "priority": "Medium",
+        "working": "Windows, Active Directory, and ticketing systems are relevant to the support direction you name.",
+        "missing": "Several listed skills are not connected to a specific task elsewhere in the resume.",
+        "fix": "Use examples in Experience to substantiate skills you have applied, and narrow any entries that overstate your familiarity."
+      },
+      "Education": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The degree, field, school, and completion date are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 62,
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "School help desk support for teachers and staff",
+        "Classroom laptop imaging and setup",
+        "Active Directory password and account resets",
+        "Customer-facing device setup in retail"
+      ],
+      "underplayed": [
+        "Troubleshooting performed on help desk requests",
+        "Steps involved in preparing classroom laptops",
+        "Practical use of Microsoft 365 administration"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "IT Help Desk Intern"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Entry-level, based on the IT Help Desk Intern title and the support tasks described.",
+        "industry_signals": [
+          "Education"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with the school help desk work and make the device and account tasks more concrete. Keep the retail setup experience as a supporting example of working with customers and devices."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What kinds of ticket issues could you resolve yourself, and which needed escalation?",
+          "archetype": "TENSION POINT",
+          "why": "The answer would distinguish your responsibilities on the school help desk."
+        },
+        {
+          "question": "What did you check after imaging a laptop before it was ready for a classroom?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "A concrete check could make the setup bullet more useful."
+        },
+        {
+          "question": "How did you handle a password or account reset in Active Directory from request to completion?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The steps would explain the account support you performed."
+        },
+        {
+          "question": "What devices did you set up at the retail service counter, and what did setup involve?",
+          "archetype": "DOMAIN LIFT",
+          "why": "That detail could connect your retail work more directly to device support."
+        },
+        {
+          "question": "Did you change any part of your laptop setup process during the internship, and what prompted the change?",
+          "archetype": "IMPROVEMENT",
+          "why": "A specific example, if one exists, could add depth without assuming an improvement."
+        }
+      ]
+    }
+  },
+  "presentation": {
+    "score": 62,
+    "band": "Needs more context",
+    "score_label_from_model": "Needs Clarity",
+    "model_score_before_calibration": 62,
+    "verdict": "You have a direct route into IT support through a school help desk internship. Classroom laptop imaging is worth keeping because it places your device setup work in a real support environment.",
+    "one_line_read": "The support work is relevant, but most bullets stop at task descriptions.",
+    "takeaway": "Name the ticket issues",
+    "biggest_gap_example": "\"Answered help desk tickets from teachers and staff\" does not name the issues you handled, so a reviewer cannot tell what kinds of troubleshooting you performed.",
+    "critical_count": {
+      "count": 3,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "Three Critical Misses. Start with this one.",
+      "lead": "Any one of them could cost you the interview on its own."
+    },
+    "fixes": [
+      {
+        "fix": "Add one dated line covering May 2025 to today.",
+        "why": "IT support hiring managers usually look for recent practice. The resume shows an internship ending in May 2025 but doesn't explain the time afterward. Use a dated line such as \"Career break\" or \"Job search and coursework\", and list device setup projects or volunteer help desk work if true.",
+        "excerpt": "January 2025 - May 2025",
+        "section": "Experience",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the school help desk ticket bullet, name the types of issues you handled and give an example of how you resolved or escalated one.",
+        "why": "That would show what a teacher or staff member could bring to you for help.",
+        "excerpt": "- Answered help desk tickets from teachers and staff",
+        "section": "EXPERIENCE",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the Chattahoochee County Schools laptop bullet, add how many laptops you personally imaged and set up, if you can verify it.",
+        "why": "Desktop support hiring managers often look for the volume of devices or requests someone handled. The internship shows relevant tasks but doesn't show their scale or measurable results.",
+        "excerpt": "- Imaged and set up laptops for classrooms",
+        "section": "Experience",
+        "critical": true,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "Active Directory appears in both the skills list and an internship bullet, tying the tool to account work.",
+    "strengths": [
+      "Active Directory appears in both the skills list and an internship bullet, tying the tool to account work.",
+      "Helping customers choose laptops, printers, and accessories shows experience discussing equipment with users.",
+      "The A.A.S. in Information Technology and CompTIA A+ provide relevant training alongside the internship."
+    ],
+    "gaps": [
+      "The ticket bullet does not distinguish common requests from more complex issues, leaving your troubleshooting experience unclear.",
+      "The classroom laptop bullet does not explain the setup steps you performed after imaging.",
+      "Microsoft 365 administration is listed as a skill without an example of the administrative tasks you performed."
+    ],
+    "next_steps": [
+      "Expand the internship bullets with examples of ticket issues, laptop setup steps, and account requests you personally handled.",
+      "Review the retail device-setup bullet and specify the devices and setup tasks you can verify.",
+      "Check the skills list against your experience and adjust the summary to match the desktop support or junior systems jobs you pursue."
+    ],
+    "seniority_read": "Entry-level, based on the IT Help Desk Intern title and the support tasks described.",
+    "best_fit_roles": [
+      "IT Help Desk Intern"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "Lead with the school help desk work and make the device and account tasks more concrete. Keep the retail setup experience as a supporting example of working with customers and devices.",
+    "severity_added": [
+      "no_recent_work",
+      "no_evidence_latest_role"
+    ],
+    "severity_promoted": [],
+    "severity_outcome": "added (added)",
+    "severity_answer": {
+      "critical_misses": [
+        {
+          "source": "new",
+          "kind": "no_recent_work",
+          "fix": "Add one dated line covering May 2025 to today.",
+          "why": "IT support hiring managers usually look for recent practice. The resume shows an internship ending in May 2025 but doesn't explain the time afterward. Use a dated line such as \"Career break\" or \"Job search and coursework\", and list device setup projects or volunteer help desk work if true.",
+          "excerpt": "January 2025 - May 2025",
+          "section": "Experience",
+          "effort": "quick"
+        },
+        {
+          "source": "new",
+          "kind": "no_evidence_latest_role",
+          "fix": "In the Chattahoochee County Schools laptop bullet, add how many laptops you personally imaged and set up, if you can verify it.",
+          "why": "Desktop support hiring managers often look for the volume of devices or requests someone handled. The internship shows relevant tasks but doesn't show their scale or measurable results.",
+          "excerpt": "- Imaged and set up laptops for classrooms",
+          "section": "Experience",
+          "effort": "moderate"
+        }
+      ],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[0]",
+          "fix": 1
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[1]",
+          "fix": 2
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "biggest_gap_example",
+          "of": "top_fixes[1]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[1]",
+          "of": "top_fixes[2]"
+        }
+      ],
+      "fix_questions": [
+        [],
+        [
+          "What kinds of ticket issues could you resolve yourself, and which needed escalation?"
+        ],
+        [
+          "What did you check after imaging a laptop before it was ready for a classroom?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0150525,
+  "latency_ms": 33216
+}

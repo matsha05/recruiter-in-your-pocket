@@ -1,0 +1,141 @@
+{
+  "batch": "replay_counts",
+  "model": "gpt-6.1-terra",
+  "effort": "medium",
+  "today": "2026-11-05",
+  "budget_usd": 1.5,
+  "spent_usd": 0.2154679,
+  "calls": 24,
+  "runs": [
+    {
+      "stem": "h2_thin_resume__run1",
+      "outcome": "report",
+      "cost_usd": 0.01369955,
+      "score": 64,
+      "band": "Needs more context",
+      "critical": 2,
+      "added": [
+        "no_evidence_latest_role"
+      ],
+      "repaired": false
+    },
+    {
+      "stem": "h2_thin_resume__run2",
+      "outcome": "report",
+      "cost_usd": 0.02302625,
+      "score": 64,
+      "band": "Needs more context",
+      "critical": 2,
+      "added": [
+        "no_evidence_latest_role"
+      ],
+      "repaired": false
+    },
+    {
+      "stem": "h6_unverifiable_claim__run2",
+      "outcome": "report",
+      "cost_usd": 0.01268255,
+      "score": 59,
+      "band": "Needs more context",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "h6_unverifiable_claim__run1",
+      "outcome": "report",
+      "cost_usd": 0.041118,
+      "score": 60,
+      "band": "Needs more context",
+      "critical": 1,
+      "added": [],
+      "repaired": true
+    },
+    {
+      "stem": "h6_unverifiable_claim__run3",
+      "outcome": "report",
+      "cost_usd": 0.0315993,
+      "score": 58,
+      "band": "Needs more context",
+      "critical": 1,
+      "added": [],
+      "repaired": true
+    },
+    {
+      "stem": "b10_it_support_recent_grad__run1",
+      "outcome": "report",
+      "cost_usd": 0.0150525,
+      "score": 62,
+      "band": "Needs more context",
+      "critical": 3,
+      "added": [
+        "no_recent_work",
+        "no_evidence_latest_role"
+      ],
+      "repaired": false
+    },
+    {
+      "stem": "b10_it_support_recent_grad__run2",
+      "outcome": "report",
+      "cost_usd": 0.01447025,
+      "score": 64,
+      "band": "Needs more context",
+      "critical": 3,
+      "added": [
+        "no_recent_work",
+        "no_evidence_latest_role"
+      ],
+      "repaired": false
+    },
+    {
+      "stem": "b11_recent_grad_bad__run1",
+      "outcome": "report",
+      "cost_usd": 0.01570375,
+      "score": 64,
+      "band": "Needs more context",
+      "critical": 3,
+      "added": [
+        "no_recent_work",
+        "no_evidence_latest_role"
+      ],
+      "repaired": false
+    },
+    {
+      "stem": "b39_new_grad_daniel__run1",
+      "outcome": "report",
+      "cost_usd": 0.01718625,
+      "score": 66,
+      "band": "Needs more context",
+      "critical": 2,
+      "added": [
+        "no_evidence_latest_role"
+      ],
+      "repaired": false
+    },
+    {
+      "stem": "b11_recent_grad_bad__run2",
+      "outcome": "report",
+      "cost_usd": 0.01517665,
+      "score": 62,
+      "band": "Needs more context",
+      "critical": 3,
+      "added": [
+        "no_recent_work",
+        "no_evidence_latest_role"
+      ],
+      "repaired": false
+    },
+    {
+      "stem": "b39_new_grad_daniel__run2",
+      "outcome": "report",
+      "cost_usd": 0.01575285,
+      "score": 66,
+      "band": "Needs more context",
+      "critical": 2,
+      "added": [
+        "no_evidence_latest_role"
+      ],
+      "repaired": false
+    }
+  ]
+}

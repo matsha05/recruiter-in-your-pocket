@@ -1,6 +1,6 @@
 # Proposal: not every good bullet needs a number
 
-Status: proposed, not run. November 5, 2026. From [the judgment wave](../../audits/2026-11-judgment-wave.md), which fixed the validator and the severity merge in code and left this as the one item that needs the prompt.
+Status: run November 5, 2026; neither candidate passed the judge gate, nothing shipped ([result](../2026-11-not-every-bullet-needs-a-number-result.md)). Proposed November 5, 2026. From [the judgment wave](../../audits/2026-11-judgment-wave.md), which fixed the validator and the severity merge in code and left this as the one item that needs the prompt.
 
 ## What the saved outputs show
 

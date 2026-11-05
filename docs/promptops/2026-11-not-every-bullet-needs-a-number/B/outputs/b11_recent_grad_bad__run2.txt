@@ -1,0 +1,49 @@
+# b11_recent_grad_bad, run 2
+Resume: ../../../../tests/resumes/countcheck/synth_cc_recent_grad_bad_1.txt (151 words, sha256 b6050d287269)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt e09ca912, severity prompt f1bb4571
+Outcome: report; cost $0.0152; 35.4s
+Case note: First job, weak; count-check key says no_evidence_latest_role, no_recent_work, title_level_mismatch.
+
+## Band: Needs more context (score 62; model wrote 62, label "Needs Clarity")
+## Verdict
+The opening calls you a marketing manager, while the listed marketing role is an internship. The research entry is more concrete: it identifies the farm survey data you cleaned in Stata and the pricing study it supported.
+One-line read: The research work is specific, but the marketing bullets leave key contributions unclear.
+Takeaway: Clarify your marketing role
+Biggest gap example: "Helped with the member newsletter" leaves your contribution unspecified, so a reviewer cannot tell what you worked on.
+
+## Fixes (Three Critical Misses. Start with this one.; lead: "Any one of them could cost you the interview on its own."); severity added (added); added ["no_recent_work","no_evidence_latest_role"]; promoted []
+1. [Critical Miss] Revise the opening to match the work shown, or add the specific credit union campaign and your leadership responsibilities if they accurately reflect your experience.
+   why: The manager description and internship title invite different expectations about what you did.
+   excerpt (Summary): "Marketing manager who has led credit union campaigns from strategy to launch."
+2. [Critical Miss] Add one dated line covering May 2024 to today.
+   why: Marketing hiring managers usually look for recent work or activity that shows current skills. The resume ends with the internship and doesn't explain the time since. A dated line such as "Career break" or "Job search and coursework" can name the period truthfully; list marketing coursework or a personal campaign project only if true.
+   excerpt (Experience): "June 2023 - May 2024"
+3. [Critical Miss] In the Badger State Credit Union marketing internship, add the newsletter audience size or a measurable result from your work, if you can verify it.
+   why: Marketing hiring managers usually look for the reach or results of a candidate's work. The internship lists newsletter, social media and event duties, but doesn't show their scale or a measurable result.
+   excerpt (Experience): "- Helped with the member newsletter"
+Severity check answer: {"critical_misses":[{"source":"new","kind":"no_recent_work","fix":"Add one dated line covering May 2024 to today.","why":"Marketing hiring managers usually look for recent work or activity that shows current skills. The resume ends with the internship and doesn't explain the time since. A dated line such as \"Career break\" or \"Job search and coursework\" can name the period truthfully; list marketing coursework or a personal campaign project only if true.","excerpt":"June 2023 - May 2024","section":"Experience","effort":"quick"},{"source":"new","kind":"no_evidence_latest_role","fix":"In the Badger State Credit Union marketing internship, add the newsletter audience size or a measurable result from your work, if you can verify it.","why":"Marketing hiring managers usually look for the reach or results of a candidate's work. The internship lists newsletter, social media and event duties, but doesn't show their scale or a measurable result.","excerpt":"- Helped with the member newsletter","section":"Experience","effort":"moderate"}],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The credit union role covers member communications, social media and branch events, giving a reviewer several relevant marketing topics.
+Other strengths: ["Your 15 literature summaries on farm subsidies show a defined writing assignment within the research role.","Leading campus tours for groups of up to 25 prospective students gives the public speaking skill a concrete setting."]
+
+## Gaps
+- The opening claims strategy-to-launch campaign leadership, but no experience bullet describes a campaign or your part in it.
+- The social media bullet doesn't identify the content you posted, making the communications work difficult to assess.
+- The branch event bullet doesn't say which planning tasks you supported, so your contribution remains broad.
+
+## Next steps
+- Check the opening against your actual credit union responsibilities and revise it or the experience section accordingly.
+- Expand the newsletter, social media and event bullets with the tasks and examples you can verify.
+- Review the order of your experience and skills against each target role, keeping the Stata study detail visible when research is relevant.
+
+## Role fit
+Level: The listed marketing experience is an internship; the opening's manager-level claim needs supporting detail.
+Best fit: ["Marketing Intern","Research Assistant"]
+Positioning: For marketing roles, lead with the credit union work and explain your contribution to each channel. Keep the survey study visible when a role values research or analysis.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":2},{"kind":"question_dropped","path":"ideas.questions[2]","reason":"duplicates_keep"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[2]","of":"ideas.questions[3]"},{"kind":"repeat_dropped","path":"section_review.Work Experience.missing","of":"top_fixes[2]"}]

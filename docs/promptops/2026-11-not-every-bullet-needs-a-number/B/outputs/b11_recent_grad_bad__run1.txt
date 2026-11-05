@@ -1,0 +1,49 @@
+# b11_recent_grad_bad, run 1
+Resume: ../../../../tests/resumes/countcheck/synth_cc_recent_grad_bad_1.txt (151 words, sha256 b6050d287269)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt e09ca912, severity prompt f1bb4571
+Outcome: report; cost $0.0157; 32.7s
+Case note: First job, weak; count-check key says no_evidence_latest_role, no_recent_work, title_level_mismatch.
+
+## Band: Needs more context (score 64; model wrote 64, label "Needs Clarity")
+## Verdict
+The opening presents you as a marketing manager, while the listed credit union position is an internship. The research entry is more detailed than the marketing entry.
+One-line read: The research work is specific, but the marketing bullets need more detail.
+Takeaway: Clarify the manager claim
+Biggest gap example: "Helped with the member newsletter" does not say what you contributed, so a reviewer cannot tell what part of the publication you handled.
+
+## Fixes (Three Critical Misses. Start with this one.; lead: "Any one of them could cost you the interview on its own."); severity added (added); added ["no_recent_work","no_evidence_latest_role"]; promoted []
+1. [Critical Miss] In the opening summary, verify the manager title and campaign leadership against your actual work; otherwise describe your credit union internship and contributions.
+   why: The current opening sets an expectation that the listed role and bullets do not explain.
+   excerpt (Summary): "No summary section present"
+2. [Critical Miss] Add one dated line covering May 2024 to today.
+   why: Marketing hiring managers usually look for recent activity that shows current skills. The resume ends with the credit union internship; a dated line such as "Career break" or "Job search and coursework" can name the period truthfully. List freelance campaigns or marketing coursework if true.
+   excerpt (Experience): "June 2023 - May 2024"
+3. [Critical Miss] In the Badger State Credit Union internship, add the volume of newsletter or social media work you handled or a measurable result, if you can verify it.
+   why: Marketing hiring managers look for the scale or results of a candidate's work. The internship shows newsletter, social media and event support, but not how much work you handled or what it achieved.
+   excerpt (Experience): "- Helped with the member newsletter"
+Severity check answer: {"critical_misses":[{"source":"new","kind":"no_recent_work","fix":"Add one dated line covering May 2024 to today.","why":"Marketing hiring managers usually look for recent activity that shows current skills. The resume ends with the credit union internship; a dated line such as \"Career break\" or \"Job search and coursework\" can name the period truthfully. List freelance campaigns or marketing coursework if true.","excerpt":"June 2023 - May 2024","section":"Experience","effort":"quick"},{"source":"new","kind":"no_evidence_latest_role","fix":"In the Badger State Credit Union internship, add the volume of newsletter or social media work you handled or a measurable result, if you can verify it.","why":"Marketing hiring managers look for the scale or results of a candidate's work. The internship shows newsletter, social media and event support, but not how much work you handled or what it achieved.","excerpt":"- Helped with the member newsletter","section":"Experience","effort":"moderate"}],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+Posting to credit union social media accounts places you in a member-facing marketing channel.
+Other strengths: ["Writing 15 literature summaries on farm subsidies shows a defined research deliverable.","Leading tours for groups of up to 25 prospective students adds a concrete public-speaking example."]
+
+## Gaps
+- The summary says you led campaigns from strategy to launch, but the experience section does not describe that leadership or a campaign.
+- The branch event bullet does not explain which planning tasks you supported, making your contribution difficult to distinguish.
+- No activity after May 2024 is listed, so a reviewer may wonder what you have done since the internship ended.
+
+## Next steps
+- Check the opening claim against your actual titles and campaign responsibilities, then revise it.
+- Expand the credit union bullets with the newsletter, post, and event tasks you can describe accurately.
+- Add any real work, course, project, or current activity since May 2024 that helps explain your recent path.
+
+## Role fit
+Level: The listed marketing experience is an internship; the manager claim needs supporting detail before its level can be assessed.
+Best fit: ["Marketing Intern","Research Assistant"]
+Positioning: Lead with the credit union work if you are targeting marketing roles, and describe the actual tasks behind each channel. Keep the Stata study as an analytical example rather than implying it was a marketing campaign.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[0]","line":"fix-2","criticalMiss":true},{"kind":"repeat_dropped","path":"gaps[2]","of":"top_fixes[1]"},{"kind":"question_moved","path":"ideas.questions[1]","fix":2},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"ideas.questions[2]"},{"kind":"repeat_dropped","path":"section_review.Work Experience.missing","of":"first_impression"},{"kind":"repeat_dropped","path":"section_review.Work Experience.fix","of":"top_fixes[2]"}]

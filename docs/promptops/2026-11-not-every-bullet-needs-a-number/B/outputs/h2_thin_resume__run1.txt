@@ -1,0 +1,49 @@
+# h2_thin_resume, run 1
+Resume: ../../../audits/2026-11-live-judgment/resumes/h2_thin_resume.txt (126 words, sha256 0ae65e2abcb5)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt e09ca912, severity prompt f1bb4571
+Outcome: report; cost $0.0137; 30.8s
+Case note: Student: one internship, coursework, a club.
+
+## Band: Needs more context (score 64; model wrote 64, label "Needs Clarity")
+## Verdict
+Your credit union internship puts Excel, SQL, and Tableau in a work setting rather than only a skills list. The dashboard's marketing audience is worth keeping because it gives the work a clear recipient.
+One-line read: The internship names relevant tools, but most bullets leave the work unexplained.
+Takeaway: Name the dashboard's subject
+Biggest gap example: "Presented findings to the team at the end of the internship" does not say what you found, so a reviewer cannot tell what analysis you communicated.
+
+## Fixes (Two Critical Misses. Start with this one.; lead: "Either one could cost you the interview on its own."); severity added (added); added ["no_evidence_latest_role"]; promoted []
+1. [Critical Miss] In the Tableau dashboard bullet, name what the dashboard displayed and, if known, how the marketing team used it.
+   why: The audience is clear, but the dashboard's contents would show what information you made available.
+   excerpt (EXPERIENCE): "- Built a dashboard in Tableau for the marketing team"
+2. [Critical Miss] In the Great Lakes Credit Union internship, add how many survey records you cleaned, if you can verify it.
+   why: Hiring managers for data roles often look for the scale or results of recent work. The internship shows the tools and tasks you used, but not the volume you handled or a measurable result.
+   excerpt (Experience): "- Cleaned member survey data in Excel and SQL"
+3. [fix] In the weekly reporting bullet, identify the report's subject and the part you assisted with.
+   why: That distinction preserves your support role while showing what you contributed to the report.
+   excerpt (EXPERIENCE): "- Assisted the analytics team with weekly reporting"
+Severity check answer: {"critical_misses":[{"source":"new","kind":"no_evidence_latest_role","fix":"In the Great Lakes Credit Union internship, add how many survey records you cleaned, if you can verify it.","why":"Hiring managers for data roles often look for the scale or results of recent work. The internship shows the tools and tasks you used, but not the volume you handled or a measurable result.","excerpt":"- Cleaned member survey data in Excel and SQL","section":"Experience","effort":"quick"}],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+Cleaning member survey data in both Excel and SQL connects named tools to a specific data source.
+Other strengths: ["Weekly reporting shows a recurring responsibility rather than a one-time task.","Managing the Michigan Data Science Club budget and reimbursements adds financial administration experience outside the internship."]
+
+## Gaps
+- The survey bullet does not say what data issues you addressed, so the cleaning work is difficult to distinguish from a routine description.
+- The presentation does not identify a finding or its topic, leaving your analytical communication mostly unexplained.
+- The club budget entry does not describe the types of spending or reimbursement decisions you handled, which limits the picture of your treasurer responsibilities.
+
+## Next steps
+- Revise the internship bullets with the report subject, dashboard contents, and a survey cleaning example you can verify.
+- Add a finding or topic to the presentation bullet and describe a spending or reimbursement responsibility in the treasurer entry.
+- Reorder the revised internship bullets so the most relevant work appears first for each role you pursue.
+
+## Role fit
+Level: Entry-level, based on the recent internship and expected degree completion.
+Best fit: ["Data Analytics Intern"]
+Positioning: Keep the analytics internship prominent when applying for similar roles. Use the dashboard, survey, and reporting bullets to explain what you worked on, rather than relying on the skills list alone.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[0]","line":"fix-1","criticalMiss":true},{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":1},{"kind":"question_moved","path":"ideas.questions[2]","fix":2},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"ideas.questions[3]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"gaps[2]","of":"ideas.questions[4]"}]

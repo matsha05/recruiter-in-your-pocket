@@ -1,0 +1,49 @@
+# b10_it_support_recent_grad, run 1
+Resume: ../../../../tests/resumes/blindpick/synth_bp_it_support_recent_grad_1.txt (119 words, sha256 6aac1aade9d7)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt ac4bb5a1
+Outcome: report; cost $0.0143; 29.3s
+Case note: First job.
+
+## Band: Needs more context (score 62; model wrote 62, label "Needs Clarity")
+## Verdict
+Your help desk internship and CompTIA A+ point quickly to entry-level IT support. The retail device setup also belongs in the story, though the experience bullets are brief.
+One-line read: The internship shows relevant support work, but most bullets stop at the task.
+Takeaway: Name the ticket issues
+Biggest gap example: "Answered help desk tickets from teachers and staff" doesn't name the issues you handled, so a reviewer can't tell what troubleshooting you did.
+
+## Fixes (Two Critical Misses. Start with this one.; lead: "Either one could cost you the interview on its own."); severity added (added); added ["no_recent_work"]; promoted []
+1. [Critical Miss] Add one dated line covering May 2025 to today.
+   why: Desktop support reviewers look for current technical activity, but the resume doesn't show recent work in the field. Use a dated line such as "Career break" or "Job search and coursework" if accurate. Add desktop troubleshooting projects or IT volunteer work if true.
+   excerpt (Experience): "January 2025 - May 2025"
+2. [Critical Miss] In the school help desk ticket bullet, name a representative issue you handled and the troubleshooting steps you took.
+   why: A concrete request would let a reviewer understand what answering a ticket involved.
+   excerpt (EXPERIENCE): "- Answered help desk tickets from teachers and staff"
+3. [fix] In the classroom laptop bullet, describe the imaging or setup steps you personally performed.
+   why: That detail would distinguish preparing a device from handing out a finished laptop.
+   excerpt (EXPERIENCE): "- Imaged and set up laptops for classrooms"
+Severity check answer: {"critical_misses":[{"source":"new","kind":"no_recent_work","fix":"Add one dated line covering May 2025 to today.","why":"Desktop support reviewers look for current technical activity, but the resume doesn't show recent work in the field. Use a dated line such as \"Career break\" or \"Job search and coursework\" if accurate. Add desktop troubleshooting projects or IT volunteer work if true.","excerpt":"January 2025 - May 2025","section":"Experience","effort":"quick"}],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The classroom laptop bullet shows work with devices in an education setting, not just a list of technical skills.
+Other strengths: ["The retail role pairs customer guidance on laptops, printers and accessories with device setup at the service counter.","The information technology degree and CompTIA A+ are easy to locate and support your stated direction."]
+
+## Gaps
+- The ticket bullet doesn't identify the kinds of problems you worked on or when you needed to escalate them.
+- The imaging bullet leaves the laptop preparation steps unspecified, making the extent of that work difficult to compare with a role's requirements.
+- Microsoft 365 administration appears in skills without an example of how you used it, so its connection to your experience is unclear.
+
+## Next steps
+- Revise the internship bullets using specific ticket and laptop setup examples you can verify.
+- Review the skills list against your hands-on work and adjust any wording that overstates what you did.
+- Update the opening sentence to reflect the support tasks you want a reviewer to notice first.
+
+## Role fit
+Level: Entry-level, based on the recent IT Help Desk Intern title and stated target.
+Best fit: ["IT Help Desk Intern"]
+Positioning: Keep the school internship at the center of your IT support story. Use the retail role to show how you worked with customers and devices, without presenting it as a help desk position.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":1},{"kind":"question_moved","path":"ideas.questions[1]","fix":2},{"kind":"question_dropped","path":"ideas.questions[3]","reason":"duplicates_keep"},{"kind":"question_moved","path":"ideas.questions[4]","fix":2},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"section_review.Summary.fix","of":"first_impression"},{"kind":"repeat_dropped","path":"section_review.Skills.missing","of":"gaps[2]"}]

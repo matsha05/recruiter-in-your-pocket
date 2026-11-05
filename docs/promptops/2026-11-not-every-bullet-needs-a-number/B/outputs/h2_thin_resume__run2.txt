@@ -1,0 +1,46 @@
+# h2_thin_resume, run 2
+Resume: ../../../audits/2026-11-live-judgment/resumes/h2_thin_resume.txt (126 words, sha256 0ae65e2abcb5)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt e09ca912, severity prompt f1bb4571
+Outcome: report; cost $0.0230; 31.6s
+Case note: Student: one internship, coursework, a club.
+
+## Band: Needs more context (score 64; model wrote 64, label "Needs Clarity")
+## Verdict
+Your analytics internship is easy to spot, with Excel, SQL, and Tableau named in the work. The dashboard's marketing audience is worth keeping because it shows who the work was for.
+One-line read: The internship shows relevant tools, but most bullets leave the work unexplained.
+Takeaway: Explain the dashboard's contents
+Biggest gap example: "Presented findings to the team at the end of the internship" does not say what you found, so a reviewer cannot tell what you learned from the analysis.
+
+## Fixes (Two Critical Misses. Start with this one.; lead: "Either one could cost you the interview on its own."); severity added (added); added ["no_evidence_latest_role"]; promoted []
+1. [Critical Miss] In the Tableau dashboard bullet, name what the dashboard displayed and how the marketing team used it, if known.
+   why: That would turn a tool and audience into a clearer picture of the work you built.
+   excerpt (EXPERIENCE): "- Built a dashboard in Tableau for the marketing team"
+2. [Critical Miss] In the Great Lakes Credit Union internship, add how many member survey records you cleaned, if you can verify it.
+   why: Analytics hiring managers often look for the scale of an intern's work. The internship lists reporting, data cleaning and a dashboard, but doesn't show the volume handled or a measurable result.
+   excerpt (Experience): "- Cleaned member survey data in Excel and SQL"
+Severity check answer: {"critical_misses":[{"source":"new","kind":"no_evidence_latest_role","fix":"In the Great Lakes Credit Union internship, add how many member survey records you cleaned, if you can verify it.","why":"Analytics hiring managers often look for the scale of an intern's work. The internship lists reporting, data cleaning and a dashboard, but doesn't show the volume handled or a measurable result.","excerpt":"- Cleaned member survey data in Excel and SQL","section":"Experience","effort":"quick"}],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The survey bullet names both Excel and SQL, connecting those skills to a concrete data-cleaning assignment.
+Other strengths: ["Weekly reporting gives a reader a sense of the recurring work you assisted with during the internship.","The treasurer role adds budget and reimbursement responsibilities alongside your analytics work."]
+
+## Gaps
+- The Tableau bullet doesn't say what the dashboard displayed, leaving its usefulness to marketing unclear.
+- The survey bullet doesn't describe the data issues you handled or the cleaning steps you took, so your technical contribution is difficult to assess.
+- The treasurer entry doesn't explain what you can decide about the budget or reimbursements, leaving the limits of that responsibility unclear.
+
+## Next steps
+- Revise the dashboard and survey bullets using details you can verify from the internship.
+- Add the subject and a finding to the presentation bullet, then check whether the weekly reporting bullet can name its contents.
+- Review the treasurer entry for a specific budget or reimbursement responsibility you can describe.
+
+## Role fit
+Level: Student with internship-level analytics experience.
+Best fit: ["Data Analytics Intern"]
+Positioning: Keep the analytics internship prominent for similar internship applications. Use the dashboard, survey, and presentation bullets to show the subjects you worked on, not just the tools you used.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[0]","line":"fix-1","criticalMiss":true},{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":1},{"kind":"question_dropped","path":"ideas.questions[2]","reason":"duplicates_keep"},{"kind":"question_dropped","path":"ideas.questions[4]","reason":"duplicates_keep"},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"ideas.questions[3]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[1]"}]

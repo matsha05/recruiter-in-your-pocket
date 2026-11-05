@@ -1,0 +1,711 @@
+{
+  "case_id": "b39_new_grad_daniel",
+  "batch": "replay_counts",
+  "run": 2,
+  "note": "New grad (bar persona).",
+  "resume_file": "../../../../docs/design/2026-11-bar/resumes/1-new-grad-daniel.txt",
+  "resume_sha256": "3462ee9e636e4d3adb7f5bdb87556bed636cfcf821f42734052695585a62cb5d",
+  "resume_chars": 2517,
+  "resume_words": 354,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T23:24:48.822Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 8271,
+        "completion_tokens": 2438,
+        "total_tokens": 10709,
+        "cached_prompt_tokens": 8268,
+        "cache_write_prompt_tokens": 0,
+        "reasoning_tokens": 476
+      },
+      "cost_usd": 0.0126064,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 28426
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.00246005,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1633
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "ac4bb5a15ca2e5b308bcc995a4c255623dfa20e3fd064ba124ef57c335630f22",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 68,
+    "score_label": "Needs Clarity",
+    "score_comment_short": "Your projects show practical development, but the internship bullets leave key work unspecified.",
+    "score_comment_long": "BuckeyeBites names a useful set of features and technologies. The Cardinal Health internship identifies the application and stack, but not the features you developed or problems you solved. Adding a concrete example from that work would make the fastest difference.",
+    "score_plain": "A reviewer can see an entry-level software engineering direction and relevant hands-on work. The resume gives them less to assess about your individual technical choices.",
+    "first_impression": "You have a computer science degree, a software engineering internship, and several projects. BuckeyeBites stands out because it names both user-facing features and the stack. The internship description is less specific about what you built.",
+    "biggest_gap_example": "\"Collaborated with cross-functional teams to gather requirements and deliver solutions\" doesn't identify a requirement or solution, so a reviewer can't see what you contributed.",
+    "first_impression_takeaway": "Name your internship features",
+    "summary": "Your Cardinal Health internship places you on an internal inventory application using React and Spring Boot. Alongside the campus food-ordering capstone, it points toward entry-level software engineering work with both front-end and back-end exposure. The capstone's authentication and shopping cart are worth keeping because they make the application more tangible. A reviewer may still wonder what you personally developed at Cardinal Health, making the internship harder to assess than the projects.",
+    "strengths": [
+      "The internship names an internal inventory application and its React and Spring Boot stack, giving the work a technical setting.",
+      "The finance tracker pairs Python and matplotlib with SQLite, showing a different application and storage approach from BuckeyeBites.",
+      "The help desk role connects student and faculty support with documented solutions, showing experience responding to users' technical issues."
+    ],
+    "gaps": [
+      "The internship doesn't identify an inventory feature or bug, leaving the actual engineering work difficult to distinguish.",
+      "The unit-test bullet names an intended purpose but not what the tests covered, so the reader can't judge their technical focus.",
+      "The capstone lists authentication and a cart but doesn't explain how either was implemented, leaving your technical choices unclear."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the Cardinal Health inventory application bullet, name a feature you developed and what it allowed users to do.",
+        "why": "A specific feature would give the reader something concrete to assess beyond the application name and stack.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Responsible for developing features for an internal inventory management web application using React and Spring Boot",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the internship unit-test bullet, identify the behavior or component you tested and an example case.",
+        "why": "That would show what your tests checked without assuming they produced a measured improvement.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Wrote unit tests to improve code quality and reliability",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the BuckeyeBites feature bullet, explain one implementation choice you made for authentication or the shopping cart.",
+        "why": "The existing feature list describes what the app does; an implementation detail would show more of your engineering work.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Implemented user authentication and a shopping cart feature",
+          "section": "PROJECTS"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "PROJECTS"
+      }
+    ],
+    "next_steps": [
+      "Revise the Cardinal Health bullets with a verified feature example and a test case.",
+      "Expand the BuckeyeBites feature description with a technical choice you can explain.",
+      "Replace the generic objective with a brief statement connecting your software engineering target to the internship and projects."
+    ],
+    "subscores": {
+      "impact": 59,
+      "clarity": 70,
+      "story": 70,
+      "readability": 74
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "C",
+        "priority": "Medium",
+        "working": "The objective names Software Engineer as your target.",
+        "missing": "It doesn't distinguish your application work from a generic graduate objective.",
+        "fix": "Replace general traits with a brief reference to your internship and full-stack projects."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The internship names the inventory application and its React and Spring Boot stack.",
+        "missing": "The feature, testing, requirements, and bug-fixing bullets leave the specific work largely undescribed.",
+        "fix": "Use concrete examples from the internship in place of broad activity statements where you can verify them."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "Languages and frameworks are separated, and React, Spring Boot, Python, and MongoDB also appear in project or internship descriptions.",
+        "missing": "Some listed tools, including Docker and Jenkins, aren't connected to a named project or role.",
+        "fix": "Connect listed tools to existing work where you actually used them, and trim the generic soft-skills list if space is needed."
+      },
+      "Education": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The degree, school, graduation date, GPA, and relevant coursework are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Software development on an internal inventory application",
+        "Full-stack campus food-ordering project",
+        "Python application development with data visualization",
+        "Technical support for students and faculty"
+      ],
+      "underplayed": [
+        "Specific features developed during the Cardinal Health internship",
+        "Unit-test cases and the application behavior they covered",
+        "Implementation choices behind BuckeyeBites authentication and shopping cart"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Software Engineer"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Entry-level software engineer, supported by a recent degree, an internship, and project work.",
+        "industry_signals": [
+          "Healthcare through Cardinal Health",
+          "Higher education through Ohio State and campus projects"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Lead with the software engineering internship and use BuckeyeBites to show additional full-stack work. Make your individual technical contributions more concrete before tailoring the resume to a particular posting."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "Which inventory feature did you develop, and what could a user do with it?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "This could turn the broad internship feature statement into a concrete example."
+        },
+        {
+          "question": "What behavior did your unit tests cover, and which case was important to check?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "A test case would show the technical focus without assuming a quality improvement."
+        },
+        {
+          "question": "Which requirement did you gather with another team, and what did you contribute to the solution?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "An example would make the collaboration bullet more specific while preserving your stated contribution."
+        },
+        {
+          "question": "How did you implement authentication or the shopping cart in BuckeyeBites?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The answer could add a technical choice to a project that already names its features."
+        },
+        {
+          "question": "What kind of bug did you fix at Cardinal Health, and how did you identify the problem?",
+          "archetype": "IMPROVEMENT",
+          "why": "A debugging example could replace a broad activity statement with a clear account of your work."
+        }
+      ]
+    }
+  },
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 68,
+    "score_label": "Needs more context",
+    "score_comment_short": "Your projects show practical development, but the internship bullets leave key work unspecified.",
+    "score_comment_long": "BuckeyeBites names a useful set of features and technologies. The Cardinal Health internship identifies the application and stack, but not the features you developed or problems you solved. Adding a concrete example from that work would make the fastest difference.",
+    "score_plain": "A reviewer can see an entry-level software engineering direction and relevant hands-on work. The resume gives them less to assess about your individual technical choices.",
+    "first_impression": "You have a computer science degree, a software engineering internship, and several projects. BuckeyeBites stands out because it names both user-facing features and the stack. The internship description is less specific about what you built.",
+    "biggest_gap_example": "\"Collaborated with cross-functional teams to gather requirements and deliver solutions\" doesn't identify a requirement or solution, so a reviewer can't see what you contributed.",
+    "first_impression_takeaway": "Name your internship features",
+    "summary": "Your Cardinal Health internship places you on an internal inventory application using React and Spring Boot. Alongside the campus food-ordering capstone, it points toward entry-level software engineering work with both front-end and back-end exposure. The capstone's authentication and shopping cart are worth keeping because they make the application more tangible. A reviewer may still wonder what you personally developed at Cardinal Health, making the internship harder to assess than the projects.",
+    "strengths": [
+      "The internship names an internal inventory application and its React and Spring Boot stack, giving the work a technical setting.",
+      "The finance tracker pairs Python and matplotlib with SQLite, showing a different application and storage approach from BuckeyeBites.",
+      "The help desk role connects student and faculty support with documented solutions, showing experience responding to users' technical issues."
+    ],
+    "gaps": [
+      "The internship doesn't identify an inventory feature or bug, leaving the actual engineering work difficult to distinguish.",
+      "The unit-test bullet names an intended purpose but not what the tests covered, so the reader can't judge their technical focus.",
+      "The capstone lists authentication and a cart but doesn't explain how either was implemented, leaving your technical choices unclear."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the Cardinal Health inventory application bullet, name a feature you developed and what it allowed users to do.",
+        "why": "A specific feature would give the reader something concrete to assess beyond the application name and stack.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Responsible for developing features for an internal inventory management web application using React and Spring Boot",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the internship unit-test bullet, identify the behavior or component you tested and an example case.",
+        "why": "That would show what your tests checked without assuming they produced a measured improvement.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Wrote unit tests to improve code quality and reliability",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the BuckeyeBites feature bullet, explain one implementation choice you made for authentication or the shopping cart.",
+        "why": "The existing feature list describes what the app does; an implementation detail would show more of your engineering work.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Implemented user authentication and a shopping cart feature",
+          "section": "PROJECTS"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "PROJECTS"
+      }
+    ],
+    "next_steps": [
+      "Revise the Cardinal Health bullets with a verified feature example and a test case.",
+      "Expand the BuckeyeBites feature description with a technical choice you can explain.",
+      "Replace the generic objective with a brief statement connecting your software engineering target to the internship and projects."
+    ],
+    "subscores": {
+      "impact": 59,
+      "clarity": 70,
+      "story": 70,
+      "readability": 74
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "C",
+        "priority": "Medium",
+        "working": "The objective names Software Engineer as your target.",
+        "missing": "It doesn't distinguish your application work from a generic graduate objective.",
+        "fix": "Replace general traits with a brief reference to your internship and full-stack projects."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The internship names the inventory application and its React and Spring Boot stack.",
+        "missing": "The feature, testing, requirements, and bug-fixing bullets leave the specific work largely undescribed.",
+        "fix": "Use concrete examples from the internship in place of broad activity statements where you can verify them."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "Languages and frameworks are separated, and React, Spring Boot, Python, and MongoDB also appear in project or internship descriptions.",
+        "missing": "Some listed tools, including Docker and Jenkins, aren't connected to a named project or role.",
+        "fix": "Connect listed tools to existing work where you actually used them, and trim the generic soft-skills list if space is needed."
+      },
+      "Education": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The degree, school, graduation date, GPA, and relevant coursework are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Software development on an internal inventory application",
+        "Full-stack campus food-ordering project",
+        "Python application development with data visualization",
+        "Technical support for students and faculty"
+      ],
+      "underplayed": [
+        "Specific features developed during the Cardinal Health internship",
+        "Unit-test cases and the application behavior they covered",
+        "Implementation choices behind BuckeyeBites authentication and shopping cart"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Software Engineer"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Entry-level software engineer, supported by a recent degree, an internship, and project work.",
+        "industry_signals": [],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with the software engineering internship and use BuckeyeBites to show additional full-stack work. Make your individual technical contributions more concrete before tailoring the resume to a particular posting."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "Which inventory feature did you develop, and what could a user do with it?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "This could turn the broad internship feature statement into a concrete example."
+        },
+        {
+          "question": "What behavior did your unit tests cover, and which case was important to check?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "A test case would show the technical focus without assuming a quality improvement."
+        },
+        {
+          "question": "Which requirement did you gather with another team, and what did you contribute to the solution?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "An example would make the collaboration bullet more specific while preserving your stated contribution."
+        },
+        {
+          "question": "How did you implement authentication or the shopping cart in BuckeyeBites?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The answer could add a technical choice to a project that already names its features."
+        },
+        {
+          "question": "What kind of bug did you fix at Cardinal Health, and how did you identify the problem?",
+          "archetype": "IMPROVEMENT",
+          "why": "A debugging example could replace a broad activity statement with a clear account of your work."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 68
+  },
+  "severity": {
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "promoted": [],
+    "replaced": [],
+    "led": null,
+    "skipped": [],
+    "critical_count": 1,
+    "more_critical": false,
+    "validation_attempts": 0,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "latency_ms": 1635,
+    "call_latency_ms": 1633,
+    "cost_usd": 0.00246005,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:ac4bb5a1"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 68,
+    "score_label": "Needs more context",
+    "score_comment_short": "Your projects show practical development, but the internship bullets leave key work unspecified.",
+    "score_comment_long": "BuckeyeBites names a useful set of features and technologies. The Cardinal Health internship identifies the application and stack, but not the features you developed or problems you solved. Adding a concrete example from that work would make the fastest difference.",
+    "score_plain": "A reviewer can see an entry-level software engineering direction and relevant hands-on work. The resume gives them less to assess about your individual technical choices.",
+    "first_impression": "You have a computer science degree, a software engineering internship, and several projects. BuckeyeBites stands out because it names both user-facing features and the stack. The internship description is less specific about what you built.",
+    "biggest_gap_example": "\"Collaborated with cross-functional teams to gather requirements and deliver solutions\" doesn't identify a requirement or solution, so a reviewer can't see what you contributed.",
+    "first_impression_takeaway": "Name your internship features",
+    "summary": "Your Cardinal Health internship places you on an internal inventory application using React and Spring Boot. Alongside the campus food-ordering capstone, it points toward entry-level software engineering work with both front-end and back-end exposure. The capstone's authentication and shopping cart are worth keeping because they make the application more tangible. A reviewer may still wonder what you personally developed at Cardinal Health, making the internship harder to assess than the projects.",
+    "strengths": [
+      "The internship names an internal inventory application and its React and Spring Boot stack, giving the work a technical setting.",
+      "The finance tracker pairs Python and matplotlib with SQLite, showing a different application and storage approach from BuckeyeBites.",
+      "The help desk role connects student and faculty support with documented solutions, showing experience responding to users' technical issues."
+    ],
+    "gaps": [
+      "The internship doesn't identify an inventory feature or bug, leaving the actual engineering work difficult to distinguish.",
+      "The unit-test bullet names an intended purpose but not what the tests covered, so the reader can't judge their technical focus.",
+      "The capstone lists authentication and a cart but doesn't explain how either was implemented, leaving your technical choices unclear."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the Cardinal Health inventory application bullet, name a feature you developed and what it allowed users to do.",
+        "why": "A specific feature would give the reader something concrete to assess beyond the application name and stack.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Responsible for developing features for an internal inventory management web application using React and Spring Boot",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": true
+      },
+      {
+        "fix": "In the internship unit-test bullet, identify the behavior or component you tested and an example case.",
+        "why": "That would show what your tests checked without assuming they produced a measured improvement.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Wrote unit tests to improve code quality and reliability",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      },
+      {
+        "fix": "In the BuckeyeBites feature bullet, explain one implementation choice you made for authentication or the shopping cart.",
+        "why": "The existing feature list describes what the app does; an implementation detail would show more of your engineering work.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Implemented user authentication and a shopping cart feature",
+          "section": "PROJECTS"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "PROJECTS",
+        "critical": false
+      }
+    ],
+    "next_steps": [
+      "Revise the Cardinal Health bullets with a verified feature example and a test case.",
+      "Expand the BuckeyeBites feature description with a technical choice you can explain.",
+      "Replace the generic objective with a brief statement connecting your software engineering target to the internship and projects."
+    ],
+    "subscores": {
+      "impact": 59,
+      "clarity": 70,
+      "story": 70,
+      "readability": 74
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "C",
+        "priority": "Medium",
+        "working": "The objective names Software Engineer as your target.",
+        "missing": "It doesn't distinguish your application work from a generic graduate objective.",
+        "fix": "Replace general traits with a brief reference to your internship and full-stack projects."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The internship names the inventory application and its React and Spring Boot stack.",
+        "missing": "The feature, testing, requirements, and bug-fixing bullets leave the specific work largely undescribed.",
+        "fix": "Use concrete examples from the internship in place of broad activity statements where you can verify them."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "Languages and frameworks are separated, and React, Spring Boot, Python, and MongoDB also appear in project or internship descriptions.",
+        "missing": "Some listed tools, including Docker and Jenkins, aren't connected to a named project or role.",
+        "fix": "Connect listed tools to existing work where you actually used them, and trim the generic soft-skills list if space is needed."
+      },
+      "Education": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The degree, school, graduation date, GPA, and relevant coursework are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Software development on an internal inventory application",
+        "Full-stack campus food-ordering project",
+        "Python application development with data visualization",
+        "Technical support for students and faculty"
+      ],
+      "underplayed": [
+        "Specific features developed during the Cardinal Health internship",
+        "Unit-test cases and the application behavior they covered",
+        "Implementation choices behind BuckeyeBites authentication and shopping cart"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Software Engineer"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Entry-level software engineer, supported by a recent degree, an internship, and project work.",
+        "industry_signals": [],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with the software engineering internship and use BuckeyeBites to show additional full-stack work. Make your individual technical contributions more concrete before tailoring the resume to a particular posting."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "Which inventory feature did you develop, and what could a user do with it?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "This could turn the broad internship feature statement into a concrete example."
+        },
+        {
+          "question": "What behavior did your unit tests cover, and which case was important to check?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "A test case would show the technical focus without assuming a quality improvement."
+        },
+        {
+          "question": "Which requirement did you gather with another team, and what did you contribute to the solution?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "An example would make the collaboration bullet more specific while preserving your stated contribution."
+        },
+        {
+          "question": "How did you implement authentication or the shopping cart in BuckeyeBites?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The answer could add a technical choice to a project that already names its features."
+        },
+        {
+          "question": "What kind of bug did you fix at Cardinal Health, and how did you identify the problem?",
+          "archetype": "IMPROVEMENT",
+          "why": "A debugging example could replace a broad activity statement with a clear account of your work."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 68,
+    "more_critical": false
+  },
+  "presentation": {
+    "score": 68,
+    "band": "Needs more context",
+    "score_label_from_model": "Needs Clarity",
+    "model_score_before_calibration": 68,
+    "verdict": "You have a computer science degree, a software engineering internship, and several projects. BuckeyeBites stands out because it names both user-facing features and the stack. The internship description is less specific about what you built.",
+    "one_line_read": "Your projects show practical development, but the internship bullets leave key work unspecified.",
+    "takeaway": "Name your internship features",
+    "biggest_gap_example": "\"Collaborated with cross-functional teams to gather requirements and deliver solutions\" doesn't identify a requirement or solution, so a reviewer can't see what you contributed.",
+    "critical_count": {
+      "count": 1,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "One Critical Miss. Fix it first.",
+      "lead": "It's the one most likely to cost you the interview."
+    },
+    "fixes": [
+      {
+        "fix": "In the Cardinal Health inventory application bullet, name a feature you developed and what it allowed users to do.",
+        "why": "A specific feature would give the reader something concrete to assess beyond the application name and stack.",
+        "excerpt": "- Responsible for developing features for an internal inventory management web application using React and Spring Boot",
+        "section": "EXPERIENCE",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the internship unit-test bullet, identify the behavior or component you tested and an example case.",
+        "why": "That would show what your tests checked without assuming they produced a measured improvement.",
+        "excerpt": "- Wrote unit tests to improve code quality and reliability",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the BuckeyeBites feature bullet, explain one implementation choice you made for authentication or the shopping cart.",
+        "why": "The existing feature list describes what the app does; an implementation detail would show more of your engineering work.",
+        "excerpt": "- Implemented user authentication and a shopping cart feature",
+        "section": "PROJECTS",
+        "critical": false,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "The internship names an internal inventory application and its React and Spring Boot stack, giving the work a technical setting.",
+    "strengths": [
+      "The internship names an internal inventory application and its React and Spring Boot stack, giving the work a technical setting.",
+      "The finance tracker pairs Python and matplotlib with SQLite, showing a different application and storage approach from BuckeyeBites.",
+      "The help desk role connects student and faculty support with documented solutions, showing experience responding to users' technical issues."
+    ],
+    "gaps": [
+      "The internship doesn't identify an inventory feature or bug, leaving the actual engineering work difficult to distinguish.",
+      "The unit-test bullet names an intended purpose but not what the tests covered, so the reader can't judge their technical focus.",
+      "The capstone lists authentication and a cart but doesn't explain how either was implemented, leaving your technical choices unclear."
+    ],
+    "next_steps": [
+      "Revise the Cardinal Health bullets with a verified feature example and a test case.",
+      "Expand the BuckeyeBites feature description with a technical choice you can explain.",
+      "Replace the generic objective with a brief statement connecting your software engineering target to the internship and projects."
+    ],
+    "seniority_read": "Entry-level software engineer, supported by a recent degree, an internship, and project work.",
+    "best_fit_roles": [
+      "Software Engineer"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "Lead with the software engineering internship and use BuckeyeBites to show additional full-stack work. Make your individual technical contributions more concrete before tailoring the resume to a particular posting.",
+    "severity_added": [],
+    "severity_promoted": [],
+    "severity_outcome": "none (none)",
+    "severity_answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "keep_dropped",
+          "path": "strengths[0]",
+          "line": "fix-0",
+          "criticalMiss": true
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[0]",
+          "fix": 0
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[1]",
+          "fix": 1
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[3]",
+          "fix": 2
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[4]",
+          "fix": 0
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "biggest_gap_example",
+          "of": "ideas.questions[2]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[0]",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[2]",
+          "of": "top_fixes[2]"
+        }
+      ],
+      "fix_questions": [
+        [
+          "Which inventory feature did you develop, and what could a user do with it?",
+          "What kind of bug did you fix at Cardinal Health, and how did you identify the problem?"
+        ],
+        [
+          "What behavior did your unit tests cover, and which case was important to check?"
+        ],
+        [
+          "How did you implement authentication or the shopping cart in BuckeyeBites?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01506645,
+  "latency_ms": 30172
+}

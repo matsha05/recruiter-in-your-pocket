@@ -1,0 +1,699 @@
+{
+  "case_id": "h2_thin_resume",
+  "batch": "replay_counts",
+  "run": 2,
+  "note": "Student: one internship, coursework, a club.",
+  "resume_file": "../../../audits/2026-11-live-judgment/resumes/h2_thin_resume.txt",
+  "resume_sha256": "0ae65e2abcb50e7eb496c0bf279b40a3bbd6630aca8031421ae82863b8d35ed5",
+  "resume_chars": 837,
+  "resume_words": 126,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T23:25:36.156Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7619,
+        "completion_tokens": 2270,
+        "total_tokens": 9889,
+        "cached_prompt_tokens": 0,
+        "cache_write_prompt_tokens": 7616,
+        "reasoning_tokens": 478
+      },
+      "cost_usd": 0.020873,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 27578
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.00215325,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 3905
+    }
+  ],
+  "resume_prompt_sha256": "e09ca912f3bb567a3f321273d9d5ecf351a8373e18307feb4a85c0f69dc734e6",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 64,
+    "score_label": "Needs Clarity",
+    "score_comment_short": "The internship shows relevant tools, but most bullets leave the work unexplained.",
+    "score_comment_long": "The Tableau dashboard and survey cleaning connect analytics tools to actual assignments. Most bullets stop before saying what the reports, dashboard, or findings covered. Adding those details to the internship section would make the experience easier to assess.",
+    "score_plain": "A reviewer can see relevant entry-level analytics work, but may struggle to distinguish your contributions from a list of tasks. More detail about the work itself would give them a better basis for comparison.",
+    "first_impression": "Your analytics internship is easy to spot, with Excel, SQL, and Tableau named in the work. The dashboard's marketing audience is worth keeping because it shows who the work was for.",
+    "biggest_gap_example": "\"Presented findings to the team at the end of the internship\" does not say what you found, so a reviewer cannot tell what you learned from the analysis.",
+    "first_impression_takeaway": "Explain the dashboard's contents",
+    "summary": "Your Data Analytics Intern role combines reporting, survey data cleaning, and a dashboard for marketing. Alongside the B.S. in Information expected in May 2027, it positions you for internship-level analytics work. The resume names the tools, but not the questions the analysis addressed, which makes it difficult to understand the substance of your assignments.",
+    "strengths": [
+      "The survey bullet names both Excel and SQL, connecting those skills to a concrete data-cleaning assignment.",
+      "Weekly reporting gives a reader a sense of the recurring work you assisted with during the internship.",
+      "The treasurer role adds budget and reimbursement responsibilities alongside your analytics work."
+    ],
+    "gaps": [
+      "The Tableau bullet doesn't say what the dashboard displayed, leaving its usefulness to marketing unclear.",
+      "The survey bullet doesn't describe the data issues you handled or the cleaning steps you took, so your technical contribution is difficult to assess.",
+      "The treasurer entry doesn't explain what you can decide about the budget or reimbursements, leaving the limits of that responsibility unclear."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the Tableau dashboard bullet, name what the dashboard displayed and how the marketing team used it, if known.",
+        "why": "That would turn a tool and audience into a clearer picture of the work you built.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Built a dashboard in Tableau for the marketing team",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the member survey bullet, describe one data issue you handled and the cleaning step you used.",
+        "why": "A concrete example would show what your Excel and SQL work involved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Cleaned member survey data in Excel and SQL",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the internship presentation bullet, identify the topic and one finding you presented.",
+        "why": "The reader could then understand the substance of your end-of-internship presentation.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Presented findings to the team at the end of the internship",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the dashboard and survey bullets using details you can verify from the internship.",
+      "Add the subject and a finding to the presentation bullet, then check whether the weekly reporting bullet can name its contents.",
+      "Review the treasurer entry for a specific budget or reimbursement responsibility you can describe."
+    ],
+    "subscores": {
+      "impact": 58,
+      "clarity": 67,
+      "story": 64,
+      "readability": 70
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "Section not present.",
+        "fix": "Add only if it helps your story."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The internship identifies the employer, dates, tools, and marketing audience.",
+        "missing": "The bullets don't explain the dashboard contents, survey cleaning steps, or presentation findings.",
+        "fix": "Expand the internship bullets with the specific work and findings you can verify."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The list is easy to scan and identifies Python as beginner level.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The degree, expected completion date, GPA, and relevant coursework are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Internship reporting assistance",
+        "Member survey data cleaning with Excel and SQL",
+        "Tableau dashboard development for marketing",
+        "Presentation of internship findings"
+      ],
+      "underplayed": [
+        "The content and use of the marketing dashboard",
+        "The methods used to clean survey data",
+        "The subject of the findings presented"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Data Analytics Intern"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Student with internship-level analytics experience.",
+        "industry_signals": [
+          "Credit union financial services"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Keep the analytics internship prominent for similar internship applications. Use the dashboard, survey, and presentation bullets to show the subjects you worked on, not just the tools you used."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What did the marketing dashboard display, and how did the team use it?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "This could explain the assignment beyond its tool and audience."
+        },
+        {
+          "question": "What issues did you encounter in the member survey data, and how did you handle them?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "An example would make the cleaning work more concrete."
+        },
+        {
+          "question": "What did the weekly reports cover, and which parts did you assist with?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "This would distinguish your contribution from the analytics team's broader reporting work."
+        },
+        {
+          "question": "What finding did you present at the end of the internship?",
+          "archetype": "DOMAIN LIFT",
+          "why": "A finding would give the presentation bullet substantive content."
+        },
+        {
+          "question": "As treasurer, what budget or reimbursement decisions could you make yourself?",
+          "archetype": "HIGH STAKES",
+          "why": "This would clarify the authority attached to the club role."
+        }
+      ]
+    }
+  },
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 64,
+    "score_label": "Needs more context",
+    "score_comment_short": "The internship shows relevant tools, but most bullets leave the work unexplained.",
+    "score_comment_long": "The Tableau dashboard and survey cleaning connect analytics tools to actual assignments. Most bullets stop before saying what the reports, dashboard, or findings covered. Adding those details to the internship section would make the experience easier to assess.",
+    "score_plain": "A reviewer can see relevant entry-level analytics work, but may struggle to distinguish your contributions from a list of tasks. More detail about the work itself would give them a better basis for comparison.",
+    "first_impression": "Your analytics internship is easy to spot, with Excel, SQL, and Tableau named in the work. The dashboard's marketing audience is worth keeping because it shows who the work was for.",
+    "biggest_gap_example": "\"Presented findings to the team at the end of the internship\" does not say what you found, so a reviewer cannot tell what you learned from the analysis.",
+    "first_impression_takeaway": "Explain the dashboard's contents",
+    "summary": "Your Data Analytics Intern role combines reporting, survey data cleaning, and a dashboard for marketing. Alongside the B.S. in Information expected in May 2027, it positions you for internship-level analytics work. The resume names the tools, but not the questions the analysis addressed, which makes it difficult to understand the substance of your assignments.",
+    "strengths": [
+      "The survey bullet names both Excel and SQL, connecting those skills to a concrete data-cleaning assignment.",
+      "Weekly reporting gives a reader a sense of the recurring work you assisted with during the internship.",
+      "The treasurer role adds budget and reimbursement responsibilities alongside your analytics work."
+    ],
+    "gaps": [
+      "The Tableau bullet doesn't say what the dashboard displayed, leaving its usefulness to marketing unclear.",
+      "The survey bullet doesn't describe the data issues you handled or the cleaning steps you took, so your technical contribution is difficult to assess.",
+      "The treasurer entry doesn't explain what you can decide about the budget or reimbursements, leaving the limits of that responsibility unclear."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the Tableau dashboard bullet, name what the dashboard displayed and how the marketing team used it, if known.",
+        "why": "That would turn a tool and audience into a clearer picture of the work you built.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Built a dashboard in Tableau for the marketing team",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the member survey bullet, describe one data issue you handled and the cleaning step you used.",
+        "why": "A concrete example would show what your Excel and SQL work involved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Cleaned member survey data in Excel and SQL",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the dashboard and survey bullets using details you can verify from the internship.",
+      "Add the subject and a finding to the presentation bullet, then check whether the weekly reporting bullet can name its contents.",
+      "Review the treasurer entry for a specific budget or reimbursement responsibility you can describe."
+    ],
+    "subscores": {
+      "impact": 58,
+      "clarity": 67,
+      "story": 64,
+      "readability": 70
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The internship identifies the employer, dates, tools, and marketing audience.",
+        "missing": "The bullets don't explain the dashboard contents, survey cleaning steps, or presentation findings.",
+        "fix": "Expand the internship bullets with the specific work and findings you can verify."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The list is easy to scan and identifies Python as beginner level.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The degree, expected completion date, GPA, and relevant coursework are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Internship reporting assistance",
+        "Member survey data cleaning with Excel and SQL",
+        "Tableau dashboard development for marketing",
+        "Presentation of internship findings"
+      ],
+      "underplayed": [
+        "The content and use of the marketing dashboard",
+        "The methods used to clean survey data",
+        "The subject of the findings presented"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Data Analytics Intern"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Student with internship-level analytics experience.",
+        "industry_signals": [],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Keep the analytics internship prominent for similar internship applications. Use the dashboard, survey, and presentation bullets to show the subjects you worked on, not just the tools you used."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What did the marketing dashboard display, and how did the team use it?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "This could explain the assignment beyond its tool and audience."
+        },
+        {
+          "question": "What issues did you encounter in the member survey data, and how did you handle them?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "An example would make the cleaning work more concrete."
+        },
+        {
+          "question": "What did the weekly reports cover, and which parts did you assist with?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "This would distinguish your contribution from the analytics team's broader reporting work."
+        },
+        {
+          "question": "What finding did you present at the end of the internship?",
+          "archetype": "DOMAIN LIFT",
+          "why": "A finding would give the presentation bullet substantive content."
+        },
+        {
+          "question": "As treasurer, what budget or reimbursement decisions could you make yourself?",
+          "archetype": "HIGH STAKES",
+          "why": "This would clarify the authority attached to the club role."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 64
+  },
+  "severity": {
+    "outcome": "added",
+    "reason": "added",
+    "added": [
+      "no_evidence_latest_role"
+    ],
+    "promoted": [],
+    "replaced": [
+      1
+    ],
+    "led": null,
+    "skipped": [],
+    "critical_count": 2,
+    "more_critical": false,
+    "validation_attempts": 1,
+    "answer": {
+      "critical_misses": [
+        {
+          "source": "new",
+          "kind": "no_evidence_latest_role",
+          "fix": "In the Great Lakes Credit Union internship, add how many member survey records you cleaned, if you can verify it.",
+          "why": "Analytics hiring managers often look for the scale of an intern's work. The internship lists reporting, data cleaning and a dashboard, but doesn't show the volume handled or a measurable result.",
+          "excerpt": "- Cleaned member survey data in Excel and SQL",
+          "section": "Experience",
+          "effort": "quick"
+        }
+      ],
+      "more_critical": false
+    },
+    "latency_ms": 3976,
+    "call_latency_ms": 3905,
+    "cost_usd": 0.00215325,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 64,
+    "score_label": "Needs more context",
+    "score_comment_short": "The internship shows relevant tools, but most bullets leave the work unexplained.",
+    "score_comment_long": "The Tableau dashboard and survey cleaning connect analytics tools to actual assignments. Most bullets stop before saying what the reports, dashboard, or findings covered. Adding those details to the internship section would make the experience easier to assess.",
+    "score_plain": "A reviewer can see relevant entry-level analytics work, but may struggle to distinguish your contributions from a list of tasks. More detail about the work itself would give them a better basis for comparison.",
+    "first_impression": "Your analytics internship is easy to spot, with Excel, SQL, and Tableau named in the work. The dashboard's marketing audience is worth keeping because it shows who the work was for.",
+    "biggest_gap_example": "\"Presented findings to the team at the end of the internship\" does not say what you found, so a reviewer cannot tell what you learned from the analysis.",
+    "first_impression_takeaway": "Explain the dashboard's contents",
+    "summary": "Your Data Analytics Intern role combines reporting, survey data cleaning, and a dashboard for marketing. Alongside the B.S. in Information expected in May 2027, it positions you for internship-level analytics work. The resume names the tools, but not the questions the analysis addressed, which makes it difficult to understand the substance of your assignments.",
+    "strengths": [
+      "The survey bullet names both Excel and SQL, connecting those skills to a concrete data-cleaning assignment.",
+      "Weekly reporting gives a reader a sense of the recurring work you assisted with during the internship.",
+      "The treasurer role adds budget and reimbursement responsibilities alongside your analytics work."
+    ],
+    "gaps": [
+      "The Tableau bullet doesn't say what the dashboard displayed, leaving its usefulness to marketing unclear.",
+      "The survey bullet doesn't describe the data issues you handled or the cleaning steps you took, so your technical contribution is difficult to assess.",
+      "The treasurer entry doesn't explain what you can decide about the budget or reimbursements, leaving the limits of that responsibility unclear."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the Tableau dashboard bullet, name what the dashboard displayed and how the marketing team used it, if known.",
+        "why": "That would turn a tool and audience into a clearer picture of the work you built.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Built a dashboard in Tableau for the marketing team",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": true
+      },
+      {
+        "fix": "In the Great Lakes Credit Union internship, add how many member survey records you cleaned, if you can verify it.",
+        "why": "Analytics hiring managers often look for the scale of an intern's work. The internship lists reporting, data cleaning and a dashboard, but doesn't show the volume handled or a measurable result.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Cleaned member survey data in Excel and SQL",
+          "section": "Experience"
+        },
+        "impact_level": "high",
+        "effort": "quick",
+        "section_ref": "Experience",
+        "critical": true
+      }
+    ],
+    "more_critical": false,
+    "next_steps": [
+      "Revise the dashboard and survey bullets using details you can verify from the internship.",
+      "Add the subject and a finding to the presentation bullet, then check whether the weekly reporting bullet can name its contents.",
+      "Review the treasurer entry for a specific budget or reimbursement responsibility you can describe."
+    ],
+    "subscores": {
+      "impact": 58,
+      "clarity": 67,
+      "story": 64,
+      "readability": 70
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The internship identifies the employer, dates, tools, and marketing audience.",
+        "missing": "The bullets don't explain the dashboard contents, survey cleaning steps, or presentation findings.",
+        "fix": "Expand the internship bullets with the specific work and findings you can verify."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The list is easy to scan and identifies Python as beginner level.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The degree, expected completion date, GPA, and relevant coursework are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 64,
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Internship reporting assistance",
+        "Member survey data cleaning with Excel and SQL",
+        "Tableau dashboard development for marketing",
+        "Presentation of internship findings"
+      ],
+      "underplayed": [
+        "The content and use of the marketing dashboard",
+        "The methods used to clean survey data",
+        "The subject of the findings presented"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Data Analytics Intern"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Student with internship-level analytics experience.",
+        "industry_signals": [],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Keep the analytics internship prominent for similar internship applications. Use the dashboard, survey, and presentation bullets to show the subjects you worked on, not just the tools you used."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What did the marketing dashboard display, and how did the team use it?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "This could explain the assignment beyond its tool and audience."
+        },
+        {
+          "question": "What issues did you encounter in the member survey data, and how did you handle them?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "An example would make the cleaning work more concrete."
+        },
+        {
+          "question": "What did the weekly reports cover, and which parts did you assist with?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "This would distinguish your contribution from the analytics team's broader reporting work."
+        },
+        {
+          "question": "What finding did you present at the end of the internship?",
+          "archetype": "DOMAIN LIFT",
+          "why": "A finding would give the presentation bullet substantive content."
+        },
+        {
+          "question": "As treasurer, what budget or reimbursement decisions could you make yourself?",
+          "archetype": "HIGH STAKES",
+          "why": "This would clarify the authority attached to the club role."
+        }
+      ]
+    }
+  },
+  "presentation": {
+    "score": 64,
+    "band": "Needs more context",
+    "score_label_from_model": "Needs Clarity",
+    "model_score_before_calibration": 64,
+    "verdict": "Your analytics internship is easy to spot, with Excel, SQL, and Tableau named in the work. The dashboard's marketing audience is worth keeping because it shows who the work was for.",
+    "one_line_read": "The internship shows relevant tools, but most bullets leave the work unexplained.",
+    "takeaway": "Explain the dashboard's contents",
+    "biggest_gap_example": "\"Presented findings to the team at the end of the internship\" does not say what you found, so a reviewer cannot tell what you learned from the analysis.",
+    "critical_count": {
+      "count": 2,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "Two Critical Misses. Start with this one.",
+      "lead": "Either one could cost you the interview on its own."
+    },
+    "fixes": [
+      {
+        "fix": "In the Tableau dashboard bullet, name what the dashboard displayed and how the marketing team used it, if known.",
+        "why": "That would turn a tool and audience into a clearer picture of the work you built.",
+        "excerpt": "- Built a dashboard in Tableau for the marketing team",
+        "section": "EXPERIENCE",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the Great Lakes Credit Union internship, add how many member survey records you cleaned, if you can verify it.",
+        "why": "Analytics hiring managers often look for the scale of an intern's work. The internship lists reporting, data cleaning and a dashboard, but doesn't show the volume handled or a measurable result.",
+        "excerpt": "- Cleaned member survey data in Excel and SQL",
+        "section": "Experience",
+        "critical": true,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "The survey bullet names both Excel and SQL, connecting those skills to a concrete data-cleaning assignment.",
+    "strengths": [
+      "The survey bullet names both Excel and SQL, connecting those skills to a concrete data-cleaning assignment.",
+      "Weekly reporting gives a reader a sense of the recurring work you assisted with during the internship.",
+      "The treasurer role adds budget and reimbursement responsibilities alongside your analytics work."
+    ],
+    "gaps": [
+      "The Tableau bullet doesn't say what the dashboard displayed, leaving its usefulness to marketing unclear.",
+      "The survey bullet doesn't describe the data issues you handled or the cleaning steps you took, so your technical contribution is difficult to assess.",
+      "The treasurer entry doesn't explain what you can decide about the budget or reimbursements, leaving the limits of that responsibility unclear."
+    ],
+    "next_steps": [
+      "Revise the dashboard and survey bullets using details you can verify from the internship.",
+      "Add the subject and a finding to the presentation bullet, then check whether the weekly reporting bullet can name its contents.",
+      "Review the treasurer entry for a specific budget or reimbursement responsibility you can describe."
+    ],
+    "seniority_read": "Student with internship-level analytics experience.",
+    "best_fit_roles": [
+      "Data Analytics Intern"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "Keep the analytics internship prominent for similar internship applications. Use the dashboard, survey, and presentation bullets to show the subjects you worked on, not just the tools you used.",
+    "severity_added": [
+      "no_evidence_latest_role"
+    ],
+    "severity_promoted": [],
+    "severity_outcome": "added (added)",
+    "severity_answer": {
+      "critical_misses": [
+        {
+          "source": "new",
+          "kind": "no_evidence_latest_role",
+          "fix": "In the Great Lakes Credit Union internship, add how many member survey records you cleaned, if you can verify it.",
+          "why": "Analytics hiring managers often look for the scale of an intern's work. The internship lists reporting, data cleaning and a dashboard, but doesn't show the volume handled or a measurable result.",
+          "excerpt": "- Cleaned member survey data in Excel and SQL",
+          "section": "Experience",
+          "effort": "quick"
+        }
+      ],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "keep_dropped",
+          "path": "strengths[0]",
+          "line": "fix-1",
+          "criticalMiss": true
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[0]",
+          "fix": 0
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[1]",
+          "fix": 1
+        },
+        {
+          "kind": "question_dropped",
+          "path": "ideas.questions[2]",
+          "reason": "duplicates_keep"
+        },
+        {
+          "kind": "question_dropped",
+          "path": "ideas.questions[4]",
+          "reason": "duplicates_keep"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "biggest_gap_example",
+          "of": "ideas.questions[3]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[0]",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[1]",
+          "of": "top_fixes[1]"
+        }
+      ],
+      "fix_questions": [
+        [
+          "What did the marketing dashboard display, and how did the team use it?"
+        ],
+        [
+          "What issues did you encounter in the member survey data, and how did you handle them?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.02302625,
+  "latency_ms": 31635
+}

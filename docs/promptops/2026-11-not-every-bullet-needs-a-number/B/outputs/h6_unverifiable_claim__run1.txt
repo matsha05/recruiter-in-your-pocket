@@ -1,0 +1,48 @@
+# h6_unverifiable_claim, run 1
+Resume: ../../../audits/2026-11-live-judgment/resumes/h6_unverifiable_claim.txt (145 words, sha256 f523ae9848d4)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt e09ca912, severity prompt f1bb4571
+Outcome: report; cost $0.0411; repair ran; 61.1s
+Case note: "Led a team of 40" with nothing supporting it.
+
+Validator refused the first draft: OPENAI_RESPONSE_SHAPE_INVALID The model response failed the evidence grounding contract at summary unsupported narrative facts: unresolved relationship binding: You moved from Team Lead at Sunshine Parcel to Operations Manager at Gulf Coast Fulfillment..
+
+## Band: Needs more context (score 60; model wrote 60, label "Needs Clarity")
+## Verdict
+The current Operations Manager title sets the direction quickly. The bullets identify daily fulfillment work but leave the operation itself difficult to picture.
+One-line read: Most bullets name responsibilities but don't show enough of the work.
+Takeaway: Name the process you improved
+Biggest gap example: "- Improved processes across the department" doesn't name a process or the change you made, so a reader can't tell what improved.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the team leadership bullet, describe the team's fulfillment work and who reported directly to you.
+   why: That would help a reader understand how the group was organized and what you managed.
+   excerpt (EXPERIENCE): "- Led a team of 40"
+2. [fix] In the department process bullet, name one process, the change you made and the observed result, if known.
+   why: A specific example would show what the stated improvement involved.
+   excerpt (EXPERIENCE): "- Improved processes across the department"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The assistant role names scheduling and reporting as work you supported, giving those responsibilities a concrete starting point.
+Other strengths: ["Helping roll out a scanning system identifies a specific floor assignment rather than a general operations duty.","The separate titles and dates at Gulf Coast Fulfillment distinguish your assistant and manager roles."]
+
+## Gaps
+- The goals and planning bullet doesn't identify what you worked on or contributed, leaving your part in leadership discussions unclear.
+- The scanning-system bullet doesn't describe the tasks you helped with, making your contribution difficult to distinguish from the rollout as a whole.
+- Excel and WMS appear in Skills but aren't connected to particular tasks in Experience, so their use is unclear.
+
+## Next steps
+- Revise the current manager bullets using details you can verify about the team's work and a process change.
+- Add your specific rollout tasks and a planning example to the relevant experience bullets.
+- Update the summary to reflect the examples you've added, and connect Excel or WMS to a role if you used them there.
+
+## Role fit
+Level: Your current Operations Manager title and stated team leadership indicate manager-level work; the reporting structure is not described.
+Best fit: ["Operations Manager","Assistant Operations Manager"]
+Positioning: Position your current role around fulfillment management, using the actual work of the team and a specific process change. Keep the scanning rollout as an example of your earlier floor-level contribution.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":1},{"kind":"question_dropped","path":"ideas.questions[2]","reason":"duplicates_keep"},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[1]"}]
