@@ -74,6 +74,8 @@ The channel in [first-100-users.md](first-100-users.md) was "answers as the bran
 
 Whatever is chosen, Matt writes any post himself where a community bans AI-written text; the drafts are research, not copy to paste.
 
+**Decision, November 5, 2026:** Matt won't ask moderators, so option 1 is closed. Reddit is dropped as an AEO channel: link-free answers earn no citations, and a brand account that only shows up to answer is the plug the rules are written against. The ten drafts stay in the doc as research. The phase 4 hours go to the roundups above and to Search Console. If Reddit comes back, it comes back as option 2, written by Matt, as presence rather than reach.
+
 ## 3. Open items from the research
 
 - **Salary-history article:** Astra read only the NBER abstract of Hansen and McNichols 2020 (the full paper was blocked) and suggests checking the article's mechanism claims against the full text before the claim is strengthened anywhere. Worth one editorial pass on [salary-history-bans](../../web/app/(editorial)/research/salary-history-bans/page.tsx).
