@@ -1,7 +1,9 @@
 import { notFound } from "next/navigation";
 import rhythm from "@/components/materials/Rhythm.module.css";
 import { Materials } from "./Materials";
-import { GuideOpeningMock, OffersMock } from "./Round3";
+import fs from "node:fs";
+import path from "node:path";
+import { CompareMock, WaitMock } from "./Round4";
 import styles from "./Preview.module.css";
 
 /**
@@ -10,6 +12,7 @@ import styles from "./Preview.module.css";
  */
 export default function SystemPreviewPage() {
     if (process.env.NODE_ENV === "production" && process.env.ALLOW_INTERNAL_PAGES !== "true") notFound();
+    const resumeText = fs.readFileSync(path.join(process.cwd(), "tests/fixtures/sample/jordan-miller-resume.txt"), "utf8");
     return (
         <main className={rhythm.page}>
             <section className={rhythm.opening}>
@@ -19,11 +22,11 @@ export default function SystemPreviewPage() {
             <Materials />
 
             <div className={styles.divider}><hr /></div>
-            <p className={styles.label}>After the offer · rows on hairlines, no cards</p>
-            <OffersMock />
+            <p className={styles.label}>Product · the wait, as it stands (frozen at the writing stage)</p>
+            <WaitMock resumeText={resumeText} />
             <div className={styles.divider}><hr /></div>
-            <p className={styles.label}>A guide&rsquo;s opening · the quick start as rows, our take as the deck</p>
-            <GuideOpeningMock />
+            <p className={styles.label}>Product · the re-check comparison, as it stands</p>
+            <CompareMock />
             <div className={rhythm.close} />
         </main>
     );
