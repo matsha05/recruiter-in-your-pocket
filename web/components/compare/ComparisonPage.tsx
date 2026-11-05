@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { publicPage } from "@/lib/seo/public-pages";
 import { SECTION_NAMES } from "@/lib/seo/site";
 import { articleStructuredData, formatMonth } from "@/lib/seo/structured-data";
-import { comparisons, formatChecked, type Comparison } from "./comparisons";
+import { comparisons, formatChecked, SAME_RESUME_DATE, type Comparison } from "./comparisons";
 import styles from "./ComparisonPage.module.css";
 
 // A comparison opens like a research article: the two names, then the straight answer about who
@@ -133,9 +133,21 @@ export function ComparisonPage({ entry }: { entry: Comparison }) {
                     <section id="how-we-compare" tabIndex={-1} className={`riyp-jump-target ${styles.method}`} aria-labelledby="how-we-compare-title">
                         <h2 id="how-we-compare-title" className={styles.methodTitle}>How we compare</h2>
                         <p className={styles.methodBody}>
-                            We read {entry.name}’s own pricing page on the date above and quote what it says. We haven’t run {entry.name} and {OUR_NAME} on the same resume, so this page compares what each one sells, not the quality of what comes back. Prices change. If we have one wrong, email{" "}
+                            We read {entry.name}’s own pricing page on the date above and quote what it says. Prices change. If we have one wrong, email{" "}
                             <a href="mailto:support@recruiterinyourpocket.com" className="focus-ring riyp-link-quiet">support@recruiterinyourpocket.com</a> and we’ll fix it.
                         </p>
+                        {entry.sameResume ? (
+                            <>
+                                <p className={styles.methodBody}>
+                                    On {formatChecked(SAME_RESUME_DATE)} we ran the same resume and the same job posting through {entry.name} and {OUR_NAME}, on {entry.name}’s free tier. {entry.sameResume.them}
+                                </p>
+                                <p className={styles.methodBody}>{entry.sameResume.us} That is what each one said, not a verdict on which is better.</p>
+                            </>
+                        ) : (
+                            <p className={styles.methodBody}>
+                                We haven’t run {entry.name} and {OUR_NAME} on the same resume, so this page compares what each one sells, not the quality of what comes back.
+                            </p>
+                        )}
                     </section>
 
                     <section className={styles.close} aria-labelledby="comparison-close-title">
