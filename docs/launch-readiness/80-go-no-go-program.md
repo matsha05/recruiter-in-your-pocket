@@ -1,6 +1,6 @@
 # RIYP Production Launch Program
 
-**Last updated:** October 31, 2026
+**Last updated:** November 5, 2026 (Product Standard names the Highlighter system; launch rules unchanged)
 **Status:** Active source of truth
 **Owner and sole product tester:** Matt Shaw
 
@@ -39,7 +39,7 @@ The held-back surfaces must remain disabled, absent from navigation and search d
 
 ## Product Standard
 
-The launch experience should feel like a distinctive recruiter product, not a consultancy, content publication, or generic AI dashboard. The Lifted Line system should bring character through its dark shell, paper-like work surfaces, recruiter markup, and precise lime/cyan signal colors without obscuring the product's next action.
+The launch experience should feel like a distinctive recruiter product, not a consultancy, content publication, or generic AI dashboard. The Highlighter system (`docs/design-system.md`, chosen October 30, 2026, carried across every surface November 4 and 5) should bring character through a recruiter's actual tools, paper, the yellow highlighter on what a recruiter would miss, the green pen for the recruiter's notes, blue for the candidate's own work and one red mark for what is missing, without obscuring the product's next action. The Lifted Line evidence grammar is kept as product logic; its earlier dark shell and lime and cyan signal colors are retired and must not come back.
 
 Every launch-critical screen must meet these standards:
 
