@@ -75,3 +75,15 @@ export function evidenceContainsRequirement(value: string, sourceText: string, o
       || (options.jobDescription === true && contextualJobRequirement(required, sourceText, clause));
   });
 }
+
+/**
+ * A requirement label that joins alternatives or parts ("Epic or comparable EHR", "Acute care nursing
+ * experience or clinical rotations") is in the source when the whole label is, or when each part is. Labels
+ * summarize a posting's own lines, which rarely sit in one clause. A part needs a word of three letters or
+ * more, so "a" or "or" never matches on its own.
+ */
+export function evidenceContainsRequirementLabel(value: string, sourceText: string, options: { jobDescription?: boolean } = {}) {
+  if (evidenceContainsRequirement(value, sourceText, options)) return true;
+  const parts = value.split(/\s+(?:or|and)\s+|,\s*/iu).map((part) => part.trim()).filter(Boolean);
+  return parts.length > 1 && parts.every((part) => /\p{L}{3,}/u.test(part) && evidenceContainsRequirement(part, sourceText, options));
+}

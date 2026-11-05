@@ -1,6 +1,7 @@
 import { baseNarrativeStopWords, normalizeNarrativeToken, sourceClauseIsNegated } from "./narrative-token-policy";
 import { narrativeEvidenceClauses } from "./source-evidence-segmentation";
 import { canonicalizeUserSourceText } from "../security/inputSanitization";
+import { hasNamedSection, hasSkillsSection, hasWorkExperience } from "./source-sections";
 
 export type SemanticMissingDisposition =
   | "not_semantic_missing_path"
@@ -24,6 +25,7 @@ const sectionHeadings: Record<string, readonly string[]> = {
   summary: ["summary", "professional summary", "profile", "professional profile"],
   skills: ["skills", "technical skills", "core skills", "core competencies"],
   education: ["education", "academic background", "academic experience"],
+  "work experience": ["experience", "work experience", "professional experience", "employment history", "work history"],
 };
 
 function normalizeHeading(value: string) {
@@ -35,21 +37,34 @@ function normalizeHeading(value: string) {
 }
 
 function sourceHasSectionHeading(sourceText: string, section: string) {
+  // Skills can sit under Additional Information and work history under dated role lines; the canonicalizer's
+  // detectors read those shapes, so the audit uses the same ones.
+  if (section === "skills") return hasSkillsSection(sourceText);
+  if (section === "work experience") return hasWorkExperience(sourceText);
   const names = sectionHeadings[section];
   if (!names) return false;
+  if (section === "education") return hasNamedSection(canonicalizeUserSourceText(sourceText), [...names]);
   return canonicalizeUserSourceText(sourceText).split(/\r?\n/u).some((line) => {
     const normalized = normalizeHeading(line);
     return names.some((name) => normalized === name || normalized.startsWith(`${name} `));
   });
 }
 
+/**
+ * A section review that says the section is absent, in the exact sentinel or the generic "Section not
+ * present.", is judged by the section detector, not by whether its words appear in a bullet (a welder's
+ * "pipe sections" is not a Skills section). The canonicalizer rewrites the generic form to the sentinel.
+ */
 function exactSectionAbsence(path: string, value: string, resumeText: string): SemanticMissingDisposition | null {
   const sectionPath = path.match(sectionMissingPathPattern)?.[1];
   if (!sectionPath) return null;
   const section = normalizeHeading(sectionPath);
-  const expectedSection = normalizeHeading(value).match(/^no (summary|skills|education) section present$/u)?.[1];
-  if (!expectedSection || section !== expectedSection) return null;
-  return sourceHasSectionHeading(resumeText, expectedSection)
+  if (!sectionHeadings[section]) return null;
+  const normalizedValue = normalizeHeading(value);
+  const expectedSection = normalizedValue.match(/^no (summary|skills|education) section present$/u)?.[1];
+  if (expectedSection && section !== expectedSection) return null;
+  if (!expectedSection && normalizedValue !== "section not present") return null;
+  return sourceHasSectionHeading(resumeText, section)
     ? "contradicts_positive_source"
     : "supported_absence";
 }

@@ -3,7 +3,8 @@ import { assertReportGrounding, ResumeFeedbackResponseSchema } from "../validati
 import { getScoreLabel } from "../score-utils";
 import { canonicalizeResumeReportEvidence } from "../llm/evidence-canonicalizer";
 import { calibrateResumeScore } from "../llm/resume-score-calibration";
-import { positiveSourceContradictions, removeUnsafeRewrites } from "../llm/source-fidelity";
+import { positiveSourceContradictions } from "../llm/source-fidelity";
+import { removeUnsafeRewrites } from "../llm/rewrite-screen";
 import { ambiguousReportSourceLocators } from "../llm/report-source-locators";
 import { isOptionalReportMetadataPath } from "../llm/optional-report-metadata";
 import { logInfo } from "../observability/logger";

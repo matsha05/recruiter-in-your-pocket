@@ -1,4 +1,4 @@
-import { baseNarrativeStopWords, interpretationContextForPath, narrativeTokenPolicy, normalizeNarrativeToken, sourceClauseIsNegated } from "./narrative-token-policy";
+import { assessmentDimensionWords, baseNarrativeStopWords, interpretationContextForPath, narrativeTokenPolicy, normalizeNarrativeToken, sourceClauseIsNegated } from "./narrative-token-policy";
 import { evidenceContainsIdentityPhrase, narrativeEvidenceClauses } from "./source-evidence-segmentation";
 import { isAllowedReportNarrativeException } from "./report-narrative-exceptions";
 import { unsupportedBracketPayloads } from "./report-placeholder-policy";
@@ -8,17 +8,13 @@ import { abbreviatedMonth, isCommonCapitalizedWord, MONTH_ALIASES, trackedSemant
 import { hasExactRelationshipBindings, relationshipBindingIssues } from "./source-relationship-fidelity";
 import { assessmentNarrativeIssues, auditableNarrativeValue, isAnaphoricCommentary, isDirectFactualAssertion, joinedSpellings, withJoinedPairs, withJoinedSpellings } from "./narrative-fact-support";
 import { supportsIndustrySignal } from "./source-industry-signals";
-import { evidenceContainsRequirement } from "./requirement-evidence";
+import { evidenceContainsRequirement, evidenceContainsRequirementLabel } from "./requirement-evidence";
 import { canonicalizeUserSourceText } from "../security/inputSanitization";
 import { narrativeMeaningIssues } from "./narrative-meaning";
 import { memoizeByText } from "./source-memo";
 export const EXACT_ABSENCE_SENTINELS = [
-  "No summary section present",
-  "No skills section present",
-  "No education section present",
-  "No job description provided",
-  "No matching job description provided",
-  "No LinkedIn profile provided",
+  "No summary section present", "No skills section present", "No education section present",
+  "No job description provided", "No matching job description provided", "No LinkedIn profile provided",
 ] as const;
 const absenceSentinels = new Set<string>(EXACT_ABSENCE_SENTINELS);
 const leadingBulletPattern = /^(?:[•●◦▪▫‣⁃]\s*|[-*]\s+(?=[\p{L}\p{N}]))/u;
@@ -144,13 +140,17 @@ function addMatches(target: Map<string, ProtectedFact>, kind: string, value: str
 }
 
 function protectedFacts(value: string) {
-  const withoutPlaceholders = canonicalizeUserSourceText(value).replace(/\[[^\]]+\]/gu, "");
+  // "up-to-250,000-page" is "up to 250,000 page" and "Marketo-to-HubSpot" is "Marketo to HubSpot": those hyphens join words.
+  const withoutPlaceholders = canonicalizeUserSourceText(value).replace(/\[[^\]]+\]/gu, "")
+    .replace(/(?<=\p{L})-(?=\d)|(?<=\d)-(?=\p{L})/gu, " ").replace(/\b(up)-(to)\b|\b(more|less|greater|fewer)-(than)\b/giu, "$1$3 $2$4")
+    .replace(/(\p{Lu}[\p{L}\d]*)-to-(?=\p{Lu})/gu, "$1 to ");
   const facts = new Map<string, ProtectedFact>(), lexicalWordCount = (withoutPlaceholders.match(/[\p{L}\p{M}\d]+/gu) || []).length;
   for (const match of withoutPlaceholders.matchAll(metricPattern)) addMatches(facts, "metric", match[0].toLowerCase());
   for (const match of withoutPlaceholders.matchAll(writtenMetricPattern)) addMatches(facts, "metric-word", match[0].toLowerCase());
   for (const match of withoutPlaceholders.matchAll(symbolicEntityPattern)) addMatches(facts, "symbol", match[0]);
   for (const match of withoutPlaceholders.matchAll(acronymPattern)) {
-    if (match[0].length > 1) addMatches(facts, "entity", match[0]);
+    // "CV" and "PDF" name the document the report is reading, as "Resume" does.
+    if (match[0].length > 1 && !isCommonCapitalizedWord(match[0])) addMatches(facts, "entity", match[0]);
   }
   for (const match of withoutPlaceholders.matchAll(titlePhrasePattern)) {
     const words = match[0].split(/\s+/u);
@@ -287,6 +287,8 @@ export function auditNarrativeClaim(
   options: {
     interpretationContext?: "observation" | "assessment" | "missing" | "advice" | "question";
     rejectPositiveSourceAbsence?: boolean;
+    /** The posting. Read only for entities in a claim about what the resume lacks; never for a positive claim. */
+    supplementarySourceText?: string;
   } = {},
 ) {
   const candidates = narrativeSourceCandidates(sourceText);
@@ -304,7 +306,8 @@ export function auditNarrativeClaim(
     const relationshipIssues = relationshipBindingIssues(claim, sourceText)
       .filter((issue) => directFactualAssertion || !issue.startsWith("unresolved relationship binding:"));
     if (relationshipIssues.length > 0) return [{ claim, unsupportedFacts: relationshipIssues }];
-    const claimTokens = joinedSpellings(materialTokens(claim, policy.ignoredTokens));
+    const rawClaimTokens = materialTokens(claim, policy.ignoredTokens);
+    const claimTokens = joinedSpellings(rawClaimTokens);
     const eligibleCandidates = candidates.filter(({ negated }) =>
       policy.sourcePolarity === "any" || negated === (policy.sourcePolarity === "negative")
     );
@@ -313,11 +316,19 @@ export function auditNarrativeClaim(
       && assertsNegativePresence(claim)
       && (() => {
         const subjectTokens = materialTokens(negativePresenceSubject(claim));
+        // "results are absent" speaks of the report's dimension, not of a bullet that tracked results.
+        if (Array.from(subjectTokens).every((token) => assessmentDimensionWords.has(token))) return false;
         return subjectTokens.size > 0 && candidates.some(({ negated, tokens }) => (
           !negated && Array.from(subjectTokens).every((token) => tokens.has(token))
         ));
       })()
     ) return [{ claim, unsupportedFacts: ["contradicts positive source evidence"] }];
+    // "The $4M budget isn't named in the summary" says the budget exists elsewhere: an absence scoped to one part of
+    // the resume keeps every fact in it under audit. "The resume does not list an RN license" claims nothing.
+    const scopedAbsence = /\b(?:in|from|within|at|on)\s+(?:the|your|its)\s+(?:summary|opening|headline|header|profile|objective|top|first\s+line|\p{L}+\s+section|bullet|line|title)\b/iu.test(claim);
+    // What the resume lacks, or advice conditioned on a fact ("Add an EHR only if you have used one"), may name the posting's terms.
+    const absenceClaim = !scopedAbsence && (options.interpretationContext === "missing" || policy.lexicalAbsence
+      || (["advice", "question"].includes(options.interpretationContext || "") && /\b(?:if|whether)\b/iu.test(claim)));
     if (policy.assessment || policy.interpretive || commentary) return assessmentNarrativeIssues({
       claim, sourceText,
       claimFacts: facts,
@@ -326,8 +337,10 @@ export function auditNarrativeClaim(
       assertsPresence: policy.assertsPresence && !commentary,
       interpretive: policy.interpretive || commentary,
       directFactualAssertion,
-      skipSpecificFacts: policy.lexicalAbsence,
+      skipSpecificFacts: policy.lexicalAbsence && !scopedAbsence,
       checkTrackedClaims: commentary,
+      rootAnchorTokens: new Set(Array.from(rawClaimTokens).filter((token) => !token.includes("-"))),
+      supplementarySourceText: absenceClaim && !policy.assertsPresence ? options.supplementarySourceText : undefined,
       requirePresenceAnchor: !commentary && (policy.assessment || !options.interpretationContext || options.interpretationContext === "observation"),
       contradictsNegativeSource: policy.assertsPresence && claimTokens.size > 0 && candidates.some(({ negated, tokens }) => negated && Array.from(claimTokens).every((token) => tokens.has(token))) && !candidates.some(({ negated, tokens }) => !negated && Array.from(claimTokens).every((token) => tokens.has(token))),
     });
@@ -449,7 +462,7 @@ export function auditReportNarrative(report: any, resumeText: string, jobDescrip
     const keywordKind = jobDescriptionKeywordKind(path);
     if (keywordKind) {
       const inResume = evidenceContainsRequirement(value, resumeText);
-      const inJobDescription = Boolean(jobDescription?.trim() && evidenceContainsRequirement(value, jobDescription, { jobDescription: true }));
+      const inJobDescription = Boolean(jobDescription?.trim() && evidenceContainsRequirementLabel(value, jobDescription, { jobDescription: true }));
       const grounded = keywordKind === "matched" ? inResume && inJobDescription : !inResume && inJobDescription;
       return grounded ? [] : [{ path, claim: value, unsupportedFacts: [`${keywordKind} JD keyword provenance`] }];
     }
@@ -468,6 +481,7 @@ export function auditReportNarrative(report: any, resumeText: string, jobDescrip
     const resumeIssues = auditNarrativeClaim(auditableValue, resumeText, {
       interpretationContext: path === "biggest_gap_example" ? "assessment" : interpretationContextForPath(path),
       rejectPositiveSourceAbsence: true,
+      supplementarySourceText: jobDescription?.trim() || undefined,
     });
     if (resumeIssues.length === 0) return [];
     return resumeIssues.map((issue) => ({ path, ...issue }));
@@ -478,21 +492,4 @@ export function positiveSourceContradictions(report: any, resumeText: string, jo
   return auditReportNarrative(report, resumeText, jobDescription).filter((issue) => (
     issue.unsupportedFacts.includes("contradicts positive source evidence")
   ));
-}
-
-export function removeUnsafeRewrites<T extends { rewrites?: unknown }>(report: T, resumeText: string) {
-  const rewrites = Array.isArray(report.rewrites) ? report.rewrites : [];
-  const removed: Array<{ index: number; issues: SourceFidelityIssue[] }> = [];
-  const safeRewrites = rewrites.filter((rewrite: any, index: number) => {
-    if (typeof rewrite?.original !== "string" || typeof rewrite?.better !== "string") return true;
-    const comparison = compareSourceBoundRewrite({
-      sourceText: resumeText,
-      sourceLocator: rewrite.original,
-      candidate: rewrite.better,
-    });
-    if (comparison.safe) return true;
-    removed.push({ index, issues: comparison.issues });
-    return false;
-  });
-  return { report: { ...report, rewrites: safeRewrites }, removed };
 }
