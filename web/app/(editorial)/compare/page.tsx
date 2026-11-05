@@ -3,7 +3,7 @@ import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import Footer from "@/components/landing/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Button } from "@/components/ui/button";
-import { comparisons, formatChecked } from "@/components/compare/comparisons";
+import { comparisons, formatChecked, SAME_RESUME_DATE } from "@/components/compare/comparisons";
 import { ResearchLink } from "@/components/research/ResearchLink";
 import styles from "@/components/compare/ComparisonPage.module.css";
 import { pageMetadata } from "@/lib/seo/metadata";
@@ -107,7 +107,7 @@ export default function ComparePage() {
                             It depends on what you’re missing. If you don’t have a resume, or you want the page designed for you, you need a builder: Kickresume, Rezi, Enhancv, and Teal all do that, free with limits and by subscription for the rest. If you have a resume and you’re tailoring it to many postings, you need a keyword scanner: Jobscan, or the matching inside Teal and Rezi. If you want it written for you, TopResume. If you have a resume and want to know what a recruiter would question before you send it, you need a recruiter’s read, and that is what the report is.
                         </p>
                         <p className={styles.proseBody}>
-                            The report’s limits, so you can weigh it fairly: it reads the words we pull from your file, not the design, and it is AI applying a recruiter’s criteria, not a person reading your resume. It gives no keyword score and no interview odds, and it won’t build, design, or track anything. We haven’t run these tools and ours on the same resume, so these pages compare what each one sells, not the quality of what comes back. The research behind the read is linked where it applies: <ResearchLink to="how-recruiters-read">recruiters who spent longer on Experience were more likely to move a resume forward</ResearchLink>, and <ResearchLink to="ats-myths">applicant tracking systems pull your text into fields rather than rejecting it on a score</ResearchLink>.
+                            The report’s limits, so you can weigh it fairly: it reads the words we pull from your file, not the design, and it is AI applying a recruiter’s criteria, not a person reading your resume. It gives no keyword score and no interview odds, and it won’t build, design, or track anything. In November 2026 we ran one resume through five of these tools and ours; each of those pages says what came back, under “How we compare”. It was one resume, one role, one day, so these pages still mostly compare what each tool sells. The research behind the read is linked where it applies: <ResearchLink to="how-recruiters-read">recruiters who spent longer on Experience were more likely to move a resume forward</ResearchLink>, and <ResearchLink to="ats-myths">applicant tracking systems pull your text into fields rather than rejecting it on a score</ResearchLink>.
                         </p>
                         <p className={styles.proseBody}>
                             Most people need one builder or none, a scanner only if they apply in volume, and one honest read of the resume before it goes out. The read is free here.
@@ -143,7 +143,7 @@ export default function ComparePage() {
                     <section id="how-we-compare" tabIndex={-1} className={`riyp-jump-target ${styles.method}`} aria-labelledby="how-we-compare-title">
                         <h2 id="how-we-compare-title" className={styles.methodTitle}>How we compare</h2>
                         <p className={styles.methodBody}>
-                            We read each tool’s own pricing page on the date above and quote what it says. We haven’t run the other tools and ours on the same resume, so these pages compare what each one sells, not the quality of what comes back. Prices change. If we have one wrong, email{" "}
+                            We read each tool’s own pricing page on the date above and quote what it says. On {formatChecked(SAME_RESUME_DATE)} we also ran one resume, a senior recruiter’s, and one posting through Jobscan, Resume Worded, Teal, Rezi, Kickresume and ours, on their free tiers; those five pages say what each tool said and what ours said. TopResume and Enhancv haven’t been run on the same resume yet. One resume, one role, one day: a record of what came back, not a verdict on quality. Prices change. If we have one wrong, email{" "}
                             <a href="mailto:support@recruiterinyourpocket.com" className="focus-ring riyp-link-quiet">support@recruiterinyourpocket.com</a> and we’ll fix it.
                         </p>
                     </section>

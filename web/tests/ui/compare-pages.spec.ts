@@ -33,11 +33,13 @@ test.describe("comparison pages", () => {
     // The question people ask the engines, answered honestly: builder, scanner, or a recruiter's read, with the report's limits.
     const whichTool = page.locator("#which-tool");
     await expect(whichTool.getByRole("heading", { level: 2 })).toHaveText("Which resume tool should I use?");
-    for (const phrase of ["you need a builder", "you need a keyword scanner", "you need a recruiter’s read", "The report’s limits", "no keyword score and no interview odds", "haven’t run these tools and ours on the same resume"]) {
+    for (const phrase of ["you need a builder", "you need a keyword scanner", "you need a recruiter’s read", "The report’s limits", "no keyword score and no interview odds", "ran one resume through five of these tools and ours", "one resume, one role, one day"]) {
       await expect(whichTool).toContainText(phrase);
     }
     await expect(whichTool.locator('a[href^="/research/"]')).toHaveCount(2);
-    await expect(page.locator("#how-we-compare")).toContainText("We haven’t run the other tools and ours on the same resume");
+    // The hub names the five tools the same resume went through, dated, and the two it hasn't.
+    await expect(page.locator("#how-we-compare")).toContainText("On November 5, 2026 we also ran one resume");
+    await expect(page.locator("#how-we-compare")).toContainText("TopResume and Enhancv haven’t been run on the same resume yet");
     await expectNoSeriousAxeViolations(page, "/compare");
   });
 
@@ -56,7 +58,16 @@ test.describe("comparison pages", () => {
       // The other tool's pricing page is the source, read on the stated date.
       await expect(page.locator('section:has(#sources-title) a[href^="https://"]').first()).toBeVisible();
       await expect(page.locator("header").filter({ hasText: /prices read on/i })).toHaveCount(1);
-      await expect(page.locator("#how-we-compare")).toContainText("on the same resume");
+      // Five pages carry what the tool and ours said to the same resume, dated; the two not yet run say so.
+      const method = page.locator("#how-we-compare");
+      if (route === "/compare/topresume" || route === "/compare/enhancv") {
+        await expect(method).toContainText("haven’t run");
+        await expect(method).toContainText("on the same resume");
+      } else {
+        await expect(method).toContainText("On November 5, 2026 we ran the same resume and the same job posting through");
+        await expect(method).toContainText("Ours led with the resume’s own numbers");
+        await expect(method).toContainText("not a verdict on which is better");
+      }
 
       // "Is X worth it?" cites the research behind its claim, resolved through the hub.
       const worthIt = page.locator("#worth-it");

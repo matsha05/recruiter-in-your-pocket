@@ -62,7 +62,7 @@ export function llmsText({ comparisons, pricesRead }: LlmsInput) {
     "",
     "## Compared with other tools",
     "",
-    `What each tool sells and costs beside the report, with prices quoted from the tool's own pricing page, read on ${pricesRead}. We have not run the other tools and ours on the same resume.`,
+    `What each tool sells and costs beside the report, with prices quoted from the tool's own pricing page, read on ${pricesRead}. In November 2026 one resume and one posting went through five of the tools and ours; those pages say what each one said. One resume, one role, one day, not a verdict on quality.`,
     "",
     line("Resume review tools compared", "/compare", dated("/compare", "Builder, keyword scanner, writer, or a recruiter's read: which one you need, and the report's limits.")),
     ...comparisons.map((entry) => line(entry.title, entry.path, dated(entry.path, entry.summary))),

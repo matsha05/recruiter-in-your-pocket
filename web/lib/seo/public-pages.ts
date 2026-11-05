@@ -56,13 +56,14 @@ export const PUBLIC_PAGES: readonly PublicPage[] = [
 
   // Comparisons with other resume tools (components/compare/comparisons.tsx). Bump `updated` when a
   // tool's price or plan changes, in the same change as PRICES_CHECKED.
-  { path: "/compare", updated: "2026-11-04" },
+  // The hub and five pages carry what each tool said to one resume on Nov 5, 2026 (SAME_RESUME_DATE in comparisons.tsx).
+  { path: "/compare", updated: "2026-11-05" },
   { path: "/compare/topresume", updated: "2026-11-04", published: "2026-11-03" },
-  { path: "/compare/jobscan", updated: "2026-11-04", published: "2026-11-03" },
-  { path: "/compare/resume-worded", updated: "2026-11-04", published: "2026-11-03" },
-  { path: "/compare/teal", updated: "2026-11-04", published: "2026-11-03" },
-  { path: "/compare/kickresume", updated: "2026-11-04", published: "2026-11-04" },
-  { path: "/compare/rezi", updated: "2026-11-04", published: "2026-11-04" },
+  { path: "/compare/jobscan", updated: "2026-11-05", published: "2026-11-03" },
+  { path: "/compare/resume-worded", updated: "2026-11-05", published: "2026-11-03" },
+  { path: "/compare/teal", updated: "2026-11-05", published: "2026-11-03" },
+  { path: "/compare/kickresume", updated: "2026-11-05", published: "2026-11-04" },
+  { path: "/compare/rezi", updated: "2026-11-05", published: "2026-11-04" },
   { path: "/compare/enhancv", updated: "2026-11-04", published: "2026-11-04" },
 
   // /trust and /security redirect to /privacy, /faq and /support to /help (lib/seo/retired-routes.json).

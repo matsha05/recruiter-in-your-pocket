@@ -5,8 +5,9 @@ import { ResearchLink } from "@/components/research/ResearchLink";
 
 // One entry per tool we compare ourselves with. Every price and feature in the "them" column
 // comes from that tool's own pricing page, read on `pricesChecked`; the source list links it.
-// We haven't run the other tools on the same resume, so each page compares what the tool sells,
-// not the quality of its output, and says so in "How we compare". Our own column follows
+// On November 5, 2026 one resume and one posting went through five of the tools and ours
+// (docs/competitive-intelligence/head-to-head.md); `sameResume` holds what each said, dated, for
+// "How we compare". A tool without it has not been run, and its page says so. Our own column follows
 // lib/billing/pricing.ts and the Help page: keep them in step when the pass changes.
 
 export const PRICES_CHECKED = "2026-11-04";
@@ -39,9 +40,18 @@ export type Comparison = {
     rows: ComparisonRow[];
     sections: ComparisonSection[];
     sources: ResearchSource[];
+    /** The same resume through this tool and ours, once: what each said, in plain words, for "How we compare". */
+    sameResume?: { them: string; us: string };
 };
 
 const OUR_NAME = "Recruiter in Your Pocket";
+
+/** The day one resume (a senior technical recruiter's, three pages) and one posting went through five tools and ours. */
+export const SAME_RESUME_DATE = "2026-11-05";
+
+/** What ours said to that resume, the same on every page that ran. */
+const OURS_ON_THE_SAME_RESUME =
+    "Ours led with the resume’s own numbers in the Verdict, circled one Critical Miss with the line it came from, and questioned a “300% reduction in time to hire” as a figure that can’t be right. Thirty-six seconds without the posting, a minute and a half with it, and no line misread. One resume, one role, one day.";
 
 const ourRows = {
     whatItIs: "A report on the resume you already have, read against a recruiter’s review criteria.",
@@ -178,6 +188,10 @@ export const comparisons: Comparison[] = [
         path: "/compare/jobscan",
         title: "Jobscan vs Recruiter in Your Pocket",
         summary: "Scores your keyword match against one job posting, $29.98 to $49.95 a month.",
+        sameResume: {
+            them: "Jobscan returned a 35% match rate in under a minute, with 55 items: 18 about this resume, the rest generic or keyword rules. It couldn’t find the education section because the heading reads “Education and Certifications”, and it congratulated a summary the resume doesn’t have. With the posting field empty it wouldn’t run at all.",
+            us: OURS_ON_THE_SAME_RESUME,
+        },
         hub: {
             does: "Scores how closely your resume’s keywords match one job posting and lists the missing terms.",
             costs: "$49.95 a month, or $89.95 every three months. Recurring.",
@@ -292,6 +306,10 @@ export const comparisons: Comparison[] = [
         path: "/compare/resume-worded",
         title: "Resume Worded vs Recruiter in Your Pocket",
         summary: "Scores your resume and LinkedIn against its checklist, $19 to $49 a month.",
+        sameResume: {
+            them: "Resume Worded scored it 74 out of 100 and opened with three comments that quote real lines, the closest thing to a recruiter’s read we saw. Around them sat 78 generic items and 13 locked ones. Its one rewrite suggestion added an applicant tracking system and “bar calibration” work the resume never claims, on the reasoning that the employer “makes them believable”. A sales email followed 77 minutes later.",
+            us: OURS_ON_THE_SAME_RESUME,
+        },
         hub: {
             does: "Scores your resume and LinkedIn profile against its checklist, with sample lines and AI rewrites.",
             costs: "$49 a month, $99 a quarter, or $229 a year. Subscription.",
@@ -406,6 +424,10 @@ export const comparisons: Comparison[] = [
         path: "/compare/teal",
         title: "Teal vs Recruiter in Your Pocket",
         summary: "A resume builder and job tracker, free, with Teal+ at $13 a week to $79 a quarter.",
+        sameResume: {
+            them: "Teal rebuilt the resume in its own template, scored it 45%, and locked all sixteen reasons behind Teal+. With the posting it showed an 18% match and five missing phrases, one of which the resume contains in other words (“Full-cycle recruiting” for “Full Lifecycle Recruiting”).",
+            us: OURS_ON_THE_SAME_RESUME,
+        },
         hub: {
             does: "Builds resumes from templates, tracks applications, and matches keywords against a posting.",
             costs: "Teal+ at $13 a week, $29 a month, or $79 a quarter. Recurring.",
@@ -515,6 +537,10 @@ export const comparisons: Comparison[] = [
         path: "/compare/kickresume",
         title: "Kickresume vs Recruiter in Your Pocket",
         summary: "An AI resume builder with 40 templates, free with limits, Premium from $8 a month on the yearly plan.",
+        sameResume: {
+            them: "Kickresume rebuilt the resume into its template before scoring the rebuild 80 out of 100, then put every fix and its “recruiter feedback” behind Premium. The checker is the way into the builder, not a read of the file you uploaded.",
+            us: OURS_ON_THE_SAME_RESUME,
+        },
         hub: {
             does: "Builds a resume from a template and drafts the text with AI from your job title. Premium adds an ATS checker, a cover letter writer, and a personal website.",
             costs: "$24 a month, $54 a quarter, or $96 a year. Recurring.",
@@ -629,6 +655,10 @@ export const comparisons: Comparison[] = [
         path: "/compare/rezi",
         title: "Rezi vs Recruiter in Your Pocket",
         summary: "An AI resume builder with its own live score and keyword targeting, free with limits, $29 a month or $149 once.",
+        sameResume: {
+            them: "Rezi scored the same file 56 (“Needs improvement”) without a posting and 96 (“Excellent”) with one, after rebuilding it, adding a summary and a skills section the person didn’t write, and misreading a company name. Its readable advice was verb and punctuation rules, one of which flagged a correctly punctuated bullet.",
+            us: OURS_ON_THE_SAME_RESUME,
+        },
         hub: {
             does: "Builds a resume with AI, scores it against its own checklist as you type, and targets keywords from a posting. Pro adds unlimited resumes and a monthly expert review.",
             costs: "$29 a month, or $149 once for the lifetime plan.",
