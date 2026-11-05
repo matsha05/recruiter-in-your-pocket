@@ -6,6 +6,7 @@ import { ArrowRight, Info, LockKey } from "@phosphor-icons/react";
 import Footer from "@/components/landing/Footer";
 import { Pile } from "@/components/materials/Pile";
 import rhythm from "@/components/materials/Rhythm.module.css";
+import { ResearchLink } from "@/components/research/ResearchLink";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { Analytics } from "@/lib/analytics";
@@ -153,8 +154,9 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                     <div>
                         <h2>Weighing other tools?</h2>
                         <p>
-                            A writer, a keyword scanner, a builder, and a recruiter&rsquo;s read are different purchases.{" "}
-                            <Link href="/compare" className="riyp-link">See how we compare with TopResume, Jobscan, Resume Worded, and Teal</Link>, with each one&rsquo;s own prices.
+                            A writer, a keyword scanner, a builder, and a recruiter&rsquo;s read are different purchases, and the read is the one that decides:{" "}
+                            <ResearchLink to="how-recruiters-read">recruiters who spent longer on Experience were more likely to move a resume forward</ResearchLink>.{" "}
+                            <Link href="/compare" className="riyp-link">See how we compare with seven tools</Link>, Jobscan and TopResume among them, with each one&rsquo;s own prices.
                         </p>
                     </div>
                     <div className={styles.restore}>

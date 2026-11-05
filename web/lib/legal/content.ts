@@ -13,6 +13,13 @@ export type LegalInline =
 
 export type LegalParagraph = LegalInline[];
 
+/**
+ * One trailing sentence after a Help answer that links the research behind it. `claim` is the link text (the
+ * finding, not the article's title) and `research` is a hub id, resolved through ResearchLink so a renamed article
+ * fails the build. The FAQ structured data carries the same sentence as plain text.
+ */
+export type LegalResearchNote = { before: string; claim: string; research: string; after: string };
+
 export type LegalSection =
   | {
     type: "card";
@@ -50,7 +57,7 @@ export type LegalSection =
   }
   | {
     type: "faq";
-    categories: Array<{ category: string; questions: Array<{ q: string; a: string }> }>;
+    categories: Array<{ category: string; questions: Array<{ q: string; a: string; more?: LegalResearchNote }> }>;
   };
 
 export type LegalPageContent = {
@@ -296,10 +303,22 @@ export const legalContent: Record<LegalPageKey, LegalPageContent> = {
               {
                 q: "How is this different from ATS keyword tools?",
                 a: "Keyword tools count matches. The report reads for what you did and what changed because of it. It quotes the line behind every note and asks for the facts that are missing, instead of handing you a keyword score.",
+                more: {
+                  before: "The systems employers use don’t score keywords either: ",
+                  claim: "the software pulls your text into fields, and automatic rejection runs on application questions, not on a match score",
+                  research: "ats-myths",
+                  after: ".",
+                },
               },
               {
                 q: "Does a person read my resume?",
                 a: "No. A recruiter with 15 years in hiring wrote the review criteria, and AI applies them to your resume. Nobody reads individual reports, so check every suggested edit against what you actually did.",
+                more: {
+                  before: "That check matters: in one experiment, ",
+                  claim: "an algorithm’s recommendation swayed recruiters even when they said they trusted it less than a person",
+                  research: "human-vs-algorithm",
+                  after: ".",
+                },
               },
               {
                 q: "What file formats are supported?",
