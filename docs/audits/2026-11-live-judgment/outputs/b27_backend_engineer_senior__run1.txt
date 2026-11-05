@@ -1,0 +1,48 @@
+# b27_backend_engineer_senior, run 1
+Resume: ../../../tests/resumes/blindpick/synth_bp_backend_engineer_senior_1.txt (190 words, sha256 92a71c8e81a0)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0136; 27.2s
+
+## Band: Clear and specific (score 91; model wrote 91, label "Top Tier")
+## Verdict
+Your recent work centers on payment authorization, ledger reliability, and service integration. The on-call and mentoring line is brief beside those detailed technical achievements.
+One-line read: Recent work pairs payment-system ownership with specific scale and measured results.
+Takeaway: Explain your on-call responsibilities
+Biggest gap example: "run the payments on-call rotation" does not explain what you handle during an incident or what decisions you make.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the payments on-call and mentoring bullet, describe an incident responsibility you handle and one way you mentor the engineers.
+   why: Those details would show what your recurring leadership work involves alongside the larger projects.
+   excerpt (EXPERIENCE): "- Mentor 3 engineers and run the payments on-call rotation"
+2. [fix] In the billing observability bullet, name what the OpenTelemetry and Grafana dashboards monitored and how the billing team used them.
+   why: The tools are named, but a reader cannot see which billing problem the dashboards helped the team investigate.
+   excerpt (EXPERIENCE): "- Added observability with OpenTelemetry and Grafana dashboards for the billing team"
+3. [fix] In the card authorization migration bullet, add how you transitioned traffic from the monolith to the Go service, if you can verify it.
+   why: The throughput and latency are clear; the transition approach would reveal more about the work behind the migration.
+   excerpt (EXPERIENCE): "- Designed and led the migration of card authorization from a monolith to a Go service handling 4,500 requests per second at p99 under 80 ms"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The authorization migration names both throughput and p99 latency, helping readers understand the demands on the Go service.
+Other strengths: ["Leading 5 engineers through the PCI DSS 4.0 audit with no critical findings makes your audit leadership concrete.","The invoicing example connects batching database writes to a reduction from 6 hours to 25 minutes, making the technical change easy to understand."]
+
+## Gaps
+- The mentoring line names 3 engineers but not the kind of guidance you provide, leaving your development work with them unclear.
+- The observability bullet doesn't say what the dashboards monitored or how the billing team used them.
+- The authorization migration doesn't describe how the transition was carried out, so the mechanics of that leadership remain unclear.
+
+## Next steps
+- Expand the payments on-call and mentoring line using responsibilities you can verify.
+- Revisit the migration and billing dashboard bullets, adding the transition approach and dashboard use where known.
+- Read the revised experience section in order and keep the existing throughput, reconciliation, audit, and testing figures intact.
+
+## Role fit
+Level: The current title and project leadership point to senior software engineering work.
+Best fit: ["Senior Software Engineer, Payments Platform","Software Engineer"]
+Positioning: Keep payments and ledger work at the front of your experience section. For roles that emphasize operational ownership, make your on-call responsibilities more specific without changing the existing project claims.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[0]","line":"fix-2","criticalMiss":false},{"kind":"question_moved","path":"ideas.questions[0]","fix":2},{"kind":"question_dropped","path":"ideas.questions[2]","reason":"duplicates_keep"},{"kind":"question_moved","path":"ideas.questions[4]","fix":0},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"gaps[2]","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"section_review.Work Experience.missing","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"section_review.Work Experience.fix","of":"top_fixes[0]"}]

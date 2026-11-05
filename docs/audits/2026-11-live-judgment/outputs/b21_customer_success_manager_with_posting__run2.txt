@@ -1,0 +1,56 @@
+# b21_customer_success_manager_with_posting, run 2
+Resume: ../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt (180 words, sha256 fe00b2522044), posting: resumes/b_posting_customer_success_manager.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0387; repair ran; 75.6s
+Case note: The same resume with a posting attached.
+
+Validator refused the first draft: OPENAI_RESPONSE_SHAPE_INVALID The model response failed the evidence grounding contract at score_plain unsupported narrative facts: retention, target, leave, important, comparison, unanswered.
+
+## Band: Mostly clear (score 80; model wrote 80, label "Strong")
+## Verdict
+You manage 48 mid-market accounts in payroll software and work with customers from onboarding through renewal. The current role gives a clear picture of the people and teams you work with.
+One-line read: Your account work is specific, but renewal results remain unstated.
+Takeaway: Explain your renewal contribution
+Biggest gap example: "Partnered with Sales on renewal strategy for at-risk accounts" doesn't say what you contributed or whether any accounts renewed, making your work difficult to compare with the job's commercial requirements.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the at-risk renewal bullet, specify what you contributed to the Sales strategy and add verified account retention results if available.
+   why: The job asks for numerical retention results, while this bullet describes collaboration without saying what happened to the accounts.
+   excerpt (EXPERIENCE): "- Partnered with Sales on renewal strategy for at-risk accounts"
+2. [fix] In the quarterly review bullet, identify the seniority of the attendees and the information you brought to the discussion.
+   why: That would help a reviewer understand how your reviews compare with the job's executive-sponsor requirement.
+   excerpt (EXPERIENCE): "- Run quarterly business reviews with customer finance and HR leads"
+3. [fix] In the payroll escalation bullet, describe your contribution to a specific issue and what happened to the customer problem, if known.
+   why: An example would make your work with Support and Product easier to distinguish from the teams' contributions.
+   excerpt (EXPERIENCE): "- Handle escalations with Support and Product when payroll runs fail"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+Your 94% customer satisfaction score across 2021 gives the support role a concrete result.
+Other strengths: ["Quarterly reviews with finance and HR leads show experience working across customer functions.","Gainsight and Salesforce appear in your skills and are also named in the job description."]
+
+## Gaps
+- The resume doesn't state whether you have been accountable for retention or expansion targets, which are central to this role.
+- It doesn't explain whether you use product usage data to identify risk, leaving your approach to early intervention unclear.
+- The seniority of the finance and HR leads isn't specified, so experience reviewing accounts with executive sponsors remains unconfirmed.
+
+## Next steps
+- Revise the renewal bullet with your actual contribution and any verified results.
+- Expand the review and escalation bullets with the people involved and a relevant customer example.
+- Revisit the onboarding checklist bullet and describe the steps it covers if you can do so accurately.
+
+## Role fit
+Level: Customer Success Manager with prior customer support and account coordination experience.
+Best fit: ["Customer Success Manager, Mid-Market"]
+Positioning: Lead with the mid-market book and your work with finance and HR customers. Make your renewal contribution and any verified commercial results easy to find, without implying accountability the resume doesn't establish.
+
+## Posting
+Match score: 65
+Summary: Your mid-market software account work, quarterly reviews, and named tools align with the role. Fit is less certain on quantified retention and expansion, executive-sponsor reviews, and product usage analysis.
+Missing: []
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[1]","line":"fix-1","criticalMiss":false},{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":1},{"kind":"question_moved","path":"ideas.questions[3]","fix":2},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[2]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"section_review.Work Experience.working","of":"strengths[0]"},{"kind":"repeat_dropped","path":"section_review.Skills.working","of":"strengths[2]"},{"kind":"repeat_dropped","path":"section_review.Skills.missing","of":"gaps[1]"},{"kind":"repeat_dropped","path":"next_steps[0]","of":"top_fixes[0]"}]

@@ -1,0 +1,45 @@
+# b18_military_to_civilian, run 2
+Resume: resumes/b_military_to_civilian.txt (268 words, sha256 c2dd1e89354c)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0138; 28.8s
+
+## Band: Clear and specific (score 86; model wrote 86, label "Strong")
+## Verdict
+You lead maintenance, supply and fuel work, with a stated target of supply chain or operations supervision. The reduction in vehicle non-mission-capable rate stands out because it names both the change and the result.
+One-line read: Recent roles show substantial responsibility and results, with some civilian translation still needed.
+Takeaway: Explain the field support
+Biggest gap example: "Planned and executed logistics support" does not say what supplies or services you coordinated, leaving a civilian reviewer to guess at the work.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the field-exercise logistics bullet, name the supplies or services you planned and coordinated for the battalion.
+   why: A civilian reviewer can then connect the exercise to recognizable logistics responsibilities rather than relying on the military setting alone.
+   excerpt (EXPERIENCE): "- Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises"
+2. [fix] In the parts-budget bullet, explain what decisions you made about ordering or spending within the shop's budget.
+   why: The annual amount is useful, but the decision authority behind it would make your management role more concrete.
+   excerpt (EXPERIENCE): "- Managed the shop's parts budget of about $900K a year"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+Accountability for $14M of vehicles, tools and equipment, with zero losses on three annual inventories, makes the inventory responsibility concrete.
+Other strengths: ["Supervising 14 mechanics maintaining 62 wheeled vehicles shows the size of the shop and the fleet it supported.","Counseling and evaluating 6 direct-report sergeants, 4 of whom were promoted, shows a specific people-management responsibility alongside their subsequent progression."]
+
+## Gaps
+- The field-exercise bullet names the battalion and duration but not the supplies or services involved, making the logistics work less portable to civilian terminology.
+- The parts budget has an annual amount but does not explain which spending or ordering decisions you could make.
+- The training of 9 junior mechanics does not describe what you taught, so the technical development work is difficult to distinguish from general supervision.
+
+## Next steps
+- Revise the field-exercise and parts-budget bullets with the work and decisions you can verify.
+- Add a concrete training example to the mechanic role, then check that military terms are understandable to a civilian reader.
+- Adjust the opening summary for each supply chain or operations supervisor application using the responsibilities already described in your experience.
+
+## Role fit
+Level: Your most recent platoon sergeant role describes supervision of 38 soldiers and 6 direct-report sergeants.
+Best fit: ["Platoon Sergeant (E-7), Forward Support Company","Maintenance Section Sergeant (E-6)"]
+Positioning: Lead with the maintenance, supply and fuel responsibilities that relate to your civilian supervisor target. Translate field logistics into the actual services you coordinated, while retaining the Army titles and stated results.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[3]","fix":1},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"section_review.Summary.missing","of":"first_impression"}]

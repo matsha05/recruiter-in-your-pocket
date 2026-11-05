@@ -1,0 +1,727 @@
+{
+  "case_id": "b27_backend_engineer_senior",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../../../tests/resumes/blindpick/synth_bp_backend_engineer_senior_1.txt",
+  "resume_sha256": "92a71c8e81a037980a571ba4d2007cab76d8f9f04b6517e1ff23e45a0383be59",
+  "resume_chars": 1234,
+  "resume_words": 190,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T20:09:16.152Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7633,
+        "completion_tokens": 2162,
+        "total_tokens": 9795,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 744,
+        "reasoning_tokens": 288
+      },
+      "cost_usd": 0.0120873,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 25382
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.00147825,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1667
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 91,
+    "score_label": "Top Tier",
+    "score_comment_short": "Recent work pairs payment-system ownership with specific scale and measured results.",
+    "score_comment_long": "The payments role shows service design, audit leadership, and reduced integration incidents. The on-call and mentoring work is less developed than the technical achievements. Add a concrete example of your responsibilities there.",
+    "score_plain": "Your resume gives reviewers substantial detail about senior backend work in payments. A few targeted additions could help them understand how you operate beyond building services.",
+    "first_impression": "Your recent work centers on payment authorization, ledger reliability, and service integration. The on-call and mentoring line is brief beside those detailed technical achievements.",
+    "biggest_gap_example": "\"run the payments on-call rotation\" does not explain what you handle during an incident or what decisions you make.",
+    "first_impression_takeaway": "Explain your on-call responsibilities",
+    "summary": "The idempotent ledger service cut reconciliation breaks from about 300 a month to under 10, giving reviewers a concrete reason to notice your payments work. Your recent senior role also combines service migration with audit and testing responsibilities. The resume shows a senior backend engineer who works across reliability and delivery, but leaves your on-call authority unclear, which matters when assessing operational ownership.",
+    "strengths": [
+      "The authorization migration names both throughput and p99 latency, helping readers understand the demands on the Go service.",
+      "Leading 5 engineers through the PCI DSS 4.0 audit with no critical findings makes your audit leadership concrete.",
+      "The invoicing example connects batching database writes to a reduction from 6 hours to 25 minutes, making the technical change easy to understand."
+    ],
+    "gaps": [
+      "The mentoring line names 3 engineers but not the kind of guidance you provide, leaving your development work with them unclear.",
+      "The observability bullet doesn't say what the dashboards monitored or how the billing team used them.",
+      "The authorization migration doesn't describe how the transition was carried out, so the mechanics of that leadership remain unclear."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the payments on-call and mentoring bullet, describe an incident responsibility you handle and one way you mentor the engineers.",
+        "why": "Those details would show what your recurring leadership work involves alongside the larger projects.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Mentor 3 engineers and run the payments on-call rotation",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the billing observability bullet, name what the OpenTelemetry and Grafana dashboards monitored and how the billing team used them.",
+        "why": "The tools are named, but a reader cannot see which billing problem the dashboards helped the team investigate.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Added observability with OpenTelemetry and Grafana dashboards for the billing team",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the card authorization migration bullet, add how you transitioned traffic from the monolith to the Go service, if you can verify it.",
+        "why": "The throughput and latency are clear; the transition approach would reveal more about the work behind the migration.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Designed and led the migration of card authorization from a monolith to a Go service handling 4,500 requests per second at p99 under 80 ms",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Expand the payments on-call and mentoring line using responsibilities you can verify.",
+      "Revisit the migration and billing dashboard bullets, adding the transition approach and dashboard use where known.",
+      "Read the revised experience section in order and keep the existing throughput, reconciliation, audit, and testing figures intact."
+    ],
+    "subscores": {
+      "impact": 94,
+      "clarity": 90,
+      "story": 90,
+      "readability": 91
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The opening identifies backend engineering, payments, ledgers, Go, and Kotlin in one sentence.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Work Experience": {
+        "grade": "A",
+        "priority": "Medium",
+        "working": "The recent role includes throughput, reconciliation, audit, and integration-incident details.",
+        "missing": "The on-call and mentoring responsibilities are less specific than the project bullets.",
+        "fix": "Add a concrete incident responsibility and a mentoring example to the payments role."
+      },
+      "Skills": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The list makes the backend languages and infrastructure tools easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The computer science degree, university, and graduation year are clear.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Payment authorization and ledger services",
+        "Backend development in Go and Kotlin",
+        "Service reliability and contract testing",
+        "PCI DSS 4.0 audit leadership"
+      ],
+      "underplayed": [
+        "Payments on-call responsibilities",
+        "Mentoring practices",
+        "Billing dashboard use"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Senior Software Engineer, Payments Platform",
+          "Software Engineer"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "The current title and project leadership point to senior software engineering work.",
+        "industry_signals": [
+          "Payments",
+          "Billing"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Keep payments and ledger work at the front of your experience section. For roles that emphasize operational ownership, make your on-call responsibilities more specific without changing the existing project claims."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "How did you transition authorization traffic from the monolith to the Go service?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The answer could show how you handled the migration beyond its throughput and latency."
+        },
+        {
+          "question": "What types of reconciliation breaks did the idempotent ledger service address?",
+          "archetype": "DOMAIN LIFT",
+          "why": "A concrete example would make the ledger problem easier to understand."
+        },
+        {
+          "question": "What did you and the engineers do to prepare for the PCI DSS 4.0 audit?",
+          "archetype": "HIGH STAKES",
+          "why": "The audit result is clear, while the preparation work is not described."
+        },
+        {
+          "question": "What integration issue led you to introduce contract testing between the payment services?",
+          "archetype": "IMPROVEMENT",
+          "why": "This could connect the testing change to a specific problem the services faced."
+        },
+        {
+          "question": "During payments on-call, which incident decisions can you make and when do you involve others?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "This would explain your responsibilities during an incident."
+        }
+      ]
+    }
+  },
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 91,
+    "score_label": "Clear and specific",
+    "score_comment_short": "Recent work pairs payment-system ownership with specific scale and measured results.",
+    "score_comment_long": "The payments role shows service design, audit leadership, and reduced integration incidents. The on-call and mentoring work is less developed than the technical achievements. Add a concrete example of your responsibilities there.",
+    "score_plain": "Your resume gives reviewers substantial detail about senior backend work in payments. A few targeted additions could help them understand how you operate beyond building services.",
+    "first_impression": "Your recent work centers on payment authorization, ledger reliability, and service integration. The on-call and mentoring line is brief beside those detailed technical achievements.",
+    "biggest_gap_example": "\"run the payments on-call rotation\" does not explain what you handle during an incident or what decisions you make.",
+    "first_impression_takeaway": "Explain your on-call responsibilities",
+    "summary": "The idempotent ledger service cut reconciliation breaks from about 300 a month to under 10, giving reviewers a concrete reason to notice your payments work. Your recent senior role also combines service migration with audit and testing responsibilities. The resume shows a senior backend engineer who works across reliability and delivery, but leaves your on-call authority unclear, which matters when assessing operational ownership.",
+    "strengths": [
+      "The authorization migration names both throughput and p99 latency, helping readers understand the demands on the Go service.",
+      "Leading 5 engineers through the PCI DSS 4.0 audit with no critical findings makes your audit leadership concrete.",
+      "The invoicing example connects batching database writes to a reduction from 6 hours to 25 minutes, making the technical change easy to understand."
+    ],
+    "gaps": [
+      "The mentoring line names 3 engineers but not the kind of guidance you provide, leaving your development work with them unclear.",
+      "The observability bullet doesn't say what the dashboards monitored or how the billing team used them.",
+      "The authorization migration doesn't describe how the transition was carried out, so the mechanics of that leadership remain unclear."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the payments on-call and mentoring bullet, describe an incident responsibility you handle and one way you mentor the engineers.",
+        "why": "Those details would show what your recurring leadership work involves alongside the larger projects.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Mentor 3 engineers and run the payments on-call rotation",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the billing observability bullet, name what the OpenTelemetry and Grafana dashboards monitored and how the billing team used them.",
+        "why": "The tools are named, but a reader cannot see which billing problem the dashboards helped the team investigate.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Added observability with OpenTelemetry and Grafana dashboards for the billing team",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the card authorization migration bullet, add how you transitioned traffic from the monolith to the Go service, if you can verify it.",
+        "why": "The throughput and latency are clear; the transition approach would reveal more about the work behind the migration.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Designed and led the migration of card authorization from a monolith to a Go service handling 4,500 requests per second at p99 under 80 ms",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Expand the payments on-call and mentoring line using responsibilities you can verify.",
+      "Revisit the migration and billing dashboard bullets, adding the transition approach and dashboard use where known.",
+      "Read the revised experience section in order and keep the existing throughput, reconciliation, audit, and testing figures intact."
+    ],
+    "subscores": {
+      "impact": 94,
+      "clarity": 90,
+      "story": 90,
+      "readability": 91
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "A",
+        "priority": "Medium",
+        "working": "The recent role includes throughput, reconciliation, audit, and integration-incident details.",
+        "missing": "The on-call and mentoring responsibilities are less specific than the project bullets.",
+        "fix": "Add a concrete incident responsibility and a mentoring example to the payments role."
+      },
+      "Skills": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The list makes the backend languages and infrastructure tools easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The computer science degree, university, and graduation year are clear.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Payment authorization and ledger services",
+        "Backend development in Go and Kotlin",
+        "Service reliability and contract testing",
+        "PCI DSS 4.0 audit leadership"
+      ],
+      "underplayed": [
+        "Payments on-call responsibilities",
+        "Mentoring practices",
+        "Billing dashboard use"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Senior Software Engineer, Payments Platform",
+          "Software Engineer"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "The current title and project leadership point to senior software engineering work.",
+        "industry_signals": [
+          "Payments",
+          "Billing"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Keep payments and ledger work at the front of your experience section. For roles that emphasize operational ownership, make your on-call responsibilities more specific without changing the existing project claims."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "How did you transition authorization traffic from the monolith to the Go service?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The answer could show how you handled the migration beyond its throughput and latency."
+        },
+        {
+          "question": "What types of reconciliation breaks did the idempotent ledger service address?",
+          "archetype": "DOMAIN LIFT",
+          "why": "A concrete example would make the ledger problem easier to understand."
+        },
+        {
+          "question": "What did you and the engineers do to prepare for the PCI DSS 4.0 audit?",
+          "archetype": "HIGH STAKES",
+          "why": "The audit result is clear, while the preparation work is not described."
+        },
+        {
+          "question": "What integration issue led you to introduce contract testing between the payment services?",
+          "archetype": "IMPROVEMENT",
+          "why": "This could connect the testing change to a specific problem the services faced."
+        },
+        {
+          "question": "During payments on-call, which incident decisions can you make and when do you involve others?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "This would explain your responsibilities during an incident."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 91
+  },
+  "severity": {
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "promoted": [],
+    "replaced": [],
+    "skipped": [],
+    "critical_count": 1,
+    "more_critical": false,
+    "validation_attempts": 0,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "latency_ms": 1667,
+    "call_latency_ms": 1667,
+    "cost_usd": 0.00147825,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 91,
+    "score_label": "Clear and specific",
+    "score_comment_short": "Recent work pairs payment-system ownership with specific scale and measured results.",
+    "score_comment_long": "The payments role shows service design, audit leadership, and reduced integration incidents. The on-call and mentoring work is less developed than the technical achievements. Add a concrete example of your responsibilities there.",
+    "score_plain": "Your resume gives reviewers substantial detail about senior backend work in payments. A few targeted additions could help them understand how you operate beyond building services.",
+    "first_impression": "Your recent work centers on payment authorization, ledger reliability, and service integration. The on-call and mentoring line is brief beside those detailed technical achievements.",
+    "biggest_gap_example": "\"run the payments on-call rotation\" does not explain what you handle during an incident or what decisions you make.",
+    "first_impression_takeaway": "Explain your on-call responsibilities",
+    "summary": "The idempotent ledger service cut reconciliation breaks from about 300 a month to under 10, giving reviewers a concrete reason to notice your payments work. Your recent senior role also combines service migration with audit and testing responsibilities. The resume shows a senior backend engineer who works across reliability and delivery, but leaves your on-call authority unclear, which matters when assessing operational ownership.",
+    "strengths": [
+      "The authorization migration names both throughput and p99 latency, helping readers understand the demands on the Go service.",
+      "Leading 5 engineers through the PCI DSS 4.0 audit with no critical findings makes your audit leadership concrete.",
+      "The invoicing example connects batching database writes to a reduction from 6 hours to 25 minutes, making the technical change easy to understand."
+    ],
+    "gaps": [
+      "The mentoring line names 3 engineers but not the kind of guidance you provide, leaving your development work with them unclear.",
+      "The observability bullet doesn't say what the dashboards monitored or how the billing team used them.",
+      "The authorization migration doesn't describe how the transition was carried out, so the mechanics of that leadership remain unclear."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the payments on-call and mentoring bullet, describe an incident responsibility you handle and one way you mentor the engineers.",
+        "why": "Those details would show what your recurring leadership work involves alongside the larger projects.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Mentor 3 engineers and run the payments on-call rotation",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": true
+      },
+      {
+        "fix": "In the billing observability bullet, name what the OpenTelemetry and Grafana dashboards monitored and how the billing team used them.",
+        "why": "The tools are named, but a reader cannot see which billing problem the dashboards helped the team investigate.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Added observability with OpenTelemetry and Grafana dashboards for the billing team",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      },
+      {
+        "fix": "In the card authorization migration bullet, add how you transitioned traffic from the monolith to the Go service, if you can verify it.",
+        "why": "The throughput and latency are clear; the transition approach would reveal more about the work behind the migration.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Designed and led the migration of card authorization from a monolith to a Go service handling 4,500 requests per second at p99 under 80 ms",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      }
+    ],
+    "next_steps": [
+      "Expand the payments on-call and mentoring line using responsibilities you can verify.",
+      "Revisit the migration and billing dashboard bullets, adding the transition approach and dashboard use where known.",
+      "Read the revised experience section in order and keep the existing throughput, reconciliation, audit, and testing figures intact."
+    ],
+    "subscores": {
+      "impact": 94,
+      "clarity": 90,
+      "story": 90,
+      "readability": 91
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "A",
+        "priority": "Medium",
+        "working": "The recent role includes throughput, reconciliation, audit, and integration-incident details.",
+        "missing": "The on-call and mentoring responsibilities are less specific than the project bullets.",
+        "fix": "Add a concrete incident responsibility and a mentoring example to the payments role."
+      },
+      "Skills": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The list makes the backend languages and infrastructure tools easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The computer science degree, university, and graduation year are clear.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Payment authorization and ledger services",
+        "Backend development in Go and Kotlin",
+        "Service reliability and contract testing",
+        "PCI DSS 4.0 audit leadership"
+      ],
+      "underplayed": [
+        "Payments on-call responsibilities",
+        "Mentoring practices",
+        "Billing dashboard use"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Senior Software Engineer, Payments Platform",
+          "Software Engineer"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "The current title and project leadership point to senior software engineering work.",
+        "industry_signals": [
+          "Payments",
+          "Billing"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Keep payments and ledger work at the front of your experience section. For roles that emphasize operational ownership, make your on-call responsibilities more specific without changing the existing project claims."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "How did you transition authorization traffic from the monolith to the Go service?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The answer could show how you handled the migration beyond its throughput and latency."
+        },
+        {
+          "question": "What types of reconciliation breaks did the idempotent ledger service address?",
+          "archetype": "DOMAIN LIFT",
+          "why": "A concrete example would make the ledger problem easier to understand."
+        },
+        {
+          "question": "What did you and the engineers do to prepare for the PCI DSS 4.0 audit?",
+          "archetype": "HIGH STAKES",
+          "why": "The audit result is clear, while the preparation work is not described."
+        },
+        {
+          "question": "What integration issue led you to introduce contract testing between the payment services?",
+          "archetype": "IMPROVEMENT",
+          "why": "This could connect the testing change to a specific problem the services faced."
+        },
+        {
+          "question": "During payments on-call, which incident decisions can you make and when do you involve others?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "This would explain your responsibilities during an incident."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 91,
+    "more_critical": false
+  },
+  "presentation": {
+    "score": 91,
+    "band": "Clear and specific",
+    "score_label_from_model": "Top Tier",
+    "model_score_before_calibration": 91,
+    "verdict": "Your recent work centers on payment authorization, ledger reliability, and service integration. The on-call and mentoring line is brief beside those detailed technical achievements.",
+    "one_line_read": "Recent work pairs payment-system ownership with specific scale and measured results.",
+    "takeaway": "Explain your on-call responsibilities",
+    "biggest_gap_example": "\"run the payments on-call rotation\" does not explain what you handle during an incident or what decisions you make.",
+    "critical_count": {
+      "count": 1,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "One Critical Miss. Fix it first.",
+      "lead": "It's the one most likely to cost you the interview."
+    },
+    "fixes": [
+      {
+        "fix": "In the payments on-call and mentoring bullet, describe an incident responsibility you handle and one way you mentor the engineers.",
+        "why": "Those details would show what your recurring leadership work involves alongside the larger projects.",
+        "excerpt": "- Mentor 3 engineers and run the payments on-call rotation",
+        "section": "EXPERIENCE",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the billing observability bullet, name what the OpenTelemetry and Grafana dashboards monitored and how the billing team used them.",
+        "why": "The tools are named, but a reader cannot see which billing problem the dashboards helped the team investigate.",
+        "excerpt": "- Added observability with OpenTelemetry and Grafana dashboards for the billing team",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the card authorization migration bullet, add how you transitioned traffic from the monolith to the Go service, if you can verify it.",
+        "why": "The throughput and latency are clear; the transition approach would reveal more about the work behind the migration.",
+        "excerpt": "- Designed and led the migration of card authorization from a monolith to a Go service handling 4,500 requests per second at p99 under 80 ms",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "The authorization migration names both throughput and p99 latency, helping readers understand the demands on the Go service.",
+    "strengths": [
+      "The authorization migration names both throughput and p99 latency, helping readers understand the demands on the Go service.",
+      "Leading 5 engineers through the PCI DSS 4.0 audit with no critical findings makes your audit leadership concrete.",
+      "The invoicing example connects batching database writes to a reduction from 6 hours to 25 minutes, making the technical change easy to understand."
+    ],
+    "gaps": [
+      "The mentoring line names 3 engineers but not the kind of guidance you provide, leaving your development work with them unclear.",
+      "The observability bullet doesn't say what the dashboards monitored or how the billing team used them.",
+      "The authorization migration doesn't describe how the transition was carried out, so the mechanics of that leadership remain unclear."
+    ],
+    "next_steps": [
+      "Expand the payments on-call and mentoring line using responsibilities you can verify.",
+      "Revisit the migration and billing dashboard bullets, adding the transition approach and dashboard use where known.",
+      "Read the revised experience section in order and keep the existing throughput, reconciliation, audit, and testing figures intact."
+    ],
+    "seniority_read": "The current title and project leadership point to senior software engineering work.",
+    "best_fit_roles": [
+      "Senior Software Engineer, Payments Platform",
+      "Software Engineer"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "Keep payments and ledger work at the front of your experience section. For roles that emphasize operational ownership, make your on-call responsibilities more specific without changing the existing project claims.",
+    "severity_added": [],
+    "severity_promoted": [],
+    "severity_outcome": "none (none)",
+    "severity_answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "keep_dropped",
+          "path": "strengths[0]",
+          "line": "fix-2",
+          "criticalMiss": false
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[0]",
+          "fix": 2
+        },
+        {
+          "kind": "question_dropped",
+          "path": "ideas.questions[2]",
+          "reason": "duplicates_keep"
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[4]",
+          "fix": 0
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "biggest_gap_example",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[0]",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[1]",
+          "of": "top_fixes[1]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[2]",
+          "of": "top_fixes[2]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Work Experience.missing",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Work Experience.fix",
+          "of": "top_fixes[0]"
+        }
+      ],
+      "fix_questions": [
+        [
+          "During payments on-call, which incident decisions can you make and when do you involve others?"
+        ],
+        [],
+        [
+          "How did you transition authorization traffic from the monolith to the Go service?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01356555,
+  "latency_ms": 27202
+}

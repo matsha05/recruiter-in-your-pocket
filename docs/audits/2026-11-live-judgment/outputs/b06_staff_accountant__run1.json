@@ -1,0 +1,730 @@
+{
+  "case_id": "b06_staff_accountant",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../../../tests/resumes/blindpick/synth_bp_staff_accountant_1.txt",
+  "resume_sha256": "5ffd1542f9efd3cfd81adbb3bf5a41f679b5c13e4c013d509922f301a1d5ca53",
+  "resume_chars": 731,
+  "resume_words": 98,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T19:59:44.790Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7391,
+        "completion_tokens": 2038,
+        "total_tokens": 9429,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 502,
+        "reasoning_tokens": 254
+      },
+      "cost_usd": 0.0111648,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 23713
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.002197,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 4370
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 61,
+    "score_label": "Needs Clarity",
+    "score_comment_short": "The accounting duties are clear, but their detail is limited.",
+    "score_comment_long": "Month-end close, reconciliations, and audit assistance establish the accounting work you handle. Most bullets stop at the task, leaving the accounts, deliverables, and decisions unclear. Add those details to the current role first.",
+    "score_plain": "A reviewer can identify your accounting background, but may have trouble distinguishing your work from similar staff accountant resumes. More detail about the close and audit would give them a better basis for comparison.",
+    "first_impression": "Your move from Accounts Payable Clerk to Staff Accountant at Rivermark gives the work history a clear direction. The current role lists core accounting duties, but offers little detail about how you carry them out.",
+    "biggest_gap_example": "\"Responsible for month-end close tasks\" does not identify the tasks you handle, so a reviewer cannot tell what part of the close is yours.",
+    "first_impression_takeaway": "Name your close tasks",
+    "summary": "Your work at Rivermark runs from vendor invoices and purchase order matching to journal entries, reconciliations, and fixed asset schedules. The sequence makes your accounting progression easy to follow and supports a staff accountant read. The annual audit bullet also shows involvement beyond routine transaction processing, though it doesn't say what you provide to auditors. That leaves a reviewer with only a broad view of your contribution.",
+    "strengths": [
+      "Journal entries and account reconciliations show work directly relevant to a Staff Accountant role.",
+      "QuickBooks, NetSuite, and named Excel functions give a reviewer concrete tools to look for.",
+      "The accounting degree includes the school and completion year, making your education easy to verify."
+    ],
+    "gaps": [
+      "The reconciliation bullet doesn't identify the accounts involved, making it difficult to understand the work's range.",
+      "Fixed asset schedules are listed without the updates or reviews you perform, so the responsibility remains broad.",
+      "The skills section doesn't connect either accounting system to a particular task, leaving their use in your work unclear."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the month-end close bullet, name the close tasks you handle beyond the journal entries and reconciliations already listed.",
+        "why": "That would distinguish your part of the close from the general responsibility.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Responsible for month-end close tasks",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the annual audit bullet, specify the schedules, documents, or requests you help prepare or address.",
+        "why": "A reviewer could see what your audit assistance actually involves without overstating your role.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Assist with the annual audit",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the journal entry and reconciliation bullet, identify the types of accounts you reconcile or entries you prepare.",
+        "why": "Those examples would make the accounting work more concrete than the task names alone.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Prepare journal entries and account reconciliations",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the current role first, using your actual close, reconciliation, and audit work to expand the relevant bullets.",
+      "Review the fixed asset and accounts payable bullets for a useful example of what you handle in each.",
+      "Connect QuickBooks or NetSuite to a specific experience bullet if you used it for that work."
+    ],
+    "subscores": {
+      "impact": 50,
+      "clarity": 64,
+      "story": 65,
+      "readability": 67
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "Section not present.",
+        "fix": "Add only if it helps your story."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The roles show a move from accounts payable into staff accounting at Rivermark.",
+        "missing": "The current bullets rarely describe the accounts, documents, or particular tasks involved.",
+        "fix": "Expand the close and audit bullets with the work you actually perform."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The section names two accounting systems and specific Excel functions.",
+        "missing": "It doesn't show which accounting work uses each system.",
+        "fix": "Connect the systems to relevant experience bullets where accurate."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The accounting degree, university, and completion year are clear.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Month-end close tasks",
+        "Journal entries and account reconciliations",
+        "Fixed asset schedules",
+        "Accounts payable and vendor invoice processing"
+      ],
+      "underplayed": [
+        "The specific contribution to the annual audit",
+        "The types of accounts reconciled",
+        "How QuickBooks and NetSuite are used in the work history"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Staff Accountant"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current title and duties indicate a staff accountant level.",
+        "industry_signals": [
+          "Building supply"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Keep Staff Accountant as the lead title and use the current role to explain your accounting work in more detail. Retain the earlier accounts payable role to show the path into that position."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "Which close tasks do you handle besides journal entries and reconciliations?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The answer can define your part of the month-end process."
+        },
+        {
+          "question": "What did you provide or help prepare for the annual audit?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "A specific audit contribution would explain the assistance listed."
+        },
+        {
+          "question": "Which account reconciliations have required the most investigation, and what did you do?",
+          "archetype": "TENSION POINT",
+          "why": "An example could show how you handle a discrepancy."
+        },
+        {
+          "question": "What changes do you make when maintaining fixed asset schedules?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The answer would make that accounting responsibility more concrete."
+        },
+        {
+          "question": "When matching purchase orders to receipts, how did you handle a mismatch?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "This could add a useful example to the earlier accounts payable role."
+        }
+      ]
+    }
+  },
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 61,
+    "score_label": "Needs more context",
+    "score_comment_short": "The accounting duties are clear, but their detail is limited.",
+    "score_comment_long": "Month-end close, reconciliations, and audit assistance establish the accounting work you handle. Most bullets stop at the task, leaving the accounts, deliverables, and decisions unclear. Add those details to the current role first.",
+    "score_plain": "A reviewer can identify your accounting background, but may have trouble distinguishing your work from similar staff accountant resumes. More detail about the close and audit would give them a better basis for comparison.",
+    "first_impression": "Your move from Accounts Payable Clerk to Staff Accountant at Rivermark gives the work history a clear direction. The current role lists core accounting duties, but offers little detail about how you carry them out.",
+    "biggest_gap_example": "\"Responsible for month-end close tasks\" does not identify the tasks you handle, so a reviewer cannot tell what part of the close is yours.",
+    "first_impression_takeaway": "Name your close tasks",
+    "summary": "Your work at Rivermark runs from vendor invoices and purchase order matching to journal entries, reconciliations, and fixed asset schedules. The sequence makes your accounting progression easy to follow and supports a staff accountant read. The annual audit bullet also shows involvement beyond routine transaction processing, though it doesn't say what you provide to auditors. That leaves a reviewer with only a broad view of your contribution.",
+    "strengths": [
+      "Journal entries and account reconciliations show work directly relevant to a Staff Accountant role.",
+      "QuickBooks, NetSuite, and named Excel functions give a reviewer concrete tools to look for.",
+      "The accounting degree includes the school and completion year, making your education easy to verify."
+    ],
+    "gaps": [
+      "The reconciliation bullet doesn't identify the accounts involved, making it difficult to understand the work's range.",
+      "Fixed asset schedules are listed without the updates or reviews you perform, so the responsibility remains broad.",
+      "The skills section doesn't connect either accounting system to a particular task, leaving their use in your work unclear."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the month-end close bullet, name the close tasks you handle beyond the journal entries and reconciliations already listed.",
+        "why": "That would distinguish your part of the close from the general responsibility.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Responsible for month-end close tasks",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the annual audit bullet, specify the schedules, documents, or requests you help prepare or address.",
+        "why": "A reviewer could see what your audit assistance actually involves without overstating your role.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Assist with the annual audit",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the journal entry and reconciliation bullet, identify the types of accounts you reconcile or entries you prepare.",
+        "why": "Those examples would make the accounting work more concrete than the task names alone.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Prepare journal entries and account reconciliations",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the current role first, using your actual close, reconciliation, and audit work to expand the relevant bullets.",
+      "Review the fixed asset and accounts payable bullets for a useful example of what you handle in each.",
+      "Connect QuickBooks or NetSuite to a specific experience bullet if you used it for that work."
+    ],
+    "subscores": {
+      "impact": 50,
+      "clarity": 64,
+      "story": 65,
+      "readability": 67
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The roles show a move from accounts payable into staff accounting at Rivermark.",
+        "missing": "The current bullets rarely describe the accounts, documents, or particular tasks involved.",
+        "fix": "Expand the close and audit bullets with the work you actually perform."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The section names two accounting systems and specific Excel functions.",
+        "missing": "It doesn't show which accounting work uses each system.",
+        "fix": "Connect the systems to relevant experience bullets where accurate."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The accounting degree, university, and completion year are clear.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Month-end close tasks",
+        "Journal entries and account reconciliations",
+        "Fixed asset schedules",
+        "Accounts payable and vendor invoice processing"
+      ],
+      "underplayed": [
+        "The specific contribution to the annual audit",
+        "The types of accounts reconciled",
+        "How QuickBooks and NetSuite are used in the work history"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Staff Accountant"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current title and duties indicate a staff accountant level.",
+        "industry_signals": [
+          "Building supply"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Keep Staff Accountant as the lead title and use the current role to explain your accounting work in more detail. Retain the earlier accounts payable role to show the path into that position."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "Which close tasks do you handle besides journal entries and reconciliations?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The answer can define your part of the month-end process."
+        },
+        {
+          "question": "What did you provide or help prepare for the annual audit?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "A specific audit contribution would explain the assistance listed."
+        },
+        {
+          "question": "Which account reconciliations have required the most investigation, and what did you do?",
+          "archetype": "TENSION POINT",
+          "why": "An example could show how you handle a discrepancy."
+        },
+        {
+          "question": "What changes do you make when maintaining fixed asset schedules?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The answer would make that accounting responsibility more concrete."
+        },
+        {
+          "question": "When matching purchase orders to receipts, how did you handle a mismatch?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "This could add a useful example to the earlier accounts payable role."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 61
+  },
+  "severity": {
+    "outcome": "added",
+    "reason": "added",
+    "added": [
+      "no_evidence_latest_role"
+    ],
+    "promoted": [],
+    "replaced": [],
+    "skipped": [],
+    "critical_count": 2,
+    "more_critical": false,
+    "validation_attempts": 1,
+    "answer": {
+      "critical_misses": [
+        {
+          "source": "new",
+          "kind": "no_evidence_latest_role",
+          "fix": "In the fixed asset schedules bullet, add how many assets you track, if you can verify it.",
+          "why": "Accounting hiring managers often look for the scale of work handled. Your current role lists core duties but doesn't show their volume or measurable results.",
+          "excerpt": "- Maintain fixed asset schedules",
+          "section": "Experience",
+          "effort": "quick"
+        }
+      ],
+      "more_critical": false
+    },
+    "latency_ms": 4556,
+    "call_latency_ms": 4370,
+    "cost_usd": 0.002197,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 61,
+    "score_label": "Needs more context",
+    "score_comment_short": "The accounting duties are clear, but their detail is limited.",
+    "score_comment_long": "Month-end close, reconciliations, and audit assistance establish the accounting work you handle. Most bullets stop at the task, leaving the accounts, deliverables, and decisions unclear. Add those details to the current role first.",
+    "score_plain": "A reviewer can identify your accounting background, but may have trouble distinguishing your work from similar staff accountant resumes. More detail about the close and audit would give them a better basis for comparison.",
+    "first_impression": "Your move from Accounts Payable Clerk to Staff Accountant at Rivermark gives the work history a clear direction. The current role lists core accounting duties, but offers little detail about how you carry them out.",
+    "biggest_gap_example": "\"Responsible for month-end close tasks\" does not identify the tasks you handle, so a reviewer cannot tell what part of the close is yours.",
+    "first_impression_takeaway": "Name your close tasks",
+    "summary": "Your work at Rivermark runs from vendor invoices and purchase order matching to journal entries, reconciliations, and fixed asset schedules. The sequence makes your accounting progression easy to follow and supports a staff accountant read. The annual audit bullet also shows involvement beyond routine transaction processing, though it doesn't say what you provide to auditors. That leaves a reviewer with only a broad view of your contribution.",
+    "strengths": [
+      "Journal entries and account reconciliations show work directly relevant to a Staff Accountant role.",
+      "QuickBooks, NetSuite, and named Excel functions give a reviewer concrete tools to look for.",
+      "The accounting degree includes the school and completion year, making your education easy to verify."
+    ],
+    "gaps": [
+      "The reconciliation bullet doesn't identify the accounts involved, making it difficult to understand the work's range.",
+      "Fixed asset schedules are listed without the updates or reviews you perform, so the responsibility remains broad.",
+      "The skills section doesn't connect either accounting system to a particular task, leaving their use in your work unclear."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the month-end close bullet, name the close tasks you handle beyond the journal entries and reconciliations already listed.",
+        "why": "That would distinguish your part of the close from the general responsibility.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Responsible for month-end close tasks",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": true
+      },
+      {
+        "fix": "In the fixed asset schedules bullet, add how many assets you track, if you can verify it.",
+        "why": "Accounting hiring managers often look for the scale of work handled. Your current role lists core duties but doesn't show their volume or measurable results.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Maintain fixed asset schedules",
+          "section": "Experience"
+        },
+        "impact_level": "high",
+        "effort": "quick",
+        "section_ref": "Experience",
+        "critical": true
+      },
+      {
+        "fix": "In the annual audit bullet, specify the schedules, documents, or requests you help prepare or address.",
+        "why": "A reviewer could see what your audit assistance actually involves without overstating your role.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Assist with the annual audit",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      }
+    ],
+    "more_critical": false,
+    "next_steps": [
+      "Revise the current role first, using your actual close, reconciliation, and audit work to expand the relevant bullets.",
+      "Review the fixed asset and accounts payable bullets for a useful example of what you handle in each.",
+      "Connect QuickBooks or NetSuite to a specific experience bullet if you used it for that work."
+    ],
+    "subscores": {
+      "impact": 50,
+      "clarity": 64,
+      "story": 65,
+      "readability": 67
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The roles show a move from accounts payable into staff accounting at Rivermark.",
+        "missing": "The current bullets rarely describe the accounts, documents, or particular tasks involved.",
+        "fix": "Expand the close and audit bullets with the work you actually perform."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The section names two accounting systems and specific Excel functions.",
+        "missing": "It doesn't show which accounting work uses each system.",
+        "fix": "Connect the systems to relevant experience bullets where accurate."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The accounting degree, university, and completion year are clear.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 61,
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Month-end close tasks",
+        "Journal entries and account reconciliations",
+        "Fixed asset schedules",
+        "Accounts payable and vendor invoice processing"
+      ],
+      "underplayed": [
+        "The specific contribution to the annual audit",
+        "The types of accounts reconciled",
+        "How QuickBooks and NetSuite are used in the work history"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Staff Accountant"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current title and duties indicate a staff accountant level.",
+        "industry_signals": [
+          "Building supply"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Keep Staff Accountant as the lead title and use the current role to explain your accounting work in more detail. Retain the earlier accounts payable role to show the path into that position."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "Which close tasks do you handle besides journal entries and reconciliations?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The answer can define your part of the month-end process."
+        },
+        {
+          "question": "What did you provide or help prepare for the annual audit?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "A specific audit contribution would explain the assistance listed."
+        },
+        {
+          "question": "Which account reconciliations have required the most investigation, and what did you do?",
+          "archetype": "TENSION POINT",
+          "why": "An example could show how you handle a discrepancy."
+        },
+        {
+          "question": "What changes do you make when maintaining fixed asset schedules?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The answer would make that accounting responsibility more concrete."
+        },
+        {
+          "question": "When matching purchase orders to receipts, how did you handle a mismatch?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "This could add a useful example to the earlier accounts payable role."
+        }
+      ]
+    }
+  },
+  "presentation": {
+    "score": 61,
+    "band": "Needs more context",
+    "score_label_from_model": "Needs Clarity",
+    "model_score_before_calibration": 61,
+    "verdict": "Your move from Accounts Payable Clerk to Staff Accountant at Rivermark gives the work history a clear direction. The current role lists core accounting duties, but offers little detail about how you carry them out.",
+    "one_line_read": "The accounting duties are clear, but their detail is limited.",
+    "takeaway": "Name your close tasks",
+    "biggest_gap_example": "\"Responsible for month-end close tasks\" does not identify the tasks you handle, so a reviewer cannot tell what part of the close is yours.",
+    "critical_count": {
+      "count": 2,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "Two Critical Misses. Start with this one.",
+      "lead": "Either one could cost you the interview on its own."
+    },
+    "fixes": [
+      {
+        "fix": "In the month-end close bullet, name the close tasks you handle beyond the journal entries and reconciliations already listed.",
+        "why": "That would distinguish your part of the close from the general responsibility.",
+        "excerpt": "- Responsible for month-end close tasks",
+        "section": "EXPERIENCE",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the fixed asset schedules bullet, add how many assets you track, if you can verify it.",
+        "why": "Accounting hiring managers often look for the scale of work handled. Your current role lists core duties but doesn't show their volume or measurable results.",
+        "excerpt": "- Maintain fixed asset schedules",
+        "section": "Experience",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the annual audit bullet, specify the schedules, documents, or requests you help prepare or address.",
+        "why": "A reviewer could see what your audit assistance actually involves without overstating your role.",
+        "excerpt": "- Assist with the annual audit",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "Journal entries and account reconciliations show work directly relevant to a Staff Accountant role.",
+    "strengths": [
+      "Journal entries and account reconciliations show work directly relevant to a Staff Accountant role.",
+      "QuickBooks, NetSuite, and named Excel functions give a reviewer concrete tools to look for.",
+      "The accounting degree includes the school and completion year, making your education easy to verify."
+    ],
+    "gaps": [
+      "The reconciliation bullet doesn't identify the accounts involved, making it difficult to understand the work's range.",
+      "Fixed asset schedules are listed without the updates or reviews you perform, so the responsibility remains broad.",
+      "The skills section doesn't connect either accounting system to a particular task, leaving their use in your work unclear."
+    ],
+    "next_steps": [
+      "Revise the current role first, using your actual close, reconciliation, and audit work to expand the relevant bullets.",
+      "Review the fixed asset and accounts payable bullets for a useful example of what you handle in each.",
+      "Connect QuickBooks or NetSuite to a specific experience bullet if you used it for that work."
+    ],
+    "seniority_read": "Your current title and duties indicate a staff accountant level.",
+    "best_fit_roles": [
+      "Staff Accountant"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "Keep Staff Accountant as the lead title and use the current role to explain your accounting work in more detail. Retain the earlier accounts payable role to show the path into that position.",
+    "severity_added": [
+      "no_evidence_latest_role"
+    ],
+    "severity_promoted": [],
+    "severity_outcome": "added (added)",
+    "severity_answer": {
+      "critical_misses": [
+        {
+          "source": "new",
+          "kind": "no_evidence_latest_role",
+          "fix": "In the fixed asset schedules bullet, add how many assets you track, if you can verify it.",
+          "why": "Accounting hiring managers often look for the scale of work handled. Your current role lists core duties but doesn't show their volume or measurable results.",
+          "excerpt": "- Maintain fixed asset schedules",
+          "section": "Experience",
+          "effort": "quick"
+        }
+      ],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[0]",
+          "fix": 0
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[1]",
+          "fix": 2
+        },
+        {
+          "kind": "question_dropped",
+          "path": "ideas.questions[2]",
+          "reason": "duplicates_keep"
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[3]",
+          "fix": 1
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "biggest_gap_example",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[1]",
+          "of": "top_fixes[1]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Education.working",
+          "of": "strengths[2]"
+        }
+      ],
+      "fix_questions": [
+        [
+          "Which close tasks do you handle besides journal entries and reconciliations?"
+        ],
+        [
+          "What changes do you make when maintaining fixed asset schedules?"
+        ],
+        [
+          "What did you provide or help prepare for the annual audit?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0133618,
+  "latency_ms": 28565
+}

@@ -1,0 +1,719 @@
+{
+  "case_id": "b40_senior_ic_wei",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Senior IC (bar persona).",
+  "resume_file": "../../../docs/design/2026-11-bar/resumes/4-senior-ic-wei.txt",
+  "resume_sha256": "e95b41ee5391398ba259810d134ff4a7392766f8e7fa117ad93d5d19b8ed94a5",
+  "resume_chars": 2597,
+  "resume_words": 361,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T20:15:42.315Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 8240,
+        "completion_tokens": 2214,
+        "total_tokens": 10454,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 1351,
+        "reasoning_tokens": 307
+      },
+      "cost_usd": 0.01310605,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 25778
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.00340825,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 4030
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 85,
+    "score_label": "Strong",
+    "score_comment_short": "Recent work shows technical leadership, concrete architecture choices, and meaningful payment-service results.",
+    "score_comment_long": "The ledger redesign and idempotency work show what you led and where. Several leadership bullets leave your contribution or the change that followed less clear. Adding a few specific details to those bullets would make the staff-level story easier to assess.",
+    "score_plain": "A reviewer can see a credible fit for senior payments infrastructure work. More detail on technical decisions and cross-functional contributions would help distinguish your staff-level work.",
+    "first_impression": "You lead ledger and settlement platform work at Brightline Payments, with earlier experience in fraud scoring and cloud storage. Eliminating a class of duplicate-charge incidents is worth keeping prominent because it connects a technical framework to a payment problem.",
+    "biggest_gap_example": "\"Partnered with product and finance on the roadmap for multi-currency settlement\" doesn't explain what you contributed, making your role in the roadmap difficult to assess.",
+    "first_impression_takeaway": "Explain your settlement roadmap contribution",
+    "summary": "The ledger redesign places you at the intersection of distributed systems architecture and payment infrastructure. Your recent title and technical leadership responsibilities make a staff-level engineering story plausible. Earlier work adds a useful performance detail: the fraud scoring pipeline processed payment events with p99 latency under 50ms. The resume says less about how you made architecture choices or influenced the multi-currency roadmap, so a reviewer may have to infer how you operate across teams.",
+    "strengths": [
+      "The move from a monolithic Postgres-backed ledger to an event-sourced architecture names both the starting point and the technology choices.",
+      "Interviewing 100+ candidates and helping revise the backend hiring loop shows a contribution beyond your immediate platform work.",
+      "The internal idempotency talk and co-authored replication article show two ways you have shared technical work."
+    ],
+    "gaps": [
+      "The ledger redesign doesn't explain a key tradeoff or migration challenge, leaving the reasoning behind the architecture less visible.",
+      "The incident response bullet names SLOs and error budgets but not how the team used them after introduction.",
+      "The reconciliation bullet states that break rate and manual operations effort fell, but doesn't show the size of either reduction."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the core ledger redesign bullet, add a specific architecture tradeoff or migration challenge you addressed.",
+        "why": "The technologies are clear, but the decision-making behind their use would help a reviewer understand your technical leadership.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Led the redesign of the core ledger service",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the multi-currency settlement roadmap bullet, name a recommendation or technical constraint you contributed to discussions with product and finance.",
+        "why": "That detail would distinguish your part in the roadmap from the fact of collaboration.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Partnered with product and finance on the roadmap for multi-currency settlement",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the reconciliation reduction bullet, add the size of the break-rate or manual-effort reduction if you can verify it.",
+        "why": "The improvement is already stated; its magnitude would help a reviewer understand how much changed.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Reduced reconciliation break rate and manual ops effort",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the ledger redesign bullet with one tradeoff or migration challenge you can describe accurately.",
+      "Add your specific contribution to the multi-currency settlement roadmap, then check the incident-response bullet for a concrete example of SLO use.",
+      "Verify whether you can quantify either reconciliation improvement and add the figure to the existing bullet."
+    ],
+    "subscores": {
+      "impact": 84,
+      "clarity": 85,
+      "story": 85,
+      "readability": 87
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "Section not present.",
+        "fix": "Add only if it helps your story."
+      },
+      "Work Experience": {
+        "grade": "B+",
+        "priority": "High",
+        "working": "The Brightline roles connect ledger architecture, fraud scoring, reconciliation, and reliability work to specific technologies and payment problems.",
+        "missing": "The roadmap contribution and the reasoning behind the ledger redesign need more detail.",
+        "fix": "Expand those two bullets with a concrete recommendation and an architecture tradeoff."
+      },
+      "Skills": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The list names languages, infrastructure technologies, and distributed-systems practices that complement the experience section.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Both computer science degrees include institutions and completion years.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Ledger and settlement platform leadership",
+        "Distributed systems architecture using Kafka and CockroachDB",
+        "Payment-service idempotency and incident response",
+        "Real-time fraud scoring with Flink and Kafka"
+      ],
+      "underplayed": [
+        "Architecture tradeoffs in the ledger migration",
+        "Your contribution to the multi-currency settlement roadmap",
+        "How SLOs and error budgets were used by tier-1 services"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Staff Software Engineer",
+          "Senior Software Engineer"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current Staff Software Engineer title is supported by technical lead responsibilities, architecture work, and mentoring.",
+        "industry_signals": [
+          "Payments infrastructure",
+          "Cloud object storage"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Lead with payments infrastructure and the technical decisions behind the ledger work. Keep the cloud storage experience as supporting context for your distributed-systems background."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "Which tradeoff mattered most when you moved the ledger to Kafka and CockroachDB?",
+          "archetype": "TENSION POINT",
+          "why": "A specific choice would make the architecture work easier to assess."
+        },
+        {
+          "question": "What did the team do with the error budgets or SLOs after you introduced them?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "This could show how the reliability practices entered day-to-day work."
+        },
+        {
+          "question": "How much did the reconciliation break rate or manual operations effort decrease?",
+          "archetype": "IMPROVEMENT",
+          "why": "The existing bullet names reductions but not their size."
+        },
+        {
+          "question": "What recommendation or technical constraint did you bring to the multi-currency settlement roadmap?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "This would clarify your contribution to discussions with product and finance."
+        },
+        {
+          "question": "What challenge did you address while implementing multi-region replication for the object storage control plane?",
+          "archetype": "DOMAIN LIFT",
+          "why": "A concrete storage problem could connect that earlier role to your current distributed-systems work."
+        }
+      ]
+    }
+  },
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 78,
+    "score_label": "Mostly clear",
+    "score_comment_short": "Recent work shows technical leadership, concrete architecture choices, and meaningful payment-service results.",
+    "score_comment_long": "The ledger redesign and idempotency work show what you led and where. Several leadership bullets leave your contribution or the change that followed less clear. Adding a few specific details to those bullets would make the staff-level story easier to assess.",
+    "score_plain": "A reviewer can see a credible fit for senior payments infrastructure work. More detail on technical decisions and cross-functional contributions would help distinguish your staff-level work.",
+    "first_impression": "You lead ledger and settlement platform work at Brightline Payments, with earlier experience in fraud scoring and cloud storage. Eliminating a class of duplicate-charge incidents is worth keeping prominent because it connects a technical framework to a payment problem.",
+    "biggest_gap_example": "\"Partnered with product and finance on the roadmap for multi-currency settlement\" doesn't explain what you contributed, making your role in the roadmap difficult to assess.",
+    "first_impression_takeaway": "Explain your settlement roadmap contribution",
+    "summary": "The ledger redesign places you at the intersection of distributed systems architecture and payment infrastructure. Your recent title and technical leadership responsibilities make a staff-level engineering story plausible. Earlier work adds a useful performance detail: the fraud scoring pipeline processed payment events with p99 latency under 50ms. The resume says less about how you made architecture choices or influenced the multi-currency roadmap, so a reviewer may have to infer how you operate across teams.",
+    "strengths": [
+      "The move from a monolithic Postgres-backed ledger to an event-sourced architecture names both the starting point and the technology choices.",
+      "Interviewing 100+ candidates and helping revise the backend hiring loop shows a contribution beyond your immediate platform work.",
+      "The internal idempotency talk and co-authored replication article show two ways you have shared technical work."
+    ],
+    "gaps": [
+      "The ledger redesign doesn't explain a key tradeoff or migration challenge, leaving the reasoning behind the architecture less visible.",
+      "The incident response bullet names SLOs and error budgets but not how the team used them after introduction.",
+      "The reconciliation bullet states that break rate and manual operations effort fell, but doesn't show the size of either reduction."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the core ledger redesign bullet, add a specific architecture tradeoff or migration challenge you addressed.",
+        "why": "The technologies are clear, but the decision-making behind their use would help a reviewer understand your technical leadership.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Led the redesign of the core ledger service",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the multi-currency settlement roadmap bullet, name a recommendation or technical constraint you contributed to discussions with product and finance.",
+        "why": "That detail would distinguish your part in the roadmap from the fact of collaboration.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Partnered with product and finance on the roadmap for multi-currency settlement",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the reconciliation reduction bullet, add the size of the break-rate or manual-effort reduction if you can verify it.",
+        "why": "The improvement is already stated; its magnitude would help a reviewer understand how much changed.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Reduced reconciliation break rate and manual ops effort",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the ledger redesign bullet with one tradeoff or migration challenge you can describe accurately.",
+      "Add your specific contribution to the multi-currency settlement roadmap, then check the incident-response bullet for a concrete example of SLO use.",
+      "Verify whether you can quantify either reconciliation improvement and add the figure to the existing bullet."
+    ],
+    "subscores": {
+      "impact": 84,
+      "clarity": 84,
+      "story": 84,
+      "readability": 84
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "B+",
+        "priority": "High",
+        "working": "The Brightline roles connect ledger architecture, fraud scoring, reconciliation, and reliability work to specific technologies and payment problems.",
+        "missing": "The roadmap contribution and the reasoning behind the ledger redesign need more detail.",
+        "fix": "Expand those two bullets with a concrete recommendation and an architecture tradeoff."
+      },
+      "Skills": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The list names languages, infrastructure technologies, and distributed-systems practices that complement the experience section.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Both computer science degrees include institutions and completion years.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Ledger and settlement platform leadership",
+        "Distributed systems architecture using Kafka and CockroachDB",
+        "Payment-service idempotency and incident response",
+        "Real-time fraud scoring with Flink and Kafka"
+      ],
+      "underplayed": [
+        "Architecture tradeoffs in the ledger migration",
+        "Your contribution to the multi-currency settlement roadmap",
+        "How SLOs and error budgets were used by tier-1 services"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Staff Software Engineer",
+          "Senior Software Engineer"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current Staff Software Engineer title is supported by technical lead responsibilities, architecture work, and mentoring.",
+        "industry_signals": [
+          "Payments infrastructure"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with payments infrastructure and the technical decisions behind the ledger work. Keep the cloud storage experience as supporting context for your distributed-systems background."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "Which tradeoff mattered most when you moved the ledger to Kafka and CockroachDB?",
+          "archetype": "TENSION POINT",
+          "why": "A specific choice would make the architecture work easier to assess."
+        },
+        {
+          "question": "What did the team do with the error budgets or SLOs after you introduced them?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "This could show how the reliability practices entered day-to-day work."
+        },
+        {
+          "question": "How much did the reconciliation break rate or manual operations effort decrease?",
+          "archetype": "IMPROVEMENT",
+          "why": "The existing bullet names reductions but not their size."
+        },
+        {
+          "question": "What recommendation or technical constraint did you bring to the multi-currency settlement roadmap?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "This would clarify your contribution to discussions with product and finance."
+        },
+        {
+          "question": "What challenge did you address while implementing multi-region replication for the object storage control plane?",
+          "archetype": "DOMAIN LIFT",
+          "why": "A concrete storage problem could connect that earlier role to your current distributed-systems work."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 78
+  },
+  "severity": {
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "promoted": [],
+    "replaced": [],
+    "skipped": [],
+    "critical_count": 1,
+    "more_critical": false,
+    "validation_attempts": 0,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "latency_ms": 4033,
+    "call_latency_ms": 4030,
+    "cost_usd": 0.00340825,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 78,
+    "score_label": "Mostly clear",
+    "score_comment_short": "Recent work shows technical leadership, concrete architecture choices, and meaningful payment-service results.",
+    "score_comment_long": "The ledger redesign and idempotency work show what you led and where. Several leadership bullets leave your contribution or the change that followed less clear. Adding a few specific details to those bullets would make the staff-level story easier to assess.",
+    "score_plain": "A reviewer can see a credible fit for senior payments infrastructure work. More detail on technical decisions and cross-functional contributions would help distinguish your staff-level work.",
+    "first_impression": "You lead ledger and settlement platform work at Brightline Payments, with earlier experience in fraud scoring and cloud storage. Eliminating a class of duplicate-charge incidents is worth keeping prominent because it connects a technical framework to a payment problem.",
+    "biggest_gap_example": "\"Partnered with product and finance on the roadmap for multi-currency settlement\" doesn't explain what you contributed, making your role in the roadmap difficult to assess.",
+    "first_impression_takeaway": "Explain your settlement roadmap contribution",
+    "summary": "The ledger redesign places you at the intersection of distributed systems architecture and payment infrastructure. Your recent title and technical leadership responsibilities make a staff-level engineering story plausible. Earlier work adds a useful performance detail: the fraud scoring pipeline processed payment events with p99 latency under 50ms. The resume says less about how you made architecture choices or influenced the multi-currency roadmap, so a reviewer may have to infer how you operate across teams.",
+    "strengths": [
+      "The move from a monolithic Postgres-backed ledger to an event-sourced architecture names both the starting point and the technology choices.",
+      "Interviewing 100+ candidates and helping revise the backend hiring loop shows a contribution beyond your immediate platform work.",
+      "The internal idempotency talk and co-authored replication article show two ways you have shared technical work."
+    ],
+    "gaps": [
+      "The ledger redesign doesn't explain a key tradeoff or migration challenge, leaving the reasoning behind the architecture less visible.",
+      "The incident response bullet names SLOs and error budgets but not how the team used them after introduction.",
+      "The reconciliation bullet states that break rate and manual operations effort fell, but doesn't show the size of either reduction."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the core ledger redesign bullet, add a specific architecture tradeoff or migration challenge you addressed.",
+        "why": "The technologies are clear, but the decision-making behind their use would help a reviewer understand your technical leadership.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Led the redesign of the core ledger service",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": true
+      },
+      {
+        "fix": "In the multi-currency settlement roadmap bullet, name a recommendation or technical constraint you contributed to discussions with product and finance.",
+        "why": "That detail would distinguish your part in the roadmap from the fact of collaboration.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Partnered with product and finance on the roadmap for multi-currency settlement",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      },
+      {
+        "fix": "In the reconciliation reduction bullet, add the size of the break-rate or manual-effort reduction if you can verify it.",
+        "why": "The improvement is already stated; its magnitude would help a reviewer understand how much changed.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Reduced reconciliation break rate and manual ops effort",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      }
+    ],
+    "next_steps": [
+      "Revise the ledger redesign bullet with one tradeoff or migration challenge you can describe accurately.",
+      "Add your specific contribution to the multi-currency settlement roadmap, then check the incident-response bullet for a concrete example of SLO use.",
+      "Verify whether you can quantify either reconciliation improvement and add the figure to the existing bullet."
+    ],
+    "subscores": {
+      "impact": 84,
+      "clarity": 84,
+      "story": 84,
+      "readability": 84
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "B+",
+        "priority": "High",
+        "working": "The Brightline roles connect ledger architecture, fraud scoring, reconciliation, and reliability work to specific technologies and payment problems.",
+        "missing": "The roadmap contribution and the reasoning behind the ledger redesign need more detail.",
+        "fix": "Expand those two bullets with a concrete recommendation and an architecture tradeoff."
+      },
+      "Skills": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The list names languages, infrastructure technologies, and distributed-systems practices that complement the experience section.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Both computer science degrees include institutions and completion years.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Ledger and settlement platform leadership",
+        "Distributed systems architecture using Kafka and CockroachDB",
+        "Payment-service idempotency and incident response",
+        "Real-time fraud scoring with Flink and Kafka"
+      ],
+      "underplayed": [
+        "Architecture tradeoffs in the ledger migration",
+        "Your contribution to the multi-currency settlement roadmap",
+        "How SLOs and error budgets were used by tier-1 services"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Staff Software Engineer",
+          "Senior Software Engineer"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current Staff Software Engineer title is supported by technical lead responsibilities, architecture work, and mentoring.",
+        "industry_signals": [
+          "Payments infrastructure"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with payments infrastructure and the technical decisions behind the ledger work. Keep the cloud storage experience as supporting context for your distributed-systems background."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "Which tradeoff mattered most when you moved the ledger to Kafka and CockroachDB?",
+          "archetype": "TENSION POINT",
+          "why": "A specific choice would make the architecture work easier to assess."
+        },
+        {
+          "question": "What did the team do with the error budgets or SLOs after you introduced them?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "This could show how the reliability practices entered day-to-day work."
+        },
+        {
+          "question": "How much did the reconciliation break rate or manual operations effort decrease?",
+          "archetype": "IMPROVEMENT",
+          "why": "The existing bullet names reductions but not their size."
+        },
+        {
+          "question": "What recommendation or technical constraint did you bring to the multi-currency settlement roadmap?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "This would clarify your contribution to discussions with product and finance."
+        },
+        {
+          "question": "What challenge did you address while implementing multi-region replication for the object storage control plane?",
+          "archetype": "DOMAIN LIFT",
+          "why": "A concrete storage problem could connect that earlier role to your current distributed-systems work."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 78,
+    "more_critical": false
+  },
+  "presentation": {
+    "score": 78,
+    "band": "Mostly clear",
+    "score_label_from_model": "Strong",
+    "model_score_before_calibration": 85,
+    "verdict": "You lead ledger and settlement platform work at Brightline Payments, with earlier experience in fraud scoring and cloud storage. Eliminating a class of duplicate-charge incidents is worth keeping prominent because it connects a technical framework to a payment problem.",
+    "one_line_read": "Recent work shows technical leadership, concrete architecture choices, and meaningful payment-service results.",
+    "takeaway": "Explain your settlement roadmap contribution",
+    "biggest_gap_example": "\"Partnered with product and finance on the roadmap for multi-currency settlement\" doesn't explain what you contributed, making your role in the roadmap difficult to assess.",
+    "critical_count": {
+      "count": 1,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "One Critical Miss. Fix it first.",
+      "lead": "It's the one most likely to cost you the interview."
+    },
+    "fixes": [
+      {
+        "fix": "In the core ledger redesign bullet, add a specific architecture tradeoff or migration challenge you addressed.",
+        "why": "The technologies are clear, but the decision-making behind their use would help a reviewer understand your technical leadership.",
+        "excerpt": "Led the redesign of the core ledger service",
+        "section": "EXPERIENCE",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the multi-currency settlement roadmap bullet, name a recommendation or technical constraint you contributed to discussions with product and finance.",
+        "why": "That detail would distinguish your part in the roadmap from the fact of collaboration.",
+        "excerpt": "Partnered with product and finance on the roadmap for multi-currency settlement",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the reconciliation reduction bullet, add the size of the break-rate or manual-effort reduction if you can verify it.",
+        "why": "The improvement is already stated; its magnitude would help a reviewer understand how much changed.",
+        "excerpt": "Reduced reconciliation break rate and manual ops effort",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "The move from a monolithic Postgres-backed ledger to an event-sourced architecture names both the starting point and the technology choices.",
+    "strengths": [
+      "The move from a monolithic Postgres-backed ledger to an event-sourced architecture names both the starting point and the technology choices.",
+      "Interviewing 100+ candidates and helping revise the backend hiring loop shows a contribution beyond your immediate platform work.",
+      "The internal idempotency talk and co-authored replication article show two ways you have shared technical work."
+    ],
+    "gaps": [
+      "The ledger redesign doesn't explain a key tradeoff or migration challenge, leaving the reasoning behind the architecture less visible.",
+      "The incident response bullet names SLOs and error budgets but not how the team used them after introduction.",
+      "The reconciliation bullet states that break rate and manual operations effort fell, but doesn't show the size of either reduction."
+    ],
+    "next_steps": [
+      "Revise the ledger redesign bullet with one tradeoff or migration challenge you can describe accurately.",
+      "Add your specific contribution to the multi-currency settlement roadmap, then check the incident-response bullet for a concrete example of SLO use.",
+      "Verify whether you can quantify either reconciliation improvement and add the figure to the existing bullet."
+    ],
+    "seniority_read": "Your current Staff Software Engineer title is supported by technical lead responsibilities, architecture work, and mentoring.",
+    "best_fit_roles": [
+      "Staff Software Engineer",
+      "Senior Software Engineer"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "Lead with payments infrastructure and the technical decisions behind the ledger work. Keep the cloud storage experience as supporting context for your distributed-systems background.",
+    "severity_added": [],
+    "severity_promoted": [],
+    "severity_outcome": "none (none)",
+    "severity_answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "question_dropped",
+          "path": "ideas.questions[0]",
+          "reason": "duplicates_keep"
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[2]",
+          "fix": 2
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[3]",
+          "fix": 1
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "biggest_gap_example",
+          "of": "top_fixes[1]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[0]",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[1]",
+          "of": "ideas.questions[1]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[2]",
+          "of": "top_fixes[2]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Work Experience.missing",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "next_steps[0]",
+          "of": "top_fixes[0]"
+        }
+      ],
+      "fix_questions": [
+        [],
+        [
+          "What recommendation or technical constraint did you bring to the multi-currency settlement roadmap?"
+        ],
+        [
+          "How much did the reconciliation break rate or manual operations effort decrease?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0165143,
+  "latency_ms": 30321
+}

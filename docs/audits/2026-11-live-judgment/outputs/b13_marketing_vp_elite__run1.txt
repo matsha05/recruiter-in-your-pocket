@@ -1,0 +1,51 @@
+# b13_marketing_vp_elite, run 1
+Resume: ../../../tests/resumes/golden/synth_marketing_manager_vp_elite_1766960221358.txt (730 words, sha256 a5f6a1bba913)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0393; repair ran; 66.8s
+Case note: Executive, strong (golden).
+
+Validator refused the first draft: OPENAI_RESPONSE_SHAPE_INVALID The model response failed the evidence grounding contract at strengths[2] unsupported narrative facts: over 18 months.
+
+## Band: Clear and specific (score 89; model wrote 89, label "Strong")
+## Verdict
+Your current CMO role combines a 45-person global marketing organization and a $25M annual budget with commercial results. The dense bullets give readers plenty to assess, though some don't explain how the work was done.
+One-line read: Specific commercial results and leadership responsibilities make this a strong executive resume.
+Takeaway: Define launch success
+Biggest gap example: "increasing launch success rate to 90%" does not define a successful launch, making the figure difficult to interpret.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the Novara launch bullet, describe the process changes you decided on and define what counted as a successful launch.
+   why: The existing timing, success-rate and revenue figures will be easier to assess with those definitions.
+   excerpt (Experience): "I decided to revamp the product launch process,"
+2. [fix] In the Novara CAC bullet, add an example of an acquisition change made by the marketing, analytics and creative team.
+   why: A concrete change would help a reader understand the work behind the reported cost reduction.
+   excerpt (Experience): "I led a cross-functional team of 12 marketing, analytics, and creative professionals"
+3. [fix] In Skills, explain which revenue and cost responsibilities were included in your P&L management, or adjust the label if budget management is more accurate.
+   why: The role descriptions name marketing budgets but don't specify the financial accountability implied by P&L management.
+   excerpt (Skills): "- Budget & P&L Management ($25M+)"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The Novara role places your marketing leadership in the context of a SaaS platform serving 2M+ users across 40 countries.
+Other strengths: ["At Viridian, the ABM bullet separates $50M in annual pipeline contribution from a 15% lift in win rates among Fortune 500 clients.","The customer advocacy bullet connects a named program to retention and $4M in upsell revenue within 18 months."]
+
+## Gaps
+- The Novara launch bullet reports faster time-to-market and a success rate but doesn't say what counted as a successful launch.
+- The CAC bullet names the disciplines on your team but not the acquisition changes they made, so the reduction is difficult to connect to the work.
+- The Skills section claims P&L management, while the experience descriptions do not explain the revenue and cost responsibilities behind that claim.
+
+## Next steps
+- Revise the launch bullet with the process decision and success definition you can verify.
+- Add a concrete example to the CAC bullet without changing its stated results.
+- Check the financial and reporting descriptions in Skills against your role responsibilities.
+
+## Role fit
+Level: Executive marketing leader, based on the current CMO title and preceding vice president role.
+Best fit: ["Chief Marketing Officer","Vice President, Global Marketing"]
+Positioning: Lead with the Novara CMO work across global marketing, demand generation and product launches. Keep the Viridian ABM and advocacy programs visible to show work across both acquisition and retention.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":1},{"kind":"question_moved","path":"ideas.questions[2]","fix":2},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"gaps[2]","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"section_review.Skills.missing","of":"top_fixes[2]"}]

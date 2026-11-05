@@ -1,0 +1,855 @@
+{
+  "case_id": "b26_construction_pm_strong",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../../../tests/resumes/countcheck/synth_cc_construction_pm_strong_1.txt",
+  "resume_sha256": "548c7db64c756b5fab695853a27156e8aa67858a31cab50680d65e1ef14cc181",
+  "resume_chars": 944,
+  "resume_words": 136,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T20:08:43.308Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7509,
+        "completion_tokens": 2380,
+        "total_tokens": 9889,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 620,
+        "reasoning_tokens": 464
+      },
+      "cost_usd": 0.0130223,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 27815
+    },
+    {
+      "kind": "repair",
+      "usage": {
+        "prompt_tokens": 10293,
+        "completion_tokens": 3173,
+        "total_tokens": 13466,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 3404,
+        "reasoning_tokens": 1296
+      },
+      "cost_usd": 0.0204673,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 37313
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.0012145,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1047
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 85,
+    "score_label": "Strong",
+    "score_comment_short": "Recent project bullets show contract values and results, though methods remain brief.",
+    "score_comment_long": "The current role gives a clear picture of project values, concurrent work, and delivery results. It says less about the choices behind those results. Adding a few concrete examples of scheduling and change-order management would strengthen the account.",
+    "score_plain": "Your resume gives a reviewer useful reasons to consider you for construction project management work. More detail about how you handle key project decisions could help distinguish your approach.",
+    "first_impression": "Commercial construction project management comes through immediately. The $14M grocery build finished 3 weeks early is worth keeping because it gives the delivery claim a clear scale and timeframe.",
+    "biggest_gap_example": "\"Manage subcontractor bids and buyout for 20 to 30 trades per project\" shows the breadth of the work, but not what you consider or decide during buyout.",
+    "first_impression_takeaway": "Explain your buyout decisions",
+    "summary": "You manage 4 to 6 concurrent tenant-improvement projects worth $1M to $8M each, alongside a completed ground-up grocery build. The progression from assistant project manager to project manager is clear, with work spanning scheduling, subcontractors, and project changes. The current role also states that change orders stayed under 3% of contract value across 2024 and 2025 projects. How you handled those changes is less clear, which leaves a reviewer with questions about your approach to cost control.",
+    "strengths": [
+      "The 20 to 30 trades per project in the buyout bullet makes the subcontractor workload tangible.",
+      "Office and retail projects worth $5M to $20M give useful context for your assistant project manager role.",
+      "Naming Procore, Bluebeam, and MS Project makes the tools you list easy to find."
+    ],
+    "gaps": [
+      "The grocery build's early completion is stated, but the scheduling choices behind it are not, leaving your approach to delivery unclear.",
+      "Your buyout responsibility names the number of trades but not your role in evaluating or selecting bids.",
+      "The look-ahead schedule bullet doesn't explain how you and the superintendents used it to coordinate upcoming work."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the grocery store bullet, add a specific scheduling decision or coordination step you took during the build.",
+        "why": "The early finish is already clear; the added detail would show how you contributed to the schedule.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the change-order bullet, explain how you tracked or reviewed proposed changes across the 2024 and 2025 projects.",
+        "why": "A reviewer can see the stated percentage but not the work behind it.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Kept change orders under 3% of contract value across 2024 and 2025 projects",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the subcontractor buyout bullet, name your part in comparing bids or selecting trades.",
+        "why": "That would distinguish the decisions you handled from the overall volume of bids.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Manage subcontractor bids and buyout for 20 to 30 trades per project",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the grocery and change-order bullets with examples you can verify.",
+      "Add your role in bid comparison to the buyout bullet, then clarify how the look-ahead schedule was used.",
+      "Review the opening statement and move one relevant project detail into it for the roles you pursue."
+    ],
+    "subscores": {
+      "impact": 86,
+      "clarity": 85,
+      "story": 83,
+      "readability": 88
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The opening identifies commercial tenant improvements and ground-up retail.",
+        "missing": "It doesn't indicate the project values or delivery experience shown below.",
+        "fix": "Bring one relevant project detail into the opening without replacing the construction focus."
+      },
+      "Work Experience": {
+        "grade": "A-",
+        "priority": "High",
+        "working": "The current role includes project values, trade counts, an early completion, and a change-order percentage.",
+        "missing": "Several bullets leave the methods and decisions behind the work unexplained.",
+        "fix": "Add specific scheduling, change-order, and buyout details to the relevant bullets."
+      },
+      "Skills": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The section names construction software, estimating, subcontractor management, and OSHA 30.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The construction management degree, school, and graduation year are easy to locate.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Commercial tenant-improvement project management",
+        "Ground-up retail construction",
+        "Subcontractor bids and buyout",
+        "Construction scheduling and change orders"
+      ],
+      "underplayed": [
+        "The scheduling work behind the grocery store's early completion",
+        "Your approach to reviewing project changes",
+        "Your decisions during subcontractor buyout"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Project Manager"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current title and responsibilities indicate project manager level, following an assistant project manager role.",
+        "industry_signals": [
+          "Commercial construction",
+          "Retail construction",
+          "Office construction"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Lead with the commercial construction projects you currently manage. Keep the grocery delivery and change-order figures prominent, and add the practical steps behind them where you can verify them."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "Which scheduling decision helped you complete the grocery store ahead of schedule?",
+          "archetype": "IMPROVEMENT",
+          "why": "A specific choice would connect your work to the stated delivery date."
+        },
+        {
+          "question": "What did you consider when comparing subcontractor bids during buyout?",
+          "archetype": "TENSION POINT",
+          "why": "The answer could show how you weighed competing bid considerations."
+        },
+        {
+          "question": "How did you track proposed changes across the 2024 and 2025 projects?",
+          "archetype": "SCALING",
+          "why": "This would explain the process behind the stated change-order percentage."
+        },
+        {
+          "question": "How did you and the superintendents use the three-week look-ahead schedule?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "A concrete example would show how the schedule supported coordination."
+        },
+        {
+          "question": "Can you describe a submittal or RFI that needed particular attention on an office or retail project?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "An example would make the earlier tracking responsibility more specific."
+        }
+      ]
+    }
+  },
+  "initial_validation_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the evidence grounding contract at next_steps[2] unsupported narrative facts: one relevant project."
+  },
+  "model_output_repaired": {
+    "contract_version": "v2",
+    "score": 85,
+    "score_label": "Strong",
+    "score_comment_short": "Project values and delivery results make recent work clear, but methods are brief.",
+    "score_comment_long": "The current role shows project values, concurrent work, and delivery results. Earlier bullets give less detail about how you handled day-to-day coordination. Explain your part in buyout and follow-up on submittals and RFIs.",
+    "score_plain": "Your resume gives reviewers a concrete picture of the construction work you manage. More detail about your decisions could help them understand how you work.",
+    "first_impression": "Commercial construction project management comes through immediately. The $14M grocery build finished 3 weeks ahead of schedule is worth keeping because it gives the delivery claim a clear scale and timeframe.",
+    "biggest_gap_example": "\"Built the three-week look-ahead schedule with superintendents\" doesn't explain what went into the schedule, leaving the coordination work difficult to assess.",
+    "first_impression_takeaway": "Explain your buyout decisions",
+    "summary": "You run 4 to 6 concurrent tenant-improvement projects worth $1M to $8M each. Your work spans subcontractor buyout, scheduling, and project changes, following an earlier assistant project manager role. You also state that change orders stayed under 3% of contract value across 2024 and 2025 projects. The resume shows project manager-level responsibility, though it leaves your approach to evaluating subcontractor bids unclear.",
+    "strengths": [
+      "The 20 to 30 trades per project in the buyout bullet makes the subcontractor workload tangible.",
+      "Office and retail projects worth $5M to $20M give useful context for your assistant project manager role.",
+      "Procore, Bluebeam, and MS Project are easy to find in the skills section."
+    ],
+    "gaps": [
+      "The early grocery store completion is stated, but your part in its scheduling isn't described.",
+      "The buyout bullet doesn't say how you evaluated bids, so the decisions involved remain unclear.",
+      "The earlier role names submittal and RFI tracking without explaining how you followed up when a response was needed."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the subcontractor buyout bullet, describe what you considered when comparing bids.",
+        "why": "That would show more of your decision-making than the trade count alone.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Manage subcontractor bids and buyout for 20 to 30 trades per project",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the look-ahead schedule bullet, name the information you and the superintendents included.",
+        "why": "A specific detail would make your scheduling work easier to picture.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Built the three-week look-ahead schedule with superintendents",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the submittals and RFIs bullet, explain how you followed up when an item needed a response.",
+        "why": "The project values establish context, while the follow-up would show what tracking involved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Tracked submittals and RFIs for $5M to $20M office and retail projects",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the buyout bullet with a bid-comparison detail you can verify.",
+      "Add practical details to the look-ahead schedule and submittal-tracking bullets.",
+      "Review the opening statement and include a verified project value or result that fits your target role."
+    ],
+    "subscores": {
+      "impact": 86,
+      "clarity": 85,
+      "story": 83,
+      "readability": 88
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The opening identifies commercial tenant improvements and ground-up retail.",
+        "missing": "It doesn't include the project values or delivery result shown below.",
+        "fix": "Bring a verified detail from your recent work into the opening."
+      },
+      "Work Experience": {
+        "grade": "A-",
+        "priority": "High",
+        "working": "The current role includes project values, trade counts, an early completion, and a change-order percentage.",
+        "missing": "The shorter responsibility bullets give little detail about how you carried out the work.",
+        "fix": "Expand the buyout, scheduling, and tracking bullets with specific practices."
+      },
+      "Skills": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The section names construction software, estimating, subcontractor management, and OSHA 30.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The construction management degree, school, and graduation year are easy to locate.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Commercial tenant-improvement project management",
+        "Ground-up retail construction",
+        "Subcontractor bids and buyout",
+        "Construction scheduling and change orders"
+      ],
+      "underplayed": [
+        "Your approach to comparing subcontractor bids",
+        "Follow-up on submittals and RFIs",
+        "Schedule coordination with superintendents"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Project Manager"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current title and responsibilities indicate project manager level, following an assistant project manager role.",
+        "industry_signals": [
+          "Commercial construction",
+          "Retail construction",
+          "Office construction"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Lead with the commercial construction projects you currently manage. Keep the grocery delivery and change-order figures visible, and add practical details to the shorter responsibility bullets."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What was your role in scheduling the $14M grocery store build?",
+          "archetype": "IMPROVEMENT",
+          "why": "Your answer could add context to the stated early completion."
+        },
+        {
+          "question": "How do you coordinate schedules across the 4 to 6 concurrent tenant-improvement projects?",
+          "archetype": "SCALING",
+          "why": "This could show how you handle work across projects at the same time."
+        },
+        {
+          "question": "What factors did you consider when comparing subcontractor bids for buyout?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The answer could explain your approach to the trade-selection process."
+        },
+        {
+          "question": "How did you handle proposed change orders on the 2024 and 2025 projects?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "This could add detail about the work behind the stated percentage."
+        },
+        {
+          "question": "What information did you and the superintendents include in the three-week look-ahead schedule?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "A specific example would make the shared scheduling work more concrete."
+        }
+      ]
+    }
+  },
+  "repaired": true,
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 85,
+    "score_label": "Clear and specific",
+    "score_comment_short": "Project values and delivery results make recent work clear, but methods are brief.",
+    "score_comment_long": "The current role shows project values, concurrent work, and delivery results. Earlier bullets give less detail about how you handled day-to-day coordination. Explain your part in buyout and follow-up on submittals and RFIs.",
+    "score_plain": "Your resume gives reviewers a concrete picture of the construction work you manage. More detail about your decisions could help them understand how you work.",
+    "first_impression": "Commercial construction project management comes through immediately. The $14M grocery build finished 3 weeks ahead of schedule is worth keeping because it gives the delivery claim a clear scale and timeframe.",
+    "biggest_gap_example": "\"Built the three-week look-ahead schedule with superintendents\" doesn't explain what went into the schedule, leaving the coordination work difficult to assess.",
+    "first_impression_takeaway": "Explain your buyout decisions",
+    "summary": "You run 4 to 6 concurrent tenant-improvement projects worth $1M to $8M each. Your work spans subcontractor buyout, scheduling, and project changes, following an earlier assistant project manager role. You also state that change orders stayed under 3% of contract value across 2024 and 2025 projects. The resume shows project manager-level responsibility, though it leaves your approach to evaluating subcontractor bids unclear.",
+    "strengths": [
+      "The 20 to 30 trades per project in the buyout bullet makes the subcontractor workload tangible.",
+      "Office and retail projects worth $5M to $20M give useful context for your assistant project manager role.",
+      "Procore, Bluebeam, and MS Project are easy to find in the skills section."
+    ],
+    "gaps": [
+      "The early grocery store completion is stated, but your part in its scheduling isn't described.",
+      "The buyout bullet doesn't say how you evaluated bids, so the decisions involved remain unclear.",
+      "The earlier role names submittal and RFI tracking without explaining how you followed up when a response was needed."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the subcontractor buyout bullet, describe what you considered when comparing bids.",
+        "why": "That would show more of your decision-making than the trade count alone.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Manage subcontractor bids and buyout for 20 to 30 trades per project",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the submittals and RFIs bullet, explain how you followed up when an item needed a response.",
+        "why": "The project values establish context, while the follow-up would show what tracking involved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Tracked submittals and RFIs for $5M to $20M office and retail projects",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the buyout bullet with a bid-comparison detail you can verify.",
+      "Add practical details to the look-ahead schedule and submittal-tracking bullets.",
+      "Review the opening statement and include a verified project value or result that fits your target role."
+    ],
+    "subscores": {
+      "impact": 86,
+      "clarity": 85,
+      "story": 83,
+      "readability": 88
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "A-",
+        "priority": "High",
+        "working": "The current role includes project values, trade counts, an early completion, and a change-order percentage.",
+        "missing": "The shorter responsibility bullets give little detail about how you carried out the work.",
+        "fix": "Expand the buyout, scheduling, and tracking bullets with specific practices."
+      },
+      "Skills": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The section names construction software, estimating, subcontractor management, and OSHA 30.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The construction management degree, school, and graduation year are easy to locate.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Commercial tenant-improvement project management",
+        "Ground-up retail construction",
+        "Subcontractor bids and buyout",
+        "Construction scheduling and change orders"
+      ],
+      "underplayed": [
+        "Your approach to comparing subcontractor bids",
+        "Follow-up on submittals and RFIs",
+        "Schedule coordination with superintendents"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Project Manager"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current title and responsibilities indicate project manager level, following an assistant project manager role.",
+        "industry_signals": [
+          "Commercial construction"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with the commercial construction projects you currently manage. Keep the grocery delivery and change-order figures visible, and add practical details to the shorter responsibility bullets."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What was your role in scheduling the $14M grocery store build?",
+          "archetype": "IMPROVEMENT",
+          "why": "Your answer could add context to the stated early completion."
+        },
+        {
+          "question": "How do you coordinate schedules across the 4 to 6 concurrent tenant-improvement projects?",
+          "archetype": "SCALING",
+          "why": "This could show how you handle work across projects at the same time."
+        },
+        {
+          "question": "What factors did you consider when comparing subcontractor bids for buyout?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The answer could explain your approach to the trade-selection process."
+        },
+        {
+          "question": "How did you handle proposed change orders on the 2024 and 2025 projects?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "This could add detail about the work behind the stated percentage."
+        },
+        {
+          "question": "What information did you and the superintendents include in the three-week look-ahead schedule?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "A specific example would make the shared scheduling work more concrete."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 85
+  },
+  "severity": {
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "promoted": [],
+    "replaced": [],
+    "skipped": [],
+    "critical_count": 1,
+    "more_critical": false,
+    "validation_attempts": 0,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "latency_ms": 1047,
+    "call_latency_ms": 1047,
+    "cost_usd": 0.0012145,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 85,
+    "score_label": "Clear and specific",
+    "score_comment_short": "Project values and delivery results make recent work clear, but methods are brief.",
+    "score_comment_long": "The current role shows project values, concurrent work, and delivery results. Earlier bullets give less detail about how you handled day-to-day coordination. Explain your part in buyout and follow-up on submittals and RFIs.",
+    "score_plain": "Your resume gives reviewers a concrete picture of the construction work you manage. More detail about your decisions could help them understand how you work.",
+    "first_impression": "Commercial construction project management comes through immediately. The $14M grocery build finished 3 weeks ahead of schedule is worth keeping because it gives the delivery claim a clear scale and timeframe.",
+    "biggest_gap_example": "\"Built the three-week look-ahead schedule with superintendents\" doesn't explain what went into the schedule, leaving the coordination work difficult to assess.",
+    "first_impression_takeaway": "Explain your buyout decisions",
+    "summary": "You run 4 to 6 concurrent tenant-improvement projects worth $1M to $8M each. Your work spans subcontractor buyout, scheduling, and project changes, following an earlier assistant project manager role. You also state that change orders stayed under 3% of contract value across 2024 and 2025 projects. The resume shows project manager-level responsibility, though it leaves your approach to evaluating subcontractor bids unclear.",
+    "strengths": [
+      "The 20 to 30 trades per project in the buyout bullet makes the subcontractor workload tangible.",
+      "Office and retail projects worth $5M to $20M give useful context for your assistant project manager role.",
+      "Procore, Bluebeam, and MS Project are easy to find in the skills section."
+    ],
+    "gaps": [
+      "The early grocery store completion is stated, but your part in its scheduling isn't described.",
+      "The buyout bullet doesn't say how you evaluated bids, so the decisions involved remain unclear.",
+      "The earlier role names submittal and RFI tracking without explaining how you followed up when a response was needed."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the subcontractor buyout bullet, describe what you considered when comparing bids.",
+        "why": "That would show more of your decision-making than the trade count alone.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Manage subcontractor bids and buyout for 20 to 30 trades per project",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": true
+      },
+      {
+        "fix": "In the submittals and RFIs bullet, explain how you followed up when an item needed a response.",
+        "why": "The project values establish context, while the follow-up would show what tracking involved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Tracked submittals and RFIs for $5M to $20M office and retail projects",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      }
+    ],
+    "next_steps": [
+      "Revise the buyout bullet with a bid-comparison detail you can verify.",
+      "Add practical details to the look-ahead schedule and submittal-tracking bullets.",
+      "Review the opening statement and include a verified project value or result that fits your target role."
+    ],
+    "subscores": {
+      "impact": 86,
+      "clarity": 85,
+      "story": 83,
+      "readability": 88
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "A-",
+        "priority": "High",
+        "working": "The current role includes project values, trade counts, an early completion, and a change-order percentage.",
+        "missing": "The shorter responsibility bullets give little detail about how you carried out the work.",
+        "fix": "Expand the buyout, scheduling, and tracking bullets with specific practices."
+      },
+      "Skills": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The section names construction software, estimating, subcontractor management, and OSHA 30.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The construction management degree, school, and graduation year are easy to locate.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Commercial tenant-improvement project management",
+        "Ground-up retail construction",
+        "Subcontractor bids and buyout",
+        "Construction scheduling and change orders"
+      ],
+      "underplayed": [
+        "Your approach to comparing subcontractor bids",
+        "Follow-up on submittals and RFIs",
+        "Schedule coordination with superintendents"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Project Manager"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current title and responsibilities indicate project manager level, following an assistant project manager role.",
+        "industry_signals": [
+          "Commercial construction"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with the commercial construction projects you currently manage. Keep the grocery delivery and change-order figures visible, and add practical details to the shorter responsibility bullets."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What was your role in scheduling the $14M grocery store build?",
+          "archetype": "IMPROVEMENT",
+          "why": "Your answer could add context to the stated early completion."
+        },
+        {
+          "question": "How do you coordinate schedules across the 4 to 6 concurrent tenant-improvement projects?",
+          "archetype": "SCALING",
+          "why": "This could show how you handle work across projects at the same time."
+        },
+        {
+          "question": "What factors did you consider when comparing subcontractor bids for buyout?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The answer could explain your approach to the trade-selection process."
+        },
+        {
+          "question": "How did you handle proposed change orders on the 2024 and 2025 projects?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "This could add detail about the work behind the stated percentage."
+        },
+        {
+          "question": "What information did you and the superintendents include in the three-week look-ahead schedule?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "A specific example would make the shared scheduling work more concrete."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 85,
+    "more_critical": false
+  },
+  "presentation": {
+    "score": 85,
+    "band": "Clear and specific",
+    "score_label_from_model": "Strong",
+    "model_score_before_calibration": 85,
+    "verdict": "Commercial construction project management comes through immediately. The $14M grocery build finished 3 weeks ahead of schedule is worth keeping because it gives the delivery claim a clear scale and timeframe.",
+    "one_line_read": "Project values and delivery results make recent work clear, but methods are brief.",
+    "takeaway": "Explain your buyout decisions",
+    "biggest_gap_example": "\"Built the three-week look-ahead schedule with superintendents\" doesn't explain what went into the schedule, leaving the coordination work difficult to assess.",
+    "critical_count": {
+      "count": 1,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "One Critical Miss. Fix it first.",
+      "lead": "It's the one most likely to cost you the interview."
+    },
+    "fixes": [
+      {
+        "fix": "In the subcontractor buyout bullet, describe what you considered when comparing bids.",
+        "why": "That would show more of your decision-making than the trade count alone.",
+        "excerpt": "- Manage subcontractor bids and buyout for 20 to 30 trades per project",
+        "section": "EXPERIENCE",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the submittals and RFIs bullet, explain how you followed up when an item needed a response.",
+        "why": "The project values establish context, while the follow-up would show what tracking involved.",
+        "excerpt": "- Tracked submittals and RFIs for $5M to $20M office and retail projects",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "The 20 to 30 trades per project in the buyout bullet makes the subcontractor workload tangible.",
+    "strengths": [
+      "The 20 to 30 trades per project in the buyout bullet makes the subcontractor workload tangible.",
+      "Office and retail projects worth $5M to $20M give useful context for your assistant project manager role.",
+      "Procore, Bluebeam, and MS Project are easy to find in the skills section."
+    ],
+    "gaps": [
+      "The early grocery store completion is stated, but your part in its scheduling isn't described.",
+      "The buyout bullet doesn't say how you evaluated bids, so the decisions involved remain unclear.",
+      "The earlier role names submittal and RFI tracking without explaining how you followed up when a response was needed."
+    ],
+    "next_steps": [
+      "Revise the buyout bullet with a bid-comparison detail you can verify.",
+      "Add practical details to the look-ahead schedule and submittal-tracking bullets.",
+      "Review the opening statement and include a verified project value or result that fits your target role."
+    ],
+    "seniority_read": "Your current title and responsibilities indicate project manager level, following an assistant project manager role.",
+    "best_fit_roles": [
+      "Project Manager"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "Lead with the commercial construction projects you currently manage. Keep the grocery delivery and change-order figures visible, and add practical details to the shorter responsibility bullets.",
+    "severity_added": [],
+    "severity_promoted": [],
+    "severity_outcome": "none (none)",
+    "severity_answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "keep_dropped",
+          "path": "strengths[0]",
+          "line": "fix-0",
+          "criticalMiss": true
+        },
+        {
+          "kind": "keep_dropped",
+          "path": "strengths[1]",
+          "line": "fix-1",
+          "criticalMiss": false
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[2]",
+          "fix": 0
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "biggest_gap_example",
+          "of": "ideas.questions[4]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[0]",
+          "of": "ideas.questions[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[2]",
+          "of": "top_fixes[1]"
+        }
+      ],
+      "fix_questions": [
+        [
+          "What factors did you consider when comparing subcontractor bids for buyout?"
+        ],
+        []
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0347041,
+  "latency_ms": 66340
+}

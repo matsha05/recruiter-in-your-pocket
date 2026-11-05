@@ -1,0 +1,48 @@
+# b09_executive_assistant_freelance, run 2
+Resume: ../../../tests/resumes/blindpick/synth_bp_executive_assistant_freelance_1.txt (163 words, sha256 e2e2776e0968)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0137; 39.7s
+
+## Band: Mostly clear (score 80; model wrote 80, label "Strong")
+## Verdict
+Your move from supporting a logistics CEO to assisting founders is easy to follow. The leadership offsite for 40 attendees is worth keeping because it gives a concrete sense of an assignment you planned.
+One-line read: Recent roles specify who you supported and the scale of key assignments.
+Takeaway: Explain the CEO liaison work
+Biggest gap example: "Served as the point of contact between the CEO and department heads" does not explain what you handled between them, leaving your contribution to those exchanges unclear.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the CEO and department heads bullet, add the types of requests or communications you handled.
+   why: That detail would show what being the point of contact meant in practice.
+   excerpt (EXPERIENCE): "- Served as the point of contact between the CEO and department heads"
+2. [fix] In the quarterly board meeting bullet, identify the materials you prepared and your part in preparing them.
+   why: Board preparation can cover different kinds of work; naming yours would make the responsibility easier to understand.
+   excerpt (EXPERIENCE): "- Prepared materials for quarterly board meetings"
+3. [fix] In the investor meeting bullet, name the logistics you coordinated across time zones.
+   why: A reader could then see what you took on beyond the meeting's purpose.
+   excerpt (EXPERIENCE): "- Coordinate investor meeting logistics across time zones"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The Notion workspace for one client's board meeting materials connects a named tool to a specific task.
+Other strengths: ["Preparing quarterly board meeting materials shows that board support was a recurring part of the Parkway role.","Your progression from Administrative Assistant to Executive Assistant to the CEO at Parkway gives the career path a clear sequence."]
+
+## Gaps
+- The investor meeting bullet doesn't say which logistics you coordinated, so the work involved is difficult to picture.
+- The resume moves from June 2023 to February 2025 without an explanation; a reviewer may wonder what you were doing during that period.
+- The skills list names Concur and Microsoft 365, but the experience section doesn't connect them to particular assignments.
+
+## Next steps
+- Revise the CEO liaison, board preparation, and investor meeting bullets using details you can verify.
+- Review the Notion and offsite bullets for a useful description of how you organized each assignment.
+- Consider whether a brief, accurate explanation of the period after Parkway would help the chronology.
+
+## Role fit
+Level: Your recent titles show executive assistant work supporting a CEO and founders.
+Best fit: ["Freelance Executive Assistant","Executive Assistant to the CEO"]
+Positioning: Lead with your experience supporting founders and a CEO, then use board preparation and the leadership offsite to show the range of assignments. For each application, give more space to the relevant duties you can describe in detail.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[1]","line":"fix-1","criticalMiss":false},{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":1},{"kind":"question_moved","path":"ideas.questions[3]","fix":1},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[2]"}]

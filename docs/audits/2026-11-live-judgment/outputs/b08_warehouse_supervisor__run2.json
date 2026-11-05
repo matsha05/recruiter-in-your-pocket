@@ -1,0 +1,855 @@
+{
+  "case_id": "b08_warehouse_supervisor",
+  "batch": "breadth",
+  "run": 2,
+  "note": null,
+  "resume_file": "../../../tests/resumes/blindpick/synth_bp_warehouse_supervisor_1.txt",
+  "resume_sha256": "4f23aeaad42ee6b5836bf39d21414eb87585621802a43fd069caf4dd7d77509a",
+  "resume_chars": 1097,
+  "resume_words": 173,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T20:00:39.855Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7585,
+        "completion_tokens": 2037,
+        "total_tokens": 9622,
+        "cached_prompt_tokens": 7582,
+        "cache_write_prompt_tokens": 0,
+        "reasoning_tokens": 230
+      },
+      "cost_usd": 0.0105671,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 24801
+    },
+    {
+      "kind": "repair",
+      "usage": {
+        "prompt_tokens": 10283,
+        "completion_tokens": 2572,
+        "total_tokens": 12855,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 3394,
+        "reasoning_tokens": 796
+      },
+      "cost_usd": 0.0174498,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 30111
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.001287,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1236
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 66,
+    "score_label": "Needs Clarity",
+    "score_comment_short": "Team sizes are clear, but most bullets describe duties without specific examples.",
+    "score_comment_long": "The night shift of 35 associates gives the current role useful context. Most other bullets list responsibilities without showing how you handled a particular challenge or what changed. Add a few concrete examples from scheduling, carrier coordination, and the scanner rollout.",
+    "score_plain": "A reviewer can quickly identify your distribution-center background and supervisory level. They may have less to compare when assessing how you handled the work.",
+    "first_impression": "Your progression from order picker to outbound shift supervisor is easy to follow. The current role names a 35-person night shift, which helps establish the size of your responsibility.",
+    "biggest_gap_example": "\"Helped roll out handheld scanners on the pick floor\" does not explain what you contributed, leaving your part in the rollout unclear.",
+    "first_impression_takeaway": "Explain your scanner rollout contribution.",
+    "summary": "You moved from picking retail orders to supervising outbound work across picking, packing, and loading. That progression, alongside leading eight pickers as a Lead Associate, places you at a shift-supervisor level. Labor scheduling and carrier coordination show the range of work on your night shift. The resume doesn't yet show how you handled disruptions or competing priorities, which makes it harder to understand your judgment on the job.",
+    "strengths": [
+      "The current role names both the 35 associates and the outbound activities you supervise, giving readers a useful picture of the shift.",
+      "The Lead Associate role shows responsibility for eight day-shift pickers before your move into supervision.",
+      "OSHA 30-Hour General Industry and Forklift Certified add relevant safety and equipment context to your warehouse background."
+    ],
+    "gaps": [
+      "The resume doesn't describe a specific staffing adjustment or its result, so the scheduling work remains broad.",
+      "Carrier coordination names loading and departure times but doesn't show how you handled a delay or conflict.",
+      "No operational results are stated, leaving readers without a concrete example of what changed during your tenure."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the labor-scheduling bullet, describe a specific order-volume change and how you adjusted staffing or zones in response.",
+        "why": "A concrete example would show how you make the daily assignments, beyond the fact that you make them.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Schedule labor and assign zones based on daily order volume",
+          "section": "WORK HISTORY"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "WORK HISTORY"
+      },
+      {
+        "fix": "In the carrier-coordination bullet, add an example of a loading or departure issue you handled and what you did.",
+        "why": "This would make your part in keeping outbound work moving easier to understand.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Coordinate with carriers on trailer loading and departure times",
+          "section": "WORK HISTORY"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "WORK HISTORY"
+      },
+      {
+        "fix": "In the handheld-scanner rollout bullet, specify the work you personally helped with and any verified result.",
+        "why": "The rollout is a useful change example, but the current wording doesn't distinguish your contribution.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Helped roll out handheld scanners on the pick floor",
+          "section": "WORK HISTORY"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "WORK HISTORY"
+      }
+    ],
+    "next_steps": [
+      "Revise the scheduling and carrier bullets using examples you can verify.",
+      "Describe your contribution to the scanner rollout without overstating your role.",
+      "Review the summary and skills after those edits so the opening reflects the work you want to emphasize."
+    ],
+    "subscores": {
+      "impact": 58,
+      "clarity": 70,
+      "story": 70,
+      "readability": 73
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The opening gives your distribution-center background and progression in one sentence.",
+        "missing": "It doesn't name the outbound activities that distinguish your current role.",
+        "fix": "Add the outbound focus after revising the experience bullets."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "Titles, dates, employers, and team sizes make your progression easy to follow.",
+        "missing": "Most bullets don't give a specific example or stated result.",
+        "fix": "Develop the scheduling, carrier, and scanner bullets with details you can verify."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "Manhattan WMS, labor scheduling, Excel, and bilingual English and Spanish are easy to scan.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "Section not present.",
+        "fix": "Add only if it helps your story."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Outbound shift supervision across picking, packing, and loading",
+        "Labor scheduling and zone assignments",
+        "Carrier coordination for loading and departure times",
+        "Warehouse safety and equipment background"
+      ],
+      "underplayed": [
+        "Your contribution to the handheld-scanner rollout",
+        "Training new leads on the warehouse management system",
+        "Bilingual English and Spanish"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Shift Supervisor, Outbound Operations",
+          "Lead Associate"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Shift-supervisor level, with prior lead and order-picker experience.",
+        "industry_signals": [
+          "Freight distribution",
+          "Retail supply"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Lead with outbound shift supervision and the size of the team you oversee. Use specific scheduling or carrier examples to show how you handle the work, and retain the scanner rollout as a separate contribution."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "When order volume changed, how did you decide which zones needed more associates?",
+          "archetype": "TENSION POINT",
+          "why": "A specific staffing choice would make your scheduling judgment visible."
+        },
+        {
+          "question": "What was your part in introducing handheld scanners to the pick floor?",
+          "archetype": "IMPROVEMENT",
+          "why": "Your contribution to the rollout isn't specified."
+        },
+        {
+          "question": "What happened when a trailer loading plan or departure time changed unexpectedly?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "An example could show how you coordinated with carriers under changing conditions."
+        },
+        {
+          "question": "What warehouse management system tasks did you teach new leads to perform?",
+          "archetype": "DOMAIN LIFT",
+          "why": "Naming the tasks would make the training work more concrete."
+        },
+        {
+          "question": "During a safety huddle, what hazard or procedure did you address with the shift?",
+          "archetype": "HIGH STAKES",
+          "why": "A specific topic would show what the huddles covered."
+        }
+      ]
+    }
+  },
+  "initial_validation_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the evidence grounding contract at summary unsupported narrative facts: moved, supervising."
+  },
+  "model_output_repaired": {
+    "contract_version": "v2",
+    "score": 66,
+    "score_label": "Needs Clarity",
+    "score_comment_short": "Team sizes are clear, but most bullets describe duties without specific examples.",
+    "score_comment_long": "The current role names a 35-person night shift and its outbound activities. Most other bullets list responsibilities without showing how you approached a particular task or what changed. Examples from scheduling, carrier coordination, and the scanner rollout would add detail.",
+    "score_plain": "A reader can quickly identify your distribution-center background and supervisory level. The duties offer less detail about how you handle the work.",
+    "first_impression": "Your path from order picker to outbound shift supervisor is easy to follow. Naming the 35 associates on your night shift gives the current role useful context.",
+    "biggest_gap_example": "\"Helped roll out handheld scanners on the pick floor\" doesn't say what you contributed, leaving your part in the rollout unclear.",
+    "first_impression_takeaway": "Explain your scanner rollout contribution.",
+    "summary": "Outbound picking, packing, and loading sit alongside labor scheduling and carrier coordination in your current role. Earlier work as a Lead Associate and an Order Picker gives that role distribution-center context. Your titles and responsibilities point to a shift-supervisor level. The resume doesn't yet illustrate how you make staffing assignments, so a reader has little detail about your day-to-day judgment.",
+    "strengths": [
+      "The current role names the outbound activities you oversee, making the shift's work easy to picture.",
+      "Leading a team of 8 pickers as a Lead Associate shows a prior people-leadership responsibility.",
+      "OSHA 30-Hour General Industry and Forklift Certified add safety and equipment context to your warehouse background."
+    ],
+    "gaps": [
+      "Your contribution to the handheld-scanner rollout isn't specified, so the extent of your participation is unclear.",
+      "The carrier bullet doesn't describe what information you exchange or what you handle in the coordination process.",
+      "The new-lead training bullet doesn't name the system tasks you teach, making its content difficult to assess."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the labor-scheduling bullet, add an example of how you chose staffing or zones for a particular order volume.",
+        "why": "That would show how you make assignments, beyond the fact that you make them.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Schedule labor and assign zones based on daily order volume",
+          "section": "WORK HISTORY"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "WORK HISTORY"
+      },
+      {
+        "fix": "In the handheld-scanner rollout bullet, specify the work you personally helped with.",
+        "why": "Readers could distinguish your contribution from the broader rollout.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Helped roll out handheld scanners on the pick floor",
+          "section": "WORK HISTORY"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "WORK HISTORY"
+      },
+      {
+        "fix": "In the carrier-coordination bullet, describe what you handle when arranging loading and departure times.",
+        "why": "The added detail would make your role in the outbound handoff easier to understand.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Coordinate with carriers on trailer loading and departure times",
+          "section": "WORK HISTORY"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "WORK HISTORY"
+      }
+    ],
+    "next_steps": [
+      "Revise the scheduling and carrier bullets with examples you can verify.",
+      "Describe your contribution to the scanner rollout, keeping the wording consistent with your supporting role.",
+      "Review the opening and skills after those edits so they reflect the work you want to emphasize."
+    ],
+    "subscores": {
+      "impact": 58,
+      "clarity": 70,
+      "story": 70,
+      "readability": 73
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The opening gives your distribution-center background and progression in one sentence.",
+        "missing": "It doesn't name the outbound activities that distinguish your current role.",
+        "fix": "Add the outbound focus after revising the experience bullets."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "Titles, dates, employers, and team sizes make your work history easy to follow.",
+        "missing": "Most bullets don't give a specific example or stated result.",
+        "fix": "Develop the scheduling, carrier, and scanner bullets with details you can verify."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "Manhattan WMS, labor scheduling, Excel, and bilingual English and Spanish are easy to scan.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "Section not present.",
+        "fix": "Add only if it helps your story."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Outbound shift supervision across picking, packing, and loading",
+        "Labor scheduling and zone assignments",
+        "Carrier coordination for loading and departure times",
+        "Warehouse safety and equipment background"
+      ],
+      "underplayed": [
+        "Your contribution to the handheld-scanner rollout",
+        "Training new leads on the warehouse management system",
+        "Bilingual English and Spanish"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Shift Supervisor, Outbound Operations",
+          "Lead Associate"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Shift-supervisor level, with prior lead and order-picker experience.",
+        "industry_signals": [
+          "Freight distribution",
+          "Retail supply"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Lead with outbound shift supervision and the size of the team you oversee. Use specific scheduling or carrier examples to show how you handle the work, and retain the scanner rollout as a separate contribution."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "How do you choose staffing and zones based on daily order volume?",
+          "archetype": "SCALING",
+          "why": "A specific staffing choice would make your scheduling approach visible."
+        },
+        {
+          "question": "What information do you and carriers exchange when coordinating loading and departure times?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The exchange could show how the outbound handoff works."
+        },
+        {
+          "question": "What was your part in introducing handheld scanners to the pick floor?",
+          "archetype": "IMPROVEMENT",
+          "why": "Your contribution to the rollout isn't specified."
+        },
+        {
+          "question": "What warehouse management system tasks did you teach new leads to perform?",
+          "archetype": "DOMAIN LIFT",
+          "why": "Naming the tasks would make the training work more concrete."
+        },
+        {
+          "question": "What hazard or procedure have you addressed during a safety huddle?",
+          "archetype": "HIGH STAKES",
+          "why": "A specific topic would show what the huddles covered."
+        }
+      ]
+    }
+  },
+  "repaired": true,
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 66,
+    "score_label": "Needs more context",
+    "score_comment_short": "Team sizes are clear, but most bullets describe duties without specific examples.",
+    "score_comment_long": "The current role names a 35-person night shift and its outbound activities. Most other bullets list responsibilities without showing how you approached a particular task or what changed. Examples from scheduling, carrier coordination, and the scanner rollout would add detail.",
+    "score_plain": "A reader can quickly identify your distribution-center background and supervisory level. The duties offer less detail about how you handle the work.",
+    "first_impression": "Your path from order picker to outbound shift supervisor is easy to follow. Naming the 35 associates on your night shift gives the current role useful context.",
+    "biggest_gap_example": "\"Helped roll out handheld scanners on the pick floor\" doesn't say what you contributed, leaving your part in the rollout unclear.",
+    "first_impression_takeaway": "Explain your scanner rollout contribution.",
+    "summary": "Outbound picking, packing, and loading sit alongside labor scheduling and carrier coordination in your current role. Earlier work as a Lead Associate and an Order Picker gives that role distribution-center context. Your titles and responsibilities point to a shift-supervisor level. The resume doesn't yet illustrate how you make staffing assignments, so a reader has little detail about your day-to-day judgment.",
+    "strengths": [
+      "The current role names the outbound activities you oversee, making the shift's work easy to picture.",
+      "Leading a team of 8 pickers as a Lead Associate shows a prior people-leadership responsibility.",
+      "OSHA 30-Hour General Industry and Forklift Certified add safety and equipment context to your warehouse background."
+    ],
+    "gaps": [
+      "Your contribution to the handheld-scanner rollout isn't specified, so the extent of your participation is unclear.",
+      "The carrier bullet doesn't describe what information you exchange or what you handle in the coordination process.",
+      "The new-lead training bullet doesn't name the system tasks you teach, making its content difficult to assess."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the labor-scheduling bullet, add an example of how you chose staffing or zones for a particular order volume.",
+        "why": "That would show how you make assignments, beyond the fact that you make them.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Schedule labor and assign zones based on daily order volume",
+          "section": "WORK HISTORY"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "WORK HISTORY"
+      },
+      {
+        "fix": "In the carrier-coordination bullet, describe what you handle when arranging loading and departure times.",
+        "why": "The added detail would make your role in the outbound handoff easier to understand.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Coordinate with carriers on trailer loading and departure times",
+          "section": "WORK HISTORY"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "WORK HISTORY"
+      }
+    ],
+    "next_steps": [
+      "Revise the scheduling and carrier bullets with examples you can verify.",
+      "Describe your contribution to the scanner rollout, keeping the wording consistent with your supporting role.",
+      "Review the opening and skills after those edits so they reflect the work you want to emphasize."
+    ],
+    "subscores": {
+      "impact": 58,
+      "clarity": 70,
+      "story": 70,
+      "readability": 73
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "Titles, dates, employers, and team sizes make your work history easy to follow.",
+        "missing": "Most bullets don't give a specific example or stated result.",
+        "fix": "Develop the scheduling, carrier, and scanner bullets with details you can verify."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "Manhattan WMS, labor scheduling, Excel, and bilingual English and Spanish are easy to scan.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No education section present",
+        "fix": "Add this section if the job asks for it or it helps explain your qualifications."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Outbound shift supervision across picking, packing, and loading",
+        "Labor scheduling and zone assignments",
+        "Carrier coordination for loading and departure times",
+        "Warehouse safety and equipment background"
+      ],
+      "underplayed": [
+        "Your contribution to the handheld-scanner rollout",
+        "Training new leads on the warehouse management system",
+        "Bilingual English and Spanish"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Shift Supervisor, Outbound Operations",
+          "Lead Associate"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Shift-supervisor level, with prior lead and order-picker experience.",
+        "industry_signals": [
+          "Freight distribution",
+          "Retail supply"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with outbound shift supervision and the size of the team you oversee. Use specific scheduling or carrier examples to show how you handle the work, and retain the scanner rollout as a separate contribution."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "How do you choose staffing and zones based on daily order volume?",
+          "archetype": "SCALING",
+          "why": "A specific staffing choice would make your scheduling approach visible."
+        },
+        {
+          "question": "What information do you and carriers exchange when coordinating loading and departure times?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The exchange could show how the outbound handoff works."
+        },
+        {
+          "question": "What was your part in introducing handheld scanners to the pick floor?",
+          "archetype": "IMPROVEMENT",
+          "why": "Your contribution to the rollout isn't specified."
+        },
+        {
+          "question": "What warehouse management system tasks did you teach new leads to perform?",
+          "archetype": "DOMAIN LIFT",
+          "why": "Naming the tasks would make the training work more concrete."
+        },
+        {
+          "question": "What hazard or procedure have you addressed during a safety huddle?",
+          "archetype": "HIGH STAKES",
+          "why": "A specific topic would show what the huddles covered."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 66
+  },
+  "severity": {
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "promoted": [],
+    "replaced": [],
+    "skipped": [],
+    "critical_count": 1,
+    "more_critical": false,
+    "validation_attempts": 0,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "latency_ms": 1237,
+    "call_latency_ms": 1236,
+    "cost_usd": 0.001287,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 66,
+    "score_label": "Needs more context",
+    "score_comment_short": "Team sizes are clear, but most bullets describe duties without specific examples.",
+    "score_comment_long": "The current role names a 35-person night shift and its outbound activities. Most other bullets list responsibilities without showing how you approached a particular task or what changed. Examples from scheduling, carrier coordination, and the scanner rollout would add detail.",
+    "score_plain": "A reader can quickly identify your distribution-center background and supervisory level. The duties offer less detail about how you handle the work.",
+    "first_impression": "Your path from order picker to outbound shift supervisor is easy to follow. Naming the 35 associates on your night shift gives the current role useful context.",
+    "biggest_gap_example": "\"Helped roll out handheld scanners on the pick floor\" doesn't say what you contributed, leaving your part in the rollout unclear.",
+    "first_impression_takeaway": "Explain your scanner rollout contribution.",
+    "summary": "Outbound picking, packing, and loading sit alongside labor scheduling and carrier coordination in your current role. Earlier work as a Lead Associate and an Order Picker gives that role distribution-center context. Your titles and responsibilities point to a shift-supervisor level. The resume doesn't yet illustrate how you make staffing assignments, so a reader has little detail about your day-to-day judgment.",
+    "strengths": [
+      "The current role names the outbound activities you oversee, making the shift's work easy to picture.",
+      "Leading a team of 8 pickers as a Lead Associate shows a prior people-leadership responsibility.",
+      "OSHA 30-Hour General Industry and Forklift Certified add safety and equipment context to your warehouse background."
+    ],
+    "gaps": [
+      "Your contribution to the handheld-scanner rollout isn't specified, so the extent of your participation is unclear.",
+      "The carrier bullet doesn't describe what information you exchange or what you handle in the coordination process.",
+      "The new-lead training bullet doesn't name the system tasks you teach, making its content difficult to assess."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the labor-scheduling bullet, add an example of how you chose staffing or zones for a particular order volume.",
+        "why": "That would show how you make assignments, beyond the fact that you make them.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Schedule labor and assign zones based on daily order volume",
+          "section": "WORK HISTORY"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "WORK HISTORY",
+        "critical": true
+      },
+      {
+        "fix": "In the carrier-coordination bullet, describe what you handle when arranging loading and departure times.",
+        "why": "The added detail would make your role in the outbound handoff easier to understand.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Coordinate with carriers on trailer loading and departure times",
+          "section": "WORK HISTORY"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "WORK HISTORY",
+        "critical": false
+      }
+    ],
+    "next_steps": [
+      "Revise the scheduling and carrier bullets with examples you can verify.",
+      "Describe your contribution to the scanner rollout, keeping the wording consistent with your supporting role.",
+      "Review the opening and skills after those edits so they reflect the work you want to emphasize."
+    ],
+    "subscores": {
+      "impact": 58,
+      "clarity": 70,
+      "story": 70,
+      "readability": 73
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "Titles, dates, employers, and team sizes make your work history easy to follow.",
+        "missing": "Most bullets don't give a specific example or stated result.",
+        "fix": "Develop the scheduling, carrier, and scanner bullets with details you can verify."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "Manhattan WMS, labor scheduling, Excel, and bilingual English and Spanish are easy to scan.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No education section present",
+        "fix": "Add this section if the job asks for it or it helps explain your qualifications."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Outbound shift supervision across picking, packing, and loading",
+        "Labor scheduling and zone assignments",
+        "Carrier coordination for loading and departure times",
+        "Warehouse safety and equipment background"
+      ],
+      "underplayed": [
+        "Your contribution to the handheld-scanner rollout",
+        "Training new leads on the warehouse management system",
+        "Bilingual English and Spanish"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Shift Supervisor, Outbound Operations",
+          "Lead Associate"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Shift-supervisor level, with prior lead and order-picker experience.",
+        "industry_signals": [
+          "Freight distribution",
+          "Retail supply"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with outbound shift supervision and the size of the team you oversee. Use specific scheduling or carrier examples to show how you handle the work, and retain the scanner rollout as a separate contribution."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "How do you choose staffing and zones based on daily order volume?",
+          "archetype": "SCALING",
+          "why": "A specific staffing choice would make your scheduling approach visible."
+        },
+        {
+          "question": "What information do you and carriers exchange when coordinating loading and departure times?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The exchange could show how the outbound handoff works."
+        },
+        {
+          "question": "What was your part in introducing handheld scanners to the pick floor?",
+          "archetype": "IMPROVEMENT",
+          "why": "Your contribution to the rollout isn't specified."
+        },
+        {
+          "question": "What warehouse management system tasks did you teach new leads to perform?",
+          "archetype": "DOMAIN LIFT",
+          "why": "Naming the tasks would make the training work more concrete."
+        },
+        {
+          "question": "What hazard or procedure have you addressed during a safety huddle?",
+          "archetype": "HIGH STAKES",
+          "why": "A specific topic would show what the huddles covered."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 66,
+    "more_critical": false
+  },
+  "presentation": {
+    "score": 66,
+    "band": "Needs more context",
+    "score_label_from_model": "Needs Clarity",
+    "model_score_before_calibration": 66,
+    "verdict": "Your path from order picker to outbound shift supervisor is easy to follow. Naming the 35 associates on your night shift gives the current role useful context.",
+    "one_line_read": "Team sizes are clear, but most bullets describe duties without specific examples.",
+    "takeaway": "Explain your scanner rollout contribution.",
+    "biggest_gap_example": "\"Helped roll out handheld scanners on the pick floor\" doesn't say what you contributed, leaving your part in the rollout unclear.",
+    "critical_count": {
+      "count": 1,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "One Critical Miss. Fix it first.",
+      "lead": "It's the one most likely to cost you the interview."
+    },
+    "fixes": [
+      {
+        "fix": "In the labor-scheduling bullet, add an example of how you chose staffing or zones for a particular order volume.",
+        "why": "That would show how you make assignments, beyond the fact that you make them.",
+        "excerpt": "- Schedule labor and assign zones based on daily order volume",
+        "section": "WORK HISTORY",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the carrier-coordination bullet, describe what you handle when arranging loading and departure times.",
+        "why": "The added detail would make your role in the outbound handoff easier to understand.",
+        "excerpt": "- Coordinate with carriers on trailer loading and departure times",
+        "section": "WORK HISTORY",
+        "critical": false,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "The current role names the outbound activities you oversee, making the shift's work easy to picture.",
+    "strengths": [
+      "The current role names the outbound activities you oversee, making the shift's work easy to picture.",
+      "Leading a team of 8 pickers as a Lead Associate shows a prior people-leadership responsibility.",
+      "OSHA 30-Hour General Industry and Forklift Certified add safety and equipment context to your warehouse background."
+    ],
+    "gaps": [
+      "Your contribution to the handheld-scanner rollout isn't specified, so the extent of your participation is unclear.",
+      "The carrier bullet doesn't describe what information you exchange or what you handle in the coordination process.",
+      "The new-lead training bullet doesn't name the system tasks you teach, making its content difficult to assess."
+    ],
+    "next_steps": [
+      "Revise the scheduling and carrier bullets with examples you can verify.",
+      "Describe your contribution to the scanner rollout, keeping the wording consistent with your supporting role.",
+      "Review the opening and skills after those edits so they reflect the work you want to emphasize."
+    ],
+    "seniority_read": "Shift-supervisor level, with prior lead and order-picker experience.",
+    "best_fit_roles": [
+      "Shift Supervisor, Outbound Operations",
+      "Lead Associate"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "Lead with outbound shift supervision and the size of the team you oversee. Use specific scheduling or carrier examples to show how you handle the work, and retain the scanner rollout as a separate contribution.",
+    "severity_added": [],
+    "severity_promoted": [],
+    "severity_outcome": "none (none)",
+    "severity_answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[0]",
+          "fix": 0
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[1]",
+          "fix": 1
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "biggest_gap_example",
+          "of": "ideas.questions[2]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[1]",
+          "of": "top_fixes[1]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[2]",
+          "of": "ideas.questions[3]"
+        }
+      ],
+      "fix_questions": [
+        [
+          "How do you choose staffing and zones based on daily order volume?"
+        ],
+        [
+          "What information do you and carriers exchange when coordinating loading and departure times?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0293039,
+  "latency_ms": 56785
+}

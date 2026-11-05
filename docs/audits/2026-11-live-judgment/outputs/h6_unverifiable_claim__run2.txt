@@ -1,0 +1,46 @@
+# h6_unverifiable_claim, run 2
+Resume: resumes/h6_unverifiable_claim.txt (145 words, sha256 f523ae9848d4)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0116; 25.4s
+Case note: "Led a team of 40" with nothing supporting it.
+
+## Band: Needs more context (score 64; model wrote 64, label "Needs Clarity")
+## Verdict
+Your move from sorting-line Team Lead to Operations Manager is easy to follow. The team of 40 is worth keeping near the top because it establishes the size of your leadership responsibility.
+One-line read: The team size is clear, but most operations bullets describe broad duties.
+Takeaway: Name the process changes
+Biggest gap example: "Improved processes across the department" does not say which process changed or how, so a reviewer cannot tell what you contributed.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the department process-improvement bullet, name a workflow you changed and describe the change.
+   why: A specific workflow would let a reader understand what improved rather than relying on a general claim.
+   excerpt (EXPERIENCE): "- Improved processes across the department"
+2. [fix] In the daily fulfillment bullet, name the activities you oversaw and a decision you regularly made.
+   why: Fulfillment operations can cover different kinds of work, and the current wording does not distinguish yours.
+   excerpt (EXPERIENCE): "- Oversaw daily fulfillment operations"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The dates and titles show progression from Team Lead to Operations Manager.
+Other strengths: ["Supporting scheduling and reporting gives the assistant manager role a distinct administrative dimension.","The scanning-system rollout adds a concrete example of floor-level change work."]
+
+## Gaps
+- The process-improvement bullet does not identify the workflow or the change made, leaving the improvement difficult to assess.
+- The leadership planning bullet does not say what you contributed to goals or planning, so your role in those discussions is unclear.
+- The skills list names Excel and WMS but does not explain how you used either in your operations work.
+
+## Next steps
+- Revise the current manager bullets with a specific process change and the fulfillment activities you oversaw.
+- Add your actual contribution to the scanning rollout and describe what you contributed to leadership planning.
+- Replace the generic results claim in your summary with a verified example from your revised experience.
+
+## Role fit
+Level: The current Operations Manager title and leadership of a team of 40 indicate a manager-level role.
+Best fit: ["Operations Manager","Assistant Operations Manager"]
+Positioning: Lead with fulfillment management and the team of 40. Use the experience bullets to distinguish your daily responsibilities from your contributions to process changes and the scanning rollout.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":1},{"kind":"question_moved","path":"ideas.questions[1]","fix":0},{"kind":"question_dropped","path":"ideas.questions[3]","reason":"duplicates_keep"},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"ideas.questions[2]"},{"kind":"repeat_dropped","path":"section_review.Work Experience.working","of":"strengths[0]"},{"kind":"repeat_dropped","path":"section_review.Skills.missing","of":"gaps[2]"}]

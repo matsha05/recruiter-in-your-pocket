@@ -1,0 +1,49 @@
+# b34_bank_branch_manager_gap, run 1
+Resume: ../../../tests/resumes/blindpick/synth_bp_bank_branch_manager_gap_1.txt (129 words, sha256 1420c9932b5d)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0151; 31.6s
+Case note: Gap with nothing after it.
+
+## Band: Mostly clear (score 73; model wrote 73, label "Solid Foundation")
+## Verdict
+Your most recent role was managing an 11-employee bank branch, following assistant manager and personal banker positions at the same bank. The progression is easy to follow, though much of the work is described in brief duties.
+One-line read: Branch size and deposit growth are clear, while several responsibilities need more detail.
+Takeaway: Explain the customer escalations
+Biggest gap example: "Handled escalated customer complaints" does not say what kinds of problems you resolved or what authority you had to resolve them.
+
+## Fixes (Two Critical Misses. Start with this one.; lead: "Either one could cost you the interview on its own."); severity added (added); added ["no_recent_work"]; promoted []
+1. [Critical Miss] In the deposit-growth bullet, add the actions you took to grow deposits while retaining the existing figures and timeframe.
+   why: The result is clear; the actions would help a reviewer understand your contribution.
+   excerpt (EXPERIENCE): "- Grew branch deposits from $48M to $63M over five years"
+2. [Critical Miss] Add one dated line covering December 2024 to today, naming the period truthfully.
+   why: Branch manager hiring managers look for current banking and leadership skills, but the resume lists no activity or explanation after your last role. Use a dated line such as "Career break" or "Job search and coursework" if accurate, and list banking coursework or volunteer financial counseling only if true.
+   excerpt (Experience): "May 2019 - December 2024"
+3. [fix] In the audit and compliance bullet, name the reviews you oversaw and any follow-up you were responsible for.
+   why: This would show what branch oversight involved in practice.
+   excerpt (EXPERIENCE): "- Oversaw audits and compliance reviews for the branch"
+Severity check answer: {"critical_misses":[{"source":"new","kind":"no_recent_work","fix":"Add one dated line covering December 2024 to today, naming the period truthfully.","why":"Branch manager hiring managers look for current banking and leadership skills, but the resume lists no activity or explanation after your last role. Use a dated line such as \"Career break\" or \"Job search and coursework\" if accurate, and list banking coursework or volunteer financial counseling only if true.","excerpt":"May 2019 - December 2024","section":"Experience","effort":"quick"}],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+Managing 11 employees gives the branch manager title a clear team context.
+Other strengths: ["Weekly sales huddles and referral coaching show how you worked with bankers, rather than simply listing supervision.","Teller line and vault supervision in the assistant manager role adds operational breadth to your banking background."]
+
+## Gaps
+- The resume does not explain your role in deposit growth beyond the result, leaving your approach to building deposits unclear.
+- Audit and compliance oversight is named without the reviews or follow-up you handled, making the work difficult to distinguish from general supervision.
+- The complaint bullet does not identify the issues escalated to you or the decisions you could make, so your customer-resolution authority remains unclear.
+
+## Next steps
+- Expand the deposit bullet with the actions you can verify, keeping the stated amounts and five-year period.
+- Revise the audit and complaint bullets with specific examples of your responsibilities.
+- Revisit the opening sentence and use it to introduce the branch-management work most relevant to your target role.
+
+## Role fit
+Level: The most recent role is Branch Manager, with prior experience as Assistant Branch Manager and Personal Banker.
+Best fit: ["Branch Manager","Assistant Branch Manager"]
+Positioning: Lead with branch management, the employee count and the deposit result. Add the banking and customer decisions behind those responsibilities where you can verify them.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[2]","fix":2},{"kind":"question_dropped","path":"ideas.questions[3]","reason":"duplicates_keep"},{"kind":"question_dropped","path":"ideas.questions[4]","reason":"duplicates_keep"},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"ideas.questions[1]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"gaps[2]","of":"ideas.questions[1]"}]

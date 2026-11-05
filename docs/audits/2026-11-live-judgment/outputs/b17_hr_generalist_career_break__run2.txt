@@ -1,0 +1,49 @@
+# b17_hr_generalist_career_break, run 2
+Resume: ../../../tests/resumes/blindpick/synth_bp_hr_generalist_career_break_1.txt (145 words, sha256 59c9f2306490)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0155; 34.2s
+Case note: Returner after caregiving, break dated and named.
+
+## Band: Needs more context (score 66; model wrote 66, label "Needs Clarity")
+## Verdict
+The progression from HR Assistant to HR Generalist at Northstar Plastics is easy to follow. The caregiving break is stated plainly, while activity after June 2025 isn't shown.
+One-line read: Plant size and orientation cadence help, but most bullets describe duties without specifics.
+Takeaway: Explain your investigation work
+Biggest gap example: "Handled employee relations questions and investigations with the HR manager" doesn't explain the types of cases you handled or your part in an investigation.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the employee relations bullet, name a type of question or investigation you handled and describe your contribution alongside the HR manager.
+   why: A concrete example would distinguish your part in the work from the manager's without overstating your authority.
+   excerpt (EXPERIENCE): "- Handled employee relations questions and investigations with the HR manager"
+2. [fix] In the open enrollment bullet, specify which tasks you coordinated for medical and dental benefits.
+   why: This would show what coordinating enrollment involved beyond the name of the program.
+   excerpt (EXPERIENCE): "- Coordinated open enrollment for medical and dental benefits"
+3. [fix] In the orientation bullet, identify a topic you covered or a step you handled for new hires.
+   why: The frequency is already clear; the content would help a reviewer understand what you delivered.
+   excerpt (EXPERIENCE): "- Ran new hire orientation every two weeks"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+Running new hire orientation every two weeks gives a concrete cadence to your onboarding work.
+Other strengths: ["The move from processing I-9s to coordinating benefits and handling employee relations shows how your work broadened at Northstar Plastics.","Naming UKG and ADP Workforce Now gives readers identifiable HR systems to look for."]
+
+## Gaps
+- The enrollment bullet doesn't say which parts of the medical and dental process you coordinated, leaving the work itself broad.
+- The resume doesn't say how you used either named HR system, so their connection to your records work is unclear.
+- No activity after the caregiving break is listed, leaving your more recent work or learning unclear.
+
+## Next steps
+- Revise the Northstar Generalist bullets with the case, enrollment and orientation details you can verify.
+- Connect UKG or ADP Workforce Now to the relevant records or benefits work if you used either for those tasks.
+- Review the period after June 2025 and add any real work, course or other relevant activity you want to include.
+
+## Role fit
+Level: Your most recent HR title is HR Generalist, following an HR Assistant role.
+Best fit: ["HR Generalist"]
+Positioning: Lead with your HR Generalist work in the three-shift plant, then connect employee relations, benefits and onboarding to specific tasks. Keep the caregiving break straightforward and add later activity only if you have something relevant to include.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[0]","line":"fix-2","criticalMiss":false},{"kind":"repeat_dropped","path":"gaps[2]","of":"first_impression"},{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[2]","fix":2},{"kind":"question_dropped","path":"ideas.questions[4]","reason":"duplicates_keep"},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[1]"}]

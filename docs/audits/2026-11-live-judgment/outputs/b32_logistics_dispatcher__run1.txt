@@ -1,0 +1,48 @@
+# b32_logistics_dispatcher, run 1
+Resume: ../../../tests/resumes/blindpick/synth_bp_logistics_dispatcher_1.txt (105 words, sha256 1ae1cc83222e)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0129; 26.8s
+
+## Band: Needs more context (score 60; model wrote 60, label "Needs Clarity")
+## Verdict
+Your move from dispatch assistant to dispatcher is easy to follow. Naming McLeod TMS is useful because it identifies a system behind the daily dispatch work, rather than leaving the software entirely generic.
+One-line read: Your dispatch responsibilities are clear, but most bullets leave the work unexplained.
+Takeaway: Describe the driver issues
+Biggest gap example: "Handle driver issues on the road" does not explain which issues you handled or what you could resolve yourself.
+
+## Fixes (Two Critical Misses. Start with this one.; lead: "Either one could cost you the interview on its own."); severity added (promoted); added []; promoted [1]
+1. [Critical Miss] In the driver-issues bullet, name an example of a problem you handled and what you did to resolve or escalate it.
+   why: That would show what you can do when a driver needs help on the road.
+   excerpt (EXPERIENCE): "- Handle driver issues on the road"
+2. [Critical Miss] In the driver-dispatch bullet, add the number of drivers you typically coordinate, if you can verify it.
+   why: A driver count would help a reader understand the size of your dispatch assignment.
+   excerpt (EXPERIENCE): "- Responsible for dispatching drivers"
+3. [fix] In the safety-team bullet, explain what you check or communicate about driver hours.
+   why: The current wording names the relationship but leaves your part in it unclear.
+   excerpt (EXPERIENCE): "- Work with the safety team on driver hours"
+Severity check answer: {"critical_misses":[{"source":"fix_2","kind":"no_evidence_latest_role","fix":"","why":"","excerpt":"","section":"","effort":"quick"}],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+Five years in regional trucking gives the summary a clear industry focus.
+Other strengths: ["The load-tracking bullet connects internal dispatch work with customer delivery updates.","Warehouse trailer-loading work adds a view of freight handling alongside your office-based roles."]
+
+## Gaps
+- The number of drivers or loads you dispatch isn't stated, leaving the size of the assignment unclear.
+- The safety-team bullet doesn't explain what you contribute to driver-hours coordination.
+- The assistant role mentions paperwork without naming the documents, so its connection to dispatch operations remains broad.
+
+## Next steps
+- Revise the current dispatcher bullets with a verified road-issue example and your part in driver-hours coordination.
+- Add the driver count to the dispatch bullet if you can confirm a representative figure.
+- Review the assistant role and name the paperwork you helped prepare or handle.
+
+## Role fit
+Level: Your current title is Dispatcher, following a Dispatch Assistant role at the same company.
+Best fit: ["Dispatcher"]
+Positioning: Keep the regional trucking focus at the top and build the current role around your actual dispatch decisions. Use a specific driver issue and your safety-team contribution to distinguish the role from a general task list.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":1},{"kind":"question_moved","path":"ideas.questions[2]","fix":2},{"kind":"question_dropped","path":"ideas.questions[3]","reason":"duplicates_keep"},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"gaps[2]","of":"ideas.questions[4]"},{"kind":"repeat_dropped","path":"section_review.Work Experience.fix","of":"top_fixes[0]"}]

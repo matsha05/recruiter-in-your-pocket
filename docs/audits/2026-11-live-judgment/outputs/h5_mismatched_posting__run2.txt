@@ -1,0 +1,53 @@
+# h5_mismatched_posting, run 2
+Resume: resumes/h5_data_analyst.txt (166 words, sha256 7bbdd7afb1b8), posting: resumes/h5_nursing_posting.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0398; repair ran; 77.5s
+Case note: Data analyst against a registered nurse posting.
+
+Validator refused the first draft: OPENAI_RESPONSE_SHAPE_INVALID The model response failed the evidence grounding contract at gaps[0] unsupported narrative facts: RN, BLS.
+
+## Band: Mostly clear (score 84; model wrote 84, label "Strong")
+## Verdict
+Your recent work centers on sales reporting and merchandising analysis. The supplied position is a medical-surgical nursing role, but the resume does not describe clinical work.
+One-line read: Recent analyst work names its audiences, scale, and an adopted recommendation.
+Takeaway: Clarify the claims summary
+Biggest gap example: "Produced the monthly claims summary for the operations director" does not say what the report covered or how it was used.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the monthly claims summary bullet, name the claims information you reported and how the operations director used it, if known.
+   why: That would give the insurance reporting work a clearer purpose than the report title alone.
+   excerpt (EXPERIENCE): "- Produced the monthly claims summary for the operations director"
+2. [fix] In the policy data bullet, explain how you reconciled records across the legacy systems.
+   why: A short description of your approach would show what the Python and Excel work involved.
+   excerpt (EXPERIENCE): "- Cleaned and reconciled policy data from three legacy systems in Python and Excel"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The SQL model replaced a 3-day manual weekly sales report with an automated one, making the reporting change concrete.
+Other strengths: ["Your 14 Power BI dashboards serve sales, merchandising, and finance, showing who uses your reporting.","Reconciling policy data from three legacy systems in Python and Excel shows work across multiple data sources."]
+
+## Gaps
+- The credentials required by the nursing posting are not listed, so their status cannot be assessed from the resume.
+- No patient-care or clinical rotation experience appears, leaving the unit's care responsibilities unaddressed.
+- The claims summary names its audience but not its contents, leaving the insurance reporting work less distinct than your recent analysis.
+
+## Next steps
+- Revise the claims summary bullet with its contents and any known use by the operations director.
+- Add a representative sales question and your reconciliation approach to the relevant experience bullets.
+- Compare your actual qualifications with the nursing posting and add any relevant credentials or clinical work that you can verify.
+
+## Role fit
+Level: Your recent title is Data Analyst, following a Junior Analyst role. Nursing seniority cannot be assessed from the resume.
+Best fit: ["Data Analyst"]
+Positioning: For analyst roles, lead with the automated sales report and the adopted markdown recommendation. For this nursing application, add any relevant credentials and clinical experience that are currently omitted, if you can verify them.
+
+## Posting
+Match score: 5
+Summary: The resume describes data analysis rather than nursing. General reporting and documentation may be transferable, but the required credentials and clinical work are not shown.
+Missing: ["acute care nursing experience","clinical rotation","patient assignment of 5 to 6 patients","Administer medications and treatments","Educate patients and families","Precept students and new graduates"]
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[2]","line":"fix-1","criticalMiss":false},{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_dropped","path":"ideas.questions[1]","reason":"duplicates_keep"},{"kind":"question_moved","path":"ideas.questions[2]","fix":1},{"kind":"question_dropped","path":"ideas.questions[3]","reason":"duplicates_keep"},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[2]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"next_steps[0]","of":"top_fixes[0]"}]

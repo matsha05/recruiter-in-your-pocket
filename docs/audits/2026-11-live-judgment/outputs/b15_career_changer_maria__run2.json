@@ -1,0 +1,665 @@
+{
+  "case_id": "b15_career_changer_maria",
+  "batch": "breadth",
+  "run": 2,
+  "note": "Career changer (bar persona).",
+  "resume_file": "../../../docs/design/2026-11-bar/resumes/2-career-changer-maria.txt",
+  "resume_sha256": "cf6e68aeefb5409ae44ad20d35b5dfe5a27f0f29de2d56c226d1b8891078a1b0",
+  "resume_chars": 2238,
+  "resume_words": 315,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T20:04:10.590Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 8025,
+        "completion_tokens": 2354,
+        "total_tokens": 10379,
+        "cached_prompt_tokens": 8022,
+        "cache_write_prompt_tokens": 0,
+        "reasoning_tokens": 397
+      },
+      "cost_usd": 0.0121741,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 28355
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.00222325,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 2263
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 68,
+    "score_label": "Needs Clarity",
+    "score_comment_short": "The projects show relevant tools, while most teaching bullets describe responsibilities.",
+    "score_comment_long": "The housing capstone and student dashboard show analytics work in two different settings. Most experience bullets stop before explaining how you approached the data or what you found. Adding those details to a few existing bullets would make the transition easier to assess.",
+    "score_plain": "Your resume shows a basis for an analytics transition, but it leaves readers with questions about how you work through an analysis. More detail in the projects and teaching examples would help them assess your fit for a data role.",
+    "first_impression": "Your move from mathematics teaching into data analytics is immediately clear. The student dashboard is worth keeping prominent because the math department used it to decide which units needed re-teaching.",
+    "biggest_gap_example": "\"Analyzed student assessment data to identify learning gaps and adjust instruction\" does not show what you found or changed, leaving the analysis itself hard to assess.",
+    "first_impression_takeaway": "Show what the analysis found",
+    "summary": "Your analytics transition draws on classroom assessment work and a housing affordability capstone using Python and SQL. You also built an Excel dashboard around AP Statistics pass rates and quiz scores, connecting data work to a department decision. Your titles show an experienced teacher, while the projects introduce your work with analytics tools. The housing project doesn't yet say what you found, so a reader has little to judge about your interpretation of the data.",
+    "strengths": [
+      "Teaching Algebra II and AP Statistics to approximately 150 students per year across 6 class periods makes your classroom responsibilities concrete.",
+      "The housing capstone names 10 years of data and a Tableau dashboard by zip code, giving the project a defined subject and time range.",
+      "Mentoring 3 new teachers through the district induction program shows a responsibility beyond your own classes."
+    ],
+    "gaps": [
+      "The housing project names a presentation but not the findings shared with instructors and peers, making its conclusions difficult to evaluate.",
+      "The assessment-data bullet doesn't give an example of an instructional adjustment, so the connection between analysis and teaching remains abstract.",
+      "The skills list includes several tools and methods, but it doesn't distinguish those demonstrated in the projects from those without an example on the resume."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the housing analysis bullets, add one finding you presented and explain how you compared housing and income data.",
+        "why": "A reader can then see what your Python and SQL work helped you examine, rather than only the tools used.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Analyzed 10 years of Austin housing and income data using Python and SQL",
+          "section": "DATA PROJECTS"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "DATA PROJECTS"
+      },
+      {
+        "fix": "In the student assessment bullet, give one example of a learning gap you identified and the instructional adjustment you made.",
+        "why": "That example would make your classroom analysis more tangible to a reader considering your move into analytics.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Analyzed student assessment data to identify learning gaps and adjust instruction",
+          "section": "PROFESSIONAL EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "PROFESSIONAL EXPERIENCE"
+      },
+      {
+        "fix": "In the student dashboard bullets, explain how you prepared the pass-rate or quiz-score data for the Excel dashboard.",
+        "why": "The department's use of the dashboard is already stated; the preparation detail would show more of your analytical work.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Built an Excel dashboard tracking AP Statistics pass rates and quiz scores over three years",
+          "section": "DATA PROJECTS"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "DATA PROJECTS"
+      }
+    ],
+    "next_steps": [
+      "Expand the housing capstone with a verified finding and the comparison behind it.",
+      "Revise the assessment and student dashboard bullets using examples from your actual work.",
+      "Review the summary and skills list against the revised projects, putting demonstrated analytics work before general claims."
+    ],
+    "subscores": {
+      "impact": 65,
+      "clarity": 69,
+      "story": 70,
+      "readability": 72
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "C",
+        "priority": "Medium",
+        "working": "It states your transition from education into data analytics.",
+        "missing": "It relies on general claims instead of naming the dashboard or housing analysis.",
+        "fix": "Replace a general skills claim with a concise reference to one of those projects."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The Lake Travis role gives class size, subjects, department data work and mentoring responsibilities.",
+        "missing": "The assessment and benchmark bullets don't show an example of what the data revealed or how it was discussed.",
+        "fix": "Add a concrete example to the assessment bullet and describe what you brought to a department meeting if you can verify it."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The list names SQL, Excel functions, Tableau and Python libraries relevant to the stated transition.",
+        "missing": "The list mixes analytics tools with classroom skills without distinguishing their relevance to the desired direction.",
+        "fix": "Group the analytics tools and methods together, followed by the education-related skills."
+      },
+      "Education": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "Your mathematics degree, university and graduation year are listed, alongside the teaching certificate.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Mathematics and statistics teaching",
+        "Student assessment analysis",
+        "Python and SQL housing analysis",
+        "Excel and Tableau dashboards"
+      ],
+      "underplayed": [
+        "Findings presented from the housing capstone",
+        "Data preparation behind the student dashboard",
+        "Examples of instructional changes informed by assessments"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Mathematics Teacher"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "The recent Mathematics Teacher title and department data lead responsibility show an experienced educator transitioning into analytics; the resume does not establish an analytics job level.",
+        "industry_signals": [
+          "Education"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Lead the analytics transition with the housing capstone and student dashboard, then use the teaching experience to show how you applied assessment data. Keep the teacher title and describe the analytics work without presenting it as a prior analyst job."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What finding about housing affordability did you present to the capstone panel?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The project names the audience but leaves the finding unstated."
+        },
+        {
+          "question": "How did you prepare the pass-rate and quiz-score data for the Excel dashboard?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "Your dashboard bullet names the measures but not the preparation work."
+        },
+        {
+          "question": "Which assessment finding led you to adjust instruction, and what did you change?",
+          "archetype": "IMPROVEMENT",
+          "why": "A specific example would connect the assessment analysis to your teaching."
+        },
+        {
+          "question": "What benchmark information did you compile for a department meeting, and how was it discussed?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "This could explain what colleagues received from your data lead work."
+        },
+        {
+          "question": "How did you decide which weekly quiz results warranted a change in small-group placement?",
+          "archetype": "TENSION POINT",
+          "why": "The grouping bullet identifies the data source but not your approach to using it."
+        }
+      ]
+    }
+  },
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 68,
+    "score_label": "Needs more context",
+    "score_comment_short": "The projects show relevant tools, while most teaching bullets describe responsibilities.",
+    "score_comment_long": "The housing capstone and student dashboard show analytics work in two different settings. Most experience bullets stop before explaining how you approached the data or what you found. Adding those details to a few existing bullets would make the transition easier to assess.",
+    "score_plain": "Your resume shows a basis for an analytics transition, but it leaves readers with questions about how you work through an analysis. More detail in the projects and teaching examples would help them assess your fit for a data role.",
+    "first_impression": "Your move from mathematics teaching into data analytics is immediately clear. The student dashboard is worth keeping prominent because the math department used it to decide which units needed re-teaching.",
+    "biggest_gap_example": "\"Analyzed student assessment data to identify learning gaps and adjust instruction\" does not show what you found or changed, leaving the analysis itself hard to assess.",
+    "first_impression_takeaway": "Show what the analysis found",
+    "summary": "Your analytics transition draws on classroom assessment work and a housing affordability capstone using Python and SQL. You also built an Excel dashboard around AP Statistics pass rates and quiz scores, connecting data work to a department decision. Your titles show an experienced teacher, while the projects introduce your work with analytics tools. The housing project doesn't yet say what you found, so a reader has little to judge about your interpretation of the data.",
+    "strengths": [
+      "Teaching Algebra II and AP Statistics to approximately 150 students per year across 6 class periods makes your classroom responsibilities concrete.",
+      "The housing capstone names 10 years of data and a Tableau dashboard by zip code, giving the project a defined subject and time range.",
+      "Mentoring 3 new teachers through the district induction program shows a responsibility beyond your own classes."
+    ],
+    "gaps": [
+      "The housing project names a presentation but not the findings shared with instructors and peers, making its conclusions difficult to evaluate.",
+      "The assessment-data bullet doesn't give an example of an instructional adjustment, so the connection between analysis and teaching remains abstract.",
+      "The skills list includes several tools and methods, but it doesn't distinguish those demonstrated in the projects from those without an example on the resume."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the housing analysis bullets, add one finding you presented and explain how you compared housing and income data.",
+        "why": "A reader can then see what your Python and SQL work helped you examine, rather than only the tools used.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Analyzed 10 years of Austin housing and income data using Python and SQL",
+          "section": "DATA PROJECTS"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "DATA PROJECTS"
+      },
+      {
+        "fix": "In the student dashboard bullets, explain how you prepared the pass-rate or quiz-score data for the Excel dashboard.",
+        "why": "The department's use of the dashboard is already stated; the preparation detail would show more of your analytical work.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Built an Excel dashboard tracking AP Statistics pass rates and quiz scores over three years",
+          "section": "DATA PROJECTS"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "DATA PROJECTS"
+      }
+    ],
+    "next_steps": [
+      "Expand the housing capstone with a verified finding and the comparison behind it.",
+      "Revise the assessment and student dashboard bullets using examples from your actual work.",
+      "Review the summary and skills list against the revised projects, putting demonstrated analytics work before general claims."
+    ],
+    "subscores": {
+      "impact": 65,
+      "clarity": 69,
+      "story": 70,
+      "readability": 72
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "C",
+        "priority": "Medium",
+        "working": "It states your transition from education into data analytics.",
+        "missing": "It relies on general claims instead of naming the dashboard or housing analysis.",
+        "fix": "Replace a general skills claim with a concise reference to one of those projects."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The Lake Travis role gives class size, subjects, department data work and mentoring responsibilities.",
+        "missing": "The assessment and benchmark bullets don't show an example of what the data revealed or how it was discussed.",
+        "fix": "Add a concrete example to the assessment bullet and describe what you brought to a department meeting if you can verify it."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The list names SQL, Excel functions, Tableau and Python libraries relevant to the stated transition.",
+        "missing": "The list mixes analytics tools with classroom skills without distinguishing their relevance to the desired direction.",
+        "fix": "Group the analytics tools and methods together, followed by the education-related skills."
+      },
+      "Education": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "Your mathematics degree, university and graduation year are listed, alongside the teaching certificate.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Mathematics and statistics teaching",
+        "Student assessment analysis",
+        "Python and SQL housing analysis",
+        "Excel and Tableau dashboards"
+      ],
+      "underplayed": [
+        "Findings presented from the housing capstone",
+        "Data preparation behind the student dashboard",
+        "Examples of instructional changes informed by assessments"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Mathematics Teacher"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "The recent Mathematics Teacher title and department data lead responsibility show an experienced educator transitioning into analytics; the resume does not establish an analytics job level.",
+        "industry_signals": [
+          "Education"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead the analytics transition with the housing capstone and student dashboard, then use the teaching experience to show how you applied assessment data. Keep the teacher title and describe the analytics work without presenting it as a prior analyst job."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What finding about housing affordability did you present to the capstone panel?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The project names the audience but leaves the finding unstated."
+        },
+        {
+          "question": "How did you prepare the pass-rate and quiz-score data for the Excel dashboard?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "Your dashboard bullet names the measures but not the preparation work."
+        },
+        {
+          "question": "Which assessment finding led you to adjust instruction, and what did you change?",
+          "archetype": "IMPROVEMENT",
+          "why": "A specific example would connect the assessment analysis to your teaching."
+        },
+        {
+          "question": "What benchmark information did you compile for a department meeting, and how was it discussed?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "This could explain what colleagues received from your data lead work."
+        },
+        {
+          "question": "How did you decide which weekly quiz results warranted a change in small-group placement?",
+          "archetype": "TENSION POINT",
+          "why": "The grouping bullet identifies the data source but not your approach to using it."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 68
+  },
+  "severity": {
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "promoted": [],
+    "replaced": [],
+    "skipped": [],
+    "critical_count": 1,
+    "more_critical": false,
+    "validation_attempts": 0,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "latency_ms": 2264,
+    "call_latency_ms": 2263,
+    "cost_usd": 0.00222325,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 68,
+    "score_label": "Needs more context",
+    "score_comment_short": "The projects show relevant tools, while most teaching bullets describe responsibilities.",
+    "score_comment_long": "The housing capstone and student dashboard show analytics work in two different settings. Most experience bullets stop before explaining how you approached the data or what you found. Adding those details to a few existing bullets would make the transition easier to assess.",
+    "score_plain": "Your resume shows a basis for an analytics transition, but it leaves readers with questions about how you work through an analysis. More detail in the projects and teaching examples would help them assess your fit for a data role.",
+    "first_impression": "Your move from mathematics teaching into data analytics is immediately clear. The student dashboard is worth keeping prominent because the math department used it to decide which units needed re-teaching.",
+    "biggest_gap_example": "\"Analyzed student assessment data to identify learning gaps and adjust instruction\" does not show what you found or changed, leaving the analysis itself hard to assess.",
+    "first_impression_takeaway": "Show what the analysis found",
+    "summary": "Your analytics transition draws on classroom assessment work and a housing affordability capstone using Python and SQL. You also built an Excel dashboard around AP Statistics pass rates and quiz scores, connecting data work to a department decision. Your titles show an experienced teacher, while the projects introduce your work with analytics tools. The housing project doesn't yet say what you found, so a reader has little to judge about your interpretation of the data.",
+    "strengths": [
+      "Teaching Algebra II and AP Statistics to approximately 150 students per year across 6 class periods makes your classroom responsibilities concrete.",
+      "The housing capstone names 10 years of data and a Tableau dashboard by zip code, giving the project a defined subject and time range.",
+      "Mentoring 3 new teachers through the district induction program shows a responsibility beyond your own classes."
+    ],
+    "gaps": [
+      "The housing project names a presentation but not the findings shared with instructors and peers, making its conclusions difficult to evaluate.",
+      "The assessment-data bullet doesn't give an example of an instructional adjustment, so the connection between analysis and teaching remains abstract.",
+      "The skills list includes several tools and methods, but it doesn't distinguish those demonstrated in the projects from those without an example on the resume."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the housing analysis bullets, add one finding you presented and explain how you compared housing and income data.",
+        "why": "A reader can then see what your Python and SQL work helped you examine, rather than only the tools used.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Analyzed 10 years of Austin housing and income data using Python and SQL",
+          "section": "DATA PROJECTS"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "DATA PROJECTS",
+        "critical": true
+      },
+      {
+        "fix": "In the student dashboard bullets, explain how you prepared the pass-rate or quiz-score data for the Excel dashboard.",
+        "why": "The department's use of the dashboard is already stated; the preparation detail would show more of your analytical work.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Built an Excel dashboard tracking AP Statistics pass rates and quiz scores over three years",
+          "section": "DATA PROJECTS"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "DATA PROJECTS",
+        "critical": false
+      }
+    ],
+    "next_steps": [
+      "Expand the housing capstone with a verified finding and the comparison behind it.",
+      "Revise the assessment and student dashboard bullets using examples from your actual work.",
+      "Review the summary and skills list against the revised projects, putting demonstrated analytics work before general claims."
+    ],
+    "subscores": {
+      "impact": 65,
+      "clarity": 69,
+      "story": 70,
+      "readability": 72
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "C",
+        "priority": "Medium",
+        "working": "It states your transition from education into data analytics.",
+        "missing": "It relies on general claims instead of naming the dashboard or housing analysis.",
+        "fix": "Replace a general skills claim with a concise reference to one of those projects."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The Lake Travis role gives class size, subjects, department data work and mentoring responsibilities.",
+        "missing": "The assessment and benchmark bullets don't show an example of what the data revealed or how it was discussed.",
+        "fix": "Add a concrete example to the assessment bullet and describe what you brought to a department meeting if you can verify it."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The list names SQL, Excel functions, Tableau and Python libraries relevant to the stated transition.",
+        "missing": "The list mixes analytics tools with classroom skills without distinguishing their relevance to the desired direction.",
+        "fix": "Group the analytics tools and methods together, followed by the education-related skills."
+      },
+      "Education": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "Your mathematics degree, university and graduation year are listed, alongside the teaching certificate.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Mathematics and statistics teaching",
+        "Student assessment analysis",
+        "Python and SQL housing analysis",
+        "Excel and Tableau dashboards"
+      ],
+      "underplayed": [
+        "Findings presented from the housing capstone",
+        "Data preparation behind the student dashboard",
+        "Examples of instructional changes informed by assessments"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Mathematics Teacher"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "The recent Mathematics Teacher title and department data lead responsibility show an experienced educator transitioning into analytics; the resume does not establish an analytics job level.",
+        "industry_signals": [
+          "Education"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead the analytics transition with the housing capstone and student dashboard, then use the teaching experience to show how you applied assessment data. Keep the teacher title and describe the analytics work without presenting it as a prior analyst job."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What finding about housing affordability did you present to the capstone panel?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The project names the audience but leaves the finding unstated."
+        },
+        {
+          "question": "How did you prepare the pass-rate and quiz-score data for the Excel dashboard?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "Your dashboard bullet names the measures but not the preparation work."
+        },
+        {
+          "question": "Which assessment finding led you to adjust instruction, and what did you change?",
+          "archetype": "IMPROVEMENT",
+          "why": "A specific example would connect the assessment analysis to your teaching."
+        },
+        {
+          "question": "What benchmark information did you compile for a department meeting, and how was it discussed?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "This could explain what colleagues received from your data lead work."
+        },
+        {
+          "question": "How did you decide which weekly quiz results warranted a change in small-group placement?",
+          "archetype": "TENSION POINT",
+          "why": "The grouping bullet identifies the data source but not your approach to using it."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 68,
+    "more_critical": false
+  },
+  "presentation": {
+    "score": 68,
+    "band": "Needs more context",
+    "score_label_from_model": "Needs Clarity",
+    "model_score_before_calibration": 68,
+    "verdict": "Your move from mathematics teaching into data analytics is immediately clear. The student dashboard is worth keeping prominent because the math department used it to decide which units needed re-teaching.",
+    "one_line_read": "The projects show relevant tools, while most teaching bullets describe responsibilities.",
+    "takeaway": "Show what the analysis found",
+    "biggest_gap_example": "\"Analyzed student assessment data to identify learning gaps and adjust instruction\" does not show what you found or changed, leaving the analysis itself hard to assess.",
+    "critical_count": {
+      "count": 1,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "One Critical Miss. Fix it first.",
+      "lead": "It's the one most likely to cost you the interview."
+    },
+    "fixes": [
+      {
+        "fix": "In the housing analysis bullets, add one finding you presented and explain how you compared housing and income data.",
+        "why": "A reader can then see what your Python and SQL work helped you examine, rather than only the tools used.",
+        "excerpt": "- Analyzed 10 years of Austin housing and income data using Python and SQL",
+        "section": "DATA PROJECTS",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the student dashboard bullets, explain how you prepared the pass-rate or quiz-score data for the Excel dashboard.",
+        "why": "The department's use of the dashboard is already stated; the preparation detail would show more of your analytical work.",
+        "excerpt": "- Built an Excel dashboard tracking AP Statistics pass rates and quiz scores over three years",
+        "section": "DATA PROJECTS",
+        "critical": false,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "Teaching Algebra II and AP Statistics to approximately 150 students per year across 6 class periods makes your classroom responsibilities concrete.",
+    "strengths": [
+      "Teaching Algebra II and AP Statistics to approximately 150 students per year across 6 class periods makes your classroom responsibilities concrete.",
+      "The housing capstone names 10 years of data and a Tableau dashboard by zip code, giving the project a defined subject and time range.",
+      "Mentoring 3 new teachers through the district induction program shows a responsibility beyond your own classes."
+    ],
+    "gaps": [
+      "The housing project names a presentation but not the findings shared with instructors and peers, making its conclusions difficult to evaluate.",
+      "The assessment-data bullet doesn't give an example of an instructional adjustment, so the connection between analysis and teaching remains abstract.",
+      "The skills list includes several tools and methods, but it doesn't distinguish those demonstrated in the projects from those without an example on the resume."
+    ],
+    "next_steps": [
+      "Expand the housing capstone with a verified finding and the comparison behind it.",
+      "Revise the assessment and student dashboard bullets using examples from your actual work.",
+      "Review the summary and skills list against the revised projects, putting demonstrated analytics work before general claims."
+    ],
+    "seniority_read": "The recent Mathematics Teacher title and department data lead responsibility show an experienced educator transitioning into analytics; the resume does not establish an analytics job level.",
+    "best_fit_roles": [
+      "Mathematics Teacher"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "Lead the analytics transition with the housing capstone and student dashboard, then use the teaching experience to show how you applied assessment data. Keep the teacher title and describe the analytics work without presenting it as a prior analyst job.",
+    "severity_added": [],
+    "severity_promoted": [],
+    "severity_outcome": "none (none)",
+    "severity_answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[0]",
+          "fix": 0
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[1]",
+          "fix": 1
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "biggest_gap_example",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[0]",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Skills.missing",
+          "of": "gaps[2]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "next_steps[1]",
+          "of": "top_fixes[1]"
+        }
+      ],
+      "fix_questions": [
+        [
+          "What finding about housing affordability did you present to the capstone panel?"
+        ],
+        [
+          "How did you prepare the pass-rate and quiz-score data for the Excel dashboard?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01439735,
+  "latency_ms": 30716
+}

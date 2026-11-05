@@ -1,0 +1,56 @@
+# h5_mismatched_posting, run 3
+Resume: resumes/h5_data_analyst.txt (166 words, sha256 7bbdd7afb1b8), posting: resumes/h5_nursing_posting.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0390; repair ran; 76.2s
+Case note: Data analyst against a registered nurse posting.
+
+Validator refused the first draft: OPENAI_RESPONSE_SHAPE_INVALID The model response failed the evidence grounding contract at gaps[0] unsupported narrative facts: RN, BLS.
+
+## Band: Mostly clear (score 83; model wrote 83, label "Strong")
+## Verdict
+You present a data analyst profile spanning retail and insurance. The weekly sales report automation shows a concrete change to a reporting process. The connection to the medical-surgical role is not apparent.
+One-line read: Recent analyst work names report users, technical work, and an adopted recommendation.
+Takeaway: Explain the claims summary
+Biggest gap example: "Produced the monthly claims summary for the operations director" names the recipient but not the information in the report, so its purpose is difficult to judge.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the VP of Sales analysis bullet, add an example of a business question you investigated.
+   why: The approximate request volume is useful, but a question would show what the analyses addressed.
+   excerpt (EXPERIENCE): "- Pull ad hoc analyses for the VP of Sales, about 10 requests a month"
+2. [fix] In the Power BI dashboard bullet, name a recurring business question that one dashboard helps answer.
+   why: The teams and dashboard count are clear; a use case would explain what the reports help people examine.
+   excerpt (EXPERIENCE): "- Build and maintain 14 Power BI dashboards used by the sales, merchandising, and finance teams"
+3. [fix] In the policy-data bullet, describe a discrepancy you reconciled across the legacy systems.
+   why: An example would show the kind of data problem you handled at Piedmont Insurance Services.
+   excerpt (EXPERIENCE): "- Cleaned and reconciled policy data from three legacy systems in Python and Excel"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The 14 Power BI dashboards have named users in sales, merchandising, and finance, making their audience clear.
+Other strengths: ["Reconciliation across three legacy policy systems shows the data preparation behind your insurance work.","The reporting data dictionary used by the analytics team shows attention to shared definitions."]
+
+## Gaps
+- The resume does not describe patient assessments, medication administration, or other direct care, so those job duties cannot be compared with your background.
+- Communication with patients and families is not mentioned, leaving the education and discharge responsibilities unaddressed.
+- The claims summary does not say what it covered, making the earlier insurance reporting work less informative.
+
+## Next steps
+- Revise the dashboard and sales analysis bullets with business questions you can verify.
+- Add a concrete reconciliation example and describe what the claims summary covered.
+- If you have relevant clinical experience or training not shown here, add it accurately before using this resume for the nursing role.
+
+## Role fit
+Level: Analyst level, based on the current Data Analyst title and preceding Junior Analyst role.
+Best fit: ["Data Analyst","Junior Analyst"]
+Positioning: For analyst applications, emphasize the SQL reporting model and the adopted merchandising recommendation. For this nursing job, add any actual clinical training and patient care experience you can verify; neither is described in the current resume.
+
+## Posting
+Match score: 5
+Summary: The resume describes data analysis rather than the patient care in this posting. Reporting for different teams is adjacent to collaboration, but clinical duties and patient communication are not shown.
+Missing: []
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[0]","line":"fix-1","criticalMiss":false},{"kind":"keep_dropped","path":"strengths[1]","line":"fix-2","criticalMiss":false},{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":1},{"kind":"question_moved","path":"ideas.questions[2]","fix":2},{"kind":"repeat_dropped","path":"gaps[2]","of":"biggest_gap_example"}]

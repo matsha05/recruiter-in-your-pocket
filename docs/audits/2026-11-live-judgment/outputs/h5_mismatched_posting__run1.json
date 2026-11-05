@@ -1,0 +1,914 @@
+{
+  "case_id": "h5_mismatched_posting",
+  "batch": "holes",
+  "run": 1,
+  "note": "Data analyst against a registered nurse posting.",
+  "resume_file": "resumes/h5_data_analyst.txt",
+  "resume_sha256": "7bbdd7afb1b8ee26ca438829f18fe67486123dfaa7fc822193ebc907d0875abf",
+  "resume_chars": 1057,
+  "resume_words": 166,
+  "job_description_file": "resumes/h5_nursing_posting.txt",
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T19:55:10.375Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7875,
+        "completion_tokens": 2639,
+        "total_tokens": 10514,
+        "cached_prompt_tokens": 0,
+        "cache_write_prompt_tokens": 7872,
+        "reasoning_tokens": 556
+      },
+      "cost_usd": 0.023038,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 30761
+    },
+    {
+      "kind": "repair",
+      "usage": {
+        "prompt_tokens": 10908,
+        "completion_tokens": 3757,
+        "total_tokens": 14665,
+        "cached_prompt_tokens": 0,
+        "cache_write_prompt_tokens": 10905,
+        "reasoning_tokens": 1700
+      },
+      "cost_usd": 0.03241925,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 43067
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.0012945,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1366
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 84,
+    "score_label": "Strong",
+    "score_comment_short": "Recent analytics work combines specific responsibilities, scale, and a visible recommendation adopted by merchandising.",
+    "score_comment_long": "The current role shows dashboard use, report automation, and a recommendation adopted by merchandising. Some bullets could better explain the decisions or analysis behind the work. The fastest improvement is to add those details where you can verify them.",
+    "score_plain": "This is a strong analytics resume, but that score is not a measure of fit for the nursing job. The application would need documented clinical qualifications to address the role's requirements.",
+    "first_impression": "You come across as a data analyst working across sales, merchandising, and finance. The SQL model replacing a 3-day manual report is worth keeping because it makes the reporting change concrete. The nursing job calls for a different set of qualifications that aren't shown here.",
+    "biggest_gap_example": "\"Produced the monthly claims summary for the operations director\" doesn't say what the summary covered, so the analytical work behind it remains unclear.",
+    "first_impression_takeaway": "Explain the claims summary",
+    "summary": "Your recent work connects sales reporting with merchandising decisions, including a markdown schedule adopted in two categories. The current Data Analyst title and the work described support an analyst-level positioning, with an earlier Junior Analyst role showing a path into the field. The resume does not describe patient care or nursing credentials, so it cannot establish fit for the medical-surgical RN role.",
+    "strengths": [
+      "The 14 Power BI dashboards are tied to sales, merchandising, and finance, showing who uses your reporting.",
+      "Analyzing markdown timing for 2,100 SKUs gives the merchandising recommendation a concrete breadth.",
+      "Reconciling policy data from three legacy systems in Python and Excel shows work across sources, not just presentation."
+    ],
+    "gaps": [
+      "The resume does not list an RN license or BLS certification, both required for the posted role.",
+      "No patient-care work, clinical rotations, or EHR use appears, leaving the nursing responsibilities unaddressed.",
+      "The dashboard bullet names its users but not the decisions the dashboards inform, which limits its usefulness for an analytics review."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the Power BI dashboard bullet, name one sales, merchandising, or finance decision the dashboards help users make.",
+        "why": "That would connect the dashboard work to a practical use without changing the stated count or users.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Build and maintain 14 Power BI dashboards used by the sales, merchandising, and finance teams",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the markdown analysis bullet, explain the comparison or criteria you used to recommend the schedule.",
+        "why": "The adoption is already stated; the missing method would show how you arrived at the recommendation.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Analyzed markdown timing for 2,100 SKUs; the merchandising team adopted the recommended schedule in two categories",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the monthly claims summary bullet, identify the claims information you summarized for the operations director.",
+        "why": "The audience and cadence are clear, but the subject of the analysis is not.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Produced the monthly claims summary for the operations director",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the dashboard, markdown, and claims bullets using details you can verify.",
+      "Check whether you have a current RN license, BLS certification, clinical rotations, or nursing work that is absent from the resume; add any that apply.",
+      "Review the revised resume against the medical-surgical posting, separating analytics experience from any documented patient-care qualifications."
+    ],
+    "subscores": {
+      "impact": 83,
+      "clarity": 85,
+      "story": 83,
+      "readability": 86
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The opening identifies you as a data analyst working with sales and operations data.",
+        "missing": "It does not position you for patient care or mention nursing qualifications.",
+        "fix": "Keep the analytics positioning for analyst applications; revise it for nursing only if you have clinical qualifications to describe."
+      },
+      "Work Experience": {
+        "grade": "A-",
+        "priority": "High",
+        "working": "The current role names dashboard users, a report automation change, and an adopted merchandising recommendation.",
+        "missing": "No nursing work or clinical rotation is described, and some analytical methods remain unexplained.",
+        "fix": "Add the criteria behind the markdown recommendation and include any real clinical experience that belongs on the resume."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "SQL, Power BI, Python, and data modeling are easy to find.",
+        "missing": "Epic or a comparable EHR is not listed.",
+        "fix": "Add an EHR only if you have actually used it; retain the analytics tools for analyst applications."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The statistics degree, school, and graduation year are clearly stated.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 5,
+      "jd_match_summary": "The resume describes analytics work, not nursing. It does not document the required RN license or BLS certification, patient care, or EHR use, so it does not currently establish fit for this role.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [
+          "North Carolina RN license or compact state license",
+          "BLS certification",
+          "ACLS",
+          "Acute care nursing experience or clinical rotations",
+          "Epic or comparable EHR",
+          "Patient assignment of 5 to 6 patients",
+          "Communication with patients, families, and the interdisciplinary team"
+        ],
+        "match_count": 0,
+        "total_count": 7
+      },
+      "strongly_aligned": [
+        "Reporting used by sales, merchandising, and finance teams",
+        "Ad hoc analysis for the VP of Sales",
+        "Reconciliation of policy data from legacy systems"
+      ],
+      "underplayed": [
+        "The decisions supported by the Power BI dashboards",
+        "The claims information summarized for the operations director",
+        "The criteria behind the adopted markdown schedule"
+      ],
+      "missing": [
+        "Required RN licensure and BLS certification are not documented.",
+        "Acute care nursing experience or clinical rotations are not described.",
+        "EHR use and direct patient-care responsibilities are not shown."
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Data Analyst"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Recent Data Analyst experience, preceded by a Junior Analyst role.",
+        "industry_signals": [
+          "Home goods retail",
+          "Insurance"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "For the posted RN role, add licensure, certification, clinical training, and patient-care experience only if you actually have them. Without those qualifications, the current resume is positioned for data analyst work rather than medical-surgical nursing."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "Which decisions do sales, merchandising, or finance users make with the Power BI dashboards?",
+          "archetype": "DOMAIN LIFT",
+          "why": "A concrete use would connect the dashboards to the teams named in the bullet."
+        },
+        {
+          "question": "What made the weekly sales report difficult to automate before you wrote the SQL model?",
+          "archetype": "TENSION POINT",
+          "why": "The replacement is clear; the obstacle would explain more of your technical work."
+        },
+        {
+          "question": "What comparison or criteria informed your markdown schedule recommendation?",
+          "archetype": "IMPROVEMENT",
+          "why": "The recommendation was adopted, but the analysis behind it is not described."
+        },
+        {
+          "question": "What kinds of discrepancies did you resolve when reconciling policy data across the legacy systems?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "An example would make the data-cleaning work more concrete without assuming a result."
+        },
+        {
+          "question": "What types of claims information did the operations director receive in your monthly summary?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The recipient is named, while the content of the report remains unclear."
+        }
+      ]
+    }
+  },
+  "initial_validation_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the evidence grounding contract at first_impression unsupported narrative facts: nursing, call, different, set, qualification, aren't, here."
+  },
+  "model_output_repaired": {
+    "contract_version": "v2",
+    "score": 84,
+    "score_label": "Strong",
+    "score_comment_short": "Recent analytics bullets show scale and results, though some methods remain unclear.",
+    "score_comment_long": "The current role connects reporting work to named users and an adopted merchandising recommendation. Some earlier bullets leave the analysis itself less clear. Add a concrete example to those bullets where you can verify one.",
+    "score_plain": "This is a strong foundation for an analytics application. The score does not indicate fit for the clinical job described.",
+    "first_impression": "Your current role combines Power BI reporting, SQL automation, and merchandising analysis. The replacement of a 3-day manual report makes the reporting change particularly easy to understand.",
+    "biggest_gap_example": "\"Produced the monthly claims summary for the operations director\" does not say what the summary covered, leaving the analytical work unclear.",
+    "first_impression_takeaway": "Explain the claims summary",
+    "summary": "An adopted markdown schedule puts merchandising decisions alongside the reporting work in your current Data Analyst role. The SQL model and dashboard responsibilities support an analyst-level profile. Your earlier insurance role adds policy-data reconciliation and claims reporting. For the posted clinical position, the resume does not describe direct patient care or the required licensure, so fit cannot be established from this document.",
+    "strengths": [
+      "The 14 Power BI dashboards have named users in sales, merchandising, and finance, making their audience clear.",
+      "The markdown analysis covers 2,100 SKUs and records adoption of the recommended schedule in two categories.",
+      "Python and Excel are connected to reconciliation across three legacy systems, rather than appearing only in the skills list."
+    ],
+    "gaps": [
+      "The license and certifications required in the posting are not listed, leaving key eligibility requirements unaddressed.",
+      "No patient-care work or clinical rotations are described, so the resume cannot show how your experience relates to the unit's responsibilities.",
+      "The VP of Sales requests have a stated frequency, but their topics are absent, making the analyses difficult to picture."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the VP of Sales analysis bullet, add an example of a business question you investigated.",
+        "why": "A specific question would show what the executive relied on your analysis to examine.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Pull ad hoc analyses for the VP of Sales, about 10 requests a month",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the policy-data reconciliation bullet, describe how you reconciled records across the legacy systems.",
+        "why": "The systems and tools are already named; the approach would make your contribution more concrete.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Cleaned and reconciled policy data from three legacy systems in Python and Excel",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the claims summary bullet, identify the claims information you presented to the operations director.",
+        "why": "The recipient and cadence are clear, but a reader cannot tell what the report examined.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Produced the monthly claims summary for the operations director",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the ad hoc analysis, policy reconciliation, and claims summary bullets with details you can verify.",
+      "Check whether any relevant clinical training, licensure, certifications, or patient-care work are absent from the resume, and add them only if they apply.",
+      "Review the revised document against the posting and distinguish your analytics work from any documented clinical qualifications."
+    ],
+    "subscores": {
+      "impact": 83,
+      "clarity": 85,
+      "story": 83,
+      "readability": 86
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The opening identifies your work with sales and operations data.",
+        "missing": "It does not describe clinical qualifications relevant to the posted position.",
+        "fix": "Keep the analytics focus for analyst applications; change it for this posting only if you have relevant clinical qualifications to describe."
+      },
+      "Work Experience": {
+        "grade": "A-",
+        "priority": "High",
+        "working": "The current role names report users, an automation change, and an adopted merchandising recommendation.",
+        "missing": "The section does not describe patient care or clinical placements, and some analytical methods are unexplained.",
+        "fix": "Add a verified example of the work behind the policy reconciliation and include any relevant clinical experience you actually have."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "SQL, Power BI, Python, and data modeling are easy to find.",
+        "missing": "Tableau is listed, but its use is not described in the experience section.",
+        "fix": "If Tableau was important to your work, connect it to a specific report or analysis you completed."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The statistics degree, school, and graduation year are clearly stated.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 5,
+      "jd_match_summary": "The resume describes analytics work rather than direct clinical care. It does not document the license, certification, clinical training, or care-documentation experience specified in the posting.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [
+          "Required state or compact license",
+          "Required life-support certification",
+          "Acute care experience or clinical rotations",
+          "Electronic health record experience",
+          "Patient assignment of 5 to 6 patients",
+          "Patient and family education",
+          "Medication and treatment administration"
+        ],
+        "match_count": 0,
+        "total_count": 7
+      },
+      "strongly_aligned": [
+        "Reports used by sales, merchandising, and finance show information sharing across teams, though not with a clinical care team.",
+        "A reporting data dictionary shows documentation work, though not documentation of patient care.",
+        "Policy-data reconciliation shows attention to records, though it is not clinical assessment."
+      ],
+      "underplayed": [
+        "The types of information included in the claims summary",
+        "The business questions behind requests from the VP of Sales",
+        "The terms or data fields covered by the reporting dictionary"
+      ],
+      "missing": [
+        "The license and certification required by the posting are not documented.",
+        "Clinical rotations or acute care experience are not described.",
+        "Direct patient care and electronic clinical documentation are not shown."
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Data Analyst"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Recent Data Analyst experience, preceded by a Junior Analyst role.",
+        "industry_signals": [
+          "Home goods",
+          "Insurance"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "The posting centers on direct patient care, while your resume centers on analytics. If you have relevant clinical training, licensure, or certifications, include them accurately; otherwise, this version is better positioned for analytics roles."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What criteria informed your recommendation on markdown timing?",
+          "archetype": "IMPROVEMENT",
+          "why": "The schedule was adopted, but the basis for the recommendation is not described."
+        },
+        {
+          "question": "What was difficult about replacing the manual weekly sales report with the SQL model?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The reporting change is clear; the obstacle would explain more of the work involved."
+        },
+        {
+          "question": "Which decisions do the sales, merchandising, or finance teams use your dashboards to inform?",
+          "archetype": "DOMAIN LIFT",
+          "why": "A concrete use would connect the dashboards to the teams named in the resume."
+        },
+        {
+          "question": "Did policy records ever conflict across the legacy systems, and if so, how did you handle them?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "An example could make the reconciliation work more concrete without assuming a problem occurred."
+        },
+        {
+          "question": "Which types of terms or data fields did you document in the analytics team's reporting dictionary?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The dictionary's users are named, but its contents are not."
+        }
+      ]
+    }
+  },
+  "repaired": true,
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 84,
+    "score_label": "Mostly clear",
+    "score_comment_short": "Recent analytics bullets show scale and results, though some methods remain unclear.",
+    "score_comment_long": "The current role connects reporting work to named users and an adopted merchandising recommendation. Some earlier bullets leave the analysis itself less clear. Add a concrete example to those bullets where you can verify one.",
+    "score_plain": "This is a strong foundation for an analytics application. The score does not indicate fit for the clinical job described.",
+    "first_impression": "Your current role combines Power BI reporting, SQL automation, and merchandising analysis. The replacement of a 3-day manual report makes the reporting change particularly easy to understand.",
+    "biggest_gap_example": "\"Produced the monthly claims summary for the operations director\" does not say what the summary covered, leaving the analytical work unclear.",
+    "first_impression_takeaway": "Explain the claims summary",
+    "summary": "An adopted markdown schedule puts merchandising decisions alongside the reporting work in your current Data Analyst role. The SQL model and dashboard responsibilities support an analyst-level profile. Your earlier insurance role adds policy-data reconciliation and claims reporting. For the posted clinical position, the resume does not describe direct patient care or the required licensure, so fit cannot be established from this document.",
+    "strengths": [
+      "The 14 Power BI dashboards have named users in sales, merchandising, and finance, making their audience clear.",
+      "The markdown analysis covers 2,100 SKUs and records adoption of the recommended schedule in two categories.",
+      "Python and Excel are connected to reconciliation across three legacy systems, rather than appearing only in the skills list."
+    ],
+    "gaps": [
+      "The license and certifications required in the posting are not listed, leaving key eligibility requirements unaddressed.",
+      "No patient-care work or clinical rotations are described, so the resume cannot show how your experience relates to the unit's responsibilities.",
+      "The VP of Sales requests have a stated frequency, but their topics are absent, making the analyses difficult to picture."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the VP of Sales analysis bullet, add an example of a business question you investigated.",
+        "why": "A specific question would show what the executive relied on your analysis to examine.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Pull ad hoc analyses for the VP of Sales, about 10 requests a month",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the policy-data reconciliation bullet, describe how you reconciled records across the legacy systems.",
+        "why": "The systems and tools are already named; the approach would make your contribution more concrete.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Cleaned and reconciled policy data from three legacy systems in Python and Excel",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the claims summary bullet, identify the claims information you presented to the operations director.",
+        "why": "The recipient and cadence are clear, but a reader cannot tell what the report examined.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Produced the monthly claims summary for the operations director",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the ad hoc analysis, policy reconciliation, and claims summary bullets with details you can verify.",
+      "Check whether any relevant clinical training, licensure, certifications, or patient-care work are absent from the resume, and add them only if they apply.",
+      "Review the revised document against the posting and distinguish your analytics work from any documented clinical qualifications."
+    ],
+    "subscores": {
+      "impact": 83,
+      "clarity": 85,
+      "story": 83,
+      "readability": 86
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The opening identifies your work with sales and operations data.",
+        "missing": "It does not describe clinical qualifications relevant to the posted position.",
+        "fix": "Keep the analytics focus for analyst applications; change it for this posting only if you have relevant clinical qualifications to describe."
+      },
+      "Work Experience": {
+        "grade": "A-",
+        "priority": "High",
+        "working": "The current role names report users, an automation change, and an adopted merchandising recommendation.",
+        "missing": "The section does not describe patient care or clinical placements, and some analytical methods are unexplained.",
+        "fix": "Add a verified example of the work behind the policy reconciliation and include any relevant clinical experience you actually have."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "SQL, Power BI, Python, and data modeling are easy to find.",
+        "missing": "Tableau is listed, but its use is not described in the experience section.",
+        "fix": "If Tableau was important to your work, connect it to a specific report or analysis you completed."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The statistics degree, school, and graduation year are clearly stated.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 5,
+      "jd_match_summary": "The resume describes analytics work rather than direct clinical care. It does not document the license, certification, clinical training, or care-documentation experience specified in the posting.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [
+          "Patient assignment of 5 to 6 patients"
+        ],
+        "match_count": 0,
+        "total_count": 1
+      },
+      "strongly_aligned": [
+        "Reports used by sales, merchandising, and finance show information sharing across teams, though not with a clinical care team.",
+        "A reporting data dictionary shows documentation work, though not documentation of patient care.",
+        "Policy-data reconciliation shows attention to records, though it is not clinical assessment."
+      ],
+      "underplayed": [
+        "The types of information included in the claims summary",
+        "The business questions behind requests from the VP of Sales",
+        "The terms or data fields covered by the reporting dictionary"
+      ],
+      "missing": [
+        "The license and certification required by the posting are not documented.",
+        "Clinical rotations or acute care experience are not described.",
+        "Direct patient care and electronic clinical documentation are not shown."
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Data Analyst"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Recent Data Analyst experience, preceded by a Junior Analyst role.",
+        "industry_signals": [
+          "Home goods",
+          "Insurance"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "The posting centers on direct patient care, while your resume centers on analytics. If you have relevant clinical training, licensure, or certifications, include them accurately; otherwise, this version is better positioned for analytics roles."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What criteria informed your recommendation on markdown timing?",
+          "archetype": "IMPROVEMENT",
+          "why": "The schedule was adopted, but the basis for the recommendation is not described."
+        },
+        {
+          "question": "What was difficult about replacing the manual weekly sales report with the SQL model?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The reporting change is clear; the obstacle would explain more of the work involved."
+        },
+        {
+          "question": "Which decisions do the sales, merchandising, or finance teams use your dashboards to inform?",
+          "archetype": "DOMAIN LIFT",
+          "why": "A concrete use would connect the dashboards to the teams named in the resume."
+        },
+        {
+          "question": "Did policy records ever conflict across the legacy systems, and if so, how did you handle them?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "An example could make the reconciliation work more concrete without assuming a problem occurred."
+        },
+        {
+          "question": "Which types of terms or data fields did you document in the analytics team's reporting dictionary?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The dictionary's users are named, but its contents are not."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 84
+  },
+  "severity": {
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "promoted": [],
+    "replaced": [],
+    "skipped": [],
+    "critical_count": 1,
+    "more_critical": false,
+    "validation_attempts": 0,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "latency_ms": 1374,
+    "call_latency_ms": 1366,
+    "cost_usd": 0.0012945,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 84,
+    "score_label": "Mostly clear",
+    "score_comment_short": "Recent analytics bullets show scale and results, though some methods remain unclear.",
+    "score_comment_long": "The current role connects reporting work to named users and an adopted merchandising recommendation. Some earlier bullets leave the analysis itself less clear. Add a concrete example to those bullets where you can verify one.",
+    "score_plain": "This is a strong foundation for an analytics application. The score does not indicate fit for the clinical job described.",
+    "first_impression": "Your current role combines Power BI reporting, SQL automation, and merchandising analysis. The replacement of a 3-day manual report makes the reporting change particularly easy to understand.",
+    "biggest_gap_example": "\"Produced the monthly claims summary for the operations director\" does not say what the summary covered, leaving the analytical work unclear.",
+    "first_impression_takeaway": "Explain the claims summary",
+    "summary": "An adopted markdown schedule puts merchandising decisions alongside the reporting work in your current Data Analyst role. The SQL model and dashboard responsibilities support an analyst-level profile. Your earlier insurance role adds policy-data reconciliation and claims reporting. For the posted clinical position, the resume does not describe direct patient care or the required licensure, so fit cannot be established from this document.",
+    "strengths": [
+      "The 14 Power BI dashboards have named users in sales, merchandising, and finance, making their audience clear.",
+      "The markdown analysis covers 2,100 SKUs and records adoption of the recommended schedule in two categories.",
+      "Python and Excel are connected to reconciliation across three legacy systems, rather than appearing only in the skills list."
+    ],
+    "gaps": [
+      "The license and certifications required in the posting are not listed, leaving key eligibility requirements unaddressed.",
+      "No patient-care work or clinical rotations are described, so the resume cannot show how your experience relates to the unit's responsibilities.",
+      "The VP of Sales requests have a stated frequency, but their topics are absent, making the analyses difficult to picture."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the VP of Sales analysis bullet, add an example of a business question you investigated.",
+        "why": "A specific question would show what the executive relied on your analysis to examine.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Pull ad hoc analyses for the VP of Sales, about 10 requests a month",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE",
+        "critical": true
+      },
+      {
+        "fix": "In the policy-data reconciliation bullet, describe how you reconciled records across the legacy systems.",
+        "why": "The systems and tools are already named; the approach would make your contribution more concrete.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Cleaned and reconciled policy data from three legacy systems in Python and Excel",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      },
+      {
+        "fix": "In the claims summary bullet, identify the claims information you presented to the operations director.",
+        "why": "The recipient and cadence are clear, but a reader cannot tell what the report examined.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Produced the monthly claims summary for the operations director",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      }
+    ],
+    "next_steps": [
+      "Revise the ad hoc analysis, policy reconciliation, and claims summary bullets with details you can verify.",
+      "Check whether any relevant clinical training, licensure, certifications, or patient-care work are absent from the resume, and add them only if they apply.",
+      "Review the revised document against the posting and distinguish your analytics work from any documented clinical qualifications."
+    ],
+    "subscores": {
+      "impact": 83,
+      "clarity": 85,
+      "story": 83,
+      "readability": 86
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The opening identifies your work with sales and operations data.",
+        "missing": "It does not describe clinical qualifications relevant to the posted position.",
+        "fix": "Keep the analytics focus for analyst applications; change it for this posting only if you have relevant clinical qualifications to describe."
+      },
+      "Work Experience": {
+        "grade": "A-",
+        "priority": "High",
+        "working": "The current role names report users, an automation change, and an adopted merchandising recommendation.",
+        "missing": "The section does not describe patient care or clinical placements, and some analytical methods are unexplained.",
+        "fix": "Add a verified example of the work behind the policy reconciliation and include any relevant clinical experience you actually have."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "SQL, Power BI, Python, and data modeling are easy to find.",
+        "missing": "Tableau is listed, but its use is not described in the experience section.",
+        "fix": "If Tableau was important to your work, connect it to a specific report or analysis you completed."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The statistics degree, school, and graduation year are clearly stated.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 5,
+      "jd_match_summary": "The resume describes analytics work rather than direct clinical care. It does not document the license, certification, clinical training, or care-documentation experience specified in the posting.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [
+          "Patient assignment of 5 to 6 patients"
+        ],
+        "match_count": 0,
+        "total_count": 1
+      },
+      "strongly_aligned": [
+        "Reports used by sales, merchandising, and finance show information sharing across teams, though not with a clinical care team.",
+        "A reporting data dictionary shows documentation work, though not documentation of patient care.",
+        "Policy-data reconciliation shows attention to records, though it is not clinical assessment."
+      ],
+      "underplayed": [
+        "The types of information included in the claims summary",
+        "The business questions behind requests from the VP of Sales",
+        "The terms or data fields covered by the reporting dictionary"
+      ],
+      "missing": [
+        "The license and certification required by the posting are not documented.",
+        "Clinical rotations or acute care experience are not described.",
+        "Direct patient care and electronic clinical documentation are not shown."
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Data Analyst"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Recent Data Analyst experience, preceded by a Junior Analyst role.",
+        "industry_signals": [
+          "Home goods",
+          "Insurance"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "The posting centers on direct patient care, while your resume centers on analytics. If you have relevant clinical training, licensure, or certifications, include them accurately; otherwise, this version is better positioned for analytics roles."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What criteria informed your recommendation on markdown timing?",
+          "archetype": "IMPROVEMENT",
+          "why": "The schedule was adopted, but the basis for the recommendation is not described."
+        },
+        {
+          "question": "What was difficult about replacing the manual weekly sales report with the SQL model?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The reporting change is clear; the obstacle would explain more of the work involved."
+        },
+        {
+          "question": "Which decisions do the sales, merchandising, or finance teams use your dashboards to inform?",
+          "archetype": "DOMAIN LIFT",
+          "why": "A concrete use would connect the dashboards to the teams named in the resume."
+        },
+        {
+          "question": "Did policy records ever conflict across the legacy systems, and if so, how did you handle them?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "An example could make the reconciliation work more concrete without assuming a problem occurred."
+        },
+        {
+          "question": "Which types of terms or data fields did you document in the analytics team's reporting dictionary?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The dictionary's users are named, but its contents are not."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 84,
+    "more_critical": false
+  },
+  "presentation": {
+    "score": 84,
+    "band": "Mostly clear",
+    "score_label_from_model": "Strong",
+    "model_score_before_calibration": 84,
+    "verdict": "Your current role combines Power BI reporting, SQL automation, and merchandising analysis. The replacement of a 3-day manual report makes the reporting change particularly easy to understand.",
+    "one_line_read": "Recent analytics bullets show scale and results, though some methods remain unclear.",
+    "takeaway": "Explain the claims summary",
+    "biggest_gap_example": "\"Produced the monthly claims summary for the operations director\" does not say what the summary covered, leaving the analytical work unclear.",
+    "critical_count": {
+      "count": 1,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "One Critical Miss. Fix it first.",
+      "lead": "It's the one most likely to cost you the interview."
+    },
+    "fixes": [
+      {
+        "fix": "In the VP of Sales analysis bullet, add an example of a business question you investigated.",
+        "why": "A specific question would show what the executive relied on your analysis to examine.",
+        "excerpt": "- Pull ad hoc analyses for the VP of Sales, about 10 requests a month",
+        "section": "EXPERIENCE",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the policy-data reconciliation bullet, describe how you reconciled records across the legacy systems.",
+        "why": "The systems and tools are already named; the approach would make your contribution more concrete.",
+        "excerpt": "- Cleaned and reconciled policy data from three legacy systems in Python and Excel",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the claims summary bullet, identify the claims information you presented to the operations director.",
+        "why": "The recipient and cadence are clear, but a reader cannot tell what the report examined.",
+        "excerpt": "- Produced the monthly claims summary for the operations director",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "The 14 Power BI dashboards have named users in sales, merchandising, and finance, making their audience clear.",
+    "strengths": [
+      "The 14 Power BI dashboards have named users in sales, merchandising, and finance, making their audience clear.",
+      "The markdown analysis covers 2,100 SKUs and records adoption of the recommended schedule in two categories.",
+      "Python and Excel are connected to reconciliation across three legacy systems, rather than appearing only in the skills list."
+    ],
+    "gaps": [
+      "The license and certifications required in the posting are not listed, leaving key eligibility requirements unaddressed.",
+      "No patient-care work or clinical rotations are described, so the resume cannot show how your experience relates to the unit's responsibilities.",
+      "The VP of Sales requests have a stated frequency, but their topics are absent, making the analyses difficult to picture."
+    ],
+    "next_steps": [
+      "Revise the ad hoc analysis, policy reconciliation, and claims summary bullets with details you can verify.",
+      "Check whether any relevant clinical training, licensure, certifications, or patient-care work are absent from the resume, and add them only if they apply.",
+      "Review the revised document against the posting and distinguish your analytics work from any documented clinical qualifications."
+    ],
+    "seniority_read": "Recent Data Analyst experience, preceded by a Junior Analyst role.",
+    "best_fit_roles": [
+      "Data Analyst"
+    ],
+    "jd_match_score": 5,
+    "jd_match_summary": "The resume describes analytics work rather than direct clinical care. It does not document the license, certification, clinical training, or care-documentation experience specified in the posting.",
+    "jd_missing": [
+      "Patient assignment of 5 to 6 patients"
+    ],
+    "positioning": "The posting centers on direct patient care, while your resume centers on analytics. If you have relevant clinical training, licensure, or certifications, include them accurately; otherwise, this version is better positioned for analytics roles.",
+    "severity_added": [],
+    "severity_promoted": [],
+    "severity_outcome": "none (none)",
+    "severity_answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "keep_dropped",
+          "path": "strengths[2]",
+          "line": "fix-1",
+          "criticalMiss": false
+        },
+        {
+          "kind": "question_dropped",
+          "path": "ideas.questions[0]",
+          "reason": "duplicates_keep"
+        },
+        {
+          "kind": "question_dropped",
+          "path": "ideas.questions[2]",
+          "reason": "duplicates_keep"
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[3]",
+          "fix": 1
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "biggest_gap_example",
+          "of": "top_fixes[2]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[2]",
+          "of": "top_fixes[0]"
+        }
+      ],
+      "fix_questions": [
+        [],
+        [
+          "Did policy records ever conflict across the legacy systems, and if so, how did you handle them?"
+        ],
+        []
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.05675175,
+  "latency_ms": 75961
+}

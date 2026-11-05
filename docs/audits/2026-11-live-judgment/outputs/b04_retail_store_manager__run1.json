@@ -1,0 +1,673 @@
+{
+  "case_id": "b04_retail_store_manager",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../../../tests/resumes/blindpick/synth_bp_retail_store_manager_1.txt",
+  "resume_sha256": "44e7ec6fe998a1b320b02b5bb24f3945f6d89a3e2777dca5e1be857f4727486b",
+  "resume_chars": 1114,
+  "resume_words": 179,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T19:58:51.400Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7639,
+        "completion_tokens": 2129,
+        "total_tokens": 9768,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 750,
+        "reasoning_tokens": 241
+      },
+      "cost_usd": 0.0119298,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 24811
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.0013945,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1161
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 87,
+    "score_label": "Strong",
+    "score_comment_short": "Recent store results are specific, while the earlier turnaround needs more explanation.",
+    "score_comment_long": "The current role connects scheduling and inventory practices to measurable changes. The summary mentions two turnarounds, but the experience section does not distinguish the work at both stores. Clarifying the earlier store's starting point and your contribution would strengthen the progression.",
+    "score_plain": "Your current store-management work is easy to assess against retail leadership roles. A reviewer may still want to understand the second turnaround before relying on that claim.",
+    "first_impression": "The current role shows responsibility for a $9.4M store and 42 employees. Sales, turnover, customer satisfaction, and shrink are all visible on a quick read.",
+    "biggest_gap_example": "\"turned around two underperforming stores\" does not identify what changed at the earlier store, so the second turnaround is difficult to assess.",
+    "first_impression_takeaway": "Explain the second turnaround",
+    "summary": "Fixed weekly schedules are linked to a drop in annual staff turnover from 68% to 41%, a useful detail because it shows what you changed as a store manager. Your current role also pairs sales growth with a garden center layout reset and lower shrink with cycle counts. The progression from department supervisor to store manager fits a store-level leadership read. The earlier location's turnaround is less developed, which leaves a reviewer unable to compare it with the current store.",
+    "strengths": [
+      "The $9.4M store, 42 employees, and 4 department managers make the current management responsibilities easy to picture.",
+      "Same-store sales growth is separated into 11% in 2024 and 7% in 2025, rather than presented as an undated figure.",
+      "Ranking 3rd of 60 stores on the 2025 customer satisfaction survey gives readers a clear comparison within the chain."
+    ],
+    "gaps": [
+      "The summary does not identify the changes behind the second store turnaround, making that claim difficult to connect to the earlier role.",
+      "The department-lead training bullet does not describe what you taught or how it was used, leaving the depth of that work unclear.",
+      "The customer satisfaction ranking does not explain what you contributed to the store's performance, so your approach remains unclear."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "Connect the summary's second turnaround to the relevant experience entry, naming the store's starting problem and the changes you made.",
+        "why": "A reader can then distinguish the two turnaround examples instead of seeing only the claim at the top.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain.",
+          "section": "Summary"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Summary"
+      },
+      {
+        "fix": "In the assistant manager's training bullet, add an example of what you taught department leads about ordering or replenishment.",
+        "why": "That detail would make the training work more concrete without overstating its result.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Trained department leads on ordering and replenishment",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "Alongside the customer satisfaction ranking, describe a service practice you introduced or reinforced, if you can verify one.",
+        "why": "The ranking shows where the store placed, while an example would explain your part in its service approach.",
+        "confidence": "medium",
+        "evidence": {
+          "excerpt": "- Ranked 3rd of 60 stores on the 2025 customer satisfaction survey",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Review the Gastonia entry and add the verified store changes that support the turnaround description.",
+      "Expand the training and customer satisfaction bullets with concrete examples of your work.",
+      "Read the summary against both store entries and adjust its wording if either turnaround cannot be described accurately."
+    ],
+    "subscores": {
+      "impact": 89,
+      "clarity": 86,
+      "story": 84,
+      "readability": 90
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "It identifies retail store management and a turnaround focus immediately.",
+        "missing": "The two stores are not distinguished in the summary.",
+        "fix": "Keep the claim if both examples can be explained in the experience section."
+      },
+      "Work Experience": {
+        "grade": "A-",
+        "priority": "High",
+        "working": "The current entry gives store size, staffing, and results across sales, turnover, service, and shrink.",
+        "missing": "The earlier entries give less detail about store changes and training.",
+        "fix": "Expand the Gastonia work with a verified turnaround example and a concrete training detail."
+      },
+      "Skills": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "Section not present.",
+        "fix": "Add only if it helps your story."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The degree, institution, and graduation year are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Store operations and employee management",
+        "Same-store sales growth",
+        "Staff scheduling and turnover reduction",
+        "Inventory shrink reduction",
+        "Seasonal hiring"
+      ],
+      "underplayed": [
+        "The earlier store turnaround",
+        "Training department leads on ordering and replenishment",
+        "Your contribution to customer satisfaction"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Store Manager",
+          "Assistant Store Manager"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Current store manager with prior assistant manager and department supervisor roles.",
+        "industry_signals": [
+          "Home and garden retail",
+          "Lumber and building materials retail"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Lead with store management and the specific changes to schedules, layout, and inventory counts. Use the earlier experience entry to substantiate the second turnaround if you can describe it accurately."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "At the earlier store, what was underperforming when you arrived, and what did you change?",
+          "archetype": "TENSION POINT",
+          "why": "This could connect the summary's turnaround claim to the Gastonia experience."
+        },
+        {
+          "question": "How did you coordinate the fixed weekly schedules across departments and managers?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The turnover result is already stated; the coordination behind the schedule change could add detail."
+        },
+        {
+          "question": "What ordering or replenishment practice did you teach department leads?",
+          "archetype": "DOMAIN LIFT",
+          "why": "An example would show what the training covered."
+        },
+        {
+          "question": "What did you change in the garden center layout?",
+          "archetype": "IMPROVEMENT",
+          "why": "The sales figures are present, but the layout reset itself is not described."
+        },
+        {
+          "question": "How did you organize holiday hiring for 15 seasonal associates each year?",
+          "archetype": "SCALING",
+          "why": "The hiring bullet gives the volume but not how you carried out the work."
+        }
+      ]
+    }
+  },
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 87,
+    "score_label": "Clear and specific",
+    "score_comment_short": "Recent store results are specific, while the earlier turnaround needs more explanation.",
+    "score_comment_long": "The current role connects scheduling and inventory practices to measurable changes. The summary mentions two turnarounds, but the experience section does not distinguish the work at both stores. Clarifying the earlier store's starting point and your contribution would strengthen the progression.",
+    "score_plain": "Your current store-management work is easy to assess against retail leadership roles. A reviewer may still want to understand the second turnaround before relying on that claim.",
+    "first_impression": "The current role shows responsibility for a $9.4M store and 42 employees. Sales, turnover, customer satisfaction, and shrink are all visible on a quick read.",
+    "biggest_gap_example": "\"turned around two underperforming stores\" does not identify what changed at the earlier store, so the second turnaround is difficult to assess.",
+    "first_impression_takeaway": "Explain the second turnaround",
+    "summary": "Fixed weekly schedules are linked to a drop in annual staff turnover from 68% to 41%, a useful detail because it shows what you changed as a store manager. Your current role also pairs sales growth with a garden center layout reset and lower shrink with cycle counts. The progression from department supervisor to store manager fits a store-level leadership read. The earlier location's turnaround is less developed, which leaves a reviewer unable to compare it with the current store.",
+    "strengths": [
+      "The $9.4M store, 42 employees, and 4 department managers make the current management responsibilities easy to picture.",
+      "Same-store sales growth is separated into 11% in 2024 and 7% in 2025, rather than presented as an undated figure.",
+      "Ranking 3rd of 60 stores on the 2025 customer satisfaction survey gives readers a clear comparison within the chain."
+    ],
+    "gaps": [
+      "The summary does not identify the changes behind the second store turnaround, making that claim difficult to connect to the earlier role.",
+      "The department-lead training bullet does not describe what you taught or how it was used, leaving the depth of that work unclear.",
+      "The customer satisfaction ranking does not explain what you contributed to the store's performance, so your approach remains unclear."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "Connect the summary's second turnaround to the relevant experience entry, naming the store's starting problem and the changes you made.",
+        "why": "A reader can then distinguish the two turnaround examples instead of seeing only the claim at the top.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain.",
+          "section": "Summary"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Summary"
+      },
+      {
+        "fix": "Alongside the customer satisfaction ranking, describe a service practice you introduced or reinforced, if you can verify one.",
+        "why": "The ranking shows where the store placed, while an example would explain your part in its service approach.",
+        "confidence": "medium",
+        "evidence": {
+          "excerpt": "- Ranked 3rd of 60 stores on the 2025 customer satisfaction survey",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Review the Gastonia entry and add the verified store changes that support the turnaround description.",
+      "Expand the training and customer satisfaction bullets with concrete examples of your work.",
+      "Read the summary against both store entries and adjust its wording if either turnaround cannot be described accurately."
+    ],
+    "subscores": {
+      "impact": 89,
+      "clarity": 86,
+      "story": 84,
+      "readability": 90
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "It identifies retail store management and a turnaround focus immediately.",
+        "missing": "The two stores are not distinguished in the summary.",
+        "fix": "Keep the claim if both examples can be explained in the experience section."
+      },
+      "Work Experience": {
+        "grade": "A-",
+        "priority": "High",
+        "working": "The current entry gives store size, staffing, and results across sales, turnover, service, and shrink.",
+        "missing": "The earlier entries give less detail about store changes and training.",
+        "fix": "Expand the Gastonia work with a verified turnaround example and a concrete training detail."
+      },
+      "Skills": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No skills section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The degree, institution, and graduation year are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Store operations and employee management",
+        "Same-store sales growth",
+        "Staff scheduling and turnover reduction",
+        "Inventory shrink reduction",
+        "Seasonal hiring"
+      ],
+      "underplayed": [
+        "The earlier store turnaround",
+        "Training department leads on ordering and replenishment",
+        "Your contribution to customer satisfaction"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Store Manager",
+          "Assistant Store Manager"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Current store manager with prior assistant manager and department supervisor roles.",
+        "industry_signals": [],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with store management and the specific changes to schedules, layout, and inventory counts. Use the earlier experience entry to substantiate the second turnaround if you can describe it accurately."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "At the earlier store, what was underperforming when you arrived, and what did you change?",
+          "archetype": "TENSION POINT",
+          "why": "This could connect the summary's turnaround claim to the Gastonia experience."
+        },
+        {
+          "question": "How did you coordinate the fixed weekly schedules across departments and managers?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The turnover result is already stated; the coordination behind the schedule change could add detail."
+        },
+        {
+          "question": "What ordering or replenishment practice did you teach department leads?",
+          "archetype": "DOMAIN LIFT",
+          "why": "An example would show what the training covered."
+        },
+        {
+          "question": "What did you change in the garden center layout?",
+          "archetype": "IMPROVEMENT",
+          "why": "The sales figures are present, but the layout reset itself is not described."
+        },
+        {
+          "question": "How did you organize holiday hiring for 15 seasonal associates each year?",
+          "archetype": "SCALING",
+          "why": "The hiring bullet gives the volume but not how you carried out the work."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 87
+  },
+  "severity": {
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "promoted": [],
+    "replaced": [],
+    "skipped": [],
+    "critical_count": 1,
+    "more_critical": false,
+    "validation_attempts": 0,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "latency_ms": 1163,
+    "call_latency_ms": 1161,
+    "cost_usd": 0.0013945,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 87,
+    "score_label": "Clear and specific",
+    "score_comment_short": "Recent store results are specific, while the earlier turnaround needs more explanation.",
+    "score_comment_long": "The current role connects scheduling and inventory practices to measurable changes. The summary mentions two turnarounds, but the experience section does not distinguish the work at both stores. Clarifying the earlier store's starting point and your contribution would strengthen the progression.",
+    "score_plain": "Your current store-management work is easy to assess against retail leadership roles. A reviewer may still want to understand the second turnaround before relying on that claim.",
+    "first_impression": "The current role shows responsibility for a $9.4M store and 42 employees. Sales, turnover, customer satisfaction, and shrink are all visible on a quick read.",
+    "biggest_gap_example": "\"turned around two underperforming stores\" does not identify what changed at the earlier store, so the second turnaround is difficult to assess.",
+    "first_impression_takeaway": "Explain the second turnaround",
+    "summary": "Fixed weekly schedules are linked to a drop in annual staff turnover from 68% to 41%, a useful detail because it shows what you changed as a store manager. Your current role also pairs sales growth with a garden center layout reset and lower shrink with cycle counts. The progression from department supervisor to store manager fits a store-level leadership read. The earlier location's turnaround is less developed, which leaves a reviewer unable to compare it with the current store.",
+    "strengths": [
+      "The $9.4M store, 42 employees, and 4 department managers make the current management responsibilities easy to picture.",
+      "Same-store sales growth is separated into 11% in 2024 and 7% in 2025, rather than presented as an undated figure.",
+      "Ranking 3rd of 60 stores on the 2025 customer satisfaction survey gives readers a clear comparison within the chain."
+    ],
+    "gaps": [
+      "The summary does not identify the changes behind the second store turnaround, making that claim difficult to connect to the earlier role.",
+      "The department-lead training bullet does not describe what you taught or how it was used, leaving the depth of that work unclear.",
+      "The customer satisfaction ranking does not explain what you contributed to the store's performance, so your approach remains unclear."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "Connect the summary's second turnaround to the relevant experience entry, naming the store's starting problem and the changes you made.",
+        "why": "A reader can then distinguish the two turnaround examples instead of seeing only the claim at the top.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain.",
+          "section": "Summary"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Summary",
+        "critical": true
+      },
+      {
+        "fix": "Alongside the customer satisfaction ranking, describe a service practice you introduced or reinforced, if you can verify one.",
+        "why": "The ranking shows where the store placed, while an example would explain your part in its service approach.",
+        "confidence": "medium",
+        "evidence": {
+          "excerpt": "- Ranked 3rd of 60 stores on the 2025 customer satisfaction survey",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      }
+    ],
+    "next_steps": [
+      "Review the Gastonia entry and add the verified store changes that support the turnaround description.",
+      "Expand the training and customer satisfaction bullets with concrete examples of your work.",
+      "Read the summary against both store entries and adjust its wording if either turnaround cannot be described accurately."
+    ],
+    "subscores": {
+      "impact": 89,
+      "clarity": 86,
+      "story": 84,
+      "readability": 90
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "It identifies retail store management and a turnaround focus immediately.",
+        "missing": "The two stores are not distinguished in the summary.",
+        "fix": "Keep the claim if both examples can be explained in the experience section."
+      },
+      "Work Experience": {
+        "grade": "A-",
+        "priority": "High",
+        "working": "The current entry gives store size, staffing, and results across sales, turnover, service, and shrink.",
+        "missing": "The earlier entries give less detail about store changes and training.",
+        "fix": "Expand the Gastonia work with a verified turnaround example and a concrete training detail."
+      },
+      "Skills": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No skills section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The degree, institution, and graduation year are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Store operations and employee management",
+        "Same-store sales growth",
+        "Staff scheduling and turnover reduction",
+        "Inventory shrink reduction",
+        "Seasonal hiring"
+      ],
+      "underplayed": [
+        "The earlier store turnaround",
+        "Training department leads on ordering and replenishment",
+        "Your contribution to customer satisfaction"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Store Manager",
+          "Assistant Store Manager"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Current store manager with prior assistant manager and department supervisor roles.",
+        "industry_signals": [],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with store management and the specific changes to schedules, layout, and inventory counts. Use the earlier experience entry to substantiate the second turnaround if you can describe it accurately."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "At the earlier store, what was underperforming when you arrived, and what did you change?",
+          "archetype": "TENSION POINT",
+          "why": "This could connect the summary's turnaround claim to the Gastonia experience."
+        },
+        {
+          "question": "How did you coordinate the fixed weekly schedules across departments and managers?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The turnover result is already stated; the coordination behind the schedule change could add detail."
+        },
+        {
+          "question": "What ordering or replenishment practice did you teach department leads?",
+          "archetype": "DOMAIN LIFT",
+          "why": "An example would show what the training covered."
+        },
+        {
+          "question": "What did you change in the garden center layout?",
+          "archetype": "IMPROVEMENT",
+          "why": "The sales figures are present, but the layout reset itself is not described."
+        },
+        {
+          "question": "How did you organize holiday hiring for 15 seasonal associates each year?",
+          "archetype": "SCALING",
+          "why": "The hiring bullet gives the volume but not how you carried out the work."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 87,
+    "more_critical": false
+  },
+  "presentation": {
+    "score": 87,
+    "band": "Clear and specific",
+    "score_label_from_model": "Strong",
+    "model_score_before_calibration": 87,
+    "verdict": "The current role shows responsibility for a $9.4M store and 42 employees. Sales, turnover, customer satisfaction, and shrink are all visible on a quick read.",
+    "one_line_read": "Recent store results are specific, while the earlier turnaround needs more explanation.",
+    "takeaway": "Explain the second turnaround",
+    "biggest_gap_example": "\"turned around two underperforming stores\" does not identify what changed at the earlier store, so the second turnaround is difficult to assess.",
+    "critical_count": {
+      "count": 1,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "One Critical Miss. Fix it first.",
+      "lead": "It's the one most likely to cost you the interview."
+    },
+    "fixes": [
+      {
+        "fix": "Connect the summary's second turnaround to the relevant experience entry, naming the store's starting problem and the changes you made.",
+        "why": "A reader can then distinguish the two turnaround examples instead of seeing only the claim at the top.",
+        "excerpt": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain.",
+        "section": "Summary",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "Alongside the customer satisfaction ranking, describe a service practice you introduced or reinforced, if you can verify one.",
+        "why": "The ranking shows where the store placed, while an example would explain your part in its service approach.",
+        "excerpt": "- Ranked 3rd of 60 stores on the 2025 customer satisfaction survey",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "medium"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "The $9.4M store, 42 employees, and 4 department managers make the current management responsibilities easy to picture.",
+    "strengths": [
+      "The $9.4M store, 42 employees, and 4 department managers make the current management responsibilities easy to picture.",
+      "Same-store sales growth is separated into 11% in 2024 and 7% in 2025, rather than presented as an undated figure.",
+      "Ranking 3rd of 60 stores on the 2025 customer satisfaction survey gives readers a clear comparison within the chain."
+    ],
+    "gaps": [
+      "The summary does not identify the changes behind the second store turnaround, making that claim difficult to connect to the earlier role.",
+      "The department-lead training bullet does not describe what you taught or how it was used, leaving the depth of that work unclear.",
+      "The customer satisfaction ranking does not explain what you contributed to the store's performance, so your approach remains unclear."
+    ],
+    "next_steps": [
+      "Review the Gastonia entry and add the verified store changes that support the turnaround description.",
+      "Expand the training and customer satisfaction bullets with concrete examples of your work.",
+      "Read the summary against both store entries and adjust its wording if either turnaround cannot be described accurately."
+    ],
+    "seniority_read": "Current store manager with prior assistant manager and department supervisor roles.",
+    "best_fit_roles": [
+      "Store Manager",
+      "Assistant Store Manager"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "Lead with store management and the specific changes to schedules, layout, and inventory counts. Use the earlier experience entry to substantiate the second turnaround if you can describe it accurately.",
+    "severity_added": [],
+    "severity_promoted": [],
+    "severity_outcome": "none (none)",
+    "severity_answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "keep_dropped",
+          "path": "strengths[2]",
+          "line": "fix-1",
+          "criticalMiss": false
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[0]",
+          "fix": 0
+        },
+        {
+          "kind": "question_dropped",
+          "path": "ideas.questions[3]",
+          "reason": "duplicates_keep"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "biggest_gap_example",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[0]",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[2]",
+          "of": "top_fixes[1]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Summary.missing",
+          "of": "top_fixes[0]"
+        }
+      ],
+      "fix_questions": [
+        [
+          "At the earlier store, what was underperforming when you arrived, and what did you change?"
+        ],
+        []
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0133243,
+  "latency_ms": 26283
+}

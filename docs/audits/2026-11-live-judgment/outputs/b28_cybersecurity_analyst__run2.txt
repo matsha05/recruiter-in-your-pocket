@@ -1,0 +1,50 @@
+# b28_cybersecurity_analyst, run 2
+Resume: ../../../tests/resumes/blindpick/synth_bp_cybersecurity_analyst_1.txt (154 words, sha256 3af143d6457f)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0323; repair ran; 61.2s
+
+Validator refused the first draft: OPENAI_RESPONSE_SHAPE_INVALID The model response failed the evidence grounding contract at summary unsupported narrative facts: stated, reduction.
+
+## Band: Mostly clear (score 84; model wrote 84, label "Strong")
+## Verdict
+The senior bank role puts detection engineering and incident response up front. The Splunk rule count and false-positive figure make the detection work easy to grasp.
+One-line read: Recent detection and response bullets combine defined responsibilities with concrete results.
+Takeaway: Explain the enrichment workflow
+Biggest gap example: "Automated alert enrichment with Python and the Splunk SOAR platform" doesn't say what information the automation added, leaving its practical function unclear.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the alert-enrichment bullet, name the information the automation added and where it appeared during alert review.
+   why: That would show what the Python and Splunk SOAR work did in practice.
+   excerpt (EXPERIENCE): "- Automated alert enrichment with Python and the Splunk SOAR platform"
+2. [fix] In the purple-team bullet, add a representative scenario and describe how you ran the exercise with the red team.
+   why: An example would make the monthly collaboration easier to understand.
+   excerpt (EXPERIENCE): "- Run monthly purple-team exercises with the red team"
+3. [fix] In the CrowdStrike Falcon bullet, identify a policy you tuned and the issue that prompted the adjustment.
+   why: That would explain the work without assuming a result.
+   excerpt (EXPERIENCE): "- Tuned EDR policies in CrowdStrike Falcon"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The incident-response bullet names phishing and credential theft and shows median containment time falling from 9 hours to 3.
+Other strengths: ["Monitoring 30 client environments in a 24/7 SOC gives your earlier role a clear operating context.","GCIH and Security+ complement the incident-handling work described in your experience."]
+
+## Gaps
+- The enrichment bullet doesn't show where the automated information appeared in the alert-review workflow, making its use difficult to picture.
+- No purple-team scenario is described, so your work with the red team remains abstract.
+- The CrowdStrike Falcon bullet doesn't identify a policy or explain what prompted tuning, leaving the earlier work less specific.
+
+## Next steps
+- Revise the enrichment bullet with a verified example of the information added to alerts.
+- Add an exercise scenario and an EDR policy example to their respective experience bullets.
+- Check the order of your recent bullets so detection and incident response remain easy to find.
+
+## Role fit
+Level: Your current title is senior security analyst, with incident-response leadership and mentoring responsibilities.
+Best fit: ["Senior Security Analyst, Detection and Response","Security Operations Analyst"]
+Positioning: Keep detection engineering and incident response at the front of your presentation. Use the automation and exercise bullets to show how you work alongside the results already described.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":1},{"kind":"question_dropped","path":"ideas.questions[2]","reason":"duplicates_keep"},{"kind":"question_dropped","path":"ideas.questions[3]","reason":"duplicates_keep"},{"kind":"question_moved","path":"ideas.questions[4]","fix":2},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"gaps[2]","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"next_steps[0]","of":"top_fixes[0]"}]

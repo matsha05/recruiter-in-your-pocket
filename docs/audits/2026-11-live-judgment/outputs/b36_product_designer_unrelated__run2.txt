@@ -1,0 +1,49 @@
+# b36_product_designer_unrelated, run 2
+Resume: ../../../tests/resumes/blindpick/synth_bp_product_designer_unrelated_1.txt (147 words, sha256 1bdb9ae79f9d)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0197; 47.4s
+Case note: Current job outside the field.
+
+## Band: Mostly clear (score 80; model wrote 80, label "Strong")
+## Verdict
+Your product design background is visible quickly, even with a current barista role at the top. Creating the app's first design system is worth keeping prominent because it names a distinct piece of work.
+One-line read: The design work has specific project and team details, but results are scarce.
+Takeaway: Explain the usability findings
+Biggest gap example: "Ran usability tests with members before launches" does not say what you learned or changed, so the value of the testing is difficult to judge.
+
+## Fixes (Three Critical Misses. Start with this one.; lead: "Any one of them could cost you the interview on its own."); severity added (added); added ["no_recent_work","no_evidence_latest_role"]; promoted []
+1. [Critical Miss] In the Loop Fitness booking-flow bullet, add the member problem you addressed and one design choice you made.
+   why: A reviewer can then understand what your design work involved beyond the feature name.
+   excerpt (EXPERIENCE): "- Designed the class booking flow for the iOS and Android apps"
+2. [Critical Miss] Add a recent product design project, such as freelance work or a personal project, if true.
+   why: Product design hiring managers usually look for recent examples of design work. Your current cafe role accounts for the time, but the resume doesn't show recent product design activity.
+   excerpt (Experience): "March 2021 - February 2024"
+3. [Critical Miss] In the Loop Fitness usability-testing bullet, add how many members you tested with, if you can verify it.
+   why: Product design hiring managers look for the scope or results of recent work. The resume names your collaborators, but it doesn't show the scale or measurable results of your own design work.
+   excerpt (Experience): "- Ran usability tests with members before launches"
+Severity check answer: {"critical_misses":[{"source":"new","kind":"no_recent_work","fix":"Add a recent product design project, such as freelance work or a personal project, if true.","why":"Product design hiring managers usually look for recent examples of design work. Your current cafe role accounts for the time, but the resume doesn't show recent product design activity.","excerpt":"March 2021 - February 2024","section":"Experience","effort":"moderate"},{"source":"new","kind":"no_evidence_latest_role","fix":"In the Loop Fitness usability-testing bullet, add how many members you tested with, if you can verify it.","why":"Product design hiring managers look for the scope or results of recent work. The resume names your collaborators, but it doesn't show the scale or measurable results of your own design work.","excerpt":"- Ran usability tests with members before launches","section":"Experience","effort":"quick"}],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The named iOS and Android booking flow shows the kind of product problem you worked on.
+Other strengths: ["The weekly release bullet identifies your engineering and product partners rather than leaving collaboration abstract.","The Pratt Institute communication design degree gives your design background a clear starting point."]
+
+## Gaps
+- The booking flow bullet doesn't describe the user problem or a design choice, making the project difficult to distinguish from another booking feature.
+- The design system bullet doesn't explain what you built within the system or how it was used.
+- The resume doesn't say whether you've done design work since Loop Fitness, which may leave reviewers unsure how current your practice is.
+
+## Next steps
+- Expand the Loop Fitness bullets using details you can verify about the booking flow, testing, and design system.
+- Review the Brightpath prototypes bullet and add what you presented to clients, if you can describe it.
+- If you've done recent design work or a relevant project, add it to the resume with accurate dates.
+
+## Role fit
+Level: Product designer-level work is stated at Loop Fitness, following a Junior Product Designer role.
+Best fit: ["Product Designer"]
+Positioning: Lead with the Loop Fitness booking and design-system work when applying for product design roles. Use the summary to connect those projects with any current design activity you can accurately describe.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[0]","line":"fix-0","criticalMiss":true},{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[2]","fix":2},{"kind":"question_dropped","path":"ideas.questions[3]","reason":"duplicates_keep"},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[2]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"section_review.Work Experience.fix","of":"top_fixes[2]"}]

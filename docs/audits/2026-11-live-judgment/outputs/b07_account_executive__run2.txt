@@ -1,0 +1,48 @@
+# b07_account_executive, run 2
+Resume: ../../../tests/resumes/blindpick/synth_bp_account_executive_1.txt (145 words, sha256 f964f76d12cd)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0114; 25.5s
+
+## Band: Mostly clear (score 84; model wrote 84, label "Strong")
+## Verdict
+The move from SDR to mid-market account executive is easy to follow. Closing $1.1M in new annual recurring revenue in 2025 gives the recent role a useful performance anchor.
+One-line read: Recent sales results and customer size are clear, with a few contributions unexplained.
+Takeaway: Explain your demo contributions
+Biggest gap example: "Work with solutions engineers on demos and security reviews" doesn't explain your part in either activity, so a reviewer can't see how you handle those sales stages.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the solutions engineer bullet, describe what you personally handled during demos or security reviews.
+   why: That distinction would show how you collaborate with technical colleagues during a sale.
+   excerpt (EXPERIENCE): "- Work with solutions engineers on demos and security reviews"
+2. [fix] In the referral program bullet, add how you established or worked with the payroll partners.
+   why: The deal count is already there; the missing detail is what you did to build the referral channel.
+   excerpt (EXPERIENCE): "- Built a referral program with two payroll partners that sourced 9 deals"
+3. [fix] In the SDR ranking bullet, name the measure used to determine the ranking if you can verify it.
+   why: A reader can then understand what being the top SDR recognized.
+   excerpt (EXPERIENCE): "- Top SDR in two quarters"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The 200 to 1,500 employee customer range defines the market you serve.
+Other strengths: ["The referral program names two payroll partners and 9 sourced deals, making the partnership work concrete.","Salesforce, Outreach, Gong, ZoomInfo, and LinkedIn Sales Navigator give readers a specific view of your sales toolkit."]
+
+## Gaps
+- The SDR ranking doesn't say what it was based on, making the distinction difficult to interpret.
+- The meetings bullet names the account executives you supported but not the types of prospects or meetings you booked.
+- The referral bullet doesn't describe how you established or worked with the partners, leaving the program itself unclear.
+
+## Next steps
+- Revise the current role's demo and security review bullet using an example of your own contribution.
+- Add a brief description of how the payroll referral relationships worked.
+- Check the basis for the SDR ranking and update that bullet if you can confirm it.
+
+## Role fit
+Level: Your recent title and full-cycle responsibilities indicate an account executive level.
+Best fit: ["Account Executive, Mid-Market"]
+Positioning: Lead with mid-market HR software sales and the 2025 quota result. Use the referral program and technical collaboration details to show how you approach opportunities.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[1]","line":"fix-1","criticalMiss":false},{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":1},{"kind":"question_moved","path":"ideas.questions[2]","fix":2},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"ideas.questions[3]"},{"kind":"repeat_dropped","path":"gaps[2]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"section_review.Work Experience.missing","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"next_steps[0]","of":"top_fixes[0]"}]

@@ -1,0 +1,51 @@
+# b36_product_designer_unrelated, run 1
+Resume: ../../../tests/resumes/blindpick/synth_bp_product_designer_unrelated_1.txt (147 words, sha256 1bdb9ae79f9d)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0342; repair ran; 65.7s
+Case note: Current job outside the field.
+
+Validator refused the first draft: OPENAI_RESPONSE_SHAPE_INVALID The model response failed the evidence grounding contract at next_steps[1] unsupported narrative facts: one client.
+
+## Band: Mostly clear (score 80; model wrote 80, label "Strong")
+## Verdict
+The first app design system at Loop Fitness is worth keeping prominent because it shows you built a shared design resource. Your current cafe role appears before your design work, so your recent connection to design is less clear.
+One-line read: Specific design projects and team context stand out, but results remain unclear.
+Takeaway: Explain the usability findings
+Biggest gap example: "Ran usability tests with members before launches" does not say what you learned or changed, leaving the value of the testing unclear.
+
+## Fixes (Two Critical Misses. Start with this one.; lead: "Either one could cost you the interview on its own."); severity added (added); added ["no_recent_work"]; promoted []
+1. [Critical Miss] In the Loop Fitness booking-flow bullet, add the member problem you were designing for and a design choice you made.
+   why: That would show what you contributed beyond working on a named flow.
+   excerpt (EXPERIENCE): "- Designed the class booking flow for the iOS and Android apps"
+2. [Critical Miss] Add recent product design work, such as a freelance or personal project, if true.
+   why: A product design hiring manager may look for current design skills. The resume shows a current cafe role but no design work after Loop Fitness; a freelance project or personal app design project could show those skills if true.
+   excerpt (Experience): "March 2021 - February 2024"
+3. [fix] In the Loop Fitness design-system bullet, name the components or conventions you created and who used them, if applicable.
+   why: A reader could understand what the system contained and how it fit into app development.
+   excerpt (EXPERIENCE): "- Created the app's first design system in Figma"
+Severity check answer: {"critical_misses":[{"source":"new","kind":"no_recent_work","fix":"Add recent product design work, such as a freelance or personal project, if true.","why":"A product design hiring manager may look for current design skills. The resume shows a current cafe role but no design work after Loop Fitness; a freelance project or personal app design project could show those skills if true.","excerpt":"March 2021 - February 2024","section":"Experience","effort":"moderate"}],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The weekly release cadence and named collaborators show how your design work fit into a product team.
+Other strengths: ["Marketing sites and app screens at Brightpath show work across web and app formats.","The portfolio address is easy to find alongside your contact details."]
+
+## Gaps
+- The booking-flow bullet does not identify the user problem, so the purpose of the design is unclear.
+- The design-system bullet does not say what it contained or who used it, leaving its practical use unclear.
+- No design activity is described after Loop Fitness, leaving your recent connection to the field uncertain.
+
+## Next steps
+- Revise the Loop Fitness bullets with details you can verify about the booking flow, design system and member tests.
+- Review the Brightpath prototypes bullet and add what the presentations asked clients to review, if you can verify it.
+- If you have relevant recent design activity, describe it accurately in the opening or experience section.
+
+## Role fit
+Level: Your most recent design title is Product Designer, following a Junior Product Designer role.
+Best fit: ["Product Designer"]
+Positioning: Keep Product Designer as the focus of the opening and give the Loop Fitness work more room than the cafe responsibilities. If you have continued relevant design work since that role, describe it accurately on the resume.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":2},{"kind":"question_dropped","path":"ideas.questions[3]","reason":"duplicates_keep"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"gaps[2]","of":"first_impression"},{"kind":"repeat_dropped","path":"section_review.Work Experience.working","of":"strengths[0]"},{"kind":"repeat_dropped","path":"section_review.Work Experience.missing","of":"top_fixes[0]"}]

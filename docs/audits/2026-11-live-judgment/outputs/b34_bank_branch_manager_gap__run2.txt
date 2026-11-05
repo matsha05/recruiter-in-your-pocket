@@ -1,0 +1,51 @@
+# b34_bank_branch_manager_gap, run 2
+Resume: ../../../tests/resumes/blindpick/synth_bp_bank_branch_manager_gap_1.txt (129 words, sha256 1420c9932b5d)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0305; repair ran; 58.8s
+Case note: Gap with nothing after it.
+
+Validator refused the first draft: OPENAI_RESPONSE_SHAPE_INVALID The model response failed the evidence grounding contract at strengths[2] unsupported narrative facts: one customer group.
+
+## Band: Mostly clear (score 72; model wrote 72, label "Solid Foundation")
+## Verdict
+Your path at Magnolia Community Bank moves from Personal Banker to Branch Manager. Managing 11 employees makes the size of your branch responsibility clear.
+One-line read: Deposit growth and staff size stand out, but several duties lack detail.
+Takeaway: Explain your deposit growth
+Biggest gap example: "Handled escalated customer complaints" does not identify the issues you resolved or the decisions you could make, leaving the nature of those escalations unclear.
+
+## Fixes (Two Critical Misses. Start with this one.; lead: "Either one could cost you the interview on its own."); severity added (added); added ["no_recent_work"]; promoted []
+1. [Critical Miss] In the deposit-growth bullet, add the specific actions you took to grow deposits, if you can verify them.
+   why: The figures show the change, but your approach would help a reader understand how you achieved it.
+   excerpt (Work Experience): "- Grew branch deposits from $48M to $63M over five years"
+2. [Critical Miss] Add one dated line covering December 2024 to today.
+   why: A hiring manager may look for current banking activity, but the resume ends with the branch role. Name the period truthfully with a dated line such as "Career break" or "Job search and coursework", and list banking coursework or volunteer financial education only if true.
+   excerpt (Experience): "May 2019 - December 2024"
+3. [fix] In the audit and compliance bullet, describe what you oversaw during a review and any follow-up you handled.
+   why: That would distinguish your responsibilities from the fact that reviews occurred.
+   excerpt (Work Experience): "- Oversaw audits and compliance reviews for the branch"
+Severity check answer: {"critical_misses":[{"source":"new","kind":"no_recent_work","fix":"Add one dated line covering December 2024 to today.","why":"A hiring manager may look for current banking activity, but the resume ends with the branch role. Name the period truthfully with a dated line such as \"Career break\" or \"Job search and coursework\", and list banking coursework or volunteer financial education only if true.","excerpt":"May 2019 - December 2024","section":"Experience","effort":"quick"}],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The progression through banking roles at the same institution makes your career path easy to follow.
+Other strengths: ["Weekly sales huddles and referral coaching show a regular part of how you worked with bankers.","Opening consumer and small business accounts identifies the account work you handled before becoming branch manager."]
+
+## Gaps
+- The audit and compliance bullet does not explain what you oversaw during reviews or what follow-up you handled.
+- The complaint bullet leaves the types of customer problems and your authority to resolve them unclear.
+- Your most recent listed role ends in December 2024, with no subsequent activity described, which may prompt a timing question.
+
+## Next steps
+- Revise the branch manager bullets with the verified deposit-growth, review and complaint details you can recall.
+- Add an example of your referral coaching, then trim older bullets only if you need room.
+- Review the dates and add a real subsequent activity if one helps explain your timeline.
+
+## Role fit
+Level: Most recently a branch manager, with earlier assistant manager and personal banker roles.
+Best fit: ["Branch Manager","Assistant Branch Manager"]
+Positioning: Lead with your branch management work and the deposit figures. Use the experience section to explain your approach to staff coaching, compliance reviews and customer escalations.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"repeat_dropped","path":"gaps[2]","of":"top_fixes[1]"},{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":2},{"kind":"question_dropped","path":"ideas.questions[3]","reason":"duplicates_keep"},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"ideas.questions[2]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[2]"}]

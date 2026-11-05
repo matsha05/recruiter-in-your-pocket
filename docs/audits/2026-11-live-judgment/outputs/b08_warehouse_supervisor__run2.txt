@@ -1,0 +1,47 @@
+# b08_warehouse_supervisor, run 2
+Resume: ../../../tests/resumes/blindpick/synth_bp_warehouse_supervisor_1.txt (173 words, sha256 4f23aeaad42e)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0293; repair ran; 56.8s
+
+Validator refused the first draft: OPENAI_RESPONSE_SHAPE_INVALID The model response failed the evidence grounding contract at summary unsupported narrative facts: moved, supervising.
+
+## Band: Needs more context (score 66; model wrote 66, label "Needs Clarity")
+## Verdict
+Your path from order picker to outbound shift supervisor is easy to follow. Naming the 35 associates on your night shift gives the current role useful context.
+One-line read: Team sizes are clear, but most bullets describe duties without specific examples.
+Takeaway: Explain your scanner rollout contribution.
+Biggest gap example: "Helped roll out handheld scanners on the pick floor" doesn't say what you contributed, leaving your part in the rollout unclear.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the labor-scheduling bullet, add an example of how you chose staffing or zones for a particular order volume.
+   why: That would show how you make assignments, beyond the fact that you make them.
+   excerpt (WORK HISTORY): "- Schedule labor and assign zones based on daily order volume"
+2. [fix] In the carrier-coordination bullet, describe what you handle when arranging loading and departure times.
+   why: The added detail would make your role in the outbound handoff easier to understand.
+   excerpt (WORK HISTORY): "- Coordinate with carriers on trailer loading and departure times"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The current role names the outbound activities you oversee, making the shift's work easy to picture.
+Other strengths: ["Leading a team of 8 pickers as a Lead Associate shows a prior people-leadership responsibility.","OSHA 30-Hour General Industry and Forklift Certified add safety and equipment context to your warehouse background."]
+
+## Gaps
+- Your contribution to the handheld-scanner rollout isn't specified, so the extent of your participation is unclear.
+- The carrier bullet doesn't describe what information you exchange or what you handle in the coordination process.
+- The new-lead training bullet doesn't name the system tasks you teach, making its content difficult to assess.
+
+## Next steps
+- Revise the scheduling and carrier bullets with examples you can verify.
+- Describe your contribution to the scanner rollout, keeping the wording consistent with your supporting role.
+- Review the opening and skills after those edits so they reflect the work you want to emphasize.
+
+## Role fit
+Level: Shift-supervisor level, with prior lead and order-picker experience.
+Best fit: ["Shift Supervisor, Outbound Operations","Lead Associate"]
+Positioning: Lead with outbound shift supervision and the size of the team you oversee. Use specific scheduling or carrier examples to show how you handle the work, and retain the scanner rollout as a separate contribution.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":1},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"ideas.questions[2]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"gaps[2]","of":"ideas.questions[3]"}]

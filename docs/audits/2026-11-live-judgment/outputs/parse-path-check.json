@@ -1,0 +1,53 @@
+{
+  "scanned_pdf_no_text_layer": {
+    "parse_route": {
+      "status": 400,
+      "body": {
+        "ok": false,
+        "errorCode": "EXTRACTION_EMPTY",
+        "message": "Could not extract enough text from the file. Try pasting your resume text directly."
+      }
+    }
+  },
+  "cover_letter": {
+    "chars": 1153,
+    "parse_route": {
+      "status": 400,
+      "body": {
+        "ok": false,
+        "errorCode": "UNSUPPORTED_FILE_TYPE",
+        "message": "Choose a PDF or DOCX file.",
+        "details": {
+          "fileName": "cover-letter.txt",
+          "fileType": "text/plain"
+        }
+      }
+    },
+    "request_validation": {
+      "ok": true,
+      "note": "accepted; the next step would be a paid model call and the free report"
+    }
+  },
+  "academic_cv_over_cap": {
+    "chars": 38071,
+    "request_validation": {
+      "ok": false,
+      "message": "Something in your request needs a quick tweak before I can give you feedback.",
+      "fieldErrors": {
+        "text": "Your resume text is very long. Try trimming extra content."
+      }
+    },
+    "parse_route": {
+      "status": 400,
+      "body": {
+        "ok": false,
+        "errorCode": "UNSUPPORTED_FILE_TYPE",
+        "message": "Choose a PDF or DOCX file.",
+        "details": {
+          "fileName": "cv.txt",
+          "fileType": "text/plain"
+        }
+      }
+    }
+  }
+}

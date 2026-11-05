@@ -1,0 +1,864 @@
+{
+  "batch": "breadth",
+  "model": "gpt-6.1-terra",
+  "effort": "medium",
+  "today": "2026-11-05",
+  "budget_usd": 4.5,
+  "spent_usd": 1.7598018,
+  "calls": 182,
+  "runs": [
+    {
+      "stem": "b01_icu_nurse__run2",
+      "outcome": "report",
+      "cost_usd": 0.0125118,
+      "score": 80,
+      "band": "Mostly clear",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b01_icu_nurse__run1",
+      "outcome": "report",
+      "cost_usd": 0.0117893,
+      "score": 80,
+      "band": "Mostly clear",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b02_teacher__run1",
+      "outcome": "report",
+      "cost_usd": 0.01303555,
+      "score": 84,
+      "band": "Mostly clear",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b02_teacher__run2",
+      "outcome": "report",
+      "cost_usd": 0.0119151,
+      "score": 85,
+      "band": "Clear and specific",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b04_retail_store_manager__run1",
+      "outcome": "report",
+      "cost_usd": 0.0133243,
+      "score": 87,
+      "band": "Clear and specific",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b03_welder__run1",
+      "outcome": "repair_failed",
+      "cost_usd": 0.0324746,
+      "score": null,
+      "band": null,
+      "critical": null,
+      "added": null,
+      "repaired": false
+    },
+    {
+      "stem": "b03_welder__run2",
+      "outcome": "report",
+      "cost_usd": 0.03546245,
+      "score": 84,
+      "band": "Mostly clear",
+      "critical": 1,
+      "added": [],
+      "repaired": true
+    },
+    {
+      "stem": "b04_retail_store_manager__run2",
+      "outcome": "report",
+      "cost_usd": 0.01258055,
+      "score": 87,
+      "band": "Clear and specific",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b05_paralegal__run2",
+      "outcome": "report",
+      "cost_usd": 0.01270565,
+      "score": 80,
+      "band": "Mostly clear",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b06_staff_accountant__run1",
+      "outcome": "report",
+      "cost_usd": 0.0133618,
+      "score": 61,
+      "band": "Needs more context",
+      "critical": 2,
+      "added": [
+        "no_evidence_latest_role"
+      ],
+      "repaired": false
+    },
+    {
+      "stem": "b06_staff_accountant__run2",
+      "outcome": "report",
+      "cost_usd": 0.01164315,
+      "score": 61,
+      "band": "Needs more context",
+      "critical": 2,
+      "added": [
+        "no_evidence_latest_role"
+      ],
+      "repaired": false
+    },
+    {
+      "stem": "b05_paralegal__run1",
+      "outcome": "report",
+      "cost_usd": 0.0335441,
+      "score": 80,
+      "band": "Mostly clear",
+      "critical": 1,
+      "added": [],
+      "repaired": true
+    },
+    {
+      "stem": "b07_account_executive__run1",
+      "outcome": "report",
+      "cost_usd": 0.01276805,
+      "score": 84,
+      "band": "Mostly clear",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b07_account_executive__run2",
+      "outcome": "report",
+      "cost_usd": 0.01141585,
+      "score": 84,
+      "band": "Mostly clear",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b08_warehouse_supervisor__run1",
+      "outcome": "report",
+      "cost_usd": 0.01288305,
+      "score": 67,
+      "band": "Needs more context",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b09_executive_assistant_freelance__run1",
+      "outcome": "report",
+      "cost_usd": 0.01492055,
+      "score": 80,
+      "band": "Mostly clear",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b09_executive_assistant_freelance__run2",
+      "outcome": "report",
+      "cost_usd": 0.01367155,
+      "score": 80,
+      "band": "Mostly clear",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b08_warehouse_supervisor__run2",
+      "outcome": "report",
+      "cost_usd": 0.0293039,
+      "score": 66,
+      "band": "Needs more context",
+      "critical": 1,
+      "added": [],
+      "repaired": true
+    },
+    {
+      "stem": "b10_it_support_recent_grad__run1",
+      "outcome": "report",
+      "cost_usd": 0.0159643,
+      "score": 64,
+      "band": "Needs more context",
+      "critical": 3,
+      "added": [
+        "no_recent_work",
+        "no_evidence_latest_role"
+      ],
+      "repaired": false
+    },
+    {
+      "stem": "b10_it_support_recent_grad__run2",
+      "outcome": "report",
+      "cost_usd": 0.01440705,
+      "score": 64,
+      "band": "Needs more context",
+      "critical": 3,
+      "added": [
+        "no_recent_work",
+        "no_evidence_latest_role"
+      ],
+      "repaired": false
+    },
+    {
+      "stem": "b11_recent_grad_bad__run2",
+      "outcome": "report",
+      "cost_usd": 0.0152747,
+      "score": 66,
+      "band": "Needs more context",
+      "critical": 3,
+      "added": [
+        "no_recent_work",
+        "no_evidence_latest_role"
+      ],
+      "repaired": false
+    },
+    {
+      "stem": "b11_recent_grad_bad__run1",
+      "outcome": "report",
+      "cost_usd": 0.0359416,
+      "score": 64,
+      "band": "Needs more context",
+      "critical": 3,
+      "added": [
+        "no_recent_work",
+        "no_evidence_latest_role"
+      ],
+      "repaired": true
+    },
+    {
+      "stem": "b12_coo_executive_two_page__run1",
+      "outcome": "repair_failed",
+      "cost_usd": 0.0348421,
+      "score": null,
+      "band": null,
+      "critical": null,
+      "added": null,
+      "repaired": false
+    },
+    {
+      "stem": "b12_coo_executive_two_page__run2",
+      "outcome": "report",
+      "cost_usd": 0.0361408,
+      "score": 89,
+      "band": "Clear and specific",
+      "critical": 1,
+      "added": [],
+      "repaired": true
+    },
+    {
+      "stem": "b13_marketing_vp_elite__run2",
+      "outcome": "report",
+      "cost_usd": 0.01661,
+      "score": 91,
+      "band": "Clear and specific",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b13_marketing_vp_elite__run1",
+      "outcome": "report",
+      "cost_usd": 0.03928035,
+      "score": 89,
+      "band": "Clear and specific",
+      "critical": 1,
+      "added": [],
+      "repaired": true
+    },
+    {
+      "stem": "b14_teacher_to_instructional_designer__run1",
+      "outcome": "report",
+      "cost_usd": 0.01336805,
+      "score": 68,
+      "band": "Needs more context",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b15_career_changer_maria__run2",
+      "outcome": "report",
+      "cost_usd": 0.01439735,
+      "score": 68,
+      "band": "Needs more context",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b15_career_changer_maria__run1",
+      "outcome": "repair_failed",
+      "cost_usd": 0.0315846,
+      "score": null,
+      "band": null,
+      "critical": null,
+      "added": null,
+      "repaired": false
+    },
+    {
+      "stem": "b14_teacher_to_instructional_designer__run2",
+      "outcome": "report",
+      "cost_usd": 0.034069,
+      "score": 66,
+      "band": "Needs more context",
+      "critical": 1,
+      "added": [],
+      "repaired": true
+    },
+    {
+      "stem": "b17_hr_generalist_career_break__run1",
+      "outcome": "report",
+      "cost_usd": 0.01401555,
+      "score": 65,
+      "band": "Needs more context",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b16_career_changer_bad__run2",
+      "outcome": "report",
+      "cost_usd": 0.0175587,
+      "score": 66,
+      "band": "Needs more context",
+      "critical": 3,
+      "added": [
+        "no_evidence_latest_role",
+        "no_target_role"
+      ],
+      "repaired": false
+    },
+    {
+      "stem": "b16_career_changer_bad__run1",
+      "outcome": "report",
+      "cost_usd": 0.03350785,
+      "score": 64,
+      "band": "Needs more context",
+      "critical": 3,
+      "added": [
+        "no_target_role"
+      ],
+      "repaired": true
+    },
+    {
+      "stem": "b17_hr_generalist_career_break__run2",
+      "outcome": "report",
+      "cost_usd": 0.01554745,
+      "score": 66,
+      "band": "Needs more context",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b18_military_to_civilian__run1",
+      "outcome": "report",
+      "cost_usd": 0.01517555,
+      "score": 87,
+      "band": "Clear and specific",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b18_military_to_civilian__run2",
+      "outcome": "report",
+      "cost_usd": 0.01381495,
+      "score": 86,
+      "band": "Clear and specific",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b19_non_native_english__run1",
+      "outcome": "report",
+      "cost_usd": 0.0153168,
+      "score": 78,
+      "band": "Mostly clear",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b19_non_native_english__run2",
+      "outcome": "report",
+      "cost_usd": 0.01374865,
+      "score": 77,
+      "band": "Mostly clear",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b20_customer_success_manager__run1",
+      "outcome": "report",
+      "cost_usd": 0.01322555,
+      "score": 81,
+      "band": "Mostly clear",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b20_customer_success_manager__run2",
+      "outcome": "report",
+      "cost_usd": 0.01377,
+      "score": 80,
+      "band": "Mostly clear",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b22_office_manager_paragraphs__run1",
+      "outcome": "report",
+      "cost_usd": 0.01308555,
+      "score": 81,
+      "band": "Mostly clear",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b21_customer_success_manager_with_posting__run1",
+      "outcome": "repair_failed",
+      "cost_usd": 0.03974005,
+      "score": null,
+      "band": null,
+      "critical": null,
+      "added": null,
+      "repaired": false
+    },
+    {
+      "stem": "b22_office_manager_paragraphs__run2",
+      "outcome": "report",
+      "cost_usd": 0.01234835,
+      "score": 84,
+      "band": "Mostly clear",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b21_customer_success_manager_with_posting__run2",
+      "outcome": "report",
+      "cost_usd": 0.0387436,
+      "score": 80,
+      "band": "Mostly clear",
+      "critical": 1,
+      "added": [],
+      "repaired": true
+    },
+    {
+      "stem": "b23_pharmacy_tech_table__run1",
+      "outcome": "report",
+      "cost_usd": 0.01484555,
+      "score": 85,
+      "band": "Clear and specific",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b23_pharmacy_tech_table__run2",
+      "outcome": "report",
+      "cost_usd": 0.0131228,
+      "score": 85,
+      "band": "Clear and specific",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b24_physical_therapist_strong__run1",
+      "outcome": "report",
+      "cost_usd": 0.01304055,
+      "score": 85,
+      "band": "Clear and specific",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b25_fpa_analyst_strong__run1",
+      "outcome": "report",
+      "cost_usd": 0.01336055,
+      "score": 87,
+      "band": "Clear and specific",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b25_fpa_analyst_strong__run2",
+      "outcome": "report",
+      "cost_usd": 0.0134369,
+      "score": 88,
+      "band": "Clear and specific",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b24_physical_therapist_strong__run2",
+      "outcome": "report",
+      "cost_usd": 0.0315954,
+      "score": 85,
+      "band": "Clear and specific",
+      "critical": 1,
+      "added": [],
+      "repaired": true
+    },
+    {
+      "stem": "b26_construction_pm_strong__run2",
+      "outcome": "report",
+      "cost_usd": 0.0129003,
+      "score": 85,
+      "band": "Clear and specific",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b27_backend_engineer_senior__run1",
+      "outcome": "report",
+      "cost_usd": 0.01356555,
+      "score": 91,
+      "band": "Clear and specific",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b27_backend_engineer_senior__run2",
+      "outcome": "report",
+      "cost_usd": 0.012779,
+      "score": 89,
+      "band": "Clear and specific",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b26_construction_pm_strong__run1",
+      "outcome": "report",
+      "cost_usd": 0.0347041,
+      "score": 85,
+      "band": "Clear and specific",
+      "critical": 1,
+      "added": [],
+      "repaired": true
+    },
+    {
+      "stem": "b28_cybersecurity_analyst__run1",
+      "outcome": "report",
+      "cost_usd": 0.0145543,
+      "score": 84,
+      "band": "Mostly clear",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b29_mechanical_engineer__run1",
+      "outcome": "report",
+      "cost_usd": 0.0156493,
+      "score": 64,
+      "band": "Needs more context",
+      "critical": 2,
+      "added": [
+        "no_evidence_latest_role"
+      ],
+      "repaired": false
+    },
+    {
+      "stem": "b28_cybersecurity_analyst__run2",
+      "outcome": "report",
+      "cost_usd": 0.03228205,
+      "score": 84,
+      "band": "Mostly clear",
+      "critical": 1,
+      "added": [],
+      "repaired": true
+    },
+    {
+      "stem": "b30_social_worker__run2",
+      "outcome": "report",
+      "cost_usd": 0.01235,
+      "score": 64,
+      "band": "Needs more context",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b29_mechanical_engineer__run2",
+      "outcome": "report",
+      "cost_usd": 0.03293605,
+      "score": 65,
+      "band": "Needs more context",
+      "critical": 2,
+      "added": [
+        "no_evidence_latest_role"
+      ],
+      "repaired": true
+    },
+    {
+      "stem": "b30_social_worker__run1",
+      "outcome": "report",
+      "cost_usd": 0.03055785,
+      "score": 65,
+      "band": "Needs more context",
+      "critical": 2,
+      "added": [],
+      "repaired": true
+    },
+    {
+      "stem": "b31_kitchen_manager__run2",
+      "outcome": "report",
+      "cost_usd": 0.01126985,
+      "score": 64,
+      "band": "Needs more context",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b32_logistics_dispatcher__run1",
+      "outcome": "report",
+      "cost_usd": 0.0129468,
+      "score": 60,
+      "band": "Needs more context",
+      "critical": 2,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b31_kitchen_manager__run1",
+      "outcome": "report",
+      "cost_usd": 0.02865535,
+      "score": 64,
+      "band": "Needs more context",
+      "critical": 1,
+      "added": [],
+      "repaired": true
+    },
+    {
+      "stem": "b32_logistics_dispatcher__run2",
+      "outcome": "report",
+      "cost_usd": 0.0124932,
+      "score": 62,
+      "band": "Needs more context",
+      "critical": 2,
+      "added": [
+        "no_evidence_latest_role"
+      ],
+      "repaired": false
+    },
+    {
+      "stem": "b33_nonprofit_program_manager__run1",
+      "outcome": "report",
+      "cost_usd": 0.0133168,
+      "score": 67,
+      "band": "Needs more context",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b34_bank_branch_manager_gap__run1",
+      "outcome": "report",
+      "cost_usd": 0.0150893,
+      "score": 73,
+      "band": "Mostly clear",
+      "critical": 2,
+      "added": [
+        "no_recent_work"
+      ],
+      "repaired": false
+    },
+    {
+      "stem": "b33_nonprofit_program_manager__run2",
+      "outcome": "report",
+      "cost_usd": 0.03043835,
+      "score": 67,
+      "band": "Needs more context",
+      "critical": 1,
+      "added": [],
+      "repaired": true
+    },
+    {
+      "stem": "b34_bank_branch_manager_gap__run2",
+      "outcome": "report",
+      "cost_usd": 0.03050575,
+      "score": 72,
+      "band": "Mostly clear",
+      "critical": 2,
+      "added": [
+        "no_recent_work"
+      ],
+      "repaired": true
+    },
+    {
+      "stem": "b35_marketing_coordinator_gap__run1",
+      "outcome": "report",
+      "cost_usd": 0.0340866,
+      "score": 67,
+      "band": "Needs more context",
+      "critical": 2,
+      "added": [
+        "no_recent_work"
+      ],
+      "repaired": true
+    },
+    {
+      "stem": "b35_marketing_coordinator_gap__run2",
+      "outcome": "report",
+      "cost_usd": 0.03333205,
+      "score": 80,
+      "band": "Mostly clear",
+      "critical": 2,
+      "added": [
+        "no_recent_work"
+      ],
+      "repaired": true
+    },
+    {
+      "stem": "b36_product_designer_unrelated__run1",
+      "outcome": "report",
+      "cost_usd": 0.0341541,
+      "score": 80,
+      "band": "Mostly clear",
+      "critical": 2,
+      "added": [
+        "no_recent_work"
+      ],
+      "repaired": true
+    },
+    {
+      "stem": "b36_product_designer_unrelated__run2",
+      "outcome": "report",
+      "cost_usd": 0.0196692,
+      "score": 80,
+      "band": "Mostly clear",
+      "critical": 3,
+      "added": [
+        "no_recent_work",
+        "no_evidence_latest_role"
+      ],
+      "repaired": false
+    },
+    {
+      "stem": "b37_marketing_director_bad__run1",
+      "outcome": "report",
+      "cost_usd": 0.01666305,
+      "score": 80,
+      "band": "Mostly clear",
+      "critical": 3,
+      "added": [
+        "no_recent_work",
+        "title_level_mismatch"
+      ],
+      "repaired": false
+    },
+    {
+      "stem": "b37_marketing_director_bad__run2",
+      "outcome": "report",
+      "cost_usd": 0.0175424,
+      "score": 80,
+      "band": "Mostly clear",
+      "critical": 2,
+      "added": [
+        "no_recent_work"
+      ],
+      "repaired": false
+    },
+    {
+      "stem": "b39_new_grad_daniel__run1",
+      "outcome": "report",
+      "cost_usd": 0.0171968,
+      "score": 66,
+      "band": "Needs more context",
+      "critical": 2,
+      "added": [
+        "no_evidence_latest_role"
+      ],
+      "repaired": false
+    },
+    {
+      "stem": "b38_layoff_gap_james__run1",
+      "outcome": "report",
+      "cost_usd": 0.0380566,
+      "score": 82,
+      "band": "Mostly clear",
+      "critical": 2,
+      "added": [
+        "no_evidence_latest_role"
+      ],
+      "repaired": true
+    },
+    {
+      "stem": "b38_layoff_gap_james__run2",
+      "outcome": "report",
+      "cost_usd": 0.03554725,
+      "score": 83,
+      "band": "Mostly clear",
+      "critical": 2,
+      "added": [
+        "no_evidence_latest_role"
+      ],
+      "repaired": true
+    },
+    {
+      "stem": "b39_new_grad_daniel__run2",
+      "outcome": "report",
+      "cost_usd": 0.01580715,
+      "score": 66,
+      "band": "Needs more context",
+      "critical": 2,
+      "added": [
+        "no_evidence_latest_role"
+      ],
+      "repaired": false
+    },
+    {
+      "stem": "b40_senior_ic_wei__run1",
+      "outcome": "report",
+      "cost_usd": 0.0165143,
+      "score": 78,
+      "band": "Mostly clear",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    },
+    {
+      "stem": "b40_senior_ic_wei__run2",
+      "outcome": "report",
+      "cost_usd": 0.0141706,
+      "score": 78,
+      "band": "Mostly clear",
+      "critical": 1,
+      "added": [],
+      "repaired": false
+    }
+  ]
+}

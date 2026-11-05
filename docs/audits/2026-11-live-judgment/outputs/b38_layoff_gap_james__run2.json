@@ -1,0 +1,909 @@
+{
+  "case_id": "b38_layoff_gap_james",
+  "batch": "breadth",
+  "run": 2,
+  "note": "Layoff gap (bar persona).",
+  "resume_file": "../../../docs/design/2026-11-bar/resumes/3-layoff-gap-james.txt",
+  "resume_sha256": "9ff2c78d35a73e7b304020c79e4a236c0f62eb85a82de37c83724da8a6ce928d",
+  "resume_chars": 2244,
+  "resume_words": 313,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T20:14:43.868Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 8077,
+        "completion_tokens": 2178,
+        "total_tokens": 10255,
+        "cached_prompt_tokens": 8074,
+        "cache_write_prompt_tokens": 0,
+        "reasoning_tokens": 221
+      },
+      "cost_usd": 0.0112967,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 25341
+    },
+    {
+      "kind": "repair",
+      "usage": {
+        "prompt_tokens": 10907,
+        "completion_tokens": 3057,
+        "total_tokens": 13964,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 4018,
+        "reasoning_tokens": 1100
+      },
+      "cost_usd": 0.0206548,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 35117
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.00359575,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 4894
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 83,
+    "score_label": "Strong",
+    "score_comment_short": "Leadership details and a quantified demand-generation result anchor an otherwise uneven record.",
+    "score_comment_long": "The Velocity role names the team, budget, funnel ownership and MQL growth. Several program and freelance bullets still leave the work or its results broad. Adding a concrete example to the current consulting role is a useful first edit.",
+    "score_plain": "The resume gives a reviewer reasons to consider you for senior marketing work. More detail on recent consulting and individual programs would make comparisons with specific roles easier.",
+    "first_impression": "Your senior marketing role is easy to place: B2B SaaS, demand generation, a four-person team and a $1.8M annual budget. The current freelance work is less specific, so it's harder to see what you're doing now.",
+    "biggest_gap_example": "\"Launched ABM program targeting enterprise accounts\" doesn't say what the program involved or what happened after launch, making its contribution difficult to assess.",
+    "first_impression_takeaway": "Explain the ABM launch",
+    "summary": "A 35% year-over-year increase in MQL volume, alongside lower cost per lead, gives your demand-generation work a result worth keeping prominent. Your career progresses from campaign support to managing marketers, a budget and the funnel through MQL. That history fits a senior marketing manager level, with both programs and operations represented. The freelance entry leaves open how you apply those skills to client projects now, which could matter when comparing you with another senior marketer.",
+    "strengths": [
+      "The $40M ARR company context gives the Velocity demand-generation role a useful business reference point.",
+      "Naming the HubSpot implementation and Marketo migration shows work beyond campaign execution.",
+      "The progression at Bridgepoint connects campaign support with later responsibility for content, webinars and marketing operations."
+    ],
+    "gaps": [
+      "The enterprise ABM launch doesn't describe the activities involved or any subsequent result, leaving its reach unclear.",
+      "The webinar bullet names pipeline generation but not its size or your approach, so its commercial contribution is difficult to gauge.",
+      "The blog traffic increase has no magnitude or comparison period, leaving the word \"significantly\" open to interpretation."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the freelance project bullet, identify one client project and specify the work you personally provided.",
+        "why": "A concrete example would make your current consulting work easier to distinguish from a list of services.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Projects included website copy, email campaigns, and paid social setup",
+          "section": "PROFESSIONAL EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "PROFESSIONAL EXPERIENCE"
+      },
+      {
+        "fix": "In the Velocity ABM bullet, add the activities used to reach enterprise accounts and any verified result.",
+        "why": "The launch is clear, but a reviewer cannot yet tell what the program consisted of.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Launched ABM program targeting enterprise accounts",
+          "section": "PROFESSIONAL EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "PROFESSIONAL EXPERIENCE"
+      },
+      {
+        "fix": "In the Bridgepoint webinar bullet, add how you ran the program and the pipeline amount if you can verify it.",
+        "why": "The bullet already connects webinars to pipeline; those details would help explain the program's contribution without treating pipeline as revenue.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Ran webinar program generating pipeline for the sales team",
+          "section": "PROFESSIONAL EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "PROFESSIONAL EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the freelance entry around a specific project, keeping client details confidential if needed.",
+      "Expand the ABM and webinar bullets with the activities and verified results you can substantiate.",
+      "Update the summary to bring the MQL result and team leadership forward, then check that the skills list matches the roles you pursue."
+    ],
+    "subscores": {
+      "impact": 81,
+      "clarity": 83,
+      "story": 84,
+      "readability": 85
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "It identifies B2B SaaS, demand generation and a senior marketing target.",
+        "missing": "The summary doesn't distinguish your leadership and demand-generation results from general claims.",
+        "fix": "Replace a generic claim with the 35% MQL increase or the four-person team you managed."
+      },
+      "Work Experience": {
+        "grade": "B+",
+        "priority": "High",
+        "working": "Velocity includes a team size, annual budget, company ARR and a quantified marketing result.",
+        "missing": "The freelance projects and several earlier programs lack details about what you did or achieved.",
+        "fix": "Add a specific consulting example and explain the ABM and webinar programs using facts you can verify."
+      },
+      "Skills": {
+        "grade": "B+",
+        "priority": "Low",
+        "working": "The list names marketing disciplines and platforms, including HubSpot, Marketo, Google Analytics and Looker.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Your degree, institution and graduation year are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "B2B SaaS demand generation",
+        "Marketing team and budget management",
+        "Marketing automation implementation and migration",
+        "Content, email and webinar programs"
+      ],
+      "underplayed": [
+        "The work performed on current freelance projects",
+        "The activities behind the enterprise ABM launch",
+        "The size and development of webinar-generated pipeline"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Senior Marketing Manager",
+          "Marketing Manager",
+          "Freelance Marketing Consultant"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Senior marketing manager level, based on the Velocity title and responsibility for four marketers and an annual budget.",
+        "industry_signals": [
+          "B2B SaaS"
+        ],
+        "company_stage_fit": "Your freelance work includes startups; fit with other company stages is not clear from the resume alone."
+      },
+      "positioning_suggestion": "Lead with the B2B SaaS demand-generation work, including the MQL result and leadership responsibilities. Use a specific consulting project to connect that background to your current work."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "For a freelance client, which project did you support and what did you personally produce?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "An example could turn the current service list into a more informative entry."
+        },
+        {
+          "question": "What activities did the enterprise ABM program include, and what happened after it launched?",
+          "archetype": "SCALING",
+          "why": "The launch is named, but its design and subsequent performance aren't."
+        },
+        {
+          "question": "How did you and Sales coordinate the handoff from marketing-qualified leads?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The funnel bullet names the partnership but not how the handoff worked."
+        },
+        {
+          "question": "What changed in the SEO-driven content strategy that grew Bridgepoint's blog traffic?",
+          "archetype": "IMPROVEMENT",
+          "why": "A concrete change would explain the work behind the stated traffic growth."
+        },
+        {
+          "question": "During the HubSpot migration from Marketo, which transition challenges did you handle?",
+          "archetype": "TENSION POINT",
+          "why": "The platform change is useful context, but the migration work itself isn't described."
+        }
+      ]
+    }
+  },
+  "initial_validation_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the evidence grounding contract at top_fixes[0].fix unsupported narrative facts: one client project."
+  },
+  "model_output_repaired": {
+    "contract_version": "v2",
+    "score": 83,
+    "score_label": "Strong",
+    "score_comment_short": "The Velocity role supplies clear scale and results, while recent consulting remains broad.",
+    "score_comment_long": "Velocity combines team and budget responsibility with a quantified demand-generation result. The freelance and program descriptions leave more of the work to the reader's imagination. A specific consulting example would make the current role more informative.",
+    "score_plain": "The resume gives reviewers a substantive basis for comparing you with senior marketing roles. More detail on individual programs would help them understand how you work.",
+    "first_impression": "Your Senior Marketing Manager role is easy to place: B2B SaaS, demand generation, a team of 4 and a $1.8M annual budget. The current freelance entry is broader, so it reveals less about the work you do now.",
+    "biggest_gap_example": "\"Launched ABM program targeting enterprise accounts\" doesn't describe the program's activities or what happened after launch, making its contribution difficult to assess.",
+    "first_impression_takeaway": "Explain the ABM launch",
+    "summary": "The 35% year-over-year increase in MQL volume, alongside a reduction in cost per lead, gives your demand-generation work a useful result to keep prominent. Your career moves from campaign support to managing marketers, a budget and the funnel through MQL. That history fits a senior marketing manager level, with both programs and marketing operations represented. The enterprise ABM launch would benefit from more detail about the work involved, particularly for roles centered on account-based marketing.",
+    "strengths": [
+      "The $40M ARR company context gives your Velocity demand-generation role a useful business reference point.",
+      "The HubSpot implementation and Marketo migration show work beyond campaign execution.",
+      "Bridgepoint's content, email and webinar programs show the range of marketing work you managed before Velocity."
+    ],
+    "gaps": [
+      "The freelance entry lists services but doesn't explain your contribution to a particular piece of work, leaving your current responsibilities broad.",
+      "The webinar bullet names pipeline generation but not the program's approach or pipeline amount, making its contribution difficult to gauge.",
+      "The blog traffic increase has no magnitude or comparison period, leaving the word \"significantly\" open to interpretation."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the freelance projects bullet, describe what you contributed to an email campaign and the type of business involved, if disclosable.",
+        "why": "That example would give a reviewer a clearer picture of your current consulting work.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Projects included website copy, email campaigns, and paid social setup",
+          "section": "Work Experience"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Work Experience"
+      },
+      {
+        "fix": "In the Velocity ABM bullet, add the activities used to reach enterprise accounts and any verified result.",
+        "why": "The launch is clear, but the description doesn't yet show what the program consisted of.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Launched ABM program targeting enterprise accounts",
+          "section": "Work Experience"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Work Experience"
+      },
+      {
+        "fix": "In the Bridgepoint webinar bullet, add how you ran the program and the pipeline amount if you can verify it.",
+        "why": "Those details would explain the program's contribution without treating pipeline as closed revenue.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Ran webinar program generating pipeline for the sales team",
+          "section": "Work Experience"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "Work Experience"
+      }
+    ],
+    "next_steps": [
+      "Revise the freelance entry with a specific example, keeping business details confidential if needed.",
+      "Expand the ABM and webinar bullets with activities and results you can substantiate.",
+      "Update the summary to bring your MQL result and team leadership forward, then check the skills list against roles you pursue."
+    ],
+    "subscores": {
+      "impact": 81,
+      "clarity": 83,
+      "story": 84,
+      "readability": 85
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "It identifies B2B SaaS, demand generation and a senior marketing target.",
+        "missing": "The summary relies on general claims rather than the leadership details and result in your experience.",
+        "fix": "Replace a generic claim with the 35% MQL increase or the team of 4 you managed."
+      },
+      "Work Experience": {
+        "grade": "B+",
+        "priority": "High",
+        "working": "Velocity includes a team size, annual budget, company ARR and a quantified marketing result.",
+        "missing": "The freelance projects and several programs lack details about what you did or what followed.",
+        "fix": "Add a specific consulting example and explain the ABM and webinar programs using facts you can verify."
+      },
+      "Skills": {
+        "grade": "B+",
+        "priority": "Low",
+        "working": "The list names marketing disciplines and platforms, including HubSpot, Marketo, Google Analytics and Looker.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Your degree, institution and graduation year are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "B2B SaaS demand generation",
+        "Marketing team and budget management",
+        "Marketing automation implementation and migration",
+        "Content, email and webinar programs"
+      ],
+      "underplayed": [
+        "Your contribution to current freelance projects",
+        "The activities behind the enterprise ABM launch",
+        "The development of webinar-generated pipeline"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Senior Marketing Manager",
+          "Marketing Manager",
+          "Freelance Marketing Consultant"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Senior marketing manager level, based on the Velocity title and responsibility for a team of 4 and an annual budget.",
+        "industry_signals": [
+          "B2B SaaS"
+        ],
+        "company_stage_fit": "Your freelance work includes startups; fit with other company stages is not clear from the resume alone."
+      },
+      "positioning_suggestion": "Lead with your B2B SaaS demand-generation work, including the MQL result and leadership responsibilities. Use a specific freelance example to connect that background to your current work."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "For the freelance website copy, what did you contribute and what form did the copy take?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The answer could make the current service list more concrete."
+        },
+        {
+          "question": "How were enterprise accounts selected for the ABM program, and what activities did it include?",
+          "archetype": "SCALING",
+          "why": "The resume names the audience but doesn't explain the program's design."
+        },
+        {
+          "question": "How did you and Sales coordinate around MQLs, and what did you handle?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The funnel bullet names the partnership but not how the teams worked together."
+        },
+        {
+          "question": "What did your SEO-driven content strategy involve, and how was the traffic increase assessed?",
+          "archetype": "IMPROVEMENT",
+          "why": "The answer could explain the work and give context to the stated traffic growth."
+        },
+        {
+          "question": "During the HubSpot migration, what obstacles, if any, came up and how were they handled?",
+          "archetype": "TENSION POINT",
+          "why": "The platform change is named, but the migration work isn't described."
+        }
+      ]
+    }
+  },
+  "repaired": true,
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 83,
+    "score_label": "Mostly clear",
+    "score_comment_short": "The Velocity role supplies clear scale and results, while recent consulting remains broad.",
+    "score_comment_long": "Velocity combines team and budget responsibility with a quantified demand-generation result. The freelance and program descriptions leave more of the work to the reader's imagination. A specific consulting example would make the current role more informative.",
+    "score_plain": "The resume gives reviewers a substantive basis for comparing you with senior marketing roles. More detail on individual programs would help them understand how you work.",
+    "first_impression": "Your Senior Marketing Manager role is easy to place: B2B SaaS, demand generation, a team of 4 and a $1.8M annual budget. The current freelance entry is broader, so it reveals less about the work you do now.",
+    "biggest_gap_example": "\"Launched ABM program targeting enterprise accounts\" doesn't describe the program's activities or what happened after launch, making its contribution difficult to assess.",
+    "first_impression_takeaway": "Explain the ABM launch",
+    "summary": "The 35% year-over-year increase in MQL volume, alongside a reduction in cost per lead, gives your demand-generation work a useful result to keep prominent. Your career moves from campaign support to managing marketers, a budget and the funnel through MQL. That history fits a senior marketing manager level, with both programs and marketing operations represented. The enterprise ABM launch would benefit from more detail about the work involved, particularly for roles centered on account-based marketing.",
+    "strengths": [
+      "The $40M ARR company context gives your Velocity demand-generation role a useful business reference point.",
+      "The HubSpot implementation and Marketo migration show work beyond campaign execution.",
+      "Bridgepoint's content, email and webinar programs show the range of marketing work you managed before Velocity."
+    ],
+    "gaps": [
+      "The freelance entry lists services but doesn't explain your contribution to a particular piece of work, leaving your current responsibilities broad.",
+      "The webinar bullet names pipeline generation but not the program's approach or pipeline amount, making its contribution difficult to gauge.",
+      "The blog traffic increase has no magnitude or comparison period, leaving the word \"significantly\" open to interpretation."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the freelance projects bullet, describe what you contributed to an email campaign and the type of business involved, if disclosable.",
+        "why": "That example would give a reviewer a clearer picture of your current consulting work.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Projects included website copy, email campaigns, and paid social setup",
+          "section": "Work Experience"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Work Experience"
+      },
+      {
+        "fix": "In the Velocity ABM bullet, add the activities used to reach enterprise accounts and any verified result.",
+        "why": "The launch is clear, but the description doesn't yet show what the program consisted of.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Launched ABM program targeting enterprise accounts",
+          "section": "Work Experience"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Work Experience"
+      },
+      {
+        "fix": "In the Bridgepoint webinar bullet, add how you ran the program and the pipeline amount if you can verify it.",
+        "why": "Those details would explain the program's contribution without treating pipeline as closed revenue.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Ran webinar program generating pipeline for the sales team",
+          "section": "Work Experience"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "Work Experience"
+      }
+    ],
+    "next_steps": [
+      "Revise the freelance entry with a specific example, keeping business details confidential if needed.",
+      "Expand the ABM and webinar bullets with activities and results you can substantiate.",
+      "Update the summary to bring your MQL result and team leadership forward, then check the skills list against roles you pursue."
+    ],
+    "subscores": {
+      "impact": 81,
+      "clarity": 83,
+      "story": 84,
+      "readability": 85
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "It identifies B2B SaaS, demand generation and a senior marketing target.",
+        "missing": "The summary relies on general claims rather than the leadership details and result in your experience.",
+        "fix": "Replace a generic claim with the 35% MQL increase or the team of 4 you managed."
+      },
+      "Work Experience": {
+        "grade": "B+",
+        "priority": "High",
+        "working": "Velocity includes a team size, annual budget, company ARR and a quantified marketing result.",
+        "missing": "The freelance projects and several programs lack details about what you did or what followed.",
+        "fix": "Add a specific consulting example and explain the ABM and webinar programs using facts you can verify."
+      },
+      "Skills": {
+        "grade": "B+",
+        "priority": "Low",
+        "working": "The list names marketing disciplines and platforms, including HubSpot, Marketo, Google Analytics and Looker.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Your degree, institution and graduation year are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "B2B SaaS demand generation",
+        "Marketing team and budget management",
+        "Marketing automation implementation and migration",
+        "Content, email and webinar programs"
+      ],
+      "underplayed": [
+        "Your contribution to current freelance projects",
+        "The activities behind the enterprise ABM launch",
+        "The development of webinar-generated pipeline"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Senior Marketing Manager",
+          "Marketing Manager",
+          "Freelance Marketing Consultant"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Senior marketing manager level, based on the Velocity title and responsibility for a team of 4 and an annual budget.",
+        "industry_signals": [
+          "B2B SaaS"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with your B2B SaaS demand-generation work, including the MQL result and leadership responsibilities. Use a specific freelance example to connect that background to your current work."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "For the freelance website copy, what did you contribute and what form did the copy take?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The answer could make the current service list more concrete."
+        },
+        {
+          "question": "How were enterprise accounts selected for the ABM program, and what activities did it include?",
+          "archetype": "SCALING",
+          "why": "The resume names the audience but doesn't explain the program's design."
+        },
+        {
+          "question": "How did you and Sales coordinate around MQLs, and what did you handle?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The funnel bullet names the partnership but not how the teams worked together."
+        },
+        {
+          "question": "What did your SEO-driven content strategy involve, and how was the traffic increase assessed?",
+          "archetype": "IMPROVEMENT",
+          "why": "The answer could explain the work and give context to the stated traffic growth."
+        },
+        {
+          "question": "During the HubSpot migration, what obstacles, if any, came up and how were they handled?",
+          "archetype": "TENSION POINT",
+          "why": "The platform change is named, but the migration work isn't described."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 83
+  },
+  "severity": {
+    "outcome": "added",
+    "reason": "added",
+    "added": [
+      "no_evidence_latest_role"
+    ],
+    "promoted": [],
+    "replaced": [],
+    "skipped": [],
+    "critical_count": 2,
+    "more_critical": false,
+    "validation_attempts": 1,
+    "answer": {
+      "critical_misses": [
+        {
+          "source": "new",
+          "kind": "no_evidence_latest_role",
+          "fix": "In the freelance marketing strategy and execution bullet, add the number of clients you supported or a measurable result, if you can verify it.",
+          "why": "Marketing hiring managers often look for the scope or results of current work. The resume describes your consulting services but doesn't show client volume or outcomes.",
+          "excerpt": "- Provided marketing strategy and execution support for small businesses and startups",
+          "section": "Professional Experience",
+          "effort": "quick"
+        }
+      ],
+      "more_critical": false
+    },
+    "latency_ms": 5445,
+    "call_latency_ms": 4894,
+    "cost_usd": 0.00359575,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 83,
+    "score_label": "Mostly clear",
+    "score_comment_short": "The Velocity role supplies clear scale and results, while recent consulting remains broad.",
+    "score_comment_long": "Velocity combines team and budget responsibility with a quantified demand-generation result. The freelance and program descriptions leave more of the work to the reader's imagination. A specific consulting example would make the current role more informative.",
+    "score_plain": "The resume gives reviewers a substantive basis for comparing you with senior marketing roles. More detail on individual programs would help them understand how you work.",
+    "first_impression": "Your Senior Marketing Manager role is easy to place: B2B SaaS, demand generation, a team of 4 and a $1.8M annual budget. The current freelance entry is broader, so it reveals less about the work you do now.",
+    "biggest_gap_example": "\"Launched ABM program targeting enterprise accounts\" doesn't describe the program's activities or what happened after launch, making its contribution difficult to assess.",
+    "first_impression_takeaway": "Explain the ABM launch",
+    "summary": "The 35% year-over-year increase in MQL volume, alongside a reduction in cost per lead, gives your demand-generation work a useful result to keep prominent. Your career moves from campaign support to managing marketers, a budget and the funnel through MQL. That history fits a senior marketing manager level, with both programs and marketing operations represented. The enterprise ABM launch would benefit from more detail about the work involved, particularly for roles centered on account-based marketing.",
+    "strengths": [
+      "The $40M ARR company context gives your Velocity demand-generation role a useful business reference point.",
+      "The HubSpot implementation and Marketo migration show work beyond campaign execution.",
+      "Bridgepoint's content, email and webinar programs show the range of marketing work you managed before Velocity."
+    ],
+    "gaps": [
+      "The freelance entry lists services but doesn't explain your contribution to a particular piece of work, leaving your current responsibilities broad.",
+      "The webinar bullet names pipeline generation but not the program's approach or pipeline amount, making its contribution difficult to gauge.",
+      "The blog traffic increase has no magnitude or comparison period, leaving the word \"significantly\" open to interpretation."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the freelance projects bullet, describe what you contributed to an email campaign and the type of business involved, if disclosable.",
+        "why": "That example would give a reviewer a clearer picture of your current consulting work.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Projects included website copy, email campaigns, and paid social setup",
+          "section": "Work Experience"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Work Experience",
+        "critical": true
+      },
+      {
+        "fix": "In the freelance marketing strategy and execution bullet, add the number of clients you supported or a measurable result, if you can verify it.",
+        "why": "Marketing hiring managers often look for the scope or results of current work. The resume describes your consulting services but doesn't show client volume or outcomes.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Provided marketing strategy and execution support for small businesses and startups",
+          "section": "Professional Experience"
+        },
+        "impact_level": "high",
+        "effort": "quick",
+        "section_ref": "Professional Experience",
+        "critical": true
+      },
+      {
+        "fix": "In the Velocity ABM bullet, add the activities used to reach enterprise accounts and any verified result.",
+        "why": "The launch is clear, but the description doesn't yet show what the program consisted of.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Launched ABM program targeting enterprise accounts",
+          "section": "Work Experience"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Work Experience",
+        "critical": false
+      }
+    ],
+    "more_critical": false,
+    "next_steps": [
+      "Revise the freelance entry with a specific example, keeping business details confidential if needed.",
+      "Expand the ABM and webinar bullets with activities and results you can substantiate.",
+      "Update the summary to bring your MQL result and team leadership forward, then check the skills list against roles you pursue."
+    ],
+    "subscores": {
+      "impact": 81,
+      "clarity": 83,
+      "story": 84,
+      "readability": 85
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "It identifies B2B SaaS, demand generation and a senior marketing target.",
+        "missing": "The summary relies on general claims rather than the leadership details and result in your experience.",
+        "fix": "Replace a generic claim with the 35% MQL increase or the team of 4 you managed."
+      },
+      "Work Experience": {
+        "grade": "B+",
+        "priority": "High",
+        "working": "Velocity includes a team size, annual budget, company ARR and a quantified marketing result.",
+        "missing": "The freelance projects and several programs lack details about what you did or what followed.",
+        "fix": "Add a specific consulting example and explain the ABM and webinar programs using facts you can verify."
+      },
+      "Skills": {
+        "grade": "B+",
+        "priority": "Low",
+        "working": "The list names marketing disciplines and platforms, including HubSpot, Marketo, Google Analytics and Looker.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Your degree, institution and graduation year are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 83,
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "B2B SaaS demand generation",
+        "Marketing team and budget management",
+        "Marketing automation implementation and migration",
+        "Content, email and webinar programs"
+      ],
+      "underplayed": [
+        "Your contribution to current freelance projects",
+        "The activities behind the enterprise ABM launch",
+        "The development of webinar-generated pipeline"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Senior Marketing Manager",
+          "Marketing Manager",
+          "Freelance Marketing Consultant"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Senior marketing manager level, based on the Velocity title and responsibility for a team of 4 and an annual budget.",
+        "industry_signals": [
+          "B2B SaaS"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with your B2B SaaS demand-generation work, including the MQL result and leadership responsibilities. Use a specific freelance example to connect that background to your current work."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "For the freelance website copy, what did you contribute and what form did the copy take?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The answer could make the current service list more concrete."
+        },
+        {
+          "question": "How were enterprise accounts selected for the ABM program, and what activities did it include?",
+          "archetype": "SCALING",
+          "why": "The resume names the audience but doesn't explain the program's design."
+        },
+        {
+          "question": "How did you and Sales coordinate around MQLs, and what did you handle?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The funnel bullet names the partnership but not how the teams worked together."
+        },
+        {
+          "question": "What did your SEO-driven content strategy involve, and how was the traffic increase assessed?",
+          "archetype": "IMPROVEMENT",
+          "why": "The answer could explain the work and give context to the stated traffic growth."
+        },
+        {
+          "question": "During the HubSpot migration, what obstacles, if any, came up and how were they handled?",
+          "archetype": "TENSION POINT",
+          "why": "The platform change is named, but the migration work isn't described."
+        }
+      ]
+    }
+  },
+  "presentation": {
+    "score": 83,
+    "band": "Mostly clear",
+    "score_label_from_model": "Strong",
+    "model_score_before_calibration": 83,
+    "verdict": "Your Senior Marketing Manager role is easy to place: B2B SaaS, demand generation, a team of 4 and a $1.8M annual budget. The current freelance entry is broader, so it reveals less about the work you do now.",
+    "one_line_read": "The Velocity role supplies clear scale and results, while recent consulting remains broad.",
+    "takeaway": "Explain the ABM launch",
+    "biggest_gap_example": "\"Launched ABM program targeting enterprise accounts\" doesn't describe the program's activities or what happened after launch, making its contribution difficult to assess.",
+    "critical_count": {
+      "count": 2,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "Two Critical Misses. Start with this one.",
+      "lead": "Either one could cost you the interview on its own."
+    },
+    "fixes": [
+      {
+        "fix": "In the freelance projects bullet, describe what you contributed to an email campaign and the type of business involved, if disclosable.",
+        "why": "That example would give a reviewer a clearer picture of your current consulting work.",
+        "excerpt": "- Projects included website copy, email campaigns, and paid social setup",
+        "section": "Work Experience",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the freelance marketing strategy and execution bullet, add the number of clients you supported or a measurable result, if you can verify it.",
+        "why": "Marketing hiring managers often look for the scope or results of current work. The resume describes your consulting services but doesn't show client volume or outcomes.",
+        "excerpt": "- Provided marketing strategy and execution support for small businesses and startups",
+        "section": "Professional Experience",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the Velocity ABM bullet, add the activities used to reach enterprise accounts and any verified result.",
+        "why": "The launch is clear, but the description doesn't yet show what the program consisted of.",
+        "excerpt": "- Launched ABM program targeting enterprise accounts",
+        "section": "Work Experience",
+        "critical": false,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "The $40M ARR company context gives your Velocity demand-generation role a useful business reference point.",
+    "strengths": [
+      "The $40M ARR company context gives your Velocity demand-generation role a useful business reference point.",
+      "The HubSpot implementation and Marketo migration show work beyond campaign execution.",
+      "Bridgepoint's content, email and webinar programs show the range of marketing work you managed before Velocity."
+    ],
+    "gaps": [
+      "The freelance entry lists services but doesn't explain your contribution to a particular piece of work, leaving your current responsibilities broad.",
+      "The webinar bullet names pipeline generation but not the program's approach or pipeline amount, making its contribution difficult to gauge.",
+      "The blog traffic increase has no magnitude or comparison period, leaving the word \"significantly\" open to interpretation."
+    ],
+    "next_steps": [
+      "Revise the freelance entry with a specific example, keeping business details confidential if needed.",
+      "Expand the ABM and webinar bullets with activities and results you can substantiate.",
+      "Update the summary to bring your MQL result and team leadership forward, then check the skills list against roles you pursue."
+    ],
+    "seniority_read": "Senior marketing manager level, based on the Velocity title and responsibility for a team of 4 and an annual budget.",
+    "best_fit_roles": [
+      "Senior Marketing Manager",
+      "Marketing Manager",
+      "Freelance Marketing Consultant"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "Lead with your B2B SaaS demand-generation work, including the MQL result and leadership responsibilities. Use a specific freelance example to connect that background to your current work.",
+    "severity_added": [
+      "no_evidence_latest_role"
+    ],
+    "severity_promoted": [],
+    "severity_outcome": "added (added)",
+    "severity_answer": {
+      "critical_misses": [
+        {
+          "source": "new",
+          "kind": "no_evidence_latest_role",
+          "fix": "In the freelance marketing strategy and execution bullet, add the number of clients you supported or a measurable result, if you can verify it.",
+          "why": "Marketing hiring managers often look for the scope or results of current work. The resume describes your consulting services but doesn't show client volume or outcomes.",
+          "excerpt": "- Provided marketing strategy and execution support for small businesses and startups",
+          "section": "Professional Experience",
+          "effort": "quick"
+        }
+      ],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[0]",
+          "fix": 0
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[1]",
+          "fix": 2
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "biggest_gap_example",
+          "of": "top_fixes[2]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Work Experience.fix",
+          "of": "top_fixes[2]"
+        }
+      ],
+      "fix_questions": [
+        [
+          "For the freelance website copy, what did you contribute and what form did the copy take?"
+        ],
+        [],
+        [
+          "How were enterprise accounts selected for the ABM program, and what activities did it include?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.03554725,
+  "latency_ms": 66959
+}

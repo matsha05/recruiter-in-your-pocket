@@ -1,0 +1,904 @@
+{
+  "case_id": "b33_nonprofit_program_manager",
+  "batch": "breadth",
+  "run": 2,
+  "note": null,
+  "resume_file": "../../../tests/resumes/blindpick/synth_bp_nonprofit_program_manager_1.txt",
+  "resume_sha256": "eed001bb0dd40fc28e9488669ec9cea7f7a73eecaca46214d5f584dae2b6d5c9",
+  "resume_chars": 1025,
+  "resume_words": 146,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T20:12:05.993Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7524,
+        "completion_tokens": 2098,
+        "total_tokens": 9622,
+        "cached_prompt_tokens": 7521,
+        "cache_write_prompt_tokens": 0,
+        "reasoning_tokens": 260
+      },
+      "cost_usd": 0.01086905,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 24680
+    },
+    {
+      "kind": "repair",
+      "usage": {
+        "prompt_tokens": 10234,
+        "completion_tokens": 2755,
+        "total_tokens": 12989,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 3345,
+        "reasoning_tokens": 969
+      },
+      "cost_usd": 0.01830355,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 31747
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.00126575,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1535
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 67,
+    "score_label": "Needs Clarity",
+    "score_comment_short": "Your staff supervision is specific, but most program bullets describe duties without results.",
+    "score_comment_long": "The current role names the people you supervise and the students your program serves. Most other bullets leave the work or its results broad. Adding verified details to the summer jobs and partner bullets would make the fastest difference.",
+    "score_plain": "A reviewer can identify your field and management responsibilities, but may have trouble comparing your program work with other applicants. More detail about placements and partnerships would make those responsibilities easier to assess.",
+    "first_impression": "Your youth workforce work is easy to place, and supervising 4 program coordinators and 20 seasonal staff makes the management responsibility concrete. The program bullets say less about what happened for students or employers.",
+    "biggest_gap_example": "\"Organized an annual career fair\" does not explain what you arranged or who participated, so the size and nature of the event remain unclear.",
+    "first_impression_takeaway": "Explain the summer placements",
+    "summary": "Your work connects high school students with employers through a summer jobs program. The move from Program Coordinator to Program Manager shows a progression into staff supervision, and the named staff groups make that responsibility worth keeping near the top. The resume fits a program manager-level read, with grant reporting and partner recruitment alongside program delivery. It doesn't yet show what happened to participants after placement, which makes the program's results difficult to assess.",
+    "strengths": [
+      "Naming city and foundation funders gives the grant reporting work a clear audience.",
+      "Salesforce Nonprofit Cloud appears in Skills, while the experience section shows that you use Salesforce to track participant outcomes.",
+      "The earlier workshop and career fair work connects your coordinator role to the current youth workforce program."
+    ],
+    "gaps": [
+      "The employer onboarding bullet doesn't say what you asked partners to provide or how you prepared them to host students.",
+      "The grant reporting bullets don't identify the information you reported or how funders used it.",
+      "Program design is listed as a skill, but the experience section doesn't show which part of a program you designed."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the summer jobs bullet, add what happened to students after placement, if you can verify it.",
+        "why": "That would show more than the program's purpose and help a reader understand what it achieved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Manage a summer jobs program placing high school students with local employers",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the employer partner bullet, explain what onboarding involved and what employers committed to providing.",
+        "why": "The addition would make your part in preparing placements easier to distinguish from a general recruiting duty.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Recruit and onboard employer partners",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the grant reporting bullet, name the participant or program information you included in reports to funders.",
+        "why": "A reader could then see what the reporting work covered, beyond who received it.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Write grant reports for city and foundation funders",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the current program bullets with verified placement, partner onboarding, and reporting details.",
+      "Review the coordinator bullets and add your specific contribution to the workshops or career fair where you can describe it.",
+      "Check that the program design skill is illustrated in Experience, or adjust the skills wording to match your documented work."
+    ],
+    "subscores": {
+      "impact": 60,
+      "clarity": 70,
+      "story": 70,
+      "readability": 72
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The opening identifies your nonprofit field, program focus, and school and employer partnerships.",
+        "missing": "It doesn't distinguish the management responsibility from the broader program work.",
+        "fix": "Consider mentioning staff supervision in the opening if you want to emphasize management roles."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The roles show progression at Harbor Pathways and name the staff groups you supervise.",
+        "missing": "The bullets rarely explain what the workshops, placements, or partnerships produced.",
+        "fix": "Add verified details to the most relevant program bullets, starting with summer placements."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "Salesforce Nonprofit Cloud, grant reporting, and partner management fit the work described.",
+        "missing": "Program design is not illustrated in the experience bullets.",
+        "fix": "Connect program design to a specific piece of work if you can describe it accurately."
+      },
+      "Education": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The degree, school, and graduation year are straightforward to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Youth workforce program management",
+        "Staff supervision",
+        "Employer partner recruitment and onboarding",
+        "Grant reporting for city and foundation funders"
+      ],
+      "underplayed": [
+        "Participant results after summer placements",
+        "Program design work",
+        "The content of funder reports"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Program Manager, Youth Workforce",
+          "Program Coordinator"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Program manager level, with direct supervision of coordinators and seasonal staff.",
+        "industry_signals": [
+          "Nonprofit youth workforce programs",
+          "Education"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Lead with youth workforce program management and the staff you supervise. Use the experience bullets to show how you prepare employer partners and what is known about student placements."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What happened to students after their summer job placements?",
+          "archetype": "HIGH STAKES",
+          "why": "A verified participant result would show what the placement program accomplished."
+        },
+        {
+          "question": "What did employers need to do before they could host students?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The answer could make your onboarding work more concrete."
+        },
+        {
+          "question": "How did you divide responsibilities between coordinators and seasonal staff?",
+          "archetype": "SCALING",
+          "why": "It would explain how you supervised the two staff groups."
+        },
+        {
+          "question": "What information did you include in reports to city and foundation funders?",
+          "archetype": "DOMAIN LIFT",
+          "why": "That detail would show the content of your funder reporting."
+        },
+        {
+          "question": "What did you arrange for the annual career fair, and who attended?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "It would give the coordinator role a more concrete event example."
+        }
+      ]
+    }
+  },
+  "initial_validation_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the evidence grounding contract at ideas.questions[2].why unsupported narrative facts: two staff groups."
+  },
+  "model_output_repaired": {
+    "contract_version": "v2",
+    "score": 67,
+    "score_label": "Needs Clarity",
+    "score_comment_short": "Staff supervision is specific, while program duties rarely show what they accomplished.",
+    "score_comment_long": "The current role names the people you supervise and the students the program serves. Most bullets describe responsibilities without showing what happened through the work. Details about placements and employer onboarding would help a reader understand the program.",
+    "score_plain": "A reviewer can identify your field and management responsibilities, but may have trouble comparing your program work with other applicants. More detail about the work and its results would make that comparison easier.",
+    "first_impression": "Your youth workforce focus is clear, and supervising 4 program coordinators and 20 seasonal staff makes your management responsibility concrete. The rest of the current role is described more briefly.",
+    "biggest_gap_example": "\"Organized an annual career fair\" does not explain what you arranged or who attended, so the nature of the event remains unclear.",
+    "first_impression_takeaway": "Explain the summer placements",
+    "summary": "The summer jobs program places high school students with local employers. Your progression from Program Coordinator to Program Manager supports a program manager-level read, with funder reporting and partner recruitment alongside program delivery. You also track participant outcomes in Salesforce, though the resume doesn't say what those outcomes were. That leaves a reader without a picture of what happened for students.",
+    "strengths": [
+      "Naming city and foundation funders gives the grant reporting work a clear audience.",
+      "Salesforce Nonprofit Cloud appears in Skills, and the experience section shows how you use Salesforce to track participant outcomes.",
+      "The earlier job readiness workshops connect your coordinator work to the current youth workforce role."
+    ],
+    "gaps": [
+      "The career fair bullet doesn't identify your preparations or attendees, making the event difficult to picture.",
+      "Program design is listed as a skill, but the experience section doesn't show which part of a program you designed.",
+      "The supervision bullet names staff, but doesn't explain how you organized their work or what they were responsible for."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the summer jobs bullet, add what happened to students after placement, if you can verify it.",
+        "why": "That would give a reader a view of what the program accomplished for participants.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Manage a summer jobs program placing high school students with local employers",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the employer partner bullet, describe the steps you took to onboard partners and what they provided.",
+        "why": "The added detail would distinguish your onboarding work from a general partner recruitment duty.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Recruit and onboard employer partners",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the career fair bullet, specify what you arranged and who attended.",
+        "why": "That would show what organizing the event involved in your coordinator role.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Organized an annual career fair",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the placement, employer onboarding, and career fair bullets with details you can verify.",
+      "Review the grant reporting bullets and identify the information you included for funders.",
+      "Connect program design to a specific experience bullet if you can accurately describe your contribution."
+    ],
+    "subscores": {
+      "impact": 60,
+      "clarity": 70,
+      "story": 70,
+      "readability": 72
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The opening identifies your nonprofit field, program focus, and school and employer partnerships.",
+        "missing": "It doesn't distinguish your management responsibilities from the broader program work.",
+        "fix": "Consider mentioning staff supervision in the opening when applying for management roles."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The roles show progression at Harbor Pathways and name the staff you supervise.",
+        "missing": "The bullets rarely explain what the placements, partnerships, or events produced.",
+        "fix": "Add verified details to the most relevant program bullets, starting with summer placements."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "Salesforce Nonprofit Cloud, grant reporting, and partner management fit the work described.",
+        "missing": "Program design is not illustrated in the experience bullets.",
+        "fix": "Connect program design to a specific piece of work if you can describe it accurately."
+      },
+      "Education": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The degree, school, and graduation year are straightforward to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Youth workforce program management",
+        "Staff supervision",
+        "Employer partner recruitment and onboarding",
+        "Grant reporting for city and foundation funders"
+      ],
+      "underplayed": [
+        "Participant results after summer placements",
+        "Program design work",
+        "The content of funder reports"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Program Manager, Youth Workforce",
+          "Program Coordinator"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Program manager level, with direct supervision of coordinators and seasonal staff.",
+        "industry_signals": [
+          "Nonprofit youth workforce programs",
+          "Education"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Lead with youth workforce program management and the staff you supervise. Use the experience bullets to show how you onboard employer partners and what is known about student placements."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What happened to students after their summer job placements?",
+          "archetype": "HIGH STAKES",
+          "why": "A verified participant result would show what the placement program accomplished."
+        },
+        {
+          "question": "What steps did you take to onboard employer partners?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The answer could make your partner work more concrete."
+        },
+        {
+          "question": "What responsibilities did the seasonal staff have under your supervision?",
+          "archetype": "SCALING",
+          "why": "Their responsibilities would help explain the work you supervised."
+        },
+        {
+          "question": "What information did you include in reports to city and foundation funders?",
+          "archetype": "DOMAIN LIFT",
+          "why": "That detail would show the content of your funder reporting."
+        },
+        {
+          "question": "What did you arrange for the annual career fair, and who attended?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "It would give the coordinator role a more concrete event example."
+        }
+      ]
+    }
+  },
+  "repaired": true,
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 67,
+    "score_label": "Needs more context",
+    "score_comment_short": "Staff supervision is specific, while program duties rarely show what they accomplished.",
+    "score_comment_long": "The current role names the people you supervise and the students the program serves. Most bullets describe responsibilities without showing what happened through the work. Details about placements and employer onboarding would help a reader understand the program.",
+    "score_plain": "A reviewer can identify your field and management responsibilities, but may have trouble comparing your program work with other applicants. More detail about the work and its results would make that comparison easier.",
+    "first_impression": "Your youth workforce focus is clear, and supervising 4 program coordinators and 20 seasonal staff makes your management responsibility concrete. The rest of the current role is described more briefly.",
+    "biggest_gap_example": "\"Organized an annual career fair\" does not explain what you arranged or who attended, so the nature of the event remains unclear.",
+    "first_impression_takeaway": "Explain the summer placements",
+    "summary": "The summer jobs program places high school students with local employers. Your progression from Program Coordinator to Program Manager supports a program manager-level read, with funder reporting and partner recruitment alongside program delivery. You also track participant outcomes in Salesforce, though the resume doesn't say what those outcomes were. That leaves a reader without a picture of what happened for students.",
+    "strengths": [
+      "Naming city and foundation funders gives the grant reporting work a clear audience.",
+      "Salesforce Nonprofit Cloud appears in Skills, and the experience section shows how you use Salesforce to track participant outcomes.",
+      "The earlier job readiness workshops connect your coordinator work to the current youth workforce role."
+    ],
+    "gaps": [
+      "The career fair bullet doesn't identify your preparations or attendees, making the event difficult to picture.",
+      "Program design is listed as a skill, but the experience section doesn't show which part of a program you designed.",
+      "The supervision bullet names staff, but doesn't explain how you organized their work or what they were responsible for."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the summer jobs bullet, add what happened to students after placement, if you can verify it.",
+        "why": "That would give a reader a view of what the program accomplished for participants.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Manage a summer jobs program placing high school students with local employers",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the employer partner bullet, describe the steps you took to onboard partners and what they provided.",
+        "why": "The added detail would distinguish your onboarding work from a general partner recruitment duty.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Recruit and onboard employer partners",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the career fair bullet, specify what you arranged and who attended.",
+        "why": "That would show what organizing the event involved in your coordinator role.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Organized an annual career fair",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the placement, employer onboarding, and career fair bullets with details you can verify.",
+      "Review the grant reporting bullets and identify the information you included for funders.",
+      "Connect program design to a specific experience bullet if you can accurately describe your contribution."
+    ],
+    "subscores": {
+      "impact": 60,
+      "clarity": 70,
+      "story": 70,
+      "readability": 72
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The roles show progression at Harbor Pathways and name the staff you supervise.",
+        "missing": "The bullets rarely explain what the placements, partnerships, or events produced.",
+        "fix": "Add verified details to the most relevant program bullets, starting with summer placements."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "Salesforce Nonprofit Cloud, grant reporting, and partner management fit the work described.",
+        "missing": "Program design is not illustrated in the experience bullets.",
+        "fix": "Connect program design to a specific piece of work if you can describe it accurately."
+      },
+      "Education": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The degree, school, and graduation year are straightforward to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Youth workforce program management",
+        "Staff supervision",
+        "Employer partner recruitment and onboarding",
+        "Grant reporting for city and foundation funders"
+      ],
+      "underplayed": [
+        "Participant results after summer placements",
+        "Program design work",
+        "The content of funder reports"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Program Manager, Youth Workforce",
+          "Program Coordinator"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Program manager level, with direct supervision of coordinators and seasonal staff.",
+        "industry_signals": [
+          "Education"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with youth workforce program management and the staff you supervise. Use the experience bullets to show how you onboard employer partners and what is known about student placements."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What happened to students after their summer job placements?",
+          "archetype": "HIGH STAKES",
+          "why": "A verified participant result would show what the placement program accomplished."
+        },
+        {
+          "question": "What steps did you take to onboard employer partners?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The answer could make your partner work more concrete."
+        },
+        {
+          "question": "What responsibilities did the seasonal staff have under your supervision?",
+          "archetype": "SCALING",
+          "why": "Their responsibilities would help explain the work you supervised."
+        },
+        {
+          "question": "What information did you include in reports to city and foundation funders?",
+          "archetype": "DOMAIN LIFT",
+          "why": "That detail would show the content of your funder reporting."
+        },
+        {
+          "question": "What did you arrange for the annual career fair, and who attended?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "It would give the coordinator role a more concrete event example."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 67
+  },
+  "severity": {
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "promoted": [],
+    "replaced": [],
+    "skipped": [],
+    "critical_count": 1,
+    "more_critical": false,
+    "validation_attempts": 0,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "latency_ms": 1536,
+    "call_latency_ms": 1535,
+    "cost_usd": 0.00126575,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 67,
+    "score_label": "Needs more context",
+    "score_comment_short": "Staff supervision is specific, while program duties rarely show what they accomplished.",
+    "score_comment_long": "The current role names the people you supervise and the students the program serves. Most bullets describe responsibilities without showing what happened through the work. Details about placements and employer onboarding would help a reader understand the program.",
+    "score_plain": "A reviewer can identify your field and management responsibilities, but may have trouble comparing your program work with other applicants. More detail about the work and its results would make that comparison easier.",
+    "first_impression": "Your youth workforce focus is clear, and supervising 4 program coordinators and 20 seasonal staff makes your management responsibility concrete. The rest of the current role is described more briefly.",
+    "biggest_gap_example": "\"Organized an annual career fair\" does not explain what you arranged or who attended, so the nature of the event remains unclear.",
+    "first_impression_takeaway": "Explain the summer placements",
+    "summary": "The summer jobs program places high school students with local employers. Your progression from Program Coordinator to Program Manager supports a program manager-level read, with funder reporting and partner recruitment alongside program delivery. You also track participant outcomes in Salesforce, though the resume doesn't say what those outcomes were. That leaves a reader without a picture of what happened for students.",
+    "strengths": [
+      "Naming city and foundation funders gives the grant reporting work a clear audience.",
+      "Salesforce Nonprofit Cloud appears in Skills, and the experience section shows how you use Salesforce to track participant outcomes.",
+      "The earlier job readiness workshops connect your coordinator work to the current youth workforce role."
+    ],
+    "gaps": [
+      "The career fair bullet doesn't identify your preparations or attendees, making the event difficult to picture.",
+      "Program design is listed as a skill, but the experience section doesn't show which part of a program you designed.",
+      "The supervision bullet names staff, but doesn't explain how you organized their work or what they were responsible for."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the summer jobs bullet, add what happened to students after placement, if you can verify it.",
+        "why": "That would give a reader a view of what the program accomplished for participants.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Manage a summer jobs program placing high school students with local employers",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": true
+      },
+      {
+        "fix": "In the employer partner bullet, describe the steps you took to onboard partners and what they provided.",
+        "why": "The added detail would distinguish your onboarding work from a general partner recruitment duty.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Recruit and onboard employer partners",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      },
+      {
+        "fix": "In the career fair bullet, specify what you arranged and who attended.",
+        "why": "That would show what organizing the event involved in your coordinator role.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Organized an annual career fair",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      }
+    ],
+    "next_steps": [
+      "Revise the placement, employer onboarding, and career fair bullets with details you can verify.",
+      "Review the grant reporting bullets and identify the information you included for funders.",
+      "Connect program design to a specific experience bullet if you can accurately describe your contribution."
+    ],
+    "subscores": {
+      "impact": 60,
+      "clarity": 70,
+      "story": 70,
+      "readability": 72
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The roles show progression at Harbor Pathways and name the staff you supervise.",
+        "missing": "The bullets rarely explain what the placements, partnerships, or events produced.",
+        "fix": "Add verified details to the most relevant program bullets, starting with summer placements."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "Salesforce Nonprofit Cloud, grant reporting, and partner management fit the work described.",
+        "missing": "Program design is not illustrated in the experience bullets.",
+        "fix": "Connect program design to a specific piece of work if you can describe it accurately."
+      },
+      "Education": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The degree, school, and graduation year are straightforward to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Youth workforce program management",
+        "Staff supervision",
+        "Employer partner recruitment and onboarding",
+        "Grant reporting for city and foundation funders"
+      ],
+      "underplayed": [
+        "Participant results after summer placements",
+        "Program design work",
+        "The content of funder reports"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Program Manager, Youth Workforce",
+          "Program Coordinator"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Program manager level, with direct supervision of coordinators and seasonal staff.",
+        "industry_signals": [
+          "Education"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with youth workforce program management and the staff you supervise. Use the experience bullets to show how you onboard employer partners and what is known about student placements."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What happened to students after their summer job placements?",
+          "archetype": "HIGH STAKES",
+          "why": "A verified participant result would show what the placement program accomplished."
+        },
+        {
+          "question": "What steps did you take to onboard employer partners?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "The answer could make your partner work more concrete."
+        },
+        {
+          "question": "What responsibilities did the seasonal staff have under your supervision?",
+          "archetype": "SCALING",
+          "why": "Their responsibilities would help explain the work you supervised."
+        },
+        {
+          "question": "What information did you include in reports to city and foundation funders?",
+          "archetype": "DOMAIN LIFT",
+          "why": "That detail would show the content of your funder reporting."
+        },
+        {
+          "question": "What did you arrange for the annual career fair, and who attended?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "It would give the coordinator role a more concrete event example."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 67,
+    "more_critical": false
+  },
+  "presentation": {
+    "score": 67,
+    "band": "Needs more context",
+    "score_label_from_model": "Needs Clarity",
+    "model_score_before_calibration": 67,
+    "verdict": "Your youth workforce focus is clear, and supervising 4 program coordinators and 20 seasonal staff makes your management responsibility concrete. The rest of the current role is described more briefly.",
+    "one_line_read": "Staff supervision is specific, while program duties rarely show what they accomplished.",
+    "takeaway": "Explain the summer placements",
+    "biggest_gap_example": "\"Organized an annual career fair\" does not explain what you arranged or who attended, so the nature of the event remains unclear.",
+    "critical_count": {
+      "count": 1,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "One Critical Miss. Fix it first.",
+      "lead": "It's the one most likely to cost you the interview."
+    },
+    "fixes": [
+      {
+        "fix": "In the summer jobs bullet, add what happened to students after placement, if you can verify it.",
+        "why": "That would give a reader a view of what the program accomplished for participants.",
+        "excerpt": "- Manage a summer jobs program placing high school students with local employers",
+        "section": "EXPERIENCE",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the employer partner bullet, describe the steps you took to onboard partners and what they provided.",
+        "why": "The added detail would distinguish your onboarding work from a general partner recruitment duty.",
+        "excerpt": "- Recruit and onboard employer partners",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the career fair bullet, specify what you arranged and who attended.",
+        "why": "That would show what organizing the event involved in your coordinator role.",
+        "excerpt": "- Organized an annual career fair",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "Naming city and foundation funders gives the grant reporting work a clear audience.",
+    "strengths": [
+      "Naming city and foundation funders gives the grant reporting work a clear audience.",
+      "Salesforce Nonprofit Cloud appears in Skills, and the experience section shows how you use Salesforce to track participant outcomes.",
+      "The earlier job readiness workshops connect your coordinator work to the current youth workforce role."
+    ],
+    "gaps": [
+      "The career fair bullet doesn't identify your preparations or attendees, making the event difficult to picture.",
+      "Program design is listed as a skill, but the experience section doesn't show which part of a program you designed.",
+      "The supervision bullet names staff, but doesn't explain how you organized their work or what they were responsible for."
+    ],
+    "next_steps": [
+      "Revise the placement, employer onboarding, and career fair bullets with details you can verify.",
+      "Review the grant reporting bullets and identify the information you included for funders.",
+      "Connect program design to a specific experience bullet if you can accurately describe your contribution."
+    ],
+    "seniority_read": "Program manager level, with direct supervision of coordinators and seasonal staff.",
+    "best_fit_roles": [
+      "Program Manager, Youth Workforce",
+      "Program Coordinator"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "Lead with youth workforce program management and the staff you supervise. Use the experience bullets to show how you onboard employer partners and what is known about student placements.",
+    "severity_added": [],
+    "severity_promoted": [],
+    "severity_outcome": "none (none)",
+    "severity_answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[0]",
+          "fix": 0
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[1]",
+          "fix": 1
+        },
+        {
+          "kind": "question_dropped",
+          "path": "ideas.questions[3]",
+          "reason": "duplicates_keep"
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[4]",
+          "fix": 2
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "biggest_gap_example",
+          "of": "top_fixes[2]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[0]",
+          "of": "top_fixes[2]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[2]",
+          "of": "first_impression"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Work Experience.fix",
+          "of": "top_fixes[0]"
+        }
+      ],
+      "fix_questions": [
+        [
+          "What happened to students after their summer job placements?"
+        ],
+        [
+          "What steps did you take to onboard employer partners?"
+        ],
+        [
+          "What did you arrange for the annual career fair, and who attended?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.03043835,
+  "latency_ms": 58569
+}

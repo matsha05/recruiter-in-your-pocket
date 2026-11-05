@@ -1,0 +1,43 @@
+# b22_office_manager_paragraphs, run 2
+Resume: resumes/b_office_manager_paragraphs.txt (219 words, sha256 ce33ce5aa6c5)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0123; 26.2s
+Case note: Paragraph format, no bullets.
+
+## Band: Mostly clear (score 84; model wrote 84, label "Strong")
+## Verdict
+You manage a law office's calendar, billing, vendors, and reception staff. The move from paper files to practice management software is worth keeping because it shows a change in how new matters were handled.
+One-line read: Recent roles show specific office responsibilities and scale, though some decisions need explanation.
+Takeaway: Explain your vendor decisions
+Biggest gap example: "handle vendor contracts for the copier, phones, and cleaning" names the services but not what decisions you made about those contracts.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the software transition detail, describe the steps you personally handled when introducing the system for new matters.
+   why: A reviewer can see the switch from paper files but not what onboarding involved.
+   excerpt (Experience): "I onboarded the firm's new practice management software in 2022, which replaced paper files for all new matters."
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+Roughly 90 client invoices a month gives a useful sense of the billing workload.
+Other strengths: ["Hiring and supervising two receptionists makes your staff responsibility clear.","The dentistry role names about 40 patients a day and training for three new front desk staff, giving context to both service and training work."]
+
+## Gaps
+- The software transition doesn't explain your part in introducing the system, so the implementation work is difficult to distinguish from routine use.
+- Vendor contract work doesn't say whether you selected providers, negotiated terms, or handled another part of the process.
+- The current role is packed into one paragraph, making court deadlines, reconciliation, and staff supervision harder to scan separately.
+
+## Next steps
+- Split each Experience paragraph into short bullets, keeping the role, employer, location, and dates together above them.
+- Add your verified software onboarding steps and contract responsibilities to the relevant Harrod and Blake bullets.
+- Revise the opening sentence to foreground the law office responsibilities most relevant to the roles you pursue.
+
+## Role fit
+Level: Your current title and supervision of two receptionists indicate office manager level.
+Best fit: ["Office Manager","Office Coordinator"]
+Positioning: For office manager applications, lead with the law office's billing, deadline calendar, and reception supervision. Keep the dentistry experience visible for roles involving patient-facing administration.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[1]","fix":0},{"kind":"question_dropped","path":"ideas.questions[3]","reason":"duplicates_keep"},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"ideas.questions[0]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"}]

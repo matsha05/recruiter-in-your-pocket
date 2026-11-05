@@ -1,0 +1,48 @@
+# b07_account_executive, run 1
+Resume: ../../../tests/resumes/blindpick/synth_bp_account_executive_1.txt (145 words, sha256 f964f76d12cd)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0128; 26.5s
+
+## Band: Mostly clear (score 84; model wrote 84, label "Strong")
+## Verdict
+Your move from SDR to mid-market account executive is easy to follow. The 2025 ARR and quota figures give the current role a clear commercial anchor.
+One-line read: Recent sales results and customer size are clear, with some deal details missing.
+Takeaway: Explain your technical deal work
+Biggest gap example: "Work with solutions engineers on demos and security reviews" leaves your own contribution unclear, so a reviewer cannot tell how you handled those deal stages.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the solutions engineer bullet, describe what you handled during demos or security reviews and where the engineer took over.
+   why: That distinction would show how you participate in technical stages of a sale.
+   excerpt (EXPERIENCE): "- Work with solutions engineers on demos and security reviews"
+2. [fix] In the referral program bullet, add how you recruited or worked with the payroll partners, if you can verify it.
+   why: The deal count is already present; the missing detail is how you built the channel.
+   excerpt (EXPERIENCE): "- Built a referral program with two payroll partners that sourced 9 deals"
+3. [fix] In the SDR ranking bullet, specify the group and performance measure used for the ranking.
+   why: A reader can then understand what the recognition compares.
+   excerpt (EXPERIENCE): "- Top SDR in two quarters"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The 108% quota figure puts your 2025 new ARR result in context.
+Other strengths: ["The 200 to 1,500 employee range defines the companies you sell to.","Naming two payroll partners and 9 sourced deals makes the referral program more concrete than a general partnership claim."]
+
+## Gaps
+- Your part in demos and security reviews is unspecified, leaving the technical sales handoff difficult to assess.
+- The referral bullet doesn't explain how you established or maintained the partner relationships, so the work behind the program is less visible.
+- The SDR ranking lacks its comparison basis, making it difficult to interpret what top performance meant.
+
+## Next steps
+- Revise the demo and security review bullet with a specific example of your contribution.
+- Add the partner-development detail and the basis for your SDR ranking where you can confirm them.
+- Read the summary and experience together, keeping the 2025 ARR, quota, and customer-size figures easy to find.
+
+## Role fit
+Level: Current account executive, following a sales development representative role.
+Best fit: ["Account Executive, Mid-Market"]
+Positioning: Lead with the mid-market account executive role and its 2025 sales figures. Use the partner program and technical review work to show how you approach opportunities, once you have added the relevant details.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[2]","line":"fix-1","criticalMiss":false},{"kind":"question_dropped","path":"ideas.questions[0]","reason":"duplicates_keep"},{"kind":"question_moved","path":"ideas.questions[1]","fix":1},{"kind":"question_moved","path":"ideas.questions[2]","fix":0},{"kind":"question_moved","path":"ideas.questions[3]","fix":2},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"gaps[2]","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"next_steps[0]","of":"top_fixes[0]"}]

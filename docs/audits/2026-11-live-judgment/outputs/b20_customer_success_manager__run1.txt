@@ -1,0 +1,49 @@
+# b20_customer_success_manager, run 1
+Resume: ../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt (180 words, sha256 fe00b2522044)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0132; 26.0s
+Case note: No posting.
+
+## Band: Mostly clear (score 81; model wrote 81, label "Strong")
+## Verdict
+You manage mid-market payroll customers and have moved from support into customer success at Brightline. The 94% customer satisfaction score is worth keeping because it shows a result from your earlier customer-facing work.
+One-line read: Account and team details make the work concrete, though renewal results remain unclear.
+Takeaway: Explain your renewal contribution
+Biggest gap example: "Partnered with Sales on renewal strategy for at-risk accounts" doesn't explain what you contributed to the strategy, so your role in those renewals is difficult to assess.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the at-risk renewal bullet, describe what you contributed to the strategy and any account result you can verify.
+   why: That would distinguish your work with Sales from a general statement of partnership.
+   excerpt (EXPERIENCE): "Partnered with Sales on renewal strategy for at-risk accounts"
+2. [fix] In the onboarding checklist bullet, name a key step it covers and how the CS team uses it.
+   why: The team-wide adoption is useful, and a concrete example would show what you built.
+   excerpt (EXPERIENCE): "Built an onboarding checklist now used by the whole CS team"
+3. [fix] In the payroll escalation bullet, describe your part in coordinating a failed payroll run with Support and Product.
+   why: A specific example would show how you handle a time-sensitive customer problem.
+   excerpt (EXPERIENCE): "Handle escalations with Support and Product when payroll runs fail"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The onboarding checklist is now used by the whole CS team, showing that your work became a shared resource.
+Other strengths: ["Payroll failure escalations involve Support and Product, making the cross-functional work visible.","Training six new support hires shows a contribution beyond resolving your own tickets."]
+
+## Gaps
+- The renewal bullet doesn't describe your specific contribution or what happened with the accounts, leaving the commercial work difficult to evaluate.
+- The checklist's contents and how the team uses it aren't described, so its practical value is hard to assess.
+- The skills list names Gainsight, Salesforce and Zendesk but doesn't connect them to particular work, leaving their use in your roles unclear.
+
+## Next steps
+- Revise the at-risk renewal bullet using a contribution and account result you can verify.
+- Add a concrete checklist step and your role in a payroll escalation to the relevant Brightline bullets.
+- Review the skills list against your experience and connect a named system to a task if that detail is accurate.
+
+## Role fit
+Level: The current title and account responsibilities indicate an individual-contributor Customer Success Manager.
+Best fit: ["Customer Success Manager"]
+Positioning: Lead with the mid-market payroll account book and the progression from support into customer success. Use the renewal and escalation bullets to show the specific contributions behind that progression.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[0]","line":"fix-1","criticalMiss":false},{"kind":"keep_dropped","path":"strengths[1]","line":"fix-2","criticalMiss":false},{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":1},{"kind":"question_moved","path":"ideas.questions[2]","fix":2},{"kind":"question_dropped","path":"ideas.questions[4]","reason":"duplicates_keep"},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"section_review.Summary.missing","of":"first_impression"},{"kind":"repeat_dropped","path":"next_steps[0]","of":"top_fixes[0]"}]

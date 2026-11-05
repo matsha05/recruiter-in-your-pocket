@@ -1,0 +1,918 @@
+{
+  "case_id": "b13_marketing_vp_elite",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Executive, strong (golden).",
+  "resume_file": "../../../tests/resumes/golden/synth_marketing_manager_vp_elite_1766960221358.txt",
+  "resume_sha256": "a5f6a1bba91362463218b3e6ea358e8bc5b470add84f7b5eee7d69f1078c2bf0",
+  "resume_chars": 5102,
+  "resume_words": 730,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T20:02:46.762Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 9253,
+        "completion_tokens": 2325,
+        "total_tokens": 11578,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 2364,
+        "reasoning_tokens": 379
+      },
+      "cost_usd": 0.0149273,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 27042
+    },
+    {
+      "kind": "repair",
+      "usage": {
+        "prompt_tokens": 12065,
+        "completion_tokens": 2809,
+        "total_tokens": 14874,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 5176,
+        "reasoning_tokens": 1316
+      },
+      "cost_usd": 0.0208623,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 36798
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.00349075,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1277
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 89,
+    "score_label": "Strong",
+    "score_comment_short": "Recent marketing results are specific, with a few leadership details to reconcile.",
+    "score_comment_long": "The Novara role connects marketing work to lead flow, acquisition cost, launches and revenue. A few claims would benefit from sharper definitions, and the Skills section needs a check against the experience descriptions. Resolving those details is the fastest improvement.",
+    "score_plain": "The resume gives a reviewer substantial detail about executive marketing work. A few precise edits would make the leadership and measurement claims easier to interpret.",
+    "first_impression": "The current Chief Marketing Officer role shows global team and budget responsibility alongside commercial results. The Skills section leaves a question about whether the full 45-person organization reported directly to you.",
+    "biggest_gap_example": "\"increasing launch success rate to 90%\" does not define a successful launch, making that result difficult to interpret.",
+    "first_impression_takeaway": "Define launch success",
+    "summary": "At Novara, your campaigns are linked to 70% year-over-year growth in qualified lead flow and a contribution to ARR growth. Keeping the distinction between marketing's contribution and the company revenue result makes that claim useful. Across the roles, you describe executive-level marketing leadership spanning demand generation, launches, brand and acquisition costs. The launch-process result would be more persuasive if a reader knew what changed and how launch success was defined.",
+    "strengths": [
+      "The Novara role names a 45-person global organization, a $25M annual budget and a SaaS platform serving 2M+ users across 40 countries, giving the work context.",
+      "The Viridian account-based marketing bullet separates $50M in annual pipeline contribution from the 15% lift in win rates among Fortune 500 clients.",
+      "The customer advocacy program connects retention and upsell revenue to a specific program over 18 months."
+    ],
+    "gaps": [
+      "The Skills section says up to 45 direct reports, while the Novara description names a 45-person organization without specifying its reporting structure.",
+      "The $25M+ P&L claim is not explained in the experience section, which describes marketing budgets but not the revenue and cost responsibilities behind that label.",
+      "The launch revamp gives several results but does not describe the process change, leaving readers to wonder what you decided to alter."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the Novara launch-process bullet, name the change you decided to make and define what counted as a successful launch.",
+        "why": "The timing, success rate and revenue figures will be easier to assess when the launch change and its success criteria are visible.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "increasing launch success rate to 90%",
+          "section": "Experience"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Experience"
+      },
+      {
+        "fix": "Check the direct-report count in Skills against the Novara organization description, then specify the reporting structure accurately in both places.",
+        "why": "A 45-person organization and up to 45 direct reports describe different management structures.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Cross-Functional Team Leadership (up to 45 direct reports)",
+          "section": "Skills"
+        },
+        "impact_level": "high",
+        "effort": "quick",
+        "section_ref": "Skills"
+      },
+      {
+        "fix": "In Skills, clarify what the $25M+ P&L responsibility covered, or describe it as budget management if that is the verified responsibility.",
+        "why": "The experience section names marketing budgets, but it does not explain whether you were accountable for revenue as well as costs.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Budget & P&L Management ($25M+)",
+          "section": "Skills"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "Skills"
+      }
+    ],
+    "next_steps": [
+      "Revise the Novara launch bullet with the process change and the definition used for launch success.",
+      "Reconcile the team-reporting and financial-responsibility descriptions across Experience and Skills.",
+      "Read the remaining result statements for terms a reader may interpret differently, and define the most consequential ones where space allows."
+    ],
+    "subscores": {
+      "impact": 91,
+      "clarity": 85,
+      "story": 90,
+      "readability": 87
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "Section not present.",
+        "fix": "Add only if it helps your story."
+      },
+      "Work Experience": {
+        "grade": "A",
+        "priority": "Medium",
+        "working": "The roles show progression from marketing management to CMO, with named budgets, teams and commercial results.",
+        "missing": "The Novara launch bullet does not explain the process change or define launch success.",
+        "fix": "Add those details to the launch bullet while retaining its existing figures and timeframes."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The list covers the marketing disciplines and named platforms relevant to the experience described.",
+        "missing": "The direct-report and P&L claims need enough detail to reconcile them with the role descriptions.",
+        "fix": "Verify the reporting structure and financial accountability, then adjust the wording where needed."
+      },
+      "Education": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "Section not present.",
+        "fix": "Add only if it helps your story."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Global marketing leadership and budget management",
+        "Demand generation and account-based marketing",
+        "Product launches and go-to-market coordination",
+        "Brand repositioning and customer acquisition",
+        "Customer retention and advocacy programs"
+      ],
+      "underplayed": [
+        "The reporting structure within the Novara marketing organization",
+        "The process changes behind the faster product launches",
+        "The financial responsibilities included in the P&L claim"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Chief Marketing Officer",
+          "Vice President, Global Marketing"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Executive marketing leader, based on the current CMO title and prior vice president role.",
+        "industry_signals": [
+          "SaaS",
+          "B2B cloud data analytics",
+          "Digital advertising technology",
+          "Enterprise software"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Lead with the Novara CMO role and its combination of global marketing leadership, demand generation and launch work. Keep the Viridian ABM and customer advocacy results visible to show breadth beyond acquisition."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What did you change in the Novara launch process, and what counted as a successful launch?",
+          "archetype": "IMPROVEMENT",
+          "why": "The answer could explain the launch figures without changing their stated results."
+        },
+        {
+          "question": "How was the Novara marketing organization structured, and which roles reported directly to you?",
+          "archetype": "SCALING",
+          "why": "This would distinguish organization size from direct management."
+        },
+        {
+          "question": "What did the marketing, analytics and creative team change to reduce CAC at Novara?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "A concrete example would show how the disciplines worked together."
+        },
+        {
+          "question": "Which accounts or activities did the Viridian ABM program prioritize, and how did you build the program?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The program has commercial results, but its design is not described."
+        },
+        {
+          "question": "What did you change in coaching managers at Viridian as you developed the leadership pipeline?",
+          "archetype": "TENSION POINT",
+          "why": "A coaching example would make the turnover result easier to connect to your management approach."
+        }
+      ]
+    }
+  },
+  "initial_validation_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the evidence grounding contract at strengths[2] unsupported narrative facts: over 18 months."
+  },
+  "model_output_repaired": {
+    "contract_version": "v2",
+    "score": 89,
+    "score_label": "Strong",
+    "score_comment_short": "Specific commercial results and leadership responsibilities make this a strong executive resume.",
+    "score_comment_long": "The recent roles connect marketing programs to lead flow, pipeline, retention and revenue. Some important results would be easier to interpret with details about the work behind them. Clarifying the launch process and P&L responsibility would strengthen the account.",
+    "score_plain": "The resume gives a reviewer substantial information about your executive marketing work. A few targeted edits would make your contributions easier to understand.",
+    "first_impression": "Your current CMO role combines a 45-person global marketing organization and a $25M annual budget with commercial results. The dense bullets give readers plenty to assess, though some don't explain how the work was done.",
+    "biggest_gap_example": "\"increasing launch success rate to 90%\" does not define a successful launch, making the figure difficult to interpret.",
+    "first_impression_takeaway": "Define launch success",
+    "summary": "At Novara, your multi-channel campaign strategy grew qualified lead flow by 70% year-over-year and contributed to ARR growth. The distinction between lead growth and contribution to company revenue is worth keeping. Your roles show executive-level responsibility across demand generation, brand, launches and acquisition costs. A reader may still want to know which changes your teams made to achieve some of the reported results.",
+    "strengths": [
+      "The Novara role places your marketing leadership in the context of a SaaS platform serving 2M+ users across 40 countries.",
+      "At Viridian, the ABM bullet separates $50M in annual pipeline contribution from a 15% lift in win rates among Fortune 500 clients.",
+      "The customer advocacy bullet connects a named program to retention and $4M in upsell revenue within 18 months."
+    ],
+    "gaps": [
+      "The Novara launch bullet reports faster time-to-market and a success rate but doesn't say what counted as a successful launch.",
+      "The CAC bullet names the disciplines on your team but not the acquisition changes they made, so the reduction is difficult to connect to the work.",
+      "The Skills section claims P&L management, while the experience descriptions do not explain the revenue and cost responsibilities behind that claim."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the Novara launch bullet, describe the process changes you decided on and define what counted as a successful launch.",
+        "why": "The existing timing, success-rate and revenue figures will be easier to assess with those definitions.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "I decided to revamp the product launch process,",
+          "section": "Experience"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Experience"
+      },
+      {
+        "fix": "In the Novara CAC bullet, add an example of an acquisition change made by the marketing, analytics and creative team.",
+        "why": "A concrete change would help a reader understand the work behind the reported cost reduction.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "I led a cross-functional team of 12 marketing, analytics, and creative professionals",
+          "section": "Experience"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Experience"
+      },
+      {
+        "fix": "In Skills, explain which revenue and cost responsibilities were included in your P&L management, or adjust the label if budget management is more accurate.",
+        "why": "The role descriptions name marketing budgets but don't specify the financial accountability implied by P&L management.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Budget & P&L Management ($25M+)",
+          "section": "Skills"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "Skills"
+      }
+    ],
+    "next_steps": [
+      "Revise the launch bullet with the process decision and success definition you can verify.",
+      "Add a concrete example to the CAC bullet without changing its stated results.",
+      "Check the financial and reporting descriptions in Skills against your role responsibilities."
+    ],
+    "subscores": {
+      "impact": 91,
+      "clarity": 86,
+      "story": 90,
+      "readability": 87
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "Section not present.",
+        "fix": "Add only if it helps your story."
+      },
+      "Work Experience": {
+        "grade": "A",
+        "priority": "Medium",
+        "working": "The roles show marketing leadership alongside named teams, budgets and commercial results.",
+        "missing": "Some recent bullets report results without describing the underlying changes.",
+        "fix": "Add a specific process change to the launch or acquisition bullet where you can verify it."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The section names marketing disciplines and platforms, including Marketo, HubSpot and Salesforce.",
+        "missing": "It does not explain the financial accountability included in P&L management.",
+        "fix": "Clarify that responsibility and check that the direct-report description matches your reporting structure."
+      },
+      "Education": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "Section not present.",
+        "fix": "Add only if it helps your story."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Global marketing leadership and budget management",
+        "Demand generation and account-based marketing",
+        "Product launches and go-to-market coordination",
+        "Brand repositioning and customer acquisition",
+        "Customer retention and advocacy programs"
+      ],
+      "underplayed": [
+        "The process decisions behind the Novara launch results",
+        "The acquisition changes made by the cross-functional CAC team",
+        "The revenue and cost responsibilities included in P&L management"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Chief Marketing Officer",
+          "Vice President, Global Marketing"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Executive marketing leader, based on the current CMO title and preceding vice president role.",
+        "industry_signals": [
+          "SaaS",
+          "B2B cloud data analytics",
+          "Digital advertising technology",
+          "Enterprise software"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Lead with the Novara CMO work across global marketing, demand generation and product launches. Keep the Viridian ABM and advocacy programs visible to show work across both acquisition and retention."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What process changes did you decide on at Novara, and how was launch success defined?",
+          "archetype": "IMPROVEMENT",
+          "why": "Those details could make the launch results more interpretable."
+        },
+        {
+          "question": "What acquisition changes did the marketing, analytics and creative team make while working to reduce CAC?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "An example would show how the disciplines contributed to that work."
+        },
+        {
+          "question": "Which revenue and cost responsibilities did your P&L management include?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The answer could distinguish financial accountability from marketing budget oversight."
+        },
+        {
+          "question": "How was the Novara marketing organization structured, and which positions reported directly to you?",
+          "archetype": "SCALING",
+          "why": "This would explain how you managed the organization described in Experience."
+        },
+        {
+          "question": "Did sales and product priorities ever differ during Novara go-to-market planning, and what did you contribute to aligning them?",
+          "archetype": "TENSION POINT",
+          "why": "If applicable, an example could show how you worked across leadership teams."
+        }
+      ]
+    }
+  },
+  "repaired": true,
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 89,
+    "score_label": "Clear and specific",
+    "score_comment_short": "Specific commercial results and leadership responsibilities make this a strong executive resume.",
+    "score_comment_long": "The recent roles connect marketing programs to lead flow, pipeline, retention and revenue. Some important results would be easier to interpret with details about the work behind them. Clarifying the launch process and P&L responsibility would strengthen the account.",
+    "score_plain": "The resume gives a reviewer substantial information about your executive marketing work. A few targeted edits would make your contributions easier to understand.",
+    "first_impression": "Your current CMO role combines a 45-person global marketing organization and a $25M annual budget with commercial results. The dense bullets give readers plenty to assess, though some don't explain how the work was done.",
+    "biggest_gap_example": "\"increasing launch success rate to 90%\" does not define a successful launch, making the figure difficult to interpret.",
+    "first_impression_takeaway": "Define launch success",
+    "summary": "At Novara, your multi-channel campaign strategy grew qualified lead flow by 70% year-over-year and contributed to ARR growth. The distinction between lead growth and contribution to company revenue is worth keeping. Your roles show executive-level responsibility across demand generation, brand, launches and acquisition costs. A reader may still want to know which changes your teams made to achieve some of the reported results.",
+    "strengths": [
+      "The Novara role places your marketing leadership in the context of a SaaS platform serving 2M+ users across 40 countries.",
+      "At Viridian, the ABM bullet separates $50M in annual pipeline contribution from a 15% lift in win rates among Fortune 500 clients.",
+      "The customer advocacy bullet connects a named program to retention and $4M in upsell revenue within 18 months."
+    ],
+    "gaps": [
+      "The Novara launch bullet reports faster time-to-market and a success rate but doesn't say what counted as a successful launch.",
+      "The CAC bullet names the disciplines on your team but not the acquisition changes they made, so the reduction is difficult to connect to the work.",
+      "The Skills section claims P&L management, while the experience descriptions do not explain the revenue and cost responsibilities behind that claim."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the Novara launch bullet, describe the process changes you decided on and define what counted as a successful launch.",
+        "why": "The existing timing, success-rate and revenue figures will be easier to assess with those definitions.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "I decided to revamp the product launch process,",
+          "section": "Experience"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Experience"
+      },
+      {
+        "fix": "In the Novara CAC bullet, add an example of an acquisition change made by the marketing, analytics and creative team.",
+        "why": "A concrete change would help a reader understand the work behind the reported cost reduction.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "I led a cross-functional team of 12 marketing, analytics, and creative professionals",
+          "section": "Experience"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Experience"
+      },
+      {
+        "fix": "In Skills, explain which revenue and cost responsibilities were included in your P&L management, or adjust the label if budget management is more accurate.",
+        "why": "The role descriptions name marketing budgets but don't specify the financial accountability implied by P&L management.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Budget & P&L Management ($25M+)",
+          "section": "Skills"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "Skills"
+      }
+    ],
+    "next_steps": [
+      "Revise the launch bullet with the process decision and success definition you can verify.",
+      "Add a concrete example to the CAC bullet without changing its stated results.",
+      "Check the financial and reporting descriptions in Skills against your role responsibilities."
+    ],
+    "subscores": {
+      "impact": 91,
+      "clarity": 86,
+      "story": 90,
+      "readability": 87
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "A",
+        "priority": "Medium",
+        "working": "The roles show marketing leadership alongside named teams, budgets and commercial results.",
+        "missing": "Some recent bullets report results without describing the underlying changes.",
+        "fix": "Add a specific process change to the launch or acquisition bullet where you can verify it."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The section names marketing disciplines and platforms, including Marketo, HubSpot and Salesforce.",
+        "missing": "It does not explain the financial accountability included in P&L management.",
+        "fix": "Clarify that responsibility and check that the direct-report description matches your reporting structure."
+      },
+      "Education": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No education section present",
+        "fix": "Add this section if the job asks for it or it helps explain your qualifications."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Global marketing leadership and budget management",
+        "Demand generation and account-based marketing",
+        "Product launches and go-to-market coordination",
+        "Brand repositioning and customer acquisition",
+        "Customer retention and advocacy programs"
+      ],
+      "underplayed": [
+        "The process decisions behind the Novara launch results",
+        "The acquisition changes made by the cross-functional CAC team",
+        "The revenue and cost responsibilities included in P&L management"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Chief Marketing Officer",
+          "Vice President, Global Marketing"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Executive marketing leader, based on the current CMO title and preceding vice president role.",
+        "industry_signals": [
+          "SaaS",
+          "B2B cloud data analytics",
+          "Digital advertising technology",
+          "Enterprise software"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with the Novara CMO work across global marketing, demand generation and product launches. Keep the Viridian ABM and advocacy programs visible to show work across both acquisition and retention."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What process changes did you decide on at Novara, and how was launch success defined?",
+          "archetype": "IMPROVEMENT",
+          "why": "Those details could make the launch results more interpretable."
+        },
+        {
+          "question": "What acquisition changes did the marketing, analytics and creative team make while working to reduce CAC?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "An example would show how the disciplines contributed to that work."
+        },
+        {
+          "question": "Which revenue and cost responsibilities did your P&L management include?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The answer could distinguish financial accountability from marketing budget oversight."
+        },
+        {
+          "question": "How was the Novara marketing organization structured, and which positions reported directly to you?",
+          "archetype": "SCALING",
+          "why": "This would explain how you managed the organization described in Experience."
+        },
+        {
+          "question": "Did sales and product priorities ever differ during Novara go-to-market planning, and what did you contribute to aligning them?",
+          "archetype": "TENSION POINT",
+          "why": "If applicable, an example could show how you worked across leadership teams."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "severity": {
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "promoted": [],
+    "replaced": [],
+    "skipped": [],
+    "critical_count": 1,
+    "more_critical": false,
+    "validation_attempts": 0,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "latency_ms": 1279,
+    "call_latency_ms": 1277,
+    "cost_usd": 0.00349075,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 89,
+    "score_label": "Clear and specific",
+    "score_comment_short": "Specific commercial results and leadership responsibilities make this a strong executive resume.",
+    "score_comment_long": "The recent roles connect marketing programs to lead flow, pipeline, retention and revenue. Some important results would be easier to interpret with details about the work behind them. Clarifying the launch process and P&L responsibility would strengthen the account.",
+    "score_plain": "The resume gives a reviewer substantial information about your executive marketing work. A few targeted edits would make your contributions easier to understand.",
+    "first_impression": "Your current CMO role combines a 45-person global marketing organization and a $25M annual budget with commercial results. The dense bullets give readers plenty to assess, though some don't explain how the work was done.",
+    "biggest_gap_example": "\"increasing launch success rate to 90%\" does not define a successful launch, making the figure difficult to interpret.",
+    "first_impression_takeaway": "Define launch success",
+    "summary": "At Novara, your multi-channel campaign strategy grew qualified lead flow by 70% year-over-year and contributed to ARR growth. The distinction between lead growth and contribution to company revenue is worth keeping. Your roles show executive-level responsibility across demand generation, brand, launches and acquisition costs. A reader may still want to know which changes your teams made to achieve some of the reported results.",
+    "strengths": [
+      "The Novara role places your marketing leadership in the context of a SaaS platform serving 2M+ users across 40 countries.",
+      "At Viridian, the ABM bullet separates $50M in annual pipeline contribution from a 15% lift in win rates among Fortune 500 clients.",
+      "The customer advocacy bullet connects a named program to retention and $4M in upsell revenue within 18 months."
+    ],
+    "gaps": [
+      "The Novara launch bullet reports faster time-to-market and a success rate but doesn't say what counted as a successful launch.",
+      "The CAC bullet names the disciplines on your team but not the acquisition changes they made, so the reduction is difficult to connect to the work.",
+      "The Skills section claims P&L management, while the experience descriptions do not explain the revenue and cost responsibilities behind that claim."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the Novara launch bullet, describe the process changes you decided on and define what counted as a successful launch.",
+        "why": "The existing timing, success-rate and revenue figures will be easier to assess with those definitions.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "I decided to revamp the product launch process,",
+          "section": "Experience"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Experience",
+        "critical": true
+      },
+      {
+        "fix": "In the Novara CAC bullet, add an example of an acquisition change made by the marketing, analytics and creative team.",
+        "why": "A concrete change would help a reader understand the work behind the reported cost reduction.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "I led a cross-functional team of 12 marketing, analytics, and creative professionals",
+          "section": "Experience"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "Experience",
+        "critical": false
+      },
+      {
+        "fix": "In Skills, explain which revenue and cost responsibilities were included in your P&L management, or adjust the label if budget management is more accurate.",
+        "why": "The role descriptions name marketing budgets but don't specify the financial accountability implied by P&L management.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Budget & P&L Management ($25M+)",
+          "section": "Skills"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "Skills",
+        "critical": false
+      }
+    ],
+    "next_steps": [
+      "Revise the launch bullet with the process decision and success definition you can verify.",
+      "Add a concrete example to the CAC bullet without changing its stated results.",
+      "Check the financial and reporting descriptions in Skills against your role responsibilities."
+    ],
+    "subscores": {
+      "impact": 91,
+      "clarity": 86,
+      "story": 90,
+      "readability": 87
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "A",
+        "priority": "Medium",
+        "working": "The roles show marketing leadership alongside named teams, budgets and commercial results.",
+        "missing": "Some recent bullets report results without describing the underlying changes.",
+        "fix": "Add a specific process change to the launch or acquisition bullet where you can verify it."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The section names marketing disciplines and platforms, including Marketo, HubSpot and Salesforce.",
+        "missing": "It does not explain the financial accountability included in P&L management.",
+        "fix": "Clarify that responsibility and check that the direct-report description matches your reporting structure."
+      },
+      "Education": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No education section present",
+        "fix": "Add this section if the job asks for it or it helps explain your qualifications."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Global marketing leadership and budget management",
+        "Demand generation and account-based marketing",
+        "Product launches and go-to-market coordination",
+        "Brand repositioning and customer acquisition",
+        "Customer retention and advocacy programs"
+      ],
+      "underplayed": [
+        "The process decisions behind the Novara launch results",
+        "The acquisition changes made by the cross-functional CAC team",
+        "The revenue and cost responsibilities included in P&L management"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Chief Marketing Officer",
+          "Vice President, Global Marketing"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Executive marketing leader, based on the current CMO title and preceding vice president role.",
+        "industry_signals": [
+          "SaaS",
+          "B2B cloud data analytics",
+          "Digital advertising technology",
+          "Enterprise software"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with the Novara CMO work across global marketing, demand generation and product launches. Keep the Viridian ABM and advocacy programs visible to show work across both acquisition and retention."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What process changes did you decide on at Novara, and how was launch success defined?",
+          "archetype": "IMPROVEMENT",
+          "why": "Those details could make the launch results more interpretable."
+        },
+        {
+          "question": "What acquisition changes did the marketing, analytics and creative team make while working to reduce CAC?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "An example would show how the disciplines contributed to that work."
+        },
+        {
+          "question": "Which revenue and cost responsibilities did your P&L management include?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The answer could distinguish financial accountability from marketing budget oversight."
+        },
+        {
+          "question": "How was the Novara marketing organization structured, and which positions reported directly to you?",
+          "archetype": "SCALING",
+          "why": "This would explain how you managed the organization described in Experience."
+        },
+        {
+          "question": "Did sales and product priorities ever differ during Novara go-to-market planning, and what did you contribute to aligning them?",
+          "archetype": "TENSION POINT",
+          "why": "If applicable, an example could show how you worked across leadership teams."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89,
+    "more_critical": false
+  },
+  "presentation": {
+    "score": 89,
+    "band": "Clear and specific",
+    "score_label_from_model": "Strong",
+    "model_score_before_calibration": 89,
+    "verdict": "Your current CMO role combines a 45-person global marketing organization and a $25M annual budget with commercial results. The dense bullets give readers plenty to assess, though some don't explain how the work was done.",
+    "one_line_read": "Specific commercial results and leadership responsibilities make this a strong executive resume.",
+    "takeaway": "Define launch success",
+    "biggest_gap_example": "\"increasing launch success rate to 90%\" does not define a successful launch, making the figure difficult to interpret.",
+    "critical_count": {
+      "count": 1,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "One Critical Miss. Fix it first.",
+      "lead": "It's the one most likely to cost you the interview."
+    },
+    "fixes": [
+      {
+        "fix": "In the Novara launch bullet, describe the process changes you decided on and define what counted as a successful launch.",
+        "why": "The existing timing, success-rate and revenue figures will be easier to assess with those definitions.",
+        "excerpt": "I decided to revamp the product launch process,",
+        "section": "Experience",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the Novara CAC bullet, add an example of an acquisition change made by the marketing, analytics and creative team.",
+        "why": "A concrete change would help a reader understand the work behind the reported cost reduction.",
+        "excerpt": "I led a cross-functional team of 12 marketing, analytics, and creative professionals",
+        "section": "Experience",
+        "critical": false,
+        "confidence": "high"
+      },
+      {
+        "fix": "In Skills, explain which revenue and cost responsibilities were included in your P&L management, or adjust the label if budget management is more accurate.",
+        "why": "The role descriptions name marketing budgets but don't specify the financial accountability implied by P&L management.",
+        "excerpt": "- Budget & P&L Management ($25M+)",
+        "section": "Skills",
+        "critical": false,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "The Novara role places your marketing leadership in the context of a SaaS platform serving 2M+ users across 40 countries.",
+    "strengths": [
+      "The Novara role places your marketing leadership in the context of a SaaS platform serving 2M+ users across 40 countries.",
+      "At Viridian, the ABM bullet separates $50M in annual pipeline contribution from a 15% lift in win rates among Fortune 500 clients.",
+      "The customer advocacy bullet connects a named program to retention and $4M in upsell revenue within 18 months."
+    ],
+    "gaps": [
+      "The Novara launch bullet reports faster time-to-market and a success rate but doesn't say what counted as a successful launch.",
+      "The CAC bullet names the disciplines on your team but not the acquisition changes they made, so the reduction is difficult to connect to the work.",
+      "The Skills section claims P&L management, while the experience descriptions do not explain the revenue and cost responsibilities behind that claim."
+    ],
+    "next_steps": [
+      "Revise the launch bullet with the process decision and success definition you can verify.",
+      "Add a concrete example to the CAC bullet without changing its stated results.",
+      "Check the financial and reporting descriptions in Skills against your role responsibilities."
+    ],
+    "seniority_read": "Executive marketing leader, based on the current CMO title and preceding vice president role.",
+    "best_fit_roles": [
+      "Chief Marketing Officer",
+      "Vice President, Global Marketing"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "Lead with the Novara CMO work across global marketing, demand generation and product launches. Keep the Viridian ABM and advocacy programs visible to show work across both acquisition and retention.",
+    "severity_added": [],
+    "severity_promoted": [],
+    "severity_outcome": "none (none)",
+    "severity_answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[0]",
+          "fix": 0
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[1]",
+          "fix": 1
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[2]",
+          "fix": 2
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "biggest_gap_example",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[0]",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[1]",
+          "of": "top_fixes[1]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[2]",
+          "of": "top_fixes[2]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Skills.missing",
+          "of": "top_fixes[2]"
+        }
+      ],
+      "fix_questions": [
+        [
+          "What process changes did you decide on at Novara, and how was launch success defined?"
+        ],
+        [
+          "What acquisition changes did the marketing, analytics and creative team make while working to reduce CAC?"
+        ],
+        [
+          "Which revenue and cost responsibilities did your P&L management include?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.03928035,
+  "latency_ms": 66847
+}

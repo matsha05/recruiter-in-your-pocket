@@ -1,0 +1,49 @@
+# b16_career_changer_bad, run 2
+Resume: ../../../tests/resumes/countcheck/synth_cc_career_changer_bad_1.txt (140 words, sha256 12d7e0e5cf8c)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0176; 42.4s
+Case note: Career changer, weak; key says missing_dates, no_evidence_latest_role, no_target_role.
+
+## Band: Needs more context (score 66; model wrote 66, label "Needs Clarity")
+## Verdict
+You currently supervise cashiers and stockers, while freelance web development introduces a second possible direction. The freelance entry has no dates, so its relationship to your other work is unclear.
+One-line read: The work is recognizable, but most bullets describe duties without results.
+Takeaway: Explain your shift responsibilities
+Biggest gap example: "Supervise cashiers and stockers on evening shifts" leaves your day-to-day decisions unspecified, making the supervisory work difficult to assess.
+
+## Fixes (Three Critical Misses. Start with this one.; lead: "Any one of them could cost you the interview on its own."); severity added (added); added ["no_evidence_latest_role","no_target_role"]; promoted []
+1. [Critical Miss] In the evening shift supervision bullet, name the decisions you make when assigning work or handling issues, if applicable.
+   why: That would distinguish your supervisory responsibilities from the activities of the cashiers and stockers you oversee.
+   excerpt (EXPERIENCE): "- Supervise cashiers and stockers on evening shifts"
+2. [Critical Miss] In the Saguaro Market register reconciliation bullet, add how many registers you reconcile per shift, if you can verify it.
+   why: Hiring managers for supervisory roles usually look for the scale of the operation or a measurable result. The resume lists your duties but doesn't show their volume or results.
+   excerpt (Experience): "- Count and reconcile registers at close"
+3. [Critical Miss] Add a one-line headline above Experience naming the role you want.
+   why: A hiring manager looks for a clear target early in the resume. Your experience points toward retail supervision, web development and medical billing, but it doesn't say which direction you want.
+   excerpt (Summary): "No summary section present"
+Severity check answer: {"critical_misses":[{"source":"new","kind":"no_evidence_latest_role","fix":"In the Saguaro Market register reconciliation bullet, add how many registers you reconcile per shift, if you can verify it.","why":"Hiring managers for supervisory roles usually look for the scale of the operation or a measurable result. The resume lists your duties but doesn't show their volume or results.","excerpt":"- Count and reconcile registers at close","section":"Experience","effort":"quick"},{"source":"new","kind":"no_target_role","fix":"Add a one-line headline above Experience naming the role you want.","why":"A hiring manager looks for a clear target early in the resume. Your experience points toward retail supervision, web development and medical billing, but it doesn't say which direction you want.","excerpt":"No summary section present","section":"Summary","effort":"quick"}],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+Naming WordPress and Webflow gives a reviewer a starting point for assessing your website work.
+Other strengths: ["Entering claims for a 4-physician practice places your medical billing work in a specific practice setting.","Closing register reconciliation shows that your retail work includes handling end-of-shift financial checks."]
+
+## Gaps
+- The freelance entry has no dates, leaving the timing and overlap with other roles uncertain.
+- The website bullets don't explain what you built or configured beyond the platform and booking function.
+- No target role is stated, so the broad skills list gives equal weight to several different career paths.
+
+## Next steps
+- Choose which role you want this version of the resume to address, then put its most relevant existing details first within each entry.
+- Expand the relevant experience bullets using details you can verify, starting with your shift decisions or a website feature.
+- Add the freelance dates and check that the skills list emphasizes the selected direction.
+
+## Role fit
+Level: The current title is supervisory; the resume also describes freelance development and assistant-level billing work.
+Best fit: ["Shift Supervisor","Freelance Web Developer","Medical Billing Assistant"]
+Positioning: Decide whether this version is aimed at retail supervision, web development, or medical billing. Lead with the relevant work and keep the other experience concise without removing useful context.
+
+## Integrity pass
+Structural gaps surfaced: [{"text":"No target role is stated, so the broad skills list gives equal weight to several different career paths.","kind":"target_role"}]
+Decisions: [{"kind":"keep_dropped","path":"strengths[2]","line":"fix-1","criticalMiss":true},{"kind":"structural_gap_surfaced","path":"gaps[2]","structural":"target_role"},{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":1},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[0]"}]

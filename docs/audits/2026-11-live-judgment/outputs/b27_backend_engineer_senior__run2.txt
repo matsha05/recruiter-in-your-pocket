@@ -1,0 +1,48 @@
+# b27_backend_engineer_senior, run 2
+Resume: ../../../tests/resumes/blindpick/synth_bp_backend_engineer_senior_1.txt (190 words, sha256 92a71c8e81a0)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0128; 27.0s
+
+## Band: Clear and specific (score 89; model wrote 89, label "Strong")
+## Verdict
+You come across as a senior backend engineer focused on payments, with both technical delivery and team responsibilities. The recent role is easy to scan, though the migration approach is less visible than its performance figures.
+One-line read: Recent work combines payment-system scale, reliability improvements, and named leadership responsibilities.
+Takeaway: Explain the migration approach
+Biggest gap example: "Mentor 3 engineers and run the payments on-call rotation" doesn't explain what you handle during incidents or how you support the engineers you mentor.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the card authorization migration bullet, add the transition approach and a safeguard you used during the move, if applicable.
+   why: Those details would show how you handled a consequential change to the payments system, beyond its final performance figures.
+   excerpt (EXPERIENCE): "Designed and led the migration of card authorization from a monolith"
+2. [fix] In the mentoring and on-call bullet, add an example of an incident responsibility or a way you supported an engineer.
+   why: The team count is useful, but an example would help a reviewer understand your day-to-day contribution.
+   excerpt (EXPERIENCE): "- Mentor 3 engineers and run the payments on-call rotation"
+3. [fix] In the billing observability bullet, name a problem or operational question the dashboards helped the team investigate.
+   why: That would give the OpenTelemetry and Grafana work a purpose beyond the tools themselves.
+   excerpt (EXPERIENCE): "- Added observability with OpenTelemetry and Grafana dashboards for the billing team"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The authorization service's 4,500 requests per second and p99 under 80 ms give reviewers a concrete sense of its performance.
+Other strengths: ["Contract testing across 14 payment services is tied to a 40% year-over-year reduction in integration incidents.","The Kotlin invoicing API's 2,000+ business customers show who used the system you built."]
+
+## Gaps
+- The card authorization bullet doesn't describe the transition from the monolith, leaving the rollout approach unclear.
+- The mentoring and on-call bullet names your responsibilities but gives no example of how you handle either one.
+- The observability bullet names dashboards but not what the billing team used them to investigate.
+
+## Next steps
+- Revise the authorization migration bullet with a verified detail about how you moved traffic or protected the transition.
+- Choose a concrete mentoring or on-call example and incorporate it into the current role.
+- Review the billing dashboard bullet and add the question or problem it helped the team investigate.
+
+## Role fit
+Level: The current title is senior, with project leadership, mentoring and on-call responsibilities alongside hands-on engineering.
+Best fit: ["Senior Software Engineer, Payments Platform","Software Engineer"]
+Positioning: Lead with payment and ledger engineering, then retain the service performance and reconciliation figures near the top. Use the migration and on-call details to show how you work through production changes.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_dropped","path":"ideas.questions[1]","reason":"duplicates_keep"},{"kind":"question_moved","path":"ideas.questions[3]","fix":1},{"kind":"question_moved","path":"ideas.questions[4]","fix":2},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"gaps[2]","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"next_steps[2]","of":"top_fixes[2]"}]

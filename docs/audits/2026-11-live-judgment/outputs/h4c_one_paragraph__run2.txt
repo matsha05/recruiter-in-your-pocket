@@ -1,0 +1,8 @@
+# h4c_one_paragraph, run 2
+Resume: resumes/h4c_one_paragraph.txt (147 words, sha256 f511920a6896)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: repair_failed; cost $0.0300; 
+Case note: A resume pasted as one paragraph with no line breaks.
+
+Validator refused the first draft: OPENAI_RESPONSE_SHAPE_INVALID The model response failed the evidence grounding contract at top_fixes[0].fix not actionable: missing a specific fact or placeholder to add.
+Repair failed: OPENAI_RESPONSE_SHAPE_INVALID The model response failed the evidence grounding contract at score_plain unsupported narrative facts: picture.

@@ -1,0 +1,50 @@
+# b30_social_worker, run 1
+Resume: ../../../tests/resumes/blindpick/synth_bp_social_worker_1.txt (127 words, sha256 220fc861657d)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0306; repair ran; 57.7s
+
+Validator refused the first draft: OPENAI_RESPONSE_SHAPE_INVALID The model response failed the evidence grounding contract at section_review.Education.working unsupported narrative facts: both.
+
+## Band: Needs more context (score 65; model wrote 65, label "Needs Clarity")
+## Verdict
+Your family services role pairs home-visit safety assessments with court reporting. The bullets mostly name duties without explaining how you handle a case.
+One-line read: Your duties are identifiable, but case details and results remain largely unspecified.
+Takeaway: Describe your court reports
+Biggest gap example: "- Write case plans and court reports" doesn't explain what information you prepare, leaving the substance of those documents unclear.
+
+## Fixes (Two Critical Misses. Start with this one.; lead: "Either one could cost you the interview on its own."); severity added (promoted); added []; promoted [2]
+1. [Critical Miss] In the home-visit assessment bullet, describe a type of safety concern you assess and how you document it, without identifying a family.
+   why: An example would show what your assessment work involves beyond making a visit.
+   excerpt (EXPERIENCE): "- Complete safety and risk assessments during home visits"
+2. [Critical Miss] In the caseload bullet, add the number of families you typically carry if you can verify it, along with the kinds of needs you handle.
+   why: This would give a clearer picture of your current assignment.
+   excerpt (EXPERIENCE): "- Carry a caseload of families involved with child protective services"
+3. [fix] In the case plans and court reports bullet, name the information you prepare for one of those documents.
+   why: That detail would make your written work more concrete to a reviewer.
+   excerpt (EXPERIENCE): "- Write case plans and court reports"
+Severity check answer: {"critical_misses":[{"source":"fix_3","kind":"no_evidence_latest_role","fix":"","why":"","excerpt":"","section":"","effort":"quick"}],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+Your Ohio LMSW license and Master of Social Work are easy to find alongside your work history.
+Other strengths: ["Monthly family team meetings show a recurring responsibility for facilitating discussions.","The intake role names housing, food, and utility assistance, giving a clear picture of the needs you screened for."]
+
+## Gaps
+- The caseload bullet doesn't describe its size or the range of family needs, so the demands of the assignment are unclear.
+- The court-reporting bullet doesn't say what you include in the reports or case plans.
+- The intake role doesn't explain the steps you took to connect clients with county benefits.
+
+## Next steps
+- Revise the assessment and reporting bullets with details that protect family confidentiality.
+- Add a verified caseload description and review the intake bullet for the steps you can describe.
+- Update the opening sentence to reflect the casework details you choose to emphasize.
+
+## Role fit
+Level: Your recent title indicates a caseworker role; the resume does not describe supervisory responsibilities.
+Best fit: ["Family Services Caseworker","Intake Specialist"]
+Positioning: Lead with your current child welfare casework and Ohio LMSW license. Use the intake role to show the basic needs you have screened for, while keeping attention on your more recent work.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_dropped","path":"ideas.questions[1]","reason":"duplicates_keep"},{"kind":"question_moved","path":"ideas.questions[2]","fix":2},{"kind":"question_moved","path":"ideas.questions[4]","fix":1},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"gaps[2]","of":"ideas.questions[3]"}]

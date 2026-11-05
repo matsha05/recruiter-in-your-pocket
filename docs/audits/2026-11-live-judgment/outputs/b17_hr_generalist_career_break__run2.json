@@ -1,0 +1,708 @@
+{
+  "case_id": "b17_hr_generalist_career_break",
+  "batch": "breadth",
+  "run": 2,
+  "note": "Returner after caregiving, break dated and named.",
+  "resume_file": "../../../tests/resumes/blindpick/synth_bp_hr_generalist_career_break_1.txt",
+  "resume_sha256": "59c9f2306490959a56a0d7a38268e6b5db0ff40531b47983bc495f857cae8f0b",
+  "resume_chars": 1003,
+  "resume_words": 145,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T20:05:24.180Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7552,
+        "completion_tokens": 2107,
+        "total_tokens": 9659,
+        "cached_prompt_tokens": 7549,
+        "cache_write_prompt_tokens": 0,
+        "reasoning_tokens": 204
+      },
+      "cost_usd": 0.01091545,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 24589
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.004632,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 9584
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 66,
+    "score_label": "Needs Clarity",
+    "score_comment_short": "Plant size and orientation cadence help, but most bullets describe duties without specifics.",
+    "score_comment_long": "Your HR Generalist role names a 400-employee plant and work across three shifts. Most other bullets list responsibilities without showing the particular cases or tasks you handled. Start by adding those details to employee relations and benefits enrollment.",
+    "score_plain": "A reviewer can identify your HR background quickly, but may have questions about how you handled the work. More detail in the existing bullets would make your experience easier to assess.",
+    "first_impression": "The progression from HR Assistant to HR Generalist at Northstar Plastics is easy to follow. The caregiving break is stated plainly, while activity after June 2025 isn't shown.",
+    "biggest_gap_example": "\"Handled employee relations questions and investigations with the HR manager\" doesn't explain the types of cases you handled or your part in an investigation.",
+    "first_impression_takeaway": "Explain your investigation work",
+    "summary": "Supporting a 400-employee plant across three shifts gives your generalist work a useful setting that is worth keeping near the top. Your experience spans employee relations, benefits, onboarding and HR records, with earlier work in hiring administration. The titles and duties point to an HR Generalist level, with investigations handled alongside the HR manager. More detail about your contribution to those cases would help a reviewer understand the responsibilities you held.",
+    "strengths": [
+      "Running new hire orientation every two weeks gives a concrete cadence to your onboarding work.",
+      "The move from processing I-9s to coordinating benefits and handling employee relations shows how your work broadened at Northstar Plastics.",
+      "Naming UKG and ADP Workforce Now gives readers identifiable HR systems to look for."
+    ],
+    "gaps": [
+      "The enrollment bullet doesn't say which parts of the medical and dental process you coordinated, leaving the work itself broad.",
+      "The resume doesn't say how you used either named HR system, so their connection to your records work is unclear.",
+      "No activity after the caregiving break is listed, leaving your more recent work or learning unclear."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the employee relations bullet, name a type of question or investigation you handled and describe your contribution alongside the HR manager.",
+        "why": "A concrete example would distinguish your part in the work from the manager's without overstating your authority.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Handled employee relations questions and investigations with the HR manager",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the open enrollment bullet, specify which tasks you coordinated for medical and dental benefits.",
+        "why": "This would show what coordinating enrollment involved beyond the name of the program.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Coordinated open enrollment for medical and dental benefits",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the orientation bullet, identify a topic you covered or a step you handled for new hires.",
+        "why": "The frequency is already clear; the content would help a reviewer understand what you delivered.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Ran new hire orientation every two weeks",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the Northstar Generalist bullets with the case, enrollment and orientation details you can verify.",
+      "Connect UKG or ADP Workforce Now to the relevant records or benefits work if you used either for those tasks.",
+      "Review the period after June 2025 and add any real work, course or other relevant activity you want to include."
+    ],
+    "subscores": {
+      "impact": 57,
+      "clarity": 70,
+      "story": 68,
+      "readability": 75
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The opening identifies HR generalist work in manufacturing and names the main practice areas.",
+        "missing": "It doesn't distinguish your plant setting or the breadth of your responsibilities.",
+        "fix": "Bring the 400-employee, three-shift setting into the opening if it fits your target role."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The dates, caregiving break and progression at Northstar are straightforward.",
+        "missing": "Several bullets name a responsibility without explaining what you handled within it.",
+        "fix": "Expand the investigation, enrollment and orientation bullets with specific tasks or examples."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The section names two HR systems and relevant generalist practice areas.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The degree, field, university and year are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "HR support in a manufacturing plant",
+        "Employee relations questions and investigations with the HR manager",
+        "Medical and dental open enrollment coordination",
+        "New hire orientation and paperwork"
+      ],
+      "underplayed": [
+        "Individual contribution to employee relations investigations",
+        "Tasks involved in coordinating benefits enrollment",
+        "Application of UKG and ADP Workforce Now"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "HR Generalist"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your most recent HR title is HR Generalist, following an HR Assistant role.",
+        "industry_signals": [
+          "Manufacturing",
+          "Plastics"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Lead with your HR Generalist work in the three-shift plant, then connect employee relations, benefits and onboarding to specific tasks. Keep the caregiving break straightforward and add later activity only if you have something relevant to include."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What types of employee relations investigations did you handle with the HR manager, and what was your contribution?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "An example would make the division of work more tangible."
+        },
+        {
+          "question": "How did you reach employees across the plant's three shifts when coordinating benefits enrollment?",
+          "archetype": "SCALING",
+          "why": "This could connect the plant's shift structure to a specific HR task."
+        },
+        {
+          "question": "What did you cover or prepare for the orientation you ran every two weeks?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The cadence is known, but the orientation content isn't described."
+        },
+        {
+          "question": "What steps did you take to keep personnel files and HRIS records up to date?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "The records bullet could show how you maintained accuracy without assuming a particular result."
+        },
+        {
+          "question": "Was there an HR process at Northstar that you helped change, and what did you contribute?",
+          "archetype": "IMPROVEMENT",
+          "why": "A verified example could add a different dimension to the responsibility-focused bullets."
+        }
+      ]
+    }
+  },
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 66,
+    "score_label": "Needs more context",
+    "score_comment_short": "Plant size and orientation cadence help, but most bullets describe duties without specifics.",
+    "score_comment_long": "Your HR Generalist role names a 400-employee plant and work across three shifts. Most other bullets list responsibilities without showing the particular cases or tasks you handled. Start by adding those details to employee relations and benefits enrollment.",
+    "score_plain": "A reviewer can identify your HR background quickly, but may have questions about how you handled the work. More detail in the existing bullets would make your experience easier to assess.",
+    "first_impression": "The progression from HR Assistant to HR Generalist at Northstar Plastics is easy to follow. The caregiving break is stated plainly, while activity after June 2025 isn't shown.",
+    "biggest_gap_example": "\"Handled employee relations questions and investigations with the HR manager\" doesn't explain the types of cases you handled or your part in an investigation.",
+    "first_impression_takeaway": "Explain your investigation work",
+    "summary": "Supporting a 400-employee plant across three shifts gives your generalist work a useful setting that is worth keeping near the top. Your experience spans employee relations, benefits, onboarding and HR records, with earlier work in hiring administration. The titles and duties point to an HR Generalist level, with investigations handled alongside the HR manager. More detail about your contribution to those cases would help a reviewer understand the responsibilities you held.",
+    "strengths": [
+      "Running new hire orientation every two weeks gives a concrete cadence to your onboarding work.",
+      "The move from processing I-9s to coordinating benefits and handling employee relations shows how your work broadened at Northstar Plastics.",
+      "Naming UKG and ADP Workforce Now gives readers identifiable HR systems to look for."
+    ],
+    "gaps": [
+      "The enrollment bullet doesn't say which parts of the medical and dental process you coordinated, leaving the work itself broad.",
+      "The resume doesn't say how you used either named HR system, so their connection to your records work is unclear.",
+      "No activity after the caregiving break is listed, leaving your more recent work or learning unclear."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the employee relations bullet, name a type of question or investigation you handled and describe your contribution alongside the HR manager.",
+        "why": "A concrete example would distinguish your part in the work from the manager's without overstating your authority.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Handled employee relations questions and investigations with the HR manager",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the open enrollment bullet, specify which tasks you coordinated for medical and dental benefits.",
+        "why": "This would show what coordinating enrollment involved beyond the name of the program.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Coordinated open enrollment for medical and dental benefits",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the orientation bullet, identify a topic you covered or a step you handled for new hires.",
+        "why": "The frequency is already clear; the content would help a reviewer understand what you delivered.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Ran new hire orientation every two weeks",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the Northstar Generalist bullets with the case, enrollment and orientation details you can verify.",
+      "Connect UKG or ADP Workforce Now to the relevant records or benefits work if you used either for those tasks.",
+      "Review the period after June 2025 and add any real work, course or other relevant activity you want to include."
+    ],
+    "subscores": {
+      "impact": 57,
+      "clarity": 70,
+      "story": 68,
+      "readability": 75
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The dates, caregiving break and progression at Northstar are straightforward.",
+        "missing": "Several bullets name a responsibility without explaining what you handled within it.",
+        "fix": "Expand the investigation, enrollment and orientation bullets with specific tasks or examples."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The section names two HR systems and relevant generalist practice areas.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The degree, field, university and year are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "HR support in a manufacturing plant",
+        "Employee relations questions and investigations with the HR manager",
+        "Medical and dental open enrollment coordination",
+        "New hire orientation and paperwork"
+      ],
+      "underplayed": [
+        "Individual contribution to employee relations investigations",
+        "Tasks involved in coordinating benefits enrollment",
+        "Application of UKG and ADP Workforce Now"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "HR Generalist"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your most recent HR title is HR Generalist, following an HR Assistant role.",
+        "industry_signals": [
+          "Manufacturing",
+          "Plastics"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with your HR Generalist work in the three-shift plant, then connect employee relations, benefits and onboarding to specific tasks. Keep the caregiving break straightforward and add later activity only if you have something relevant to include."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What types of employee relations investigations did you handle with the HR manager, and what was your contribution?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "An example would make the division of work more tangible."
+        },
+        {
+          "question": "How did you reach employees across the plant's three shifts when coordinating benefits enrollment?",
+          "archetype": "SCALING",
+          "why": "This could connect the plant's shift structure to a specific HR task."
+        },
+        {
+          "question": "What did you cover or prepare for the orientation you ran every two weeks?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The cadence is known, but the orientation content isn't described."
+        },
+        {
+          "question": "What steps did you take to keep personnel files and HRIS records up to date?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "The records bullet could show how you maintained accuracy without assuming a particular result."
+        },
+        {
+          "question": "Was there an HR process at Northstar that you helped change, and what did you contribute?",
+          "archetype": "IMPROVEMENT",
+          "why": "A verified example could add a different dimension to the responsibility-focused bullets."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 66
+  },
+  "severity": {
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "promoted": [],
+    "replaced": [],
+    "skipped": [],
+    "critical_count": 1,
+    "more_critical": false,
+    "validation_attempts": 0,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "latency_ms": 9585,
+    "call_latency_ms": 9584,
+    "cost_usd": 0.004632,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 66,
+    "score_label": "Needs more context",
+    "score_comment_short": "Plant size and orientation cadence help, but most bullets describe duties without specifics.",
+    "score_comment_long": "Your HR Generalist role names a 400-employee plant and work across three shifts. Most other bullets list responsibilities without showing the particular cases or tasks you handled. Start by adding those details to employee relations and benefits enrollment.",
+    "score_plain": "A reviewer can identify your HR background quickly, but may have questions about how you handled the work. More detail in the existing bullets would make your experience easier to assess.",
+    "first_impression": "The progression from HR Assistant to HR Generalist at Northstar Plastics is easy to follow. The caregiving break is stated plainly, while activity after June 2025 isn't shown.",
+    "biggest_gap_example": "\"Handled employee relations questions and investigations with the HR manager\" doesn't explain the types of cases you handled or your part in an investigation.",
+    "first_impression_takeaway": "Explain your investigation work",
+    "summary": "Supporting a 400-employee plant across three shifts gives your generalist work a useful setting that is worth keeping near the top. Your experience spans employee relations, benefits, onboarding and HR records, with earlier work in hiring administration. The titles and duties point to an HR Generalist level, with investigations handled alongside the HR manager. More detail about your contribution to those cases would help a reviewer understand the responsibilities you held.",
+    "strengths": [
+      "Running new hire orientation every two weeks gives a concrete cadence to your onboarding work.",
+      "The move from processing I-9s to coordinating benefits and handling employee relations shows how your work broadened at Northstar Plastics.",
+      "Naming UKG and ADP Workforce Now gives readers identifiable HR systems to look for."
+    ],
+    "gaps": [
+      "The enrollment bullet doesn't say which parts of the medical and dental process you coordinated, leaving the work itself broad.",
+      "The resume doesn't say how you used either named HR system, so their connection to your records work is unclear.",
+      "No activity after the caregiving break is listed, leaving your more recent work or learning unclear."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the employee relations bullet, name a type of question or investigation you handled and describe your contribution alongside the HR manager.",
+        "why": "A concrete example would distinguish your part in the work from the manager's without overstating your authority.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Handled employee relations questions and investigations with the HR manager",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": true
+      },
+      {
+        "fix": "In the open enrollment bullet, specify which tasks you coordinated for medical and dental benefits.",
+        "why": "This would show what coordinating enrollment involved beyond the name of the program.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Coordinated open enrollment for medical and dental benefits",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      },
+      {
+        "fix": "In the orientation bullet, identify a topic you covered or a step you handled for new hires.",
+        "why": "The frequency is already clear; the content would help a reviewer understand what you delivered.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Ran new hire orientation every two weeks",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      }
+    ],
+    "next_steps": [
+      "Revise the Northstar Generalist bullets with the case, enrollment and orientation details you can verify.",
+      "Connect UKG or ADP Workforce Now to the relevant records or benefits work if you used either for those tasks.",
+      "Review the period after June 2025 and add any real work, course or other relevant activity you want to include."
+    ],
+    "subscores": {
+      "impact": 57,
+      "clarity": 70,
+      "story": 68,
+      "readability": 75
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "C",
+        "priority": "High",
+        "working": "The dates, caregiving break and progression at Northstar are straightforward.",
+        "missing": "Several bullets name a responsibility without explaining what you handled within it.",
+        "fix": "Expand the investigation, enrollment and orientation bullets with specific tasks or examples."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The section names two HR systems and relevant generalist practice areas.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      },
+      "Education": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The degree, field, university and year are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "HR support in a manufacturing plant",
+        "Employee relations questions and investigations with the HR manager",
+        "Medical and dental open enrollment coordination",
+        "New hire orientation and paperwork"
+      ],
+      "underplayed": [
+        "Individual contribution to employee relations investigations",
+        "Tasks involved in coordinating benefits enrollment",
+        "Application of UKG and ADP Workforce Now"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "HR Generalist"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your most recent HR title is HR Generalist, following an HR Assistant role.",
+        "industry_signals": [
+          "Manufacturing",
+          "Plastics"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with your HR Generalist work in the three-shift plant, then connect employee relations, benefits and onboarding to specific tasks. Keep the caregiving break straightforward and add later activity only if you have something relevant to include."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What types of employee relations investigations did you handle with the HR manager, and what was your contribution?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "An example would make the division of work more tangible."
+        },
+        {
+          "question": "How did you reach employees across the plant's three shifts when coordinating benefits enrollment?",
+          "archetype": "SCALING",
+          "why": "This could connect the plant's shift structure to a specific HR task."
+        },
+        {
+          "question": "What did you cover or prepare for the orientation you ran every two weeks?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The cadence is known, but the orientation content isn't described."
+        },
+        {
+          "question": "What steps did you take to keep personnel files and HRIS records up to date?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "The records bullet could show how you maintained accuracy without assuming a particular result."
+        },
+        {
+          "question": "Was there an HR process at Northstar that you helped change, and what did you contribute?",
+          "archetype": "IMPROVEMENT",
+          "why": "A verified example could add a different dimension to the responsibility-focused bullets."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 66,
+    "more_critical": false
+  },
+  "presentation": {
+    "score": 66,
+    "band": "Needs more context",
+    "score_label_from_model": "Needs Clarity",
+    "model_score_before_calibration": 66,
+    "verdict": "The progression from HR Assistant to HR Generalist at Northstar Plastics is easy to follow. The caregiving break is stated plainly, while activity after June 2025 isn't shown.",
+    "one_line_read": "Plant size and orientation cadence help, but most bullets describe duties without specifics.",
+    "takeaway": "Explain your investigation work",
+    "biggest_gap_example": "\"Handled employee relations questions and investigations with the HR manager\" doesn't explain the types of cases you handled or your part in an investigation.",
+    "critical_count": {
+      "count": 1,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "One Critical Miss. Fix it first.",
+      "lead": "It's the one most likely to cost you the interview."
+    },
+    "fixes": [
+      {
+        "fix": "In the employee relations bullet, name a type of question or investigation you handled and describe your contribution alongside the HR manager.",
+        "why": "A concrete example would distinguish your part in the work from the manager's without overstating your authority.",
+        "excerpt": "- Handled employee relations questions and investigations with the HR manager",
+        "section": "EXPERIENCE",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the open enrollment bullet, specify which tasks you coordinated for medical and dental benefits.",
+        "why": "This would show what coordinating enrollment involved beyond the name of the program.",
+        "excerpt": "- Coordinated open enrollment for medical and dental benefits",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the orientation bullet, identify a topic you covered or a step you handled for new hires.",
+        "why": "The frequency is already clear; the content would help a reviewer understand what you delivered.",
+        "excerpt": "- Ran new hire orientation every two weeks",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "Running new hire orientation every two weeks gives a concrete cadence to your onboarding work.",
+    "strengths": [
+      "Running new hire orientation every two weeks gives a concrete cadence to your onboarding work.",
+      "The move from processing I-9s to coordinating benefits and handling employee relations shows how your work broadened at Northstar Plastics.",
+      "Naming UKG and ADP Workforce Now gives readers identifiable HR systems to look for."
+    ],
+    "gaps": [
+      "The enrollment bullet doesn't say which parts of the medical and dental process you coordinated, leaving the work itself broad.",
+      "The resume doesn't say how you used either named HR system, so their connection to your records work is unclear.",
+      "No activity after the caregiving break is listed, leaving your more recent work or learning unclear."
+    ],
+    "next_steps": [
+      "Revise the Northstar Generalist bullets with the case, enrollment and orientation details you can verify.",
+      "Connect UKG or ADP Workforce Now to the relevant records or benefits work if you used either for those tasks.",
+      "Review the period after June 2025 and add any real work, course or other relevant activity you want to include."
+    ],
+    "seniority_read": "Your most recent HR title is HR Generalist, following an HR Assistant role.",
+    "best_fit_roles": [
+      "HR Generalist"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "Lead with your HR Generalist work in the three-shift plant, then connect employee relations, benefits and onboarding to specific tasks. Keep the caregiving break straightforward and add later activity only if you have something relevant to include.",
+    "severity_added": [],
+    "severity_promoted": [],
+    "severity_outcome": "none (none)",
+    "severity_answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "keep_dropped",
+          "path": "strengths[0]",
+          "line": "fix-2",
+          "criticalMiss": false
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[2]",
+          "of": "first_impression"
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[0]",
+          "fix": 0
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[2]",
+          "fix": 2
+        },
+        {
+          "kind": "question_dropped",
+          "path": "ideas.questions[4]",
+          "reason": "duplicates_keep"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "biggest_gap_example",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[0]",
+          "of": "top_fixes[1]"
+        }
+      ],
+      "fix_questions": [
+        [
+          "What types of employee relations investigations did you handle with the HR manager, and what was your contribution?"
+        ],
+        [],
+        [
+          "What did you cover or prepare for the orientation you ran every two weeks?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01554745,
+  "latency_ms": 34246
+}

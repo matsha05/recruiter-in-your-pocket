@@ -1,0 +1,724 @@
+{
+  "case_id": "b05_paralegal",
+  "batch": "breadth",
+  "run": 2,
+  "note": null,
+  "resume_file": "../../../tests/resumes/blindpick/synth_bp_paralegal_1.txt",
+  "resume_sha256": "1860914f19aa0734b31d49c2046f7d394bc16dd5acb16f4c1fd6ee102a7f8568",
+  "resume_chars": 1043,
+  "resume_words": 144,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T19:59:34.248Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7541,
+        "completion_tokens": 2198,
+        "total_tokens": 9739,
+        "cached_prompt_tokens": 7538,
+        "cache_write_prompt_tokens": 0,
+        "reasoning_tokens": 295
+      },
+      "cost_usd": 0.0113699,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 25485
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.00133575,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1139
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 80,
+    "score_label": "Strong",
+    "score_comment_short": "Recent bullets show substantial case support, though several leave the work unexplained.",
+    "score_comment_long": "The current role names four partners, productions of up to 250,000 pages, and two jury trials. Other bullets list tasks without showing how you handled them. Adding a few concrete examples would make the work easier to assess.",
+    "score_plain": "Your resume gives a reviewer a useful picture of senior litigation support. More detail about how you handle productions and trial preparation could help distinguish your work from similar resumes.",
+    "first_impression": "Commercial and employment litigation are easy to spot, as are Relativity and trial preparation. The production size is worth keeping because it shows the scale of work you manage.",
+    "biggest_gap_example": "\"Track court deadlines in the firm's docketing system\" doesn't explain how you handle competing deadlines, leaving the responsibility difficult to assess.",
+    "first_impression_takeaway": "Explain your docketing process",
+    "summary": "Supporting four partners on commercial contract and employment matters anchors your current senior paralegal role. Your work spans discovery, document production, court deadlines, and trial preparation, with earlier personal injury experience. The resume shows senior-level litigation support, but it gives less detail about the steps you take on complex assignments. That makes it harder to understand how you handle the work beyond the listed deliverables.",
+    "strengths": [
+      "Productions of up to 250,000 pages in Relativity show the scale of a responsibility you manage.",
+      "Supporting two jury trials in 2025 gives the trial-preparation work a recent, concrete setting.",
+      "State and federal e-filing experience adds useful context to your earlier personal injury work."
+    ],
+    "gaps": [
+      "The discovery bullet names the documents you draft but not an example of the issues or materials you use to prepare them.",
+      "The trial bullet doesn't distinguish what you prepared before trial from any support you provided during proceedings.",
+      "CaseMap and Westlaw appear in Skills without examples of how you used them, so their place in your case work is unclear."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the Relativity production bullet, add the specific production steps you manage, such as preparation or quality checks, if applicable.",
+        "why": "The page count shows scale, while the steps would explain what managing a production involves for you.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Manage document productions of up to 250,000 pages in Relativity",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the jury-trial bullet, specify an example of the exhibits you prepared or the support you provided during trial.",
+        "why": "A concrete example would help a reviewer understand your contribution to those trials.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Prepare trial binders and exhibits; supported two jury trials in 2025",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the court-deadline bullet, describe how you coordinate or escalate competing deadlines, if that is part of your work.",
+        "why": "The current wording names the system but leaves the judgment involved in tracking deadlines unclear.",
+        "confidence": "medium",
+        "evidence": {
+          "excerpt": "- Track court deadlines in the firm's docketing system",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Expand the production and trial bullets with the specific work you can verify.",
+      "Revisit the discovery and docketing bullets for examples that show how you handle those assignments.",
+      "Review the summary and skills list against your revised experience, keeping the litigation work most relevant to your target role easy to find."
+    ],
+    "subscores": {
+      "impact": 75,
+      "clarity": 81,
+      "story": 82,
+      "readability": 85
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The opening identifies litigation support and the commercial and employment case types.",
+        "missing": "It doesn't distinguish your document production or trial preparation work.",
+        "fix": "Consider naming one of those responsibilities in the opening if it fits the role you seek."
+      },
+      "Work Experience": {
+        "grade": "B",
+        "priority": "High",
+        "working": "The current role gives partner count, production size, and recent jury-trial involvement.",
+        "missing": "Several bullets stop at a task name, without an example of how you carried it out.",
+        "fix": "Add concrete details to the production, trial, and docketing bullets while keeping the stated limits and ownership."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The list names litigation tools and CM/ECF rather than relying on general skills.",
+        "missing": "CaseMap and Westlaw are not connected to examples in the experience section.",
+        "fix": "Where accurate, connect either tool to a case task in an existing experience bullet."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The certificate and degree include institutions and completion years.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Commercial contract and employment litigation support",
+        "Document production management in Relativity",
+        "Discovery drafting and trial preparation",
+        "State and federal e-filing"
+      ],
+      "underplayed": [
+        "The steps involved in managing document productions",
+        "Your contribution to the two jury trials",
+        "How you use CaseMap and Westlaw in case work"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Senior Litigation Paralegal",
+          "Paralegal"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current title is Senior Litigation Paralegal, with responsibility for document productions and support for four partners.",
+        "industry_signals": [
+          "Legal services",
+          "Commercial and employment litigation",
+          "Personal injury"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "Lead with your commercial and employment litigation work for roles in those areas. Keep the production size and recent jury-trial support visible, then add examples of the work behind each."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "How do you prioritize requests when the four partners need support at the same time?",
+          "archetype": "TENSION POINT",
+          "why": "The answer could show how you manage competing case needs."
+        },
+        {
+          "question": "Which production steps do you manage in Relativity for the largest document sets?",
+          "archetype": "SCALING",
+          "why": "This would explain the work behind the stated production size."
+        },
+        {
+          "question": "What checks do you use when tracking court deadlines?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "A specific check could make the docketing responsibility more informative."
+        },
+        {
+          "question": "For the two jury trials, what did you prepare or handle beyond assembling binders and exhibits?",
+          "archetype": "HIGH STAKES",
+          "why": "This could distinguish your trial support from the preparation already listed."
+        },
+        {
+          "question": "What case materials do you use when drafting discovery requests for attorney review?",
+          "archetype": "DOMAIN LIFT",
+          "why": "An example would show how you approach a substantive drafting assignment."
+        }
+      ]
+    }
+  },
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 80,
+    "score_label": "Mostly clear",
+    "score_comment_short": "Recent bullets show substantial case support, though several leave the work unexplained.",
+    "score_comment_long": "The current role names four partners, productions of up to 250,000 pages, and two jury trials. Other bullets list tasks without showing how you handled them. Adding a few concrete examples would make the work easier to assess.",
+    "score_plain": "Your resume gives a reviewer a useful picture of senior litigation support. More detail about how you handle productions and trial preparation could help distinguish your work from similar resumes.",
+    "first_impression": "Commercial and employment litigation are easy to spot, as are Relativity and trial preparation. The production size is worth keeping because it shows the scale of work you manage.",
+    "biggest_gap_example": "\"Track court deadlines in the firm's docketing system\" doesn't explain how you handle competing deadlines, leaving the responsibility difficult to assess.",
+    "first_impression_takeaway": "Explain your docketing process",
+    "summary": "Supporting four partners on commercial contract and employment matters anchors your current senior paralegal role. Your work spans discovery, document production, court deadlines, and trial preparation, with earlier personal injury experience. The resume shows senior-level litigation support, but it gives less detail about the steps you take on complex assignments. That makes it harder to understand how you handle the work beyond the listed deliverables.",
+    "strengths": [
+      "Productions of up to 250,000 pages in Relativity show the scale of a responsibility you manage.",
+      "Supporting two jury trials in 2025 gives the trial-preparation work a recent, concrete setting.",
+      "State and federal e-filing experience adds useful context to your earlier personal injury work."
+    ],
+    "gaps": [
+      "The discovery bullet names the documents you draft but not an example of the issues or materials you use to prepare them.",
+      "The trial bullet doesn't distinguish what you prepared before trial from any support you provided during proceedings.",
+      "CaseMap and Westlaw appear in Skills without examples of how you used them, so their place in your case work is unclear."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the Relativity production bullet, add the specific production steps you manage, such as preparation or quality checks, if applicable.",
+        "why": "The page count shows scale, while the steps would explain what managing a production involves for you.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Manage document productions of up to 250,000 pages in Relativity",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the jury-trial bullet, specify an example of the exhibits you prepared or the support you provided during trial.",
+        "why": "A concrete example would help a reviewer understand your contribution to those trials.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Prepare trial binders and exhibits; supported two jury trials in 2025",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the court-deadline bullet, describe how you coordinate or escalate competing deadlines, if that is part of your work.",
+        "why": "The current wording names the system but leaves the judgment involved in tracking deadlines unclear.",
+        "confidence": "medium",
+        "evidence": {
+          "excerpt": "- Track court deadlines in the firm's docketing system",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Expand the production and trial bullets with the specific work you can verify.",
+      "Revisit the discovery and docketing bullets for examples that show how you handle those assignments.",
+      "Review the summary and skills list against your revised experience, keeping the litigation work most relevant to your target role easy to find."
+    ],
+    "subscores": {
+      "impact": 75,
+      "clarity": 81,
+      "story": 82,
+      "readability": 85
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "B",
+        "priority": "High",
+        "working": "The current role gives partner count, production size, and recent jury-trial involvement.",
+        "missing": "Several bullets stop at a task name, without an example of how you carried it out.",
+        "fix": "Add concrete details to the production, trial, and docketing bullets while keeping the stated limits and ownership."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The list names litigation tools and CM/ECF rather than relying on general skills.",
+        "missing": "CaseMap and Westlaw are not connected to examples in the experience section.",
+        "fix": "Where accurate, connect either tool to a case task in an existing experience bullet."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The certificate and degree include institutions and completion years.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Commercial contract and employment litigation support",
+        "Document production management in Relativity",
+        "Discovery drafting and trial preparation",
+        "State and federal e-filing"
+      ],
+      "underplayed": [
+        "The steps involved in managing document productions",
+        "Your contribution to the two jury trials",
+        "How you use CaseMap and Westlaw in case work"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Senior Litigation Paralegal",
+          "Paralegal"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current title is Senior Litigation Paralegal, with responsibility for document productions and support for four partners.",
+        "industry_signals": [
+          "Personal injury"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with your commercial and employment litigation work for roles in those areas. Keep the production size and recent jury-trial support visible, then add examples of the work behind each."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "How do you prioritize requests when the four partners need support at the same time?",
+          "archetype": "TENSION POINT",
+          "why": "The answer could show how you manage competing case needs."
+        },
+        {
+          "question": "Which production steps do you manage in Relativity for the largest document sets?",
+          "archetype": "SCALING",
+          "why": "This would explain the work behind the stated production size."
+        },
+        {
+          "question": "What checks do you use when tracking court deadlines?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "A specific check could make the docketing responsibility more informative."
+        },
+        {
+          "question": "For the two jury trials, what did you prepare or handle beyond assembling binders and exhibits?",
+          "archetype": "HIGH STAKES",
+          "why": "This could distinguish your trial support from the preparation already listed."
+        },
+        {
+          "question": "What case materials do you use when drafting discovery requests for attorney review?",
+          "archetype": "DOMAIN LIFT",
+          "why": "An example would show how you approach a substantive drafting assignment."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 80
+  },
+  "severity": {
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "promoted": [],
+    "replaced": [],
+    "skipped": [],
+    "critical_count": 1,
+    "more_critical": false,
+    "validation_attempts": 0,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "latency_ms": 1141,
+    "call_latency_ms": 1139,
+    "cost_usd": 0.00133575,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 80,
+    "score_label": "Mostly clear",
+    "score_comment_short": "Recent bullets show substantial case support, though several leave the work unexplained.",
+    "score_comment_long": "The current role names four partners, productions of up to 250,000 pages, and two jury trials. Other bullets list tasks without showing how you handled them. Adding a few concrete examples would make the work easier to assess.",
+    "score_plain": "Your resume gives a reviewer a useful picture of senior litigation support. More detail about how you handle productions and trial preparation could help distinguish your work from similar resumes.",
+    "first_impression": "Commercial and employment litigation are easy to spot, as are Relativity and trial preparation. The production size is worth keeping because it shows the scale of work you manage.",
+    "biggest_gap_example": "\"Track court deadlines in the firm's docketing system\" doesn't explain how you handle competing deadlines, leaving the responsibility difficult to assess.",
+    "first_impression_takeaway": "Explain your docketing process",
+    "summary": "Supporting four partners on commercial contract and employment matters anchors your current senior paralegal role. Your work spans discovery, document production, court deadlines, and trial preparation, with earlier personal injury experience. The resume shows senior-level litigation support, but it gives less detail about the steps you take on complex assignments. That makes it harder to understand how you handle the work beyond the listed deliverables.",
+    "strengths": [
+      "Productions of up to 250,000 pages in Relativity show the scale of a responsibility you manage.",
+      "Supporting two jury trials in 2025 gives the trial-preparation work a recent, concrete setting.",
+      "State and federal e-filing experience adds useful context to your earlier personal injury work."
+    ],
+    "gaps": [
+      "The discovery bullet names the documents you draft but not an example of the issues or materials you use to prepare them.",
+      "The trial bullet doesn't distinguish what you prepared before trial from any support you provided during proceedings.",
+      "CaseMap and Westlaw appear in Skills without examples of how you used them, so their place in your case work is unclear."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the Relativity production bullet, add the specific production steps you manage, such as preparation or quality checks, if applicable.",
+        "why": "The page count shows scale, while the steps would explain what managing a production involves for you.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Manage document productions of up to 250,000 pages in Relativity",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": true
+      },
+      {
+        "fix": "In the jury-trial bullet, specify an example of the exhibits you prepared or the support you provided during trial.",
+        "why": "A concrete example would help a reviewer understand your contribution to those trials.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Prepare trial binders and exhibits; supported two jury trials in 2025",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      },
+      {
+        "fix": "In the court-deadline bullet, describe how you coordinate or escalate competing deadlines, if that is part of your work.",
+        "why": "The current wording names the system but leaves the judgment involved in tracking deadlines unclear.",
+        "confidence": "medium",
+        "evidence": {
+          "excerpt": "- Track court deadlines in the firm's docketing system",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      }
+    ],
+    "next_steps": [
+      "Expand the production and trial bullets with the specific work you can verify.",
+      "Revisit the discovery and docketing bullets for examples that show how you handle those assignments.",
+      "Review the summary and skills list against your revised experience, keeping the litigation work most relevant to your target role easy to find."
+    ],
+    "subscores": {
+      "impact": 75,
+      "clarity": 81,
+      "story": 82,
+      "readability": 85
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "No summary section present",
+        "fix": "Add this section if it helps explain why your experience fits the job."
+      },
+      "Work Experience": {
+        "grade": "B",
+        "priority": "High",
+        "working": "The current role gives partner count, production size, and recent jury-trial involvement.",
+        "missing": "Several bullets stop at a task name, without an example of how you carried it out.",
+        "fix": "Add concrete details to the production, trial, and docketing bullets while keeping the stated limits and ownership."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "The list names litigation tools and CM/ECF rather than relying on general skills.",
+        "missing": "CaseMap and Westlaw are not connected to examples in the experience section.",
+        "fix": "Where accurate, connect either tool to a case task in an existing experience bullet."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The certificate and degree include institutions and completion years.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Commercial contract and employment litigation support",
+        "Document production management in Relativity",
+        "Discovery drafting and trial preparation",
+        "State and federal e-filing"
+      ],
+      "underplayed": [
+        "The steps involved in managing document productions",
+        "Your contribution to the two jury trials",
+        "How you use CaseMap and Westlaw in case work"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Senior Litigation Paralegal",
+          "Paralegal"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Your current title is Senior Litigation Paralegal, with responsibility for document productions and support for four partners.",
+        "industry_signals": [
+          "Personal injury"
+        ],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "Lead with your commercial and employment litigation work for roles in those areas. Keep the production size and recent jury-trial support visible, then add examples of the work behind each."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "How do you prioritize requests when the four partners need support at the same time?",
+          "archetype": "TENSION POINT",
+          "why": "The answer could show how you manage competing case needs."
+        },
+        {
+          "question": "Which production steps do you manage in Relativity for the largest document sets?",
+          "archetype": "SCALING",
+          "why": "This would explain the work behind the stated production size."
+        },
+        {
+          "question": "What checks do you use when tracking court deadlines?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "A specific check could make the docketing responsibility more informative."
+        },
+        {
+          "question": "For the two jury trials, what did you prepare or handle beyond assembling binders and exhibits?",
+          "archetype": "HIGH STAKES",
+          "why": "This could distinguish your trial support from the preparation already listed."
+        },
+        {
+          "question": "What case materials do you use when drafting discovery requests for attorney review?",
+          "archetype": "DOMAIN LIFT",
+          "why": "An example would show how you approach a substantive drafting assignment."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 80,
+    "more_critical": false
+  },
+  "presentation": {
+    "score": 80,
+    "band": "Mostly clear",
+    "score_label_from_model": "Strong",
+    "model_score_before_calibration": 80,
+    "verdict": "Commercial and employment litigation are easy to spot, as are Relativity and trial preparation. The production size is worth keeping because it shows the scale of work you manage.",
+    "one_line_read": "Recent bullets show substantial case support, though several leave the work unexplained.",
+    "takeaway": "Explain your docketing process",
+    "biggest_gap_example": "\"Track court deadlines in the firm's docketing system\" doesn't explain how you handle competing deadlines, leaving the responsibility difficult to assess.",
+    "critical_count": {
+      "count": 1,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "One Critical Miss. Fix it first.",
+      "lead": "It's the one most likely to cost you the interview."
+    },
+    "fixes": [
+      {
+        "fix": "In the Relativity production bullet, add the specific production steps you manage, such as preparation or quality checks, if applicable.",
+        "why": "The page count shows scale, while the steps would explain what managing a production involves for you.",
+        "excerpt": "- Manage document productions of up to 250,000 pages in Relativity",
+        "section": "EXPERIENCE",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the jury-trial bullet, specify an example of the exhibits you prepared or the support you provided during trial.",
+        "why": "A concrete example would help a reviewer understand your contribution to those trials.",
+        "excerpt": "- Prepare trial binders and exhibits; supported two jury trials in 2025",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the court-deadline bullet, describe how you coordinate or escalate competing deadlines, if that is part of your work.",
+        "why": "The current wording names the system but leaves the judgment involved in tracking deadlines unclear.",
+        "excerpt": "- Track court deadlines in the firm's docketing system",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "medium"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "Productions of up to 250,000 pages in Relativity show the scale of a responsibility you manage.",
+    "strengths": [
+      "Productions of up to 250,000 pages in Relativity show the scale of a responsibility you manage.",
+      "Supporting two jury trials in 2025 gives the trial-preparation work a recent, concrete setting.",
+      "State and federal e-filing experience adds useful context to your earlier personal injury work."
+    ],
+    "gaps": [
+      "The discovery bullet names the documents you draft but not an example of the issues or materials you use to prepare them.",
+      "The trial bullet doesn't distinguish what you prepared before trial from any support you provided during proceedings.",
+      "CaseMap and Westlaw appear in Skills without examples of how you used them, so their place in your case work is unclear."
+    ],
+    "next_steps": [
+      "Expand the production and trial bullets with the specific work you can verify.",
+      "Revisit the discovery and docketing bullets for examples that show how you handle those assignments.",
+      "Review the summary and skills list against your revised experience, keeping the litigation work most relevant to your target role easy to find."
+    ],
+    "seniority_read": "Your current title is Senior Litigation Paralegal, with responsibility for document productions and support for four partners.",
+    "best_fit_roles": [
+      "Senior Litigation Paralegal",
+      "Paralegal"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "Lead with your commercial and employment litigation work for roles in those areas. Keep the production size and recent jury-trial support visible, then add examples of the work behind each.",
+    "severity_added": [],
+    "severity_promoted": [],
+    "severity_outcome": "none (none)",
+    "severity_answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "keep_dropped",
+          "path": "strengths[0]",
+          "line": "fix-0",
+          "criticalMiss": true
+        },
+        {
+          "kind": "keep_dropped",
+          "path": "strengths[1]",
+          "line": "fix-1",
+          "criticalMiss": false
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[1]",
+          "fix": 0
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[2]",
+          "fix": 2
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[3]",
+          "fix": 1
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "biggest_gap_example",
+          "of": "top_fixes[2]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[0]",
+          "of": "ideas.questions[4]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[1]",
+          "of": "top_fixes[1]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Work Experience.fix",
+          "of": "first_impression"
+        }
+      ],
+      "fix_questions": [
+        [
+          "Which production steps do you manage in Relativity for the largest document sets?"
+        ],
+        [
+          "For the two jury trials, what did you prepare or handle beyond assembling binders and exhibits?"
+        ],
+        [
+          "What checks do you use when tracking court deadlines?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01270565,
+  "latency_ms": 26817
+}

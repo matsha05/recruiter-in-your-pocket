@@ -1,0 +1,45 @@
+# b06_staff_accountant, run 2
+Resume: ../../../tests/resumes/blindpick/synth_bp_staff_accountant_1.txt (98 words, sha256 5ffd1542f9ef)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0116; 27.4s
+
+## Band: Needs more context (score 61; model wrote 61, label "Needs Clarity")
+## Verdict
+Your current staff accountant title and accounting degree are easy to find. The experience bullets are brief enough to scan, but most stop at the name of a task.
+One-line read: The accounting duties are clear, but the descriptions rarely explain the work.
+Takeaway: Name your close tasks
+Biggest gap example: "Responsible for month-end close tasks" doesn't identify the tasks, so a reviewer cannot tell what part of the close you handle.
+
+## Fixes (Two Critical Misses. Start with this one.; lead: "Either one could cost you the interview on its own."); severity added (added); added ["no_evidence_latest_role"]; promoted []
+1. [Critical Miss] In the annual audit bullet, identify the schedules, records or other materials you assist with, if applicable.
+   why: A specific contribution would make your audit assistance easier to understand without overstating your role.
+   excerpt (EXPERIENCE): "- Assist with the annual audit"
+2. [Critical Miss] In the Rivermark Staff Accountant role, add the number of accounts you reconcile or a measurable close result, if you can verify it.
+   why: Accounting managers often look for the scale or results of close work. The role lists relevant tasks, but doesn't show their volume or a measurable outcome.
+   excerpt (Experience): "- Prepare journal entries and account reconciliations"
+Severity check answer: {"critical_misses":[{"source":"new","kind":"no_evidence_latest_role","fix":"In the Rivermark Staff Accountant role, add the number of accounts you reconcile or a measurable close result, if you can verify it.","why":"Accounting managers often look for the scale or results of close work. The role lists relevant tasks, but doesn't show their volume or a measurable outcome.","excerpt":"- Prepare journal entries and account reconciliations","section":"Experience","effort":"moderate"}],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The Rivermark roles show a clear progression from vendor invoices and payment questions to general accounting duties.
+Other strengths: ["QuickBooks, NetSuite and Excel functions are named, giving reviewers concrete tools to compare with a posting.","The accounting degree includes the school and graduation year, making your education straightforward to verify."]
+
+## Gaps
+- The types of accounts you reconcile aren't named, leaving the journal entry and reconciliation work broad.
+- The audit bullet doesn't say what you prepare or provide, so your contribution to the annual audit is unclear.
+- The fixed asset bullet doesn't explain which schedule updates you handle, making the responsibility difficult to distinguish from general record maintenance.
+
+## Next steps
+- Revise the close and reconciliation bullets with the actual tasks and account types you handle.
+- Expand the audit and fixed asset bullets using details you can verify.
+- Review the payables bullets for a specific example of how you handled a vendor payment question.
+
+## Role fit
+Level: The current title and duties indicate a staff-level accounting role.
+Best fit: ["Staff Accountant"]
+Positioning: Lead with your current staff accountant work and make the close responsibilities more concrete. Keep the earlier accounts payable role visible as the foundation for that progression.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[1]","fix":0},{"kind":"question_moved","path":"ideas.questions[2]","fix":1},{"kind":"question_dropped","path":"ideas.questions[4]","reason":"duplicates_keep"},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"ideas.questions[0]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[2]","of":"ideas.questions[3]"},{"kind":"repeat_dropped","path":"section_review.Skills.working","of":"strengths[1]"},{"kind":"repeat_dropped","path":"section_review.Education.working","of":"strengths[2]"},{"kind":"repeat_dropped","path":"next_steps[0]","of":"top_fixes[1]"}]

@@ -1,0 +1,49 @@
+# b20_customer_success_manager, run 2
+Resume: ../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt (180 words, sha256 fe00b2522044)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0138; 29.4s
+Case note: No posting.
+
+## Band: Mostly clear (score 80; model wrote 80, label "Strong")
+## Verdict
+You manage mid-market payroll customers and work across their onboarding, reviews, renewals, and escalations. The current bullets show who you work with more readily than what you do when an account is at risk.
+One-line read: Account coverage and customer-facing work are specific, though recent results are uneven.
+Takeaway: Explain your renewal contribution
+Biggest gap example: "Partnered with Sales on renewal strategy for at-risk accounts" doesn't say what you contributed to the plan, so your part in the renewal discussion remains unclear.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the at-risk renewal bullet, add what you contributed to the strategy and any renewal result you can verify.
+   why: That would distinguish your account work from the contribution made by Sales.
+   excerpt (EXPERIENCE): "- Partnered with Sales on renewal strategy for at-risk accounts"
+2. [fix] In the failed-payroll escalation bullet, describe one action you took and how the issue was resolved, if you can verify it.
+   why: A concrete example would show how you work with Support and Product during a customer problem.
+   excerpt (EXPERIENCE): "- Handle escalations with Support and Product when payroll runs fail"
+3. [fix] In the onboarding checklist bullet, name a step or customer handoff the checklist covers.
+   why: The team-wide use is already clear; the contents would explain what you built.
+   excerpt (EXPERIENCE): "- Built an onboarding checklist now used by the whole CS team"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+Quarterly business reviews with finance and HR leads show the customer contacts you work with.
+Other strengths: ["Your onboarding checklist is used by the whole CS team, showing that the work extends beyond your own accounts.","Training six new support hires adds a clear example of helping colleagues learn the ticketing workflow."]
+
+## Gaps
+- The payroll escalation bullet doesn't explain your role in resolving a failed run, leaving the division of work with Support and Product unclear.
+- The checklist's contents aren't described, so a reviewer can't see which onboarding problems it addresses.
+- Gainsight, Salesforce, and Zendesk are listed without examples of how you used them in your roles.
+
+## Next steps
+- Revise the renewal and payroll escalation bullets using examples you can verify.
+- Add a specific onboarding step to the checklist bullet, keeping its team-wide use.
+- Review the summary and skills list, surfacing the account portfolio and linking tools to work where accurate.
+
+## Role fit
+Level: The current title and portfolio describe a Customer Success Manager responsible for accounts; the resume does not describe people management.
+Best fit: ["Customer Success Manager"]
+Positioning: Position the resume around mid-market payroll customer success, with the support background as context for handling customer problems. Keep the portfolio size prominent and explain your part in renewals and escalations.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[1]","line":"fix-2","criticalMiss":false},{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":2},{"kind":"question_moved","path":"ideas.questions[2]","fix":1},{"kind":"question_dropped","path":"ideas.questions[3]","reason":"duplicates_keep"},{"kind":"question_dropped","path":"ideas.questions[4]","reason":"duplicates_keep"},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"section_review.Work Experience.missing","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"next_steps[1]","of":"top_fixes[2]"}]

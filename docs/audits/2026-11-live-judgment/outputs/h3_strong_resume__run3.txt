@@ -1,0 +1,46 @@
+# h3_strong_resume, run 3
+Resume: resumes/h3_strong_resume.txt (311 words, sha256 711aca17e0f7)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0140; 29.6s
+Case note: Senior product manager whose resume is already good.
+
+## Band: Clear and specific (score 89; model wrote 94, label "Top Tier")
+## Verdict
+Your current role spans a payments roadmap, processor integrations, pricing, and management of product managers. The estimated $6.2M in annual revenue recovered for customers is worth keeping because it connects the payment failure reduction to a customer consequence.
+One-line read: Recent product work consistently connects technical decisions with adoption, revenue, and customer results.
+Takeaway: Explain your roadmap priorities
+Biggest gap example: "Own the payments platform roadmap" names the responsibility but not how you prioritize across the four product teams, leaving your decision-making approach less visible.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the payments platform roadmap bullet, add one example of a competing priority you resolved and how you chose between the options.
+   why: That would give a reader a concrete view of your judgment across the product teams.
+   excerpt (EXPERIENCE): "- Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers"
+2. [fix] In the Northwind Pay launch bullet, name a launch decision you made or a difficult problem you resolved, if space permits.
+   why: The ARR and attach rate already show the product's growth; a specific choice would explain more of your contribution.
+   excerpt (EXPERIENCE): "- Led the launch of Northwind Pay, which grew from $0 to $48M ARR in 26 months and reached 31% attach rate on new accounts"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The network tokenization and smart retries bullet gives both the technical approach and the change in payment failure rate.
+Other strengths: ["Naming Adyen and Stripe alongside the faster new-market launch shows what the integration work involved.","The billing dispute reduction follows 40 customer interviews, making the connection between research and the invoice redesign easy to follow."]
+
+## Gaps
+- The roadmap bullet doesn't explain a tradeoff you made across teams, so the way you set priorities is less visible.
+- The management bullet reports promotions but doesn't describe how you supported the product managers' development.
+- The Northwind Pay launch result is clear, but the launch decisions you personally made are not described.
+
+## Next steps
+- Revise the roadmap bullet with a verified example of a priority tradeoff.
+- Add a specific development example to the product-manager management bullet.
+- Review the Northwind Pay launch bullet for a decision you can name without losing its ARR and attach-rate figures.
+
+## Role fit
+Level: Senior product manager with responsibility for a multi-team roadmap and direct management of three product managers.
+Best fit: ["Senior Product Manager, Payments Platform","Product Manager, Billing"]
+Positioning: Lead with payments and billing product management, using Northwind Pay and the payment failure reduction as distinct examples. For roles with people-management responsibility, make your contribution to product-manager development more explicit.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[1]","fix":1},{"kind":"question_dropped","path":"ideas.questions[4]","reason":"duplicates_keep"},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"ideas.questions[2]"},{"kind":"repeat_dropped","path":"gaps[2]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"section_review.Work Experience.missing","of":"first_impression"},{"kind":"repeat_dropped","path":"next_steps[2]","of":"top_fixes[1]"}]

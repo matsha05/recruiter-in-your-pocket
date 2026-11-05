@@ -1,0 +1,718 @@
+{
+  "case_id": "b14_teacher_to_instructional_designer",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Career changer.",
+  "resume_file": "../../../tests/resumes/blindpick/synth_bp_teacher_to_instructional_designer_1.txt",
+  "resume_sha256": "834ed54c2de68b69a032d304a18dda36925e354522e5b1cfe475d0beca0b4e9a",
+  "resume_chars": 1190,
+  "resume_words": 164,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T20:03:43.683Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7612,
+        "completion_tokens": 2117,
+        "total_tokens": 9729,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 723,
+        "reasoning_tokens": 243
+      },
+      "cost_usd": 0.01183605,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 24922
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.001532,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1597
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 68,
+    "score_label": "Needs Clarity",
+    "score_comment_short": "The teaching context is clear, but the design work needs more detail.",
+    "score_comment_long": "The Canvas module and exam-review videos show work beyond classroom instruction. Most bullets stop at the task, so a reviewer can't see how you designed the materials or what happened when students used them. Describe the module and one example of department leadership in more detail.",
+    "score_plain": "A reviewer can quickly identify your teaching background, but may need more detail to assess your learning design work. The Canvas project is a useful place to start.",
+    "first_impression": "Your current role combines high school math teaching with digital learning design. The self-paced Canvas module is worth keeping prominent because it shows a concrete move from classroom content to online instruction.",
+    "biggest_gap_example": "\"Lead the math department's professional learning community\" names a leadership responsibility but doesn't show what you do with the group or what it produces.",
+    "first_impression_takeaway": "Explain the Canvas module",
+    "summary": "Redesigning an Algebra II functions unit as a self-paced Canvas module connects your classroom work to your interest in digital learning design. You also create exam-review videos and teach Algebra II and AP Statistics. The resume presents you as a classroom teacher with department leadership responsibilities and developing design work. It doesn't yet explain the choices behind the module, which may leave a reviewer unsure how to assess your design process.",
+    "strengths": [
+      "Naming five sections of 28 to 32 students gives a reviewer a concrete picture of your current teaching assignment.",
+      "The inclusion-class experience and common assessments show collaboration in the earlier middle school role.",
+      "The in-progress instructional design certificate and Storyline workshop make your current development in learning design visible."
+    ],
+    "gaps": [
+      "The Canvas bullet doesn't describe the learning activities or feedback within the module, making the design work difficult to distinguish from moving content online.",
+      "The exam-review videos have no example of their content or how students use them, so their instructional purpose remains broad.",
+      "The professional learning community bullet doesn't identify a topic you led or work the group completed, leaving your department role abstract."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the Canvas module bullet, add an example of a learning activity or feedback you built into the functions unit.",
+        "why": "A reader could then see what you designed, not just the platform and format.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Redesigned the Algebra II unit on functions into a self-paced online module in Canvas",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the professional learning community bullet, name a topic you led and any work the group completed on it.",
+        "why": "That would make your department leadership more tangible without overstating your role.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Lead the math department's professional learning community",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the exam-review video bullet, identify a topic covered and describe how students use the walkthroughs to prepare.",
+        "why": "A specific example would help a reviewer understand the instructional work behind the videos.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Created video walkthroughs that students use for exam review",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Expand the Canvas and video bullets using details you can verify from those materials.",
+      "Add a concrete example to the department learning community bullet, then review the assessment bullet for useful context.",
+      "Reorder your existing experience bullets so the work most relevant to your intended role appears first."
+    ],
+    "subscores": {
+      "impact": 59,
+      "clarity": 70,
+      "story": 68,
+      "readability": 76
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "It states your classroom background and interest in digital learning design.",
+        "missing": "It doesn't identify the type of work you want next.",
+        "fix": "If you are targeting learning design roles, name that direction and retain the classroom connection."
+      },
+      "Work Experience": {
+        "grade": "C+",
+        "priority": "High",
+        "working": "The current teaching assignment names subjects, sections and class sizes, and the Canvas bullet identifies a specific unit.",
+        "missing": "The design and department leadership bullets give few details about what you created or led.",
+        "fix": "Expand the Canvas, video and professional learning community bullets with concrete examples."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "Canvas, Articulate Storyline and Camtasia are easy to find alongside backward design.",
+        "missing": "The list doesn't show how you have used each tool.",
+        "fix": "Where accurate, connect a listed tool to the relevant experience bullet rather than expanding the list."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Both degrees, institutions and completion years are stated.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "High school mathematics instruction",
+        "Self-paced Canvas module design",
+        "Exam-review video creation",
+        "Math department professional learning community leadership"
+      ],
+      "underplayed": [
+        "Instructional choices within the functions module",
+        "How students use the review videos",
+        "Work completed through the department learning community"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Mathematics Teacher"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "The current Mathematics Teacher role includes math department professional learning community leadership.",
+        "industry_signals": [
+          "High school education",
+          "Middle school education"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "If you want to move toward digital learning design, put the Canvas module and review videos near the top of your current role. Keep the teaching context so readers can see the learners and subjects behind that work."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What learning activities or feedback did you build into the self-paced functions module?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The answer could show the design work within the Canvas project."
+        },
+        {
+          "question": "Which topic did you lead in the math department learning community, and what did the group complete?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "An example would make your department leadership more concrete."
+        },
+        {
+          "question": "What did you change in a common assessment after working with your grade-level colleagues?",
+          "archetype": "IMPROVEMENT",
+          "why": "A specific contribution could explain your part in the assessment work."
+        },
+        {
+          "question": "How did you adapt instruction when co-teaching the inclusion class?",
+          "archetype": "DOMAIN LIFT",
+          "why": "This could show how you addressed different learning needs."
+        },
+        {
+          "question": "How did students use your video walkthroughs when preparing for exams?",
+          "archetype": "TENSION POINT",
+          "why": "Their use could make the review materials more concrete."
+        }
+      ]
+    }
+  },
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 68,
+    "score_label": "Needs more context",
+    "score_comment_short": "The teaching context is clear, but the design work needs more detail.",
+    "score_comment_long": "The Canvas module and exam-review videos show work beyond classroom instruction. Most bullets stop at the task, so a reviewer can't see how you designed the materials or what happened when students used them. Describe the module and one example of department leadership in more detail.",
+    "score_plain": "A reviewer can quickly identify your teaching background, but may need more detail to assess your learning design work. The Canvas project is a useful place to start.",
+    "first_impression": "Your current role combines high school math teaching with digital learning design. The self-paced Canvas module is worth keeping prominent because it shows a concrete move from classroom content to online instruction.",
+    "biggest_gap_example": "\"Lead the math department's professional learning community\" names a leadership responsibility but doesn't show what you do with the group or what it produces.",
+    "first_impression_takeaway": "Explain the Canvas module",
+    "summary": "Redesigning an Algebra II functions unit as a self-paced Canvas module connects your classroom work to your interest in digital learning design. You also create exam-review videos and teach Algebra II and AP Statistics. The resume presents you as a classroom teacher with department leadership responsibilities and developing design work. It doesn't yet explain the choices behind the module, which may leave a reviewer unsure how to assess your design process.",
+    "strengths": [
+      "Naming five sections of 28 to 32 students gives a reviewer a concrete picture of your current teaching assignment.",
+      "The inclusion-class experience and common assessments show collaboration in the earlier middle school role.",
+      "The in-progress instructional design certificate and Storyline workshop make your current development in learning design visible."
+    ],
+    "gaps": [
+      "The Canvas bullet doesn't describe the learning activities or feedback within the module, making the design work difficult to distinguish from moving content online.",
+      "The exam-review videos have no example of their content or how students use them, so their instructional purpose remains broad.",
+      "The professional learning community bullet doesn't identify a topic you led or work the group completed, leaving your department role abstract."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the Canvas module bullet, add an example of a learning activity or feedback you built into the functions unit.",
+        "why": "A reader could then see what you designed, not just the platform and format.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Redesigned the Algebra II unit on functions into a self-paced online module in Canvas",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the professional learning community bullet, name a topic you led and any work the group completed on it.",
+        "why": "That would make your department leadership more tangible without overstating your role.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Lead the math department's professional learning community",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the exam-review video bullet, identify a topic covered and describe how students use the walkthroughs to prepare.",
+        "why": "A specific example would help a reviewer understand the instructional work behind the videos.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Created video walkthroughs that students use for exam review",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Expand the Canvas and video bullets using details you can verify from those materials.",
+      "Add a concrete example to the department learning community bullet, then review the assessment bullet for useful context.",
+      "Reorder your existing experience bullets so the work most relevant to your intended role appears first."
+    ],
+    "subscores": {
+      "impact": 59,
+      "clarity": 70,
+      "story": 68,
+      "readability": 76
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "It states your classroom background and interest in digital learning design.",
+        "missing": "It doesn't identify the type of work you want next.",
+        "fix": "If you are targeting learning design roles, name that direction and retain the classroom connection."
+      },
+      "Work Experience": {
+        "grade": "C+",
+        "priority": "High",
+        "working": "The current teaching assignment names subjects, sections and class sizes, and the Canvas bullet identifies a specific unit.",
+        "missing": "The design and department leadership bullets give few details about what you created or led.",
+        "fix": "Expand the Canvas, video and professional learning community bullets with concrete examples."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "Canvas, Articulate Storyline and Camtasia are easy to find alongside backward design.",
+        "missing": "The list doesn't show how you have used each tool.",
+        "fix": "Where accurate, connect a listed tool to the relevant experience bullet rather than expanding the list."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Both degrees, institutions and completion years are stated.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "High school mathematics instruction",
+        "Self-paced Canvas module design",
+        "Exam-review video creation",
+        "Math department professional learning community leadership"
+      ],
+      "underplayed": [
+        "Instructional choices within the functions module",
+        "How students use the review videos",
+        "Work completed through the department learning community"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Mathematics Teacher"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "The current Mathematics Teacher role includes math department professional learning community leadership.",
+        "industry_signals": [],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "If you want to move toward digital learning design, put the Canvas module and review videos near the top of your current role. Keep the teaching context so readers can see the learners and subjects behind that work."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What learning activities or feedback did you build into the self-paced functions module?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The answer could show the design work within the Canvas project."
+        },
+        {
+          "question": "Which topic did you lead in the math department learning community, and what did the group complete?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "An example would make your department leadership more concrete."
+        },
+        {
+          "question": "What did you change in a common assessment after working with your grade-level colleagues?",
+          "archetype": "IMPROVEMENT",
+          "why": "A specific contribution could explain your part in the assessment work."
+        },
+        {
+          "question": "How did you adapt instruction when co-teaching the inclusion class?",
+          "archetype": "DOMAIN LIFT",
+          "why": "This could show how you addressed different learning needs."
+        },
+        {
+          "question": "How did students use your video walkthroughs when preparing for exams?",
+          "archetype": "TENSION POINT",
+          "why": "Their use could make the review materials more concrete."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 68
+  },
+  "severity": {
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "promoted": [],
+    "replaced": [],
+    "skipped": [],
+    "critical_count": 1,
+    "more_critical": false,
+    "validation_attempts": 0,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "latency_ms": 1597,
+    "call_latency_ms": 1597,
+    "cost_usd": 0.001532,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 68,
+    "score_label": "Needs more context",
+    "score_comment_short": "The teaching context is clear, but the design work needs more detail.",
+    "score_comment_long": "The Canvas module and exam-review videos show work beyond classroom instruction. Most bullets stop at the task, so a reviewer can't see how you designed the materials or what happened when students used them. Describe the module and one example of department leadership in more detail.",
+    "score_plain": "A reviewer can quickly identify your teaching background, but may need more detail to assess your learning design work. The Canvas project is a useful place to start.",
+    "first_impression": "Your current role combines high school math teaching with digital learning design. The self-paced Canvas module is worth keeping prominent because it shows a concrete move from classroom content to online instruction.",
+    "biggest_gap_example": "\"Lead the math department's professional learning community\" names a leadership responsibility but doesn't show what you do with the group or what it produces.",
+    "first_impression_takeaway": "Explain the Canvas module",
+    "summary": "Redesigning an Algebra II functions unit as a self-paced Canvas module connects your classroom work to your interest in digital learning design. You also create exam-review videos and teach Algebra II and AP Statistics. The resume presents you as a classroom teacher with department leadership responsibilities and developing design work. It doesn't yet explain the choices behind the module, which may leave a reviewer unsure how to assess your design process.",
+    "strengths": [
+      "Naming five sections of 28 to 32 students gives a reviewer a concrete picture of your current teaching assignment.",
+      "The inclusion-class experience and common assessments show collaboration in the earlier middle school role.",
+      "The in-progress instructional design certificate and Storyline workshop make your current development in learning design visible."
+    ],
+    "gaps": [
+      "The Canvas bullet doesn't describe the learning activities or feedback within the module, making the design work difficult to distinguish from moving content online.",
+      "The exam-review videos have no example of their content or how students use them, so their instructional purpose remains broad.",
+      "The professional learning community bullet doesn't identify a topic you led or work the group completed, leaving your department role abstract."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the Canvas module bullet, add an example of a learning activity or feedback you built into the functions unit.",
+        "why": "A reader could then see what you designed, not just the platform and format.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Redesigned the Algebra II unit on functions into a self-paced online module in Canvas",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": true
+      },
+      {
+        "fix": "In the professional learning community bullet, name a topic you led and any work the group completed on it.",
+        "why": "That would make your department leadership more tangible without overstating your role.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Lead the math department's professional learning community",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      },
+      {
+        "fix": "In the exam-review video bullet, identify a topic covered and describe how students use the walkthroughs to prepare.",
+        "why": "A specific example would help a reviewer understand the instructional work behind the videos.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Created video walkthroughs that students use for exam review",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      }
+    ],
+    "next_steps": [
+      "Expand the Canvas and video bullets using details you can verify from those materials.",
+      "Add a concrete example to the department learning community bullet, then review the assessment bullet for useful context.",
+      "Reorder your existing experience bullets so the work most relevant to your intended role appears first."
+    ],
+    "subscores": {
+      "impact": 59,
+      "clarity": 70,
+      "story": 68,
+      "readability": 76
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "It states your classroom background and interest in digital learning design.",
+        "missing": "It doesn't identify the type of work you want next.",
+        "fix": "If you are targeting learning design roles, name that direction and retain the classroom connection."
+      },
+      "Work Experience": {
+        "grade": "C+",
+        "priority": "High",
+        "working": "The current teaching assignment names subjects, sections and class sizes, and the Canvas bullet identifies a specific unit.",
+        "missing": "The design and department leadership bullets give few details about what you created or led.",
+        "fix": "Expand the Canvas, video and professional learning community bullets with concrete examples."
+      },
+      "Skills": {
+        "grade": "B",
+        "priority": "Low",
+        "working": "Canvas, Articulate Storyline and Camtasia are easy to find alongside backward design.",
+        "missing": "The list doesn't show how you have used each tool.",
+        "fix": "Where accurate, connect a listed tool to the relevant experience bullet rather than expanding the list."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Both degrees, institutions and completion years are stated.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "High school mathematics instruction",
+        "Self-paced Canvas module design",
+        "Exam-review video creation",
+        "Math department professional learning community leadership"
+      ],
+      "underplayed": [
+        "Instructional choices within the functions module",
+        "How students use the review videos",
+        "Work completed through the department learning community"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Mathematics Teacher"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "The current Mathematics Teacher role includes math department professional learning community leadership.",
+        "industry_signals": [],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "If you want to move toward digital learning design, put the Canvas module and review videos near the top of your current role. Keep the teaching context so readers can see the learners and subjects behind that work."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What learning activities or feedback did you build into the self-paced functions module?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The answer could show the design work within the Canvas project."
+        },
+        {
+          "question": "Which topic did you lead in the math department learning community, and what did the group complete?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "An example would make your department leadership more concrete."
+        },
+        {
+          "question": "What did you change in a common assessment after working with your grade-level colleagues?",
+          "archetype": "IMPROVEMENT",
+          "why": "A specific contribution could explain your part in the assessment work."
+        },
+        {
+          "question": "How did you adapt instruction when co-teaching the inclusion class?",
+          "archetype": "DOMAIN LIFT",
+          "why": "This could show how you addressed different learning needs."
+        },
+        {
+          "question": "How did students use your video walkthroughs when preparing for exams?",
+          "archetype": "TENSION POINT",
+          "why": "Their use could make the review materials more concrete."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 68,
+    "more_critical": false
+  },
+  "presentation": {
+    "score": 68,
+    "band": "Needs more context",
+    "score_label_from_model": "Needs Clarity",
+    "model_score_before_calibration": 68,
+    "verdict": "Your current role combines high school math teaching with digital learning design. The self-paced Canvas module is worth keeping prominent because it shows a concrete move from classroom content to online instruction.",
+    "one_line_read": "The teaching context is clear, but the design work needs more detail.",
+    "takeaway": "Explain the Canvas module",
+    "biggest_gap_example": "\"Lead the math department's professional learning community\" names a leadership responsibility but doesn't show what you do with the group or what it produces.",
+    "critical_count": {
+      "count": 1,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "One Critical Miss. Fix it first.",
+      "lead": "It's the one most likely to cost you the interview."
+    },
+    "fixes": [
+      {
+        "fix": "In the Canvas module bullet, add an example of a learning activity or feedback you built into the functions unit.",
+        "why": "A reader could then see what you designed, not just the platform and format.",
+        "excerpt": "- Redesigned the Algebra II unit on functions into a self-paced online module in Canvas",
+        "section": "EXPERIENCE",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the professional learning community bullet, name a topic you led and any work the group completed on it.",
+        "why": "That would make your department leadership more tangible without overstating your role.",
+        "excerpt": "- Lead the math department's professional learning community",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the exam-review video bullet, identify a topic covered and describe how students use the walkthroughs to prepare.",
+        "why": "A specific example would help a reviewer understand the instructional work behind the videos.",
+        "excerpt": "- Created video walkthroughs that students use for exam review",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "Naming five sections of 28 to 32 students gives a reviewer a concrete picture of your current teaching assignment.",
+    "strengths": [
+      "Naming five sections of 28 to 32 students gives a reviewer a concrete picture of your current teaching assignment.",
+      "The inclusion-class experience and common assessments show collaboration in the earlier middle school role.",
+      "The in-progress instructional design certificate and Storyline workshop make your current development in learning design visible."
+    ],
+    "gaps": [
+      "The Canvas bullet doesn't describe the learning activities or feedback within the module, making the design work difficult to distinguish from moving content online.",
+      "The exam-review videos have no example of their content or how students use them, so their instructional purpose remains broad.",
+      "The professional learning community bullet doesn't identify a topic you led or work the group completed, leaving your department role abstract."
+    ],
+    "next_steps": [
+      "Expand the Canvas and video bullets using details you can verify from those materials.",
+      "Add a concrete example to the department learning community bullet, then review the assessment bullet for useful context.",
+      "Reorder your existing experience bullets so the work most relevant to your intended role appears first."
+    ],
+    "seniority_read": "The current Mathematics Teacher role includes math department professional learning community leadership.",
+    "best_fit_roles": [
+      "Mathematics Teacher"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "If you want to move toward digital learning design, put the Canvas module and review videos near the top of your current role. Keep the teaching context so readers can see the learners and subjects behind that work.",
+    "severity_added": [],
+    "severity_promoted": [],
+    "severity_outcome": "none (none)",
+    "severity_answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[0]",
+          "fix": 0
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[1]",
+          "fix": 1
+        },
+        {
+          "kind": "question_dropped",
+          "path": "ideas.questions[3]",
+          "reason": "duplicates_keep"
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[4]",
+          "fix": 2
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "biggest_gap_example",
+          "of": "top_fixes[1]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[0]",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[1]",
+          "of": "top_fixes[2]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[2]",
+          "of": "top_fixes[1]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Work Experience.missing",
+          "of": "top_fixes[1]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Work Experience.fix",
+          "of": "top_fixes[1]"
+        }
+      ],
+      "fix_questions": [
+        [
+          "What learning activities or feedback did you build into the self-paced functions module?"
+        ],
+        [
+          "Which topic did you lead in the math department learning community, and what did the group complete?"
+        ],
+        [
+          "How did students use your video walkthroughs when preparing for exams?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01336805,
+  "latency_ms": 26904
+}

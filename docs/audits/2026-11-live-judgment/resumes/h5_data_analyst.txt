@@ -1,0 +1,27 @@
+Jordan Lee
+Raleigh, NC | jordan.lee@example.com | 555-0150
+
+Data analyst with four years turning sales and operations data into reports that teams actually use.
+
+EXPERIENCE
+
+Data Analyst
+Carolina Home Goods, Raleigh, NC
+February 2023 - Present
+- Build and maintain 14 Power BI dashboards used by the sales, merchandising, and finance teams
+- Wrote the SQL model that replaced a 3-day manual weekly sales report with an automated one
+- Analyzed markdown timing for 2,100 SKUs; the merchandising team adopted the recommended schedule in two categories
+- Pull ad hoc analyses for the VP of Sales, about 10 requests a month
+
+Junior Analyst
+Piedmont Insurance Services, Durham, NC
+July 2021 - January 2023
+- Cleaned and reconciled policy data from three legacy systems in Python and Excel
+- Produced the monthly claims summary for the operations director
+- Documented the reporting data dictionary used by the analytics team
+
+EDUCATION
+B.S., Statistics, North Carolina State University, 2021
+
+SKILLS
+SQL, Power BI, Python (pandas), Excel, Tableau, data modeling

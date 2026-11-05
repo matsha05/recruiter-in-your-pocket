@@ -1,0 +1,402 @@
+{
+  "case_id": "b12_coo_executive_two_page",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Executive, two pages.",
+  "resume_file": "resumes/b_coo_executive.txt",
+  "resume_sha256": "213474e9b27355f8a085204e3dac05f65782d74d43b9b531cb2afd6a3afe1b79",
+  "resume_chars": 3018,
+  "resume_words": 463,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T20:02:12.953Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 8573,
+        "completion_tokens": 2327,
+        "total_tokens": 10900,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 1684,
+        "reasoning_tokens": 423
+      },
+      "cost_usd": 0.0140873,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 27074
+    },
+    {
+      "kind": "repair",
+      "usage": {
+        "prompt_tokens": 11335,
+        "completion_tokens": 2970,
+        "total_tokens": 14305,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 4446,
+        "reasoning_tokens": 1078
+      },
+      "cost_usd": 0.0207548,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 34494
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 93,
+    "score_label": "Top Tier",
+    "score_comment_short": "Recent operating results are specific, with only a few decisions left unexplained.",
+    "score_comment_long": "The COO role connects practice growth with integration, staffing, and financial results. A few consequential items, including EHR sponsorship, would benefit from a clearer account of your part. Adding those details is the most direct improvement.",
+    "score_plain": "The resume gives a reviewer substantial information to assess your work as a healthcare operations executive. A few targeted additions could make your executive responsibilities easier to understand.",
+    "first_impression": "Your COO role spans 140 practices and a $410M P&L shared with the CFO. The operating results are easy to find, though some executive decisions sit behind brief descriptions.",
+    "biggest_gap_example": "\"present to the board quarterly\" doesn't say which operating matters you bring to the board, leaving your governance work less concrete.",
+    "first_impression_takeaway": "Name your board topics",
+    "summary": "Growing Lakeshore from 38 to 140 practices while raising same-store EBITDA margin from 17% to 23% gives the COO story a useful financial dimension. Your work also spans acquisition integration, clinical retention, and a regional operating model. Earlier physician-group and surgery-center roles show operating responsibility across different healthcare settings. The executive level is clear, although a reviewer may want more detail on what your sponsorship of the EHR consolidation involved.",
+    "strengths": [
+      "The integration playbook connects a specific change in practice onboarding to a reduction from 7 months to 10 weeks.",
+      "The hygienist turnover bullet names both the compensation plan and career ladder, making the retention work easier to understand.",
+      "The surgery-center turnaround names payer contracts and block scheduling alongside the move from a $600K annual loss to a $1.9M profit."
+    ],
+    "gaps": [
+      "The board reporting line doesn't identify the operating topics you present, so your work with the board remains general.",
+      "The primary-care appointment result doesn't explain what changed in scheduling or clinic operations to shorten the wait.",
+      "Your role in sponsoring the EHR consolidation is stated, but the decisions or oversight involved aren't described."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the EHR consolidation bullet, add the principal decision or oversight responsibility you handled as sponsor.",
+        "why": "That would distinguish your executive contribution from the implementation work without overstating your role.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Sponsored the EHR consolidation from 6 systems to 1 across all practices, finished on budget in 20 months",
+          "section": "EXECUTIVE EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXECUTIVE EXPERIENCE"
+      },
+      {
+        "fix": "In the primary-care wait-time bullet, name the operating change you made to reduce the time to the third available appointment.",
+        "why": "The before-and-after figures are clear; the change behind them would help a reviewer understand how you approached access.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "Reduced patient wait time to third available appointment from 21 days to 6 across primary care",
+          "section": "EXECUTIVE EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXECUTIVE EXPERIENCE"
+      },
+      {
+        "fix": "In the COO operations bullet, identify a recurring topic you present to the board.",
+        "why": "A concrete topic would make the quarterly reporting responsibility more informative.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "report to the CEO and present to the board quarterly",
+          "section": "EXECUTIVE EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXECUTIVE EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the EHR and appointment-access bullets with the details you can verify.",
+      "Add a board presentation topic to the current COO entry, keeping the quarterly cadence.",
+      "Review the opening profile against the revised experience and retain the practice-growth figures."
+    ],
+    "subscores": {
+      "impact": 94,
+      "clarity": 92,
+      "story": 94,
+      "readability": 93
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The opening identifies your healthcare operating role and practice-growth result immediately.",
+        "missing": "It doesn't mention the private equity context or your board reporting.",
+        "fix": "Consider adding one of those details if it matters to the role you pursue."
+      },
+      "Work Experience": {
+        "grade": "A",
+        "priority": "Medium",
+        "working": "The entries pair operating responsibilities with results in integration, retention, access, and finances.",
+        "missing": "The EHR sponsorship and primary-care wait-time bullets leave the work behind those results less explicit.",
+        "fix": "Add your sponsor responsibility and the operating change behind the access improvement."
+      },
+      "Skills": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "Section not present.",
+        "fix": "Add only if it helps your story."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Both degrees, institutions, and graduation years are listed.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Multi-site dental and physician-group operations",
+        "Acquisition and new-practice integration",
+        "Operating plans and P&L responsibility with the CFO",
+        "Clinical workforce retention",
+        "Value-based contract operations"
+      ],
+      "underplayed": [
+        "The topics and decisions involved in board reporting",
+        "Executive sponsorship of the EHR consolidation",
+        "The operating changes behind improved primary-care appointment access"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Chief Operating Officer",
+          "Senior Vice President, Operations",
+          "Vice President, Clinic Operations"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Current COO with CEO reporting, quarterly board presentations, and shared P&L responsibility.",
+        "industry_signals": [
+          "Dental services",
+          "Primary care and specialty clinics",
+          "Ambulatory surgery"
+        ],
+        "company_stage_fit": "Your current employer is described as private equity backed; other company stages aren't specified."
+      },
+      "positioning_suggestion": "Lead with the COO role and the combination of practice growth and same-store margin improvement. Keep the earlier physician-group and surgery-center results to show the range of healthcare settings you've operated in."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What decisions did you handle as sponsor of the EHR consolidation?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "Your sponsorship is named, but its responsibilities aren't."
+        },
+        {
+          "question": "What operating change helped reduce the wait for a third available primary-care appointment?",
+          "archetype": "IMPROVEMENT",
+          "why": "The access result is specific, while the method isn't described."
+        },
+        {
+          "question": "Which operating topics do you present to the board each quarter?",
+          "archetype": "HIGH STAKES",
+          "why": "An example would make your board-facing work more concrete."
+        },
+        {
+          "question": "What did the 90-day integration playbook standardize for newly acquired practices?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The playbook reduced integration time, and its contents could explain how."
+        },
+        {
+          "question": "What did you contribute to the design of the value-based contracts?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The contract shift and shared savings are stated, but your contribution to contract design isn't."
+        }
+      ]
+    }
+  },
+  "initial_validation_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the evidence grounding contract at summary unsupported narrative facts: Growing Lakeshore."
+  },
+  "model_output_repaired": {
+    "contract_version": "v2",
+    "score": 93,
+    "score_label": "Top Tier",
+    "score_comment_short": "Detailed operating results support the score, with few responsibilities needing explanation.",
+    "score_comment_long": "The COO entry gives specific results for practice growth, integration, retention, and margin. A few important responsibilities, including EHR sponsorship, could be more explicit. Brief additions to those bullets would make your contribution easier to understand.",
+    "score_plain": "The resume gives reviewers substantial detail to assess your work in healthcare operations. Targeted edits could make a few executive responsibilities more concrete.",
+    "first_impression": "Your current COO role covers 140 practices and a $410M P&L shared with the CFO. The operating results are easy to find, though some executive responsibilities are described briefly.",
+    "biggest_gap_example": "\"present to the board quarterly\" doesn't say which operating matters you bring to the board, leaving that responsibility less concrete.",
+    "first_impression_takeaway": "Name your board topics",
+    "summary": "At Lakeshore Dental Partners, you grew the practice count from 38 to 140 while raising same-store EBITDA margin from 17% to 23%. Keeping both figures helps show that the COO role involves more than expansion. The resume also traces work across acquisition integration, clinical retention, and physician-group operations. Your executive level is clear, although the EHR consolidation bullet leaves your responsibilities as sponsor unspecified.",
+    "strengths": [
+      "The integration playbook connects a specific operating change to a reduction in new-practice integration time from 7 months to 10 weeks.",
+      "The hygienist turnover bullet names both the compensation plan and clinical career ladder, explaining the work behind the reduction.",
+      "The surgery-center bullet links payer contracts and block scheduling to a move from a $600K annual loss to a $1.9M profit."
+    ],
+    "gaps": [
+      "The board presentation topics aren't named, so your work with the board remains general.",
+      "The primary-care access result doesn't explain what changed in scheduling or clinic operations to shorten the wait.",
+      "Your EHR sponsorship is stated, but the decisions or oversight involved aren't described."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the EHR consolidation bullet, add a principal decision or oversight responsibility you handled as sponsor.",
+        "why": "That would distinguish your executive contribution from the implementation work without overstating your role.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Sponsored the EHR consolidation from 6 systems to 1 across all practices, finished on budget in 20 months",
+          "section": "EXECUTIVE EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXECUTIVE EXPERIENCE"
+      },
+      {
+        "fix": "In the primary-care wait-time bullet, name the operating change you made to reduce the time to the third available appointment.",
+        "why": "The before-and-after figures are clear; the change behind them would show how you approached patient access.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Reduced patient wait time to third available appointment from 21 days to 6 across primary care",
+          "section": "EXECUTIVE EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "moderate",
+        "section_ref": "EXECUTIVE EXPERIENCE"
+      },
+      {
+        "fix": "In the COO operations bullet, identify a recurring topic you present to the board.",
+        "why": "A concrete topic would make the quarterly presentation responsibility more informative.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "present to the board quarterly",
+          "section": "EXECUTIVE EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXECUTIVE EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the EHR and appointment-access bullets with details you can verify.",
+      "Add a board presentation topic to the current COO entry while retaining the quarterly cadence.",
+      "Review the opening profile against the revised experience and retain the practice-growth figures."
+    ],
+    "subscores": {
+      "impact": 94,
+      "clarity": 92,
+      "story": 94,
+      "readability": 93
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The opening identifies your healthcare operating role and practice-growth result immediately.",
+        "missing": "It doesn't mention the private equity context or your board presentations.",
+        "fix": "Consider adding one of those details if it matters to the role you pursue."
+      },
+      "Work Experience": {
+        "grade": "A",
+        "priority": "Medium",
+        "working": "The entries pair operating responsibilities with results in integration, retention, access, and finances.",
+        "missing": "The EHR sponsorship and primary-care wait-time bullets leave the work behind those results less explicit.",
+        "fix": "Add your sponsor responsibility and the operating change behind the access improvement."
+      },
+      "Skills": {
+        "grade": "N/A",
+        "priority": "Low",
+        "working": "",
+        "missing": "Section not present.",
+        "fix": "Add only if it helps your story."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "Both degrees, institutions, and graduation years are listed.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Multi-site dental and physician-group operations",
+        "Acquisition and new-practice integration",
+        "Operating plans and P&L responsibility with the CFO",
+        "Clinical workforce retention",
+        "Value-based contract operations"
+      ],
+      "underplayed": [
+        "The subjects of your board presentations",
+        "Your responsibilities as EHR consolidation sponsor",
+        "The operating changes behind improved primary-care appointment access"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "Chief Operating Officer",
+          "Senior Vice President, Operations",
+          "Vice President, Clinic Operations"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Current COO with CEO reporting, quarterly board presentations, and shared P&L responsibility.",
+        "industry_signals": [
+          "Dental services",
+          "Primary care and specialty clinics",
+          "Ambulatory surgery"
+        ],
+        "company_stage_fit": "Your current employer is described as private equity backed; other company stages aren't specified."
+      },
+      "positioning_suggestion": "Lead with the COO role and the combination of practice growth and same-store margin improvement. Keep the earlier physician-group and surgery-center results to show the range of healthcare settings you've operated in."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What decisions or oversight did you handle as sponsor of the EHR consolidation?",
+          "archetype": "CROSS-FUNCTIONAL COMPLEXITY",
+          "why": "Your sponsorship is named, but its responsibilities aren't."
+        },
+        {
+          "question": "What operating change helped reduce the wait for a third available primary-care appointment?",
+          "archetype": "IMPROVEMENT",
+          "why": "The access result is specific, while the method isn't described."
+        },
+        {
+          "question": "Which operating topics do you present to the board each quarter?",
+          "archetype": "HIGH STAKES",
+          "why": "An example would make your board-facing work more concrete."
+        },
+        {
+          "question": "What did the 90-day integration playbook standardize for new practices?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The playbook reduced integration time, and its contents could explain how."
+        },
+        {
+          "question": "When leading the shift to value-based contracts, what did your work involve?",
+          "archetype": "DOMAIN LIFT",
+          "why": "The contract shift and group savings are stated, but the work behind the shift isn't detailed."
+        }
+      ]
+    }
+  },
+  "outcome": "repair_failed",
+  "repair_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the evidence grounding contract at summary unsupported narrative facts: both, help, coo, involve, more."
+  },
+  "cost_usd": 0.0348421
+}

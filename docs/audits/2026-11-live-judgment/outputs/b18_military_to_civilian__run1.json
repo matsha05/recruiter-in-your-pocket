@@ -1,0 +1,661 @@
+{
+  "case_id": "b18_military_to_civilian",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "resumes/b_military_to_civilian.txt",
+  "resume_sha256": "c2dd1e89354ce1a86021927ffba5d85f65b3dfb021c3126f6459225f8bfd7a7e",
+  "resume_chars": 1816,
+  "resume_words": 268,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "started_at": "2026-11-05T20:05:33.586Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7977,
+        "completion_tokens": 2331,
+        "total_tokens": 10308,
+        "cached_prompt_tokens": 6886,
+        "cache_write_prompt_tokens": 1088,
+        "reasoning_tokens": 465
+      },
+      "cost_usd": 0.0133623,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 27635
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.00181325,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1009
+    }
+  ],
+  "resume_prompt_sha256": "83b2a2d1f9cde086ebb28fc2e0596ed7c58e6c4f905c4f57fe56cc86e9665107",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "injection_detected": false,
+  "model_output": {
+    "contract_version": "v2",
+    "score": 87,
+    "score_label": "Strong",
+    "score_comment_short": "Recent roles pair substantial responsibilities with specific maintenance and inventory results.",
+    "score_comment_long": "The maintenance improvement and inventory record make your recent work concrete. Some logistics and training bullets leave the work itself less visible. Adding a few details about what you provided or taught would make those bullets more useful.",
+    "score_plain": "Your resume gives a reviewer a substantial basis for considering you for supervisory work. Translating a few Army responsibilities into everyday operations terms would make the transition easier to assess.",
+    "first_impression": "You present as an Army logistics and maintenance leader moving toward civilian supervision. The maintenance result stands out quickly, while some military terms need translation for readers outside the service.",
+    "biggest_gap_example": "\"Trained 9 junior mechanics\" does not say what you taught, leaving the content of your training work unclear.",
+    "first_impression_takeaway": "Explain the mechanic training",
+    "summary": "Reducing the vehicle non-mission-capable rate from 18% to 6% shows how you changed both parts ordering and the maintenance schedule. That result is worth keeping because it connects a process change to equipment readiness. Your progression and recent responsibility for maintenance, supply, and fuel sections support a supervisory-level read. A civilian reviewer may still want a more concrete picture of the logistics services you provided during field exercises.",
+    "strengths": [
+      "Accountability for $14M of vehicles, tools, and equipment with zero losses on three annual inventories gives the inventory work a clear result.",
+      "Supervising 14 mechanics responsible for 62 wheeled vehicles shows the size of the maintenance operation.",
+      "Naming GCSS-Army, inventory control, and maintenance planning helps readers find relevant systems and functions quickly."
+    ],
+    "gaps": [
+      "The field-exercise bullet doesn't identify the supplies or services provided, so the day-to-day logistics work is difficult to picture.",
+      "The Poland deployment result doesn't explain the practices used to keep vehicles mission-capable, limiting what a reader can learn about your approach.",
+      "The summary names a transition but leaves your maintenance and inventory results for the reader to find later."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the field-exercise logistics bullet, name the supplies or services you planned and provided.",
+        "why": "The battalion size and exercise duration are clear, but a civilian reader may not know what logistics support involved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the Poland deployment bullet, describe a maintenance or parts practice you used while running the shop.",
+        "why": "The 95% mission-capable figure shows the result; an example would explain how you approached the work.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Ran the shop during the Poland deployment, keeping 95% of vehicles mission-capable",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the junior mechanic training bullet, identify a skill or task you taught.",
+        "why": "The number trained is already there; the subject would show what knowledge you passed on.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Trained 9 junior mechanics",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "medium",
+        "effort": "quick",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the field-exercise and deployment bullets using details you can verify.",
+      "Add the subject of the junior mechanics' training to that earlier role.",
+      "Update the opening summary to bring one maintenance or inventory result forward."
+    ],
+    "subscores": {
+      "impact": 89,
+      "clarity": 86,
+      "story": 85,
+      "readability": 90
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The opening states your Army transition and supervisory goal directly.",
+        "missing": "It doesn't yet preview a specific result from your recent work.",
+        "fix": "Bring the vehicle-readiness improvement or inventory record into the opening."
+      },
+      "Work Experience": {
+        "grade": "A-",
+        "priority": "High",
+        "working": "The recent roles show team responsibilities, equipment accountability, and maintenance results.",
+        "missing": "The field-exercise support and junior mechanic training need more description of the work performed.",
+        "fix": "Name the services provided during exercises and a task taught to junior mechanics."
+      },
+      "Skills": {
+        "grade": "B+",
+        "priority": "Low",
+        "working": "The list includes a named Army system and relevant inventory and maintenance functions.",
+        "missing": "GCSS-Army may be unfamiliar to civilian readers without a brief explanation.",
+        "fix": "Spell out the system name or briefly describe its use if that reflects your work."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The in-progress degree, expected completion date, and training are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Supervision across maintenance, supply, and fuel sections",
+        "Vehicle maintenance planning and readiness",
+        "Equipment accountability and inventory control",
+        "Parts budget management"
+      ],
+      "underplayed": [
+        "The specific services provided during battalion field exercises",
+        "The maintenance practices used during the Poland deployment",
+        "The content of junior mechanic training"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "operations supervisor",
+          "Maintenance Section Sergeant (E-6)"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Recent platoon sergeant and maintenance section sergeant roles support a supervisory read.",
+        "industry_signals": [
+          "Military logistics",
+          "Military vehicle maintenance"
+        ],
+        "company_stage_fit": "Not clear from the resume alone."
+      },
+      "positioning_suggestion": "For civilian operations roles, lead with your maintenance, inventory, and people-supervision work. Explain military terms where needed without removing the Army context."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What parts-ordering problem did you address when changing the weekly maintenance schedule?",
+          "archetype": "IMPROVEMENT",
+          "why": "A concrete problem would make the readiness improvement easier to understand."
+        },
+        {
+          "question": "What supplies or services did you coordinate for the battalion during the field exercises?",
+          "archetype": "SCALING",
+          "why": "The answer would make the exercise support more recognizable to civilian operations readers."
+        },
+        {
+          "question": "What maintenance or parts practices helped you run the shop during the Poland deployment?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "The deployment bullet states vehicle availability but leaves the approach open."
+        },
+        {
+          "question": "What parts-budget decisions were yours to make?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The annual budget is stated, but the decisions involved in managing it are not."
+        },
+        {
+          "question": "Which skills did you teach the junior mechanics?",
+          "archetype": "DOMAIN LIFT",
+          "why": "A training example would show the technical knowledge you passed on."
+        }
+      ]
+    }
+  },
+  "validated_report": {
+    "contract_version": "v2",
+    "score": 87,
+    "score_label": "Clear and specific",
+    "score_comment_short": "Recent roles pair substantial responsibilities with specific maintenance and inventory results.",
+    "score_comment_long": "The maintenance improvement and inventory record make your recent work concrete. Some logistics and training bullets leave the work itself less visible. Adding a few details about what you provided or taught would make those bullets more useful.",
+    "score_plain": "Your resume gives a reviewer a substantial basis for considering you for supervisory work. Translating a few Army responsibilities into everyday operations terms would make the transition easier to assess.",
+    "first_impression": "You present as an Army logistics and maintenance leader moving toward civilian supervision. The maintenance result stands out quickly, while some military terms need translation for readers outside the service.",
+    "biggest_gap_example": "\"Trained 9 junior mechanics\" does not say what you taught, leaving the content of your training work unclear.",
+    "first_impression_takeaway": "Explain the mechanic training",
+    "summary": "Reducing the vehicle non-mission-capable rate from 18% to 6% shows how you changed both parts ordering and the maintenance schedule. That result is worth keeping because it connects a process change to equipment readiness. Your progression and recent responsibility for maintenance, supply, and fuel sections support a supervisory-level read. A civilian reviewer may still want a more concrete picture of the logistics services you provided during field exercises.",
+    "strengths": [
+      "Accountability for $14M of vehicles, tools, and equipment with zero losses on three annual inventories gives the inventory work a clear result.",
+      "Supervising 14 mechanics responsible for 62 wheeled vehicles shows the size of the maintenance operation.",
+      "Naming GCSS-Army, inventory control, and maintenance planning helps readers find relevant systems and functions quickly."
+    ],
+    "gaps": [
+      "The field-exercise bullet doesn't identify the supplies or services provided, so the day-to-day logistics work is difficult to picture.",
+      "The Poland deployment result doesn't explain the practices used to keep vehicles mission-capable, limiting what a reader can learn about your approach.",
+      "The summary names a transition but leaves your maintenance and inventory results for the reader to find later."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the field-exercise logistics bullet, name the supplies or services you planned and provided.",
+        "why": "The battalion size and exercise duration are clear, but a civilian reader may not know what logistics support involved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      },
+      {
+        "fix": "In the Poland deployment bullet, describe a maintenance or parts practice you used while running the shop.",
+        "why": "The 95% mission-capable figure shows the result; an example would explain how you approached the work.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Ran the shop during the Poland deployment, keeping 95% of vehicles mission-capable",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE"
+      }
+    ],
+    "next_steps": [
+      "Revise the field-exercise and deployment bullets using details you can verify.",
+      "Add the subject of the junior mechanics' training to that earlier role.",
+      "Update the opening summary to bring one maintenance or inventory result forward."
+    ],
+    "subscores": {
+      "impact": 89,
+      "clarity": 86,
+      "story": 85,
+      "readability": 90
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The opening states your Army transition and supervisory goal directly.",
+        "missing": "It doesn't yet preview a specific result from your recent work.",
+        "fix": "Bring the vehicle-readiness improvement or inventory record into the opening."
+      },
+      "Work Experience": {
+        "grade": "A-",
+        "priority": "High",
+        "working": "The recent roles show team responsibilities, equipment accountability, and maintenance results.",
+        "missing": "The field-exercise support and junior mechanic training need more description of the work performed.",
+        "fix": "Name the services provided during exercises and a task taught to junior mechanics."
+      },
+      "Skills": {
+        "grade": "B+",
+        "priority": "Low",
+        "working": "The list includes a named Army system and relevant inventory and maintenance functions.",
+        "missing": "GCSS-Army may be unfamiliar to civilian readers without a brief explanation.",
+        "fix": "Spell out the system name or briefly describe its use if that reflects your work."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The in-progress degree, expected completion date, and training are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Supervision across maintenance, supply, and fuel sections",
+        "Vehicle maintenance planning and readiness",
+        "Equipment accountability and inventory control",
+        "Parts budget management"
+      ],
+      "underplayed": [
+        "The specific services provided during battalion field exercises",
+        "The maintenance practices used during the Poland deployment",
+        "The content of junior mechanic training"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "operations supervisor",
+          "Maintenance Section Sergeant (E-6)"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Recent platoon sergeant and maintenance section sergeant roles support a supervisory read.",
+        "industry_signals": [],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "For civilian operations roles, lead with your maintenance, inventory, and people-supervision work. Explain military terms where needed without removing the Army context."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What parts-ordering problem did you address when changing the weekly maintenance schedule?",
+          "archetype": "IMPROVEMENT",
+          "why": "A concrete problem would make the readiness improvement easier to understand."
+        },
+        {
+          "question": "What supplies or services did you coordinate for the battalion during the field exercises?",
+          "archetype": "SCALING",
+          "why": "The answer would make the exercise support more recognizable to civilian operations readers."
+        },
+        {
+          "question": "What maintenance or parts practices helped you run the shop during the Poland deployment?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "The deployment bullet states vehicle availability but leaves the approach open."
+        },
+        {
+          "question": "What parts-budget decisions were yours to make?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The annual budget is stated, but the decisions involved in managing it are not."
+        },
+        {
+          "question": "Which skills did you teach the junior mechanics?",
+          "archetype": "DOMAIN LIFT",
+          "why": "A training example would show the technical knowledge you passed on."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 87
+  },
+  "severity": {
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "promoted": [],
+    "replaced": [],
+    "skipped": [],
+    "critical_count": 1,
+    "more_critical": false,
+    "validation_attempts": 0,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "latency_ms": 1010,
+    "call_latency_ms": 1009,
+    "cost_usd": 0.00181325,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v2",
+    "score": 87,
+    "score_label": "Clear and specific",
+    "score_comment_short": "Recent roles pair substantial responsibilities with specific maintenance and inventory results.",
+    "score_comment_long": "The maintenance improvement and inventory record make your recent work concrete. Some logistics and training bullets leave the work itself less visible. Adding a few details about what you provided or taught would make those bullets more useful.",
+    "score_plain": "Your resume gives a reviewer a substantial basis for considering you for supervisory work. Translating a few Army responsibilities into everyday operations terms would make the transition easier to assess.",
+    "first_impression": "You present as an Army logistics and maintenance leader moving toward civilian supervision. The maintenance result stands out quickly, while some military terms need translation for readers outside the service.",
+    "biggest_gap_example": "\"Trained 9 junior mechanics\" does not say what you taught, leaving the content of your training work unclear.",
+    "first_impression_takeaway": "Explain the mechanic training",
+    "summary": "Reducing the vehicle non-mission-capable rate from 18% to 6% shows how you changed both parts ordering and the maintenance schedule. That result is worth keeping because it connects a process change to equipment readiness. Your progression and recent responsibility for maintenance, supply, and fuel sections support a supervisory-level read. A civilian reviewer may still want a more concrete picture of the logistics services you provided during field exercises.",
+    "strengths": [
+      "Accountability for $14M of vehicles, tools, and equipment with zero losses on three annual inventories gives the inventory work a clear result.",
+      "Supervising 14 mechanics responsible for 62 wheeled vehicles shows the size of the maintenance operation.",
+      "Naming GCSS-Army, inventory control, and maintenance planning helps readers find relevant systems and functions quickly."
+    ],
+    "gaps": [
+      "The field-exercise bullet doesn't identify the supplies or services provided, so the day-to-day logistics work is difficult to picture.",
+      "The Poland deployment result doesn't explain the practices used to keep vehicles mission-capable, limiting what a reader can learn about your approach.",
+      "The summary names a transition but leaves your maintenance and inventory results for the reader to find later."
+    ],
+    "rewrites": [],
+    "top_fixes": [
+      {
+        "fix": "In the field-exercise logistics bullet, name the supplies or services you planned and provided.",
+        "why": "The battalion size and exercise duration are clear, but a civilian reader may not know what logistics support involved.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": true
+      },
+      {
+        "fix": "In the Poland deployment bullet, describe a maintenance or parts practice you used while running the shop.",
+        "why": "The 95% mission-capable figure shows the result; an example would explain how you approached the work.",
+        "confidence": "high",
+        "evidence": {
+          "excerpt": "- Ran the shop during the Poland deployment, keeping 95% of vehicles mission-capable",
+          "section": "EXPERIENCE"
+        },
+        "impact_level": "high",
+        "effort": "moderate",
+        "section_ref": "EXPERIENCE",
+        "critical": false
+      }
+    ],
+    "next_steps": [
+      "Revise the field-exercise and deployment bullets using details you can verify.",
+      "Add the subject of the junior mechanics' training to that earlier role.",
+      "Update the opening summary to bring one maintenance or inventory result forward."
+    ],
+    "subscores": {
+      "impact": 89,
+      "clarity": 86,
+      "story": 85,
+      "readability": 90
+    },
+    "section_review": {
+      "Summary": {
+        "grade": "B",
+        "priority": "Medium",
+        "working": "The opening states your Army transition and supervisory goal directly.",
+        "missing": "It doesn't yet preview a specific result from your recent work.",
+        "fix": "Bring the vehicle-readiness improvement or inventory record into the opening."
+      },
+      "Work Experience": {
+        "grade": "A-",
+        "priority": "High",
+        "working": "The recent roles show team responsibilities, equipment accountability, and maintenance results.",
+        "missing": "The field-exercise support and junior mechanic training need more description of the work performed.",
+        "fix": "Name the services provided during exercises and a task taught to junior mechanics."
+      },
+      "Skills": {
+        "grade": "B+",
+        "priority": "Low",
+        "working": "The list includes a named Army system and relevant inventory and maintenance functions.",
+        "missing": "GCSS-Army may be unfamiliar to civilian readers without a brief explanation.",
+        "fix": "Spell out the system name or briefly describe its use if that reflects your work."
+      },
+      "Education": {
+        "grade": "A",
+        "priority": "Low",
+        "working": "The in-progress degree, expected completion date, and training are easy to find.",
+        "missing": "Nothing important is missing from this section.",
+        "fix": "Keep this section as it is unless the job asks for something different."
+      }
+    },
+    "job_alignment": {
+      "jd_match_score": 0,
+      "jd_match_summary": "No job description provided.",
+      "jd_keywords": {
+        "matched": [],
+        "missing": [],
+        "match_count": 0,
+        "total_count": 0
+      },
+      "strongly_aligned": [
+        "Supervision across maintenance, supply, and fuel sections",
+        "Vehicle maintenance planning and readiness",
+        "Equipment accountability and inventory control",
+        "Parts budget management"
+      ],
+      "underplayed": [
+        "The specific services provided during battalion field exercises",
+        "The maintenance practices used during the Poland deployment",
+        "The content of junior mechanic training"
+      ],
+      "missing": [
+        "No target-role requirements were provided for comparison"
+      ],
+      "role_fit": {
+        "best_fit_roles": [
+          "operations supervisor",
+          "Maintenance Section Sergeant (E-6)"
+        ],
+        "stretch_roles": [],
+        "seniority_read": "Recent platoon sergeant and maintenance section sergeant roles support a supervisory read.",
+        "industry_signals": [],
+        "company_stage_fit": "Not clear from the resume alone"
+      },
+      "positioning_suggestion": "For civilian operations roles, lead with your maintenance, inventory, and people-supervision work. Explain military terms where needed without removing the Army context."
+    },
+    "ideas": {
+      "questions": [
+        {
+          "question": "What parts-ordering problem did you address when changing the weekly maintenance schedule?",
+          "archetype": "IMPROVEMENT",
+          "why": "A concrete problem would make the readiness improvement easier to understand."
+        },
+        {
+          "question": "What supplies or services did you coordinate for the battalion during the field exercises?",
+          "archetype": "SCALING",
+          "why": "The answer would make the exercise support more recognizable to civilian operations readers."
+        },
+        {
+          "question": "What maintenance or parts practices helped you run the shop during the Poland deployment?",
+          "archetype": "QUALITY UNDER PRESSURE",
+          "why": "The deployment bullet states vehicle availability but leaves the approach open."
+        },
+        {
+          "question": "What parts-budget decisions were yours to make?",
+          "archetype": "END-TO-END OWNERSHIP",
+          "why": "The annual budget is stated, but the decisions involved in managing it are not."
+        },
+        {
+          "question": "Which skills did you teach the junior mechanics?",
+          "archetype": "DOMAIN LIFT",
+          "why": "A training example would show the technical knowledge you passed on."
+        }
+      ]
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 87,
+    "more_critical": false
+  },
+  "presentation": {
+    "score": 87,
+    "band": "Clear and specific",
+    "score_label_from_model": "Strong",
+    "model_score_before_calibration": 87,
+    "verdict": "You present as an Army logistics and maintenance leader moving toward civilian supervision. The maintenance result stands out quickly, while some military terms need translation for readers outside the service.",
+    "one_line_read": "Recent roles pair substantial responsibilities with specific maintenance and inventory results.",
+    "takeaway": "Explain the mechanic training",
+    "biggest_gap_example": "\"Trained 9 junior mechanics\" does not say what you taught, leaving the content of your training work unclear.",
+    "critical_count": {
+      "count": 1,
+      "counted": true,
+      "more": false
+    },
+    "heading": {
+      "title": "One Critical Miss. Fix it first.",
+      "lead": "It's the one most likely to cost you the interview."
+    },
+    "fixes": [
+      {
+        "fix": "In the field-exercise logistics bullet, name the supplies or services you planned and provided.",
+        "why": "The battalion size and exercise duration are clear, but a civilian reader may not know what logistics support involved.",
+        "excerpt": "- Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises",
+        "section": "EXPERIENCE",
+        "critical": true,
+        "confidence": "high"
+      },
+      {
+        "fix": "In the Poland deployment bullet, describe a maintenance or parts practice you used while running the shop.",
+        "why": "The 95% mission-capable figure shows the result; an example would explain how you approached the work.",
+        "excerpt": "- Ran the shop during the Poland deployment, keeping 95% of vehicles mission-capable",
+        "section": "EXPERIENCE",
+        "critical": false,
+        "confidence": "high"
+      }
+    ],
+    "first_rewrite": null,
+    "rewrites_count": 0,
+    "keep": "Accountability for $14M of vehicles, tools, and equipment with zero losses on three annual inventories gives the inventory work a clear result.",
+    "strengths": [
+      "Accountability for $14M of vehicles, tools, and equipment with zero losses on three annual inventories gives the inventory work a clear result.",
+      "Supervising 14 mechanics responsible for 62 wheeled vehicles shows the size of the maintenance operation.",
+      "Naming GCSS-Army, inventory control, and maintenance planning helps readers find relevant systems and functions quickly."
+    ],
+    "gaps": [
+      "The field-exercise bullet doesn't identify the supplies or services provided, so the day-to-day logistics work is difficult to picture.",
+      "The Poland deployment result doesn't explain the practices used to keep vehicles mission-capable, limiting what a reader can learn about your approach.",
+      "The summary names a transition but leaves your maintenance and inventory results for the reader to find later."
+    ],
+    "next_steps": [
+      "Revise the field-exercise and deployment bullets using details you can verify.",
+      "Add the subject of the junior mechanics' training to that earlier role.",
+      "Update the opening summary to bring one maintenance or inventory result forward."
+    ],
+    "seniority_read": "Recent platoon sergeant and maintenance section sergeant roles support a supervisory read.",
+    "best_fit_roles": [
+      "operations supervisor",
+      "Maintenance Section Sergeant (E-6)"
+    ],
+    "jd_match_score": 0,
+    "jd_match_summary": "No job description provided.",
+    "jd_missing": [],
+    "positioning": "For civilian operations roles, lead with your maintenance, inventory, and people-supervision work. Explain military terms where needed without removing the Army context.",
+    "severity_added": [],
+    "severity_promoted": [],
+    "severity_outcome": "none (none)",
+    "severity_answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "integrity": {
+      "structural_gaps": [],
+      "decisions": [
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[1]",
+          "fix": 0
+        },
+        {
+          "kind": "question_moved",
+          "path": "ideas.questions[2]",
+          "fix": 1
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[0]",
+          "of": "top_fixes[0]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "gaps[1]",
+          "of": "top_fixes[1]"
+        },
+        {
+          "kind": "repeat_dropped",
+          "path": "section_review.Skills.working",
+          "of": "strengths[2]"
+        }
+      ],
+      "fix_questions": [
+        [
+          "What supplies or services did you coordinate for the battalion during the field exercises?"
+        ],
+        [
+          "What maintenance or parts practices helped you run the shop during the Poland deployment?"
+        ]
+      ]
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01517555,
+  "latency_ms": 28731
+}

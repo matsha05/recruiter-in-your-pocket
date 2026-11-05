@@ -1,0 +1,7 @@
+# h4a_academic_cv_15_pages, run 1
+Resume: resumes/h4a_academic_cv_15_pages.txt (5313 words, sha256 c83739ba9067)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt , severity prompt 
+Outcome: request_refused; cost $0.0000; 
+Case note: Over the 30,000-character request cap; expected to be refused before any model call.
+
+Request refused before any call: Something in your request needs a quick tweak before I can give you feedback. {"text":"Your resume text is very long. Try trimming extra content."}

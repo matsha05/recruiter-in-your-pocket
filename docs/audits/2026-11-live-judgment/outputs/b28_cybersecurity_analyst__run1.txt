@@ -1,0 +1,48 @@
+# b28_cybersecurity_analyst, run 1
+Resume: ../../../tests/resumes/blindpick/synth_bp_cybersecurity_analyst_1.txt (154 words, sha256 3af143d6457f)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0146; 29.4s
+
+## Band: Mostly clear (score 84; model wrote 84, label "Strong")
+## Verdict
+You come across as a senior security analyst focused on detection and incident response in banking. The fall in median containment time from 9 hours to 3 is worth keeping near the top because it makes the response work tangible.
+One-line read: Recent detection and response work includes clear results, while several technical bullets remain brief.
+Takeaway: Explain the purple-team exercises
+Biggest gap example: "Run monthly purple-team exercises with the red team" doesn't say what you tested or produced, so a reviewer can't see your contribution beyond participation.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the purple-team bullet, name a representative scenario you tested and the output you contributed, if you can verify it.
+   why: That would show what the recurring exercise involved and what you brought to it.
+   excerpt (EXPERIENCE): "- Run monthly purple-team exercises with the red team"
+2. [fix] In the alert-enrichment bullet, specify the information your Python and Splunk SOAR automation added and how analysts used it.
+   why: The named tools are useful, but the current wording doesn't describe the workflow you built.
+   excerpt (EXPERIENCE): "- Automated alert enrichment with Python and the Splunk SOAR platform"
+3. [fix] In the CrowdStrike Falcon bullet, identify a policy you tuned and the problem or alert pattern that prompted the adjustment.
+   why: A concrete example would show the judgment involved in your earlier SOC work.
+   excerpt (EXPERIENCE): "- Tuned EDR policies in CrowdStrike Falcon"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+The phishing and credential-theft cases give a reviewer a specific view of your incident-response work.
+Other strengths: ["Monthly exercises with the red team show a recurring connection between detection and testing.","Client-facing incident summaries show that your security operations work included communicating incidents to customers."]
+
+## Gaps
+- The purple-team bullet doesn't identify a scenario or exercise output, leaving the technical focus unclear.
+- The alert-enrichment bullet doesn't say what information the automation added or where analysts used it.
+- The CrowdStrike Falcon bullet doesn't explain which EDR policies you tuned or what prompted the changes.
+
+## Next steps
+- Revise the purple-team and enrichment bullets using examples you can verify.
+- Add a specific CrowdStrike policy adjustment to the Northgate role.
+- Update the opening profile to surface the detection result or response work most relevant to your target role.
+
+## Role fit
+Level: The current senior analyst title is supported by detection work, incident-response leadership, and mentoring.
+Best fit: ["Senior Security Analyst, Detection and Response","Security Operations Analyst"]
+Positioning: Keep detection engineering and incident response prominent for roles in that lane. Use the exercise and automation details to show how you work alongside the quantified results.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"keep_dropped","path":"strengths[1]","line":"fix-0","criticalMiss":true},{"kind":"question_dropped","path":"ideas.questions[0]","reason":"duplicates_keep"},{"kind":"question_moved","path":"ideas.questions[1]","fix":1},{"kind":"question_moved","path":"ideas.questions[2]","fix":0},{"kind":"question_moved","path":"ideas.questions[3]","fix":2},{"kind":"question_moved","path":"ideas.questions[4]","fix":1},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[0]","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[1]"},{"kind":"repeat_dropped","path":"gaps[2]","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"section_review.Work Experience.fix","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"next_steps[1]","of":"top_fixes[2]"}]

@@ -1,0 +1,48 @@
+# b08_warehouse_supervisor, run 1
+Resume: ../../../tests/resumes/blindpick/synth_bp_warehouse_supervisor_1.txt (173 words, sha256 4f23aeaad42e)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 83b2a2d1, severity prompt f1bb4571
+Outcome: report; cost $0.0129; 26.3s
+
+## Band: Needs more context (score 67; model wrote 67, label "Needs Clarity")
+## Verdict
+Your current role puts you in charge of a 35-associate night shift spanning picking, packing, and loading. That detail is worth keeping because it quickly shows the breadth of your supervision.
+One-line read: Team supervision is clear, but most duties lack examples or stated results.
+Takeaway: Explain your scheduling decisions
+Biggest gap example: "Schedule labor and assign zones based on daily order volume" doesn't explain how you adjust assignments when demand changes, leaving the scheduling decisions unclear.
+
+## Fixes (One Critical Miss. Fix it first.; lead: "It's the one most likely to cost you the interview."); severity none (none); added []; promoted []
+1. [Critical Miss] In the labor scheduling bullet, add a specific example of how you change zone assignments when order volume shifts.
+   why: That would show the judgment behind a recurring supervisor responsibility.
+   excerpt (WORK HISTORY): "- Schedule labor and assign zones based on daily order volume"
+2. [fix] In the carrier coordination bullet, describe a departure or loading issue you handled and what you did to address it.
+   why: A concrete example would show how you work with carriers when plans change.
+   excerpt (WORK HISTORY): "- Coordinate with carriers on trailer loading and departure times"
+3. [fix] In the scanner rollout bullet, specify the tasks you personally helped with on the pick floor.
+   why: That would distinguish your contribution from the rollout as a whole.
+   excerpt (WORK HISTORY): "- Helped roll out handheld scanners on the pick floor"
+Severity check answer: {"critical_misses":[],"more_critical":false}
+
+## First rewrite (none shipped)
+
+## Keep this one
+Leading 8 pickers on the day shift shows that you supervised a team before becoming a shift supervisor.
+Other strengths: ["OSHA 30-Hour General Industry and forklift certification give useful context for your warehouse safety background.","Naming Manhattan WMS and bilingual English and Spanish gives a reviewer concrete information about your warehouse systems and language skills."]
+
+## Gaps
+- The resume does not describe a result from the outbound shift, so the effect of your work is difficult to assess.
+- Your contribution to the handheld scanner rollout is not specified, making it unclear what you helped implement.
+- The lead training bullet does not say which system tasks you teach, leaving the content of that training unclear.
+
+## Next steps
+- Revise the scheduling and carrier bullets with examples you can verify.
+- Add your specific contribution to the scanner rollout and the system tasks you teach new leads.
+- Review the summary and skills after those edits so they reflect the work you want to emphasize.
+
+## Role fit
+Level: Current shift-supervisor level, following a lead associate role.
+Best fit: ["Shift Supervisor, Outbound Operations","Lead Associate"]
+Positioning: Lead with outbound shift supervision and the progression from picker to lead to supervisor. Use examples from scheduling and carrier coordination to show how you handle the work, without claiming results you cannot verify.
+
+## Integrity pass
+Structural gaps surfaced: []
+Decisions: [{"kind":"question_moved","path":"ideas.questions[0]","fix":0},{"kind":"question_moved","path":"ideas.questions[3]","fix":2},{"kind":"question_moved","path":"ideas.questions[4]","fix":1},{"kind":"repeat_dropped","path":"biggest_gap_example","of":"top_fixes[0]"},{"kind":"repeat_dropped","path":"gaps[1]","of":"top_fixes[2]"},{"kind":"repeat_dropped","path":"gaps[2]","of":"ideas.questions[1]"},{"kind":"repeat_dropped","path":"section_review.Skills.working","of":"strengths[2]"}]
