@@ -89,7 +89,7 @@ Runs alongside the channels plan, with the same anonymity rules. Three moves:
 - **Reddit answers as the brand**, already in first-100-users.md. The research articles are what to cite there, not the homepage: a link to "Will one typo cost me the interview?" in a thread about typos is useful; a link to the product is spam.
 - **YouTube** is the one cited source we cannot use without a face or a voice. Parked until Matt decides whether a voice-only walkthrough of the sample report is acceptable.
 
-**November 5 research:** [outreach-tracker.md](outreach-tracker.md). Twelve roundup pages with their commercial terms and contact routes (Zapier's suggestion form is the one verified unpaid editorial route; CV Owl's page is gone), the email draft, and ten Reddit threads with drafted answers. None of the ten can be posted as planned: every relevant subreddit bans brand links in its own rules, and two ban AI-written comments. The tracker lays out the three honest options; that decision is Matt's.
+**November 5 research:** [outreach-tracker.md](outreach-tracker.md). Twelve roundup pages with their commercial terms and contact routes (Zapier's suggestion form is the one verified unpaid editorial route; CV Owl's page is gone), the email draft, and ten Reddit threads with drafted answers. None of the ten can be posted as planned: every relevant subreddit bans brand links in its own rules, and two ban AI-written comments. Matt's decision the same day: no modmail, so Reddit is dropped as an AEO channel and the hours go to the roundups and Search Console. The tracker records it.
 
 ### 5. The small things, last
 

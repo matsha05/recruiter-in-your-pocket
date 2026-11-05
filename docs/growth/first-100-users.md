@@ -89,6 +89,8 @@ Matt's total for channels 1 to 5 is about 5 hours a week after a setup week of a
 
 **Why second.** People ask "what's wrong with my resume" in public every day, and they're the exact reader. A good answer is useful on its own, which is what the brand voice is for: the insider over coffee. It's the fastest feedback in the plan; within days we'll know whether answers get replies and whether anyone follows the link.
 
+**November 5, 2026, after reading the rules.** The linked version of this channel is closed: every community where the questions are asked bans brand links in its own rules, two ban AI-written comments, and Matt chose not to ask moderators for exceptions ([outreach-tracker.md](outreach-tracker.md), section 2). What survives is the link-free answer, written by Matt, as presence rather than a channel with a success number. The hours move to the roundup outreach in the tracker and to Search Console.
+
 **Where.** Start with five: r/resumes, r/jobs, r/jobsearchhacks, r/careerguidance, and r/cscareerquestions (strict rules; answer only). Read each community's rules and sidebar before the first comment; rules change and some ban links outright. Skip r/recruitinghell to start: it's there to vent about recruiters, and a recruiter-built brand turning up uninvited is the wrong first impression. Off Reddit, Quora answers can rank in search for years; add it in week 3 if Reddit works.
 
 **How it works as the brand.**
