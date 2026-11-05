@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import type { ResearchSource } from "@/components/research/AnswerArticle";
+import { ResearchLink } from "@/components/research/ResearchLink";
 
 // One entry per tool we compare ourselves with. Every price and feature in the "them" column
 // comes from that tool's own pricing page, read on `pricesChecked`; the source list links it.
@@ -8,7 +9,7 @@ import type { ResearchSource } from "@/components/research/AnswerArticle";
 // not the quality of its output, and says so in "How we compare". Our own column follows
 // lib/billing/pricing.ts and the Help page: keep them in step when the pass changes.
 
-export const PRICES_CHECKED = "2026-11-03";
+export const PRICES_CHECKED = "2026-11-04";
 
 export type ComparisonRow = {
     label: string;
@@ -44,7 +45,7 @@ const OUR_NAME = "Recruiter in Your Pocket";
 
 const ourRows = {
     whatItIs: "A report on the resume you already have, read against a recruiter’s review criteria.",
-    whoReads: "AI applies review criteria written by a recruiter with 14 years in hiring. Nobody reads individual reports.",
+    whoReads: "AI applies review criteria written by a recruiter with 15 years in hiring. Nobody reads individual reports.",
     whatYouGet: "A Verdict, the Critical Misses that could cost you the interview in the order to fix them, a note on each line that needs work, and rewrites built only from your facts.",
     price: "The first report is free. Then $29 once for five more reports, good for 90 days.",
     free: "One complete report. No card, no account, nothing held back.",
@@ -120,7 +121,7 @@ export const comparisons: Comparison[] = [
                         If the writing is the part you keep putting off, a writer who does it for you is worth more than any critique. The packages from $229 up also bundle a cover letter and a LinkedIn makeover, so if you need all three done at once, one purchase covers it.
                     </>,
                     <>
-                        What the price can’t buy is the writer’s knowledge of your work. They describe jobs they didn’t see, from the intake you give them, so the result is only as specific as what you hand over. Read the draft you get back the way a recruiter would: every number, every claim of ownership, every result should be something you can back up in an interview.
+                        What the price can’t buy is the writer’s knowledge of your work. They describe jobs they didn’t see, from the intake you give them, so the result is only as specific as what you hand over. Read the draft you get back the way a recruiter would: every number, every claim of ownership, every result should be something you can back up, because <ResearchLink to="star-method">every line on a resume is a story you may be asked to tell</ResearchLink>.
                     </>,
                 ],
             },
@@ -234,7 +235,7 @@ export const comparisons: Comparison[] = [
                         If you send many applications and each posting uses its own vocabulary, a scanner that lists the terms you’re missing saves real time, and the free plan’s five scans a month may be all you need. The subscription is the price of doing that without a limit.
                     </>,
                     <>
-                        What a match rate can’t tell you is whether a recruiter believes the bullets. A resume can match most of the keywords and still read as a list of duties with no results. Jobscan’s score is also its own model of an applicant tracking system, and the documentation from the systems employers actually use describes parsing, not a universal rejection score. <Link href="/research/ats-myths" className="riyp-link">What applicant tracking systems do</Link> covers that.
+                        What a match rate can’t tell you is whether a recruiter believes the bullets. A resume can match most of the keywords and still read as a list of duties with no results. Jobscan’s score is also its own model of an applicant tracking system, and the documentation from the systems employers actually use says <ResearchLink to="ats-myths">the software pulls your text into fields, and automatic rejection runs on application questions, not on a match score</ResearchLink>. Whether a recruiter believes a line is a different question, and <ResearchLink to="how-recruiters-read">recruiters who spent longer on Experience were more likely to move a resume forward</ResearchLink>.
                     </>,
                 ],
             },
@@ -348,7 +349,7 @@ export const comparisons: Comparison[] = [
                         If you want a score you can check on several documents over a few months, and a LinkedIn checkup in the same account, the annual plan at $229 is the cheapest way to get that from Resume Worded. The monthly plan at $49 makes sense only for a short, intense search.
                     </>,
                     <>
-                        The score comes from Resume Worded’s own checklist. Its page describes a line-by-line analysis, keyword analysis, and ATS checking, which are useful and are not the same as a recruiter deciding whether the work is real. The sample lines from “top candidates” are other people’s facts; anything you borrow has to be rebuilt around your own.
+                        The score comes from Resume Worded’s own checklist. Its page describes a line-by-line analysis, keyword analysis, and ATS checking, which are useful and are not the same as a recruiter deciding whether the work is real. The sample lines from “top candidates” are other people’s facts; anything you borrow has to be rebuilt around your own: <ResearchLink to="quantifying-impact">what changed, how you measured it, and what you did to get there</ResearchLink>.
                     </>,
                 ],
             },
@@ -457,7 +458,7 @@ export const comparisons: Comparison[] = [
                         For volume, yes. If you’re tracking dozens of applications and building a version of your resume for each, the free plan already does most of it, and Teal+ removes the template and AI limits. The 30-day plan is $29; the weekly plan at $13 costs more than that once you keep it past two weeks, so pick the term before you start.
                     </>,
                     <>
-                        What a builder can’t do is tell you whether the bullets hold up. Teal’s analysis and match score check structure and keywords against its own rules. Whether a recruiter would believe a line, or stop on it, is a different question.
+                        What a builder can’t do is tell you whether the bullets hold up. Teal’s analysis and match score check structure and keywords against its own rules. Whether a recruiter would believe a line, or stop on it, is a different question: <ResearchLink to="how-recruiters-read">recruiters who spent longer on Experience were more likely to move a resume forward</ResearchLink>, and a match score doesn’t read that section the way a person does.
                     </>,
                 ],
             },
@@ -505,6 +506,348 @@ export const comparisons: Comparison[] = [
                 publisher: "Teal",
                 year: "Read " + formatChecked(),
                 href: "https://www.tealhq.com/pricing",
+            },
+        ],
+    },
+    {
+        slug: "kickresume",
+        name: "Kickresume",
+        path: "/compare/kickresume",
+        title: "Kickresume vs Recruiter in Your Pocket",
+        summary: "An AI resume builder with 40 templates, free with limits, Premium from $8 a month on the yearly plan.",
+        hub: {
+            does: "Builds a resume from a template and drafts the text with AI from your job title. Premium adds an ATS checker, a cover letter writer, and a personal website.",
+            costs: "$24 a month, $54 a quarter, or $96 a year. Recurring.",
+            free: "Four basic templates, pre-written phrases, and unlimited downloads.",
+        },
+        answer: (
+            <>
+                Kickresume builds the resume: pick a template, give it your job title, and its AI writer drafts the summary and the bullets, free with four templates and from $8 a month on a yearly plan for the rest. {OUR_NAME} doesn’t build anything. It reads the resume you already have the way a recruiter would, free for the first report.
+                If you’re starting from a blank page and want it to look finished fast, Kickresume is built for that. If you have a resume and want to know what a recruiter would question, start here.
+            </>
+        ),
+        rows: [
+            {
+                label: "What it is",
+                them: "A resume builder. You choose a template, enter your job title and experience, and its AI writer drafts the text.",
+                us: ourRows.whatItIs,
+            },
+            {
+                label: "Who does the work",
+                them: "You and the AI writer. The text comes from your job title and the phrases you pick. A human proofreader is a $30 add-on per resume.",
+                us: ourRows.whoReads,
+            },
+            {
+                label: "What you get back",
+                them: "A designed resume and cover letter as a PDF, with an ATS checker score, a Career Map, and a personal website on Premium.",
+                us: ourRows.whatYouGet,
+            },
+            {
+                label: "Price",
+                them: "$24 a month, $54 every three months (shown as $18 a month), or $96 a year (shown as $8 a month).",
+                us: ourRows.price,
+            },
+            {
+                label: "Free option",
+                them: "Four basic resume templates, four matching cover letter templates, 20,000 pre-written phrases, and unlimited downloads. The AI Writer and the other 40 templates are listed under the paid plans.",
+                us: ourRows.free,
+            },
+            {
+                label: "Renewal",
+                them: "Recurring on the term you pick. Each paid plan lists a 14-day money-back guarantee.",
+                us: ourRows.renewal,
+            },
+            {
+                label: "Students",
+                them: "Premium is free for students who verify with ISIC, ITIC, or UNiDAYS.",
+                us: "No student plan. The first report is free for everyone.",
+            },
+        ],
+        sections: [
+            {
+                id: "worth-it",
+                title: "Is Kickresume worth it?",
+                paragraphs: [
+                    <>
+                        If you don’t have a resume yet, or yours is a plain document you dread opening, a builder earns its price: the templates are finished designs, and the yearly plan at $96 is the cheapest way to keep them for a whole search. Kickresume’s own FAQ recommends that plan because most searches take months.
+                    </>,
+                    <>
+                        What the AI writer can’t know is what you did. It drafts from a job title and a library of phrases, so the bullets it writes are the ones anyone with that title could have written, and that is the section a reader weighs: <ResearchLink to="how-recruiters-read">recruiters who spent longer on Experience were more likely to move a resume forward</ResearchLink>. Read every generated line as a claim you’ll be asked about. Its ATS checker scores you against Kickresume’s own database of resumes; <ResearchLink to="ats-myths">the systems employers use pull your text into fields, and automatic rejection runs on application questions, not on a score</ResearchLink>.
+                    </>,
+                ],
+            },
+            {
+                id: "when-us",
+                title: `When ${OUR_NAME} is the better choice`,
+                paragraphs: [
+                    <>
+                        You already have a resume and the question is whether it holds up. The report quotes the lines a recruiter would question and starts with the one most likely to cost you the interview.
+                    </>,
+                    <>
+                        You wrote it yourself and want the text to survive a reader, not a template. Where a bullet is generic, the report asks for <ResearchLink to="quantifying-impact">what changed, how you measured it, and what you did to get there</ResearchLink>, then rewrites the line from your answer. Nothing gets added that you didn’t say.
+                    </>,
+                    <>
+                        What it won’t do: design the page, write a resume from a job title, or build you a website.
+                    </>,
+                ],
+            },
+            {
+                id: "prices",
+                title: "What the prices cover",
+                paragraphs: [
+                    <>
+                        Kickresume’s pricing page listed four plans on {formatChecked()}: Free at $0 with four basic resume templates, four matching cover letter templates, one basic website template, 20,000 pre-written phrases, 1,500 resume examples, and unlimited downloads; Monthly at $24; Quarterly at $54 every three months, shown as $18 a month; and Yearly at $96 every twelve months, shown as $8 a month and marked as a 25% saving. The paid plans share one feature list: 40 resume and 40 cover letter templates, all colors and typefaces, the AI Writer, the ATS Resume Checker, Career Map, LinkedIn and PDF import, the mobile apps, seven personal website templates, priority support, and a 14-day money-back guarantee. A human grammar correction is $30 per resume. Students who verify with ISIC, ITIC, or UNiDAYS get Premium free.
+                    </>,
+                    <>
+                        {OUR_NAME}’s first report is free, with no card or account. The Job Search Pass is $29 once for five more reports, good for 90 days, and never renews. <Link href="/pricing" className="riyp-link">The full pricing page</Link> has the details.
+                    </>,
+                ],
+            },
+            {
+                id: "both",
+                title: "Using both",
+                paragraphs: [
+                    <>
+                        Build in Kickresume if you want the design, then export the PDF and run it through the free report before you send it. The report reads the words, not the template, so it will tell you whether the AI’s bullets say anything a recruiter can check. Fix those in Kickresume and export again.
+                    </>,
+                ],
+            },
+        ],
+        sources: [
+            {
+                id: "source-1",
+                title: "Pricing (plans, prices, and what each includes)",
+                publisher: "Kickresume",
+                year: "Read " + formatChecked(),
+                href: "https://www.kickresume.com/en/pricing/",
+            },
+        ],
+    },
+    {
+        slug: "rezi",
+        name: "Rezi",
+        path: "/compare/rezi",
+        title: "Rezi vs Recruiter in Your Pocket",
+        summary: "An AI resume builder with its own live score and keyword targeting, free with limits, $29 a month or $149 once.",
+        hub: {
+            does: "Builds a resume with AI, scores it against its own checklist as you type, and targets keywords from a posting. Pro adds unlimited resumes and a monthly expert review.",
+            costs: "$29 a month, or $149 once for the lifetime plan.",
+            free: "One resume, three PDF downloads, and a limited score.",
+        },
+        answer: (
+            <>
+                Rezi builds the resume with AI and scores it as you type, free for one resume and three downloads, then $29 a month or $149 once for everything. {OUR_NAME} reads the resume you already have the way a recruiter would, free for the first report, and never scores it against a checklist.
+                If you want a builder that keeps a live score and feeds you keywords from the posting, Rezi is built for that. If you want to know what a person would question on the resume you have, start here.
+            </>
+        ),
+        rows: [
+            {
+                label: "What it is",
+                them: "An AI resume builder. You start from scratch or import a resume, its AI writes and edits bullets, and the Rezi Score rates the result as you go.",
+                us: ourRows.whatItIs,
+            },
+            {
+                label: "What it checks",
+                them: "Its own score across a checklist, keyword targeting against a posting, and real-time content analysis. The free plan limits all three.",
+                us: "What your bullets say you did and what changed because of it, the lines a recruiter would question, and the facts you left off.",
+            },
+            {
+                label: "Who does the work",
+                them: "Software. Pro adds one expert resume review a month; on the free plan a review starts at $8.",
+                us: ourRows.whoReads,
+            },
+            {
+                label: "What you get back",
+                them: "A resume built in Rezi, exported as a PDF (Word and Google Drive on Pro), plus AI cover letters, an AI mock interview, and the score.",
+                us: ourRows.whatYouGet,
+            },
+            {
+                label: "Price",
+                them: "$29 a month, or $149 once for the lifetime plan. Enterprise is $99 a month per 200 users.",
+                us: ourRows.price,
+            },
+            {
+                label: "Free option",
+                them: "One resume, one AI interview, three PDF downloads, the standard templates, and the AI writer and editor, with the score and keyword targeting limited.",
+                us: ourRows.free,
+            },
+            {
+                label: "Renewal",
+                them: "Pro recurs monthly until you cancel; the lifetime plan is one payment. The page’s title says all plans include a 30-day money-back guarantee.",
+                us: ourRows.renewal,
+            },
+        ],
+        sections: [
+            {
+                id: "worth-it",
+                title: "Is Rezi worth it?",
+                paragraphs: [
+                    <>
+                        If you’re writing from scratch and want a nudge on every line, the live score is the draw, and $149 once is a fair price for a builder you’ll use across several searches. The $29 month is for a short, intense one.
+                    </>,
+                    <>
+                        What a score can’t tell you is whether the line is true, or whether a person would believe it. The Rezi Score is Rezi’s own checklist, and a score is still an algorithm’s recommendation: in one experiment, <ResearchLink to="human-vs-algorithm">an algorithm’s recommendation swayed recruiters even when they said they trusted it less than a person</ResearchLink>. Treat it as a prompt to check the line, not a verdict on it. Its keyword targeting is also Rezi’s own model of an applicant tracking system; <ResearchLink to="ats-myths">the systems employers use pull your text into fields, and automatic rejection runs on application questions, not on keyword counts</ResearchLink>.
+                    </>,
+                ],
+            },
+            {
+                id: "when-us",
+                title: `When ${OUR_NAME} is the better choice`,
+                paragraphs: [
+                    <>
+                        You have a resume and want a reader’s opinion, not a meter. The report quotes the line behind every note and starts with the one problem most likely to cost you the interview.
+                    </>,
+                    <>
+                        You’d rather fix the facts than the score. When a line says what you did but not what changed, the report asks for <ResearchLink to="quantifying-impact">what changed, how you measured it, and what you did to get there</ResearchLink>, and rewrites from your answer.
+                    </>,
+                    <>
+                        What it won’t do: build the resume, keep a running score, write cover letters, or run a mock interview.
+                    </>,
+                ],
+            },
+            {
+                id: "prices",
+                title: "What the prices cover",
+                paragraphs: [
+                    <>
+                        Rezi’s pricing page listed four plans on {formatChecked()}: Free at $0 with one resume, one AI interview, three PDF downloads, the standard templates, and the AI writer and editor, with the Rezi Score, keyword targeting, and real-time analysis limited; Pro at $29 a month with unlimited resumes, interviews, and downloads, all templates, the full score and keyword targeting, Word and Google Drive export, and one expert resume review a month; a Lifetime plan at $149 for one payment, described as all features; and Enterprise at $99 a month per 200 users. The page’s title says all plans include a 30-day money-back guarantee.
+                    </>,
+                    <>
+                        {OUR_NAME}’s first report is free, with no card or account. The Job Search Pass is $29 once for five more reports, good for 90 days, and never renews. <Link href="/pricing" className="riyp-link">The full pricing page</Link> has the details.
+                    </>,
+                ],
+            },
+            {
+                id: "both",
+                title: "Using both",
+                paragraphs: [
+                    <>
+                        Build in Rezi if the live score keeps you writing, then export the PDF and run the free report before it goes out. Where the score says you’re done and the report finds a Critical Miss, trust the Critical Miss: it’s the question a recruiter would ask.
+                    </>,
+                ],
+            },
+        ],
+        sources: [
+            {
+                id: "source-1",
+                title: "Pricing (plans and the feature comparison)",
+                publisher: "Rezi",
+                year: "Read " + formatChecked(),
+                href: "https://www.rezi.ai/pricing",
+            },
+        ],
+    },
+    {
+        slug: "enhancv",
+        name: "Enhancv",
+        path: "/compare/enhancv",
+        title: "Enhancv vs Recruiter in Your Pocket",
+        summary: "A design-first resume builder, free for seven days with branding, Pro from $16.50 a month on a six-month plan.",
+        hub: {
+            does: "Builds a visually designed resume with drag-and-drop sections, content suggestions, and an ATS check. The free plan lasts seven days and carries Enhancv branding.",
+            costs: "$39 a month, $69 a quarter, or $99 for six months. Recurring.",
+            free: "Seven days, with branding and a 12-item limit.",
+        },
+        answer: (
+            <>
+                Enhancv is a resume builder for people who want the page to look designed: hundreds of templates, drag-and-drop sections, and content suggestions, free for seven days with its branding on the PDF, then from $16.50 a month on a six-month plan. {OUR_NAME} doesn’t touch the design. It reads the words on the resume you have the way a recruiter would, free for the first report.
+                If the look of the page is what you’re after, Enhancv is built for that. If you want to know whether the words hold up, start here.
+            </>
+        ),
+        rows: [
+            {
+                label: "What it is",
+                them: "A design-first resume builder with templates, custom sections, color and font options, and a cover letter builder.",
+                us: ourRows.whatItIs,
+            },
+            {
+                label: "What it checks",
+                them: "Real-time content suggestions, a grammar and punctuation check, and an ATS check that reads the job ad you paste in.",
+                us: "What your bullets say you did and what changed because of it, the lines a recruiter would question, and the facts you left off.",
+            },
+            {
+                label: "What you get back",
+                them: "A designed resume and cover letter as a PDF. Free downloads carry Enhancv branding.",
+                us: ourRows.whatYouGet,
+            },
+            {
+                label: "Price",
+                them: "$39 a month, $69 every three months (shown as $23 a month), or $99 every six months (shown as $16.50 a month).",
+                us: ourRows.price,
+            },
+            {
+                label: "Free option",
+                them: "A free plan valid for seven days, with all templates, basic sections, a 12-item limit, and Enhancv branding on the resume.",
+                us: ourRows.free,
+            },
+            {
+                label: "Renewal",
+                them: "Recurring on the term you pick. The FAQ offers a refund when a fault is Enhancv’s; it states no general refund window.",
+                us: ourRows.renewal,
+            },
+            {
+                label: "Design",
+                them: "Hundreds of templates, custom sections, and thousands of design options.",
+                us: "None. The report reads the text we pull from your file, not the layout.",
+            },
+        ],
+        sections: [
+            {
+                id: "worth-it",
+                title: "Is Enhancv worth it?",
+                paragraphs: [
+                    <>
+                        If a plain document is the problem, Enhancv solves it well: the templates are the most designed of the tools on these pages, and the six-month plan at $99 is the cheapest way to keep them for a search. The free week is a trial, not a free tier, so decide inside it.
+                    </>,
+                    <>
+                        What a design can’t do is make a recruiter believe the bullets, and a heavy one can get in the way: <ResearchLink to="ats-myths">Greenhouse lists graphics, columns, tables, and text boxes among the layouts that can parse badly</ResearchLink>, and a failed parse means someone retyping your details by hand. Enhancv’s own ATS check is one answer to that. Keep the sections and headings a reader recognizes anyway, because <ResearchLink to="how-recruiters-read">recruiters who spent longer on Experience were more likely to move a resume forward</ResearchLink>, and no template fills that section for you.
+                    </>,
+                ],
+            },
+            {
+                id: "when-us",
+                title: `When ${OUR_NAME} is the better choice`,
+                paragraphs: [
+                    <>
+                        You care more about what the page says than how it looks. The report quotes the lines a recruiter would question and starts with the one most likely to cost you the interview.
+                    </>,
+                    <>
+                        You want the resume to say who you are, which is a sentence, not a template: <ResearchLink to="who-you-are">a recruiter is trying to say who you are in one line and explain you to a hiring manager</ResearchLink>. The Verdict is that line, read from your resume. If it isn’t who you are, that’s what to fix first.
+                    </>,
+                    <>
+                        What it won’t do: design the page, offer templates, or export a styled resume. The PDF you can download is the report.
+                    </>,
+                ],
+            },
+            {
+                id: "prices",
+                title: "What the prices cover",
+                paragraphs: [
+                    <>
+                        Enhancv’s pricing page, shown to us in US dollars, listed a free plan and three Pro terms on {formatChecked()}: Free at $0, valid for seven days, with all templates, basic sections, a maximum of 12 section items, and Enhancv branding; Pro Monthly at $39 billed once a month; Pro Quarterly at $69 billed every three months, shown as $23 a month; and Pro Semiannual at $99 billed every six months, shown as $16.50 a month. Pro includes 300 resumes and cover letters, all templates, real-time content suggestions, the ATS check, Pro sections, no branding, unlimited section items, and the full set of design options. The FAQ says a refund is available when a problem is Enhancv’s fault; no general refund window is stated.
+                    </>,
+                    <>
+                        {OUR_NAME}’s first report is free, with no card or account. The Job Search Pass is $29 once for five more reports, good for 90 days, and never renews. <Link href="/pricing" className="riyp-link">The full pricing page</Link> has the details.
+                    </>,
+                ],
+            },
+            {
+                id: "both",
+                title: "Using both",
+                paragraphs: [
+                    <>
+                        Design in Enhancv, then export the PDF and run the free report before you send it. If the lines the report quotes come out scrambled, the layout didn’t survive being read as text, and a parser may struggle with it too. Fix the words in Enhancv, keep the sections a reader expects, and export again.
+                    </>,
+                ],
+            },
+        ],
+        sources: [
+            {
+                id: "source-1",
+                title: "Pricing (free plan and Pro terms)",
+                publisher: "Enhancv",
+                year: "Read " + formatChecked(),
+                href: "https://enhancv.com/pricing/",
             },
         ],
     },

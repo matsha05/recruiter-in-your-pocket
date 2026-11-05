@@ -1,6 +1,7 @@
 import { pageMetadata } from "@/lib/seo/metadata";
 import { ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
+import { ResearchLink } from "@/components/research/ResearchLink";
 import { SocialScreeningDiagram } from "@/components/research/diagrams/SocialScreeningDiagram";
 
 const PATH = "/research/social-screening";
@@ -61,6 +62,7 @@ export default function SocialScreeningPage() {
             <p className="research-body mb-6">
                 Evaluators rated candidates for an office manager job in hospitality while the researchers varied what the candidate&apos;s social media showed. On a 0–10 scale, the general pool marked down unappealing content by 1.94 points, having no profile at all by 0.88, signs of mental-health problems by 0.68, and a two-year unemployment gap by 0.29. People with hiring experience showed the same order.
                 <Citation id="source-1">1</Citation>
+                {" "}A gap cost the least here, and <ResearchLink to="gaps-and-pivots">in the largest test of ways to handle one, explaining it did no better than leaving it unexplained</ResearchLink>.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4 not-prose my-8">
@@ -97,10 +99,10 @@ export default function SocialScreeningPage() {
 
             <h2 className="research-h2">What is worth doing</h2>
             <p className="research-body mb-6">
-                <strong>Our advice:</strong> check the professional information you publish and decide what to keep private. The research does not identify a personal profile that every recruiter will interpret favorably.
+                <strong>Our advice:</strong> check the professional information you publish and decide what to keep private. The research does not identify a personal profile that every recruiter will interpret favorably. What a recruiter is trying to do with any of it is <ResearchLink to="who-you-are">say who you are in one line</ResearchLink>, so the public version and the resume should tell the same story.
             </p>
             <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
-                <li>Reconcile titles, dates, credentials, and public work links.</li>
+                <li>Reconcile titles, dates, credentials, and public work links. <ResearchLink to="linkedin-visibility">Recruiters search the titles and skills in your headline and experience</ResearchLink>, so the public version should agree with the resume.</li>
                 <li>Use privacy settings intentionally on personal accounts.</li>
                 <li>Keep public work samples current when they are part of your candidacy.</li>
                 <li>Link a portfolio when it shows work evidence your resume can&apos;t show on its own.</li>

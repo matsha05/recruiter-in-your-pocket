@@ -29,24 +29,25 @@ export const PUBLIC_PAGES: readonly PublicPage[] = [
   { path: "/methodology", updated: "2026-11-02", published: "2026-01-02", card: "how-we-score" },
 
   { path: "/research", updated: "2026-11-01" },
-  // Every article was corrected against its sources on Nov 1, 2026 (#35).
-  { path: "/research/ats-myths", updated: "2026-11-01", published: "2025-12-10", card: "ats-myths" },
-  { path: "/research/automation-and-bias", updated: "2026-11-01", published: "2025-12-15", card: "automation-and-bias" },
-  { path: "/research/gaps-and-pivots", updated: "2026-11-02", published: "2026-10-31", card: "gaps-and-pivots" },
-  { path: "/research/hiring-discrimination-meta-analysis", updated: "2026-11-02", published: "2025-12-15", card: "hiring-discrimination-meta-analysis" },
-  { path: "/research/how-recruiters-read", updated: "2026-11-02", published: "2025-12-10", card: "how-recruiters-read" },
-  { path: "/research/human-vs-algorithm", updated: "2026-11-02", published: "2025-12-15", card: "human-vs-algorithm" },
-  { path: "/research/linkedin-visibility", updated: "2026-11-02", published: "2025-12-28", card: "linkedin-visibility" },
-  { path: "/research/quantifying-impact", updated: "2026-11-01", published: "2025-12-17", card: "quantifying-impact" },
-  { path: "/research/referral-advantage", updated: "2026-11-02", published: "2025-12-17", card: "referral-advantage" },
-  { path: "/research/resume-length-myths", updated: "2026-11-01", published: "2025-12-17", card: "resume-length-myths" },
-  { path: "/research/salary-history-bans", updated: "2026-11-02", published: "2025-12-15", card: "salary-history-bans" },
-  { path: "/research/skills-first-promise-reality", updated: "2026-11-01", published: "2026-01-01", card: "skills-first-promise-reality" },
-  { path: "/research/social-screening", updated: "2026-11-01", published: "2026-01-01", card: "social-screening" },
-  { path: "/research/spelling-errors-impact", updated: "2026-11-02", published: "2025-12-15", card: "spelling-errors-impact" },
-  { path: "/research/star-method", updated: "2026-11-01", published: "2025-12-17", card: "star-method" },
-  { path: "/research/who-you-are", updated: "2026-11-01", published: "2026-10-31", card: "who-you-are" },
-  { path: "/research/writing-quality-hire-probability", updated: "2026-11-01", published: "2026-01-01", card: "writing-quality-hire-probability" },
+  // Every article was corrected against its sources on Nov 1, 2026 (#35), and cross-linked in its text on Nov 4 (phase 1 of
+  // docs/growth/2026-11-aeo-and-internal-linking.md).
+  { path: "/research/ats-myths", updated: "2026-11-04", published: "2025-12-10", card: "ats-myths" },
+  { path: "/research/automation-and-bias", updated: "2026-11-04", published: "2025-12-15", card: "automation-and-bias" },
+  { path: "/research/gaps-and-pivots", updated: "2026-11-04", published: "2026-10-31", card: "gaps-and-pivots" },
+  { path: "/research/hiring-discrimination-meta-analysis", updated: "2026-11-04", published: "2025-12-15", card: "hiring-discrimination-meta-analysis" },
+  { path: "/research/how-recruiters-read", updated: "2026-11-04", published: "2025-12-10", card: "how-recruiters-read" },
+  { path: "/research/human-vs-algorithm", updated: "2026-11-04", published: "2025-12-15", card: "human-vs-algorithm" },
+  { path: "/research/linkedin-visibility", updated: "2026-11-04", published: "2025-12-28", card: "linkedin-visibility" },
+  { path: "/research/quantifying-impact", updated: "2026-11-04", published: "2025-12-17", card: "quantifying-impact" },
+  { path: "/research/referral-advantage", updated: "2026-11-04", published: "2025-12-17", card: "referral-advantage" },
+  { path: "/research/resume-length-myths", updated: "2026-11-04", published: "2025-12-17", card: "resume-length-myths" },
+  { path: "/research/salary-history-bans", updated: "2026-11-04", published: "2025-12-15", card: "salary-history-bans" },
+  { path: "/research/skills-first-promise-reality", updated: "2026-11-04", published: "2026-01-01", card: "skills-first-promise-reality" },
+  { path: "/research/social-screening", updated: "2026-11-04", published: "2026-01-01", card: "social-screening" },
+  { path: "/research/spelling-errors-impact", updated: "2026-11-04", published: "2025-12-15", card: "spelling-errors-impact" },
+  { path: "/research/star-method", updated: "2026-11-04", published: "2025-12-17", card: "star-method" },
+  { path: "/research/who-you-are", updated: "2026-11-04", published: "2026-10-31", card: "who-you-are" },
+  { path: "/research/writing-quality-hire-probability", updated: "2026-11-04", published: "2026-01-01", card: "writing-quality-hire-probability" },
 
   { path: "/resources", updated: "2026-11-01" },
   { path: "/resources/offer-negotiation", updated: "2026-11-01", published: "2025-12-15", card: "offer-negotiation" },
@@ -55,11 +56,14 @@ export const PUBLIC_PAGES: readonly PublicPage[] = [
 
   // Comparisons with other resume tools (components/compare/comparisons.tsx). Bump `updated` when a
   // tool's price or plan changes, in the same change as PRICES_CHECKED.
-  { path: "/compare", updated: "2026-11-03" },
-  { path: "/compare/topresume", updated: "2026-11-03", published: "2026-11-03" },
-  { path: "/compare/jobscan", updated: "2026-11-03", published: "2026-11-03" },
-  { path: "/compare/resume-worded", updated: "2026-11-03", published: "2026-11-03" },
-  { path: "/compare/teal", updated: "2026-11-03", published: "2026-11-03" },
+  { path: "/compare", updated: "2026-11-04" },
+  { path: "/compare/topresume", updated: "2026-11-04", published: "2026-11-03" },
+  { path: "/compare/jobscan", updated: "2026-11-04", published: "2026-11-03" },
+  { path: "/compare/resume-worded", updated: "2026-11-04", published: "2026-11-03" },
+  { path: "/compare/teal", updated: "2026-11-04", published: "2026-11-03" },
+  { path: "/compare/kickresume", updated: "2026-11-04", published: "2026-11-04" },
+  { path: "/compare/rezi", updated: "2026-11-04", published: "2026-11-04" },
+  { path: "/compare/enhancv", updated: "2026-11-04", published: "2026-11-04" },
 
   // /trust and /security redirect to /privacy, /faq and /support to /help (lib/seo/retired-routes.json).
   { path: "/privacy", updated: "2026-11-02" },

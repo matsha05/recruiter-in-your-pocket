@@ -1,6 +1,7 @@
 import { pageMetadata } from "@/lib/seo/metadata";
 import { Citation } from "@/components/research/ResearchArticle";
 import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
+import { ResearchLink } from "@/components/research/ResearchLink";
 import { AutomationPipeline } from "@/components/research/diagrams/AutomationPipeline";
 
 const PATH = "/research/automation-and-bias";
@@ -72,11 +73,11 @@ export default function AutomationBiasPage() {
         >
             <h2 className="research-h2">One hiring process, several decision points</h2>
             <p className="research-body mb-6">
-                The Upturn report follows four stages of hiring: sourcing (including job ads), screening, interviewing, and selection. Its authors found that tools rarely make the final hiring decision but often automate rejections along the way. Someone who never sees a job ad may never learn about the opportunity.
+                The Upturn report follows four stages of hiring: sourcing (including job ads), screening, interviewing, and selection. Its authors found that tools rarely make the final hiring decision but often automate rejections along the way. Someone who never sees a job ad may never learn about the opportunity. When a person does decide, software still has a say: in one experiment, <ResearchLink to="human-vs-algorithm">an algorithm&rsquo;s recommendation swayed recruiters who said they trusted it less than a human expert</ResearchLink>.
                 <Citation id="source-1">1</Citation>
             </p>
             <p className="research-body mb-6">
-                Once you have an opportunity to apply, check that your file contains readable text and clear sections. That addresses a possible parsing problem, not the broader risks documented in the report.
+                Once you have an opportunity to apply, check that your file contains readable text and clear sections. That addresses a possible parsing problem, not the broader risks documented in the report, and even then <ResearchLink to="ats-myths">a failed parse doesn&rsquo;t make the resume disappear: someone enters the details by hand</ResearchLink>.
                 <Citation id="source-2">2</Citation>
             </p>
             <p className="research-body mb-6">
@@ -101,6 +102,9 @@ export default function AutomationBiasPage() {
             <p className="research-body mb-6">
                 A 2025 study asked five large language models to score about 361,000 resumes with randomized names. They gave women higher scores and Black men lower ones, gaps the authors estimate could shift hiring odds by about 1 to 3 percentage points at some cutoffs.
                 <Citation id="source-4">4</Citation>
+            </p>
+            <p className="research-body mb-6">
+                The gaps have a human baseline. In US field experiments with human screeners, <ResearchLink to="hiring-discrimination-meta-analysis">white applicants got 36% more callbacks than equally qualified Black applicants</ResearchLink>, with no decline from 1989 to 2015.
             </p>
 
             <h2 className="research-h2">Limitations</h2>

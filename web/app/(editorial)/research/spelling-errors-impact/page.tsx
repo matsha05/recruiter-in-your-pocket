@@ -1,6 +1,7 @@
 import { pageMetadata } from "@/lib/seo/metadata";
 import { ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
+import { ResearchLink } from "@/components/research/ResearchLink";
 import { ErrorImpactDiagram } from "@/components/research/diagrams/ErrorImpactDiagram";
 import { InferenceLadderDiagram } from "@/components/research/diagrams/InferenceLadderDiagram";
 
@@ -78,12 +79,12 @@ export default function SpellingErrorsPage() {
             <p className="research-body mb-6">
                 It justifies a careful spelling pass. It does not justify pretending one typo always ends the process, extending a Dutch-language result from Belgium to every language or labor market, or treating error-free writing as proof of job performance.
                 <Citation id="source-1">1</Citation>
-                {" "}It also can&apos;t say whether spelling matters more than content: the study kept the content the same and changed only the spelling. What it shows is that repeated errors cost points even when the experience on the page is identical.
+                {" "}It also can&apos;t say whether spelling matters more than content: the study kept the content the same and changed only the spelling. What it shows is that repeated errors cost points even when the experience on the page is identical. It fits what a much larger experiment found when only the wording changed: <ResearchLink to="writing-quality-hire-probability">grammar fixes on short freelance profiles lifted hires from 3.1% to 3.3%</ResearchLink>.
             </p>
 
             <h2 className="research-h2">What to fix first</h2>
             <p className="research-body mb-6">
-                <strong>Our advice:</strong> the study tested spelling only. These are the checks we&apos;d run next.
+                <strong>Our advice:</strong> the study tested spelling only, and the section a recruiter weighs is Experience: in the strongest eye-tracking study, <ResearchLink to="how-recruiters-read">recruiters who spent longer on Experience were more likely to move a resume forward</ResearchLink>. Fix what that section says, then run these checks.
             </p>
             <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
                 <li>Spelling and grammar consistency.</li>

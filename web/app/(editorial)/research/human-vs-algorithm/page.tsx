@@ -1,6 +1,9 @@
 import { pageMetadata } from "@/lib/seo/metadata";
 import { ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
+import { ResearchLink } from "@/components/research/ResearchLink";
+import Link from "next/link";
+import { comparison } from "@/components/compare/comparisons";
 
 const PATH = "/research/human-vs-algorithm";
 
@@ -61,11 +64,11 @@ export default function HumanVsAlgorithmPage() {
                 <Citation id="source-1">1</Citation>
             </p>
             <p className="research-body mb-6">
-                That gap matters. Stated skepticism is not the same as resistance in the moment. A tool can look less trustworthy and still change a decision.
+                That gap matters. Stated skepticism is not the same as resistance in the moment. A tool can look less trustworthy and still change a decision, and that includes <Link href={comparison("rezi").path} className="focus-ring riyp-link">a builder&rsquo;s live score that rates your resume as you type</Link>.
                 <Citation id="source-1">1</Citation>
             </p>
             <p className="research-body mb-6">
-                A resume tool should explain its recommendations so you can check them. Trusting a tool less does not necessarily protect you from following a weak suggestion.
+                A resume tool should explain its recommendations so you can check them. Trusting a tool less does not necessarily protect you from following a weak suggestion. Most hiring software offers no such explanation: one review found that <ResearchLink to="automation-and-bias">the tools rarely make the final decision but often automate rejections along the way</ResearchLink>.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4 not-prose my-8">
@@ -91,10 +94,10 @@ export default function HumanVsAlgorithmPage() {
 
             <h2 className="research-h2">What this means in practice</h2>
             <p className="research-body mb-6">
-                <strong>Our advice:</strong> compare a suggested change with the original resume and the job you want. Keep it only if it makes your experience clearer without adding facts or overstating your contribution.
+                <strong>Our advice:</strong> compare a suggested change with the original resume and the job you want. Keep it only if it makes your experience clearer without adding facts or overstating your contribution. Treat a match score the same way: <ResearchLink to="ats-myths">applicant tracking systems pull your text into fields, and automatic rejection runs on application questions, not on your resume</ResearchLink>.
             </p>
             <p className="research-body mb-6">
-                Make your evidence easy to inspect, too: clear role context, specific ownership, supportable outcomes, and no claims you can&apos;t defend.
+                Make your evidence easy to inspect, too: clear role context, specific ownership, supportable outcomes, and no claims you can&apos;t defend. That is the part of the page a reader weighs: <ResearchLink to="how-recruiters-read">recruiters who spent longer on Experience were more likely to move a resume forward</ResearchLink>.
             </p>
 
             <ArticleBridge question="Can you check the advice you’re given?">
