@@ -1,4 +1,4 @@
-import { evidenceContainsRequirement } from "./requirement-evidence";
+import { evidenceContainsRequirement, evidenceContainsRequirementLabel } from "./requirement-evidence";
 import { supportsIndustrySignal } from "./source-industry-signals";
 import { JobKeywordsSchema } from "../validation/resume-report-schema";
 
@@ -33,7 +33,7 @@ export function canonicalizeOptionalReportMetadata<T>(
     for (const kind of ["matched", "missing"] as const) {
       keywords[kind] = keywords[kind].filter((value: string, index: number) => {
         const inResume = evidenceContainsRequirement(value, resumeText);
-        const inJob = evidenceContainsRequirement(value, options.jobDescription!, { jobDescription: true });
+        const inJob = evidenceContainsRequirementLabel(value, options.jobDescription!, { jobDescription: true });
         const supported = inJob && (kind === "matched" ? inResume : !inResume);
         if (!supported) changes.push(`job_alignment.jd_keywords.${kind}[${index}].omitted_unverified`);
         return supported;

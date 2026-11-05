@@ -23,6 +23,8 @@ export const baseNarrativeStopWords = normalizedSet([
   "on", "or", "the", "to", "with", "that", "this", "these", "those", "your", "their",
   "its", "it", "was", "were", "are", "has", "have", "had", "but", "only", "while", "yet", "using", "via",
   "though", "although", "toward", "towards", "also", "before",
+  // Contracted negations carry no fact of their own ("its dates aren't clear").
+  "isn't", "isn’t", "aren't", "aren’t", "wasn't", "wasn’t", "weren't", "weren’t", "doesn't", "doesn’t", "don't", "don’t", "didn't", "didn’t",
 ]);
 
 const styleWords = normalizedSet([
@@ -33,7 +35,7 @@ const actionWords = normalizedSet([
   "add", "answer", "ask", "bullet", "can", "choose", "clarify", "could", "define", "describe", "document", "edit", "explain", "include", "keep",
   "make", "name", "next", "quantify", "rewrite", "show", "specify", "surface", "use", "verify", "what", "you",
 ]);
-const assessmentDimensionWords = normalizedSet([
+export const assessmentDimensionWords = normalizedSet([
   "count", "detail", "fact", "impact", "metric", "outcome", "result", "scale", "scope", "size",
 ]);
 const assessmentWords = normalizedSet([
@@ -51,6 +53,17 @@ const assessmentWords = normalizedSet([
   "tied", "linked", "associated",
   "typo", "make", "slower", "current", "completed", "complete", "school", "location", "core", "job", "organized", "sequence", "straightforward", "included", "presented", "order", "scan", "section", "title", "employer", "figure", "score", "starting", "point",
   "uneven", "unevenly", "unusually", "useful", "utilization", "verified", "volume", "well", "workforce",
+  // The report describing its own read, not the resume (live judgment run, Nov 5 2026: "a clear picture of
+  // your customer-facing work", "the bullets leave the actual design choices largely out of view",
+  // "Both degrees include schools", "Keeping both figures helps show that the role involves more").
+  "picture", "view", "leave", "leaves", "left", "out", "largely", "actual", "choice", "choices", "both", "each", "every",
+  "help", "helps", "helped", "more", "involve", "involves", "stated", "important", "comparison", "unanswered", "relationship",
+  "here", "set", "different", "call", "calls", "sense", "idea", "impression", "glance", "question", "questions",
+  // The report reading the person's schedule or the shape of the pasted text ("shows availability",
+  // "The supplied text appears as one continuous passage, so check that your original file separates roles").
+  "availability", "willingness", "flexibility", "field", "fields", "completion", "text", "file", "passage", "paragraph",
+  "format", "formatting", "layout", "continuous", "supplied", "pasted", "original", "separate", "separates", "check", "so", "one",
+  "accomplishment", "accomplishments", "achievement", "achievements",
   // How the score reads the page ("The score reflects the specific workloads shown across your roles").
   "reflect", "shown", "across", "workload",
   // Seniority reads, matching the report's own level scale ("Early career" ... "Director-level").
@@ -60,9 +73,12 @@ const assessmentWords = normalizedSet([
 
 const sourceNegationPattern = /\b(?:did\s+not|does\s+not|do\s+not|not|never|no|without|didn['’]t|doesn['’]t|don['’]t)\b/iu;
 const questionPattern = /\?\s*$|^\s*(?:what|how|which|where|when|who|why|can|could|would|should|do|did|is|are)\b/iu;
-const advicePattern = /^\s*(?:(?:first|then|finally),?\s+)?(?:add|ask|choose|clarify|compare|complete|correct|define|describe|document|edit|explain|expand|identify|include|keep|make|name|quantify|reorder|replace|resolve|revise|rewrite|separate|sharpen|show|specify|state|surface|tighten|turn|say|use|verify)\b|\b(?:can|should|could|would|needs?\s+to)\b/iu;
-const absencePattern = /^\s*no\b|\b(?:absent|blurry|seldom|rarely|hardly|cannot\s+tell|missing|needs?|lacks?|unclear|without|not\s+(?:yet\s+)?(?:choose|clear|explicit|included|present|shown|stated|visible)|(?:do|does|did)\s+not\s+(?:choose|include|make\b[^.!?]{0,50}\bexplicit|name|show|state))\b/iu;
-const positivePresencePattern = /\b(?:adds?|appears?|clear(?:ly)?|contains?|explicit|includes?|included|(?<![-‐‑‒–—])points?(?![-‐‑‒–—])|present|readable|shows?|shown|visible)\b/iu;
+// Advice may open with a condition or a location: "If you hold the license, add ...", "For the posted role, add ...".
+const advicePattern = /^\s*(?:(?:first|then|finally),?\s+|(?:if|when|unless|for|in|on|under|within|above|below)\b[^,;.!?]{1,120},\s*)?(?:add|ask|choose|clarify|compare|complete|correct|define|describe|document|edit|explain|expand|identify|include|keep|make|name|quantify|reorder|replace|resolve|revise|rewrite|separate|sharpen|show|specify|state|surface|tighten|turn|say|use|verify)\b|\b(?:can|should|could|would|needs?\s+to)\b/iu;
+// "does not list", "aren't shown here" and "leaves ... unanswered" describe what the resume lacks, like "not shown".
+const absencePattern = /^\s*no\b|\b(?:absent|blurry|seldom|rarely|hardly|cannot\s+tell|missing|needs?|lacks?|unclear|omitted|without|(?:not|isn['’]t|aren['’]t|wasn['’]t|weren['’]t|is\s+not|are\s+not|was\s+not|were\s+not)\s+(?:yet\s+)?(?:choose|clear|explicit|included|present|shown|stated|visible|listed|documented|described|mentioned|named|here|there)|(?:do|does|did)\s+not\s+(?:choose|include|make\b[^.!?]{0,50}\bexplicit|name|show|state|list|document|mention|describe|record|specify|address|establish|cover|say|explain))\b/iu;
+// "SQL ownership is explicit" asserts presence; "a role with explicit retention targets" describes the posting.
+const positivePresencePattern = /\b(?:adds?|appears?|clear(?:ly)?|contains?|explicit(?!\s+\p{L})|includes?|included|(?<![-‐‑‒–—])points?(?![-‐‑‒–—])|present|readable|shows?|shown|visible)\b/iu;
 const assessmentCuePattern = /\b(?:blurry|compete|credible|dense|difficult|easier|fit|harder|limited|read|reader|recruiter|relevant|resume|story|strong|thin|unclear|uneven|useful|weak)\b/iu;
 
 export function sourceClauseIsNegated(value: string) {
@@ -103,7 +119,9 @@ export function narrativeTokenPolicy(
   // Comparative clarity describes a limitation; retain any other positive cue in the clause.
   const presenceText = normalized
     .replace(/\b(?:less|not\s+as)\s+(?:clear(?:ly)?|visible|apparent|evident)\b/giu, " ")
-    .replace(/\b(?:(?:do|does|did)\s+not|don['’]t|doesn['’]t|didn['’]t)\s+(?:yet\s+)?(?:show|include|contain|add|appear)\b/giu, " ");
+    .replace(/\b(?:(?:do|does|did)\s+not|don['’]t|doesn['’]t|didn['’]t)\s+(?:yet\s+)?(?:show|include|contain|add|appear)\b/giu, " ")
+    // "aren't shown here" and "isn't clear" negate the presence cue that follows them.
+    .replace(/\b(?:isn['’]t|aren['’]t|wasn['’]t|weren['’]t|is\s+not|are\s+not|was\s+not|were\s+not|not|never)\s+(?:yet\s+|always\s+|fully\s+|clearly\s+)?(?:clear(?:ly)?|shown|visible|present|included|explicit|stated|listed|readable|apparent|evident)\b/giu, " ");
   const assertsPresence = !lexicalQuestion
     && !lexicalAdvice
     && !lexicalAbsence

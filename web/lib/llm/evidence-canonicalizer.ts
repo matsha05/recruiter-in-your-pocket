@@ -1,4 +1,4 @@
-import { hasSkillsSection } from "./source-sections";
+import { hasNamedSection, hasSkillsSection, hasWorkExperience } from "./source-sections";
 import { reportSentences } from "./report-sentences";
 import { canonicalizeOptionalReportMetadata } from "./optional-report-metadata";
 import {
@@ -32,7 +32,48 @@ function sourceLines(sourceText: string) {
     .filter((line) => line.length >= 8);
 }
 
-function hasSummarySection(sourceText: string) {
+const SECTION_HEADING_NAMES = [
+  "summary", "professional summary", "profile", "professional profile", "objective", "career objective",
+  "experience", "work experience", "professional experience", "employment", "employment history", "work history",
+  "executive experience", "relevant experience", "academic appointments", "appointments", "positions",
+  "education", "academic background", "academic experience", "training", "coursework", "relevant coursework",
+  "skills", "technical skills", "core skills", "core competencies", "competencies", "tools", "technologies",
+  "certifications", "certificates", "licenses", "licensure", "credentials", "awards", "honors", "publications",
+  "presentations", "research", "research interests", "grants", "grants and fellowships", "fellowships", "teaching",
+  "service", "projects", "selected projects", "data projects", "activities", "leadership", "volunteer", "volunteering",
+  "volunteer experience", "interests", "languages", "references", "additional information", "affiliations",
+  "professional affiliations", "memberships", "military service", "clinical experience",
+];
+
+/**
+ * A line that names a section. Headings carry no sentence punctuation and no dates, so a long prose line
+ * or a dated role line is never one. The resume's own label is read in any case; a short all-capitals
+ * line counts only as a fallback, and never on the first line, where it is usually the person's name.
+ */
+function sectionHeadingShape(line: string): "named" | "capitals" | null {
+  const trimmed = line.replace(/[:\-–—]+\s*$/u, "").trim();
+  if (!trimmed || trimmed.length > 48 || /\d/u.test(trimmed) || /[.!?,;]/u.test(trimmed)) return null;
+  if (trimmed.split(/\s+/u).filter(Boolean).length > 5) return null;
+  if (SECTION_HEADING_NAMES.includes(normalize(trimmed).replace(/\s+/g, " "))) return "named";
+  return /\p{Lu}/u.test(trimmed) && trimmed === trimmed.toUpperCase() && /[A-Z]{3,}/u.test(trimmed) ? "capitals" : null;
+}
+
+function firstSectionHeadingIndex(lines: string[]) {
+  const named = lines.findIndex((line) => sectionHeadingShape(line) === "named");
+  if (named >= 0) return named;
+  return lines.findIndex((line, index) => index > 0 && sectionHeadingShape(line) === "capitals");
+}
+
+/**
+ * Whether the resume has a summary. A section is a section only when the resume labels it (Summary,
+ * Profile, Objective) or its shape is unambiguous: a prose paragraph in the opening, after the contact
+ * lines and before the first section heading of any kind. A long line inside a labeled section is that
+ * section's content, never a summary: the live judgment run (docs/audits/2026-11-live-judgment.md) lost
+ * every student resume whose Education came first with a long "Relevant coursework" line, and every CV
+ * whose first long line was a Ph.D. entry, because the old rule read any long opening line as a summary
+ * and then refused the model for calling the section absent.
+ */
+export function hasSummarySection(sourceText: string) {
   const lines = sourceText.split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
   const hasNamedSummary = lines.some((line) => {
     const heading = normalize(line).replace(/\s+/g, " ");
@@ -40,35 +81,20 @@ function hasSummarySection(sourceText: string) {
   });
   if (hasNamedSummary) return true;
 
-  const experienceIndex = lines.findIndex((line) =>
-    ["experience", "work experience", "professional experience"].includes(normalize(line).replace(/\s+/g, " ")),
-  );
-  if (experienceIndex === 0) return false;
-  const openingLines = experienceIndex > 0 ? lines.slice(0, experienceIndex) : lines.slice(0, 5);
+  const headingIndex = firstSectionHeadingIndex(lines);
+  if (headingIndex === 0) return false;
+  const openingLines = headingIndex > 0 ? lines.slice(0, headingIndex) : lines.slice(0, 5);
   return openingLines.some((line) => {
     const wordCount = line.split(/\s+/).filter(Boolean).length;
     const looksLikeContact = /@|linkedin\.com|\b\d{3}[-.)\s]\d{3}[-.\s]\d{4}\b/i.test(line);
-    return !looksLikeContact && line.length >= 90 && wordCount >= 15;
-  });
-}
-
-function hasNamedSection(sourceText: string, names: string[]) {
-  return sourceText.split(/\r?\n/).some((line) => {
-    const heading = normalize(line).replace(/\s+/g, " ");
-    return names.some((name) => heading === name || (heading.startsWith(`${name} `) && heading.split(" ").length <= 5));
-  });
-}
-
-function hasWorkExperience(sourceText: string) {
-  if (hasNamedSection(sourceText, ["experience", "work experience", "professional experience", "employment history", "work history"])) return true;
-  const lines = sourceText.split(/\r?\n/).map(line => line.trim()).filter(Boolean);
-  // Resumes often go directly from contact details to dated jobs without a heading.
-  // Require both a job title and a date range followed by a responsibility bullet.
-  return lines.some((line, index) => {
-    const roleHeading = lines.slice(Math.max(0, index - 2), index + 1).join(" ");
-    return /\b(?:manager|director|engineer|executive|recruiter|accountant|controller|officer|teacher|representative|analyst|designer|specialist|associate|assistant|intern|lead|leader|coordinator|consultant|nurse|pastor)\b/i.test(roleHeading)
-      && /\b(?:19|20)\d{2}\s*(?:[-–—]|to)\s*(?:(?:[A-Za-z]+\.?\s+)?(?:19|20)\d{2}|present|current)\b/i.test(line)
-      && /^[-*•●◦▪▫‣⁃]\s+/.test(lines[index + 1] || "");
+    // A bullet, a labeled list ("Relevant coursework: ..."), a degree or credential line, or a dated line is
+    // content of another section, whatever its length.
+    const looksLikeBullet = /^[-*•●◦▪▫‣⁃]\s+/u.test(line);
+    const looksLikeLabeledList = /^[\p{L} ]{2,40}:\s/u.test(line);
+    const looksLikeDegree = /\b(?:Ph\.?\s?D\.?|B\.?[AS]\.?|M\.?[AS]\.?|M\.?B\.?A\.?|Bachelor(?:'s)?|Master(?:'s)?|Doctor(?:ate)?|Associate(?:'s)?)\b/u.test(line)
+      && /\b(?:19|20)\d{2}\b|\b(?:University|College|Institute|School)\b/u.test(line);
+    const looksDated = /\b(?:19|20)\d{2}\s*(?:[-–—]|to)\s*(?:(?:[A-Za-z]+\.?\s+)?(?:19|20)\d{2}|present|current)\b/i.test(line);
+    return !looksLikeContact && !looksLikeBullet && !looksLikeLabeledList && !looksLikeDegree && !looksDated && line.length >= 90 && wordCount >= 15;
   });
 }
 

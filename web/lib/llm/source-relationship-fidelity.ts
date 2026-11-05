@@ -122,9 +122,14 @@ function metricRelations(value: string) {
 function normalizedEndpoint(value: string) {
   const text = normalizedText(value);
   const matches = Array.from(text.matchAll(metricPattern));
-  return matches.length === 1 && normalizedText(matches[0][0]) === text
-    ? normalizedMetric(text)
-    : normalizedPhrase(text);
+  if (matches.length === 1 && normalizedText(matches[0][0]) === text) return normalizedMetric(text);
+  // "to 96% in 2024 is worth keeping" and "to 96% in 2024 Customer Service Representative" (a resume pasted
+  // without line breaks) both end at the figure: the endpoint is the leading metric when one opens the text.
+  const leading = matches[0];
+  if (leading && leading.index === 0 && normalizedText(leading[0]).length < text.length && /^\s*\S/u.test(text.slice(leading[0].length))) {
+    return normalizedMetric(leading[0]);
+  }
+  return normalizedPhrase(text);
 }
 
 function arrowDirection(value: string) {

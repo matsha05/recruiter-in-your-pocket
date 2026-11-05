@@ -52,6 +52,8 @@ export type LogRecord = {
     reason?: string;
     critical_count?: number;
     added?: string[];
+    /** The added Critical Miss that led the report ahead of the model's first fix, when the merge rule applied. */
+    led?: string | null;
     promoted?: number;
     validation_attempts?: number;
   };

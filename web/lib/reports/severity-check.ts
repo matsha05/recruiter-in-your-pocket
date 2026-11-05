@@ -1,13 +1,21 @@
-import { canonicalSourceIdentity } from "../llm/source-fidelity";
+import { canonicalSourceIdentity, isExactAbsenceSentinel } from "../llm/source-fidelity";
 import type { SeverityCheckAnswer, SeverityCheckItem, SeverityKind } from "../llm/severity-check-model";
+import { structuralGapKind } from "./report-integrity";
 
 /**
  * Merging the severity check into a finished report (Matt, wave 3: "i dont want to lie to people and say
- * they have one critical miss if there are more"). The first fix is the report's Critical Miss and never
- * changes. Each further Critical Miss either promotes Fix 2 or Fix 3, when the check says that fix already
- * names the problem, or is added after the first fix. A new one on the line Fix 2 or Fix 3 cites replaces
- * that fix: one fix per line, and the new one asks for what makes it serious. Critical Misses come first;
- * the report keeps at most three fixes.
+ * they have one critical miss if there are more"). The first fix is the report's Critical Miss and its text
+ * never changes. Each further Critical Miss either promotes Fix 2 or Fix 3, when the check says that fix
+ * already names the problem, or is added after the first fix. A new one on the line Fix 2 or Fix 3 cites
+ * replaces that fix: one fix per line, and the new one asks for what makes it serious. Critical Misses come
+ * first; the report keeps at most three fixes.
+ *
+ * One exception to the order (judgment wave, November 5, 2026; docs/audits/2026-11-judgment-wave.md): when
+ * the check finds an unexplained stretch of time (`no_recent_work`) or a title above the work
+ * (`title_level_mismatch`) and the model's first fix is a line edit on a duty line, the structural miss
+ * leads and the model's fix becomes the second Critical Miss. In the live run the gap sat behind a line
+ * edit in 8 of 8 cases while the Verdict named the gap, so the page contradicted itself. The model's fix
+ * is still shipped exactly as written; only its position changes.
  */
 
 type Fix = Record<string, any>;
@@ -22,11 +30,41 @@ export interface SeverityMerge {
   /** Existing fixes (1 = Fix 2, 2 = Fix 3) that a new Critical Miss on the same line replaced. */
   replaced: number[];
   skipped: SeveritySkip[];
+  /** The added Critical Miss that leads the report ahead of the model's first fix, when the rule applied. */
+  led: SeverityKind | null;
 }
+
+/** The structural kinds that lead the report when the model's first fix is a line edit on a duty line. */
+export const LEADING_SEVERITY_KINDS: readonly SeverityKind[] = ["no_recent_work", "title_level_mismatch"];
+
+const DATE_RANGE = /^\s*(?:[A-Za-z]{3,9}\.?\s+)?(?:19|20)\d{2}\s*(?:[-–—]|to)\s*(?:(?:[A-Za-z]{3,9}\.?\s+)?(?:19|20)\d{2}|present|current)\s*$/iu;
+const BULLET = /^\s*[-*•●◦▪▫‣⁃]\s+/u;
 
 function excerptOf(fix: Fix | undefined) {
   const evidence = fix?.evidence;
   return canonicalSourceIdentity(typeof evidence === "string" ? evidence : String(evidence?.excerpt || ""));
+}
+
+function rawExcerptOf(fix: Fix | undefined) {
+  const evidence = fix?.evidence;
+  return typeof evidence === "string" ? evidence : String(evidence?.excerpt || "");
+}
+
+/**
+ * A line edit on a duty line: the fix cites a real bullet or sentence from the work history (not a summary,
+ * headline, title or date line, and not an absence marker) and asks for detail on it rather than naming a
+ * structural problem of its own. Only such a fix yields the lead to a structural Critical Miss.
+ */
+export function isDutyLineEdit(fix: Fix | undefined): boolean {
+  if (!fix || typeof fix.fix !== "string") return false;
+  const excerpt = excerptOf(fix);
+  const raw = rawExcerptOf(fix);
+  if (!excerpt || isExactAbsenceSentinel(excerpt) || DATE_RANGE.test(excerpt)) return false;
+  const section = String(fix.evidence?.section ?? fix.section_ref ?? "");
+  if (/summary|objective|profile|headline|header|title/iu.test(section)) return false;
+  if (structuralGapKind(`${fix.fix} ${fix.why ?? ""}`)) return false;
+  // A role or title line is short; a duty line is a bullet or a sentence of some length.
+  return BULLET.test(raw) || excerpt.split(/\s+/u).filter(Boolean).length >= 6;
 }
 
 function newFix(item: SeverityCheckItem): Fix {
@@ -55,6 +93,7 @@ export function mergeSeverityCheck(report: Report, answer: SeverityCheckAnswer, 
   const skipped: SeveritySkip[] = [];
   // In priority order after the first fix: an index into the existing fixes, or a new fix.
   const critical: Array<number | Fix> = [];
+  const kindOf = new Map<Fix, SeverityKind>();
   for (const item of answer.critical_misses.slice(0, 2)) {
     let index = item.source === "fix_2" ? 1 : item.source === "fix_3" ? 2 : -1;
     if (item.source === "new") {
@@ -73,7 +112,9 @@ export function mergeSeverityCheck(report: Report, answer: SeverityCheckAnswer, 
         continue;
       }
       if (added.length >= limitNew) continue;
-      critical.push(newFix(item));
+      const fix = newFix(item);
+      kindOf.set(fix, item.kind);
+      critical.push(fix);
       added.push(item.kind);
       if (sameLine > 0) replaced.push(sameLine);
       continue;
@@ -89,7 +130,11 @@ export function mergeSeverityCheck(report: Report, answer: SeverityCheckAnswer, 
     critical.push(index);
     promoted.push(index);
   }
-  const misses = [first, ...critical.map((entry) => (typeof entry === "number" ? fixes[entry] : entry))]
+  // The structural miss leads when the first fix is a line edit on a duty line; the first fix follows it unchanged.
+  const leader = critical.find((entry) => typeof entry !== "number" && LEADING_SEVERITY_KINDS.includes(kindOf.get(entry)!));
+  const led = leader && isDutyLineEdit(first) ? kindOf.get(leader as Fix)! : null;
+  const ordered = led ? [leader!, first, ...critical.filter((entry) => entry !== leader)] : [first, ...critical];
+  const misses = ordered.map((entry) => (typeof entry === "number" ? fixes[entry] : entry))
     .filter(Boolean)
     .map((fix) => ({ ...fix, critical: true }));
   const rest = fixes.slice(1)
@@ -103,14 +148,27 @@ export function mergeSeverityCheck(report: Report, answer: SeverityCheckAnswer, 
     promoted,
     replaced,
     skipped,
+    led,
   };
+}
+
+function sameFix(a: Fix | undefined, b: Fix | undefined) {
+  return Boolean(a && b) && String(a?.fix) === String(b?.fix) && excerptOf(a) === excerptOf(b);
 }
 
 /** Whether a validated report still leads with the same first fix: the check may never change it. */
 export function sameFirstFix(before: Report, after: Report) {
-  const a = before.top_fixes?.[0];
-  const b = after.top_fixes?.[0];
-  return Boolean(a && b) && String(a?.fix) === String(b?.fix) && excerptOf(a) === excerptOf(b);
+  return sameFix(before.top_fixes?.[0], after.top_fixes?.[0]);
+}
+
+/**
+ * Whether the validated merged report keeps the model's first fix unchanged, in the position the merge gave
+ * it: first, or second behind the structural miss that led. When a miss led, the validated report must
+ * still lead with it; the validator may reorder or drop fixes, and then the merge does not ship.
+ */
+export function keepsFirstFix(before: Report, merged: SeverityMerge, after: Report) {
+  if (!merged.led) return sameFirstFix(before, after);
+  return sameFix(merged.report.top_fixes?.[0], after.top_fixes?.[0]) && sameFix(before.top_fixes?.[0], after.top_fixes?.[1]);
 }
 
 export function criticalCount(report: Report) {

@@ -11,7 +11,7 @@ import {
   type SeverityCheckResponse,
   type SeverityKind,
 } from "../llm/severity-check-model";
-import { criticalCount, mergeSeverityCheck, sameFirstFix, type SeveritySkip } from "./severity-check";
+import { criticalCount, keepsFirstFix, mergeSeverityCheck, sameFirstFix, type SeveritySkip } from "./severity-check";
 
 export type SeverityOutcomeKind = "added" | "none" | "fallback" | "error";
 export type SeverityReason = "added" | "promoted" | "none" | "validation" | "first_fix_changed" | "timeout" | "provider";
@@ -27,6 +27,8 @@ export interface SeverityOutcome {
   promoted: number[];
   /** Existing fixes that a new Critical Miss on the same line replaced. */
   replaced: number[];
+  /** The added Critical Miss that leads the report ahead of the model's first fix, when the merge rule applied. */
+  led: SeverityKind | null;
   skipped: SeveritySkip[];
   critical_count: number;
   more_critical: boolean;
@@ -59,7 +61,8 @@ function withDeadline<T>(promise: Promise<T>, ms: number): Promise<T> {
  * Merges a severity answer into a validated report and validates the result. Never throws. The merged
  * report goes through the same validator and fabrication guard as the report itself; when that fails
  * with two new fixes it retries with the first only, and then ships the existing fixes with their flags
- * (promotions only change flags and order, never text). The first fix must come out unchanged.
+ * (promotions only change flags and order, never text). The first fix must come out unchanged, in the
+ * position the merge gave it (see `mergeSeverityCheck` for the one case where a structural miss leads).
  */
 export function settleSeverityCheck(input: {
   payload: any;
@@ -82,6 +85,7 @@ export function settleSeverityCheck(input: {
       added: merged.added,
       promoted: merged.promoted,
       replaced: merged.replaced,
+      led: merged.led,
       skipped: merged.skipped,
       critical_count: count,
       more_critical: payload.more_critical === true,
@@ -98,7 +102,7 @@ export function settleSeverityCheck(input: {
       const validated = ensureLayoutAndContentFields(
         validateResumeModelPayload(structuredClone(merged.report), input.resumeText, input.validationOptions),
       );
-      if (!sameFirstFix(input.payload, validated)) {
+      if (!keepsFirstFix(input.payload, merged, validated)) {
         firstFixChanged = true;
         continue;
       }
@@ -122,6 +126,7 @@ export function settleSeverityCheck(input: {
     added: [],
     promoted: [],
     replaced: [],
+    led: null,
     skipped: flagsOnly.skipped,
     critical_count: criticalCount(input.payload),
     more_critical: false,
@@ -163,6 +168,7 @@ export async function applySeverityCheck(input: {
       added: [],
       promoted: [],
       replaced: [],
+      led: null,
       skipped: [],
       critical_count: criticalCount(input.payload),
       more_critical: false,

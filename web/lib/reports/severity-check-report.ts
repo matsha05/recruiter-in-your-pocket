@@ -54,6 +54,7 @@ export async function severityCheckReport(input: {
       reason: outcome.reason,
       critical_count: outcome.critical_count,
       added: outcome.added,
+      led: outcome.led,
       promoted: outcome.promoted.length,
       validation_attempts: outcome.validation_attempts,
     },

@@ -16,7 +16,7 @@ import {
 import { resolveOpenAIModel, resolveReasoningEffortForMode } from "../lib/llm/model-config";
 import { sanitizeLaunchSignal } from "../lib/observability/launchSignals";
 import { hasMoreCriticalMisses, isCriticalFix } from "../lib/reports/report-integrity";
-import { criticalCount, isSeverityCheckEnabled, mergeSeverityCheck, sameFirstFix, SEVERITY_CHECK_DEFAULT } from "../lib/reports/severity-check";
+import { criticalCount, isDutyLineEdit, isSeverityCheckEnabled, keepsFirstFix, LEADING_SEVERITY_KINDS, mergeSeverityCheck, sameFirstFix, SEVERITY_CHECK_DEFAULT } from "../lib/reports/severity-check";
 import { severityCheckReport } from "../lib/reports/severity-check-report";
 import { applySeverityCheck, settleSeverityCheck } from "../lib/reports/severity-check-service";
 import { ResumeFeedbackResponseSchema } from "../lib/validation/resume-report-schema";
@@ -63,15 +63,44 @@ assert.deepEqual(none.report.top_fixes?.map((fix) => fix.critical), [true, false
 assert.equal(none.report.more_critical, false);
 assert.equal(criticalCount(none.report), 1);
 
+// The judgment wave (Nov 5, 2026): a gap or a title above the work leads when the model's first fix is a line
+// edit on a duty line. The model's fix is shipped word for word, as the second Critical Miss.
+assert.deepEqual([...LEADING_SEVERITY_KINDS], ["no_recent_work", "title_level_mismatch"]);
+assert.equal(isDutyLineEdit(payload.top_fixes[0]), true, "the operations fixture's first fix is a line edit on a duty bullet");
 const one = mergeSeverityCheck(payload, answer([recent]));
 assert.deepEqual(one.added, ["no_recent_work"]);
-assert.equal(one.report.top_fixes?.[0].fix, payload.top_fixes[0].fix, "the first fix never changes");
-assert.equal(one.report.top_fixes?.[1].fix, recent.fix, "an added Critical Miss follows the first fix");
+assert.equal(one.led, "no_recent_work");
+assert.equal(one.report.top_fixes?.[0].fix, recent.fix, "the unexplained stretch of time leads");
+assert.equal(one.report.top_fixes?.[1].fix, payload.top_fixes[0].fix, "the model's first fix follows it unchanged");
+assert.deepEqual(one.report.top_fixes?.[1], { ...payload.top_fixes[0], critical: true });
 assert.deepEqual(one.report.top_fixes?.map((fix) => fix.critical), [true, true, false]);
 assert.equal(one.report.top_fixes?.[2].fix, payload.top_fixes[1].fix, "ordinary fixes follow, and the list keeps three");
-assert.deepEqual(one.report.top_fixes?.[1].evidence, { excerpt: "Feb 2023 - Jul 2023", section: "Experience" });
+assert.deepEqual(one.report.top_fixes?.[0].evidence, { excerpt: "Feb 2023 - Jul 2023", section: "Experience" });
+
+// Only those two kinds lead, and only over a duty-line edit.
+const latestRole = item({ kind: "no_evidence_latest_role", fix: "In the Greenfield role, add how many shipments you tracked, if you can verify it.", why: "x", excerpt: payload.top_fixes[2].evidence.excerpt });
+const notLed = mergeSeverityCheck(payload, answer([latestRole]));
+assert.equal(notLed.led, null, "a missing size or result on the latest role never leads");
+assert.equal(notLed.report.top_fixes?.[0].fix, payload.top_fixes[0].fix);
+const summaryFirst = { ...payload, top_fixes: [{ ...payload.top_fixes[0], fix: "Add a one-line headline naming the role you want.", evidence: { excerpt: "No summary section present", section: "Summary" }, section_ref: "Summary" }, ...payload.top_fixes.slice(1)] };
+assert.equal(isDutyLineEdit(summaryFirst.top_fixes[0]), false, "a fix on the summary is not a duty-line edit");
+const overSummary = mergeSeverityCheck(summaryFirst, answer([recent]));
+assert.equal(overSummary.led, null, "a structural first fix keeps the lead");
+assert.equal(overSummary.report.top_fixes?.[0].fix, summaryFirst.top_fixes[0].fix);
+assert.equal(overSummary.report.top_fixes?.[1].fix, recent.fix);
+const dateFirst = { ...payload, top_fixes: [{ ...payload.top_fixes[0], fix: "Add the end date for the MetroRetail role.", evidence: { excerpt: "Feb 2023 - Jul 2023", section: "Experience" } }, ...payload.top_fixes.slice(1)] };
+assert.equal(isDutyLineEdit(dateFirst.top_fixes[0]), false, "a fix on a date line is not a duty-line edit");
+const gapFirst = { ...payload, top_fixes: [{ ...payload.top_fixes[0], fix: "Add one dated line covering the time since July 2023.", why: "Nothing on the page is later than July 2023." }, ...payload.top_fixes.slice(1)] };
+assert.equal(isDutyLineEdit(gapFirst.top_fixes[0]), false, "a first fix that already names the gap keeps the lead");
+const titleLed = mergeSeverityCheck(payload, answer([item({ kind: "title_level_mismatch", fix: "Name the operations assistant work in your objective.", why: "y", excerpt: "Operations Assistant" })]));
+assert.equal(titleLed.led, "title_level_mismatch");
+assert.equal(titleLed.report.top_fixes?.[1].fix, payload.top_fixes[0].fix);
+assert.equal(mergeSeverityCheck(payload, answer([latestRole, recent])).led, "no_recent_work", "the leading kind leads even when listed second");
+assert.deepEqual(mergeSeverityCheck(payload, answer([latestRole, recent])).report.top_fixes?.map((fix) => fix.fix), [recent.fix, payload.top_fixes[0].fix, latestRole.fix]);
+assert.equal(mergeSeverityCheck(payload, answer([recent]), 0).led, null, "without the new fix nothing leads");
 
 const promoted = mergeSeverityCheck(payload, answer([item({ source: "fix_3", kind: "no_evidence_latest_role" })]));
+assert.equal(promoted.led, null, "a promotion never leads");
 assert.deepEqual(promoted.promoted, [2]);
 assert.deepEqual(promoted.report.top_fixes?.map((fix) => fix.fix), [payload.top_fixes[0].fix, payload.top_fixes[2].fix, payload.top_fixes[1].fix],
   "Fix 3 promoted moves up; nothing is duplicated");
@@ -94,6 +123,7 @@ assert.deepEqual(mergeSeverityCheck({ ...payload, top_fixes: payload.top_fixes.s
 
 const title = item({ kind: "title_level_mismatch", fix: "Name the operations assistant work in your objective.", why: "y", excerpt: "Operations Assistant" });
 const three = mergeSeverityCheck(payload, answer([recent, title], true));
+assert.deepEqual(three.report.top_fixes?.map((fix) => fix.fix), [recent.fix, payload.top_fixes[0].fix, title.fix], "one miss leads; the second follows the model's fix");
 assert.deepEqual(three.report.top_fixes?.map((fix) => fix.critical), [true, true, true]);
 assert.equal(three.report.more_critical, true, "more than three exist, with three shown");
 assert.equal(hasMoreCriticalMisses(three.report as any), true);
@@ -103,7 +133,12 @@ for (const merged of [none, one, promoted, three]) {
   assert.equal(ResumeFeedbackResponseSchema.safeParse(merged.report).success, true, "every merge fits the report schema");
   assert.equal(isCriticalFix(merged.report as any, 0), true);
 }
-assert.equal(sameFirstFix(payload, one.report), true);
+assert.equal(sameFirstFix(payload, notLed.report), true);
+assert.equal(sameFirstFix(payload, one.report), false, "the led report no longer opens with the model's fix");
+assert.equal(keepsFirstFix(payload, one, one.report), true, "but keeps it second, unchanged");
+assert.equal(keepsFirstFix(payload, one, { top_fixes: [one.report.top_fixes![1], one.report.top_fixes![0]] }), false, "a validator that reorders them fails the merge");
+assert.equal(keepsFirstFix(payload, one, { top_fixes: [one.report.top_fixes![0], payload.top_fixes[1]] }), false, "a validator that drops the model's fix fails the merge");
+assert.equal(keepsFirstFix(payload, notLed, notLed.report), true);
 assert.equal(sameFirstFix(payload, { top_fixes: [payload.top_fixes[1]] }), false);
 
 // ---- Validation of the merged report ----
@@ -116,7 +151,10 @@ assert.match(computed.detail || "", /Oct/);
 assert.equal(grounded.outcome, "added", grounded.detail);
 assert.equal(grounded.critical_count, 2);
 assert.equal(grounded.validation_attempts, 1);
-assert.equal(grounded.payload.top_fixes[0].fix, payload.top_fixes[0].fix);
+assert.equal(grounded.led, "no_recent_work");
+assert.equal(grounded.payload.top_fixes[0].fix, recent.fix, "the validated report leads with the gap");
+assert.equal(grounded.payload.top_fixes[1].fix, payload.top_fixes[0].fix, "and keeps the model's fix second, as written");
+assert.deepEqual(grounded.payload.top_fixes.map((fix: any) => fix.critical), [true, true, false]);
 
 const invented = item({
   kind: "no_evidence_latest_role",
@@ -128,16 +166,19 @@ const refused = settleSeverityCheck({ payload, answer: answer([invented]), resum
 assert.equal(refused.outcome, "fallback", "an invented fact fails the same fabrication guard");
 assert.equal(refused.reason, "validation");
 assert.equal(refused.payload, payload, "the report ships exactly as it was");
+assert.equal(refused.led, null);
 assert.equal(criticalCount(refused.payload), 1);
 
 const partly = settleSeverityCheck({ payload, answer: answer([recent, invented]), resumeText });
 assert.equal(partly.outcome, "added", "the grounded fix survives when the second one fails");
 assert.deepEqual(partly.added, ["no_recent_work"]);
+assert.equal(partly.led, "no_recent_work");
 assert.equal(partly.validation_attempts, 2);
 
 const promotionOnly = settleSeverityCheck({ payload, answer: answer([invented, item({ source: "fix_3", kind: "no_evidence_latest_role" })]), resumeText });
 assert.equal(promotionOnly.outcome, "added");
 assert.equal(promotionOnly.reason, "promoted", "a promotion still ships when the new fix fails");
+assert.equal(promotionOnly.led, null);
 assert.equal(promotionOnly.payload.top_fixes[1].fix, payload.top_fixes[2].fix);
 
 console.log("severity check merge tests passed");

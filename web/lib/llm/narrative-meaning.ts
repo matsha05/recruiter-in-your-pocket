@@ -249,9 +249,12 @@ export function narrativeMeaningIssues(claim: string, source: string): string[] 
     return false;
   });
   // "Without assuming a conflict occurred" disclaims the conflict instead of asserting it.
-  const calendarConflict = /\b(?:scheduling|calendar|meeting|booking|time|shift)\b[^.!?;]{0,25}\bconflicts?\b/iu.test(claim);
+  // Scheduling, staffing and shift conflicts are the routine clashes of the job, not a disagreement the resume must establish.
+  const calendarConflict = /\b(?:schedul(?:e|es|ed|ing)|staffing|calendar|meeting|booking|time|shift|coverage|resourc(?:e|es|ing))\b[^.!?;]{0,25}\bconflict(?:s|ed|ing)?\b|\bconflict(?:s|ed|ing)?\b[^.!?;]{0,25}\b(?:schedul(?:e|es|ed|ing)|calendar|shifts?|staffing|rosters?)\b/iu.test(claim);
   const disclaimsConflict = /\b(?:without|not|never|rather than)\s+(?:assuming|presuming|implying|suggesting)\b[^.!?;]{0,60}\b(?:conflict|differ)/iu.test(claim);
-  if (conflict.test(claim) && !checksWhetherConflictOccurred && !educationDateDiscrepancy && !disclaimsConflict && !calendarConflict
+  // Conflicting records across systems are the data a reconciliation job exists to settle, not a disagreement between people.
+  const dataConflict = /\bconflicting\s+(?:[\p{L}-]+\s+){0,2}(?:records?|data|entries|values|fields|figures|numbers|totals|balances|accounts)\b|\b(?:records?|data|entries|values|fields|figures|numbers|totals|balances)\s+(?:that\s+)?conflict(?:s|ed|ing)?\b/iu.test(claim);
+  if (conflict.test(claim) && !checksWhetherConflictOccurred && !educationDateDiscrepancy && !disclaimsConflict && !calendarConflict && !dataConflict
     && !sourceEstablishesConflict) {
     issues.push("the source does not establish conflicting inputs; ask whether there was a conflict first");
   }

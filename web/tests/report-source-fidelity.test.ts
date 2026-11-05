@@ -7,9 +7,9 @@ import {
   auditReportNarrative,
   compareSourceBoundRewrite,
   isExactAbsenceSentinel,
-  removeUnsafeRewrites,
   resolveUniqueSourceLine,
 } from "../lib/llm/source-fidelity";
+import { removeUnsafeRewrites } from "../lib/llm/rewrite-screen";
 import { isAcceptedAbsenceMarker } from "../lib/llm/grounding";
 import {
   buildIndependentQuestionPresentation,

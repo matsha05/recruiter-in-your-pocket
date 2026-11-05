@@ -20,6 +20,15 @@ const commonCapitalizedWords = new Set([
   "Are", "Can", "Could", "Does", "Had", "Has", "Have", "Is", "Should", "Was", "Were", "Will", "Would",
   // Sentence-initial locations that point at a section ("Above EXPERIENCE, add ...").
   "Above", "Below", "Under",
+  // Sentence-initial gerunds and imperatives seen in the live judgment run (Nov 5 2026): "Growing Lakeshore
+  // from 38 to 140 practices", "Teaching Algebra II and AP Statistics", "Move DATA PROJECTS ahead of ...".
+  "Growing", "Scaling", "Raising", "Improving", "Increasing", "Expanding", "Cutting", "Lowering", "Teaching", "Delivering",
+  "Owning", "Driving", "Launching", "Supporting", "Coordinating", "Handling", "Supervising", "Overseeing", "Presenting",
+  "Reporting", "Translating", "Holding", "Serving", "Working", "Opening", "Closing", "Reconciling", "Precepting",
+  "Move", "Bring", "Lead", "Place", "Open", "Start", "Shorten", "Trim", "Cut", "Drop", "Remove", "Review", "Check",
+  "Identify", "Pick", "Highlight", "Surface", "Expand", "Combine", "Group", "Fold", "Pull", "Push", "Shift",
+  // The document the report is reading, like "Resume".
+  "CV", "PDF",
 ]);
 
 const ownershipPatterns: Array<[string, RegExp]> = [

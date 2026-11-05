@@ -27,16 +27,7 @@ function metricIdentity(value: string) {
   return normalized.replace(/\s+/gu, " ").trim();
 }
 
-function entityIdentityTokens(value: string) {
-  if (/^CI\/CD$/iu.test(value.trim())) return ["continuous", "integration", "delivery"];
-  const tokenAliases: Record<string, string> = { apis: "api", arr: "annual-recurring-revenue", restful: "rest" };
-  const tokens = (canonicalizeUserSourceText(value).replace(/\b([A-Z]{2,})s\b/gu, "$1").replace(/\b([\p{L}])\.(?=[\p{L}]\b)/gu, "$1")
-    .replace(/([\p{Ll}\p{M}])([\p{Lu}])/gu, "$1 $2")
-    .match(/[\p{L}\p{M}\d]+(?:[+#]|\.[\p{L}\p{M}\d]+)*/gu) || [])
-    .map(normalizeNarrativeToken)
-    .map((token) => tokenAliases[token] || token)
-    .filter((token) => token.length > 1);
-  const roleAliases: Record<string, string[]> = {
+const roleAliases: Record<string, string[]> = {
     "annual-recurring-revenue": ["annual", "recurring", "revenue"],
     bba: ["bachelor", "business", "administration"],
     ba: ["bachelor", "arts"], bs: ["bachelor", "science"], bsc: ["bachelor", "science"],
@@ -49,7 +40,17 @@ function entityIdentityTokens(value: string) {
     cto: ["chief", "technology", "officer"], kpi: ["key", "performance", "indicator"],
     kpis: ["key", "performance", "indicator"], rest: ["rest"], restful: ["rest"],
     pm: ["product", "manager"], pms: ["product", "manager"], vp: ["vice", "president"],
-  };
+};
+
+function entityIdentityTokens(value: string) {
+  if (/^CI\/CD$/iu.test(value.trim())) return ["continuous", "integration", "delivery"];
+  const tokenAliases: Record<string, string> = { apis: "api", arr: "annual-recurring-revenue", restful: "rest" };
+  const tokens = (canonicalizeUserSourceText(value).replace(/\b([A-Z]{2,})s\b/gu, "$1").replace(/\b([\p{L}])\.(?=[\p{L}]\b)/gu, "$1")
+    .replace(/([\p{Ll}\p{M}])([\p{Lu}])/gu, "$1 $2")
+    .match(/[\p{L}\p{M}\d]+(?:[+#]|\.[\p{L}\p{M}\d]+)*/gu) || [])
+    .map(normalizeNarrativeToken)
+    .map((token) => tokenAliases[token] || token)
+    .filter((token) => token.length > 1);
   return tokens.flatMap(token => roleAliases[token] || [token]);
 }
 
@@ -117,7 +118,12 @@ export function isDirectFactualAssertion(value: string) {
   return directFactualAssertionPattern.test(value.normalize("NFC"));
 }
 
-export function factSupportedAcrossSource(fact: NarrativeFact, sourceFacts: NarrativeFact[], sourceTokens: Set<string>, sourceText = "", requirePositiveEntity = false) {
+/**
+ * @param supplementarySourceText A second text an entity may come from: the posting, for a claim about what the
+ * resume lacks ("does not list an RN license or BLS certification, both required for the posted role"). Only
+ * entities and symbols read it, and only the caller decides when (never for a positive claim about the person).
+ */
+export function factSupportedAcrossSource(fact: NarrativeFact, sourceFacts: NarrativeFact[], sourceTokens: Set<string>, sourceText = "", requirePositiveEntity = false, supplementarySourceText = "", claim = "") {
   // "an IT-focused application" needs IT in the source, like "SQL-based reporting" needs SQL.
   const toolModifier = fact.key.startsWith("entity:") && fact.display.match(/^([A-Z][A-Z0-9]*(?:[.+#][A-Z0-9]+)*)-(based|focused|oriented|heavy|facing|reporting)$/u);
   if (toolModifier && sourceText) return toolModifier[2] !== "reporting"
@@ -129,6 +135,10 @@ export function factSupportedAcrossSource(fact: NarrativeFact, sourceFacts: Narr
   if (sourceFacts.some((sourceFact) => sourceFact.key.toLocaleLowerCase() === fact.key.toLocaleLowerCase())) return true;
   if (fact.key.startsWith("metric:") || fact.key.startsWith("metric-word:")) {
     const identity = metricIdentity(fact.display);
+    // A figure the claim attributes to the posting ("the job's approximately $4M portfolio") may come from it.
+    if (supplementarySourceText && /\b(?:job|posting|role|position|listing|requirement)(?:['\u2019]s|s)?\b/iu.test(claim)
+      && Array.from(supplementarySourceText.matchAll(/(?:exceeding|greater\s+than|more\s+than|over|less\s+than|under|about|approximately|roughly|up\s+to)?\s*[<>≤≥~≈]?\s*[+\-−]?\s*(?:[$€£¥₹]\s*)?\d[\d,]*(?:\.\d+)?(?:\s*%|[kmbx×](?![\p{L}\p{N}]))?\+?/giu))
+        .some((match) => metricIdentity(match[0]) === identity)) return true;
     return sourceFacts.some((sourceFact) => (
       (sourceFact.key.startsWith("metric:") || sourceFact.key.startsWith("metric-word:"))
       && [identity, ...(identity.endsWith("+") ? [`>${identity.slice(0, -1)}`] : []),
@@ -137,6 +147,7 @@ export function factSupportedAcrossSource(fact: NarrativeFact, sourceFacts: Narr
   }
   if (fact.key.startsWith("entity:") || fact.key.startsWith("symbol:")) {
     if (evidenceContainsExactEntity(fact.display, sourceText, requirePositiveEntity)) return true;
+    if (supplementarySourceText && evidenceContainsExactEntity(fact.display, supplementarySourceText, true)) return true;
     const available = new Set([
       ...Array.from(sourceTokens).flatMap(token => [token, ...entityIdentityTokens(token)]),
       ...sourceFacts.flatMap((sourceFact) => entityIdentityTokens(sourceFact.display)),
@@ -164,7 +175,7 @@ function countsRequestedExamples(fact: NarrativeFact, claim: string) {
   const quantity = fact.display.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const quantityMatch = new RegExp(`\\b${quantity}\\b`, "iu").exec(claim);
   const prefix = claim.slice(0, quantityMatch?.index ?? 0);
-  const requestHead = prefix.match(/^\s*(?:(?:first|then|finally),?\s+)?(?:(?:in|on|under|for|within)\b[^,;.!?]*,\s*)?(?:(?:you|(?:your|the)\s+[\p{L}\p{M} -]{1,60})\s+(?:can|could|should|need\s+to|needs\s+to)\s+)?(?:add|choose|describe|explain|give|include|name|replace|revise|rewrite|select|show|use)\b/iu);
+  const requestHead = prefix.match(/^\s*(?:(?:first|then|finally),?\s+)?(?:(?:in|on|under|for|within)\b[^,;.!?]*,\s*)?(?:(?:you|(?:your|the)\s+[\p{L}\p{M} -]{1,60})\s+(?:can|could|should|need\s+to|needs\s+to)\s+)?(?:add|bring|choose|describe|explain|give|highlight|identify|include|keep|list|mention|move|name|note|pick|put|replace|review|revise|rewrite|select|show|specify|state|surface|use|write)\b/iu);
   const requestTail = requestHead ? prefix.slice(requestHead[0].length) : prefix;
   const questionRequest = /\b(?:what|which|how)\b/iu.test(prefix) && /\?\s*$/u.test(claim);
   // "A verified result from one client project would help" proposes an example; it doesn't count clients.
@@ -213,6 +224,10 @@ export function assessmentNarrativeIssues(input: {
   contradictsNegativeSource: boolean;
   /** Check agency, outcome and causal claims even when the sentence is not a direct assertion. */
   checkTrackedClaims?: boolean;
+  /** The posting, for entities in a claim about what the resume lacks. See factSupportedAcrossSource. */
+  supplementarySourceText?: string;
+  /** Claim tokens that are single words (no hyphen), the only ones a shared word root may anchor. */
+  rootAnchorTokens?: Set<string>;
 }) {
   const sourceFacts = input.sourceCandidates.flatMap((candidate) => candidate.facts);
   const sourceTokens = new Set(input.sourceCandidates.flatMap((candidate) => Array.from(candidate.tokens)));
@@ -220,10 +235,17 @@ export function assessmentNarrativeIssues(input: {
   // An outcome noun ("growth") is neutral when the resume states an outcome ("Expanded ..."):
   // it neither anchors the claim nor counts against it.
   const sourceStems = new Set(Array.from(sourceTokens, presenceStem));
+  // "internship" anchors to "Intern" and "consulting" to "Consultant": the anchor asks whether the claim is
+  // about something on the page, so a shared six-letter root is enough for a single word. A hyphenated
+  // compound is not anchored by its first half ("delivery-quality" is not the resume's "delivery speed").
+  const sourceRoots = new Set(Array.from(sourceTokens).filter((token) => token.length >= 6).map((token) => token.slice(0, 6)));
   const sourceHasOutcome = sourceFacts.some((fact) => fact.key.startsWith("outcome:"));
   const presenceTokens = Array.from(input.claimTokens)
     .filter((token) => !(sourceHasOutcome && /^(?:growth|increase|improvement|reduction|expansion|gain)$/u.test(token)));
-  const anchors = (token: string) => sourceTokens.has(token) || sourceStems.has(presenceStem(token));
+  const anchors = (token: string) => sourceTokens.has(token) || sourceStems.has(presenceStem(token))
+    || (token.length >= 6 && input.rootAnchorTokens?.has(token) === true && sourceRoots.has(token.slice(0, 6)))
+    // "COO" anchors to "Chief Operating Officer".
+    || Boolean(roleAliases[token]?.length && roleAliases[token].every((part) => sourceTokens.has(part)));
   const assertive = input.directFactualAssertion;
   const peopleManagementAssessment = /\b(?:people|staff|team) (?:oversight|management)\b/iu.test(input.claim)
     && input.sourceCandidates.some(candidate => candidate.facts.some(fact => fact.key === "agency:manage")
@@ -247,7 +269,7 @@ export function assessmentNarrativeIssues(input: {
   const unsupported = [
     ...(input.contradictsNegativeSource ? ["contradicts negative source evidence"] : []),
     ...factsToCheck
-      .filter((fact) => !factSupportedAcrossSource(fact, sourceFacts, sourceTokens, assertive ? "" : input.sourceText, input.assertsPresence))
+      .filter((fact) => !factSupportedAcrossSource(fact, sourceFacts, sourceTokens, assertive ? "" : input.sourceText, input.assertsPresence, assertive ? "" : input.supplementarySourceText || "", input.claim))
       .map((fact) => fact.display),
     ...unsupportedTokens,
     ...(input.assertsPresence ? unsupportedPresenceDimensions(input.claim, sourceFacts) : []),
