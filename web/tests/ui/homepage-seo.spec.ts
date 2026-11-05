@@ -63,8 +63,8 @@ test.describe("homepage feedback and SEO contract", () => {
     // The founder note (Nov 4, 2026): a drawing and a signed note, no name, no photograph, no profile link, no employer names.
     const founder = homepage.locator("#about");
     await expect(founder).toContainText("I’ve passed on more people than I can count. A few seconds a resume, fifteen years, at companies you’ve heard of and small ones around the world. The reasons were almost always the same, and nobody told you. I wrote them down.");
-    await expect(founder.getByRole("img", { name: /pen drawing of the recruiter/ })).toBeVisible();
-    await expect(founder.locator("img")).toHaveAttribute("src", /founder-portrait/);
+    await expect(founder.getByRole("img", { name: /drawing of the recruiter/ })).toBeVisible();
+    await expect(founder.locator("img")).toHaveAttribute("src", /founder-mark/);
     await expect(founder.getByRole("link", { name: "How the report works" })).toHaveAttribute("href", "/methodology");
     await expect(founder).not.toContainText("Who built this");
     // The AI disclosure moved off the homepage on Nov 4, 2026; it lives on How the report works and in the legal content.

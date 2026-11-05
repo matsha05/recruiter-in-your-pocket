@@ -107,7 +107,7 @@ The arc: the pile (“244 people applied for the job you wanted.”), the read (
 
 **The one red mark.** The red pen circles “Reject” in the read, and nowhere else on the site. It is the recruiter's decision, not decoration, which is the difference between it and the red-pen cosplay the hard noes forbid. Do not spend red a second time.
 
-**The founder.** Since November 4 the founder is drawn, not photographed, in the green pen, and speaks in the recruiter's own hand, signed with the wordmark. No name, no profile link, no employer names. The disclosure that AI applies the criteria lives on the methodology page and in the legal content, not in the note. The signed note appears once more, on the methodology page, and nowhere else.
+**The founder.** Since November 4 the founder is drawn, not photographed, and speaks in the recruiter's own hand, signed with the wordmark. Since November 5 the drawing is the founder mark: a line drawing of a type (cap, round glasses, a smile) in black line with the cap in the pen's green, chosen over the green scribble likeness because it reads at 8rem and is a recruiter, not a face. No name, no profile link, no employer names. The disclosure that AI applies the criteria lives on the methodology page and in the legal content, not in the note. The signed note appears once more, on the methodology page, and nowhere else.
 
 ### Workspace and reports
 
