@@ -71,7 +71,7 @@ export function pdfReportStyles(fonts: { voice: string; voiceItalic: string; ui:
       font-size: 18pt; font-weight: 400; line-height: 24pt;
       font-optical-sizing: auto; letter-spacing: -0.012em;
     }
-    h2 { font-size: 14pt; font-weight: 500; line-height: 18pt; letter-spacing: -0.018em; break-after: avoid; }
+    h2 { font-size: 14pt; font-weight: 600; line-height: 18pt; letter-spacing: -0.018em; break-after: avoid; }
     .hero-summary { margin-top: 13px; }
     .score-note { border-top: 1px solid var(--line); color: var(--muted); font-size: 9pt; line-height: 13pt; margin-top: 18px; padding-top: 10px; }
     .verdict-label { color: var(--accent); font-size: 9pt; font-weight: 600; letter-spacing: 0.08em; line-height: 13pt; text-transform: uppercase; margin-bottom: 8px; }

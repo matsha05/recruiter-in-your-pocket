@@ -1,11 +1,9 @@
-"use client";
-
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import { ArrowRight } from "@phosphor-icons/react";
+import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
+import { Pile } from "@/components/materials/Pile";
+import rhythm from "@/components/materials/Rhythm.module.css";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import home from "./HomePage.module.css";
 import styles from "./CloseField.module.css";
 
 const PILE = 244;
@@ -17,20 +15,8 @@ const YOURS = 229;
  * section is in view, yours. No green, no promise. The ask is the one thing the product can do.
  */
 export function CloseField() {
-    const ref = useRef<HTMLElement>(null);
-    const [seen, setSeen] = useState(false);
-    useEffect(() => {
-        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { setSeen(true); return; }
-        const node = ref.current;
-        if (!node) return;
-        const observer = new IntersectionObserver(([entry]) => {
-            if (entry?.isIntersecting) { setSeen(true); observer.disconnect(); }
-        }, { threshold: 0.5 });
-        observer.observe(node);
-        return () => observer.disconnect();
-    }, []);
     return (
-        <section ref={ref} className={cn(home.section, styles.close, seen && styles.seen)} aria-labelledby="close-title" data-testid="landing-close">
+        <section className={cn(rhythm.section, rhythm.close)} aria-labelledby="close-title" data-testid="landing-close">
             <div className={styles.inner}>
                 <div className={styles.copy}>
                     <h2 id="close-title" className={styles.title}>Before you apply for the next one.</h2>
@@ -38,11 +24,7 @@ export function CloseField() {
                         <Link href="/workspace" data-analytics-cta="closing_report">Get your free report <ArrowRight weight="bold" aria-hidden="true" /></Link>
                     </Button>
                 </div>
-                <div className={styles.pile} role="img" aria-label="244 sheets of paper, one of them outlined: yours">
-                    {Array.from({ length: PILE }, (_, index) => (
-                        <span key={index} className={cn(styles.sheet, index === YOURS && styles.yours)} />
-                    ))}
-                </div>
+                <Pile count={PILE} pale size="sm" outlined={YOURS} label="244 sheets of paper, one of them outlined: yours" className={styles.pile} />
             </div>
         </section>
     );

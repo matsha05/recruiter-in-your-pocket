@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, CaretRight } from "@phosphor-icons/react/dist/ssr";
+import { CaretRight } from "@phosphor-icons/react/dist/ssr";
 import Footer from "@/components/landing/Footer";
+import { GuideOpening } from "@/components/guides/GuideOpening";
 import styles from "@/components/guides/GuidePresentation";
 import { NegotiationOutcomeDiagram } from "@/components/guides/NegotiationOutcomeDiagram";
 import {
     Checklist,
     Disclosure,
-    GuideEyebrow,
     GuideSection,
     HandoffDiagram,
     Script,
@@ -25,7 +25,7 @@ const quickStart = [
     ["Say less on the offer call", "Thank them, ask your questions, and take a few days. You don't have to react to the number on the spot."],
     ["Pick one number", "A total you would sign at, grounded in the level and the range. Hold that total and stay flexible on the mix."],
     ["Ask live, confirm in writing", "Make the counter on a call, where tone carries. Then send a short email that sums up what you discussed."],
-];
+] as const;
 
 export default function OfferNegotiationGuidePage() {
     return (
@@ -40,31 +40,13 @@ export default function OfferNegotiationGuidePage() {
             </div>
 
             <article className="mx-auto max-w-report px-5 pb-24 pt-28 sm:px-8 sm:pt-36">
-                <header className="grid gap-8 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:items-end lg:gap-16">
-                    <div>
-                        <GuideEyebrow>Offer negotiation · 12 minute guide</GuideEyebrow>
-                        <h1 className={`${styles.pageTitle} mt-5 max-w-4xl`}>
-                            Most offers have some room.{" "}
-                            <span className="mt-2 block">Here&apos;s how to find it.</span>
-                        </h1>
-                    </div>
-                    <div className="border-l border-border pl-5">
-                        <p className={styles.readingCopy}><strong className="text-foreground">Our take,</strong> from the recruiter&apos;s side of the table: there&apos;s usually some room, and recruiters expect a good candidate to ask. Most people don&apos;t. The skill is asking in a way the recruiter can take to whoever approves the offer.</p>
-                        <Link href="/resources/tech-offer-negotiation" className="focus-ring mt-5 inline-flex min-h-12 items-center gap-2 rounded-md text-sm font-medium text-foreground riyp-link">
-                            Offer includes equity? Read the tech guide <ArrowRight aria-hidden className="size-4" weight="bold" />
-                        </Link>
-                    </div>
-                </header>
-
-                <div className={`${styles.sheet} my-14 grid px-5 sm:grid-cols-3 sm:px-6`}>
-                    {quickStart.map(([title, body], index) => (
-                        <div key={title} className="border-b border-border py-6 last:border-b-0 sm:border-b-0 sm:border-r sm:px-6 sm:first:pl-0 sm:last:border-r-0 sm:last:pr-0">
-                            <div className={`${styles.label} tabular-nums text-muted-foreground`}>0{index + 1}</div>
-                            <h2 className={`${styles.componentTitle} mt-3`}>{title}</h2>
-                            <p className={`${styles.readingCopy} mt-2`}>{body}</p>
-                        </div>
-                    ))}
-                </div>
+                <GuideOpening
+                    eyebrow="Offer negotiation · a twelve-minute guide"
+                    title={<>Most offers have some room. Here&apos;s how to find it.</>}
+                    take={<>Our take, from the recruiter&apos;s side of the table: there&apos;s usually some room, and recruiters expect a good candidate to ask. Most people don&apos;t. The skill is asking in a way the recruiter can take to whoever approves the offer.</>}
+                    quick={quickStart}
+                    link={{ href: "/resources/tech-offer-negotiation", label: "Offer includes equity? Read the tech guide" }}
+                />
 
                 <GuideSection number="01" title="By the offer, everyone wants this to close" intro="The company has spent weeks finding you and has often passed on other candidates to get here. The recruiter is measured on filling the seat. The hiring manager wants the work started. In our experience, a reasonable, specific ask gives them something to say yes to. It isn't risk-free: some offers are firm, and how you ask matters." id="why">
                     <NegotiationOutcomeDiagram />

@@ -1,0 +1,36 @@
+/* Paper: a sheet is a real document, a strip is one line cut from one. Both have the hairline edge and the
+   soft shadow of a sheet lifted off the desk; a sheet that is only a unit in a pile has the edge alone.
+   Every piece of paper on the site declares its box-shadow once, as the edge plus the lift. */
+
+.sheet {
+    --sheet-edge: 0 0 0 0.5px hsl(var(--paper-edge));
+    --sheet-lift: var(--paper-shadow);
+    position: relative;
+    background: hsl(var(--paper-sheet));
+    color: hsl(var(--document-ink));
+    box-shadow: var(--sheet-edge), var(--sheet-lift);
+}
+
+/* Inside a drawn document, the document's own face (design-system.md §3: an illustration may mimic the
+   document it draws); the sizes are the prose and body roles' so the strip reads at the page's own scale. */
+.strip {
+    padding: 0.875rem 2.25rem 1rem;
+    font-family: var(--font-document);
+    font-size: var(--type-prose-size);
+    line-height: 1.5;
+    font-variant-numeric: tabular-nums oldstyle-nums;
+}
+
+.page {
+    padding: 2rem 2.25rem 2.25rem;
+    font-family: var(--font-document);
+    font-size: var(--type-body-size);
+    line-height: 1.5;
+}
+
+.flat { --sheet-lift: 0 0 0 0 transparent; }
+
+@media (max-width: 640px) {
+    .strip { padding: 0.75rem 1.25rem 0.875rem; font-size: var(--type-body-size); }
+    .page { padding: 1.5rem 1.25rem; }
+}

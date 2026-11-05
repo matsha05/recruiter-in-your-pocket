@@ -1,0 +1,77 @@
+/* Pricing (Nov 4, 2026): the reports as sheets. One sheet for the free report, five for the pass, each with
+   its line and its button; then the terms, one line each. On phones the two offers sit side by side and the
+   buttons stack under them, so both actions stay in the first screen. */
+
+.title { margin: 0; max-width: 16ch; font: var(--type-headline); letter-spacing: var(--tracking-headline); text-wrap: balance; }
+
+.notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    max-width: 44rem;
+    margin: 2rem 0 0;
+    padding: 0.75rem 1rem;
+    border: 1px solid hsl(var(--line));
+    border-radius: var(--radius-inset);
+    background: hsl(var(--pen-tint));
+    font: var(--type-body);
+}
+.notice svg { flex: none; margin-top: 0.125rem; width: 1.25rem; height: 1.25rem; color: hsl(var(--pen)); }
+.notice p { margin: 0; }
+.back { display: inline-flex; margin: 1.5rem 0 0; font: var(--type-small); font-weight: var(--weight-control); }
+
+/* The offers: a grid of two columns and three rows (sheets, words, button), so the buttons can leave their
+   columns on phones without leaving the DOM twice. */
+.offers {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2.4fr);
+    grid-template-rows: auto auto auto auto;
+    gap: 1.5rem 5rem;
+    margin-top: 3.5rem;
+    align-items: start;
+}
+.actions { display: contents; }
+.sheetFree { grid-column: 1; grid-row: 1; }
+.sheetPass { grid-column: 2; grid-row: 1; }
+.wordsFree { grid-column: 1; grid-row: 2; }
+.wordsPass { grid-column: 2; grid-row: 2; }
+.boundary { grid-column: 1; grid-row: 3; margin: -0.75rem 0 0; max-width: 34ch; color: hsl(var(--text-muted)); font: var(--type-small); text-wrap: pretty; }
+.buttonFree { grid-column: 1; grid-row: 4; justify-self: start; }
+.buttonPass { grid-column: 2; grid-row: 4; justify-self: start; }
+
+.words h2 { margin: 0; font: var(--type-heading); letter-spacing: var(--tracking-heading); }
+.price { display: block; margin-top: 0.25rem; font: var(--type-title); letter-spacing: var(--tracking-title); color: hsl(var(--text-strong)); }
+.words p { margin: 0.5rem 0 0; max-width: 34ch; color: hsl(var(--text-muted)); font: var(--type-body); text-wrap: pretty; }
+
+/* The terms: one line each, plain, under both offers. */
+.terms {
+    max-width: 52ch;
+    margin: 3.5rem 0 0;
+    padding: 1.5rem 0 0;
+    list-style: none;
+    display: grid;
+    gap: 0.25rem;
+    border-top: 1px solid hsl(var(--line));
+    color: hsl(var(--text-muted));
+    font: var(--type-body);
+}
+.terms strong { color: hsl(var(--text-strong)); font-weight: var(--weight-control); }
+.taxes { margin: 1rem 0 0; color: hsl(var(--text-muted)); font: var(--type-small); }
+
+/* The two asides, side by side on one hairline: other tools, and restoring a purchase. */
+.asides { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2rem 4rem; align-items: start; }
+.asides h2 { margin: 0; font: var(--type-heading); letter-spacing: var(--tracking-heading); }
+.asides p { margin: 0.5rem 0 0; max-width: 52ch; color: hsl(var(--text-muted)); font: var(--type-body); text-wrap: pretty; }
+.restore { display: grid; gap: 0.75rem; justify-items: start; }
+
+@media (max-width: 800px) {
+    .offers { grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); grid-template-rows: auto auto auto auto auto; gap: 1.25rem 1.5rem; margin-top: 2.5rem; }
+    /* Smaller sheets, so the five fit on one row and both buttons stay in the first screen. */
+    .offers .sheetFree, .offers .sheetPass { --sheet-w: 2rem; --sheet-gap: 0.5rem; }
+    .buttonFree { grid-column: 1 / -1; grid-row: 3; justify-self: stretch; }
+    .buttonPass { grid-column: 1 / -1; grid-row: 4; justify-self: stretch; }
+    .boundary { grid-column: 1 / -1; grid-row: 5; margin: 0; max-width: none; }
+    .buttonFree > *, .buttonPass > * { width: 100%; }
+    .words p { max-width: none; }
+    .asides { grid-template-columns: 1fr; }
+}

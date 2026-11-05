@@ -1,0 +1,22 @@
+/* Help (Nov 4, 2026): plain questions under plain headings on the site rhythm, no accordion, a person at the end. */
+
+.nav { max-width: var(--marketing-content); margin: 0 auto; padding: calc(var(--marketing-header-height-desktop) + 2rem) var(--marketing-gutter) 0; }
+.opening { padding-top: 3rem; }
+
+.group { display: grid; grid-template-columns: 14rem minmax(0, 1fr); gap: 2rem 4rem; align-items: start; }
+.group h2 { margin: 0; font: var(--type-heading); letter-spacing: var(--tracking-heading); }
+.qa { display: grid; gap: 2rem; }
+.qa h3 { margin: 0 0 0.5rem; font: var(--type-body); font-weight: var(--weight-control); }
+.qa p { margin: 0; max-width: 60ch; color: hsl(var(--text-muted)); font: var(--type-body); text-wrap: pretty; }
+
+.contact { max-width: 52ch; }
+.contact p { margin: 0.75rem 0 0; color: hsl(var(--text-muted)); font: var(--type-body); text-wrap: pretty; }
+.mail { font: var(--type-lead); font-weight: var(--weight-control); overflow-wrap: anywhere; }
+
+@media (max-width: 640px) {
+    .nav { padding-top: calc(var(--marketing-header-height-mobile) + 1rem); }
+    .opening { padding-top: 2rem; }
+}
+@media (max-width: 800px) {
+    .group { grid-template-columns: 1fr; gap: 1rem; }
+}

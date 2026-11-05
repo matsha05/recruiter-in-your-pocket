@@ -1,0 +1,22 @@
+/* The signed note: the recruiter's own words in the green pen, signed with the wordmark instead of a name. */
+
+.note {
+    max-width: 38ch;
+    margin: 0;
+    color: hsl(var(--pen));
+    font: var(--type-note);
+    font-size: var(--type-heading-size);
+    line-height: 1.4;
+    text-wrap: pretty;
+}
+
+.short { font-size: var(--type-verdict-size); line-height: 1.45; }
+
+.signature { display: flex; align-items: center; gap: 0.875rem; margin: 1.75rem 0 0; }
+.dash { width: 1.5rem; height: 1.5px; background: hsl(var(--pen)); }
+.mark { height: 1.125rem; width: auto; color: hsl(var(--text-strong)); }
+
+@media (max-width: 640px) {
+    .note { font-size: var(--type-verdict-size); }
+    .short { font-size: var(--type-lead-size); }
+}

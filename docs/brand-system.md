@@ -95,6 +95,8 @@ Use the same behavior in the homepage proof, report edit flow, analysis work map
 
 ## Surface rules
 
+Since November 4, 2026 the whole site is made of what the homepage is made of: paper, the marker and the green pen, plus one red mark, on one rhythm (a headline, at most one short paragraph, one object and one link a section; a hairline and a beat between sections), with one button name. The materials go only where they are literally true: a sheet is a real document or report, a clipping is a real line from a resume, the pen is the recruiter's own words. That rule is what keeps the pen off the help page and the sign-in form, and what keeps the site from the red-pen cosplay in the hard noes. The contract, the components and the research behind their reach are in `docs/design-system.md` §10, "The site system".
+
 ### Homepage
 
 Since November 4, 2026 the homepage shows no product above the fold. It dramatizes the thing the product sells, the seven seconds you are never in the room for, in the page's own materials: paper (the 244 sheets of the pile, the clipping), the marker, and the green pen that underlines, circles and writes in the margin. The full contract is in `docs/design-system.md` §10; the research and the record of what was tried are in `docs/design/2026-11-homepage-research.md`.
@@ -103,7 +105,7 @@ The arc: the pile (“244 people applied for the job you wanted.”), the read (
 
 **The one red mark.** The red pen circles “Reject” in the read, and nowhere else on the site. It is the recruiter's decision, not decoration, which is the difference between it and the red-pen cosplay the hard noes forbid. Do not spend red a second time.
 
-**The founder.** Since November 4 the founder is drawn, not photographed, in the green pen, and speaks in the recruiter's own hand, signed with the wordmark. No name, no profile link, no employer names. The disclosure that AI applies the criteria lives on the methodology page and in the legal content, not in the note.
+**The founder.** Since November 4 the founder is drawn, not photographed, in the green pen, and speaks in the recruiter's own hand, signed with the wordmark. No name, no profile link, no employer names. The disclosure that AI applies the criteria lives on the methodology page and in the legal content, not in the note. The signed note appears once more, on the methodology page, and nowhere else.
 
 ### Workspace and reports
 

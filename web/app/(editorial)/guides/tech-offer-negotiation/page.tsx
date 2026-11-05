@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, CaretRight } from "@phosphor-icons/react/dist/ssr";
+import { CaretRight } from "@phosphor-icons/react/dist/ssr";
 import Footer from "@/components/landing/Footer";
+import { GuideOpening } from "@/components/guides/GuideOpening";
 import styles from "@/components/guides/GuidePresentation";
 import {
     Checklist,
     Disclosure,
-    GuideEyebrow,
     GuideSection,
     Script,
     Sources,
@@ -33,35 +33,17 @@ export default function TechOfferNegotiationGuidePage() {
             </div>
 
             <article className="mx-auto max-w-report px-5 pb-24 pt-28 sm:px-8 sm:pt-36">
-                <header className="grid gap-8 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:items-end lg:gap-16">
-                    <div>
-                        <GuideEyebrow>Tech offers · 12 minute guide</GuideEyebrow>
-                        <h1 className={`${styles.pageTitle} mt-5 max-w-4xl`}>
-                            Compare your tech offer{" "}
-                            <span className="mt-2 block">year by year.</span>
-                        </h1>
-                    </div>
-                    <div className="border-l border-border pl-5">
-                        <p className={styles.readingCopy}>The base salary is usually straightforward. Bonuses and equity need a closer look: what will you receive, when, and under what conditions?</p>
-                        <Link href="/resources/offer-negotiation" className="focus-ring mt-5 inline-flex min-h-12 items-center gap-2 rounded-md text-sm font-medium text-foreground riyp-link">
-                            Ready to make a counteroffer? <ArrowRight aria-hidden className="size-4" weight="bold" />
-                        </Link>
-                    </div>
-                </header>
-
-                <div className={`${styles.sheet} my-14 grid px-5 sm:grid-cols-3 sm:px-6`}>
-                    {[
+                <GuideOpening
+                    eyebrow="Tech offers · a twelve-minute guide"
+                    title={<>Compare your tech offer year by year.</>}
+                    take={<>The base salary is usually straightforward. Bonuses and equity need a closer look: what will you receive, when, and under what conditions?</>}
+                    quick={[
                         ["Verify level and location", "Confirm the band, work location, and whether the role’s scope matches the level on the offer."],
                         ["Compare pay year by year", "Write out base, target bonus, guaranteed cash, and scheduled equity vesting for each year."],
                         ["Check what is uncertain", "Do not count future refreshers, private-company liquidity, or future share prices as guaranteed pay."],
-                    ].map(([title, body], index) => (
-                        <div key={title} className="border-b border-border py-6 last:border-b-0 sm:border-b-0 sm:border-r sm:px-6 sm:first:pl-0 sm:last:border-r-0 sm:last:pr-0">
-                            <div className={`${styles.label} tabular-nums text-muted-foreground`}>0{index + 1}</div>
-                            <h2 className={`${styles.componentTitle} mt-3`}>{title}</h2>
-                            <p className={`${styles.readingCopy} mt-2`}>{body}</p>
-                        </div>
-                    ))}
-                </div>
+                    ]}
+                    link={{ href: "/resources/offer-negotiation", label: "Ready to make a counteroffer?" }}
+                />
 
                 <GuideSection number="01" title="Check the conditions behind each amount" intro="A compensation total can combine base salary with bonuses and equity that depend on performance, vesting, or a future share price. Check how each part is earned and paid before comparing offers." id="honest-numbers">
                     <TechOfferStack />

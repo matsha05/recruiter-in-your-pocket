@@ -74,7 +74,7 @@ export const PUBLIC_PAGES: readonly PublicPage[] = [
 ];
 
 /** The site card (app/opengraph-image.tsx), for pages without an answer card. */
-export const SITE_SHARE_IMAGE_URL = "/opengraph-image?v=20261101";
+export const SITE_SHARE_IMAGE_URL = "/opengraph-image?v=20261104";
 
 export function shareImageUrl(path: string) {
   const { card } = publicPage(path);

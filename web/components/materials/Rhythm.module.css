@@ -1,0 +1,66 @@
+/* The site's rhythm (Nov 4, 2026, promoted from the homepage): one column, one hairline and one beat between
+   sections. A section is a headline, at most one short paragraph, one object and one link, about 44 words.
+   Pages compose `.page`, `.section`, `.title`, `.deck`, `.link` and `.close` from here so the rhythm has one definition. */
+
+.page {
+    overflow-x: clip;
+    background: hsl(var(--background));
+    color: hsl(var(--text-strong));
+    font-family: var(--font-body);
+}
+
+.page a:focus-visible { outline: 2px solid hsl(var(--pen)); outline-offset: 4px; }
+
+/* The first section of a page sits under the header; every later one follows a hairline. */
+.opening {
+    max-width: var(--marketing-content);
+    margin: 0 auto;
+    padding: calc(var(--marketing-header-height-desktop) + 5rem) var(--marketing-gutter) 0;
+}
+
+.section {
+    max-width: var(--marketing-content);
+    margin: var(--beat) auto 0;
+    border-top: 1px solid hsl(var(--line));
+    padding: var(--beat) var(--marketing-gutter) 0;
+    scroll-margin-top: 4.5rem;
+}
+
+.title {
+    margin: 0 0 2.5rem;
+    max-width: 22ch;
+    font: var(--type-headline);
+    letter-spacing: var(--tracking-headline);
+    text-wrap: balance;
+}
+
+/* The one short paragraph a section may have, under its title. */
+.deck {
+    max-width: 44ch;
+    margin: -1.25rem 0 2.5rem;
+    font: var(--type-lead);
+    color: hsl(var(--text-strong));
+    text-wrap: pretty;
+}
+
+/* A section's one text link, after its object. */
+.link {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 1.25rem;
+    margin: 2.5rem 0 0;
+    font: var(--type-body);
+    font-weight: var(--weight-control);
+}
+.link a { display: inline-flex; align-items: center; gap: 0.4rem; }
+.link svg { width: 1rem; height: 1rem; }
+
+/* The page's one large action: a short line and the button, at the close. */
+.actions { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; margin-top: 2.25rem; }
+.close { padding-bottom: var(--beat); }
+
+@media (max-width: 640px) {
+    .opening { padding-top: calc(var(--marketing-header-height-mobile) + 2.5rem); }
+    .actions { align-items: stretch; }
+}

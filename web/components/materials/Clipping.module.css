@@ -1,0 +1,79 @@
+/* A clipping: one line of a resume on its own strip of paper, the marker across it, the note in the margin. */
+
+.figure {
+    display: grid;
+    grid-template-columns: minmax(0, 38rem) minmax(11rem, 15rem);
+    gap: 0 3.25rem;
+    align-items: start;
+    margin: 0;
+}
+
+.caption {
+    grid-column: 1 / -1;
+    margin: 0 0 0.875rem;
+    color: hsl(var(--text-muted));
+    font: var(--type-small);
+    font-weight: 600;
+}
+
+/* Width 0 with min-width 100%: the ghost lines fill the strip without ever widening it. Their ink is a grey that
+   still reads at 4.5:1 on the paper; the masks, not transparency, make them fade off the cut edges. */
+.ghost {
+    width: 0;
+    min-width: 100%;
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    color: hsl(var(--document-ghost));
+}
+.ghostTop {
+    -webkit-mask-image: linear-gradient(to bottom, transparent 15%, rgb(0 0 0 / 0.55)), linear-gradient(to right, black 60%, transparent);
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(to bottom, transparent 15%, rgb(0 0 0 / 0.55)), linear-gradient(to right, black 60%, transparent);
+    mask-composite: intersect;
+}
+.ghostBottom {
+    -webkit-mask-image: linear-gradient(to top, transparent 15%, rgb(0 0 0 / 0.55)), linear-gradient(to right, black 60%, transparent);
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(to top, transparent 15%, rgb(0 0 0 / 0.55)), linear-gradient(to right, black 60%, transparent);
+    mask-composite: intersect;
+}
+
+.row { margin: 0.125rem 0; }
+.line { position: relative; display: inline-block; }
+.dim .strip { color: hsl(var(--document-ink) / 0.55); }
+
+/* The note, level with the line, with the pen's arrow back to it. */
+.note {
+    position: relative;
+    padding-top: 0.875rem;
+    opacity: 0;
+    transform: translateY(0.2rem);
+    transition: opacity var(--duration-slow) var(--ease) var(--delay-gesture), transform var(--duration-slow) var(--ease) var(--delay-gesture);
+}
+.marked .note { opacity: 1; transform: none; }
+.arrow { position: absolute; top: 1.2rem; left: -2.95rem; }
+
+@media (prefers-reduced-motion: reduce) {
+    .note { transition: none; }
+}
+
+@media (max-width: 900px) {
+    .figure { grid-template-columns: 1fr; }
+    .note { padding: 0.75rem 0 0 0.25rem; max-width: 36ch; }
+    .arrow { display: none; }
+}
+
+@media (max-width: 640px) {
+    /* A wrapped line takes the marker as a sweep across every line it occupies. */
+    .line > svg { display: none; }
+    .line {
+        display: inline;
+        background: linear-gradient(hsl(var(--marker) / 0.7), hsl(var(--marker) / 0.7)) 0 90% / 0% 58% no-repeat;
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
+        transition: background-size var(--duration-gesture) var(--ease-marker);
+    }
+    .marked .line { background-size: 100% 58%; }
+    .dim .line { background-image: linear-gradient(hsl(var(--marker) / 0.3), hsl(var(--marker) / 0.3)); }
+}

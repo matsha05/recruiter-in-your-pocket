@@ -1,10 +1,11 @@
+import rhythm from "@/components/materials/Rhythm.module.css";
 import styles from "./HiringTruths.module.css";
 
 /** What the read looks for, each paired with what the report actually does about it. */
 export function HiringTruths() {
     return (
-        <section id="what-we-look-for" className={styles.truths} aria-labelledby="truths-title">
-            <h2 id="truths-title" className={styles.title}>What we look for, line by line.</h2>
+        <section id="what-we-look-for" className={rhythm.section} aria-labelledby="truths-title">
+            <h2 id="truths-title" className={`${rhythm.title} ${styles.title}`}>What we look for, line by line.</h2>
             <dl className={styles.list}>
                 <div className={styles.row}>
                     <dt className={styles.quote}><s>&ldquo;Results-driven professional&rdquo;</s> is on every resume.</dt>

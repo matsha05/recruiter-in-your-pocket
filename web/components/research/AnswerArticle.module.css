@@ -158,32 +158,7 @@
 
 /* Parts an article places in its body */
 
-.bridge {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.25rem;
-    margin: 2.5rem 0;
-    border: 1px solid hsl(var(--line));
-    border-radius: var(--radius-sheet);
-    background: hsl(var(--card));
-    padding: 1.5rem 1.75rem;
-}
-
-.bridgeTitle {
-    margin: 0;
-    font: var(--type-heading);
-    letter-spacing: var(--tracking-heading);
-}
-
-.bridgeBody {
-    margin: 0.5rem 0 0;
-    color: hsl(var(--text-muted));
-    font: var(--type-body);
-}
-
-.bridgeBody p { margin: 0; }
-.bridgeBody p + p { margin-top: 0.5rem; }
+/* The bridge lives in ArticleBridge.module.css (a note in the margin, Nov 4, 2026). */
 
 .label {
     margin: 0;

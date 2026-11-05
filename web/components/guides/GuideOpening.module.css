@@ -1,0 +1,12 @@
+/* A guide's opening (Nov 4, 2026): the eyebrow, the title, our take as the deck, the quick start as rows. */
+
+.eyebrow { margin: 0 0 1rem; color: hsl(var(--text-muted)); font: var(--type-label); }
+.title { margin: 0; max-width: 22ch; font: var(--type-headline); letter-spacing: var(--tracking-headline); text-wrap: balance; }
+.deck { max-width: 44ch; margin: 1.25rem 0 0; font: var(--type-lead); color: hsl(var(--text-strong)); text-wrap: pretty; }
+.quick { margin: 2.5rem 0 0; padding: 0; list-style: none; counter-reset: q; display: grid; max-width: 52ch; border-top: 1px solid hsl(var(--line)); }
+.quick li { counter-increment: q; display: grid; grid-template-columns: 2rem minmax(0, 1fr); padding: 1.25rem 0; border-bottom: 1px solid hsl(var(--line)); color: hsl(var(--text-muted)); font: var(--type-body); }
+.quick li::before { content: counter(q); color: hsl(var(--text-muted)); font-weight: var(--weight-control); }
+.quick strong { color: hsl(var(--text-strong)); font-weight: var(--weight-control); }
+.link { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 1.25rem; margin: 2.5rem 0 0; font: var(--type-body); font-weight: var(--weight-control); }
+.link a { display: inline-flex; align-items: center; gap: 0.4rem; }
+.link svg { width: 1rem; height: 1rem; }

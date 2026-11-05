@@ -1,0 +1,19 @@
+/* How the report works (Nov 4, 2026): the site rhythm, one part of the report per section, one object each. */
+
+.verdict { max-width: 34rem; }
+.verdictLabel { display: block; margin-bottom: 0.75rem; color: hsl(var(--text-muted)); font: var(--type-label); letter-spacing: 0.1em; text-transform: uppercase; }
+.verdictText { margin: 0; font: var(--type-verdict-lead); text-wrap: pretty; }
+
+.band { max-width: 34rem; }
+.parts { margin: 2rem 0 0; padding: 0; list-style: none; display: grid; gap: 0.375rem; max-width: 48ch; color: hsl(var(--text-muted)); font: var(--type-body); }
+.parts li { display: grid; grid-template-columns: 1.5rem minmax(0, 1fr); }
+.parts span:first-child { color: hsl(var(--text-strong)); font-weight: var(--weight-control); }
+
+.cant { margin: 0; padding: 0; list-style: none; max-width: 48ch; display: grid; gap: 0.5rem; font: var(--type-lead); }
+.cant li { display: grid; grid-template-columns: 1.5rem minmax(0, 1fr); }
+.cant li::before { content: "\2014"; color: hsl(var(--text-muted)); }
+
+.method { max-width: 52ch; margin: 0; color: hsl(var(--text-muted)); font: var(--type-body); text-wrap: pretty; }
+.sources { margin: 1.5rem 0 0; padding: 0; list-style: none; display: grid; gap: 0.5rem; max-width: 52ch; color: hsl(var(--text-muted)); font: var(--type-small); }
+.sources li { display: grid; grid-template-columns: 1.5rem minmax(0, 1fr); }
+.tag { margin: 0; }

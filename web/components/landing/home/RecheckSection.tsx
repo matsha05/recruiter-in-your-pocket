@@ -1,8 +1,8 @@
 import { FictionalTag } from "@/components/marketing/FictionalTag";
+import { Clipping } from "@/components/materials/Clipping";
+import rhythm from "@/components/materials/Rhythm.module.css";
 import { JORDAN_RECHECK } from "@/lib/marketing/jordan-example";
 import { cn } from "@/lib/utils";
-import { Clipping } from "./Clipping";
-import home from "./HomePage.module.css";
 import styles from "./RecheckSection.module.css";
 
 /**
@@ -15,8 +15,8 @@ export function RecheckSection() {
     const first = versions[0].score;
     const latest = versions[versions.length - 1].score;
     return (
-        <section className={home.section} aria-labelledby="progress-title" data-testid="landing-progress-beat">
-            <h2 id="progress-title" className={home.title}>Fix it. Then check it again.</h2>
+        <section className={rhythm.section} aria-labelledby="progress-title" data-testid="landing-progress-beat">
+            <h2 id="progress-title" className={rhythm.title}>Fix it. Then check it again.</h2>
             <div className={styles.recheck}>
                 <Clipping caption="First report" line={before} dim />
                 <Clipping caption="Revision 1" line={after} note={`Changed. Up ${change}.`} />

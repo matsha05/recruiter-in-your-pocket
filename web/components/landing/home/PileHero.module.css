@@ -1,4 +1,4 @@
-/* The pile: 244 sheets of paper, eighteen green, and the number ticking in beside them. */
+/* The pile: 244 sheets of paper (components/materials/Pile), eighteen green, and the number ticking in beside them. */
 
 .hero { overflow: clip; background: hsl(var(--background)); color: hsl(var(--text-strong)); }
 
@@ -18,10 +18,7 @@
 /* Explicit line breaks keep the headline put while the number ticks from one digit to three. */
 .title {
     margin: 0;
-    font-family: var(--font-display);
-    font-size: 3rem;
-    line-height: 1.05;
-    font-weight: 600;
+    font: var(--weight-marketing) var(--type-headline-size) / 1.05 var(--font-display);
     letter-spacing: -0.03em;
     white-space: nowrap;
 }
@@ -48,29 +45,11 @@
     opacity: 0;
     animation: arrive 600ms var(--ease) 2.9s both;
 }
+@keyframes arrive { to { opacity: 1; } }
 
 .actions { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; margin-top: 2.25rem; }
 
-.field { grid-area: field; align-self: end; display: flex; flex-wrap: wrap; gap: 0.625rem; }
-
-/* Paper, not pixels: an off-white sheet, 8.5 by 11, with a hairline edge on the warm canvas. The sheets arrive
-   one by one from first paint; the eighteen turn green once the pile is in. */
-.sheet {
-    width: 1.375rem;
-    aspect-ratio: 8.5 / 11;
-    border-radius: 2px;
-    background: #fefefc;
-    box-shadow: 0 0 0 0.5px rgb(27 27 27 / 0.2);
-    opacity: 0;
-    animation: arrive 320ms var(--ease) both;
-    animation-delay: calc(var(--i) * 6ms);
-}
-@keyframes arrive { to { opacity: 1; } }
-.replied {
-    animation: arrive 320ms var(--ease) both, reply 450ms var(--ease) both;
-    animation-delay: calc(var(--i) * 6ms), calc(2.4s + var(--i) * 4ms);
-}
-@keyframes reply { to { background: hsl(var(--pen)); box-shadow: 0 0 0 0.5px hsl(var(--pen)); } }
+.field { grid-area: field; align-self: end; }
 
 .source {
     grid-area: source;
@@ -83,8 +62,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .strip, .answer, .sheet, .source { animation: none; opacity: 1; }
-    .replied { background: hsl(var(--pen)); box-shadow: 0 0 0 0.5px hsl(var(--pen)); }
+    .strip, .answer, .source { animation: none; opacity: 1; }
 }
 
 @media (max-width: 1100px) {
@@ -95,17 +73,12 @@
 
 @media (max-width: 640px) {
     .inner { padding-top: calc(var(--marketing-header-height-mobile) + 2.5rem); gap: 2.25rem; }
-    .title { font-size: 2.25rem; }
     .actions { align-items: stretch; }
-    .field { gap: 0.4375rem; }
-    .sheet { width: 0.875rem; }
 }
 
-/* The narrowest phones: smaller sheets in more columns, so the pile, the headline and the button still share
-   the first screen. */
+/* The narrowest phones: the pile, the headline and the button still share the first screen, so the headline
+   steps down to 32px (2em of the page's 16px). */
 @media (max-width: 360px) {
     .inner { padding-top: calc(var(--marketing-header-height-mobile) + 1.75rem); gap: 1.75rem; }
-    .title { font-size: 2rem; }
-    .field { gap: 0.3125rem; }
-    .sheet { width: 0.625rem; }
+    .title { font-size: 2em; }
 }

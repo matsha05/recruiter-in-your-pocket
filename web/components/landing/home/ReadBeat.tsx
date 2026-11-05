@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "@phosphor-icons/react";
+import { PenCircle, PenUnderline } from "@/components/materials/Pen";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import styles from "./ReadBeat.module.css";
@@ -71,16 +72,11 @@ export function ReadBeat() {
                 <div className={styles.said}>
                     <h2 id="read-title" ref={headingRef} className={styles.line}>{HEADLINE}</h2>
                     <div className={styles.penRun} style={measure ? { width: `${measure}px` } : undefined}>
-                        <p className={styles.pen} aria-hidden="true"><span className={styles.ink} /></p>
+                        <PenUnderline drawn={lit} duration={5000} delay={400} className={styles.pen} />
                         <p className={styles.choices} aria-label="Move forward or reject. Reject is circled.">
                             <span className={styles.choice}>Move forward</span>
-                            <span className={cn(styles.choice, styles.rejected)}>
-                                Reject
-                                <svg className={styles.circle} viewBox="0 0 120 48" preserveAspectRatio="none" aria-hidden="true">
-                                    {/* One loop, one pass: started at the left, closed just past its own start the way a quick hand does. */}
-                                    <path d="M 18 18 C 20 4, 64 -2, 96 6 C 122 12, 124 36, 98 44 C 66 53, 14 52, 6 36 C 1 25, 10 14, 26 12" />
-                                </svg>
-                            </span>
+                            {/* The one red mark on the site (Matt, Nov 4, 2026): the recruiter's decision, nothing else. */}
+                            <PenCircle drawn={on} ink="reject" delay={800} className={cn(styles.choice, styles.rejected)}>Reject</PenCircle>
                         </p>
                     </div>
                 </div>

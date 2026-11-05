@@ -35,8 +35,8 @@ export default function AuthClient() {
 
     if (arrivedSignedIn && user) {
         return (
-            <div data-visual-anchor="auth-page" className="min-h-[80vh] bg-background px-4 pb-16 pt-28 text-foreground sm:px-6 md:px-8 md:pb-24 md:pt-36">
-                <div className="mx-auto grid max-w-[34rem] gap-4">
+            <div data-visual-anchor="auth-page" className="text-foreground">
+                <div className="mx-auto grid max-w-auth gap-4">
                     <h1 className="text-balance font-display text-title text-foreground">You&apos;re already signed in.</h1>
                     <p className="text-base text-muted-foreground">
                         You&apos;re signed in as <span className="break-all font-medium text-foreground">{user.email}</span>.

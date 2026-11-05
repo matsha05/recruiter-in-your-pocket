@@ -149,6 +149,9 @@
     --font-mono: var(--font-brand-sans);
     /* Three weights only: 800 for headlines, 600 for headings and controls, 400 for reading. */
     --weight-display: 800;
+    /* The marketing tier is lighter (Nov 4, 2026; the craft sites measured for the homepage set headlines at
+       500 to 600, never 800): the homepage's two display lines carry 600. */
+    --weight-marketing: 600;
     --weight-heading: 800;
     --weight-title: 600;
     --weight-body: 400;
@@ -158,8 +161,10 @@
     /* Type roles (Highlighter 1.1, Nov 1, 2026). Every size on the site is one of these, in whole pixels.
        Headline tiers: marketing 72 (display), content 48 (headline), app 32 (title). Phone steps are set
        below; Tailwind's text-* keys in tailwind.config.js all resolve to these variables. */
-    --type-display-size: 2.75rem;
-    --type-display-leading: 2.75rem;
+    /* display (Nov 4, 2026): the homepage's read, "By the time you finish reading this sentence…", 36/38 on
+       phones and 60/62 from 768px at weight 600; the pile's h1 is the headline size at the same weight. */
+    --type-display-size: 2.25rem;
+    --type-display-leading: 2.375rem;
     --type-headline-size: 2.25rem;
     --type-headline-leading: 2.5rem;
     /* Literata's tall ascenders need more room when a headline is set in the recruiter's voice. */
@@ -187,7 +192,7 @@
     --type-note-size: 1rem;
     --type-note-leading: 1.5625rem;
     /* Shorthands for CSS modules: `font: var(--type-body)`. Add letter-spacing from the role table. */
-    --type-display: var(--weight-display) var(--type-display-size) / var(--type-display-leading) var(--font-display);
+    --type-display: var(--weight-marketing) var(--type-display-size) / var(--type-display-leading) var(--font-display);
     --type-headline: var(--weight-display) var(--type-headline-size) / var(--type-headline-leading) var(--font-display);
     --type-title: var(--weight-display) var(--type-title-size) / var(--type-title-leading) var(--font-display);
     --type-heading: var(--weight-title) var(--type-heading-size) / var(--type-heading-leading) var(--font-display);
@@ -199,7 +204,7 @@
     --type-verdict: var(--weight-body) var(--type-verdict-size) / var(--type-verdict-leading) var(--font-editorial);
     --type-verdict-lead: var(--weight-body) var(--type-verdict-lead-size) / var(--type-verdict-lead-leading) var(--font-editorial);
     --type-note: italic var(--weight-body) var(--type-note-size) / var(--type-note-leading) var(--font-editorial);
-    --tracking-display: -0.045em;
+    --tracking-display: -0.035em;
     --tracking-headline: -0.04em;
     --tracking-title: -0.03em;
     --tracking-heading: -0.02em;
@@ -221,6 +226,12 @@
     --duration-fast: 160ms;
     --duration-normal: 200ms;
     --duration-slow: 520ms;
+    /* A gesture (Nov 4, 2026): one stroke of the pen or the marker, made once on scroll-in, and the pause
+       before what follows it (the margin note after the mark, the arrow after the note). */
+    --duration-gesture: 560ms;
+    --delay-gesture: 700ms;
+    --ease-pen: cubic-bezier(0.45, 0, 0.25, 1);
+    --ease-marker: cubic-bezier(0.3, 0, 0.15, 1);
 
     /* Links: one offset and weight everywhere; color says which kind of link it is. */
     --link-offset: 0.24em;
@@ -283,6 +294,23 @@
        width and gutter; the hero shares the gutter while it is stacked, and runs wider from 1200px. */
     --marketing-content: 68rem;
     --marketing-gutter: 1.25rem;
+
+    /* The site's materials (Nov 4, 2026, promoted from the homepage): paper, the marker and the green pen,
+       plus one red mark. A sheet is a real document, a strip is one line cut from one, the marker takes the
+       line a recruiter would miss, and the pen is the recruiter's own words. Components in components/materials. */
+    --paper-sheet: 60 50% 99.2%;
+    --paper-edge: var(--ink) / 0.2;
+    --paper-shadow: 0 1px 2px rgb(27 27 27 / 0.06), 0 18px 28px -22px rgb(27 27 27 / 0.28);
+    /* Text inside a drawn document keeps the document's own face and ink; the neighbours of a clipped line
+       are a passing grey that still reads at 4.5:1, and fade by mask rather than by opacity. */
+    --font-document: Georgia, "Times New Roman", Times, serif;
+    --document-ink: 0 0% 10.6%;
+    --document-ghost: 60 1.4% 42.9%;
+    --marker: var(--highlight);
+    /* The one red mark on the site: the recruiter's decision (Reject, circled, on the homepage). Spent once. */
+    --reject-ink: 4 68% 46%;
+    /* One beat of the page rhythm: a hairline and this much space between sections. */
+    --beat: 7rem;
   }
 
   .dark {
@@ -338,6 +366,11 @@
     --text-subtle: 160.000 6.569% 73.137%;
     --paper: 150 8% 7.5%;
     --paper-muted: 145 7% 13%;
+    --paper-sheet: 150 7% 12%;
+    --paper-edge: 150 8% 93% / 0.22;
+    --paper-shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 18px 28px -22px rgb(0 0 0 / 0.6);
+    --document-ink: 150 8% 93%;
+    --document-ghost: 148 5% 62%;
     --success: 153 43% 69%;
     --success-surface: 147.857 30.435% 18.039%;
     --warning: var(--foreground);
@@ -347,13 +380,12 @@
     --disabled-surface: 170.000 6.818% 17.255%;
   }
 
-  /* Type role steps: phones first, then tablets and up. Display gets a third step at 1280px, where the
-     homepage hero has room for it beside the illustration. */
+  /* Type role steps: phones first, then tablets and up. */
   @media (min-width: 768px) {
     :root {
       --marketing-gutter: clamp(1.5rem, 4vw, 2.5rem);
-      --type-display-size: 4rem;
-      --type-display-leading: 4rem;
+      --type-display-size: 3.75rem;
+      --type-display-leading: 3.875rem;
       --type-headline-size: 3rem;
       --type-headline-leading: 3.25rem;
       --type-headline-serif-leading: 3.625rem;
@@ -364,13 +396,6 @@
       --type-verdict-leading: 2.125rem;
       --type-verdict-lead-size: 1.75rem;
       --type-verdict-lead-leading: 2.375rem;
-    }
-  }
-
-  @media (min-width: 1280px) {
-    :root {
-      --type-display-size: 4.5rem;
-      --type-display-leading: 4.5rem;
     }
   }
 }

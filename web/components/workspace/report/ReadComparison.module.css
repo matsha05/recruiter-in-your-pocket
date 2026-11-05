@@ -1,3 +1,6 @@
+/* The re-check (Nov 4, 2026): last time's Critical Misses as dimmed clippings, now's beneath them, and the
+   score as a change. The same object the homepage's "Fix it. Then check it again." uses. */
+
 .root {
     margin-bottom: 2.5rem;
     border-bottom: 1px solid hsl(var(--line));
@@ -17,106 +20,31 @@
     font: var(--type-body);
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-    align-items: stretch;
-    gap: 1rem;
-    margin-top: 1.5rem;
-}
-
-.card {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    border: 1px solid hsl(var(--line));
-    border-radius: 1.125rem;
-    background: hsl(var(--card));
-    padding: 1.25rem;
-}
-
-.current { border-color: hsl(var(--text-strong) / 0.25); }
-
-.cardTop {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 0.75rem;
-}
-
-.cardLabel {
-    color: hsl(var(--muted-foreground));
-    font: var(--type-small);
-    font-weight: var(--weight-control);
-}
-
-.score {
-    font: var(--type-title);
-    letter-spacing: var(--tracking-title);
-    font-variant-numeric: tabular-nums;
-}
-
-.score span {
-    margin-left: 0.125rem;
-    color: hsl(var(--muted-foreground));
-    font: var(--type-small);
-}
-
-.delta {
-    border-radius: 999px;
-    padding: 0.125rem 0.625rem;
-    font: var(--type-label);
-}
-
-.deltaUp { background: hsl(var(--pen-tint)); color: hsl(var(--pen)); }
-.deltaDown { background: hsl(var(--secondary)); color: hsl(var(--text-strong)); }
-
-.missLabel {
-    margin-top: 0.5rem;
-    color: hsl(var(--brass));
-    text-transform: uppercase;
-    font: var(--type-label);
-    letter-spacing: 0.1em;
-}
-
-.miss {
-    font: var(--type-body);
-    font-weight: var(--weight-control);
-}
-
-/* The current miss is marked like a line on the page; last time's, once replaced, is set down. */
-.mark {
-    padding: 0 2px;
-    background: linear-gradient(hsl(var(--highlight)), hsl(var(--highlight))) no-repeat 0 88% / 100% 45%;
-    box-decoration-break: clone;
-    -webkit-box-decoration-break: clone;
-}
-
-.missPast { color: hsl(var(--muted-foreground)); }
-
-/* One row per Critical Miss: a report carries one to three. */
-.missRow { display: grid; gap: 0.125rem; }
+.reads { display: grid; gap: 2.5rem; margin-top: 2rem; }
+.read { display: grid; gap: 1.75rem; }
 
 .more {
+    max-width: 52ch;
     color: hsl(var(--muted-foreground));
     font: var(--type-small);
 }
 
+/* Each read's Verdict, quiet, under its clippings. */
 .verdict {
-    margin-top: auto;
-    border-top: 1px solid hsl(var(--line));
-    padding-top: 0.75rem;
-    color: hsl(var(--text-strong) / 0.85);
-    font: var(--weight-body) var(--type-note-size) / var(--type-note-leading) var(--font-editorial);
-}
-
-.arrow {
-    display: flex;
-    align-items: center;
+    max-width: 52ch;
     color: hsl(var(--muted-foreground));
+    font: var(--type-note);
+    font-style: normal;
 }
 
-@media (max-width: 760px) {
-    .grid { grid-template-columns: minmax(0, 1fr); }
-    .arrow { justify-content: center; transform: rotate(90deg); }
+.sum {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 1rem;
+    margin: 2rem 0 0;
+    font: var(--type-lead);
+    font-weight: var(--weight-control);
 }
+.delta { color: hsl(var(--pen)); }
+.sumQuiet { color: hsl(var(--text-muted)); font: var(--type-body); }

@@ -2,7 +2,11 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Check, LockKey } from "@phosphor-icons/react";
-import { Mark, useSeen } from "@/components/research/figures/FigureKit";
+import { useId } from "react";
+import { useSeen } from "@/components/research/figures/FigureKit";
+import { Paper } from "@/components/materials/Paper";
+import { MarkerStroke, PenArrow } from "@/components/materials/Pen";
+import clip from "@/components/materials/Clipping.module.css";
 import { Button } from "@/components/ui/button";
 import { JOB_SEARCH_PASS_DECISION } from "@/lib/billing/pricing";
 import { fixPositionLabel } from "@/lib/reports/report-opening";
@@ -39,9 +43,28 @@ export function quotedLine(fix?: Fix) {
   return excerptOf(fix).trim().replace(/^[-•*]\s+/u, "");
 }
 
+/** The lines just above and below the quoted one on the resume, so the Critical Miss reads as a clipping cut from it. */
+function neighbours(resumeText: string | undefined, excerpt: string): { above?: string; below?: string } {
+  if (!resumeText || !excerpt) return {};
+  const lines = resumeText.replace(/\r\n?/gu, "\n").split("\n").map((line) => line.trim().replace(/^[-•*]\s+/u, ""));
+  const key = excerpt.trim().replace(/^[-•*]\s+/u, "").replace(/\s+/g, " ").toLocaleLowerCase();
+  const index = lines.findIndex((line) => line.replace(/\s+/g, " ").toLocaleLowerCase().includes(key));
+  if (index === -1) return {};
+  const pick = (from: number, step: number) => {
+    for (let i = from; i >= 0 && i < lines.length; i += step) if (lines[i]) return lines[i];
+    return undefined;
+  };
+  return { above: pick(index - 1, -1), below: pick(index + 1, 1) };
+}
+
 /** Whether the fix marks a line on the resume, rather than something the resume doesn't have. */
 export function marksLine(fix?: Fix) {
   return !missingFromResume(excerptOf(fix));
+}
+
+/** For a fix about something the resume doesn't have: where the line would be, in words. */
+export function missingWhere(fix?: Fix) {
+  return missingFromResume(excerptOf(fix)) || "";
 }
 
 /** Where the line would be, for a fix about something the resume doesn't have. Nothing is quoted. */
@@ -139,11 +162,13 @@ export function CriticalMissRow({
   const first = index === 0;
   const onPage = marksLine(fix);
   const { ref: lineRef, seen: sweptIn } = useSeen<HTMLQuoteElement>(0.6);
-  // The highlighter sweeps once, on the first; any later critical line is already marked.
+  // The marker takes the line once, on the first; any later critical line is already marked.
   const seen = first && onPage ? sweptIn : true;
   const { rowRef, focusRestore, hide, restore } = useHideFocus(hidden, onHide, onRestore);
   const id = `section-fix-${index + 1}`;
   const testId = first ? "critical-miss" : "critical-fix";
+  const filterId = `miss-marker-${useId().replace(/[^a-zA-Z0-9]/g, "")}`;
+  const around = onPage ? neighbours(lift.resumeText, excerptOf(fix)) : {};
 
   if (hidden) {
     return (
@@ -157,7 +182,16 @@ export function CriticalMissRow({
     <li ref={rowRef} tabIndex={-1} id={id} className={styles.row} data-kind="miss" data-first={first || undefined} data-state={liftState} data-testid={testId}>
       <div className={styles.lineCell}>
         {onPage
-          ? <blockquote ref={first ? lineRef : undefined} className={styles.missLine}><Mark seen={seen}>{quotedLine(fix)}</Mark></blockquote>
+          ? (
+            /* The Critical Miss as the site's clipping (Nov 4, 2026): the line on its strip, the neighbours fading off the cut edges, the marker across it. */
+            <Paper kind="strip" className={cn(styles.missStrip, seen && clip.marked)}>
+              {around.above && <p className={cn(clip.ghost, clip.ghostTop, styles.missGhost)} aria-hidden="true">{around.above}</p>}
+              <blockquote ref={first ? lineRef : undefined} className={styles.missLine}>
+                <span className={clip.line}><MarkerStroke drawn={seen} filterId={filterId} />{quotedLine(fix)}</span>
+              </blockquote>
+              {around.below && <p className={cn(clip.ghost, clip.ghostBottom, styles.missGhost)} aria-hidden="true">{around.below}</p>}
+            </Paper>
+          )
           : <MissingLine fix={fix} critical />}
       </div>
       <div className={styles.noteCell}>
@@ -169,7 +203,10 @@ export function CriticalMissRow({
           </p>
           {definition && <p className={styles.missDefinition}>{definition}</p>}
         </div>
-        <p className={cn(styles.penNote, seen && styles.penNoteIn)}>{marginNoteFromFix(fix.fix || fix.text || "")}</p>
+        <p className={cn(styles.penNote, seen && styles.penNoteIn)}>
+          {onPage && <PenArrow drawn={seen} delay={980} className={styles.penArrow} />}
+          {marginNoteFromFix(fix.fix || fix.text || "")}
+        </p>
         {why && <p className={styles.penWhy}>{why}</p>}
         {/* Nothing on the page to revise: the questions are what to add. */}
         {!onPage && <WhatToAdd questions={lift.questions} />}

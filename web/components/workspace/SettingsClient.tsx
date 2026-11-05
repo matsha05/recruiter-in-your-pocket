@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import {
     Clock,
     GoogleChromeLogo as Chrome,
-    FileText,
     CircleNotch as Loader2,
     User,
     Target,
@@ -23,13 +22,16 @@ import { useForm, useWatch } from "react-hook-form";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browserClient";
 import DefaultResumeSection from "@/components/settings/DefaultResumeSection";
-import { PricingCard, type PricingTier } from "@/components/shared/PricingCard";
+import type { PricingTier } from "@/components/shared/PricingCard";
+import { JOB_SEARCH_PASS_DECISION } from "@/lib/billing/pricing";
 import ConfirmModal from "@/components/shared/ConfirmModal";
 import { cn } from "@/lib/utils";
 import { ClientActionError, getClientActionError } from "@/lib/client-action-error";
 import { getPassStatus, getPassStatusLabel, getTierLabel, isPassActive, isUnlimitedPassTier } from "@/lib/billing/entitlements";
 import { Analytics } from "@/lib/analytics";
 import { AppPageIntro } from "@/components/layout/AppPageIntro";
+import { Pile } from "@/components/materials/Pile";
+import settings from "./Settings.module.css";
 import { ActionFeedback } from "@/components/ui/action-feedback";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 import {
@@ -531,23 +533,14 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                     className="mb-8"
                 />
 
-                <nav
-                    aria-label="Settings sections"
-                    className="mb-8 flex w-full flex-wrap items-center gap-1 border-b border-border pb-1"
-                >
-                    {visibleTabs.map(({ id, label, href, icon: Icon }) => (
+                <nav aria-label="Settings sections" className={settings.tabs}>
+                    {visibleTabs.map(({ id, label, href }) => (
                         <Link
                             key={id}
                             href={href}
-                            className={cn(
-                                "focus-ring relative flex min-h-12 shrink-0 items-center gap-2 rounded-t-lg border-b-2 px-4 py-3 text-sm font-medium transition-colors",
-                                activeTab === id
-                                    ? "border-brand bg-brand/5 text-brand"
-                                    : "border-transparent text-muted-foreground hover:bg-muted hover:text-foreground"
-                            )}
+                            className={cn("focus-ring", settings.tab, activeTab === id && settings.tabActive)}
                             aria-current={activeTab === id ? "page" : undefined}
                         >
-                            <Icon className="size-4" />
                             {label}
                         </Link>
                     ))}
@@ -556,80 +549,68 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                 <div className="space-y-8">
                     {activeTab === "account" && (
                         <div className="space-y-8 ui-state-enter">
-                            <section className="app-card p-6">
-                                <h2 className="mb-6 text-lg font-medium text-foreground">Profile</h2>
-                                <div className="flex flex-col items-start gap-6 sm:flex-row">
-                                    <div className="flex size-14 shrink-0 select-none items-center justify-center rounded-2xl bg-brand/5 font-sans text-xl font-medium text-brand">
-                                        {user?.firstName?.[0]?.toUpperCase() || user?.email?.[0]?.toUpperCase() || "?"}
+                            {/* One column of rows on hairlines (Nov 4, 2026): name, email, your data, and delete last. */}
+                            <div className={settings.rows}>
+                                <form className={settings.row} onSubmit={profileForm.handleSubmit(handleSaveProfile)}>
+                                    <label htmlFor="settings-display-name" className={settings.rowHead}>Name</label>
+                                    <div className={settings.rowBody}>
+                                        <input
+                                            id="settings-display-name"
+                                            type="text"
+                                            {...profileForm.register("displayName")}
+                                            className={settings.field}
+                                        />
                                     </div>
-                                    <div className="min-w-0 flex-1 space-y-5">
-                                        <form
-                                            className="w-full max-w-auth"
-                                            onSubmit={profileForm.handleSubmit(handleSaveProfile)}
+                                    <div className={settings.rowAction}>
+                                        <Button
+                                            type="submit"
+                                            variant="secondary"
+                                            size="sm"
+                                            aria-busy={profileForm.formState.isSubmitting}
+                                            disabled={
+                                                profileForm.formState.isSubmitting ||
+                                                !displayNameValue.trim() ||
+                                                displayNameValue === (user?.firstName || "")
+                                            }
                                         >
-                                            <label htmlFor="settings-display-name" className="mb-2 block text-sm font-medium text-foreground">Display name</label>
-                                            <div className="flex min-w-0 flex-col gap-2 sm:flex-row">
-                                                <input
-                                                    id="settings-display-name"
-                                                    type="text"
-                                                    {...profileForm.register("displayName")}
-                                                    className="min-h-12 min-w-0 flex-1 rounded-md border border-input bg-card px-3 py-2.5 text-base focus:outline-none focus:ring-2 focus:ring-ring/25"
-                                                />
-                                                <Button
-                                                    type="submit"
-                                                    aria-busy={profileForm.formState.isSubmitting}
-                                                    disabled={
-                                                        profileForm.formState.isSubmitting ||
-                                                        !displayNameValue.trim() ||
-                                                        displayNameValue === (user?.firstName || "")
-                                                    }
-                                                    className="flex"
-                                                >
-                                                    <ActionFeedback state={profileForm.formState.isSubmitting ? "pending" : "idle"} states={{ idle: { label: "Save" }, pending: { label: "Saving…", icon: <Loader2 className="size-3 animate-spin motion-reduce:animate-none" aria-hidden="true" /> } }} />
-                                                </Button>
-                                            </div>
-                                        </form>
-                                        <div className="w-full max-w-auth">
-                                            <p className="mb-2 text-sm font-medium text-foreground">Email</p>
-                                            <div className="break-all rounded-md bg-muted px-3 py-3 text-base text-muted-foreground">{user?.email}</div>
-                                        </div>
+                                            <ActionFeedback state={profileForm.formState.isSubmitting ? "pending" : "idle"} states={{ idle: { label: "Save" }, pending: { label: "Saving…", icon: <Loader2 className="size-3 animate-spin motion-reduce:animate-none" aria-hidden="true" /> } }} />
+                                        </Button>
+                                    </div>
+                                </form>
+                                <div className={settings.row}>
+                                    <h2 className={settings.rowHead}>Email</h2>
+                                    <div className={settings.rowBody}><p>{user?.email}</p></div>
+                                    <span />
+                                </div>
+                                <div className={settings.row}>
+                                    <h2 className={settings.rowHead}>Your data</h2>
+                                    <div className={settings.rowBody}><p>Everything we hold about you, as a file.</p></div>
+                                    <div className={settings.rowAction}>
+                                        <Button type="button"
+                                            onClick={handleExportData}
+                                            disabled={isExportingData}
+                                            aria-busy={isExportingData}
+                                            variant="secondary" size="sm"
+                                        >
+                                            <ActionFeedback state={isExportingData ? "pending" : "idle"} states={{ idle: { label: "Export" }, pending: { label: "Preparing export…" } }} />
+                                        </Button>
                                     </div>
                                 </div>
-                            </section>
-
-                            <section className="rounded-xl bg-muted p-5">
-                                <div className="flex flex-wrap items-center justify-between gap-4">
-                                    <div>
-                                        <h3 className="mb-0.5 text-sm font-medium text-foreground">Export account data</h3>
-                                    </div>
-                                    <Button type="button"
-                                        onClick={handleExportData}
-                                        disabled={isExportingData}
-                                        aria-busy={isExportingData}
-                                        variant="secondary" size="sm" className="shrink-0"
-                                    >
-                                        <ActionFeedback state={isExportingData ? "pending" : "idle"} states={{ idle: { label: "Export data" }, pending: { label: "Preparing export…" } }} />
-                                    </Button>
-                                </div>
-                            </section>
-
-                            <section className="rounded-xl border border-line p-5">
-                                <div className="flex items-center justify-between gap-4 flex-wrap">
-                                    <div>
-                                        <h3 className="mb-0.5 text-sm font-medium text-foreground">Delete account</h3>
-                                    </div>
-                                    <div className="flex items-center gap-2">
+                                <div className={settings.row}>
+                                    <h2 className={settings.rowHead}>Delete account</h2>
+                                    <div className={settings.rowBody}><p>Your reports and your account go with it. Nothing comes back.</p></div>
+                                    <div className={settings.rowAction}>
                                         <Button type="button"
                                             onClick={() => setIsDeleteConfirmOpen(true)}
                                             disabled={isDeletingAccount}
                                             aria-busy={isDeletingAccount}
-                                            variant="destructive" size="sm" className="shrink-0"
+                                            variant="destructive" size="sm"
                                         >
                                             <ActionFeedback state={isDeletingAccount ? "pending" : "idle"} states={{ idle: { label: "Delete" }, pending: { label: "Deleting…" } }} />
                                         </Button>
                                     </div>
                                 </div>
-                            </section>
+                            </div>
                         </div>
                     )}
 
@@ -642,18 +623,17 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
 
                     {activeTab === "billing" && (
                         <div className="space-y-10 ui-state-enter">
-                            <section className="app-card space-y-4 p-6">
-                                <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                                    <div className="space-y-2">
-                                        <h2 className="text-lg font-medium text-foreground">Your pass</h2>
-                                        <p className="text-lg font-medium text-foreground">{accessLabel}</p>
-                                        <div className="text-sm text-muted-foreground">
-                                            Purchases are tied to <span className="block break-words font-medium text-foreground sm:inline">{user?.email}</span>
-                                        </div>
-                                        {passExpiryLabel && <p className="text-xs text-muted-foreground">{passExpiryLabel}</p>}
-                                    </div>
-
-                                    <div className="flex flex-wrap gap-2">
+                            <div className={settings.rows}>
+                            <div className={settings.row}>
+                                <h2 className={settings.rowHead}>Your pass</h2>
+                                <div className={settings.rowBody}>
+                                    {activePass && !isUnlimitedPassTier(activePass.tier) && Number(activePass.uses_remaining || 0) > 0 && (
+                                        <Pile count={Math.min(5, Number(activePass.uses_remaining || 0))} size="lg" label={`${Number(activePass.uses_remaining || 0)} reports left on your pass, one sheet each`} />
+                                    )}
+                                    <p className={settings.strong}>{accessLabel}</p>
+                                    <p className={settings.quiet}>Purchases are tied to {user?.email}.{passExpiryLabel ? ` ${passExpiryLabel}.` : ""}</p>
+                                </div>
+                                <div className={settings.rowAction}>
                                         <Button type="button"
                                             onClick={handleRestoreAccess}
                                             disabled={isRestoreLoading}
@@ -671,19 +651,20 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                                 <ActionFeedback state={isPortalLoading ? "pending" : "idle"} states={{ idle: { label: "Manage legacy plan", icon: <ExternalLink className="size-4" /> }, pending: { label: "Opening billing…", icon: <Loader2 className="size-4 animate-spin motion-reduce:animate-none" aria-hidden="true" /> } }} />
                                             </Button>
                                         )}
-                                    </div>
                                 </div>
-
                                 {showRestoreNudge && (
-                                    <div className="rounded-xl border border-warning/30 bg-warning/5 px-4 py-3 text-sm text-muted-foreground">
+                                    <p className={settings.quiet} style={{ gridColumn: "1 / -1" }}>
                                         We couldn&apos;t find billing records for this email. If you used a different email at checkout,
                                         sign in with that email and choose Restore access.
-                                    </div>
+                                    </p>
                                 )}
-                            </section>
+                            </div>
 
                             {activePass || hasPaidMembership ? (
-                                <section className="flex flex-wrap items-center justify-end gap-4 border-y border-line py-5">
+                                <div className={settings.row}>
+                                    <h2 className={settings.rowHead}>More reports</h2>
+                                    <div className={settings.rowBody}><p>Five more over 90 days, one payment, no renewal.</p></div>
+                                    <div className={settings.rowAction}>
                                     <Button type="button"
                                         onClick={() => handleCheckout("30d")}
                                         disabled={isCheckoutLoading === "30d"}
@@ -692,19 +673,26 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                     >
                                         <ActionFeedback state={isCheckoutLoading === "30d" ? "pending" : "idle"} states={{ idle: { label: "Get 5 more reports · $29" }, pending: { label: "Opening checkout…" } }} />
                                     </Button>
-                                </section>
-                            ) : (
-                                <section>
-                                    <h2 className="mb-5 text-lg font-medium text-foreground">Job Search Pass</h2>
-                                    <div className="grid gap-4">
-                                        <PricingCard tier="30d" onSelect={() => handleCheckout("30d")} loading={isCheckoutLoading === "30d"} />
                                     </div>
-                                </section>
+                                </div>
+                            ) : (
+                                <div className={settings.row}>
+                                    <h2 className={settings.rowHead}>Job Search Pass</h2>
+                                    <div className={settings.rowBody}>
+                                        <Pile count={5} size="lg" label="Five sheets of paper: the Job Search Pass" />
+                                        <p>{JOB_SEARCH_PASS_DECISION.terms} {JOB_SEARCH_PASS_DECISION.whenToBuy}</p>
+                                    </div>
+                                    <div className={settings.rowAction}>
+                                        <Button type="button" variant="secondary" size="sm" onClick={() => handleCheckout("30d")} disabled={isCheckoutLoading === "30d"} aria-busy={isCheckoutLoading === "30d"}>
+                                            <ActionFeedback state={isCheckoutLoading === "30d" ? "pending" : "idle"} states={{ idle: { label: JOB_SEARCH_PASS_DECISION.cta }, pending: { label: "Opening checkout…" } }} />
+                                        </Button>
+                                    </div>
+                                </div>
                             )}
 
-                            <section>
-                                <h2 className="text-base font-medium text-foreground mb-3">Purchases</h2>
-                                <div className="app-card overflow-hidden">
+                            <div className={settings.row}>
+                                <h2 className={settings.rowHead}>Purchases</h2>
+                                <div className={settings.rowBody}>
                                     {loadingPasses ? (
                                         <div className="p-6 text-center text-muted-foreground text-sm flex items-center justify-center gap-2">
                                             <Loader2 className="size-4 animate-spin motion-reduce:animate-none" /> Loading…
@@ -723,7 +711,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                             No purchases yet. If you already paid, choose Restore access above.
                                         </div>
                                     ) : (
-                                        <div className="divide-y divide-border">
+                                        <ul className={settings.list}>
                                             {passes.map((pass) => {
                                                 const active = isPassActive(pass);
                                                 const passStatus = getPassStatus(pass);
@@ -735,62 +723,26 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                                 const expiryDate = formatDate(pass.expires_at);
 
                                                 return (
-                                                    <div key={pass.id} className="flex flex-col items-start gap-4 p-5 sm:flex-row sm:items-center sm:justify-between">
-                                                        <div className="flex w-full min-w-0 items-center gap-3 sm:flex-1">
-                                                            <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-muted">
-                                                                <FileText className="size-3.5" />
-                                                            </div>
-                                                            <div className="min-w-0 flex-1 [overflow-wrap:anywhere]">
-                                                                <p className="text-sm font-medium">{getTierLabel(pass.tier)}</p>
-                                                                <p className="text-xs text-muted-foreground">
-                                                                    {formatDate(pass.created_at)} · {usesLabel}
-                                                                </p>
-                                                                {expiryDate && (
-                                                                    <p className="text-xs text-muted-foreground/70">
-                                                                        {pass.tier === "lifetime"
-                                                                            ? "No renewal"
-                                                                            : isUnlimitedPassTier(pass.tier)
-                                                                                ? `Renews on ${expiryDate}`
-                                                                                : `Expires on ${expiryDate}`}
-                                                                    </p>
-                                                                )}
-                                                            </div>
-                                                        </div>
-                                                        <span
-                                                            className={cn(
-                                                                "rounded-md border px-2.5 py-1 text-xs font-medium",
-                                                                active
-                                                                    ? "border-[hsl(var(--pen)/0.35)] bg-[hsl(var(--pen-tint))] text-[hsl(var(--pen))]"
-                                                                    : passStatus === "revoked"
-                                                                        ? "border-destructive bg-error text-destructive"
-                                                                        : "border-line bg-paper-muted text-muted-foreground"
+                                                    <li key={pass.id} className={settings.item}>
+                                                        <span>
+                                                            <span className={settings.strong}>{getTierLabel(pass.tier)}</span> · {formatDate(pass.created_at)} · {usesLabel}
+                                                            {expiryDate && (
+                                                                <> · {pass.tier === "lifetime" ? "No renewal" : isUnlimitedPassTier(pass.tier) ? `Renews on ${expiryDate}` : `Expires on ${expiryDate}`}</>
                                                             )}
-                                                        >
-                                                            {passStatusLabel}
                                                         </span>
-                                                    </div>
+                                                        <span className={active ? settings.status : passStatus === "revoked" ? settings.statusBad : settings.statusQuiet}>{passStatusLabel}</span>
+                                                    </li>
                                                 );
                                             })}
-                                        </div>
+                                        </ul>
                                     )}
                                 </div>
-                            </section>
+                                <span />
+                            </div>
 
-                            <section>
-                                <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
-                                    <h2 className="text-base font-medium text-foreground">Receipts</h2>
-                                    <button type="button"
-                                        onClick={() => {
-                                            void refetchReceipts();
-                                        }}
-                                        disabled={loadingReceipts}
-                                        aria-busy={loadingReceipts}
-                                        className="focus-ring min-h-11 rounded-full border border-input px-4 py-2 text-sm transition-colors hover:bg-muted disabled:opacity-50"
-                                    >
-                                        <ActionFeedback state={loadingReceipts ? "pending" : "idle"} states={{ idle: { label: "Refresh" }, pending: { label: "Loading…" } }} />
-                                    </button>
-                                </div>
-                                <div className="app-card overflow-hidden">
+                            <div className={settings.row}>
+                                <h2 className={settings.rowHead}>Receipts</h2>
+                                <div className={settings.rowBody}>
                                     {loadingReceipts ? (
                                         <div className="p-6 text-center text-muted-foreground text-sm flex items-center justify-center gap-2">
                                             <Loader2 className="size-4 animate-spin motion-reduce:animate-none" /> Loading…
@@ -808,55 +760,29 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                             No receipts found for this account. If you recently paid, try Refresh.
                                         </div>
                                     ) : (
-                                        <div className="divide-y divide-border">
+                                        <ul className={settings.list}>
                                             {receipts.map((receipt) => (
-                                                <div key={receipt.id} className="flex flex-col items-start gap-4 p-5 sm:flex-row sm:items-center sm:justify-between">
-                                                    <div className="w-full min-w-0 [overflow-wrap:anywhere] sm:w-auto sm:flex-1">
-                                                        <p className="text-sm font-medium">
-                                                            {receipt.number || receipt.id}
-                                                        </p>
-                                                        <p className="text-xs text-muted-foreground">
-                                                            {formatDate(receipt.created_at)} · {formatAmount(receipt.amount_paid, receipt.currency)}
-                                                        </p>
-                                                        {receipt.status && (
-                                                            <span className={cn(
-                                                                "mt-1 inline-flex rounded-md border px-2.5 py-1 text-xs font-medium",
-                                                                receipt.status === "paid" ? "border-[hsl(var(--pen)/0.35)] bg-[hsl(var(--pen-tint))] text-[hsl(var(--pen))]" : "border-line bg-paper-muted text-muted-foreground"
-                                                            )}>
-                                                                {receipt.status.charAt(0).toUpperCase() + receipt.status.slice(1)}
-                                                            </span>
-                                                        )}
-                                                    </div>
-                                                    <div className="flex max-w-full shrink-0 flex-wrap items-center gap-2">
-                                                        {receipt.hosted_invoice_url && (
-                                                            <Button asChild variant="secondary" size="sm">
-                                                                <a
-                                                                    href={receipt.hosted_invoice_url}
-                                                                    target="_blank"
-                                                                    rel="noreferrer"
-                                                                >
-                                                                    Invoice
-                                                                </a>
-                                                            </Button>
-                                                        )}
-                                                        {receipt.invoice_pdf && (
-                                                            <Button asChild variant="secondary" size="sm">
-                                                                <a
-                                                                    href={receipt.invoice_pdf}
-                                                                    target="_blank"
-                                                                    rel="noreferrer"
-                                                                >
-                                                                    PDF
-                                                                </a>
-                                                            </Button>
-                                                        )}
-                                                    </div>
-                                                </div>
+                                                <li key={receipt.id} className={settings.item}>
+                                                    <span>
+                                                        <span className={settings.strong}>{formatAmount(receipt.amount_paid, receipt.currency)}</span> · {formatDate(receipt.created_at)} · {receipt.number || receipt.id}
+                                                        {receipt.status && <> · {receipt.status.charAt(0).toUpperCase() + receipt.status.slice(1)}</>}
+                                                    </span>
+                                                    <span className={settings.rowAction}>
+                                                        {receipt.hosted_invoice_url && <a href={receipt.hosted_invoice_url} target="_blank" rel="noreferrer" className="focus-ring riyp-link-quiet">Receipt<span className="sr-only"> (opens in a new tab)</span></a>}
+                                                        {receipt.invoice_pdf && <a href={receipt.invoice_pdf} target="_blank" rel="noreferrer" className="focus-ring riyp-link-quiet">PDF<span className="sr-only"> (opens in a new tab)</span></a>}
+                                                    </span>
+                                                </li>
                                             ))}
-                                        </div>
+                                        </ul>
                                     )}
                                 </div>
-                            </section>
+                                <div className={settings.rowAction}>
+                                    <Button type="button" variant="quiet" size="sm" onClick={() => { void refetchReceipts(); }} disabled={loadingReceipts} aria-busy={loadingReceipts}>
+                                        <ActionFeedback state={loadingReceipts ? "pending" : "idle"} states={{ idle: { label: "Refresh" }, pending: { label: "Loading…" } }} />
+                                    </Button>
+                                </div>
+                            </div>
+                            </div>
                         </div>
                     )}
                 </div>

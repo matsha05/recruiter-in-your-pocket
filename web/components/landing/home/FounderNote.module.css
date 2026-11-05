@@ -1,4 +1,4 @@
-/* The founder note: the drawing at the left, the note in the recruiter's hand, the wordmark as signature. */
+/* The founder note: the drawing at the left, the signed note (components/materials/SignedNote) beside it. */
 
 .beat {
     display: grid;
@@ -7,27 +7,12 @@
     align-items: start;
 }
 
-.portrait { grid-row: 1 / span 3; width: 12rem; height: auto; margin: -1rem 0 0 -1rem; }
-
-.note {
-    grid-column: 2;
-    max-width: 38ch;
-    margin: 0;
-    color: hsl(var(--pen));
-    font: var(--type-note);
-    font-size: 1.5rem;
-    line-height: 1.4;
-    text-wrap: pretty;
-}
-
-.signature { grid-column: 2; display: flex; align-items: center; gap: 0.875rem; margin: 1.75rem 0 0; }
-.dash { width: 1.5rem; height: 1.5px; background: hsl(var(--pen)); }
-.mark { height: 1.125rem; width: auto; color: hsl(var(--text-strong)); }
-
+.portrait { grid-row: 1 / span 2; width: 12rem; height: auto; margin: -1rem 0 0 -1rem; }
+.note { grid-column: 2; }
 .link { grid-column: 2; margin-top: 1.75rem; }
 
 @media (max-width: 720px) {
     .beat { grid-template-columns: 1fr; }
     .portrait { grid-row: auto; width: 8rem; margin: 0; }
-    .note, .signature, .link { grid-column: 1; }
+    .note, .link { grid-column: 1; }
 }

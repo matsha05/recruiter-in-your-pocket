@@ -18,7 +18,9 @@ export const STYLE_BUDGETS = {
   // className on <Button> that restyles its height, padding, label size, or weight.
   buttonOverrides: 0,
   radii: 7,
-  shadows: 5,
+  // Paper (components/materials, Nov 4, 2026) declares one box-shadow for every sheet and strip on the site:
+  // its hairline edge plus its lift, as two custom properties. That is the sixth value.
+  shadows: 6,
   adHocHovers: 51,
   legacyTypeUtilities: 119,
   // Roles own their line height; these are the overrides left in pages another workstream is editing.

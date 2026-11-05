@@ -251,14 +251,9 @@ export function AuthFlow({
       We sent an 8-digit code to <span className="font-medium text-foreground">{email || "your email"}</span>
     </p>
   ) : null;
-  const outerClass = variant === "page"
-    ? "min-h-[80vh] bg-background px-4 pb-16 pt-28 text-foreground selection:bg-brand/15 sm:px-6 md:px-8 md:pb-24 md:pt-36"
-    : "";
-
-  const panelClass = cn(
-    "grid gap-5",
-    variant === "page" && "rounded-2xl border border-border bg-card p-5 sm:rounded-3xl sm:p-7"
-  );
+  // The page variant sits bare on the ground (Nov 4, 2026): no card, no padding of its own; app/auth lays it out.
+  const outerClass = variant === "page" ? "text-foreground" : "";
+  const panelClass = "grid gap-5";
 
   return (
     <div
@@ -313,6 +308,9 @@ export function AuthFlow({
                 Send sign-in code
                 <ArrowRight className="ml-2 size-4" weight="bold" />
               </Button>
+              {variant === "page" ? (
+                <p className="text-sm text-muted-foreground">No password. The code works once and expires soon.</p>
+              ) : null}
             </div>
           )}
 
