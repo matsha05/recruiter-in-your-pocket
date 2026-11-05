@@ -38,13 +38,13 @@ assert.equal(kevin.score, 58);
 assert.equal(reportToneOf(kevin), "not_ready", "Kevin's 58 is the bottom rung on the score alone");
 assert.equal(askFirstOffered(kevin), true);
 const kevinAtSixty = kevinRuns.find((run) => run.score === 60)!;
-assert.equal(askFirstOffered(kevinAtSixty), false, "his 60 without the severity check's flags reads as needing context, not as not ready");
-assert.equal(askFirstOffered(flagged(kevinAtSixty, [true, true, true])), true, "with the gap flagged as a second miss, the 60 is not ready too");
+assert.equal(askFirstOffered(kevinAtSixty), false, "his 60 reads as needing context, not as not ready: the line is the band alone");
+assert.equal(askFirstOffered(flagged(kevinAtSixty, [true, true, true])), false, "and the severity check's flags don't move it (Matt: \"Band only\")");
 assert.equal(reportToneOf(meredith), "ready", "Meredith's 92 with one miss is the clear page");
 assert.equal(askFirstOffered(meredith), false);
 assert.equal(askFirstOffered({ ...kevin, top_fixes: [] }), false, "nothing to ask about, nothing to ask");
-assert.equal(askFirstOffered({ ...flagged(kevin, [true, true, false]), score: 66 }), true, "a 66 with two flagged misses is not ready either");
-assert.equal(askFirstOffered({ ...flagged(kevin, [true, false, false]), score: 66 }), false, "a 66 with one miss gets the report straight away");
+assert.equal(askFirstOffered({ ...flagged(kevin, [true, true, false]), score: 66 }), false, "band only (Matt): flagged misses never move the rung");
+assert.equal(askFirstOffered({ ...flagged(kevin, [true, false, false]), score: 59 }), true);
 assert.equal(isAskFirstEnabled(undefined), true);
 assert.equal(isAskFirstEnabled("0"), false);
 assert.equal(isAskFirstEnabled("off"), false);
@@ -94,9 +94,10 @@ const unanswered = composeAskFirstResume(kevinResume, questions, {});
 assert.equal(unanswered.answered, 0);
 assert.equal(unanswered.text, kevinResume, "no answers, no change");
 
+const did = (value: string) => ({ value, relation: "did" as const });
 const answers = {
-  [questions[0].id]: "the daily shipment log and the weekly on-time delivery report, read by the operations manager",
-  [questions.find((question) => question.kind === "general")!.id]: "Scheduling 30 volunteers across 12 events a year",
+  [questions[0].id]: did("the daily shipment log and the weekly on-time delivery report, read by the operations manager"),
+  [questions.find((question) => question.kind === "general")!.id]: did("Scheduling 30 volunteers across 12 events a year"),
 };
 const composed = composeAskFirstResume(kevinResume, questions, answers);
 assert.equal(composed.answered, 2);
@@ -109,7 +110,7 @@ assert.ok(composed.text.endsWith(`${ASK_FIRST_ADDED_HEADING}\n- Scheduling 30 vo
 assert.equal(composed.text.split("\n").length, kevinResume.trimEnd().split("\n").length + 3, "two lines and a blank line were added, nothing else moved");
 assert.ok(composed.text.includes("- Was responsible for assisting with daily operational tasks."), "untouched lines stay word for word");
 
-const gapAnswers = { [gapQuestions[0].id]: "Job search and CAPM coursework, Aug 2023 to now", [gapQuestions[1].id]: "Operations Coordinator" };
+const gapAnswers = { [gapQuestions[0].id]: did("Job search and CAPM coursework, Aug 2023 to now"), [gapQuestions[1].id]: did("Operations Coordinator") };
 const composedGap = composeAskFirstResume(kevinResume, gapQuestions, gapAnswers);
 const gapLines = composedGap.text.split("\n");
 assert.equal(gapLines[0].trim(), "Kevin M. Turner", "the name stays first");
@@ -118,9 +119,20 @@ assert.ok(composedGap.text.endsWith(`${ASK_FIRST_ADDED_HEADING}\n- Job search an
 assert.match(composedGap.text, /\nFeb 2023 - Jul 2023\s*\n- Was responsible/u, "the dated line itself is not touched");
 
 // Whitespace in an answer collapses; a blank answer counts as none.
-const spaced = composeAskFirstResume(kevinResume, questions, { [questions[0].id]: "  the  shipment   log  ", [questions[1].id]: "   " });
+const spaced = composeAskFirstResume(kevinResume, questions, { [questions[0].id]: did("  the  shipment   log  "), [questions[1].id]: did("   ") });
 assert.equal(spaced.answered, 1);
 assert.ok(spaced.text.includes("updating reports: the shipment log."));
+
+// Three honest states (Matt, Nov 5): related work never goes into the line it was asked about; "none" is left out.
+const related = composeAskFirstResume(kevinResume, questions, {
+  [questions[0].id]: { value: "Kept the warehouse inventory sheet for a summer job", relation: "related" },
+  [questions[1].id]: { value: "typed but left out", relation: "none" },
+});
+assert.equal(related.answered, 1);
+assert.match(related.text, /- Duties included maintaining records and updating reports\.\s*\n/u, "the line stays as it was");
+assert.ok(related.text.endsWith(`${ASK_FIRST_ADDED_HEADING}\n- Kept the warehouse inventory sheet for a summer job`), "the related work is its own line");
+assert.ok(!related.text.includes("typed but left out"));
+assert.equal(askFirstPlaceholder("line", "related"), "The related work, as you'd put it on the page");
 
 // ============================================
 // The request: a rebuild names the report it is written from

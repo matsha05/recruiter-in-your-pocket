@@ -6,8 +6,7 @@ import { Paper } from "@/components/materials/Paper";
 import { MarkerStroke } from "@/components/materials/Pen";
 import clip from "@/components/materials/Clipping.module.css";
 import { Button } from "@/components/ui/button";
-import { askFirstPlaceholder, type AskFirstAnswers, type AskFirstQuestion } from "@/lib/reports/ask-first";
-import { readCriticalMisses } from "@/lib/reports/report-presentation";
+import { askFirstPlaceholder, type AskFirstAnswers, type AskFirstQuestion, type AskFirstRelation } from "@/lib/reports/ask-first";
 import { candidateNameOf } from "@/lib/reports/report-opening";
 import { cn } from "@/lib/utils";
 import type { ReportData } from "./ReportTypes";
@@ -21,6 +20,13 @@ const COUNT_WORDS = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", 
 function countWord(count: number) {
   return COUNT_WORDS[count] || String(count);
 }
+
+/** The three honest states (Matt, Nov 5, 2026), in the order a person decides them. */
+const RELATIONS: Array<{ id: AskFirstRelation; label: string }> = [
+  { id: "did", label: "I did this" },
+  { id: "related", label: "I did related work" },
+  { id: "none", label: "I haven't done this" },
+];
 
 /** The lines just above and below the quoted one, so the question reads as a clipping cut from the page. */
 function neighbours(resumeText: string | undefined, excerpt: string): { above?: string; below?: string } {
@@ -45,9 +51,11 @@ function sectionLabel(section?: string) {
 /**
  * Questions first (Matt, Nov 5, 2026). The page landed on the bottom rung, so before the report the
  * person sees where they stand and the questions a recruiter would ask and never get to: each on
- * the line it is about, in the recruiter's own words, with a field. "Write my report" writes the
- * report again from the page plus the answers (with none, it shows the first read); "Skip" shows
- * the first read as it is.
+ * the line it is about, in the recruiter's own words, with a field. Each question has three honest
+ * states: I did this (the answer goes into the line), I did related work (the work goes on the page
+ * as its own line, never into this one), I haven't done this (left out). "Write my report" writes
+ * the report again from the page plus the answers (with none, it shows the first read); "Skip"
+ * shows the first read as it is.
  */
 export function AskFirst({
   report: data,
@@ -63,10 +71,8 @@ export function AskFirst({
   onSkip: () => void;
 }) {
   const [answers, setAnswers] = useState<AskFirstAnswers>({});
-  const [skipped, setSkipped] = useState<Record<string, boolean>>({});
   const titleRef = useRef<HTMLHeadingElement>(null);
   const baseId = useId();
-  const misses = readCriticalMisses(data);
   const name = candidateNameOf(resumeText);
 
   // The screen opens at its heading, with the band and the first question in view.
@@ -78,14 +84,9 @@ export function AskFirst({
     return () => cancelAnimationFrame(frame);
   }, []);
 
-  const setAnswer = (id: string, value: string) => {
-    setAnswers((current) => ({ ...current, [id]: value }));
-    if (value.trim()) setSkipped((current) => (current[id] ? { ...current, [id]: false } : current));
-  };
-  const skip = (id: string) => {
-    setAnswers((current) => ({ ...current, [id]: "" }));
-    setSkipped((current) => ({ ...current, [id]: true }));
-  };
+  const answerOf = (id: string) => answers[id] ?? { value: "", relation: "did" as const };
+  const setValue = (id: string, value: string) => setAnswers((current) => ({ ...current, [id]: { ...answerOf(id), value } }));
+  const setRelation = (id: string, relation: AskFirstRelation) => setAnswers((current) => ({ ...current, [id]: { ...answerOf(id), relation } }));
 
   return (
     <div className={cn(report.root, styles.root)} data-testid="ask-first">
@@ -97,7 +98,7 @@ export function AskFirst({
         <h1 id="ask-first-title" ref={titleRef} tabIndex={-1} className={styles.title}>
           {countWord(questions.length)} {questions.length === 1 ? "question" : "questions"} before the report.
         </h1>
-        {typeof data.score === "number" && <ScoreBand score={data.score} misses={misses} anchorOnPhones />}
+        {typeof data.score === "number" && <ScoreBand score={data.score} anchorOnPhones />}
       </section>
 
       <section className={cn(report.page, styles.page)} aria-labelledby="ask-first-questions">
@@ -110,11 +111,13 @@ export function AskFirst({
             const fieldId = `${baseId}-${question.id}`;
             const onPage = Boolean(question.excerpt);
             const around = onPage ? neighbours(resumeText, question.excerpt) : {};
-            const isSkipped = Boolean(skipped[question.id]);
+            const answer = answerOf(question.id);
             // One voice per row: the note and the question are the model's words, in the pen.
             const ask = question.question || question.note;
+            // Only a question about a line on the page has the three states; a general question is just asked.
+            const states = question.kind === "line";
             return (
-              <li key={question.id} className={styles.row} data-kind={question.kind} data-skipped={isSkipped || undefined}>
+              <li key={question.id} className={styles.row} data-kind={question.kind} data-relation={answer.relation}>
                 <p className={styles.rowLabel}>
                   <span className={styles.position}>{index + 1} of {questions.length}</span>
                   {sectionLabel(question.section) && <span className={styles.section}>· {sectionLabel(question.section)}</span>}
@@ -131,22 +134,50 @@ export function AskFirst({
                 {question.note && question.question && <p className={styles.note}>{question.note}</p>}
                 <div className={styles.field}>
                   <label htmlFor={fieldId} className={cn(styles.note, styles.ask)}>{ask}</label>
-                  <input
-                    id={fieldId}
-                    type="text"
-                    className={report.liftInput}
-                    value={answers[question.id] || ""}
-                    onChange={(event) => setAnswer(question.id, event.target.value)}
-                    placeholder={isSkipped ? "Left out" : askFirstPlaceholder(question.kind)}
-                    autoComplete="off"
-                    maxLength={300}
-                  />
-                  {!isSkipped && !(answers[question.id] || "").trim() && (
-                    <div className={report.liftSkips}>
-                      <Button type="button" variant="quiet" size="sm" onClick={() => skip(question.id)}>I don&apos;t know</Button>
+                  {states && (
+                    <div className={styles.states} role="group" aria-label="Which is true">
+                      {RELATIONS.map((relation) => (
+                        <Button
+                          key={relation.id}
+                          type="button"
+                          variant="quiet"
+                          size="sm"
+                          aria-pressed={answer.relation === relation.id}
+                          className={cn(styles.state, answer.relation === relation.id && styles.stateOn)}
+                          onClick={() => setRelation(question.id, relation.id)}
+                        >
+                          {relation.label}
+                        </Button>
+                      ))}
                     </div>
                   )}
-                  {isSkipped && <p className={report.liftSkipped}>Left out. Type here if you find out.</p>}
+                  {answer.relation === "related" && (
+                    <p className={styles.related}>Say what the related work was. It goes on the page as its own line, not into this one.</p>
+                  )}
+                  {answer.relation === "none" ? (
+                    <p className={report.liftSkipped}>Left out.</p>
+                  ) : (
+                    <input
+                      id={fieldId}
+                      type="text"
+                      className={report.liftInput}
+                      value={answer.value}
+                      onChange={(event) => setValue(question.id, event.target.value)}
+                      placeholder={askFirstPlaceholder(question.kind, answer.relation)}
+                      autoComplete="off"
+                      maxLength={300}
+                    />
+                  )}
+                  {!states && answer.relation !== "none" && !answer.value.trim() && (
+                    <div className={report.liftSkips}>
+                      <Button type="button" variant="quiet" size="sm" onClick={() => setRelation(question.id, "none")}>I don&apos;t know</Button>
+                    </div>
+                  )}
+                  {!states && answer.relation === "none" && (
+                    <div className={report.liftSkips}>
+                      <Button type="button" variant="quiet" size="sm" onClick={() => setRelation(question.id, "did")}>Answer it after all</Button>
+                    </div>
+                  )}
                 </div>
               </li>
             );

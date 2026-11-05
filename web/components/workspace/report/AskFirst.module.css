@@ -96,8 +96,32 @@
     display: block;
 }
 
-.row[data-skipped] .ask {
+.row[data-relation="none"] .ask {
     color: hsl(var(--muted-foreground));
+}
+
+/* The three honest states: quiet buttons, the chosen one in ink with its underline, the rest muted. */
+.states {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 0.75rem;
+    margin-left: -0.5rem;
+}
+
+.state {
+    color: hsl(var(--muted-foreground));
+    text-decoration-color: transparent;
+}
+
+.stateOn {
+    color: hsl(var(--text-strong));
+    text-decoration-color: hsl(var(--text-strong));
+}
+
+.related {
+    max-width: 52ch;
+    color: hsl(var(--muted-foreground));
+    font: var(--type-small);
 }
 
 .actions {

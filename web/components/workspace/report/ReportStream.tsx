@@ -12,7 +12,6 @@ import { liftAnswersFromStored, sendLineAnswers, storedAnswersFromLift, type Sto
 import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
 import { sendReportFeedback } from "@/lib/reports/report-feedback";
 import {
-  buildIndependentQuestionPresentation,
   buildReportRewritePresentation,
   criticalCountHeading,
   fixLabel,
@@ -29,7 +28,6 @@ import { splitVerdict } from "@/lib/reports/report-opening";
 import { liftQuestions } from "@/lib/reports/revised-line";
 import { saveUnlockContext } from "@/lib/unlock/unlockContext";
 import { cn } from "@/lib/utils";
-import { FullRecruiterNotes } from "./FullRecruiterNotes";
 import { IndependentAdvice } from "./IndependentAdvice";
 import { ReadComparison } from "./ReadComparison";
 import { ResearchReceipts } from "./ResearchReceipts";
@@ -98,10 +96,6 @@ export function ReportStream({
   const presentation = useMemo(
     () => buildReportRewritePresentation(fixes, reconciled.rewrites || []),
     [fixes, reconciled.rewrites],
-  );
-  const questions = useMemo(
-    () => buildIndependentQuestionPresentation(reconciled.ideas?.questions || []),
-    [reconciled.ideas?.questions],
   );
   const strengths = (reconciled.strengths || []).slice(0, 3);
   const roleFit = report.job_alignment?.role_fit;
@@ -207,7 +201,7 @@ export function ReportStream({
             )}
           </div>
         )}
-        {typeof report.score === "number" && <ScoreBand score={report.score} misses={misses} />}
+        {typeof report.score === "number" && <ScoreBand score={report.score} />}
         {/* A structural gap the model flags (a dated break, a missing section) is said in the opening read, where the person looks for it. */}
         {integrity.structuralGaps.length > 0 && (
           <div className={styles.gapRow} data-testid="structural-gaps">
@@ -299,7 +293,7 @@ export function ReportStream({
 
       <ResearchReceipts />
 
-      <IndependentAdvice rewrites={presentation.independentRewrites} questions={questions} resumeText={sourceText} isReadOnly={isSample} />
+      <IndependentAdvice rewrites={presentation.independentRewrites} resumeText={sourceText} isReadOnly={isSample} />
 
       {strengths.length > 1 && (
         <section id="section-keep" className={cn(styles.keep, "scroll-mt-36")} aria-labelledby="keep-title">
@@ -340,8 +334,6 @@ export function ReportStream({
           {report.score_comment_long && report.score_comment_long !== report.score_plain && <p>{report.score_comment_long}</p>}
         </div>
       </details>
-
-      <FullRecruiterNotes report={reconciled} hasJobDescription={hasJobDescription} />
 
       {isSample && onStartReport && (
         <section className={styles.ending} aria-labelledby="report-next-step" data-testid="sample-terminal-cta">

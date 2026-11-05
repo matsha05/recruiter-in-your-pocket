@@ -342,8 +342,7 @@ for (const [label, report] of outputs) {
   const web = decode(webHtml);
   const opening = decode(webHtml.slice(webHtml.indexOf('id="section-first-impression"'), webHtml.indexOf('id="section-fixes"')));
   const missRow = decode(rowOf(webHtml, 'id="section-fix-1"'));
-  const page = decode(webHtml.slice(webHtml.indexOf('id="section-fixes"'), webHtml.indexOf('id="section-full-notes"')));
-  const fullNotes = decode(webHtml.slice(webHtml.indexOf('id="section-full-notes"')));
+  const page = decode(webHtml.slice(webHtml.indexOf('id="section-fixes"'), webHtml.indexOf('id="section-score"')));
   const pdfReport = normalizeReportForPdf(report);
   assert.ok(pdfReport, `${label}: PDF normalizes`);
   const pdf = decode(renderReportHtml(pdfReport));
@@ -389,11 +388,14 @@ for (const [label, report] of outputs) {
   }
   for (const { text } of integrity.structuralGaps) {
     assert.ok(opening.includes(plain(text)), `${label}: the structural gap is in the opening read, without expanding anything`);
-    assert.ok(!fullNotes.includes(plain(text)), `${label}: and not again in the collapsed notes`);
+    assert.equal(occurrences(web, text), 1, `${label}: and nowhere else on the web`);
     assert.equal(occurrences(pdf, text), 1, `${label}: the PDF shows it once`);
   }
+  // The five interview questions and the full notes are cut (Matt, Nov 5, 2026).
+  assert.ok(!web.includes("Questions only you can answer") && !web.includes("Full recruiter notes"), `${label}: no interview questions, no full notes`);
+  // What used to live in them (the remaining gaps, the open questions) renders nowhere on the web now; the PDF never printed them.
   for (const note of [...(integrity.report.gaps || []), ...(integrity.report.ideas?.questions || []).map(({ question }) => question)]) {
-    assert.equal(occurrences(web, note), 1, `${label}: "${note.slice(0, 40)}" renders once`);
+    assert.equal(occurrences(web, note), 0, `${label}: "${note.slice(0, 40)}" is cut`);
   }
 }
 

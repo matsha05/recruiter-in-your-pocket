@@ -168,25 +168,21 @@ assert.equal(composeRevisedLine("- Did the thing.", [said("for 3 teams."), said(
 // Score bands (D5) and the critical fixes
 // ============================================
 
-// Four rungs (Matt, Nov 5, 2026). The three upper rungs match the validator's score_label; the bottom one
-// splits its lowest band on the score alone below 60, or on a second flagged Critical Miss anywhere in it.
+// Four rungs (Matt, Nov 5, 2026: "Band only"). The three upper rungs match the validator's score_label; the
+// bottom one is the lowest band below 60, on the score alone.
 for (const score of [60, 69, 70, 84, 85, 92, 99]) {
   assert.equal(scoreBandFor(score).name, getScoreLabel(score), `band for ${score} matches the validator's score_label`);
 }
 for (const score of [0, 40, 55, 59]) {
-  assert.equal(scoreBandFor(score).name, "Not ready yet", `a ${score} reads as not ready on the score alone`);
+  assert.equal(scoreBandFor(score).name, "Not ready yet", `a ${score} reads as not ready`);
 }
-const twoFlagged = { count: 2, counted: true };
-assert.equal(scoreBandFor(60, twoFlagged).name, "Not ready yet", "a second flagged miss on the bottom band reads as not ready");
-assert.equal(scoreBandFor(68, twoFlagged).name, "Not ready yet");
-assert.equal(scoreBandFor(68, { count: 1, counted: true }).name, "Needs more context", "one miss, bottom band: needs more context");
-assert.equal(scoreBandFor(68, { count: 2, counted: false }).name, "Needs more context", "an uncounted report never reads as not ready above 60");
-assert.equal(scoreBandFor(70, twoFlagged).name, "Mostly clear", "the rung never reaches above the validator's lowest band");
+assert.equal(scoreBandFor(60).name, "Needs more context", "the line is 60");
 assert.equal(SCORE_BANDS.length, 4);
 assert.equal(new Set(SCORE_BANDS.map((band) => band.anchor)).size, SCORE_BANDS.length, "each band has its own anchor");
 // The tone: not ready on the bottom rung; ready on a clear page with a single miss; standard otherwise.
+const twoFlagged = { count: 2, counted: true };
 assert.equal(reportTone(58, { count: 1, counted: true }), "not_ready");
-assert.equal(reportTone(66, twoFlagged), "not_ready");
+assert.equal(reportTone(66, twoFlagged), "standard", "flagged misses never move the bottom rung (band only)");
 assert.equal(reportTone(66, { count: 1, counted: true }), "standard");
 assert.equal(reportTone(92, { count: 1, counted: true }), "ready");
 assert.equal(reportTone(92, { count: 1, counted: false }), "ready", "a clear page before the severity check is ready too");

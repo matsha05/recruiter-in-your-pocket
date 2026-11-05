@@ -54,7 +54,7 @@ export function renderReportHtml(report: ReportForPdf) {
   const tone = reportTone(report.score, misses);
   const countHeading = criticalCountHeading(misses, tone);
   const ready = tone === "ready" && misses.count === 1;
-  const bandIndex = Math.max(0, scoreBandIndex(report.score, misses));
+  const bandIndex = Math.max(0, scoreBandIndex(report.score));
   const band = SCORE_BANDS[bandIndex];
   const [keepFirst, ...keepRest] = report.strengths || [];
 

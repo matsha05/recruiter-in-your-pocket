@@ -139,82 +139,18 @@ const scoreHtml = completeReportHtml.slice(scoreStart, scoreEnd + "</details>".l
 for (const expected of ["DETAILED SCORE REASON SENTINEL", "DETAILED SCORE MEANING SENTINEL"]) {
   assert.ok(scoreHtml.includes(expected), `the score disclosure must retain ${expected}`);
 }
-const fullNotesStart = completeReportHtml.indexOf('<details id="section-full-notes"');
-assert.notEqual(fullNotesStart, -1, "the report must expose a full recruiter notes disclosure");
-const fullNotesEnd = completeReportHtml.indexOf("</details>", fullNotesStart);
-assert.notEqual(fullNotesEnd, -1, "the full recruiter notes disclosure must be structurally complete");
-const fullNotesHtml = completeReportHtml.slice(fullNotesStart, fullNotesEnd + "</details>".length);
-assert.match(fullNotesHtml, /<summary\b/, "full recruiter notes must use a native accessible disclosure");
-assert.match(fullNotesHtml, /role="heading" aria-level="2"/, "full recruiter notes must remain available in heading navigation");
-assert.doesNotMatch(
-  fullNotesHtml.slice(0, fullNotesHtml.indexOf(">") + 1),
-  /\sopen(?:=|>)/,
-  "full recruiter notes must stay collapsed until requested",
-);
+// The full recruiter notes and the five interview questions were cut from the report (Matt, Nov 5, 2026):
+// nothing the marked rows already say is repeated below them, and the detail fields stay in the data.
+assert.equal(completeReportHtml.includes('id="section-full-notes"'), false, "no full recruiter notes disclosure");
+assert.equal(completeReportHtml.includes("Questions only you can answer"), false, "no interview-style question list");
+assert.equal(completeReportHtml.includes("Full recruiter notes"), false);
 const openingHtml = completeReportHtml.slice(completeReportHtml.indexOf('id="section-first-impression"'), completeReportHtml.indexOf('id="section-fixes"'));
 assert.ok(openingHtml.includes("DETAILED OPENING SENTINEL"), "the recruiter's first impression must lead the report as the Verdict");
-assert.ok(!fullNotesHtml.includes("DETAILED OPENING SENTINEL"), "the Verdict must not repeat inside full recruiter notes");
-for (const expected of [
-  "DETAILED SUMMARY SENTINEL",
-  "DETAILED GAP EXAMPLE SENTINEL",
-  "REMAINING STRENGTH SENTINEL",
-  "REMAINING GAP TWO SENTINEL",
-  "THIRD OPEN GAP MARKER",
-  "SECTION WORKING SENTINEL",
-  "SECTION MISSING SENTINEL",
-  "SECTION FIX SENTINEL",
-  "NEXT STEP ONE SENTINEL",
-  "DETAILED JOB SUMMARY SENTINEL",
-  "ALIGNED DETAIL SENTINEL",
-  "UNDERPLAYED DETAIL SENTINEL",
-  "MISSING DETAIL SENTINEL",
-  "MATCHED KEYWORD SENTINEL",
-  "MISSING KEYWORD SENTINEL",
-  "EXTRA ROLE SENTINEL",
-  "STRETCH ROLE SENTINEL",
-  "INDUSTRY SENTINEL",
-  "COMPANY STAGE SENTINEL",
-]) {
-  assert.ok(fullNotesHtml.includes(expected), `full recruiter notes must render ${expected}`);
+for (const cut of ["SECTION WORKING SENTINEL", "SECTION MISSING SENTINEL", "SECTION FIX SENTINEL", "STRETCH ROLE SENTINEL", "INDUSTRY SENTINEL", "COMPANY STAGE SENTINEL", "MATCHED KEYWORD SENTINEL"]) {
+  assert.equal(completeReportHtml.includes(cut), false, `the cut notes no longer render ${cut}`);
 }
-assert.ok(fullNotesHtml.includes("VISIBLE GAP ONE"), "the first gap moves into full notes now that the Critical Miss leads the report");
-for (const alreadyVisible of [
-  "PRIMARY SHORT COPY",
-  "VISIBLE STRENGTH ONE",
-  "VISIBLE ROLE POSITIONING",
-  "VISIBLE ROLE ONE",
-  "VISIBLE SENIORITY",
-  "DETAILED SCORE REASON SENTINEL",
-  "DETAILED SCORE MEANING SENTINEL",
-]) {
-  assert.equal(fullNotesHtml.includes(alreadyVisible), false, `full recruiter notes must not repeat ${alreadyVisible}`);
-}
-
-// Without a posting, the validator writes the exact "No job description provided." summary.
-const sampleReportHtml = renderToStaticMarkup(createElement(ReportStream, {
-  report: { ...completeReport, job_alignment: { ...completeReport.job_alignment, jd_match_summary: "No job description provided." } },
-  isSample: true,
-}));
-const sampleFullNotesStart = sampleReportHtml.indexOf('<details id="section-full-notes"');
-assert.notEqual(sampleFullNotesStart, -1, "the public sample must expose the same full recruiter notes disclosure");
-const sampleFullNotesEnd = sampleReportHtml.indexOf("</details>", sampleFullNotesStart);
-const sampleFullNotesHtml = sampleReportHtml.slice(sampleFullNotesStart, sampleFullNotesEnd + "</details>".length);
-for (const expected of [
-  "DETAILED SUMMARY SENTINEL",
-  "REMAINING GAP TWO SENTINEL",
-  "SECTION WORKING SENTINEL",
-  "NEXT STEP ONE SENTINEL",
-  "STRETCH ROLE SENTINEL",
-  "COMPANY STAGE SENTINEL",
-]) {
-  assert.ok(sampleFullNotesHtml.includes(expected), `the public sample full notes must render ${expected}`);
-}
-for (const jobOnlyDetail of [
-  "DETAILED JOB SUMMARY SENTINEL",
-  "ALIGNED DETAIL SENTINEL",
-  "MATCHED KEYWORD SENTINEL",
-]) {
-  assert.equal(sampleFullNotesHtml.includes(jobOnlyDetail), false, `reports without a job description must hide ${jobOnlyDetail}`);
+for (const alreadyVisible of ["PRIMARY SHORT COPY", "VISIBLE STRENGTH ONE", "VISIBLE ROLE POSITIONING", "VISIBLE ROLE ONE", "VISIBLE SENIORITY"]) {
+  assert.equal(completeReportHtml.split(alreadyVisible).length - 1, 1, `${alreadyVisible} renders once`);
 }
 
 const exactRelationshipCases = [

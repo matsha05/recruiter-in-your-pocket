@@ -78,18 +78,24 @@ The parallel session is to run six hole resumes (bad, thin, strong, paragraph, S
 
 Kevin: **A, ask first.** Meredith: **A, the question they'd ask.** Scope: **build both, no prompt changes**; anything that needs a prompt change goes below as a proposal with an eval plan.
 
+## Matt's decisions on the first build (November 5, 2026, through the question UI in the parent session)
+
+1. **Trigger: band only.** Ask-first runs on the bottom rung alone; the second trigger (a flagged Critical Miss) came out. Widen later only if a live weak resume earns it.
+2. **Pricing: "The answered read is free"**, for free and pass users, as built.
+3. **Cuts in this wave: "Full recruiter notes" and "The five interview questions."** Both are gone from the web report (the PDF never printed them; its `Next steps` checklist stays). Not cut: role fit without a posting, Hide on every row.
+4. **Order.** Matt merges PR 66 himself after reading it; the judgment wave (validator refusals, the two detector bugs from PR 62, the first-fix-never-moves rule) comes after, in its own session.
+
+And one addition, if it fit the question unit cheaply: three honest states in place of the two escape hatches. It fit the questions screen (below) and not the report's own answer flow, which is written up as a follow-up.
+
 ## The build
 
 Everything below runs on the unchanged production prompt (`83b2a2d1`) and the unchanged severity check; no validator rule changed; no new model call for anyone whose page is not on the bottom rung.
 
 ### The fourth rung, and the tone of the report
 
-`web/lib/reports/score-band.ts`. The band has four rungs: `Not ready yet`, `Needs more context`, `Mostly clear`, `Clear and specific`. The three upper ones match the validator's `score_label` as before (85 and 70); `score_label` itself is unchanged, so stored reports, the preview event and the evals keep their three labels. The bottom rung is the validator's lowest band when either holds:
+`web/lib/reports/score-band.ts`. The band has four rungs: `Not ready yet`, `Needs more context`, `Mostly clear`, `Clear and specific`. The three upper ones match the validator's `score_label` as before (85 and 70); `score_label` itself is unchanged, so stored reports, the preview event and the evals keep their three labels. The bottom rung is the validator's lowest band below 60, on the score alone (Matt, after reading the first build: "Band only"; a second trigger on a flagged Critical Miss was built and taken out, to be widened later only if a live weak resume earns it).
 
-- the score is below 60, or
-- the severity check flagged a second Critical Miss.
-
-Why not "under 55", which the review sketched: the live run of November 5 (PR 62) found nothing scores below 57, the whole weak set sits between 57 and 68, and a rung under 55 "would have caught nothing in 90 reports". Kevin's four production runs scored 58, 60, 60 and 58, so the score alone splits him; with the gap the severity check adds on every run of his, the second rule catches all four. On the golden set the rule puts the four labelled weak pages (55, 58, 59, 61 with two or three flagged misses) and the two "foundation" pages with a gap (61) on the rung, and leaves the thin student drafts (64 to 65), the unverifiable-claim page (64), and the career changer with a thin portfolio (68, one miss) above it. That is a calibration read, not a measurement of the rung against people; see "What still needs the live-model results".
+Why not "under 55", which the review sketched: the live run of November 5 (PR 62) found nothing scores below 57, the whole weak set sits between 57 and 68, and a rung under 55 "would have caught nothing in 90 reports". Kevin's four production runs scored 58, 60, 60 and 58, so the line at 60 catches two of his four runs and not the other two; on the golden set it puts the labelled weak pages at 55, 58 and 59 on the rung and leaves the two "foundation" pages with a gap (61), the thin student drafts (64 to 65), the unverifiable-claim page (64) and the career changer with a thin portfolio (68) above it. That is a calibration read, not a measurement of the rung against people; see "What still needs the live-model results".
 
 `reportTone(score, misses)` names how the report speaks: `not_ready` (the bottom rung), `ready` (the top rung with a single miss, counted or not), `standard`. The same function drives the web report, the PDF and the server's ask-first offer, so the three never disagree.
 
@@ -110,12 +116,20 @@ With two or more flagged misses on a clear page the severity check has earned th
 `web/lib/reports/ask-first.ts` (the rule, the questions, the composition), `ask-first-rebuild.ts` (the server gate), the stream route, `lib/api.ts`, `useResumeReview.ts`, `WorkspaceClient.tsx`, `ResumeModeSection.tsx`, `ReportPanel.tsx`, `AskFirst.tsx`.
 
 1. The first read runs as it always has. When the finished report's tone is `not_ready`, the `complete` event carries `ask_first: true` (`RIYP_ASK_FIRST=0` turns this off; a re-check comparison never asks).
-2. The workspace shows the questions instead of the report: `{Count} questions before the report.`, the band at `Not ready yet` with its anchor sentence (shown on phones here, where it is the screen's point), then `A recruiter would ask these. They won't get to.`, `Only what's true. Every answer goes into your resume in your own words.`, and up to eight questions. They come from the report itself, in the report's order: each marked line's own questions first (the Critical Misses lead, so a flagged gap or missing headline comes before a duty bullet), two per line at most, then the report's open questions. Each line question shows the line as the site's clipping; every ask is the model's words in the pen (one voice per row); when a line has no question of its own, the note is the ask and the field's placeholder says the shape of the answer. `I don't know` leaves a question out. `Write my report` with nothing answered is the same as `Skip the questions and read it as it is`: the first read.
+2. The workspace shows the questions instead of the report: `{Count} questions before the report.`, the band at `Not ready yet` with its anchor sentence (shown on phones here, where it is the screen's point), then `A recruiter would ask these. They won't get to.`, `Only what's true. Every answer goes into your resume in your own words.`, and up to eight questions. They come from the report itself, in the report's order: each marked line's own questions first (the Critical Misses lead, so a flagged gap or missing headline comes before a duty bullet), two per line at most, then the report's open questions. Each line question shows the line as the site's clipping; every ask is the model's words in the pen (one voice per row); when a line has no question of its own, the note is the ask and the field's placeholder says the shape of the answer. Each question about a line on the page has three honest states (Matt): `I did this` (the answer goes into the line), `I did related work` (the field asks for the related work, which goes on the page as its own line, never into the line it was asked about), `I haven't done this` (left out). A general question keeps `I don't know`. `Write my report` with nothing answered is the same as `Skip the questions and read it as it is`: the first read.
 3. The answers go into the resume the way the revised line already builds them: a line's answers are composed into that line, word for word (`composeRevisedLine`); a headline answer becomes one line under the name; the time since the last dated role and any general answer go as the person's own lines under `Added after the first read` at the end. Nothing else moves. Every added word is theirs.
 4. The report is written again from that page by the unchanged prompt, through the stream route with `rebuild: { report_id | recovery_id }` instead of a reservation: it spends no free report and no pass credit, the counter is refreshed but never decremented for it, and the wait reads `Writing it up from your answers.` The server runs it only for a first report this visitor can open (their saved report, or their anonymous report's recovery), on the bottom rung, whose first marked line is still on the page sent, and at most three times a day per identity; refusals spend nothing and leave the first report on screen with the questions. Signed in, the rebuilt report is kept as a report of its own (the first stays). Anonymous, it carries a receipt so it can be saved by signing in; a reload returns the first report, since the recovery slot is bound to the first reservation.
 5. The rebuilt report is a normal report, written from the composed page, with `written from N answers` where the read time goes. It never asks again.
 
 Cost: one extra model call for a person on the bottom rung who answers (about $0.011 to $0.019 per shipped report at the live run's measured cost), none for anyone else.
+
+### What was cut
+
+`FullRecruiterNotes` (the section-by-section grades, the remaining strengths and gaps, next steps, the role detail) and the "Questions only you can answer" list are gone from the web report (Matt, November 5). The report is now the Verdict, the band, the marked page, the rewrites it offers on other lines, Keep, role fit, the score note and the ending. The integrity tests now assert that what lived in those sections renders nowhere on the web; the PDF keeps its `Next steps` checklist and never printed the rest.
+
+### Follow-up: the three states in the report's own answer flow
+
+The Critical Miss answer flow (`LineLift`) keeps `I don't know` and `I didn't do this`. Giving it the same three states means a new answer kind in the stored answers (`reports.line_answers`, migration 024, and `line-answers.ts`'s validation), a rule for where related work goes when it can't go into the line, and the saved-report restore. More than UI; not in this PR.
 
 ### What the sketch promised that this build doesn't
 

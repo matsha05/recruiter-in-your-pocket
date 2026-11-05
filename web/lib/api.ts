@@ -102,24 +102,12 @@ export async function streamResumeFeedback(
   jobDescription: string | undefined,
   onChunk: (partialJson: string, partialReport: any | null) => void,
   mode: "resume" | "resume_ideas" | "case_resume" | "case_interview" | "case_negotiation" = "resume",
-  options?: {
-    signal?: AbortSignal;
-    savedJobId?: string | null;
-    onStage?: (stage: GenerationStage) => void;
-    /** Ask-first: write the report again from the resume with the person's answers in it. Names the first report. Free; no recovery marker of its own. */
-    rebuild?: { reportId?: string | null; recoveryId?: string | null } | null;
-  }
+  // `rebuild` (ask-first): write the report again from the resume with the person's answers in it, bound to the first report; free, no recovery marker of its own.
+  options?: { signal?: AbortSignal; savedJobId?: string | null; onStage?: (stage: GenerationStage) => void; rebuild?: { reportId?: string | null; recoveryId?: string | null } | null }
 ): Promise<{
-  ok: boolean;
-  report?: any;
-  message?: string;
-  errorCode?: string;
-  aborted?: boolean;
-  reportId?: string | null;
-  accessConsumed?: boolean;
-  attemptConsumed?: boolean;
+  ok: boolean; report?: any; message?: string; errorCode?: string; aborted?: boolean; reportId?: string | null;
+  accessConsumed?: boolean; attemptConsumed?: boolean; creditRestored?: boolean;
   attemptDisposition?: "consumed" | "restored" | "unknown" | "not_started";
-  creditRestored?: boolean;
   /** The server read the page as not ready: show the questions before the report (ask-first). */
   askFirst?: boolean;
 }> {

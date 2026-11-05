@@ -1,12 +1,12 @@
-import { SCORE_BANDS, scoreBandIndex, type BandMisses } from "@/lib/reports/score-band";
+import { SCORE_BANDS, scoreBandIndex } from "@/lib/reports/score-band";
 import styles from "./MarkedReport.module.css";
 
 /**
  * The first read shows where the resume sits, in words. The number is kept for comparing revisions.
- * The bottom rung reads the Critical Miss count too (score-band.ts), so the report passes it in.
+ * The anchor sentence waits for wider screens, except where the band is the screen's point.
  */
-export function ScoreBand({ score, misses, anchorOnPhones = false }: { score: number; misses?: BandMisses | null; anchorOnPhones?: boolean }) {
-  const current = Math.max(0, scoreBandIndex(score, misses));
+export function ScoreBand({ score, anchorOnPhones = false }: { score: number; anchorOnPhones?: boolean }) {
+  const current = Math.max(0, scoreBandIndex(score));
   const band = SCORE_BANDS[current];
 
   return (

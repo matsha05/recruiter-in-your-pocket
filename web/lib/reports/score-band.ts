@@ -4,11 +4,10 @@
  *
  * Four rungs since November 5, 2026 (Matt: "a fourth rung, Not ready yet"). The three
  * upper rungs match `getScoreLabel`, which the validator writes into score_label. The
- * bottom rung splits the validator's lowest band: a page reads as not ready when its
- * score sits in the lowest part of that band, or when the severity check found a second
- * Critical Miss on it (the live run of November 5 put every weak page between 57 and 68,
- * so the score alone can't separate ten things wrong from three). That rung is also the
- * trigger for the questions-first path (lib/reports/ask-first.ts).
+ * bottom rung is the lowest part of the validator's lowest band, on the score alone
+ * (Matt, Nov 5: "Band only"; the live run of November 5 put every weak page between 57
+ * and 68, so the line sits inside that band, not under it). That rung is also the trigger
+ * for the questions-first path (lib/reports/ask-first.ts).
  */
 
 import { getScoreLabel } from "../score-utils";
@@ -26,7 +25,7 @@ export interface BandMisses {
   counted: boolean;
 }
 
-/** Below this, the validator's lowest band reads as not ready on the score alone. */
+/** Below this, the validator's lowest band reads as not ready. */
 export const NOT_READY_SCORE = 60;
 
 export const SCORE_BANDS: readonly ScoreBand[] = [
@@ -40,20 +39,19 @@ const NOT_READY = 0;
 const NEEDS_CONTEXT = 1;
 const CLEAR = SCORE_BANDS.length - 1;
 
-/** Whether the validator's lowest band reads as not ready for this report. */
-export function readsNotReady(score: number, misses?: BandMisses | null) {
-  if (getScoreLabel(score) !== SCORE_BANDS[NEEDS_CONTEXT].name) return false;
-  return score < NOT_READY_SCORE || Boolean(misses?.counted && misses.count >= 2);
+/** Whether the validator's lowest band reads as not ready for this score. */
+export function readsNotReady(score: number) {
+  return getScoreLabel(score) === SCORE_BANDS[NEEDS_CONTEXT].name && score < NOT_READY_SCORE;
 }
 
-export function scoreBandIndex(score: number, misses?: BandMisses | null) {
+export function scoreBandIndex(score: number) {
   const index = SCORE_BANDS.findIndex((band) => band.name === getScoreLabel(score));
-  if (index === NEEDS_CONTEXT && readsNotReady(score, misses)) return NOT_READY;
+  if (index === NEEDS_CONTEXT && readsNotReady(score)) return NOT_READY;
   return index;
 }
 
-export function scoreBandFor(score: number, misses?: BandMisses | null): ScoreBand {
-  return SCORE_BANDS[Math.max(0, scoreBandIndex(score, misses))];
+export function scoreBandFor(score: number): ScoreBand {
+  return SCORE_BANDS[Math.max(0, scoreBandIndex(score))];
 }
 
 /**
@@ -66,7 +64,7 @@ export type ReportTone = "not_ready" | "standard" | "ready";
 
 export function reportTone(score: number | undefined | null, misses?: BandMisses | null): ReportTone {
   if (typeof score !== "number" || !Number.isFinite(score)) return "standard";
-  const index = scoreBandIndex(score, misses);
+  const index = scoreBandIndex(score);
   if (index === NOT_READY) return "not_ready";
   if (index === CLEAR && (misses?.count ?? 1) <= 1) return "ready";
   return "standard";

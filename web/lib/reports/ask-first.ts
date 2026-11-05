@@ -56,7 +56,17 @@ export interface AskFirstQuestion {
   question: string;
 }
 
-export type AskFirstAnswers = Record<string, string>;
+/**
+ * Three honest states for a question (Matt, Nov 5, 2026): "did" (the answer goes into the line), "related"
+ * (the person did related work, which goes on the page as its own line, never into this one), and "none"
+ * (left out). The value is the person's words either way.
+ */
+export type AskFirstRelation = "did" | "related" | "none";
+export interface AskFirstAnswer {
+  value: string;
+  relation: AskFirstRelation;
+}
+export type AskFirstAnswers = Record<string, AskFirstAnswer | undefined>;
 
 type Fix = NonNullable<ReportData["top_fixes"]>[number];
 
@@ -84,7 +94,8 @@ function kindOf(fix: Fix): AskFirstKind {
  * What the field asks for, in the field, when the recruiter's note is the ask: the note says what to add,
  * the placeholder says the shape of the answer. Never an example answer.
  */
-export function askFirstPlaceholder(kind: AskFirstKind) {
+export function askFirstPlaceholder(kind: AskFirstKind, relation: AskFirstRelation = "did") {
+  if (relation === "related") return "The related work, as you'd put it on the page";
   if (kind === "since") return "What you've done since, with dates";
   if (kind === "headline") return "The title you're applying for, as the posting writes it";
   return "Your answer";
@@ -140,9 +151,16 @@ function cleanAnswer(value: string | undefined) {
   return (value || "").trim().replace(/\s+/gu, " ");
 }
 
+/** The answered value, or nothing for a question left out. */
+function answerOf(answer: AskFirstAnswer | undefined) {
+  if (!answer || answer.relation === "none") return { value: "", relation: "none" as const };
+  return { value: cleanAnswer(answer.value), relation: answer.relation };
+}
+
 /**
  * The resume with the answers in it. A line's answers are composed into that line exactly as the
- * revised line does (`composeRevisedLine`); a headline answer becomes one line under the name; the
+ * revised line does (`composeRevisedLine`); related work is never written into the line it was asked
+ * about, it goes on the page as its own line; a headline answer becomes one line under the name; the
  * rest go under one heading at the end, each answer as its own line, as written. Nothing else moves.
  */
 export function composeAskFirstResume(resumeText: string, questions: readonly AskFirstQuestion[], answers: AskFirstAnswers): { text: string; answered: number } {
@@ -152,10 +170,10 @@ export function composeAskFirstResume(resumeText: string, questions: readonly As
   const added: string[] = [];
   let answered = 0;
   for (const question of questions) {
-    const value = cleanAnswer(answers[question.id]);
+    const { value, relation } = answerOf(answers[question.id]);
     if (!value) continue;
     answered += 1;
-    if (question.kind === "line") {
+    if (question.kind === "line" && relation === "did") {
       const key = canonicalSourceIdentity(question.excerpt);
       const entry = byLine.get(key) || { excerpt: question.excerpt, values: [] };
       entry.values.push(value);

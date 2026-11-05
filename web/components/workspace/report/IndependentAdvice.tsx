@@ -7,7 +7,6 @@ import { useTransientFeedback } from "@/hooks/use-transient-feedback";
 import {
   resolveRewriteCopyPolicy,
   questionForPlaceholder,
-  type IndependentQuestion,
   type IndependentRewrite,
 } from "@/lib/reports/report-presentation";
 import { RewriteEnhancementNote } from "@/lib/reports/rewrite-enhancement-note";
@@ -120,46 +119,24 @@ function IndependentRewriteCard({
   );
 }
 
+/** Rewrites the report offers on lines it didn't mark. The interview-style questions that followed were cut (Matt, Nov 5, 2026). */
 export function IndependentAdvice({
   rewrites,
-  questions,
   resumeText,
   isReadOnly = false,
 }: {
   rewrites: IndependentRewrite[];
-  questions: IndependentQuestion[];
   resumeText?: string;
   isReadOnly?: boolean;
 }) {
-  if (rewrites.length === 0 && questions.length === 0) return null;
+  if (rewrites.length === 0) return null;
 
   return (
     <section id="section-independent-advice" className="scroll-mt-36 border-t border-line py-8 sm:py-10">
-      {rewrites.length > 0 && (
-        <div>
-          <h2 className={styles.sectionTitle}>More lines worth a second look.</h2>
-          <div className="mt-6 border-y border-[hsl(var(--paper-line))]">
-            {rewrites.map((item) => <IndependentRewriteCard key={`${item.originalIndex}-${item.rewrite.original}`} item={item} resumeText={resumeText} isReadOnly={isReadOnly} />)}
-          </div>
-        </div>
-      )}
-
-      {questions.length > 0 && (
-        <div className={rewrites.length > 0 ? "mt-12 border-t border-[hsl(var(--paper-line))] pt-10" : ""}>
-          <h2 className={styles.sectionTitle}>Questions only you can answer.</h2>
-          <ol className="mt-6 divide-y divide-[hsl(var(--paper-line))] border-y border-[hsl(var(--paper-line))]">
-            {questions.map(({ question, originalIndex }) => (
-              <li key={`${originalIndex}-${question.question}`} className="grid gap-2 py-5 sm:grid-cols-[2.5rem_1fr]">
-                <span className="riyp-tabular-label text-xs font-semibold text-brand">{String(originalIndex + 1).padStart(2, "0")}</span>
-                <div>
-                  <p className="text-base font-medium text-foreground">{question.question}</p>
-                  {question.why && <p className="mt-2 text-base text-muted-foreground">{question.why}</p>}
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
-      )}
+      <h2 className={styles.sectionTitle}>More lines worth a second look.</h2>
+      <div className="mt-6 border-y border-[hsl(var(--paper-line))]">
+        {rewrites.map((item) => <IndependentRewriteCard key={`${item.originalIndex}-${item.rewrite.original}`} item={item} resumeText={resumeText} isReadOnly={isReadOnly} />)}
+      </div>
     </section>
   );
 }
