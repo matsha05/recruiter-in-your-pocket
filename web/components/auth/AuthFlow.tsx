@@ -126,7 +126,7 @@ export function AuthFlow({
           throw new ClientActionError(null, "Email sign-in is temporarily unavailable. Contact support if you need access now.");
         }
         if (data?.errorCode === "rate_limited") {
-          throw new ClientActionError(data?.hint, "Too many sign-in emails were sent. Wait before requesting another.");
+          throw new ClientActionError(data?.hint, "We’ve sent several codes already. Wait a little before you ask for another.");
         }
         throw new ClientActionError(data?.message || data?.hint, "We couldn’t send a code. Try again.");
       }

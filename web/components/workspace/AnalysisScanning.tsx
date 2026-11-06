@@ -138,7 +138,7 @@ export default function AnalysisScanning({
     const isLive = stage !== undefined;
     const liveStage: WaitStage = stage ?? "sending";
     const currentIndex = stepIndexFor(liveStage);
-    const nowLabel = liveStage === "retrying" ? "Starting the read again" : WAIT_STEPS[currentIndex].now;
+    const nowLabel = liveStage === "retrying" ? "Starting over" : WAIT_STEPS[currentIndex].now;
 
     const lines = useMemo(() => (mode === "resume" && resumeText?.trim() ? sheetLines(resumeText) : []), [mode, resumeText]);
     // The pen's line is a function of the stage: the name at the start, the last line of text at the end.

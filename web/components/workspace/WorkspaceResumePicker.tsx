@@ -32,7 +32,7 @@ export const WorkspaceResumePicker = forwardRef<WorkspaceResumePickerHandle, {
       type="file"
       hidden
       accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-      aria-label="Upload resume file from commands"
+      aria-label="Upload a resume file"
       onChange={async (event) => {
         const file = event.currentTarget.files?.[0];
         event.currentTarget.value = "";

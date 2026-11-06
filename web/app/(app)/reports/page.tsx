@@ -12,7 +12,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "My reports",
-  description: "Your saved resume reports, with the Verdict, score, and fixes from each.",
+  description: "Every report you’ve saved, with its score and the lines that needed work.",
 };
 
 export default async function ReportsPage() {
@@ -76,13 +76,13 @@ export default async function ReportsPage() {
         />
 
         {!reportsError && hasMoreReports ? (
-          <p className="-mt-4 text-xs text-muted-foreground">Showing your latest 50 reports. Older reports remain stored and can be included in an account export.</p>
+          <p className="-mt-4 text-xs text-muted-foreground">These are your latest 50 reports. Older ones are still saved, and an account export includes them.</p>
         ) : null}
 
         {reportsError ? (
           <div role="alert" className="rounded-2xl border border-destructive/30 bg-error-surface px-5 py-10 text-center sm:rounded-3xl sm:p-10">
             <WarningCircle className="mx-auto size-7 text-destructive" aria-hidden="true" />
-            <h2 className="mt-4 font-display text-heading text-foreground">Your report history could not load.</h2>
+            <h2 className="mt-4 font-display text-heading text-foreground">We couldn’t load My reports.</h2>
             <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
               <form action="/reports" method="get">
                 <Button

@@ -75,7 +75,7 @@ export default function PurchaseConfirmedClient() {
   // The title is the state; the line under it says what that means for this account.
   const pageTitle = !paymentConfirmed ? state.title
     : checkingAccountAccess ? "Checking your account"
-    : accountReady ? "You’re in. Five more reads."
+    : accountReady ? "You’re in! Five more reads."
     : "Paid. One step left.";
   const confirmationMessage = !paymentConfirmed ? state.message
     : checkingAccountAccess ? "Your payment is confirmed. We’re checking access for your account."

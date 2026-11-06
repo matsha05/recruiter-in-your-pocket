@@ -250,7 +250,7 @@ export function WorklistCard({ card, index, cards, resumeText, isSample = false,
           {asks && (
             left ? (
               <p className={styles.note} data-testid="worklist-left">
-                Left blank for now. A recruiter will have the same question, and they won&apos;t call to ask it.{" "}
+                Left blank, and that&apos;s fine. Not every line needs every detail. Let&apos;s make sure the rest of your resume gives a recruiter something to grab onto.{" "}
                 <Button type="button" variant="quiet" size="sm" className={styles.quiet} onClick={() => setLeft(false)}>Fill it in after all</Button>
               </p>
             ) : (

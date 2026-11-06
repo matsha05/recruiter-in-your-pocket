@@ -496,10 +496,10 @@ test.describe("paid decision boundary", () => {
       });
 
       await page.goto("/purchase/confirmed?session_id=cs_test_mocked_confirmation&tier=30d&source=paywall&unlock=job_alignment");
-      await expect(page.getByRole("heading", { name: "You’re in. Five more reads." })).toBeVisible();
+      await expect(page.getByRole("heading", { name: "You’re in! Five more reads." })).toBeVisible();
       await expect.poll(() => accountRequests.verifiedUser).toBeGreaterThan(0);
       await expect.poll(() => accountRequests.passes).toBeGreaterThan(0);
-      await expect(page.getByText("You’re in. Five more reads.", { exact: true })).toBeVisible();
+      await expect(page.getByText("You’re in! Five more reads.", { exact: true })).toBeVisible();
       await expect.poll(() => page.evaluate(() => {
         const stored = localStorage.getItem("riyp_unlock_context");
         return stored ? JSON.parse(stored).section : null;

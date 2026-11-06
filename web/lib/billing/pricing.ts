@@ -35,7 +35,7 @@ export const PRICING_PLANS: Record<PricingTierId, PricingPlan> = {
     buttonText: "Get your free report",
     features: [
       { text: "One complete resume report", bold: true },
-      { text: "Your Verdict and where your resume stands" },
+      { text: "Where your resume stands, and why" },
       { text: "Every line that needs work, with the line as written and what to add" },
       { text: "A revised line, written only from your facts" },
       { text: "PDF export and saved reports when you sign in. No card needed." }

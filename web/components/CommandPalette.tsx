@@ -209,11 +209,11 @@ export function CommandPalette({ defaultOpen = false, defaultReportVisible = fal
                             <CommandItem
                                 onSelect={() => runCommand(
                                     () => dispatchCommandAction("upload"),
-                                    { id: "upload", label: "Upload Resume", icon: "Upload" }
+                                    { id: "upload", label: "Upload a resume", icon: "Upload" }
                                 )}
                             >
                                 <UploadSimple className="mr-2 size-4" />
-                                <span>Upload Resume</span>
+                                <span>Upload a resume</span>
                             </CommandItem>
                             {workspaceReportVisible && (
                                 <>
@@ -238,29 +238,29 @@ export function CommandPalette({ defaultOpen = false, defaultReportVisible = fal
                     <CommandItem
                         onSelect={() => runCommand(
                             () => push("/"),
-                            { id: "nav:/", label: "Go to Home", icon: "Home" }
+                            { id: "nav:/", label: "Go to home", icon: "Home" }
                         )}
                     >
                         <House className="mr-2 size-4" />
-                        <span>Go to Home</span>
+                        <span>Go to home</span>
                     </CommandItem>
                     <CommandItem
                         onSelect={() => runCommand(
                             () => push("/workspace"),
-                            { id: "nav:/workspace", label: "Go to Workspace", icon: "FileText" }
+                            { id: "nav:/workspace", label: "Go to workspace", icon: "FileText" }
                         )}
                     >
                         <FileText className="mr-2 size-4" />
-                        <span>Go to Workspace</span>
+                        <span>Go to workspace</span>
                     </CommandItem>
                     <CommandItem
                         onSelect={() => runCommand(
                             () => push("/research"),
-                            { id: "nav:/research", label: "Go to Research", icon: "BookOpen" }
+                            { id: "nav:/research", label: "Go to research", icon: "BookOpen" }
                         )}
                     >
                         <BookOpen className="mr-2 size-4" />
-                        <span>Go to Research</span>
+                        <span>Go to research</span>
                     </CommandItem>
                 </CommandGroup>
 
@@ -271,11 +271,11 @@ export function CommandPalette({ defaultOpen = false, defaultReportVisible = fal
                             <CommandItem
                                 onSelect={() => runCommand(
                                     () => dispatchCommandAction("keyboard-shortcuts"),
-                                    { id: "keyboard-shortcuts", label: "Keyboard Shortcuts", icon: "Keyboard" }
+                                    { id: "keyboard-shortcuts", label: "Keyboard shortcuts", icon: "Keyboard" }
                                 )}
                             >
                                 <Keyboard className="mr-2 size-4" />
-                                <span>Keyboard Shortcuts</span>
+                                <span>Keyboard shortcuts</span>
                             </CommandItem>
                         </CommandGroup>
                     </>

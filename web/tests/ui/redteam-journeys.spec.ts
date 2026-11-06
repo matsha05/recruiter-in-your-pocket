@@ -162,7 +162,7 @@ test.describe("launch red-team journeys", () => {
     await expect(page.locator("#section-independent-advice button")).toHaveCount(0);
 
     const terminalCta = page.getByTestId("sample-terminal-cta");
-    await expect(terminalCta).toContainText("What would they think of yours?");
+    await expect(terminalCta).toContainText("That’s Jordan’s. Yours is next.");
     await terminalCta.getByRole("button", { name: "Get your free report", exact: true }).click();
     await expect(page).toHaveURL(/\/workspace$/, { timeout: 45_000 });
     await expect(page.getByTestId("workspace-run-report")).toBeVisible();
