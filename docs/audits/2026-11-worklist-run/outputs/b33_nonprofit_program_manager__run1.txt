@@ -1,0 +1,45 @@
+# b33_nonprofit_program_manager, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_nonprofit_program_manager_1.txt (146 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
+Outcome: report; cost $0.0089; 26.8s
+
+## Mostly clear (score 72; model wrote 72)
+## Verdict
+A youth workforce manager whose program and staff are clear, but whose placement numbers are missing.
+
+## Write-up
+You run a summer jobs program and supervise coordinators and seasonal staff. A recruiter can follow your progression at Harbor Pathways, but has to guess how many students the program places and how much work sits with the team.
+
+The summer jobs line is the best model: it names the program, the students and the employers in one sentence. Add the number of students placed, then bring that same detail to the workshops and career fair.
+
+## Cards (5; {"line":5}); severity off; added []
+1. [line] Program Manager, line 1
+   line: "Manage a summer jobs program placing high school students with local employers"
+   can't tell: The program is easy to picture, but a recruiter can't tell how many students you place. That's a central measure of the work.
+   example: Manage a summer jobs program placing [number] high school students with local employers [time period]
+   question: How many high school students does the program place, and over what period?
+2. [line] Program Manager, line 2
+   line: "Supervise 4 program coordinators and 20 seasonal staff"
+   can't tell: The team count is useful. What the coordinators and seasonal staff handle is still a blank.
+   example: Supervise 4 program coordinators and 20 seasonal staff who [what the team handles]
+   question: What do the coordinators and seasonal staff handle?
+3. [line] Program Manager, line 4
+   line: "Recruit and onboard employer partners"
+   can't tell: A recruiter knows why the employer partners matter from the summer jobs line, but not how many you recruit and onboard.
+   example: Recruit and onboard [number] employer partners [time period]
+   question: How many employer partners do you recruit and onboard, and over what period?
+4. [line] Program Coordinator, line 1
+   line: "Coordinated job readiness workshops for students"
+   can't tell: The workshops have a purpose, but their reach is missing. How many students attended?
+   example: Coordinated job readiness workshops for [number] students [time period]
+   question: How many students attended the workshops, and over what period?
+5. [line] Program Coordinator, line 3
+   line: "Organized an annual career fair"
+   can't tell: An annual career fair is a concrete piece of work. The number of attendees would show how big an event you organized.
+   example: Organized an annual career fair attended by [number] people
+   question: How many people attended the career fair?
+
+## Fit
+Roles: ["Program Manager, Youth Workforce","Program Coordinator"]
+Level: Program manager
+Note: Your experience points to youth workforce program management, with staff supervision, employer partnerships and grant reporting. Adding placement and attendance counts would show how much of that work you handle.

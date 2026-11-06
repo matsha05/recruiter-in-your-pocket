@@ -1,0 +1,367 @@
+{
+  "case_id": "b32_logistics_dispatcher",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_logistics_dispatcher_1.txt",
+  "resume_sha256": "1ae1cc83222ef2e6ac1cdf904b53aa1b78b489a7cc233802856897605942428d",
+  "resume_words": 105,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T16:37:18.552Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4323,
+        "completion_tokens": 1629,
+        "total_tokens": 5952,
+        "cached_prompt_tokens": 3792,
+        "cache_write_prompt_tokens": 528,
+        "reasoning_tokens": 649
+      },
+      "cost_usd": 0.0089976,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 23058
+    }
+  ],
+  "resume_prompt_sha256": "70e795a1e91877ad12f5394154dccd644b9f9d298e123ca182963a0e3e089350",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 65,
+    "lifted_by_employer": false,
+    "verdict": "A dispatcher with a steady progression, but too little detail about the drivers and loads handled.",
+    "write_up": [
+      "A recruiter sees a move from dispatch assistant to dispatcher at the same freight company. The hesitation is that the current job lists the daily tasks without saying how many drivers or loads you handle, or what happens when a problem comes up.",
+      "The load-tracking line is the best model: it names both the work and the customer update. Add the volume there, then give the same treatment to dispatching and driver issues."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Crossroads Regional Freight",
+        "line": "The number of drivers or trucks at Crossroads Regional Freight isn't stated.",
+        "cannot_tell": "A recruiter knows it's regional trucking, but not how big the operation is. A short company description could give the dispatch work some context.",
+        "example": "",
+        "question": "How many drivers or trucks does Crossroads Regional Freight have?"
+      },
+      {
+        "kind": "line",
+        "where": "Dispatcher, line 1",
+        "line": "- Responsible for dispatching drivers",
+        "cannot_tell": "Dispatching drivers is the center of the job, but a recruiter can't tell how many you handle or what the dispatch work involves.",
+        "example": "Dispatch [number] drivers and handle [dispatch responsibilities]",
+        "question": "How many drivers do you dispatch, and what does the dispatch work involve?"
+      },
+      {
+        "kind": "line",
+        "where": "Dispatcher, line 2",
+        "line": "- Track loads and update customers on delivery status",
+        "cannot_tell": "This names the work and who gets the update. How many loads are you tracking in a typical period?",
+        "example": "Track [number] loads per [time period] and update customers on delivery status",
+        "question": "How many loads do you typically track, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Dispatcher, line 3",
+        "line": "- Handle driver issues on the road",
+        "cannot_tell": "Driver issues could mean a lot of things. Name an issue you handled and what you did about it.",
+        "example": "Handle driver issues on the road, including [type of issue], by [action]",
+        "question": "What kind of road issue have you handled, and what did you do?"
+      },
+      {
+        "kind": "line",
+        "where": "Dispatcher, line 4",
+        "line": "- Use TMS software daily",
+        "cannot_tell": "McLeod TMS appears in your skills, but a recruiter can't tell what you use a TMS to do in the job.",
+        "example": "Use TMS software daily to [work handled in the TMS]",
+        "question": "What work do you handle in the TMS each day?"
+      },
+      {
+        "kind": "line",
+        "where": "Dispatcher, line 5",
+        "line": "- Work with the safety team on driver hours",
+        "cannot_tell": "The safety team and driver hours give this a subject, but your part is still a blank. What do you do with the hours?",
+        "example": "Work with the safety team on driver hours by [your responsibility]",
+        "question": "What do you do with driver hours when working with the safety team?"
+      },
+      {
+        "kind": "line",
+        "where": "Dispatch Assistant, line 2",
+        "line": "- Helped dispatchers with paperwork",
+        "cannot_tell": "Paperwork could cover several parts of a load. A recruiter can't tell which documents you handled or how you helped.",
+        "example": "Help dispatchers with [type of paperwork] by [your task]",
+        "question": "Which paperwork did you help with, and what did you do?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Dispatcher",
+        "Dispatch Assistant"
+      ],
+      "level": "Experienced dispatcher",
+      "note": "Your experience points toward freight dispatch work, with an earlier assistant role at the same company. The current role needs more detail about the drivers and loads you handle.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 65,
+    "lifted_by_employer": false,
+    "verdict": "A dispatcher with a steady progression, but too little detail about the drivers and loads handled.",
+    "write_up": [
+      "A recruiter sees a move from dispatch assistant to dispatcher at the same freight company. The hesitation is that the current job lists the daily tasks without saying how many drivers or loads you handle, or what happens when a problem comes up.",
+      "The load-tracking line is the best model: it names both the work and the customer update. Add the volume there, then give the same treatment to dispatching and driver issues."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Crossroads Regional Freight",
+        "line": "The number of drivers or trucks at Crossroads Regional Freight isn't stated.",
+        "cannot_tell": "A recruiter knows it's regional trucking, but not how big the operation is. A short company description could give the dispatch work some context.",
+        "example": "",
+        "question": "How many drivers or trucks does Crossroads Regional Freight have?"
+      },
+      {
+        "kind": "line",
+        "where": "Dispatcher, line 1",
+        "line": "Responsible for dispatching drivers",
+        "cannot_tell": "Dispatching drivers is the center of the job, but a recruiter can't tell how many you handle or what the dispatch work involves.",
+        "example": "Dispatch [number] drivers and handle [dispatch responsibilities]",
+        "question": "How many drivers do you dispatch, and what does the dispatch work involve?"
+      },
+      {
+        "kind": "line",
+        "where": "Dispatcher, line 2",
+        "line": "Track loads and update customers on delivery status",
+        "cannot_tell": "This names the work and who gets the update. How many loads are you tracking in a typical period?",
+        "example": "Track [number] loads per [time period] and update customers on delivery status",
+        "question": "How many loads do you typically track, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Dispatcher, line 3",
+        "line": "Handle driver issues on the road",
+        "cannot_tell": "Driver issues could mean a lot of things. Name an issue you handled and what you did about it.",
+        "example": "Handle driver issues on the road, including [type of issue], by [action]",
+        "question": "What kind of road issue have you handled, and what did you do?"
+      },
+      {
+        "kind": "line",
+        "where": "Dispatcher, line 4",
+        "line": "Use TMS software daily",
+        "cannot_tell": "McLeod TMS appears in your skills, but a recruiter can't tell what you use a TMS to do in the job.",
+        "example": "Use TMS software daily to [work handled in the TMS]",
+        "question": "What work do you handle in the TMS each day?"
+      },
+      {
+        "kind": "line",
+        "where": "Dispatcher, line 5",
+        "line": "Work with the safety team on driver hours",
+        "cannot_tell": "The safety team and driver hours give this a subject, but your part is still a blank. What do you do with the hours?",
+        "example": "Work with the safety team on driver hours by [your responsibility]",
+        "question": "What do you do with driver hours when working with the safety team?"
+      },
+      {
+        "kind": "line",
+        "where": "Dispatch Assistant, line 2",
+        "line": "Helped dispatchers with paperwork",
+        "cannot_tell": "Paperwork could cover several parts of a load. A recruiter can't tell which documents you handled or how you helped.",
+        "example": "Help dispatchers with [type of paperwork] by [your task]",
+        "question": "Which paperwork did you help with, and what did you do?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Dispatcher",
+        "Dispatch Assistant"
+      ],
+      "level": "Experienced dispatcher",
+      "note": "Your experience points toward freight dispatch work, with an earlier assistant role at the same company. The current role needs more detail about the drivers and loads you handle.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 65
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 65,
+    "lifted_by_employer": false,
+    "verdict": "A dispatcher with a steady progression, but too little detail about the drivers and loads handled.",
+    "write_up": [
+      "A recruiter sees a move from dispatch assistant to dispatcher at the same freight company. The hesitation is that the current job lists the daily tasks without saying how many drivers or loads you handle, or what happens when a problem comes up.",
+      "The load-tracking line is the best model: it names both the work and the customer update. Add the volume there, then give the same treatment to dispatching and driver issues."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Crossroads Regional Freight",
+        "line": "The number of drivers or trucks at Crossroads Regional Freight isn't stated.",
+        "cannot_tell": "A recruiter knows it's regional trucking, but not how big the operation is. A short company description could give the dispatch work some context.",
+        "example": "",
+        "question": "How many drivers or trucks does Crossroads Regional Freight have?"
+      },
+      {
+        "kind": "line",
+        "where": "Dispatcher, line 1",
+        "line": "Responsible for dispatching drivers",
+        "cannot_tell": "Dispatching drivers is the center of the job, but a recruiter can't tell how many you handle or what the dispatch work involves.",
+        "example": "Dispatch [number] drivers and handle [dispatch responsibilities]",
+        "question": "How many drivers do you dispatch, and what does the dispatch work involve?"
+      },
+      {
+        "kind": "line",
+        "where": "Dispatcher, line 2",
+        "line": "Track loads and update customers on delivery status",
+        "cannot_tell": "This names the work and who gets the update. How many loads are you tracking in a typical period?",
+        "example": "Track [number] loads per [time period] and update customers on delivery status",
+        "question": "How many loads do you typically track, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Dispatcher, line 3",
+        "line": "Handle driver issues on the road",
+        "cannot_tell": "Driver issues could mean a lot of things. Name an issue you handled and what you did about it.",
+        "example": "Handle driver issues on the road, including [type of issue], by [action]",
+        "question": "What kind of road issue have you handled, and what did you do?"
+      },
+      {
+        "kind": "line",
+        "where": "Dispatcher, line 4",
+        "line": "Use TMS software daily",
+        "cannot_tell": "McLeod TMS appears in your skills, but a recruiter can't tell what you use a TMS to do in the job.",
+        "example": "Use TMS software daily to [work handled in the TMS]",
+        "question": "What work do you handle in the TMS each day?"
+      },
+      {
+        "kind": "line",
+        "where": "Dispatcher, line 5",
+        "line": "Work with the safety team on driver hours",
+        "cannot_tell": "The safety team and driver hours give this a subject, but your part is still a blank. What do you do with the hours?",
+        "example": "Work with the safety team on driver hours by [your responsibility]",
+        "question": "What do you do with driver hours when working with the safety team?"
+      },
+      {
+        "kind": "line",
+        "where": "Dispatch Assistant, line 2",
+        "line": "Helped dispatchers with paperwork",
+        "cannot_tell": "Paperwork could cover several parts of a load. A recruiter can't tell which documents you handled or how you helped.",
+        "example": "Help dispatchers with [type of paperwork] by [your task]",
+        "question": "Which paperwork did you help with, and what did you do?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Dispatcher",
+        "Dispatch Assistant"
+      ],
+      "level": "Experienced dispatcher",
+      "note": "Your experience points toward freight dispatch work, with an earlier assistant role at the same company. The current role needs more detail about the drivers and loads you handle.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 65
+  },
+  "presentation": {
+    "score": 65,
+    "band": "Needs more context",
+    "model_score": 65,
+    "lifted_by_employer": false,
+    "verdict": "A dispatcher with a steady progression, but too little detail about the drivers and loads handled.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 73,
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Crossroads Regional Freight",
+        "line": "The number of drivers or trucks at Crossroads Regional Freight isn't stated.",
+        "blanks": 0,
+        "question": "How many drivers or trucks does Crossroads Regional Freight have?"
+      },
+      {
+        "kind": "line",
+        "where": "Dispatcher, line 1",
+        "line": "Responsible for dispatching drivers",
+        "blanks": 2,
+        "question": "How many drivers do you dispatch, and what does the dispatch work involve?"
+      },
+      {
+        "kind": "line",
+        "where": "Dispatcher, line 2",
+        "line": "Track loads and update customers on delivery status",
+        "blanks": 2,
+        "question": "How many loads do you typically track, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Dispatcher, line 3",
+        "line": "Handle driver issues on the road",
+        "blanks": 2,
+        "question": "What kind of road issue have you handled, and what did you do?"
+      },
+      {
+        "kind": "line",
+        "where": "Dispatcher, line 4",
+        "line": "Use TMS software daily",
+        "blanks": 1,
+        "question": "What work do you handle in the TMS each day?"
+      },
+      {
+        "kind": "line",
+        "where": "Dispatcher, line 5",
+        "line": "Work with the safety team on driver hours",
+        "blanks": 1,
+        "question": "What do you do with driver hours when working with the safety team?"
+      },
+      {
+        "kind": "line",
+        "where": "Dispatch Assistant, line 2",
+        "line": "Helped dispatchers with paperwork",
+        "blanks": 2,
+        "question": "Which paperwork did you help with, and what did you do?"
+      }
+    ],
+    "card_count": 7,
+    "kinds": {
+      "structure": 1,
+      "line": 6
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Dispatcher",
+        "Dispatch Assistant"
+      ],
+      "level": "Experienced dispatcher",
+      "note": "Your experience points toward freight dispatch work, with an earlier assistant role at the same company. The current role needs more detail about the drivers and loads you handle.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0089976,
+  "latency_ms": 23061
+}

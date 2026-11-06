@@ -1,6 +1,6 @@
 # A fifth band at the top
 
-November 6, 2026. Matt, after shipping the worklist: "also maybe we should have a higher 5th band. this needs to be brilliant and verifiably good." Proposal, with the numbers, for his call.
+November 6, 2026. Matt, after shipping the worklist: "also maybe we should have a higher 5th band. this needs to be brilliant and verifiably good." Proposal, with the numbers, for his call. Matt: "Yes, build it" (November 6, question UI). Built the same day: prompt `70e795a1`, the validator's rule, five bands in the band bar, the PDF and the methodology page; measured in `docs/audits/2026-11-worklist-run.md`, pass 5.
 
 ## Where the live set lands today
 

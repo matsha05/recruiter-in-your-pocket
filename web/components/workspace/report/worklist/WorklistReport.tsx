@@ -6,7 +6,7 @@ import type { WorklistReport as Report } from "@/lib/llm/worklist-schema";
 import { isWorklistReport } from "@/lib/llm/worklist-schema";
 import { sendLineAnswers, type LineAnswersPatch, type StoredLineAnswersByFix } from "@/lib/reports/line-answers";
 import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
-import { SCORE_BANDS, scoreBandIndex } from "@/lib/reports/score-band";
+import { worklistBandFor } from "@/lib/reports/score-band";
 import { cardsHeading, fitHeading, POSTING_MISSING_LABEL, UNLISTED_LINES_NOTE, workCards } from "@/lib/reports/worklist-presentation";
 import { cn } from "@/lib/utils";
 import { ReportEnding } from "../ReportEnding";
@@ -58,7 +58,7 @@ export function WorklistReport({
   onSaveReport,
   isSavingReport = false,
 }: WorklistReportProps) {
-  const band = SCORE_BANDS[Math.max(0, scoreBandIndex(report.score))];
+  const band = worklistBandFor(report.score);
   const heading = cardsHeading(report);
   const work = workCards(report);
   const ready = work.length === 0;
@@ -86,7 +86,7 @@ export function WorklistReport({
       <section id="section-first-impression" className={cn(styles.opening, "scroll-mt-36")} aria-labelledby="report-verdict">
         <div className={styles.top}>
           <p className={styles.score} aria-label={`Score ${report.score} out of 99`} data-testid="worklist-score">{report.score}</p>
-          <ScoreBand score={report.score} />
+          <ScoreBand score={report.score} bands="worklist" />
         </div>
         <h1 id="report-verdict" className={styles.verdict}>{report.verdict}</h1>
         <div className={styles.writeUp} data-testid="worklist-write-up">

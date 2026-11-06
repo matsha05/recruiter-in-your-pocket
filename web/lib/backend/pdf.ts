@@ -6,7 +6,7 @@ import { join } from "node:path";
 import type { ReportForPdf, WorklistForPdf } from "../reports/pdf-export";
 import { criticalCountHeading, fixLabel, fixPlanHeadingForCount, missingFromResume, readCriticalMisses, TIGHTENING_HEADING } from "../reports/report-presentation";
 import { marginNoteFromFix } from "../reports/revised-line";
-import { SCORE_BANDS, reportTone, scoreBandIndex } from "../reports/score-band";
+import { SCORE_BANDS, WORKLIST_BANDS, reportTone, scoreBandIndex, worklistBandIndex } from "../reports/score-band";
 import { pdfReportStyles } from "./pdf-styles";
 
 /**
@@ -53,8 +53,8 @@ function exampleHtml(card: WorklistForPdf["cards"][number]) {
 
 function renderWorklistHtml(report: ReportForPdf, worklist: WorklistForPdf) {
   const generatedOn = new Date().toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
-  const bandIndex = Math.max(0, scoreBandIndex(report.score));
-  const band = SCORE_BANDS[bandIndex];
+  const bandIndex = Math.max(0, worklistBandIndex(report.score));
+  const band = WORKLIST_BANDS[bandIndex];
   const work = worklist.cards.filter((card) => card.kind !== "keep");
   const heading = work.length === 0 ? "Nothing here needs work." : "Lines that need work.";
   const cardHtml = (card: WorklistForPdf["cards"][number]) => {
@@ -104,7 +104,7 @@ function renderWorklistHtml(report: ReportForPdf, worklist: WorklistForPdf) {
       <div class="score">${report.score}</div>
       <div class="band">
         <div class="band-name">${escapeHtml(band.name)}</div>
-        <div class="band-scale">${SCORE_BANDS.map((_, index) => `<span class="band-bar${index === bandIndex ? " current" : ""}"></span>`).join("")}</div>
+        <div class="band-scale">${WORKLIST_BANDS.map((_, index) => `<span class="band-bar${index === bandIndex ? " current" : ""}"></span>`).join("")}</div>
         <div class="band-anchor">${escapeHtml(band.anchor)}</div>
       </div>
     </div>

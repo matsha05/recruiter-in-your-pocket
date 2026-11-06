@@ -1,34 +1,34 @@
 {
   "contract_version": "v3",
-  "score": 77,
+  "score": 75,
   "lifted_by_employer": false,
-  "verdict": "A customer success manager with a defined SaaS portfolio, but few details about renewals.",
+  "verdict": "A customer success manager with a defined portfolio, but little about what changed through the work.",
   "write_up": [
-    "You come across as a customer success manager who handles a substantial SaaS portfolio and meets regularly with customer leaders. A recruiter can see the work, but has to ask what happened in the renewal-risk reviews and how you handled renewals.",
-    "The 32-account line is your model: it names the customers and the annual recurring revenue attached to them. Your objective and team-player line take up space without adding much. Use that space for the renewal work."
+    "A recruiter sees customer success work with B2B SaaS accounts and an earlier logistics role. The portfolio is concrete; the first hesitation is what happened with renewals and what the risk reviews changed.",
+    "The 32-account line is your model: it names the work and puts a dollar figure on the portfolio. Your objective doesn't name a target job, and the team-player claim takes space that could show collaboration in action."
   ],
   "cards": [
     {
       "kind": "line",
       "where": "Objective",
       "line": "Results-driven, detail-oriented professional seeking a challenging role where I can utilize my skills.",
-      "cannot_tell": "This doesn't name the job you want or draw on your customer success work. A recruiter gets a generic introduction before reaching your portfolio.",
-      "example": "Customer Success Manager with experience managing 32 B2B SaaS accounts with $2.4M in annual recurring revenue, seeking [target role]",
-      "question": "What role are you targeting?"
+      "cannot_tell": "A recruiter can't tell what job you want or which skills you want to use. The portfolio below says more about you than this does.",
+      "example": "Customer Success Manager who managed 32 B2B SaaS accounts with $2.4M in annual recurring revenue, seeking [target role].",
+      "question": "What role are you looking for?"
     },
     {
       "kind": "line",
       "where": "Customer Success Manager, line 1",
       "line": "Responsible for managing customer relationships and renewals",
-      "cannot_tell": "Your portfolio line already says how many accounts you managed. What did you do when a renewal came due?",
-      "example": "Managed customer relationships and renewals by [renewal work]",
-      "question": "What renewal work did you personally handle?"
+      "cannot_tell": "The next line gives the portfolio, but this one doesn't say what you handled in a renewal. That distinction matters for a customer success role.",
+      "example": "Managed customer relationships and renewals by [renewal responsibilities], resulting in [result].",
+      "question": "What did you handle in renewals, and what result can you point to?"
     },
     {
       "kind": "keep",
       "where": "Customer Success Manager, line 2",
       "line": "Managed 32 B2B SaaS accounts with $2.4M in annual recurring revenue",
-      "cannot_tell": "Keep the direct verb and the concrete description of what you managed. It gives a recruiter a useful anchor for the rest of the role.",
+      "cannot_tell": "Keep this. It gives the reader a firm handle on the accounts you managed without making them hunt for context.",
       "example": "",
       "question": ""
     },
@@ -36,33 +36,33 @@
       "kind": "line",
       "where": "Customer Success Manager, line 3",
       "line": "Introduced monthly renewal-risk reviews across the portfolio",
-      "cannot_tell": "The cadence and subject are clear. What did you do in the reviews, and what followed from them?",
-      "example": "Introduced monthly renewal-risk reviews across the portfolio, [review work] and [what followed]",
-      "question": "What did you do in the reviews, and what followed from them?"
+      "cannot_tell": "You introduced a recurring review, but the page stops before saying what the reviews uncovered or changed.",
+      "example": "Introduced monthly renewal-risk reviews across the portfolio to [review purpose], resulting in [result].",
+      "question": "What did the reviews cover, and what changed after you introduced them?"
     },
     {
       "kind": "line",
       "where": "Customer Success Manager, line 5",
       "line": "Team player with excellent communication skills",
-      "cannot_tell": "A recruiter can't tell who you worked with or what you did together. There's room here for an example from the job.",
-      "example": "[What you did] with [who you worked with] on [work you did together]",
-      "question": "Who did you work with, and what did you do together?"
+      "cannot_tell": "A recruiter can't see your teamwork in action from this claim. Give them a piece of work you did with other people instead.",
+      "example": "Worked with [colleagues] to [work completed].",
+      "question": "What work did you complete with colleagues?"
     },
     {
       "kind": "line",
       "where": "Account Coordinator, line 1",
       "line": "Assisted account managers with various tasks as needed",
-      "cannot_tell": "Assisted could cover almost anything. Your next lines name reports and customer questions; this one could name another part of the work.",
-      "example": "Assisted account managers with [account work]",
-      "question": "Beyond reports and customer questions, what account work did you assist with?"
+      "cannot_tell": "Assisted is fair, but various tasks leaves your part blank. Name the work you did for the account managers.",
+      "example": "Assisted account managers with [tasks].",
+      "question": "Which tasks did you handle for the account managers?"
     },
     {
       "kind": "line",
       "where": "Skills",
       "line": "Microsoft Office, Communication, Leadership",
-      "cannot_tell": "Microsoft Office covers several applications, and the other two skills don't show how you used them. Name the applications and work you can speak to.",
-      "example": "Microsoft Office: [applications used]; Communication: [work using communication]; Leadership: [work demonstrating leadership]",
-      "question": "Which Office applications did you use, and what work demonstrates your communication and leadership?"
+      "cannot_tell": "Microsoft Office covers several applications, while communication and leadership don't say how you used them. Name the tools and skills relevant to the work you want.",
+      "example": "[Microsoft Office applications], [relevant skills]",
+      "question": "Which Office applications and other relevant skills have you used?"
     }
   ],
   "fit": {
@@ -71,7 +71,7 @@
       "Account Coordinator"
     ],
     "level": "Experienced individual contributor",
-    "note": "Your recent work points toward customer success roles managing B2B SaaS accounts. The earlier logistics role adds client reporting and customer contact.",
+    "note": "Your recent work points toward customer success roles, with a defined B2B SaaS portfolio and regular customer reviews. The earlier logistics role adds account support experience.",
     "posting": {
       "summary": "",
       "missing": []
@@ -81,5 +81,5 @@
   "layout_score": null,
   "layout_band": "unknown",
   "layout_notes": "",
-  "content_score": 77
+  "content_score": 75
 }

@@ -92,6 +92,11 @@
     margin-top: 0.75rem;
 }
 
+/* Five bands need the room for five names. */
+.band[data-bands="5"] {
+    max-width: 42rem;
+}
+
 .bandName {
     font: var(--type-body);
     font-weight: var(--weight-label);

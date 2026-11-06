@@ -19,6 +19,26 @@ Replaying pass 2's 49 drafts through the final validator: 48 ship as the first d
 
 The critique ran on the surface built on pass 3's prompt; the prompt changes it asked for are copy, not judgment, so pass 4 re-ran the holes, the tier cases and the synthetic golden set rather than the whole breadth set. Holes and tier: 9 reports of 9 that reached the model, 0 repairs, scores within two points of pass 3 on every case but the academic CV (74 to 79); the bad resume's three dates cards now read "June 2023 - Present [work, study, job search, caregiving, travel or career break]" and one "[Month Year] - [Month Year] Warehouse Associate, Miami Valley Distribution" per undated role; the lift fired on the Google engineer again (75) and declared itself without "get you read". Golden synthetic: 6 PASS, 4 WARN, 0 FAIL (the same score drifts as pass 3, plus one card whose example has no blank). The sample (`public/sample-report.json`) is generated on this prompt. Pass 3's full breadth set stays in `outputs/pass3-18e7e9ff/` as the record of the larger measurement; the pass 4 outputs are in `outputs/`.
 
+## Pass 5, the fifth band (`70e795a1`, November 6)
+
+Matt: "maybe we should have a higher 5th band. this needs to be brilliant and verifiably good." The proposal and his yes are in `docs/promptops/proposals/2026-11-fifth-band.md`: "Ready to send" at 93 to 99, earned only when no line needs work; "Clear and specific" narrows to 85 to 92; a page with nothing to fix never sits below 90; the employer lift never reaches the top band. The prompt carries the anchors and the rule; the validator refuses a draft that breaks it and repairs once; the band bar, the PDF, the methodology page and the copy system carry five bands. v2 reports keep their four.
+
+The full set reran (holes, tier, breadth: 49 reports of 49 that reached the model, the 15-page CV refused as production refuses it), $0.40.
+
+| | Pass 4 (`705c2997`) | Pass 5 (`70e795a1`) |
+| --- | --- | --- |
+| Shipped / repaired / never shipped | 49 / 0 (holes and tier) | 49 / 1 / 0 |
+| Score 60 and below | 1 | 3 (the bad resume 42, the recent-grad bad page 55, the bad marketing director 60) |
+| 61 to 69 | 17 | 16 |
+| 70 to 84 | 15 | 14 |
+| 85 to 92 | 6 (85 to 89) | 14 |
+| 93 to 99 ("Ready to send") | 10 (90 and above) | 2: the strong PM (96) and the FP&A analyst (95), both with nothing to fix |
+| Pages with nothing to fix | 8, from 85 to 95 | 4, from 90 to 96 |
+
+The rule held on every shipped report: no page at 93 or above has a line to fix, no page with nothing to fix sits under 90, and the one lifted page (the Google engineer, 72) is nowhere near the top. The one repair was the one-paragraph paste: the first draft scored a clean page 85, the validator refused it under the floor, and the repair shipped it at 90. Against pass 4 on the same 49 cases the mean change is -0.9 (13 up, 27 down, 9 unchanged); three cases moved five or more: the academic CV under the cap 79 to 68 with the same two cards (the one move this run can't explain by the rule), the recent-grad bad page 62 to 55, and the one-paragraph paste 85 to 90 by the floor. The sample (`public/sample-report.json`) is regenerated on this prompt (75, six lines to fix); the homepage and methodology clippings are requoted from it.
+
+Golden synthetic on this prompt: 7 PASS, 3 WARN (`W_SCORE_DRIFT` on the mid-career engineer, the foundation sales executive and the entry operations manager, the same drifts recorded for passes 3 and 4), 0 FAIL, $0.26. Spend for the pass: $0.67 (the rerun $0.40, golden $0.26, the sample $0.01); the wave's total is $3.06 of the $12 planned.
+
 ## The prompt on the live set (pass 3, `18e7e9ff`, the full set)
 
 - 49 reports; 1 request refused before any call (the 15-page CV, as production refuses it).

@@ -1,0 +1,44 @@
+# t1_google_engineer_maya, run 1
+Resume: resumes/t1_google_engineer_maya.txt (151 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 705c2997; severity check off
+Outcome: report; cost $0.0056; 11.4s
+Case note: Blind pick v5 bp5-04: a recognisable employer; decision 5 says the lift is one rung, bounded, declared.
+
+## Mostly clear (score 75; model wrote 75); lifted by employer
+## Verdict
+A backend engineer with strong earlier results and a current role that leaves too much to guess.
+
+## Write-up
+A recruiter sees backend engineering work with Kafka, BigQuery and Kubernetes. Google will get this page opened, but the bullets under it don't yet say enough about what you built there. That name lifts the score one rung.
+
+The Harborview latency line is the model: it names the customer dashboard, the change you made and the before-and-after measurement. Bring that same detail to the internal tool and the decisions you made at Google.
+
+## Cards (5; {"line":4,"keep":1}); severity off; added []
+1. [line] Google, line 1
+   line: "Worked on features for an internal tool used by other engineering teams"
+   can't tell: Which features, and what was your part in building them? The internal tool is the closest this role gets to a product, but a recruiter can't tell what it does.
+   example: Worked on [features] for an internal tool used by other engineering teams to [purpose], contributing [your work]
+   question: What does the tool do, and what did you contribute to its features?
+2. [line] Google, line 2
+   line: "Collaborated with cross-functional partners on requirements"
+   can't tell: Which partners and requirements? A recruiter can't tell what decisions you contributed to.
+   example: Collaborated with [partners] on requirements for [project], contributing [your work]
+   question: Who did you work with, and what did you contribute to the requirements?
+3. [line] Google, line 3
+   line: "Participated in code reviews, design reviews and the on-call rotation"
+   can't tell: These are familiar engineering duties, but the services and problems behind them aren't named. What did you review or handle on call?
+   example: Participated in code reviews, design reviews and the on-call rotation for [service], handling [work or problems]
+   question: Which service did this work cover, and what did you review or handle?
+4. [line] Google, line 4
+   line: "Mentored a new team member"
+   can't tell: A new teammate got your attention, but the mentoring itself is a blank. What did you help them learn or take on?
+   example: Mentored a new team member on [work or skills]
+   question: What work or skills did you mentor the new team member on?
+5. [keep] Harborview Analytics, line 2
+   line: "Cut p95 query latency on the customer dashboard from 4.2 s to 900 ms by rewriting the aggregation layer"
+   can't tell: Keep this as a model. It ties a technical change to a named part of the product and gives the reader a concrete comparison.
+
+## Fit
+Roles: ["Software Engineer"]
+Level: Experienced individual contributor
+Note: Your experience points toward software engineering roles focused on backend services. The Harborview bullets make the technical work tangible; the Google bullets need more detail about your contributions.

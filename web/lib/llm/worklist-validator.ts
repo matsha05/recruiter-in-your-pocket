@@ -1,5 +1,5 @@
 import { createAppError } from "../backend/errors";
-import { getScoreLabel } from "../score-utils";
+import { getWorklistScoreLabel, NOTHING_TO_FIX_FLOOR, READY_TO_SEND_SCORE } from "../score-utils";
 import {
   bannedPhrasesIn,
   inflatesOwnership,
@@ -140,7 +140,20 @@ export function validateWorklistPayload(obj: unknown, resumeText?: string, optio
     report.cards = kept;
   }
 
+  // The top band is earned, not scored (Matt, Nov 6, 2026): "Ready to send" (93+) only when no card needs work;
+  // a page with no card that needs work never sits below 90; the employer lift never reaches the top band.
+  const work = report.cards.filter((card) => card.kind !== "keep").length;
+  if (report.score >= READY_TO_SEND_SCORE && work > 0) {
+    issues.push({ path: "score", message: `is ${report.score} (Ready to send) with ${work} card${work === 1 ? "" : "s"} that need${work === 1 ? "s" : ""} work; a page with any card that needs work scores at most ${READY_TO_SEND_SCORE - 1}` });
+  }
+  if (work === 0 && report.cards.length > 0 && report.score < NOTHING_TO_FIX_FLOOR) {
+    issues.push({ path: "score", message: `is ${report.score} with no card that needs work; a page with nothing to fix scores at least ${NOTHING_TO_FIX_FLOOR}` });
+  }
+  if (report.lifted_by_employer && report.score >= READY_TO_SEND_SCORE) {
+    issues.push({ path: "score", message: `is ${report.score} with the employer lift; the lift never reaches Ready to send` });
+  }
+
   if (issues.length > 0) fail(issues);
-  report.score_label = getScoreLabel(report.score);
+  report.score_label = getWorklistScoreLabel(report.score);
   return report;
 }

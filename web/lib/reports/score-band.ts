@@ -10,7 +10,7 @@
  * for the questions-first path (lib/reports/ask-first.ts).
  */
 
-import { getScoreLabel } from "../score-utils";
+import { getScoreLabel, getWorklistScoreLabel } from "../score-utils";
 
 export interface ScoreBand {
   name: string;
@@ -52,6 +52,26 @@ export function scoreBandIndex(score: number) {
 
 export function scoreBandFor(score: number): ScoreBand {
   return SCORE_BANDS[Math.max(0, scoreBandIndex(score))];
+}
+
+/**
+ * The worklist report's bands (Matt, Nov 6, 2026: "a higher 5th band"): the four above, with "Clear and specific"
+ * ending at 92 and "Ready to send" from 93, a band the page earns only when no line needs work (the prompt and
+ * the validator hold the two together). v2 reports keep the four.
+ */
+export const WORKLIST_BANDS: readonly ScoreBand[] = [
+  ...SCORE_BANDS,
+  { name: "Ready to send", anchor: "Every line says what you did and what changed. There's nothing here a recruiter would stop on." },
+];
+
+export function worklistBandIndex(score: number) {
+  const index = WORKLIST_BANDS.findIndex((band) => band.name === getWorklistScoreLabel(score));
+  if (index === NEEDS_CONTEXT && readsNotReady(score)) return NOT_READY;
+  return index;
+}
+
+export function worklistBandFor(score: number): ScoreBand {
+  return WORKLIST_BANDS[Math.max(0, worklistBandIndex(score))];
 }
 
 /**

@@ -1,0 +1,243 @@
+{
+  "case_id": "b20_customer_success_manager",
+  "batch": "breadth",
+  "run": 1,
+  "note": "No posting.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt",
+  "resume_sha256": "fe00b25220442aa026e6aa909f700301c898f430bd2cf244eafbe182c75f316d",
+  "resume_words": 180,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T16:36:08.468Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4559,
+        "completion_tokens": 1178,
+        "total_tokens": 5737,
+        "cached_prompt_tokens": 3792,
+        "cache_write_prompt_tokens": 764,
+        "reasoning_tokens": 628
+      },
+      "cost_usd": 0.0070376,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 21614
+    }
+  ],
+  "resume_prompt_sha256": "70e795a1e91877ad12f5394154dccd644b9f9d298e123ca182963a0e3e089350",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A customer success manager with a defined account book, but an unclear part in renewal strategy.",
+    "write_up": [
+      "You have a clear customer success story: payroll support, then a book of mid-market accounts. A recruiter could move this forward, with a question about what you contributed to renewal strategy for at-risk accounts.",
+      "The 48-account line is the model. It names the customers and their industries, so a recruiter can picture your book. The onboarding checklist is another useful detail: it shows something you built that the whole CS team uses."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 1",
+        "line": "- Manage a book of 48 mid-market accounts across healthcare and manufacturing",
+        "cannot_tell": "Keep this. The account count and industries give the rest of your work a setting.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "- Partnered with Sales on renewal strategy for at-risk accounts",
+        "cannot_tell": "Partnered doesn't say what part of the renewal work was yours. That matters for a role that runs through renewal.",
+        "example": "Partnered with Sales on renewal strategy for at-risk accounts by [your contribution]",
+        "question": "What did you contribute to the renewal strategy for at-risk accounts?"
+      },
+      {
+        "kind": "line",
+        "where": "Account Coordinator, line 2",
+        "line": "- Answered client questions by phone and email",
+        "cannot_tell": "The channels are clear, but the questions aren't. What did clients come to you for?",
+        "example": "Answered small business client questions about [topics] by phone and email",
+        "question": "What kinds of questions did those clients ask?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Customer Success Manager",
+        "Customer Support Specialist"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "Your recent work points toward customer success roles serving mid-market software accounts. Your earlier payroll and tax filing support also gives you a route into customer support roles.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A customer success manager with a defined account book, but an unclear part in renewal strategy.",
+    "write_up": [
+      "You have a clear customer success story: payroll support, then a book of mid-market accounts. A recruiter could move this forward, with a question about what you contributed to renewal strategy for at-risk accounts.",
+      "The 48-account line is the model. It names the customers and their industries, so a recruiter can picture your book. The onboarding checklist is another useful detail: it shows something you built that the whole CS team uses."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 1",
+        "line": "Manage a book of 48 mid-market accounts across healthcare and manufacturing",
+        "cannot_tell": "Keep this. The account count and industries give the rest of your work a setting.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "Partnered with Sales on renewal strategy for at-risk accounts",
+        "cannot_tell": "Partnered doesn't say what part of the renewal work was yours. That matters for a role that runs through renewal.",
+        "example": "Partnered with Sales on renewal strategy for at-risk accounts by [your contribution]",
+        "question": "What did you contribute to the renewal strategy for at-risk accounts?"
+      },
+      {
+        "kind": "line",
+        "where": "Account Coordinator, line 2",
+        "line": "Answered client questions by phone and email",
+        "cannot_tell": "The channels are clear, but the questions aren't. What did clients come to you for?",
+        "example": "Answered small business client questions about [topics] by phone and email",
+        "question": "What kinds of questions did those clients ask?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Customer Success Manager",
+        "Customer Support Specialist"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "Your recent work points toward customer success roles serving mid-market software accounts. Your earlier payroll and tax filing support also gives you a route into customer support roles.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 78
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A customer success manager with a defined account book, but an unclear part in renewal strategy.",
+    "write_up": [
+      "You have a clear customer success story: payroll support, then a book of mid-market accounts. A recruiter could move this forward, with a question about what you contributed to renewal strategy for at-risk accounts.",
+      "The 48-account line is the model. It names the customers and their industries, so a recruiter can picture your book. The onboarding checklist is another useful detail: it shows something you built that the whole CS team uses."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 1",
+        "line": "Manage a book of 48 mid-market accounts across healthcare and manufacturing",
+        "cannot_tell": "Keep this. The account count and industries give the rest of your work a setting.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "Partnered with Sales on renewal strategy for at-risk accounts",
+        "cannot_tell": "Partnered doesn't say what part of the renewal work was yours. That matters for a role that runs through renewal.",
+        "example": "Partnered with Sales on renewal strategy for at-risk accounts by [your contribution]",
+        "question": "What did you contribute to the renewal strategy for at-risk accounts?"
+      },
+      {
+        "kind": "line",
+        "where": "Account Coordinator, line 2",
+        "line": "Answered client questions by phone and email",
+        "cannot_tell": "The channels are clear, but the questions aren't. What did clients come to you for?",
+        "example": "Answered small business client questions about [topics] by phone and email",
+        "question": "What kinds of questions did those clients ask?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Customer Success Manager",
+        "Customer Support Specialist"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "Your recent work points toward customer success roles serving mid-market software accounts. Your earlier payroll and tax filing support also gives you a route into customer support roles.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 78
+  },
+  "presentation": {
+    "score": 78,
+    "band": "Mostly clear",
+    "model_score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A customer success manager with a defined account book, but an unclear part in renewal strategy.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 72,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 1",
+        "line": "Manage a book of 48 mid-market accounts across healthcare and manufacturing",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "Partnered with Sales on renewal strategy for at-risk accounts",
+        "blanks": 1,
+        "question": "What did you contribute to the renewal strategy for at-risk accounts?"
+      },
+      {
+        "kind": "line",
+        "where": "Account Coordinator, line 2",
+        "line": "Answered client questions by phone and email",
+        "blanks": 1,
+        "question": "What kinds of questions did those clients ask?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "keep": 1,
+      "line": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Customer Success Manager",
+        "Customer Support Specialist"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "Your recent work points toward customer success roles serving mid-market software accounts. Your earlier payroll and tax filing support also gives you a route into customer support roles.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0070376,
+  "latency_ms": 21616
+}

@@ -38,6 +38,7 @@ Correction rules:
 5. Never write "Critical Miss" or "the read". Speak to the person as "you"; never "the candidate".
 6. Never write a computed duration or today's date. Copy dates as the resume writes them.
 7. Keep the write-up in the recruiter's own voice, two or three short paragraphs, and keep the cards in the order a recruiter hits them.
+8. The score and the cards agree: 93 or above only when every card is the keep card (no line needs work); a page with no card that needs work scores at least 90; a page lifted by its employer scores at most 92. Fix whichever is wrong, the score or the cards, by re-reading the page.
 
 Issues found: ${issueSummary(error)}`,
     },

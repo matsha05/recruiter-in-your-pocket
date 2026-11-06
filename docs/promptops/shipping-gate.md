@@ -215,7 +215,17 @@ Two candidates from [the proposal](proposals/2026-11-not-every-bullet-needs-a-nu
 - Candidate B, the resume prompt's rule 10 and VOICE line (`e09ca912` against `83b2a2d1`): GATE: FAIL, preferred 2 of 22, production 7, 0 vetoes, both count checks pass. "Led a team of 40" kept 0 of 3 with the question present 3 of 3 (was 3 of 3 kept).
 - Spend $3.7366 (estimate $3.67; stop line $12). Receipts: `tests/fixtures/results/summary_*bullet_number*.md`, `tests/fixtures/results/judge/*bullet-number*`. Neither prompt changed.
 
-### The worklist report, resume prompt v3 — November 6 (built behind a flag; Matt's read pending)
+### The worklist report, the fifth band — November 6 (prompt `70e795a1`)
+
+Matt read the five in the Report Lab, asked for a deep pass on the visuals and then the typography, said "lets ship it" (PR 78 and PR 79 merged November 6, the flag on for everyone, PR 80 for the report's own copy), and asked for a higher fifth band. The proposal he approved: `docs/promptops/proposals/2026-11-fifth-band.md`; the record: `docs/audits/2026-11-worklist-run.md`, pass 5.
+
+- "Ready to send" from 93, earned only when no line needs work; "Clear and specific" 85 to 92; a page with nothing to fix never under 90; the employer lift never into the top band. The prompt carries the rule and the validator enforces it (one repair), so the band and the list can't disagree on a shipped report.
+- Live set rerun on the new prompt: 49 of 49 shipped, 1 repaired (a clean page scored 85, repaired to 90), 0 never shipped, 0 rule violations after validation; 2 pages land on Ready to send (the strong PM at 96, the FP&A analyst at 95), 4 pages have nothing to fix (90 to 96). Mean score change against the previous pass on the same 49 cases: -0.9.
+- Golden synthetic 10: 7 PASS, 3 WARN (the same score drifts as passes 3 and 4), 0 FAIL.
+- Spend $0.67; the wave's total $3.06 of the $12 planned; stop line $15.
+- Gate: the counts above, the report spec set on the production build (80 passed, 1 skipped, 1 known v2 failure), the red-team journeys, and Matt reading the two pages that land on Ready to send (Report Lab fixtures `worklist-strong` and `worklist-ready`).
+
+### The worklist report, resume prompt v3 — November 6 (built behind a flag; shipped November 6, see above)
 
 The report shape Matt chose on November 5 (`docs/design/2026-11-worklist-report/`): score and rung, the recruiter's write-up, one card per line that needs work, no Critical Miss. Prompt `web/prompts/resume_v3.txt` (`705c2997`; `18e7e9ff` before the surface's outside critique asked for shorter blank labels and dated examples), contract `v3` (`web/lib/llm/worklist-schema.ts`), validator `web/lib/llm/worklist-validator.ts`. It writes the report unless `RIYP_WORKLIST_REPORT=0` (the default flipped with the surface PR); `resume_v2.txt` (`83b2a2d1`) is unchanged and still the validator for every report saved before it. Record: [2026-11-worklist-run.md](../audits/2026-11-worklist-run.md).
 

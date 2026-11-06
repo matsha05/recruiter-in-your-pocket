@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { getScoreLabel } from "../score-utils";
+import { getWorklistScoreLabel } from "../score-utils";
 
 /**
  * The worklist report (Matt, November 5, 2026; docs/design/2026-11-worklist-report/): the score and its
@@ -68,7 +68,7 @@ export const WorklistReportSchema = z.object({
   if (report.cards.filter((card) => card.kind === "keep").length > 1) {
     context.addIssue({ code: "custom", path: ["cards"], message: "at most one keep card" });
   }
-}).transform((report) => ({ ...report, score_label: getScoreLabel(report.score) }));
+}).transform((report) => ({ ...report, score_label: getWorklistScoreLabel(report.score) }));
 
 export type WorklistReport = z.infer<typeof WorklistReportSchema>;
 

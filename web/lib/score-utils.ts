@@ -44,6 +44,20 @@ export function getScoreLabel(score: number): string {
     return "Needs more context";
 }
 
+/** At or above this, a worklist report is on the top band, which it earns only when no line needs work (Matt, Nov 6, 2026). */
+export const READY_TO_SEND_SCORE = 93;
+/** A worklist report with no line that needs work never sits below this. */
+export const NOTHING_TO_FIX_FLOOR = 90;
+
+/**
+ * The worklist report's label (Nov 6, 2026): the v2 labels plus a fifth at the top, "Ready to send", for the
+ * page with nothing left to fix. v2 reports keep the four of getScoreLabel.
+ */
+export function getWorklistScoreLabel(score: number): string {
+    if (score >= READY_TO_SEND_SCORE) return "Ready to send";
+    return getScoreLabel(score);
+}
+
 /**
  * Returns the HSL stroke color for score dials (SVG inline stroke)
  */
