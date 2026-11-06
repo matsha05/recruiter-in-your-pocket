@@ -111,12 +111,12 @@ test.describe("the report's first screen on a phone", () => {
   test("the count sits on one row and the fix cards say where they sit", async ({ page }) => {
     await openReport(page, flagged.report);
     const title = page.locator("#fixes-title");
-    await expect(title).toHaveText("Two Critical Misses. Start with this one.");
+    await expect(title).toHaveText("Two problems. Start with this one.");
     const lead = page.getByText("Either one could cost you the interview on its own.", { exact: true });
     const [titleBox, leadBox] = await Promise.all([title.boundingBox(), lead.boundingBox()]);
     expect(Math.abs(titleBox!.y - leadBox!.y)).toBeLessThan(12);
-    await expect(page.getByTestId("critical-miss").getByText("Critical Miss 1", { exact: true })).toBeVisible();
-    await expect(page.getByTestId("critical-fix").getByText("Critical Miss 2", { exact: true })).toBeVisible();
+    await expect(page.getByTestId("critical-miss").getByText("Problem 1", { exact: true })).toBeVisible();
+    await expect(page.getByTestId("critical-fix").getByText("Problem 2", { exact: true })).toBeVisible();
     await expect(page.getByTestId("fix-row").getByText("Fix 3 of 3", { exact: true })).toBeVisible();
   });
 
