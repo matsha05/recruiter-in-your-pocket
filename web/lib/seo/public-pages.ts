@@ -34,7 +34,6 @@ export const PUBLIC_PAGES: readonly PublicPage[] = [
   { path: "/research/ats-myths", updated: "2026-11-04", published: "2025-12-10", card: "ats-myths" },
   { path: "/research/automation-and-bias", updated: "2026-11-04", published: "2025-12-15", card: "automation-and-bias" },
   { path: "/research/gaps-and-pivots", updated: "2026-11-04", published: "2026-10-31", card: "gaps-and-pivots" },
-  { path: "/research/hiring-discrimination-meta-analysis", updated: "2026-11-04", published: "2025-12-15", card: "hiring-discrimination-meta-analysis" },
   { path: "/research/how-recruiters-read", updated: "2026-11-04", published: "2025-12-10", card: "how-recruiters-read" },
   { path: "/research/human-vs-algorithm", updated: "2026-11-04", published: "2025-12-15", card: "human-vs-algorithm" },
   { path: "/research/linkedin-visibility", updated: "2026-11-04", published: "2025-12-28", card: "linkedin-visibility" },

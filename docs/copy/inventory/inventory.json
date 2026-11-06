@@ -1,13 +1,13 @@
 {
   "generated_by": "web/scripts/copy-inventory.cjs",
   "counts": {
-    "files_scanned": 413,
-    "files_with_copy": 255,
-    "strings": 2992,
-    "unique_strings": 2507
+    "files_scanned": 416,
+    "files_with_copy": 256,
+    "strings": 2973,
+    "unique_strings": 2489
   },
   "by_moment": {
-    "research": 922,
+    "research": 903,
     "account": 442,
     "marketing": 416,
     "report": 319,
@@ -3936,31 +3936,9 @@
       "table": "research"
     },
     {
-      "text": "Gender, Race, and Intersectional Bias in Resume Screening via Language Model Retrieval",
-      "kind": "key:title",
-      "line": 60,
-      "file": "web/app/(editorial)/research/automation-and-bias/page.tsx",
-      "routes": [
-        "/research/automation-and-bias"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "Measuring gender and racial biases in large language models: Intersectional evidence from automated resume evaluation",
-      "kind": "key:title",
-      "line": 67,
-      "file": "web/app/(editorial)/research/automation-and-bias/page.tsx",
-      "routes": [
-        "/research/automation-and-bias"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
       "text": "One hiring process, several decision points",
       "kind": "jsx-text",
-      "line": 74,
+      "line": 60,
       "file": "web/app/(editorial)/research/automation-and-bias/page.tsx",
       "routes": [
         "/research/automation-and-bias"
@@ -3971,7 +3949,7 @@
     {
       "text": "The Upturn report follows four stages of hiring: sourcing (including job ads), screening, interviewing, and selection. Its authors found that tools rarely make the final hiring decision but often automate rejections along the way. Someone who never sees a job ad may never learn about the opportunity. When a person does decide, software still has a say: in one experiment,",
       "kind": "jsx-text",
-      "line": 76,
+      "line": 62,
       "file": "web/app/(editorial)/research/automation-and-bias/page.tsx",
       "routes": [
         "/research/automation-and-bias"
@@ -3982,7 +3960,7 @@
     {
       "text": "an algorithm’s recommendation swayed recruiters who said they trusted it less than a human expert",
       "kind": "jsx-text",
-      "line": 76,
+      "line": 62,
       "file": "web/app/(editorial)/research/automation-and-bias/page.tsx",
       "routes": [
         "/research/automation-and-bias"
@@ -3993,7 +3971,7 @@
     {
       "text": "Once you have an opportunity to apply, check that your file contains readable text and clear sections. That addresses a possible parsing problem, not the broader risks documented in the report, and even then",
       "kind": "jsx-text",
-      "line": 80,
+      "line": 66,
       "file": "web/app/(editorial)/research/automation-and-bias/page.tsx",
       "routes": [
         "/research/automation-and-bias"
@@ -4004,7 +3982,7 @@
     {
       "text": "a failed parse doesn’t make the resume disappear: someone enters the details by hand",
       "kind": "jsx-text",
-      "line": 80,
+      "line": 66,
       "file": "web/app/(editorial)/research/automation-and-bias/page.tsx",
       "routes": [
         "/research/automation-and-bias"
@@ -4015,7 +3993,7 @@
     {
       "text": "Our advice:",
       "kind": "jsx-text",
-      "line": 84,
+      "line": 70,
       "file": "web/app/(editorial)/research/automation-and-bias/page.tsx",
       "routes": [
         "/research/automation-and-bias"
@@ -4026,7 +4004,7 @@
     {
       "text": "make your relevant experience explicit, too. You can&apos;t fix bias in the tools, but you can keep an avoidable parsing problem from becoming another one.",
       "kind": "jsx-text",
-      "line": 84,
+      "line": 70,
       "file": "web/app/(editorial)/research/automation-and-bias/page.tsx",
       "routes": [
         "/research/automation-and-bias"
@@ -4037,7 +4015,7 @@
     {
       "text": "What can you control?",
       "kind": "attr:question",
-      "line": 87,
+      "line": 73,
       "file": "web/app/(editorial)/research/automation-and-bias/page.tsx",
       "routes": [
         "/research/automation-and-bias"
@@ -4048,7 +4026,7 @@
     {
       "text": "Your report reads the resume you submit and flags what&apos;s missing or unclear. It can&apos;t see an employer&apos;s job ads or screening tools, and it doesn&apos;t guess at their settings.",
       "kind": "jsx-text",
-      "line": 88,
+      "line": 74,
       "file": "web/app/(editorial)/research/automation-and-bias/page.tsx",
       "routes": [
         "/research/automation-and-bias"
@@ -4059,7 +4037,7 @@
     {
       "text": "When the system changes who gets seen",
       "kind": "jsx-text",
-      "line": 91,
+      "line": 77,
       "file": "web/app/(editorial)/research/automation-and-bias/page.tsx",
       "routes": [
         "/research/automation-and-bias"
@@ -4070,73 +4048,7 @@
     {
       "text": "A system that decides who sees a job ad or appears in a search can change who receives attention. Candidates left out may still find another route to the employer, but the initial decision can limit their opportunity.",
       "kind": "jsx-text",
-      "line": 93,
-      "file": "web/app/(editorial)/research/automation-and-bias/page.tsx",
-      "routes": [
-        "/research/automation-and-bias"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "What newer studies found",
-      "kind": "jsx-text",
-      "line": 97,
-      "file": "web/app/(editorial)/research/automation-and-bias/page.tsx",
-      "routes": [
-        "/research/automation-and-bias"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "Newer studies test the AI models that screening tools can be built on. In a 2024 simulation, text-matching models ranked about 500 resumes against job descriptions with names swapped in. Resumes with white names were significantly preferred in 85% of tests and those with Black names in 9%. In 2026 the authors corrected their separate gender results after finding a bug in their code; the race results stand.",
-      "kind": "jsx-text",
-      "line": 99,
-      "file": "web/app/(editorial)/research/automation-and-bias/page.tsx",
-      "routes": [
-        "/research/automation-and-bias"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "A 2025 study asked five large language models to score about 361,000 resumes with randomized names. They gave women higher scores and Black men lower ones, gaps the authors estimate could shift hiring odds by about 1 to 3 percentage points at some cutoffs.",
-      "kind": "jsx-text",
-      "line": 103,
-      "file": "web/app/(editorial)/research/automation-and-bias/page.tsx",
-      "routes": [
-        "/research/automation-and-bias"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "The gaps have a human baseline. In US field experiments with human screeners,",
-      "kind": "jsx-text",
-      "line": 107,
-      "file": "web/app/(editorial)/research/automation-and-bias/page.tsx",
-      "routes": [
-        "/research/automation-and-bias"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "white applicants got 36% more callbacks than equally qualified Black applicants",
-      "kind": "jsx-text",
-      "line": 107,
-      "file": "web/app/(editorial)/research/automation-and-bias/page.tsx",
-      "routes": [
-        "/research/automation-and-bias"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": ", with no decline from 1989 to 2015.",
-      "kind": "jsx-text",
-      "line": 107,
+      "line": 79,
       "file": "web/app/(editorial)/research/automation-and-bias/page.tsx",
       "routes": [
         "/research/automation-and-bias"
@@ -4147,18 +4059,7 @@
     {
       "text": "The Upturn report is from 2018. It describes where risk can enter, not how large the effect is.",
       "kind": "jsx-text",
-      "line": 112,
-      "file": "web/app/(editorial)/research/automation-and-bias/page.tsx",
-      "routes": [
-        "/research/automation-and-bias"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "The newer studies test AI models in simulations. They aren&apos;t audits of a real employer&apos;s hiring tools.",
-      "kind": "jsx-text",
-      "line": 113,
+      "line": 85,
       "file": "web/app/(editorial)/research/automation-and-bias/page.tsx",
       "routes": [
         "/research/automation-and-bias"
@@ -4169,7 +4070,7 @@
     {
       "text": "Hiring tools have changed since then, and most vendors don&apos;t publish how theirs work.",
       "kind": "jsx-text",
-      "line": 114,
+      "line": 86,
       "file": "web/app/(editorial)/research/automation-and-bias/page.tsx",
       "routes": [
         "/research/automation-and-bias"
@@ -4646,336 +4547,6 @@
       "file": "web/app/(editorial)/research/gaps-and-pivots/page.tsx",
       "routes": [
         "/research/gaps-and-pivots"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "Does racial bias still decide who gets a callback?",
-      "kind": "key:title",
-      "line": 11,
-      "file": "web/app/(editorial)/research/hiring-discrimination-meta-analysis/page.tsx",
-      "routes": [
-        "/research/hiring-discrimination-meta-analysis"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "A review of US hiring experiments found persistent racial discrimination against applicants with comparable qualifications. What a resume can and can't control.",
-      "kind": "key:description",
-      "line": 12,
-      "file": "web/app/(editorial)/research/hiring-discrimination-meta-analysis/page.tsx",
-      "routes": [
-        "/research/hiring-discrimination-meta-analysis"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "Yes. In 24 US field experiments from 1989 to 2015, white applicants got 36% more callbacks than equally qualified Black applicants, with no significant decline over that time. The gap for Latino applicants was 24%, with modest evidence of decline.",
-      "kind": "jsx-text",
-      "line": 22,
-      "file": "web/app/(editorial)/research/hiring-discrimination-meta-analysis/page.tsx",
-      "routes": [
-        "/research/hiring-discrimination-meta-analysis"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "From a meta-analysis of hiring field experiments (Quillian, Pager, Hexel & Midtb&oslash;en, PNAS, 2017).",
-      "kind": "jsx-text",
-      "line": 27,
-      "file": "web/app/(editorial)/research/hiring-discrimination-meta-analysis/page.tsx",
-      "routes": [
-        "/research/hiring-discrimination-meta-analysis"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "What a better resume cannot fix",
-      "kind": "jsx-text",
-      "line": 34,
-      "file": "web/app/(editorial)/research/hiring-discrimination-meta-analysis/page.tsx",
-      "routes": [
-        "/research/hiring-discrimination-meta-analysis"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "These experiments sent comparable resumes, or trained testers matched to apply in person. The gap came from how applicants were treated, not from what their applications said. Our read: a better resume can&apos;t close it.",
-      "kind": "jsx-text",
-      "line": 36,
-      "file": "web/app/(editorial)/research/hiring-discrimination-meta-analysis/page.tsx",
-      "routes": [
-        "/research/hiring-discrimination-meta-analysis"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "Meta-analysis of field experiments shows no change in racial discrimination in hiring over time",
-      "kind": "key:title",
-      "line": 45,
-      "file": "web/app/(editorial)/research/hiring-discrimination-meta-analysis/page.tsx",
-      "routes": [
-        "/research/hiring-discrimination-meta-analysis"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "Help Wanted: An Examination of Hiring Algorithms, Equity, and Bias",
-      "kind": "key:title",
-      "line": 52,
-      "file": "web/app/(editorial)/research/hiring-discrimination-meta-analysis/page.tsx",
-      "routes": [
-        "/research/hiring-discrimination-meta-analysis"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "Systemic Discrimination Among Large U.S. Employers",
-      "kind": "key:title",
-      "line": 59,
-      "file": "web/app/(editorial)/research/hiring-discrimination-meta-analysis/page.tsx",
-      "routes": [
-        "/research/hiring-discrimination-meta-analysis"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "Trends in racial and ethnic discrimination in hiring in six Western countries",
-      "kind": "key:title",
-      "line": 66,
-      "file": "web/app/(editorial)/research/hiring-discrimination-meta-analysis/page.tsx",
-      "routes": [
-        "/research/hiring-discrimination-meta-analysis"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "What a rejection cannot tell you",
-      "kind": "jsx-text",
-      "line": 73,
-      "file": "web/app/(editorial)/research/hiring-discrimination-meta-analysis/page.tsx",
-      "routes": [
-        "/research/hiring-discrimination-meta-analysis"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "A rejection does not, by itself, tell you what was wrong with your resume. These experiments found different treatment of applicants with comparable qualifications.",
-      "kind": "jsx-text",
-      "line": 75,
-      "file": "web/app/(editorial)/research/hiring-discrimination-meta-analysis/page.tsx",
-      "routes": [
-        "/research/hiring-discrimination-meta-analysis"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "Our report can identify details that are missing or hard to understand. It cannot explain a particular employer&apos;s decision or assign responsibility for a rejection to the candidate.",
-      "kind": "jsx-text",
-      "line": 79,
-      "file": "web/app/(editorial)/research/hiring-discrimination-meta-analysis/page.tsx",
-      "routes": [
-        "/research/hiring-discrimination-meta-analysis"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "The Upturn report describes additional risks when",
-      "kind": "jsx-text",
-      "line": 82,
-      "file": "web/app/(editorial)/research/hiring-discrimination-meta-analysis/page.tsx",
-      "routes": [
-        "/research/hiring-discrimination-meta-analysis"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "automated tools decide which job ads you see, whether you’re eligible, and how you reach a person",
-      "kind": "jsx-text",
-      "line": 82,
-      "file": "web/app/(editorial)/research/hiring-discrimination-meta-analysis/page.tsx",
-      "routes": [
-        "/research/hiring-discrimination-meta-analysis"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": ". Those are risks employers and platform operators need to address; resume edits are not a remedy.",
-      "kind": "jsx-text",
-      "line": 82,
-      "file": "web/app/(editorial)/research/hiring-discrimination-meta-analysis/page.tsx",
-      "routes": [
-        "/research/hiring-discrimination-meta-analysis"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "What newer studies found",
-      "kind": "jsx-text",
-      "line": 86,
-      "file": "web/app/(editorial)/research/hiring-discrimination-meta-analysis/page.tsx",
-      "routes": [
-        "/research/hiring-discrimination-meta-analysis"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "The meta-analysis stops in 2015. Between 2019 and 2021, economists sent 83,643 fictitious applications to entry-level jobs at 108 of the largest US employers. Applications with distinctively Black names were 2.1 percentage points less likely to hear back within 30 days, 23.0% against 25.1%. That study measured any contact from the employer, not callbacks, so its gap isn&apos;t directly comparable to the 36%.",
-      "kind": "jsx-text",
-      "line": 88,
-      "file": "web/app/(editorial)/research/hiring-discrimination-meta-analysis/page.tsx",
-      "routes": [
-        "/research/hiring-discrimination-meta-analysis"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "A 2023 update of the meta-analysis, adding US studies through 2019, again found little change in the United States.",
-      "kind": "jsx-text",
-      "line": 92,
-      "file": "web/app/(editorial)/research/hiring-discrimination-meta-analysis/page.tsx",
-      "routes": [
-        "/research/hiring-discrimination-meta-analysis"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "Focus on what you can change",
-      "kind": "jsx-text",
-      "line": 96,
-      "file": "web/app/(editorial)/research/hiring-discrimination-meta-analysis/page.tsx",
-      "routes": [
-        "/research/hiring-discrimination-meta-analysis"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "You can improve how clearly your resume shows your experience: make it clear, consistent, specific, and easy to verify. The classic audit study shows both the value and the limit of that:",
-      "kind": "jsx-text",
-      "line": 98,
-      "file": "web/app/(editorial)/research/hiring-discrimination-meta-analysis/page.tsx",
-      "routes": [
-        "/research/hiring-discrimination-meta-analysis"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "a stronger resume raised callbacks from 8.5% to 10.8% for white-sounding names, and barely moved them for Black-sounding names",
-      "kind": "jsx-text",
-      "line": 98,
-      "file": "web/app/(editorial)/research/hiring-discrimination-meta-analysis/page.tsx",
-      "routes": [
-        "/research/hiring-discrimination-meta-analysis"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": ". You cannot remove bias from the hiring process. Good advice should help with the first without pretending it solves the second. The route in is also yours to change:",
-      "kind": "jsx-text",
-      "line": 98,
-      "file": "web/app/(editorial)/research/hiring-discrimination-meta-analysis/page.tsx",
-      "routes": [
-        "/research/hiring-discrimination-meta-analysis"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "40% of referred applications reached an interview, against 3% of cold ones",
-      "kind": "jsx-text",
-      "line": 98,
-      "file": "web/app/(editorial)/research/hiring-discrimination-meta-analysis/page.tsx",
-      "routes": [
-        "/research/hiring-discrimination-meta-analysis"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "Resume quality is only one factor",
-      "kind": "attr:title",
-      "line": 103,
-      "file": "web/app/(editorial)/research/hiring-discrimination-meta-analysis/page.tsx",
-      "routes": [
-        "/research/hiring-discrimination-meta-analysis"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "Is anything on the page raising avoidable doubt?",
-      "kind": "attr:question",
-      "line": 108,
-      "file": "web/app/(editorial)/research/hiring-discrimination-meta-analysis/page.tsx",
-      "routes": [
-        "/research/hiring-discrimination-meta-analysis"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "No resume report can tell you why you were turned down, or whether bias played a part. The report cards the lines on the page a recruiter trips on. Fixing them won&apos;t close a gap that lives in the hiring process itself.",
-      "kind": "jsx-text",
-      "line": 109,
-      "file": "web/app/(editorial)/research/hiring-discrimination-meta-analysis/page.tsx",
-      "routes": [
-        "/research/hiring-discrimination-meta-analysis"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "These are US field experiments, pooling resume audits with in-person audits. Most measured callbacks, the first response, not who got hired.",
-      "kind": "jsx-text",
-      "line": 114,
-      "file": "web/app/(editorial)/research/hiring-discrimination-meta-analysis/page.tsx",
-      "routes": [
-        "/research/hiring-discrimination-meta-analysis"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "The meta-analysis ends in 2015. The newer studies above use different measures, so their numbers don&apos;t line up exactly with it.",
-      "kind": "jsx-text",
-      "line": 115,
-      "file": "web/app/(editorial)/research/hiring-discrimination-meta-analysis/page.tsx",
-      "routes": [
-        "/research/hiring-discrimination-meta-analysis"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "Callback gaps for other groups and other countries need their own evidence.",
-      "kind": "jsx-text",
-      "line": 116,
-      "file": "web/app/(editorial)/research/hiring-discrimination-meta-analysis/page.tsx",
-      "routes": [
-        "/research/hiring-discrimination-meta-analysis"
       ],
       "moment": "research",
       "table": "research"
@@ -6862,18 +6433,7 @@
       "table": "research"
     },
     {
-      "text": "that matches a slow market from the recruiter&apos;s side. There are so many applications per role that a referral is how you get out of the pile. The pile isn’t read evenly, either: across US field experiments,",
-      "kind": "jsx-text",
-      "line": 87,
-      "file": "web/app/(editorial)/research/referral-advantage/page.tsx",
-      "routes": [
-        "/research/referral-advantage"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "white applicants got 36% more callbacks than equally qualified Black applicants",
+      "text": "that matches a slow market from the recruiter&apos;s side. There are so many applications per role that a referral is how you get out of the pile.",
       "kind": "jsx-text",
       "line": 87,
       "file": "web/app/(editorial)/research/referral-advantage/page.tsx",
@@ -23066,7 +22626,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -23122,7 +22681,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -23178,7 +22736,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -27692,7 +27249,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -28587,7 +28143,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -28623,7 +28178,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -28659,7 +28213,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -28695,7 +28248,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -28731,7 +28283,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -28767,7 +28318,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -28803,7 +28353,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -28839,7 +28388,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -28875,7 +28423,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -28911,7 +28458,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -28947,7 +28493,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -28983,7 +28528,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -29019,7 +28563,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -29055,7 +28598,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -29091,7 +28633,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -29127,7 +28668,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -29163,7 +28703,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -29199,7 +28738,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -29218,6 +28756,127 @@
       "table": "shared"
     },
     {
+      "text": "Applied cold",
+      "kind": "key:label",
+      "line": 14,
+      "file": "web/components/research/HubFindings.tsx",
+      "routes": [
+        "/research"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Three findings, drawn",
+      "kind": "jsx-text",
+      "line": 25,
+      "file": "web/components/research/HubFindings.tsx",
+      "routes": [
+        "/research"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Read the answer",
+      "kind": "jsx-text",
+      "line": 41,
+      "file": "web/components/research/HubFindings.tsx",
+      "routes": [
+        "/research"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Do recruiters only spend six seconds on a resume?",
+      "kind": "attr:question",
+      "line": 52,
+      "file": "web/components/research/HubFindings.tsx",
+      "routes": [
+        "/research"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "What 2,043 resume reviews showed, section by section. Pina et al., 2023.",
+      "kind": "jsx-text",
+      "line": 55,
+      "file": "web/components/research/HubFindings.tsx",
+      "routes": [
+        "/research"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Resume sections and what the study found for each",
+      "kind": "attr:aria-label",
+      "line": 57,
+      "file": "web/components/research/HubFindings.tsx",
+      "routes": [
+        "/research"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Will one typo on my resume cost me the interview?",
+      "kind": "attr:question",
+      "line": 74,
+      "file": "web/components/research/HubFindings.tsx",
+      "routes": [
+        "/research"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Against the same resume without errors. One typo wasn’t tested. Sterkens et al., PLOS ONE, 2023, 445 hiring professionals.",
+      "kind": "jsx-text",
+      "line": 77,
+      "file": "web/components/research/HubFindings.tsx",
+      "routes": [
+        "/research"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "&minus;",
+      "kind": "jsx-text",
+      "line": 84,
+      "file": "web/components/research/HubFindings.tsx",
+      "routes": [
+        "/research"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "How much does a referral really help?",
+      "kind": "attr:question",
+      "line": 106,
+      "file": "web/components/research/HubFindings.tsx",
+      "routes": [
+        "/research"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Applications that reached an interview, per 100. Ashby customer data, 2021 to 2024, 38 million applications.",
+      "kind": "jsx-text",
+      "line": 109,
+      "file": "web/components/research/HubFindings.tsx",
+      "routes": [
+        "/research"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
       "text": "Find out where your resume needs more detail.",
       "kind": "key:title",
       "line": 80,
@@ -29226,7 +28885,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
         "/research/quantifying-impact",
@@ -29252,7 +28910,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
         "/research/quantifying-impact",
@@ -29278,7 +28935,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
         "/research/quantifying-impact",
@@ -29304,7 +28960,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
         "/research/quantifying-impact",
@@ -29330,7 +28985,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
         "/research/quantifying-impact",
@@ -29356,7 +29010,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
         "/research/quantifying-impact",
@@ -29382,7 +29035,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
         "/research/quantifying-impact",
@@ -29408,7 +29060,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
         "/research/quantifying-impact",
@@ -29434,7 +29085,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
         "/research/quantifying-impact",
@@ -29460,7 +29110,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
         "/research/quantifying-impact",
@@ -29478,277 +29127,191 @@
       "table": "shared"
     },
     {
-      "text": "The questions you’re asking at 1 a.m.",
+      "text": "What the research says about getting hired.",
       "kind": "jsx-text",
-      "line": 33,
+      "line": 25,
       "file": "web/components/research/ResearchHub.tsx",
       "routes": [
-        "/compare",
-        "/compare/enhancv",
-        "/compare/jobscan",
-        "/compare/kickresume",
-        "/compare/resume-worded",
-        "/compare/rezi",
-        "/compare/teal",
-        "/compare/topresume",
-        "/guides",
-        "/llms.txt",
-        "/research",
-        "/research/ats-myths",
-        "/research/automation-and-bias",
-        "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
-        "/research/how-recruiters-read",
-        "/research/human-vs-algorithm",
-        "/research/linkedin-visibility",
-        "/research/quantifying-impact",
-        "/research/referral-advantage",
-        "/research/resume-length-myths",
-        "/research/salary-history-bans",
-        "/research/skills-first-promise-reality",
-        "/research/social-screening",
-        "/research/spelling-errors-impact",
-        "/research/star-method",
-        "/research/who-you-are",
-        "/research/writing-quality-hire-probability",
-        "/resources"
+        "/research"
       ],
       "moment": "research",
-      "table": "shared"
+      "table": "research"
     },
     {
-      "text": "The questions people ask most",
-      "kind": "attr:aria-label",
-      "line": 35,
+      "text": "questions job seekers ask, each answered from a named study or the platform’s own documentation. Open one for what it found, how it was done and what it can’t tell you.",
+      "kind": "jsx-text",
+      "line": 27,
       "file": "web/components/research/ResearchHub.tsx",
       "routes": [
-        "/compare",
-        "/compare/enhancv",
-        "/compare/jobscan",
-        "/compare/kickresume",
-        "/compare/resume-worded",
-        "/compare/rezi",
-        "/compare/teal",
-        "/compare/topresume",
-        "/guides",
-        "/llms.txt",
-        "/research",
-        "/research/ats-myths",
-        "/research/automation-and-bias",
-        "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
-        "/research/how-recruiters-read",
-        "/research/human-vs-algorithm",
-        "/research/linkedin-visibility",
-        "/research/quantifying-impact",
-        "/research/referral-advantage",
-        "/research/resume-length-myths",
-        "/research/salary-history-bans",
-        "/research/skills-first-promise-reality",
-        "/research/social-screening",
-        "/research/spelling-errors-impact",
-        "/research/star-method",
-        "/research/who-you-are",
-        "/research/writing-quality-hire-probability",
-        "/resources"
+        "/research"
       ],
       "moment": "research",
-      "table": "shared"
+      "table": "research"
     },
     {
-      "text": "Everything else we’ve looked into.",
+      "text": "Got the offer? The negotiation guides and the offer calculator are under",
       "kind": "jsx-text",
-      "line": 40,
+      "line": 37,
       "file": "web/components/research/ResearchHub.tsx",
       "routes": [
-        "/compare",
-        "/compare/enhancv",
-        "/compare/jobscan",
-        "/compare/kickresume",
-        "/compare/resume-worded",
-        "/compare/rezi",
-        "/compare/teal",
-        "/compare/topresume",
-        "/guides",
-        "/llms.txt",
-        "/research",
-        "/research/ats-myths",
-        "/research/automation-and-bias",
-        "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
-        "/research/how-recruiters-read",
-        "/research/human-vs-algorithm",
-        "/research/linkedin-visibility",
-        "/research/quantifying-impact",
-        "/research/referral-advantage",
-        "/research/resume-length-myths",
-        "/research/salary-history-bans",
-        "/research/skills-first-promise-reality",
-        "/research/social-screening",
-        "/research/spelling-errors-impact",
-        "/research/star-method",
-        "/research/who-you-are",
-        "/research/writing-quality-hire-probability",
-        "/resources"
+        "/research"
       ],
       "moment": "research",
-      "table": "shared"
-    },
-    {
-      "text": "The guides and the offer calculator live under",
-      "kind": "jsx-text",
-      "line": 50,
-      "file": "web/components/research/ResearchHub.tsx",
-      "routes": [
-        "/compare",
-        "/compare/enhancv",
-        "/compare/jobscan",
-        "/compare/kickresume",
-        "/compare/resume-worded",
-        "/compare/rezi",
-        "/compare/teal",
-        "/compare/topresume",
-        "/guides",
-        "/llms.txt",
-        "/research",
-        "/research/ats-myths",
-        "/research/automation-and-bias",
-        "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
-        "/research/how-recruiters-read",
-        "/research/human-vs-algorithm",
-        "/research/linkedin-visibility",
-        "/research/quantifying-impact",
-        "/research/referral-advantage",
-        "/research/resume-length-myths",
-        "/research/salary-history-bans",
-        "/research/skills-first-promise-reality",
-        "/research/social-screening",
-        "/research/spelling-errors-impact",
-        "/research/star-method",
-        "/research/who-you-are",
-        "/research/writing-quality-hire-probability",
-        "/resources"
-      ],
-      "moment": "research",
-      "table": "shared"
+      "table": "research"
     },
     {
       "text": "After the offer",
       "kind": "jsx-text",
-      "line": 50,
+      "line": 37,
       "file": "web/components/research/ResearchHub.tsx",
       "routes": [
-        "/compare",
-        "/compare/enhancv",
-        "/compare/jobscan",
-        "/compare/kickresume",
-        "/compare/resume-worded",
-        "/compare/rezi",
-        "/compare/teal",
-        "/compare/topresume",
-        "/guides",
-        "/llms.txt",
-        "/research",
-        "/research/ats-myths",
-        "/research/automation-and-bias",
-        "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
-        "/research/how-recruiters-read",
-        "/research/human-vs-algorithm",
-        "/research/linkedin-visibility",
-        "/research/quantifying-impact",
-        "/research/referral-advantage",
-        "/research/resume-length-myths",
-        "/research/salary-history-bans",
-        "/research/skills-first-promise-reality",
-        "/research/social-screening",
-        "/research/spelling-errors-impact",
-        "/research/star-method",
-        "/research/who-you-are",
-        "/research/writing-quality-hire-probability",
-        "/resources"
+        "/research"
       ],
       "moment": "research",
-      "table": "shared"
+      "table": "research"
     },
     {
-      "text": "What would they think of yours?",
+      "text": "Every answer stays inside what its source found, and every page says what its study can’t tell you.",
       "kind": "jsx-text",
-      "line": 59,
+      "line": 40,
       "file": "web/components/research/ResearchHub.tsx",
       "routes": [
-        "/compare",
-        "/compare/enhancv",
-        "/compare/jobscan",
-        "/compare/kickresume",
-        "/compare/resume-worded",
-        "/compare/rezi",
-        "/compare/teal",
-        "/compare/topresume",
-        "/guides",
-        "/llms.txt",
-        "/research",
-        "/research/ats-myths",
-        "/research/automation-and-bias",
-        "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
-        "/research/how-recruiters-read",
-        "/research/human-vs-algorithm",
-        "/research/linkedin-visibility",
-        "/research/quantifying-impact",
-        "/research/referral-advantage",
-        "/research/resume-length-myths",
-        "/research/salary-history-bans",
-        "/research/skills-first-promise-reality",
-        "/research/social-screening",
-        "/research/spelling-errors-impact",
-        "/research/star-method",
-        "/research/who-you-are",
-        "/research/writing-quality-hire-probability",
-        "/resources"
+        "/research"
       ],
       "moment": "research",
-      "table": "shared"
+      "table": "research"
+    },
+    {
+      "text": "How we write research",
+      "kind": "jsx-text",
+      "line": 41,
+      "file": "web/components/research/ResearchHub.tsx",
+      "routes": [
+        "/research"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Want this kind of read on your own resume?",
+      "kind": "jsx-text",
+      "line": 46,
+      "file": "web/components/research/ResearchHub.tsx",
+      "routes": [
+        "/research"
+      ],
+      "moment": "research",
+      "table": "research"
     },
     {
       "text": "Get your free report",
       "kind": "jsx-text",
-      "line": 62,
+      "line": 49,
       "file": "web/components/research/ResearchHub.tsx",
       "routes": [
-        "/compare",
-        "/compare/enhancv",
-        "/compare/jobscan",
-        "/compare/kickresume",
-        "/compare/resume-worded",
-        "/compare/rezi",
-        "/compare/teal",
-        "/compare/topresume",
-        "/guides",
-        "/llms.txt",
-        "/research",
-        "/research/ats-myths",
-        "/research/automation-and-bias",
-        "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
-        "/research/how-recruiters-read",
-        "/research/human-vs-algorithm",
-        "/research/linkedin-visibility",
-        "/research/quantifying-impact",
-        "/research/referral-advantage",
-        "/research/resume-length-myths",
-        "/research/salary-history-bans",
-        "/research/skills-first-promise-reality",
-        "/research/social-screening",
-        "/research/spelling-errors-impact",
-        "/research/star-method",
-        "/research/who-you-are",
-        "/research/writing-quality-hire-probability",
-        "/resources"
+        "/research"
       ],
       "moment": "research",
-      "table": "shared"
+      "table": "research"
+    },
+    {
+      "text": "Every question",
+      "kind": "jsx-text",
+      "line": 36,
+      "file": "web/components/research/ResearchIndex.tsx",
+      "routes": [
+        "/research"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Find a question",
+      "kind": "jsx-text",
+      "line": 39,
+      "file": "web/components/research/ResearchIndex.tsx",
+      "routes": [
+        "/research"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Try typo, gap or LinkedIn",
+      "kind": "attr:placeholder",
+      "line": 46,
+      "file": "web/components/research/ResearchIndex.tsx",
+      "routes": [
+        "/research"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "The question",
+      "kind": "jsx-text",
+      "line": 64,
+      "file": "web/components/research/ResearchIndex.tsx",
+      "routes": [
+        "/research"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "The short answer, and what it rests on",
+      "kind": "jsx-text",
+      "line": 65,
+      "file": "web/components/research/ResearchIndex.tsx",
+      "routes": [
+        "/research"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "{category.shown.length} questions",
+      "kind": "jsx-text",
+      "line": 72,
+      "file": "web/components/research/ResearchIndex.tsx",
+      "routes": [
+        "/research"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "None of the",
+      "kind": "jsx-text",
+      "line": 82,
+      "file": "web/components/research/ResearchIndex.tsx",
+      "routes": [
+        "/research"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "questions match “",
+      "kind": "jsx-text",
+      "line": 82,
+      "file": "web/components/research/ResearchIndex.tsx",
+      "routes": [
+        "/research"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "”. Try a word like typo, referral or LinkedIn.",
+      "kind": "jsx-text",
+      "line": 82,
+      "file": "web/components/research/ResearchIndex.tsx",
+      "routes": [
+        "/research"
+      ],
+      "moment": "research",
+      "table": "research"
     },
     {
       "text": "We couldn't load your default resume. Try again.",
@@ -31262,11 +30825,12 @@
       "routes": [
         "/auth",
         "/reports",
+        "/research",
         "/sample-report",
         "/workspace"
       ],
       "moment": "shared",
-      "table": "workspace"
+      "table": "shared"
     },
     {
       "text": "border-success bg-success-surface focus-visible:ring-success focus-visible:border-success",
@@ -31276,11 +30840,12 @@
       "routes": [
         "/auth",
         "/reports",
+        "/research",
         "/sample-report",
         "/workspace"
       ],
       "moment": "shared",
-      "table": "workspace"
+      "table": "shared"
     },
     {
       "text": "group-[.toast]:text-muted-foreground group-[.toast]:font-medium",
@@ -39460,7 +39025,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -39529,7 +39093,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -39598,7 +39161,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -39667,7 +39229,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -39736,7 +39297,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -39805,7 +39365,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -39874,7 +39433,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -39943,7 +39501,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -40012,7 +39569,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -40081,7 +39637,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -40150,7 +39705,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -40219,7 +39773,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -40288,7 +39841,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -40357,7 +39909,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",
@@ -42118,7 +41669,6 @@
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
         "/research/human-vs-algorithm",
         "/research/linkedin-visibility",

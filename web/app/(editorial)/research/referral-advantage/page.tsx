@@ -84,7 +84,7 @@ export default function ReferralAdvantagePage() {
             </p>
             <ReferralOfferOddsDiagram figureNumber={2} />
             <p className="research-body mb-6">
-                By our arithmetic from those rates, a referral&apos;s edge grew from about 17 times the cold rate to somewhere around 30 to 50 times. Ashby rounds the late cold rate to 0.2%, so the second figure can&apos;t be pinned down more closely. <strong>Our take:</strong> that matches a slow market from the recruiter&apos;s side. There are so many applications per role that a referral is how you get out of the pile. The pile isn&rsquo;t read evenly, either: across US field experiments, <ResearchLink to="hiring-discrimination-meta-analysis">white applicants got 36% more callbacks than equally qualified Black applicants</ResearchLink>.
+                By our arithmetic from those rates, a referral&apos;s edge grew from about 17 times the cold rate to somewhere around 30 to 50 times. Ashby rounds the late cold rate to 0.2%, so the second figure can&apos;t be pinned down more closely. <strong>Our take:</strong> that matches a slow market from the recruiter&apos;s side. There are so many applications per role that a referral is how you get out of the pile.
             </p>
             <p className="research-body mb-6">
                 The edge isn&apos;t only about referred people looking stronger on paper. Across nine large firms in call centers, trucking, and high tech, referred applicants were more likely to be hired and to accept offers, even though the two groups had similar skill characteristics.

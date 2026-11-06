@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import Footer from "@/components/landing/Footer";
 import rhythm from "@/components/materials/Rhythm.module.css";
-import { ResearchAnswerRow } from "@/components/research/ResearchHub";
+import { ResearchAnswerRow } from "@/components/research/ResearchAnswerRow";
 import { hubEntryForHref } from "@/components/research/ResearchHubData";
 import styles from "./Guides.module.css";
 
@@ -48,7 +48,7 @@ export default function GuidesPage() {
                 <div className={styles.related}>
                     {RELATED.map((href) => {
                         const entry = hubEntryForHref(href);
-                        return entry ? <ResearchAnswerRow key={href} article={entry} size="list" heading="h3" /> : null;
+                        return entry ? <ResearchAnswerRow key={href} article={entry} heading="h3" /> : null;
                     })}
                 </div>
                 <div className={rhythm.link}><Link href="/research" className="riyp-link">All research <ArrowRight aria-hidden="true" /></Link></div>
