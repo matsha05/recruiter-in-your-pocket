@@ -94,14 +94,14 @@ export function useResumeReview(input: {
         current === reportToSave ? saved : current
       ));
       setReportSaveState((current) => current?.report === reportToSave ? null : current);
-      toast.success("Report saved to your history");
+      toast.success("Saved to My reports.");
       input.setPendingReportForSave((current: any) => current === reportToSave ? null : current);
       input.setIsSavePromptOpen(false);
     } catch (error) {
       setReportSaveState((current) => current?.report === reportToSave ? {
         report: reportToSave,
         status: "error",
-        message: "This report wasn’t saved to your history. Keep this tab open and try again.",
+        message: "We couldn’t save this report to My reports. Keep this tab open and try again.",
       } : current);
       throw error;
     }

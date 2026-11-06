@@ -16,8 +16,8 @@ const PATH = "/methodology";
 
 export const metadata = pageMetadata({
     path: PATH,
-    title: "How the report works: the score, the write-up, the lines",
-    description: "How your report reaches its score, what the write-up says, how each line gets its card, what it can't tell you, and how the examples protect your facts.",
+    title: "How the resume report works",
+    description: "How your report reaches its score, what the write-up says, which lines need work, what it can't tell you, and how the examples protect your facts.",
     type: "article",
 });
 
@@ -62,7 +62,7 @@ export default function MethodologyPage() {
             </section>
 
             <section className={rhythm.section} aria-labelledby="verdict-title">
-                <h2 id="verdict-title" className={rhythm.title}>The Verdict.</h2>
+                <h2 id="verdict-title" className={rhythm.title}>The write-up.</h2>
                 <p className={rhythm.deck}>What your resume says first, in plain words, judged against the criteria.</p>
                 <div className={styles.verdict}>
                     <span className={styles.verdictLabel}>Verdict</span>

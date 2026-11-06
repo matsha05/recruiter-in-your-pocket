@@ -148,7 +148,7 @@ test.describe("saving an anonymous report after sign-in", () => {
     await expect(page.getByRole("dialog")).toHaveCount(0);
 
     await save.click();
-    await expect(page.getByRole("alert")).toContainText("This report wasn’t saved to your history. Keep this tab open and try again.");
+    await expect(page.getByRole("alert")).toContainText("We couldn’t save this report to My reports. Keep this tab open and try again.");
     await expect(save).toHaveAccessibleName("Try saving again");
     await expect(heading).toHaveText(REPORT.first_impression);
     expect(attempts).toHaveLength(1);
@@ -186,7 +186,7 @@ test.describe("saving an anonymous report after sign-in", () => {
 
       const retry = page.getByTestId("workspace-keep-report");
       const error = page.getByRole("alert");
-      await expect(error).toContainText("This report wasn’t saved to your history. Keep this tab open and try again.");
+      await expect(error).toContainText("We couldn’t save this report to My reports. Keep this tab open and try again.");
       await expect(retry).toHaveAccessibleName("Try saving again");
       await expect(retry).toBeEnabled();
       await expect(heading).toHaveText(REPORT.first_impression);

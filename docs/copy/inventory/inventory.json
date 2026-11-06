@@ -3,14 +3,14 @@
   "counts": {
     "files_scanned": 413,
     "files_with_copy": 255,
-    "strings": 2988,
-    "unique_strings": 2504
+    "strings": 2992,
+    "unique_strings": 2507
   },
   "by_moment": {
     "research": 922,
     "account": 442,
     "marketing": 416,
-    "report": 315,
+    "report": 319,
     "pricing": 223,
     "upload": 155,
     "legal": 114,
@@ -136,7 +136,7 @@
       "table": "reports"
     },
     {
-      "text": "Your saved resume reports, with the Verdict, score, and fixes from each.",
+      "text": "Every report you’ve saved, with its score and the lines that needed work.",
       "kind": "key:description",
       "line": 15,
       "file": "web/app/(app)/reports/page.tsx",
@@ -169,7 +169,7 @@
       "table": "reports"
     },
     {
-      "text": "Showing your latest 50 reports. Older reports remain stored and can be included in an account export.",
+      "text": "These are your latest 50 reports. Older ones are still saved, and an account export includes them.",
       "kind": "jsx-text",
       "line": 79,
       "file": "web/app/(app)/reports/page.tsx",
@@ -180,7 +180,7 @@
       "table": "reports"
     },
     {
-      "text": "Your report history could not load.",
+      "text": "We couldn’t load My reports.",
       "kind": "jsx-text",
       "line": 85,
       "file": "web/app/(app)/reports/page.tsx",
@@ -3067,7 +3067,7 @@
       "table": "guides"
     },
     {
-      "text": "How the report works: the score, the write-up, the lines",
+      "text": "How the resume report works",
       "kind": "key:title",
       "line": 19,
       "file": "web/app/(editorial)/methodology/page.tsx",
@@ -3078,7 +3078,7 @@
       "table": "methodology"
     },
     {
-      "text": "How your report reaches its score, what the write-up says, how each line gets its card, what it can't tell you, and how the examples protect your facts.",
+      "text": "How your report reaches its score, what the write-up says, which lines need work, what it can't tell you, and how the examples protect your facts.",
       "kind": "key:description",
       "line": 20,
       "file": "web/app/(editorial)/methodology/page.tsx",
@@ -3199,7 +3199,7 @@
       "table": "methodology"
     },
     {
-      "text": "The Verdict.",
+      "text": "The write-up.",
       "kind": "jsx-text",
       "line": 65,
       "file": "web/app/(editorial)/methodology/page.tsx",
@@ -3232,7 +3232,7 @@
       "table": "methodology"
     },
     {
-      "text": "One of four bands, with a line on what it means, and the number beside it. The band is what a recruiter would do with the resume after one pass.",
+      "text": "One of five bands, with a line on what it means, and the number beside it. The top one, Ready to send, is earned: it means no line on the page needs work. The band is what a recruiter would do with the resume after one pass.",
       "kind": "jsx-text",
       "line": 76,
       "file": "web/app/(editorial)/methodology/page.tsx",
@@ -10305,7 +10305,7 @@
       "table": "help"
     },
     {
-      "text": "Get a free resume report: what a recruiter takes from your page, the lines they trip on, and what to add to each one before you apply.",
+      "text": "A free resume report that shows what a recruiter takes from your resume, the lines they’d stop on, and what to add to each one before you apply.",
       "kind": "const",
       "line": 5,
       "file": "web/app/(marketing)/page.tsx",
@@ -10547,7 +10547,7 @@
       "table": "sample-report"
     },
     {
-      "text": "A complete resume report on a fictional candidate, Jordan: what a recruiter takes from the page, and the lines that need work, one card each.",
+      "text": "A complete resume report on a fictional candidate, Jordan: what a recruiter takes from the resume, and the lines that need work.",
       "kind": "key:description",
       "line": 13,
       "file": "web/app/(marketing)/sample-report/page.tsx",
@@ -10943,7 +10943,7 @@
       "table": "api"
     },
     {
-      "text": "Could not send your sign-in code. Try again shortly.",
+      "text": "We couldn’t send your sign-in code. Try again in a moment.",
       "kind": "key:message",
       "line": 78,
       "file": "web/app/api/auth/send-code/route.ts",
@@ -10965,7 +10965,7 @@
       "table": "api"
     },
     {
-      "text": "Could not send your sign-in code. Try again shortly.",
+      "text": "We couldn’t send your sign-in code. Try again in a moment.",
       "kind": "key:message",
       "line": 105,
       "file": "web/app/api/auth/send-code/route.ts",
@@ -11031,7 +11031,7 @@
       "table": "api"
     },
     {
-      "text": "That code was not accepted. Check the latest email or request a new code.",
+      "text": "That code didn’t work. Check the latest email or request a new code.",
       "kind": "key:message",
       "line": 68,
       "file": "web/app/api/auth/verify-code/route.ts",
@@ -13638,7 +13638,7 @@
       "table": "api"
     },
     {
-      "text": "Sign in to access saved reports and role context you choose to keep.",
+      "text": "Sign in to see your saved reports and the job postings you kept.",
       "kind": "key:description",
       "line": 12,
       "file": "web/app/auth/page.tsx",
@@ -13704,7 +13704,7 @@
       "table": "dashboard"
     },
     {
-      "text": "Same score as your first report. The written findings show what moved.",
+      "text": "Same score as your first report. The write-up says what changed.",
       "kind": "return",
       "line": 26,
       "file": "web/app/dashboard/ProgressView.tsx",
@@ -13726,7 +13726,7 @@
       "table": "dashboard"
     },
     {
-      "text": "What keeps tripping recruiters up, and what keeps landing.",
+      "text": "What keeps coming up across your reports, and what keeps working.",
       "kind": "jsx-text",
       "line": 46,
       "file": "web/app/dashboard/ProgressView.tsx",
@@ -13847,7 +13847,7 @@
       "table": "dashboard"
     },
     {
-      "text": "What keeps tripping recruiters up in your resume, and what keeps landing.",
+      "text": "What keeps coming up across your reports, and what keeps working.",
       "kind": "key:description",
       "line": 7,
       "file": "web/app/dashboard/layout.tsx",
@@ -14001,7 +14001,7 @@
       "table": "home"
     },
     {
-      "text": "Something broke on our end, not yours. Saved reports aren’t affected.",
+      "text": "Our bad. Something broke on our end. Your saved reports are fine.",
       "kind": "jsx-text",
       "line": 35,
       "file": "web/app/error.tsx",
@@ -14063,7 +14063,7 @@
       "table": "unrouted"
     },
     {
-      "text": "Something broke on our end. If it keeps happening, email support and include the error reference below, if you see one.",
+      "text": "Our bad. Something broke on our end. If it keeps happening, email support and include the error reference below, if you see one.",
       "kind": "jsx-text",
       "line": 30,
       "file": "web/app/global-error.tsx",
@@ -14190,7 +14190,7 @@
       "table": "shared"
     },
     {
-      "text": "See what a recruiter sees: your Verdict, where your resume stands, and what to fix first.",
+      "text": "See what a recruiter sees in your resume, line by line.",
       "kind": "key:description",
       "line": 7,
       "file": "web/app/manifest.ts",
@@ -14563,7 +14563,7 @@
       "table": "shared"
     },
     {
-      "text": "Upload Resume",
+      "text": "Upload a resume",
       "kind": "key:label",
       "line": 212,
       "file": "web/components/CommandPalette.tsx",
@@ -14645,7 +14645,7 @@
       "table": "shared"
     },
     {
-      "text": "Upload Resume",
+      "text": "Upload a resume",
       "kind": "jsx-text",
       "line": 216,
       "file": "web/components/CommandPalette.tsx",
@@ -14891,7 +14891,7 @@
       "table": "shared"
     },
     {
-      "text": "Go to Home",
+      "text": "Go home",
       "kind": "key:label",
       "line": 241,
       "file": "web/components/CommandPalette.tsx",
@@ -14973,7 +14973,7 @@
       "table": "shared"
     },
     {
-      "text": "Go to Home",
+      "text": "Go home",
       "kind": "jsx-text",
       "line": 245,
       "file": "web/components/CommandPalette.tsx",
@@ -15055,7 +15055,7 @@
       "table": "shared"
     },
     {
-      "text": "Go to Workspace",
+      "text": "Go to workspace",
       "kind": "key:label",
       "line": 250,
       "file": "web/components/CommandPalette.tsx",
@@ -15137,7 +15137,7 @@
       "table": "shared"
     },
     {
-      "text": "Go to Workspace",
+      "text": "Go to workspace",
       "kind": "jsx-text",
       "line": 254,
       "file": "web/components/CommandPalette.tsx",
@@ -15219,7 +15219,7 @@
       "table": "shared"
     },
     {
-      "text": "Go to Research",
+      "text": "Go to research",
       "kind": "key:label",
       "line": 259,
       "file": "web/components/CommandPalette.tsx",
@@ -15301,7 +15301,7 @@
       "table": "shared"
     },
     {
-      "text": "Go to Research",
+      "text": "Go to research",
       "kind": "jsx-text",
       "line": 263,
       "file": "web/components/CommandPalette.tsx",
@@ -15383,7 +15383,7 @@
       "table": "shared"
     },
     {
-      "text": "Keyboard Shortcuts",
+      "text": "Keyboard shortcuts",
       "kind": "key:label",
       "line": 274,
       "file": "web/components/CommandPalette.tsx",
@@ -15465,7 +15465,7 @@
       "table": "shared"
     },
     {
-      "text": "Keyboard Shortcuts",
+      "text": "Keyboard shortcuts",
       "kind": "jsx-text",
       "line": 278,
       "file": "web/components/CommandPalette.tsx",
@@ -15630,7 +15630,7 @@
       "table": "workspace"
     },
     {
-      "text": "Too many sign-in emails were sent. Wait before requesting another.",
+      "text": "We’ve sent several codes already. Wait a little before you ask for another.",
       "kind": "call:ClientActionError",
       "line": 129,
       "file": "web/components/auth/AuthFlow.tsx",
@@ -23336,7 +23336,7 @@
       "table": "home"
     },
     {
-      "text": "Not forty tips.",
+      "text": "We show you where.",
       "kind": "jsx-text",
       "line": 16,
       "file": "web/components/landing/home/HiringTruths.tsx",
@@ -23347,7 +23347,7 @@
       "table": "home"
     },
     {
-      "text": "Every line a recruiter trips on, in the order they hit it.",
+      "text": "The lines a recruiter would stop on, in the order they’d read them.",
       "kind": "jsx-text",
       "line": 16,
       "file": "web/components/landing/home/HiringTruths.tsx",
@@ -23358,7 +23358,7 @@
       "table": "home"
     },
     {
-      "text": "No ATS score. No interview odds.",
+      "text": "Nobody can score you against an ATS or tell you your interview odds.",
       "kind": "jsx-text",
       "line": 19,
       "file": "web/components/landing/home/HiringTruths.tsx",
@@ -23369,7 +23369,7 @@
       "table": "home"
     },
     {
-      "text": "Just what reads clearly and what doesn’t.",
+      "text": "So we don’t pretend to.",
       "kind": "jsx-text",
       "line": 20,
       "file": "web/components/landing/home/HiringTruths.tsx",
@@ -23380,7 +23380,7 @@
       "table": "home"
     },
     {
-      "text": "We’ll rewrite your line. Only from your facts.",
+      "text": "We tell you which lines are clear, and rewrite yours only from your facts.",
       "kind": "jsx-text",
       "line": 20,
       "file": "web/components/landing/home/HiringTruths.tsx",
@@ -23872,7 +23872,7 @@
       "table": "shared"
     },
     {
-      "text": "Navigate the studio, reports, settings, and account actions.",
+      "text": "Open your reports, settings and account.",
       "kind": "attr:description",
       "line": 19,
       "file": "web/components/layout/MobileNav.tsx",
@@ -27015,7 +27015,7 @@
       "table": "home"
     },
     {
-      "text": "Could not open checkout. Try again. If this continues, contact support.",
+      "text": "Checkout didn’t open. Try again, and if it keeps happening, write to support.",
       "kind": "const",
       "line": 41,
       "file": "web/components/marketing/PricingPageClient.tsx",
@@ -27312,7 +27312,7 @@
       "table": "pricing"
     },
     {
-      "text": "Weighing other tools?",
+      "text": "Other tools do different jobs.",
       "kind": "jsx-text",
       "line": 155,
       "file": "web/components/marketing/PricingPageClient.tsx",
@@ -27323,7 +27323,7 @@
       "table": "pricing"
     },
     {
-      "text": "A writer, a keyword scanner, a builder, and a recruiter’s read are different purchases, and the read is the one that decides:",
+      "text": "Writers rewrite, keyword scanners match words, builders lay it out. A recruiter decides whether you get the call, and",
       "kind": "jsx-text",
       "line": 157,
       "file": "web/components/marketing/PricingPageClient.tsx",
@@ -27811,7 +27811,7 @@
       "table": "purchase"
     },
     {
-      "text": "You’re in. Five more reads.",
+      "text": "You’re in! Five more reads.",
       "kind": "const",
       "line": 78,
       "file": "web/components/purchase/PurchaseConfirmedClient.tsx",
@@ -31635,7 +31635,7 @@
       "table": "workspace"
     },
     {
-      "text": "Starting the read again",
+      "text": "Starting over",
       "kind": "const",
       "line": 141,
       "file": "web/components/workspace/AnalysisScanning.tsx",
@@ -32701,7 +32701,7 @@
       "table": "workspace"
     },
     {
-      "text": "Want another read?",
+      "text": "Five more reads.",
       "kind": "const",
       "line": 48,
       "file": "web/components/workspace/PaywallModal.tsx",
@@ -34662,7 +34662,7 @@
       "table": "workspace"
     },
     {
-      "text": "Upload resume file from commands",
+      "text": "Upload a resume file",
       "kind": "attr:aria-label",
       "line": 35,
       "file": "web/components/workspace/WorkspaceResumePicker.tsx",
@@ -34851,7 +34851,7 @@
       "table": "workspace"
     },
     {
-      "text": "Report saved to your history",
+      "text": "Saved to My reports.",
       "kind": "call:toast.success",
       "line": 97,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
@@ -34863,7 +34863,7 @@
       "table": "workspace"
     },
     {
-      "text": "This report wasn’t saved to your history. Keep this tab open and try again.",
+      "text": "We couldn’t save this report to My reports. Keep this tab open and try again.",
       "kind": "key:message",
       "line": 104,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
@@ -35395,9 +35395,35 @@
       "table": "workspace"
     },
     {
+      "text": "This is killer! Send it.",
+      "kind": "const",
+      "line": 36,
+      "file": "web/components/workspace/report/ReportEnding.tsx",
+      "routes": [
+        "/reports/[id]",
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
       "text": "Send it. Then read it against the posting you're going for.",
       "kind": "const",
-      "line": 32,
+      "line": 36,
+      "file": "web/components/workspace/report/ReportEnding.tsx",
+      "routes": [
+        "/reports/[id]",
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "Every line says what you did and what changed, so your resume won't be the reason you don't get the call. Read it against the posting you're going for, and look at whether anyone can bring you in.",
+      "kind": "const",
+      "line": 37,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -35410,7 +35436,7 @@
     {
       "text": "Read it against a posting",
       "kind": "const",
-      "line": 33,
+      "line": 38,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -35423,7 +35449,7 @@
     {
       "text": "Compare my revision",
       "kind": "const",
-      "line": 33,
+      "line": 38,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -35436,7 +35462,7 @@
     {
       "text": "{revisedCount > 1 ? \"Your …} into your resume and see what changed.",
       "kind": "const",
-      "line": 34,
+      "line": 39,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -35449,7 +35475,7 @@
     {
       "text": "Your lines are ready. Drop them",
       "kind": "const",
-      "line": 34,
+      "line": 39,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -35462,7 +35488,7 @@
     {
       "text": "Your line is ready. Drop it",
       "kind": "const",
-      "line": 34,
+      "line": 39,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -35473,9 +35499,9 @@
       "table": "workspace"
     },
     {
-      "text": "What would they think of yours?",
+      "text": "That’s Jordan’s. Yours is next.",
       "kind": "jsx-text",
-      "line": 40,
+      "line": 45,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -35488,7 +35514,7 @@
     {
       "text": "Get your free report",
       "kind": "jsx-text",
-      "line": 41,
+      "line": 46,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -35501,7 +35527,7 @@
     {
       "text": "Your line is ready. Save this version.",
       "kind": "jsx-text",
-      "line": 50,
+      "line": 55,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -35514,7 +35540,7 @@
     {
       "text": "Save this version.",
       "kind": "jsx-text",
-      "line": 50,
+      "line": 55,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -35527,7 +35553,7 @@
     {
       "text": "Your answers and the revised line stay with it.",
       "kind": "jsx-text",
-      "line": 52,
+      "line": 57,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -35540,7 +35566,7 @@
     {
       "text": "Saving…",
       "kind": "jsx-text",
-      "line": 55,
+      "line": 60,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -35553,7 +35579,7 @@
     {
       "text": "Save this version",
       "kind": "jsx-text",
-      "line": 55,
+      "line": 60,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -35566,7 +35592,7 @@
     {
       "text": "Compare my revision",
       "kind": "jsx-text",
-      "line": 58,
+      "line": 63,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -35579,7 +35605,7 @@
     {
       "text": "The comparison lasts for this visit. Save the report to keep it.",
       "kind": "jsx-text",
-      "line": 91,
+      "line": 98,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -36435,9 +36461,9 @@
       "table": "workspace"
     },
     {
-      "text": "{band.name}, band {current + 1} of {SCORE_BANDS.length}",
+      "text": "{band.name}, band {current + 1} of {scale.length}",
       "kind": "attr:aria-label",
-      "line": 15,
+      "line": 17,
       "file": "web/components/workspace/report/markup/ScoreBand.tsx",
       "routes": [
         "/methodology",
@@ -36631,7 +36657,7 @@
       "table": "workspace"
     },
     {
-      "text": "Left blank for now. A recruiter will have the same question, and they won&apos;t call to ask it.",
+      "text": "Left blank, and that&apos;s fine. Not every line needs every detail. Let&apos;s make sure the rest of your resume gives a recruiter something to grab onto.",
       "kind": "jsx-text",
       "line": 253,
       "file": "web/components/workspace/report/worklist/WorklistCard.tsx",
@@ -38074,7 +38100,7 @@
       "table": "shared"
     },
     {
-      "text": "Your Verdict and where your resume stands",
+      "text": "Where your resume stands, and why",
       "kind": "key:text",
       "line": 38,
       "file": "web/lib/billing/pricing.ts",
@@ -41249,6 +41275,29 @@
       "table": "shared"
     },
     {
+      "text": "Every line says what you did and what changed. There's nothing here a recruiter would stop on.",
+      "kind": "key:anchor",
+      "line": 64,
+      "file": "web/lib/reports/score-band.ts",
+      "routes": [
+        "/api/export-pdf",
+        "/api/reports/[id]",
+        "/api/reports/[id]/answers",
+        "/api/resume-feedback",
+        "/api/resume-feedback-stream",
+        "/api/revise-line",
+        "/dashboard",
+        "/launch/gauntlet",
+        "/methodology",
+        "/reports",
+        "/reports/[id]",
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
       "text": "Nothing here needs work.",
       "kind": "key:title",
       "line": 97,
@@ -41375,7 +41424,7 @@
       "table": "workspace"
     },
     {
-      "text": "This version didn't clear any of them. Start with the first again.",
+      "text": "None of them came off the list this time. Let's start with the first one again.",
       "kind": "assign",
       "line": 173,
       "file": "web/lib/reports/worklist-presentation.ts",
@@ -41417,9 +41466,9 @@
       "table": "workspace"
     },
     {
-      "text": "Up {delta} since last time.",
+      "text": "Up {delta} since last time. That's the right direction!",
       "kind": "const",
-      "line": 184,
+      "line": 185,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -41433,7 +41482,7 @@
     {
       "text": "Down {Math.abs(delta)} since last time.",
       "kind": "const",
-      "line": 184,
+      "line": 185,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -41565,131 +41614,38 @@
       "table": "shared"
     },
     {
+      "text": "Ready to send",
+      "kind": "return",
+      "line": 57,
+      "file": "web/lib/score-utils.ts",
+      "routes": [
+        "/api/export-pdf",
+        "/api/free-status",
+        "/api/linkedin-feedback-stream",
+        "/api/ready",
+        "/api/reports",
+        "/api/reports/[id]",
+        "/api/reports/[id]/answers",
+        "/api/reports/recovery",
+        "/api/resume-feedback",
+        "/api/resume-feedback-stream",
+        "/api/resume-ideas",
+        "/api/revise-line",
+        "/api/status",
+        "/dashboard",
+        "/launch",
+        "/launch/gauntlet",
+        "/methodology",
+        "/reports",
+        "/reports/[id]",
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
       "text": "Excellent Fit",
-      "kind": "key:label",
-      "line": 75,
-      "file": "web/lib/score-utils.ts",
-      "routes": [
-        "/api/export-pdf",
-        "/api/free-status",
-        "/api/linkedin-feedback-stream",
-        "/api/ready",
-        "/api/reports",
-        "/api/reports/[id]",
-        "/api/reports/[id]/answers",
-        "/api/reports/recovery",
-        "/api/resume-feedback",
-        "/api/resume-feedback-stream",
-        "/api/resume-ideas",
-        "/api/revise-line",
-        "/api/status",
-        "/dashboard",
-        "/launch",
-        "/launch/gauntlet",
-        "/methodology",
-        "/reports",
-        "/reports/[id]",
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "shared"
-    },
-    {
-      "text": "Near-perfect alignment with requirements",
-      "kind": "key:description",
-      "line": 79,
-      "file": "web/lib/score-utils.ts",
-      "routes": [
-        "/api/export-pdf",
-        "/api/free-status",
-        "/api/linkedin-feedback-stream",
-        "/api/ready",
-        "/api/reports",
-        "/api/reports/[id]",
-        "/api/reports/[id]/answers",
-        "/api/reports/recovery",
-        "/api/resume-feedback",
-        "/api/resume-feedback-stream",
-        "/api/resume-ideas",
-        "/api/revise-line",
-        "/api/status",
-        "/dashboard",
-        "/launch",
-        "/launch/gauntlet",
-        "/methodology",
-        "/reports",
-        "/reports/[id]",
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "shared"
-    },
-    {
-      "text": "Strong Match",
-      "kind": "key:label",
-      "line": 82,
-      "file": "web/lib/score-utils.ts",
-      "routes": [
-        "/api/export-pdf",
-        "/api/free-status",
-        "/api/linkedin-feedback-stream",
-        "/api/ready",
-        "/api/reports",
-        "/api/reports/[id]",
-        "/api/reports/[id]/answers",
-        "/api/reports/recovery",
-        "/api/resume-feedback",
-        "/api/resume-feedback-stream",
-        "/api/resume-ideas",
-        "/api/revise-line",
-        "/api/status",
-        "/dashboard",
-        "/launch",
-        "/launch/gauntlet",
-        "/methodology",
-        "/reports",
-        "/reports/[id]",
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "shared"
-    },
-    {
-      "text": "Good alignment with minor gaps",
-      "kind": "key:description",
-      "line": 86,
-      "file": "web/lib/score-utils.ts",
-      "routes": [
-        "/api/export-pdf",
-        "/api/free-status",
-        "/api/linkedin-feedback-stream",
-        "/api/ready",
-        "/api/reports",
-        "/api/reports/[id]",
-        "/api/reports/[id]/answers",
-        "/api/reports/recovery",
-        "/api/resume-feedback",
-        "/api/resume-feedback-stream",
-        "/api/resume-ideas",
-        "/api/revise-line",
-        "/api/status",
-        "/dashboard",
-        "/launch",
-        "/launch/gauntlet",
-        "/methodology",
-        "/reports",
-        "/reports/[id]",
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "shared"
-    },
-    {
-      "text": "Plausible Fit",
       "kind": "key:label",
       "line": 89,
       "file": "web/lib/score-utils.ts",
@@ -41720,7 +41676,7 @@
       "table": "shared"
     },
     {
-      "text": "Reasonable alignment, some gaps",
+      "text": "Near-perfect alignment with requirements",
       "kind": "key:description",
       "line": 93,
       "file": "web/lib/score-utils.ts",
@@ -41751,7 +41707,7 @@
       "table": "shared"
     },
     {
-      "text": "Career Stretch",
+      "text": "Strong Match",
       "kind": "key:label",
       "line": 96,
       "file": "web/lib/score-utils.ts",
@@ -41782,7 +41738,7 @@
       "table": "shared"
     },
     {
-      "text": "Different domain or missing key requirements",
+      "text": "Good alignment with minor gaps",
       "kind": "key:description",
       "line": 100,
       "file": "web/lib/score-utils.ts",
@@ -41813,7 +41769,7 @@
       "table": "shared"
     },
     {
-      "text": "Not a Match",
+      "text": "Plausible Fit",
       "kind": "key:label",
       "line": 103,
       "file": "web/lib/score-utils.ts",
@@ -41844,9 +41800,133 @@
       "table": "shared"
     },
     {
-      "text": "Fundamentally different role",
+      "text": "Reasonable alignment, some gaps",
       "kind": "key:description",
       "line": 107,
+      "file": "web/lib/score-utils.ts",
+      "routes": [
+        "/api/export-pdf",
+        "/api/free-status",
+        "/api/linkedin-feedback-stream",
+        "/api/ready",
+        "/api/reports",
+        "/api/reports/[id]",
+        "/api/reports/[id]/answers",
+        "/api/reports/recovery",
+        "/api/resume-feedback",
+        "/api/resume-feedback-stream",
+        "/api/resume-ideas",
+        "/api/revise-line",
+        "/api/status",
+        "/dashboard",
+        "/launch",
+        "/launch/gauntlet",
+        "/methodology",
+        "/reports",
+        "/reports/[id]",
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
+      "text": "Career Stretch",
+      "kind": "key:label",
+      "line": 110,
+      "file": "web/lib/score-utils.ts",
+      "routes": [
+        "/api/export-pdf",
+        "/api/free-status",
+        "/api/linkedin-feedback-stream",
+        "/api/ready",
+        "/api/reports",
+        "/api/reports/[id]",
+        "/api/reports/[id]/answers",
+        "/api/reports/recovery",
+        "/api/resume-feedback",
+        "/api/resume-feedback-stream",
+        "/api/resume-ideas",
+        "/api/revise-line",
+        "/api/status",
+        "/dashboard",
+        "/launch",
+        "/launch/gauntlet",
+        "/methodology",
+        "/reports",
+        "/reports/[id]",
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
+      "text": "Different domain or missing key requirements",
+      "kind": "key:description",
+      "line": 114,
+      "file": "web/lib/score-utils.ts",
+      "routes": [
+        "/api/export-pdf",
+        "/api/free-status",
+        "/api/linkedin-feedback-stream",
+        "/api/ready",
+        "/api/reports",
+        "/api/reports/[id]",
+        "/api/reports/[id]/answers",
+        "/api/reports/recovery",
+        "/api/resume-feedback",
+        "/api/resume-feedback-stream",
+        "/api/resume-ideas",
+        "/api/revise-line",
+        "/api/status",
+        "/dashboard",
+        "/launch",
+        "/launch/gauntlet",
+        "/methodology",
+        "/reports",
+        "/reports/[id]",
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
+      "text": "Not a Match",
+      "kind": "key:label",
+      "line": 117,
+      "file": "web/lib/score-utils.ts",
+      "routes": [
+        "/api/export-pdf",
+        "/api/free-status",
+        "/api/linkedin-feedback-stream",
+        "/api/ready",
+        "/api/reports",
+        "/api/reports/[id]",
+        "/api/reports/[id]/answers",
+        "/api/reports/recovery",
+        "/api/resume-feedback",
+        "/api/resume-feedback-stream",
+        "/api/resume-ideas",
+        "/api/revise-line",
+        "/api/status",
+        "/dashboard",
+        "/launch",
+        "/launch/gauntlet",
+        "/methodology",
+        "/reports",
+        "/reports/[id]",
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
+      "text": "Fundamentally different role",
+      "kind": "key:description",
+      "line": 121,
       "file": "web/lib/score-utils.ts",
       "routes": [
         "/api/export-pdf",
@@ -43433,7 +43513,7 @@
       "table": "extension"
     },
     {
-      "text": "Review my resume",
+      "text": "Get your free report",
       "kind": "key:cta",
       "line": 39,
       "file": "extension/src/popup/content.ts",
@@ -43455,7 +43535,7 @@
       "table": "extension"
     },
     {
-      "text": "Review my resume",
+      "text": "Get your free report",
       "kind": "key:cta",
       "line": 43,
       "file": "extension/src/popup/content.ts",
@@ -43477,7 +43557,7 @@
       "table": "extension"
     },
     {
-      "text": "Review my resume",
+      "text": "Get your free report",
       "kind": "key:cta",
       "line": 47,
       "file": "extension/src/popup/content.ts",

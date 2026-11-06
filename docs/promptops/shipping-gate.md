@@ -13,6 +13,20 @@ This is a non-negotiable quality gate that protects the core value of RIYP: reli
 
 ---
 
+## The copy rule (November 6, 2026)
+
+> **New or changed user-facing copy goes through the copy system before a PR.**
+
+The reference is [`docs/copy-system.md`](../copy-system.md): the voice chart, tone by moment, the "this, not that" pairs, the tics, the glossary and the review procedure (§7). Before a PR that adds or changes a string a reader sees:
+
+1. `npm run copy:inventory` from `web/`, and commit the updated tables. The PR's diff of `docs/copy/inventory/` is the list of what changed.
+2. `npm run copy:check`: the inventory is current, no string trips a pattern check that isn't in the known baseline (`docs/copy/lint-baseline.json`), and the voice judge's tests pass. Free; it runs in the launch gate.
+3. The voice judge on the new strings: write them to a strings file and run `RIYP_ALLOW_PAID_EVALS=true npm run copy:judge -- file <strings.json> --budget-usd 0.5`. A "no" is fixed or argued in the PR; a "flat" is a prompt to read the line aloud again, not a failure. Record the run's spend under "Voice judge" below.
+4. The read-aloud and the questions in §7. When the judge and the read-aloud disagree, the read-aloud wins, and a line Matt approved is never rewritten on the judge's word.
+5. Brand-level lines (the homepage, founder facts, a new aside on pricing or a report ending, the dial) go to Matt through the question UI.
+
+The report's model-written words are outside this rule: they change only through the prompt gate below.
+
 ## Passing Criteria
 
 Before any prompt modification can be merged or deployed:
@@ -105,6 +119,32 @@ Recalibration of judge `critical-miss-judge-v4` after the count decision ([summa
 - **Count prompt:** every gate outcome, match and rating on the hand-labeled set came out as labeled, and each retest repeated exactly. The prompt session's key passes the loader's checks.
 
 These numbers are in-sample: the rubric was refined on the same ten items Matt picked. A change to the judge prompt changes `judge_prompt_sha256` and needs a fresh `calibrate --set all` (and `--set count`) before its verdicts count.
+
+### Voice judge (product copy; local, never gates prompt changes)
+
+Built November 6, 2026 for the copy system (`docs/copy-system.md`). `npm run copy:judge` from `web/` scores product copy against the voice chart, the tone by moment and the tic list, and proposes a rewrite for each string that isn't "us". It judges the interface, emails and public pages, never the model's report prose, and it never runs in production. Every call needs `RIYP_ALLOW_PAID_EVALS=true`; `--budget-usd` (at most $5) is the ceiling for a run, and `--dry-run` runs the free pattern checks with no call. It runs on `gpt-6.1-sol` and refuses the generator's model. How it works and how to read it: [docs/copy/judge/README.md](../copy/judge/README.md).
+
+Calibration of prompt `voice-judge-v4` (SHA-256 `17027da35aa907af2d118f6b947a454a9c27f7f80707ad882ada8424cf9914a1`; v3 plus the fifth band in its glossary, with the same verdicts) against hand labels made before each set's first run (the copy-system session's; Matt set the rating round aside and gave his own words, which are the prompt's examples):
+
+| Set | Exact (us, flat, no) | Cohen's kappa | Labelled "no" that it failed | Its "no" that were right |
+| --- | --- | --- | --- | --- |
+| Tuning, 40 lines | 31 of 40 | 0.58 | 6 of 6 | 6 of 7 |
+| Held out, 24 lines, never used to change the prompt | 19 of 24 | 0.58 | 3 of 4 | 3 of 3 |
+
+Known biases: more lenient than the labels on cool, literal lines; it keeps editing out the sign-in email's warm opening, an aside Matt approved. When the judge and the read-aloud disagree, the read-aloud wins. A change to the judge prompt changes its SHA and needs a fresh `calibrate` on both sets before its verdicts count.
+
+Spend (token-calculated, synthetic product strings only; the copy-judge cap is $5):
+
+| Run | Strings | Calls | Spend |
+| --- | --- | --- | --- |
+| Calibration v1, tuning set | 40 | 4 | $0.0506 |
+| Calibration v2, tuning and held-out sets | 64 | 6 | $0.0696 |
+| Calibration v3, tuning and held-out sets | 64 | 6 | $0.0738 |
+| Calibration v4, tuning and held-out sets | 64 | 6 | $0.0712 |
+| First-seen routes of the inventory (prompt v3), for the rewrites | 1,357 | 68 | $1.1866 |
+| The rewritten lines, before the rewrite PR (prompt v4) | 42 | 4 | $0.0411 |
+| The launch gate's threshold check, once, before the gate PR (held-out set: kappa 0.52, 3 of 4 "no" caught) | 24 | 2 | $0.0341 |
+| Total | | | $1.5270 |
 
 ---
 

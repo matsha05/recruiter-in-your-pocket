@@ -23,7 +23,7 @@ function movementSentence(first: number, latest: number, count: number) {
     const change = latest - first;
     if (change > 0) return `Up ${change} since your first report.`;
     if (change < 0) return `Down ${Math.abs(change)} since your first report. Read the latest write-up before changing it again.`;
-    return "Same score as your first report. The written findings show what moved.";
+    return "Same score as your first report. The write-up says what changed.";
 }
 
 /** The signed-in Progress view: written patterns first, the score timeline second. */
@@ -43,7 +43,7 @@ export function ProgressView({ analytics }: { analytics: ProgressAnalytics }) {
             <header className={styles.header}>
                 <div>
                     <h1 className={styles.title}>Your progress</h1>
-                    <p className={styles.deck}>What keeps tripping recruiters up, and what keeps landing.</p>
+                    <p className={styles.deck}>What keeps coming up across your reports, and what keeps working.</p>
                 </div>
                 <Link href="/reports" className={styles.textLink}>My reports</Link>
             </header>

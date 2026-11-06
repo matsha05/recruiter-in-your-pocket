@@ -9,7 +9,7 @@ import styles from './AuthPage.module.css';
 
 export const metadata: Metadata = {
     title: { absolute: 'Sign in | Recruiter in Your Pocket' },
-    description: 'Sign in to access saved reports and role context you choose to keep.',
+    description: 'Sign in to see your saved reports and the job postings you kept.',
     robots: PRIVATE_ROUTE_ROBOTS,
 };
 

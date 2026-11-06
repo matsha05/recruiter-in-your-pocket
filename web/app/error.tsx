@@ -32,7 +32,7 @@ export default function Error({
                                 That page didn’t load.
                             </h1>
                             <p className="mt-6 max-w-[38rem] text-lg text-muted-foreground">
-                                Something broke on our end, not yours. Saved reports aren’t affected.
+                                Our bad. Something broke on our end. Your saved reports are fine.
                             </p>
                             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                                 <Button type="button" onClick={reset}>

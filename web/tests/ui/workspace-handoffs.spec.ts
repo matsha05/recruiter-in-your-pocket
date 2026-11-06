@@ -153,9 +153,9 @@ async function openUploadCommand(page: Page) {
   const chooserPromise = page.waitForEvent("filechooser");
   // Recent commands can include Upload Resume too. The Actions group is the
   // canonical command and must remain usable even after a previous upload.
-  await commands.locator('[cmdk-group][data-value="Actions"]').getByRole("option", { name: /Upload Resume/ }).click();
+  await commands.locator('[cmdk-group][data-value="Actions"]').getByRole("option", { name: /Upload a resume/ }).click();
   const chooser = await chooserPromise;
-  expect(await chooser.element().getAttribute("aria-label")).toBe("Upload resume file from commands");
+  expect(await chooser.element().getAttribute("aria-label")).toBe("Upload a resume file");
   await expect(commands).toHaveCount(0);
   return chooser;
 }

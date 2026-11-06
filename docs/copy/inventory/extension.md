@@ -143,11 +143,11 @@ Routes: `/extension`, `extension`. Strings: 141 (123 unique).
 | 96 | extension | `extension/src/popup/content.ts:32` | key:title | No saved jobs yet |
 | 97 | extension | `extension/src/popup/content.ts:33` | key:description | Open a supported LinkedIn or Indeed posting and choose Save job. It will appear here. |
 | 98 | extension | `extension/src/popup/content.ts:38` | key:title | For feedback on your resume, open Recruiter in Your Pocket. |
-| 99 | extension | `extension/src/popup/content.ts:39` | key:cta | Review my resume |
+| 99 | extension | `extension/src/popup/content.ts:39` | key:cta | Get your free report |
 | 100 | extension | `extension/src/popup/content.ts:42` | key:title | You can also get a report on your resume. |
-| 101 | extension | `extension/src/popup/content.ts:43` | key:cta | Review my resume |
+| 101 | extension | `extension/src/popup/content.ts:43` | key:cta | Get your free report |
 | 102 | extension | `extension/src/popup/content.ts:46` | key:title | Get resume feedback with or without a job description. |
-| 103 | extension | `extension/src/popup/content.ts:47` | key:cta | Review my resume |
+| 103 | extension | `extension/src/popup/content.ts:47` | key:cta | Get your free report |
 | 104 | extension | `extension/src/popup/content.ts:50` | key:title | Select a job to compare it with your resume. |
 | 105 | extension | `extension/src/popup/content.ts:51` | key:cta | Open Recruiter in Your Pocket |
 | 106 | extension | `extension/src/popup/content.ts:54` | key:title | You can also try opening the website. |

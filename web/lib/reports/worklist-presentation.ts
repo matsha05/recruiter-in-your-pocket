@@ -93,7 +93,7 @@ export function blankAnswersFromStored(example: string, stored: StoredLineAnswer
 export function cardsHeading(report: Pick<WorklistReport, "cards">): { title: string; lead: string | null } {
   const work = workCards(report).length;
   if (work === 0) {
-    // No lead: the ending says "Send it. Then read it against the posting you're going for." in the same words.
+    // No lead: the ending says "This is killer! Send it." and what else matters, so the heading stays plain.
     return { title: "Nothing here needs work.", lead: null };
   }
   return { title: "Lines that need work.", lead: "Top to bottom, the way a recruiter reads." };
@@ -170,7 +170,7 @@ export function compareWorklists(previous: WorklistReport, current: WorklistRepo
     intro = "Both versions came back clean.";
   } else if (gone.length === 0) {
     title = "The same lines are on the list.";
-    intro = "This version didn't clear any of them. Start with the first again.";
+    intro = "None of them came off the list this time. Let's start with the first one again.";
   } else if (still.length === 0 && added.length === 0) {
     title = before.length === 1 ? "The line you worked on is off the list." : "Every line you worked on is off the list.";
     intro = "Nothing in this version needs work now.";
@@ -181,6 +181,7 @@ export function compareWorklists(previous: WorklistReport, current: WorklistRepo
       added.length > 0 ? `${count(added.length, "new one came", "new ones came")} up.` : null,
     ].filter(Boolean).join(" ");
   }
-  const sum = delta === 0 ? null : delta > 0 ? `Up ${delta} since last time.` : `Down ${Math.abs(delta)} since last time.`;
+  // One earned exclamation point on a real win (Matt, November 6, 2026); never on a drop.
+  const sum = delta === 0 ? null : delta > 0 ? `Up ${delta} since last time. That's the right direction!` : `Down ${Math.abs(delta)} since last time.`;
   return { gone, still, added, delta, title, intro, sum };
 }

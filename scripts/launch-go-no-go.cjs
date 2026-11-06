@@ -335,6 +335,17 @@ runCommand("search_foundation", "Search foundation and compare-page prices", {
   passMessage: "Search foundation passed and the compare-page prices are current.",
 });
 
+// The copy system's free check (docs/promptops/shipping-gate.md, "The copy rule"): the inventory matches the
+// source, no string trips a pattern check outside the known baseline, and the voice judge's tests pass,
+// including the pin that fails when its prompt changes without a fresh calibration.
+runCommand("copy_check", "Copy inventory, copy lint and voice judge tests", {
+  command: "npm",
+  args: ["run", "copy:check"],
+  cwd: webDir,
+  passMessage: "The copy inventory is current, no new string trips a pattern check, and the voice judge's tests pass.",
+  severity: "important",
+});
+
 runCommand("migration_manifest", "Database migration manifest", {
   command: "npm",
   args: ["run", "migrate:check"],
@@ -393,6 +404,15 @@ if (hasLiveEvalKey && paidEvalsAllowed && paidEvalCandidateReady) {
     cwd: webDir,
     passMessage: "Live smoke eval passed.",
     severity: strict ? "critical" : "important",
+  });
+
+  // The voice judge's held-out calibration: a judge that drifted from its labels stops being a check.
+  runCommand("copy_judge_calibration", "Voice judge held-out calibration", {
+    command: "npm",
+    args: ["run", "copy:judge", "--", "calibrate", "--set", "docs/copy/calibration/heldout-2026-11-06.json", "--ratings", "docs/copy/calibration/heldout-ratings-2026-11-06.json", "--budget-usd", "0.2", "--min-kappa", "0.45", "--min-no-caught", "0.75", "--out", "docs/launch-readiness/generated/copy-judge"],
+    cwd: webDir,
+    passMessage: "The voice judge still agrees with its held-out labels.",
+    severity: "important",
   });
 
   if (strict) {

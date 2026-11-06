@@ -13,7 +13,7 @@ Routes: `/purchase/confirmed`, `/purchase/restore`. Strings: 51 (47 unique).
 | 3 | pricing | `web/app/(marketing)/purchase/confirmed/page.tsx:14` | jsx-text | Checking your purchase |
 | 4 | pricing | `web/app/(marketing)/purchase/confirmed/page.tsx:15` | jsx-text | Checking the payment with Stripe… |
 | 5 | pricing | `web/components/purchase/PurchaseConfirmedClient.tsx:77` | const | Checking your account |
-| 6 | pricing | `web/components/purchase/PurchaseConfirmedClient.tsx:78` | const | You’re in. Five more reads. |
+| 6 | pricing | `web/components/purchase/PurchaseConfirmedClient.tsx:78` | const | You’re in! Five more reads. |
 | 7 | pricing | `web/components/purchase/PurchaseConfirmedClient.tsx:79` | const | Paid. One step left. |
 | 8 | pricing | `web/components/purchase/PurchaseConfirmedClient.tsx:81` | const | Your payment is confirmed. We’re checking access for your account. |
 | 9 | pricing | `web/components/purchase/PurchaseConfirmedClient.tsx:82` | const | 5 more reports, good for 90 days. |

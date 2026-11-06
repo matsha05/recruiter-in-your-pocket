@@ -1,7 +1,7 @@
 import rhythm from "@/components/materials/Rhythm.module.css";
 import styles from "./HiringTruths.module.css";
 
-/** What the read looks for, each paired with what the report actually does about it. */
+/** What a recruiter looks for, each paired with what the report actually does about it. */
 export function HiringTruths() {
     return (
         <section id="what-we-look-for" className={rhythm.section} aria-labelledby="truths-title">
@@ -13,11 +13,11 @@ export function HiringTruths() {
                 </div>
                 <div className={styles.row}>
                     <dt className={styles.quote}>Your best example stops right before the good part.</dt>
-                    <dd className={styles.answer}><strong>Not forty tips.</strong> Every line a recruiter trips on, in the order they hit it.</dd>
+                    <dd className={styles.answer}><strong>We show you where.</strong> The lines a recruiter would stop on, in the order they&rsquo;d read them.</dd>
                 </div>
                 <div className={styles.row}>
-                    <dt className={styles.quote}>No ATS score. No interview odds.</dt>
-                    <dd className={styles.answer}><strong>Just what reads clearly and what doesn&rsquo;t.</strong> We&rsquo;ll rewrite your line. Only from your facts.</dd>
+                    <dt className={styles.quote}>Nobody can score you against an ATS or tell you your interview odds.</dt>
+                    <dd className={styles.answer}><strong>So we don&rsquo;t pretend to.</strong> We tell you which lines are clear, and rewrite yours only from your facts.</dd>
                 </div>
             </dl>
         </section>

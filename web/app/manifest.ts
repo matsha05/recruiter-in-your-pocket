@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
     return {
         name: 'Recruiter in Your Pocket',
         short_name: 'RIYP',
-        description: 'See what a recruiter sees: your Verdict, where your resume stands, and what to fix first.',
+        description: 'See what a recruiter sees in your resume, line by line.',
         start_url: '/',
         display: 'standalone',
         background_color: '#f4f4f1',
