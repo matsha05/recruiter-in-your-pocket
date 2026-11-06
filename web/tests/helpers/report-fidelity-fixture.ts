@@ -65,6 +65,34 @@ export const schemaValidReport = {
   },
 };
 
+/**
+ * A worklist report (contract v3) for the same resume line. It passes validateWorklistPayload as written,
+ * so a route that receives it from the provider has nothing to repair.
+ */
+export const schemaValidWorklistReport = {
+  contract_version: "v3",
+  score: 72,
+  lifted_by_employer: false,
+  verdict: "A recruiter sees HubSpot workflow work and no way to tell how many customers it served.",
+  write_up: [
+    "The HubSpot workflow line is easy to follow. What a recruiter can't tell after one pass is how many customers came through it.",
+  ],
+  cards: [{
+    kind: "line",
+    where: "Experience, line 1",
+    line: hubspotSource,
+    cannot_tell: "Built workflows for how many customers? The line names the tool but not the size of the work.",
+    example: "Built customer workflows in HubSpot for [number] customers.",
+    question: "How many customers did those workflows cover?",
+  }],
+  fit: {
+    roles: ["Customer Operations"],
+    level: "",
+    note: "",
+    posting: { summary: "", missing: [] },
+  },
+};
+
 export const unsafePublicClaim = "Salesforce Administrator";
 
 export const renderedClaimProbe = {
