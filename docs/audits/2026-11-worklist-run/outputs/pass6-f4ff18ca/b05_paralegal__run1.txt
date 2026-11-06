@@ -1,0 +1,28 @@
+# b05_paralegal, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_paralegal_1.txt (144 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt f4ff18ca; severity check off
+Outcome: report; cost $0.0053; 13.0s
+
+## Mostly clear (score 83; model wrote 83)
+## Verdict
+A senior litigation paralegal with substantial document production experience and trial support that could use one more detail.
+
+## Write-up
+A recruiter can see your litigation work quickly: you support four partners, draft discovery documents, manage productions and prepare for trial. The question is what your support during the two jury trials included.
+
+The Relativity line is a strong model. It names the work, the tool and how large a production can be. Add your part in the trials with that same level of detail.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Senior Litigation Paralegal, line 2
+   line: "Manage document productions of up to 250,000 pages in Relativity"
+   can't tell: Keep this one. The ownership is clear, and a recruiter doesn't have to guess what kind of production you handle.
+2. [line] Senior Litigation Paralegal, line 4
+   line: "Prepare trial binders and exhibits; supported two jury trials in 2025"
+   can't tell: The two jury trials are worth naming, but a recruiter can't tell what your support during those trials involved.
+   example: Prepare trial binders and exhibits; supported two jury trials in 2025 by [trial support tasks]
+   question: What did you do to support the two jury trials?
+
+## Fit
+Roles: ["Senior Litigation Paralegal","Paralegal"]
+Level: Senior paralegal
+Note: Your recent work points toward litigation paralegal roles, particularly those involving commercial and employment cases. Your earlier personal injury work adds experience with medical records and filings.

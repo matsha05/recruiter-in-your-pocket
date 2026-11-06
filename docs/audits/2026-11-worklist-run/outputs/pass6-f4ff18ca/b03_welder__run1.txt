@@ -1,0 +1,33 @@
+# b03_welder, run 1
+Resume: ../2026-11-live-judgment/resumes/b_welder.txt (195 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt f4ff18ca; severity check off
+Outcome: report; cost $0.0068; 16.0s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+An experienced welder with structural steel and pipe work, relevant certifications, and strong inspection results.
+
+## Write-up
+A recruiter sees an experienced welder who can fit structural assemblies and work on process piping. The Riverfront Tower line is especially strong: it names the job, the third-party inspections, and about 900 welds. There's little guesswork about what passed inspection.
+
+Your resume isn't going to be the reason you don't hear back. The competition for a particular job will also matter. You can make it even better by adding how many new hires you've trained and what you worked on during shutdowns.
+
+## Cards (3; {"keep":1,"line":2}); severity off; added []
+1. [keep] Welder / Fitter, line 3
+   line: "Passed every third-party UT and visual inspection on the Riverfront Tower job (about 900 welds)"
+   can't tell: Keep this as a model. It gives a recruiter a concrete project and a result they can remember.
+2. [line] Welder / Fitter, line 4
+   line: "Train new hires on the shop's fit-up and tacking procedures"
+   can't tell: The training is useful experience. A recruiter can't tell how many new hires you've trained.
+   example: Train [number] new hires on the shop's fit-up and tacking procedures
+   question: How many new hires have you trained?
+3. [line] Pipe Welder, line 3
+   line: "Worked nights and weekends on plant shutdowns"
+   can't tell: The schedule shows your availability, but it doesn't say what you did during the shutdowns. That work could tell a recruiter more about your pipe experience.
+   example: Worked nights and weekends on plant shutdowns, performing [shutdown work]
+   question: What work did you perform during the plant shutdowns?
+
+## Fit
+Roles: ["Welder / Fitter","Pipe Welder"]
+Level: Experienced welder
+Note: Your experience points to structural welding and fitting as well as pipe welding. Your AWS D1.1 and ASME Section IX certifications give recruiters relevant qualifications to match against each job.

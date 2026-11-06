@@ -1,0 +1,28 @@
+# b24_physical_therapist_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_physical_therapist_strong_1.txt (154 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 6eb03ddb; severity check off
+Outcome: report; cost $0.0052; 11.1s
+
+## Clear and specific (score 89; model wrote 89)
+## Verdict
+A senior physical therapist with a clear outpatient rehab specialty and well-described patient work.
+
+## Write-up
+This is a strong physical therapy resume: you name the cases you treat, the patients you see, and the programs you run. The return-to-run line is a model because it says what you built and how many patients completed it.
+
+The main question is how the patient-reported function scores were measured. Your resume isn't likely to be what stands between you and a callback; competition for the role matters too.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Senior Physical Therapist, line 2
+   line: "Built a return-to-run program that 85 patients completed in 2025"
+   can't tell: Keep this as a model. It gives your work a name and shows patients completing the program, without making a bigger claim about their recovery.
+2. [line] Senior Physical Therapist, line 4
+   line: "In 2025, 92% of discharged patients improved their patient-reported function scores"
+   can't tell: The improvement is worth showing, but a recruiter can't tell which assessment you used or how many discharged patients the percentage covers.
+   example: In 2025, 92% of [number] discharged patients improved their patient-reported function scores, measured with [assessment tool]
+   question: Which assessment did you use, and how many discharged patients were included in the percentage?
+
+## Fit
+Roles: ["Senior Physical Therapist","Physical Therapist"]
+Level: Senior clinician
+Note: Your experience points toward outpatient orthopedic physical therapy, especially sports and post-surgical rehab. Mentoring newer therapists and scheduling the PT aide also show senior responsibilities.

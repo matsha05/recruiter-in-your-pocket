@@ -1,0 +1,75 @@
+# h6_unverifiable_claim, run 1
+Resume: ../2026-11-live-judgment/resumes/h6_unverifiable_claim.txt (145 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
+Outcome: report; cost $0.0102; 25.2s
+Case note: "Led a team of 40" with nothing supporting it.
+
+## Needs more context (score 65; model wrote 65)
+## Verdict
+An operations manager with a team of 40, but too little about the work and results.
+
+## Write-up
+Your progression from team lead to operations manager is easy to follow. A recruiter can see that you led 40 people, but has to guess what they handled and what improved under your direction.
+
+The scanning system line is your best model: it names a real project and where it happened. Give the rest of the work that kind of detail, then say what your part was. The summary promises results that the bullets don't yet show.
+
+## Cards (11; {"line":10,"structure":1}); severity off; added []
+1. [line] Summary
+   line: "Operations leader who has led a team of 40 and delivered results in fast-paced environments."
+   can't tell: The team count is useful, but the results are a blank. A recruiter will look for them in the jobs below and won't find much to hold onto.
+   example: Operations leader who has led a team of 40 and delivered [result] in fast-paced environments.
+   question: What result can you name from your operations work?
+2. [structure] Gulf Coast Fulfillment
+   line: "The page doesn't describe what Gulf Coast Fulfillment handles."
+   can't tell: A recruiter may not know the business from its name. A short description would put the fulfillment work in context.
+   question: What does Gulf Coast Fulfillment handle, and who does it serve?
+3. [line] Operations Manager, line 1
+   line: "Led a team of 40"
+   can't tell: Forty people is a meaningful team, but the number alone doesn't say what they did or what you managed.
+   example: Led a team of 40 who [work the team handled], with responsibility for [leadership responsibilities].
+   question: What did the team handle, and what were your responsibilities as its leader?
+4. [line] Operations Manager, line 2
+   line: "Oversaw daily fulfillment operations"
+   can't tell: Daily fulfillment could cover several different jobs. Which parts were yours to oversee?
+   example: Oversaw daily fulfillment operations for [work handled], including [responsibilities].
+   question: What fulfillment work did you oversee, and what were you responsible for day to day?
+5. [line] Operations Manager, line 3
+   line: "Worked with the leadership team on goals and planning"
+   can't tell: The goals and planning aren't named, so a recruiter can't tell what you contributed.
+   example: Worked with the leadership team on [goal] and [planning work], contributing [your part].
+   question: Which goal or plan did you work on, and what was your part?
+6. [line] Operations Manager, line 4
+   line: "Improved processes across the department"
+   can't tell: This promises an improvement without naming the process or what changed. That's the detail a recruiter will want.
+   example: Improved [process] across the department by [what you did], resulting in [what changed].
+   question: Which process did you improve, what did you do, and what changed?
+7. [line] Assistant Operations Manager, line 1
+   line: "Supported the operations manager with scheduling and reporting"
+   can't tell: Scheduling and reporting name the work, but 'supported' leaves your part open. A little more detail would distinguish your contribution.
+   example: Supported the operations manager with scheduling for [who was scheduled] and reporting on [what the reports covered] by [your contribution].
+   question: Who did you schedule, what did the reports cover, and what did you do for each?
+8. [line] Assistant Operations Manager, line 2
+   line: "Helped roll out a new scanning system on the floor"
+   can't tell: The scanning system is a concrete project. 'Helped' still leaves a recruiter wondering what you did during the rollout.
+   example: Helped roll out a new scanning system on the floor by [your contribution].
+   question: What did you do to help roll out the scanning system?
+9. [line] Assistant Operations Manager, line 3
+   line: "Covered the floor on weekends"
+   can't tell: Covering the floor could mean supervising people, handling problems, or something else. What did the shift require of you?
+   example: Covered the floor on weekends, handling [responsibilities].
+   question: What were your responsibilities when you covered the floor?
+10. [line] Team Lead, line 1
+   line: "Led a small team on the sorting line"
+   can't tell: The sorting line gives the team a job, but 'small' leaves its count open and doesn't say how you led it.
+   example: Led a team of [number] on the sorting line, handling [leadership responsibilities].
+   question: How many people were on the team, and what did you handle as their lead?
+11. [line] Team Lead, line 2
+   line: "Kept the line running during peak season"
+   can't tell: A recruiter can see why the line mattered during peak season, but not what you did to keep it running.
+   example: Kept the line running during peak season by [what you did].
+   question: What did you do to keep the sorting line running during peak season?
+
+## Fit
+Roles: ["Operations Manager","Assistant Operations Manager","Team Lead"]
+Level: Operations management
+Note: Your experience points toward fulfillment operations and frontline team management. The progression is clear, but the current role needs more detail about the operation and your results.

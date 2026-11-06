@@ -11,42 +11,51 @@
   "model": "gpt-6.1-terra",
   "reasoning_effort": "medium",
   "severity_check": false,
-  "started_at": "2026-11-06T16:36:45.734Z",
+  "started_at": "2026-11-06T18:16:22.066Z",
   "calls": [
     {
       "kind": "report",
       "usage": {
-        "prompt_tokens": 4422,
-        "completion_tokens": 425,
-        "total_tokens": 4847,
-        "cached_prompt_tokens": 3792,
+        "prompt_tokens": 5315,
+        "completion_tokens": 995,
+        "total_tokens": 6310,
+        "cached_prompt_tokens": 4685,
         "cache_write_prompt_tokens": 627,
-        "reasoning_tokens": 76
+        "reasoning_tokens": 438
       },
-      "cost_usd": 0.00310135,
+      "cost_usd": 0.005996,
       "model": "gpt-6.1-terra",
-      "latency_ms": 7172
+      "latency_ms": 13487
     }
   ],
-  "resume_prompt_sha256": "70e795a1e91877ad12f5394154dccd644b9f9d298e123ca182963a0e3e089350",
+  "resume_prompt_sha256": "0a19c3ee70395ec8fb0584d4bea1b93da77aeca37469b4d47211bc8568544f0c",
   "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
   "model_output": {
     "contract_version": "v3",
-    "score": 95,
+    "score": 91,
     "lifted_by_employer": false,
-    "verdict": "A senior FP&A analyst with budget ownership and forecast and pricing results attached.",
+    "verdict": "A senior FP&A analyst with budget, forecasting and pricing work tied to substantial results.",
     "write_up": [
-      "A recruiter sees a senior FP&A analyst who owns a $240M operating budget, models pricing and presents results to the division CFO. The earlier financial analyst role adds close reporting and Power BI automation.",
-      "The driver-based forecast line is the model: it names what you built and shows the forecast error before and after. The rest of the page gives the same kind of concrete context without making a recruiter hunt for it."
+      "Your resume is strong because it connects consumer-brand finance work to decisions and results. At Lakeshore Foods, you own a division budget, improve forecasting and model pricing for products. A recruiter can see both the work and its scale.",
+      "The forecast line is the model to copy: it names what you built and shows the change in error. Your progression from Financial Analyst at Midway Brands to Senior Financial Analyst at Lakeshore Foods is easy to follow.",
+      "I'd make one small improvement to the pricing line: show how your work fed into the review. Otherwise, your resume is unlikely to be what stands between you and a callback. How competitive a particular role is will also matter."
     ],
     "cards": [
       {
         "kind": "keep",
-        "where": "Senior Financial Analyst, FP&A, line 2",
+        "where": "Senior Financial Analyst, FP&A, forecast line",
         "line": "- Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
-        "cannot_tell": "Keep this as a model. It connects your own work to a measurable change in a single sentence.",
+        "cannot_tell": "Keep this as your model. The before-and-after figures give a recruiter something concrete to remember, and the forecast is clearly your work.",
         "example": "",
         "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Financial Analyst, FP&A, pricing line",
+        "line": "- Model price changes for 60 products; a 2025 pricing review added $3.1M in gross margin",
+        "cannot_tell": "The margin result is strong, but a recruiter can't quite tell how your price modeling fed into the review. A few words about your part would connect the two.",
+        "example": "Model price changes for 60 products; [what you did] in a 2025 pricing review that added $3.1M in gross margin",
+        "question": "How did your price modeling contribute to the 2025 pricing review?"
       }
     ],
     "fit": {
@@ -55,7 +64,7 @@
         "Financial Analyst"
       ],
       "level": "Senior analyst",
-      "note": "Your experience points toward FP&A roles in consumer brands, especially work involving budgets, forecasting and pricing. The current title and work are consistent with a senior analyst level.",
+      "note": "Your experience points clearly toward senior FP&A work in consumer brands. Budget ownership, forecasting, pricing and presentations to finance and brand leaders all support that direction.",
       "posting": {
         "summary": "",
         "missing": []
@@ -64,21 +73,30 @@
   },
   "validated_report": {
     "contract_version": "v3",
-    "score": 95,
+    "score": 91,
     "lifted_by_employer": false,
-    "verdict": "A senior FP&A analyst with budget ownership and forecast and pricing results attached.",
+    "verdict": "A senior FP&A analyst with budget, forecasting and pricing work tied to substantial results.",
     "write_up": [
-      "A recruiter sees a senior FP&A analyst who owns a $240M operating budget, models pricing and presents results to the division CFO. The earlier financial analyst role adds close reporting and Power BI automation.",
-      "The driver-based forecast line is the model: it names what you built and shows the forecast error before and after. The rest of the page gives the same kind of concrete context without making a recruiter hunt for it."
+      "Your resume is strong because it connects consumer-brand finance work to decisions and results. At Lakeshore Foods, you own a division budget, improve forecasting and model pricing for products. A recruiter can see both the work and its scale.",
+      "The forecast line is the model to copy: it names what you built and shows the change in error. Your progression from Financial Analyst at Midway Brands to Senior Financial Analyst at Lakeshore Foods is easy to follow.",
+      "I'd make one small improvement to the pricing line: show how your work fed into the review. Otherwise, your resume is unlikely to be what stands between you and a callback. How competitive a particular role is will also matter."
     ],
     "cards": [
       {
         "kind": "keep",
-        "where": "Senior Financial Analyst, FP&A, line 2",
+        "where": "Senior Financial Analyst, FP&A, forecast line",
         "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
-        "cannot_tell": "Keep this as a model. It connects your own work to a measurable change in a single sentence.",
+        "cannot_tell": "Keep this as your model. The before-and-after figures give a recruiter something concrete to remember, and the forecast is clearly your work.",
         "example": "",
         "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Financial Analyst, FP&A, pricing line",
+        "line": "Model price changes for 60 products; a 2025 pricing review added $3.1M in gross margin",
+        "cannot_tell": "The margin result is strong, but a recruiter can't quite tell how your price modeling fed into the review. A few words about your part would connect the two.",
+        "example": "Model price changes for 60 products; [what you did] in a 2025 pricing review that added $3.1M in gross margin",
+        "question": "How did your price modeling contribute to the 2025 pricing review?"
       }
     ],
     "fit": {
@@ -87,7 +105,7 @@
         "Financial Analyst"
       ],
       "level": "Senior analyst",
-      "note": "Your experience points toward FP&A roles in consumer brands, especially work involving budgets, forecasting and pricing. The current title and work are consistent with a senior analyst level.",
+      "note": "Your experience points clearly toward senior FP&A work in consumer brands. Budget ownership, forecasting, pricing and presentations to finance and brand leaders all support that direction.",
       "posting": {
         "summary": "",
         "missing": []
@@ -97,25 +115,34 @@
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 95
+    "content_score": 91
   },
   "shipped_report": {
     "contract_version": "v3",
-    "score": 95,
+    "score": 91,
     "lifted_by_employer": false,
-    "verdict": "A senior FP&A analyst with budget ownership and forecast and pricing results attached.",
+    "verdict": "A senior FP&A analyst with budget, forecasting and pricing work tied to substantial results.",
     "write_up": [
-      "A recruiter sees a senior FP&A analyst who owns a $240M operating budget, models pricing and presents results to the division CFO. The earlier financial analyst role adds close reporting and Power BI automation.",
-      "The driver-based forecast line is the model: it names what you built and shows the forecast error before and after. The rest of the page gives the same kind of concrete context without making a recruiter hunt for it."
+      "Your resume is strong because it connects consumer-brand finance work to decisions and results. At Lakeshore Foods, you own a division budget, improve forecasting and model pricing for products. A recruiter can see both the work and its scale.",
+      "The forecast line is the model to copy: it names what you built and shows the change in error. Your progression from Financial Analyst at Midway Brands to Senior Financial Analyst at Lakeshore Foods is easy to follow.",
+      "I'd make one small improvement to the pricing line: show how your work fed into the review. Otherwise, your resume is unlikely to be what stands between you and a callback. How competitive a particular role is will also matter."
     ],
     "cards": [
       {
         "kind": "keep",
-        "where": "Senior Financial Analyst, FP&A, line 2",
+        "where": "Senior Financial Analyst, FP&A, forecast line",
         "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
-        "cannot_tell": "Keep this as a model. It connects your own work to a measurable change in a single sentence.",
+        "cannot_tell": "Keep this as your model. The before-and-after figures give a recruiter something concrete to remember, and the forecast is clearly your work.",
         "example": "",
         "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Financial Analyst, FP&A, pricing line",
+        "line": "Model price changes for 60 products; a 2025 pricing review added $3.1M in gross margin",
+        "cannot_tell": "The margin result is strong, but a recruiter can't quite tell how your price modeling fed into the review. A few words about your part would connect the two.",
+        "example": "Model price changes for 60 products; [what you did] in a 2025 pricing review that added $3.1M in gross margin",
+        "question": "How did your price modeling contribute to the 2025 pricing review?"
       }
     ],
     "fit": {
@@ -124,7 +151,7 @@
         "Financial Analyst"
       ],
       "level": "Senior analyst",
-      "note": "Your experience points toward FP&A roles in consumer brands, especially work involving budgets, forecasting and pricing. The current title and work are consistent with a senior analyst level.",
+      "note": "Your experience points clearly toward senior FP&A work in consumer brands. Budget ownership, forecasting, pricing and presentations to finance and brand leaders all support that direction.",
       "posting": {
         "summary": "",
         "missing": []
@@ -134,28 +161,36 @@
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 95
+    "content_score": 91
   },
   "presentation": {
-    "score": 95,
+    "score": 91,
     "band": "Clear and specific",
-    "model_score": 95,
+    "model_score": 91,
     "lifted_by_employer": false,
-    "verdict": "A senior FP&A analyst with budget ownership and forecast and pricing results attached.",
-    "write_up_paragraphs": 2,
-    "write_up_words": 73,
+    "verdict": "A senior FP&A analyst with budget, forecasting and pricing work tied to substantial results.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 117,
     "cards": [
       {
         "kind": "keep",
-        "where": "Senior Financial Analyst, FP&A, line 2",
+        "where": "Senior Financial Analyst, FP&A, forecast line",
         "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
         "blanks": 0,
         "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Financial Analyst, FP&A, pricing line",
+        "line": "Model price changes for 60 products; a 2025 pricing review added $3.1M in gross margin",
+        "blanks": 1,
+        "question": "How did your price modeling contribute to the 2025 pricing review?"
       }
     ],
-    "card_count": 1,
+    "card_count": 2,
     "kinds": {
-      "keep": 1
+      "keep": 1,
+      "line": 1
     },
     "structural_from_model": 0,
     "severity_added": [],
@@ -167,7 +202,7 @@
         "Financial Analyst"
       ],
       "level": "Senior analyst",
-      "note": "Your experience points toward FP&A roles in consumer brands, especially work involving budgets, forecasting and pricing. The current title and work are consistent with a senior analyst level.",
+      "note": "Your experience points clearly toward senior FP&A work in consumer brands. Budget ownership, forecasting, pricing and presentations to finance and brand leaders all support that direction.",
       "posting": {
         "summary": "",
         "missing": []
@@ -175,6 +210,6 @@
     }
   },
   "outcome": "report",
-  "cost_usd": 0.00310135,
-  "latency_ms": 7174
+  "cost_usd": 0.005996,
+  "latency_ms": 13491
 }

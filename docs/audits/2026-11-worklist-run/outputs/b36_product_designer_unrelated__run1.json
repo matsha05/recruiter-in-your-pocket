@@ -11,72 +11,73 @@
   "model": "gpt-6.1-terra",
   "reasoning_effort": "medium",
   "severity_check": false,
-  "started_at": "2026-11-06T16:37:46.633Z",
+  "started_at": "2026-11-06T18:17:08.800Z",
   "calls": [
     {
       "kind": "report",
       "usage": {
-        "prompt_tokens": 4443,
-        "completion_tokens": 1658,
-        "total_tokens": 6101,
-        "cached_prompt_tokens": 3792,
+        "prompt_tokens": 5336,
+        "completion_tokens": 1880,
+        "total_tokens": 7216,
+        "cached_prompt_tokens": 4685,
         "cache_write_prompt_tokens": 648,
-        "reasoning_tokens": 740
+        "reasoning_tokens": 879
       },
-      "cost_usd": 0.0092926,
+      "cost_usd": 0.01044725,
       "model": "gpt-6.1-terra",
-      "latency_ms": 26467
+      "latency_ms": 25587
     }
   ],
-  "resume_prompt_sha256": "70e795a1e91877ad12f5394154dccd644b9f9d298e123ca182963a0e3e089350",
+  "resume_prompt_sha256": "0a19c3ee70395ec8fb0584d4bea1b93da77aeca37469b4d47211bc8568544f0c",
   "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
   "model_output": {
     "contract_version": "v3",
     "score": 68,
     "lifted_by_employer": false,
-    "verdict": "A product designer with solid named projects, but no recent design role and too little detail on the work.",
+    "verdict": "A product designer with named deliverables, but little about the decisions or results behind them.",
     "write_up": [
-      "A recruiter sees product design work on fitness apps, followed by a current barista job. The switch is accounted for, but the last design role ended in February 2024. The cafe bullets don't say how many customers you serve or baristas you train, and some design bullets leave your contribution open.",
-      "The line about creating the app's first design system in Figma is the model: it names the deliverable, the tool and what made the work new. Give the booking flow and usability tests a little more of that substance."
+      "You designed apps at Loop Fitness and sites and app screens at Brightpath Studio, and you're now a barista at Ferry Street Coffee. It's common for design resumes to list deliverables without explaining the decisions behind them. Here, that makes it harder to stand out for product design work because a recruiter can't see what the designs solved.",
+      "The Figma design system is the best model: it names what you created, where you built it, and why it was a first for the app. Your current job accounts for the time since Loop Fitness, but your resume doesn't show product design work after that role.",
+      "Let's start with the Loop Fitness booking flow and weekly releases. Add the problem you worked on and your contribution, then use the usability tests to show what you did with the findings. Your portfolio link gives you another place to show that work."
     ],
     "cards": [
       {
         "kind": "line",
         "where": "Barista, line 1",
         "line": "- Prepare drinks and serve customers in a busy cafe",
-        "cannot_tell": "A recruiter can't tell how many customers you serve. A typical shift count would make the cafe work more concrete.",
-        "example": "Prepare drinks and serve [number] customers per [time period] in a busy cafe",
-        "question": "About how many customers do you serve in a typical shift?"
+        "cannot_tell": "A recruiter can see the job, but not how many customers you serve or drinks you prepare. A measure of the work would give the current role more substance.",
+        "example": "Prepare drinks and serve [number] customers [time period] in a busy cafe",
+        "question": "How many customers do you serve in a typical shift?"
       },
       {
         "kind": "line",
         "where": "Barista, line 2",
         "line": "- Train new baristas on espresso equipment",
-        "cannot_tell": "Training is useful work. How many new baristas have you trained, and what do you teach them?",
-        "example": "Train [number] new baristas on espresso equipment, covering [training topics]",
-        "question": "How many new baristas have you trained, and what does the equipment training cover?"
+        "cannot_tell": "Training new baristas is useful to know. How many have you trained, and what does the training cover?",
+        "example": "Train [number] new baristas on espresso equipment, covering [what training includes]",
+        "question": "How many new baristas have you trained, and what do you teach them?"
       },
       {
         "kind": "line",
         "where": "Product Designer, line 1",
         "line": "- Designed the class booking flow for the iOS and Android apps",
-        "cannot_tell": "The booking flow is a clear project. The problem you were designing for isn't here.",
+        "cannot_tell": "The booking flow is a clear piece of work, but the problem behind it is missing. That makes it tough to see how you approached the design.",
         "example": "Designed the class booking flow for the iOS and Android apps to address [booking problem]",
-        "question": "What booking problem was the flow designed to address?"
+        "question": "What booking problem did the flow address?"
       },
       {
         "kind": "line",
         "where": "Product Designer, line 2",
         "line": "- Worked with two engineers and a product manager on weekly releases",
-        "cannot_tell": "The team and release rhythm are clear. Your part in those releases isn't.",
-        "example": "Worked with two engineers and a product manager on weekly releases, contributing [your work] to [what shipped]",
-        "question": "What did you contribute to the weekly releases, and what shipped?"
+        "cannot_tell": "The team and release rhythm are clear, but your contribution to those releases isn't. What design work did you bring to them?",
+        "example": "Worked with two engineers and a product manager on weekly releases, contributing [your design work]",
+        "question": "What design work did you contribute to the weekly releases?"
       },
       {
         "kind": "keep",
         "where": "Product Designer, line 3",
         "line": "- Created the app's first design system in Figma",
-        "cannot_tell": "Keep this. It gives you ownership of a recognizable piece of product work without making a recruiter guess at your part.",
+        "cannot_tell": "Keep this as a model. It gives you ownership of a distinct piece of work rather than leaving a recruiter to guess what you contributed.",
         "example": "",
         "question": ""
       },
@@ -84,9 +85,9 @@
         "kind": "line",
         "where": "Product Designer, line 4",
         "line": "- Ran usability tests with members before launches",
-        "cannot_tell": "You ran the tests, but a recruiter can't tell what members tested or what you did with their feedback.",
-        "example": "Ran usability tests with members before launches to test [what you tested], then [what you did with feedback]",
-        "question": "What did members test, and what did you do with their feedback?"
+        "cannot_tell": "A recruiter knows who took part and when you tested, but not what you did with what you learned. That connection matters for a product design role.",
+        "example": "Ran usability tests with members before launches and [what you did with the findings]",
+        "question": "What did you do with the findings from those tests?"
       }
     ],
     "fit": {
@@ -94,8 +95,8 @@
         "Product Designer",
         "Junior Product Designer"
       ],
-      "level": "Product designer with earlier junior experience",
-      "note": "Your experience points to product design roles, particularly mobile app work. The current cafe role accounts for your time, while the portfolio and more detail on the design projects can show what you bring back to that work.",
+      "level": "Product designer with prior experience",
+      "note": "Your design work points toward product design roles involving apps and web experiences. The most recent product design role ended in February 2024, so showing the thinking behind that work will be important.",
       "posting": {
         "summary": "",
         "missing": []
@@ -106,49 +107,50 @@
     "contract_version": "v3",
     "score": 68,
     "lifted_by_employer": false,
-    "verdict": "A product designer with solid named projects, but no recent design role and too little detail on the work.",
+    "verdict": "A product designer with named deliverables, but little about the decisions or results behind them.",
     "write_up": [
-      "A recruiter sees product design work on fitness apps, followed by a current barista job. The switch is accounted for, but the last design role ended in February 2024. The cafe bullets don't say how many customers you serve or baristas you train, and some design bullets leave your contribution open.",
-      "The line about creating the app's first design system in Figma is the model: it names the deliverable, the tool and what made the work new. Give the booking flow and usability tests a little more of that substance."
+      "You designed apps at Loop Fitness and sites and app screens at Brightpath Studio, and you're now a barista at Ferry Street Coffee. It's common for design resumes to list deliverables without explaining the decisions behind them. Here, that makes it harder to stand out for product design work because a recruiter can't see what the designs solved.",
+      "The Figma design system is the best model: it names what you created, where you built it, and why it was a first for the app. Your current job accounts for the time since Loop Fitness, but your resume doesn't show product design work after that role.",
+      "Let's start with the Loop Fitness booking flow and weekly releases. Add the problem you worked on and your contribution, then use the usability tests to show what you did with the findings. Your portfolio link gives you another place to show that work."
     ],
     "cards": [
       {
         "kind": "line",
         "where": "Barista, line 1",
         "line": "Prepare drinks and serve customers in a busy cafe",
-        "cannot_tell": "A recruiter can't tell how many customers you serve. A typical shift count would make the cafe work more concrete.",
-        "example": "Prepare drinks and serve [number] customers per [time period] in a busy cafe",
-        "question": "About how many customers do you serve in a typical shift?"
+        "cannot_tell": "A recruiter can see the job, but not how many customers you serve or drinks you prepare. A measure of the work would give the current role more substance.",
+        "example": "Prepare drinks and serve [number] customers [time period] in a busy cafe",
+        "question": "How many customers do you serve in a typical shift?"
       },
       {
         "kind": "line",
         "where": "Barista, line 2",
         "line": "Train new baristas on espresso equipment",
-        "cannot_tell": "Training is useful work. How many new baristas have you trained, and what do you teach them?",
-        "example": "Train [number] new baristas on espresso equipment, covering [training topics]",
-        "question": "How many new baristas have you trained, and what does the equipment training cover?"
+        "cannot_tell": "Training new baristas is useful to know. How many have you trained, and what does the training cover?",
+        "example": "Train [number] new baristas on espresso equipment, covering [what training includes]",
+        "question": "How many new baristas have you trained, and what do you teach them?"
       },
       {
         "kind": "line",
         "where": "Product Designer, line 1",
         "line": "Designed the class booking flow for the iOS and Android apps",
-        "cannot_tell": "The booking flow is a clear project. The problem you were designing for isn't here.",
+        "cannot_tell": "The booking flow is a clear piece of work, but the problem behind it is missing. That makes it tough to see how you approached the design.",
         "example": "Designed the class booking flow for the iOS and Android apps to address [booking problem]",
-        "question": "What booking problem was the flow designed to address?"
+        "question": "What booking problem did the flow address?"
       },
       {
         "kind": "line",
         "where": "Product Designer, line 2",
         "line": "Worked with two engineers and a product manager on weekly releases",
-        "cannot_tell": "The team and release rhythm are clear. Your part in those releases isn't.",
-        "example": "Worked with two engineers and a product manager on weekly releases, contributing [your work] to [what shipped]",
-        "question": "What did you contribute to the weekly releases, and what shipped?"
+        "cannot_tell": "The team and release rhythm are clear, but your contribution to those releases isn't. What design work did you bring to them?",
+        "example": "Worked with two engineers and a product manager on weekly releases, contributing [your design work]",
+        "question": "What design work did you contribute to the weekly releases?"
       },
       {
         "kind": "keep",
         "where": "Product Designer, line 3",
         "line": "Created the app's first design system in Figma",
-        "cannot_tell": "Keep this. It gives you ownership of a recognizable piece of product work without making a recruiter guess at your part.",
+        "cannot_tell": "Keep this as a model. It gives you ownership of a distinct piece of work rather than leaving a recruiter to guess what you contributed.",
         "example": "",
         "question": ""
       },
@@ -156,9 +158,9 @@
         "kind": "line",
         "where": "Product Designer, line 4",
         "line": "Ran usability tests with members before launches",
-        "cannot_tell": "You ran the tests, but a recruiter can't tell what members tested or what you did with their feedback.",
-        "example": "Ran usability tests with members before launches to test [what you tested], then [what you did with feedback]",
-        "question": "What did members test, and what did you do with their feedback?"
+        "cannot_tell": "A recruiter knows who took part and when you tested, but not what you did with what you learned. That connection matters for a product design role.",
+        "example": "Ran usability tests with members before launches and [what you did with the findings]",
+        "question": "What did you do with the findings from those tests?"
       }
     ],
     "fit": {
@@ -166,8 +168,8 @@
         "Product Designer",
         "Junior Product Designer"
       ],
-      "level": "Product designer with earlier junior experience",
-      "note": "Your experience points to product design roles, particularly mobile app work. The current cafe role accounts for your time, while the portfolio and more detail on the design projects can show what you bring back to that work.",
+      "level": "Product designer with prior experience",
+      "note": "Your design work points toward product design roles involving apps and web experiences. The most recent product design role ended in February 2024, so showing the thinking behind that work will be important.",
       "posting": {
         "summary": "",
         "missing": []
@@ -183,49 +185,50 @@
     "contract_version": "v3",
     "score": 68,
     "lifted_by_employer": false,
-    "verdict": "A product designer with solid named projects, but no recent design role and too little detail on the work.",
+    "verdict": "A product designer with named deliverables, but little about the decisions or results behind them.",
     "write_up": [
-      "A recruiter sees product design work on fitness apps, followed by a current barista job. The switch is accounted for, but the last design role ended in February 2024. The cafe bullets don't say how many customers you serve or baristas you train, and some design bullets leave your contribution open.",
-      "The line about creating the app's first design system in Figma is the model: it names the deliverable, the tool and what made the work new. Give the booking flow and usability tests a little more of that substance."
+      "You designed apps at Loop Fitness and sites and app screens at Brightpath Studio, and you're now a barista at Ferry Street Coffee. It's common for design resumes to list deliverables without explaining the decisions behind them. Here, that makes it harder to stand out for product design work because a recruiter can't see what the designs solved.",
+      "The Figma design system is the best model: it names what you created, where you built it, and why it was a first for the app. Your current job accounts for the time since Loop Fitness, but your resume doesn't show product design work after that role.",
+      "Let's start with the Loop Fitness booking flow and weekly releases. Add the problem you worked on and your contribution, then use the usability tests to show what you did with the findings. Your portfolio link gives you another place to show that work."
     ],
     "cards": [
       {
         "kind": "line",
         "where": "Barista, line 1",
         "line": "Prepare drinks and serve customers in a busy cafe",
-        "cannot_tell": "A recruiter can't tell how many customers you serve. A typical shift count would make the cafe work more concrete.",
-        "example": "Prepare drinks and serve [number] customers per [time period] in a busy cafe",
-        "question": "About how many customers do you serve in a typical shift?"
+        "cannot_tell": "A recruiter can see the job, but not how many customers you serve or drinks you prepare. A measure of the work would give the current role more substance.",
+        "example": "Prepare drinks and serve [number] customers [time period] in a busy cafe",
+        "question": "How many customers do you serve in a typical shift?"
       },
       {
         "kind": "line",
         "where": "Barista, line 2",
         "line": "Train new baristas on espresso equipment",
-        "cannot_tell": "Training is useful work. How many new baristas have you trained, and what do you teach them?",
-        "example": "Train [number] new baristas on espresso equipment, covering [training topics]",
-        "question": "How many new baristas have you trained, and what does the equipment training cover?"
+        "cannot_tell": "Training new baristas is useful to know. How many have you trained, and what does the training cover?",
+        "example": "Train [number] new baristas on espresso equipment, covering [what training includes]",
+        "question": "How many new baristas have you trained, and what do you teach them?"
       },
       {
         "kind": "line",
         "where": "Product Designer, line 1",
         "line": "Designed the class booking flow for the iOS and Android apps",
-        "cannot_tell": "The booking flow is a clear project. The problem you were designing for isn't here.",
+        "cannot_tell": "The booking flow is a clear piece of work, but the problem behind it is missing. That makes it tough to see how you approached the design.",
         "example": "Designed the class booking flow for the iOS and Android apps to address [booking problem]",
-        "question": "What booking problem was the flow designed to address?"
+        "question": "What booking problem did the flow address?"
       },
       {
         "kind": "line",
         "where": "Product Designer, line 2",
         "line": "Worked with two engineers and a product manager on weekly releases",
-        "cannot_tell": "The team and release rhythm are clear. Your part in those releases isn't.",
-        "example": "Worked with two engineers and a product manager on weekly releases, contributing [your work] to [what shipped]",
-        "question": "What did you contribute to the weekly releases, and what shipped?"
+        "cannot_tell": "The team and release rhythm are clear, but your contribution to those releases isn't. What design work did you bring to them?",
+        "example": "Worked with two engineers and a product manager on weekly releases, contributing [your design work]",
+        "question": "What design work did you contribute to the weekly releases?"
       },
       {
         "kind": "keep",
         "where": "Product Designer, line 3",
         "line": "Created the app's first design system in Figma",
-        "cannot_tell": "Keep this. It gives you ownership of a recognizable piece of product work without making a recruiter guess at your part.",
+        "cannot_tell": "Keep this as a model. It gives you ownership of a distinct piece of work rather than leaving a recruiter to guess what you contributed.",
         "example": "",
         "question": ""
       },
@@ -233,9 +236,9 @@
         "kind": "line",
         "where": "Product Designer, line 4",
         "line": "Ran usability tests with members before launches",
-        "cannot_tell": "You ran the tests, but a recruiter can't tell what members tested or what you did with their feedback.",
-        "example": "Ran usability tests with members before launches to test [what you tested], then [what you did with feedback]",
-        "question": "What did members test, and what did you do with their feedback?"
+        "cannot_tell": "A recruiter knows who took part and when you tested, but not what you did with what you learned. That connection matters for a product design role.",
+        "example": "Ran usability tests with members before launches and [what you did with the findings]",
+        "question": "What did you do with the findings from those tests?"
       }
     ],
     "fit": {
@@ -243,8 +246,8 @@
         "Product Designer",
         "Junior Product Designer"
       ],
-      "level": "Product designer with earlier junior experience",
-      "note": "Your experience points to product design roles, particularly mobile app work. The current cafe role accounts for your time, while the portfolio and more detail on the design projects can show what you bring back to that work.",
+      "level": "Product designer with prior experience",
+      "note": "Your design work points toward product design roles involving apps and web experiences. The most recent product design role ended in February 2024, so showing the thinking behind that work will be important.",
       "posting": {
         "summary": "",
         "missing": []
@@ -261,37 +264,37 @@
     "band": "Needs more context",
     "model_score": 68,
     "lifted_by_employer": false,
-    "verdict": "A product designer with solid named projects, but no recent design role and too little detail on the work.",
-    "write_up_paragraphs": 2,
-    "write_up_words": 90,
+    "verdict": "A product designer with named deliverables, but little about the decisions or results behind them.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 149,
     "cards": [
       {
         "kind": "line",
         "where": "Barista, line 1",
         "line": "Prepare drinks and serve customers in a busy cafe",
         "blanks": 2,
-        "question": "About how many customers do you serve in a typical shift?"
+        "question": "How many customers do you serve in a typical shift?"
       },
       {
         "kind": "line",
         "where": "Barista, line 2",
         "line": "Train new baristas on espresso equipment",
         "blanks": 2,
-        "question": "How many new baristas have you trained, and what does the equipment training cover?"
+        "question": "How many new baristas have you trained, and what do you teach them?"
       },
       {
         "kind": "line",
         "where": "Product Designer, line 1",
         "line": "Designed the class booking flow for the iOS and Android apps",
         "blanks": 1,
-        "question": "What booking problem was the flow designed to address?"
+        "question": "What booking problem did the flow address?"
       },
       {
         "kind": "line",
         "where": "Product Designer, line 2",
         "line": "Worked with two engineers and a product manager on weekly releases",
-        "blanks": 2,
-        "question": "What did you contribute to the weekly releases, and what shipped?"
+        "blanks": 1,
+        "question": "What design work did you contribute to the weekly releases?"
       },
       {
         "kind": "keep",
@@ -304,8 +307,8 @@
         "kind": "line",
         "where": "Product Designer, line 4",
         "line": "Ran usability tests with members before launches",
-        "blanks": 2,
-        "question": "What did members test, and what did you do with their feedback?"
+        "blanks": 1,
+        "question": "What did you do with the findings from those tests?"
       }
     ],
     "card_count": 6,
@@ -322,8 +325,8 @@
         "Product Designer",
         "Junior Product Designer"
       ],
-      "level": "Product designer with earlier junior experience",
-      "note": "Your experience points to product design roles, particularly mobile app work. The current cafe role accounts for your time, while the portfolio and more detail on the design projects can show what you bring back to that work.",
+      "level": "Product designer with prior experience",
+      "note": "Your design work points toward product design roles involving apps and web experiences. The most recent product design role ended in February 2024, so showing the thinking behind that work will be important.",
       "posting": {
         "summary": "",
         "missing": []
@@ -331,6 +334,6 @@
     }
   },
   "outcome": "report",
-  "cost_usd": 0.0092926,
-  "latency_ms": 26469
+  "cost_usd": 0.01044725,
+  "latency_ms": 25599
 }

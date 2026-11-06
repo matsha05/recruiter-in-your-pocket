@@ -1,0 +1,40 @@
+# b33_nonprofit_program_manager, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_nonprofit_program_manager_1.txt (146 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt f4ff18ca; severity check off
+Outcome: report; cost $0.0084; 21.5s
+
+## Needs more context (score 69; model wrote 69)
+## Verdict
+A youth workforce program manager with clear responsibilities, but little to show how large the programs are.
+
+## Write-up
+A recruiter sees a progression from program coordinator to manager, with staff supervision and employer partnerships. This is pretty common, and it won't stand out in a pile: the recent role names the work, but leaves the scale of the summer jobs program and what the team handles open to guesswork. Let's start with the most recent role.
+
+The summer jobs line is your best model. It names the program, the students and where they're placed. Add how many students take part, then bring that same detail to the team, grant reports and employer partnerships.
+
+## Cards (4; {"line":4}); severity off; added []
+1. [line] Program Manager, Youth Workforce, line 1
+   line: "Manage a summer jobs program placing high school students with local employers"
+   can't tell: A recruiter can see who the program serves, but not how many students it places. That number would show how much work the program involves.
+   example: Manage a summer jobs program placing [number] high school students with local employers [timeframe]
+   question: How many high school students does the program place, and over what period?
+2. [line] Program Manager, Youth Workforce, line 2
+   line: "Supervise 4 program coordinators and 20 seasonal staff"
+   can't tell: The staff count is useful, but a recruiter can't tell what the team does. Name the work you supervise.
+   example: Supervise 4 program coordinators and 20 seasonal staff who [what the team handles]
+   question: What work do the coordinators and seasonal staff handle?
+3. [line] Program Manager, Youth Workforce, line 3
+   line: "Write grant reports for city and foundation funders"
+   can't tell: The funders are named by type, but the reports themselves are still a blank. What do you report on, and how often?
+   example: Write grant reports on [report content] for city and foundation funders [frequency]
+   question: What do your grant reports cover, and how often do you write them?
+4. [line] Program Manager, Youth Workforce, line 4
+   line: "Recruit and onboard employer partners"
+   can't tell: A recruiter knows you bring in partners, but not how many or what onboarding involves. Those details would show the work behind the partnerships.
+   example: Recruit and onboard [number] employer partners [timeframe], including [onboarding work]
+   question: How many employer partners do you recruit and onboard over a typical period, and what does onboarding involve?
+
+## Fit
+Roles: ["Program Manager, Youth Workforce","Program Coordinator"]
+Level: Program manager
+Note: Your experience points toward youth workforce program management, with earlier coordinator work at Harbor Pathways. The staff count establishes management responsibility; program and partnership numbers would show more of what you manage.

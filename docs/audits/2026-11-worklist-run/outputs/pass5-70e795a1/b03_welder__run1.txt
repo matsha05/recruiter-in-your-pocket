@@ -1,0 +1,28 @@
+# b03_welder, run 1
+Resume: ../2026-11-live-judgment/resumes/b_welder.txt (195 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
+Outcome: report; cost $0.0052; 14.1s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A structural and pipe welder with a strong inspection record and one vague shutdown bullet.
+
+## Write-up
+A recruiter sees structural steel fabrication, process piping and the certifications to match. The current job makes your work easy to picture, from reading drawings to fitting assemblies within 1/16 inch.
+
+The Riverfront Tower inspection line is the model: it names the job, the tests and about 900 welds. The plant shutdown bullet leaves a question about what you did during those shifts.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Welder / Fitter, line 3
+   line: "Passed every third-party UT and visual inspection on the Riverfront Tower job (about 900 welds)"
+   can't tell: Keep this. It gives a recruiter a named project and an inspection record without making them guess how much work was involved.
+2. [line] Pipe Welder, line 3
+   line: "Worked nights and weekends on plant shutdowns"
+   can't tell: The schedule is clear, but what you did during the shutdowns isn't. Name the work you handled.
+   example: Worked nights and weekends on plant shutdowns, handling [work performed]
+   question: What work did you handle during the plant shutdowns?
+
+## Fit
+Roles: ["Welder / Fitter","Pipe Welder"]
+Level: Experienced welder
+Note: Your experience points to structural fabrication and pipe welding. The inspection record, fit-up work and listed certifications give a recruiter concrete reasons to consider both.

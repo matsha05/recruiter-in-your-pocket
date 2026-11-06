@@ -1,28 +1,30 @@
 # b24_physical_therapist_strong, run 1
 Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_physical_therapist_strong_1.txt (154 words)
-Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
-Outcome: report; cost $0.0044; 11.3s
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0054; 10.8s
 
 ## Clear and specific (score 88; model wrote 88)
 ## Verdict
-A senior outpatient physical therapist with a clear caseload, mentoring duties, and a return-to-run program.
+A senior outpatient physical therapist with a clear patient caseload, program work, and patient-reported results.
 
 ## Write-up
-You come across as an experienced outpatient therapist focused on orthopedic and sports rehab. A recruiter can see your daily caseload and the cases you treat. The main question is what measure sits behind the reported improvement in patient function.
+Your resume makes a strong case for outpatient orthopedic physical therapy! At North Loop Sports Rehab, you show the patients you treat, the program you built, and the therapists you mentor. A recruiter can see both your clinical work and your senior responsibilities.
 
-The return-to-run program is the model for the rest: you built a named program, and 85 patients completed it in 2025. Your earlier fall-prevention class is just as easy to picture.
+The return-to-run program is a great model: you name what you built and how many patients completed it in 2025. Your license, experience and education are also easy to find.
+
+The main detail to add is how the patient-reported function scores were measured and how many discharged patients they cover. Your resume is unlikely to be the thing holding you back; competition for a particular role can still matter.
 
 ## Cards (2; {"keep":1,"line":1}); severity off; added []
 1. [keep] Senior Physical Therapist, line 2
    line: "Built a return-to-run program that 85 patients completed in 2025"
-   can't tell: Keep this as a model. It connects your work to a concrete patient milestone without claiming more than the number says.
+   can't tell: Keep this as a model. It connects your own work to a named program and shows how many patients completed it.
 2. [line] Senior Physical Therapist, line 4
    line: "In 2025, 92% of discharged patients improved their patient-reported function scores"
-   can't tell: The percentage is useful, but a recruiter can't tell which function measure it refers to. Naming it would give the figure more meaning.
-   example: In 2025, 92% of discharged patients improved their patient-reported function scores as measured by [measure]
-   question: Which measure was used for the patient-reported function scores?
+   can't tell: The improvement is worth keeping. A recruiter can't tell which measure you used or how many discharged patients the percentage covers.
+   example: In 2025, 92% of [number] discharged patients improved their patient-reported function scores, measured with [tool]
+   question: Which measure did you use, and how many discharged patients were included?
 
 ## Fit
 Roles: ["Senior Physical Therapist","Physical Therapist"]
 Level: Senior clinician
-Note: Your experience points toward outpatient physical therapy roles, particularly orthopedic and sports rehab. Your current work also includes mentoring therapists and scheduling the PT aide.
+Note: Your experience points toward outpatient orthopedic physical therapy, particularly sports and post-surgical rehab. Your mentoring and scheduling work also show senior responsibilities.

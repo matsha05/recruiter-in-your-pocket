@@ -1,0 +1,28 @@
+# b02_teacher, run 1
+Resume: ../2026-11-live-judgment/resumes/b_teacher.txt (202 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt f4ff18ca; severity check off
+Outcome: report; cost $0.0046; 8.9s
+
+## Clear and specific (score 89; model wrote 89)
+## Verdict
+An experienced elementary teacher whose classroom work, reading results and grade-level leadership are easy to see.
+
+## Write-up
+Your resume makes a strong case for elementary teaching roles. A recruiter can see your class size, work with English language learners and leadership of the grade-level team. The reading growth line is especially strong because it shows what changed over three years on the district assessment.
+
+This resume isn't going to be the reason you don't hear back. How competitive a teaching job is will matter too. The one line I'd add to is your positive behavior support committee work, so a recruiter can see what you contributed.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] 4th Grade Teacher, reading growth
+   line: "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years"
+   can't tell: Keep this as a model: it names the assessment, the starting point and the change. A recruiter doesn't have to guess what the reading work achieved.
+2. [line] 2nd Grade Teacher, positive behavior support committee
+   line: "Served on the school's positive behavior support committee"
+   can't tell: A recruiter can see you served on the committee, but not what you contributed to its work.
+   example: Served on the school's positive behavior support committee and [contribution]
+   question: What did you contribute to the committee's work?
+
+## Fit
+Roles: ["4th Grade Teacher","2nd Grade Teacher"]
+Level: Experienced elementary teacher and grade-level lead
+Note: Your experience points to elementary classroom teaching, with grade-level planning and teacher training alongside it. Your Washington K-8 certification and English Language Learner endorsement are easy to find.

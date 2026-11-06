@@ -1,0 +1,44 @@
+# b40_senior_ic_wei, run 1
+Resume: ../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/4-senior-ic-wei.txt (361 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 6eb03ddb; severity check off
+Outcome: report; cost $0.0096; 21.5s
+Case note: Senior IC (bar persona).
+
+## Mostly clear (score 81; model wrote 81)
+## Verdict
+A staff engineer with a strong payments architecture story and a few important unanswered questions about scale.
+
+## Write-up
+A recruiter can see a staff engineer leading payments infrastructure work, with earlier experience in fraud scoring and storage systems. The work is concrete enough to move forward, though the ledger redesign leaves a question about how much it handled and what changed.
+
+The idempotency line is a great model: it names the framework, where you drove adoption, and the duplicate-charge incidents it eliminated. Let's give the ledger redesign and a couple of the improvement claims that same substance.
+
+## Cards (5; {"line":4,"keep":1}); severity off; added []
+1. [line] Staff Software Engineer, ledger redesign
+   line: "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB"
+   can't tell: The architecture is specific, but a recruiter can't tell how much the ledger handled or what changed after the redesign. Those details would show why the move mattered.
+   example: Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, handling [workload] and resulting in [what changed]
+   question: What workload did the ledger handle, and what changed after the redesign?
+2. [keep] Staff Software Engineer, idempotency framework
+   line: "Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents"
+   can't tell: Keep this as a model. It connects your adoption work to a concrete problem that no longer occurred, without making the reader guess why the framework mattered.
+3. [line] Staff Software Engineer, incident response
+   line: "Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services"
+   can't tell: The incident leadership is clear. What happened after you introduced error budgets and SLOs is still open.
+   example: Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services, with [what changed]
+   question: What changed after you introduced the error budgets and SLOs?
+4. [line] Senior Software Engineer, reconciliation
+   line: "Reduced reconciliation break rate and manual ops effort"
+   can't tell: This names two improvements but leaves a recruiter guessing how much they changed and what you did to reduce them.
+   example: Reduced reconciliation break rate from [starting rate] to [ending rate] and manual ops effort by [amount] through [what you did]
+   question: What did you do to reduce the break rate and manual effort, and how much did each change?
+5. [line] Software Engineer II, API performance
+   line: "Improved API latency and availability through caching and request coalescing"
+   can't tell: The methods are clear, but the improvements aren't sized. A before-and-after measure would show what the caching and request coalescing accomplished.
+   example: Improved API latency from [starting latency] to [ending latency] and availability from [starting availability] to [ending availability] through caching and request coalescing
+   question: How did API latency and availability change after that work?
+
+## Fit
+Roles: ["Staff Software Engineer","Senior Software Engineer"]
+Level: Staff-level engineering
+Note: Your experience points toward staff engineering work in distributed systems and payments. The ledger redesign, incident leadership, and idempotency work support that direction; measures of the systems and their improvements would make the story stronger.

@@ -1,0 +1,54 @@
+# b06_staff_accountant, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_staff_accountant_1.txt (98 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt f4ff18ca; severity check off
+Outcome: report; cost $0.0084; 21.5s
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+A staff accountant with a clear progression, but too little detail about the work in the current role.
+
+## Write-up
+This is pretty common, and it won't stand out in a pile. A recruiter sees your move from Accounts Payable Clerk to Staff Accountant, but the current role lists duties without showing how much you handle or what changed. Let's start with the most recent role.
+
+The journal entries and account reconciliations line is the clearest because it names two accounting tasks. Use that as a starting point, then add the types of accounts or entries. A little context about Rivermark would also help a recruiter understand the business behind the work.
+
+## Cards (7; {"structure":1,"line":6}); severity off; added []
+1. [structure] Rivermark Building Supply
+   line: "The resume does not describe the size of Rivermark Building Supply."
+   can't tell: A recruiter can't tell how large the business is or what that means for the accounting work. One short description could put both roles in context.
+   question: How would you describe the business and its size?
+2. [line] Staff Accountant, line 1
+   line: "Responsible for month-end close tasks"
+   can't tell: A recruiter can't tell which parts of the close are yours or when they need to be finished. Start with the tasks you handle.
+   example: Responsible for month-end close tasks, including [tasks], by [deadline]
+   question: Which close tasks do you handle, and what is the deadline?
+3. [line] Staff Accountant, line 2
+   line: "Prepare journal entries and account reconciliations"
+   can't tell: This names the work, but not the types of entries or accounts. Those details would show what you handle in the close.
+   example: Prepare journal entries for [entry types] and account reconciliations for [account types]
+   question: What types of journal entries and accounts do you work on?
+4. [line] Staff Accountant, line 3
+   line: "Assist with the annual audit"
+   can't tell: Assisting with an audit can mean several things. A recruiter can't tell what you contribute.
+   example: Assist with the annual audit by [audit work]
+   question: What do you prepare or do for the annual audit?
+5. [line] Staff Accountant, line 4
+   line: "Maintain fixed asset schedules"
+   can't tell: A recruiter knows you maintain the schedules, but not what assets or updates you handle. Name those details.
+   example: Maintain fixed asset schedules for [asset types], including [updates]
+   question: What assets are on the schedules, and what updates do you make?
+6. [line] Staff Accountant, line 5
+   line: "Process accounts payable when needed"
+   can't tell: It's not clear what part of accounts payable you handle when you step in. The work and its volume would make your contribution concrete.
+   example: Process accounts payable when needed, including [tasks] for [number] invoices per [period]
+   question: What accounts payable tasks do you handle, and how many invoices do you typically process?
+7. [line] Accounts Payable Clerk, line 1
+   line: "Entered vendor invoices"
+   can't tell: Invoice entry is clear, but the volume isn't. That number would show how much of the work you handled.
+   example: Entered [number] vendor invoices per [period]
+   question: How many vendor invoices did you enter in a typical period?
+
+## Fit
+Roles: ["Staff Accountant","Accounts Payable Clerk"]
+Level: Staff accountant
+Note: Your experience points toward staff accounting work, with earlier accounts payable experience at the same business. The resume names relevant tools and duties, but needs more detail about your current accounting work.

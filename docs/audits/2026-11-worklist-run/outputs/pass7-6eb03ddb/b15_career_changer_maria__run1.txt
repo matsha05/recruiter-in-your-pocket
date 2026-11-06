@@ -1,0 +1,53 @@
+# b15_career_changer_maria, run 1
+Resume: ../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/2-career-changer-maria.txt (315 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 6eb03ddb; severity check off
+Outcome: report; cost $0.0112; 27.0s
+Case note: Career changer (bar persona).
+
+## Mostly clear (score 72; model wrote 72)
+## Verdict
+A math teacher moving into analytics, with relevant projects but unanswered questions about the findings.
+
+## Write-up
+A recruiter sees a mathematics teacher making a deliberate move into data analytics. The training and projects give them a reason to keep reading, though they may hesitate over how the analysis informed decisions.
+
+Your Student Performance Dashboard is a strong model: you name Excel, the measures you tracked, and the three-year period. You also say the department used it to decide which units needed re-teaching. Let’s bring your projects closer to the top and give the assessment and housing work that same level of detail.
+
+## Cards (7; {"line":5,"structure":1,"keep":1}); severity off; added []
+1. [line] Summary
+   line: "Dedicated educator with 8 years of experience transitioning into data analytics. Passionate about using data to tell stories and drive decisions. Strong analytical, communication, and problem-solving skills with a proven track record of success."
+   can't tell: A recruiter can't tell what you analyzed or built from this claim. Your student data work gives you something more concrete to put here.
+   example: Mathematics Teacher transitioning into data analytics, with experience analyzing student assessment data to inform [instructional decision]
+   question: What specific instructional decision did your assessment analysis inform?
+2. [structure] Structure
+   line: "Data Projects sits below Professional Experience."
+   can't tell: Your analytics projects appear after both teaching roles. Moving them above Professional Experience puts the work most relevant to your transition in front of a recruiter sooner.
+   question: Would you move Data Projects above Professional Experience for analytics applications?
+3. [line] Mathematics Teacher, line 2
+   line: "Developed and implemented engaging curriculum aligned with state standards"
+   can't tell: A recruiter can't tell what you developed or how you used it. Name a piece of the curriculum you created.
+   example: Developed and implemented [curriculum materials] for [course], aligned with state standards
+   question: What materials did you develop, and for which course?
+4. [line] Mathematics Teacher, line 3
+   line: "Analyzed student assessment data to identify learning gaps and adjust instruction"
+   can't tell: This connects analysis to instruction, but leaves the decision broad. What learning gap did you find, and what did you change in response?
+   example: Analyzed student assessment data to identify [learning gap] and adjust instruction by [instructional change]
+   question: Which learning gap did you identify, and how did you adjust instruction?
+5. [line] Mathematics Teacher, line 4
+   line: "Served as Math Department Data Lead, compiling benchmark results for department meetings"
+   can't tell: The benchmark work is relevant to analytics, but a recruiter can't tell what you compiled or what the department did with it.
+   example: Served as Math Department Data Lead, compiling benchmark results on [measures] for department meetings to inform [decision]
+   question: Which measures did you compile, and what decision did the results inform?
+6. [line] Austin Housing Affordability Analysis, line 1
+   line: "Analyzed 10 years of Austin housing and income data using Python and SQL"
+   can't tell: The tools and time period are clear. The missing piece is what you found in the housing and income data.
+   example: Analyzed 10 years of Austin housing and income data using Python and SQL, finding [key finding]
+   question: What was a key finding from your analysis?
+7. [keep] Student Performance Dashboard, line 1
+   line: "Built an Excel dashboard tracking AP Statistics pass rates and quiz scores over three years"
+   can't tell: Keep this as a model. It names what you built and the exact measures it tracked, so a recruiter doesn't have to guess at the work.
+
+## Fit
+Roles: ["Mathematics Teacher","Middle School Math Teacher"]
+Level: Experienced teacher transitioning into analytics
+Note: Your teaching experience includes assessment analysis and department reporting. The bootcamp projects show applied analytics work, though the resume doesn't show a dedicated analytics job.

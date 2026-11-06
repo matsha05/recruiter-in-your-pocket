@@ -1,24 +1,26 @@
 # h3_strong_resume, run 1
 Resume: ../2026-11-live-judgment/resumes/h3_strong_resume.txt (311 words)
-Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
-Outcome: report; cost $0.0038; 8.7s
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0041; 7.6s
 Case note: Senior product manager whose resume is already good.
 
-## Clear and specific (score 96; model wrote 96)
+## Clear and specific (score 97; model wrote 97)
 ## Verdict
 A senior payments product manager with launches, revenue growth, and customer results attached.
 
 ## Write-up
-A recruiter can see your progression from associate product manager to leading a payments platform and managing product managers. Northwind Pay's growth and the processor integrations give them plenty to take forward.
+This is a standout payments product resume! Your progression from Peakline to leading the Northwind payments platform is easy to follow, and you pair product launches with the business and customer results that matter for senior roles.
 
-The payment failure line is a model: it names the change you led, the before and after, and the estimated revenue recovered for customers. The rest of the resume is similarly direct.
+The payment failure line is an excellent model: it names the product changes, the reduction in failures, and the estimated revenue recovered for customers. Your experience leads, and the management and pricing work round out the story.
+
+Your resume isn't likely to be the thing standing between you and a callback. The competitiveness of the role and a referral can also matter, so focus your effort on finding the right payments and billing teams.
 
 ## Cards (1; {"keep":1}); severity off; added []
 1. [keep] Senior Product Manager, Payments Platform, line 3
    line: "Cut payment failure rate from 4.1% to 1.6% by leading the move to network tokenization and smart retries, recovering an estimated $6.2M in annual revenue for customers"
-   can't tell: Keep the distinction between the measured failure rate and the estimated revenue recovered. It gives the claim the right limits.
+   can't tell: Keep this as a model. It shows your leadership alongside the technical decisions and preserves the estimate on customer revenue.
 
 ## Fit
 Roles: ["Senior Product Manager, Payments Platform","Product Manager, Billing"]
 Level: Senior product manager
-Note: Your experience points to senior product roles in payments and billing. The platform roadmap and product manager hires also show people leadership.
+Note: Your experience points to senior product roles in payments and billing. The resume also shows management of product managers and work across engineering and finance.

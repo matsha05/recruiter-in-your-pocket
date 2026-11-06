@@ -1,0 +1,244 @@
+{
+  "case_id": "b23_pharmacy_tech_table",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Tables rendered to tab-separated text.",
+  "resume_file": "../2026-11-live-judgment/resumes/b_pharmacy_tech_table.txt",
+  "resume_sha256": "872695c37eba2c67784784b9af67edda0387ea5b8bbb90cd54d25ac0f2941367",
+  "resume_words": 209,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T18:01:53.210Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5434,
+        "completion_tokens": 1248,
+        "total_tokens": 6682,
+        "cached_prompt_tokens": 4536,
+        "cache_write_prompt_tokens": 895,
+        "reasoning_tokens": 644
+      },
+      "cost_usd": 0.00758855,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 18203
+    }
+  ],
+  "resume_prompt_sha256": "6eb03ddb4b32b2b65339085225b39b2ec67a805518799139b60e8c299167a186",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 87,
+    "lifted_by_employer": false,
+    "verdict": "A licensed pharmacy technician with strong inpatient and retail experience, backed by concrete numbers.",
+    "write_up": [
+      "Your resume makes your pharmacy work easy to grasp! A recruiter can see sterile compounding, dispensing cabinet work and retail experience, with numbers attached to much of it. The stockout line is especially strong: it names the six nursing units and shows the change in weekly reports.",
+      "Your resume isn't likely to be the reason you don't get a call back. How competitive an opening is matters too. Put the duties under their matching jobs so a recruiter doesn't have to switch between sections, and add a little more to the immunization scheduling line if you can."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience and Duties and Results",
+        "line": "The jobs and their duties are in separate sections.",
+        "cannot_tell": "A recruiter has to move between the job list and the duties to match each role to its employer and dates.",
+        "example": "",
+        "question": "Can you move each duty under its matching job and employer?"
+      },
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, dispensing cabinets",
+        "line": "Pharmacy Technician II\tManage the automated dispensing cabinet restocking for 6 nursing units\tStockout reports down from 9 to 2 per week in 2024",
+        "cannot_tell": "Keep this as a model. It puts your responsibility next to a before-and-after measure without making the reader guess which work you're describing.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Pharmacy Technician, immunization scheduling",
+        "line": "Pharmacy Technician\tRan the immunization scheduling during the 2021 flu and COVID seasons",
+        "cannot_tell": "A recruiter can see that you ran scheduling, but not how many appointments you handled. That would help show how much scheduling the job involved.",
+        "example": "Ran the immunization scheduling during the 2021 flu and COVID seasons, scheduling [number] appointments",
+        "question": "How many appointments did you schedule during those seasons?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Pharmacy Technician II",
+        "Pharmacy Technician"
+      ],
+      "level": "Experienced technician",
+      "note": "Your experience points toward inpatient and retail pharmacy technician roles. Your sterile compounding work and certification are particularly relevant to inpatient pharmacy.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 87,
+    "lifted_by_employer": false,
+    "verdict": "A licensed pharmacy technician with strong inpatient and retail experience, backed by concrete numbers.",
+    "write_up": [
+      "Your resume makes your pharmacy work easy to grasp! A recruiter can see sterile compounding, dispensing cabinet work and retail experience, with numbers attached to much of it. The stockout line is especially strong: it names the six nursing units and shows the change in weekly reports.",
+      "Your resume isn't likely to be the reason you don't get a call back. How competitive an opening is matters too. Put the duties under their matching jobs so a recruiter doesn't have to switch between sections, and add a little more to the immunization scheduling line if you can."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience and Duties and Results",
+        "line": "The jobs and their duties are in separate sections.",
+        "cannot_tell": "A recruiter has to move between the job list and the duties to match each role to its employer and dates.",
+        "example": "",
+        "question": "Can you move each duty under its matching job and employer?"
+      },
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, dispensing cabinets",
+        "line": "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024",
+        "cannot_tell": "Keep this as a model. It puts your responsibility next to a before-and-after measure without making the reader guess which work you're describing.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Pharmacy Technician, immunization scheduling",
+        "line": "Pharmacy Technician Ran the immunization scheduling during the 2021 flu and COVID seasons",
+        "cannot_tell": "A recruiter can see that you ran scheduling, but not how many appointments you handled. That would help show how much scheduling the job involved.",
+        "example": "Ran the immunization scheduling during the 2021 flu and COVID seasons, scheduling [number] appointments",
+        "question": "How many appointments did you schedule during those seasons?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Pharmacy Technician II",
+        "Pharmacy Technician"
+      ],
+      "level": "Experienced technician",
+      "note": "Your experience points toward inpatient and retail pharmacy technician roles. Your sterile compounding work and certification are particularly relevant to inpatient pharmacy.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 87
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 87,
+    "lifted_by_employer": false,
+    "verdict": "A licensed pharmacy technician with strong inpatient and retail experience, backed by concrete numbers.",
+    "write_up": [
+      "Your resume makes your pharmacy work easy to grasp! A recruiter can see sterile compounding, dispensing cabinet work and retail experience, with numbers attached to much of it. The stockout line is especially strong: it names the six nursing units and shows the change in weekly reports.",
+      "Your resume isn't likely to be the reason you don't get a call back. How competitive an opening is matters too. Put the duties under their matching jobs so a recruiter doesn't have to switch between sections, and add a little more to the immunization scheduling line if you can."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience and Duties and Results",
+        "line": "The jobs and their duties are in separate sections.",
+        "cannot_tell": "A recruiter has to move between the job list and the duties to match each role to its employer and dates.",
+        "example": "",
+        "question": "Can you move each duty under its matching job and employer?"
+      },
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, dispensing cabinets",
+        "line": "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024",
+        "cannot_tell": "Keep this as a model. It puts your responsibility next to a before-and-after measure without making the reader guess which work you're describing.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Pharmacy Technician, immunization scheduling",
+        "line": "Pharmacy Technician Ran the immunization scheduling during the 2021 flu and COVID seasons",
+        "cannot_tell": "A recruiter can see that you ran scheduling, but not how many appointments you handled. That would help show how much scheduling the job involved.",
+        "example": "Ran the immunization scheduling during the 2021 flu and COVID seasons, scheduling [number] appointments",
+        "question": "How many appointments did you schedule during those seasons?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Pharmacy Technician II",
+        "Pharmacy Technician"
+      ],
+      "level": "Experienced technician",
+      "note": "Your experience points toward inpatient and retail pharmacy technician roles. Your sterile compounding work and certification are particularly relevant to inpatient pharmacy.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 87
+  },
+  "presentation": {
+    "score": 87,
+    "band": "Clear and specific",
+    "model_score": 87,
+    "lifted_by_employer": false,
+    "verdict": "A licensed pharmacy technician with strong inpatient and retail experience, backed by concrete numbers.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 97,
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience and Duties and Results",
+        "line": "The jobs and their duties are in separate sections.",
+        "blanks": 0,
+        "question": "Can you move each duty under its matching job and employer?"
+      },
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, dispensing cabinets",
+        "line": "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Pharmacy Technician, immunization scheduling",
+        "line": "Pharmacy Technician Ran the immunization scheduling during the 2021 flu and COVID seasons",
+        "blanks": 1,
+        "question": "How many appointments did you schedule during those seasons?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "structure": 1,
+      "keep": 1,
+      "line": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Pharmacy Technician II",
+        "Pharmacy Technician"
+      ],
+      "level": "Experienced technician",
+      "note": "Your experience points toward inpatient and retail pharmacy technician roles. Your sterile compounding work and certification are particularly relevant to inpatient pharmacy.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00758855,
+  "latency_ms": 18204
+}

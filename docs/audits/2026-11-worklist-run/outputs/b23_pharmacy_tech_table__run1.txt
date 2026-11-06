@@ -1,29 +1,36 @@
 # b23_pharmacy_tech_table, run 1
 Resume: ../2026-11-live-judgment/resumes/b_pharmacy_tech_table.txt (209 words)
-Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
-Outcome: report; cost $0.0063; 17.8s
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0083; 20.1s
 Case note: Tables rendered to tab-separated text.
 
-## Clear and specific (score 88; model wrote 88)
+## Clear and specific (score 86; model wrote 86)
 ## Verdict
-A licensed pharmacy technician with clear inpatient work and one retail verification detail to explain.
+An experienced pharmacy technician with sterile compounding, hospital restocking, and retail pharmacy work clearly laid out.
 
 ## Write-up
-A recruiter would likely move you forward for pharmacy technician work. Your current role shows sterile compounding, cabinet restocking and training, with numbers attached. The retail claim that you verified prescriptions invites a question about what you checked and who performed the final check.
+This is a strong pharmacy technician resume! Your move from RiteCare to inpatient pharmacy comes with the work and its scale: sterile doses, nursing units and technicians trained. A recruiter can see both your retail background and your current hospital work.
 
-The cabinet restocking line is the model: it names six nursing units and shows stockout reports falling from 9 to 2 per week in 2024. Your credentials are easy to find, too.
+The cabinet restocking line is a great model. It names the six nursing units and shows stockout reports falling from 9 to 2 per week in 2024, without leaving a recruiter to guess what was measured. Your credentials and job dates are easy to find, too.
 
-## Cards (2; {"keep":1,"line":1}); severity off; added []
+Let's sharpen the retail prescription and immunization lines so a pharmacy reviewer can see more of what you handled. Your resume isn't likely to be the thing holding you back on its own; how competitive a particular job is will matter too.
+
+## Cards (3; {"keep":1,"line":2}); severity off; added []
 1. [keep] Pharmacy Technician II, cabinet restocking
    line: "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024"
-   can't tell: Keep this one. It puts the work and the reported change together, so a recruiter doesn't have to guess why the restocking mattered.
+   can't tell: Keep this as a model. You pair the job you manage with a concrete measure over a named period, so a reader can understand the work and the change without guessing.
 2. [line] Pharmacy Technician, prescriptions
    line: "Pharmacy Technician Filled and verified prescriptions for a store doing 350 scripts a day"
-   can't tell: Verified can mean different checks. A recruiter will want to know what you checked and who performed the final check.
-   example: Filled and verified prescriptions for a store doing 350 scripts a day, checking [what you checked]; [who performed the final check] performed the final check
-   question: What did you check on prescriptions, and who performed the final check?
+   can't tell: A pharmacy reviewer can see the store's volume, but not what your prescription verification involved. Naming the checks you performed would explain your part of the work.
+   example: Filled and verified prescriptions for a store doing 350 scripts a day, including [verification tasks]
+   question: What checks did you perform when you verified prescriptions?
+3. [line] Pharmacy Technician, immunization scheduling
+   line: "Pharmacy Technician Ran the immunization scheduling during the 2021 flu and COVID seasons"
+   can't tell: Running the schedule is clear, but a recruiter can't tell how many appointments it covered. That would show how much scheduling you handled during those seasons.
+   example: Ran immunization scheduling for [number] appointments during the 2021 flu and COVID seasons
+   question: How many appointments did the schedule cover during those seasons?
 
 ## Fit
 Roles: ["Pharmacy Technician II","Pharmacy Technician"]
-Level: Experienced technician
-Note: Your experience points to inpatient and retail pharmacy technician roles. The current work gives a particularly clear picture of sterile compounding and dispensing cabinet restocking.
+Level: Experienced pharmacy technician
+Note: Your current work points toward inpatient pharmacy technician roles, with retail pharmacy experience behind it. Your sterile compounding certification and California license are easy to find.

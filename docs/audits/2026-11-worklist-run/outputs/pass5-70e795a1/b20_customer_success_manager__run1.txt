@@ -1,0 +1,34 @@
+# b20_customer_success_manager, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt (180 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
+Outcome: report; cost $0.0070; 21.6s
+Case note: No posting.
+
+## Mostly clear (score 78; model wrote 78)
+## Verdict
+A customer success manager with a defined account book, but an unclear part in renewal strategy.
+
+## Write-up
+You have a clear customer success story: payroll support, then a book of mid-market accounts. A recruiter could move this forward, with a question about what you contributed to renewal strategy for at-risk accounts.
+
+The 48-account line is the model. It names the customers and their industries, so a recruiter can picture your book. The onboarding checklist is another useful detail: it shows something you built that the whole CS team uses.
+
+## Cards (3; {"keep":1,"line":2}); severity off; added []
+1. [keep] Customer Success Manager, line 1
+   line: "Manage a book of 48 mid-market accounts across healthcare and manufacturing"
+   can't tell: Keep this. The account count and industries give the rest of your work a setting.
+2. [line] Customer Success Manager, line 3
+   line: "Partnered with Sales on renewal strategy for at-risk accounts"
+   can't tell: Partnered doesn't say what part of the renewal work was yours. That matters for a role that runs through renewal.
+   example: Partnered with Sales on renewal strategy for at-risk accounts by [your contribution]
+   question: What did you contribute to the renewal strategy for at-risk accounts?
+3. [line] Account Coordinator, line 2
+   line: "Answered client questions by phone and email"
+   can't tell: The channels are clear, but the questions aren't. What did clients come to you for?
+   example: Answered small business client questions about [topics] by phone and email
+   question: What kinds of questions did those clients ask?
+
+## Fit
+Roles: ["Customer Success Manager","Customer Support Specialist"]
+Level: Experienced individual contributor
+Note: Your recent work points toward customer success roles serving mid-market software accounts. Your earlier payroll and tax filing support also gives you a route into customer support roles.

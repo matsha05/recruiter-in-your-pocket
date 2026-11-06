@@ -1,0 +1,304 @@
+{
+  "case_id": "b33_nonprofit_program_manager",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_nonprofit_program_manager_1.txt",
+  "resume_sha256": "eed001bb0dd40fc28e9488669ec9cea7f7a73eecaca46214d5f584dae2b6d5c9",
+  "resume_words": 146,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T16:37:19.817Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4455,
+        "completion_tokens": 1577,
+        "total_tokens": 6032,
+        "cached_prompt_tokens": 3792,
+        "cache_write_prompt_tokens": 660,
+        "reasoning_tokens": 788
+      },
+      "cost_usd": 0.0089026,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 26812
+    }
+  ],
+  "resume_prompt_sha256": "70e795a1e91877ad12f5394154dccd644b9f9d298e123ca182963a0e3e089350",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 72,
+    "lifted_by_employer": false,
+    "verdict": "A youth workforce manager whose program and staff are clear, but whose placement numbers are missing.",
+    "write_up": [
+      "You run a summer jobs program and supervise coordinators and seasonal staff. A recruiter can follow your progression at Harbor Pathways, but has to guess how many students the program places and how much work sits with the team.",
+      "The summer jobs line is the best model: it names the program, the students and the employers in one sentence. Add the number of students placed, then bring that same detail to the workshops and career fair."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Program Manager, line 1",
+        "line": "- Manage a summer jobs program placing high school students with local employers",
+        "cannot_tell": "The program is easy to picture, but a recruiter can't tell how many students you place. That's a central measure of the work.",
+        "example": "Manage a summer jobs program placing [number] high school students with local employers [time period]",
+        "question": "How many high school students does the program place, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 2",
+        "line": "- Supervise 4 program coordinators and 20 seasonal staff",
+        "cannot_tell": "The team count is useful. What the coordinators and seasonal staff handle is still a blank.",
+        "example": "Supervise 4 program coordinators and 20 seasonal staff who [what the team handles]",
+        "question": "What do the coordinators and seasonal staff handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 4",
+        "line": "- Recruit and onboard employer partners",
+        "cannot_tell": "A recruiter knows why the employer partners matter from the summer jobs line, but not how many you recruit and onboard.",
+        "example": "Recruit and onboard [number] employer partners [time period]",
+        "question": "How many employer partners do you recruit and onboard, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Coordinator, line 1",
+        "line": "- Coordinated job readiness workshops for students",
+        "cannot_tell": "The workshops have a purpose, but their reach is missing. How many students attended?",
+        "example": "Coordinated job readiness workshops for [number] students [time period]",
+        "question": "How many students attended the workshops, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Coordinator, line 3",
+        "line": "- Organized an annual career fair",
+        "cannot_tell": "An annual career fair is a concrete piece of work. The number of attendees would show how big an event you organized.",
+        "example": "Organized an annual career fair attended by [number] people",
+        "question": "How many people attended the career fair?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Program Manager, Youth Workforce",
+        "Program Coordinator"
+      ],
+      "level": "Program manager",
+      "note": "Your experience points to youth workforce program management, with staff supervision, employer partnerships and grant reporting. Adding placement and attendance counts would show how much of that work you handle.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 72,
+    "lifted_by_employer": false,
+    "verdict": "A youth workforce manager whose program and staff are clear, but whose placement numbers are missing.",
+    "write_up": [
+      "You run a summer jobs program and supervise coordinators and seasonal staff. A recruiter can follow your progression at Harbor Pathways, but has to guess how many students the program places and how much work sits with the team.",
+      "The summer jobs line is the best model: it names the program, the students and the employers in one sentence. Add the number of students placed, then bring that same detail to the workshops and career fair."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Program Manager, line 1",
+        "line": "Manage a summer jobs program placing high school students with local employers",
+        "cannot_tell": "The program is easy to picture, but a recruiter can't tell how many students you place. That's a central measure of the work.",
+        "example": "Manage a summer jobs program placing [number] high school students with local employers [time period]",
+        "question": "How many high school students does the program place, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 2",
+        "line": "Supervise 4 program coordinators and 20 seasonal staff",
+        "cannot_tell": "The team count is useful. What the coordinators and seasonal staff handle is still a blank.",
+        "example": "Supervise 4 program coordinators and 20 seasonal staff who [what the team handles]",
+        "question": "What do the coordinators and seasonal staff handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 4",
+        "line": "Recruit and onboard employer partners",
+        "cannot_tell": "A recruiter knows why the employer partners matter from the summer jobs line, but not how many you recruit and onboard.",
+        "example": "Recruit and onboard [number] employer partners [time period]",
+        "question": "How many employer partners do you recruit and onboard, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Coordinator, line 1",
+        "line": "Coordinated job readiness workshops for students",
+        "cannot_tell": "The workshops have a purpose, but their reach is missing. How many students attended?",
+        "example": "Coordinated job readiness workshops for [number] students [time period]",
+        "question": "How many students attended the workshops, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Coordinator, line 3",
+        "line": "Organized an annual career fair",
+        "cannot_tell": "An annual career fair is a concrete piece of work. The number of attendees would show how big an event you organized.",
+        "example": "Organized an annual career fair attended by [number] people",
+        "question": "How many people attended the career fair?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Program Manager, Youth Workforce",
+        "Program Coordinator"
+      ],
+      "level": "Program manager",
+      "note": "Your experience points to youth workforce program management, with staff supervision, employer partnerships and grant reporting. Adding placement and attendance counts would show how much of that work you handle.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 72
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 72,
+    "lifted_by_employer": false,
+    "verdict": "A youth workforce manager whose program and staff are clear, but whose placement numbers are missing.",
+    "write_up": [
+      "You run a summer jobs program and supervise coordinators and seasonal staff. A recruiter can follow your progression at Harbor Pathways, but has to guess how many students the program places and how much work sits with the team.",
+      "The summer jobs line is the best model: it names the program, the students and the employers in one sentence. Add the number of students placed, then bring that same detail to the workshops and career fair."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Program Manager, line 1",
+        "line": "Manage a summer jobs program placing high school students with local employers",
+        "cannot_tell": "The program is easy to picture, but a recruiter can't tell how many students you place. That's a central measure of the work.",
+        "example": "Manage a summer jobs program placing [number] high school students with local employers [time period]",
+        "question": "How many high school students does the program place, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 2",
+        "line": "Supervise 4 program coordinators and 20 seasonal staff",
+        "cannot_tell": "The team count is useful. What the coordinators and seasonal staff handle is still a blank.",
+        "example": "Supervise 4 program coordinators and 20 seasonal staff who [what the team handles]",
+        "question": "What do the coordinators and seasonal staff handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 4",
+        "line": "Recruit and onboard employer partners",
+        "cannot_tell": "A recruiter knows why the employer partners matter from the summer jobs line, but not how many you recruit and onboard.",
+        "example": "Recruit and onboard [number] employer partners [time period]",
+        "question": "How many employer partners do you recruit and onboard, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Coordinator, line 1",
+        "line": "Coordinated job readiness workshops for students",
+        "cannot_tell": "The workshops have a purpose, but their reach is missing. How many students attended?",
+        "example": "Coordinated job readiness workshops for [number] students [time period]",
+        "question": "How many students attended the workshops, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Coordinator, line 3",
+        "line": "Organized an annual career fair",
+        "cannot_tell": "An annual career fair is a concrete piece of work. The number of attendees would show how big an event you organized.",
+        "example": "Organized an annual career fair attended by [number] people",
+        "question": "How many people attended the career fair?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Program Manager, Youth Workforce",
+        "Program Coordinator"
+      ],
+      "level": "Program manager",
+      "note": "Your experience points to youth workforce program management, with staff supervision, employer partnerships and grant reporting. Adding placement and attendance counts would show how much of that work you handle.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 72
+  },
+  "presentation": {
+    "score": 72,
+    "band": "Mostly clear",
+    "model_score": 72,
+    "lifted_by_employer": false,
+    "verdict": "A youth workforce manager whose program and staff are clear, but whose placement numbers are missing.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 76,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Program Manager, line 1",
+        "line": "Manage a summer jobs program placing high school students with local employers",
+        "blanks": 2,
+        "question": "How many high school students does the program place, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 2",
+        "line": "Supervise 4 program coordinators and 20 seasonal staff",
+        "blanks": 1,
+        "question": "What do the coordinators and seasonal staff handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 4",
+        "line": "Recruit and onboard employer partners",
+        "blanks": 2,
+        "question": "How many employer partners do you recruit and onboard, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Coordinator, line 1",
+        "line": "Coordinated job readiness workshops for students",
+        "blanks": 2,
+        "question": "How many students attended the workshops, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Coordinator, line 3",
+        "line": "Organized an annual career fair",
+        "blanks": 1,
+        "question": "How many people attended the career fair?"
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "line": 5
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Program Manager, Youth Workforce",
+        "Program Coordinator"
+      ],
+      "level": "Program manager",
+      "note": "Your experience points to youth workforce program management, with staff supervision, employer partnerships and grant reporting. Adding placement and attendance counts would show how much of that work you handle.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0089026,
+  "latency_ms": 26814
+}

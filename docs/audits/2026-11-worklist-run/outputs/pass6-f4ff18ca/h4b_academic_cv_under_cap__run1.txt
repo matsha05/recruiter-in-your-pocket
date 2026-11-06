@@ -1,0 +1,33 @@
+# h4b_academic_cv_under_cap, run 1
+Resume: ../2026-11-live-judgment/resumes/h4b_academic_cv_under_cap.txt (3253 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt f4ff18ca; severity check off
+Outcome: report; cost $0.0242; 16.9s
+Case note: The same CV trimmed under the cap, to see what the model does with a CV shape.
+
+## Mostly clear (score 72; model wrote 72)
+## Verdict
+A tenured molecular biologist with substantial funding and teaching experience, but a publication list that raises questions.
+
+## Write-up
+A recruiter sees a tenured associate professor with NIH funding, extensive mentoring and a record of invited talks. The first hesitation is the publication list: several entries repeat the same authors and titles across different years, so a reader can't tell which citations represent distinct papers.
+
+Your MB 310 redesign is the best model for the rest of your resume: it names the change you made and shows how evaluations moved afterward. Move Academic Appointments above Education so your current work comes first, then check the repeated citations against your records.
+
+## Cards (3; {"structure":1,"line":1,"keep":1}); severity off; added []
+1. [structure] Structure
+   line: "Education sits above Academic Appointments."
+   can't tell: Your current tenured role comes after your degrees. Put Academic Appointments first so a recruiter sees your faculty experience before your education.
+   question: Can you move Academic Appointments above Education?
+2. [line] Publications, entry 1
+   line: "1. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2026). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 107(2), 1037-1052."
+   can't tell: The same authors and title appear in entries dated 2024, 2021 and 2018. A reader can't tell whether these are distinct papers or repeated citations. Check the other recurring author and title combinations too.
+   example: [authors]. ([year]). [article title]. [journal], [volume and issue], [pages].
+   question: Which publication details are correct for the repeated Drp1 entries, and are they distinct papers?
+3. [keep] Teaching, course redesign
+   line: "Course redesign: converted MB 310 to a flipped format in 2019; student evaluations rose from 3.9 to 4.5 of 5 over the following three offerings."
+   can't tell: Keep this as a model. It puts your own work and the later measurement together without claiming the redesign alone caused the change.
+
+## Fit
+Roles: ["Associate Professor (with tenure)","Assistant Professor"]
+Level: Tenured faculty
+Note: Your experience points toward faculty roles in molecular and cell biology, with research funding, teaching, mentoring and service. The repeated publication entries need checking before the research record can be read with confidence.

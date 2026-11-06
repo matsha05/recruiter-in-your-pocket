@@ -1,0 +1,39 @@
+# b14_teacher_to_instructional_designer, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_teacher_to_instructional_designer_1.txt (164 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt f4ff18ca; severity check off
+Outcome: report; cost $0.0068; 18.0s
+Case note: Career changer.
+
+## Mostly clear (score 77; model wrote 77)
+## Verdict
+An experienced math teacher with a clear start in digital learning design.
+
+## Write-up
+A recruiter can see your classroom experience and your move toward digital learning design. The teaching load is clear, but the leadership and video work leave a few questions about what you did.
+
+The Canvas module is your best model: it names the subject, the format and the platform. Let's bring that same detail to the math department's learning community and the exam review videos.
+
+## Cards (4; {"keep":1,"line":3}); severity off; added []
+1. [keep] Cedar Creek High School, line 2
+   line: "Redesigned the Algebra II unit on functions into a self-paced online module in Canvas"
+   can't tell: Keep this one. It shows a concrete piece of learning design and what you turned it into, without making a recruiter guess.
+2. [line] Cedar Creek High School, line 3
+   line: "Lead the math department's professional learning community"
+   can't tell: Leading the group is clear, but a recruiter can't tell what you lead colleagues to do. Name the work you tackle together.
+   example: Lead the math department's professional learning community to [work the group does]
+   question: What work do you lead the math department's professional learning community to do?
+3. [line] Cedar Creek High School, line 4
+   line: "Created video walkthroughs that students use for exam review"
+   can't tell: The exam review videos are useful learning design work. Their topics and the tool you used would tell a recruiter more about what you made.
+   example: Created video walkthroughs on [topics] in [tool] that students use for exam review
+   question: What topics do the walkthroughs cover, and what tool did you use to make them?
+4. [line] Cedar Creek High School, line 5
+   line: "Coach the school's math team"
+   can't tell: A recruiter can see you coach the team, but not what you help students prepare for or practice.
+   example: Coach the school's math team on [what students practice]
+   question: What do you help the math team practice?
+
+## Fit
+Roles: ["Mathematics Teacher"]
+Level: Experienced educator
+Note: Your experience points most directly to mathematics teaching, with classroom-based digital learning design alongside it. The Canvas module, portfolio and certificate in progress also show the direction of your design work.

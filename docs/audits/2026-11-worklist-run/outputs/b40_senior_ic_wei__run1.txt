@@ -1,49 +1,51 @@
 # b40_senior_ic_wei, run 1
 Resume: ../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/4-senior-ic-wei.txt (361 words)
-Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
-Outcome: report; cost $0.0091; 24.3s
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0100; 21.2s
 Case note: Senior IC (bar persona).
 
-## Mostly clear (score 79; model wrote 79)
+## Mostly clear (score 81; model wrote 81)
 ## Verdict
-A staff engineer with substantial payments architecture work, but few measures of its reach or results.
+A staff engineer with substantial payments and distributed systems work, with a few key results left unmeasured.
 
 ## Write-up
-A recruiter sees a staff engineer leading payments infrastructure work, with earlier experience in fraud and object storage. The main question is how far the ledger redesign reached and what changed after it shipped.
+Your resume tells a coherent story: you moved from object storage at Nimbus Cloud to fraud, reconciliation and platform leadership at Brightline Payments. A recruiter can see the systems you've built and led. The main question is how much the biggest changes moved for the business and the teams using them.
 
-The fraud pipeline line is a good model: it names the system, its tools and a latency measure. Bring some of that detail to the staff role, especially the team lead work and the ledger redesign.
+The idempotency line is the model: it names your action and the duplicate-charge problem it eliminated. Your progression at Brightline and the technical detail in the fraud pipeline also make the staff title credible.
+
+Let's start with the ledger redesign and the platform team. Add the scale of your leadership and what changed after the redesign, if you can substantiate it. Then give the reconciliation improvements a measure so those results are as concrete as the fraud pipeline.
 
 ## Cards (6; {"line":5,"keep":1}); severity off; added []
 1. [line] Staff Software Engineer, line 1
    line: "Technical lead for the ledger and settlement platform team"
-   can't tell: The platform is named, but the team and your leadership work aren't. A recruiter will want to know how many engineers were involved and what you led.
-   example: Technical lead for the ledger and settlement platform team of [number] engineers, responsible for [leadership responsibilities]
-   question: How many engineers were on the team, and what were your responsibilities as technical lead?
+   can't tell: A recruiter knows which team you led, but not how many people were on it or which technical decisions were yours. That context matters for a staff role.
+   example: Technical lead for the ledger and settlement platform team, guiding [number] team members on [technical decisions]
+   question: How many people were on the team, and what technical decisions did you guide?
 2. [line] Staff Software Engineer, line 2
    line: "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB"
-   can't tell: The architecture change is concrete. What isn't here is what the redesign changed for the ledger or the people using it.
-   example: Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, resulting in [what changed]
+   can't tell: The architecture change is clear, but a recruiter can't tell what improved after the redesign. A measure of capacity, performance or another result would make the work stand out.
+   example: Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, resulting in [measured result]
    question: What changed after the ledger redesign, and how was it measured?
-3. [keep] Senior Software Engineer, line 1
-   line: "Built the real-time fraud scoring pipeline (Flink, Kafka) processing payment events with p99 latency under 50ms"
-   can't tell: Keep this as a model. It connects your own work to a concrete performance measure without making the reader guess what the pipeline handled.
-4. [line] Senior Software Engineer, line 3
+3. [keep] Staff Software Engineer, line 3
+   line: "Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents"
+   can't tell: Keep this as a model. It connects your cross-service work to a concrete problem that went away without making a claim beyond what you did.
+4. [line] Staff Software Engineer, line 4
+   line: "Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services"
+   can't tell: The incident leadership and reliability practices are clear. What isn't clear is whether the new practices changed service reliability or how the team responded to outages.
+   example: Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services, resulting in [measured change]
+   question: What changed after you introduced the error budgets and SLOs?
+5. [line] Staff Software Engineer, line 6
+   line: "Partnered with product and finance on the roadmap for multi-currency settlement"
+   can't tell: The partners and subject are named, but your contribution to the roadmap is still hidden. A recruiter will want to know which decisions or tradeoffs you helped shape.
+   example: Partnered with product and finance on the roadmap for multi-currency settlement, contributing [decision or tradeoff]
+   question: What decision or tradeoff did you contribute to the roadmap?
+6. [line] Senior Software Engineer, line 3
    line: "Reduced reconciliation break rate and manual ops effort"
-   can't tell: Two useful improvements are named, but a recruiter can't tell how much either changed.
-   example: Reduced reconciliation break rate by [change in break rate] and manual ops effort by [change in ops effort]
-   question: How did the reconciliation break rate and manual ops effort change?
-5. [line] Software Engineer II, line 3
-   line: "Improved API latency and availability through caching and request coalescing"
-   can't tell: The methods are clear, but the improvements have no measure attached. What changed for latency and availability?
-   example: Improved API latency by [change in latency] and availability by [change in availability] through caching and request coalescing
-   question: How did API latency and availability change after the caching and request coalescing work?
-6. [line] Software Engineer II, line 4
-   line: "Contributed to the migration of the control plane to Kubernetes"
-   can't tell: The migration is named, but your part in it isn't. Keep the contribution at its actual level and say which piece was yours.
-   example: Contributed to the migration of the control plane to Kubernetes by [your contribution]
-   question: What part of the control plane migration did you work on?
+   can't tell: These are useful results, but the line doesn't say how you achieved them or how much either changed.
+   example: Reduced reconciliation break rate by [amount] and manual ops effort by [amount] through [what you did]
+   question: What did you change, and how much did the break rate and manual ops effort decrease?
 
 ## Fit
 Roles: ["Staff Software Engineer","Senior Software Engineer"]
 Level: Staff-level software engineering
-Note: Your experience points toward payments infrastructure and distributed systems roles. The architecture work and technical leadership are clear; measures of the ledger redesign and team leadership would help establish their reach.
+Note: Your experience points toward staff software engineering roles in payments infrastructure and distributed systems. The ledger redesign, incident leadership and cross-service idempotency work show the kind of technical work those roles involve; measures of the results would strengthen the case.

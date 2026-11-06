@@ -1,0 +1,180 @@
+{
+  "case_id": "b25_fpa_analyst_strong",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_fpa_analyst_strong_1.txt",
+  "resume_sha256": "e8604c5c03930c475f944d36090e8f6db4af1ffc417c634667c5450ff68f9cd2",
+  "resume_words": 138,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T18:02:01.805Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5166,
+        "completion_tokens": 547,
+        "total_tokens": 5713,
+        "cached_prompt_tokens": 4536,
+        "cache_write_prompt_tokens": 627,
+        "reasoning_tokens": 212
+      },
+      "cost_usd": 0.00374855,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 8297
+    }
+  ],
+  "resume_prompt_sha256": "6eb03ddb4b32b2b65339085225b39b2ec67a805518799139b60e8c299167a186",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst with a substantial budget and measurable forecasting and pricing results.",
+    "write_up": [
+      "This is a strong FP&A resume! A recruiter can see the budget you own, the products you model and the leaders you report to. The forecast line is especially good: it shows the error before and after your driver-based forecast.",
+      "Your resume makes a strong case on its own. How competitive a particular role is will also matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "- Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "Keep this as a model. It names what you built and gives a recruiter a concrete measure of the change.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A",
+        "Financial Analyst"
+      ],
+      "level": "Senior individual contributor",
+      "note": "Your experience points toward FP&A roles in consumer brands, particularly work involving budgets, forecasts and pricing. The current role also shows regular reporting to senior leaders.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst with a substantial budget and measurable forecasting and pricing results.",
+    "write_up": [
+      "This is a strong FP&A resume! A recruiter can see the budget you own, the products you model and the leaders you report to. The forecast line is especially good: it shows the error before and after your driver-based forecast.",
+      "Your resume makes a strong case on its own. How competitive a particular role is will also matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "Keep this as a model. It names what you built and gives a recruiter a concrete measure of the change.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A",
+        "Financial Analyst"
+      ],
+      "level": "Senior individual contributor",
+      "note": "Your experience points toward FP&A roles in consumer brands, particularly work involving budgets, forecasts and pricing. The current role also shows regular reporting to senior leaders.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 91
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst with a substantial budget and measurable forecasting and pricing results.",
+    "write_up": [
+      "This is a strong FP&A resume! A recruiter can see the budget you own, the products you model and the leaders you report to. The forecast line is especially good: it shows the error before and after your driver-based forecast.",
+      "Your resume makes a strong case on its own. How competitive a particular role is will also matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "Keep this as a model. It names what you built and gives a recruiter a concrete measure of the change.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A",
+        "Financial Analyst"
+      ],
+      "level": "Senior individual contributor",
+      "note": "Your experience points toward FP&A roles in consumer brands, particularly work involving budgets, forecasts and pricing. The current role also shows regular reporting to senior leaders.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 91
+  },
+  "presentation": {
+    "score": 91,
+    "band": "Clear and specific",
+    "model_score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst with a substantial budget and measurable forecasting and pricing results.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 58,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 1,
+    "kinds": {
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A",
+        "Financial Analyst"
+      ],
+      "level": "Senior individual contributor",
+      "note": "Your experience points toward FP&A roles in consumer brands, particularly work involving budgets, forecasts and pricing. The current role also shows regular reporting to senior leaders.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00374855,
+  "latency_ms": 8298
+}

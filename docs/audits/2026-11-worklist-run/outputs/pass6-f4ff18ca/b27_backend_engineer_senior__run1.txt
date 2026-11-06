@@ -1,0 +1,28 @@
+# b27_backend_engineer_senior, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_backend_engineer_senior_1.txt (190 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt f4ff18ca; severity check off
+Outcome: report; cost $0.0047; 10.4s
+
+## Clear and specific (score 91; model wrote 91)
+## Verdict
+A senior payments engineer with strong technical results and leadership work.
+
+## Write-up
+A recruiter can see your payments and ledger work quickly, including service performance, audit leadership and fewer integration incidents. Your ledger line is especially strong: it connects the service you built to a drop from about 300 reconciliation breaks a month to under 10.
+
+This resume isn't going to be the reason you don't hear back. Competition for a role and referrals can also matter. The Northwind observability line is one place to add detail about what the dashboards tracked.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Senior Software Engineer, Payments Platform, line 2
+   line: "Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10"
+   can't tell: Keep this as a model. It names the system, your ownership and a before-and-after measure a recruiter can understand.
+2. [line] Software Engineer, line 3
+   line: "Added observability with OpenTelemetry and Grafana dashboards for the billing team"
+   can't tell: The tools and the billing team are clear. What the dashboards tracked would give a recruiter a better sense of the billing work behind them.
+   example: Added observability with OpenTelemetry and Grafana dashboards for the billing team to monitor [billing metrics]
+   question: What did the dashboards monitor for the billing team?
+
+## Fit
+Roles: ["Senior Software Engineer, Payments Platform","Software Engineer"]
+Level: Senior engineer
+Note: Your experience points toward senior backend work in payments and billing. The service migrations, ledger work and audit leadership give a recruiter several concrete examples to follow.

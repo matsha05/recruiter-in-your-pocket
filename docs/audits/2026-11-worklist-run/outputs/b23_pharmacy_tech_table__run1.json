@@ -11,50 +11,59 @@
   "model": "gpt-6.1-terra",
   "reasoning_effort": "medium",
   "severity_check": false,
-  "started_at": "2026-11-06T16:36:30.085Z",
+  "started_at": "2026-11-06T18:16:18.098Z",
   "calls": [
     {
       "kind": "report",
       "usage": {
-        "prompt_tokens": 4690,
-        "completion_tokens": 1007,
-        "total_tokens": 5697,
-        "cached_prompt_tokens": 3792,
+        "prompt_tokens": 5583,
+        "completion_tokens": 1393,
+        "total_tokens": 6976,
+        "cached_prompt_tokens": 4685,
         "cache_write_prompt_tokens": 895,
-        "reasoning_tokens": 512
+        "reasoning_tokens": 694
       },
-      "cost_usd": 0.00634635,
+      "cost_usd": 0.008321,
       "model": "gpt-6.1-terra",
-      "latency_ms": 17804
+      "latency_ms": 20098
     }
   ],
-  "resume_prompt_sha256": "70e795a1e91877ad12f5394154dccd644b9f9d298e123ca182963a0e3e089350",
+  "resume_prompt_sha256": "0a19c3ee70395ec8fb0584d4bea1b93da77aeca37469b4d47211bc8568544f0c",
   "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
   "model_output": {
     "contract_version": "v3",
-    "score": 88,
+    "score": 86,
     "lifted_by_employer": false,
-    "verdict": "A licensed pharmacy technician with clear inpatient work and one retail verification detail to explain.",
+    "verdict": "An experienced pharmacy technician with sterile compounding, hospital restocking, and retail pharmacy work clearly laid out.",
     "write_up": [
-      "A recruiter would likely move you forward for pharmacy technician work. Your current role shows sterile compounding, cabinet restocking and training, with numbers attached. The retail claim that you verified prescriptions invites a question about what you checked and who performed the final check.",
-      "The cabinet restocking line is the model: it names six nursing units and shows stockout reports falling from 9 to 2 per week in 2024. Your credentials are easy to find, too."
+      "This is a strong pharmacy technician resume! Your move from RiteCare to inpatient pharmacy comes with the work and its scale: sterile doses, nursing units and technicians trained. A recruiter can see both your retail background and your current hospital work.",
+      "The cabinet restocking line is a great model. It names the six nursing units and shows stockout reports falling from 9 to 2 per week in 2024, without leaving a recruiter to guess what was measured. Your credentials and job dates are easy to find, too.",
+      "Let's sharpen the retail prescription and immunization lines so a pharmacy reviewer can see more of what you handled. Your resume isn't likely to be the thing holding you back on its own; how competitive a particular job is will matter too."
     ],
     "cards": [
       {
         "kind": "keep",
         "where": "Pharmacy Technician II, cabinet restocking",
-        "line": "Manage the automated dispensing cabinet restocking for 6 nursing units\tStockout reports down from 9 to 2 per week in 2024",
-        "cannot_tell": "Keep this one. It puts the work and the reported change together, so a recruiter doesn't have to guess why the restocking mattered.",
+        "line": "Pharmacy Technician II\tManage the automated dispensing cabinet restocking for 6 nursing units\tStockout reports down from 9 to 2 per week in 2024",
+        "cannot_tell": "Keep this as a model. You pair the job you manage with a concrete measure over a named period, so a reader can understand the work and the change without guessing.",
         "example": "",
         "question": ""
       },
       {
         "kind": "line",
         "where": "Pharmacy Technician, prescriptions",
-        "line": "Filled and verified prescriptions for a store doing 350 scripts a day",
-        "cannot_tell": "Verified can mean different checks. A recruiter will want to know what you checked and who performed the final check.",
-        "example": "Filled and verified prescriptions for a store doing 350 scripts a day, checking [what you checked]; [who performed the final check] performed the final check",
-        "question": "What did you check on prescriptions, and who performed the final check?"
+        "line": "Pharmacy Technician\tFilled and verified prescriptions for a store doing 350 scripts a day",
+        "cannot_tell": "A pharmacy reviewer can see the store's volume, but not what your prescription verification involved. Naming the checks you performed would explain your part of the work.",
+        "example": "Filled and verified prescriptions for a store doing 350 scripts a day, including [verification tasks]",
+        "question": "What checks did you perform when you verified prescriptions?"
+      },
+      {
+        "kind": "line",
+        "where": "Pharmacy Technician, immunization scheduling",
+        "line": "Pharmacy Technician\tRan the immunization scheduling during the 2021 flu and COVID seasons",
+        "cannot_tell": "Running the schedule is clear, but a recruiter can't tell how many appointments it covered. That would show how much scheduling you handled during those seasons.",
+        "example": "Ran immunization scheduling for [number] appointments during the 2021 flu and COVID seasons",
+        "question": "How many appointments did the schedule cover during those seasons?"
       }
     ],
     "fit": {
@@ -62,8 +71,8 @@
         "Pharmacy Technician II",
         "Pharmacy Technician"
       ],
-      "level": "Experienced technician",
-      "note": "Your experience points to inpatient and retail pharmacy technician roles. The current work gives a particularly clear picture of sterile compounding and dispensing cabinet restocking.",
+      "level": "Experienced pharmacy technician",
+      "note": "Your current work points toward inpatient pharmacy technician roles, with retail pharmacy experience behind it. Your sterile compounding certification and California license are easy to find.",
       "posting": {
         "summary": "",
         "missing": []
@@ -72,19 +81,20 @@
   },
   "validated_report": {
     "contract_version": "v3",
-    "score": 88,
+    "score": 86,
     "lifted_by_employer": false,
-    "verdict": "A licensed pharmacy technician with clear inpatient work and one retail verification detail to explain.",
+    "verdict": "An experienced pharmacy technician with sterile compounding, hospital restocking, and retail pharmacy work clearly laid out.",
     "write_up": [
-      "A recruiter would likely move you forward for pharmacy technician work. Your current role shows sterile compounding, cabinet restocking and training, with numbers attached. The retail claim that you verified prescriptions invites a question about what you checked and who performed the final check.",
-      "The cabinet restocking line is the model: it names six nursing units and shows stockout reports falling from 9 to 2 per week in 2024. Your credentials are easy to find, too."
+      "This is a strong pharmacy technician resume! Your move from RiteCare to inpatient pharmacy comes with the work and its scale: sterile doses, nursing units and technicians trained. A recruiter can see both your retail background and your current hospital work.",
+      "The cabinet restocking line is a great model. It names the six nursing units and shows stockout reports falling from 9 to 2 per week in 2024, without leaving a recruiter to guess what was measured. Your credentials and job dates are easy to find, too.",
+      "Let's sharpen the retail prescription and immunization lines so a pharmacy reviewer can see more of what you handled. Your resume isn't likely to be the thing holding you back on its own; how competitive a particular job is will matter too."
     ],
     "cards": [
       {
         "kind": "keep",
         "where": "Pharmacy Technician II, cabinet restocking",
         "line": "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024",
-        "cannot_tell": "Keep this one. It puts the work and the reported change together, so a recruiter doesn't have to guess why the restocking mattered.",
+        "cannot_tell": "Keep this as a model. You pair the job you manage with a concrete measure over a named period, so a reader can understand the work and the change without guessing.",
         "example": "",
         "question": ""
       },
@@ -92,9 +102,17 @@
         "kind": "line",
         "where": "Pharmacy Technician, prescriptions",
         "line": "Pharmacy Technician Filled and verified prescriptions for a store doing 350 scripts a day",
-        "cannot_tell": "Verified can mean different checks. A recruiter will want to know what you checked and who performed the final check.",
-        "example": "Filled and verified prescriptions for a store doing 350 scripts a day, checking [what you checked]; [who performed the final check] performed the final check",
-        "question": "What did you check on prescriptions, and who performed the final check?"
+        "cannot_tell": "A pharmacy reviewer can see the store's volume, but not what your prescription verification involved. Naming the checks you performed would explain your part of the work.",
+        "example": "Filled and verified prescriptions for a store doing 350 scripts a day, including [verification tasks]",
+        "question": "What checks did you perform when you verified prescriptions?"
+      },
+      {
+        "kind": "line",
+        "where": "Pharmacy Technician, immunization scheduling",
+        "line": "Pharmacy Technician Ran the immunization scheduling during the 2021 flu and COVID seasons",
+        "cannot_tell": "Running the schedule is clear, but a recruiter can't tell how many appointments it covered. That would show how much scheduling you handled during those seasons.",
+        "example": "Ran immunization scheduling for [number] appointments during the 2021 flu and COVID seasons",
+        "question": "How many appointments did the schedule cover during those seasons?"
       }
     ],
     "fit": {
@@ -102,8 +120,8 @@
         "Pharmacy Technician II",
         "Pharmacy Technician"
       ],
-      "level": "Experienced technician",
-      "note": "Your experience points to inpatient and retail pharmacy technician roles. The current work gives a particularly clear picture of sterile compounding and dispensing cabinet restocking.",
+      "level": "Experienced pharmacy technician",
+      "note": "Your current work points toward inpatient pharmacy technician roles, with retail pharmacy experience behind it. Your sterile compounding certification and California license are easy to find.",
       "posting": {
         "summary": "",
         "missing": []
@@ -113,23 +131,24 @@
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 88
+    "content_score": 86
   },
   "shipped_report": {
     "contract_version": "v3",
-    "score": 88,
+    "score": 86,
     "lifted_by_employer": false,
-    "verdict": "A licensed pharmacy technician with clear inpatient work and one retail verification detail to explain.",
+    "verdict": "An experienced pharmacy technician with sterile compounding, hospital restocking, and retail pharmacy work clearly laid out.",
     "write_up": [
-      "A recruiter would likely move you forward for pharmacy technician work. Your current role shows sterile compounding, cabinet restocking and training, with numbers attached. The retail claim that you verified prescriptions invites a question about what you checked and who performed the final check.",
-      "The cabinet restocking line is the model: it names six nursing units and shows stockout reports falling from 9 to 2 per week in 2024. Your credentials are easy to find, too."
+      "This is a strong pharmacy technician resume! Your move from RiteCare to inpatient pharmacy comes with the work and its scale: sterile doses, nursing units and technicians trained. A recruiter can see both your retail background and your current hospital work.",
+      "The cabinet restocking line is a great model. It names the six nursing units and shows stockout reports falling from 9 to 2 per week in 2024, without leaving a recruiter to guess what was measured. Your credentials and job dates are easy to find, too.",
+      "Let's sharpen the retail prescription and immunization lines so a pharmacy reviewer can see more of what you handled. Your resume isn't likely to be the thing holding you back on its own; how competitive a particular job is will matter too."
     ],
     "cards": [
       {
         "kind": "keep",
         "where": "Pharmacy Technician II, cabinet restocking",
         "line": "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024",
-        "cannot_tell": "Keep this one. It puts the work and the reported change together, so a recruiter doesn't have to guess why the restocking mattered.",
+        "cannot_tell": "Keep this as a model. You pair the job you manage with a concrete measure over a named period, so a reader can understand the work and the change without guessing.",
         "example": "",
         "question": ""
       },
@@ -137,9 +156,17 @@
         "kind": "line",
         "where": "Pharmacy Technician, prescriptions",
         "line": "Pharmacy Technician Filled and verified prescriptions for a store doing 350 scripts a day",
-        "cannot_tell": "Verified can mean different checks. A recruiter will want to know what you checked and who performed the final check.",
-        "example": "Filled and verified prescriptions for a store doing 350 scripts a day, checking [what you checked]; [who performed the final check] performed the final check",
-        "question": "What did you check on prescriptions, and who performed the final check?"
+        "cannot_tell": "A pharmacy reviewer can see the store's volume, but not what your prescription verification involved. Naming the checks you performed would explain your part of the work.",
+        "example": "Filled and verified prescriptions for a store doing 350 scripts a day, including [verification tasks]",
+        "question": "What checks did you perform when you verified prescriptions?"
+      },
+      {
+        "kind": "line",
+        "where": "Pharmacy Technician, immunization scheduling",
+        "line": "Pharmacy Technician Ran the immunization scheduling during the 2021 flu and COVID seasons",
+        "cannot_tell": "Running the schedule is clear, but a recruiter can't tell how many appointments it covered. That would show how much scheduling you handled during those seasons.",
+        "example": "Ran immunization scheduling for [number] appointments during the 2021 flu and COVID seasons",
+        "question": "How many appointments did the schedule cover during those seasons?"
       }
     ],
     "fit": {
@@ -147,8 +174,8 @@
         "Pharmacy Technician II",
         "Pharmacy Technician"
       ],
-      "level": "Experienced technician",
-      "note": "Your experience points to inpatient and retail pharmacy technician roles. The current work gives a particularly clear picture of sterile compounding and dispensing cabinet restocking.",
+      "level": "Experienced pharmacy technician",
+      "note": "Your current work points toward inpatient pharmacy technician roles, with retail pharmacy experience behind it. Your sterile compounding certification and California license are easy to find.",
       "posting": {
         "summary": "",
         "missing": []
@@ -158,16 +185,16 @@
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 88
+    "content_score": 86
   },
   "presentation": {
-    "score": 88,
+    "score": 86,
     "band": "Clear and specific",
-    "model_score": 88,
+    "model_score": 86,
     "lifted_by_employer": false,
-    "verdict": "A licensed pharmacy technician with clear inpatient work and one retail verification detail to explain.",
-    "write_up_paragraphs": 2,
-    "write_up_words": 76,
+    "verdict": "An experienced pharmacy technician with sterile compounding, hospital restocking, and retail pharmacy work clearly laid out.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 129,
     "cards": [
       {
         "kind": "keep",
@@ -180,14 +207,21 @@
         "kind": "line",
         "where": "Pharmacy Technician, prescriptions",
         "line": "Pharmacy Technician Filled and verified prescriptions for a store doing 350 scripts a day",
-        "blanks": 2,
-        "question": "What did you check on prescriptions, and who performed the final check?"
+        "blanks": 1,
+        "question": "What checks did you perform when you verified prescriptions?"
+      },
+      {
+        "kind": "line",
+        "where": "Pharmacy Technician, immunization scheduling",
+        "line": "Pharmacy Technician Ran the immunization scheduling during the 2021 flu and COVID seasons",
+        "blanks": 1,
+        "question": "How many appointments did the schedule cover during those seasons?"
       }
     ],
-    "card_count": 2,
+    "card_count": 3,
     "kinds": {
       "keep": 1,
-      "line": 1
+      "line": 2
     },
     "structural_from_model": 0,
     "severity_added": [],
@@ -198,8 +232,8 @@
         "Pharmacy Technician II",
         "Pharmacy Technician"
       ],
-      "level": "Experienced technician",
-      "note": "Your experience points to inpatient and retail pharmacy technician roles. The current work gives a particularly clear picture of sterile compounding and dispensing cabinet restocking.",
+      "level": "Experienced pharmacy technician",
+      "note": "Your current work points toward inpatient pharmacy technician roles, with retail pharmacy experience behind it. Your sterile compounding certification and California license are easy to find.",
       "posting": {
         "summary": "",
         "missing": []
@@ -207,6 +241,6 @@
     }
   },
   "outcome": "report",
-  "cost_usd": 0.00634635,
-  "latency_ms": 17807
+  "cost_usd": 0.008321,
+  "latency_ms": 20116
 }

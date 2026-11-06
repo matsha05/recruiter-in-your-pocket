@@ -1,0 +1,212 @@
+{
+  "case_id": "b18_military_to_civilian",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/resumes/b_military_to_civilian.txt",
+  "resume_sha256": "c2dd1e89354ce1a86021927ffba5d85f65b3dfb021c3126f6459225f8bfd7a7e",
+  "resume_words": 268,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T18:01:31.463Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5652,
+        "completion_tokens": 760,
+        "total_tokens": 6412,
+        "cached_prompt_tokens": 4536,
+        "cache_write_prompt_tokens": 1113,
+        "reasoning_tokens": 286
+      },
+      "cost_usd": 0.00542105,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 11149
+    }
+  ],
+  "resume_prompt_sha256": "6eb03ddb4b32b2b65339085225b39b2ec67a805518799139b60e8c299167a186",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A logistics and maintenance leader whose Army experience makes a strong case for operations supervision.",
+    "write_up": [
+      "Your resume makes a strong case for operations supervision! A recruiter can see the people, equipment and logistics you managed, along with what changed under your leadership.",
+      "The vehicle readiness line is the model: it names the problem, the change you made and the improvement. Your resume is unlikely to be the thing holding you back, though competition for a role still matters. Add what you taught the junior mechanics, and the earlier work will be just as easy to understand."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Platoon Sergeant, line 4",
+        "line": "- Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a before and after, then shows the decisions behind the improvement.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Wheeled Vehicle Mechanic, line 2",
+        "line": "- Trained 9 junior mechanics",
+        "cannot_tell": "A recruiter can see how many mechanics you trained, but not what you taught them. Name the work or skills the training covered.",
+        "example": "Trained 9 junior mechanics in [skills or work covered]",
+        "question": "What did you train the junior mechanics to do?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "operations supervisor",
+        "Maintenance Section Sergeant (E-6)"
+      ],
+      "level": "Experienced supervisor",
+      "note": "Your experience points toward operations supervision, especially work involving maintenance, equipment and logistics. The resume names both team leadership and measurable improvements in vehicle readiness.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A logistics and maintenance leader whose Army experience makes a strong case for operations supervision.",
+    "write_up": [
+      "Your resume makes a strong case for operations supervision! A recruiter can see the people, equipment and logistics you managed, along with what changed under your leadership.",
+      "The vehicle readiness line is the model: it names the problem, the change you made and the improvement. Your resume is unlikely to be the thing holding you back, though competition for a role still matters. Add what you taught the junior mechanics, and the earlier work will be just as easy to understand."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Platoon Sergeant, line 4",
+        "line": "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a before and after, then shows the decisions behind the improvement.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Wheeled Vehicle Mechanic, line 2",
+        "line": "Trained 9 junior mechanics",
+        "cannot_tell": "A recruiter can see how many mechanics you trained, but not what you taught them. Name the work or skills the training covered.",
+        "example": "Trained 9 junior mechanics in [skills or work covered]",
+        "question": "What did you train the junior mechanics to do?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "operations supervisor",
+        "Maintenance Section Sergeant (E-6)"
+      ],
+      "level": "Experienced supervisor",
+      "note": "Your experience points toward operations supervision, especially work involving maintenance, equipment and logistics. The resume names both team leadership and measurable improvements in vehicle readiness.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A logistics and maintenance leader whose Army experience makes a strong case for operations supervision.",
+    "write_up": [
+      "Your resume makes a strong case for operations supervision! A recruiter can see the people, equipment and logistics you managed, along with what changed under your leadership.",
+      "The vehicle readiness line is the model: it names the problem, the change you made and the improvement. Your resume is unlikely to be the thing holding you back, though competition for a role still matters. Add what you taught the junior mechanics, and the earlier work will be just as easy to understand."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Platoon Sergeant, line 4",
+        "line": "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a before and after, then shows the decisions behind the improvement.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Wheeled Vehicle Mechanic, line 2",
+        "line": "Trained 9 junior mechanics",
+        "cannot_tell": "A recruiter can see how many mechanics you trained, but not what you taught them. Name the work or skills the training covered.",
+        "example": "Trained 9 junior mechanics in [skills or work covered]",
+        "question": "What did you train the junior mechanics to do?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "operations supervisor",
+        "Maintenance Section Sergeant (E-6)"
+      ],
+      "level": "Experienced supervisor",
+      "note": "Your experience points toward operations supervision, especially work involving maintenance, equipment and logistics. The resume names both team leadership and measurable improvements in vehicle readiness.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "presentation": {
+    "score": 89,
+    "band": "Clear and specific",
+    "model_score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A logistics and maintenance leader whose Army experience makes a strong case for operations supervision.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 81,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Platoon Sergeant, line 4",
+        "line": "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Wheeled Vehicle Mechanic, line 2",
+        "line": "Trained 9 junior mechanics",
+        "blanks": 1,
+        "question": "What did you train the junior mechanics to do?"
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "keep": 1,
+      "line": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "operations supervisor",
+        "Maintenance Section Sergeant (E-6)"
+      ],
+      "level": "Experienced supervisor",
+      "note": "Your experience points toward operations supervision, especially work involving maintenance, equipment and logistics. The resume names both team leadership and measurable improvements in vehicle readiness.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00542105,
+  "latency_ms": 11151
+}

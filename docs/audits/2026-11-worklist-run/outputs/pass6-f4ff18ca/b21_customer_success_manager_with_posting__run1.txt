@@ -1,0 +1,41 @@
+# b21_customer_success_manager_with_posting, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt (180 words), posting: ../2026-11-live-judgment/resumes/b_posting_customer_success_manager.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt f4ff18ca; severity check off
+Outcome: report; cost $0.0097; 24.2s
+Case note: The same resume with a posting attached.
+
+## Mostly clear (score 78; model wrote 78)
+## Verdict
+A mid-market customer success manager with a clear book of business but few renewal results.
+
+## Write-up
+A recruiter would likely move your resume forward with questions about renewal results and the seniority of your customer contacts. Your 48-account line is the best model: it names the work, the customers and how many accounts you manage.
+
+The Brightline Analytics role is a close match for your customer success work. Your QBRs, at-risk account work with Sales and Gainsight experience are worth emphasizing. Add the renewal numbers and customer titles you can back up, and show any experience with usage data or feature requests if you have it.
+
+## Cards (4; {"keep":1,"line":3}); severity off; added []
+1. [keep] Customer Success Manager, line 1
+   line: "Manage a book of 48 mid-market accounts across healthcare and manufacturing"
+   can't tell: Keep this line. It gives a recruiter a concrete picture of your portfolio without making them guess who you serve.
+2. [line] Customer Success Manager, line 2
+   line: "Run quarterly business reviews with customer finance and HR leads"
+   can't tell: The job asks for QBRs with VP-level sponsors. Your resume names finance and HR leads, but not their titles or what you discuss with them.
+   example: Run quarterly business reviews with customer finance and HR leads, including [job titles], to discuss [customer priorities]
+   question: What are the titles of the people attending your QBRs, and what customer priorities do you discuss?
+3. [line] Customer Success Manager, line 3
+   line: "Partnered with Sales on renewal strategy for at-risk accounts"
+   can't tell: Your work with Sales is relevant here, but a recruiter can't tell what you contributed to the strategy or what happened with those renewals.
+   example: Partnered with Sales on renewal strategy for at-risk accounts by [your contribution], with [renewal result]
+   question: What was your part in the renewal strategy, and what renewal results can you share?
+4. [line] Customer Success Manager, line 5
+   line: "Handle escalations with Support and Product when payroll runs fail"
+   can't tell: Failed payroll runs are a concrete customer problem. What you do alongside Support and Product to resolve them is still a blank.
+   example: Handle escalations with Support and Product when payroll runs fail by [your role in resolution]
+   question: What do you do to help resolve a failed payroll run?
+
+## Fit
+Roles: ["Customer Success Manager","Customer Success Manager, Mid-Market"]
+Level: Experienced customer success manager
+Note: Your resume doesn't show retention or expansion results, VP-level QBR sponsors, or use of product usage data and a BI tool. It does show a mid-market customer portfolio, QBRs, at-risk renewal work with Sales, and Gainsight and Salesforce. Emphasize those strengths and add the missing details only where they reflect work you've done.
+Posting: The role owns mid-market accounts, renewals and expansion, QBRs, data-led risk management, and customer feedback to Product.
+Missing: ["A track record of hitting retention or expansion targets, with numbers you can talk about","a BI tool such as Looker","Experience running QBRs with VP-level sponsors","Identify at-risk accounts early using product usage data","log and prioritize feature requests"]

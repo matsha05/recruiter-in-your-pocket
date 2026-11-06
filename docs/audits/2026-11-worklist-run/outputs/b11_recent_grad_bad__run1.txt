@@ -1,53 +1,59 @@
 # b11_recent_grad_bad, run 1
 Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_recent_grad_bad_1.txt (151 words)
-Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
-Outcome: report; cost $0.0078; 22.6s
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0101; 22.1s
 Case note: First job, weak; count-check key says no_evidence_latest_role, no_recent_work, title_level_mismatch.
 
-## Needs more context (score 55; model wrote 55)
+## Needs more context (score 56; model wrote 56)
 ## Verdict
-An intern's resume with a manager's headline, three vague marketing bullets, and no work dated after May 2024.
+A marketing intern's resume has a manager headline, thin recent duties, and unaccounted-for time.
 
 ## Write-up
-You have credit union marketing experience, but the manager headline promises campaign leadership the internship bullets don't show. A recruiter also sees nothing dated after May 2024 and has to guess what you've been doing since.
+You point toward marketing with a credit union internship, alongside research, finance, and campus tour work. It's common for an internship resume to list broad duties, but these marketing lines won't stand out in a pile because a recruiter can't tell what you contributed. The manager headline also goes further than the work shown.
 
-The dairy farm line is your model: it names the data, the tool, and the pricing study. Bring that same detail to the newsletter and branch events. Put Experience above Education, too, so the work comes first.
+The dairy farm research line is your best model: it names the data, the tool, and the study. Education sits above your work even though you have substantial experience, and nothing on the resume accounts for time after May 2024.
 
-## Cards (7; {"line":4,"dates":1,"structure":1,"keep":1}); severity off; added []
+Let's start with the headline and the time since the internship, then return to the newsletter. Tell us which part was yours. Do the same for social media and branch events, using details you can stand behind.
+
+## Cards (8; {"line":4,"dates":1,"structure":2,"keep":1}); severity off; added []
 1. [line] Headline
    line: "Marketing manager who has led credit union campaigns from strategy to launch."
-   can't tell: The internship bullets don't show campaign leadership or a manager role. A recruiter will look for that work and won't find it.
-   example: Marketing Intern with experience in [credit union marketing work]
-   question: What credit union marketing work was yours to do?
+   can't tell: The credit union role is an internship, and its lines don't show you leading campaigns from strategy to launch. A recruiter will look for that work and not find it.
+   example: Marketing Intern with experience in [marketing work] at Badger State Credit Union
+   question: Which marketing work from the internship best describes what you did?
 2. [dates] Dates
    line: "Nothing is dated after May 2024."
-   can't tell: A recruiter can't tell what you've been doing since the internship ended. A brief, honest line can answer that question.
-   example: May 2024 - Present [what you've been doing]
-   question: What have you been doing since May 2024 that you'd be comfortable putting on the resume?
-3. [structure] Structure
+   can't tell: A recruiter can't tell what you've done since the internship ended. If you took care of a family member, name that as caregiving. If you had a career break, you can say what you did during it; include freelance or consulting work only if it was real.
+   example: May 2024 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]
+   question: What have you been doing since May 2024 that you'd be comfortable putting on your resume?
+3. [structure] Education and Experience
    line: "Education sits above Experience."
-   can't tell: Your jobs give a recruiter more to work with than the degree alone. Put Experience first so they reach that work sooner.
+   can't tell: Your research and internship work give a recruiter more to go on than your degree alone. Put Experience first so that work is seen sooner.
    question: Can you move Experience above Education?
-4. [line] Marketing Intern, line 1
+4. [structure] Badger State Credit Union
+   line: "Badger State Credit Union is named, but its size isn't stated."
+   can't tell: A recruiter unfamiliar with the credit union won't know how many members or branches your marketing work served. A short description could give that work context, if you know the figures.
+   question: How many members or branches did the credit union serve during your internship?
+5. [line] Marketing Intern, line 1
    line: "Helped with the member newsletter"
-   can't tell: 'Helped' hides the job. A recruiter can't tell whether you wrote, assembled, or sent any of it.
-   example: Helped with the member newsletter by [your contribution], reaching [number] members [frequency]
-   question: What part of the newsletter was yours, and how many members got it and how often?
-5. [line] Marketing Intern, line 2
+   can't tell: Helped leaves your part of the newsletter open. A recruiter can't tell whether you wrote, assembled, or sent anything.
+   example: Helped with the member newsletter by [your contribution] for [audience]
+   question: What did you contribute to the newsletter, and who received it?
+6. [line] Marketing Intern, line 2
    line: "Posted on the credit union's social media accounts"
-   can't tell: Posting is a task. The accounts, content, and frequency are still a blank.
-   example: Posted [content] on the credit union's [account names] accounts [frequency]
-   question: What did you post, on which accounts, and how often?
-6. [line] Marketing Intern, line 3
+   can't tell: Posting names the task, but not what you put out or how often. That makes it difficult to picture your contribution to the accounts.
+   example: Posted [content] on the credit union's social media accounts [frequency]
+   question: What did you post, and how often?
+7. [line] Marketing Intern, line 3
    line: "Supported planning for branch events"
-   can't tell: A recruiter can't tell which events you worked on or what you did to plan them. Name one and keep your contribution at its actual level.
-   example: Supported planning for [event name] by [your contribution]
-   question: Which branch event did you help plan, and what did you do?
-7. [keep] Research Assistant, line 1
+   can't tell: Supported planning could mean several different jobs. Name an event and the part of planning that was yours.
+   example: Supported planning for branch events, including [event name], by [your contribution]
+   question: Which branch event did you support, and what did you do to plan it?
+8. [keep] Research Assistant, line 1
    line: "Cleaned survey data from 1,200 dairy farms in Stata for a pricing study"
-   can't tell: Keep the combination of a concrete task, a count, and the reason for the work. Your marketing bullets can use the same approach without overstating your part.
+   can't tell: Keep this as a model. It connects your action to a named body of data and the reason the work was done, without making a reader guess.
 
 ## Fit
-Roles: ["Marketing Intern","Research Assistant","Finance Intern"]
+Roles: ["Marketing Intern","Research Assistant"]
 Level: Entry-level
-Note: The page points toward entry-level marketing and research work, not yet a marketing manager role. The research and finance jobs give a recruiter concrete tasks; the marketing internship needs the same detail.
+Note: The resume points most directly toward early-career marketing work, with research experience as another strength. The current bullets don't establish marketing manager-level work.

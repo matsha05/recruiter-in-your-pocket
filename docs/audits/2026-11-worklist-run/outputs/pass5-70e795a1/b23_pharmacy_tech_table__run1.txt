@@ -1,0 +1,29 @@
+# b23_pharmacy_tech_table, run 1
+Resume: ../2026-11-live-judgment/resumes/b_pharmacy_tech_table.txt (209 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
+Outcome: report; cost $0.0063; 17.8s
+Case note: Tables rendered to tab-separated text.
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A licensed pharmacy technician with clear inpatient work and one retail verification detail to explain.
+
+## Write-up
+A recruiter would likely move you forward for pharmacy technician work. Your current role shows sterile compounding, cabinet restocking and training, with numbers attached. The retail claim that you verified prescriptions invites a question about what you checked and who performed the final check.
+
+The cabinet restocking line is the model: it names six nursing units and shows stockout reports falling from 9 to 2 per week in 2024. Your credentials are easy to find, too.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Pharmacy Technician II, cabinet restocking
+   line: "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024"
+   can't tell: Keep this one. It puts the work and the reported change together, so a recruiter doesn't have to guess why the restocking mattered.
+2. [line] Pharmacy Technician, prescriptions
+   line: "Pharmacy Technician Filled and verified prescriptions for a store doing 350 scripts a day"
+   can't tell: Verified can mean different checks. A recruiter will want to know what you checked and who performed the final check.
+   example: Filled and verified prescriptions for a store doing 350 scripts a day, checking [what you checked]; [who performed the final check] performed the final check
+   question: What did you check on prescriptions, and who performed the final check?
+
+## Fit
+Roles: ["Pharmacy Technician II","Pharmacy Technician"]
+Level: Experienced technician
+Note: Your experience points to inpatient and retail pharmacy technician roles. The current work gives a particularly clear picture of sterile compounding and dispensing cabinet restocking.

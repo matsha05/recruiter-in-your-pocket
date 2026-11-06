@@ -1,0 +1,28 @@
+# b26_construction_pm_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_construction_pm_strong_1.txt (136 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
+Outcome: report; cost $0.0051; 14.6s
+
+## Clear and specific (score 90; model wrote 90)
+## Verdict
+A construction project manager with project values, trade counts and delivery results a recruiter can use.
+
+## Write-up
+You manage concurrent tenant-improvement projects and have delivered a grocery store build. A recruiter can see the project values, the number of trades and where you beat schedule. The main question is how you kept change orders down.
+
+The grocery store line is the model: it names the build, its value and when you delivered it against schedule. Your earlier scheduling work is specific, too, and Experience is where it belongs, above Education.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Project Manager, line 2
+   line: "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024"
+   can't tell: Keep this. It ties a concrete project to a delivery result without making the reader hunt for context.
+2. [line] Project Manager, line 4
+   line: "Kept change orders under 3% of contract value across 2024 and 2025 projects"
+   can't tell: The result is strong, but a recruiter can't see what you did to keep change orders down. Your approach would show how you managed that part of the work.
+   example: Kept change orders under 3% of contract value across 2024 and 2025 projects by [approach]
+   question: What did you do to keep change orders under 3% of contract value across those projects?
+
+## Fit
+Roles: ["Project Manager","Assistant Project Manager"]
+Level: Experienced project manager
+Note: Your experience points toward construction project management in tenant improvements and retail builds. The current role shows both concurrent project management and a completed grocery store build.

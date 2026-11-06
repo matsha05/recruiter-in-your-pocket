@@ -1,38 +1,45 @@
 # b37_marketing_director_bad, run 1
 Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_marketing_director_bad_1.txt (167 words)
-Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
-Outcome: report; cost $0.0086; 25.4s
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0082; 19.2s
 Case note: Title above the work; key says no_recent_work, no_target_role, title_level_mismatch.
 
-## Needs more context (score 60; model wrote 60)
+## Needs more context (score 62; model wrote 62)
 ## Verdict
-Hands-on marketing work under a director title, with no target job or activity shown after January 2025.
+Marketing work with a director title, earlier data and lab roles, and unaccounted time since January 2025.
 
 ## Write-up
-A recruiter sees hands-on marketing at a candle company, preceded by title data entry and lab work. The Director of Marketing title suggests responsibilities beyond the posting and product copy listed, and nothing accounts for time after January 2025.
+Your resume tells a common career-change story: data entry and lab work followed by marketing for Lumen Candle Co. The work is concrete, but the Director of Marketing title asks a recruiter to look for leadership or strategy that the bullets don't yet show. That makes the level of marketing role you're seeking difficult to judge.
 
-The property records line is a useful model: it names the work, the system and the daily volume. Your roles point in several directions, so naming the job you want would give a recruiter a reason to connect them.
+The candle description line is a good model: it names what you wrote, where it appeared, and how much you covered. Your resume also points toward several kinds of work without naming a target, and nothing accounts for the time after January 2025.
 
-## Cards (4; {"line":1,"dates":1,"structure":1,"keep":1}); severity off; added []
-1. [line] Director of Marketing title
+As it stands, a recruiter is likely to hesitate and move on. Let's start with the Lumen role: show what sat behind the director title, then account honestly for the time since it ended and name the kind of job you want.
+
+## Cards (5; {"line":2,"dates":1,"structure":1,"keep":1}); severity off; added []
+1. [line] Director of Marketing, title
    line: "Director of Marketing"
-   can't tell: The title suggests a broader marketing role than the bullets describe. A recruiter can't tell what decisions or other responsibilities were yours.
-   example: Director of Marketing, Lumen Candle Co.: [marketing responsibilities] and [decisions owned]
-   question: What marketing responsibilities and decisions did you own at Lumen Candle Co.?
+   can't tell: The title suggests leadership or strategy, but the Lumen bullets describe posting, product descriptions, orders and customer emails. A recruiter can't tell whether you also directed marketing work.
+   example: Director of Marketing: [marketing decisions or responsibilities]
+   question: What marketing decisions or responsibilities did you hold at Lumen beyond the work already listed?
 2. [dates] Dates
-   line: "Nothing on the resume is dated after January 2025."
-   can't tell: A recruiter can't tell what you've been doing since the candle company role ended. A brief, honest line can answer that question.
-   example: January 2025 - Present [activity since January 2025]
-   question: What have you been doing since January 2025 that you're comfortable putting on the resume?
+   line: "Nothing is dated after January 2025."
+   can't tell: A recruiter can't tell what you've been doing since the Lumen role ended. If you cared for a family member, name that; if you took a career break, you can say what you did during it. Include freelance or consulting work only if it was real.
+   example: January 2025 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]
+   question: What have you been doing since January 2025 that you would be comfortable including?
 3. [structure] Structure
-   line: "The resume doesn't name a target job, and the roles span marketing, data entry, lab work and coffee service."
-   can't tell: A recruiter has to guess which work you want to do next. Naming the target would make it easier to decide which experience to put first.
-   question: What job are you looking for now?
-4. [keep] Data Entry Clerk, line 1
-   line: "Entered 150 property records a day into the county title system"
-   can't tell: Keep this level of detail. The daily count and the type of records make the job concrete without extra explanation.
+   line: "Your resume doesn't name the job you're seeking."
+   can't tell: Marketing, data entry and lab work point in different directions. A recruiter has to guess which kind of role you want next.
+   question: Which kind of job do you want this resume to target?
+4. [line] Director of Marketing, line 1
+   line: "Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers"
+   can't tell: The posting frequency and follower count are useful. A recruiter still can't tell what you posted or whether you tracked what happened after posting.
+   example: Posted [content] 3 to 5 times a week on the company Instagram, which has 2,100 followers; [what changed]
+   question: What did you post, and what changes did you track, if any?
+5. [keep] Director of Marketing, line 2
+   line: "Wrote product descriptions for 40 candle scents on the website"
+   can't tell: Keep this. It puts your contribution and the product together, so there's no guessing about your part in the website work.
 
 ## Fit
 Roles: ["Director of Marketing","Data Entry Clerk","Laboratory Assistant"]
-Level: Hands-on; director title needs context
-Note: Your recent work points toward marketing content and social media, while the earlier roles show data entry and lab support. The director title needs more detail about your responsibilities before a recruiter can judge its level.
+Level: Hands-on marketing and operations experience
+Note: Your recent work points toward hands-on marketing, particularly social media and product writing. The director title stands above what the listed work shows, while the earlier roles also give you a foundation in data entry and lab support.
