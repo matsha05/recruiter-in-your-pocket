@@ -73,7 +73,7 @@ export default function MethodologyPage() {
 
             <section className={rhythm.section} aria-labelledby="band-title">
                 <h2 id="band-title" className={rhythm.title}>Where your resume stands.</h2>
-                <p className={rhythm.deck}>One of four rungs, with a line on what it means, and the number beside it. The rung is what a recruiter does with the page after one pass.</p>
+                <p className={rhythm.deck}>One of four bands, with a line on what it means, and the number beside it. The band is what a recruiter would do with the resume after one pass.</p>
                 <div className={styles.band}><ScoreBand score={sampleReport.score} /></div>
                 <section aria-label="What goes into the band">
                     <ol className={styles.parts}>
@@ -83,7 +83,7 @@ export default function MethodologyPage() {
             </section>
 
             <section className={rhythm.section} aria-labelledby="lines-title">
-                <h2 id="lines-title" className={rhythm.title}>Line by line.</h2>
+                <h2 id="lines-title" className={rhythm.title}>Lines that need work.</h2>
                 <p className={rhythm.deck}>Every line a recruiter trips on gets a card: the line as written, what they can&rsquo;t tell from it, an example with the blanks for you to fill, and the question that fills them. Nothing in an example is invented; the facts are your resume&rsquo;s or yours.</p>
                 <Clipping
                     caption="A line from Jordan’s resume, and the report’s question"
@@ -100,7 +100,7 @@ export default function MethodologyPage() {
 
             <section className={rhythm.section} aria-labelledby="facts-title">
                 <h2 id="facts-title" className={rhythm.title}>Only from your facts.</h2>
-                <p className={rhythm.deck}>Every example keeps your facts and leaves blanks for the rest. Your answers go into the blanks word for word, and the line can&rsquo;t be copied until every blank is yours. A recognisable recent employer can lift the page one rung; the write-up says so when it does.</p>
+                <p className={rhythm.deck}>Every example keeps your facts and leaves blanks for the rest. Your answers go into the blanks word for word, and the line can&rsquo;t be copied until every blank is yours. A recognisable recent employer can lift the resume one band; the write-up says so when it does.</p>
             </section>
 
             <section className={rhythm.section} aria-labelledby="cant-title">
