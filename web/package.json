@@ -23,6 +23,8 @@
     "qa:design-system": "node scripts/qa/design-system-guardrails.mjs",
     "copy:inventory": "node scripts/copy-inventory.cjs",
     "copy:inventory:check": "node scripts/copy-inventory.cjs --check",
+    "copy:judge": "node scripts/run-ts-script.cjs scripts/run-copy-judge.ts",
+    "test:voice-judge": "node scripts/run-ts-test.cjs tests/voice-judge.test.ts",
     "test:injection": "node scripts/run-ts-test.cjs tests/injection.test.ts",
     "test:pii": "node scripts/run-ts-test.cjs tests/pii.test.ts",
     "test:extension-cors": "node scripts/run-ts-test.cjs tests/extension-cors.test.ts",

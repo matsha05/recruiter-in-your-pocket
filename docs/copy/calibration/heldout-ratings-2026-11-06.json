@@ -1,0 +1,104 @@
+{
+  "date": "2026-11-06",
+  "rated_by": "Claude (the copy-system session), by hand, against docs/copy-system.md, before any judge run on these lines",
+  "note": "Held out: never used to change the judge prompt.",
+  "lines": {
+    "1": {
+      "verdict": "us",
+      "note": "A literal label, exactly right"
+    },
+    "2": {
+      "verdict": "us",
+      "note": "Plain, the reader's problem, no ownership needed"
+    },
+    "3": {
+      "verdict": "us",
+      "note": "Plain trust fact, said like a person"
+    },
+    "4": {
+      "verdict": "flat",
+      "note": "Passive 'were sent'; no idea how long to wait"
+    },
+    "5": {
+      "verdict": "us",
+      "note": "Exact"
+    },
+    "6": {
+      "verdict": "us",
+      "note": "The fact the reader needs, first"
+    },
+    "7": {
+      "verdict": "us",
+      "note": "Literal refund term with the next step"
+    },
+    "8": {
+      "verdict": "no",
+      "note": "A question asked as a pitch, as a heading"
+    },
+    "9": {
+      "verdict": "us",
+      "note": "Specific, a little dry, names the thing"
+    },
+    "10": {
+      "verdict": "us",
+      "note": "Says what we do, plainly"
+    },
+    "11": {
+      "verdict": "us",
+      "note": "A hiring truth as an aside, Matt's kind"
+    },
+    "12": {
+      "verdict": "us",
+      "note": "Short, a fragment for weight, and true"
+    },
+    "13": {
+      "verdict": "us",
+      "note": "Says what's happening and the three choices"
+    },
+    "14": {
+      "verdict": "us",
+      "note": "The one instruction that matters"
+    },
+    "15": {
+      "verdict": "us",
+      "note": "A literal button"
+    },
+    "16": {
+      "verdict": "flat",
+      "note": "Generic dismiss any product uses; fine"
+    },
+    "17": {
+      "verdict": "flat",
+      "note": "Generic empty state; the guide's own line adds 'Your first read is free.'"
+    },
+    "18": {
+      "verdict": "no",
+      "note": "two_names ('report history' for My reports), passive, no next step"
+    },
+    "19": {
+      "verdict": "us",
+      "note": "A literal confirmation"
+    },
+    "20": {
+      "verdict": "us",
+      "note": "Says what is happening now"
+    },
+    "21": {
+      "verdict": "flat",
+      "note": "Three dots where the house style uses …"
+    },
+    "22": {
+      "verdict": "us",
+      "note": "Plain and honest"
+    },
+    "23": {
+      "verdict": "no",
+      "note": "A vague button where the glossary says 'Get 5 more reports · $29'"
+    },
+    "24": {
+      "verdict": "no",
+      "note": "Title Case on a button"
+    }
+  },
+  "situations": {}
+}
