@@ -102,3 +102,17 @@ Total for both: about $16 of the $43.71 left in the November 5 cap. `RIYP_ALLOW_
 - Public copy at eight: the meta description, pricing, FAQ and methodology lines.
 - The methodology sentence on employer tier.
 - Whether `next_steps` stays in the PDF.
+
+## The direction after the blind pick, November 5 (evening)
+
+The blind pick ran the same day: `tests/fixtures/results/blind-pick-v5/` (PR 74). Six of the eight decided items matched the brief. The finding that overrides the plan above: four times, unprompted, Matt said he is not sold on the Critical Miss framing. His words on bp5-09: "i do not agree that there is ONE critical miss or line that fucks someone up. i think we have bad resumes and good resumes. bad resumes get looked over. we want to make sure we're giving candidates the best possble shot of telling their story to get that interview." On a strong resume (bp5-05) nothing is a miss: "these are ways to make it even better." On weak ones he wants every vague line called out: scale, numbers, examples, story, who they worked with, and example rewrites ("managed newsletter xyz for weekly distribution to 10,000 members").
+
+He then set the shape, after reacting to two sketches on Sam's resume (`docs/design/2026-11-worklist-report/`):
+
+- **The write-up first.** The recruiter's own words, up to three paragraphs, "not a forced 3 sentence summary". Score and rung stay above it.
+- **Then the lines, one card each**, in the order a recruiter hits them, "at least the lines that need obvious work". Each card carries three things: the line as written, what a recruiter can't tell from it, an example of the line with the detail in (blanks the person fills, nothing invented as fact), and the question that fills the blank. Structural items (section order, dates, a gap) are cards too. Lines that are fine are not listed, or get a single "keep as is" card when one line should be the model for the rest.
+- **No Critical Miss label.** Strong resumes get fewer cards and a shorter write-up, never a manufactured problem. "The read" is not a name for anything either: he called it AI slop.
+- **The bar:** "the same UI polish a top product designer or engineer would appreciate. we can't get this wrong. and the copy/tone has to be great. some wit, human warmth, the stuff we defined before."
+- Three smaller rules from his notes: Experience above Education as a rule; gaps get a dated-line example and honest phrasings (sabbatical, family, travel, real consulting), with a resource on how to phrase them; an unknown employer's size or kind is worth a line.
+
+What this changes in the plan above: decisions 6, 7 and 8 (what leads, the count, the bar) become the card order and the choice of which lines get a card; rubric v5 as a Critical Miss rubric is not written. The judge's question becomes whether the write-up and the cards are the recruiter's read of this resume, which needs its own calibration set. Decisions 1 to 5 and 10 to 17 stand. The public copy ("Every Critical Miss, and the one to fix first", "up to three changes", pricing, methodology) changes with the product, and that copy is Matt's call before launch.
