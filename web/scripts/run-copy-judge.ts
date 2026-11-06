@@ -6,6 +6,7 @@
  *   npm run copy:judge -- calibrate [--set <set.json> --ratings <ratings.json>] [--budget-usd 1]
  *     Scores the calibration lines (default: the forty-line tuning set) and reports agreement with the hand
  *     labels. The held-out set is docs/copy/calibration/heldout-2026-11-06.json with heldout-ratings-2026-11-06.json.
+ *     --min-kappa <n> and --min-no-caught <share> make it exit nonzero below the bar (the launch gate uses both).
  *   npm run copy:judge -- inventory [--tables home,workspace] [--moments marketing,pricing] [--limit 200] [--budget-usd 4]
  *     Scores the inventory (docs/copy/inventory/inventory.json; run `npm run copy:inventory` first), unique strings only.
  *   npm run copy:judge -- file <strings.json> [--budget-usd 1]
@@ -116,6 +117,17 @@ async function calibrate() {
     const setName = path.basename(flag("--set") || "set-2026-11-06.json", ".json");
     const runMeta = meta(`Voice judge calibration, ${setName}`, items.length, run.calls, run.cost_usd, run.errors, run.missing);
     write(`calibration-${flag("--label") || stamp}`, calibrationMarkdown(runMeta, result, ratings.rated_by), { meta: runMeta, agreement: result, scores: run.scores });
+    const minKappa = flag("--min-kappa") ? Number(flag("--min-kappa")) : null;
+    const minNoCaught = flag("--min-no-caught") ? Number(flag("--min-no-caught")) : null;
+    const noCaughtShare = result.no_catch.labelled_no ? result.no_catch.caught / result.no_catch.labelled_no : 1;
+    const misses: string[] = [];
+    if (minKappa !== null && result.kappa < minKappa) misses.push(`kappa ${result.kappa.toFixed(2)} is below ${minKappa}`);
+    if (minNoCaught !== null && noCaughtShare < minNoCaught) misses.push(`it failed ${result.no_catch.caught} of ${result.no_catch.labelled_no} "no" lines, below ${Math.round(minNoCaught * 100)}%`);
+    if (run.errors.length || run.missing.length) misses.push(`${run.errors.length} errors and ${run.missing.length} lines left unjudged`);
+    if (misses.length && (minKappa !== null || minNoCaught !== null)) {
+        console.error(`Calibration below the bar: ${misses.join("; ")}.`);
+        process.exitCode = 1;
+    }
     console.log(`Exact ${result.exact}/${result.judged}, us-or-not ${result.us_or_not}/${result.judged}, kappa ${result.kappa.toFixed(2)}; "no" caught ${result.no_catch.caught}/${result.no_catch.labelled_no}, "no" right ${result.no_catch.correct}/${result.no_catch.judge_no}. Spend $${run.cost_usd.toFixed(4)}.`);
 }
 
