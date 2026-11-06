@@ -1,0 +1,33 @@
+# b01_icu_nurse, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_icu_nurse_1.txt (153 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt f4ff18ca; severity check off
+Outcome: report; cost $0.0053; 13.3s
+
+## Mostly clear (score 81; model wrote 81)
+## Verdict
+An ICU nurse with clear patient care experience and a couple of roles that need more detail.
+
+## Write-up
+A recruiter can see your medical ICU and telemetry experience, your Arizona RN license, and your CCRN. Your current patient-care line works especially well: it names the patients you care for, how many you care for per shift, and the kind of unit.
+
+The questions come with your charge nurse and sepsis committee work. A little more about what you do in each would round out an already clear nursing resume.
+
+## Cards (3; {"keep":1,"line":2}); severity off; added []
+1. [keep] Staff Nurse, Medical ICU, line 1
+   line: "Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU"
+   can't tell: Keep this as your model. It puts your responsibility and the setting together, so a recruiter doesn't have to guess.
+2. [line] Staff Nurse, Medical ICU, line 3
+   line: "Serve as charge nurse two shifts per month"
+   can't tell: The frequency is clear, but a recruiter can't tell what you handle as charge nurse. Name the responsibilities that come with those shifts.
+   example: Serve as charge nurse two shifts per month, with responsibility for [charge nurse responsibilities]
+   question: What are you responsible for during your charge nurse shifts?
+3. [line] Staff Nurse, Medical ICU, line 5
+   line: "Member of the unit's sepsis bundle compliance committee"
+   can't tell: Committee membership tells a recruiter where you participate, but not what you contribute. What work is yours?
+   example: Member of the unit's sepsis bundle compliance committee, contributing [your contribution]
+   question: What have you contributed to the sepsis bundle compliance committee?
+
+## Fit
+Roles: ["Staff Nurse, Medical ICU","Staff Nurse, Telemetry"]
+Level: Experienced staff nurse
+Note: Your experience points most directly to medical ICU nursing, with earlier telemetry work. The patient loads and treatments make your bedside work easy to recognize.

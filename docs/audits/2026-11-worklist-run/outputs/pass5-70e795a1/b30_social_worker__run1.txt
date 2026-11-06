@@ -1,0 +1,33 @@
+# b30_social_worker, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_social_worker_1.txt (127 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
+Outcome: report; cost $0.0061; 17.3s
+
+## Needs more context (score 69; model wrote 69)
+## Verdict
+A licensed social worker with clear child welfare duties, but no caseload size or results.
+
+## Write-up
+A recruiter sees licensed social work experience in child welfare, with earlier intake work. The hesitation is the current caseload: the page doesn't say how many families you carry or what changed through the work.
+
+The monthly family team meetings line is a good model. It names what you do and how often, without making the reader guess. Add the caseload count and a little more about the services you coordinate.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] Family Services Caseworker, line 1
+   line: "Carry a caseload of families involved with child protective services"
+   can't tell: A caseload is central to this job, but a recruiter can't tell how many families you carry.
+   example: Carry a caseload of [number] families involved with child protective services
+   question: How many families are typically on your caseload?
+2. [line] Family Services Caseworker, line 3
+   line: "Coordinate services with schools, courts, and mental health providers"
+   can't tell: The partners are named, but the services aren't. What were you coordinating for the families?
+   example: Coordinate [services] with schools, courts, and mental health providers for [purpose]
+   question: Which services did you coordinate with these partners, and for what purpose?
+3. [keep] Family Services Caseworker, line 5
+   line: "Facilitate monthly family team meetings"
+   can't tell: Keep this. It gives the recruiter a concrete part of your job and a regular cadence to attach to it.
+
+## Fit
+Roles: ["Family Services Caseworker","Intake Specialist"]
+Level: Experienced individual contributor
+Note: Your experience points toward family services casework and client intake. The Ohio LMSW and current child protective services work are directly relevant to that path.

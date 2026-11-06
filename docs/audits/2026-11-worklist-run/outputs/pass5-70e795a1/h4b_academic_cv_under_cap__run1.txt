@@ -1,0 +1,33 @@
+# h4b_academic_cv_under_cap, run 1
+Resume: ../2026-11-live-judgment/resumes/h4b_academic_cv_under_cap.txt (3253 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
+Outcome: report; cost $0.0245; 20.5s
+Case note: The same CV trimmed under the cap, to see what the model does with a CV shape.
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+A tenured molecular biologist with substantial grants and teaching, but repeated publication entries invite a pause.
+
+## Write-up
+You come across as a tenured molecular biologist with NIH funding, teaching and mentoring experience. A recruiter would likely hold back, though: the same publication titles and author lists appear under different years and volume numbers throughout the bibliography. Check the original citations before sending this.
+
+Put Academic Appointments above Education so your current work comes first. The MB 310 redesign is a model for the rest: it names what you changed and shows how evaluations moved over the following three offerings.
+
+## Cards (3; {"structure":1,"line":1,"keep":1}); severity off; added []
+1. [structure] Structure
+   line: "Education sits above Academic Appointments."
+   can't tell: Your current faculty appointment comes after your degrees. Put Academic Appointments first so a recruiter sees your present role sooner.
+   question: Can you move Academic Appointments above Education?
+2. [line] Publications, entry 1
+   line: "1. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2026). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 107(2), 1037-1052."
+   can't tell: The same authors and title appear again in 2024, 2021 and 2018, with different volume and page details. That pattern recurs across the bibliography, so a recruiter can't tell which entries are distinct papers.
+   example: [correct citation for the Drp1 phosphorylation paper]
+   question: What are the correct citations for these entries, and which are distinct papers?
+3. [keep] Teaching, course redesign
+   line: "Course redesign: converted MB 310 to a flipped format in 2019; student evaluations rose from 3.9 to 4.5 of 5 over the following three offerings."
+   can't tell: Keep this. It gives the course, your change and the period over which the evaluations rose, without claiming the redesign alone caused the increase.
+
+## Fit
+Roles: ["Associate Professor (with tenure)","Assistant Professor","Postdoctoral Fellow"]
+Level: Tenured faculty
+Note: Your experience points toward faculty work in molecular and cell biology, with grants, publications, teaching and mentoring all represented. The recurring publication entries need checking before they can serve you well.

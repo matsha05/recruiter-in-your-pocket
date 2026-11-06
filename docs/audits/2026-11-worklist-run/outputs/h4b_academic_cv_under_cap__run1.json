@@ -11,40 +11,41 @@
   "model": "gpt-6.1-terra",
   "reasoning_effort": "medium",
   "severity_check": false,
-  "started_at": "2026-11-06T16:32:52.001Z",
+  "started_at": "2026-11-06T18:13:39.818Z",
   "calls": [
     {
       "kind": "report",
       "usage": {
-        "prompt_tokens": 18649,
-        "completion_tokens": 1149,
-        "total_tokens": 19798,
-        "cached_prompt_tokens": 3792,
+        "prompt_tokens": 19542,
+        "completion_tokens": 1041,
+        "total_tokens": 20583,
+        "cached_prompt_tokens": 4685,
         "cache_write_prompt_tokens": 14854,
-        "reasoning_tokens": 501
+        "reasoning_tokens": 350
       },
-      "cost_usd": 0.0245051,
+      "cost_usd": 0.02400975,
       "model": "gpt-6.1-terra",
-      "latency_ms": 20540
+      "latency_ms": 15701
     }
   ],
-  "resume_prompt_sha256": "70e795a1e91877ad12f5394154dccd644b9f9d298e123ca182963a0e3e089350",
+  "resume_prompt_sha256": "0a19c3ee70395ec8fb0584d4bea1b93da77aeca37469b4d47211bc8568544f0c",
   "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
   "model_output": {
     "contract_version": "v3",
-    "score": 68,
+    "score": 76,
     "lifted_by_employer": false,
-    "verdict": "A tenured molecular biologist with substantial grants and teaching, but repeated publication entries invite a pause.",
+    "verdict": "A tenured molecular biologist with strong grants and mentoring, but repeated publication entries need attention.",
     "write_up": [
-      "You come across as a tenured molecular biologist with NIH funding, teaching and mentoring experience. A recruiter would likely hold back, though: the same publication titles and author lists appear under different years and volume numbers throughout the bibliography. Check the original citations before sending this.",
-      "Put Academic Appointments above Education so your current work comes first. The MB 310 redesign is a model for the rest: it names what you changed and shows how evaluations moved over the following three offerings."
+      "Your resume tells the story of a tenured Associate Professor at Riverbend State University working on mitochondrial dynamics, with NIH funding, teaching and substantial mentoring. A recruiter for a faculty role would likely move it forward, but the repeated publication titles and author lists raise a question about the bibliography.",
+      "The MB 310 redesign is a strong model: it names your change and reports the evaluations that followed without claiming the change caused them. Your academic appointments also show a clear progression, though Education comes before that experience.",
+      "Let's start by comparing the repeated publication entries with your original bibliography. Then move Academic Appointments above Education and leave the teaching and mentoring details intact. The strength of the grants and mentoring is worth preserving."
     ],
     "cards": [
       {
         "kind": "structure",
         "where": "Structure",
         "line": "Education sits above Academic Appointments.",
-        "cannot_tell": "Your current faculty appointment comes after your degrees. Put Academic Appointments first so a recruiter sees your present role sooner.",
+        "cannot_tell": "A recruiter reaches your degrees before seeing your current tenured appointment. Put the faculty progression first so your present role leads.",
         "example": "",
         "question": "Can you move Academic Appointments above Education?"
       },
@@ -52,15 +53,15 @@
         "kind": "line",
         "where": "Publications, entry 1",
         "line": "1. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2026). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 107(2), 1037-1052.",
-        "cannot_tell": "The same authors and title appear again in 2024, 2021 and 2018, with different volume and page details. That pattern recurs across the bibliography, so a recruiter can't tell which entries are distinct papers.",
-        "example": "[correct citation for the Drp1 phosphorylation paper]",
-        "question": "What are the correct citations for these entries, and which are distinct papers?"
+        "cannot_tell": "The same author list and title appear again under 2024 and 2021 with different citation details. A reader can't tell whether these are distinct publications or repeated entries. The pattern appears elsewhere in the list, too.",
+        "example": "[correct citation for the Drp1 phosphorylation publication]",
+        "question": "What are the correct citations in your original bibliography, and which repeated entries belong in the list?"
       },
       {
         "kind": "keep",
         "where": "Teaching, course redesign",
         "line": "Course redesign: converted MB 310 to a flipped format in 2019; student evaluations rose from 3.9 to 4.5 of 5 over the following three offerings.",
-        "cannot_tell": "Keep this. It gives the course, your change and the period over which the evaluations rose, without claiming the redesign alone caused the increase.",
+        "cannot_tell": "Keep this as a model. It gives the course, your action and the period over which the evaluations changed, without overstating what caused the rise.",
         "example": "",
         "question": ""
       }
@@ -68,11 +69,10 @@
     "fit": {
       "roles": [
         "Associate Professor (with tenure)",
-        "Assistant Professor",
-        "Postdoctoral Fellow"
+        "Assistant Professor"
       ],
       "level": "Tenured faculty",
-      "note": "Your experience points toward faculty work in molecular and cell biology, with grants, publications, teaching and mentoring all represented. The recurring publication entries need checking before they can serve you well.",
+      "note": "Your experience points toward faculty roles in molecular and cell biology. Grants, corresponding-author publications, teaching and mentoring all speak to that work, though the publication list needs checking.",
       "posting": {
         "summary": "",
         "missing": []
@@ -81,19 +81,20 @@
   },
   "validated_report": {
     "contract_version": "v3",
-    "score": 68,
+    "score": 76,
     "lifted_by_employer": false,
-    "verdict": "A tenured molecular biologist with substantial grants and teaching, but repeated publication entries invite a pause.",
+    "verdict": "A tenured molecular biologist with strong grants and mentoring, but repeated publication entries need attention.",
     "write_up": [
-      "You come across as a tenured molecular biologist with NIH funding, teaching and mentoring experience. A recruiter would likely hold back, though: the same publication titles and author lists appear under different years and volume numbers throughout the bibliography. Check the original citations before sending this.",
-      "Put Academic Appointments above Education so your current work comes first. The MB 310 redesign is a model for the rest: it names what you changed and shows how evaluations moved over the following three offerings."
+      "Your resume tells the story of a tenured Associate Professor at Riverbend State University working on mitochondrial dynamics, with NIH funding, teaching and substantial mentoring. A recruiter for a faculty role would likely move it forward, but the repeated publication titles and author lists raise a question about the bibliography.",
+      "The MB 310 redesign is a strong model: it names your change and reports the evaluations that followed without claiming the change caused them. Your academic appointments also show a clear progression, though Education comes before that experience.",
+      "Let's start by comparing the repeated publication entries with your original bibliography. Then move Academic Appointments above Education and leave the teaching and mentoring details intact. The strength of the grants and mentoring is worth preserving."
     ],
     "cards": [
       {
         "kind": "structure",
         "where": "Structure",
         "line": "Education sits above Academic Appointments.",
-        "cannot_tell": "Your current faculty appointment comes after your degrees. Put Academic Appointments first so a recruiter sees your present role sooner.",
+        "cannot_tell": "A recruiter reaches your degrees before seeing your current tenured appointment. Put the faculty progression first so your present role leads.",
         "example": "",
         "question": "Can you move Academic Appointments above Education?"
       },
@@ -101,15 +102,15 @@
         "kind": "line",
         "where": "Publications, entry 1",
         "line": "1. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2026). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 107(2), 1037-1052.",
-        "cannot_tell": "The same authors and title appear again in 2024, 2021 and 2018, with different volume and page details. That pattern recurs across the bibliography, so a recruiter can't tell which entries are distinct papers.",
-        "example": "[correct citation for the Drp1 phosphorylation paper]",
-        "question": "What are the correct citations for these entries, and which are distinct papers?"
+        "cannot_tell": "The same author list and title appear again under 2024 and 2021 with different citation details. A reader can't tell whether these are distinct publications or repeated entries. The pattern appears elsewhere in the list, too.",
+        "example": "[correct citation for the Drp1 phosphorylation publication]",
+        "question": "What are the correct citations in your original bibliography, and which repeated entries belong in the list?"
       },
       {
         "kind": "keep",
         "where": "Teaching, course redesign",
         "line": "Course redesign: converted MB 310 to a flipped format in 2019; student evaluations rose from 3.9 to 4.5 of 5 over the following three offerings.",
-        "cannot_tell": "Keep this. It gives the course, your change and the period over which the evaluations rose, without claiming the redesign alone caused the increase.",
+        "cannot_tell": "Keep this as a model. It gives the course, your action and the period over which the evaluations changed, without overstating what caused the rise.",
         "example": "",
         "question": ""
       }
@@ -117,37 +118,37 @@
     "fit": {
       "roles": [
         "Associate Professor (with tenure)",
-        "Assistant Professor",
-        "Postdoctoral Fellow"
+        "Assistant Professor"
       ],
       "level": "Tenured faculty",
-      "note": "Your experience points toward faculty work in molecular and cell biology, with grants, publications, teaching and mentoring all represented. The recurring publication entries need checking before they can serve you well.",
+      "note": "Your experience points toward faculty roles in molecular and cell biology. Grants, corresponding-author publications, teaching and mentoring all speak to that work, though the publication list needs checking.",
       "posting": {
         "summary": "",
         "missing": []
       }
     },
-    "score_label": "Needs more context",
+    "score_label": "Mostly clear",
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 68
+    "content_score": 76
   },
   "shipped_report": {
     "contract_version": "v3",
-    "score": 68,
+    "score": 76,
     "lifted_by_employer": false,
-    "verdict": "A tenured molecular biologist with substantial grants and teaching, but repeated publication entries invite a pause.",
+    "verdict": "A tenured molecular biologist with strong grants and mentoring, but repeated publication entries need attention.",
     "write_up": [
-      "You come across as a tenured molecular biologist with NIH funding, teaching and mentoring experience. A recruiter would likely hold back, though: the same publication titles and author lists appear under different years and volume numbers throughout the bibliography. Check the original citations before sending this.",
-      "Put Academic Appointments above Education so your current work comes first. The MB 310 redesign is a model for the rest: it names what you changed and shows how evaluations moved over the following three offerings."
+      "Your resume tells the story of a tenured Associate Professor at Riverbend State University working on mitochondrial dynamics, with NIH funding, teaching and substantial mentoring. A recruiter for a faculty role would likely move it forward, but the repeated publication titles and author lists raise a question about the bibliography.",
+      "The MB 310 redesign is a strong model: it names your change and reports the evaluations that followed without claiming the change caused them. Your academic appointments also show a clear progression, though Education comes before that experience.",
+      "Let's start by comparing the repeated publication entries with your original bibliography. Then move Academic Appointments above Education and leave the teaching and mentoring details intact. The strength of the grants and mentoring is worth preserving."
     ],
     "cards": [
       {
         "kind": "structure",
         "where": "Structure",
         "line": "Education sits above Academic Appointments.",
-        "cannot_tell": "Your current faculty appointment comes after your degrees. Put Academic Appointments first so a recruiter sees your present role sooner.",
+        "cannot_tell": "A recruiter reaches your degrees before seeing your current tenured appointment. Put the faculty progression first so your present role leads.",
         "example": "",
         "question": "Can you move Academic Appointments above Education?"
       },
@@ -155,15 +156,15 @@
         "kind": "line",
         "where": "Publications, entry 1",
         "line": "1. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2026). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 107(2), 1037-1052.",
-        "cannot_tell": "The same authors and title appear again in 2024, 2021 and 2018, with different volume and page details. That pattern recurs across the bibliography, so a recruiter can't tell which entries are distinct papers.",
-        "example": "[correct citation for the Drp1 phosphorylation paper]",
-        "question": "What are the correct citations for these entries, and which are distinct papers?"
+        "cannot_tell": "The same author list and title appear again under 2024 and 2021 with different citation details. A reader can't tell whether these are distinct publications or repeated entries. The pattern appears elsewhere in the list, too.",
+        "example": "[correct citation for the Drp1 phosphorylation publication]",
+        "question": "What are the correct citations in your original bibliography, and which repeated entries belong in the list?"
       },
       {
         "kind": "keep",
         "where": "Teaching, course redesign",
         "line": "Course redesign: converted MB 310 to a flipped format in 2019; student evaluations rose from 3.9 to 4.5 of 5 over the following three offerings.",
-        "cannot_tell": "Keep this. It gives the course, your change and the period over which the evaluations rose, without claiming the redesign alone caused the increase.",
+        "cannot_tell": "Keep this as a model. It gives the course, your action and the period over which the evaluations changed, without overstating what caused the rise.",
         "example": "",
         "question": ""
       }
@@ -171,30 +172,29 @@
     "fit": {
       "roles": [
         "Associate Professor (with tenure)",
-        "Assistant Professor",
-        "Postdoctoral Fellow"
+        "Assistant Professor"
       ],
       "level": "Tenured faculty",
-      "note": "Your experience points toward faculty work in molecular and cell biology, with grants, publications, teaching and mentoring all represented. The recurring publication entries need checking before they can serve you well.",
+      "note": "Your experience points toward faculty roles in molecular and cell biology. Grants, corresponding-author publications, teaching and mentoring all speak to that work, though the publication list needs checking.",
       "posting": {
         "summary": "",
         "missing": []
       }
     },
-    "score_label": "Needs more context",
+    "score_label": "Mostly clear",
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 68
+    "content_score": 76
   },
   "presentation": {
-    "score": 68,
-    "band": "Needs more context",
-    "model_score": 68,
+    "score": 76,
+    "band": "Mostly clear",
+    "model_score": 76,
     "lifted_by_employer": false,
-    "verdict": "A tenured molecular biologist with substantial grants and teaching, but repeated publication entries invite a pause.",
-    "write_up_paragraphs": 2,
-    "write_up_words": 82,
+    "verdict": "A tenured molecular biologist with strong grants and mentoring, but repeated publication entries need attention.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 124,
     "cards": [
       {
         "kind": "structure",
@@ -208,7 +208,7 @@
         "where": "Publications, entry 1",
         "line": "1. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2026). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 107(2), 1037-1052.",
         "blanks": 1,
-        "question": "What are the correct citations for these entries, and which are distinct papers?"
+        "question": "What are the correct citations in your original bibliography, and which repeated entries belong in the list?"
       },
       {
         "kind": "keep",
@@ -231,11 +231,10 @@
     "fit": {
       "roles": [
         "Associate Professor (with tenure)",
-        "Assistant Professor",
-        "Postdoctoral Fellow"
+        "Assistant Professor"
       ],
       "level": "Tenured faculty",
-      "note": "Your experience points toward faculty work in molecular and cell biology, with grants, publications, teaching and mentoring all represented. The recurring publication entries need checking before they can serve you well.",
+      "note": "Your experience points toward faculty roles in molecular and cell biology. Grants, corresponding-author publications, teaching and mentoring all speak to that work, though the publication list needs checking.",
       "posting": {
         "summary": "",
         "missing": []
@@ -243,6 +242,6 @@
     }
   },
   "outcome": "report",
-  "cost_usd": 0.0245051,
-  "latency_ms": 20547
+  "cost_usd": 0.02400975,
+  "latency_ms": 15741
 }

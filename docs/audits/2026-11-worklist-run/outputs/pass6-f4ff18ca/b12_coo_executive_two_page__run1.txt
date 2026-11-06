@@ -1,0 +1,29 @@
+# b12_coo_executive_two_page, run 1
+Resume: ../2026-11-live-judgment/resumes/b_coo_executive.txt (463 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt f4ff18ca; severity check off
+Outcome: report; cost $0.0081; 18.5s
+Case note: Executive, two pages.
+
+## Clear and specific (score 91; model wrote 91)
+## Verdict
+A healthcare operations executive with practice growth, financial results, and board-facing responsibility clearly laid out.
+
+## Write-up
+Your resume shows a COO who has grown a dental organization while managing a large operation. The integration line is especially strong: it names the playbook you standardized and shows the time saved.
+
+This resume isn't likely to be the reason you don't hear back. Competition for a COO role matters too. If you revise one older line, add what changed after the Epic go-live.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Chief Operating Officer, integration line
+   line: "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook"
+   can't tell: Keep this as a model. It puts the before and after right next to the work you led, so a recruiter can see both at once.
+2. [line] Vice President, Clinic Operations, Epic line
+   line: "Led the Epic go-live across the clinics in 2013"
+   can't tell: A recruiter can see that you led the go-live, but not what changed for the clinics afterward. If you know the result, add it.
+   example: Led the Epic go-live across the clinics in 2013, with [result]
+   question: What changed for the clinics after the Epic go-live?
+
+## Fit
+Roles: ["Chief Operating Officer","Senior Vice President, Operations"]
+Level: Healthcare operations executive
+Note: Your experience points to senior operations roles in multi-site healthcare. Practice growth, P&L ownership, and value-based contracts give a recruiter several concrete reasons to consider you.

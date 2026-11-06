@@ -215,6 +215,16 @@ Two candidates from [the proposal](proposals/2026-11-not-every-bullet-needs-a-nu
 - Candidate B, the resume prompt's rule 10 and VOICE line (`e09ca912` against `83b2a2d1`): GATE: FAIL, preferred 2 of 22, production 7, 0 vetoes, both count checks pass. "Led a team of 40" kept 0 of 3 with the question present 3 of 3 (was 3 of 3 kept).
 - Spend $3.7366 (estimate $3.67; stop line $12). Receipts: `tests/fixtures/results/summary_*bullet_number*.md`, `tests/fixtures/results/judge/*bullet-number*`. Neither prompt changed.
 
+### The worklist report, Matt's voice — November 6 (prompt `0a19c3ee`)
+
+The report's prompt follows the copy system Matt settled on November 6 (PR 83: `docs/copy-system.md` §1 and §4, `docs/voice-and-tone.md` "Matt in his own words"). Record: `docs/audits/2026-11-worklist-run.md`, passes 6 to 8.
+
+- Changed: How you write (warm and a little bit coach; the problem, then the way out walked together; praise with its reason; one exclamation point at most, on a win; acknowledge, never diagnose; no slang; Matt's own lines), the write-up (zoom out first: the story and the one takeaway for the whole resume, Matt's note on pass 7; "it's common" before a weak resume's problem; on a strong resume, praise first and, when true, that the resume isn't what stands between them and a call back), the gap note (Matt: "career break sabbatical only if true"), and "the page" and "rung" out of the person's report. Unchanged: the schema, the grounding principles, the bands' thresholds and anchors, the Ready to send rule, the employer rule, the validator, every other prompt.
+- Live set, pass 8: 49 of 49 shipped, 0 repaired, 0 never shipped, 0 band-rule violations; mean score 76.0 against 76.3 on `70e795a1`. "The page", "this page" and "rung" in reports: 0 (was 11 uses in 8 reports). Exclamation points: 12 reports, one each, all on Clear and specific or Ready to send write-ups, none in a critique.
+- Golden synthetic 10: 6 PASS, 4 WARN, 0 FAIL (score drift on the weak fixtures and the entry-level PM, as in passes 3 to 5; one repeated clause; one example with no blank). The smoke tier holds real people's resumes and was not sent; the synthetic golden set stands in for it, as in passes 3 to 5.
+- Gate: the counts above, the unit contracts (`test:llm-contract`, `test:report-integrity`, `test:sample-report`, `test:pdf-export`, prompt assets) on the candidate, and Matt reading the five in the Report Lab beside their pass 5 versions: "Ship it" (question UI, November 6).
+- Spend $1.62 for three passes (runner $1.22, golden $0.38, the sample $0.02) under the $5 set for this change; about $39.03 of the $50 cap remains.
+
 ### The worklist report, the fifth band — November 6 (prompt `70e795a1`)
 
 Matt read the five in the Report Lab, asked for a deep pass on the visuals and then the typography, said "lets ship it" (PR 78 and PR 79 merged November 6, the flag on for everyone, PR 80 for the report's own copy), and asked for a higher fifth band. The proposal he approved: `docs/promptops/proposals/2026-11-fifth-band.md`; the record: `docs/audits/2026-11-worklist-run.md`, pass 5.

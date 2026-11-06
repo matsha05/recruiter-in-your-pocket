@@ -1,0 +1,54 @@
+# b35_marketing_coordinator_gap, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_marketing_coordinator_gap_1.txt (126 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
+Outcome: report; cost $0.0091; 25.3s
+Case note: Gap with nothing after it.
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+A marketing coordinator with concrete email experience, but no account of work since March 2024.
+
+## Write-up
+A recruiter sees a marketing coordinator who managed a weekly email calendar and coordinated trade shows. The first pause is that nothing accounts for the time after March 2024, so they may move on despite the work being easy to follow.
+
+The email calendar line is your model: it gives both the cadence and the subscriber count. The event and social media lines could tell a recruiter more about your part in the work.
+
+## Cards (7; {"dates":1,"keep":1,"line":5}); severity off; added []
+1. [dates] Dates
+   line: "Nothing is dated after March 2024."
+   can't tell: A recruiter can't tell what you've been doing since your last role. A short, honest line can answer the question before they move on.
+   example: March 2024 - Present [what you've been doing]
+   question: What have you been doing since March 2024 that you'd be comfortable putting on the resume?
+2. [keep] Marketing Coordinator, line 1
+   line: "Managed the weekly email calendar for a list of 120,000 subscribers"
+   can't tell: Keep the cadence and subscriber count together. They show how much of a recurring responsibility you managed without claiming a result the line doesn't establish.
+3. [line] Marketing Coordinator, line 2
+   line: "Coordinated trade show logistics for four events a year"
+   can't tell: Four events a year gives the work a pace, but logistics could cover a lot. Which parts were yours?
+   example: Coordinated [logistics handled] for four trade show events a year
+   question: Which trade show logistics did you coordinate?
+4. [line] Marketing Coordinator, line 4
+   line: "Scheduled social posts across Instagram and Facebook"
+   can't tell: A recruiter knows the platforms, but not which accounts you scheduled for or how often. Those details show what the regular work involved.
+   example: Scheduled social posts for [account names] across Instagram and Facebook [frequency]
+   question: Which accounts did you schedule posts for, and how often?
+5. [line] Marketing Coordinator, line 5
+   line: "Tracked campaign results in a monthly report for the marketing director"
+   can't tell: The audience and cadence are clear. The missing piece is what you tracked in the report.
+   example: Tracked [campaign metrics] in a monthly report for the marketing director
+   question: Which campaign metrics did you track in the monthly report?
+6. [line] Marketing Assistant, line 1
+   line: "Helped plan in-store tasting events"
+   can't tell: 'Helped' leaves your part of the planning open. Name what you handled and how often the events happened.
+   example: Helped plan in-store tasting events by [planning work] for [event frequency] events
+   question: What planning work did you handle, and how often were the tasting events held?
+7. [line] Marketing Assistant, line 2
+   line: "Updated the company blog and newsletter"
+   can't tell: Updating could mean several things, from editing to publishing. What did you do for each?
+   example: Updated the company blog and newsletter by [work on blog] and [work on newsletter]
+   question: What did you do to update the blog and the newsletter?
+
+## Fit
+Roles: ["Marketing Coordinator","Marketing Assistant"]
+Level: Coordinator-level marketing
+Note: Your experience points toward marketing coordinator work across email, events, copy and social media. A brief account of your time after March 2024 would help a recruiter place that experience in the present.

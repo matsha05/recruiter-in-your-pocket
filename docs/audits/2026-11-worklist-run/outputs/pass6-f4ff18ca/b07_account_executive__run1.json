@@ -1,0 +1,239 @@
+{
+  "case_id": "b07_account_executive",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_account_executive_1.txt",
+  "resume_sha256": "f964f76d12cdd6ba10596473b309c0f44b18de7112f27369c32227cd287f6e94",
+  "resume_words": 145,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T17:55:23.465Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5165,
+        "completion_tokens": 874,
+        "total_tokens": 6039,
+        "cached_prompt_tokens": 4481,
+        "cache_write_prompt_tokens": 681,
+        "reasoning_tokens": 290
+      },
+      "cost_usd": 0.0054483,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 11340
+    }
+  ],
+  "resume_prompt_sha256": "f4ff18ca80174dffdce77796c99b298e4ced5fdab817d0ec307d0b591839e910",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A mid-market account executive with a promotion, quota attainment and a referral program that sourced deals.",
+    "write_up": [
+      "A recruiter sees an HR software seller who moved from SDR to account executive and closed $1.1M in new annual recurring revenue in 2025, at 108% of quota. That line works because it puts your sales result and quota attainment together. The referral program adds another concrete win.",
+      "This resume isn't going to be the reason you don't hear back. How competitive an account executive opening is will still matter. You can make the demos and SDR ranking more useful by adding your part and what the ranking measured."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Account Executive, Mid-Market, line 1",
+        "line": "- Closed $1.1M in new annual recurring revenue in 2025, 108% of quota",
+        "cannot_tell": "Keep this as a model. It names what you closed, when you closed it and how you performed against your target.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Account Executive, Mid-Market, line 4",
+        "line": "- Work with solutions engineers on demos and security reviews",
+        "cannot_tell": "A recruiter knows who you work with, but not your part in the demos and security reviews. What do you handle alongside the engineers?",
+        "example": "Work with solutions engineers on demos and security reviews, contributing [your part]",
+        "question": "What do you handle in the demos and security reviews?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 3",
+        "line": "- Top SDR in two quarters",
+        "cannot_tell": "Top SDR is a strong distinction, but a recruiter can't tell what it was based on. Name the measure used for the ranking.",
+        "example": "Top SDR in two quarters, measured by [ranking measure]",
+        "question": "What was the Top SDR ranking based on?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Account Executive, Mid-Market"
+      ],
+      "level": "Mid-market account executive",
+      "note": "Your experience points to mid-market account executive roles in HR software. The promotion, full-cycle sales work and quota attainment make that direction easy to follow.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A mid-market account executive with a promotion, quota attainment and a referral program that sourced deals.",
+    "write_up": [
+      "A recruiter sees an HR software seller who moved from SDR to account executive and closed $1.1M in new annual recurring revenue in 2025, at 108% of quota. That line works because it puts your sales result and quota attainment together. The referral program adds another concrete win.",
+      "This resume isn't going to be the reason you don't hear back. How competitive an account executive opening is will still matter. You can make the demos and SDR ranking more useful by adding your part and what the ranking measured."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Account Executive, Mid-Market, line 1",
+        "line": "Closed $1.1M in new annual recurring revenue in 2025, 108% of quota",
+        "cannot_tell": "Keep this as a model. It names what you closed, when you closed it and how you performed against your target.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Account Executive, Mid-Market, line 4",
+        "line": "Work with solutions engineers on demos and security reviews",
+        "cannot_tell": "A recruiter knows who you work with, but not your part in the demos and security reviews. What do you handle alongside the engineers?",
+        "example": "Work with solutions engineers on demos and security reviews, contributing [your part]",
+        "question": "What do you handle in the demos and security reviews?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 3",
+        "line": "Top SDR in two quarters",
+        "cannot_tell": "Top SDR is a strong distinction, but a recruiter can't tell what it was based on. Name the measure used for the ranking.",
+        "example": "Top SDR in two quarters, measured by [ranking measure]",
+        "question": "What was the Top SDR ranking based on?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Account Executive, Mid-Market"
+      ],
+      "level": "Mid-market account executive",
+      "note": "Your experience points to mid-market account executive roles in HR software. The promotion, full-cycle sales work and quota attainment make that direction easy to follow.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A mid-market account executive with a promotion, quota attainment and a referral program that sourced deals.",
+    "write_up": [
+      "A recruiter sees an HR software seller who moved from SDR to account executive and closed $1.1M in new annual recurring revenue in 2025, at 108% of quota. That line works because it puts your sales result and quota attainment together. The referral program adds another concrete win.",
+      "This resume isn't going to be the reason you don't hear back. How competitive an account executive opening is will still matter. You can make the demos and SDR ranking more useful by adding your part and what the ranking measured."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Account Executive, Mid-Market, line 1",
+        "line": "Closed $1.1M in new annual recurring revenue in 2025, 108% of quota",
+        "cannot_tell": "Keep this as a model. It names what you closed, when you closed it and how you performed against your target.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Account Executive, Mid-Market, line 4",
+        "line": "Work with solutions engineers on demos and security reviews",
+        "cannot_tell": "A recruiter knows who you work with, but not your part in the demos and security reviews. What do you handle alongside the engineers?",
+        "example": "Work with solutions engineers on demos and security reviews, contributing [your part]",
+        "question": "What do you handle in the demos and security reviews?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 3",
+        "line": "Top SDR in two quarters",
+        "cannot_tell": "Top SDR is a strong distinction, but a recruiter can't tell what it was based on. Name the measure used for the ranking.",
+        "example": "Top SDR in two quarters, measured by [ranking measure]",
+        "question": "What was the Top SDR ranking based on?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Account Executive, Mid-Market"
+      ],
+      "level": "Mid-market account executive",
+      "note": "Your experience points to mid-market account executive roles in HR software. The promotion, full-cycle sales work and quota attainment make that direction easy to follow.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "presentation": {
+    "score": 88,
+    "band": "Clear and specific",
+    "model_score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A mid-market account executive with a promotion, quota attainment and a referral program that sourced deals.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 89,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Account Executive, Mid-Market, line 1",
+        "line": "Closed $1.1M in new annual recurring revenue in 2025, 108% of quota",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Account Executive, Mid-Market, line 4",
+        "line": "Work with solutions engineers on demos and security reviews",
+        "blanks": 1,
+        "question": "What do you handle in the demos and security reviews?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 3",
+        "line": "Top SDR in two quarters",
+        "blanks": 1,
+        "question": "What was the Top SDR ranking based on?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "keep": 1,
+      "line": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Account Executive, Mid-Market"
+      ],
+      "level": "Mid-market account executive",
+      "note": "Your experience points to mid-market account executive roles in HR software. The promotion, full-cycle sales work and quota attainment make that direction easy to follow.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0054483,
+  "latency_ms": 11343
+}

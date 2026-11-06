@@ -1,0 +1,243 @@
+{
+  "case_id": "b02_teacher",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/resumes/b_teacher.txt",
+  "resume_sha256": "7d89b420ec093fb2b4c948a14fbcee2a65d2a90d95c146e4f916e2d0a37955ee",
+  "resume_words": 202,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T16:34:08.867Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4636,
+        "completion_tokens": 978,
+        "total_tokens": 5614,
+        "cached_prompt_tokens": 3792,
+        "cache_write_prompt_tokens": 841,
+        "reasoning_tokens": 352
+      },
+      "cost_usd": 0.00613385,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 14870
+    }
+  ],
+  "resume_prompt_sha256": "70e795a1e91877ad12f5394154dccd644b9f9d298e123ca182963a0e3e089350",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "An experienced elementary teacher with classroom results, grade-level leadership and a few details still to fill in.",
+    "write_up": [
+      "A recruiter sees a Washington-certified elementary teacher who teaches core subjects, leads grade-level planning and works with English language learners. The classroom work is easy to follow. The main question is what you contributed on the positive behavior support committee.",
+      "The reading growth line is the model: it names the district assessment, gives the starting and ending figures, and tells the reader the period they cover. The math curriculum pilot is also worth keeping, with a little more on what you learned and how you trained the other teachers."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "4th Grade Teacher, reading growth",
+        "line": "- Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years",
+        "cannot_tell": "Keep this as a model. It connects your work to a named measure and gives the reader a before and after.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "4th Grade Teacher, math curriculum",
+        "line": "- Piloted the district's new math curriculum in 2023 and trained the other 4th grade teachers on it",
+        "cannot_tell": "The pilot and training are clear. What the pilot showed and how you trained the other teachers would round out the story.",
+        "example": "Piloted the district's new math curriculum in 2023 and trained the other 4th grade teachers on it through [training activities], with [what the pilot showed]",
+        "question": "What did the pilot show, and how did you train the other teachers?"
+      },
+      {
+        "kind": "line",
+        "where": "2nd Grade Teacher, committee",
+        "line": "- Served on the school's positive behavior support committee",
+        "cannot_tell": "Committee membership doesn't say what you contributed. A recruiter can't tell which part of the behavior support work was yours.",
+        "example": "Served on the school's positive behavior support committee by [committee contribution]",
+        "question": "What did you contribute to the committee's work?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "4th Grade Teacher",
+        "2nd Grade Teacher"
+      ],
+      "level": "Experienced elementary teacher",
+      "note": "Your experience points toward elementary classroom teaching, with grade-level team leadership and an English Language Learner endorsement. The reading assessment and curriculum pilot add useful detail to that story.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "An experienced elementary teacher with classroom results, grade-level leadership and a few details still to fill in.",
+    "write_up": [
+      "A recruiter sees a Washington-certified elementary teacher who teaches core subjects, leads grade-level planning and works with English language learners. The classroom work is easy to follow. The main question is what you contributed on the positive behavior support committee.",
+      "The reading growth line is the model: it names the district assessment, gives the starting and ending figures, and tells the reader the period they cover. The math curriculum pilot is also worth keeping, with a little more on what you learned and how you trained the other teachers."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "4th Grade Teacher, reading growth",
+        "line": "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years",
+        "cannot_tell": "Keep this as a model. It connects your work to a named measure and gives the reader a before and after.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "4th Grade Teacher, math curriculum",
+        "line": "Piloted the district's new math curriculum in 2023 and trained the other 4th grade teachers on it",
+        "cannot_tell": "The pilot and training are clear. What the pilot showed and how you trained the other teachers would round out the story.",
+        "example": "Piloted the district's new math curriculum in 2023 and trained the other 4th grade teachers on it through [training activities], with [what the pilot showed]",
+        "question": "What did the pilot show, and how did you train the other teachers?"
+      },
+      {
+        "kind": "line",
+        "where": "2nd Grade Teacher, committee",
+        "line": "Served on the school's positive behavior support committee",
+        "cannot_tell": "Committee membership doesn't say what you contributed. A recruiter can't tell which part of the behavior support work was yours.",
+        "example": "Served on the school's positive behavior support committee by [committee contribution]",
+        "question": "What did you contribute to the committee's work?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "4th Grade Teacher",
+        "2nd Grade Teacher"
+      ],
+      "level": "Experienced elementary teacher",
+      "note": "Your experience points toward elementary classroom teaching, with grade-level team leadership and an English Language Learner endorsement. The reading assessment and curriculum pilot add useful detail to that story.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "An experienced elementary teacher with classroom results, grade-level leadership and a few details still to fill in.",
+    "write_up": [
+      "A recruiter sees a Washington-certified elementary teacher who teaches core subjects, leads grade-level planning and works with English language learners. The classroom work is easy to follow. The main question is what you contributed on the positive behavior support committee.",
+      "The reading growth line is the model: it names the district assessment, gives the starting and ending figures, and tells the reader the period they cover. The math curriculum pilot is also worth keeping, with a little more on what you learned and how you trained the other teachers."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "4th Grade Teacher, reading growth",
+        "line": "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years",
+        "cannot_tell": "Keep this as a model. It connects your work to a named measure and gives the reader a before and after.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "4th Grade Teacher, math curriculum",
+        "line": "Piloted the district's new math curriculum in 2023 and trained the other 4th grade teachers on it",
+        "cannot_tell": "The pilot and training are clear. What the pilot showed and how you trained the other teachers would round out the story.",
+        "example": "Piloted the district's new math curriculum in 2023 and trained the other 4th grade teachers on it through [training activities], with [what the pilot showed]",
+        "question": "What did the pilot show, and how did you train the other teachers?"
+      },
+      {
+        "kind": "line",
+        "where": "2nd Grade Teacher, committee",
+        "line": "Served on the school's positive behavior support committee",
+        "cannot_tell": "Committee membership doesn't say what you contributed. A recruiter can't tell which part of the behavior support work was yours.",
+        "example": "Served on the school's positive behavior support committee by [committee contribution]",
+        "question": "What did you contribute to the committee's work?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "4th Grade Teacher",
+        "2nd Grade Teacher"
+      ],
+      "level": "Experienced elementary teacher",
+      "note": "Your experience points toward elementary classroom teaching, with grade-level team leadership and an English Language Learner endorsement. The reading assessment and curriculum pilot add useful detail to that story.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "presentation": {
+    "score": 88,
+    "band": "Clear and specific",
+    "model_score": 88,
+    "lifted_by_employer": false,
+    "verdict": "An experienced elementary teacher with classroom results, grade-level leadership and a few details still to fill in.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 89,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "4th Grade Teacher, reading growth",
+        "line": "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "4th Grade Teacher, math curriculum",
+        "line": "Piloted the district's new math curriculum in 2023 and trained the other 4th grade teachers on it",
+        "blanks": 2,
+        "question": "What did the pilot show, and how did you train the other teachers?"
+      },
+      {
+        "kind": "line",
+        "where": "2nd Grade Teacher, committee",
+        "line": "Served on the school's positive behavior support committee",
+        "blanks": 1,
+        "question": "What did you contribute to the committee's work?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "keep": 1,
+      "line": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "4th Grade Teacher",
+        "2nd Grade Teacher"
+      ],
+      "level": "Experienced elementary teacher",
+      "note": "Your experience points toward elementary classroom teaching, with grade-level team leadership and an English Language Learner endorsement. The reading assessment and curriculum pilot add useful detail to that story.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00613385,
+  "latency_ms": 14895
+}

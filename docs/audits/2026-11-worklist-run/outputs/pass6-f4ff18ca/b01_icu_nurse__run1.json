@@ -1,0 +1,243 @@
+{
+  "case_id": "b01_icu_nurse",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_icu_nurse_1.txt",
+  "resume_sha256": "a52d8cb032163bcc7edaa524fe56cb06594cccf78f90a9ba023148de11fe18ef",
+  "resume_words": 153,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T17:54:58.108Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5159,
+        "completion_tokens": 843,
+        "total_tokens": 6002,
+        "cached_prompt_tokens": 4481,
+        "cache_write_prompt_tokens": 675,
+        "reasoning_tokens": 275
+      },
+      "cost_usd": 0.0052858,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 13277
+    }
+  ],
+  "resume_prompt_sha256": "f4ff18ca80174dffdce77796c99b298e4ced5fdab817d0ec307d0b591839e910",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 81,
+    "lifted_by_employer": false,
+    "verdict": "An ICU nurse with clear patient care experience and a couple of roles that need more detail.",
+    "write_up": [
+      "A recruiter can see your medical ICU and telemetry experience, your Arizona RN license, and your CCRN. Your current patient-care line works especially well: it names the patients you care for, how many you care for per shift, and the kind of unit.",
+      "The questions come with your charge nurse and sepsis committee work. A little more about what you do in each would round out an already clear nursing resume."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Staff Nurse, Medical ICU, line 1",
+        "line": "- Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU",
+        "cannot_tell": "Keep this as your model. It puts your responsibility and the setting together, so a recruiter doesn't have to guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 3",
+        "line": "- Serve as charge nurse two shifts per month",
+        "cannot_tell": "The frequency is clear, but a recruiter can't tell what you handle as charge nurse. Name the responsibilities that come with those shifts.",
+        "example": "Serve as charge nurse two shifts per month, with responsibility for [charge nurse responsibilities]",
+        "question": "What are you responsible for during your charge nurse shifts?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 5",
+        "line": "- Member of the unit's sepsis bundle compliance committee",
+        "cannot_tell": "Committee membership tells a recruiter where you participate, but not what you contribute. What work is yours?",
+        "example": "Member of the unit's sepsis bundle compliance committee, contributing [your contribution]",
+        "question": "What have you contributed to the sepsis bundle compliance committee?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Nurse, Medical ICU",
+        "Staff Nurse, Telemetry"
+      ],
+      "level": "Experienced staff nurse",
+      "note": "Your experience points most directly to medical ICU nursing, with earlier telemetry work. The patient loads and treatments make your bedside work easy to recognize.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 81,
+    "lifted_by_employer": false,
+    "verdict": "An ICU nurse with clear patient care experience and a couple of roles that need more detail.",
+    "write_up": [
+      "A recruiter can see your medical ICU and telemetry experience, your Arizona RN license, and your CCRN. Your current patient-care line works especially well: it names the patients you care for, how many you care for per shift, and the kind of unit.",
+      "The questions come with your charge nurse and sepsis committee work. A little more about what you do in each would round out an already clear nursing resume."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Staff Nurse, Medical ICU, line 1",
+        "line": "Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU",
+        "cannot_tell": "Keep this as your model. It puts your responsibility and the setting together, so a recruiter doesn't have to guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 3",
+        "line": "Serve as charge nurse two shifts per month",
+        "cannot_tell": "The frequency is clear, but a recruiter can't tell what you handle as charge nurse. Name the responsibilities that come with those shifts.",
+        "example": "Serve as charge nurse two shifts per month, with responsibility for [charge nurse responsibilities]",
+        "question": "What are you responsible for during your charge nurse shifts?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 5",
+        "line": "Member of the unit's sepsis bundle compliance committee",
+        "cannot_tell": "Committee membership tells a recruiter where you participate, but not what you contribute. What work is yours?",
+        "example": "Member of the unit's sepsis bundle compliance committee, contributing [your contribution]",
+        "question": "What have you contributed to the sepsis bundle compliance committee?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Nurse, Medical ICU",
+        "Staff Nurse, Telemetry"
+      ],
+      "level": "Experienced staff nurse",
+      "note": "Your experience points most directly to medical ICU nursing, with earlier telemetry work. The patient loads and treatments make your bedside work easy to recognize.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 81
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 81,
+    "lifted_by_employer": false,
+    "verdict": "An ICU nurse with clear patient care experience and a couple of roles that need more detail.",
+    "write_up": [
+      "A recruiter can see your medical ICU and telemetry experience, your Arizona RN license, and your CCRN. Your current patient-care line works especially well: it names the patients you care for, how many you care for per shift, and the kind of unit.",
+      "The questions come with your charge nurse and sepsis committee work. A little more about what you do in each would round out an already clear nursing resume."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Staff Nurse, Medical ICU, line 1",
+        "line": "Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU",
+        "cannot_tell": "Keep this as your model. It puts your responsibility and the setting together, so a recruiter doesn't have to guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 3",
+        "line": "Serve as charge nurse two shifts per month",
+        "cannot_tell": "The frequency is clear, but a recruiter can't tell what you handle as charge nurse. Name the responsibilities that come with those shifts.",
+        "example": "Serve as charge nurse two shifts per month, with responsibility for [charge nurse responsibilities]",
+        "question": "What are you responsible for during your charge nurse shifts?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 5",
+        "line": "Member of the unit's sepsis bundle compliance committee",
+        "cannot_tell": "Committee membership tells a recruiter where you participate, but not what you contribute. What work is yours?",
+        "example": "Member of the unit's sepsis bundle compliance committee, contributing [your contribution]",
+        "question": "What have you contributed to the sepsis bundle compliance committee?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Nurse, Medical ICU",
+        "Staff Nurse, Telemetry"
+      ],
+      "level": "Experienced staff nurse",
+      "note": "Your experience points most directly to medical ICU nursing, with earlier telemetry work. The patient loads and treatments make your bedside work easy to recognize.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 81
+  },
+  "presentation": {
+    "score": 81,
+    "band": "Mostly clear",
+    "model_score": 81,
+    "lifted_by_employer": false,
+    "verdict": "An ICU nurse with clear patient care experience and a couple of roles that need more detail.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 71,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Staff Nurse, Medical ICU, line 1",
+        "line": "Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 3",
+        "line": "Serve as charge nurse two shifts per month",
+        "blanks": 1,
+        "question": "What are you responsible for during your charge nurse shifts?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 5",
+        "line": "Member of the unit's sepsis bundle compliance committee",
+        "blanks": 1,
+        "question": "What have you contributed to the sepsis bundle compliance committee?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "keep": 1,
+      "line": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Staff Nurse, Medical ICU",
+        "Staff Nurse, Telemetry"
+      ],
+      "level": "Experienced staff nurse",
+      "note": "Your experience points most directly to medical ICU nursing, with earlier telemetry work. The patient loads and treatments make your bedside work easy to recognize.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0052858,
+  "latency_ms": 13288
+}

@@ -11,59 +11,61 @@
   "model": "gpt-6.1-terra",
   "reasoning_effort": "medium",
   "severity_check": false,
-  "started_at": "2026-11-06T16:36:02.189Z",
+  "started_at": "2026-11-06T18:15:53.036Z",
   "calls": [
     {
       "kind": "report",
       "usage": {
-        "prompt_tokens": 4908,
-        "completion_tokens": 687,
-        "total_tokens": 5595,
-        "cached_prompt_tokens": 3792,
+        "prompt_tokens": 5801,
+        "completion_tokens": 869,
+        "total_tokens": 6670,
+        "cached_prompt_tokens": 4685,
         "cache_write_prompt_tokens": 1113,
-        "reasoning_tokens": 199
+        "reasoning_tokens": 276
       },
-      "cost_usd": 0.00501885,
+      "cost_usd": 0.0059735,
       "model": "gpt-6.1-terra",
-      "latency_ms": 11879
+      "latency_ms": 11299
     }
   ],
-  "resume_prompt_sha256": "70e795a1e91877ad12f5394154dccd644b9f9d298e123ca182963a0e3e089350",
+  "resume_prompt_sha256": "0a19c3ee70395ec8fb0584d4bea1b93da77aeca37469b4d47211bc8568544f0c",
   "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
   "model_output": {
     "contract_version": "v3",
-    "score": 88,
+    "score": 89,
     "lifted_by_employer": false,
-    "verdict": "Army maintenance and logistics leadership with measurable results, aimed at a civilian supervisor role.",
+    "verdict": "An Army logistics and maintenance leader whose results make the move to operations supervision easy to follow.",
     "write_up": [
-      "A recruiter can see the move you're making: from Army maintenance and logistics leadership to a supply chain or operations supervisor role. The team, equipment and battalion responsibilities are concrete. The main question is how some of the military work translates to a civilian shop.",
-      "The vehicle readiness line is the model: it gives the starting rate, the finish and the two changes you made. The earlier mechanic role could say a little more about what you taught the junior mechanics."
+      "You make a strong case for operations supervision! Your Army roles show a progression from mechanic to platoon sergeant, with responsibility for people, equipment, maintenance and field logistics. The results give a recruiter a clear reason to keep reading.",
+      "The vehicle readiness line is your model: it shows the rate before and after, the time it took and the changes you made. Your education is clearly marked as in progress, and your supervisor goal is easy to find.",
+      "Let's add a little more detail to the field exercise line so a civilian recruiter can see what logistics support involved. For operations supervisor roles, your resume isn't likely to be the thing holding you back; the fit with each job and how competitive it is will matter too."
     ],
     "cards": [
       {
-        "kind": "keep",
-        "where": "Platoon Sergeant, vehicle readiness",
-        "line": "- Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
-        "cannot_tell": "Keep this as a model. You name the operational problem and show what you did about it, without making a recruiter guess which work was yours.",
-        "example": "",
-        "question": ""
+        "kind": "line",
+        "where": "Platoon Sergeant, line 3",
+        "line": "- Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises",
+        "cannot_tell": "The battalion and exercise lengths show how much was involved, but a recruiter can't tell what support you provided. Naming the work will help translate it for an operations role.",
+        "example": "Planned and executed [type of logistics support] for a 600-soldier battalion during two month-long field exercises",
+        "question": "What logistics support did you plan and execute for the battalion during those exercises?"
       },
       {
-        "kind": "line",
-        "where": "Wheeled Vehicle Mechanic, line 2",
-        "line": "- Trained 9 junior mechanics",
-        "cannot_tell": "A recruiter can see how many mechanics you trained, but not what you taught them. The subject would show what skills you passed on.",
-        "example": "Trained 9 junior mechanics in [maintenance tasks]",
-        "question": "What did you train the junior mechanics to do?"
+        "kind": "keep",
+        "where": "Platoon Sergeant, line 4",
+        "line": "- Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "cannot_tell": "Keep this one. It connects a maintenance problem to the parts ordering and scheduling work you did, then shows the change in terms a recruiter can understand.",
+        "example": "",
+        "question": ""
       }
     ],
     "fit": {
       "roles": [
+        "operations supervisor",
         "Platoon Sergeant (E-7), Forward Support Company",
         "Maintenance Section Sergeant (E-6)"
       ],
       "level": "Experienced supervisor",
-      "note": "Your experience points toward maintenance, logistics and operations supervision. The resume names a civilian direction and gives a recruiter concrete team and equipment responsibilities to connect to it.",
+      "note": "Your experience points toward operations supervision, particularly work involving maintenance, inventory and teams. Your in-progress supply chain degree adds to that direction without overstating a completed credential.",
       "posting": {
         "summary": "",
         "missing": []
@@ -72,38 +74,40 @@
   },
   "validated_report": {
     "contract_version": "v3",
-    "score": 88,
+    "score": 89,
     "lifted_by_employer": false,
-    "verdict": "Army maintenance and logistics leadership with measurable results, aimed at a civilian supervisor role.",
+    "verdict": "An Army logistics and maintenance leader whose results make the move to operations supervision easy to follow.",
     "write_up": [
-      "A recruiter can see the move you're making: from Army maintenance and logistics leadership to a supply chain or operations supervisor role. The team, equipment and battalion responsibilities are concrete. The main question is how some of the military work translates to a civilian shop.",
-      "The vehicle readiness line is the model: it gives the starting rate, the finish and the two changes you made. The earlier mechanic role could say a little more about what you taught the junior mechanics."
+      "You make a strong case for operations supervision! Your Army roles show a progression from mechanic to platoon sergeant, with responsibility for people, equipment, maintenance and field logistics. The results give a recruiter a clear reason to keep reading.",
+      "The vehicle readiness line is your model: it shows the rate before and after, the time it took and the changes you made. Your education is clearly marked as in progress, and your supervisor goal is easy to find.",
+      "Let's add a little more detail to the field exercise line so a civilian recruiter can see what logistics support involved. For operations supervisor roles, your resume isn't likely to be the thing holding you back; the fit with each job and how competitive it is will matter too."
     ],
     "cards": [
       {
-        "kind": "keep",
-        "where": "Platoon Sergeant, vehicle readiness",
-        "line": "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
-        "cannot_tell": "Keep this as a model. You name the operational problem and show what you did about it, without making a recruiter guess which work was yours.",
-        "example": "",
-        "question": ""
+        "kind": "line",
+        "where": "Platoon Sergeant, line 3",
+        "line": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises",
+        "cannot_tell": "The battalion and exercise lengths show how much was involved, but a recruiter can't tell what support you provided. Naming the work will help translate it for an operations role.",
+        "example": "Planned and executed [type of logistics support] for a 600-soldier battalion during two month-long field exercises",
+        "question": "What logistics support did you plan and execute for the battalion during those exercises?"
       },
       {
-        "kind": "line",
-        "where": "Wheeled Vehicle Mechanic, line 2",
-        "line": "Trained 9 junior mechanics",
-        "cannot_tell": "A recruiter can see how many mechanics you trained, but not what you taught them. The subject would show what skills you passed on.",
-        "example": "Trained 9 junior mechanics in [maintenance tasks]",
-        "question": "What did you train the junior mechanics to do?"
+        "kind": "keep",
+        "where": "Platoon Sergeant, line 4",
+        "line": "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "cannot_tell": "Keep this one. It connects a maintenance problem to the parts ordering and scheduling work you did, then shows the change in terms a recruiter can understand.",
+        "example": "",
+        "question": ""
       }
     ],
     "fit": {
       "roles": [
+        "operations supervisor",
         "Platoon Sergeant (E-7), Forward Support Company",
         "Maintenance Section Sergeant (E-6)"
       ],
       "level": "Experienced supervisor",
-      "note": "Your experience points toward maintenance, logistics and operations supervision. The resume names a civilian direction and gives a recruiter concrete team and equipment responsibilities to connect to it.",
+      "note": "Your experience points toward operations supervision, particularly work involving maintenance, inventory and teams. Your in-progress supply chain degree adds to that direction without overstating a completed credential.",
       "posting": {
         "summary": "",
         "missing": []
@@ -113,42 +117,44 @@
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 88
+    "content_score": 89
   },
   "shipped_report": {
     "contract_version": "v3",
-    "score": 88,
+    "score": 89,
     "lifted_by_employer": false,
-    "verdict": "Army maintenance and logistics leadership with measurable results, aimed at a civilian supervisor role.",
+    "verdict": "An Army logistics and maintenance leader whose results make the move to operations supervision easy to follow.",
     "write_up": [
-      "A recruiter can see the move you're making: from Army maintenance and logistics leadership to a supply chain or operations supervisor role. The team, equipment and battalion responsibilities are concrete. The main question is how some of the military work translates to a civilian shop.",
-      "The vehicle readiness line is the model: it gives the starting rate, the finish and the two changes you made. The earlier mechanic role could say a little more about what you taught the junior mechanics."
+      "You make a strong case for operations supervision! Your Army roles show a progression from mechanic to platoon sergeant, with responsibility for people, equipment, maintenance and field logistics. The results give a recruiter a clear reason to keep reading.",
+      "The vehicle readiness line is your model: it shows the rate before and after, the time it took and the changes you made. Your education is clearly marked as in progress, and your supervisor goal is easy to find.",
+      "Let's add a little more detail to the field exercise line so a civilian recruiter can see what logistics support involved. For operations supervisor roles, your resume isn't likely to be the thing holding you back; the fit with each job and how competitive it is will matter too."
     ],
     "cards": [
       {
-        "kind": "keep",
-        "where": "Platoon Sergeant, vehicle readiness",
-        "line": "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
-        "cannot_tell": "Keep this as a model. You name the operational problem and show what you did about it, without making a recruiter guess which work was yours.",
-        "example": "",
-        "question": ""
+        "kind": "line",
+        "where": "Platoon Sergeant, line 3",
+        "line": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises",
+        "cannot_tell": "The battalion and exercise lengths show how much was involved, but a recruiter can't tell what support you provided. Naming the work will help translate it for an operations role.",
+        "example": "Planned and executed [type of logistics support] for a 600-soldier battalion during two month-long field exercises",
+        "question": "What logistics support did you plan and execute for the battalion during those exercises?"
       },
       {
-        "kind": "line",
-        "where": "Wheeled Vehicle Mechanic, line 2",
-        "line": "Trained 9 junior mechanics",
-        "cannot_tell": "A recruiter can see how many mechanics you trained, but not what you taught them. The subject would show what skills you passed on.",
-        "example": "Trained 9 junior mechanics in [maintenance tasks]",
-        "question": "What did you train the junior mechanics to do?"
+        "kind": "keep",
+        "where": "Platoon Sergeant, line 4",
+        "line": "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "cannot_tell": "Keep this one. It connects a maintenance problem to the parts ordering and scheduling work you did, then shows the change in terms a recruiter can understand.",
+        "example": "",
+        "question": ""
       }
     ],
     "fit": {
       "roles": [
+        "operations supervisor",
         "Platoon Sergeant (E-7), Forward Support Company",
         "Maintenance Section Sergeant (E-6)"
       ],
       "level": "Experienced supervisor",
-      "note": "Your experience points toward maintenance, logistics and operations supervision. The resume names a civilian direction and gives a recruiter concrete team and equipment responsibilities to connect to it.",
+      "note": "Your experience points toward operations supervision, particularly work involving maintenance, inventory and teams. Your in-progress supply chain degree adds to that direction without overstating a completed credential.",
       "posting": {
         "summary": "",
         "missing": []
@@ -158,36 +164,36 @@
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 88
+    "content_score": 89
   },
   "presentation": {
-    "score": 88,
+    "score": 89,
     "band": "Clear and specific",
-    "model_score": 88,
+    "model_score": 89,
     "lifted_by_employer": false,
-    "verdict": "Army maintenance and logistics leadership with measurable results, aimed at a civilian supervisor role.",
-    "write_up_paragraphs": 2,
-    "write_up_words": 81,
+    "verdict": "An Army logistics and maintenance leader whose results make the move to operations supervision easy to follow.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 127,
     "cards": [
       {
+        "kind": "line",
+        "where": "Platoon Sergeant, line 3",
+        "line": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises",
+        "blanks": 1,
+        "question": "What logistics support did you plan and execute for the battalion during those exercises?"
+      },
+      {
         "kind": "keep",
-        "where": "Platoon Sergeant, vehicle readiness",
+        "where": "Platoon Sergeant, line 4",
         "line": "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
         "blanks": 0,
         "question": ""
-      },
-      {
-        "kind": "line",
-        "where": "Wheeled Vehicle Mechanic, line 2",
-        "line": "Trained 9 junior mechanics",
-        "blanks": 1,
-        "question": "What did you train the junior mechanics to do?"
       }
     ],
     "card_count": 2,
     "kinds": {
-      "keep": 1,
-      "line": 1
+      "line": 1,
+      "keep": 1
     },
     "structural_from_model": 0,
     "severity_added": [],
@@ -195,11 +201,12 @@
     "severity_outcome": "off",
     "fit": {
       "roles": [
+        "operations supervisor",
         "Platoon Sergeant (E-7), Forward Support Company",
         "Maintenance Section Sergeant (E-6)"
       ],
       "level": "Experienced supervisor",
-      "note": "Your experience points toward maintenance, logistics and operations supervision. The resume names a civilian direction and gives a recruiter concrete team and equipment responsibilities to connect to it.",
+      "note": "Your experience points toward operations supervision, particularly work involving maintenance, inventory and teams. Your in-progress supply chain degree adds to that direction without overstating a completed credential.",
       "posting": {
         "summary": "",
         "missing": []
@@ -207,6 +214,6 @@
     }
   },
   "outcome": "report",
-  "cost_usd": 0.00501885,
-  "latency_ms": 11880
+  "cost_usd": 0.0059735,
+  "latency_ms": 11305
 }

@@ -11,58 +11,67 @@
   "model": "gpt-6.1-terra",
   "reasoning_effort": "medium",
   "severity_check": false,
-  "started_at": "2026-11-06T16:36:25.711Z",
+  "started_at": "2026-11-06T18:16:05.453Z",
   "calls": [
     {
       "kind": "report",
       "usage": {
-        "prompt_tokens": 4551,
-        "completion_tokens": 1150,
-        "total_tokens": 5701,
-        "cached_prompt_tokens": 3792,
+        "prompt_tokens": 5444,
+        "completion_tokens": 1302,
+        "total_tokens": 6746,
+        "cached_prompt_tokens": 4685,
         "cache_write_prompt_tokens": 756,
-        "reasoning_tokens": 616
+        "reasoning_tokens": 536
       },
-      "cost_usd": 0.0068876,
+      "cost_usd": 0.00769225,
       "model": "gpt-6.1-terra",
-      "latency_ms": 20015
+      "latency_ms": 16603
     }
   ],
-  "resume_prompt_sha256": "70e795a1e91877ad12f5394154dccd644b9f9d298e123ca182963a0e3e089350",
+  "resume_prompt_sha256": "0a19c3ee70395ec8fb0584d4bea1b93da77aeca37469b4d47211bc8568544f0c",
   "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
   "model_output": {
     "contract_version": "v3",
-    "score": 88,
+    "score": 82,
     "lifted_by_employer": false,
-    "verdict": "An experienced office manager with billing, supervision and software work a recruiter can picture.",
+    "verdict": "An experienced office manager whose work is specific, but packed into paragraphs.",
     "write_up": [
-      "You come across as an office manager who handles both the daily running of a law office and its financial administration. The work is substantial, though the long role paragraphs make a recruiter pick through it.",
-      "The QuickBooks line is the model: it names client billing, roughly 90 invoices a month and the monthly trust account reconciliation. Break the experience paragraphs into bullets so those details don't get buried."
+      "Your resume tells a consistent story: you moved from supporting claims adjusters to coordinating a dental office, then managing the front office at Harrod and Blake. A recruiter can see the bookkeeping, staff supervision and deadline management that make you a credible office manager.",
+      "The QuickBooks sentence is a strong model because it names both the work and its regular volume. The experience section is in long paragraphs, though, so a recruiter has to search for details like the trust reconciliation and the move away from paper files.",
+      "Let's turn the recent role into bullets, starting with bookkeeping and staff supervision. Then add what you did to bring in the new practice management software and what working the dental claims report involved."
     ],
     "cards": [
       {
         "kind": "structure",
         "where": "Experience",
-        "line": "Experience is presented in paragraphs.",
-        "cannot_tell": "Your billing, supervision and software work sit inside one long paragraph. Separate bullets would let a recruiter find each responsibility on a quick pass.",
+        "line": "The experience section uses paragraphs rather than bullets.",
+        "cannot_tell": "Your strongest responsibilities are there, but they're easy to miss inside long paragraphs. Give the bookkeeping, staff supervision and software work separate bullets.",
         "example": "",
-        "question": "Which responsibilities would you group into separate bullets under each role?"
+        "question": "Which responsibilities in each role would you put in their own bullets?"
       },
       {
         "kind": "keep",
         "where": "Office Manager, bookkeeping",
         "line": "I do the bookkeeping in QuickBooks, including client billing of roughly 90 invoices a month and the monthly trust account reconciliation.",
-        "cannot_tell": "Keep this as a model. It puts the tool, the recurring work and the invoice volume together without making a reader guess.",
+        "cannot_tell": "Keep this as a model. It tells a recruiter which system you use, what you handle in it and how much billing comes through.",
         "example": "",
         "question": ""
       },
       {
         "kind": "line",
-        "where": "Office Coordinator, claims",
+        "where": "Office Manager, software and staff",
+        "line": "I hired and supervise two receptionists and I onboarded the firm's new practice management software in 2022, which replaced paper files for all new matters.",
+        "cannot_tell": "The switch away from paper files is worth keeping. What did you do to onboard the software? Consider giving the receptionists and the software separate bullets.",
+        "example": "Onboarded the firm's new practice management software in 2022 by [implementation work], replacing paper files for all new matters.",
+        "question": "What work did you handle to onboard the new software?"
+      },
+      {
+        "kind": "line",
+        "where": "Office Coordinator, payments and claims",
         "line": "Posted payments and worked the insurance claims aging report each week.",
-        "cannot_tell": "'Worked the report' leaves your part open. What did you do with the aging claims each week?",
-        "example": "Posted payments and worked the insurance claims aging report each week by [actions taken].",
-        "question": "What actions did you take on the claims in the aging report?"
+        "cannot_tell": "A recruiter can see that you posted payments, but not what working the claims aging report involved. That part could show more of your insurance work.",
+        "example": "Posted payments and worked the insurance claims aging report each week by [work done on claims].",
+        "question": "What did you do with the claims on the aging report each week?"
       }
     ],
     "fit": {
@@ -71,7 +80,7 @@
         "Office Coordinator"
       ],
       "level": "Experienced office manager",
-      "note": "Your recent work points toward office management in a professional services setting. The earlier dental office work also shows patient scheduling and insurance administration.",
+      "note": "Your experience points most directly to office management and coordination roles. The law office work shows bookkeeping, staff supervision and deadline management, while the dental role adds patient scheduling and insurance work.",
       "posting": {
         "summary": "",
         "missing": []
@@ -80,37 +89,38 @@
   },
   "validated_report": {
     "contract_version": "v3",
-    "score": 88,
+    "score": 82,
     "lifted_by_employer": false,
-    "verdict": "An experienced office manager with billing, supervision and software work a recruiter can picture.",
+    "verdict": "An experienced office manager whose work is specific, but packed into paragraphs.",
     "write_up": [
-      "You come across as an office manager who handles both the daily running of a law office and its financial administration. The work is substantial, though the long role paragraphs make a recruiter pick through it.",
-      "The QuickBooks line is the model: it names client billing, roughly 90 invoices a month and the monthly trust account reconciliation. Break the experience paragraphs into bullets so those details don't get buried."
+      "Your resume tells a consistent story: you moved from supporting claims adjusters to coordinating a dental office, then managing the front office at Harrod and Blake. A recruiter can see the bookkeeping, staff supervision and deadline management that make you a credible office manager.",
+      "The QuickBooks sentence is a strong model because it names both the work and its regular volume. The experience section is in long paragraphs, though, so a recruiter has to search for details like the trust reconciliation and the move away from paper files.",
+      "Let's turn the recent role into bullets, starting with bookkeeping and staff supervision. Then add what you did to bring in the new practice management software and what working the dental claims report involved."
     ],
     "cards": [
       {
         "kind": "structure",
         "where": "Experience",
-        "line": "Experience is presented in paragraphs.",
-        "cannot_tell": "Your billing, supervision and software work sit inside one long paragraph. Separate bullets would let a recruiter find each responsibility on a quick pass.",
+        "line": "The experience section uses paragraphs rather than bullets.",
+        "cannot_tell": "Your strongest responsibilities are there, but they're easy to miss inside long paragraphs. Give the bookkeeping, staff supervision and software work separate bullets.",
         "example": "",
-        "question": "Which responsibilities would you group into separate bullets under each role?"
+        "question": "Which responsibilities in each role would you put in their own bullets?"
       },
       {
         "kind": "keep",
         "where": "Office Manager, bookkeeping",
         "line": "Office Manager, Harrod and Blake Law Office, Louisville, KY, May 2018 to present. I run the front office for a six-attorney firm. I handle scheduling for the attorneys, manage the firm's calendar of court dates and filing deadlines, order supplies, and handle vendor contracts for the copier, phones, and cleaning. I do the bookkeeping in QuickBooks, including client billing of roughly 90 invoices a month and the monthly trust account reconciliation. I hired and supervise two receptionists and I onboarded the firm's new practice management software in 2022, which replaced paper files for all new matters.",
-        "cannot_tell": "Keep this as a model. It puts the tool, the recurring work and the invoice volume together without making a reader guess.",
+        "cannot_tell": "Keep this as a model. It tells a recruiter which system you use, what you handle in it and how much billing comes through.",
         "example": "",
         "question": ""
       },
       {
         "kind": "line",
-        "where": "Office Coordinator, claims",
+        "where": "Office Coordinator, payments and claims",
         "line": "Office Coordinator, Riverside Family Dentistry, Louisville, KY, August 2014 to April 2018. Checked in patients, verified insurance, and scheduled appointments for a two-dentist practice that saw about 40 patients a day. Posted payments and worked the insurance claims aging report each week. Trained three new front desk staff over four years.",
-        "cannot_tell": "'Worked the report' leaves your part open. What did you do with the aging claims each week?",
-        "example": "Posted payments and worked the insurance claims aging report each week by [actions taken].",
-        "question": "What actions did you take on the claims in the aging report?"
+        "cannot_tell": "A recruiter can see that you posted payments, but not what working the claims aging report involved. That part could show more of your insurance work.",
+        "example": "Posted payments and worked the insurance claims aging report each week by [work done on claims].",
+        "question": "What did you do with the claims on the aging report each week?"
       }
     ],
     "fit": {
@@ -119,51 +129,52 @@
         "Office Coordinator"
       ],
       "level": "Experienced office manager",
-      "note": "Your recent work points toward office management in a professional services setting. The earlier dental office work also shows patient scheduling and insurance administration.",
+      "note": "Your experience points most directly to office management and coordination roles. The law office work shows bookkeeping, staff supervision and deadline management, while the dental role adds patient scheduling and insurance work.",
       "posting": {
         "summary": "",
         "missing": []
       }
     },
-    "score_label": "Clear and specific",
+    "score_label": "Mostly clear",
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 88
+    "content_score": 82
   },
   "shipped_report": {
     "contract_version": "v3",
-    "score": 88,
+    "score": 82,
     "lifted_by_employer": false,
-    "verdict": "An experienced office manager with billing, supervision and software work a recruiter can picture.",
+    "verdict": "An experienced office manager whose work is specific, but packed into paragraphs.",
     "write_up": [
-      "You come across as an office manager who handles both the daily running of a law office and its financial administration. The work is substantial, though the long role paragraphs make a recruiter pick through it.",
-      "The QuickBooks line is the model: it names client billing, roughly 90 invoices a month and the monthly trust account reconciliation. Break the experience paragraphs into bullets so those details don't get buried."
+      "Your resume tells a consistent story: you moved from supporting claims adjusters to coordinating a dental office, then managing the front office at Harrod and Blake. A recruiter can see the bookkeeping, staff supervision and deadline management that make you a credible office manager.",
+      "The QuickBooks sentence is a strong model because it names both the work and its regular volume. The experience section is in long paragraphs, though, so a recruiter has to search for details like the trust reconciliation and the move away from paper files.",
+      "Let's turn the recent role into bullets, starting with bookkeeping and staff supervision. Then add what you did to bring in the new practice management software and what working the dental claims report involved."
     ],
     "cards": [
       {
         "kind": "structure",
         "where": "Experience",
-        "line": "Experience is presented in paragraphs.",
-        "cannot_tell": "Your billing, supervision and software work sit inside one long paragraph. Separate bullets would let a recruiter find each responsibility on a quick pass.",
+        "line": "The experience section uses paragraphs rather than bullets.",
+        "cannot_tell": "Your strongest responsibilities are there, but they're easy to miss inside long paragraphs. Give the bookkeeping, staff supervision and software work separate bullets.",
         "example": "",
-        "question": "Which responsibilities would you group into separate bullets under each role?"
+        "question": "Which responsibilities in each role would you put in their own bullets?"
       },
       {
         "kind": "keep",
         "where": "Office Manager, bookkeeping",
         "line": "Office Manager, Harrod and Blake Law Office, Louisville, KY, May 2018 to present. I run the front office for a six-attorney firm. I handle scheduling for the attorneys, manage the firm's calendar of court dates and filing deadlines, order supplies, and handle vendor contracts for the copier, phones, and cleaning. I do the bookkeeping in QuickBooks, including client billing of roughly 90 invoices a month and the monthly trust account reconciliation. I hired and supervise two receptionists and I onboarded the firm's new practice management software in 2022, which replaced paper files for all new matters.",
-        "cannot_tell": "Keep this as a model. It puts the tool, the recurring work and the invoice volume together without making a reader guess.",
+        "cannot_tell": "Keep this as a model. It tells a recruiter which system you use, what you handle in it and how much billing comes through.",
         "example": "",
         "question": ""
       },
       {
         "kind": "line",
-        "where": "Office Coordinator, claims",
+        "where": "Office Coordinator, payments and claims",
         "line": "Office Coordinator, Riverside Family Dentistry, Louisville, KY, August 2014 to April 2018. Checked in patients, verified insurance, and scheduled appointments for a two-dentist practice that saw about 40 patients a day. Posted payments and worked the insurance claims aging report each week. Trained three new front desk staff over four years.",
-        "cannot_tell": "'Worked the report' leaves your part open. What did you do with the aging claims each week?",
-        "example": "Posted payments and worked the insurance claims aging report each week by [actions taken].",
-        "question": "What actions did you take on the claims in the aging report?"
+        "cannot_tell": "A recruiter can see that you posted payments, but not what working the claims aging report involved. That part could show more of your insurance work.",
+        "example": "Posted payments and worked the insurance claims aging report each week by [work done on claims].",
+        "question": "What did you do with the claims on the aging report each week?"
       }
     ],
     "fit": {
@@ -172,33 +183,33 @@
         "Office Coordinator"
       ],
       "level": "Experienced office manager",
-      "note": "Your recent work points toward office management in a professional services setting. The earlier dental office work also shows patient scheduling and insurance administration.",
+      "note": "Your experience points most directly to office management and coordination roles. The law office work shows bookkeeping, staff supervision and deadline management, while the dental role adds patient scheduling and insurance work.",
       "posting": {
         "summary": "",
         "missing": []
       }
     },
-    "score_label": "Clear and specific",
+    "score_label": "Mostly clear",
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 88
+    "content_score": 82
   },
   "presentation": {
-    "score": 88,
-    "band": "Clear and specific",
-    "model_score": 88,
+    "score": 82,
+    "band": "Mostly clear",
+    "model_score": 82,
     "lifted_by_employer": false,
-    "verdict": "An experienced office manager with billing, supervision and software work a recruiter can picture.",
-    "write_up_paragraphs": 2,
-    "write_up_words": 69,
+    "verdict": "An experienced office manager whose work is specific, but packed into paragraphs.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 122,
     "cards": [
       {
         "kind": "structure",
         "where": "Experience",
-        "line": "Experience is presented in paragraphs.",
+        "line": "The experience section uses paragraphs rather than bullets.",
         "blanks": 0,
-        "question": "Which responsibilities would you group into separate bullets under each role?"
+        "question": "Which responsibilities in each role would you put in their own bullets?"
       },
       {
         "kind": "keep",
@@ -209,10 +220,10 @@
       },
       {
         "kind": "line",
-        "where": "Office Coordinator, claims",
+        "where": "Office Coordinator, payments and claims",
         "line": "Office Coordinator, Riverside Family Dentistry, Louisville, KY, August 2014 to April 2018. Checked in patients, verified insurance, and scheduled appointments for a two-dentist practice that saw about 40 patients a day. Posted payments and worked the insurance claims aging report each week. Trained three new front desk staff over four years.",
         "blanks": 1,
-        "question": "What actions did you take on the claims in the aging report?"
+        "question": "What did you do with the claims on the aging report each week?"
       }
     ],
     "card_count": 3,
@@ -231,7 +242,7 @@
         "Office Coordinator"
       ],
       "level": "Experienced office manager",
-      "note": "Your recent work points toward office management in a professional services setting. The earlier dental office work also shows patient scheduling and insurance administration.",
+      "note": "Your experience points most directly to office management and coordination roles. The law office work shows bookkeeping, staff supervision and deadline management, while the dental role adds patient scheduling and insurance work.",
       "posting": {
         "summary": "",
         "missing": []
@@ -239,6 +250,6 @@
     }
   },
   "outcome": "report",
-  "cost_usd": 0.0068876,
-  "latency_ms": 20021
+  "cost_usd": 0.00769225,
+  "latency_ms": 16611
 }

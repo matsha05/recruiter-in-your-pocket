@@ -1,0 +1,29 @@
+# b12_coo_executive_two_page, run 1
+Resume: ../2026-11-live-judgment/resumes/b_coo_executive.txt (463 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
+Outcome: report; cost $0.0062; 13.6s
+Case note: Executive, two pages.
+
+## Clear and specific (score 91; model wrote 91)
+## Verdict
+A healthcare operations executive with practice growth, operating results, and board-level responsibility on the page.
+
+## Write-up
+A recruiter can see the progression to COO and what you run now: 140 practices, 2,600 employees, and a $410M P&L. The growth and margin figures give the scale-up substance without making the headline do all the work.
+
+The integration playbook line is a model: it names the change you made and puts the time saved right beside it. The earlier Epic go-live is worth one more detail about your work on the rollout.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Chief Operating Officer, integration
+   line: "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook"
+   can't tell: Keep this. It gives a recruiter the before and after, then names the playbook that got you there.
+2. [line] Vice President, Clinic Operations, Epic
+   line: "Led the Epic go-live across the clinics in 2013"
+   can't tell: You led the go-live, but a recruiter can't see which parts of the rollout you handled. One detail would make that work more tangible.
+   example: Led the Epic go-live across the clinics in 2013, including [key rollout work]
+   question: What key rollout work did you lead for the Epic go-live?
+
+## Fit
+Roles: ["Chief Operating Officer","Senior Vice President, Operations","Vice President, Clinic Operations"]
+Level: Executive
+Note: Your experience points toward senior healthcare operations roles, particularly multi-site clinic and dental services leadership. The current role combines acquisitions, integration, workforce retention, and P&L ownership.

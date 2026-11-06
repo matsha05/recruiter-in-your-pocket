@@ -1,0 +1,180 @@
+{
+  "case_id": "b26_construction_pm_strong",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_construction_pm_strong_1.txt",
+  "resume_sha256": "548c7db64c756b5fab695853a27156e8aa67858a31cab50680d65e1ef14cc181",
+  "resume_words": 136,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T17:57:13.288Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5129,
+        "completion_tokens": 535,
+        "total_tokens": 5664,
+        "cached_prompt_tokens": 4481,
+        "cache_write_prompt_tokens": 645,
+        "reasoning_tokens": 172
+      },
+      "cost_usd": 0.0037083,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 9583
+    }
+  ],
+  "resume_prompt_sha256": "f4ff18ca80174dffdce77796c99b298e4ced5fdab817d0ec307d0b591839e910",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 92,
+    "lifted_by_employer": false,
+    "verdict": "A construction project manager with project values, trade counts, and results a recruiter can quickly grasp.",
+    "write_up": [
+      "A recruiter sees a project manager running commercial construction jobs with clear figures for project value, trade count, schedule, and change orders. The $14M grocery store line is especially strong: it names the build, its value, and when you delivered it against schedule.",
+      "Your resume isn't likely to be the reason you don't hear back. How competitive the job is and whether you have a referral can matter too. The rest of the resume backs up your headline, and Experience is right where it belongs, above Education."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Project Manager, line 2",
+        "line": "- Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a particular project to remember and shows what you accomplished on it.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Project Manager",
+        "Assistant Project Manager"
+      ],
+      "level": "Experienced project manager",
+      "note": "Your experience points toward construction project management, particularly tenant improvements and retail builds. The earlier assistant project manager work shows the progression into your current role.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 92,
+    "lifted_by_employer": false,
+    "verdict": "A construction project manager with project values, trade counts, and results a recruiter can quickly grasp.",
+    "write_up": [
+      "A recruiter sees a project manager running commercial construction jobs with clear figures for project value, trade count, schedule, and change orders. The $14M grocery store line is especially strong: it names the build, its value, and when you delivered it against schedule.",
+      "Your resume isn't likely to be the reason you don't hear back. How competitive the job is and whether you have a referral can matter too. The rest of the resume backs up your headline, and Experience is right where it belongs, above Education."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Project Manager, line 2",
+        "line": "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a particular project to remember and shows what you accomplished on it.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Project Manager",
+        "Assistant Project Manager"
+      ],
+      "level": "Experienced project manager",
+      "note": "Your experience points toward construction project management, particularly tenant improvements and retail builds. The earlier assistant project manager work shows the progression into your current role.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 92
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 92,
+    "lifted_by_employer": false,
+    "verdict": "A construction project manager with project values, trade counts, and results a recruiter can quickly grasp.",
+    "write_up": [
+      "A recruiter sees a project manager running commercial construction jobs with clear figures for project value, trade count, schedule, and change orders. The $14M grocery store line is especially strong: it names the build, its value, and when you delivered it against schedule.",
+      "Your resume isn't likely to be the reason you don't hear back. How competitive the job is and whether you have a referral can matter too. The rest of the resume backs up your headline, and Experience is right where it belongs, above Education."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Project Manager, line 2",
+        "line": "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a particular project to remember and shows what you accomplished on it.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Project Manager",
+        "Assistant Project Manager"
+      ],
+      "level": "Experienced project manager",
+      "note": "Your experience points toward construction project management, particularly tenant improvements and retail builds. The earlier assistant project manager work shows the progression into your current role.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 92
+  },
+  "presentation": {
+    "score": 92,
+    "band": "Clear and specific",
+    "model_score": 92,
+    "lifted_by_employer": false,
+    "verdict": "A construction project manager with project values, trade counts, and results a recruiter can quickly grasp.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 87,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Project Manager, line 2",
+        "line": "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 1,
+    "kinds": {
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Project Manager",
+        "Assistant Project Manager"
+      ],
+      "level": "Experienced project manager",
+      "note": "Your experience points toward construction project management, particularly tenant improvements and retail builds. The earlier assistant project manager work shows the progression into your current role.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0037083,
+  "latency_ms": 9585
+}

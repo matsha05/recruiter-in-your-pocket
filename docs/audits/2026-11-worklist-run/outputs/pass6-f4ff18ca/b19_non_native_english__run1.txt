@@ -1,0 +1,38 @@
+# b19_non_native_english, run 1
+Resume: ../2026-11-live-judgment/resumes/b_non_native_english.txt (237 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt f4ff18ca; severity check off
+Outcome: report; cost $0.0065; 14.7s
+
+## Mostly clear (score 81; model wrote 81)
+## Verdict
+An experienced accountant with strong invoice and closing work, but a few responsibilities need more detail.
+
+## Write-up
+A recruiter sees accounting experience in Vietnam and the US, with a clear target in staff accounting or accounts payable. The current role names the invoice volume and QuickBooks, though your part in month-end closing is less clear.
+
+The strongest line is the close reduction from 12 days to 7 days: it names the change and the checklist and template you made. Use that as a model when describing your part in the close and audit, then give the resume a quick language edit.
+
+## Cards (4; {"line":3,"keep":1}); severity off; added []
+1. [line] Accounts Payable Clerk, line 4
+   line: "Help the controller for month end closing"
+   can't tell: The controller gets help, but a recruiter can't tell which closing tasks are yours.
+   example: Help the controller with [your month-end closing tasks]
+   question: Which month-end closing tasks do you handle for the controller?
+2. [line] Senior Accountant, line 2
+   line: "Lead team of 3 junior accountants"
+   can't tell: The team has 3 junior accountants, but what work did they handle under your leadership?
+   example: Lead team of 3 junior accountants who [team responsibilities]
+   question: What work did the junior accountants handle under your leadership?
+3. [line] Senior Accountant, line 3
+   line: "Work with external auditor for year end audit, no major finding in 5 years"
+   can't tell: The audit history is useful, but working with the external auditor could mean several things. Name the part you handled.
+   example: Work with external auditor on [your audit responsibilities] for year end audit; no major finding in 5 years
+   question: What did you handle with the external auditor during the year-end audit?
+4. [keep] Senior Accountant, line 4
+   line: "Reduce the month end closing from 12 days to 7 days by make new checklist and template"
+   can't tell: Keep this as your model. A recruiter can see both what you made and how the close changed.
+
+## Fit
+Roles: ["Staff Accountant","Accounts Payable Specialist"]
+Level: Experienced accountant
+Note: Your invoice processing and reconciliation work point directly toward accounts payable. Your general ledger and financial statement work also support a staff accountant search.

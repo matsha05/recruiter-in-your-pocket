@@ -1,0 +1,334 @@
+{
+  "case_id": "b10_it_support_recent_grad",
+  "batch": "breadth",
+  "run": 1,
+  "note": "First job.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_it_support_recent_grad_1.txt",
+  "resume_sha256": "6aac1aade9d7a63c473e324e9d4010a6421ea06868ff0b898b625a8534cf26dc",
+  "resume_words": 119,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T17:55:35.609Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5064,
+        "completion_tokens": 1648,
+        "total_tokens": 6712,
+        "cached_prompt_tokens": 4481,
+        "cache_write_prompt_tokens": 580,
+        "reasoning_tokens": 739
+      },
+      "cost_usd": 0.00919205,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 24298
+    }
+  ],
+  "resume_prompt_sha256": "f4ff18ca80174dffdce77796c99b298e4ced5fdab817d0ec307d0b591839e910",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 59,
+    "lifted_by_employer": false,
+    "verdict": "A help desk internship and retail experience, with no dated work after May 2025.",
+    "write_up": [
+      "This is pretty common, and it won't stand out in a pile yet. A recruiter sees school help desk work and customer-facing device experience, but the internship doesn't say how many tickets or laptops you handled. Nothing accounts for the time after May 2025. Let's start with the most recent role.",
+      "The Active Directory line is your best model: it names the task and the tool. Move Experience above Education, then add the missing details to the ticket and laptop lines."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "No work is dated after May 2025.",
+        "cannot_tell": "A recruiter can't tell what you've done since the internship. If you were caregiving, you can name that. A career break can include a course, project, volunteering or travel; freelance or consulting work belongs there if it was real. Use sabbatical only for time you chose for travel, study or rest, and give any work its actual dates.",
+        "example": "May 2025 - Present  [what you did]",
+        "question": "What have you done since May 2025, and when did you do it?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "cannot_tell": "Your retail work and internship give you experience to lead with. Put Experience above Education so a recruiter sees that work first.",
+        "example": "",
+        "question": "Can you move Experience above Education?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 1",
+        "line": "- Answered help desk tickets from teachers and staff",
+        "cannot_tell": "A recruiter can see who sent the tickets, but not what problems you handled or how many came your way.",
+        "example": "Answered [number] help desk tickets [frequency] from teachers and staff about [issues]",
+        "question": "What issues did the tickets cover, and how many did you handle in a typical period?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 2",
+        "line": "- Imaged and set up laptops for classrooms",
+        "cannot_tell": "Classroom laptops are a useful detail. How many did you set up, and what did you use to image them?",
+        "example": "Imaged and set up [number] laptops for classrooms using [tool]",
+        "question": "How many laptops did you image and set up, and what tool did you use?"
+      },
+      {
+        "kind": "keep",
+        "where": "IT Help Desk Intern, line 3",
+        "line": "- Reset passwords and accounts in Active Directory",
+        "cannot_tell": "Keep this as a model. It tells a recruiter what you handled instead of relying on a broad phrase like technical support.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Retail Associate, line 2",
+        "line": "- Set up new devices for customers at the service counter",
+        "cannot_tell": "A recruiter can see where you worked with customers, but not what the device setup involved.",
+        "example": "Set up new devices for customers at the service counter, including [setup tasks]",
+        "question": "What setup tasks did you handle for customers?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "IT Help Desk Intern"
+      ],
+      "level": "Entry-level IT support",
+      "note": "Your internship points toward desktop support, with customer service experience from Peachtree Electronics. The resume names a junior systems role as another goal, but shows less systems work beyond Active Directory.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 59,
+    "lifted_by_employer": false,
+    "verdict": "A help desk internship and retail experience, with no dated work after May 2025.",
+    "write_up": [
+      "This is pretty common, and it won't stand out in a pile yet. A recruiter sees school help desk work and customer-facing device experience, but the internship doesn't say how many tickets or laptops you handled. Nothing accounts for the time after May 2025. Let's start with the most recent role.",
+      "The Active Directory line is your best model: it names the task and the tool. Move Experience above Education, then add the missing details to the ticket and laptop lines."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "No work is dated after May 2025.",
+        "cannot_tell": "A recruiter can't tell what you've done since the internship. If you were caregiving, you can name that. A career break can include a course, project, volunteering or travel; freelance or consulting work belongs there if it was real. Use sabbatical only for time you chose for travel, study or rest, and give any work its actual dates.",
+        "example": "May 2025 - Present [what you did]",
+        "question": "What have you done since May 2025, and when did you do it?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "cannot_tell": "Your retail work and internship give you experience to lead with. Put Experience above Education so a recruiter sees that work first.",
+        "example": "",
+        "question": "Can you move Experience above Education?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 1",
+        "line": "Answered help desk tickets from teachers and staff",
+        "cannot_tell": "A recruiter can see who sent the tickets, but not what problems you handled or how many came your way.",
+        "example": "Answered [number] help desk tickets [frequency] from teachers and staff about [issues]",
+        "question": "What issues did the tickets cover, and how many did you handle in a typical period?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 2",
+        "line": "Imaged and set up laptops for classrooms",
+        "cannot_tell": "Classroom laptops are a useful detail. How many did you set up, and what did you use to image them?",
+        "example": "Imaged and set up [number] laptops for classrooms using [tool]",
+        "question": "How many laptops did you image and set up, and what tool did you use?"
+      },
+      {
+        "kind": "keep",
+        "where": "IT Help Desk Intern, line 3",
+        "line": "Reset passwords and accounts in Active Directory",
+        "cannot_tell": "Keep this as a model. It tells a recruiter what you handled instead of relying on a broad phrase like technical support.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Retail Associate, line 2",
+        "line": "Set up new devices for customers at the service counter",
+        "cannot_tell": "A recruiter can see where you worked with customers, but not what the device setup involved.",
+        "example": "Set up new devices for customers at the service counter, including [setup tasks]",
+        "question": "What setup tasks did you handle for customers?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "IT Help Desk Intern"
+      ],
+      "level": "Entry-level IT support",
+      "note": "Your internship points toward desktop support, with customer service experience from Peachtree Electronics. The resume names a junior systems role as another goal, but shows less systems work beyond Active Directory.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 59
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 59,
+    "lifted_by_employer": false,
+    "verdict": "A help desk internship and retail experience, with no dated work after May 2025.",
+    "write_up": [
+      "This is pretty common, and it won't stand out in a pile yet. A recruiter sees school help desk work and customer-facing device experience, but the internship doesn't say how many tickets or laptops you handled. Nothing accounts for the time after May 2025. Let's start with the most recent role.",
+      "The Active Directory line is your best model: it names the task and the tool. Move Experience above Education, then add the missing details to the ticket and laptop lines."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "No work is dated after May 2025.",
+        "cannot_tell": "A recruiter can't tell what you've done since the internship. If you were caregiving, you can name that. A career break can include a course, project, volunteering or travel; freelance or consulting work belongs there if it was real. Use sabbatical only for time you chose for travel, study or rest, and give any work its actual dates.",
+        "example": "May 2025 - Present [what you did]",
+        "question": "What have you done since May 2025, and when did you do it?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "cannot_tell": "Your retail work and internship give you experience to lead with. Put Experience above Education so a recruiter sees that work first.",
+        "example": "",
+        "question": "Can you move Experience above Education?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 1",
+        "line": "Answered help desk tickets from teachers and staff",
+        "cannot_tell": "A recruiter can see who sent the tickets, but not what problems you handled or how many came your way.",
+        "example": "Answered [number] help desk tickets [frequency] from teachers and staff about [issues]",
+        "question": "What issues did the tickets cover, and how many did you handle in a typical period?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 2",
+        "line": "Imaged and set up laptops for classrooms",
+        "cannot_tell": "Classroom laptops are a useful detail. How many did you set up, and what did you use to image them?",
+        "example": "Imaged and set up [number] laptops for classrooms using [tool]",
+        "question": "How many laptops did you image and set up, and what tool did you use?"
+      },
+      {
+        "kind": "keep",
+        "where": "IT Help Desk Intern, line 3",
+        "line": "Reset passwords and accounts in Active Directory",
+        "cannot_tell": "Keep this as a model. It tells a recruiter what you handled instead of relying on a broad phrase like technical support.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Retail Associate, line 2",
+        "line": "Set up new devices for customers at the service counter",
+        "cannot_tell": "A recruiter can see where you worked with customers, but not what the device setup involved.",
+        "example": "Set up new devices for customers at the service counter, including [setup tasks]",
+        "question": "What setup tasks did you handle for customers?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "IT Help Desk Intern"
+      ],
+      "level": "Entry-level IT support",
+      "note": "Your internship points toward desktop support, with customer service experience from Peachtree Electronics. The resume names a junior systems role as another goal, but shows less systems work beyond Active Directory.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 59
+  },
+  "presentation": {
+    "score": 59,
+    "band": "Needs more context",
+    "model_score": 59,
+    "lifted_by_employer": false,
+    "verdict": "A help desk internship and retail experience, with no dated work after May 2025.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 81,
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "No work is dated after May 2025.",
+        "blanks": 1,
+        "question": "What have you done since May 2025, and when did you do it?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "blanks": 0,
+        "question": "Can you move Experience above Education?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 1",
+        "line": "Answered help desk tickets from teachers and staff",
+        "blanks": 3,
+        "question": "What issues did the tickets cover, and how many did you handle in a typical period?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 2",
+        "line": "Imaged and set up laptops for classrooms",
+        "blanks": 2,
+        "question": "How many laptops did you image and set up, and what tool did you use?"
+      },
+      {
+        "kind": "keep",
+        "where": "IT Help Desk Intern, line 3",
+        "line": "Reset passwords and accounts in Active Directory",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Retail Associate, line 2",
+        "line": "Set up new devices for customers at the service counter",
+        "blanks": 1,
+        "question": "What setup tasks did you handle for customers?"
+      }
+    ],
+    "card_count": 6,
+    "kinds": {
+      "dates": 1,
+      "structure": 1,
+      "line": 3,
+      "keep": 1
+    },
+    "structural_from_model": 2,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "IT Help Desk Intern"
+      ],
+      "level": "Entry-level IT support",
+      "note": "Your internship points toward desktop support, with customer service experience from Peachtree Electronics. The resume names a junior systems role as another goal, but shows less systems work beyond Active Directory.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00919205,
+  "latency_ms": 24300
+}

@@ -1,33 +1,30 @@
 # b02_teacher, run 1
 Resume: ../2026-11-live-judgment/resumes/b_teacher.txt (202 words)
-Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
-Outcome: report; cost $0.0061; 14.9s
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0053; 10.7s
 
-## Clear and specific (score 88; model wrote 88)
+## Clear and specific (score 89; model wrote 89)
 ## Verdict
-An experienced elementary teacher with classroom results, grade-level leadership and a few details still to fill in.
+A certified elementary teacher whose classroom results and leadership are easy to see.
 
 ## Write-up
-A recruiter sees a Washington-certified elementary teacher who teaches core subjects, leads grade-level planning and works with English language learners. The classroom work is easy to follow. The main question is what you contributed on the positive behavior support committee.
+This is a strong elementary teaching resume! Your work at Lincoln Heights brings together reading growth, grade-level leadership and support for English language learners. A recruiter can see both your classroom work and your contributions beyond it.
 
-The reading growth line is the model: it names the district assessment, gives the starting and ending figures, and tells the reader the period they cover. The math curriculum pilot is also worth keeping, with a little more on what you learned and how you trained the other teachers.
+The reading growth line is the model: it names the district assessment, the change and the period measured. Your certification and endorsement are easy to find, and your experience comes before education.
 
-## Cards (3; {"keep":1,"line":2}); severity off; added []
+The main detail to add is what you contributed to the behavior support committee. Your resume is ready to compete for elementary teaching roles; how competitive a particular opening is will matter too.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
 1. [keep] 4th Grade Teacher, reading growth
    line: "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years"
-   can't tell: Keep this as a model. It connects your work to a named measure and gives the reader a before and after.
-2. [line] 4th Grade Teacher, math curriculum
-   line: "Piloted the district's new math curriculum in 2023 and trained the other 4th grade teachers on it"
-   can't tell: The pilot and training are clear. What the pilot showed and how you trained the other teachers would round out the story.
-   example: Piloted the district's new math curriculum in 2023 and trained the other 4th grade teachers on it through [training activities], with [what the pilot showed]
-   question: What did the pilot show, and how did you train the other teachers?
-3. [line] 2nd Grade Teacher, committee
+   can't tell: Keep this as a model. It gives a recruiter a concrete measure of your students' reading growth rather than just saying you taught reading.
+2. [line] 2nd Grade Teacher, behavior support committee
    line: "Served on the school's positive behavior support committee"
-   can't tell: Committee membership doesn't say what you contributed. A recruiter can't tell which part of the behavior support work was yours.
-   example: Served on the school's positive behavior support committee by [committee contribution]
+   can't tell: A recruiter can see that you joined the committee, but not what you contributed to its work.
+   example: Served on the school's positive behavior support committee, where I [what you contributed]
    question: What did you contribute to the committee's work?
 
 ## Fit
 Roles: ["4th Grade Teacher","2nd Grade Teacher"]
 Level: Experienced elementary teacher
-Note: Your experience points toward elementary classroom teaching, with grade-level team leadership and an English Language Learner endorsement. The reading assessment and curriculum pilot add useful detail to that story.
+Note: Your experience points to elementary classroom teaching, with grade-level leadership and an English Language Learner endorsement. The resume also shows work with families and students outside regular class time.

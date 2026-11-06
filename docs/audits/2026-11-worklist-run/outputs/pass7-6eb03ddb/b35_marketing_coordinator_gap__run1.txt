@@ -1,0 +1,49 @@
+# b35_marketing_coordinator_gap, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_marketing_coordinator_gap_1.txt (126 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 6eb03ddb; severity check off
+Outcome: report; cost $0.0089; 23.0s
+Case note: Gap with nothing after it.
+
+## Needs more context (score 69; model wrote 69)
+## Verdict
+A marketing coordinator with clear email and event work, but no account of the time since March 2024.
+
+## Write-up
+A recruiter sees a marketing coordinator with email, event and copywriting experience. It's common for a resume to leave recent time unexplained, but nothing accounts for the period after March 2024. That may make a recruiter hesitate and move on.
+
+Start by adding an honest line for that period. Then expand the social and reporting work at Juniper. Your weekly email calendar line is a good model: it names the work, its cadence and the subscriber list.
+
+## Cards (6; {"dates":1,"keep":1,"line":4}); severity off; added []
+1. [dates] Dates
+   line: "Nothing is dated after March 2024."
+   can't tell: A recruiter can't tell what you've done since the Juniper role ended. If you were caring for someone, you can name that. A career break with a course, project, volunteering or travel is also worth mentioning, as is freelance work if you did it.
+   example: March 2024 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]
+   question: What have you done since March 2024 that you'd be comfortable including?
+2. [keep] Marketing Coordinator, line 1
+   line: "Managed the weekly email calendar for a list of 120,000 subscribers"
+   can't tell: Keep this as a model. It gives a recruiter a concrete sense of the email program you managed without making them guess.
+3. [line] Marketing Coordinator, line 4
+   line: "Scheduled social posts across Instagram and Facebook"
+   can't tell: The channels are named, but a recruiter can't tell what the posts covered or how often you scheduled them. That would show more of the work behind the calendar.
+   example: Scheduled social posts about [topics] across Instagram and Facebook [frequency]
+   question: What did the posts cover, and how often did you schedule them?
+4. [line] Marketing Coordinator, line 5
+   line: "Tracked campaign results in a monthly report for the marketing director"
+   can't tell: The report has a clear audience and cadence. What did you track in it? Naming the measures would show what you were watching for the marketing director.
+   example: Tracked [campaign measures] in a monthly report for the marketing director
+   question: Which campaign measures did you track in the report?
+5. [line] Marketing Assistant, line 1
+   line: "Helped plan in-store tasting events"
+   can't tell: The tasting events are concrete, but 'helped plan' leaves your part open. Name the planning work you handled.
+   example: Helped plan in-store tasting events by [planning tasks]
+   question: What parts of planning the tasting events did you handle?
+6. [line] Marketing Assistant, line 2
+   line: "Updated the company blog and newsletter"
+   can't tell: A recruiter can see where you worked, but not what you updated. Did you write new content, edit existing material or handle another part of the updates?
+   example: Updated the company blog and newsletter with [content]
+   question: What did you update in the blog and newsletter?
+
+## Fit
+Roles: ["Marketing Coordinator","Marketing Assistant"]
+Level: Coordinator
+Note: Your experience points toward marketing coordinator work across email, events, copy and social media. The most recent role shows ownership of an email calendar and trade show logistics.

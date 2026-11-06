@@ -1,0 +1,305 @@
+{
+  "case_id": "b29_mechanical_engineer",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_mechanical_engineer_1.txt",
+  "resume_sha256": "415a2cd89f45a119a48620793f6f06d7e83938cf3176426d201256d134ab6044",
+  "resume_words": 143,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T18:02:11.417Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5178,
+        "completion_tokens": 1388,
+        "total_tokens": 6566,
+        "cached_prompt_tokens": 4536,
+        "cache_write_prompt_tokens": 639,
+        "reasoning_tokens": 512
+      },
+      "cost_usd": 0.00796855,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 19457
+    }
+  ],
+  "resume_prompt_sha256": "6eb03ddb4b32b2b65339085225b39b2ec67a805518799139b60e8c299167a186",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A mechanical engineer with a named desk platform and solid tools, but few details about what changed.",
+    "write_up": [
+      "A recruiter sees six years in furniture and fixture design, including a lead role on the Arlo desk platform. This is a common sticking point: your recent work names the tasks, but not how far the designs went or what changed. That makes it tougher to stand out in a pile. Let's start with the Arlo line and build out what you led.",
+      "The SolidWorks line is a useful model because it names the drawings, the tool, and GD&T. Your supplier work, analysis, and engineering change orders could use a little more about your part in each."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 1",
+        "line": "- Lead mechanical design for the Arlo height-adjustable desk platform",
+        "cannot_tell": "Leading design for a named platform is a strong start. A recruiter can't tell which parts of the design you led or what stage the platform reached.",
+        "example": "Lead mechanical design for the Arlo height-adjustable desk platform, including [design work] through [development stage]",
+        "question": "Which design work did you lead, and what stage did the platform reach?"
+      },
+      {
+        "kind": "keep",
+        "where": "Mechanical Engineer II, line 2",
+        "line": "- Create 3D models and drawings in SolidWorks with GD&T",
+        "cannot_tell": "Keep this one. It gives a recruiter something concrete you produce and shows how you work.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 3",
+        "line": "- Work with suppliers in Mexico and Taiwan on tooling and first-article inspection",
+        "cannot_tell": "The supplier locations and the work are clear, but your part in tooling and inspection isn't. Did you review designs, resolve issues, or do something else?",
+        "example": "Work with suppliers in Mexico and Taiwan on tooling and first-article inspection, including [your contribution]",
+        "question": "What did you do with the suppliers on tooling and first-article inspection?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 4",
+        "line": "- Run tolerance stack-ups and FEA on load-bearing components",
+        "cannot_tell": "A recruiter can see the analyses you run, but not what you use them to decide. Name a component or design decision to show how the work is used.",
+        "example": "Run tolerance stack-ups and FEA on load-bearing components, including [component], to inform [design decision]",
+        "question": "Which component did you analyze, and what design decision did that work inform?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 5",
+        "line": "- Support manufacturing with engineering change orders",
+        "cannot_tell": "Support can mean several things here. A recruiter can't tell what you contributed to the change orders or what they addressed.",
+        "example": "Support manufacturing with engineering change orders by [your contribution] for [component or issue]",
+        "question": "What did you do for the engineering change orders, and what component or issue did they address?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mechanical Engineer II",
+        "Mechanical Engineer I"
+      ],
+      "level": "Experienced mechanical engineer",
+      "note": "Your experience points to mechanical design roles in furniture and related products. The Arlo platform, supplier work, and SolidWorks drawings give a recruiter a clear starting point; the recent role needs more about the designs and decisions behind them.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A mechanical engineer with a named desk platform and solid tools, but few details about what changed.",
+    "write_up": [
+      "A recruiter sees six years in furniture and fixture design, including a lead role on the Arlo desk platform. This is a common sticking point: your recent work names the tasks, but not how far the designs went or what changed. That makes it tougher to stand out in a pile. Let's start with the Arlo line and build out what you led.",
+      "The SolidWorks line is a useful model because it names the drawings, the tool, and GD&T. Your supplier work, analysis, and engineering change orders could use a little more about your part in each."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 1",
+        "line": "Lead mechanical design for the Arlo height-adjustable desk platform",
+        "cannot_tell": "Leading design for a named platform is a strong start. A recruiter can't tell which parts of the design you led or what stage the platform reached.",
+        "example": "Lead mechanical design for the Arlo height-adjustable desk platform, including [design work] through [development stage]",
+        "question": "Which design work did you lead, and what stage did the platform reach?"
+      },
+      {
+        "kind": "keep",
+        "where": "Mechanical Engineer II, line 2",
+        "line": "Create 3D models and drawings in SolidWorks with GD&T",
+        "cannot_tell": "Keep this one. It gives a recruiter something concrete you produce and shows how you work.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 3",
+        "line": "Work with suppliers in Mexico and Taiwan on tooling and first-article inspection",
+        "cannot_tell": "The supplier locations and the work are clear, but your part in tooling and inspection isn't. Did you review designs, resolve issues, or do something else?",
+        "example": "Work with suppliers in Mexico and Taiwan on tooling and first-article inspection, including [your contribution]",
+        "question": "What did you do with the suppliers on tooling and first-article inspection?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 4",
+        "line": "Run tolerance stack-ups and FEA on load-bearing components",
+        "cannot_tell": "A recruiter can see the analyses you run, but not what you use them to decide. Name a component or design decision to show how the work is used.",
+        "example": "Run tolerance stack-ups and FEA on load-bearing components, including [component], to inform [design decision]",
+        "question": "Which component did you analyze, and what design decision did that work inform?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 5",
+        "line": "Support manufacturing with engineering change orders",
+        "cannot_tell": "Support can mean several things here. A recruiter can't tell what you contributed to the change orders or what they addressed.",
+        "example": "Support manufacturing with engineering change orders by [your contribution] for [component or issue]",
+        "question": "What did you do for the engineering change orders, and what component or issue did they address?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mechanical Engineer II",
+        "Mechanical Engineer I"
+      ],
+      "level": "Experienced mechanical engineer",
+      "note": "Your experience points to mechanical design roles in furniture and related products. The Arlo platform, supplier work, and SolidWorks drawings give a recruiter a clear starting point; the recent role needs more about the designs and decisions behind them.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 68
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A mechanical engineer with a named desk platform and solid tools, but few details about what changed.",
+    "write_up": [
+      "A recruiter sees six years in furniture and fixture design, including a lead role on the Arlo desk platform. This is a common sticking point: your recent work names the tasks, but not how far the designs went or what changed. That makes it tougher to stand out in a pile. Let's start with the Arlo line and build out what you led.",
+      "The SolidWorks line is a useful model because it names the drawings, the tool, and GD&T. Your supplier work, analysis, and engineering change orders could use a little more about your part in each."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 1",
+        "line": "Lead mechanical design for the Arlo height-adjustable desk platform",
+        "cannot_tell": "Leading design for a named platform is a strong start. A recruiter can't tell which parts of the design you led or what stage the platform reached.",
+        "example": "Lead mechanical design for the Arlo height-adjustable desk platform, including [design work] through [development stage]",
+        "question": "Which design work did you lead, and what stage did the platform reach?"
+      },
+      {
+        "kind": "keep",
+        "where": "Mechanical Engineer II, line 2",
+        "line": "Create 3D models and drawings in SolidWorks with GD&T",
+        "cannot_tell": "Keep this one. It gives a recruiter something concrete you produce and shows how you work.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 3",
+        "line": "Work with suppliers in Mexico and Taiwan on tooling and first-article inspection",
+        "cannot_tell": "The supplier locations and the work are clear, but your part in tooling and inspection isn't. Did you review designs, resolve issues, or do something else?",
+        "example": "Work with suppliers in Mexico and Taiwan on tooling and first-article inspection, including [your contribution]",
+        "question": "What did you do with the suppliers on tooling and first-article inspection?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 4",
+        "line": "Run tolerance stack-ups and FEA on load-bearing components",
+        "cannot_tell": "A recruiter can see the analyses you run, but not what you use them to decide. Name a component or design decision to show how the work is used.",
+        "example": "Run tolerance stack-ups and FEA on load-bearing components, including [component], to inform [design decision]",
+        "question": "Which component did you analyze, and what design decision did that work inform?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 5",
+        "line": "Support manufacturing with engineering change orders",
+        "cannot_tell": "Support can mean several things here. A recruiter can't tell what you contributed to the change orders or what they addressed.",
+        "example": "Support manufacturing with engineering change orders by [your contribution] for [component or issue]",
+        "question": "What did you do for the engineering change orders, and what component or issue did they address?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mechanical Engineer II",
+        "Mechanical Engineer I"
+      ],
+      "level": "Experienced mechanical engineer",
+      "note": "Your experience points to mechanical design roles in furniture and related products. The Arlo platform, supplier work, and SolidWorks drawings give a recruiter a clear starting point; the recent role needs more about the designs and decisions behind them.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 68
+  },
+  "presentation": {
+    "score": 68,
+    "band": "Needs more context",
+    "model_score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A mechanical engineer with a named desk platform and solid tools, but few details about what changed.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 97,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 1",
+        "line": "Lead mechanical design for the Arlo height-adjustable desk platform",
+        "blanks": 2,
+        "question": "Which design work did you lead, and what stage did the platform reach?"
+      },
+      {
+        "kind": "keep",
+        "where": "Mechanical Engineer II, line 2",
+        "line": "Create 3D models and drawings in SolidWorks with GD&T",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 3",
+        "line": "Work with suppliers in Mexico and Taiwan on tooling and first-article inspection",
+        "blanks": 1,
+        "question": "What did you do with the suppliers on tooling and first-article inspection?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 4",
+        "line": "Run tolerance stack-ups and FEA on load-bearing components",
+        "blanks": 2,
+        "question": "Which component did you analyze, and what design decision did that work inform?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 5",
+        "line": "Support manufacturing with engineering change orders",
+        "blanks": 2,
+        "question": "What did you do for the engineering change orders, and what component or issue did they address?"
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "line": 4,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Mechanical Engineer II",
+        "Mechanical Engineer I"
+      ],
+      "level": "Experienced mechanical engineer",
+      "note": "Your experience points to mechanical design roles in furniture and related products. The Arlo platform, supplier work, and SolidWorks drawings give a recruiter a clear starting point; the recent role needs more about the designs and decisions behind them.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00796855,
+  "latency_ms": 19459
+}

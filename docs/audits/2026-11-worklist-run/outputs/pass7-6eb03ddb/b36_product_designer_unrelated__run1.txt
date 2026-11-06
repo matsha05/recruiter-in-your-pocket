@@ -1,0 +1,49 @@
+# b36_product_designer_unrelated, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_product_designer_unrelated_1.txt (147 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 6eb03ddb; severity check off
+Outcome: report; cost $0.0092; 21.3s
+Case note: Current job outside the field.
+
+## Needs more context (score 65; model wrote 65)
+## Verdict
+A product designer with solid named projects, but too little detail about contributions and results.
+
+## Write-up
+A recruiter sees product design experience followed by a current barista role. This kind of resume is common when someone has changed jobs, but the design work needs more detail to stand out. The Loop Fitness bullets name real projects; they rarely say what you contributed or what happened afterward, so a recruiter may hesitate and move on.
+
+Let's start with the booking flow and weekly releases at Loop Fitness. The design system line is a good model: it names what you created, that it was the app's first, and the tool you used. Add that kind of detail to your other work, along with results where you know them.
+
+## Cards (6; {"line":5,"keep":1}); severity off; added []
+1. [line] Barista, line 1
+   line: "Prepare drinks and serve customers in a busy cafe"
+   can't tell: A recruiter can see the basic job, but not how busy the cafe is or what you handle during a shift.
+   example: Prepare [types of drinks] and serve [number] customers [time period] in a busy cafe
+   question: What drinks do you prepare, and roughly how many customers do you serve in a typical shift?
+2. [line] Barista, line 2
+   line: "Train new baristas on espresso equipment"
+   can't tell: Training new baristas is useful work. The line doesn't yet show how many people you've trained or what the training covers.
+   example: Train [number] new baristas on espresso equipment, covering [training topics]
+   question: How many new baristas have you trained, and what do you teach them about the equipment?
+3. [line] Product Designer, Loop Fitness, line 1
+   line: "Designed the class booking flow for the iOS and Android apps"
+   can't tell: The booking flow is a concrete project. A recruiter still can't tell which parts you designed or what happened after launch.
+   example: Designed the class booking flow for the iOS and Android apps, including [design work] and [what changed]
+   question: What parts of the booking flow did you design, and what changed after launch, if you know?
+4. [line] Product Designer, Loop Fitness, line 2
+   line: "Worked with two engineers and a product manager on weekly releases"
+   can't tell: The team and release cadence are clear, but your contribution to those releases isn't.
+   example: Worked with two engineers and a product manager on weekly releases, contributing [design work]
+   question: What design work did you contribute to the weekly releases?
+5. [keep] Product Designer, Loop Fitness, line 3
+   line: "Created the app's first design system in Figma"
+   can't tell: Keep this as a model. It gives you clear ownership of a deliverable rather than leaving a recruiter to guess your part.
+6. [line] Product Designer, Loop Fitness, line 4
+   line: "Ran usability tests with members before launches"
+   can't tell: A recruiter knows you ran the tests, but not what members tested or how you used what you learned.
+   example: Ran usability tests with members on [what you tested] before launches and [what you did with findings]
+   question: What did members test, and what did you do with the findings?
+
+## Fit
+Roles: ["Product Designer","Junior Product Designer"]
+Level: Experienced product designer
+Note: Your experience points toward product design roles, particularly work on mobile apps and design systems. Your most recent design role ended before your current barista job, so making the Loop Fitness projects concrete will matter.

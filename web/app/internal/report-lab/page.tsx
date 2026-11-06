@@ -23,22 +23,30 @@ function loadWorklistFixtures(root: string): LabFixture[] {
     { id: "worklist-strong", label: "worklist · the strong resume (Elena)", resume: "../2026-11-live-judgment/resumes/h3_strong_resume.txt" },
     { id: "worklist-mismatch", label: "worklist · the mismatched posting (data analyst, nursing role)", resume: "../2026-11-live-judgment/resumes/h5_data_analyst.txt" },
     { id: "worklist-tier", label: "worklist · the Google engineer (Maya)", resume: "resumes/t1_google_engineer_maya.txt" },
-    { id: "worklist-ready", label: "worklist · the FP&A analyst, Ready to send (synthetic)", resume: "../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_fpa_analyst_strong_1.txt" },
+    { id: "worklist-ready", label: "worklist · the FP&A analyst (synthetic)", resume: "../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_fpa_analyst_strong_1.txt" },
   ];
   const stems: Record<string, string> = { "worklist-bad": "h1_bad_resume", "worklist-thin": "h2_thin_resume", "worklist-strong": "h3_strong_resume", "worklist-mismatch": "h5_mismatched_posting", "worklist-ready": "b25_fpa_analyst_strong", "worklist-tier": "t1_google_engineer_maya" };
+  // Each case as the shipped prompt writes it, then as the previous prompt wrote it (the voice update, Nov 6:
+  // `-before` is prompt 70e795a1), so a prompt change can be read side by side.
+  const passes = [
+    { dir: "outputs", idSuffix: "", labelSuffix: "" },
+    { dir: "outputs/pass5-70e795a1", idSuffix: "-before", labelSuffix: " · before (70e795a1)" },
+  ];
   const fixtures: LabFixture[] = [];
   for (const item of cases) {
-    const file = path.join(auditDir, "outputs", `${stems[item.id]}__run1.json`);
-    if (!fs.existsSync(file)) continue;
-    const record = JSON.parse(fs.readFileSync(file, "utf8"));
-    if (!record.shipped_report) continue;
-    const resumePath = path.resolve(auditDir, item.resume);
-    fixtures.push({
-      id: item.id,
-      label: `${item.label} · ${record.shipped_report.score}`,
-      report: record.shipped_report,
-      resumeText: fs.existsSync(resumePath) ? fs.readFileSync(resumePath, "utf8") : undefined,
-    });
+    for (const pass of passes) {
+      const file = path.join(auditDir, pass.dir, `${stems[item.id]}__run1.json`);
+      if (!fs.existsSync(file)) continue;
+      const record = JSON.parse(fs.readFileSync(file, "utf8"));
+      if (!record.shipped_report) continue;
+      const resumePath = path.resolve(auditDir, item.resume);
+      fixtures.push({
+        id: `${item.id}${pass.idSuffix}`,
+        label: `${item.label} · ${record.shipped_report.score}${pass.labelSuffix}`,
+        report: record.shipped_report,
+        resumeText: fs.existsSync(resumePath) ? fs.readFileSync(resumePath, "utf8") : undefined,
+      });
+    }
   }
   fixtures.push({ id: "worklist-mock", label: "worklist · the mock (Alex Rivera) · 66", report: structuredClone(MOCK_WORKLIST_REPORT) as unknown as LabFixture["report"], resumeText: "Alex Rivera\nCustomer Operations\nExperience\nBuilt customer workflows in HubSpot for 120 customers.\nDocumented the workflow and trained the support team on customer onboarding.\nRan weekly onboarding reviews with account managers and kept the checklist current." });
   return fixtures;

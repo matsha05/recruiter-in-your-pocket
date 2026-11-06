@@ -1,0 +1,184 @@
+{
+  "case_id": "b12_coo_executive_two_page",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Executive, two pages.",
+  "resume_file": "../2026-11-live-judgment/resumes/b_coo_executive.txt",
+  "resume_sha256": "213474e9b27355f8a085204e3dac05f65782d74d43b9b531cb2afd6a3afe1b79",
+  "resume_words": 463,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T18:01:04.406Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6248,
+        "completion_tokens": 534,
+        "total_tokens": 6782,
+        "cached_prompt_tokens": 4536,
+        "cache_write_prompt_tokens": 1709,
+        "reasoning_tokens": 164
+      },
+      "cost_usd": 0.00503605,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 7108
+    }
+  ],
+  "resume_prompt_sha256": "6eb03ddb4b32b2b65339085225b39b2ec67a805518799139b60e8c299167a186",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 96,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare operations executive with substantial growth and operating results attached.",
+    "write_up": [
+      "This is a standout executive resume! A recruiter can see the 140-practice operation you lead, the growth from 38 practices, and the improvement in same-store EBITDA margin.",
+      "The integration playbook line is a great model: it names the change you made and the drop from 7 months to 10 weeks. Your resume isn't likely to be the reason you don't get a call back. How competitive the role is and whether you have a referral can still matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, integration playbook",
+        "line": "- Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "cannot_tell": "Keep this line. It puts the before and after next to the method, so a recruiter can see what your work changed.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Operating Officer",
+        "Senior Vice President, Operations",
+        "Vice President, Clinic Operations"
+      ],
+      "level": "Senior executive",
+      "note": "Your experience points to healthcare operations leadership across multi-site organizations. The current role shows responsibility for a large practice network, its operating plan and its P&L.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 96,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare operations executive with substantial growth and operating results attached.",
+    "write_up": [
+      "This is a standout executive resume! A recruiter can see the 140-practice operation you lead, the growth from 38 practices, and the improvement in same-store EBITDA margin.",
+      "The integration playbook line is a great model: it names the change you made and the drop from 7 months to 10 weeks. Your resume isn't likely to be the reason you don't get a call back. How competitive the role is and whether you have a referral can still matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, integration playbook",
+        "line": "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "cannot_tell": "Keep this line. It puts the before and after next to the method, so a recruiter can see what your work changed.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Operating Officer",
+        "Senior Vice President, Operations",
+        "Vice President, Clinic Operations"
+      ],
+      "level": "Senior executive",
+      "note": "Your experience points to healthcare operations leadership across multi-site organizations. The current role shows responsibility for a large practice network, its operating plan and its P&L.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 96
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 96,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare operations executive with substantial growth and operating results attached.",
+    "write_up": [
+      "This is a standout executive resume! A recruiter can see the 140-practice operation you lead, the growth from 38 practices, and the improvement in same-store EBITDA margin.",
+      "The integration playbook line is a great model: it names the change you made and the drop from 7 months to 10 weeks. Your resume isn't likely to be the reason you don't get a call back. How competitive the role is and whether you have a referral can still matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, integration playbook",
+        "line": "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "cannot_tell": "Keep this line. It puts the before and after next to the method, so a recruiter can see what your work changed.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Operating Officer",
+        "Senior Vice President, Operations",
+        "Vice President, Clinic Operations"
+      ],
+      "level": "Senior executive",
+      "note": "Your experience points to healthcare operations leadership across multi-site organizations. The current role shows responsibility for a large practice network, its operating plan and its P&L.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 96
+  },
+  "presentation": {
+    "score": 96,
+    "band": "Clear and specific",
+    "model_score": 96,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare operations executive with substantial growth and operating results attached.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 78,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, integration playbook",
+        "line": "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 1,
+    "kinds": {
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Chief Operating Officer",
+        "Senior Vice President, Operations",
+        "Vice President, Clinic Operations"
+      ],
+      "level": "Senior executive",
+      "note": "Your experience points to healthcare operations leadership across multi-site organizations. The current role shows responsibility for a large practice network, its operating plan and its P&L.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00503605,
+  "latency_ms": 7110
+}

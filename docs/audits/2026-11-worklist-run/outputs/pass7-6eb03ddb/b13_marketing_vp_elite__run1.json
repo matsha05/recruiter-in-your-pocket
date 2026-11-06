@@ -1,0 +1,212 @@
+{
+  "case_id": "b13_marketing_vp_elite",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Executive, strong (golden).",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/golden/synth_marketing_manager_vp_elite_1766960221358.txt",
+  "resume_sha256": "a5f6a1bba91362463218b3e6ea358e8bc5b470add84f7b5eee7d69f1078c2bf0",
+  "resume_words": 730,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T18:01:11.517Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6928,
+        "completion_tokens": 977,
+        "total_tokens": 7905,
+        "cached_prompt_tokens": 4536,
+        "cache_write_prompt_tokens": 2389,
+        "reasoning_tokens": 422
+      },
+      "cost_usd": 0.00810105,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 12299
+    }
+  ],
+  "resume_prompt_sha256": "6eb03ddb4b32b2b65339085225b39b2ec67a805518799139b60e8c299167a186",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "An experienced marketing executive whose resume connects leadership decisions to growth across several roles.",
+    "write_up": [
+      "Your resume makes a strong case for senior marketing leadership! A recruiter can see the teams and budgets you managed, along with the changes in leads, revenue and customer acquisition. The account-based marketing line at Viridian works especially well because it names the program and ties it to pipeline and win rates.",
+      "The product launch line at Novara could say more about what changed in the process. Otherwise, your resume is unlikely to be the thing standing between you and a callback; competition for the role and a referral can matter too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Chief Marketing Officer, line 3",
+        "line": "- I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.",
+        "cannot_tell": "The results are substantial, but a recruiter can't tell what changed in the launch process. Name the change behind the decision.",
+        "example": "I decided to revamp the product launch process by [process change], shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.",
+        "question": "What changed in the product launch process?"
+      },
+      {
+        "kind": "keep",
+        "where": "Vice President, Global Marketing, line 2",
+        "line": "- I built and executed a comprehensive account-based marketing (ABM) program that increased pipeline contribution by $50M annually, lifting win rates by 15% among Fortune 500 clients.",
+        "cannot_tell": "Keep this as a model. It shows your part in building and executing the program, then gives a recruiter two concrete measures of what followed.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Marketing Officer",
+        "Vice President, Global Marketing"
+      ],
+      "level": "Executive marketing leadership",
+      "note": "Your experience points toward executive marketing roles in SaaS and enterprise technology. The resume shows leadership across demand generation, brand, product launches and global teams.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "An experienced marketing executive whose resume connects leadership decisions to growth across several roles.",
+    "write_up": [
+      "Your resume makes a strong case for senior marketing leadership! A recruiter can see the teams and budgets you managed, along with the changes in leads, revenue and customer acquisition. The account-based marketing line at Viridian works especially well because it names the program and ties it to pipeline and win rates.",
+      "The product launch line at Novara could say more about what changed in the process. Otherwise, your resume is unlikely to be the thing standing between you and a callback; competition for the role and a referral can matter too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Chief Marketing Officer, line 3",
+        "line": "I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.",
+        "cannot_tell": "The results are substantial, but a recruiter can't tell what changed in the launch process. Name the change behind the decision.",
+        "example": "I decided to revamp the product launch process by [process change], shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.",
+        "question": "What changed in the product launch process?"
+      },
+      {
+        "kind": "keep",
+        "where": "Vice President, Global Marketing, line 2",
+        "line": "I built and executed a comprehensive account-based marketing (ABM) program that increased pipeline contribution by $50M annually, lifting win rates by 15% among Fortune 500 clients.",
+        "cannot_tell": "Keep this as a model. It shows your part in building and executing the program, then gives a recruiter two concrete measures of what followed.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Marketing Officer",
+        "Vice President, Global Marketing"
+      ],
+      "level": "Executive marketing leadership",
+      "note": "Your experience points toward executive marketing roles in SaaS and enterprise technology. The resume shows leadership across demand generation, brand, product launches and global teams.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "An experienced marketing executive whose resume connects leadership decisions to growth across several roles.",
+    "write_up": [
+      "Your resume makes a strong case for senior marketing leadership! A recruiter can see the teams and budgets you managed, along with the changes in leads, revenue and customer acquisition. The account-based marketing line at Viridian works especially well because it names the program and ties it to pipeline and win rates.",
+      "The product launch line at Novara could say more about what changed in the process. Otherwise, your resume is unlikely to be the thing standing between you and a callback; competition for the role and a referral can matter too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Chief Marketing Officer, line 3",
+        "line": "I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.",
+        "cannot_tell": "The results are substantial, but a recruiter can't tell what changed in the launch process. Name the change behind the decision.",
+        "example": "I decided to revamp the product launch process by [process change], shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.",
+        "question": "What changed in the product launch process?"
+      },
+      {
+        "kind": "keep",
+        "where": "Vice President, Global Marketing, line 2",
+        "line": "I built and executed a comprehensive account-based marketing (ABM) program that increased pipeline contribution by $50M annually, lifting win rates by 15% among Fortune 500 clients.",
+        "cannot_tell": "Keep this as a model. It shows your part in building and executing the program, then gives a recruiter two concrete measures of what followed.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Marketing Officer",
+        "Vice President, Global Marketing"
+      ],
+      "level": "Executive marketing leadership",
+      "note": "Your experience points toward executive marketing roles in SaaS and enterprise technology. The resume shows leadership across demand generation, brand, product launches and global teams.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "presentation": {
+    "score": 89,
+    "band": "Clear and specific",
+    "model_score": 89,
+    "lifted_by_employer": false,
+    "verdict": "An experienced marketing executive whose resume connects leadership decisions to growth across several roles.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 92,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Chief Marketing Officer, line 3",
+        "line": "I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.",
+        "blanks": 1,
+        "question": "What changed in the product launch process?"
+      },
+      {
+        "kind": "keep",
+        "where": "Vice President, Global Marketing, line 2",
+        "line": "I built and executed a comprehensive account-based marketing (ABM) program that increased pipeline contribution by $50M annually, lifting win rates by 15% among Fortune 500 clients.",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "line": 1,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Chief Marketing Officer",
+        "Vice President, Global Marketing"
+      ],
+      "level": "Executive marketing leadership",
+      "note": "Your experience points toward executive marketing roles in SaaS and enterprise technology. The resume shows leadership across demand generation, brand, product launches and global teams.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00810105,
+  "latency_ms": 12302
+}

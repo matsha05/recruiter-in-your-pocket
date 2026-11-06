@@ -1,0 +1,43 @@
+# b37_marketing_director_bad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_marketing_director_bad_1.txt (167 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 6eb03ddb; severity check off
+Outcome: report; cost $0.0091; 25.4s
+Case note: Title above the work; key says no_recent_work, no_target_role, title_level_mismatch.
+
+## Needs more context (score 60; model wrote 60)
+## Verdict
+A varied work history with a director title the marketing duties don't yet explain and recent time unaccounted for.
+
+## Write-up
+It's common for a resume to contain several kinds of work without naming the next job. Here, a recruiter sees candle marketing, title records and lab work, but may pass because the Director of Marketing title suggests responsibilities the bullets don't show, and nothing accounts for the time after January 2025.
+
+Let's start with the Lumen role and add any marketing decisions or responsibilities that were yours. The property records line is a good model: it names the work, the system and how many records you entered each day. Once you choose the kind of job you want next, we can make that direction easier to spot.
+
+## Cards (5; {"line":2,"dates":1,"structure":1,"keep":1}); severity off; added []
+1. [line] Director of Marketing title
+   line: "Director of Marketing"
+   can't tell: The title suggests marketing leadership, but the bullets show posting, product descriptions and order support. A recruiter can't tell whether you set marketing priorities or had other responsibilities. Keep your actual title and add those details if they were part of your job.
+   example: Director of Marketing: [marketing responsibilities and decisions]
+   question: What marketing responsibilities or decisions did you have beyond the work already listed?
+2. [dates] Dates
+   line: "Nothing is dated after January 2025."
+   can't tell: A recruiter can't tell what you've been doing since the Lumen role ended. If you took care of a family member, you can say so. A career break can also name a course, project, volunteering or travel; include freelance work only if it was real. If there is nothing to add, a referral may matter more.
+   example: January 2025 - Present [what you did]
+   question: What have you been doing since the Lumen role ended, and what dates would accurately describe it?
+3. [structure] Structure
+   line: "The resume doesn't name the job you're seeking."
+   can't tell: Marketing, data entry and lab work point in different directions. A recruiter has to guess which job you want next. Once you've chosen one, put that direction near the top and give its most relevant work room.
+   question: Which kind of job do you want this resume to pursue?
+4. [line] Director of Marketing, line 1
+   line: "Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers"
+   can't tell: The posting frequency and follower count are useful, but a recruiter can't tell what you posted or what the posts were meant to do for the candle business.
+   example: Posted [type of content] 3 to 5 times a week on the company Instagram, which has 2,100 followers, to [purpose]
+   question: What kind of content did you post, and what was it intended to do?
+5. [keep] Data Entry Clerk, line 1
+   line: "Entered 150 property records a day into the county title system"
+   can't tell: Keep this line. It gives a recruiter a concrete daily measure alongside the task, without making them guess what you handled.
+
+## Fit
+Roles: ["Director of Marketing","Data Entry Clerk","Laboratory Assistant"]
+Level: Individual contributor; director title needs context
+Note: The most recent work points toward social media and product content, while the earlier roles show data entry and lab preparation. The resume doesn't yet show the broader marketing leadership a recruiter might expect from the director title.

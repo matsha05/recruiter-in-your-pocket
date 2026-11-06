@@ -1,0 +1,35 @@
+# b22_office_manager_paragraphs, run 1
+Resume: ../2026-11-live-judgment/resumes/b_office_manager_paragraphs.txt (219 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt f4ff18ca; severity check off
+Outcome: report; cost $0.0076; 17.9s
+Case note: Paragraph format, no bullets.
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+An experienced office manager with clear bookkeeping, hiring, and law office responsibilities.
+
+## Write-up
+A recruiter can see you run a six-attorney office, supervise two receptionists, and handle billing and trust account reconciliation. The long experience paragraphs make those details slower to find. Breaking them into bullets would help.
+
+The bookkeeping line is a great model: it names QuickBooks, roughly 90 invoices a month, and the monthly trust account reconciliation. This resume isn't going to be the reason you don't hear back. How competitive a job is still matters.
+
+## Cards (3; {"structure":1,"line":2}); severity off; added []
+1. [structure] Experience
+   line: "The experience entries are written as paragraphs."
+   can't tell: Your work is there, but a recruiter has to search through each paragraph to find it. Give the bookkeeping, supervision, and software work separate bullets.
+   question: Which responsibilities would you put first under each role?
+2. [line] Office Manager, vendor contracts
+   line: "Office Manager, Harrod and Blake Law Office, Louisville, KY, May 2018 to present. I run the front office for a six-attorney firm. I handle scheduling for the attorneys, manage the firm's calendar of court dates and filing deadlines, order supplies, and handle vendor contracts for the copier, phones, and cleaning. I do the bookkeeping in QuickBooks, including client billing of roughly 90 invoices a month and the monthly trust account reconciliation. I hired and supervise two receptionists and I onboarded the firm's new practice management software in 2022, which replaced paper files for all new matters."
+   can't tell: The contracts are named, but handling them could mean several things. What part of the vendor work was yours?
+   example: Handle vendor contracts for the copier, phones, and cleaning, including [contract responsibilities].
+   question: What did handling those vendor contracts involve?
+3. [line] Office Coordinator, claims
+   line: "Office Coordinator, Riverside Family Dentistry, Louisville, KY, August 2014 to April 2018. Checked in patients, verified insurance, and scheduled appointments for a two-dentist practice that saw about 40 patients a day. Posted payments and worked the insurance claims aging report each week. Trained three new front desk staff over four years."
+   can't tell: Posting payments is clear, but working the aging report leaves a question: what did you do with the claims on it?
+   example: Posted payments and worked the insurance claims aging report each week by [actions taken].
+   question: What did you do with the claims on the aging report?
+
+## Fit
+Roles: ["Office Manager","Office Coordinator"]
+Level: Experienced office manager
+Note: Your recent work points toward office management, particularly in a small professional office. The dental practice adds patient scheduling and insurance experience.

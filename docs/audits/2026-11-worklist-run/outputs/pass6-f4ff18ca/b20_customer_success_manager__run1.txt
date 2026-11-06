@@ -1,0 +1,34 @@
+# b20_customer_success_manager, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt (180 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt f4ff18ca; severity check off
+Outcome: report; cost $0.0059; 13.7s
+Case note: No posting.
+
+## Mostly clear (score 79; model wrote 79)
+## Verdict
+A customer success manager with a defined account book and useful payroll experience, but limited renewal results.
+
+## Write-up
+A recruiter can see your move from payroll support into customer success, with 48 mid-market accounts and regular reviews with finance and HR leads. The main question is what your renewal work changed for at-risk customers.
+
+The onboarding checklist is a strong model: you built something concrete, and the whole CS team now uses it. Let's bring that same detail to the renewal and payroll escalation work.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] Customer Success Manager, line 3
+   line: "Partnered with Sales on renewal strategy for at-risk accounts"
+   can't tell: A recruiter can't tell what you contributed to the renewal strategy or what happened with those accounts. That matters for a customer success role where renewals are central.
+   example: Partnered with Sales on renewal strategy for at-risk accounts by [your contribution], resulting in [renewal result]
+   question: What was your part in the renewal strategy, and what happened with those accounts?
+2. [keep] Customer Success Manager, line 4
+   line: "Built an onboarding checklist now used by the whole CS team"
+   can't tell: Keep this. It names the thing you made and shows who adopted it, without making a recruiter guess what your contribution was.
+3. [line] Customer Success Manager, line 5
+   line: "Handle escalations with Support and Product when payroll runs fail"
+   can't tell: Failed payroll runs are important customer problems, but your part in handling them is still broad. What do you do alongside Support and Product?
+   example: Handle escalations with Support and Product when payroll runs fail by [your actions]
+   question: What do you do when a payroll run fails and an escalation comes to you?
+
+## Fit
+Roles: ["Customer Success Manager","Customer Support Specialist"]
+Level: Mid-level
+Note: Your experience points most directly to customer success work with mid-market software accounts. Your payroll support background adds a useful foundation for handling customer problems alongside Support and Product.

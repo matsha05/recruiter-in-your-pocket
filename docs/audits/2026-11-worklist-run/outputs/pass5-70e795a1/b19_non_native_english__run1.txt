@@ -1,0 +1,33 @@
+# b19_non_native_english, run 1
+Resume: ../2026-11-live-judgment/resumes/b_non_native_english.txt (237 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
+Outcome: report; cost $0.0063; 17.3s
+
+## Mostly clear (score 83; model wrote 83)
+## Verdict
+Accounts payable work in Houston, backed by senior accounting experience, with a few responsibilities still needing detail.
+
+## Write-up
+You process around 400 vendor invoices a month in QuickBooks and have earlier experience with financial statements, an audit and a small accounting team. A recruiter can see the fit for accounts payable or staff accounting, though your part in the current month-end close is still a question.
+
+The strongest line is the one about reducing month-end closing from 12 days to 7 days. It names what you made and shows the change in closing time. Use that level of detail to explain the work you helped with and what your team handled.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] Accounts Payable Clerk, line 4
+   line: "Help the controller for month end closing"
+   can't tell: 'Help' hides your part of the close. A recruiter can't tell which accounts or tasks you handled alongside the controller.
+   example: Help the controller with month end closing by completing [tasks]
+   question: Which month-end closing tasks did you handle for the controller?
+2. [line] Senior Accountant, line 2
+   line: "Lead team of 3 junior accountants"
+   can't tell: The team count is there, but not the work. What did the junior accountants handle under your direction?
+   example: Lead team of 3 junior accountants who handle [work the team handles]
+   question: What work did the 3 junior accountants handle?
+3. [keep] Senior Accountant, line 4
+   line: "Reduce the month end closing from 12 days to 7 days by make new checklist and template"
+   can't tell: Keep this as your model. The checklist and template give the shorter close a concrete story.
+
+## Fit
+Roles: ["Staff Accountant","Accounts Payable Specialist","Accounts Payable Clerk"]
+Level: Experienced accounting professional
+Note: Your current invoice and payment work points toward accounts payable, while your earlier general ledger and financial statement work supports a staff accountant search. The US GAAP certificate adds useful context; the resume doesn't say how you've applied US GAAP on the job.

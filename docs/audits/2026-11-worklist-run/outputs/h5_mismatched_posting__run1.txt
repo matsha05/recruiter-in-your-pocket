@@ -1,31 +1,33 @@
 # h5_mismatched_posting, run 1
 Resume: ../2026-11-live-judgment/resumes/h5_data_analyst.txt (166 words), posting: ../2026-11-live-judgment/resumes/h5_nursing_posting.txt
-Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
-Outcome: report; cost $0.0114; 16.4s
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0133; 17.3s
 Case note: Data analyst against a registered nurse posting.
 
 ## Clear and specific (score 88; model wrote 88)
 ## Verdict
-A strong data analyst resume, but not a match for the nursing role as presented.
+A strong data analyst resume, but it doesn't show the nursing qualifications this role requires.
 
 ## Write-up
-A recruiter sees a data analyst who builds dashboards, automates reporting and advises merchandising. The hesitation is the job you supplied: the resume doesn't show an RN license, clinical experience or patient care.
+Your data analyst resume is strong! At Carolina Home Goods, you connect SQL and Power BI work to reports and merchandising decisions. That's more useful to an analytics recruiter than a list of tools alone. This posting, though, is for a medical-surgical nurse, and your resume doesn't show the required nursing qualifications.
 
-The SQL model is the line to copy. It names the work and the manual report it replaced. Your ad hoc analyses have a useful request count, but their subjects are still a blank.
+The SQL model is a great model for the rest: it names what you built and the manual report it replaced. Your current work leads, followed by your earlier insurance analysis and statistics degree, so an analytics recruiter can follow your path quickly.
+
+For analytics roles, start by naming the subjects of your ad hoc analyses. For this nursing role, add your RN license, certifications and clinical experience only if you have them. Your resume isn't the main obstacle to an analytics application, but the nursing posting calls for a different professional background.
 
 ## Cards (2; {"keep":1,"line":1}); severity off; added []
 1. [keep] Data Analyst, line 2
    line: "Wrote the SQL model that replaced a 3-day manual weekly sales report with an automated one"
-   can't tell: Keep this as a model. It connects your SQL work to a concrete change in the weekly reporting process.
+   can't tell: Keep this as a model. It gives the recruiter both the technical work and a concrete before-and-after for the weekly report.
 2. [line] Data Analyst, line 4
    line: "Pull ad hoc analyses for the VP of Sales, about 10 requests a month"
-   can't tell: The request count is useful, but the analyses could cover almost anything. What does the VP ask you to investigate?
-   example: Pull ad hoc analyses on [analysis topics] for the VP of Sales, about 10 requests a month
-   question: What topics do the VP of Sales' requests cover?
+   can't tell: The frequency and audience are clear, but the subjects of those analyses aren't. A recruiter can't tell what sales questions you help answer.
+   example: Pull ad hoc analyses on [topics] for the VP of Sales, about 10 requests a month, to inform [decisions]
+   question: What sales questions do you analyze for the VP, and what decisions do those analyses inform?
 
 ## Fit
 Roles: ["Data Analyst","Registered Nurse, Medical-Surgical Unit (Nights)"]
 Level: Experienced data analyst
-Note: This resume doesn't show the nursing license, certifications, EHR experience or patient care the registered nurse role asks for. Your reporting and communication with business teams fit data analyst work; they don't establish clinical qualifications. Add nursing credentials and experience only if you have them.
-Posting: The role requires a licensed RN to provide and document medical-surgical patient care on night shifts. The resume shows analytics and reporting work, not nursing qualifications.
-Missing: ["Current unrestricted North Carolina RN license or compact state license","BLS certification required; ACLS within six months of hire","Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered","Experience with Epic or a comparable EHR","Ability to manage a patient assignment of 5 to 6 patients","Strong communication with patients, families, and the interdisciplinary team"]
+Note: This is not a demonstrated fit for the nursing role: the resume doesn't show an RN license, BLS certification or patient care experience. Your reporting and work with sales and operations teams show useful analytical and stakeholder skills, but they don't establish the clinical qualifications the posting asks for.
+Posting: Night-shift medical-surgical nursing role requiring an RN license, BLS and direct patient care, with acute care experience preferred.
+Missing: ["Current unrestricted North Carolina RN license or compact state license","BLS certification required; ACLS within six months of hire","Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered","Experience with Epic or a comparable EHR","Ability to manage a patient assignment of 5 to 6 patients","Assess, plan, implement, and evaluate patient care in collaboration with physicians and the care team"]

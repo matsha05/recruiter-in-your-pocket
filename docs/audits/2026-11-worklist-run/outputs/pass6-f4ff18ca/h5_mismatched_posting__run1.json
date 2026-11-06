@@ -1,0 +1,275 @@
+{
+  "case_id": "h5_mismatched_posting",
+  "batch": "holes",
+  "run": 1,
+  "note": "Data analyst against a registered nurse posting.",
+  "resume_file": "../2026-11-live-judgment/resumes/h5_data_analyst.txt",
+  "resume_sha256": "7bbdd7afb1b8ee26ca438829f18fe67486123dfaa7fc822193ebc907d0875abf",
+  "resume_words": 166,
+  "job_description_file": "../2026-11-live-judgment/resumes/h5_nursing_posting.txt",
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T17:54:15.112Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5495,
+        "completion_tokens": 1182,
+        "total_tokens": 6677,
+        "cached_prompt_tokens": 0,
+        "cache_write_prompt_tokens": 5492,
+        "reasoning_tokens": 431
+      },
+      "cost_usd": 0.012778,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 15609
+    }
+  ],
+  "resume_prompt_sha256": "f4ff18ca80174dffdce77796c99b298e4ced5fdab817d0ec307d0b591839e910",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 87,
+    "lifted_by_employer": false,
+    "verdict": "A strong data analyst resume, but no nursing license or patient care experience shown for this RN role.",
+    "write_up": [
+      "A recruiter sees a data analyst who builds dashboards, automates reporting, and helps merchandising make decisions. For this nursing job, the first hesitation is that your resume doesn't show an RN license or patient care experience.",
+      "Your SQL line is a great model: it names the work and the manual report it replaced. For data analyst jobs, your resume isn't likely to be the reason you don't hear back; how competitive the job is also matters. You can make two other lines more useful by naming the analyses and claims measures."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Data Analyst, line 2",
+        "line": "- Wrote the SQL model that replaced a 3-day manual weekly sales report with an automated one",
+        "cannot_tell": "Keep this as a model. It gives a recruiter the tool, the report, and a concrete sense of the work that was replaced.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Data Analyst, line 4",
+        "line": "- Pull ad hoc analyses for the VP of Sales, about 10 requests a month",
+        "cannot_tell": "The frequency and audience are clear, but a recruiter can't tell what the VP asks you to investigate. A topic or two would show what those analyses cover.",
+        "example": "Pull ad hoc analyses for the VP of Sales, about 10 requests a month, on [analysis topics]",
+        "question": "What topics do those analyses cover?"
+      },
+      {
+        "kind": "line",
+        "where": "Junior Analyst, line 2",
+        "line": "- Produced the monthly claims summary for the operations director",
+        "cannot_tell": "The audience and schedule are clear. What did the claims summary cover?",
+        "example": "Produced the monthly claims summary for the operations director, covering [claims measures]",
+        "question": "What claims measures did the summary cover?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Data Analyst",
+        "Junior Analyst",
+        "Registered Nurse, Medical-Surgical Unit (Nights)"
+      ],
+      "level": "Experienced individual contributor in data analytics",
+      "note": "This resume doesn't show the RN license, BLS certification, EHR experience, or patient care the nursing role asks for. It does show SQL, Power BI, and reporting work for several business teams, which fits data analyst roles. If you have nursing qualifications, add them only if they are accurate and current.",
+      "posting": {
+        "summary": "Night-shift medical-surgical nursing role requiring an RN license and BLS certification, with patient care and EHR responsibilities.",
+        "missing": [
+          "Current unrestricted North Carolina RN license or compact state license",
+          "BLS certification required; ACLS within six months of hire",
+          "Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered",
+          "Experience with Epic or a comparable EHR",
+          "Ability to manage a patient assignment of 5 to 6 patients",
+          "Strong communication with patients, families, and the interdisciplinary team"
+        ]
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 87,
+    "lifted_by_employer": false,
+    "verdict": "A strong data analyst resume, but no nursing license or patient care experience shown for this RN role.",
+    "write_up": [
+      "A recruiter sees a data analyst who builds dashboards, automates reporting, and helps merchandising make decisions. For this nursing job, the first hesitation is that your resume doesn't show an RN license or patient care experience.",
+      "Your SQL line is a great model: it names the work and the manual report it replaced. For data analyst jobs, your resume isn't likely to be the reason you don't hear back; how competitive the job is also matters. You can make two other lines more useful by naming the analyses and claims measures."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Data Analyst, line 2",
+        "line": "Wrote the SQL model that replaced a 3-day manual weekly sales report with an automated one",
+        "cannot_tell": "Keep this as a model. It gives a recruiter the tool, the report, and a concrete sense of the work that was replaced.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Data Analyst, line 4",
+        "line": "Pull ad hoc analyses for the VP of Sales, about 10 requests a month",
+        "cannot_tell": "The frequency and audience are clear, but a recruiter can't tell what the VP asks you to investigate. A topic or two would show what those analyses cover.",
+        "example": "Pull ad hoc analyses for the VP of Sales, about 10 requests a month, on [analysis topics]",
+        "question": "What topics do those analyses cover?"
+      },
+      {
+        "kind": "line",
+        "where": "Junior Analyst, line 2",
+        "line": "Produced the monthly claims summary for the operations director",
+        "cannot_tell": "The audience and schedule are clear. What did the claims summary cover?",
+        "example": "Produced the monthly claims summary for the operations director, covering [claims measures]",
+        "question": "What claims measures did the summary cover?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Data Analyst",
+        "Junior Analyst",
+        "Registered Nurse, Medical-Surgical Unit (Nights)"
+      ],
+      "level": "Experienced individual contributor in data analytics",
+      "note": "This resume doesn't show the RN license, BLS certification, EHR experience, or patient care the nursing role asks for. It does show SQL, Power BI, and reporting work for several business teams, which fits data analyst roles. If you have nursing qualifications, add them only if they are accurate and current.",
+      "posting": {
+        "summary": "Night-shift medical-surgical nursing role requiring an RN license and BLS certification, with patient care and EHR responsibilities.",
+        "missing": [
+          "Current unrestricted North Carolina RN license or compact state license",
+          "BLS certification required; ACLS within six months of hire",
+          "Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered",
+          "Experience with Epic or a comparable EHR",
+          "Ability to manage a patient assignment of 5 to 6 patients",
+          "Strong communication with patients, families, and the interdisciplinary team"
+        ]
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 87
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 87,
+    "lifted_by_employer": false,
+    "verdict": "A strong data analyst resume, but no nursing license or patient care experience shown for this RN role.",
+    "write_up": [
+      "A recruiter sees a data analyst who builds dashboards, automates reporting, and helps merchandising make decisions. For this nursing job, the first hesitation is that your resume doesn't show an RN license or patient care experience.",
+      "Your SQL line is a great model: it names the work and the manual report it replaced. For data analyst jobs, your resume isn't likely to be the reason you don't hear back; how competitive the job is also matters. You can make two other lines more useful by naming the analyses and claims measures."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Data Analyst, line 2",
+        "line": "Wrote the SQL model that replaced a 3-day manual weekly sales report with an automated one",
+        "cannot_tell": "Keep this as a model. It gives a recruiter the tool, the report, and a concrete sense of the work that was replaced.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Data Analyst, line 4",
+        "line": "Pull ad hoc analyses for the VP of Sales, about 10 requests a month",
+        "cannot_tell": "The frequency and audience are clear, but a recruiter can't tell what the VP asks you to investigate. A topic or two would show what those analyses cover.",
+        "example": "Pull ad hoc analyses for the VP of Sales, about 10 requests a month, on [analysis topics]",
+        "question": "What topics do those analyses cover?"
+      },
+      {
+        "kind": "line",
+        "where": "Junior Analyst, line 2",
+        "line": "Produced the monthly claims summary for the operations director",
+        "cannot_tell": "The audience and schedule are clear. What did the claims summary cover?",
+        "example": "Produced the monthly claims summary for the operations director, covering [claims measures]",
+        "question": "What claims measures did the summary cover?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Data Analyst",
+        "Junior Analyst",
+        "Registered Nurse, Medical-Surgical Unit (Nights)"
+      ],
+      "level": "Experienced individual contributor in data analytics",
+      "note": "This resume doesn't show the RN license, BLS certification, EHR experience, or patient care the nursing role asks for. It does show SQL, Power BI, and reporting work for several business teams, which fits data analyst roles. If you have nursing qualifications, add them only if they are accurate and current.",
+      "posting": {
+        "summary": "Night-shift medical-surgical nursing role requiring an RN license and BLS certification, with patient care and EHR responsibilities.",
+        "missing": [
+          "Current unrestricted North Carolina RN license or compact state license",
+          "BLS certification required; ACLS within six months of hire",
+          "Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered",
+          "Experience with Epic or a comparable EHR",
+          "Ability to manage a patient assignment of 5 to 6 patients",
+          "Strong communication with patients, families, and the interdisciplinary team"
+        ]
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 87
+  },
+  "presentation": {
+    "score": 87,
+    "band": "Clear and specific",
+    "model_score": 87,
+    "lifted_by_employer": false,
+    "verdict": "A strong data analyst resume, but no nursing license or patient care experience shown for this RN role.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 91,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Data Analyst, line 2",
+        "line": "Wrote the SQL model that replaced a 3-day manual weekly sales report with an automated one",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Data Analyst, line 4",
+        "line": "Pull ad hoc analyses for the VP of Sales, about 10 requests a month",
+        "blanks": 1,
+        "question": "What topics do those analyses cover?"
+      },
+      {
+        "kind": "line",
+        "where": "Junior Analyst, line 2",
+        "line": "Produced the monthly claims summary for the operations director",
+        "blanks": 1,
+        "question": "What claims measures did the summary cover?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "keep": 1,
+      "line": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Data Analyst",
+        "Junior Analyst",
+        "Registered Nurse, Medical-Surgical Unit (Nights)"
+      ],
+      "level": "Experienced individual contributor in data analytics",
+      "note": "This resume doesn't show the RN license, BLS certification, EHR experience, or patient care the nursing role asks for. It does show SQL, Power BI, and reporting work for several business teams, which fits data analyst roles. If you have nursing qualifications, add them only if they are accurate and current.",
+      "posting": {
+        "summary": "Night-shift medical-surgical nursing role requiring an RN license and BLS certification, with patient care and EHR responsibilities.",
+        "missing": [
+          "Current unrestricted North Carolina RN license or compact state license",
+          "BLS certification required; ACLS within six months of hire",
+          "Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered",
+          "Experience with Epic or a comparable EHR",
+          "Ability to manage a patient assignment of 5 to 6 patients",
+          "Strong communication with patients, families, and the interdisciplinary team"
+        ]
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.012778,
+  "latency_ms": 15611
+}
