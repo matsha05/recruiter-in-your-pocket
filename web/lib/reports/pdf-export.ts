@@ -1,8 +1,22 @@
 import type { ReportData } from "@/components/workspace/report/ReportTypes";
 import { getScoreLabel } from "../score-utils";
+import { isWorklistReport, type WorklistCard, type WorklistReport } from "../llm/worklist-schema";
 import { withCriticalFirst } from "./report-presentation";
 import { parseStoredLineAnswers } from "./line-answers";
 import { reconcileReport } from "./report-integrity";
+import { blankAnswersFromStored, composeExample } from "./worklist-presentation";
+
+/** The worklist report's content for the PDF (contract v3): the same order as the web report. */
+export type WorklistForPdf = {
+  verdict: string;
+  write_up: string[];
+  lifted_by_employer: boolean;
+  cards: Array<WorklistCard & {
+    /** The example with the person's answers in the blanks, kept with a saved report. */
+    filled?: string;
+  }>;
+  fit: WorklistReport["fit"];
+};
 
 export type ReportForPdf = {
   score: number;
@@ -37,6 +51,8 @@ export type ReportForPdf = {
       company_stage_fit?: string;
     };
   };
+  /** Present for a worklist report; the v2 fields above are then empty and unused by the renderer. */
+  worklist?: WorklistForPdf;
 };
 
 function clampScore(value: unknown): number | null {
@@ -203,6 +219,30 @@ function deriveNextSteps(
 export function normalizeReportForPdf(report: unknown, lineAnswers?: unknown): ReportForPdf | null {
   if (!report || typeof report !== "object") return null;
   const storedAnswers = parseStoredLineAnswers(lineAnswers);
+  if (isWorklistReport(report)) {
+    const score = clampScore(report.score);
+    if (score === null) return null;
+    return {
+      score,
+      summary: report.verdict,
+      strengths: [],
+      gaps: [],
+      rewrites: [],
+      next_steps: [],
+      score_label: getScoreLabel(score),
+      worklist: {
+        verdict: report.verdict,
+        write_up: report.write_up,
+        lifted_by_employer: report.lifted_by_employer,
+        cards: report.cards.map((card, index) => {
+          const stored = blankAnswersFromStored(card.example, storedAnswers?.[String(index)]);
+          const filled = stored && !stored.left ? composeExample(card.example, stored.answers) : null;
+          return filled ? { ...card, filled } : { ...card };
+        }),
+        fit: report.fit,
+      },
+    };
+  }
 
   const candidate = report as Record<string, unknown>;
   const score = clampScore(candidate.score);

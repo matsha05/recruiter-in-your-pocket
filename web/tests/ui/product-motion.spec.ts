@@ -295,19 +295,18 @@ test.describe("product motion contracts on real app routes", () => {
   test("the resume selection follows the last interrupted keyboard jump without moving report text", async ({ page }) => {
     await hydrate(page, "/sample-report");
     const navigation = page.getByRole("navigation", { name: "Resume report sections", exact: true });
-    for (const name of ["Role fit", "Overview", "Keep these", "Fix these first"]) {
-      // Keep is left out of the navigation when the sample has no second strength.
-      if (await navigation.getByRole("button", { name, exact: true }).count() === 0) continue;
+    // The sample is the worklist report: Overview, Line by line, Role fit.
+    for (const name of ["Role fit", "Overview", "Lines"]) {
       await navigation.getByRole("button", { name, exact: true }).focus();
       await page.keyboard.press("Enter");
     }
-    await expectCurrent(navigation, "Fix these first");
-    await expect(navigation.getByRole("button", { name: "Fix these first", exact: true })).toBeFocused();
+    await expectCurrent(navigation, "Lines");
+    await expect(navigation.getByRole("button", { name: "Lines", exact: true })).toBeFocused();
     await expect.poll(() => page.locator("#section-fixes").evaluate((section) => {
       const navBottom = document.querySelector('nav[aria-label="Resume report sections"]')!.closest("aside")!.getBoundingClientRect().bottom;
       return section.getBoundingClientRect().top - navBottom;
     })).toBeGreaterThanOrEqual(-1);
-    await expect(page.locator("#section-fix-1 blockquote")).toHaveCSS("transform", "none");
+    await expect(page.locator("#section-card-1 blockquote, #section-card-1 p").first()).toHaveCSS("transform", "none");
   });
 
   test("LinkedIn section navigation tracks actual selection and keeps its mobile keyboard target visible", async ({ page }) => {

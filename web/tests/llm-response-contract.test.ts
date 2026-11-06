@@ -6,6 +6,7 @@ import {
   RESUME_REPORT_JSON_SCHEMA,
   RESUME_REPORT_RESPONSE_FORMAT,
 } from "../lib/llm/response-format";
+import { WORKLIST_REPORT_RESPONSE_FORMAT } from "../lib/llm/worklist-schema";
 import {
   findBiggestGapContradictions,
   findFixEvidenceMismatch,
@@ -76,7 +77,11 @@ assertStrictObjectContract(RESUME_REPORT_JSON_SCHEMA as JsonSchema);
 
 assert.equal(RESUME_REPORT_RESPONSE_FORMAT.type, "json_schema");
 assert.equal(RESUME_REPORT_RESPONSE_FORMAT.json_schema.strict, true);
-assert.equal(getOpenAIResponseFormat("resume"), RESUME_REPORT_RESPONSE_FORMAT);
+// The resume route writes the worklist report (contract v3) unless RIYP_WORKLIST_REPORT turns it off.
+assert.equal(getOpenAIResponseFormat("resume"), WORKLIST_REPORT_RESPONSE_FORMAT);
+process.env.RIYP_WORKLIST_REPORT = "0";
+assert.equal(getOpenAIResponseFormat("resume"), RESUME_REPORT_RESPONSE_FORMAT, "the flag off writes the Critical Miss report");
+delete process.env.RIYP_WORKLIST_REPORT;
 assert.deepEqual(getOpenAIResponseFormat("resume_ideas"), { type: "json_object" });
 
 const topFixes = RESUME_REPORT_JSON_SCHEMA.properties.top_fixes;
@@ -136,7 +141,8 @@ assert.equal(cleared.report.more_critical, false, "fewer than three Critical Mis
 assert.ok(cleared.changes.includes("more_critical.cleared"));
 const unsignalled = canonicalizeResumeReportEvidence({ top_fixes: threeCritical }, fourFixSource);
 assert.equal("more_critical" in unsignalled.report, false, "a report without the field stays without it");
-const sampleReport = JSON.parse(fs.readFileSync(path.join(process.cwd(), "public/sample-report.json"), "utf8"));
+// Jordan's v2 report (the shape every report saved before the worklist still has), kept as a fixture.
+const sampleReport = JSON.parse(fs.readFileSync(path.join(process.cwd(), "tests/fixtures/sample/jordan-miller-report.v2.json"), "utf8"));
 const asFlagged = (count: number) => sampleReport.top_fixes.slice(0, 3).map((fix: any, index: number) => ({ ...fix, critical: index < count }));
 assert.equal(sampleReport.top_fixes.length >= 3, true, "the sample report has three fixes to flag");
 assert.equal(ResumeFeedbackResponseSchema.safeParse({ ...sampleReport, top_fixes: asFlagged(3), more_critical: true }).success, true);

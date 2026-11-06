@@ -33,7 +33,7 @@ const saved = JSON.parse(readFileSync(path.join(process.cwd(), "tests/fixtures/r
   resume_prompt_sha256: string;
   runs: Array<{ run_id: string; fixture_id: string; score: number; generation_status: string; replay_status: string; report: any }>;
 };
-const sample = JSON.parse(readFileSync(path.join(process.cwd(), "public/sample-report.json"), "utf8"));
+const sample = JSON.parse(readFileSync(path.join(process.cwd(), "tests/fixtures/sample/jordan-miller-report.v2.json"), "utf8"));
 assert.equal(saved.resume_prompt_sha256.slice(0, 8), "83b2a2d1");
 assert.equal(saved.runs.length, 13);
 
@@ -399,22 +399,14 @@ for (const [label, report] of outputs) {
   }
 }
 
-// The methodology figure quotes the sample report, so it may only quote lines the report still shows.
-const sampleWeb = decode(renderToStaticMarkup(createElement(ReportStream, { report: sample, isSample: true })));
+// The methodology figure quotes the public sample (the worklist report), so it may only quote lines the report shows.
+const publicSample = JSON.parse(readFileSync(path.join(process.cwd(), "public/sample-report.json"), "utf8"));
+const sampleWeb = decode(renderToStaticMarkup(createElement(ReportStream, { report: publicSample, isSample: true })));
 const figure = decode(renderToStaticMarkup(createElement(FirstReadModelDiagram)));
-const quoted = [
-  fixCardSlots(sampleIntegrity, 1).why,
-  fixCardSlots(sampleIntegrity, 2).why,
-  (sampleIntegrity.structuralGaps as Array<{ text: string }>)[0]?.text,
-  sampleIntegrity.report.strengths![0],
-].filter((line): line is string => Boolean(line));
-assert.ok(quoted.length >= 3, "the figure quotes at least three lines from the sample");
-for (const line of quoted) {
-  assert.ok(figure.includes(plain(line)), `the figure quotes "${line.slice(0, 40)}"`);
-  assert.ok(sampleWeb.includes(plain(line)), `and the sample report shows it`);
-}
-for (const removed of [sample.strengths[1], sample.gaps[1], sample.gaps[2]]) {
-  assert.ok(!figure.includes(plain(removed)), `the figure must not quote a line the report no longer shows: "${removed.slice(0, 40)}"`);
-}
+const quoted = (publicSample.cards as Array<{ cannot_tell: string }>).map((card) => card.cannot_tell).filter((line) => figure.includes(plain(line)));
+assert.ok(quoted.length >= 3, "the figure quotes at least three cards from the sample");
+assert.ok(figure.includes(plain(publicSample.verdict)), "the figure opens on the sample's verdict");
+for (const line of quoted) assert.ok(sampleWeb.includes(plain(line)), `the sample report shows "${line.slice(0, 40)}"`);
+assert.ok(!figure.includes("Critical Miss"), "the figure never names the retired unit");
 
 console.log("report-integrity tests passed");

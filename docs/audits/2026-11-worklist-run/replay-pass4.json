@@ -1,0 +1,547 @@
+[
+  {
+    "stem": "h1_bad_resume__run1",
+    "case_id": "h1_bad_resume",
+    "run": 1,
+    "batch": "holes",
+    "saved_outcome": "report",
+    "saved_first_refusal": null,
+    "saved_repair_refusal": null,
+    "first_draft": {
+      "decision": "shipped"
+    },
+    "repaired_draft": null,
+    "outcome": "shipped_first_draft",
+    "severity": {
+      "applied": false
+    },
+    "verdict": "A retail and warehouse resume aiming at marketing management, with two undated jobs and little detail about the work.",
+    "fixes": [
+      {
+        "fix": "What marketing-related work or skills can you point to?",
+        "excerpt": "Hard-working team player seeking a challenging Marketing Manager position where I can utilize my skills and grow with a dynamic company.",
+        "section": "Objective",
+        "critical": false
+      },
+      {
+        "fix": "What have you been doing since June 2023, and when?",
+        "excerpt": "Nothing is dated after June 2023, and two roles have no dates.",
+        "section": "Dates",
+        "critical": true
+      },
+      {
+        "fix": "When did you start and finish at Miami Valley Distribution?",
+        "excerpt": "The Warehouse Associate role has no dates.",
+        "section": "Warehouse Associate",
+        "critical": true
+      },
+      {
+        "fix": "When did you start and finish at Gino's Pizza?",
+        "excerpt": "The Delivery Driver role has no dates.",
+        "section": "Delivery Driver",
+        "critical": true
+      },
+      {
+        "fix": "What did you handle when opening and closing the store?",
+        "excerpt": "Responsible for opening and closing the store",
+        "section": "Shift Lead, line 1",
+        "critical": false
+      },
+      {
+        "fix": "What kind of complaint did you handle, and what did you do about it?",
+        "excerpt": "Handled cash register and customer complaints",
+        "section": "Shift Lead, line 2",
+        "critical": false
+      },
+      {
+        "fix": "Which products did you stock, and what cleaning tasks did you handle?",
+        "excerpt": "Made sure shelves were stocked and the store was clean",
+        "section": "Shift Lead, line 3",
+        "critical": false
+      },
+      {
+        "fix": "How many new employees did you train, and what did you teach them?",
+        "excerpt": "Trained new employes when needed",
+        "section": "Shift Lead, line 4",
+        "critical": false
+      },
+      {
+        "fix": "What did the orders contain, and how many did you typically pick and pack?",
+        "excerpt": "Picked and packed orders",
+        "section": "Warehouse Associate, line 1",
+        "critical": false
+      },
+      {
+        "fix": "Which safety procedures did you follow, and during what work?",
+        "excerpt": "Followed all saftey procedures",
+        "section": "Warehouse Associate, line 4",
+        "critical": false
+      },
+      {
+        "fix": "About how many customers did you sell to in a typical day or week?",
+        "excerpt": "Sold phones and accessories to customers",
+        "section": "Sales Associate, line 1",
+        "critical": false
+      },
+      {
+        "fix": "What kitchen tasks did you help with?",
+        "excerpt": "Helped in the kitchen when it was slow",
+        "section": "Delivery Driver, line 3",
+        "critical": false
+      }
+    ],
+    "critical_misses": [
+      {
+        "fix": "What have you been doing since June 2023, and when?",
+        "excerpt": "Nothing is dated after June 2023, and two roles have no dates.",
+        "section": "Dates",
+        "critical": true
+      },
+      {
+        "fix": "When did you start and finish at Miami Valley Distribution?",
+        "excerpt": "The Warehouse Associate role has no dates.",
+        "section": "Warehouse Associate",
+        "critical": true
+      },
+      {
+        "fix": "When did you start and finish at Gino's Pizza?",
+        "excerpt": "The Delivery Driver role has no dates.",
+        "section": "Delivery Driver",
+        "critical": true
+      }
+    ],
+    "score": 43,
+    "jd_match_summary": null,
+    "jd_missing": null
+  },
+  {
+    "stem": "h2_thin_resume__run1",
+    "case_id": "h2_thin_resume",
+    "run": 1,
+    "batch": "holes",
+    "saved_outcome": "report",
+    "saved_first_refusal": null,
+    "saved_repair_refusal": null,
+    "first_draft": {
+      "decision": "shipped"
+    },
+    "repaired_draft": null,
+    "outcome": "shipped_first_draft",
+    "severity": {
+      "applied": false
+    },
+    "verdict": "A data analytics intern with useful tools, but little about what the reports and dashboard covered.",
+    "fixes": [
+      {
+        "fix": "How large is the credit union's membership, if you know?",
+        "excerpt": "The page doesn't say how large Great Lakes Credit Union is.",
+        "section": "Great Lakes Credit Union",
+        "critical": true
+      },
+      {
+        "fix": "What did the weekly reports cover, and what part did you handle?",
+        "excerpt": "Assisted the analytics team with weekly reporting",
+        "section": "Data Analytics Intern, line 1",
+        "critical": false
+      },
+      {
+        "fix": "Keep the combination of a named dataset and the methods you used. It gives the rest of the internship a useful standard to follow.",
+        "excerpt": "Cleaned member survey data in Excel and SQL",
+        "section": "Data Analytics Intern, line 2",
+        "critical": false
+      },
+      {
+        "fix": "What did the dashboard track for the marketing team?",
+        "excerpt": "Built a dashboard in Tableau for the marketing team",
+        "section": "Data Analytics Intern, line 3",
+        "critical": false
+      },
+      {
+        "fix": "What did you present, and what finding can you share?",
+        "excerpt": "Presented findings to the team at the end of the internship",
+        "section": "Data Analytics Intern, line 4",
+        "critical": false
+      },
+      {
+        "fix": "How much is the club budget, and what period does it cover?",
+        "excerpt": "Manage the club budget and reimbursements",
+        "section": "Treasurer, line 1",
+        "critical": false
+      },
+      {
+        "fix": "What do you handle when organizing the speaker events?",
+        "excerpt": "Help organize monthly speaker events",
+        "section": "Treasurer, line 2",
+        "critical": false
+      }
+    ],
+    "critical_misses": [
+      {
+        "fix": "How large is the credit union's membership, if you know?",
+        "excerpt": "The page doesn't say how large Great Lakes Credit Union is.",
+        "section": "Great Lakes Credit Union",
+        "critical": true
+      }
+    ],
+    "score": 64,
+    "jd_match_summary": null,
+    "jd_missing": null
+  },
+  {
+    "stem": "h3_strong_resume__run1",
+    "case_id": "h3_strong_resume",
+    "run": 1,
+    "batch": "holes",
+    "saved_outcome": "report",
+    "saved_first_refusal": null,
+    "saved_repair_refusal": null,
+    "first_draft": {
+      "decision": "shipped"
+    },
+    "repaired_draft": null,
+    "outcome": "shipped_first_draft",
+    "severity": {
+      "applied": false
+    },
+    "verdict": "A senior payments product manager with launches, customer results, and management experience a recruiter can follow.",
+    "fixes": [
+      {
+        "fix": "Keep this as a model. You connect a technical decision to a customer problem and distinguish the revenue figure as an estimate.",
+        "excerpt": "Cut payment failure rate from 4.1% to 1.6% by leading the move to network tokenization and smart retries, recovering an estimated $6.2M in annual revenue for customers",
+        "section": "Senior Product Manager, Payments Platform, line 3",
+        "critical": false
+      }
+    ],
+    "critical_misses": [],
+    "score": 95,
+    "jd_match_summary": null,
+    "jd_missing": null
+  },
+  {
+    "stem": "h4a_academic_cv_15_pages__run1",
+    "case_id": "h4a_academic_cv_15_pages",
+    "run": 1,
+    "batch": "holes",
+    "saved_outcome": "request_refused",
+    "saved_first_refusal": null,
+    "saved_repair_refusal": null,
+    "first_draft": null,
+    "repaired_draft": null,
+    "outcome": "request_refused",
+    "severity": null,
+    "verdict": null,
+    "fixes": [],
+    "critical_misses": [],
+    "score": null,
+    "jd_match_summary": null,
+    "jd_missing": null
+  },
+  {
+    "stem": "h4b_academic_cv_under_cap__run1",
+    "case_id": "h4b_academic_cv_under_cap",
+    "run": 1,
+    "batch": "holes",
+    "saved_outcome": "report",
+    "saved_first_refusal": null,
+    "saved_repair_refusal": null,
+    "first_draft": {
+      "decision": "shipped"
+    },
+    "repaired_draft": null,
+    "outcome": "shipped_first_draft",
+    "severity": {
+      "applied": false
+    },
+    "verdict": "A tenured molecular biologist with funded research and substantial teaching, but repeated citations need attention.",
+    "fixes": [
+      {
+        "fix": "Can you move Academic Appointments above Education?",
+        "excerpt": "Education sits above Academic Appointments.",
+        "section": "Section order",
+        "critical": true
+      },
+      {
+        "fix": "Are these separate papers or repeated entries, and what are the correct citation details for each?",
+        "excerpt": "1. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2026). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 107(2), 1037-1052.",
+        "section": "Publications, entry 1",
+        "critical": false
+      },
+      {
+        "fix": "Keep the distinction between your redesign and the evaluations that followed. It gives the reader a concrete change without claiming more than the figures show.",
+        "excerpt": "Course redesign: converted MB 310 to a flipped format in 2019; student evaluations rose from 3.9 to 4.5 of 5 over the following three offerings.",
+        "section": "Teaching, course redesign",
+        "critical": false
+      }
+    ],
+    "critical_misses": [
+      {
+        "fix": "Can you move Academic Appointments above Education?",
+        "excerpt": "Education sits above Academic Appointments.",
+        "section": "Section order",
+        "critical": true
+      }
+    ],
+    "score": 79,
+    "jd_match_summary": null,
+    "jd_missing": null
+  },
+  {
+    "stem": "h4c_one_paragraph__run1",
+    "case_id": "h4c_one_paragraph",
+    "run": 1,
+    "batch": "holes",
+    "saved_outcome": "report",
+    "saved_first_refusal": null,
+    "saved_repair_refusal": null,
+    "first_draft": {
+      "decision": "shipped"
+    },
+    "repaired_draft": null,
+    "outcome": "shipped_first_draft",
+    "severity": {
+      "applied": false
+    },
+    "verdict": "An operations coordinator with dispatch numbers and a delivery improvement, but little detail on how it happened.",
+    "fixes": [
+      {
+        "fix": "Keep this as a model. It names the job and puts a number on the people and locations involved.",
+        "excerpt": "Carlos Mendes Richmond VA carlos.mendes@example.com 555-0171 Summary Operations coordinator with six years in logistics and customer service Experience Operations Coordinator River City Logistics Richmond VA April 2021 to Present Coordinate daily dispatch for 18 drivers across two depots track on-time delivery and report weekly to the regional manager resolve delivery exceptions with customers by phone and email trained 4 new coordinators on the dispatch software improved on-time rate from 91% to 96% in 2024 Customer Service Representative Dominion Parcel Richmond VA June 2019 to March 2021 answered 60 to 80 customer calls per day handled claims for damaged or lost packages kept records in Salesforce Warehouse Clerk Dominion Parcel Richmond VA February 2018 to May 2019 scanned and sorted inbound freight kept the inventory count accurate Education Associate of Applied Science Business Administration J. Sargeant Reynolds Community College 2018 Skills Dispatch software Salesforce Excel customer service scheduling",
+        "section": "Operations Coordinator, dispatch",
+        "critical": false
+      }
+    ],
+    "critical_misses": [],
+    "score": 85,
+    "jd_match_summary": null,
+    "jd_missing": null
+  },
+  {
+    "stem": "h5_mismatched_posting__run1",
+    "case_id": "h5_mismatched_posting",
+    "run": 1,
+    "batch": "holes",
+    "saved_outcome": "report",
+    "saved_first_refusal": null,
+    "saved_repair_refusal": null,
+    "first_draft": {
+      "decision": "shipped"
+    },
+    "repaired_draft": null,
+    "outcome": "shipped_first_draft",
+    "severity": {
+      "applied": false
+    },
+    "verdict": "A strong data analyst resume, but it doesn't show the nursing credentials or clinical experience this role needs.",
+    "fixes": [
+      {
+        "fix": "Keep this as a model. It names the business question and shows what the merchandising team did with your recommendation.",
+        "excerpt": "Analyzed markdown timing for 2,100 SKUs; the merchandising team adopted the recommended schedule in two categories",
+        "section": "Data Analyst, line 3",
+        "critical": false
+      }
+    ],
+    "critical_misses": [],
+    "score": 88,
+    "jd_match_summary": "Night-shift medical-surgical nursing role requiring an RN license and BLS, with patient care, EHR documentation, and team communication responsibilities.",
+    "jd_missing": [
+      "Current unrestricted North Carolina RN license or compact state license",
+      "BLS certification required",
+      "ACLS within six months of hire",
+      "Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered",
+      "Experience with Epic or a comparable EHR",
+      "Ability to manage a patient assignment of 5 to 6 patients"
+    ]
+  },
+  {
+    "stem": "h6_unverifiable_claim__run1",
+    "case_id": "h6_unverifiable_claim",
+    "run": 1,
+    "batch": "holes",
+    "saved_outcome": "report",
+    "saved_first_refusal": null,
+    "saved_repair_refusal": null,
+    "first_draft": {
+      "decision": "shipped"
+    },
+    "repaired_draft": null,
+    "outcome": "shipped_first_draft",
+    "severity": {
+      "applied": false
+    },
+    "verdict": "A progression into operations management, with too little detail about what you managed or improved.",
+    "fixes": [
+      {
+        "fix": "What results did you deliver?",
+        "excerpt": "Operations leader who has led a team of 40 and delivered results in fast-paced environments.",
+        "section": "Summary",
+        "critical": false
+      },
+      {
+        "fix": "What did the team of 40 do?",
+        "excerpt": "Led a team of 40",
+        "section": "Operations Manager, line 1",
+        "critical": false
+      },
+      {
+        "fix": "Which fulfillment operations did you oversee, and what was the workload?",
+        "excerpt": "Oversaw daily fulfillment operations",
+        "section": "Operations Manager, line 2",
+        "critical": false
+      },
+      {
+        "fix": "Which goal did you work on, and what did you contribute to the planning?",
+        "excerpt": "Worked with the leadership team on goals and planning",
+        "section": "Operations Manager, line 3",
+        "critical": false
+      },
+      {
+        "fix": "Which processes did you improve, and what changed?",
+        "excerpt": "Improved processes across the department",
+        "section": "Operations Manager, line 4",
+        "critical": false
+      },
+      {
+        "fix": "What did you handle in scheduling and reporting?",
+        "excerpt": "Supported the operations manager with scheduling and reporting",
+        "section": "Assistant Operations Manager, line 1",
+        "critical": false
+      },
+      {
+        "fix": "What did you do during the scanning system rollout?",
+        "excerpt": "Helped roll out a new scanning system on the floor",
+        "section": "Assistant Operations Manager, line 2",
+        "critical": false
+      },
+      {
+        "fix": "What were your responsibilities when you covered the floor?",
+        "excerpt": "Covered the floor on weekends",
+        "section": "Assistant Operations Manager, line 3",
+        "critical": false
+      },
+      {
+        "fix": "How many people were on the team you led?",
+        "excerpt": "Led a small team on the sorting line",
+        "section": "Team Lead, line 1",
+        "critical": false
+      },
+      {
+        "fix": "What did you do to keep the sorting line running during peak season?",
+        "excerpt": "Kept the line running during peak season",
+        "section": "Team Lead, line 2",
+        "critical": false
+      }
+    ],
+    "critical_misses": [],
+    "score": 65,
+    "jd_match_summary": null,
+    "jd_missing": null
+  },
+  {
+    "stem": "t1_google_engineer_maya__run1",
+    "case_id": "t1_google_engineer_maya",
+    "run": 1,
+    "batch": "tier",
+    "saved_outcome": "report",
+    "saved_first_refusal": null,
+    "saved_repair_refusal": null,
+    "first_draft": {
+      "decision": "shipped"
+    },
+    "repaired_draft": null,
+    "outcome": "shipped_first_draft",
+    "severity": {
+      "applied": false
+    },
+    "verdict": "A backend engineer with strong earlier results and a current role that leaves too much to guess.",
+    "fixes": [
+      {
+        "fix": "What does the tool do, and what did you contribute to its features?",
+        "excerpt": "Worked on features for an internal tool used by other engineering teams",
+        "section": "Google, line 1",
+        "critical": false
+      },
+      {
+        "fix": "Who did you work with, and what did you contribute to the requirements?",
+        "excerpt": "Collaborated with cross-functional partners on requirements",
+        "section": "Google, line 2",
+        "critical": false
+      },
+      {
+        "fix": "Which service did this work cover, and what did you review or handle?",
+        "excerpt": "Participated in code reviews, design reviews and the on-call rotation",
+        "section": "Google, line 3",
+        "critical": false
+      },
+      {
+        "fix": "What work or skills did you mentor the new team member on?",
+        "excerpt": "Mentored a new team member",
+        "section": "Google, line 4",
+        "critical": false
+      },
+      {
+        "fix": "Keep this as a model. It ties a technical change to a named part of the product and gives the reader a concrete comparison.",
+        "excerpt": "Cut p95 query latency on the customer dashboard from 4.2 s to 900 ms by rewriting the aggregation layer",
+        "section": "Harborview Analytics, line 2",
+        "critical": false
+      }
+    ],
+    "critical_misses": [],
+    "score": 75,
+    "jd_match_summary": null,
+    "jd_missing": null
+  },
+  {
+    "stem": "t2_logos_operations_robert__run1",
+    "case_id": "t2_logos_operations_robert",
+    "run": 1,
+    "batch": "tier",
+    "saved_outcome": "report",
+    "saved_first_refusal": null,
+    "saved_repair_refusal": null,
+    "first_draft": {
+      "decision": "shipped"
+    },
+    "repaired_draft": null,
+    "outcome": "shipped_first_draft",
+    "severity": {
+      "applied": false
+    },
+    "verdict": "Strong program management results sit behind a current terminal role that leaves too much to guess.",
+    "fixes": [
+      {
+        "fix": "Which daily operations are yours, and what measure shows how much the terminal handles?",
+        "excerpt": "Responsible for daily operations of the Austin terminal",
+        "section": "Operations Manager, line 1",
+        "critical": false
+      },
+      {
+        "fix": "How many coordinators and dispatchers do you manage, and what do they handle?",
+        "excerpt": "Manage a team of coordinators and dispatchers",
+        "section": "Operations Manager, line 2",
+        "critical": false
+      },
+      {
+        "fix": "What kind of carrier or customer issue do you resolve, and what do you do to resolve it?",
+        "excerpt": "Work with carriers and customers to resolve issues",
+        "section": "Operations Manager, line 3",
+        "critical": false
+      },
+      {
+        "fix": "Which metrics do you report, and what are they used for?",
+        "excerpt": "Report weekly metrics to the regional director",
+        "section": "Operations Manager, line 4",
+        "critical": false
+      },
+      {
+        "fix": "Keep this as a model: the before and after are attached to a concrete decision you made, so the work is easy to follow.",
+        "excerpt": "Cut the forecast-to-delivery cycle for new capacity from 14 months to 9 by consolidating three approval tracks into one",
+        "section": "Senior Program Manager, line 2",
+        "critical": false
+      }
+    ],
+    "critical_misses": [],
+    "score": 68,
+    "jd_match_summary": null,
+    "jd_missing": null
+  }
+]

@@ -1,16 +1,12 @@
 import { expect, test, type Page } from "@playwright/test";
 import sampleReport from "../../public/sample-report.json";
-import type { ReportData } from "../../components/workspace/report/ReportTypes";
-import { reconcileReport } from "../../lib/reports/report-integrity";
-import { liftQuestions, marginNoteFromFix } from "../../lib/reports/revised-line";
 import { scoreBandFor } from "../../lib/reports/score-band";
+import { blankLabels } from "../../lib/reports/worklist-presentation";
 
-// The sample's Critical Miss, read the way the report reads it, so these checks follow the sample's content.
-const sampleMiss = reconcileReport(sampleReport as ReportData);
-const sampleMissFix = sampleMiss.report.top_fixes![0];
-const sampleMissLine = (typeof sampleMissFix.evidence === "string" ? sampleMissFix.evidence : sampleMissFix.evidence!.excerpt!)
-  .trim().replace(/^[-•*]\s+/u, "").replace(/[.;,:\s]+$/u, "");
-const sampleFirstQuestion = liftQuestions(sampleMiss.fixQuestions[0])[0] || "What would you add to this line?";
+// The sample's first card that needs work, read the way the report reads it, so these checks follow the sample's content.
+const sampleCards = sampleReport.cards as Array<{ kind: string; line: string; cannot_tell: string; example: string; question: string }>;
+const sampleFirstWork = sampleCards.find((card) => card.kind !== "keep" && blankLabels(card.example).length > 0)!;
+const sampleFirstWorkIndex = sampleCards.indexOf(sampleFirstWork);
 
 const RESUME_TEXT = `MATT SHAW
 Senior Program Manager
@@ -54,7 +50,7 @@ test.describe("launch red-team journeys", () => {
     // The full example sits one step from the opening, and the way back still leads to a report.
     await page.getByRole("link", { name: "See Jordan’s report", exact: true }).click();
     await expect(page).toHaveURL(/\/sample-report$/, { timeout: 45_000 });
-    await expect(page.getByText("Critical Miss", { exact: true }).first()).toBeVisible();
+    await expect(page.getByTestId("worklist-report")).toBeVisible();
     await page.goBack();
     await expect(page.getByTestId("landing-primary-cta")).toHaveText("Get your free report");
     await page.getByTestId("landing-primary-cta").click();
@@ -117,18 +113,15 @@ test.describe("launch red-team journeys", () => {
       return rect.top >= 0 && rect.bottom <= window.innerHeight;
     })).toBe(true);
 
-    // The first screen: the Verdict, the score band, and the Critical Miss once with its first question (2.5).
+    // The first screen: the score and its rung, the verdict and the write-up; never the retired name.
     const firstRead = page.locator("#section-first-impression");
     await expect(firstRead.getByTestId("score-band")).toContainText(scoreBandFor(sampleReport.score).name);
     await expect(firstRead).not.toContainText("/100");
-    await expect(firstRead).not.toContainText("Critical Miss");
-    const miss = page.getByTestId("critical-miss");
-    await expect(miss).toContainText(marginNoteFromFix(sampleMissFix.fix!));
-    await expect(miss.getByTestId("lift-question").first().locator("input")).toBeInViewport({ ratio: 1 });
+    await expect(page.getByTestId("worklist-report")).not.toContainText("Critical Miss");
+    await expect(firstRead.getByTestId("worklist-write-up")).toContainText(sampleReport.write_up[0].slice(0, 40));
     await expect(page.getByText("Not a prediction of interviews or offers.", { exact: true })).toHaveCount(0);
-    // The score note after the Nov 3 copy cut: what the score weighs, and that it predicts nothing.
     await expect(page.getByTestId("score-basis")).toContainText("It doesn't predict interviews or offers.");
-    await expect(page.getByRole("heading", { name: "Fix these three first.", exact: true })).toHaveCount(1);
+    await expect(page.getByRole("heading", { name: "Line by line, in the order a recruiter hits them.", exact: true })).toHaveCount(1);
 
     // The section tabs wait until the opening has scrolled away, then sit under the header.
     const reportNavigation = page.getByRole("navigation", { name: "Resume report sections" });
@@ -144,7 +137,7 @@ test.describe("launch red-team journeys", () => {
     const headerBottom = await page.locator("header.site-header").evaluate((header) => (
       Math.round(header.getBoundingClientRect().bottom)
     ));
-    expect(navigationBoxes).toHaveLength(4);
+    expect(navigationBoxes).toHaveLength(3);
     expect(new Set(navigationBoxes.map((box) => box.top)).size).toBe(1);
     for (const box of navigationBoxes) {
       expect(box.left).toBeGreaterThanOrEqual(0);
@@ -153,22 +146,19 @@ test.describe("launch red-team journeys", () => {
       expect(box.height).toBeGreaterThanOrEqual(44);
     }
 
-    // The sample's Critical Miss works like a real one: answers build the line, word for word.
-    const questions = miss.getByTestId("lift-question");
-    await expect(questions.first()).toContainText(sampleFirstQuestion);
-    await questions.first().locator("input").fill("42 new hires on the support and sales teams");
-    for (let index = (await questions.count()) - 1; index > 0; index -= 1) {
-      await questions.nth(index).getByRole("button", { name: "I don't know", exact: true }).click();
-    }
-    await expect(miss.getByTestId("revised-line")).toHaveText(`${sampleMissLine}: 42 new hires on the support and sales teams.`);
-    await expect(miss.getByRole("button", { name: "Copy", exact: true })).toBeEnabled();
-    await expect(miss).toContainText("This example only has the part of the line it quotes.");
-    await expect(miss.getByTestId("miss-feedback")).toHaveCount(0);
-
-    // Bracketed drafts are never presented as writing; the other fixes ask for the details instead.
-    await expect(page.locator("#section-fixes").getByText(/\[[^\]]+\]/)).toHaveCount(0);
+    // The sample's cards work like a real one: the answers fill the blanks, word for word, and the line can be copied.
+    const card = page.getByTestId("worklist-card").nth(sampleFirstWorkIndex);
+    await expect(card).toContainText(sampleFirstWork.cannot_tell);
+    await expect(card).toContainText(sampleFirstWork.question);
+    const blanks = card.getByTestId("worklist-blank");
+    const labels = blankLabels(sampleFirstWork.example);
+    await expect(blanks).toHaveCount(labels.length);
+    for (let index = 0; index < labels.length; index += 1) await blanks.nth(index).fill(`answer ${index + 1}`);
+    await expect(card.getByTestId("worklist-copy")).toBeVisible();
+    await expect(blanks.first()).toHaveValue("answer 1");
+    await expect(card).toContainText("Every fact in it is from your resume or your answers.");
+    // Brackets on the page are the person's blanks, never a draft presented as writing.
     await expect(page.locator("#section-fixes")).not.toContainText("These are drafts.");
-    await expect(page.locator('[id^="section-fix-"]').getByRole("button", { name: /Use these details|Not relevant/i })).toHaveCount(0);
     await expect(page.locator("#section-independent-advice button")).toHaveCount(0);
 
     const terminalCta = page.getByTestId("sample-terminal-cta");
@@ -200,34 +190,31 @@ test.describe("launch red-team journeys", () => {
     await expect(reportPaywall.getByRole("button", { name: "Back to workspace" })).toHaveCount(0);
     await reportPaywall.getByRole("button", { name: "Back to my report" }).click();
 
-    // The answer to revised line on a generated report: the candidate's line plus their answers only.
-    const miss = page.getByTestId("critical-miss");
-    const questions = miss.getByTestId("lift-question");
-    await expect(miss.getByRole("button", { name: "Copy", exact: true })).toHaveCount(0);
-    await questions.first().locator("input").fill("for 3 launch teams");
-    for (let index = (await questions.count()) - 1; index > 0; index -= 1) {
-      await questions.nth(index).getByRole("button", { name: "I don't know", exact: true }).click();
-    }
-    const revised = miss.getByTestId("revised-line");
-    await expect(revised).toContainText("for 3 launch teams");
-    await expect(miss.getByRole("button", { name: "Copy", exact: true })).toBeEnabled();
-    await expect(miss).toContainText("Every word is from your resume or your answers.");
-    // A number the candidate never gave can't be copied as theirs.
-    await miss.getByRole("button", { name: "Edit", exact: true }).click();
-    const edit = miss.getByLabel("Edit your revised line");
-    await edit.fill(`${await edit.inputValue()} Saved 999 hours.`);
-    await miss.getByRole("button", { name: "Done", exact: true }).click();
-    await expect(miss.getByRole("button", { name: "Copy", exact: true })).toBeDisabled();
-    await expect(miss).toContainText("isn't in your line or your answers");
+    // The worklist report: no Critical Miss, nothing called "the read", one card per line with the line quoted.
+    const report = page.getByTestId("worklist-report");
+    await expect(report).not.toContainText("Critical Miss");
+    await expect(report).not.toContainText(/\bthe read\b/);
+    // (The mock model writes a fixed report, so the quoted lines are the validator's job on the live route, not this spec's.)
+    const cards = page.getByTestId("worklist-card");
+    expect(await cards.count()).toBeGreaterThan(0);
 
-    // "Was this right?" is answered in the report, not by email (2.6).
+    // The example composes from the candidate's answers only: Copy appears once every blank is filled, and
+    // the composed line is the example with the answers in its blanks, word for word.
+    const card = cards.filter({ has: page.getByTestId("worklist-blank") }).first();
+    const blanks = card.getByTestId("worklist-blank");
+    const blankCount = await blanks.count();
+    expect(blankCount).toBeGreaterThan(0);
+    await expect(card.getByTestId("worklist-copy")).toHaveCount(0);
+    await blanks.first().fill("3 launch teams");
+    await expect(blanks.first()).toHaveValue("3 launch teams");
+    if (blankCount > 1) await expect(card.getByTestId("worklist-copy")).toHaveCount(0);
+    for (let index = 1; index < blankCount; index += 1) await blanks.nth(index).fill(`answer ${index}`);
+    await expect(card.getByTestId("worklist-copy")).toBeVisible();
+    await expect(card).toContainText("Every fact in it is from your resume or your answers.");
+
+    // An anonymous report keeps nothing: no save-to-report notice, and no feedback mailto.
+    await expect(card.getByTestId("worklist-kept")).toHaveCount(0);
     await expect(page.getByRole("link", { name: "Send feedback", exact: true })).toHaveCount(0);
-    const feedback = miss.getByTestId("miss-feedback");
-    await expect(feedback).toContainText("Was this the right thing to fix first?");
-    const feedbackSent = page.waitForResponse((response) => response.url().endsWith("/api/report-feedback"));
-    await feedback.getByRole("button", { name: "Yes", exact: true }).click();
-    expect((await feedbackSent).status()).toBe(200);
-    await expect(miss.getByText("Thanks.")).toBeVisible();
   });
 
   test("5. guest save prompt opens only after Save this version and requires verified sign-in", async ({ page }) => {

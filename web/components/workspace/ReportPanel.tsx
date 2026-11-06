@@ -21,6 +21,8 @@ import type { StoredLineAnswersByFix } from "@/lib/reports/line-answers";
 import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
 import { reconcileReport } from "@/lib/reports/report-integrity";
 import { candidateNameOf, formatReadTime, targetRoleOf } from "@/lib/reports/report-opening";
+import { isWorklistReport } from "@/lib/llm/worklist-schema";
+import { worklistTargetRole } from "@/lib/reports/worklist-presentation";
 
 // Re-export specific props if needed, but mainly we ingest ReportData
 interface ReportPanelProps {
@@ -108,8 +110,9 @@ export default function ReportPanel({
         return shareMode ? redactReport(report) : report;
     }, [report, shareMode]);
     // The Keep section lists the strengths after the opening one, once lines the report also fixes are removed.
+    const worklist = Boolean(displayReport && isWorklistReport(displayReport));
     const hasKeepSection = useMemo(
-        () => Boolean(displayReport && (reconcileReport(displayReport).report.strengths || []).length > 1),
+        () => Boolean(displayReport && !isWorklistReport(displayReport) && (reconcileReport(displayReport).report.strengths || []).length > 1),
         [displayReport],
     );
 
@@ -129,7 +132,7 @@ export default function ReportPanel({
     const saveLabel = isSavingReport ? "Saving…" : reportSaveError ? "Try saving again" : "Save this version";
     // The header row: the role the report reads toward, the level it reads at, and how long it took.
     const roleFit = displayReport?.job_alignment?.role_fit;
-    const targetRole = targetRoleOf(roleFit);
+    const targetRole = displayReport && isWorklistReport(displayReport) ? worklistTargetRole(displayReport) : targetRoleOf(roleFit);
     // A report written from the person's answers says so where the read time would go.
     const readTime = rebuiltAnswers > 0
         ? `written from ${rebuiltAnswers === 1 ? "your answer" : `${rebuiltAnswers} answers`}`
@@ -192,7 +195,7 @@ export default function ReportPanel({
             {showReport && !isLoading && displayReport && (
                 <ReportLayout
                     mobileReading
-                    toc={<ReportTOC activeId={tocActiveId} hasKeep={hasKeepSection} hasRole={Boolean(displayReport.job_alignment)} />}
+                    toc={<ReportTOC activeId={tocActiveId} hasKeep={hasKeepSection} hasRole={worklist ? Boolean(displayReport.fit?.note || displayReport.fit?.roles?.length) : Boolean(displayReport.job_alignment)} worklist={worklist} />}
                     head={
                         /* Whose resume, the role it reads toward, and how long the read took (W1, Nov 2, 2026). */
                         <>

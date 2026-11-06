@@ -1,0 +1,526 @@
+/*
+ * The worklist report (Matt, Nov 5, 2026; docs/design/2026-11-worklist-report/, typography-brief.md): the score
+ * and its rung, the recruiter's write-up in the pen, then one entry per line that needs work, in the order a
+ * recruiter hits them.
+ *
+ * The list is a reviewer's marks on a manuscript. Three hands: the resume (the quoted line on its strip of
+ * paper, and the example under it, which is the same line with the detail in, so both are set in the document's
+ * own face, at the same size, on the same left edge, and read as before and after); the recruiter's pencil (the
+ * note, Literata italic in the pen, as marginalia beside the line from 960px and under it on a phone; and the
+ * query between the two lines, in the small sans); and the product's apparatus (the label in the margin, the
+ * controls). Color lives in the text only: the marker on the quoted line, the blue in the blanks, the pen in
+ * the note. No rules inside an entry; a hairline between entries. An 8px rhythm throughout.
+ */
+
+.root {
+    --line-indent: 2.25rem; /* the strip's own padding (Paper.module.css), so the example shares its left edge */
+    max-width: 66rem;
+    margin-inline: auto;
+    padding-bottom: 2rem;
+    color: hsl(var(--text-strong));
+    font: var(--type-body);
+}
+
+/* ---------- The score and its rung ---------- */
+
+.opening {
+    padding-bottom: 0.5rem;
+}
+
+.top {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+    gap: 0.25rem 1.25rem;
+    margin-top: 0.5rem;
+}
+
+/* The number, kept (brief decision 10): where in the rung the page sits. */
+.score {
+    font: var(--weight-display) 2.75rem / 1 var(--font-display);
+    letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
+}
+
+.top > :global([data-testid="score-band"]) {
+    margin-top: 0.125rem;
+    max-width: 30rem;
+}
+
+/* The verdict: the write-up in one sentence, the loudest line on the first screen. */
+.verdict {
+    max-width: 34ch;
+    margin-top: 1.25rem;
+    font: var(--type-verdict-lead);
+    text-wrap: pretty;
+}
+
+/* The write-up: the recruiter's own words, in the pen. Upright Literata at reading size. */
+.writeUp {
+    display: grid;
+    gap: 0.875rem;
+    max-width: 62ch;
+    margin-top: 1rem;
+    color: hsl(var(--pen));
+    font: var(--weight-body) var(--type-lead-size) / var(--type-lead-leading) var(--font-editorial);
+    text-wrap: pretty;
+}
+
+.lifted {
+    max-width: 62ch;
+    color: hsl(var(--muted-foreground));
+    font: var(--type-small);
+}
+
+/* ---------- The list ---------- */
+
+.page {
+    border-top: 1px solid hsl(var(--line));
+    padding-top: 1.25rem;
+    margin-top: 1.25rem;
+}
+
+.sectionTitle {
+    font: var(--type-heading);
+    letter-spacing: var(--tracking-heading);
+    text-wrap: balance;
+}
+
+.sectionLead {
+    max-width: 52ch;
+    margin-top: 0.375rem;
+    color: hsl(var(--muted-foreground));
+}
+
+.cards {
+    margin: 0.5rem 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* An entry: a hairline above, never a box. On a phone, one column in reading order: the margin, the line, the
+   note under the line it comments on, then the query and the example. */
+.card {
+    display: grid;
+    gap: 0.75rem;
+    border-top: 1px solid hsl(var(--line));
+    padding: 1.25rem 0 1.5rem;
+    scroll-margin-top: 9rem;
+}
+
+.card:first-child {
+    border-top: 0;
+    padding-top: 0.5rem;
+}
+
+/* ---- the margin ---- */
+
+.margin {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.125rem 0.75rem;
+}
+
+.where {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    margin: 0;
+    color: hsl(var(--text-strong));
+    font: var(--type-label);
+}
+
+.card[data-kind="keep"] .where {
+    color: hsl(var(--pen));
+}
+
+.keepTick {
+    width: 0.875rem;
+    height: 0.875rem;
+}
+
+.whereQuiet {
+    margin: 0;
+    color: hsl(var(--muted-foreground));
+    font: var(--type-label);
+    font-weight: var(--weight-body);
+}
+
+/* The filled state is the pen's word in the margin, not a pill. */
+.filled {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin: 0;
+    color: hsl(var(--pen));
+    font: var(--type-label);
+}
+
+/* ---- the evidence: the line as written ---- */
+
+.evidence {
+    min-width: 0;
+}
+
+/* The line as the site's clipping, with the marker across it. The strip sets the document's own face. */
+.strip {
+    max-width: none;
+}
+
+.quote {
+    margin: 0;
+    font: inherit;
+    text-wrap: pretty;
+}
+
+/* The marker: one sweep across every line the quote occupies, so a wrapped line is marked whole at every width
+   (the clipping's phone rule, used here throughout, since a list of twelve wants the calmer stroke). */
+.mark {
+    display: inline;
+    background: linear-gradient(hsl(var(--marker) / 0.7), hsl(var(--marker) / 0.7)) 0 90% / 0% 58% no-repeat;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    transition: background-size var(--duration-gesture) var(--ease-marker);
+}
+
+.markOn {
+    background-size: 100% 58%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mark { transition: none; }
+}
+
+/* A structural item (section order, dates, a gap): the recruiter's statement of fact about the page, in the pen.
+   Its text starts on the strip's left edge so the query and the example under it line up. */
+.statement {
+    margin: 0;
+    border: 1px dashed hsl(var(--pen) / 0.6);
+    border-radius: var(--radius-inset);
+    padding: 0.75rem var(--line-indent);
+    color: hsl(var(--document-ink));
+    font-family: var(--font-document);
+    font-size: var(--type-prose-size);
+    line-height: 1.5;
+    text-wrap: pretty;
+}
+
+/* ---- the note: what a recruiter can't tell, as marginalia ---- */
+
+.cannot {
+    max-width: 44ch;
+    margin: 0;
+    padding-left: var(--line-indent);
+    color: hsl(var(--pen));
+    font: var(--type-note);
+    text-wrap: pretty;
+}
+
+/* ---- the answer: the query, then the line with the detail in ---- */
+
+.answer {
+    display: grid;
+    gap: 0.625rem;
+    min-width: 0;
+    padding-left: var(--line-indent);
+}
+
+/* The query is the reviewer's question to the author, in the product's sans, small and quiet. */
+.question {
+    max-width: 56ch;
+    margin: 0;
+    color: hsl(var(--text-strong));
+    font: var(--type-body);
+    text-wrap: pretty;
+}
+
+/* The example is the resume after the edit: the document's face at the strip's size, on the strip's left edge.
+   The blanks are the person's, in their blue, and they type into them. */
+.example {
+    min-width: 0;
+    max-width: 60ch;
+    margin: 0;
+    color: hsl(var(--document-ink));
+    font-family: var(--font-document);
+    font-size: var(--type-prose-size);
+    line-height: 1.5;
+    font-variant-numeric: tabular-nums oldstyle-nums;
+    text-wrap: pretty;
+}
+
+.blank {
+    color: hsl(var(--blue-ink));
+}
+
+.blank[data-open] {
+    opacity: 0.8;
+}
+
+.blankFilled {
+    color: hsl(var(--blue-ink));
+    text-decoration-line: underline;
+    text-decoration-color: hsl(var(--blue-ink) / 0.45);
+    text-decoration-thickness: var(--link-thickness);
+    text-underline-offset: var(--link-offset);
+}
+
+/* A blank as a field: a rule under the blank, on the text's own baseline, as wide as its name until the person's
+   words widen it. The span stays inline so the field's cap is the sentence's width, and the punctuation after
+   it can't wrap alone. */
+.blankField {
+    white-space: nowrap;
+}
+
+.blankField[data-long] {
+    display: block;
+    white-space: normal;
+}
+
+.blankInput {
+    display: inline-block;
+    box-sizing: border-box;
+    max-width: calc(100% - 0.1em);
+    min-width: 3ch;
+    margin: 0 -0.1em 0 0;
+    border: 0;
+    border-bottom: 1.5px solid hsl(var(--blue-ink) / 0.5);
+    border-radius: 0;
+    background: transparent;
+    padding: 0 0.1em;
+    color: hsl(var(--blue-ink));
+    font: inherit;
+    line-height: inherit;
+    vertical-align: baseline;
+    transition: border-color var(--duration-fast) var(--ease), background-color var(--duration-fast) var(--ease);
+}
+
+.blankInput::placeholder {
+    color: hsl(var(--blue-ink) / 0.65);
+    opacity: 1;
+}
+
+.blankInput:hover {
+    border-bottom-color: hsl(var(--blue-ink));
+}
+
+.blankInput:focus-visible,
+.blankArea:focus-visible {
+    border-bottom-color: hsl(var(--blue-ink));
+    background: hsl(var(--blue-ink) / 0.06);
+    border-radius: 3px 3px 0 0;
+    outline: 2px solid hsl(var(--blue-ink));
+    outline-offset: 1px;
+}
+
+/* A phrase-length blank wraps like text and grows to what it holds; the rule hugs the words once there are any. */
+.blankArea {
+    display: block;
+    box-sizing: border-box;
+    max-width: 100%;
+    margin: 0;
+    border: 0;
+    border-bottom: 1.5px solid hsl(var(--blue-ink) / 0.5);
+    border-radius: 0;
+    background: transparent;
+    padding: 0 0.1em;
+    color: hsl(var(--blue-ink));
+    font: inherit;
+    line-height: inherit;
+    resize: none;
+    overflow: hidden;
+    transition: border-color var(--duration-fast) var(--ease), background-color var(--duration-fast) var(--ease);
+}
+
+.blankArea::placeholder {
+    color: hsl(var(--blue-ink) / 0.65);
+    opacity: 1;
+}
+
+.blankArea:hover,
+.blankField[data-filled] .blankArea {
+    border-bottom-color: hsl(var(--blue-ink));
+}
+
+.blankField[data-filled] .blankInput {
+    border-bottom-color: hsl(var(--blue-ink));
+}
+
+/* The escape hatch is quieter than the question above it. */
+.quiet {
+    color: hsl(var(--muted-foreground));
+    font-weight: var(--weight-body);
+}
+
+.tools {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem 1rem;
+    margin-left: -0.5rem;
+}
+
+.note {
+    max-width: 52ch;
+    margin: 0;
+    color: hsl(var(--muted-foreground));
+    font: var(--type-small);
+}
+
+.unlisted {
+    margin-top: 0.25rem;
+    color: hsl(var(--muted-foreground));
+    font: var(--type-small);
+}
+
+/* ---------- Fit ---------- */
+
+.fitGrid {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.fitList ul {
+    display: grid;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    font: var(--type-small);
+    font-weight: var(--weight-label);
+}
+
+.missing {
+    display: grid;
+    gap: 0.375rem;
+    margin-top: 1rem;
+}
+
+.missing ul {
+    display: grid;
+    gap: 0.375rem;
+    padding-left: 1rem;
+    list-style: disc;
+    font: var(--type-small);
+}
+
+/* ---------- Phones ---------- */
+
+@media (max-width: 640px) {
+    .root {
+        --line-indent: 1.25rem; /* the strip's phone padding */
+    }
+
+    .example,
+    .statement {
+        font-size: var(--type-body-size);
+    }
+
+    /* The strip is narrow, so the neighbours fade off the cut edge sooner, before a word is cut. */
+    .strip p[aria-hidden="true"] {
+        -webkit-mask-image: linear-gradient(to bottom, transparent 15%, rgb(0 0 0 / 0.55)), linear-gradient(to right, black 35%, transparent 85%);
+        mask-image: linear-gradient(to bottom, transparent 15%, rgb(0 0 0 / 0.55)), linear-gradient(to right, black 35%, transparent 85%);
+    }
+}
+
+/* ---------- Wider screens ---------- */
+
+@media (min-width: 640px) {
+    .opening {
+        padding-bottom: 1rem;
+    }
+
+    .top {
+        gap: 0.5rem 1.75rem;
+        margin-top: 1rem;
+    }
+
+    .score {
+        font-size: 3.25rem;
+    }
+
+    .verdict {
+        font: var(--type-verdict);
+        max-width: 40ch;
+    }
+
+    .page {
+        padding-top: 1.5rem;
+        margin-top: 1.5rem;
+    }
+
+    .card {
+        gap: 0.875rem;
+        padding: 1.5rem 0 1.75rem;
+    }
+}
+
+/* The row: the margin hangs the label; the resume column holds the line and the line after it; the note sits
+   beside the line as marginalia. */
+@media (min-width: 960px) {
+    .cards {
+        margin-top: 0.75rem;
+    }
+
+    .card {
+        grid-template-columns: 8rem minmax(0, 40rem) minmax(13rem, 17rem);
+        grid-template-areas:
+            "margin evidence note"
+            "margin answer   .";
+        column-gap: 2.5rem;
+        row-gap: 0.75rem;
+        padding: 1.75rem 0 2rem;
+    }
+
+    .card:first-child {
+        padding-top: 0.5rem;
+    }
+
+    .margin {
+        grid-area: margin;
+        display: grid;
+        align-content: start;
+        gap: 0.25rem;
+        padding-top: 0.125rem;
+    }
+
+    .filled {
+        margin-top: 0.5rem;
+    }
+
+    .evidence {
+        grid-area: evidence;
+    }
+
+    /* Level with the line it annotates: past the strip's top padding and, when a neighbour is drawn above the
+       line, past that ghost line too. */
+    .cannot {
+        grid-area: note;
+        padding-left: 0;
+        padding-top: 0.875rem;
+    }
+
+    .card[data-ghost-above] .cannot {
+        padding-top: calc(0.875rem + 1.6875rem);
+    }
+
+    .card[data-kind="structure"] .cannot,
+    .card[data-kind="dates"] .cannot {
+        padding-top: 0.75rem;
+    }
+
+    .answer {
+        grid-area: answer;
+    }
+
+    .fitGrid {
+        grid-template-columns: minmax(0, 1fr) 19rem;
+        column-gap: 3.5rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .card {
+        grid-template-columns: 9rem minmax(0, 40rem) minmax(14rem, 17rem);
+        column-gap: 3rem;
+    }
+}

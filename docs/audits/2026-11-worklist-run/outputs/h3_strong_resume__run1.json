@@ -11,40 +11,40 @@
   "model": "gpt-6.1-terra",
   "reasoning_effort": "medium",
   "severity_check": false,
-  "started_at": "2026-11-06T04:13:08.512Z",
+  "started_at": "2026-11-06T04:49:15.897Z",
   "calls": [
     {
       "kind": "report",
       "usage": {
-        "prompt_tokens": 4680,
-        "completion_tokens": 433,
-        "total_tokens": 5113,
-        "cached_prompt_tokens": 3502,
-        "cache_write_prompt_tokens": 1175,
-        "reasoning_tokens": 71
+        "prompt_tokens": 4867,
+        "completion_tokens": 440,
+        "total_tokens": 5307,
+        "cached_prompt_tokens": 0,
+        "cache_write_prompt_tokens": 4864,
+        "reasoning_tokens": 69
       },
-      "cost_usd": 0.00381185,
+      "cost_usd": 0.008283,
       "model": "gpt-6.1-terra",
-      "latency_ms": 6036
+      "latency_ms": 6940
     }
   ],
-  "resume_prompt_sha256": "18e7e9ff21a0c2fda0fe219456e2d1f965de7d79bcc85173eaebd632dd83f42e",
+  "resume_prompt_sha256": "705c29972bf764486ea54aff743eed45a9ee81f97f985646e94bcbb4963504a4",
   "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
   "model_output": {
     "contract_version": "v3",
-    "score": 96,
+    "score": 95,
     "lifted_by_employer": false,
-    "verdict": "A senior payments product manager with product growth, customer results and team leadership attached.",
+    "verdict": "A senior payments product manager with launches, customer results, and management experience a recruiter can follow.",
     "write_up": [
-      "A recruiter sees a clear progression from merchant onboarding to owning a payments platform roadmap. Northwind Pay's growth, the processor integrations and the three product manager hires make your work easy to place.",
-      "The payment failure rate line is the model: it names the change you led, the improvement and the estimated revenue recovered for customers. The rest of the experience is nearly as specific."
+      "A recruiter can see your progression from onboarding and billing to a payments platform roadmap and managing product managers. The Northwind Pay launch gives them a memorable product story, with revenue and adoption attached.",
+      "The payment failure line is a model for the rest: it names the problem, what you led, the change in failure rate, and the estimated revenue recovered for customers. There isn't much a recruiter has to guess at here."
     ],
     "cards": [
       {
         "kind": "keep",
         "where": "Senior Product Manager, Payments Platform, line 3",
         "line": "- Cut payment failure rate from 4.1% to 1.6% by leading the move to network tokenization and smart retries, recovering an estimated $6.2M in annual revenue for customers",
-        "cannot_tell": "Keep this as a model. It connects the work you led to the change in failure rate and the estimated revenue recovered.",
+        "cannot_tell": "Keep this as a model. You connect a technical decision to a customer problem and distinguish the revenue figure as an estimate.",
         "example": "",
         "question": ""
       }
@@ -55,7 +55,7 @@
         "Product Manager, Billing"
       ],
       "level": "Senior product manager",
-      "note": "Your experience points to senior product roles in payments and billing. The current role also shows product manager hiring and management alongside platform ownership.",
+      "note": "Your experience points toward senior product roles in payments and billing. The current role also shows product manager hiring and management.",
       "posting": {
         "summary": "",
         "missing": []
@@ -64,19 +64,19 @@
   },
   "validated_report": {
     "contract_version": "v3",
-    "score": 96,
+    "score": 95,
     "lifted_by_employer": false,
-    "verdict": "A senior payments product manager with product growth, customer results and team leadership attached.",
+    "verdict": "A senior payments product manager with launches, customer results, and management experience a recruiter can follow.",
     "write_up": [
-      "A recruiter sees a clear progression from merchant onboarding to owning a payments platform roadmap. Northwind Pay's growth, the processor integrations and the three product manager hires make your work easy to place.",
-      "The payment failure rate line is the model: it names the change you led, the improvement and the estimated revenue recovered for customers. The rest of the experience is nearly as specific."
+      "A recruiter can see your progression from onboarding and billing to a payments platform roadmap and managing product managers. The Northwind Pay launch gives them a memorable product story, with revenue and adoption attached.",
+      "The payment failure line is a model for the rest: it names the problem, what you led, the change in failure rate, and the estimated revenue recovered for customers. There isn't much a recruiter has to guess at here."
     ],
     "cards": [
       {
         "kind": "keep",
         "where": "Senior Product Manager, Payments Platform, line 3",
         "line": "Cut payment failure rate from 4.1% to 1.6% by leading the move to network tokenization and smart retries, recovering an estimated $6.2M in annual revenue for customers",
-        "cannot_tell": "Keep this as a model. It connects the work you led to the change in failure rate and the estimated revenue recovered.",
+        "cannot_tell": "Keep this as a model. You connect a technical decision to a customer problem and distinguish the revenue figure as an estimate.",
         "example": "",
         "question": ""
       }
@@ -87,7 +87,7 @@
         "Product Manager, Billing"
       ],
       "level": "Senior product manager",
-      "note": "Your experience points to senior product roles in payments and billing. The current role also shows product manager hiring and management alongside platform ownership.",
+      "note": "Your experience points toward senior product roles in payments and billing. The current role also shows product manager hiring and management.",
       "posting": {
         "summary": "",
         "missing": []
@@ -97,23 +97,23 @@
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 96
+    "content_score": 95
   },
   "shipped_report": {
     "contract_version": "v3",
-    "score": 96,
+    "score": 95,
     "lifted_by_employer": false,
-    "verdict": "A senior payments product manager with product growth, customer results and team leadership attached.",
+    "verdict": "A senior payments product manager with launches, customer results, and management experience a recruiter can follow.",
     "write_up": [
-      "A recruiter sees a clear progression from merchant onboarding to owning a payments platform roadmap. Northwind Pay's growth, the processor integrations and the three product manager hires make your work easy to place.",
-      "The payment failure rate line is the model: it names the change you led, the improvement and the estimated revenue recovered for customers. The rest of the experience is nearly as specific."
+      "A recruiter can see your progression from onboarding and billing to a payments platform roadmap and managing product managers. The Northwind Pay launch gives them a memorable product story, with revenue and adoption attached.",
+      "The payment failure line is a model for the rest: it names the problem, what you led, the change in failure rate, and the estimated revenue recovered for customers. There isn't much a recruiter has to guess at here."
     ],
     "cards": [
       {
         "kind": "keep",
         "where": "Senior Product Manager, Payments Platform, line 3",
         "line": "Cut payment failure rate from 4.1% to 1.6% by leading the move to network tokenization and smart retries, recovering an estimated $6.2M in annual revenue for customers",
-        "cannot_tell": "Keep this as a model. It connects the work you led to the change in failure rate and the estimated revenue recovered.",
+        "cannot_tell": "Keep this as a model. You connect a technical decision to a customer problem and distinguish the revenue figure as an estimate.",
         "example": "",
         "question": ""
       }
@@ -124,7 +124,7 @@
         "Product Manager, Billing"
       ],
       "level": "Senior product manager",
-      "note": "Your experience points to senior product roles in payments and billing. The current role also shows product manager hiring and management alongside platform ownership.",
+      "note": "Your experience points toward senior product roles in payments and billing. The current role also shows product manager hiring and management.",
       "posting": {
         "summary": "",
         "missing": []
@@ -134,16 +134,16 @@
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 96
+    "content_score": 95
   },
   "presentation": {
-    "score": 96,
+    "score": 95,
     "band": "Clear and specific",
-    "model_score": 96,
+    "model_score": 95,
     "lifted_by_employer": false,
-    "verdict": "A senior payments product manager with product growth, customer results and team leadership attached.",
+    "verdict": "A senior payments product manager with launches, customer results, and management experience a recruiter can follow.",
     "write_up_paragraphs": 2,
-    "write_up_words": 65,
+    "write_up_words": 73,
     "cards": [
       {
         "kind": "keep",
@@ -167,7 +167,7 @@
         "Product Manager, Billing"
       ],
       "level": "Senior product manager",
-      "note": "Your experience points to senior product roles in payments and billing. The current role also shows product manager hiring and management alongside platform ownership.",
+      "note": "Your experience points toward senior product roles in payments and billing. The current role also shows product manager hiring and management.",
       "posting": {
         "summary": "",
         "missing": []
@@ -175,6 +175,6 @@
     }
   },
   "outcome": "report",
-  "cost_usd": 0.00381185,
-  "latency_ms": 6056
+  "cost_usd": 0.008283,
+  "latency_ms": 6958
 }

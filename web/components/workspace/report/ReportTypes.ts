@@ -1,5 +1,14 @@
+import type { WorklistCard, WorklistReport } from "@/lib/llm/worklist-schema";
+
 export interface ReportData {
     id?: string;
+    /** "v2" is the Critical Miss report; "v3" the worklist report, whose fields follow. */
+    contract_version?: string;
+    verdict?: string;
+    write_up?: string[];
+    cards?: WorklistCard[];
+    fit?: WorklistReport["fit"];
+    lifted_by_employer?: boolean;
     score?: number;
     score_label?: string;
     score_comment_short?: string;

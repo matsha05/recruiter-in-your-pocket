@@ -141,6 +141,28 @@ export function pdfReportStyles(fonts: { voice: string; voiceItalic: string; ui:
     .alignment-meta { display: flex; flex-wrap: wrap; gap: 10px 18px; margin-top: 15px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 10pt; line-height: 15pt; }
     .meta-item strong { margin-right: 4px; }
     .alignment-section { padding-top: 12px; border-top: 1px solid var(--line); break-inside: avoid; }
+    /* The worklist report (Nov 5, 2026): the score beside its rung, the write-up in the pen, one card per line. */
+    .score-row { display: flex; align-items: flex-start; gap: 22px; margin-bottom: 14px; }
+    .score { font-size: 30pt; font-weight: 800; line-height: 30pt; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+    .score-row .band { margin-top: 2px; }
+    .write-up { margin-top: 14px; color: var(--accent); font-family: "Literata", Georgia, serif; font-size: 11.5pt; line-height: 17pt; }
+    .write-up p + p { margin-top: 9px; }
+    .card { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; margin-bottom: 12px; break-inside: avoid; }
+    .card.keep { border-color: var(--accent); }
+    .card-where { color: var(--brass); font-size: 9pt; font-weight: 600; line-height: 13pt; margin-bottom: 7px; }
+    .card.keep .card-where { color: var(--accent); }
+    .card-where-quiet { margin-left: 8px; color: var(--muted); font-weight: 400; }
+    .card-line { font-family: "Literata", Georgia, serif; font-size: 11.5pt; line-height: 17pt; margin-bottom: 8px; }
+    .card-line.ink { border-left: 2px solid var(--blue-ink); padding-left: 10px; }
+    .card-statement { border: 1px dashed var(--accent); border-radius: 6px; padding: 6px 10px; margin-bottom: 8px; color: var(--accent); font-family: "Literata", Georgia, serif; font-style: italic; font-size: 10.5pt; line-height: 15pt; }
+    .card .pen-note { margin-bottom: 8px; }
+    .card-example { border-left: 2px solid var(--blue-ink); padding-left: 10px; font-family: "Literata", Georgia, serif; font-size: 11pt; line-height: 16pt; }
+    .blank { color: var(--blue-ink); }
+    .blank-filled { color: var(--blue-ink); text-decoration: underline; text-decoration-color: rgba(36, 72, 168, 0.45); }
+    .card-example-note { margin-top: 2px; color: var(--muted); font-size: 9pt; line-height: 13pt; }
+    .card-question { margin-top: 8px; font-size: 10.5pt; font-weight: 600; line-height: 15pt; }
+    .unlisted { color: var(--muted); font-size: 9.5pt; line-height: 14pt; margin-top: 4px; }
+    .marked-questions-label.accent { color: var(--accent); }
     footer { margin-top: 26px; padding-top: 12px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 28px; font-size: 9pt; line-height: 13pt; color: var(--muted); }
   `;
 }

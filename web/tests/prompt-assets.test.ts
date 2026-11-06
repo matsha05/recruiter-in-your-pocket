@@ -21,7 +21,8 @@ void Promise.all(modes.map((mode) => loadPromptForMode(mode)))
       // The worklist prompt (resume_v3.txt): judgment first, cards, no Critical Miss anywhere in it.
       assert.match(resumePrompt, /THE WRITE-UP/);
       assert.match(resumePrompt, /THE CARDS/);
-      assert.doesNotMatch(resumePrompt, /Critical Miss/);
+      // The retired name appears once, inside the never-write list, and nowhere else.
+      assert.equal((resumePrompt.match(/Critical Miss/g) || []).length, 1);
     } else {
       assert.match(resumePrompt, /REPORT RHYTHM/);
       assert.match(resumePrompt, /Do not begin the summary with the legacy template "You read as"/);

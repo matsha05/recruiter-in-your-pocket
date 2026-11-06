@@ -10,6 +10,9 @@ import path from "node:path";
 import { ANONYMOUS_ID_COOKIE, makeAnonymousIdentityCookie } from "../lib/backend/freeCookie";
 import { hubspotSource, schemaValidReport } from "./helpers/report-fidelity-fixture";
 
+// These are the v2 (Critical Miss) report's paths; the worklist report, the default since November 6, 2026, has its own.
+process.env.RIYP_WORKLIST_REPORT = "0";
+
 type RuntimeModule = typeof Module & {
   _load: (request: string, parent: NodeModule | null, isMain: boolean) => unknown;
 };

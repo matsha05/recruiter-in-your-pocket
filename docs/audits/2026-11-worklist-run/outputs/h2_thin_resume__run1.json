@@ -11,56 +11,56 @@
   "model": "gpt-6.1-terra",
   "reasoning_effort": "medium",
   "severity_check": false,
-  "started_at": "2026-11-06T04:13:08.511Z",
+  "started_at": "2026-11-06T04:49:15.896Z",
   "calls": [
     {
       "kind": "report",
       "usage": {
-        "prompt_tokens": 4071,
-        "completion_tokens": 1503,
-        "total_tokens": 5574,
-        "cached_prompt_tokens": 0,
-        "cache_write_prompt_tokens": 4068,
-        "reasoning_tokens": 512
+        "prompt_tokens": 4258,
+        "completion_tokens": 1630,
+        "total_tokens": 5888,
+        "cached_prompt_tokens": 3689,
+        "cache_write_prompt_tokens": 566,
+        "reasoning_tokens": 669
       },
-      "cost_usd": 0.012603,
+      "cost_usd": 0.00904495,
       "model": "gpt-6.1-terra",
-      "latency_ms": 18850
+      "latency_ms": 20618
     }
   ],
-  "resume_prompt_sha256": "18e7e9ff21a0c2fda0fe219456e2d1f965de7d79bcc85173eaebd632dd83f42e",
+  "resume_prompt_sha256": "705c29972bf764486ea54aff743eed45a9ee81f97f985646e94bcbb4963504a4",
   "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
   "model_output": {
     "contract_version": "v3",
     "score": 64,
     "lifted_by_employer": false,
-    "verdict": "An analytics intern with the right tools, but too little detail about the work behind them.",
+    "verdict": "A data analytics intern with useful tools, but little about what the reports and dashboard covered.",
     "write_up": [
-      "A recruiter sees a student with credit union analytics experience and a Tableau dashboard for a marketing team. The internship is recent, but its bullets don't say what the reports or dashboard covered, or what the findings were. That makes the first pass a hesitant one.",
-      "The survey-data line is the best model: it names the data and the tools you used. Give the other internship bullets that same grounding, then add what you can verify about the work's size or results."
+      "You have a recent analytics internship and a treasurer role alongside your degree. A recruiter can see the tools and the teams you worked with, but has to guess what the weekly reports and dashboard tracked. That makes it difficult to distinguish your work from another intern's.",
+      "The member survey line is the best model: it names the data, the work and the tools. Bring that same detail to the dashboard and presentation, then add the club budget if you can share it."
     ],
     "cards": [
       {
         "kind": "structure",
         "where": "Great Lakes Credit Union",
-        "line": "The resume does not say how large Great Lakes Credit Union is.",
-        "cannot_tell": "A recruiter can see it's a credit union, but not the size of the organization you worked in. A short description could give the internship more context.",
+        "line": "The page doesn't say how large Great Lakes Credit Union is.",
+        "cannot_tell": "A recruiter may not know the credit union. A short description of its membership could give your internship some context.",
         "example": "",
-        "question": "Can you verify the credit union's size or the number of members it serves?"
+        "question": "How large is the credit union's membership, if you know?"
       },
       {
         "kind": "line",
         "where": "Data Analytics Intern, line 1",
         "line": "- Assisted the analytics team with weekly reporting",
-        "cannot_tell": "'Assisted' leaves your part of the reporting blank. The weekly cadence is useful, but the subject and your contribution are missing.",
-        "example": "Assisted the analytics team with weekly reporting on [what the reports tracked] by [your contribution]",
-        "question": "What did the weekly reports track, and what did you do to prepare them?"
+        "cannot_tell": "'Assisted' leaves your part of the weekly reports open. What did the reports cover, and what did you do for them?",
+        "example": "Assisted the analytics team with weekly reporting on [subject] by [your contribution]",
+        "question": "What did the weekly reports cover, and what part did you handle?"
       },
       {
         "kind": "keep",
         "where": "Data Analytics Intern, line 2",
         "line": "- Cleaned member survey data in Excel and SQL",
-        "cannot_tell": "This names both the material you worked on and the tools you used. It's a good model for giving the other bullets something concrete.",
+        "cannot_tell": "Keep the combination of a named dataset and the methods you used. It gives the rest of the internship a useful standard to follow.",
         "example": "",
         "question": ""
       },
@@ -68,41 +68,41 @@
         "kind": "line",
         "where": "Data Analytics Intern, line 3",
         "line": "- Built a dashboard in Tableau for the marketing team",
-        "cannot_tell": "The dashboard and its audience are clear, but what it tracked isn't. That subject would tell a recruiter more about the analysis.",
-        "example": "Built a dashboard in Tableau for the marketing team to track [what the dashboard tracked]",
-        "question": "What did the dashboard track, and what was it used for?"
+        "cannot_tell": "The tool and audience are here. The missing piece is what the marketing team could see in the dashboard.",
+        "example": "Built a dashboard in Tableau for the marketing team to track [measures]",
+        "question": "What did the dashboard track for the marketing team?"
       },
       {
         "kind": "line",
         "where": "Data Analytics Intern, line 4",
         "line": "- Presented findings to the team at the end of the internship",
-        "cannot_tell": "A presentation is useful experience, but the findings could be about anything. Give the team something to remember.",
-        "example": "Presented findings on [topic or finding] to the team at the end of the internship",
-        "question": "What did you present, and which finding can you share?"
+        "cannot_tell": "A recruiter knows you presented, but not what you found. Name the subject and a finding you can share.",
+        "example": "Presented findings on [topic] to the team at the end of the internship, covering [findings]",
+        "question": "What did you present, and what finding can you share?"
       },
       {
         "kind": "line",
         "where": "Treasurer, line 1",
         "line": "- Manage the club budget and reimbursements",
-        "cannot_tell": "The responsibility is clear, but the budget's size would help a recruiter understand the treasurer job.",
-        "example": "Manage the club budget of [amount] and reimbursements for [what reimbursements cover]",
-        "question": "How large is the club budget, and what kinds of expenses do you reimburse?"
+        "cannot_tell": "The responsibilities are clear, but the budget amount would show how much money you're managing.",
+        "example": "Manage the club budget of [budget amount and period] and reimbursements",
+        "question": "How much is the club budget, and what period does it cover?"
       },
       {
         "kind": "line",
         "where": "Treasurer, line 2",
         "line": "- Help organize monthly speaker events",
-        "cannot_tell": "The monthly cadence is clear, but 'help' doesn't say which part you handle. Name your contribution to an event.",
+        "cannot_tell": "'Help organize' doesn't say which part is yours. The monthly schedule is useful; add what you handle for the events.",
         "example": "Help organize monthly speaker events by [your contribution]",
-        "question": "What do you do to help organize the speaker events?"
+        "question": "What do you handle when organizing the speaker events?"
       }
     ],
     "fit": {
       "roles": [
         "Data Analytics Intern"
       ],
-      "level": "Student and intern",
-      "note": "Your internship points toward analytics work, with experience in Excel, SQL and Tableau. The club treasurer role adds budget responsibility, though the page doesn't say how large that budget is.",
+      "level": "Student and recent intern",
+      "note": "Your coursework and internship point toward data analytics internships. The dashboard and survey work are relevant; explaining what they covered would make that experience more persuasive.",
       "posting": {
         "summary": "",
         "missing": []
@@ -113,33 +113,33 @@
     "contract_version": "v3",
     "score": 64,
     "lifted_by_employer": false,
-    "verdict": "An analytics intern with the right tools, but too little detail about the work behind them.",
+    "verdict": "A data analytics intern with useful tools, but little about what the reports and dashboard covered.",
     "write_up": [
-      "A recruiter sees a student with credit union analytics experience and a Tableau dashboard for a marketing team. The internship is recent, but its bullets don't say what the reports or dashboard covered, or what the findings were. That makes the first pass a hesitant one.",
-      "The survey-data line is the best model: it names the data and the tools you used. Give the other internship bullets that same grounding, then add what you can verify about the work's size or results."
+      "You have a recent analytics internship and a treasurer role alongside your degree. A recruiter can see the tools and the teams you worked with, but has to guess what the weekly reports and dashboard tracked. That makes it difficult to distinguish your work from another intern's.",
+      "The member survey line is the best model: it names the data, the work and the tools. Bring that same detail to the dashboard and presentation, then add the club budget if you can share it."
     ],
     "cards": [
       {
         "kind": "structure",
         "where": "Great Lakes Credit Union",
-        "line": "The resume does not say how large Great Lakes Credit Union is.",
-        "cannot_tell": "A recruiter can see it's a credit union, but not the size of the organization you worked in. A short description could give the internship more context.",
+        "line": "The page doesn't say how large Great Lakes Credit Union is.",
+        "cannot_tell": "A recruiter may not know the credit union. A short description of its membership could give your internship some context.",
         "example": "",
-        "question": "Can you verify the credit union's size or the number of members it serves?"
+        "question": "How large is the credit union's membership, if you know?"
       },
       {
         "kind": "line",
         "where": "Data Analytics Intern, line 1",
         "line": "Assisted the analytics team with weekly reporting",
-        "cannot_tell": "'Assisted' leaves your part of the reporting blank. The weekly cadence is useful, but the subject and your contribution are missing.",
-        "example": "Assisted the analytics team with weekly reporting on [what the reports tracked] by [your contribution]",
-        "question": "What did the weekly reports track, and what did you do to prepare them?"
+        "cannot_tell": "'Assisted' leaves your part of the weekly reports open. What did the reports cover, and what did you do for them?",
+        "example": "Assisted the analytics team with weekly reporting on [subject] by [your contribution]",
+        "question": "What did the weekly reports cover, and what part did you handle?"
       },
       {
         "kind": "keep",
         "where": "Data Analytics Intern, line 2",
         "line": "Cleaned member survey data in Excel and SQL",
-        "cannot_tell": "This names both the material you worked on and the tools you used. It's a good model for giving the other bullets something concrete.",
+        "cannot_tell": "Keep the combination of a named dataset and the methods you used. It gives the rest of the internship a useful standard to follow.",
         "example": "",
         "question": ""
       },
@@ -147,41 +147,41 @@
         "kind": "line",
         "where": "Data Analytics Intern, line 3",
         "line": "Built a dashboard in Tableau for the marketing team",
-        "cannot_tell": "The dashboard and its audience are clear, but what it tracked isn't. That subject would tell a recruiter more about the analysis.",
-        "example": "Built a dashboard in Tableau for the marketing team to track [what the dashboard tracked]",
-        "question": "What did the dashboard track, and what was it used for?"
+        "cannot_tell": "The tool and audience are here. The missing piece is what the marketing team could see in the dashboard.",
+        "example": "Built a dashboard in Tableau for the marketing team to track [measures]",
+        "question": "What did the dashboard track for the marketing team?"
       },
       {
         "kind": "line",
         "where": "Data Analytics Intern, line 4",
         "line": "Presented findings to the team at the end of the internship",
-        "cannot_tell": "A presentation is useful experience, but the findings could be about anything. Give the team something to remember.",
-        "example": "Presented findings on [topic or finding] to the team at the end of the internship",
-        "question": "What did you present, and which finding can you share?"
+        "cannot_tell": "A recruiter knows you presented, but not what you found. Name the subject and a finding you can share.",
+        "example": "Presented findings on [topic] to the team at the end of the internship, covering [findings]",
+        "question": "What did you present, and what finding can you share?"
       },
       {
         "kind": "line",
         "where": "Treasurer, line 1",
         "line": "Manage the club budget and reimbursements",
-        "cannot_tell": "The responsibility is clear, but the budget's size would help a recruiter understand the treasurer job.",
-        "example": "Manage the club budget of [amount] and reimbursements for [what reimbursements cover]",
-        "question": "How large is the club budget, and what kinds of expenses do you reimburse?"
+        "cannot_tell": "The responsibilities are clear, but the budget amount would show how much money you're managing.",
+        "example": "Manage the club budget of [budget amount and period] and reimbursements",
+        "question": "How much is the club budget, and what period does it cover?"
       },
       {
         "kind": "line",
         "where": "Treasurer, line 2",
         "line": "Help organize monthly speaker events",
-        "cannot_tell": "The monthly cadence is clear, but 'help' doesn't say which part you handle. Name your contribution to an event.",
+        "cannot_tell": "'Help organize' doesn't say which part is yours. The monthly schedule is useful; add what you handle for the events.",
         "example": "Help organize monthly speaker events by [your contribution]",
-        "question": "What do you do to help organize the speaker events?"
+        "question": "What do you handle when organizing the speaker events?"
       }
     ],
     "fit": {
       "roles": [
         "Data Analytics Intern"
       ],
-      "level": "Student and intern",
-      "note": "Your internship points toward analytics work, with experience in Excel, SQL and Tableau. The club treasurer role adds budget responsibility, though the page doesn't say how large that budget is.",
+      "level": "Student and recent intern",
+      "note": "Your coursework and internship point toward data analytics internships. The dashboard and survey work are relevant; explaining what they covered would make that experience more persuasive.",
       "posting": {
         "summary": "",
         "missing": []
@@ -197,33 +197,33 @@
     "contract_version": "v3",
     "score": 64,
     "lifted_by_employer": false,
-    "verdict": "An analytics intern with the right tools, but too little detail about the work behind them.",
+    "verdict": "A data analytics intern with useful tools, but little about what the reports and dashboard covered.",
     "write_up": [
-      "A recruiter sees a student with credit union analytics experience and a Tableau dashboard for a marketing team. The internship is recent, but its bullets don't say what the reports or dashboard covered, or what the findings were. That makes the first pass a hesitant one.",
-      "The survey-data line is the best model: it names the data and the tools you used. Give the other internship bullets that same grounding, then add what you can verify about the work's size or results."
+      "You have a recent analytics internship and a treasurer role alongside your degree. A recruiter can see the tools and the teams you worked with, but has to guess what the weekly reports and dashboard tracked. That makes it difficult to distinguish your work from another intern's.",
+      "The member survey line is the best model: it names the data, the work and the tools. Bring that same detail to the dashboard and presentation, then add the club budget if you can share it."
     ],
     "cards": [
       {
         "kind": "structure",
         "where": "Great Lakes Credit Union",
-        "line": "The resume does not say how large Great Lakes Credit Union is.",
-        "cannot_tell": "A recruiter can see it's a credit union, but not the size of the organization you worked in. A short description could give the internship more context.",
+        "line": "The page doesn't say how large Great Lakes Credit Union is.",
+        "cannot_tell": "A recruiter may not know the credit union. A short description of its membership could give your internship some context.",
         "example": "",
-        "question": "Can you verify the credit union's size or the number of members it serves?"
+        "question": "How large is the credit union's membership, if you know?"
       },
       {
         "kind": "line",
         "where": "Data Analytics Intern, line 1",
         "line": "Assisted the analytics team with weekly reporting",
-        "cannot_tell": "'Assisted' leaves your part of the reporting blank. The weekly cadence is useful, but the subject and your contribution are missing.",
-        "example": "Assisted the analytics team with weekly reporting on [what the reports tracked] by [your contribution]",
-        "question": "What did the weekly reports track, and what did you do to prepare them?"
+        "cannot_tell": "'Assisted' leaves your part of the weekly reports open. What did the reports cover, and what did you do for them?",
+        "example": "Assisted the analytics team with weekly reporting on [subject] by [your contribution]",
+        "question": "What did the weekly reports cover, and what part did you handle?"
       },
       {
         "kind": "keep",
         "where": "Data Analytics Intern, line 2",
         "line": "Cleaned member survey data in Excel and SQL",
-        "cannot_tell": "This names both the material you worked on and the tools you used. It's a good model for giving the other bullets something concrete.",
+        "cannot_tell": "Keep the combination of a named dataset and the methods you used. It gives the rest of the internship a useful standard to follow.",
         "example": "",
         "question": ""
       },
@@ -231,41 +231,41 @@
         "kind": "line",
         "where": "Data Analytics Intern, line 3",
         "line": "Built a dashboard in Tableau for the marketing team",
-        "cannot_tell": "The dashboard and its audience are clear, but what it tracked isn't. That subject would tell a recruiter more about the analysis.",
-        "example": "Built a dashboard in Tableau for the marketing team to track [what the dashboard tracked]",
-        "question": "What did the dashboard track, and what was it used for?"
+        "cannot_tell": "The tool and audience are here. The missing piece is what the marketing team could see in the dashboard.",
+        "example": "Built a dashboard in Tableau for the marketing team to track [measures]",
+        "question": "What did the dashboard track for the marketing team?"
       },
       {
         "kind": "line",
         "where": "Data Analytics Intern, line 4",
         "line": "Presented findings to the team at the end of the internship",
-        "cannot_tell": "A presentation is useful experience, but the findings could be about anything. Give the team something to remember.",
-        "example": "Presented findings on [topic or finding] to the team at the end of the internship",
-        "question": "What did you present, and which finding can you share?"
+        "cannot_tell": "A recruiter knows you presented, but not what you found. Name the subject and a finding you can share.",
+        "example": "Presented findings on [topic] to the team at the end of the internship, covering [findings]",
+        "question": "What did you present, and what finding can you share?"
       },
       {
         "kind": "line",
         "where": "Treasurer, line 1",
         "line": "Manage the club budget and reimbursements",
-        "cannot_tell": "The responsibility is clear, but the budget's size would help a recruiter understand the treasurer job.",
-        "example": "Manage the club budget of [amount] and reimbursements for [what reimbursements cover]",
-        "question": "How large is the club budget, and what kinds of expenses do you reimburse?"
+        "cannot_tell": "The responsibilities are clear, but the budget amount would show how much money you're managing.",
+        "example": "Manage the club budget of [budget amount and period] and reimbursements",
+        "question": "How much is the club budget, and what period does it cover?"
       },
       {
         "kind": "line",
         "where": "Treasurer, line 2",
         "line": "Help organize monthly speaker events",
-        "cannot_tell": "The monthly cadence is clear, but 'help' doesn't say which part you handle. Name your contribution to an event.",
+        "cannot_tell": "'Help organize' doesn't say which part is yours. The monthly schedule is useful; add what you handle for the events.",
         "example": "Help organize monthly speaker events by [your contribution]",
-        "question": "What do you do to help organize the speaker events?"
+        "question": "What do you handle when organizing the speaker events?"
       }
     ],
     "fit": {
       "roles": [
         "Data Analytics Intern"
       ],
-      "level": "Student and intern",
-      "note": "Your internship points toward analytics work, with experience in Excel, SQL and Tableau. The club treasurer role adds budget responsibility, though the page doesn't say how large that budget is.",
+      "level": "Student and recent intern",
+      "note": "Your coursework and internship point toward data analytics internships. The dashboard and survey work are relevant; explaining what they covered would make that experience more persuasive.",
       "posting": {
         "summary": "",
         "missing": []
@@ -282,23 +282,23 @@
     "band": "Needs more context",
     "model_score": 64,
     "lifted_by_employer": false,
-    "verdict": "An analytics intern with the right tools, but too little detail about the work behind them.",
+    "verdict": "A data analytics intern with useful tools, but little about what the reports and dashboard covered.",
     "write_up_paragraphs": 2,
-    "write_up_words": 82,
+    "write_up_words": 83,
     "cards": [
       {
         "kind": "structure",
         "where": "Great Lakes Credit Union",
-        "line": "The resume does not say how large Great Lakes Credit Union is.",
+        "line": "The page doesn't say how large Great Lakes Credit Union is.",
         "blanks": 0,
-        "question": "Can you verify the credit union's size or the number of members it serves?"
+        "question": "How large is the credit union's membership, if you know?"
       },
       {
         "kind": "line",
         "where": "Data Analytics Intern, line 1",
         "line": "Assisted the analytics team with weekly reporting",
         "blanks": 2,
-        "question": "What did the weekly reports track, and what did you do to prepare them?"
+        "question": "What did the weekly reports cover, and what part did you handle?"
       },
       {
         "kind": "keep",
@@ -312,28 +312,28 @@
         "where": "Data Analytics Intern, line 3",
         "line": "Built a dashboard in Tableau for the marketing team",
         "blanks": 1,
-        "question": "What did the dashboard track, and what was it used for?"
+        "question": "What did the dashboard track for the marketing team?"
       },
       {
         "kind": "line",
         "where": "Data Analytics Intern, line 4",
         "line": "Presented findings to the team at the end of the internship",
-        "blanks": 1,
-        "question": "What did you present, and which finding can you share?"
+        "blanks": 2,
+        "question": "What did you present, and what finding can you share?"
       },
       {
         "kind": "line",
         "where": "Treasurer, line 1",
         "line": "Manage the club budget and reimbursements",
-        "blanks": 2,
-        "question": "How large is the club budget, and what kinds of expenses do you reimburse?"
+        "blanks": 1,
+        "question": "How much is the club budget, and what period does it cover?"
       },
       {
         "kind": "line",
         "where": "Treasurer, line 2",
         "line": "Help organize monthly speaker events",
         "blanks": 1,
-        "question": "What do you do to help organize the speaker events?"
+        "question": "What do you handle when organizing the speaker events?"
       }
     ],
     "card_count": 7,
@@ -350,8 +350,8 @@
       "roles": [
         "Data Analytics Intern"
       ],
-      "level": "Student and intern",
-      "note": "Your internship points toward analytics work, with experience in Excel, SQL and Tableau. The club treasurer role adds budget responsibility, though the page doesn't say how large that budget is.",
+      "level": "Student and recent intern",
+      "note": "Your coursework and internship point toward data analytics internships. The dashboard and survey work are relevant; explaining what they covered would make that experience more persuasive.",
       "posting": {
         "summary": "",
         "missing": []
@@ -359,6 +359,6 @@
     }
   },
   "outcome": "report",
-  "cost_usd": 0.012603,
-  "latency_ms": 18879
+  "cost_usd": 0.00904495,
+  "latency_ms": 20639
 }

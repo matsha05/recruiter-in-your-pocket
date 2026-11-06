@@ -29,7 +29,7 @@ assert.equal((parsed!.answers[0] as { text: string }).text, "the low-stock alert
 assert.equal(parsed!.answers[1].kind, "unknown");
 assert.equal(parsed!.source, "literal");
 
-assert.equal(parseLineAnswersPatch({ ...good, fix_index: 3 }), null, "only the three marked fixes");
+assert.equal(parseLineAnswersPatch({ ...good, fix_index: LINE_ANSWER_LIMITS.fixes }), null, "only a card position the report can have");
 assert.equal(parseLineAnswersPatch({ ...good, fix_index: "0" }), null);
 assert.equal(parseLineAnswersPatch({ ...good, answers: [] }), null, "nothing to keep");
 assert.equal(parseLineAnswersPatch({ ...good, answers: [{ question: "Q?", kind: "answered", text: "" }] }), null, "an empty answer is not an answer");

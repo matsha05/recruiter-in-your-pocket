@@ -31,8 +31,9 @@ const WAIT_STEPS: WaitStep[] = [
     { id: "sending", label: "Sent", now: "Sending your resume", cursor: "sending", at: 0 },
     { id: "reading", label: "Reading", now: "Reading your resume", cursor: "reading", at: 0.15 },
     { id: "writing", label: "Writing the notes", now: "Writing the notes", cursor: "writing", at: 0.5 },
+    // The worklist report (Nov 6, 2026) ends on the quote check; the v2 report's second model call, when it
+    // runs, reports a "severity" stage this ladder doesn't list, which counts as checking below.
     { id: "checking", label: "Checking every quote", now: "Checking every quote against your resume", cursor: "checking", at: 0.82 },
-    { id: "severity", label: "Checking for more misses", now: "Looking for anything else that could cost an interview", cursor: "checking", at: 1 },
 ];
 
 function stepIndexFor(stage: string): number {

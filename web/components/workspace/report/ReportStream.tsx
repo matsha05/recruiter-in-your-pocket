@@ -1,10 +1,9 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { ArrowRight, CaretDown, Check, WarningCircle } from "@phosphor-icons/react";
-import { Button } from "@/components/ui/button";
+import { CaretDown, Check, WarningCircle } from "@phosphor-icons/react";
 import { Analytics } from "@/lib/analytics";
-import { JOB_SEARCH_PASS_DECISION } from "@/lib/billing/pricing";
+import { isWorklistReport } from "@/lib/llm/worklist-schema";
 import { bracketPlaceholderKeys } from "@/lib/llm/report-placeholder-policy";
 import { resolveUniqueSourceLine } from "@/lib/llm/source-fidelity";
 import { readAnonymousReportRecoveryMarker } from "@/lib/reports/anonymous-report-recovery-client";
@@ -30,6 +29,8 @@ import { saveUnlockContext } from "@/lib/unlock/unlockContext";
 import { cn } from "@/lib/utils";
 import { IndependentAdvice } from "./IndependentAdvice";
 import { ReadComparison } from "./ReadComparison";
+import { ReportEnding } from "./ReportEnding";
+import { WorklistReport } from "./worklist/WorklistReport";
 import { ResearchReceipts } from "./ResearchReceipts";
 import type { ReportData } from "./ReportTypes";
 import { DEFAULT_LIFT_QUESTION, type LiftChange, type LiftPersist, type ResumeSource } from "./markup/LineLift";
@@ -70,7 +71,33 @@ interface ReportStreamProps {
  * Verdict and the score band; the page below marks the candidate's own lines,
  * with the recruiter's notes in the margin and the Critical Miss highlighted.
  */
-export function ReportStream({
+export function ReportStream(props: ReportStreamProps) {
+  // The worklist report (contract v3, Nov 5, 2026) has its own document; the Critical Miss report below is
+  // the v2 shape every report saved before it still has.
+  if (isWorklistReport(props.report)) {
+    return (
+      <WorklistReport
+        report={props.report}
+        className={props.className}
+        isSample={props.isSample}
+        freeUsesRemaining={props.freeUsesRemaining}
+        hasPaidAccess={props.hasPaidAccess}
+        comparisonBaseline={props.comparisonBaseline}
+        onStartRevision={props.onStartRevision}
+        onStartReport={props.onStartReport}
+        onUpgrade={props.onUpgrade}
+        resumeText={props.resumeText}
+        storedLineAnswers={props.storedLineAnswers}
+        isSignedIn={props.isSignedIn}
+        onSaveReport={props.onSaveReport}
+        isSavingReport={props.isSavingReport}
+      />
+    );
+  }
+  return <CriticalMissReport {...props} />;
+}
+
+function CriticalMissReport({
   report,
   className,
   isSample = false,
@@ -135,9 +162,6 @@ export function ReportStream({
   // A Critical Miss about something the resume doesn't have has no line to revise.
   const revisable = criticals.flatMap((fix, index) => (marksLine(fix) ? [index] : []));
   const allAddressed = revisable.length > 0 && revisable.every((index) => lifts[index]?.state === "addressed");
-  // A clear page ends on sending it, then the posting: the pass's job for this person (Matt, Nov 5, 2026).
-  const readyEnding = ready ? "Send it. Then read it against the posting you're going for." : null;
-  const revisionLabel = ready ? "Read it against a posting" : "Compare my revision";
 
   const questionsFor = useCallback((index: number) => {
     const asked = liftQuestions(integrity.fixQuestions[index] || []);
@@ -335,56 +359,19 @@ export function ReportStream({
         </div>
       </details>
 
-      {isSample && onStartReport && (
-        <section className={styles.ending} aria-labelledby="report-next-step" data-testid="sample-terminal-cta">
-          <h2 id="report-next-step" className={styles.sectionTitle}>What would they think of yours?</h2>
-          <div><Button variant="primary" onClick={onStartReport}>Get your free report <ArrowRight className="size-4" weight="bold" /></Button></div>
-        </section>
-      )}
-
-      {!isSample && isSignedIn && onSaveReport && (
-        <section className={styles.ending} aria-labelledby="report-next-step" data-testid="report-save-version">
-          <h2 id="report-next-step" className={styles.sectionTitle}>
-            {allAddressed ? "Your line is ready. Save this version." : "Save this version."}
-          </h2>
-          <p className={styles.endingCopy}>Your answers and the revised line stay with it.</p>
-          <div className={styles.endingActions}>
-            <Button variant="primary" onClick={onSaveReport} disabled={isSavingReport} aria-busy={isSavingReport || undefined} data-testid="report-save-version-button">
-              {isSavingReport ? "Saving…" : "Save this version"}
-            </Button>
-            {onStartRevision && (
-              <Button variant="quiet" onClick={onStartRevision}>Compare my revision <ArrowRight className="size-4" weight="bold" /></Button>
-            )}
-          </div>
-          {isExhausted && <p className={styles.endingNote}>{JOB_SEARCH_PASS_DECISION.whenToBuy}</p>}
-        </section>
-      )}
-
-      {!isSample && isSignedIn && !onSaveReport && onStartRevision && (
-        <section className={styles.ending} aria-labelledby="report-next-step" data-testid="report-next-step">
-          <h2 id="report-next-step" className={styles.sectionTitle}>
-            {allAddressed ? `${revisable.length > 1 ? "Your lines are ready. Drop them" : "Your line is ready. Drop it"} into your resume and see what changed.` : readyEnding || "Made your edits? See what changed."}
-          </h2>
-          {isExhausted && <p className={styles.endingCopy}>{JOB_SEARCH_PASS_DECISION.freeBoundary} {JOB_SEARCH_PASS_DECISION.whenToBuy}</p>}
-          <div><Button variant="primary" onClick={onStartRevision}>{revisionLabel}<ArrowRight className="size-4" weight="bold" /></Button></div>
-          {isExhausted && <p className={styles.endingNote}>{JOB_SEARCH_PASS_DECISION.terms}</p>}
-        </section>
-      )}
-
-      {!isSample && !isSignedIn && onStartRevision && (
-        <section className={styles.ending} aria-labelledby="report-next-step" data-testid={isExhausted ? "post-report-purchase-decision" : "report-next-step"}>
-          <h2 id="report-next-step" className={styles.sectionTitle}>
-            {allAddressed ? `${revisable.length > 1 ? "Your lines are ready. Drop them" : "Your line is ready. Drop it"} into your resume and see what changed.` : readyEnding || (isExhausted ? "Revised it? See what changed." : "Made your edits? See what changed.")}
-          </h2>
-          {isExhausted && <p className={styles.endingCopy}>{JOB_SEARCH_PASS_DECISION.freeBoundary} {JOB_SEARCH_PASS_DECISION.whenToBuy}</p>}
-          <div>
-            <Button variant="primary" onClick={isExhausted && onUpgrade ? onUpgrade : onStartRevision}>
-              {isExhausted ? JOB_SEARCH_PASS_DECISION.cta : revisionLabel}<ArrowRight className="size-4" weight="bold" />
-            </Button>
-          </div>
-          <p className={styles.endingNote}>{isExhausted ? JOB_SEARCH_PASS_DECISION.terms : "The comparison lasts for this visit. Save the report to keep it."}</p>
-        </section>
-      )}
+      <ReportEnding
+        isSample={isSample}
+        isSignedIn={isSignedIn}
+        isExhausted={isExhausted}
+        ready={ready}
+        allAddressed={allAddressed}
+        revisedCount={revisable.length}
+        onStartReport={onStartReport}
+        onStartRevision={onStartRevision}
+        onSaveReport={onSaveReport}
+        isSavingReport={isSavingReport}
+        onUpgrade={onUpgrade}
+      />
     </div>
   );
 }
