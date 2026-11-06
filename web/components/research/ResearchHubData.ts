@@ -1,6 +1,17 @@
-// The Research hub is a list of questions people actually ask, each answered in
-// one line from the article it links to. Keep every answer inside what that
-// article's sources found; when an article changes, check its answer here.
+// The Research hub is an index of the questions people actually ask. Each research entry carries its short
+// answer (the verdict), one sentence of what the study found, and what that rests on. Keep every word inside
+// what the article's sources found: the verdicts are taken from each article's own opening answer, and the
+// evidence from its own source line. When an article changes, check its entry here.
+//
+// November 6, 2026 (Matt): the hub is a reference people scan for answers, so every row has the same three
+// parts. The site doesn't publish race and discrimination research; that article was removed the same day.
+
+export type ResearchEvidence = {
+    /** What kind of source it is, in plain words: "Experiment", "Vendor data", "Practitioner advice, not a study". */
+    kind: string;
+    /** Who and how many, as the article's source line gives it. */
+    cite: string;
+};
 
 export type ResearchArticle = {
     id: string;
@@ -9,161 +20,215 @@ export type ResearchArticle = {
     title?: string;
     href: string;
     question: string;
+    /** The short answer, set in bold: "No.", "A lot, at every stage." Research entries only. */
+    verdict?: string;
+    /** The sentence after the verdict. Research entries only. */
+    finding?: string;
+    /** The whole one-line answer: the verdict and the finding, or a guide's own line. Used for share cards and search snippets. */
     answer: string;
-    /** Leads the page with the questions people ask most. */
-    featured?: boolean;
+    evidence?: ResearchEvidence;
+    /** Words people type that the row's own text doesn't contain: plurals, synonyms, the jargon. */
+    keywords?: string[];
     /** Defaults to "Read". A tool says what it does instead. */
     action?: string;
 };
 
 type ResearchCategory = {
     id: string;
+    /** The pillar name articles carry in their header. Pillars are named, never colored. */
     navLabel: string;
     title: string;
+    /** Listed in the hub's index. Guides and the methodology are linked from the hub, not listed in it. */
+    indexed: boolean;
     articles: ResearchArticle[];
 };
 
+function study(entry: Omit<ResearchArticle, "answer"> & { verdict: string; finding: string; evidence: ResearchEvidence }): ResearchArticle {
+    return { ...entry, answer: `${entry.verdict} ${entry.finding}` };
+}
+
 export const categories: ResearchCategory[] = [
     {
-        id: "perception",
-        navLabel: "Perception",
-        title: "How you're read",
+        id: "how-recruiters-read",
+        navLabel: "How recruiters read",
+        title: "How recruiters read",
+        indexed: true,
         articles: [
-            {
-                id: "ats-myths",
-                href: "/research/ats-myths",
-                question: "Is an ATS rejecting my resume before anyone reads it?",
-                answer: "Not with one magic score. The software pulls your text into fields. If it can't, the file stays attached and someone enters the details by hand.",
-                featured: true,
-            },
-            {
-                id: "spelling-errors-impact",
-                href: "/research/spelling-errors-impact",
-                question: "Will one typo on my resume cost me the interview?",
-                answer: "Don't panic over one. Five cost 1.85 points out of 10 in an experiment with 445 recruiters.",
-                featured: true,
-            },
-            {
-                id: "resume-length-myths",
-                href: "/research/resume-length-myths",
-                question: "Does my resume really have to fit on one page?",
-                answer: "No. Use a second page when it adds experience that matters for the role.",
-                featured: true,
-            },
-            {
+            study({
                 id: "how-recruiters-read",
+                keywords: ["six seconds", "eye tracking", "how long", "time", "skim", "scan", "read"],
                 href: "/research/how-recruiters-read",
                 question: "Do recruiters only spend six seconds on a resume?",
-                answer: "No study shows one fixed timer. Recruiters who spent longer on Experience were more likely to move a resume forward.",
-                featured: true,
-            },
-            {
-                id: "social-screening",
-                href: "/research/social-screening",
-                question: "Will employers judge me by my social media?",
-                answer: "In one experiment, posts changed candidate ratings. Nobody showed those ratings predict how you'd do the job.",
-            },
-            {
-                id: "automation-and-bias",
-                href: "/research/automation-and-bias",
-                question: "Where can software screen me out of a job?",
-                answer: "Earlier than you'd think: which ads you see, whether you're eligible, and how you reach a person.",
-            },
-            {
-                id: "human-vs-algorithm",
-                href: "/research/human-vs-algorithm",
-                question: "When AI weighs in on my resume, do recruiters listen?",
-                answer: "They say they trust it less than a person. A misleading algorithm still swayed their ratings.",
-            },
-            {
-                id: "hiring-discrimination-meta-analysis",
-                href: "/research/hiring-discrimination-meta-analysis",
-                question: "Does racial bias still decide who gets a callback?",
-                answer: "Yes. In US hiring experiments from 1989 to 2015, white applicants got 36% more callbacks than equally qualified Black applicants.",
-            },
-        ],
-    },
-    {
-        id: "impact",
-        navLabel: "Impact",
-        title: "What you changed",
-        articles: [
-            {
-                id: "quantifying-impact",
-                href: "/research/quantifying-impact",
-                question: "How do I write resume bullets that show results?",
-                answer: "The result, how you measured it, and what you did to get there.",
-            },
-            {
-                id: "writing-quality-hire-probability",
-                href: "/research/writing-quality-hire-probability",
-                question: "Can better writing actually get me hired?",
-                answer: "It helped in one big experiment: grammar suggestions on short freelance profiles lifted hires from 3.1% to 3.3%.",
-            },
-            {
-                id: "how-we-score",
-                title: "How the report works",
-                href: "/methodology",
-                question: "How does your report decide?",
-                answer: "AI applies a recruiter's criteria. Here's how the score, the write-up and the cards are made, and what they can't tell you.",
-            },
-        ],
-    },
-    {
-        id: "referrals",
-        navLabel: "Referrals",
-        title: "Who brings you in",
-        articles: [
-            {
-                id: "referral-advantage",
-                href: "/research/referral-advantage",
-                question: "How much does a referral really help?",
-                answer: "A lot. In one recruiting platform's data on 38 million applications, 40% of referred applications got an interview. Of cold applications, 3% did.",
-                featured: true,
-            },
-            {
-                id: "linkedin-visibility",
-                href: "/research/linkedin-visibility",
-                question: "Why can’t recruiters find me on LinkedIn?",
-                answer: "They search the skills in your headline, titles, summary, and experience. LinkedIn doesn't publish how it ranks them.",
-            },
-        ],
-    },
-    {
-        id: "story",
-        navLabel: "Story",
-        title: "Who you are",
-        articles: [
-            {
-                id: "gaps-and-pivots",
-                href: "/research/gaps-and-pivots",
-                question: "Should I explain the gap on my resume?",
-                answer: "In one UK experiment, explaining a caregiving gap didn't help. Listing years in each job instead of dates did.",
-            },
-            {
+                verdict: "No.",
+                finding: "No study shows a fixed timer. Recruiters who spent longer on Experience were more likely to move a resume forward.",
+                evidence: { kind: "Peer-reviewed eye-tracking study", cite: "Pina et al., 2023 · 2,043 resume reviews" },
+            }),
+            study({
+                id: "spelling-errors-impact",
+                keywords: ["typos", "spelling", "grammar", "proofread", "mistakes", "errors"],
+                href: "/research/spelling-errors-impact",
+                question: "Will one typo on my resume cost me the interview?",
+                verdict: "Don’t panic over one.",
+                finding: "Five spelling errors cost 1.85 points on a 0–10 interview rating. A single typo wasn’t tested.",
+                evidence: { kind: "Experiment", cite: "Sterkens et al., PLOS ONE, 2023 · 445 hiring professionals" },
+            }),
+            study({
                 id: "who-you-are",
+                keywords: ["first impression", "summary", "objective", "headline", "story"],
                 href: "/research/who-you-are",
                 question: "What does my resume say about who I am?",
-                answer: "Whatever a stranger can say about you in one line. In one interview study, that early read predicted the final ratings and the offers.",
-            },
-            {
-                id: "star-method",
-                href: "/research/star-method",
-                question: "Is the STAR method worth using on a resume?",
-                answer: "For the story behind a line, yes. Just don't force every bullet into the formula.",
-            },
-            {
-                id: "skills-first-promise-reality",
-                href: "/research/skills-first-promise-reality",
-                question: "Do “no degree required” jobs actually mean it?",
-                answer: "Not often. By one 2024 estimate, dropping the requirement opened up fewer than 1 in 700 hires.",
-            },
+                verdict: "Whatever a stranger can say in one line.",
+                finding: "In mock interviews, first impressions predicted the final ratings and, later, real internship offers.",
+                evidence: { kind: "Peer-reviewed study", cite: "Barrick, Swider & Stewart, 2010 · interviews, not resumes" },
+            }),
+            study({
+                id: "social-screening",
+                keywords: ["social media", "instagram", "facebook", "twitter", "posts", "online"],
+                href: "/research/social-screening",
+                question: "Will employers judge me by my social media?",
+                verdict: "In one experiment, yes.",
+                finding: "Posts changed how candidates were rated. Nobody showed those ratings predict how you’d do the job.",
+                evidence: { kind: "Experiment, working paper", cite: "Baker, Grimm & Ofek-Shanny · 1,500 online evaluators and 500 hiring professionals" },
+            }),
         ],
     },
     {
-        id: "negotiation",
+        id: "what-to-put-on-the-page",
+        navLabel: "What to put on the page",
+        title: "What to put on the page",
+        indexed: true,
+        articles: [
+            study({
+                id: "resume-length-myths",
+                keywords: ["length", "one page", "two pages", "long", "short"],
+                href: "/research/resume-length-myths",
+                question: "Does my resume really have to fit on one page?",
+                verdict: "No.",
+                finding: "Use a second page when it adds experience that matters for the role.",
+                evidence: { kind: "Study, abstract only", cite: "Blackburn-Brockman & Belanger, 2001 · 570 CPA recruiters" },
+            }),
+            study({
+                id: "quantifying-impact",
+                keywords: ["bullets", "numbers", "metrics", "results", "quantify", "impact", "achievements"],
+                href: "/research/quantifying-impact",
+                question: "How do I write resume bullets that show results?",
+                verdict: "Say what changed.",
+                finding: "Then how you measured it, and what you did to get there.",
+                evidence: { kind: "Practitioner advice, not a study", cite: "Laszlo Bock’s formula, from Google" },
+            }),
+            study({
+                id: "star-method",
+                keywords: ["star", "situation", "task", "action", "result", "format"],
+                href: "/research/star-method",
+                question: "Is the STAR method worth using on a resume?",
+                verdict: "For the story behind a line, yes.",
+                finding: "Just don’t force every bullet into the formula.",
+                evidence: { kind: "Research review", cite: "Levashina et al., 2014 · doesn’t test STAR itself" },
+            }),
+            study({
+                id: "gaps-and-pivots",
+                keywords: ["gap", "gaps", "career break", "unemployed", "caregiving", "dates", "pivot"],
+                href: "/research/gaps-and-pivots",
+                question: "Should I explain the gap on my resume?",
+                verdict: "In the largest test, no.",
+                finding: "A line explaining a caregiving gap did no better than leaving it unexplained. Listing years in each job instead of dates did help.",
+                evidence: { kind: "Preregistered experiment", cite: "Kristal et al., 2023 · 9,022 UK employers" },
+            }),
+            study({
+                id: "writing-quality-hire-probability",
+                keywords: ["writing", "grammar", "wording", "clear"],
+                href: "/research/writing-quality-hire-probability",
+                question: "Can better writing actually get me hired?",
+                verdict: "It helped in one big experiment.",
+                finding: "New freelancers whose profiles went through a grammar tool were hired 3.3% of the time, against 3.1%.",
+                evidence: { kind: "Randomized experiment", cite: "Wiles, Munyikwa & Horton, 2025 · 480,948 jobseekers" },
+            }),
+        ],
+    },
+    {
+        id: "software-and-search",
+        navLabel: "Software and search",
+        title: "Software and search",
+        indexed: true,
+        articles: [
+            study({
+                id: "ats-myths",
+                keywords: ["ats", "applicant tracking", "parsing", "keywords", "robot", "software", "format"],
+                href: "/research/ats-myths",
+                question: "Is an ATS rejecting my resume before anyone reads it?",
+                verdict: "Not with one magic score.",
+                finding: "The software pulls your text into fields. If it can’t, the file stays attached and someone enters the details by hand.",
+                evidence: { kind: "Vendor documentation", cite: "Greenhouse and Lever, on resume parsing" },
+            }),
+            study({
+                id: "automation-and-bias",
+                keywords: ["ai", "automation", "algorithm", "screening", "filter", "rejected"],
+                href: "/research/automation-and-bias",
+                question: "Where can software screen me out of a job?",
+                verdict: "Earlier than you’d think.",
+                finding: "Which job ads you see, whether you’re eligible, and how you reach a person.",
+                evidence: { kind: "Review of hiring tools", cite: "Upturn (Bogen & Rieke), 2018" },
+            }),
+            study({
+                id: "human-vs-algorithm",
+                keywords: ["ai", "algorithm", "automation", "trust"],
+                href: "/research/human-vs-algorithm",
+                question: "When AI weighs in on my resume, do recruiters listen?",
+                verdict: "More than they say.",
+                finding: "They rated human advice as more trustworthy, yet an algorithm’s pick still pulled their ratings toward it.",
+                evidence: { kind: "Experiment", cite: "Lacroux & Martin-Lacroux, 2022 · 694 recruitment professionals" },
+            }),
+            study({
+                id: "linkedin-visibility",
+                keywords: ["linkedin", "profile", "recruiter search", "headline", "skills", "visibility"],
+                href: "/research/linkedin-visibility",
+                question: "Why can’t recruiters find me on LinkedIn?",
+                verdict: "They search titles, skills and the words in your profile.",
+                finding: "LinkedIn doesn’t publish how it ranks the results.",
+                evidence: { kind: "Platform documentation", cite: "LinkedIn Recruiter help pages" },
+            }),
+        ],
+    },
+    {
+        id: "getting-in-and-pay",
+        navLabel: "Getting in, and pay",
+        title: "Getting in, and pay",
+        indexed: true,
+        articles: [
+            study({
+                id: "referral-advantage",
+                keywords: ["referrals", "referred", "network", "networking", "employee referral", "connections"],
+                href: "/research/referral-advantage",
+                question: "How much does a referral really help?",
+                verdict: "A lot, at every stage.",
+                finding: "40% of referred applications reached an interview. Of applications sent in cold, 3% did.",
+                evidence: { kind: "Vendor data", cite: "Ashby customers, 2021 to 2024 · 38 million applications" },
+            }),
+            study({
+                id: "skills-first-promise-reality",
+                keywords: ["degree", "no degree", "skills-based", "requirements", "college"],
+                href: "/research/skills-first-promise-reality",
+                question: "Do “no degree required” jobs actually mean it?",
+                verdict: "Often not in practice.",
+                finding: "By one estimate, dropping the requirement opened up new opportunity in fewer than 1 in 700 hires.",
+                evidence: { kind: "Industry analysis", cite: "Harvard Business School and Burning Glass Institute, 2024" },
+            }),
+            study({
+                id: "salary-history-bans",
+                keywords: ["salary", "pay", "compensation", "current salary", "negotiate", "disclose"],
+                href: "/research/salary-history-bans",
+                question: "Should I tell a recruiter what I make now?",
+                verdict: "There’s no one right answer.",
+                finding: "For higher-paid candidates, disclosing brought higher offers and fewer callbacks. Know the local rule and ask for the range.",
+                evidence: { kind: "Field experiment, working paper", cite: "Agan, Cowgill & Gee · 2,000+ fictional applications" },
+            }),
+        ],
+    },
+    {
+        id: "after-the-offer",
         navLabel: "After the offer",
         title: "After the offer",
+        indexed: false,
         articles: [
             {
                 id: "offer-negotiation",
@@ -187,17 +252,30 @@ export const categories: ResearchCategory[] = [
                 answer: "Put salary, bonus, equity, and one-time pay on the same footing, and let the calculator do the math. Compare benefits separately.",
                 action: "Compare",
             },
+        ],
+    },
+    {
+        id: "how-the-report-works",
+        navLabel: "How the report works",
+        title: "How the report works",
+        indexed: false,
+        articles: [
             {
-                id: "salary-history-bans",
-                href: "/research/salary-history-bans",
-                question: "Should I tell a recruiter what I make now?",
-                answer: "The studies found different effects. No one script fits every pay conversation.",
+                id: "how-we-score",
+                title: "How the report works",
+                href: "/methodology",
+                question: "How does your report decide?",
+                answer: "AI applies a recruiter's criteria. Here's how the score, the write-up and the cards are made, and what they can't tell you.",
             },
         ],
     },
 ];
 
-export const featuredArticles = categories.flatMap((category) => category.articles).filter((article) => article.featured);
+/** The groups the hub's index lists, in order. */
+export const indexedCategories = categories.filter((category) => category.indexed);
+
+/** The research questions the hub lists, in the order it lists them. */
+export const indexedAnswers = indexedCategories.flatMap((category) => category.articles);
 
 /** The pillar an article belongs to, by its href, for labels outside the hub. Pillars are named, not colored:
  *  the pen colors already mean whose mark something is, so they are not spent on navigation. */
@@ -205,15 +283,15 @@ export function pillarForHref(href: string) {
     return categories.find((candidate) => candidate.articles.some((article) => article.href === href))?.navLabel ?? null;
 }
 
-/** Every answer on the hub, in the order the hub shows them. */
+/** Every entry the hub knows, research first, then the guides and the methodology it links to. */
 export const hubAnswers = categories.flatMap((category) => category.articles);
 
-/** A hub answer by its id. */
+/** A hub entry by its id. */
 export function hubEntry(id: string) {
     return hubAnswers.find((article) => article.id === id);
 }
 
-/** The hub answer for a page, by its path. */
+/** The hub entry for a page, by its path. */
 export function hubEntryForHref(href: string) {
     return hubAnswers.find((article) => article.href === href);
 }

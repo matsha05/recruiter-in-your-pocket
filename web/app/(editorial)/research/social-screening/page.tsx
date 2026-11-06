@@ -29,7 +29,7 @@ export default function SocialScreeningPage() {
                 linkLabel: "Read the paper",
             }}
             painNote="Deleting everything isn’t as safe as it feels."
-            nextQuestions={["linkedin-visibility", "hiring-discrimination-meta-analysis", "referral-advantage"]}
+            nextQuestions={["linkedin-visibility", "who-you-are", "referral-advantage"]}
             visualization={
                 <>
                     <h2 className="research-h2">What a public profile can and cannot show</h2>

@@ -4,7 +4,6 @@ import AxeBuilder from "@axe-core/playwright";
 const articles = [
   "/research/ats-myths",
   "/research/automation-and-bias",
-  "/research/hiring-discrimination-meta-analysis",
   "/research/how-recruiters-read",
   "/methodology",
   "/research/human-vs-algorithm",
@@ -25,7 +24,8 @@ const articles = [
 const redirects = [
   ["/research/structured-interviews-why-star", "/research/star-method"],
   ["/research/automation-filter-points", "/research/automation-and-bias"],
-  ["/research/bias-limits-optimization", "/research/hiring-discrimination-meta-analysis"],
+  ["/research/bias-limits-optimization", "/research"],
+  ["/research/hiring-discrimination-meta-analysis", "/research"],
   ["/research/how-people-scan", "/research/how-recruiters-read"],
   ["/research/linkedin-vs-resume", "/research/linkedin-visibility"],
   ["/research/page-two-gate", "/research/resume-length-myths"],
@@ -89,7 +89,7 @@ test.describe("research system", () => {
 
       await page.goto(from, { waitUntil: "domcontentloaded" });
       await expect(page).toHaveURL(new RegExp(`${to.replaceAll("/", "\\/")}/?$`));
-      await expect(page.locator("[data-visual-anchor='research-article']")).toBeVisible();
+      await expect(page.locator(`[data-visual-anchor='${to === "/research" ? "research-hub" : "research-article"}']`)).toBeVisible();
     }
   });
 

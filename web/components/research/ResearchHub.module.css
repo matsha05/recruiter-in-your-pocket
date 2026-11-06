@@ -1,16 +1,20 @@
+/* The research hub (Nov 6, 2026): the site's column and rhythm, the opening, three findings, the index. */
+
 .page {
     background: hsl(var(--background));
     color: hsl(var(--text-strong));
 }
 
 .inner {
-    max-width: 79.25rem;
+    max-width: var(--marketing-content);
     margin: 0 auto;
-    padding: calc(var(--marketing-header-height-desktop) + 4.5rem) clamp(1.25rem, 5vw, 5.375rem) 5rem;
+    padding: calc(var(--marketing-header-height-desktop) + 4.5rem) var(--marketing-gutter) 5rem;
 }
 
+.opening { margin-bottom: 3.5rem; }
+
 .title {
-    max-width: 15ch;
+    max-width: 18ch;
     margin: 0;
     color: hsl(var(--text-strong));
     text-wrap: balance;
@@ -19,154 +23,46 @@
 }
 
 .deck {
-    max-width: 44ch;
-    margin: 1.375rem 0 0;
-    color: hsl(var(--text-muted));
+    max-width: 50ch;
+    margin: 1.25rem 0 0;
+    color: hsl(var(--text-strong));
+    text-wrap: pretty;
     font: var(--type-lead);
 }
 
-/* A question, its straight answer, and the way into the research. */
-
-.leads { margin-top: 3.5rem; border-top: 1px solid hsl(var(--text-strong)); }
-
-.lead,
-.row {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 7.5rem;
-    align-items: baseline;
-    gap: 3rem;
-    border-bottom: 1px solid hsl(var(--line));
-}
-
-.lead { padding: 1.625rem 0; }
-.row { gap: 2.5rem; padding: 1rem 0; }
-.row:first-child { padding-top: 0; }
-
-.question {
-    margin: 0;
-    text-wrap: balance;
-    font: var(--type-title);
-    letter-spacing: var(--tracking-title);
-}
-.row .question { font: var(--type-heading); letter-spacing: var(--tracking-heading); }
-
-.answer {
-    margin: 0;
-    color: hsl(var(--pen));
-    font-style: italic;
-    text-wrap: pretty;
-}
-
-.lead .answer { font: var(--type-verdict); }
-.row .answer { font: var(--type-note); font-style: normal; }
-
-.read {
-    display: inline-flex;
-    min-height: 2.75rem;
-    align-items: center;
-    justify-self: end;
-    gap: 0.375rem;
-    color: hsl(var(--muted-foreground));
-    white-space: nowrap;
-    font: var(--type-small);
-    font-weight: var(--weight-control);
-    transition: color var(--duration-fast) var(--ease);
-}
-
-.read svg { transition: transform var(--duration-fast) var(--ease); }
-
-/* The whole row opens the article. The wash follows the shared row grammar (.riyp-surface-link)
-   but sits on a pseudo-element, so it can run past the text without moving the row rules. */
-.lead,
-.row { position: relative; isolation: isolate; }
-
-.lead::before,
-.row::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    inset: 0 -0.75rem;
-    border-radius: 0.75rem;
-    transition: background-color var(--duration-fast) var(--ease);
-}
-
-.lead:hover::before,
-.row:hover::before { background-color: hsl(var(--secondary) / 0.55); }
-
-.lead:active::before,
-.row:active::before { background-color: hsl(var(--secondary)); }
-
-.lead:hover .read,
-.row:hover .read { color: hsl(var(--text-strong)); }
-
-.lead:hover .read svg,
-.row:hover .read svg { transform: translateX(2px); }
-
-.link { color: inherit; }
-.link::after { content: ""; position: absolute; inset: 0 -0.75rem; border-radius: 0.75rem; }
-.link:focus-visible { outline: none; }
-.link:focus-visible::after { outline: 2px solid hsl(var(--pen)); outline-offset: 2px; }
-
-@media (prefers-reduced-motion: reduce) {
-    .lead::before, .row::before, .read, .read svg { transition: none; }
-    .lead:hover .read svg, .row:hover .read svg { transform: none; }
-}
-
-/* The rest of the library, by topic */
-
-.library { margin-top: 6rem; }
-
-.libraryTitle {
-    margin: 0;
-    font: var(--type-title);
-    letter-spacing: var(--tracking-title);
-}
-
-.group {
-    display: grid;
-    grid-template-columns: 13.75rem minmax(0, 1fr);
-    gap: 3rem;
-    margin-top: 3.5rem;
-    border-top: 1px solid hsl(var(--text-strong));
-    padding-top: 1.25rem;
-}
-
-.groupTitle {
-    margin: 0;
+.after {
+    margin: 2rem 0 0;
     font: var(--type-body);
-    font-weight: var(--weight-control);
+}
+
+.method {
+    max-width: 60ch;
+    margin: 3rem 0 0;
+    color: hsl(var(--text-muted));
+    font: var(--type-small);
 }
 
 /* The turn back to your own resume */
-
 .close {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 2rem;
-    margin-top: 6rem;
+    margin-top: var(--beat);
     border-top: 1px solid hsl(var(--text-strong));
     padding-top: 2rem;
 }
 
 .closeTitle {
+    max-width: 24ch;
     margin: 0;
+    text-wrap: balance;
     font: var(--type-title);
     letter-spacing: var(--tracking-title);
 }
 
-
-@media (max-width: 960px) {
-    .lead, .row { grid-template-columns: minmax(0, 1fr); gap: 0.5rem; }
-    .read { justify-self: start; }
-    .group { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
-}
-
 @media (max-width: 640px) {
-    .inner { padding: calc(var(--marketing-header-height-mobile) + 2.5rem) 1.25rem 4rem; }
-    .leads { margin-top: 2.5rem; }
-    .lead { padding: 1.375rem 0 0.75rem; }
-    .row { padding: 1rem 0 0.5rem; }
-    .library { margin-top: 4rem; }
-    .close { flex-direction: column; align-items: stretch; gap: 1.25rem; margin-top: 4rem; }
+    .inner { padding: calc(var(--marketing-header-height-mobile) + 2.5rem) var(--marketing-gutter) 4rem; }
+    .opening { margin-bottom: 2.5rem; }
+    .close { flex-direction: column; align-items: stretch; gap: 1.25rem; }
 }

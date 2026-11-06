@@ -5,7 +5,7 @@ import styles from "./SectionFindingsFigure.module.css";
 
 // Pina et al. (2023), section-level results as the article states them. The sheet is drawn:
 // the section names are the study's, the order and the gray lines are illustration.
-const sections = [
+export const SECTION_FINDINGS = [
     { name: "Address", lines: [44], result: "No comparable result", tone: "none" },
     { name: "Introduction", lines: [92, 70], result: "No comparable result", tone: "none" },
     { name: "Education", lines: [80, 52], result: "Mattered to a lesser extent", tone: "some" },
@@ -21,7 +21,7 @@ export function SectionFindingsFigure({ figureNumber = 1 }: { figureNumber?: num
             <h2 id="section-findings-title" className={styles.title}>What the 2023 study found, section by section</h2>
 
             <div className={styles.rows} role="list" aria-label="Resume sections and what the study found for each">
-                {sections.map((section) => (
+                {SECTION_FINDINGS.map((section) => (
                     <div key={section.name} className={styles.row} role="listitem" data-tone={section.tone}>
                         <div className={styles.sheet}>
                             <p className={styles.heading}>

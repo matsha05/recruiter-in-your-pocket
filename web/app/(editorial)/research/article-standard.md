@@ -11,14 +11,14 @@ An article opens the way its row on the Research hub does: the reader's question
 
 1. **All research**: the back link
 2. **The question**: the H1, in the words people search. It comes from the hub (`ResearchHubData.ts`); the page doesn't set it.
-3. **The answer**: two or three plain sentences in Literata, in pen. A reader who stops here leaves with the truth.
+3. **The answer**: two or three plain sentences in Literata, in ink (Nov 6, 2026: the pen is the recruiter's words; an answer from a study is ours). A reader who stops here leaves with the truth. Its first sentence is the hub row's verdict.
 4. **The source line**: the study behind the answer, named, with how big it was, and a link to it
 5. **The pain line** (optional): one margin note beside the answer
 6. **Meta line**: pillar, "Updated Month Year", and a link to "How we write these"
 7. **Lead figure** (optional), full width
 8. **Body**: 18px/30px prose on the reading rail, h2 sections, figures inline, with the **bridge** placed where the advice is
 9. **Sources**: every source, numbered, with its full title and a link
-10. **Next questions**: hub rows (question, answer, Read)
+10. **Next questions**: hub rows (the question, the answer with its verdict in bold, what it rests on)
 11. **How we write these**: the short method note
 12. **Close**: "What would they think of yours?" and one dark pill
 
