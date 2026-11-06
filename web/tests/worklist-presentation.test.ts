@@ -50,7 +50,7 @@ import { MOCK_WORKLIST_REPORT } from "../lib/backend/mock-worklist-report";
 // Headings follow the card set.
 {
   const mock = WorklistReportSchema.parse(MOCK_WORKLIST_REPORT);
-  assert.equal(cardsHeading(mock).title, "Line by line, in the order a recruiter hits them.");
+  assert.equal(cardsHeading(mock).title, "Lines that need work.");
   assert.equal(cardsHeading({ cards: mock.cards.filter((card) => card.kind === "keep") }).title, "Nothing here needs work.");
   assert.equal(worklistTargetRole(mock), "Customer Operations");
 }
@@ -89,7 +89,7 @@ import { MOCK_WORKLIST_REPORT } from "../lib/backend/mock-worklist-report";
   assert.ok(html.includes('class="blank"'), "open blanks print in the candidate's blue");
   assert.ok(html.includes("the renewal checklist"), "a stored answer prints in its blank");
   assert.ok(!/Critical Miss/u.test(html), "the retired name never prints");
-  assert.ok(html.includes("Keep as is"), "the keep card is labelled");
+  assert.ok(html.includes("Don't touch this one"), "the keep card is labelled");
 }
 
 console.log("worklist-presentation tests passed");

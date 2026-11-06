@@ -135,7 +135,7 @@ export function WorklistReport({
               <div className={styles.fitList}>
                 <p className={shared.keepLabel}>{posting.summary ? "The role, as the posting names it" : "Roles to consider"}</p>
                 <ul>{report.fit.roles.slice(0, 4).map((role) => <li key={role}>{role}</li>)}</ul>
-                {report.fit.level && <p className={shared.roleMeta}>How the page reads: {report.fit.level}</p>}
+                {report.fit.level && <p className={shared.roleMeta}>Level a recruiter would assume: {report.fit.level}</p>}
               </div>
             )}
           </div>
@@ -146,13 +146,13 @@ export function WorklistReport({
 
       <details id="section-score" className={cn("ui-disclosure group scroll-mt-36", shared.disclosure)} data-testid="score-basis">
         <summary className={cn("focus-ring", shared.disclosureSummary)}>
-          <span>What the rung and the number mean</span>
+          <span>What the score means</span>
           <CaretDown className="size-4 shrink-0 text-brand transition-transform duration-fast ease-snap group-open:rotate-180 motion-reduce:transition-none" aria-hidden="true" />
         </summary>
         <div className={shared.disclosureBody}>
-          <p>The rung is what a recruiter does with the page after one pass. The number says where in the rung it sits. It doesn&apos;t predict interviews or offers.</p>
+          <p>The band is what a recruiter would do with your resume after one pass. The number says where in the band you sit. Neither predicts interviews or offers.</p>
           <p>{band.name}: {band.anchor}</p>
-          {report.lifted_by_employer && <p>A recent employer whose hiring bar recruiters know on sight lifted this page one rung. The lines under that name still get their cards.</p>}
+          {report.lifted_by_employer && <p>A recent employer recruiters know on sight moved this resume up one band. The lines under that name still need the work.</p>}
         </div>
       </details>
 

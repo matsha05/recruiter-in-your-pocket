@@ -56,7 +56,7 @@ function renderWorklistHtml(report: ReportForPdf, worklist: WorklistForPdf) {
   const bandIndex = Math.max(0, scoreBandIndex(report.score));
   const band = SCORE_BANDS[bandIndex];
   const work = worklist.cards.filter((card) => card.kind !== "keep");
-  const heading = work.length === 0 ? "Nothing here needs work." : "Line by line, in the order a recruiter hits them.";
+  const heading = work.length === 0 ? "Nothing here needs work." : "Lines that need work.";
   const cardHtml = (card: WorklistForPdf["cards"][number]) => {
     const keep = card.kind === "keep";
     const quoted = card.kind === "line" || card.kind === "keep";
@@ -64,7 +64,7 @@ function renderWorklistHtml(report: ReportForPdf, worklist: WorklistForPdf) {
       ? `<div class="card-line${keep ? " ink" : ""}">${keep ? escapeHtml(card.line) : `<span class="miss-mark">${escapeHtml(card.line)}</span>`}</div>`
       : `<div class="card-statement">${escapeHtml(card.line)}</div>`;
     return `<div class="card${keep ? " keep" : ""}">
-        <div class="card-where">${keep ? "Keep as is" : escapeHtml(card.where)}${keep ? '<span class="card-where-quiet">The model for the rest</span>' : ""}</div>
+        <div class="card-where">${keep ? "Don't touch this one" : escapeHtml(card.where)}${keep ? '<span class="card-where-quiet">Write the others like it.</span>' : ""}</div>
         ${line}
         <div class="pen-note">${escapeHtml(card.cannot_tell)}</div>
         ${!keep && card.question ? `<div class="card-question">${escapeHtml(card.question)}</div>` : ""}
@@ -79,8 +79,8 @@ function renderWorklistHtml(report: ReportForPdf, worklist: WorklistForPdf) {
       ${fit.posting.summary ? `<div class="positioning-suggestion"><p>${escapeHtml(fit.posting.summary)}</p></div>` : ""}
       ${fit.note ? `<div class="positioning-suggestion"><p>${escapeHtml(fit.note)}</p></div>` : ""}
       ${fit.roles.length ? `<div class="tag-row"><span class="tag-label">${fit.posting.summary ? "The role" : "Roles to consider"}</span>${fit.roles.map((role) => `<span class="tag">${escapeHtml(role)}</span>`).join("")}</div>` : ""}
-      ${fit.posting.missing.length ? `<div class="marked-questions"><div class="marked-questions-label accent">What the posting asks for that the page doesn't show</div>${fit.posting.missing.map((item) => `<div class="marked-question">${escapeHtml(item)}</div>`).join("")}</div>` : ""}
-      ${fit.level ? `<div class="alignment-meta"><span class="meta-item"><strong>How the page reads</strong> ${escapeHtml(fit.level)}</span></div>` : ""}
+      ${fit.posting.missing.length ? `<div class="marked-questions"><div class="marked-questions-label accent">What the posting asks for that your resume doesn't show</div>${fit.posting.missing.map((item) => `<div class="marked-question">${escapeHtml(item)}</div>`).join("")}</div>` : ""}
+      ${fit.level ? `<div class="alignment-meta"><span class="meta-item"><strong>Level a recruiter would assume</strong> ${escapeHtml(fit.level)}</span></div>` : ""}
     </section>` : "";
 
   return `<!DOCTYPE html>
@@ -110,11 +110,11 @@ function renderWorklistHtml(report: ReportForPdf, worklist: WorklistForPdf) {
     </div>
     <h1>${escapeHtml(worklist.verdict)}</h1>
     <div class="write-up">${worklist.write_up.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}</div>
-    <div class="score-note">The rung is what a recruiter does with the page after one pass; the number says where in the rung it sits. It doesn't predict interviews or offers.${worklist.lifted_by_employer ? " A recent employer whose hiring bar recruiters know on sight lifted this page one rung." : ""}</div>
+    <div class="score-note">The band is what a recruiter would do with your resume after one pass; the number says where in the band you sit. Neither predicts interviews or offers.${worklist.lifted_by_employer ? " A recent employer recruiters know on sight moved this resume up one band." : ""}</div>
   </section>
 
   <section class="section priority-section">
-    <div class="section-kicker">${work.length === 0 ? "Before you send it" : "Line by line"}</div>
+    <div class="section-kicker">${work.length === 0 ? "Before you send it" : "Lines that need work"}</div>
     <div class="section-header"><h2>${escapeHtml(heading)}</h2>${work.length === 0 ? '<p class="count-lead">Send it. Then read it against the posting you\'re going for.</p>' : ""}</div>
     ${worklist.cards.map(cardHtml).join("")}
     ${work.length > 0 ? '<p class="unlisted">Lines not listed are fine as written.</p>' : ""}

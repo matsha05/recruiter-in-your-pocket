@@ -50,14 +50,14 @@ The report's unit is the line, not the Critical Miss (`docs/design/2026-11-workl
 | --- | --- |
 | The one-sentence read under the score | The verdict (the model's sentence; no label above it) |
 | The recruiter's paragraphs | The write-up (no heading; it follows the verdict in the pen) |
-| The section of cards | `Line by line, in the order a recruiter hits them.` (report tab `Lines`); on a page with no work: `Nothing here needs work.` with `Send it. Then read it against the posting you're going for.` |
-| A card's label | The model's `where` (`Marketing Intern, line 1`, `Dates`, `Structure`); on the keep card `Keep as is` with `The model for the rest` |
+| The section of cards | `Lines that need work.` with the lead `Top to bottom, the way a recruiter reads.` (report tab `Lines`, the short form of the heading); on a page with no work: `Nothing here needs work.` with `Send it. Then read it against the posting you're going for.` |
+| A card's label | The model's `where` (`Marketing Intern, line 1`, `Dates`, `Structure`); on the keep card `Don't touch this one` (the voice guide's reference line) with `Write the others like it.` |
 | What a recruiter can't tell | The model's words in the pen; no label |
 | The example | The line with the detail in, blanks in the candidate's blue; no label; once filled, `Filled in` on the card |
-| The question and its fields | The model's question as the label; one field per blank, the blank's label as its name; `Copy the line`; `I don't know yet` then `Left for now. A blank reads as a question, and recruiters don't call to ask it.` and `Fill it in after all`; under a filled line `Every fact in it is from your resume or your answers.`; kept answers say `Kept with this report.` |
+| The question and its fields | The model's question as the label; one field per blank, the blank's label as its name; `Copy the line`; `I don't know yet` then `Left blank for now. A recruiter will have the same question, and they won't call to ask it.` and `Fill it in after all`; under a filled line `Every fact in it is from your resume or your answers.`; kept answers say `Kept with this report.` |
 | After the cards | `Lines not listed are fine as written.` |
-| Fit | `Roles your experience points toward.` / with a posting `How your experience fits this role.`; `Roles to consider` / `The role, as the posting names it`; `How the page reads: …`; `What the posting asks for that the page doesn't show` |
-| The score note | `What the rung and the number mean`: `The rung is what a recruiter does with the page after one pass. The number says where in the rung it sits. It doesn't predict interviews or offers.` |
+| Fit | `Roles your experience points toward.` / with a posting `How your experience fits this role.`; `Roles to consider` / `The role, as the posting names it`; `Level a recruiter would assume: …`; `What the posting asks for that your resume doesn't show` |
+| The score note | `What the score means`: `The band is what a recruiter would do with your resume after one pass. The number says where in the band you sit. Neither predicts interviews or offers.` In the product the four are bands, never rungs |
 | The re-check | `N lines are off the list.` / `The same lines are on the list.` / `Every line you worked on is off the list.`; the score only as `Up N since last time.`; a line off the list is never called fixed |
 
 Retired with it in the product: `Critical Miss`, the count headings, `The question they'd ask`, `Worth tightening`, `Keep this one`, `Fix these first`, the questions-before-the-report screen (the worklist asks on each card) and the wait screen's fifth stage. The public pages that still name the old unit are listed with proposed replacements in `docs/promptops/proposals/2026-11-worklist-public-copy.md`, which is Matt's call; until he decides, the rows below stand for those pages and for reports saved before November 6, which keep the v2 shape.

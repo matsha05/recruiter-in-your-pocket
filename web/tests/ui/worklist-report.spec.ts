@@ -47,7 +47,7 @@ test("the report opens on the score, the rung, the verdict and the write-up, the
   await expect(cards.nth(lineCard)).toContainText(mock.cards[lineCard].question);
   // The keep card is the model for the rest; it asks nothing.
   const keep = page.locator("[data-testid='worklist-card'][data-kind='keep']");
-  await expect(keep).toContainText("Keep as is");
+  await expect(keep).toContainText("Don't touch this one");
   await expect(keep.getByTestId("worklist-blank")).toHaveCount(0);
   await expect(report).not.toContainText("Critical Miss");
   await expect(page.getByRole("navigation", { name: "Resume report sections" }).getByRole("button", { name: "Lines", exact: true })).toHaveCount(1);

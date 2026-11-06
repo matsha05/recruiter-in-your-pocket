@@ -250,7 +250,7 @@ export function WorklistCard({ card, index, cards, resumeText, isSample = false,
           {asks && (
             left ? (
               <p className={styles.note} data-testid="worklist-left">
-                Left for now. A blank reads as a question, and recruiters don&apos;t call to ask it.{" "}
+                Left blank for now. A recruiter will have the same question, and they won&apos;t call to ask it.{" "}
                 <Button type="button" variant="quiet" size="sm" className={styles.quiet} onClick={() => setLeft(false)}>Fill it in after all</Button>
               </p>
             ) : (

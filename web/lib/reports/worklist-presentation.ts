@@ -96,7 +96,7 @@ export function cardsHeading(report: Pick<WorklistReport, "cards">): { title: st
     // No lead: the ending says "Send it. Then read it against the posting you're going for." in the same words.
     return { title: "Nothing here needs work.", lead: null };
   }
-  return { title: "Line by line, in the order a recruiter hits them.", lead: null };
+  return { title: "Lines that need work.", lead: "Top to bottom, the way a recruiter reads." };
 }
 
 /** The line under the cards. Only when the page has lines the cards didn't list. */
@@ -104,7 +104,7 @@ export const UNLISTED_LINES_NOTE = "Lines not listed are fine as written.";
 
 /** The label on a card: the model's `where`, with the keep card named as such. */
 export function cardLabel(card: Pick<WorklistCard, "kind" | "where">) {
-  return card.kind === "keep" ? "Keep as is" : card.where;
+  return card.kind === "keep" ? "Don't touch this one" : card.where;
 }
 
 /** "3 of 12": the card's place among the cards that need work, once there are enough to lose count of. */
@@ -115,7 +115,7 @@ export function cardPosition(cards: ReadonlyArray<Pick<WorklistCard, "kind">>, i
   return position === -1 ? null : `${position + 1} of ${work.length}`;
 }
 
-export const KEEP_SECONDARY_LABEL = "The model for the rest";
+export const KEEP_SECONDARY_LABEL = "Write the others like it.";
 
 /** The role the header row names for a worklist report: the first fit role. */
 export function worklistTargetRole(report: Pick<WorklistReport, "fit">) {
@@ -127,7 +127,7 @@ export function fitHeading(report: Pick<WorklistReport, "fit">) {
   return report.fit.posting.summary ? "How your experience fits this role." : "Roles your experience points toward.";
 }
 
-export const POSTING_MISSING_LABEL = "What the posting asks for that the page doesn't show";
+export const POSTING_MISSING_LABEL = "What the posting asks for that your resume doesn't show";
 
 // ---- The re-check (two worklist reports on the same resume) ----
 
@@ -167,13 +167,13 @@ export function compareWorklists(previous: WorklistReport, current: WorklistRepo
   let intro: string;
   if (before.length === 0 && after.length === 0) {
     title = "Still nothing that needs work.";
-    intro = "Both reads came back clean.";
+    intro = "Both versions came back clean.";
   } else if (gone.length === 0) {
     title = "The same lines are on the list.";
-    intro = "Your revision didn't move any of them. Start with the first one again.";
+    intro = "This version didn't clear any of them. Start with the first again.";
   } else if (still.length === 0 && added.length === 0) {
     title = before.length === 1 ? "The line you worked on is off the list." : "Every line you worked on is off the list.";
-    intro = "Nothing on this page needs a card now.";
+    intro = "Nothing in this version needs work now.";
   } else {
     title = `${count(gone.length, "line is", "lines are")} off the list.`;
     intro = [
