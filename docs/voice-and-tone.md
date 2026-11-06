@@ -8,11 +8,13 @@ How to use this guide: this is the personality and the reasons. The working syst
 
 Matt answered fourteen prompts the way he'd say them out loud, and ChatGPT described how he writes from their past conversations. Both are in `docs/copy/calibration/`. What they settled:
 
+- **Warm and a little bit coach.** "I do want it to be warm and borderline coach though. High EQ and high IQ, very friendly but also cool." The problem first, then the way out, walked together ("Let's start with the most recent one."). Big praise when the resume earns it, always with the reason ("This is killer! You say what you did and what it changed."). Never a cheerleader: no praise without a reason, no encouragement aimed at someone's potential.
+- **One earned exclamation point.** On a screen where something good really happened (a score went up, a strong resume, a purchase went through, a line filled in), one is fine. Never two in a row, and never in an error, a price, legal or privacy copy, or a critique. This follows Mailchimp's rule ("sparingly, and never more than one at a time"; never in failure messages) and the research in `docs/copy/sources.md`.
 - **Close to Matt, one notch composed.** His warmth, contractions and plain verdicts ("generic", "table stakes", "it's common", "that's fine", "our bad"). No slang or swearing anywhere on the site: no "dude", "man" or "hell yeah". His habits in chat (lowercase, typos, fillers) are how he sends messages, not the voice.
 - **"We" is the candidate's side.** "We" means the candidate and us, working on it: "We'll make sure all the other bullets are good." "I" stays in the founder note.
 - **The resume is one variable.** When the resume is strong, say so, and say what else matters: "I cannot imagine the resume is going to be the reason you don't get called back." Referrals, how competitive the job is, and a stepping-stone role are fair to name. Never as a statistic.
 - **The recruiter's real questions are the voice.** "How many per month?" "Responsible, what does that even mean?" A question asked for effect ("Want another read?") is not.
-- **Name the situation, never the feeling.** "Not hearing back sucks" is fine. "You're probably feeling discouraged" is not: Matt hates having a feeling invented for him.
+- **Acknowledge, don't diagnose.** Name what's hard about the situation: "Not hearing back is rough, and it doesn't mean you're not qualified." Never claim to know their feelings: no "You're probably discouraged", no "Don't worry". Matt hates having a feeling invented for him.
 - **Errors that are ours, in his words.** "Our bad. Let's try that again." Then the facts, literally. No jokes in errors; ownership is not a joke.
 - **Founder facts.** Fifteen years in hiring, and thousands of people hired, may appear. Never his name, an employer or a profile.
 
@@ -21,7 +23,7 @@ Matt answered fourteen prompts the way he'd say them out loud, and ChatGPT descr
 This section sets the personality. The rest of this guide still applies.
 
 - **Who is talking:** an insider over coffee. Someone who works in hiring and tells you the truth because they are on your side. Candid, specific, a little dry. Rooting for you without cheerleading. The product says "we"; Matt's founder section says "I".
-- **Bluntness:** direct, then kind. Name the problem in the first sentence, then show the way out. No softening words, no harshness.
+- **Bluntness:** direct, then kind. Name the problem in the first sentence, then show the way out. No softening words, no harshness. Since November 6, 2026 the way out is walked with them, a little bit coach ("Let's start with the most recent one.").
 - **Where the wit comes from:** hiring truths (knowing observations about resumes and how hiring really works) and a product that is a little self-aware. Never at the person's expense, never wordplay for its own sake.
 - **Rhythm:** talky, mostly short. Contractions. An occasional fragment for punch.
 - **How much play:** light wit by default. The playful register lives in the hero, margin notes, "keep this" labels, and empty states. The report body stays direct. Errors, billing, and privacy stay plain.
@@ -70,7 +72,7 @@ The voice is **plainspoken expertise**: an experienced recruiter with excellent 
 
 The brand should be recognizable even without the logo. It notices the gap between what a candidate meant and what the page actually communicates. It does not manufacture anxiety and then sell relief.
 
-Human tone comes from relevant detail, honest limits, and respect for the candidate's control. Joy comes from noticing what is already working and making the next step feel possible. It does not come from slogans, slang, exclamation marks, forced empathy, or pretending the product has feelings.
+Human tone comes from relevant detail, honest limits, and respect for the candidate's control. Joy comes from noticing what is already working and making the next step feel possible. It does not come from slogans, slang, exclamation marks used for volume, forced empathy, or pretending the product has feelings. One earned exclamation point on a real win is fine (Matt, November 6, 2026).
 
 ## The brand idea
 

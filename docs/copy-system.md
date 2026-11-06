@@ -14,7 +14,7 @@ The report's model-written words (the verdict, the write-up, the notes, the ques
 
 ## 1. The voice
 
-Matt across the table: a recruiter with fifteen years in hiring and thousands of people hired, on your side, telling you what they actually see. A rough draft of that, not a polished brand voice.
+Matt across the table: a recruiter with fifteen years in hiring and thousands of people hired, on your side, telling you what they actually see and helping you fix it. Warm and a little bit coach. High EQ, high IQ, very friendly, and cool about it (Matt, November 6, 2026).
 
 ### We are, we are not
 
@@ -22,11 +22,12 @@ Each trait has Matt's own words, from his answers on November 6, and a line alre
 
 | We are | We are not | Matt said | On the site |
 | --- | --- | --- | --- |
-| A recruiter | a coach or a cheerleader | "That's like table stakes. How many per month?" | "Lines not listed are fine as written." |
+| A recruiter who coaches | a cheerleader | "That's like table stakes. How many per month?" / "Let's make the content as good as possible." | "Lines not listed are fine as written." |
 | Plain verdicts | slogans | "That is just so generic and vague. It tells me nothing." | "'Results-driven professional' is on every resume. Show the result instead." |
 | The recruiter's real questions | rhetorical questions | "Responsible, what does that even mean?" | "How many new hires did you help onboard?" (voice guide, September 4) |
 | Specific | vague | "Was the workbook in Google Sheets, Excel?" | "That's 412 characters. We need at least 800 to review it, so add the whole resume, including your experience." |
 | On your side: "we" is you and us | the company talking about itself | "We'll make sure all the other bullets are good." | "Every fact in it is from your resume or your answers." |
+| Excited when it's earned | gushing, or praise with no reason | "From a resume standpoint, this is killer." | "You're in. Five more reads." |
 | Honest about what a resume can't fix | selling another report | "I cannot imagine the resume is going to be the reason you don't get called back." | "Neither predicts interviews or offers." |
 | Warm and casual | slangy, or a costume | "That's fine. You don't need perfect bullets across the board." | "Sign in and it'll be in My reports." |
 | Dry, in bursts | jokey | "That's fair, but aren't you applying to a stranger's job?" | "Pop it in and you're back on the other side of the desk." |
@@ -41,22 +42,24 @@ The rows follow Torrey Podmajersky's voice chart, so each trait turns into rules
 | Vocabulary | Recruiter verbs: move forward, pass, shortlist, call back, read. Name the thing itself: your resume, the line, the job, the posting, the report, the pass. "A read" is fine when it means one review ("five more reads"). Never a word from the coined list in §4. |
 | Length | Verdict, then the reason, then the next move. One idea a sentence. A reason that explains something earns its sentence; a sentence that only sounds good gets cut. |
 | Grammar | Contractions. "You" for the candidate. "We" for the candidate and us, working on it. "I" only in the founder note. Active voice. A question only when the reader can answer it. |
-| Punctuation | Periods. No em dashes and no exclamation marks. "…" only for something in progress. Straight facts in parentheses are fine; asides in parentheses are not. |
+| Punctuation | Periods by default. One exclamation point on a screen when something good really happened: a score that went up, a strong resume, a purchase that went through, a line filled in. Never two in a row, and never in an error, a price, legal or privacy copy, or a critique. No em dashes. "…" only for something in progress. Straight facts in parentheses are fine; asides in parentheses are not. |
 | Capitalization | Sentence case everywhere: buttons, tabs, headings, labels. Proper nouns keep their capitals: Job Search Pass, Recruiter in Your Pocket, LinkedIn, Stripe. |
-| Feelings | Name the situation, never the reader's feelings. "Not hearing back sucks" names a situation. "You're probably feeling discouraged" invents a feeling, and Matt hates that. |
+| Feelings | Acknowledge, don't diagnose (Matt, November 6). Name what's hard about the situation: "Not hearing back is rough, and it doesn't mean you're not qualified." Never claim to know how they feel: no "You're probably discouraged", no "Don't worry". Matt hates having a feeling invented for him. |
+| Praise | Big when it's earned, and always with the reason: "This is killer! You say what you did and what it changed." Praise with no reason ("Great job!") is a cheerleader's. |
+| Coaching | Show the way out and walk it with them: "Let's start with the most recent one." "Every strong resume started somewhere like this." Encouragement points at real work on the resume, never at the person's potential. |
 | Facts about Matt | Allowed: fifteen years in hiring, thousands of people hired. Never: his name, an employer, a profile link, a photograph. |
 | Facts about hiring | Only what the research library sources. No "recruiters spend six seconds". |
 
 ### The dial
 
-Matt at coffee is casual, mostly serious, irreverent about bad work and practical, with bursts of real enthusiasm. ChatGPT rated him 5, 2, 4 and 3 on Nielsen Norman Group's four scales. The product sits one notch more composed (Matt, November 6: "Warmth yes, slang no").
+Matt at coffee is casual, mostly serious, irreverent about bad work and practical, with bursts of real enthusiasm. ChatGPT rated him 5, 2, 4 and 3 on Nielsen Norman Group's four scales. The product sits one notch more composed on slang (Matt, November 6: "Warmth yes, slang no") and at least as warm as he is on encouragement (Matt, November 6: "warm and borderline coach… high EQ and high IQ, very friendly but also cool").
 
 | Scale (1 to 5) | Matt | The product |
 | --- | --- | --- |
 | Formal to casual | 5 | 4: contractions, "that's fine", "it's common", "our bad"; no "dude", "man", "hell yeah" or swearing anywhere |
 | Serious to funny | 2 | 2: at most one aside a screen, reacting to a real moment |
 | Respectful to irreverent | 4 | 3 toward resume clichés and bad advice; 1 toward people, always |
-| Matter-of-fact to enthusiastic | 3 | 2, rising only when the resume earns it ("This is good. Why is it halfway down the page?") |
+| Matter-of-fact to enthusiastic | 3 | 4 on a win ("This is killer! You say what you did and what it changed."); 2 in a critique, where the warmth comes from the way out, not the volume |
 
 ## 2. Tone by moment
 
@@ -67,12 +70,12 @@ The voice never changes. What changes with the moment is how much we say, and wh
 | Marketing | deciding whether to bother | a true thing about hiring, then what we do about it | one a section, at most | "244 people applied for the job you wanted." / "Eighteen got called back. The other 226 have no idea why the recruiter passed." / "Nobody tells you why. We do, before you apply for the next one." |
 | Upload | about to hand over a resume | calm and literal: what to add, what's optional, what happens to it | one, beside the privacy facts | "That's 412 characters. We need at least 800 to review it, so add the whole resume, including your experience." / "We could only read 300 characters. A scanned or image-only PDF often does this. Paste the text instead." / "OpenAI writes the report from your resume. We don't store the resume or opt it into model training." |
 | Waiting | watching a clock | what's happening now and how long it usually takes; no faked progress | none | "Checking every quote against your resume" / "The first pass came back incomplete, so we started it again." / "If you retry and this one also finishes, both count as reports. Waiting is usually the better bet." |
-| Report shell | reading a judgment about their own work | direct, then kind; plain enough that the recruiter's words carry | one, on the strong or the clean ending | "Lines not listed are fine as written." / "Every fact in it is from your resume or your answers." / "Neither predicts interviews or offers." |
+| Report shell | reading a judgment about their own work | direct, then encouraging: the problem, then the way out, walked together; plain enough that the recruiter's words carry | one, on the strong or the clean ending; one exclamation point on a win | "Lines not listed are fine as written." / "Every fact in it is from your resume or your answers." / "Neither predicts interviews or offers." |
 | Rewrite | about to copy a line into their resume | protective of facts: the original, the example, what's still theirs to fill | none | "This adds a detail that isn't in your line or your answers. Use the words you wrote, or add it as an answer if it's true." / "This draft changes a detail from your resume. Edit it back to what's true before copying." / "Every fact in it is from your resume or your answers." |
 | Research | checking whether to believe us | the question, the finding, the source, the limit | one, in the figure's margin note | "That study was about interviews, not resumes." / "These are audit studies: fictitious resumes and callbacks, not hires." / "No study we know of isolates a quantified bullet against a duty-style one." |
-| Pricing | deciding whether to pay | blunt and literal: the price, the term, the refund, what's included | none | "Your first report is free. Five more are $29." / "Stripe handles your card. We never see or store the number." / "Checkout canceled. Nothing was charged." |
+| Pricing | deciding whether to pay | blunt and literal: the price, the term, the refund, what's included | none before the purchase; one exclamation point on the confirmation | "Your first report is free. Five more are $29." / "Stripe handles your card. We never see or store the number." / "Checkout canceled. Nothing was charged." |
 | Sign-in | trying to get back in | plain steps | one, in the email only | "No password. The code works once and expires soon." / "We sent an 8-digit code to {email}" / "That code didn't work. Check the email or request a new code." |
-| Account | looking after their own things | quiet and exact; nothing sold | one, in an empty state | "Run a report and save it. Your next version will have something honest to measure against." / "Scores compare versions of your own resume. They don't predict interviews or offers." / "Skip it, and this browser can still bring the report back for up to 24 hours." |
+| Account | looking after their own things | quiet and exact; nothing sold; glad when a score goes up | one, in an empty state; one exclamation point when a version improved | "Run a report and save it. Your next version will have something honest to measure against." / "Scores compare versions of your own resume. They don't predict interviews or offers." / "Skip it, and this browser can still bring the report back for up to 24 hours." |
 | Error | stuck | ours: own it in Matt's words, then what happened and what to do. Theirs: plain, no ownership | none | "Something broke on our end, not yours. Saved reports aren't affected." / "We gave that report back. Try again whenever you're ready." / "That email address doesn't look right. Check it and try again." |
 | Email | glancing at a notification | the fact in the subject; one warm line; the security line plain | one | "{code} is your sign-in code" / "Your code's here. Pop it in and you're back on the other side of the desk." / "Didn't ask for this? Ignore it. No one gets in without the code, and we'll never ask you for it." |
 | PDF | reading the report away from the site | the same names as the page, nothing new | none | (follows the report shell) |
@@ -122,9 +125,10 @@ Real strings from the inventory, each with the house version and the tic it fixe
 | 36 | Research | A referral gets you a hearing. It doesn't pass the read for you. | A referral gets your resume opened. It still has to make sense once it is. | coined_word |
 | 37 | Research | Being relatable is part of the read | Recruiters ask whether they can picture you in the job | coined_word |
 | 38 | Progress page | Same score as your first report. The written findings show what moved. | Same score as your first report. The write-up says what changed. | two_names |
-| 39 | Report, a blank left | Left blank for now. A recruiter will have the same question, and they won't call to ask it. | Left blank, and that's fine. Not every line needs every detail. The rest of your resume has to give a recruiter something to grab onto. | Matt's answer 10 |
-| 40 | Report, strong ending | Send it. Then read it against the posting you're going for. | Your resume won't be the reason you don't get the call. Send it, and read it against the posting you're going for. | Matt's answer 5 |
-| 41 | Re-check | Up 6 since last time. | Up 6 since last time. That's the right direction. | Matt's answer 11, without the promise |
+| 39 | Report, a blank left | Left blank for now. A recruiter will have the same question, and they won't call to ask it. | Left blank, and that's fine. Not every line needs every detail. Let's make sure the rest of your resume gives a recruiter something to grab onto. | Matt's answer 10, coaching |
+| 40 | Report, strong ending | Send it. Then read it against the posting you're going for. | This is killer! Your resume won't be the reason you don't get the call. Send it, and read it against the posting you're going for. | Matt's answer 5, praise with the reason |
+| 41 | Re-check | Up 6 since last time. | Up 6 since last time. That's the right direction! | Matt's answer 11, without the promise |
+| 42 | Purchase confirmed | You're in. Five more reads. | You're in! Five more reads. | a real win |
 
 ## 4. The tics, and the fix for each
 
@@ -142,15 +146,16 @@ The habits this codebase keeps producing. Most come from how language models wri
 | question_heading | A heading asked for effect, the reader can't really answer: "Want another read?", several on one screen ("Already paid?" "Used all five?") | A statement that names the thing. The recruiter's real questions are the voice ("How many per month?"); questions asked for effect are not |
 | copula_avoidance | "serves as", "boasts", "features", "marks" where "is" or "has" would do | "is", "has" |
 | ing_analysis | A trailing "-ing" clause that sounds like analysis: "…, highlighting your leadership", "…, reflecting real growth" | Say the thing, or cut it |
-| invented_emotion | Telling the reader how they feel: "You're probably feeling discouraged", "Don't worry" | Name the situation: "Not hearing back sucks." |
+| invented_emotion | Telling the reader how they feel: "You're probably feeling discouraged", "Don't worry", "We know this is stressful" | Acknowledge the situation: "Not hearing back is rough, and it doesn't mean you're not qualified." |
 | please | "Please" in an instruction or error | Cut it; the instruction stands |
 | title_case | Title Case on a button, tab or label: "Upload Resume", "Run Another" | Sentence case |
 | generic_ai_word | unlock, elevate, transform, seamless, empower, journey, supercharge, streamline, effortless | Say what it does |
 | slogan | A line any product could put on a billboard, or a signature line outside marketing | A sentence with a subject and a fact |
 | hedge_stack | may, likely, suggests and could piled into one sentence | One hedge, or a plain statement of what the evidence shows |
 | invented_number | A statistic the research library doesn't source: "recruiters spend six seconds" | Drop it, or cite the page that sources it |
-| exclamation | An exclamation mark in product copy | A period |
-| fake_intimacy | "Trust me", "We've got you", "We know exactly how you feel", "You've got this" | A specific, useful sentence |
+| exclamation | An exclamation point that isn't earned: two in a row, more than one on a screen, one on something that isn't a win ("Upload your resume!"), or one in an error, a price, legal or privacy copy, or a critique | A period. One earned exclamation point on a real win is the voice (Matt, November 6) |
+| empty_praise | Praise with no reason: "Great job!", "Amazing work!", "You've got this!" | Name what earned it: "This is killer! You say what you did and what it changed." |
+| fake_intimacy | "Trust me", "We've got you", "We know exactly how you feel" | A specific, useful sentence. Coaching that walks the next step ("Let's start with the most recent one") is the voice, not this |
 | slang | "dude", "man", "hell yeah", swearing (Matt, November 6) | Matt's warmth without the slang: "That's fine." "It's common." "Our bad." |
 | joke_in_trust_moment | Wit in a price, a refund, a privacy fact, a sign-in step or a cute word in an error ("Connection hiccup") | Plain words. Ownership in an error is not a joke and is fine |
 | product_about_itself | The product narrating itself: "RIYP reads the posting and…" | What the reader gets or does |
@@ -369,9 +374,9 @@ Run this on any new or changed string before a PR. A banned-word scan can't do i
    2. Does it name the actual subject, with nothing the reader has to translate (§4, coined_word)?
    3. Does the reader know what happens next: what the button does, what to fix, what was charged?
    4. Does every judgment point to something visible on the resume, and is it no more certain than the source allows?
-   5. Does it criticize the resume, never the person, and name the situation, never their feelings?
+   5. Does it criticize the resume, never the person, and acknowledge the situation without diagnosing their feelings? When it praises or encourages, does it say why?
    6. Does it keep the candidate's facts and their control?
-   7. Is there at most one aside on the screen, and none in a button, price, legal term or error fact?
+   7. Is there at most one aside and at most one exclamation point on the screen, and neither in a button, price, legal term, error fact or critique?
    8. Is every name the glossary's name (§5)?
    9. Does the heading, the line under it and the next block each do a different job, with nothing said twice?
    10. Does it say exactly what happened, including what didn't happen?
