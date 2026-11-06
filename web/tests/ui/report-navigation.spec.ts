@@ -96,12 +96,12 @@ for (const viewport of [
       await expectCurrent(page, section.label);
     }
 
-    // Each entry reads line, note, then question and example: below each other on a phone, and from 960px the
-    // example sits in the answer column to the right of the line.
+    // Each entry reads the line, then the line with the detail in, under it at every width; from 960px the two
+    // share a left edge to the pixel (typography-brief.md: before and after in one hand).
     const firstCard = page.getByTestId("worklist-card").first();
     const parts = await Promise.all([firstCard.locator("blockquote").first().boundingBox(), firstCard.getByTestId("worklist-example").boundingBox()]);
-    if (viewport.width >= 960) expect(parts[1]!.x).toBeGreaterThan(parts[0]!.x + parts[0]!.width - 1);
-    else expect(parts[1]!.y).toBeGreaterThan(parts[0]!.y);
+    expect(parts[1]!.y).toBeGreaterThan(parts[0]!.y);
+    if (viewport.width >= 960) expect(Math.abs(parts[1]!.x - parts[0]!.x)).toBeLessThanOrEqual(1);
 
     const fixesHeight = await page.locator("#section-fixes").evaluate((section) => section.getBoundingClientRect().height);
     expect(fixesHeight).toBeGreaterThan(viewport.height);

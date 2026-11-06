@@ -67,8 +67,8 @@ function renderWorklistHtml(report: ReportForPdf, worklist: WorklistForPdf) {
         <div class="card-where">${keep ? "Keep as is" : escapeHtml(card.where)}${keep ? '<span class="card-where-quiet">The model for the rest</span>' : ""}</div>
         ${line}
         <div class="pen-note">${escapeHtml(card.cannot_tell)}</div>
-        ${keep ? "" : exampleHtml(card)}
         ${!keep && card.question ? `<div class="card-question">${escapeHtml(card.question)}</div>` : ""}
+        ${keep ? "" : exampleHtml(card)}
       </div>`;
   };
   const fit = worklist.fit;

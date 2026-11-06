@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Worklist type sketches</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;600;800&family=Literata:ital,opsz,wght@0,7..72,300;0,7..72,400;0,7..72,600;1,7..72,400&display=swap">
+<style>
+:root{--bg:#f4f4f1;--paper:#fff;--ink:#111513;--muted:#5a605c;--line:#dfe0dc;--inset:#e9eae6;--pen:#1f5a46;--pen-tint:#e6f0eb;--blue:#2448a8;--hl:#ffe14d;--ghost:#8a8f8b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.56 "Schibsted Grotesk",system-ui,sans-serif;padding:2rem 16px 6rem}
+main{max-width:1180px;margin:0 auto}
+h1{font-size:1.5rem;font-weight:800;letter-spacing:-.02em;margin:0 0 .25rem}
+.lede{color:var(--muted);max-width:62ch;margin:0 0 2rem}
+.sketch{margin:0 0 3.5rem}
+.sketch>header{display:flex;flex-wrap:wrap;align-items:baseline;gap:.25rem 1rem;margin:0 0 1rem}
+.sketch>header h2{font-size:1.1rem;font-weight:600;margin:0}
+.sketch>header p{color:var(--muted);margin:0;max-width:70ch}
+.sheet{background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:2.5rem 3rem 3rem}
+.sec{font-size:1.5rem;font-weight:800;letter-spacing:-.02em;margin:0 0 .25rem}
+.secLead{color:var(--muted);margin:0 0 1.5rem}
+/* shared materials */
+.strip{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:.75rem 1rem;box-shadow:0 1px 0 rgba(0,0,0,.03);font-family:Literata,Georgia,serif;font-size:1rem;line-height:1.5;color:#1b1f1d;max-width:34rem}
+.ghost{color:var(--ghost);white-space:nowrap;overflow:hidden;margin:0;-webkit-mask-image:linear-gradient(to right,black 60%,transparent);mask-image:linear-gradient(to right,black 60%,transparent)}
+.ghost.top{-webkit-mask-image:linear-gradient(to bottom,transparent 15%,rgb(0 0 0/.55)),linear-gradient(to right,black 60%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(to bottom,transparent 15%,rgb(0 0 0/.55)),linear-gradient(to right,black 60%,transparent);mask-composite:intersect}
+.ghost.bot{-webkit-mask-image:linear-gradient(to top,transparent 15%,rgb(0 0 0/.55)),linear-gradient(to right,black 60%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(to top,transparent 15%,rgb(0 0 0/.55)),linear-gradient(to right,black 60%,transparent);mask-composite:intersect}
+.q{margin:.125rem 0}
+.mark{background:linear-gradient(transparent 8%,var(--hl) 8%,var(--hl) 92%,transparent 92%);padding:0 .15em;margin:0 -.15em}
+.statement{border:1px dashed rgba(31,90,70,.7);border-radius:12px;padding:.5rem .75rem;color:var(--pen);font:italic 1rem/1.56 Literata,Georgia,serif;max-width:34rem}
+.blank{display:inline-block;color:var(--blue);background:rgba(36,72,168,.045);border-bottom:1.5px solid rgba(36,72,168,.55);padding:.05em .35em;line-height:1.35;white-space:nowrap}
+.blank.long{display:block;white-space:normal}
+.tools{display:flex;gap:1rem;align-items:center;margin-top:.25rem;font-size:.875rem;font-weight:600}
+.tools .quiet{color:var(--ink);text-decoration:underline;text-decoration-color:rgba(17,21,19,.35);text-underline-offset:.2em}
+
+/* ---------- A. Two voices, held apart ---------- */
+.a .entry{display:grid;grid-template-columns:11rem minmax(0,1fr) minmax(0,1fr);column-gap:3rem;padding:2.5rem 0 2.75rem;border-top:1px solid var(--line)}
+.a .entry:first-of-type{border-top:0;padding-top:.5rem}
+.a .label{font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--pen);margin:0 0 .25rem}
+.a .count{font-size:.8125rem;color:var(--muted);margin:0}
+.a .col{display:grid;gap:1.125rem;align-content:start}
+.a .note{font:italic 1rem/1.56 Literata,Georgia,serif;color:var(--pen);max-width:46ch;margin:0}
+.a .ask{font-size:.9375rem;color:var(--muted);margin:0 0 -.25rem}
+.a .ex{font:1.0625rem/1.7 "Schibsted Grotesk",system-ui,sans-serif;color:var(--ink);background:var(--inset);border-radius:12px;padding:.875rem 1.125rem;margin:0;max-width:38rem}
+.a .ex .blank{font-family:"Schibsted Grotesk",system-ui,sans-serif;background:rgba(36,72,168,.07)}
+
+/* ---------- B. The numbered ledger ---------- */
+.b .entry{display:grid;grid-template-columns:7rem minmax(0,1fr) minmax(0,1fr);column-gap:3.5rem;padding:3rem 0;border-top:1px solid var(--line)}
+.b .entry:first-of-type{border-top:0;padding-top:.5rem}
+.b .num{font:300 2.75rem/1 Literata,Georgia,serif;letter-spacing:-.03em;color:var(--ink);margin:0 0 .5rem;font-variant-numeric:tabular-nums}
+.b .label{font-size:.8125rem;font-weight:600;color:var(--ink);margin:0}
+.b .count{font-size:.8125rem;color:var(--muted);margin:.125rem 0 0}
+.b .col{display:grid;gap:1.25rem;align-content:start}
+.b .note{font:italic 1.0625rem/1.6 Literata,Georgia,serif;color:var(--ink);max-width:44ch;margin:0}
+.b .ask{font-size:.8125rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 -.5rem}
+.b .ex{font:1.25rem/1.75 Literata,Georgia,serif;color:var(--ink);margin:0;max-width:36rem}
+.b .statement{color:var(--ink);border-color:rgba(17,21,19,.35)}
+
+/* ---------- C. Margin notes ---------- */
+.c .entry{display:grid;grid-template-columns:9rem minmax(0,1.3fr) minmax(14rem,.9fr);column-gap:2.5rem;padding:2.75rem 0;border-top:1px solid var(--line)}
+.c .entry:first-of-type{border-top:0;padding-top:.5rem}
+.c .label{font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 .25rem}
+.c .count{font-size:.8125rem;color:var(--muted);margin:0}
+.c .main{display:grid;gap:1.5rem;align-content:start}
+.c .strip{max-width:none;padding:1rem 1.25rem}
+.c .mn{font:italic 1rem/1.56 Literata,Georgia,serif;color:var(--pen);margin:0;padding:.75rem 0 0 1rem;border-left:2px solid var(--pen);align-self:start}
+.c .mn b{font-style:normal;font-weight:600;display:block;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.8125rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 .35rem}
+.c .after{display:grid;gap:.5rem}
+.c .ask{font-size:.9375rem;font-weight:600;margin:0}
+.c .ex{font:1.125rem/1.75 Literata,Georgia,serif;color:var(--ink);margin:0;padding:.875rem 1.125rem;background:#fffbe6;border-radius:12px;max-width:none}
+.small{font-size:.875rem;color:var(--muted);margin:1rem 0 0}
+
+/* ---------- D. One hand for the resume, before and after ---------- */
+.d .entry{display:grid;grid-template-columns:8rem minmax(0,40rem) minmax(14rem,17rem);column-gap:2.5rem;padding:3rem 0;border-top:1px solid var(--line)}
+.d .entry:first-of-type{border-top:0;padding-top:.75rem}
+.d .label{font-size:.8125rem;font-weight:600;color:var(--ink);margin:0}
+.d .count{font-size:.8125rem;color:var(--muted);margin:.125rem 0 0}
+.d .filled{font-size:.8125rem;font-weight:600;color:var(--pen);margin:.75rem 0 0}
+.d .main{display:grid;gap:1rem;align-content:start}
+.d .strip{max-width:none;padding:.875rem 2.25rem 1rem;font-size:1.125rem;line-height:1.67}
+.d .ask{font-size:.875rem;color:var(--muted);margin:0;padding-left:2.25rem}
+.d .ex{font:1.125rem/1.67 Literata,Georgia,serif;color:var(--ink);margin:0;padding-left:2.25rem}
+.d .ex .blank{line-height:1.3}
+.d .tools{padding-left:2.25rem;margin-top:0}
+.d .statement{max-width:none;font-size:1.0625rem;padding:.75rem 2.25rem}
+.d .mn{font:italic 1rem/1.56 Literata,Georgia,serif;color:var(--pen);margin:0;padding-top:.875rem;align-self:start}
+.d .keep .strip{font-style:normal}
+.d .keep .label{color:var(--pen)}
+.d .copy{display:inline-block;border:1px solid #c9ccc8;border-radius:999px;padding:.45rem 1rem;font-size:.875rem;font-weight:600;color:var(--ink);background:#fff}
+@media (max-width:860px){.d .entry{grid-template-columns:1fr;row-gap:1rem}.d .strip,.d .statement{padding-left:1.25rem;padding-right:1.25rem}.d .ask,.d .ex,.d .tools{padding-left:1.25rem}.d .mn{order:2;padding:0 0 0 1.25rem}.d .after{order:3}}
+
+@media (max-width:860px){.a .entry,.b .entry,.c .entry{grid-template-columns:1fr;row-gap:1rem}.sheet{padding:1.5rem 1rem}}
+</style>
+<main>
+<h1>Four ways to set one entry</h1>
+<p class="lede">The same two entries from the bad resume (Shift Lead, line 1; the dates), the same content, four typographic treatments. D follows the brief (typography-brief.md); A to C were the first round. The score, the bands and the write-up above the list stay as they are. Phone follows each one as a single column.</p>
+
+
+<section class="sketch d" id="d">
+<header><h2>D. One hand for the resume, before and after</h2><p>From the brief: the quoted line and the example are the same thing, the resume before and after, so they share one face, one size and one left edge, and read as a diff. The recruiter's query sits between them, small, in the sans. The note is marginalia in the pen, no rule, beside the line it comments on. Color only in the text: the marker, the blue blanks, the pen. 48px between entries.</p></header>
+<div class="sheet">
+<p class="sec">Line by line, in the order a recruiter hits them.</p>
+<p class="secLead">Each line as written, what a recruiter can't tell from it, and the line with the detail in.</p>
+<article class="entry">
+  <div><p class="label">Shift Lead, line 1</p><p class="count">5 of 12</p></div>
+  <div class="main">
+    <div class="strip"><p class="ghost top">January 2023 - June 2023</p><p class="q"><span class="mark">Responsible for opening and closing the store</span></p><p class="ghost bot">Handled cash register and customer complaints</p></div>
+    <p class="ask">What did you handle when opening and closing the store?</p>
+    <p class="ex">Responsible for opening and closing the store, including <span class="blank">opening duties</span> and <span class="blank">closing duties</span>.</p>
+    <div class="tools"><span class="quiet">I don't know yet</span></div>
+  </div>
+  <p class="mn">Opening and closing can cover several jobs. What was yours to check or handle?</p>
+</article>
+<article class="entry">
+  <div><p class="label">Shift Lead, line 2</p><p class="count">6 of 12</p><p class="filled">✓ Filled in</p></div>
+  <div class="main">
+    <div class="strip"><p class="ghost top">Responsible for opening and closing the store</p><p class="q"><span class="mark">Handled cash register and customer complaints</span></p><p class="ghost bot">Made sure shelves were stocked and the store was clean</p></div>
+    <p class="ask">What kind of complaint did you handle, and what did you do about it?</p>
+    <p class="ex">Handled cash register and customer complaints, including <span class="blank" style="background:transparent;border-bottom-color:var(--blue)">refund disputes</span> and <span class="blank" style="background:transparent;border-bottom-color:var(--blue)">calling the manager when a customer wanted to escalate</span>.</p>
+    <div class="tools"><span class="copy">Copy the line</span><span style="color:var(--muted);font-weight:400">Every fact in it is from your resume or your answers.</span></div>
+  </div>
+  <p class="mn">A recruiter can see the register and complaint work, but not what you did to resolve a complaint or how much register work you handled.</p>
+</article>
+<article class="entry">
+  <div><p class="label">Dates</p><p class="count">2 of 12</p></div>
+  <div class="main">
+    <p class="statement">Nothing is dated after June 2023, and two roles have no dates.</p>
+    <p class="ask">What have you been doing since June 2023, and when?</p>
+    <p class="ex">June 2023 - Present <span class="blank long">work, study, job search, caregiving, travel or career break</span></p>
+    <div class="tools"><span class="quiet">I don't know yet</span></div>
+  </div>
+  <p class="mn">A recruiter can't tell what you've been doing since the Shift Lead job ended. One of the undated jobs may account for that time.</p>
+</article>
+<article class="entry keep">
+  <div><p class="label">✓ Keep as is</p><p class="count">The model for the rest</p></div>
+  <div class="main">
+    <div class="strip"><p class="ghost top">Sales Associate, Phone Hub, Dayton</p><p class="q">Sold phones and accessories to customers, averaging 40 activations a month</p><p class="ghost bot">Answered questions about plans</p></div>
+  </div>
+  <p class="mn">Keep this as a model: it names what you sold, to whom, and how much. The store lines should read like it.</p>
+</article>
+</div>
+</section>
+
+<section class="sketch a" id="a">
+<header><h2>A. Two voices, held apart</h2><p>Serif only where someone is speaking: the resume's line on its paper, the recruiter's note in the pen. Everything else is the sans. The new line sits on a quiet inset in the sans, the way the sketch Matt chose drew it, so the three serif blocks never stack. Label in uppercase pen. Entries 2.5rem apart, no rules inside an entry.</p></header>
+<div class="sheet">
+<p class="sec">Line by line, in the order a recruiter hits them.</p>
+<p class="secLead">Each line as written, what a recruiter can't tell from it, and the line with the detail in.</p>
+<article class="entry">
+  <div><p class="label">Shift Lead · line 1</p><p class="count">5 of 12</p></div>
+  <div class="col">
+    <div class="strip"><p class="ghost top">January 2023 - June 2023</p><p class="q"><span class="mark">Responsible for opening and closing the store</span></p><p class="ghost bot">Handled cash register and customer complaints</p></div>
+    <p class="note">Opening and closing can cover several jobs. What was yours to check or handle?</p>
+  </div>
+  <div class="col">
+    <p class="ask">What did you handle when opening and closing the store?</p>
+    <p class="ex">Responsible for opening and closing the store, including <span class="blank">opening duties</span> and <span class="blank">closing duties</span>.</p>
+    <div class="tools"><span class="quiet">I don't know yet</span></div>
+  </div>
+</article>
+<article class="entry">
+  <div><p class="label">Dates</p><p class="count">2 of 12</p></div>
+  <div class="col">
+    <p class="statement">Nothing is dated after June 2023, and two roles have no dates.</p>
+    <p class="note">A recruiter can't tell what you've been doing since the Shift Lead job ended. One of the undated jobs may account for that time.</p>
+  </div>
+  <div class="col">
+    <p class="ask">What have you been doing since June 2023, and when?</p>
+    <p class="ex">June 2023 - Present <span class="blank long">work, study, job search, caregiving, travel or career break</span></p>
+    <div class="tools"><span class="quiet">I don't know yet</span></div>
+  </div>
+</article>
+</div>
+</section>
+
+<section class="sketch b" id="b">
+<header><h2>B. The numbered ledger</h2><p>A light Literata numeral anchors each entry, so the page has a rhythm you can count. Two colors inside an entry, not four: the marker on the line and the blue in the blanks; the note is ink italic, and the pen green is kept for the write-up and the keep tick. The example is the largest text in the entry, the thing you came for. 3rem between entries.</p></header>
+<div class="sheet">
+<p class="sec">Line by line, in the order a recruiter hits them.</p>
+<p class="secLead">Each line as written, what a recruiter can't tell from it, and the line with the detail in.</p>
+<article class="entry">
+  <div><p class="num">05</p><p class="label">Shift Lead, line 1</p><p class="count">of 12</p></div>
+  <div class="col">
+    <div class="strip"><p class="ghost top">January 2023 - June 2023</p><p class="q"><span class="mark">Responsible for opening and closing the store</span></p><p class="ghost bot">Handled cash register and customer complaints</p></div>
+    <p class="note">Opening and closing can cover several jobs. What was yours to check or handle?</p>
+  </div>
+  <div class="col">
+    <p class="ask">What did you handle when opening and closing the store?</p>
+    <p class="ex">Responsible for opening and closing the store, including <span class="blank">opening duties</span> and <span class="blank">closing duties</span>.</p>
+    <div class="tools"><span class="quiet">I don't know yet</span></div>
+  </div>
+</article>
+<article class="entry">
+  <div><p class="num">02</p><p class="label">Dates</p><p class="count">of 12</p></div>
+  <div class="col">
+    <p class="statement">Nothing is dated after June 2023, and two roles have no dates.</p>
+    <p class="note">A recruiter can't tell what you've been doing since the Shift Lead job ended. One of the undated jobs may account for that time.</p>
+  </div>
+  <div class="col">
+    <p class="ask">What have you been doing since June 2023, and when?</p>
+    <p class="ex">June 2023 - Present <span class="blank long">work, study, job search, caregiving, travel or career break</span></p>
+    <div class="tools"><span class="quiet">I don't know yet</span></div>
+  </div>
+</article>
+</div>
+</section>
+
+<section class="sketch c" id="c">
+<header><h2>C. Margin notes</h2><p>The resume is the page: the clipping runs wide and the recruiter's note sits beside it in the margin, as it would on paper. The new line follows the clipping underneath, on the highlighter's soft tint, so each entry reads top to bottom as before and after, the Lifted Line. The question is the caption above it.</p></header>
+<div class="sheet">
+<p class="sec">Line by line, in the order a recruiter hits them.</p>
+<p class="secLead">Each line as written, what a recruiter can't tell from it, and the line with the detail in.</p>
+<article class="entry">
+  <div><p class="label">Shift Lead · line 1</p><p class="count">5 of 12</p></div>
+  <div class="main">
+    <div class="strip"><p class="ghost top">January 2023 - June 2023</p><p class="q"><span class="mark">Responsible for opening and closing the store</span></p><p class="ghost bot">Handled cash register and customer complaints</p></div>
+    <div class="after">
+      <p class="ask">What did you handle when opening and closing the store?</p>
+      <p class="ex">Responsible for opening and closing the store, including <span class="blank">opening duties</span> and <span class="blank">closing duties</span>.</p>
+      <div class="tools"><span class="quiet">I don't know yet</span></div>
+    </div>
+  </div>
+  <p class="mn"><b>What a recruiter can't tell</b>Opening and closing can cover several jobs. What was yours to check or handle?</p>
+</article>
+<article class="entry">
+  <div><p class="label">Dates</p><p class="count">2 of 12</p></div>
+  <div class="main">
+    <p class="statement">Nothing is dated after June 2023, and two roles have no dates.</p>
+    <div class="after">
+      <p class="ask">What have you been doing since June 2023, and when?</p>
+      <p class="ex">June 2023 - Present <span class="blank long">work, study, job search, caregiving, travel or career break</span></p>
+      <div class="tools"><span class="quiet">I don't know yet</span></div>
+    </div>
+  </div>
+  <p class="mn"><b>What a recruiter can't tell</b>A recruiter can't tell what you've been doing since the Shift Lead job ended. One of the undated jobs may account for that time.</p>
+</article>
+</div>
+</section>
+<p class="small">November 6, 2026. Sketches for Matt's read of the list's typography; the one he picks is built into <code>web/components/workspace/report/worklist/</code>.</p>
+</main>
+</html>

@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { Check, CircleNotch, Copy } from "@phosphor-icons/react";
 import { Paper } from "@/components/materials/Paper";
-import { MarkerStroke } from "@/components/materials/Pen";
 import clip from "@/components/materials/Clipping.module.css";
 import { ActionFeedback } from "@/components/ui/action-feedback";
 import { Button } from "@/components/ui/button";
@@ -42,7 +41,37 @@ function neighbours(resumeText: string | undefined, line: string): { above?: str
 
 /** A blank's field is as wide as what it holds: its name until the person types, then their words. */
 function blankWidth(label: string, value: string) {
-  return `calc(${Math.min(Math.max(label.length, value.trim().length, 3) + 1, 56)}ch + 0.5em)`;
+  return `${Math.min(Math.max(label.length, value.trim().length, 3) + 0.5, 56)}ch`;
+}
+
+/** A blank whose name or answer is a phrase: a field that wraps like text and grows to what it holds. */
+const LONG_BLANK = 28;
+
+function BlankArea({ id, label, value, onChange }: { id: string; label: string; value: string; onChange: (value: string) => void }) {
+  const ref = useRef<HTMLTextAreaElement>(null);
+  const fit = () => {
+    const area = ref.current;
+    if (!area) return;
+    area.style.height = "auto";
+    area.style.height = `${area.scrollHeight}px`;
+  };
+  useLayoutEffect(fit, [value]);
+  return (
+    <textarea
+      ref={ref}
+      id={id}
+      rows={1}
+      className={styles.blankArea}
+      style={{ width: value.trim() ? `min(${blankWidth(label, value)}, 100%)` : "100%" }}
+      value={value}
+      onChange={(event) => onChange(event.target.value.replace(/\r?\n/gu, " "))}
+      placeholder={label}
+      aria-label={label}
+      autoComplete="off"
+      maxLength={300}
+      data-testid="worklist-blank"
+    />
+  );
 }
 
 /** Punctuation that follows a blank stays on the blank's line, so a comma never opens the next line alone. */
@@ -64,11 +93,12 @@ export interface WorklistCardProps {
 }
 
 /**
- * One entry of the worklist: where the line sits (the margin), the line as written with the marker across it
- * and what a recruiter can't tell from it (the evidence), then the question and the example with the detail in
- * (the answer). The example is the form: each blank is a field inside the sentence, in the candidate's blue,
- * and their words go into it as written. Nothing outside a bracket was invented: the validator held every fact
- * in the example to the resume. Copy waits until every blank is filled.
+ * One entry of the worklist, in reading order: the margin (where the line sits, its place in the list), the
+ * line as written on its strip with the marker across it, the recruiter's note (marginalia beside the line
+ * from 960px, under it on a phone), then the query and the line with the detail in, set in the document's own
+ * face on the strip's left edge so the two lines read as before and after. The blanks are fields inside the
+ * sentence, in the candidate's blue; their words go in as written. Nothing outside a bracket was invented:
+ * the validator held every fact in the example to the resume. Copy waits until every blank is filled.
  */
 export function WorklistCard({ card, index, cards, resumeText, isSample = false, initial, onPersist, onStateChange }: WorklistCardProps) {
   const labels = useMemo(() => blankLabels(card.example), [card.example]);
@@ -80,7 +110,6 @@ export function WorklistCard({ card, index, cards, resumeText, isSample = false,
   const [copyError, setCopyError] = useState(false);
   const copied = useTransientFeedback();
   const baseId = useId();
-  const filterId = `card-marker-${baseId.replace(/[^a-zA-Z0-9]/g, "")}`;
   const { ref: lineRef, seen } = useSeen<HTMLQuoteElement>(0.6);
 
   const quoted = card.kind === "line" || card.kind === "keep";
@@ -135,7 +164,7 @@ export function WorklistCard({ card, index, cards, resumeText, isSample = false,
   const questionId = `${baseId}-question`;
 
   return (
-    <li id={`section-card-${index + 1}`} className={styles.card} data-kind={card.kind} data-state={state} data-sample={isSample || undefined} data-testid="worklist-card">
+    <li id={`section-card-${index + 1}`} className={styles.card} data-kind={card.kind} data-state={state} data-sample={isSample || undefined} data-ghost-above={around.above ? "" : undefined} data-testid="worklist-card">
       {/* The margin: where the line sits on the page, and how far along the list this is. */}
       <div className={styles.margin}>
         <p className={styles.where}>
@@ -147,29 +176,32 @@ export function WorklistCard({ card, index, cards, resumeText, isSample = false,
         {state === "filled" && <p className={styles.filled}><Check className="size-3.5" weight="bold" aria-hidden="true" />Filled in</p>}
       </div>
 
-      {/* The evidence: the line as written, and what a recruiter can't tell from it. */}
+      {/* The line as written: the site's clipping, the neighbours fading off the cut edges, the marker across it
+          (the keep entry's line carries no marker: nothing on it needs work). A structural item is the recruiter's
+          statement about the page. */}
       <div className={styles.evidence}>
-        {card.kind === "keep" ? (
-          <blockquote className={styles.keepLine}>{card.line}</blockquote>
-        ) : quoted ? (
-          /* The line as the site's clipping: on its strip, the neighbours fading off the cut edges, the marker across it. */
-          <Paper kind="strip" className={cn(styles.strip, seen && clip.marked)}>
+        {quoted ? (
+          <Paper kind="strip" className={styles.strip}>
             {around.above && <p className={cn(clip.ghost, clip.ghostTop)} aria-hidden="true">{around.above}</p>}
             <blockquote ref={lineRef} className={styles.quote}>
-              <span className={clip.line}><MarkerStroke drawn={seen} filterId={filterId} />{card.line}</span>
+              {card.kind === "keep"
+                ? card.line
+                : <span className={cn(styles.mark, seen && styles.markOn)}>{card.line}</span>}
             </blockquote>
             {around.below && <p className={cn(clip.ghost, clip.ghostBottom)} aria-hidden="true">{around.below}</p>}
           </Paper>
         ) : (
           <p className={styles.statement}>{card.line}</p>
         )}
-        <p className={styles.cannot}>{card.cannot_tell}</p>
       </div>
 
-      {/* The answer: the question, then the example with the detail in. The blanks are the fields. */}
-      {(card.example || asks) && (
+      {/* What a recruiter can't tell: the pen's note, as marginalia. */}
+      <p className={styles.cannot}>{card.cannot_tell}</p>
+
+      {/* The query, then the line with the detail in. The blanks are the fields. */}
+      {card.kind !== "keep" && (card.example || asks) && (
         <div className={styles.answer}>
-          {card.kind !== "keep" && card.question && <p className={styles.question} id={questionId}>{card.question}</p>}
+          {card.question && <p className={styles.question} id={questionId}>{card.question}</p>}
           {card.example && (
             <p
               className={styles.example}
@@ -192,7 +224,10 @@ export function WorklistCard({ card, index, cards, resumeText, isSample = false,
                     : <span key={i} className={styles.blank} data-open="">[{segment.label}]</span>;
                 }
                 return (
-                  <span key={i} className={styles.blankField} data-filled={answer.trim() ? "" : undefined} data-long={Math.max(segment.label.length, answer.trim().length) > 28 ? "" : undefined}>
+                  <span key={i} className={styles.blankField} data-filled={answer.trim() ? "" : undefined} data-long={Math.max(segment.label.length, answer.trim().length) > LONG_BLANK ? "" : undefined}>
+                    {Math.max(segment.label.length, answer.trim().length) > LONG_BLANK ? (
+                      <BlankArea id={`${baseId}-blank-${segment.index}`} label={segment.label} value={answer} onChange={(value) => setAnswer(segment.index, value)} />
+                    ) : (
                     <input
                       id={`${baseId}-blank-${segment.index}`}
                       type="text"
@@ -205,7 +240,8 @@ export function WorklistCard({ card, index, cards, resumeText, isSample = false,
                       autoComplete="off"
                       maxLength={300}
                       data-testid="worklist-blank"
-                    />{trailing}
+                    />
+                    )}{trailing}
                   </span>
                 );
               })}
@@ -215,12 +251,12 @@ export function WorklistCard({ card, index, cards, resumeText, isSample = false,
             left ? (
               <p className={styles.note} data-testid="worklist-left">
                 Left for now. A blank reads as a question, and recruiters don&apos;t call to ask it.{" "}
-                <Button type="button" variant="quiet" size="sm" onClick={() => setLeft(false)}>Fill it in after all</Button>
+                <Button type="button" variant="quiet" size="sm" className={styles.quiet} onClick={() => setLeft(false)}>Fill it in after all</Button>
               </p>
             ) : (
               <>
                 <div className={styles.tools}>
-                  {/* Copy appears once the line is earned: every blank filled. Until then the card asks, it doesn't offer. */}
+                  {/* Copy appears once the line is earned: every blank filled. Until then the entry asks, it doesn't offer. */}
                   {composed && (
                     <Button type="button" variant="secondary" size="sm" onClick={handleCopy} aria-busy={copying || undefined} data-testid="worklist-copy">
                       <ActionFeedback state={copying ? "pending" : copied.active ? "success" : "idle"} states={{
@@ -231,7 +267,7 @@ export function WorklistCard({ card, index, cards, resumeText, isSample = false,
                     </Button>
                   )}
                   {!answeredAny && (
-                    <Button type="button" variant="quiet" size="sm" onClick={() => setLeft(true)}>I don&apos;t know yet</Button>
+                    <Button type="button" variant="quiet" size="sm" className={styles.quiet} onClick={() => setLeft(true)}>I don&apos;t know yet</Button>
                   )}
                 </div>
                 {composed && <p className={styles.note}>Every fact in it is from your resume or your answers.</p>}

@@ -93,7 +93,8 @@ export function blankAnswersFromStored(example: string, stored: StoredLineAnswer
 export function cardsHeading(report: Pick<WorklistReport, "cards">): { title: string; lead: string | null } {
   const work = workCards(report).length;
   if (work === 0) {
-    return { title: "Nothing here needs work.", lead: "Send it. Then read it against the posting you're going for." };
+    // No lead: the ending says "Send it. Then read it against the posting you're going for." in the same words.
+    return { title: "Nothing here needs work.", lead: null };
   }
   return { title: "Line by line, in the order a recruiter hits them.", lead: null };
 }

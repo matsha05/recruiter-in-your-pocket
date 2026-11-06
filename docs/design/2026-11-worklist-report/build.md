@@ -66,6 +66,29 @@ Matt read the five in the Report Lab: "i love the content i think its way improv
 
 Checked after: no horizontal overflow at 390, 1024 or 1440 on the bad, tier and strong fixtures; a comma after a blank stays on the blank's line; a filled entry shows its pill in the margin and Copy under the example; the inline fields keep their accessible names (the blank's label) and the question as the group label.
 
+## Third pass: the typography (November 6)
+
+Matt, on the second pass: "i love the score plus bands and the summary section. however i dont know about the font selection and spacing overall. its hard to read. its just like a blob of text. i love the highlighting and also the examples you give. its mostly spacing, font selection, variety of colors. it just doesnt seem high craft." Then: "do more abstract thinking, external design research, see how other world class products handle this or would handle this. be thoughtful and act from first principles."
+
+The thinking is `typography-brief.md` (what the list is, what the world-class versions do, eight principles, sources). Four sketches (`type-sketches.html`); D follows the brief and was built. The list is now a reviewer's marks on a manuscript: the quoted line and the example are the same resume before and after, set in the document's own face (`--font-document`, the clipping's face, not Literata) at the strip's size and left edge, so they read as a diff; the recruiter's query between them in the sans; the note as marginalia in the pen beside the line from 960px and under it on a phone; color in the text only; hairlines between entries.
+
+A fresh subagent then reviewed the captures as a staff product engineer (Anthropic, Google, OpenAI bar). Verdict: "Not yet. The blob is gone and the three-hands idea reads, but the entry's vertical craft isn't there." Ten findings, all applied:
+
+| # | Finding | Done |
+| --- | --- | --- |
+| 1 | The marker covered only the first line of a wrapped quote on desktop | The clipping's phone rule (a background sweep with `box-decoration-break: clone`) is the worklist's marker at every width; the SVG stroke is not used here |
+| 2 | The note sat 30px above the line it annotates | `.cannot` pads past the strip's top padding and, when a neighbour is drawn above the line (`data-ghost-above`), past that ghost line too |
+| 3 | 96px between entries against 12px inside | Entries 28px/32px apart at 960+ (20/24 on phones); 12px row gap |
+| 4 | The question was the faintest text on the entry; the escape hatch outweighed it | The question is body size in ink; "I don't know yet" is the quiet weight in muted |
+| 5 | The dashed statement doubled the note's voice (both pen italic Literata) | The statement is in the document's hand, upright, at the strip's size: a fact about the page; the note stays the pen |
+| 6 | A phrase-length placeholder truncated on the phone | A phrase-length blank is a one-row textarea that wraps and grows to what it holds |
+| 7 | A filled long blank kept its rule to the column edge | The rule hugs the words once there are any (`min(Nch, 100%)`) |
+| 8 | Punctuation floated after a blank | Field padding 0.1em, half a character of slack, a negative right margin |
+| 9 | Focus put the pen's green on the candidate's blue field | Focus is blue ink, 3px radius, 1px offset |
+| 10 | On phones the note ran full width and read as a paragraph of the write-up; a hairline sat 45px over another | The note takes the line's indent below 960px; `.unlisted` lost its rule |
+
+Plus its copy note: the strong page's lead repeated the ending's sentence word for word; the lead is gone. Its three keeps (the strip with ghost neighbours, before/after in one hand on one left edge, the filled state in the margin) are untouched. Its disagreements with the brief (the question deserves body size in ink; focus is the candidate's blue; a statement about the page is not the pen's italic; the brief never addressed a wrapped quote) were all taken; the brief records them.
+
 ## Verification
 
 On the production build in the worktree, with the mock model and hermetic Supabase values:

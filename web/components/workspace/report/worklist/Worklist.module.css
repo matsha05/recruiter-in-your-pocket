@@ -1,15 +1,19 @@
 /*
- * The worklist report (Matt, Nov 5, 2026; docs/design/2026-11-worklist-report/): the score and its rung, the
- * recruiter's write-up in the pen, then one entry per line that needs work, in the order a recruiter hits them.
- * The list is a document, not a stack of boxes: entries are divided by hairlines, and on a wide screen each one
- * is a row of three columns, the margin (where the line sits), the evidence (the line as the site's clipping
- * with the marker across it, and what a recruiter can't tell), and the answer (the question, then the example
- * with the detail in). The example is the form: every blank is a field inside the sentence, in the candidate's
- * blue. The highlighter marks the quoted line and nothing else; the pen writes the recruiter's words. Phone
- * first: one column. Shared type roles and tokens only.
+ * The worklist report (Matt, Nov 5, 2026; docs/design/2026-11-worklist-report/, typography-brief.md): the score
+ * and its rung, the recruiter's write-up in the pen, then one entry per line that needs work, in the order a
+ * recruiter hits them.
+ *
+ * The list is a reviewer's marks on a manuscript. Three hands: the resume (the quoted line on its strip of
+ * paper, and the example under it, which is the same line with the detail in, so both are set in the document's
+ * own face, at the same size, on the same left edge, and read as before and after); the recruiter's pencil (the
+ * note, Literata italic in the pen, as marginalia beside the line from 960px and under it on a phone; and the
+ * query between the two lines, in the small sans); and the product's apparatus (the label in the margin, the
+ * controls). Color lives in the text only: the marker on the quoted line, the blue in the blanks, the pen in
+ * the note. No rules inside an entry; a hairline between entries. An 8px rhythm throughout.
  */
 
 .root {
+    --line-indent: 2.25rem; /* the strip's own padding (Paper.module.css), so the example shares its left edge */
     max-width: 66rem;
     margin-inline: auto;
     padding-bottom: 2rem;
@@ -89,15 +93,16 @@
 }
 
 .cards {
-    margin: 0.75rem 0 0;
+    margin: 0.5rem 0 0;
     padding: 0;
     list-style: none;
 }
 
-/* An entry: a hairline above, never a box. The paper inside it is the one real line. */
+/* An entry: a hairline above, never a box. On a phone, one column in reading order: the margin, the line, the
+   note under the line it comments on, then the query and the example. */
 .card {
     display: grid;
-    gap: 0.875rem;
+    gap: 0.75rem;
     border-top: 1px solid hsl(var(--line));
     padding: 1.25rem 0 1.5rem;
     scroll-margin-top: 9rem;
@@ -108,34 +113,31 @@
     padding-top: 0.5rem;
 }
 
-.card[data-kind="keep"] {
-    border-top-color: hsl(var(--pen) / 0.45);
-}
+/* ---- the margin ---- */
 
 .margin {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
-    gap: 0.25rem 0.75rem;
+    gap: 0.125rem 0.75rem;
 }
 
-/* Where the line sits on the page. Ink, not olive: olive belongs beside the marker, and a structural entry has none. */
 .where {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
     margin: 0;
     color: hsl(var(--text-strong));
     font: var(--type-label);
 }
 
 .card[data-kind="keep"] .where {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.375rem;
     color: hsl(var(--pen));
 }
 
 .keepTick {
-    width: 1rem;
-    height: 1rem;
+    width: 0.875rem;
+    height: 0.875rem;
 }
 
 .whereQuiet {
@@ -145,29 +147,25 @@
     font-weight: var(--weight-body);
 }
 
+/* The filled state is the pen's word in the margin, not a pill. */
 .filled {
     display: inline-flex;
     align-items: center;
     gap: 0.25rem;
     margin: 0;
-    border-radius: 999px;
-    background: hsl(var(--pen-tint));
-    padding: 0.125rem 0.5rem;
     color: hsl(var(--pen));
     font: var(--type-label);
 }
 
-.evidence,
-.answer {
-    display: grid;
-    gap: 0.75rem;
-    align-content: start;
+/* ---- the evidence: the line as written ---- */
+
+.evidence {
     min-width: 0;
 }
 
-/* The line as written: the site's clipping, with the marker across it. */
+/* The line as the site's clipping, with the marker across it. The strip sets the document's own face. */
 .strip {
-    max-width: 36rem;
+    max-width: none;
 }
 
 .quote {
@@ -176,56 +174,78 @@
     text-wrap: pretty;
 }
 
-/* The keep entry's line carries the blue-ink rule of a quoted line, not the marker. */
-.keepLine {
-    max-width: 36rem;
-    margin: 0;
-    border-left: 2px solid hsl(var(--blue-ink));
-    padding-left: 0.875rem;
-    font: var(--type-lead);
-    font-family: var(--font-editorial);
-    text-wrap: pretty;
+/* The marker: one sweep across every line the quote occupies, so a wrapped line is marked whole at every width
+   (the clipping's phone rule, used here throughout, since a list of twelve wants the calmer stroke). */
+.mark {
+    display: inline;
+    background: linear-gradient(hsl(var(--marker) / 0.7), hsl(var(--marker) / 0.7)) 0 90% / 0% 58% no-repeat;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    transition: background-size var(--duration-gesture) var(--ease-marker);
 }
 
-/* A structural item (section order, dates, a gap): the recruiter's statement of fact about the page. */
+.markOn {
+    background-size: 100% 58%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mark { transition: none; }
+}
+
+/* A structural item (section order, dates, a gap): the recruiter's statement of fact about the page, in the pen.
+   Its text starts on the strip's left edge so the query and the example under it line up. */
 .statement {
-    max-width: 36rem;
     margin: 0;
-    border: 1px dashed hsl(var(--pen) / 0.7);
+    border: 1px dashed hsl(var(--pen) / 0.6);
     border-radius: var(--radius-inset);
-    padding: 0.5rem 0.75rem;
-    color: hsl(var(--pen));
-    font: var(--type-note);
+    padding: 0.75rem var(--line-indent);
+    color: hsl(var(--document-ink));
+    font-family: var(--font-document);
+    font-size: var(--type-prose-size);
+    line-height: 1.5;
     text-wrap: pretty;
 }
 
-/* What a recruiter can't tell: the pen's note, in the margin-note register. */
+/* ---- the note: what a recruiter can't tell, as marginalia ---- */
+
 .cannot {
-    max-width: 52ch;
+    max-width: 44ch;
     margin: 0;
+    padding-left: var(--line-indent);
     color: hsl(var(--pen));
     font: var(--type-note);
     text-wrap: pretty;
 }
 
-/* The question is the prompt for the blanks below it. */
-.question {
-    max-width: 52ch;
-    margin: 0;
-    font: var(--type-body);
-    font-weight: var(--weight-label);
+/* ---- the answer: the query, then the line with the detail in ---- */
+
+.answer {
+    display: grid;
+    gap: 0.625rem;
+    min-width: 0;
+    padding-left: var(--line-indent);
 }
 
-/* The example: the line with the detail in, as the person's own line-to-be. The blanks are theirs, and they type into them. */
+/* The query is the reviewer's question to the author, in the product's sans, small and quiet. */
+.question {
+    max-width: 56ch;
+    margin: 0;
+    color: hsl(var(--text-strong));
+    font: var(--type-body);
+    text-wrap: pretty;
+}
+
+/* The example is the resume after the edit: the document's face at the strip's size, on the strip's left edge.
+   The blanks are the person's, in their blue, and they type into them. */
 .example {
     min-width: 0;
-    max-width: 40rem;
+    max-width: 60ch;
     margin: 0;
-    border-left: 2px solid hsl(var(--blue-ink));
-    padding-left: 0.875rem;
-    font: var(--type-lead);
-    font-family: var(--font-editorial);
-    line-height: 1.85;
+    color: hsl(var(--document-ink));
+    font-family: var(--font-document);
+    font-size: var(--type-prose-size);
+    line-height: 1.5;
+    font-variant-numeric: tabular-nums oldstyle-nums;
     text-wrap: pretty;
 }
 
@@ -245,20 +265,16 @@
     text-underline-offset: var(--link-offset);
 }
 
-/* A blank as a field: a blue underline in the sentence, as wide as its name until the person's words widen it.
-   The span stays inline so the field's cap is the sentence's width, and the punctuation after it can't wrap alone. */
+/* A blank as a field: a rule under the blank, on the text's own baseline, as wide as its name until the person's
+   words widen it. The span stays inline so the field's cap is the sentence's width, and the punctuation after
+   it can't wrap alone. */
 .blankField {
     white-space: nowrap;
 }
 
-/* A blank whose name is a phrase gets its own line, so the name reads whole instead of being cut. */
 .blankField[data-long] {
     display: block;
     white-space: normal;
-}
-
-.blankField[data-long] .blankInput {
-    width: 100% !important;
 }
 
 .blankInput {
@@ -266,21 +282,21 @@
     box-sizing: border-box;
     max-width: calc(100% - 0.1em);
     min-width: 3ch;
-    margin: 0 0.05em;
+    margin: 0 -0.1em 0 0;
     border: 0;
-    border-bottom: 1.5px solid hsl(var(--blue-ink) / 0.55);
+    border-bottom: 1.5px solid hsl(var(--blue-ink) / 0.5);
     border-radius: 0;
-    background: hsl(var(--blue-ink) / 0.045);
-    padding: 0.05em 0.3em;
+    background: transparent;
+    padding: 0 0.1em;
     color: hsl(var(--blue-ink));
     font: inherit;
-    line-height: 1.45;
+    line-height: inherit;
     vertical-align: baseline;
     transition: border-color var(--duration-fast) var(--ease), background-color var(--duration-fast) var(--ease);
 }
 
 .blankInput::placeholder {
-    color: hsl(var(--blue-ink) / 0.7);
+    color: hsl(var(--blue-ink) / 0.65);
     opacity: 1;
 }
 
@@ -288,16 +304,52 @@
     border-bottom-color: hsl(var(--blue-ink));
 }
 
-.blankInput:focus-visible {
+.blankInput:focus-visible,
+.blankArea:focus-visible {
     border-bottom-color: hsl(var(--blue-ink));
-    background: hsl(var(--blue-ink) / 0.08);
-    outline: 2px solid hsl(var(--pen));
-    outline-offset: 2px;
+    background: hsl(var(--blue-ink) / 0.06);
+    border-radius: 3px 3px 0 0;
+    outline: 2px solid hsl(var(--blue-ink));
+    outline-offset: 1px;
+}
+
+/* A phrase-length blank wraps like text and grows to what it holds; the rule hugs the words once there are any. */
+.blankArea {
+    display: block;
+    box-sizing: border-box;
+    max-width: 100%;
+    margin: 0;
+    border: 0;
+    border-bottom: 1.5px solid hsl(var(--blue-ink) / 0.5);
+    border-radius: 0;
+    background: transparent;
+    padding: 0 0.1em;
+    color: hsl(var(--blue-ink));
+    font: inherit;
+    line-height: inherit;
+    resize: none;
+    overflow: hidden;
+    transition: border-color var(--duration-fast) var(--ease), background-color var(--duration-fast) var(--ease);
+}
+
+.blankArea::placeholder {
+    color: hsl(var(--blue-ink) / 0.65);
+    opacity: 1;
+}
+
+.blankArea:hover,
+.blankField[data-filled] .blankArea {
+    border-bottom-color: hsl(var(--blue-ink));
 }
 
 .blankField[data-filled] .blankInput {
-    background: transparent;
     border-bottom-color: hsl(var(--blue-ink));
+}
+
+/* The escape hatch is quieter than the question above it. */
+.quiet {
+    color: hsl(var(--muted-foreground));
+    font-weight: var(--weight-body);
 }
 
 .tools {
@@ -316,9 +368,7 @@
 }
 
 .unlisted {
-    margin-top: 0.5rem;
-    border-top: 1px solid hsl(var(--line));
-    padding-top: 1rem;
+    margin-top: 0.25rem;
     color: hsl(var(--muted-foreground));
     font: var(--type-small);
 }
@@ -353,8 +403,19 @@
     font: var(--type-small);
 }
 
-/* On phones the strip is narrow, so the neighbours fade off the cut edge sooner, before a word is cut. */
+/* ---------- Phones ---------- */
+
 @media (max-width: 640px) {
+    .root {
+        --line-indent: 1.25rem; /* the strip's phone padding */
+    }
+
+    .example,
+    .statement {
+        font-size: var(--type-body-size);
+    }
+
+    /* The strip is narrow, so the neighbours fade off the cut edge sooner, before a word is cut. */
     .strip p[aria-hidden="true"] {
         -webkit-mask-image: linear-gradient(to bottom, transparent 15%, rgb(0 0 0 / 0.55)), linear-gradient(to right, black 35%, transparent 85%);
         mask-image: linear-gradient(to bottom, transparent 15%, rgb(0 0 0 / 0.55)), linear-gradient(to right, black 35%, transparent 85%);
@@ -388,40 +449,67 @@
     }
 
     .card {
+        gap: 0.875rem;
         padding: 1.5rem 0 1.75rem;
     }
 }
 
-/* The row: the margin, the evidence, the answer. The two columns share the width; the margin keeps its own. */
+/* The row: the margin hangs the label; the resume column holds the line and the line after it; the note sits
+   beside the line as marginalia. */
 @media (min-width: 960px) {
     .cards {
-        margin-top: 1rem;
+        margin-top: 0.75rem;
     }
 
     .card {
-        grid-template-columns: 9rem minmax(0, 1fr) minmax(0, 1fr);
+        grid-template-columns: 8rem minmax(0, 40rem) minmax(13rem, 17rem);
+        grid-template-areas:
+            "margin evidence note"
+            "margin answer   .";
         column-gap: 2.5rem;
+        row-gap: 0.75rem;
         padding: 1.75rem 0 2rem;
     }
 
     .card:first-child {
-        padding-top: 0.75rem;
-    }
-
-    /* A keep entry has no answer column: its line and note take the width. */
-    .card[data-kind="keep"] {
-        grid-template-columns: 9rem minmax(0, 1fr);
-    }
-
-    .card[data-kind="keep"] .keepLine {
-        max-width: 44rem;
+        padding-top: 0.5rem;
     }
 
     .margin {
+        grid-area: margin;
         display: grid;
         align-content: start;
         gap: 0.25rem;
         padding-top: 0.125rem;
+    }
+
+    .filled {
+        margin-top: 0.5rem;
+    }
+
+    .evidence {
+        grid-area: evidence;
+    }
+
+    /* Level with the line it annotates: past the strip's top padding and, when a neighbour is drawn above the
+       line, past that ghost line too. */
+    .cannot {
+        grid-area: note;
+        padding-left: 0;
+        padding-top: 0.875rem;
+    }
+
+    .card[data-ghost-above] .cannot {
+        padding-top: calc(0.875rem + 1.6875rem);
+    }
+
+    .card[data-kind="structure"] .cannot,
+    .card[data-kind="dates"] .cannot {
+        padding-top: 0.75rem;
+    }
+
+    .answer {
+        grid-area: answer;
     }
 
     .fitGrid {
@@ -432,11 +520,7 @@
 
 @media (min-width: 1200px) {
     .card {
-        grid-template-columns: 10rem minmax(0, 1fr) minmax(0, 1.05fr);
+        grid-template-columns: 9rem minmax(0, 40rem) minmax(14rem, 17rem);
         column-gap: 3rem;
-    }
-
-    .card[data-kind="keep"] {
-        grid-template-columns: 10rem minmax(0, 1fr);
     }
 }
