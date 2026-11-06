@@ -2,6 +2,20 @@
 
 Recruiter in Your Pocket gives job seekers a clear, recruiter-grounded read of the document in front of them. The product does not impersonate a human recruiter, predict hiring outcomes, or turn uncertainty into certainty.
 
+How to use this guide: this is the personality and the reasons. The working system (the voice chart, tone by moment, the "this, not that" pairs, the tics, the names and the review procedure) is [`copy-system.md`](./copy-system.md). Matt's newest dated decision wins where the two disagree.
+
+## Matt in his own words (November 6, 2026)
+
+Matt answered fourteen prompts the way he'd say them out loud, and ChatGPT described how he writes from their past conversations. Both are in `docs/copy/calibration/`. What they settled:
+
+- **Close to Matt, one notch composed.** His warmth, contractions and plain verdicts ("generic", "table stakes", "it's common", "that's fine", "our bad"). No slang or swearing anywhere on the site: no "dude", "man" or "hell yeah". His habits in chat (lowercase, typos, fillers) are how he sends messages, not the voice.
+- **"We" is the candidate's side.** "We" means the candidate and us, working on it: "We'll make sure all the other bullets are good." "I" stays in the founder note.
+- **The resume is one variable.** When the resume is strong, say so, and say what else matters: "I cannot imagine the resume is going to be the reason you don't get called back." Referrals, how competitive the job is, and a stepping-stone role are fair to name. Never as a statistic.
+- **The recruiter's real questions are the voice.** "How many per month?" "Responsible, what does that even mean?" A question asked for effect ("Want another read?") is not.
+- **Name the situation, never the feeling.** "Not hearing back sucks" is fine. "You're probably feeling discouraged" is not: Matt hates having a feeling invented for him.
+- **Errors that are ours, in his words.** "Our bad. Let's try that again." Then the facts, literally. No jokes in errors; ownership is not a joke.
+- **Founder facts.** Fifteen years in hiring, and thousands of people hired, may appear. Never his name, an employer or a profile.
+
 ## Personality (Matt, October 30, 2026)
 
 This section sets the personality. The rest of this guide still applies.
@@ -26,7 +40,7 @@ Reference lines:
 Plain is not blank. "Errors, billing, and privacy stay plain" means no jokes there; it never meant the rest of the product should read like default UI. Every screen should sound like the same insider.
 
 - **One aside per screen, where people pause:** page intros, empty states, confirmations, loading, and emails get one line of hiring truth or quiet self-awareness. Not every line; one.
-- **Literal stays literal:** buttons, navigation, prices, legal terms, and error messages say exactly what happens. The aside sits next to them, never inside them.
+- **Literal stays literal:** buttons, navigation, prices, legal terms, and error messages say exactly what happens. The aside sits next to them, never inside them. An error that is ours opens with Matt's ownership ("Our bad.") and then says exactly what happened (November 6, 2026).
 - **Trust surfaces keep the point of view, not the jokes:** a sign-in email can sound like us ("Pop it in and you're back on the other side of the desk") while its security line stays plain ("No one gets in without the code").
 - **No invented hiring stats:** an aside is an observation, never a number we can't source ("recruiters spend 6 seconds" is out unless the research library backs it).
 
@@ -41,7 +55,7 @@ Reference lines:
 
 ## What the research says matters (October 31, 2026)
 
-Four things decide whether a resume gets the call, and the research library is organized around them: **perception** (how you're read, by people and software), **impact** (what changed because of your work), **referrals** (who brings you in), and **story** (whether a stranger can tell who you are and picture you in the job). Negotiation sits after them, once there is an offer. Tie advice and tie-ins back to one of these, and to the Verdict, the score, or the Critical Miss.
+Four things decide whether a resume gets the call, and the research library is organized around them: **perception** (how you're read, by people and software), **impact** (what changed because of your work), **referrals** (who brings you in), and **story** (whether a stranger can tell who you are and picture you in the job). Negotiation sits after them, once there is an offer. Tie advice and tie-ins back to one of these, and to the score, the write-up, or a line on the list.
 
 ## The voice
 
@@ -111,6 +125,8 @@ These words are useful when they are precise, but become machine-like when repea
 - clarity
 - recruiter-ready
 
+"Read" itself is fine when it is countable and means one review ("five more reads", Matt, November 6, 2026). "The read" as an abstract idea ("the read moved", "pass the read") is on the coined list in `copy-system.md` §4.
+
 Prefer the concrete meaning: role, result, scope, decision, question, detail, review, or evidence.
 
 ## Avoid
@@ -128,16 +144,7 @@ Prefer the concrete meaning: role, result, scope, decision, question, detail, re
 
 ## Tone by moment
 
-| Moment | Tone | What the user needs |
-| --- | --- | --- |
-| Marketing | Specific, welcoming, and confident | What the product does, an example of useful feedback, and how to try it |
-| Upload | Calm and explicit | What to add, what is optional, what happens next |
-| Analysis | Transparent | What is being reviewed and how long it may take |
-| Report | Precise, generous, and calibrated | What is working, one open question, and what to change |
-| Rewrite | Protective of facts | The original, the suggestion, and any missing detail |
-| Research | Clear, specific, and intellectually honest | The finding, evidence type, source quality, practical meaning, and limit |
-| Pricing | Blunt and literal | Exact cost, renewal terms, cancellation, and what is included |
-| Error | Accountable and useful | What happened and the next available action |
+Moved to `copy-system.md` §2, with three lines from the site for each moment. The voice never changes; how much it says, and whether an aside belongs, does.
 
 ## Resource-guide voice
 
@@ -187,23 +194,13 @@ The language should fit the reader's immediate question.
 - Marketing can have rhythm and personality. Read the heading and paragraph together: repeated punchlines and slogans usually weaken the explanation.
 - Research should answer the question, show its sources and limits, and explain the practical implication.
 - Reports stay evidence-led and calibrated because the user is making decisions from them.
-- Errors, privacy, and billing never use wit.
+- Errors, privacy, and billing never use wit. An error that is ours still owns it plainly ("Our bad."), which is not wit.
 - Never turn the candidate, recruiter, or job search into the butt of the joke.
 - Keep humor out of trust surfaces. A warm, natural sentence is enough.
 
 ## Review checklist
 
-Before shipping copy, ask:
-
-1. Could a competing resume product use this sentence unchanged?
-2. Does every judgment point back to visible evidence?
-3. Are we more certain than the source allows?
-4. Are we criticizing the resume rather than the person?
-5. Does the user know what happens next?
-6. Did we preserve the candidate's facts and control?
-7. Would an experienced recruiter actually say this sentence to a candidate? Read the entire paragraph aloud, including its heading. A banned-word scan cannot answer this question.
-8. Does the sentence name the actual subject, or make the reader translate words like “read,” “signal,” “scale,” and “the page”?
-9. Have we repeated the same observation in the heading, description, and next card? Cut the repetition or make each part do a different job.
+Moved to `copy-system.md` §7: read the whole screen aloud, the swap test, the cut test, ten questions, the voice judge, and what goes to Matt. The first question is still the one a banned-word scan can't answer: would an experienced recruiter, would Matt, actually say this sentence to a candidate?
 
 ## September 4 editorial correction
 

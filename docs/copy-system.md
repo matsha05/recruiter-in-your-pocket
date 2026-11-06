@@ -1,13 +1,177 @@
-# Copy Operations
+# Copy system
 
-> Canonical voice guide: [`voice-and-tone.md`](./voice-and-tone.md)
+The working system for every word a reader sees: the site, the app, the report's shell, the PDF, the emails and the extension. [`voice-and-tone.md`](./voice-and-tone.md) holds the personality and the reasons behind it. This file is what you use while writing.
 
-This document is the operating system around that guide. It covers naming, structure, and the small rules that keep the product voice from drifting.
+- Where the methods come from: [`docs/copy/sources.md`](./copy/sources.md).
+- Every string on the site today, by route: [`docs/copy/inventory/`](./copy/inventory/README.md) (`npm run copy:inventory` from `web/`).
+- The evidence for the voice: Matt's own answers ([`matt-voice-2026-11-06.md`](./copy/calibration/matt-voice-2026-11-06.md)) and what ChatGPT found in his past conversations ([`chatgpt-style-read-2026-11-06.md`](./copy/calibration/chatgpt-style-read-2026-11-06.md)).
 
-Last updated: 2026-11-01
-Owner: Product + Design
+Last updated: 2026-11-06. Matt decides brand calls: the voice, the dial, names, founder facts. Everything else follows this file. Where two rules disagree, Matt's newest dated decision wins.
 
-## 1. Product Naming
+How to use it: find the moment in §2, check the names in §5, write the string, then run §7. The tics in §4 are what the voice judge checks.
+
+The report's model-written words (the verdict, the write-up, the notes, the questions, the examples) come from `web/prompts/`. They follow this voice too, but they change only through a gated prompt update, never through a copy edit.
+
+## 1. The voice
+
+Matt across the table: a recruiter with fifteen years in hiring and thousands of people hired, on your side, telling you what they actually see. A rough draft of that, not a polished brand voice.
+
+### We are, we are not
+
+Each trait has Matt's own words, from his answers on November 6, and a line already on the site that shows it.
+
+| We are | We are not | Matt said | On the site |
+| --- | --- | --- | --- |
+| A recruiter | a coach or a cheerleader | "That's like table stakes. How many per month?" | "Lines not listed are fine as written." |
+| Plain verdicts | slogans | "That is just so generic and vague. It tells me nothing." | "'Results-driven professional' is on every resume. Show the result instead." |
+| The recruiter's real questions | rhetorical questions | "Responsible, what does that even mean?" | "How many new hires did you help onboard?" (voice guide, September 4) |
+| Specific | vague | "Was the workbook in Google Sheets, Excel?" | "That's 412 characters. We need at least 800 to review it, so add the whole resume, including your experience." |
+| On your side: "we" is you and us | the company talking about itself | "We'll make sure all the other bullets are good." | "Every fact in it is from your resume or your answers." |
+| Honest about what a resume can't fix | selling another report | "I cannot imagine the resume is going to be the reason you don't get called back." | "Neither predicts interviews or offers." |
+| Warm and casual | slangy, or a costume | "That's fine. You don't need perfect bullets across the board." | "Sign in and it'll be in My reports." |
+| Dry, in bursts | jokey | "That's fair, but aren't you applying to a stranger's job?" | "Pop it in and you're back on the other side of the desk." |
+| Quick to own our mistakes | defensive or vague | "That's our bad. Let's try again." | "Something broke on our end, not yours. Saved reports aren't affected." |
+
+### What the voice means for the words
+
+The rows follow Torrey Podmajersky's voice chart, so each trait turns into rules for vocabulary, length, grammar and punctuation.
+
+| Row | The rule |
+| --- | --- |
+| Vocabulary | Recruiter verbs: move forward, pass, shortlist, call back, read. Name the thing itself: your resume, the line, the job, the posting, the report, the pass. "A read" is fine when it means one review ("five more reads"). Never a word from the coined list in §4. |
+| Length | Verdict, then the reason, then the next move. One idea a sentence. A reason that explains something earns its sentence; a sentence that only sounds good gets cut. |
+| Grammar | Contractions. "You" for the candidate. "We" for the candidate and us, working on it. "I" only in the founder note. Active voice. A question only when the reader can answer it. |
+| Punctuation | Periods. No em dashes and no exclamation marks. "…" only for something in progress. Straight facts in parentheses are fine; asides in parentheses are not. |
+| Capitalization | Sentence case everywhere: buttons, tabs, headings, labels. Proper nouns keep their capitals: Job Search Pass, Recruiter in Your Pocket, LinkedIn, Stripe. |
+| Feelings | Name the situation, never the reader's feelings. "Not hearing back sucks" names a situation. "You're probably feeling discouraged" invents a feeling, and Matt hates that. |
+| Facts about Matt | Allowed: fifteen years in hiring, thousands of people hired. Never: his name, an employer, a profile link, a photograph. |
+| Facts about hiring | Only what the research library sources. No "recruiters spend six seconds". |
+
+### The dial
+
+Matt at coffee is casual, mostly serious, irreverent about bad work and practical, with bursts of real enthusiasm. ChatGPT rated him 5, 2, 4 and 3 on Nielsen Norman Group's four scales. The product sits one notch more composed (Matt, November 6: "Warmth yes, slang no").
+
+| Scale (1 to 5) | Matt | The product |
+| --- | --- | --- |
+| Formal to casual | 5 | 4: contractions, "that's fine", "it's common", "our bad"; no "dude", "man", "hell yeah" or swearing anywhere |
+| Serious to funny | 2 | 2: at most one aside a screen, reacting to a real moment |
+| Respectful to irreverent | 4 | 3 toward resume clichés and bad advice; 1 toward people, always |
+| Matter-of-fact to enthusiastic | 3 | 2, rising only when the resume earns it ("This is good. Why is it halfway down the page?") |
+
+## 2. Tone by moment
+
+The voice never changes. What changes with the moment is how much we say, and whether an aside belongs. The reader's state comes first, as Mailchimp's guide does it. The lines are from the site at its best; where a moment has fewer than three good ones, the gap is the work.
+
+| Moment | The reader is | We sound | Aside | Three lines from the site |
+| --- | --- | --- | --- | --- |
+| Marketing | deciding whether to bother | a true thing about hiring, then what we do about it | one a section, at most | "244 people applied for the job you wanted." / "Eighteen got called back. The other 226 have no idea why the recruiter passed." / "Nobody tells you why. We do, before you apply for the next one." |
+| Upload | about to hand over a resume | calm and literal: what to add, what's optional, what happens to it | one, beside the privacy facts | "That's 412 characters. We need at least 800 to review it, so add the whole resume, including your experience." / "We could only read 300 characters. A scanned or image-only PDF often does this. Paste the text instead." / "OpenAI writes the report from your resume. We don't store the resume or opt it into model training." |
+| Waiting | watching a clock | what's happening now and how long it usually takes; no faked progress | none | "Checking every quote against your resume" / "The first pass came back incomplete, so we started it again." / "If you retry and this one also finishes, both count as reports. Waiting is usually the better bet." |
+| Report shell | reading a judgment about their own work | direct, then kind; plain enough that the recruiter's words carry | one, on the strong or the clean ending | "Lines not listed are fine as written." / "Every fact in it is from your resume or your answers." / "Neither predicts interviews or offers." |
+| Rewrite | about to copy a line into their resume | protective of facts: the original, the example, what's still theirs to fill | none | "This adds a detail that isn't in your line or your answers. Use the words you wrote, or add it as an answer if it's true." / "This draft changes a detail from your resume. Edit it back to what's true before copying." / "Every fact in it is from your resume or your answers." |
+| Research | checking whether to believe us | the question, the finding, the source, the limit | one, in the figure's margin note | "That study was about interviews, not resumes." / "These are audit studies: fictitious resumes and callbacks, not hires." / "No study we know of isolates a quantified bullet against a duty-style one." |
+| Pricing | deciding whether to pay | blunt and literal: the price, the term, the refund, what's included | none | "Your first report is free. Five more are $29." / "Stripe handles your card. We never see or store the number." / "Checkout canceled. Nothing was charged." |
+| Sign-in | trying to get back in | plain steps | one, in the email only | "No password. The code works once and expires soon." / "We sent an 8-digit code to {email}" / "That code didn't work. Check the email or request a new code." |
+| Account | looking after their own things | quiet and exact; nothing sold | one, in an empty state | "Run a report and save it. Your next version will have something honest to measure against." / "Scores compare versions of your own resume. They don't predict interviews or offers." / "Skip it, and this browser can still bring the report back for up to 24 hours." |
+| Error | stuck | ours: own it in Matt's words, then what happened and what to do. Theirs: plain, no ownership | none | "Something broke on our end, not yours. Saved reports aren't affected." / "We gave that report back. Try again whenever you're ready." / "That email address doesn't look right. Check it and try again." |
+| Email | glancing at a notification | the fact in the subject; one warm line; the security line plain | one | "{code} is your sign-in code" / "Your code's here. Pop it in and you're back on the other side of the desk." / "Didn't ask for this? Ignore it. No one gets in without the code, and we'll never ask you for it." |
+| PDF | reading the report away from the site | the same names as the page, nothing new | none | (follows the report shell) |
+| Extension | on someone else's job page | literal and brief; the button says what it saves | none | "Choose Save job on a posting to keep its description and link." / "The extension does not ask for access to every site you visit." / "Keep the jobs you want to revisit." |
+
+## 3. This, not that
+
+Real strings from the inventory, each with the house version and the tic it fixes (§4). Facts, prices, placeholders and legal terms are kept exactly. §7's rewrite pass applies these route by route; the before/after tables for each route are in `docs/copy/rewrites/`.
+
+| # | Where | Not this | This | Why |
+| --- | --- | --- | --- | --- |
+| 1 | Pricing | A writer, a keyword scanner, a builder, and a recruiter's read are different purchases, and the read is the one that decides: | A resume writer, a keyword scanner and a builder each sell something different. A recruiter is the one deciding whether you get the call: | coined_word, tricolon |
+| 2 | Paywall heading | Want another read? | Five more reads for $29. | question_heading |
+| 3 | Wait screen | Starting the read again | Starting over | coined_word |
+| 4 | Progress page | What keeps tripping recruiters up, and what keeps landing. | What keeps coming up across your reports, and what keeps working. | coined_word |
+| 5 | My reports, description | Your saved resume reports, with the Verdict, score, and fixes from each. | Every report you've saved, with its score and the lines that needed work. | retired_name |
+| 6 | App manifest | See what a recruiter sees: your Verdict, where your resume stands, and what to fix first. | See what a recruiter sees in your resume, line by line. | retired_name, colon_fragment |
+| 7 | Pricing, free plan | Your Verdict and where your resume stands | Where your resume stands, and why | retired_name |
+| 8 | Methodology heading | The Verdict. | The write-up. | retired_name |
+| 9 | Homepage | Not forty tips. Every line a recruiter trips on, in the order they hit it. | The lines a recruiter would stop on, in the order they'd read them. | not_x_but_y, coined_word |
+| 10 | Homepage | No ATS score. No interview odds. Just what reads clearly and what doesn't. | We don't score you against an ATS or guess your interview odds. Nobody can. We tell you which lines are clear and which aren't. | punch_fragments, not_x_but_y |
+| 11 | Command palette | Upload Resume | Upload a resume | title_case |
+| 12 | LinkedIn report | Run Another | Run another | title_case |
+| 13 | Settings | Change Resume | Change resume | title_case |
+| 14 | Command palette | Keyboard Shortcuts | Keyboard shortcuts | title_case |
+| 15 | Saved jobs | Delete Job | Delete job | title_case |
+| 16 | Job match labels | Excellent Fit / Strong Match / Plausible Fit / Career Stretch | Excellent fit / Strong match / Plausible fit / A stretch | title_case |
+| 17 | Settings, upload | Please upload a PDF, DOCX, or TXT file. | Upload a PDF, DOCX, or TXT file. | please |
+| 18 | Settings, upload | File too large. Please use a file under 4 MB. | That file is over 4 MB. Choose a smaller one, or paste the text instead. | please |
+| 19 | Settings, upload | Resume too short. Please upload your full resume. | That's not the whole resume. Upload the full file, including your experience. | please |
+| 20 | Checkout | Please sign in first. | Sign in first. | please |
+| 21 | Account deletion | We could not verify every subscription, so your account was not deleted. Please contact support. | We couldn't check every subscription, so your account wasn't deleted. Write to support and we'll sort it out. | please |
+| 22 | Account deletion | Admin client not configured | Account deletion isn't available right now. Try again later, or write to support. | internal_term |
+| 23 | Reports API | Invalid report ID. | We can't find that report. Open it from My reports. | internal_term |
+| 24 | Several APIs | Not authenticated | Sign in to see this. | internal_term |
+| 25 | Report save | Could not save this report. Check History before trying again. | We couldn't save this report. Check My reports before you try again. | two_names |
+| 26 | Pricing | Could not open checkout. Try again. If this continues, contact support. | Checkout didn't open. Try again, and if it keeps happening, write to support. | stiff |
+| 27 | Error page | Something broke on our end, not yours. Saved reports aren't affected. | Our bad. Something broke on our end. Your saved reports are fine. | Matt's error voice |
+| 28 | Report stream | Connection hiccup. Try again in a moment. | The connection dropped. Try again in a moment. | joke_in_trust_moment |
+| 29 | Checkout button | Opening checkout... | Opening checkout… | typography |
+| 30 | Settings | Resume saved. 14 skills identified. | Resume saved. We found 14 skills in it. | stiff |
+| 31 | My reports | Showing your latest 50 reports. Older reports remain stored and can be included in an account export. | These are your latest 50 reports. Older ones are still saved, and an account export includes them. | stiff |
+| 32 | Methodology title | How the report works: the score, the write-up, the lines | How the resume report works | colon_fragment |
+| 33 | Sign-in page | Sign in to access saved reports and role context you choose to keep. | Sign in to see your saved reports and the job postings you kept. | internal_term |
+| 34 | Extension | Review my resume | Get your free report | retired_name |
+| 35 | Saved jobs | Save job descriptions, compare them with your resume, and track your applications. | Save a job posting, then check your resume against it. | tricolon |
+| 36 | Research | A referral gets you a hearing. It doesn't pass the read for you. | A referral gets your resume opened. It still has to make sense once it is. | coined_word |
+| 37 | Research | Being relatable is part of the read | Recruiters ask whether they can picture you in the job | coined_word |
+| 38 | Progress page | Same score as your first report. The written findings show what moved. | Same score as your first report. The write-up says what changed. | two_names |
+| 39 | Report, a blank left | Left blank for now. A recruiter will have the same question, and they won't call to ask it. | Left blank, and that's fine. Not every line needs every detail. The rest of your resume has to give a recruiter something to grab onto. | Matt's answer 10 |
+| 40 | Report, strong ending | Send it. Then read it against the posting you're going for. | Your resume won't be the reason you don't get the call. Send it, and read it against the posting you're going for. | Matt's answer 5 |
+| 41 | Re-check | Up 6 since last time. | Up 6 since last time. That's the right direction. | Matt's answer 11, without the promise |
+
+## 4. The tics, and the fix for each
+
+The habits this codebase keeps producing. Most come from how language models write by default; Wikipedia's field guide (*Signs of AI writing*) and PostHog's copy skill name the same patterns. Ids match the voice judge (`web/lib/evals/voice-judge/`).
+
+| Id | What it looks like here | The fix |
+| --- | --- | --- |
+| coined_word | A product word standing in for the thing: "the read" (as an idea), "the page" (as the resume's content), "signal", "rung", "card" as a verb, "hits them", "lands", "landing" | Name the thing: the report, your resume, the line, the detail, the band. "A read" meaning one review is fine; "halfway down the page" meaning the sheet is fine |
+| retired_name | A name Matt retired: Critical Miss, Verdict as a capitalized label, Nothing critical, Review my resume, Resources, Fix these first on new copy | The glossary's current name (§5) |
+| rejected_phrase | Recruiter language Matt rejected as fake: "bucket you fast", "trajectory points up", "Strong Foundation" | The verbs recruiters use: move forward, pass, shortlist, call back |
+| colon_fragment | A heading made of a label, a colon and a list: "How the report works: the score, the write-up, the lines" | One sentence that says what the thing is or does |
+| tricolon | Three items for rhythm rather than content: "Save job descriptions, compare them with your resume, and track your applications." | The one or two things that are true and needed |
+| not_x_but_y | "Not X, but Y" and its cousins: "Not forty tips.", "It's not a filter, it's a saved view" | Say Y |
+| punch_fragments | Three or more short fragments in a row for effect: "No ATS score. No interview odds. Just…" | One or two full sentences |
+| question_heading | A heading asked for effect, the reader can't really answer: "Want another read?", several on one screen ("Already paid?" "Used all five?") | A statement that names the thing. The recruiter's real questions are the voice ("How many per month?"); questions asked for effect are not |
+| copula_avoidance | "serves as", "boasts", "features", "marks" where "is" or "has" would do | "is", "has" |
+| ing_analysis | A trailing "-ing" clause that sounds like analysis: "…, highlighting your leadership", "…, reflecting real growth" | Say the thing, or cut it |
+| invented_emotion | Telling the reader how they feel: "You're probably feeling discouraged", "Don't worry" | Name the situation: "Not hearing back sucks." |
+| please | "Please" in an instruction or error | Cut it; the instruction stands |
+| title_case | Title Case on a button, tab or label: "Upload Resume", "Run Another" | Sentence case |
+| generic_ai_word | unlock, elevate, transform, seamless, empower, journey, supercharge, streamline, effortless | Say what it does |
+| slogan | A line any product could put on a billboard, or a signature line outside marketing | A sentence with a subject and a fact |
+| hedge_stack | may, likely, suggests and could piled into one sentence | One hedge, or a plain statement of what the evidence shows |
+| invented_number | A statistic the research library doesn't source: "recruiters spend six seconds" | Drop it, or cite the page that sources it |
+| exclamation | An exclamation mark in product copy | A period |
+| fake_intimacy | "Trust me", "We've got you", "We know exactly how you feel", "You've got this" | A specific, useful sentence |
+| slang | "dude", "man", "hell yeah", swearing (Matt, November 6) | Matt's warmth without the slang: "That's fine." "It's common." "Our bad." |
+| joke_in_trust_moment | Wit in a price, a refund, a privacy fact, a sign-in step or a cute word in an error ("Connection hiccup") | Plain words. Ownership in an error is not a joke and is fine |
+| product_about_itself | The product narrating itself: "RIYP reads the posting and…" | What the reader gets or does |
+| two_names | Two names for one thing: "History" and "My reports", "written findings" and "write-up" | The glossary name, once |
+| repeats_heading | A line under a heading that restates it, or a hint under a button the button already says | Cut it; fix the heading if the screen needs more |
+| internal_term | Code and server words in a message a reader sees: "Admin client not configured", "Invalid report ID.", "Not authenticated", "role context" | What happened and what to do, in the reader's words |
+
+## 5. The glossary: one name per thing
+
+Added November 6, 2026 (Matt, from the copy-system interview):
+
+| Thing | Name | Retired |
+| --- | --- | --- |
+| The one-line sentence under the score | No label. In prose, "the verdict", lowercase | "Verdict" as a capitalized product name, on any page |
+| One review of a resume | `report`. "A read" is fine as a countable word: "five more reads", "another read" | "the read" as an abstract idea ("the read moved", "pass the read") |
+| Who speaks | "we" means the candidate and us, working on it; "you" is the candidate; "I" only in the founder note | "we" as the company narrating itself |
+| Where saved reports live | `My reports` (navigation, page title); "your saved reports" in a sentence | History, Report history, Saved reports as a title |
+| What a recruiter does with a resume | move it forward, pass, shortlist, call back | bucket, filter, reject (except the homepage's "Reject" choice, Matt's November 4 copy) |
+| The founder's facts | fifteen years in hiring; thousands of people hired | his name, employers, profile links |
+
+### The report and the product
 
 User-facing noun:
 - `report`
@@ -23,7 +187,7 @@ Avoid mixing:
 
 If the user is looking at the generated output, call it a `report`.
 
-### One name each (Matt, November 1, 2026)
+#### One name each (Matt, November 1, 2026)
 
 Each of these things has one name everywhere: marketing, the app, the report, the PDF and email. When a label and a heading sit together, the label is the short form of the heading. Retired names must not come back.
 
@@ -42,7 +206,7 @@ Each of these things has one name everywhere: marketing, the app, the report, th
 | A paid re-run of a revised resume | `Re-check`. Public copy: `see which lines came off the list`. The comparison says a line came `off the list`, is `still there` or is `new`, and the score as a change; on two v2 reports the Critical Miss `changed`, never `fixed` | None |
 | Keeping a report in My reports | `Save this version` (the section row and the signed-in ending, Nov 2, 2026) | Save report |
 
-### The worklist report (Matt, November 5, 2026; built November 6)
+#### The worklist report (Matt, November 5, 2026; built November 6)
 
 The report's unit is the line, not the Critical Miss (`docs/design/2026-11-worklist-report/`). Its names, in the product and the PDF:
 
@@ -62,7 +226,7 @@ The report's unit is the line, not the Critical Miss (`docs/design/2026-11-workl
 
 Retired with it in the product: `Critical Miss`, the count headings, `The question they'd ask`, `Worth tightening`, `Keep this one`, `Fix these first`, the questions-before-the-report screen (the worklist asks on each card) and the wait screen's fifth stage. The public pages that still name the old unit are listed with proposed replacements in `docs/promptops/proposals/2026-11-worklist-public-copy.md`, which is Matt's call; until he decides, the rows below stand for those pages and for reports saved before November 6, which keep the v2 shape.
 
-## 2. Canonical Report Structure
+### The report's structure (v2 reports saved before November 6, 2026)
 
 The main report navigation uses these labels:
 1. `Overview`
@@ -72,7 +236,7 @@ The main report navigation uses these labels:
 
 Section headings follow the same names: `Fix this first.` / `Fix these two first.` / `Fix these three first.` and `Keep these. They're working.`
 
-### The Critical Miss count (v2 reports saved before November 6, 2026) (Matt, November 2, 2026: "i dont want to lie to people and say they have one critical miss if there are more")
+#### The Critical Miss count (v2 reports saved before November 6, 2026) (Matt, November 2, 2026: "i dont want to lie to people and say they have one critical miss if there are more")
 
 Once the severity check has flagged the report's Critical Misses, the count leads the fix section on the web and in the PDF, phones included. The heading says how many and where to start; the line under it says what makes them critical.
 
@@ -91,7 +255,9 @@ Within each recommendation, show the original quotation, what needs clarificatio
 
 These are UI labels. Internal schema and prompt field names may remain stable; do not rewrite Matt's tuned backend prompt merely to match display copy.
 
-## 3. Copy Budgets
+## 6. Rules by surface
+
+### Copy budgets
 
 Keep the product scanning clean.
 
@@ -106,28 +272,7 @@ These are layout guidelines, not a reason to force fragments or slogans. A natur
 
 No taglines, helper text, or secondary labels (November 3, 2026). A screen is its heading, its controls, and the facts the reader needs right there: a price, a term, a limit, a consent line, an error. No eyebrow above a heading, no sentence under it that restates it, no hint under a button that the button already says, no label on a pill that the title carries. If a screen stops making sense without one of those, fix the layout or the heading instead of adding the line back. Report findings, the Critical Miss count line, the pass terms, privacy facts, and errors are content, not helper text.
 
-## 4. Tone by State
-
-Marketing:
-- sharper
-- more opinionated
-- one idea at a time
-
-In-app report:
-- calmer
-- more direct
-- no extra selling once the user is inside
-
-Billing and recovery:
-- short
-- reassuring
-- exact next step
-
-Trust and policy:
-- plain English first
-- policy detail second
-
-## 5. Claims Rule
+### Claims
 
 Every strong claim needs nearby proof.
 
@@ -143,7 +288,7 @@ Bad pattern:
 
 Never promise interviews, jobs, or guaranteed outcomes.
 
-## 6. CTA System
+### Buttons and links
 
 Primary CTA:
 - verb first
@@ -168,23 +313,26 @@ Avoid:
 - `Submit`
 - any name retired in §1
 
-## 7. Error and Recovery Pattern
+### Errors and recovery
 
 Every error should answer:
 1. what happened
 2. what to do next
 3. fallback if needed
 
+When the error is ours, own it first, in Matt's words (November 6, 2026): "Our bad." Then the facts, literally: what happened, whether it used a report (the shared sentences in `web/lib/billing/generationFailureCopy.ts`), and the next step. When the problem is in what the reader typed or uploaded, say so plainly with no ownership line: "That email address doesn't look right. Check it and try again."
+
 Example:
-- `Could not load report. Refresh and try again.`
+- `Our bad. The report didn't load. Refresh and try again.`
 - `Still stuck? Restore access from Billing.`
 
 Never use:
 - `Something went wrong`
-- blame language
-- internal system terms
+- blame language aimed at the reader
+- internal system terms (§4, internal_term)
+- a joke or a cute word ("hiccup"); ownership is not a joke
 
-## 8. Free vs Paid Rule
+### Free and paid
 
 Any pricing or paywall surface must make three things obvious:
 1. what is free now
@@ -198,7 +346,7 @@ Preferred phrasing:
 
 Do not imply the free report has shallower feedback. Saved history requires sign-in. Paid PDF exports remain available through the valid paid period even after all report credits are used.
 
-## 9. Trust Copy Rule
+### Trust and privacy
 
 Trust pages and trust blocks should answer:
 1. what we store
@@ -209,16 +357,26 @@ Trust pages and trust blocks should answer:
 
 Say it in plain English. If legal wording is required, put it after the summary.
 
-## 10. Ship Check
+## 7. The review procedure
 
-Copy is not ready if any of this is true:
-1. the same thing has two names
-2. the line sounds generic enough to belong to any SaaS app
-3. the CTA does not say what happens next
-4. the section intro repeats the headline
-5. the report voice sounds like a coach instead of a recruiter
-6. the words are individually familiar but the sentence is something no one would say aloud
-7. personality depends on an unexplained metaphor or an abstract phrase about “the read”
+Run this on any new or changed string before a PR. A banned-word scan can't do it alone: the September 4 correction ("Passing UI tests and checking factual accuracy do not establish writing quality") still stands.
+
+1. **Read the whole screen aloud, in order.** Start at the heading and stop at the last button, including the line under it and the error states. Read the copy as the reader meets it, never as a list of strings. If you stumble, the reader will too.
+2. **The swap test.** Could Jobscan, Teal or Resume Worded print this sentence unchanged? If yes, either add the fact only we'd say, or make it shorter and literal. A button or a price passes by being literal; an intro or an aside has to fail the swap.
+3. **The cut test.** Take words away one at a time, and stop where the meaning starts to fall apart. Whatever you could cut without losing anything goes. (The brief called this the Jenga rule; it is our own test, not Shopify's.)
+4. **The questions.** Answer each one; any "no" sends the string back.
+   1. Would Matt say this sentence, across the table, to a candidate? Check against §1 and his answers, not against taste.
+   2. Does it name the actual subject, with nothing the reader has to translate (§4, coined_word)?
+   3. Does the reader know what happens next: what the button does, what to fix, what was charged?
+   4. Does every judgment point to something visible on the resume, and is it no more certain than the source allows?
+   5. Does it criticize the resume, never the person, and name the situation, never their feelings?
+   6. Does it keep the candidate's facts and their control?
+   7. Is there at most one aside on the screen, and none in a button, price, legal term or error fact?
+   8. Is every name the glossary's name (§5)?
+   9. Does the heading, the line under it and the next block each do a different job, with nothing said twice?
+   10. Does it say exactly what happened, including what didn't happen?
+5. **The voice judge.** `npm run copy:judge -- --file <strings.json>` (or `--table <inventory table>`) from `web/` scores strings against §1 to §4 and proposes a rewrite for each. It is a paid local check (`RIYP_ALLOW_PAID_EVALS=true`, a spend ceiling on every run) and never runs in production; `--dry-run` runs the free pattern checks only. The judge is a second reader, not the decision: when it and the read-aloud disagree, the read-aloud wins, and the disagreement goes back into its examples.
+6. **Brand-level lines go to Matt.** The dial, the homepage's lines, anything that states a founder fact, and any new aside on the homepage, pricing or the report's ending. Ask through the question UI, recommendation first, once per batch.
 
 ## Homepage copy, November 4, 2026
 
