@@ -1,0 +1,200 @@
+{
+  "case_id": "h4c_one_paragraph",
+  "batch": "holes",
+  "run": 1,
+  "note": "A resume pasted as one paragraph with no line breaks.",
+  "resume_file": "../2026-11-live-judgment/resumes/h4c_one_paragraph.txt",
+  "resume_sha256": "f511920a68961c81af3613491765d7123205582245e9adc00a8bf837d18c66ea",
+  "resume_words": 147,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T04:13:27.391Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 3962,
+        "completion_tokens": 1085,
+        "total_tokens": 5047,
+        "cached_prompt_tokens": 3502,
+        "cache_write_prompt_tokens": 457,
+        "reasoning_tokens": 512
+      },
+      "cost_usd": 0.00617435,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 14501
+    }
+  ],
+  "resume_prompt_sha256": "18e7e9ff21a0c2fda0fe219456e2d1f965de7d79bcc85173eaebd632dd83f42e",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A logistics coordinator with dispatch responsibility, customer service experience, and a measurable delivery improvement.",
+    "write_up": [
+      "A recruiter can see the work: daily dispatch for 18 drivers across two depots, customer exceptions, and training for 4 new coordinators. Your summary says six years, while your dated roles begin in February 2018. Check whether that figure still describes your experience.",
+      "The on-time rate line is the model: it names the measure, the change, and the year. The warehouse inventory line could use a little more about how you kept the count accurate."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Summary",
+        "line": "Operations coordinator with six years in logistics and customer service",
+        "cannot_tell": "Your roles start in February 2018, so six years may undersell your experience. Check the figure before a recruiter has to reconcile it with the dates.",
+        "example": "Operations coordinator with [number] years in logistics and customer service",
+        "question": "How many years of logistics and customer service experience can you verify?"
+      },
+      {
+        "kind": "keep",
+        "where": "Operations Coordinator, on-time rate",
+        "line": "improved on-time rate from 91% to 96% in 2024",
+        "cannot_tell": "This gives a recruiter a measure, a before and after, and a year. It's a useful model for the rest of the page.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Warehouse Clerk, inventory",
+        "line": "kept the inventory count accurate",
+        "cannot_tell": "A recruiter can see the responsibility, but not how you checked or corrected the count. One detail would make the warehouse work more concrete.",
+        "example": "kept the inventory count accurate by [how you checked or corrected counts]",
+        "question": "How did you check or correct the inventory count?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Operations Coordinator",
+        "Customer Service Representative",
+        "Warehouse Clerk"
+      ],
+      "level": "Experienced coordinator",
+      "note": "Your recent work points most directly to Operations Coordinator roles, with dispatch and customer service experience behind it. The warehouse and parcel roles add context for that work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A logistics coordinator with dispatch responsibility, customer service experience, and a measurable delivery improvement.",
+    "write_up": [
+      "A recruiter can see the work: daily dispatch for 18 drivers across two depots, customer exceptions, and training for 4 new coordinators. Your summary says six years, while your dated roles begin in February 2018. Check whether that figure still describes your experience.",
+      "The on-time rate line is the model: it names the measure, the change, and the year. The warehouse inventory line could use a little more about how you kept the count accurate."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Summary",
+        "line": "Carlos Mendes Richmond VA carlos.mendes@example.com 555-0171 Summary Operations coordinator with six years in logistics and customer service Experience Operations Coordinator River City Logistics Richmond VA April 2021 to Present Coordinate daily dispatch for 18 drivers across two depots track on-time delivery and report weekly to the regional manager resolve delivery exceptions with customers by phone and email trained 4 new coordinators on the dispatch software improved on-time rate from 91% to 96% in 2024 Customer Service Representative Dominion Parcel Richmond VA June 2019 to March 2021 answered 60 to 80 customer calls per day handled claims for damaged or lost packages kept records in Salesforce Warehouse Clerk Dominion Parcel Richmond VA February 2018 to May 2019 scanned and sorted inbound freight kept the inventory count accurate Education Associate of Applied Science Business Administration J. Sargeant Reynolds Community College 2018 Skills Dispatch software Salesforce Excel customer service scheduling",
+        "cannot_tell": "Your roles start in February 2018, so six years may undersell your experience. Check the figure before a recruiter has to reconcile it with the dates.",
+        "example": "Operations coordinator with [number] years in logistics and customer service",
+        "question": "How many years of logistics and customer service experience can you verify?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Operations Coordinator",
+        "Customer Service Representative",
+        "Warehouse Clerk"
+      ],
+      "level": "Experienced coordinator",
+      "note": "Your recent work points most directly to Operations Coordinator roles, with dispatch and customer service experience behind it. The warehouse and parcel roles add context for that work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A logistics coordinator with dispatch responsibility, customer service experience, and a measurable delivery improvement.",
+    "write_up": [
+      "A recruiter can see the work: daily dispatch for 18 drivers across two depots, customer exceptions, and training for 4 new coordinators. Your summary says six years, while your dated roles begin in February 2018. Check whether that figure still describes your experience.",
+      "The on-time rate line is the model: it names the measure, the change, and the year. The warehouse inventory line could use a little more about how you kept the count accurate."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Summary",
+        "line": "Carlos Mendes Richmond VA carlos.mendes@example.com 555-0171 Summary Operations coordinator with six years in logistics and customer service Experience Operations Coordinator River City Logistics Richmond VA April 2021 to Present Coordinate daily dispatch for 18 drivers across two depots track on-time delivery and report weekly to the regional manager resolve delivery exceptions with customers by phone and email trained 4 new coordinators on the dispatch software improved on-time rate from 91% to 96% in 2024 Customer Service Representative Dominion Parcel Richmond VA June 2019 to March 2021 answered 60 to 80 customer calls per day handled claims for damaged or lost packages kept records in Salesforce Warehouse Clerk Dominion Parcel Richmond VA February 2018 to May 2019 scanned and sorted inbound freight kept the inventory count accurate Education Associate of Applied Science Business Administration J. Sargeant Reynolds Community College 2018 Skills Dispatch software Salesforce Excel customer service scheduling",
+        "cannot_tell": "Your roles start in February 2018, so six years may undersell your experience. Check the figure before a recruiter has to reconcile it with the dates.",
+        "example": "Operations coordinator with [number] years in logistics and customer service",
+        "question": "How many years of logistics and customer service experience can you verify?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Operations Coordinator",
+        "Customer Service Representative",
+        "Warehouse Clerk"
+      ],
+      "level": "Experienced coordinator",
+      "note": "Your recent work points most directly to Operations Coordinator roles, with dispatch and customer service experience behind it. The warehouse and parcel roles add context for that work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "presentation": {
+    "score": 88,
+    "band": "Clear and specific",
+    "model_score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A logistics coordinator with dispatch responsibility, customer service experience, and a measurable delivery improvement.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 75,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Summary",
+        "line": "Carlos Mendes Richmond VA carlos.mendes@example.com 555-0171 Summary Operations coordinator with six years in logistics and customer service Experience Operations Coordinator River City Logistics Richmond VA April 2021 to Present Coordinate daily dispatch for 18 drivers across two depots track on-time delivery and report weekly to the regional manager resolve delivery exceptions with customers by phone and email trained 4 new coordinators on the dispatch software improved on-time rate from 91% to 96% in 2024 Customer Service Representative Dominion Parcel Richmond VA June 2019 to March 2021 answered 60 to 80 customer calls per day handled claims for damaged or lost packages kept records in Salesforce Warehouse Clerk Dominion Parcel Richmond VA February 2018 to May 2019 scanned and sorted inbound freight kept the inventory count accurate Education Associate of Applied Science Business Administration J. Sargeant Reynolds Community College 2018 Skills Dispatch software Salesforce Excel customer service scheduling",
+        "blanks": 1,
+        "question": "How many years of logistics and customer service experience can you verify?"
+      }
+    ],
+    "card_count": 1,
+    "kinds": {
+      "line": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Operations Coordinator",
+        "Customer Service Representative",
+        "Warehouse Clerk"
+      ],
+      "level": "Experienced coordinator",
+      "note": "Your recent work points most directly to Operations Coordinator roles, with dispatch and customer service experience behind it. The warehouse and parcel roles add context for that work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00617435,
+  "latency_ms": 14508
+}

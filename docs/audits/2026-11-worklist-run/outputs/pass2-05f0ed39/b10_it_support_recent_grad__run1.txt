@@ -1,0 +1,42 @@
+# b10_it_support_recent_grad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_it_support_recent_grad_1.txt (119 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 05f0ed39; severity check off
+Outcome: report; cost $0.0156; repair ran; 31.2s
+Case note: First job.
+
+Validator refused the first draft: The model response failed the worklist contract at cards[0].cannot_tell: uses the retired phrase "the read".
+
+## Needs more context (score 65; model wrote 65)
+## Verdict
+An entry-level IT support resume with a clear target, but no dated work after May 2025.
+
+## Write-up
+You’re aiming for desktop support or a junior systems role, with a school help desk internship and earlier electronics retail experience. A recruiter can see the work, but may hesitate over the time after May 2025 and the lack of detail about the volume or results of the help desk work.
+
+The Active Directory bullet is a useful model: it names both the task and the tool. Put Experience above Education, then give the ticket and laptop bullets more detail about what you handled.
+
+## Cards (4; {"dates":1,"structure":1,"line":2}); severity off; added []
+1. [dates] Dates
+   line: "No work is dated after May 2025."
+   can't tell: A recruiter can’t tell what you’ve been doing since the internship ended. A dated line can answer that question without making anyone guess.
+   example: [dates] [work, study, job search, or other activity]
+   question: What have you been doing since May 2025 that you’d be comfortable listing, and when?
+2. [structure] Structure
+   line: "Education sits above Experience."
+   can't tell: Your retail and help desk work are useful to a recruiter assessing support roles, but they come after Education and Certifications. Put Experience first.
+   question: Can you move Experience above Education and Certifications?
+3. [line] IT Help Desk Intern, line 1
+   line: "Answered help desk tickets from teachers and staff"
+   can't tell: Tickets are central to the job, but the line doesn’t say what issues you handled or how many came your way. Those details would show what kind of support you provided.
+   example: Answered help desk tickets from teachers and staff about [issue], handling [number] tickets [per period]
+   question: What issues did you handle, and about how many tickets did you answer in a typical period?
+4. [line] IT Help Desk Intern, line 2
+   line: "Imaged and set up laptops for classrooms"
+   can't tell: The task is clear, but the line leaves out how many laptops you set up and how you imaged them. That’s useful detail for a desktop support role.
+   example: Imaged and set up [number] laptops for classrooms using [imaging method]
+   question: How many laptops did you set up, and what did you use to image them?
+
+## Fit
+Roles: ["IT Help Desk Intern","desktop support"]
+Level: Entry-level
+Note: Your internship points most directly toward desktop support, with customer-facing experience from retail. The junior systems target is less developed: you name Active Directory and Microsoft 365 administration, but show limited systems work in the job bullets.

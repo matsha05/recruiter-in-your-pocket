@@ -1,0 +1,212 @@
+{
+  "case_id": "b01_icu_nurse",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_icu_nurse_1.txt",
+  "resume_sha256": "a52d8cb032163bcc7edaa524fe56cb06594cccf78f90a9ba023148de11fe18ef",
+  "resume_words": 153,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T03:50:41.874Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4084,
+        "completion_tokens": 582,
+        "total_tokens": 4666,
+        "cached_prompt_tokens": 3406,
+        "cache_write_prompt_tokens": 675,
+        "reasoning_tokens": 129
+      },
+      "cost_usd": 0.00392705,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 8377
+    }
+  ],
+  "resume_prompt_sha256": "05f0ed391d02c15c487cdf3fcd427706167ba6aa9a1ad58365cfcff658e9caea",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 82,
+    "lifted_by_employer": false,
+    "verdict": "An ICU nurse with specific critical care experience and one committee role that needs more detail.",
+    "write_up": [
+      "You look like a strong fit for staff nursing work in an ICU or telemetry unit. Your Arizona RN license, CCRN and current ICU work are easy to find. The main question is what you do on the sepsis committee beyond membership.",
+      "The direct-care line is a good model: two critically ill patients per shift in a 24-bed medical ICU. It tells a recruiter what your work looks like without making them guess."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Staff Nurse, Medical ICU, line 1",
+        "line": "- Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU",
+        "cannot_tell": "Keep this. It names the patients, your work and the setting in one line.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 5",
+        "line": "- Member of the unit's sepsis bundle compliance committee",
+        "cannot_tell": "Committee membership doesn't say what you contributed. A specific piece of work would show your part.",
+        "example": "Member of the unit's sepsis bundle compliance committee; [specific contribution]",
+        "question": "What did you contribute to the sepsis bundle compliance committee?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Nurse, Medical ICU",
+        "Staff Nurse, Telemetry"
+      ],
+      "level": "Experienced staff nurse",
+      "note": "Your recent work points toward ICU staff nursing, with earlier telemetry experience. The charge and precepting duties add to the clinical picture without claiming a management role.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 82,
+    "lifted_by_employer": false,
+    "verdict": "An ICU nurse with specific critical care experience and one committee role that needs more detail.",
+    "write_up": [
+      "You look like a strong fit for staff nursing work in an ICU or telemetry unit. Your Arizona RN license, CCRN and current ICU work are easy to find. The main question is what you do on the sepsis committee beyond membership.",
+      "The direct-care line is a good model: two critically ill patients per shift in a 24-bed medical ICU. It tells a recruiter what your work looks like without making them guess."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Staff Nurse, Medical ICU, line 1",
+        "line": "Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU",
+        "cannot_tell": "Keep this. It names the patients, your work and the setting in one line.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 5",
+        "line": "Member of the unit's sepsis bundle compliance committee",
+        "cannot_tell": "Committee membership doesn't say what you contributed. A specific piece of work would show your part.",
+        "example": "Member of the unit's sepsis bundle compliance committee; [specific contribution]",
+        "question": "What did you contribute to the sepsis bundle compliance committee?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Nurse, Medical ICU",
+        "Staff Nurse, Telemetry"
+      ],
+      "level": "Experienced staff nurse",
+      "note": "Your recent work points toward ICU staff nursing, with earlier telemetry experience. The charge and precepting duties add to the clinical picture without claiming a management role.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 82
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 82,
+    "lifted_by_employer": false,
+    "verdict": "An ICU nurse with specific critical care experience and one committee role that needs more detail.",
+    "write_up": [
+      "You look like a strong fit for staff nursing work in an ICU or telemetry unit. Your Arizona RN license, CCRN and current ICU work are easy to find. The main question is what you do on the sepsis committee beyond membership.",
+      "The direct-care line is a good model: two critically ill patients per shift in a 24-bed medical ICU. It tells a recruiter what your work looks like without making them guess."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Staff Nurse, Medical ICU, line 1",
+        "line": "Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU",
+        "cannot_tell": "Keep this. It names the patients, your work and the setting in one line.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 5",
+        "line": "Member of the unit's sepsis bundle compliance committee",
+        "cannot_tell": "Committee membership doesn't say what you contributed. A specific piece of work would show your part.",
+        "example": "Member of the unit's sepsis bundle compliance committee; [specific contribution]",
+        "question": "What did you contribute to the sepsis bundle compliance committee?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Nurse, Medical ICU",
+        "Staff Nurse, Telemetry"
+      ],
+      "level": "Experienced staff nurse",
+      "note": "Your recent work points toward ICU staff nursing, with earlier telemetry experience. The charge and precepting duties add to the clinical picture without claiming a management role.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 82
+  },
+  "presentation": {
+    "score": 82,
+    "band": "Mostly clear",
+    "model_score": 82,
+    "lifted_by_employer": false,
+    "verdict": "An ICU nurse with specific critical care experience and one committee role that needs more detail.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 73,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Staff Nurse, Medical ICU, line 1",
+        "line": "Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 5",
+        "line": "Member of the unit's sepsis bundle compliance committee",
+        "blanks": 1,
+        "question": "What did you contribute to the sepsis bundle compliance committee?"
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "keep": 1,
+      "line": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Staff Nurse, Medical ICU",
+        "Staff Nurse, Telemetry"
+      ],
+      "level": "Experienced staff nurse",
+      "note": "Your recent work points toward ICU staff nursing, with earlier telemetry experience. The charge and precepting duties add to the clinical picture without claiming a management role.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00392705,
+  "latency_ms": 8392
+}

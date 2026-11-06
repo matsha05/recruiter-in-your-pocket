@@ -1,0 +1,44 @@
+# b36_product_designer_unrelated, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_product_designer_unrelated_1.txt (147 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 18e7e9ff; severity check off
+Outcome: report; cost $0.0087; 20.5s
+Case note: Current job outside the field.
+
+## Needs more context (score 67; model wrote 67)
+## Verdict
+A product designer with solid app work, but little to show what changed and a more recent cafe role.
+
+## Write-up
+A recruiter sees product design work on fitness apps and agency projects, followed by a current barista job. The hesitation is what changed because of the design work, and whether you've done any design since Loop Fitness.
+
+The Figma design system line is the model: it names what you made and why it was distinctive at Loop. Give the booking flow and usability tests that same specificity, then add results where you can verify them.
+
+## Cards (5; {"line":4,"keep":1}); severity off; added []
+1. [line] Barista, line 2
+   line: "Train new baristas on espresso equipment"
+   can't tell: Training is a useful responsibility, but the line doesn't say how many people you've trained or what the training covers.
+   example: Train [number] new baristas on espresso equipment and [what the training covers]
+   question: How many new baristas have you trained, and what do you teach them?
+2. [line] Product Designer, line 1
+   line: "Designed the class booking flow for the iOS and Android apps"
+   can't tell: The booking flow is a concrete piece of work. A recruiter can't tell what problem you addressed or what changed after the design.
+   example: Designed the class booking flow for the iOS and Android apps to address [problem], with [what changed, if known]
+   question: What problem did the booking flow address, and what changed after your design?
+3. [keep] Product Designer, line 3
+   line: "Created the app's first design system in Figma"
+   can't tell: Keep this as a model. It names the deliverable, the tool and the fact that it was the app's first design system.
+4. [line] Product Designer, line 4
+   line: "Ran usability tests with members before launches"
+   can't tell: The tests are real work, but the line stops before the findings. What did you learn and use?
+   example: Ran usability tests with members before launches and [how the findings were used]
+   question: What did the tests uncover, and how were the findings used?
+5. [line] Junior Product Designer, line 2
+   line: "Made prototypes for client presentations"
+   can't tell: A recruiter can't tell what the prototypes showed or what clients used them to decide.
+   example: Made prototypes for client presentations of [project or feature] to [how clients used them]
+   question: What did you prototype, and how did clients use it?
+
+## Fit
+Roles: ["Product Designer","Junior Product Designer"]
+Level: Product designer with prior junior experience
+Note: Your experience points toward product design for web and mobile apps. The current role is outside design, so any recent design work you can substantiate would help connect it to your earlier roles.

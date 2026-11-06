@@ -1,0 +1,45 @@
+# b09_executive_assistant_freelance, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_executive_assistant_freelance_1.txt (163 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt b2c0d186; severity check on
+Outcome: report; cost $0.0151; repair ran; 28.3s
+
+Validator refused the first draft: The model response failed the worklist contract at cards[3].cannot_tell: uses the retired phrase "the read".
+
+## Mostly clear (score 77; model wrote 77)
+## Verdict
+A seasoned executive assistant with a clear progression, though the time between roles needs context.
+
+## Write-up
+You moved from administrative support to supporting a CEO, and now support three founders independently. The work is easy to follow. The first hesitation is the unaccounted time between Parkway Logistics and your freelance role.
+
+The leadership offsite line is a good model: it names what you planned and how many people attended. A few other lines could use the same kind of detail about the materials or coordination you handled.
+
+## Cards (5; {"dates":1,"line":3,"keep":1}); severity none (none); added []
+1. [dates] Dates
+   line: "No work or other activity is listed between June 2023 and February 2025."
+   can't tell: A recruiter can't tell what you were doing between Parkway Logistics and your freelance work. A short, honest line can account for that time.
+   example: [dates] [work, study, caregiving, or career break]
+   question: What were you doing during that time that you'd be comfortable including?
+2. [line] Freelance Executive Assistant, line 3
+   line: "Coordinate investor meeting logistics across time zones"
+   can't tell: The investor meetings are clear, but the logistics could mean several things. Naming what you coordinate would show more of the job.
+   example: Coordinate investor meeting logistics across time zones, including [specific logistics]
+   question: Which parts of the investor meeting logistics do you coordinate?
+3. [line] Executive Assistant to the CEO, line 2
+   line: "Prepared materials for quarterly board meetings"
+   can't tell: Board materials are a useful detail, but it's not clear what you prepared. Naming the materials would make the work more concrete.
+   example: Prepared [types of materials] for quarterly board meetings
+   question: What materials did you prepare for the quarterly board meetings?
+4. [keep] Executive Assistant to the CEO, line 3
+   line: "Planned the annual leadership offsite for 40 attendees"
+   can't tell: Keep this as a model. It names the event you planned and the number of attendees, so there's no guessing.
+5. [line] Executive Assistant to the CEO, line 4
+   line: "Served as the point of contact between the CEO and department heads"
+   can't tell: Being the point of contact could cover a lot. It's not clear what you handled between the CEO and department heads.
+   example: Served as the point of contact between the CEO and department heads for [specific requests or communications]
+   question: What kinds of requests or communications did you handle between the CEO and department heads?
+
+## Fit
+Roles: ["Freelance Executive Assistant","Executive Assistant to the CEO","Administrative Assistant"]
+Level: Experienced executive assistant
+Note: The page points toward executive assistant work with founders or senior leaders. It shows both an in-house progression at Parkway Logistics and independent work with early-stage companies.

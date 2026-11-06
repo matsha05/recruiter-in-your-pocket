@@ -1,0 +1,271 @@
+{
+  "case_id": "b30_social_worker",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_social_worker_1.txt",
+  "resume_sha256": "220fc861657d503d71b84a4240b5f5bc70c869aa0f1b595da07293db985b982f",
+  "resume_words": 127,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": true,
+  "started_at": "2026-11-06T03:36:46.110Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 3687,
+        "completion_tokens": 939,
+        "total_tokens": 4626,
+        "cached_prompt_tokens": 3095,
+        "cache_write_prompt_tokens": 589,
+        "reasoning_tokens": 356
+      },
+      "cost_usd": 0.005589,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 13855
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.0012095,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1261
+    }
+  ],
+  "resume_prompt_sha256": "b2c0d186992d2d925493008c0a67067de9f704dc44ec074808b3bc7176463d9a",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A licensed social worker with clear child welfare duties, but little detail on the size of the caseload.",
+    "write_up": [
+      "You have a straightforward child welfare and family services resume, with an Ohio LMSW and current casework experience. It's worth a closer look for caseworker roles. The first hesitation is the caseload: the page doesn't say how many families you carry.",
+      "The intake screening line is the best model here. It names the clients and the three kinds of assistance you screened for, so nobody has to guess what the work involved. A little more detail on the current caseload and services would make that role just as easy to picture."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 1",
+        "line": "- Carry a caseload of families involved with child protective services",
+        "cannot_tell": "The families are clear, but the size of your caseload isn't. That's a useful measure of the work in this role.",
+        "example": "Carry a caseload of [number] families involved with child protective services",
+        "question": "How many families are typically on your caseload?"
+      },
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 3",
+        "line": "- Coordinate services with schools, courts, and mental health providers",
+        "cannot_tell": "You've named the partners, but not the services you coordinate. A concrete example would help a reader picture your part.",
+        "example": "Coordinate [types of services] with schools, courts, and mental health providers",
+        "question": "What services do you coordinate with these partners?"
+      },
+      {
+        "kind": "keep",
+        "where": "Intake Specialist, line 1",
+        "line": "- Screened walk-in clients for housing, food, and utility assistance",
+        "cannot_tell": "Keep this as a model: it names who you screened and what assistance they needed.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Family Services Caseworker",
+        "Intake Specialist"
+      ],
+      "level": "Experienced caseworker",
+      "note": "Your experience points toward family services casework and client intake. The current role names child protective services, home visits and court reports; adding caseload size would help place the work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A licensed social worker with clear child welfare duties, but little detail on the size of the caseload.",
+    "write_up": [
+      "You have a straightforward child welfare and family services resume, with an Ohio LMSW and current casework experience. It's worth a closer look for caseworker roles. The first hesitation is the caseload: the page doesn't say how many families you carry.",
+      "The intake screening line is the best model here. It names the clients and the three kinds of assistance you screened for, so nobody has to guess what the work involved. A little more detail on the current caseload and services would make that role just as easy to picture."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 1",
+        "line": "Carry a caseload of families involved with child protective services",
+        "cannot_tell": "The families are clear, but the size of your caseload isn't. That's a useful measure of the work in this role.",
+        "example": "Carry a caseload of [number] families involved with child protective services",
+        "question": "How many families are typically on your caseload?"
+      },
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 3",
+        "line": "Coordinate services with schools, courts, and mental health providers",
+        "cannot_tell": "You've named the partners, but not the services you coordinate. A concrete example would help a reader picture your part.",
+        "example": "Coordinate [types of services] with schools, courts, and mental health providers",
+        "question": "What services do you coordinate with these partners?"
+      },
+      {
+        "kind": "keep",
+        "where": "Intake Specialist, line 1",
+        "line": "Screened walk-in clients for housing, food, and utility assistance",
+        "cannot_tell": "Keep this as a model: it names who you screened and what assistance they needed.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Family Services Caseworker",
+        "Intake Specialist"
+      ],
+      "level": "Experienced caseworker",
+      "note": "Your experience points toward family services casework and client intake. The current role names child protective services, home visits and court reports; adding caseload size would help place the work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 78
+  },
+  "severity": {
+    "promoted": [],
+    "replaced": [],
+    "led": null,
+    "critical_count": 1,
+    "more_critical": false,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "skipped": [],
+    "validation_attempts": 0,
+    "latency_ms": 1261,
+    "call_latency_ms": 1261,
+    "cost_usd": 0.0012095,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A licensed social worker with clear child welfare duties, but little detail on the size of the caseload.",
+    "write_up": [
+      "You have a straightforward child welfare and family services resume, with an Ohio LMSW and current casework experience. It's worth a closer look for caseworker roles. The first hesitation is the caseload: the page doesn't say how many families you carry.",
+      "The intake screening line is the best model here. It names the clients and the three kinds of assistance you screened for, so nobody has to guess what the work involved. A little more detail on the current caseload and services would make that role just as easy to picture."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 1",
+        "line": "Carry a caseload of families involved with child protective services",
+        "cannot_tell": "The families are clear, but the size of your caseload isn't. That's a useful measure of the work in this role.",
+        "example": "Carry a caseload of [number] families involved with child protective services",
+        "question": "How many families are typically on your caseload?"
+      },
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 3",
+        "line": "Coordinate services with schools, courts, and mental health providers",
+        "cannot_tell": "You've named the partners, but not the services you coordinate. A concrete example would help a reader picture your part.",
+        "example": "Coordinate [types of services] with schools, courts, and mental health providers",
+        "question": "What services do you coordinate with these partners?"
+      },
+      {
+        "kind": "keep",
+        "where": "Intake Specialist, line 1",
+        "line": "Screened walk-in clients for housing, food, and utility assistance",
+        "cannot_tell": "Keep this as a model: it names who you screened and what assistance they needed.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Family Services Caseworker",
+        "Intake Specialist"
+      ],
+      "level": "Experienced caseworker",
+      "note": "Your experience points toward family services casework and client intake. The current role names child protective services, home visits and court reports; adding caseload size would help place the work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 78
+  },
+  "presentation": {
+    "score": 78,
+    "band": "Mostly clear",
+    "model_score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A licensed social worker with clear child welfare duties, but little detail on the size of the caseload.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 91,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 1",
+        "line": "Carry a caseload of families involved with child protective services",
+        "blanks": 1,
+        "question": "How many families are typically on your caseload?"
+      },
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 3",
+        "line": "Coordinate services with schools, courts, and mental health providers",
+        "blanks": 1,
+        "question": "What services do you coordinate with these partners?"
+      },
+      {
+        "kind": "keep",
+        "where": "Intake Specialist, line 1",
+        "line": "Screened walk-in clients for housing, food, and utility assistance",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "line": 2,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "none (none)",
+    "fit": {
+      "roles": [
+        "Family Services Caseworker",
+        "Intake Specialist"
+      ],
+      "level": "Experienced caseworker",
+      "note": "Your experience points toward family services casework and client intake. The current role names child protective services, home visits and court reports; adding caseload size would help place the work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0067985,
+  "latency_ms": 15116
+}

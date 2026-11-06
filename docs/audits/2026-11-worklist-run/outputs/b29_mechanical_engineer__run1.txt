@@ -1,0 +1,40 @@
+# b29_mechanical_engineer, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_mechanical_engineer_1.txt (143 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 18e7e9ff; severity check off
+Outcome: report; cost $0.0072; 15.3s
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+A furniture design engineer with a named desk platform, but little to show how the recent work turned out.
+
+## Write-up
+You come across as a mechanical engineer who moved from storage products to leading design for a height-adjustable desk. A recruiter can see the work, but the latest role gives no sense of its size or what changed.
+
+The Arlo line is the best model on the page: it names the product and says you lead its mechanical design. Add a specific design decision or result there, then give the supplier and manufacturing lines the same attention.
+
+## Cards (4; {"line":4}); severity off; added []
+1. [line] Mechanical Engineer II, line 1
+   line: "Lead mechanical design for the Arlo height-adjustable desk platform"
+   can't tell: The product and your ownership are clear. What you designed or delivered for the platform is still open.
+   example: Lead mechanical design for the Arlo height-adjustable desk platform, including [specific components or design decisions], resulting in [result, if known]
+   question: Which components or design decisions were yours, and what happened as a result?
+2. [line] Mechanical Engineer II, line 3
+   line: "Work with suppliers in Mexico and Taiwan on tooling and first-article inspection"
+   can't tell: The locations and the work are named, but 'work with' leaves your part open. A recruiter can't tell what you did on tooling or inspection.
+   example: Work with suppliers in Mexico and Taiwan on tooling and first-article inspection by [your specific contribution], leading to [result, if known]
+   question: What did you do with the suppliers on tooling or inspection, and what came of it?
+3. [line] Mechanical Engineer II, line 4
+   line: "Run tolerance stack-ups and FEA on load-bearing components"
+   can't tell: The methods are clear, but the components and findings aren't. One example would show what the analysis was used for.
+   example: Run tolerance stack-ups and FEA on [load-bearing components] to [what the analysis checked], informing [decision or change, if known]
+   question: Which components did you analyze, and what decision or change did the analysis inform?
+4. [line] Mechanical Engineer II, line 5
+   line: "Support manufacturing with engineering change orders"
+   can't tell: 'Support' leaves your part in the change orders unclear. Name a change and what you contributed.
+   example: Support manufacturing with engineering change orders by [your contribution] for [specific change]
+   question: What did you contribute to an engineering change order, and what did it change?
+
+## Fit
+Roles: ["Mechanical Engineer II","Mechanical Engineer I"]
+Level: Experienced individual contributor
+Note: Your experience points toward mechanical design work on furniture and fixtures. The desk platform and storage products give that direction a concrete foundation.

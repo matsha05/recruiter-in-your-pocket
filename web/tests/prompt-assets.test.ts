@@ -17,9 +17,16 @@ void Promise.all(modes.map((mode) => loadPromptForMode(mode)))
       assert.ok(prompt.length > 100, `${modes[index]} prompt must be bundled and non-empty`);
     }
     const resumePrompt = prompts[0];
-    assert.match(resumePrompt, /REPORT RHYTHM/);
-    assert.match(resumePrompt, /Do not begin the summary with the legacy template "You read as"/);
-    assert.doesNotMatch(resumePrompt, /Sentence one must begin with "You read as/);
+    if (/"contract_version": "v3"/.test(resumePrompt)) {
+      // The worklist prompt (resume_v3.txt): judgment first, cards, no Critical Miss anywhere in it.
+      assert.match(resumePrompt, /THE WRITE-UP/);
+      assert.match(resumePrompt, /THE CARDS/);
+      assert.doesNotMatch(resumePrompt, /Critical Miss/);
+    } else {
+      assert.match(resumePrompt, /REPORT RHYTHM/);
+      assert.match(resumePrompt, /Do not begin the summary with the legacy template "You read as"/);
+      assert.doesNotMatch(resumePrompt, /Sentence one must begin with "You read as/);
+    }
     console.log("prompt-assets tests passed");
   })
   .catch((error) => {

@@ -1,0 +1,306 @@
+{
+  "case_id": "b30_social_worker",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_social_worker_1.txt",
+  "resume_sha256": "220fc861657d503d71b84a4240b5f5bc70c869aa0f1b595da07293db985b982f",
+  "resume_words": 127,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T03:53:17.291Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 3998,
+        "completion_tokens": 2577,
+        "total_tokens": 6575,
+        "cached_prompt_tokens": 3406,
+        "cache_write_prompt_tokens": 589,
+        "reasoning_tokens": 1756
+      },
+      "cost_usd": 0.01379455,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 935399
+    }
+  ],
+  "resume_prompt_sha256": "05f0ed391d02c15c487cdf3fcd427706167ba6aa9a1ad58365cfcff658e9caea",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "A licensed family services caseworker whose caseload and coordination work need more detail.",
+    "write_up": [
+      "You're a licensed social worker in child welfare with earlier intake experience. Your current job shows home visits, court reports and monthly family team meetings, but the caseload has no size and the bullets don't say what changed through your work. A recruiter would likely hesitate.",
+      "The intake line about screening walk-in clients for housing, food, and utility assistance is your model: it names the people and what you screened for. Add your caseload size, a specific service you coordinate and a brief description of Cuyahoga Family Partners."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Family Services Caseworker",
+        "line": "The page doesn't say what kind of organization Cuyahoga Family Partners is.",
+        "cannot_tell": "The duties mention child protective services, but a reader may not know where the organization fits. A short description would place your work.",
+        "example": "",
+        "question": "What kind of organization is Cuyahoga Family Partners?"
+      },
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 1",
+        "line": "- Carry a caseload of families involved with child protective services",
+        "cannot_tell": "The families and setting are clear, but the caseload has no size. That's a defining part of this job.",
+        "example": "Carry a caseload of [number or range] families involved with child protective services",
+        "question": "How many families are typically on your caseload at one time?"
+      },
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 3",
+        "line": "- Coordinate services with schools, courts, and mental health providers",
+        "cannot_tell": "The partners are named, but the services aren't. One example would show what you're bringing together for families.",
+        "example": "Coordinate [services] with schools, courts, and mental health providers [for what purpose]",
+        "question": "What services do you coordinate with these partners, and what are they intended to do for families?"
+      },
+      {
+        "kind": "keep",
+        "where": "Intake Specialist, line 1",
+        "line": "- Screened walk-in clients for housing, food, and utility assistance",
+        "cannot_tell": "This names the clients, the task and the kinds of assistance. It's a useful model for the rest of the page.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Intake Specialist, line 2",
+        "line": "- Connected clients to county benefit programs",
+        "cannot_tell": "A reader can see that you connected clients to programs, but not which programs or how you made the connections.",
+        "example": "Connected clients to [county benefit programs] by [what you did to connect them]",
+        "question": "Which county benefit programs did you connect clients to, and how did you make those connections?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Family Services Caseworker",
+        "Intake Specialist"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "Your recent work points to family services casework, with earlier intake experience in housing, food, and utility assistance. Your Ohio LMSW and MSW support that direction.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "A licensed family services caseworker whose caseload and coordination work need more detail.",
+    "write_up": [
+      "You're a licensed social worker in child welfare with earlier intake experience. Your current job shows home visits, court reports and monthly family team meetings, but the caseload has no size and the bullets don't say what changed through your work. A recruiter would likely hesitate.",
+      "The intake line about screening walk-in clients for housing, food, and utility assistance is your model: it names the people and what you screened for. Add your caseload size, a specific service you coordinate and a brief description of Cuyahoga Family Partners."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Family Services Caseworker",
+        "line": "The page doesn't say what kind of organization Cuyahoga Family Partners is.",
+        "cannot_tell": "The duties mention child protective services, but a reader may not know where the organization fits. A short description would place your work.",
+        "example": "",
+        "question": "What kind of organization is Cuyahoga Family Partners?"
+      },
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 1",
+        "line": "Carry a caseload of families involved with child protective services",
+        "cannot_tell": "The families and setting are clear, but the caseload has no size. That's a defining part of this job.",
+        "example": "Carry a caseload of [number or range] families involved with child protective services",
+        "question": "How many families are typically on your caseload at one time?"
+      },
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 3",
+        "line": "Coordinate services with schools, courts, and mental health providers",
+        "cannot_tell": "The partners are named, but the services aren't. One example would show what you're bringing together for families.",
+        "example": "Coordinate [services] with schools, courts, and mental health providers [for what purpose]",
+        "question": "What services do you coordinate with these partners, and what are they intended to do for families?"
+      },
+      {
+        "kind": "keep",
+        "where": "Intake Specialist, line 1",
+        "line": "Screened walk-in clients for housing, food, and utility assistance",
+        "cannot_tell": "This names the clients, the task and the kinds of assistance. It's a useful model for the rest of the page.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Intake Specialist, line 2",
+        "line": "Connected clients to county benefit programs",
+        "cannot_tell": "A reader can see that you connected clients to programs, but not which programs or how you made the connections.",
+        "example": "Connected clients to [county benefit programs] by [what you did to connect them]",
+        "question": "Which county benefit programs did you connect clients to, and how did you make those connections?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Family Services Caseworker",
+        "Intake Specialist"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "Your recent work points to family services casework, with earlier intake experience in housing, food, and utility assistance. Your Ohio LMSW and MSW support that direction.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 67
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "A licensed family services caseworker whose caseload and coordination work need more detail.",
+    "write_up": [
+      "You're a licensed social worker in child welfare with earlier intake experience. Your current job shows home visits, court reports and monthly family team meetings, but the caseload has no size and the bullets don't say what changed through your work. A recruiter would likely hesitate.",
+      "The intake line about screening walk-in clients for housing, food, and utility assistance is your model: it names the people and what you screened for. Add your caseload size, a specific service you coordinate and a brief description of Cuyahoga Family Partners."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Family Services Caseworker",
+        "line": "The page doesn't say what kind of organization Cuyahoga Family Partners is.",
+        "cannot_tell": "The duties mention child protective services, but a reader may not know where the organization fits. A short description would place your work.",
+        "example": "",
+        "question": "What kind of organization is Cuyahoga Family Partners?"
+      },
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 1",
+        "line": "Carry a caseload of families involved with child protective services",
+        "cannot_tell": "The families and setting are clear, but the caseload has no size. That's a defining part of this job.",
+        "example": "Carry a caseload of [number or range] families involved with child protective services",
+        "question": "How many families are typically on your caseload at one time?"
+      },
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 3",
+        "line": "Coordinate services with schools, courts, and mental health providers",
+        "cannot_tell": "The partners are named, but the services aren't. One example would show what you're bringing together for families.",
+        "example": "Coordinate [services] with schools, courts, and mental health providers [for what purpose]",
+        "question": "What services do you coordinate with these partners, and what are they intended to do for families?"
+      },
+      {
+        "kind": "keep",
+        "where": "Intake Specialist, line 1",
+        "line": "Screened walk-in clients for housing, food, and utility assistance",
+        "cannot_tell": "This names the clients, the task and the kinds of assistance. It's a useful model for the rest of the page.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Intake Specialist, line 2",
+        "line": "Connected clients to county benefit programs",
+        "cannot_tell": "A reader can see that you connected clients to programs, but not which programs or how you made the connections.",
+        "example": "Connected clients to [county benefit programs] by [what you did to connect them]",
+        "question": "Which county benefit programs did you connect clients to, and how did you make those connections?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Family Services Caseworker",
+        "Intake Specialist"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "Your recent work points to family services casework, with earlier intake experience in housing, food, and utility assistance. Your Ohio LMSW and MSW support that direction.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 67
+  },
+  "presentation": {
+    "score": 67,
+    "band": "Needs more context",
+    "model_score": 67,
+    "lifted_by_employer": false,
+    "verdict": "A licensed family services caseworker whose caseload and coordination work need more detail.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 88,
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Family Services Caseworker",
+        "line": "The page doesn't say what kind of organization Cuyahoga Family Partners is.",
+        "blanks": 0,
+        "question": "What kind of organization is Cuyahoga Family Partners?"
+      },
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 1",
+        "line": "Carry a caseload of families involved with child protective services",
+        "blanks": 1,
+        "question": "How many families are typically on your caseload at one time?"
+      },
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 3",
+        "line": "Coordinate services with schools, courts, and mental health providers",
+        "blanks": 2,
+        "question": "What services do you coordinate with these partners, and what are they intended to do for families?"
+      },
+      {
+        "kind": "keep",
+        "where": "Intake Specialist, line 1",
+        "line": "Screened walk-in clients for housing, food, and utility assistance",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Intake Specialist, line 2",
+        "line": "Connected clients to county benefit programs",
+        "blanks": 2,
+        "question": "Which county benefit programs did you connect clients to, and how did you make those connections?"
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "structure": 1,
+      "line": 3,
+      "keep": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Family Services Caseworker",
+        "Intake Specialist"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "Your recent work points to family services casework, with earlier intake experience in housing, food, and utility assistance. Your Ohio LMSW and MSW support that direction.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01379455,
+  "latency_ms": 935402
+}

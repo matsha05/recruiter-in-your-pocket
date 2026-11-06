@@ -339,10 +339,13 @@ for (const [name, source] of [
       "stream validation must reuse the route's effective JD options for normal and repair validation",
     );
   } else {
+    // The JSON route validates through the stream's validator (worklist or Critical Miss contract, one repair),
+    // so it names the effective JD options once for that call and once for the severity check.
+    assert.match(source, /validateResumeStreamOutput\(/, `${name} must validate through the shared resume validator`);
     assert.equal(
       source.match(/effectiveJobDescription\.validationOptions/g)?.length,
-      3,
-      `${name} normal, repair and severity-check validation must share effective JD options`,
+      2,
+      `${name} validation and severity-check validation must share effective JD options`,
     );
   }
   assert.match(source, /jobDescriptionText:\s*effectiveJobDescription\.persistenceText/);

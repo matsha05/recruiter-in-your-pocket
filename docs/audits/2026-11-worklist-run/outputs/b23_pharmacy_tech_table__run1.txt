@@ -1,0 +1,29 @@
+# b23_pharmacy_tech_table, run 1
+Resume: ../2026-11-live-judgment/resumes/b_pharmacy_tech_table.txt (209 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 18e7e9ff; severity check off
+Outcome: report; cost $0.0060; 12.9s
+Case note: Tables rendered to tab-separated text.
+
+## Clear and specific (score 87; model wrote 87)
+## Verdict
+A pharmacy technician resume with specific inpatient work, useful measures, and one retail verification question.
+
+## Write-up
+A recruiter sees a licensed pharmacy technician with inpatient sterile compounding and retail experience, and likely moves the resume forward. The retail line about verifying prescriptions raises one question: what did you check, and who performed the final check?
+
+The cabinet restocking line is the model. It names the work, the 6 nursing units, and the drop in stockout reports without claiming what caused it. Your sterile compounding certification and cleanroom work give that current role a clear direction.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Pharmacy Technician II, cabinet restocking
+   line: "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024"
+   can't tell: Keep this as a model. It names your work and the nursing units, then gives the stockout reports their own measure.
+2. [line] Pharmacy Technician, prescriptions
+   line: "Pharmacy Technician Filled and verified prescriptions for a store doing 350 scripts a day"
+   can't tell: A recruiter can't tell what you verified or who performed the final check. That distinction matters in a pharmacy workflow.
+   example: Filled and verified prescriptions for a store doing 350 scripts a day; verified [what you checked], with [who performed the final check] completing the final check
+   question: What did you verify, and who performed the final check?
+
+## Fit
+Roles: ["Pharmacy Technician II","Pharmacy Technician"]
+Level: Experienced technician
+Note: Your current work points toward inpatient pharmacy technician roles, particularly sterile compounding. The earlier retail work also shows prescription and insurance experience.

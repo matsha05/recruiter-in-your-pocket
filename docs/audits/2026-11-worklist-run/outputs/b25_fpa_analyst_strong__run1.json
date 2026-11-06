@@ -1,0 +1,180 @@
+{
+  "case_id": "b25_fpa_analyst_strong",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_fpa_analyst_strong_1.txt",
+  "resume_sha256": "e8604c5c03930c475f944d36090e8f6db4af1ffc417c634667c5450ff68f9cd2",
+  "resume_words": 138,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T04:15:37.317Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4132,
+        "completion_tokens": 481,
+        "total_tokens": 4613,
+        "cached_prompt_tokens": 3502,
+        "cache_write_prompt_tokens": 627,
+        "reasoning_tokens": 138
+      },
+      "cost_usd": 0.00336685,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 6446
+    }
+  ],
+  "resume_prompt_sha256": "18e7e9ff21a0c2fda0fe219456e2d1f965de7d79bcc85173eaebd632dd83f42e",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 92,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst with budget ownership and measurable forecasting, pricing, and reporting work.",
+    "write_up": [
+      "You make the FP&A story easy to follow: a $240M operating budget, pricing work across 60 products, and monthly results presented to the division CFO and 4 brand leaders.",
+      "The forecast line is the model for the rest. It names what you built and shows forecast error falling from 7% to 2.5%. The earlier Power BI line also makes the time saved concrete."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "- Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "There's little to guess at here. You name the work and show what changed.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A",
+        "Financial Analyst"
+      ],
+      "level": "Senior analyst",
+      "note": "Your experience points toward senior FP&A work in budgeting, forecasting, and pricing. The earlier plant reporting and Power BI automation add useful detail to that story.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 92,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst with budget ownership and measurable forecasting, pricing, and reporting work.",
+    "write_up": [
+      "You make the FP&A story easy to follow: a $240M operating budget, pricing work across 60 products, and monthly results presented to the division CFO and 4 brand leaders.",
+      "The forecast line is the model for the rest. It names what you built and shows forecast error falling from 7% to 2.5%. The earlier Power BI line also makes the time saved concrete."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "There's little to guess at here. You name the work and show what changed.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A",
+        "Financial Analyst"
+      ],
+      "level": "Senior analyst",
+      "note": "Your experience points toward senior FP&A work in budgeting, forecasting, and pricing. The earlier plant reporting and Power BI automation add useful detail to that story.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 92
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 92,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst with budget ownership and measurable forecasting, pricing, and reporting work.",
+    "write_up": [
+      "You make the FP&A story easy to follow: a $240M operating budget, pricing work across 60 products, and monthly results presented to the division CFO and 4 brand leaders.",
+      "The forecast line is the model for the rest. It names what you built and shows forecast error falling from 7% to 2.5%. The earlier Power BI line also makes the time saved concrete."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "There's little to guess at here. You name the work and show what changed.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A",
+        "Financial Analyst"
+      ],
+      "level": "Senior analyst",
+      "note": "Your experience points toward senior FP&A work in budgeting, forecasting, and pricing. The earlier plant reporting and Power BI automation add useful detail to that story.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 92
+  },
+  "presentation": {
+    "score": 92,
+    "band": "Clear and specific",
+    "model_score": 92,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst with budget ownership and measurable forecasting, pricing, and reporting work.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 63,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 1,
+    "kinds": {
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A",
+        "Financial Analyst"
+      ],
+      "level": "Senior analyst",
+      "note": "Your experience points toward senior FP&A work in budgeting, forecasting, and pricing. The earlier plant reporting and Power BI automation add useful detail to that story.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00336685,
+  "latency_ms": 6448
+}

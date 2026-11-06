@@ -1,0 +1,33 @@
+# b28_cybersecurity_analyst, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_cybersecurity_analyst_1.txt (154 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 05f0ed39; severity check off
+Outcome: report; cost $0.0090; 930.4s
+
+## Clear and specific (score 89; model wrote 89)
+## Verdict
+A senior detection and response analyst with measurable results and a few details left to add.
+
+## Write-up
+You look like a senior detection and response analyst with measurable work in financial services and earlier SOC experience across 30 client environments. The main question is what your alert-enrichment automation changed in practice.
+
+The Splunk rule bullet is the model: 140+ rules, MITRE ATT&CK mapping, and a 35% reduction in false-positive alerts. Your incident-response line also gives a before-and-after containment measure.
+
+## Cards (3; {"keep":1,"line":2}); severity off; added []
+1. [keep] Senior Security Analyst, line 1
+   line: "Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%"
+   can't tell: The rule count, ATT&CK mapping and reduction in false-positive alerts show what you built and what changed. Use this as the model for other bullets.
+2. [line] Senior Security Analyst, line 4
+   line: "Automated alert enrichment with Python and the Splunk SOAR platform"
+   can't tell: The tools and task are clear, but not which alerts you enriched or what the automation changed. One concrete detail would show why you built it.
+   example: Automated alert enrichment with Python and the Splunk SOAR platform for [alert types]; [information added and what changed, if known]
+   question: What information did you add to which alerts, and what changed after automation?
+3. [line] Security Operations Analyst, line 3
+   line: "Tuned EDR policies in CrowdStrike Falcon"
+   can't tell: The product is named, but not which policies you tuned or why. That leaves the security problem out of the story.
+   example: Tuned EDR policies in CrowdStrike Falcon for [policy area or security problem]; [what changed, if known]
+   question: Which policies did you tune, what problem were you addressing, and what changed, if you know?
+
+## Fit
+Roles: ["Senior Security Analyst, Detection and Response","Security Operations Analyst"]
+Level: Senior analyst
+Note: Your current role points to detection and response in financial services; the earlier role adds managed security operations. The certifications and tools reinforce that direction.

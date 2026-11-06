@@ -1,0 +1,416 @@
+{
+  "case_id": "b06_staff_accountant",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_staff_accountant_1.txt",
+  "resume_sha256": "5ffd1542f9efd3cfd81adbb3bf5a41f679b5c13e4c013d509922f301a1d5ca53",
+  "resume_words": 98,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": true,
+  "started_at": "2026-11-06T03:34:19.832Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 3625,
+        "completion_tokens": 1424,
+        "total_tokens": 5049,
+        "cached_prompt_tokens": 3095,
+        "cache_write_prompt_tokens": 527,
+        "reasoning_tokens": 512
+      },
+      "cost_usd": 0.0079365,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 18722
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.00238325,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 4478
+    }
+  ],
+  "resume_prompt_sha256": "b2c0d186992d2d925493008c0a67067de9f704dc44ec074808b3bc7176463d9a",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 72,
+    "lifted_by_employer": false,
+    "verdict": "A staff accountant with a clear progression, but a month-end close that needs more detail.",
+    "write_up": [
+      "You moved from accounts payable into a staff accountant role at the same company. A recruiter can see the accounting work and could move you forward, but the current bullets leave the month-end close looking like a task list.",
+      "The purchase order line is the model: matching orders to receipts tells someone exactly what you checked. Give the close and audit work that same detail, and add a little context about Rivermark's size."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience",
+        "line": "Rivermark Building Supply is not described beyond its name and location.",
+        "cannot_tell": "A recruiter can't tell how large the operation is. A short description would give the accounting work some context.",
+        "example": "",
+        "question": "What can you share about the size of Rivermark's operation?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 1",
+        "line": "- Responsible for month-end close tasks",
+        "cannot_tell": "The close is central to this role, but this doesn't say which tasks are yours.",
+        "example": "Responsible for month-end close tasks, including [specific tasks]",
+        "question": "Which month-end close tasks are yours?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 2",
+        "line": "- Prepare journal entries and account reconciliations",
+        "cannot_tell": "The work is named, but the accounts and entries aren't. Those details would help distinguish your close work from a generic accounting list.",
+        "example": "Prepare journal entries for [types of entries] and account reconciliations for [accounts]",
+        "question": "What kinds of journal entries and accounts do you prepare and reconcile?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 3",
+        "line": "- Assist with the annual audit",
+        "cannot_tell": "Assist could mean several things. A recruiter can't tell what you provide for the audit.",
+        "example": "Assist with the annual audit by [specific contribution]",
+        "question": "What do you prepare or do for the annual audit?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 5",
+        "line": "- Process accounts payable when needed",
+        "cannot_tell": "It's not clear which parts of accounts payable you handle in your current role or how often.",
+        "example": "Process accounts payable, including [specific tasks], [frequency]",
+        "question": "Which accounts payable tasks do you handle in this role, and how often?"
+      },
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 1",
+        "line": "- Entered vendor invoices",
+        "cannot_tell": "Invoice entry is clear, but the volume would help a recruiter understand the workload.",
+        "example": "Entered [number] vendor invoices [per period]",
+        "question": "About how many vendor invoices did you enter in a typical period?"
+      },
+      {
+        "kind": "keep",
+        "where": "Accounts Payable Clerk, line 2",
+        "line": "- Matched purchase orders to receipts",
+        "cannot_tell": "This names the two things you checked against each other. It's a useful model for making the close and audit bullets more concrete.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Clerk"
+      ],
+      "level": "Staff-level accounting",
+      "note": "The page points toward staff accounting, with earlier accounts payable work at the same company. The close, reconciliations and audit bullets would be stronger with the specific accounts and tasks you handle.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 72,
+    "lifted_by_employer": false,
+    "verdict": "A staff accountant with a clear progression, but a month-end close that needs more detail.",
+    "write_up": [
+      "You moved from accounts payable into a staff accountant role at the same company. A recruiter can see the accounting work and could move you forward, but the current bullets leave the month-end close looking like a task list.",
+      "The purchase order line is the model: matching orders to receipts tells someone exactly what you checked. Give the close and audit work that same detail, and add a little context about Rivermark's size."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience",
+        "line": "Rivermark Building Supply is not described beyond its name and location.",
+        "cannot_tell": "A recruiter can't tell how large the operation is. A short description would give the accounting work some context.",
+        "example": "",
+        "question": "What can you share about the size of Rivermark's operation?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 1",
+        "line": "Responsible for month-end close tasks",
+        "cannot_tell": "The close is central to this role, but this doesn't say which tasks are yours.",
+        "example": "Responsible for month-end close tasks, including [specific tasks]",
+        "question": "Which month-end close tasks are yours?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 2",
+        "line": "Prepare journal entries and account reconciliations",
+        "cannot_tell": "The work is named, but the accounts and entries aren't. Those details would help distinguish your close work from a generic accounting list.",
+        "example": "Prepare journal entries for [types of entries] and account reconciliations for [accounts]",
+        "question": "What kinds of journal entries and accounts do you prepare and reconcile?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 3",
+        "line": "Assist with the annual audit",
+        "cannot_tell": "Assist could mean several things. A recruiter can't tell what you provide for the audit.",
+        "example": "Assist with the annual audit by [specific contribution]",
+        "question": "What do you prepare or do for the annual audit?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 5",
+        "line": "Process accounts payable when needed",
+        "cannot_tell": "It's not clear which parts of accounts payable you handle in your current role or how often.",
+        "example": "Process accounts payable, including [specific tasks], [frequency]",
+        "question": "Which accounts payable tasks do you handle in this role, and how often?"
+      },
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 1",
+        "line": "Entered vendor invoices",
+        "cannot_tell": "Invoice entry is clear, but the volume would help a recruiter understand the workload.",
+        "example": "Entered [number] vendor invoices [per period]",
+        "question": "About how many vendor invoices did you enter in a typical period?"
+      },
+      {
+        "kind": "keep",
+        "where": "Accounts Payable Clerk, line 2",
+        "line": "Matched purchase orders to receipts",
+        "cannot_tell": "This names the two things you checked against each other. It's a useful model for making the close and audit bullets more concrete.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Clerk"
+      ],
+      "level": "Staff-level accounting",
+      "note": "The page points toward staff accounting, with earlier accounts payable work at the same company. The close, reconciliations and audit bullets would be stronger with the specific accounts and tasks you handle.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 72
+  },
+  "severity": {
+    "promoted": [],
+    "replaced": [],
+    "led": null,
+    "critical_count": 1,
+    "more_critical": false,
+    "answer": {
+      "critical_misses": [
+        {
+          "source": "new",
+          "kind": "no_evidence_latest_role",
+          "fix": "In the Rivermark Staff Accountant role, add how many accounts you personally reconcile, if you can verify it.",
+          "why": "Accounting hiring managers often look for the volume of work handled or a measurable result. The role lists reconciliation duties but doesn't show their scale or an outcome.",
+          "excerpt": "- Prepare journal entries and account reconciliations",
+          "section": "EXPERIENCE",
+          "effort": "quick"
+        }
+      ],
+      "more_critical": false
+    },
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "skipped": [
+      {
+        "kind": "no_evidence_latest_role",
+        "reason": "already_flagged"
+      }
+    ],
+    "validation_attempts": 0,
+    "latency_ms": 4479,
+    "call_latency_ms": 4478,
+    "cost_usd": 0.00238325,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 72,
+    "lifted_by_employer": false,
+    "verdict": "A staff accountant with a clear progression, but a month-end close that needs more detail.",
+    "write_up": [
+      "You moved from accounts payable into a staff accountant role at the same company. A recruiter can see the accounting work and could move you forward, but the current bullets leave the month-end close looking like a task list.",
+      "The purchase order line is the model: matching orders to receipts tells someone exactly what you checked. Give the close and audit work that same detail, and add a little context about Rivermark's size."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience",
+        "line": "Rivermark Building Supply is not described beyond its name and location.",
+        "cannot_tell": "A recruiter can't tell how large the operation is. A short description would give the accounting work some context.",
+        "example": "",
+        "question": "What can you share about the size of Rivermark's operation?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 1",
+        "line": "Responsible for month-end close tasks",
+        "cannot_tell": "The close is central to this role, but this doesn't say which tasks are yours.",
+        "example": "Responsible for month-end close tasks, including [specific tasks]",
+        "question": "Which month-end close tasks are yours?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 2",
+        "line": "Prepare journal entries and account reconciliations",
+        "cannot_tell": "The work is named, but the accounts and entries aren't. Those details would help distinguish your close work from a generic accounting list.",
+        "example": "Prepare journal entries for [types of entries] and account reconciliations for [accounts]",
+        "question": "What kinds of journal entries and accounts do you prepare and reconcile?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 3",
+        "line": "Assist with the annual audit",
+        "cannot_tell": "Assist could mean several things. A recruiter can't tell what you provide for the audit.",
+        "example": "Assist with the annual audit by [specific contribution]",
+        "question": "What do you prepare or do for the annual audit?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 5",
+        "line": "Process accounts payable when needed",
+        "cannot_tell": "It's not clear which parts of accounts payable you handle in your current role or how often.",
+        "example": "Process accounts payable, including [specific tasks], [frequency]",
+        "question": "Which accounts payable tasks do you handle in this role, and how often?"
+      },
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 1",
+        "line": "Entered vendor invoices",
+        "cannot_tell": "Invoice entry is clear, but the volume would help a recruiter understand the workload.",
+        "example": "Entered [number] vendor invoices [per period]",
+        "question": "About how many vendor invoices did you enter in a typical period?"
+      },
+      {
+        "kind": "keep",
+        "where": "Accounts Payable Clerk, line 2",
+        "line": "Matched purchase orders to receipts",
+        "cannot_tell": "This names the two things you checked against each other. It's a useful model for making the close and audit bullets more concrete.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Clerk"
+      ],
+      "level": "Staff-level accounting",
+      "note": "The page points toward staff accounting, with earlier accounts payable work at the same company. The close, reconciliations and audit bullets would be stronger with the specific accounts and tasks you handle.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 72
+  },
+  "presentation": {
+    "score": 72,
+    "band": "Mostly clear",
+    "model_score": 72,
+    "lifted_by_employer": false,
+    "verdict": "A staff accountant with a clear progression, but a month-end close that needs more detail.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 73,
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience",
+        "line": "Rivermark Building Supply is not described beyond its name and location.",
+        "blanks": 0,
+        "question": "What can you share about the size of Rivermark's operation?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 1",
+        "line": "Responsible for month-end close tasks",
+        "blanks": 1,
+        "question": "Which month-end close tasks are yours?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 2",
+        "line": "Prepare journal entries and account reconciliations",
+        "blanks": 2,
+        "question": "What kinds of journal entries and accounts do you prepare and reconcile?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 3",
+        "line": "Assist with the annual audit",
+        "blanks": 1,
+        "question": "What do you prepare or do for the annual audit?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Accountant, line 5",
+        "line": "Process accounts payable when needed",
+        "blanks": 2,
+        "question": "Which accounts payable tasks do you handle in this role, and how often?"
+      },
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 1",
+        "line": "Entered vendor invoices",
+        "blanks": 2,
+        "question": "About how many vendor invoices did you enter in a typical period?"
+      },
+      {
+        "kind": "keep",
+        "where": "Accounts Payable Clerk, line 2",
+        "line": "Matched purchase orders to receipts",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 7,
+    "kinds": {
+      "structure": 1,
+      "line": 5,
+      "keep": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [
+      {
+        "kind": "no_evidence_latest_role",
+        "reason": "already_flagged"
+      }
+    ],
+    "severity_outcome": "none (none)",
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Clerk"
+      ],
+      "level": "Staff-level accounting",
+      "note": "The page points toward staff accounting, with earlier accounts payable work at the same company. The close, reconciliations and audit bullets would be stronger with the specific accounts and tasks you handle.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01031975,
+  "latency_ms": 23206
+}

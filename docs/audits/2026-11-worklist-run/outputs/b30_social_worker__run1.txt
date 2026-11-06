@@ -1,0 +1,37 @@
+# b30_social_worker, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_social_worker_1.txt (127 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 18e7e9ff; severity check off
+Outcome: report; cost $0.0079; 17.6s
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+A licensed social worker with a clear child welfare focus, but little detail about caseload size or results.
+
+## Write-up
+You come across as a licensed social worker doing family services and child welfare work. A recruiter can follow the duties, but the current role doesn't say how many families you carry or what your work changed. That may leave them hesitating.
+
+The intake screening line is the best model: it names who you worked with and the needs you screened for. Give the current role that same specificity, starting with the caseload and the services you coordinate.
+
+## Cards (4; {"structure":1,"line":2,"keep":1}); severity off; added []
+1. [structure] Family Services Caseworker
+   line: "The page doesn't describe Cuyahoga Family Partners."
+   can't tell: A recruiter may not know what kind of organization this is or where your role sits within its services. A short description would give the caseload some context.
+   question: What kind of organization is Cuyahoga Family Partners, and what services does it provide?
+2. [line] Family Services Caseworker, line 1
+   line: "Carry a caseload of families involved with child protective services"
+   can't tell: The caseload is central to this job, but its size is missing. A recruiter can't tell how many families you work with at a time.
+   example: Carry a caseload of [number or range] families involved with child protective services
+   question: How many families are typically on your caseload at one time?
+3. [line] Family Services Caseworker, line 3
+   line: "Coordinate services with schools, courts, and mental health providers"
+   can't tell: The partners are named, but the services aren't. One concrete example would show what you bring together for families.
+   example: Coordinate [services] with schools, courts, and mental health providers for [family needs]
+   question: Which services do you coordinate with these partners, and what family needs do they address?
+4. [keep] Intake Specialist, line 1
+   line: "Screened walk-in clients for housing, food, and utility assistance"
+   can't tell: Keep this as a model. It names the people you screened and the needs you worked on without making a recruiter guess.
+
+## Fit
+Roles: ["Family Services Caseworker","Intake Specialist"]
+Level: Experienced individual contributor
+Note: Your experience points toward family services and child welfare casework. The Ohio LMSW and current work with families involved with child protective services are directly relevant to that direction.

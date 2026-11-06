@@ -1,0 +1,44 @@
+# b20_customer_success_manager, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt (180 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 18e7e9ff; severity check off
+Outcome: report; cost $0.0073; 15.4s
+Case note: No posting.
+
+## Mostly clear (score 79; model wrote 79)
+## Verdict
+A customer success manager with a defined account book and room to explain renewal and escalation work.
+
+## Write-up
+You look like a customer success manager who grew out of payroll support. A recruiter can see the account book and the work around it, but will have questions about your part in renewal strategy and what happened when payroll runs failed.
+
+The 48-account line is the model: it names the customers and the size of your book without making the reader guess. The onboarding checklist is another useful detail. Add what it covers or changed, if you know, and the work becomes more memorable.
+
+## Cards (5; {"keep":1,"line":4}); severity off; added []
+1. [keep] Customer Success Manager, line 1
+   line: "Manage a book of 48 mid-market accounts across healthcare and manufacturing"
+   can't tell: This gives a recruiter the size of your book and the industries you serve in one sentence. Use it as a model for the rest.
+2. [line] Customer Success Manager, line 3
+   line: "Partnered with Sales on renewal strategy for at-risk accounts"
+   can't tell: Partnered leaves your part of the strategy open. A recruiter can't tell what you contributed or what happened to those renewals.
+   example: Partnered with Sales on renewal strategy for at-risk accounts by [your contribution]; [what happened, if known]
+   question: What did you contribute to the renewal strategy, and what happened to those accounts?
+3. [line] Customer Success Manager, line 4
+   line: "Built an onboarding checklist now used by the whole CS team"
+   can't tell: The team-wide use is worth keeping. What the checklist covers, or what changed after it was adopted, would show why it matters.
+   example: Built an onboarding checklist covering [steps] that is now used by the whole CS team; [what changed, if known]
+   question: What does the checklist cover, and did anything change after the team started using it?
+4. [line] Customer Success Manager, line 5
+   line: "Handle escalations with Support and Product when payroll runs fail"
+   can't tell: Payroll failures are a concrete problem. Your part in resolving an escalation isn't yet clear.
+   example: Handle escalations with Support and Product when payroll runs fail by [your actions]; [what happened, if known]
+   question: What do you do during a payroll failure escalation, and what happened in an example you can describe?
+5. [line] Account Coordinator, line 2
+   line: "Answered client questions by phone and email"
+   can't tell: This says how clients reached you, but not what they needed help with. One type of question would make the work more distinct.
+   example: Answered client questions about [topic] by phone and email
+   question: What kinds of questions did clients ask you?
+
+## Fit
+Roles: ["Customer Success Manager","Customer Support Specialist","Account Coordinator"]
+Level: Experienced individual contributor
+Note: Your experience points most directly to customer success work with mid-market software accounts. Payroll support and insurance account coordination give the customer-facing work a clear path.

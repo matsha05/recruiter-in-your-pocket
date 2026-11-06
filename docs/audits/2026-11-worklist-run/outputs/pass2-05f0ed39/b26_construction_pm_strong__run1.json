@@ -1,0 +1,180 @@
+{
+  "case_id": "b26_construction_pm_strong",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_construction_pm_strong_1.txt",
+  "resume_sha256": "548c7db64c756b5fab695853a27156e8aa67858a31cab50680d65e1ef14cc181",
+  "resume_words": 136,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T03:53:01.829Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4054,
+        "completion_tokens": 491,
+        "total_tokens": 4545,
+        "cached_prompt_tokens": 3406,
+        "cache_write_prompt_tokens": 645,
+        "reasoning_tokens": 172
+      },
+      "cost_usd": 0.00343455,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 7055
+    }
+  ],
+  "resume_prompt_sha256": "05f0ed391d02c15c487cdf3fcd427706167ba6aa9a1ad58365cfcff658e9caea",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A construction project manager with project values, trade counts, and delivery results attached.",
+    "write_up": [
+      "You make a strong case for commercial construction project management. A recruiter can see the projects you run, their value, and the number of trades involved.",
+      "The grocery store line is the model: it names the build, its value, and when you delivered it. The change-order figure adds another useful measure of your work."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Project Manager, line 2",
+        "line": "- Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024",
+        "cannot_tell": "This line gives a recruiter a project to remember, with its value and delivery timing attached.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Project Manager",
+        "Assistant Project Manager"
+      ],
+      "level": "Experienced project manager",
+      "note": "Your experience points to commercial construction project management, particularly tenant improvements and retail builds. The current role shows both concurrent project management and a completed grocery store build.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A construction project manager with project values, trade counts, and delivery results attached.",
+    "write_up": [
+      "You make a strong case for commercial construction project management. A recruiter can see the projects you run, their value, and the number of trades involved.",
+      "The grocery store line is the model: it names the build, its value, and when you delivered it. The change-order figure adds another useful measure of your work."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Project Manager, line 2",
+        "line": "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024",
+        "cannot_tell": "This line gives a recruiter a project to remember, with its value and delivery timing attached.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Project Manager",
+        "Assistant Project Manager"
+      ],
+      "level": "Experienced project manager",
+      "note": "Your experience points to commercial construction project management, particularly tenant improvements and retail builds. The current role shows both concurrent project management and a completed grocery store build.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 91
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A construction project manager with project values, trade counts, and delivery results attached.",
+    "write_up": [
+      "You make a strong case for commercial construction project management. A recruiter can see the projects you run, their value, and the number of trades involved.",
+      "The grocery store line is the model: it names the build, its value, and when you delivered it. The change-order figure adds another useful measure of your work."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Project Manager, line 2",
+        "line": "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024",
+        "cannot_tell": "This line gives a recruiter a project to remember, with its value and delivery timing attached.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Project Manager",
+        "Assistant Project Manager"
+      ],
+      "level": "Experienced project manager",
+      "note": "Your experience points to commercial construction project management, particularly tenant improvements and retail builds. The current role shows both concurrent project management and a completed grocery store build.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 91
+  },
+  "presentation": {
+    "score": 91,
+    "band": "Clear and specific",
+    "model_score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A construction project manager with project values, trade counts, and delivery results attached.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 54,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Project Manager, line 2",
+        "line": "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 1,
+    "kinds": {
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Project Manager",
+        "Assistant Project Manager"
+      ],
+      "level": "Experienced project manager",
+      "note": "Your experience points to commercial construction project management, particularly tenant improvements and retail builds. The current role shows both concurrent project management and a completed grocery store build.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00343455,
+  "latency_ms": 7056
+}

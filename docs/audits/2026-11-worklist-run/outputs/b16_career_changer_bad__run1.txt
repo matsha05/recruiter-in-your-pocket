@@ -1,0 +1,48 @@
+# b16_career_changer_bad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_career_changer_bad_1.txt (140 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 18e7e9ff; severity check off
+Outcome: report; cost $0.0075; 15.5s
+Case note: Career changer, weak; key says missing_dates, no_evidence_latest_role, no_target_role.
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+Store supervision, web development and medical billing experience compete for attention without a named target job.
+
+## Write-up
+A recruiter sees a current store supervisor who has also built websites and worked in medical billing. The first hesitation is which job you want next. The supervisor bullets name the work, but not how many people or registers you handle, or what you contribute to ordering and resets.
+
+The server line is a useful model: it names a 70-seat dining room and weekend doubles, so the setting and shift are easy to picture. Add dates to the freelance work and tailor the order of the details to the job you want.
+
+## Cards (6; {"structure":1,"line":3,"dates":1,"keep":1}); severity off; added []
+1. [structure] Structure
+   line: "The resume does not name a target job."
+   can't tell: Your experience points toward store supervision, web development and medical billing. A recruiter has to guess which work you want to do next.
+   question: Which job are you applying for with this version of your resume?
+2. [line] Shift Supervisor, line 1
+   line: "Supervise cashiers and stockers on evening shifts"
+   can't tell: The work is clear, but the size of the shift isn't. A recruiter can't tell how many people you supervise or what you're responsible for during the shift.
+   example: Supervise [number] cashiers and stockers on evening shifts, including [supervisory responsibilities]
+   question: How many cashiers and stockers do you supervise, and what do you handle for them on a shift?
+3. [line] Shift Supervisor, line 2
+   line: "Count and reconcile registers at close"
+   can't tell: A recruiter can see the closing task, but not how much register work it involves or what you do when the counts don't match.
+   example: Count and reconcile [number] registers at close and [what you do when counts don't match]
+   question: How many registers do you reconcile, and what do you do if a count doesn't match?
+4. [line] Shift Supervisor, line 3
+   line: "Help with weekly ordering and store resets"
+   can't tell: Help can cover a lot of ground. Your part in ordering and resets is still a blank.
+   example: Help with weekly ordering by [your part] and store resets by [your part]
+   question: What do you personally do for weekly ordering and store resets?
+5. [dates] Freelance Web Developer
+   line: "The Freelance Web Developer role has no dates."
+   can't tell: A recruiter can't tell when you built the sites or whether you still take on web work.
+   example: [Start date - end date or Present] Freelance Web Developer
+   question: When did your freelance web development work start and end, or is it ongoing?
+6. [keep] Server, line 1
+   line: "Served a 70-seat dining room on weekend doubles"
+   can't tell: This gives the setting and the shifts in one short line. It's a good model for adding concrete detail to your current role.
+
+## Fit
+Roles: ["Shift Supervisor","Freelance Web Developer","Medical Billing Assistant"]
+Level: Working supervisor and individual contributor
+Note: Your current work points toward store supervision, while the freelance sites and prior claims work offer two other directions. A version aimed at one of those paths can put the most relevant details first.

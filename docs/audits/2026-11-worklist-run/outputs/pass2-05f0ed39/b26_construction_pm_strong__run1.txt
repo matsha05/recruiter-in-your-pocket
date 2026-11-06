@@ -1,0 +1,23 @@
+# b26_construction_pm_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_construction_pm_strong_1.txt (136 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 05f0ed39; severity check off
+Outcome: report; cost $0.0034; 7.1s
+
+## Clear and specific (score 91; model wrote 91)
+## Verdict
+A construction project manager with project values, trade counts, and delivery results attached.
+
+## Write-up
+You make a strong case for commercial construction project management. A recruiter can see the projects you run, their value, and the number of trades involved.
+
+The grocery store line is the model: it names the build, its value, and when you delivered it. The change-order figure adds another useful measure of your work.
+
+## Cards (1; {"keep":1}); severity off; added []
+1. [keep] Project Manager, line 2
+   line: "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024"
+   can't tell: This line gives a recruiter a project to remember, with its value and delivery timing attached.
+
+## Fit
+Roles: ["Project Manager","Assistant Project Manager"]
+Level: Experienced project manager
+Note: Your experience points to commercial construction project management, particularly tenant improvements and retail builds. The current role shows both concurrent project management and a completed grocery store build.

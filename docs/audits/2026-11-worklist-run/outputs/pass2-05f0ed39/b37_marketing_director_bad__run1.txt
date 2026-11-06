@@ -1,0 +1,38 @@
+# b37_marketing_director_bad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_marketing_director_bad_1.txt (167 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 05f0ed39; severity check off
+Outcome: report; cost $0.0073; 18.0s
+Case note: Title above the work; key says no_recent_work, no_target_role, title_level_mismatch.
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+Marketing and data entry experience, with a director title the bullets don't explain and recent time unaccounted for.
+
+## Write-up
+You've done social posting and product copy for a candle company, after several years entering property records. The Director of Marketing title suggests leadership or strategy, but the bullets describe individual tasks. There's also nothing dated after January 2025, and the resume doesn't name the job you want next.
+
+The property records line is a good model: it names the work, the system and the daily volume. Keep the marketing title if it was your title, and add any director-level responsibilities you can verify.
+
+## Cards (4; {"line":1,"dates":1,"structure":1,"keep":1}); severity off; added []
+1. [line] Director of Marketing title
+   line: "Director of Marketing"
+   can't tell: The title suggests responsibility beyond the posting and product copy described below it. A recruiter can't tell whether you also set marketing plans or directed others.
+   example: Director of Marketing | [additional marketing responsibilities, if applicable]
+   question: What marketing decisions or leadership responsibilities did you have in this role, if any?
+2. [dates] Dates
+   line: "Nothing is dated after January 2025."
+   can't tell: A recruiter can't tell what you've been doing since the candle company role ended. An honest dated line can answer that question.
+   example: [dates] [work, study, job search or career break, if applicable]
+   question: What have you been doing since January 2025 that you'd be comfortable putting on the resume?
+3. [structure] Structure
+   line: "The resume doesn't name the job you want next."
+   can't tell: Marketing, property records and lab work point in different directions. A recruiter has to guess which experience you want them to focus on.
+   question: Which kind of role do you want this resume to target?
+4. [keep] Data Entry Clerk, line 1
+   line: "Entered 150 property records a day into the county title system"
+   can't tell: This line gives the work, its volume and where you did it. It's a useful model for the rest.
+
+## Fit
+Roles: ["Director of Marketing","Data Entry Clerk","Laboratory Assistant"]
+Level: Individual contributor; director title needs context
+Note: The recent work points toward marketing content and social media, while the earlier title role shows substantial data entry experience. The director title needs more detail before a recruiter can place the leadership responsibilities.

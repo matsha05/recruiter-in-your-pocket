@@ -1,0 +1,271 @@
+{
+  "case_id": "b20_customer_success_manager",
+  "batch": "breadth",
+  "run": 1,
+  "note": "No posting.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt",
+  "resume_sha256": "fe00b25220442aa026e6aa909f700301c898f430bd2cf244eafbe182c75f316d",
+  "resume_words": 180,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": true,
+  "started_at": "2026-11-06T03:35:55.352Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 3862,
+        "completion_tokens": 1081,
+        "total_tokens": 4943,
+        "cached_prompt_tokens": 3095,
+        "cache_write_prompt_tokens": 764,
+        "reasoning_tokens": 474
+      },
+      "cost_usd": 0.00651775,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 14678
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.0013345,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1126
+    }
+  ],
+  "resume_prompt_sha256": "b2c0d186992d2d925493008c0a67067de9f704dc44ec074808b3bc7176463d9a",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 81,
+    "lifted_by_employer": false,
+    "verdict": "A customer success resume with a defined account book and room to explain renewal work.",
+    "write_up": [
+      "You look ready for a closer read for customer success roles: payroll software, mid-market accounts, and work from onboarding through renewal. The hesitation is around what you contributed to renewal strategy and how you handled failed payroll runs.",
+      "The 48-account line is the best model on the page. It names the book, customer size, and industries without making anyone guess. The onboarding checklist is useful too: it names something you built and who uses it."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 1",
+        "line": "- Manage a book of 48 mid-market accounts across healthcare and manufacturing",
+        "cannot_tell": "Keep this. A recruiter can see the size of your book and the customers you work with in one line.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "- Partnered with Sales on renewal strategy for at-risk accounts",
+        "cannot_tell": "The partnership is clear, but your part in the strategy isn't. That's worth spelling out for a customer success role.",
+        "example": "Partnered with Sales on renewal strategy for at-risk accounts by [your contribution]; [result, if known]",
+        "question": "What did you contribute to the renewal strategy, and what happened with those accounts, if you know?"
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 5",
+        "line": "- Handle escalations with Support and Product when payroll runs fail",
+        "cannot_tell": "Failed payroll runs make the stakes clear. The line doesn't yet show what you do to help resolve them.",
+        "example": "Handle escalations with Support and Product when payroll runs fail, [your part in resolving the issue] and [what happened, if known]",
+        "question": "What do you do during a failed payroll escalation, and what happens as a result?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Customer Success Manager",
+        "Customer Support Specialist"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "Your recent work points most directly to customer success in B2B software, with earlier payroll support experience. The account book and onboarding work are easy to place; your specific contribution to renewals would make the fit easier to judge.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 81,
+    "lifted_by_employer": false,
+    "verdict": "A customer success resume with a defined account book and room to explain renewal work.",
+    "write_up": [
+      "You look ready for a closer read for customer success roles: payroll software, mid-market accounts, and work from onboarding through renewal. The hesitation is around what you contributed to renewal strategy and how you handled failed payroll runs.",
+      "The 48-account line is the best model on the page. It names the book, customer size, and industries without making anyone guess. The onboarding checklist is useful too: it names something you built and who uses it."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 1",
+        "line": "Manage a book of 48 mid-market accounts across healthcare and manufacturing",
+        "cannot_tell": "Keep this. A recruiter can see the size of your book and the customers you work with in one line.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "Partnered with Sales on renewal strategy for at-risk accounts",
+        "cannot_tell": "The partnership is clear, but your part in the strategy isn't. That's worth spelling out for a customer success role.",
+        "example": "Partnered with Sales on renewal strategy for at-risk accounts by [your contribution]; [result, if known]",
+        "question": "What did you contribute to the renewal strategy, and what happened with those accounts, if you know?"
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 5",
+        "line": "Handle escalations with Support and Product when payroll runs fail",
+        "cannot_tell": "Failed payroll runs make the stakes clear. The line doesn't yet show what you do to help resolve them.",
+        "example": "Handle escalations with Support and Product when payroll runs fail, [your part in resolving the issue] and [what happened, if known]",
+        "question": "What do you do during a failed payroll escalation, and what happens as a result?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Customer Success Manager",
+        "Customer Support Specialist"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "Your recent work points most directly to customer success in B2B software, with earlier payroll support experience. The account book and onboarding work are easy to place; your specific contribution to renewals would make the fit easier to judge.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 81
+  },
+  "severity": {
+    "promoted": [],
+    "replaced": [],
+    "led": null,
+    "critical_count": 1,
+    "more_critical": false,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "skipped": [],
+    "validation_attempts": 0,
+    "latency_ms": 1126,
+    "call_latency_ms": 1126,
+    "cost_usd": 0.0013345,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 81,
+    "lifted_by_employer": false,
+    "verdict": "A customer success resume with a defined account book and room to explain renewal work.",
+    "write_up": [
+      "You look ready for a closer read for customer success roles: payroll software, mid-market accounts, and work from onboarding through renewal. The hesitation is around what you contributed to renewal strategy and how you handled failed payroll runs.",
+      "The 48-account line is the best model on the page. It names the book, customer size, and industries without making anyone guess. The onboarding checklist is useful too: it names something you built and who uses it."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 1",
+        "line": "Manage a book of 48 mid-market accounts across healthcare and manufacturing",
+        "cannot_tell": "Keep this. A recruiter can see the size of your book and the customers you work with in one line.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "Partnered with Sales on renewal strategy for at-risk accounts",
+        "cannot_tell": "The partnership is clear, but your part in the strategy isn't. That's worth spelling out for a customer success role.",
+        "example": "Partnered with Sales on renewal strategy for at-risk accounts by [your contribution]; [result, if known]",
+        "question": "What did you contribute to the renewal strategy, and what happened with those accounts, if you know?"
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 5",
+        "line": "Handle escalations with Support and Product when payroll runs fail",
+        "cannot_tell": "Failed payroll runs make the stakes clear. The line doesn't yet show what you do to help resolve them.",
+        "example": "Handle escalations with Support and Product when payroll runs fail, [your part in resolving the issue] and [what happened, if known]",
+        "question": "What do you do during a failed payroll escalation, and what happens as a result?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Customer Success Manager",
+        "Customer Support Specialist"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "Your recent work points most directly to customer success in B2B software, with earlier payroll support experience. The account book and onboarding work are easy to place; your specific contribution to renewals would make the fit easier to judge.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 81
+  },
+  "presentation": {
+    "score": 81,
+    "band": "Mostly clear",
+    "model_score": 81,
+    "lifted_by_employer": false,
+    "verdict": "A customer success resume with a defined account book and room to explain renewal work.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 75,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 1",
+        "line": "Manage a book of 48 mid-market accounts across healthcare and manufacturing",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "Partnered with Sales on renewal strategy for at-risk accounts",
+        "blanks": 2,
+        "question": "What did you contribute to the renewal strategy, and what happened with those accounts, if you know?"
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 5",
+        "line": "Handle escalations with Support and Product when payroll runs fail",
+        "blanks": 2,
+        "question": "What do you do during a failed payroll escalation, and what happens as a result?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "keep": 1,
+      "line": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "none (none)",
+    "fit": {
+      "roles": [
+        "Customer Success Manager",
+        "Customer Support Specialist"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "Your recent work points most directly to customer success in B2B software, with earlier payroll support experience. The account book and onboarding work are easy to place; your specific contribution to renewals would make the fit easier to judge.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00785225,
+  "latency_ms": 15807
+}

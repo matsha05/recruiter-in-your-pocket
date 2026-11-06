@@ -1,0 +1,44 @@
+# b17_hr_generalist_career_break, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_hr_generalist_career_break_1.txt (145 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 18e7e9ff; severity check off
+Outcome: report; cost $0.0090; 19.4s
+Case note: Returner after caregiving, break dated and named.
+
+## Needs more context (score 67; model wrote 67)
+## Verdict
+A manufacturing HR generalist with solid plant experience and an unaccounted-for stretch after the caregiving break.
+
+## Write-up
+You have a clear HR generalist story at Northstar Plastics, including work across three shifts at a 400-employee plant. The caregiving break is dated, but a recruiter will wonder what you've been doing since June 2025.
+
+The orientation line is a good model: it names the work and says how often you ran it. Give the investigations and open enrollment lines that same detail about your part. The headline also suggests more than one manufacturing employer, while the page names one.
+
+## Cards (5; {"line":3,"dates":1,"keep":1}); severity off; added []
+1. [line] Headline
+   line: "HR generalist with experience in employee relations, benefits, and onboarding for manufacturing companies."
+   can't tell: The headline suggests multiple manufacturing employers, but the page names one. Use the singular unless another employer is missing.
+   example: HR generalist with experience in employee relations, benefits, and onboarding for Northstar Plastics.
+   question: Was Northstar Plastics your only manufacturing employer, or is another role missing?
+2. [dates] Dates
+   line: "Nothing is dated after June 2025."
+   can't tell: Your caregiving break explains the time through June 2025, but not what came after. A short, honest line can answer the question without sharing more than you want to.
+   example: [July 2025 - Present] [Work, caregiving, study, job search, or other activity, if accurate]
+   question: What, if anything, would you like to add about your time after June 2025?
+3. [line] HR Generalist, line 2
+   line: "Handled employee relations questions and investigations with the HR manager"
+   can't tell: A recruiter can see that you handled questions and worked on investigations, but not what kinds of issues came up or what your part in the investigations involved.
+   example: Handled employee relations questions about [topics] and investigations with the HR manager by [your part in the investigations]
+   question: What kinds of questions did you handle, and what was your part in the investigations?
+4. [line] HR Generalist, line 3
+   line: "Coordinated open enrollment for medical and dental benefits"
+   can't tell: Coordinated could cover several different jobs. Say what you handled and, if you know it, how many employees the enrollment covered.
+   example: Coordinated open enrollment for medical and dental benefits by [what you handled] for [number] employees
+   question: What did you handle during open enrollment, and how many employees did it cover?
+5. [keep] HR Generalist, line 4
+   line: "Ran new hire orientation every two weeks"
+   can't tell: Keep this as a model. It names what you ran and how often, so a recruiter doesn't have to guess.
+
+## Fit
+Roles: ["HR Generalist","HR Assistant"]
+Level: Experienced generalist
+Note: Your experience points toward HR generalist work in a plant setting, with earlier HR assistant experience at the same employer. The dated caregiving break is straightforward; the period after it is still a question.

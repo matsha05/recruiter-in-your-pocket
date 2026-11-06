@@ -1,0 +1,33 @@
+# b28_cybersecurity_analyst, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_cybersecurity_analyst_1.txt (154 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 18e7e9ff; severity check off
+Outcome: report; cost $0.0050; 9.6s
+
+## Clear and specific (score 89; model wrote 89)
+## Verdict
+A senior security analyst with detection engineering and incident response work tied to concrete results.
+
+## Write-up
+A recruiter can see what you build and handle: Splunk detections, phishing and credential-theft cases, and alert automation. The detection rules line is the model: it names the work, the tools, and the reduction in false-positive alerts.
+
+The monthly purple-team exercises and automation are worth keeping. A little more about what they test and enrich would make those lines as useful as the detection rules line.
+
+## Cards (3; {"keep":1,"line":2}); severity off; added []
+1. [keep] Senior Security Analyst, Detection and Response, line 1
+   line: "Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%"
+   can't tell: Keep this as the model. It names what you built, the tools you used, and what changed.
+2. [line] Senior Security Analyst, Detection and Response, line 3
+   line: "Run monthly purple-team exercises with the red team"
+   can't tell: The frequency and partners are clear. What the exercises test is still a blank.
+   example: Run monthly purple-team exercises with the red team to test [detections or scenarios tested]
+   question: What detections or scenarios do the exercises test?
+3. [line] Senior Security Analyst, Detection and Response, line 4
+   line: "Automated alert enrichment with Python and the Splunk SOAR platform"
+   can't tell: The tools are named, but a recruiter can't tell what information you add to the alerts or which alerts you enrich.
+   example: Automated alert enrichment with Python and the Splunk SOAR platform, adding [information] to [alert types]
+   question: What information does the automation add, and to which alerts?
+
+## Fit
+Roles: ["Senior Security Analyst, Detection and Response","Security Operations Analyst"]
+Level: Senior analyst
+Note: Your experience points toward detection engineering and incident response roles in financial services. The earlier managed security role adds client-facing SOC work.

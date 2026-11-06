@@ -1,0 +1,53 @@
+# h2_thin_resume, run 1
+Resume: ../2026-11-live-judgment/resumes/h2_thin_resume.txt (126 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 18e7e9ff; severity check off
+Outcome: report; cost $0.0126; 18.9s
+Case note: Student: one internship, coursework, a club.
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+An analytics intern with the right tools, but too little detail about the work behind them.
+
+## Write-up
+A recruiter sees a student with credit union analytics experience and a Tableau dashboard for a marketing team. The internship is recent, but its bullets don't say what the reports or dashboard covered, or what the findings were. That makes the first pass a hesitant one.
+
+The survey-data line is the best model: it names the data and the tools you used. Give the other internship bullets that same grounding, then add what you can verify about the work's size or results.
+
+## Cards (7; {"structure":1,"line":5,"keep":1}); severity off; added []
+1. [structure] Great Lakes Credit Union
+   line: "The resume does not say how large Great Lakes Credit Union is."
+   can't tell: A recruiter can see it's a credit union, but not the size of the organization you worked in. A short description could give the internship more context.
+   question: Can you verify the credit union's size or the number of members it serves?
+2. [line] Data Analytics Intern, line 1
+   line: "Assisted the analytics team with weekly reporting"
+   can't tell: 'Assisted' leaves your part of the reporting blank. The weekly cadence is useful, but the subject and your contribution are missing.
+   example: Assisted the analytics team with weekly reporting on [what the reports tracked] by [your contribution]
+   question: What did the weekly reports track, and what did you do to prepare them?
+3. [keep] Data Analytics Intern, line 2
+   line: "Cleaned member survey data in Excel and SQL"
+   can't tell: This names both the material you worked on and the tools you used. It's a good model for giving the other bullets something concrete.
+4. [line] Data Analytics Intern, line 3
+   line: "Built a dashboard in Tableau for the marketing team"
+   can't tell: The dashboard and its audience are clear, but what it tracked isn't. That subject would tell a recruiter more about the analysis.
+   example: Built a dashboard in Tableau for the marketing team to track [what the dashboard tracked]
+   question: What did the dashboard track, and what was it used for?
+5. [line] Data Analytics Intern, line 4
+   line: "Presented findings to the team at the end of the internship"
+   can't tell: A presentation is useful experience, but the findings could be about anything. Give the team something to remember.
+   example: Presented findings on [topic or finding] to the team at the end of the internship
+   question: What did you present, and which finding can you share?
+6. [line] Treasurer, line 1
+   line: "Manage the club budget and reimbursements"
+   can't tell: The responsibility is clear, but the budget's size would help a recruiter understand the treasurer job.
+   example: Manage the club budget of [amount] and reimbursements for [what reimbursements cover]
+   question: How large is the club budget, and what kinds of expenses do you reimburse?
+7. [line] Treasurer, line 2
+   line: "Help organize monthly speaker events"
+   can't tell: The monthly cadence is clear, but 'help' doesn't say which part you handle. Name your contribution to an event.
+   example: Help organize monthly speaker events by [your contribution]
+   question: What do you do to help organize the speaker events?
+
+## Fit
+Roles: ["Data Analytics Intern"]
+Level: Student and intern
+Note: Your internship points toward analytics work, with experience in Excel, SQL and Tableau. The club treasurer role adds budget responsibility, though the page doesn't say how large that budget is.

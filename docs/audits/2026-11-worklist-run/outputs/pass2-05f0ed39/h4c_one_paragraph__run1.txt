@@ -1,0 +1,24 @@
+# h4c_one_paragraph, run 1
+Resume: ../2026-11-live-judgment/resumes/h4c_one_paragraph.txt (147 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 05f0ed39; severity check off
+Outcome: report; cost $0.0047; 11.4s
+Case note: A resume pasted as one paragraph with no line breaks.
+
+## Mostly clear (score 83; model wrote 83)
+## Verdict
+An operations coordinator with measurable dispatch work and a few details left to fill in.
+
+## Write-up
+You come across as a logistics coordinator who handles dispatch and customer problems, with earlier warehouse and call-center experience. The improvement in on-time delivery stands out, though a recruiter can't tell what you changed to get there.
+
+The dispatch line is a good model: it names the work, 18 drivers and two depots. Give the on-time improvement that same grounding, and make the older inventory line more concrete.
+
+## Cards (1; {"keep":1}); severity off; added []
+1. [keep] Operations Coordinator, dispatch
+   line: "Carlos Mendes Richmond VA carlos.mendes@example.com 555-0171 Summary Operations coordinator with six years in logistics and customer service Experience Operations Coordinator River City Logistics Richmond VA April 2021 to Present Coordinate daily dispatch for 18 drivers across two depots track on-time delivery and report weekly to the regional manager resolve delivery exceptions with customers by phone and email trained 4 new coordinators on the dispatch software improved on-time rate from 91% to 96% in 2024 Customer Service Representative Dominion Parcel Richmond VA June 2019 to March 2021 answered 60 to 80 customer calls per day handled claims for damaged or lost packages kept records in Salesforce Warehouse Clerk Dominion Parcel Richmond VA February 2018 to May 2019 scanned and sorted inbound freight kept the inventory count accurate Education Associate of Applied Science Business Administration J. Sargeant Reynolds Community College 2018 Skills Dispatch software Salesforce Excel customer service scheduling"
+   can't tell: This line works because it names the job and its size. A recruiter can picture the dispatch work without guessing.
+
+## Fit
+Roles: ["Operations Coordinator","Customer Service Representative","Warehouse Clerk"]
+Level: Experienced coordinator
+Note: Your recent work points most directly to operations coordination in logistics. The earlier customer service and warehouse roles show how you got there.

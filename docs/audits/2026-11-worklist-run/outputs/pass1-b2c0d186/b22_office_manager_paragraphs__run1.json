@@ -1,0 +1,240 @@
+{
+  "case_id": "b22_office_manager_paragraphs",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Paragraph format, no bullets.",
+  "resume_file": "../2026-11-live-judgment/resumes/b_office_manager_paragraphs.txt",
+  "resume_sha256": "ce33ce5aa6c528ef520a2ccc32684ac815b6084cea9e23d0a3885d92201fff58",
+  "resume_words": 219,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": true,
+  "started_at": "2026-11-06T03:36:11.161Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 3854,
+        "completion_tokens": 833,
+        "total_tokens": 4687,
+        "cached_prompt_tokens": 3095,
+        "cache_write_prompt_tokens": 756,
+        "reasoning_tokens": 383
+      },
+      "cost_usd": 0.00526775,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 12070
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.001392,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1399
+    }
+  ],
+  "resume_prompt_sha256": "b2c0d186992d2d925493008c0a67067de9f704dc44ec074808b3bc7176463d9a",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 84,
+    "lifted_by_employer": false,
+    "verdict": "An office manager with specific legal and dental office experience, worth moving forward for similar roles.",
+    "write_up": [
+      "You come across as an office manager who can handle a small professional office's calendar, billing, vendors and staff. The work is specific enough to move forward for similar roles. The hesitation is visual: each job is a dense paragraph, so the bookkeeping and software work take longer to find.",
+      "The practice management software sentence is the model. It says what you onboarded, when, and what it replaced. Break the job paragraphs into bullets so the rest of that work is just as easy to find."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience",
+        "line": "Each role is written as a paragraph.",
+        "cannot_tell": "The responsibilities are there, but the billing, supervision and software work compete for attention in one block. A recruiter scanning quickly could miss them.",
+        "example": "",
+        "question": "Which responsibilities and projects do you want to put first when you break each role into bullets?"
+      },
+      {
+        "kind": "keep",
+        "where": "Office Manager, software",
+        "line": "I onboarded the firm's new practice management software in 2022, which replaced paper files for all new matters.",
+        "cannot_tell": "Keep this as a model: it names your work and the change from paper files.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Office Manager",
+        "Office Coordinator"
+      ],
+      "level": "Experienced office manager",
+      "note": "Your experience points toward office management and coordination in small professional practices. The legal office role combines scheduling, billing, bookkeeping, vendor contracts and staff supervision.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 84,
+    "lifted_by_employer": false,
+    "verdict": "An office manager with specific legal and dental office experience, worth moving forward for similar roles.",
+    "write_up": [
+      "You come across as an office manager who can handle a small professional office's calendar, billing, vendors and staff. The work is specific enough to move forward for similar roles. The hesitation is visual: each job is a dense paragraph, so the bookkeeping and software work take longer to find.",
+      "The practice management software sentence is the model. It says what you onboarded, when, and what it replaced. Break the job paragraphs into bullets so the rest of that work is just as easy to find."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience",
+        "line": "Each role is written as a paragraph.",
+        "cannot_tell": "The responsibilities are there, but the billing, supervision and software work compete for attention in one block. A recruiter scanning quickly could miss them.",
+        "example": "",
+        "question": "Which responsibilities and projects do you want to put first when you break each role into bullets?"
+      },
+      {
+        "kind": "keep",
+        "where": "Office Manager, software",
+        "line": "Office Manager, Harrod and Blake Law Office, Louisville, KY, May 2018 to present. I run the front office for a six-attorney firm. I handle scheduling for the attorneys, manage the firm's calendar of court dates and filing deadlines, order supplies, and handle vendor contracts for the copier, phones, and cleaning. I do the bookkeeping in QuickBooks, including client billing of roughly 90 invoices a month and the monthly trust account reconciliation. I hired and supervise two receptionists and I onboarded the firm's new practice management software in 2022, which replaced paper files for all new matters.",
+        "cannot_tell": "Keep this as a model: it names your work and the change from paper files.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Office Manager",
+        "Office Coordinator"
+      ],
+      "level": "Experienced office manager",
+      "note": "Your experience points toward office management and coordination in small professional practices. The legal office role combines scheduling, billing, bookkeeping, vendor contracts and staff supervision.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 84
+  },
+  "severity": {
+    "promoted": [],
+    "replaced": [],
+    "led": null,
+    "critical_count": 1,
+    "more_critical": false,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "skipped": [],
+    "validation_attempts": 0,
+    "latency_ms": 1399,
+    "call_latency_ms": 1399,
+    "cost_usd": 0.001392,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 84,
+    "lifted_by_employer": false,
+    "verdict": "An office manager with specific legal and dental office experience, worth moving forward for similar roles.",
+    "write_up": [
+      "You come across as an office manager who can handle a small professional office's calendar, billing, vendors and staff. The work is specific enough to move forward for similar roles. The hesitation is visual: each job is a dense paragraph, so the bookkeeping and software work take longer to find.",
+      "The practice management software sentence is the model. It says what you onboarded, when, and what it replaced. Break the job paragraphs into bullets so the rest of that work is just as easy to find."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience",
+        "line": "Each role is written as a paragraph.",
+        "cannot_tell": "The responsibilities are there, but the billing, supervision and software work compete for attention in one block. A recruiter scanning quickly could miss them.",
+        "example": "",
+        "question": "Which responsibilities and projects do you want to put first when you break each role into bullets?"
+      },
+      {
+        "kind": "keep",
+        "where": "Office Manager, software",
+        "line": "Office Manager, Harrod and Blake Law Office, Louisville, KY, May 2018 to present. I run the front office for a six-attorney firm. I handle scheduling for the attorneys, manage the firm's calendar of court dates and filing deadlines, order supplies, and handle vendor contracts for the copier, phones, and cleaning. I do the bookkeeping in QuickBooks, including client billing of roughly 90 invoices a month and the monthly trust account reconciliation. I hired and supervise two receptionists and I onboarded the firm's new practice management software in 2022, which replaced paper files for all new matters.",
+        "cannot_tell": "Keep this as a model: it names your work and the change from paper files.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Office Manager",
+        "Office Coordinator"
+      ],
+      "level": "Experienced office manager",
+      "note": "Your experience points toward office management and coordination in small professional practices. The legal office role combines scheduling, billing, bookkeeping, vendor contracts and staff supervision.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 84
+  },
+  "presentation": {
+    "score": 84,
+    "band": "Mostly clear",
+    "model_score": 84,
+    "lifted_by_employer": false,
+    "verdict": "An office manager with specific legal and dental office experience, worth moving forward for similar roles.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 86,
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience",
+        "line": "Each role is written as a paragraph.",
+        "blanks": 0,
+        "question": "Which responsibilities and projects do you want to put first when you break each role into bullets?"
+      },
+      {
+        "kind": "keep",
+        "where": "Office Manager, software",
+        "line": "Office Manager, Harrod and Blake Law Office, Louisville, KY, May 2018 to present. I run the front office for a six-attorney firm. I handle scheduling for the attorneys, manage the firm's calendar of court dates and filing deadlines, order supplies, and handle vendor contracts for the copier, phones, and cleaning. I do the bookkeeping in QuickBooks, including client billing of roughly 90 invoices a month and the monthly trust account reconciliation. I hired and supervise two receptionists and I onboarded the firm's new practice management software in 2022, which replaced paper files for all new matters.",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "structure": 1,
+      "keep": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "none (none)",
+    "fit": {
+      "roles": [
+        "Office Manager",
+        "Office Coordinator"
+      ],
+      "level": "Experienced office manager",
+      "note": "Your experience points toward office management and coordination in small professional practices. The legal office role combines scheduling, billing, bookkeeping, vendor contracts and staff supervision.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00665975,
+  "latency_ms": 13472
+}

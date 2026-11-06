@@ -2,7 +2,8 @@ import "server-only";
 
 import { logInfo, logWarn } from "../observability/logger";
 import { recordLaunchSignal } from "../observability/launchSignals";
-import { isSeverityCheckEnabled } from "./severity-check";
+import { isSeverityCheckEnabled, isSeverityCheckEnabledForWorklist } from "./severity-check";
+import { isWorklistReport } from "../llm/worklist-schema";
 import { applySeverityCheck, type SeverityOutcome } from "./severity-check-service";
 
 /**
@@ -21,6 +22,7 @@ export async function severityCheckReport(input: {
   onStage?: (stage: "severity") => void;
 }): Promise<{ payload: any; outcome: SeverityOutcome | null }> {
   if (input.mode !== "resume" || !isSeverityCheckEnabled()) return { payload: input.payload, outcome: null };
+  if (isWorklistReport(input.payload) && !isSeverityCheckEnabledForWorklist()) return { payload: input.payload, outcome: null };
   input.onStage?.("severity");
   const outcome = await applySeverityCheck({
     payload: input.payload,
@@ -31,7 +33,7 @@ export async function severityCheckReport(input: {
   recordLaunchSignal("riyp.severity.outcome", {
     outcome: outcome.outcome,
     reason: outcome.reason,
-    critical: String(outcome.critical_count) as "1" | "2" | "3",
+    critical: String(Math.min(3, Math.max(1, outcome.critical_count))) as "1" | "2" | "3",
     more: outcome.more_critical ? "yes" : "no",
     endpoint: input.endpoint,
   });

@@ -1,0 +1,33 @@
+# h5_mismatched_posting, run 1
+Resume: ../2026-11-live-judgment/resumes/h5_data_analyst.txt (166 words), posting: ../2026-11-live-judgment/resumes/h5_nursing_posting.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt b2c0d186; severity check on
+Outcome: report; cost $0.0220; repair ran; 27.1s
+Case note: Data analyst against a registered nurse posting.
+
+Validator refused the first draft: The model response failed the worklist contract at cards[0].cannot_tell: uses the retired phrase "the read".
+
+## Clear and specific (score 87; model wrote 87)
+## Verdict
+A strong data analyst resume, but it doesn't show the nursing qualifications this role requires.
+
+## Write-up
+You come across as a data analyst who builds dashboards, automates reporting and helps merchandising teams make decisions. For this nursing role, though, the page doesn't show an RN license or patient care experience. A recruiter would likely pass on that mismatch.
+
+The markdown analysis is a model for the page: it names the work, the 2,100 SKUs and the schedule the team adopted. Your sales reporting line is useful too because it shows what the SQL model replaced.
+
+## Cards (2; {"keep":1,"line":1}); severity none (none); added []
+1. [keep] Data Analyst, line 3
+   line: "Analyzed markdown timing for 2,100 SKUs; the merchandising team adopted the recommended schedule in two categories"
+   can't tell: This names the analysis, its size and what the merchandising team did with your recommendation. It's a useful model for your other bullets.
+2. [line] Data Analyst, line 4
+   line: "Pull ad hoc analyses for the VP of Sales, about 10 requests a month"
+   can't tell: The frequency and audience are clear, but the analyses themselves are a mystery. A topic or decision would make the work easier to picture.
+   example: Pull ad hoc analyses for the VP of Sales, about 10 requests a month: [topics and decisions supported]
+   question: What topics do these requests cover, and what decisions do they help the VP make?
+
+## Fit
+Roles: ["Data Analyst","Registered Nurse, Medical-Surgical Unit (Nights)"]
+Level: Experienced data analyst
+Note: This page doesn't show the RN license, clinical training or patient care experience needed for the nursing role. It does show reporting, data documentation and work with several business teams, but those aren't substitutes for the posting's clinical requirements. If you have nursing credentials or experience, add them; otherwise, the page points toward data analyst roles.
+Posting: The role calls for licensed medical-surgical nursing on a night shift. The resume shows analytics work rather than nursing practice.
+Missing: ["Current unrestricted North Carolina RN license or compact state license","BLS certification required; ACLS within six months of hire","Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered","Experience with Epic or a comparable EHR","Ability to manage a patient assignment of 5 to 6 patients","Strong communication with patients, families, and the interdisciplinary team"]

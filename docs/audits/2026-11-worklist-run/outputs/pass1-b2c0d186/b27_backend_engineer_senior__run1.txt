@@ -1,0 +1,23 @@
+# b27_backend_engineer_senior, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_backend_engineer_senior_1.txt (190 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt b2c0d186; severity check on
+Outcome: report; cost $0.0049; 8.9s
+
+## Clear and specific (score 93; model wrote 93)
+## Verdict
+A senior payments engineer whose resume connects technical work to measurable results.
+
+## Write-up
+You look ready for a senior backend role in payments. The card authorization migration gives a recruiter a concrete system and its performance, while the audit and mentoring lines show how you work with other engineers.
+
+The ledger bullet is the model for the rest: it names what you built and how reconciliation breaks changed. The earlier invoicing work is just as easy to follow. This is a page a recruiter can move forward without much guessing.
+
+## Cards (1; {"keep":1}); severity none (none); added []
+1. [keep] Senior Software Engineer, Payments Platform, line 2
+   line: "Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10"
+   can't tell: Keep this. It names the service you built and shows what changed, with the qualifiers intact.
+
+## Fit
+Roles: ["Senior Software Engineer, Payments Platform","Software Engineer"]
+Level: Senior individual contributor
+Note: Your experience points toward senior backend engineering, particularly payments, ledgers and billing. The page also shows technical leadership through the migration, audit and mentoring work.

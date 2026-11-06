@@ -1,0 +1,306 @@
+{
+  "case_id": "b34_bank_branch_manager_gap",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Gap with nothing after it.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_bank_branch_manager_gap_1.txt",
+  "resume_sha256": "1420c9932b5d35b979aa4d895b875e2ef456676f1017e3f83c5ee350ae9ca189",
+  "resume_words": 129,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T04:16:03.255Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4113,
+        "completion_tokens": 1377,
+        "total_tokens": 5490,
+        "cached_prompt_tokens": 3502,
+        "cache_write_prompt_tokens": 608,
+        "reasoning_tokens": 558
+      },
+      "cost_usd": 0.0078231,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 17415
+    }
+  ],
+  "resume_prompt_sha256": "18e7e9ff21a0c2fda0fe219456e2d1f965de7d79bcc85173eaebd632dd83f42e",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 69,
+    "lifted_by_employer": false,
+    "verdict": "A branch manager with deposit growth and a team of 11, but no work dated after December 2024.",
+    "write_up": [
+      "A recruiter sees a progression from Personal Banker to Branch Manager, with deposit growth and a team of 11. The first hesitation is what you've been doing since the last role ended in December 2024. Without that context, a recruiter may move on.",
+      "The deposit line is the model: it names the work, the starting and ending figures, and the period. Bring that same detail to the audits and customer complaints, and add a dated line for the time since the branch role if you're comfortable doing so."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after December 2024.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since the branch role ended. A brief, honest dated line can answer that without requiring a long explanation.",
+        "example": "[dates]  [work, study, caregiving, career break, or other activity]",
+        "question": "What would you be comfortable adding about your time since December 2024?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 1",
+        "line": "- Managed a branch of 11 employees",
+        "cannot_tell": "The team size is useful, but the line doesn't say what those employees handled. Their roles would show what you managed day to day.",
+        "example": "Managed a branch of 11 employees who [describe their roles and work]",
+        "question": "What roles did the 11 employees hold, and what work did they handle?"
+      },
+      {
+        "kind": "keep",
+        "where": "Branch Manager, line 2",
+        "line": "- Grew branch deposits from $48M to $63M over five years",
+        "cannot_tell": "Keep this as a model. It gives the deposit figures and the time period without making a recruiter guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 4",
+        "line": "- Oversaw audits and compliance reviews for the branch",
+        "cannot_tell": "Oversight matters, but a recruiter can't tell what the reviews covered or what you handled. One specific review would give the work some shape.",
+        "example": "Oversaw audits and compliance reviews for the branch, including [type of review and what you handled]",
+        "question": "What did one audit or compliance review cover, and what did you handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 5",
+        "line": "- Handled escalated customer complaints",
+        "cannot_tell": "This says the complaints reached you, but not what kind of issue you handled or how you addressed it.",
+        "example": "Handled escalated customer complaints about [issue] by [what you did]",
+        "question": "What kind of escalated complaint did you handle, and what did you do about it?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Branch Manager",
+        "Assistant Branch Manager"
+      ],
+      "level": "Branch management",
+      "note": "Your experience points most directly to branch management in retail banking. The progression and deposit figures make that direction easy to see, though the time after December 2024 needs context.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 69,
+    "lifted_by_employer": false,
+    "verdict": "A branch manager with deposit growth and a team of 11, but no work dated after December 2024.",
+    "write_up": [
+      "A recruiter sees a progression from Personal Banker to Branch Manager, with deposit growth and a team of 11. The first hesitation is what you've been doing since the last role ended in December 2024. Without that context, a recruiter may move on.",
+      "The deposit line is the model: it names the work, the starting and ending figures, and the period. Bring that same detail to the audits and customer complaints, and add a dated line for the time since the branch role if you're comfortable doing so."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after December 2024.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since the branch role ended. A brief, honest dated line can answer that without requiring a long explanation.",
+        "example": "[dates] [work, study, caregiving, career break, or other activity]",
+        "question": "What would you be comfortable adding about your time since December 2024?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 1",
+        "line": "Managed a branch of 11 employees",
+        "cannot_tell": "The team size is useful, but the line doesn't say what those employees handled. Their roles would show what you managed day to day.",
+        "example": "Managed a branch of 11 employees who [describe their roles and work]",
+        "question": "What roles did the 11 employees hold, and what work did they handle?"
+      },
+      {
+        "kind": "keep",
+        "where": "Branch Manager, line 2",
+        "line": "Grew branch deposits from $48M to $63M over five years",
+        "cannot_tell": "Keep this as a model. It gives the deposit figures and the time period without making a recruiter guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 4",
+        "line": "Oversaw audits and compliance reviews for the branch",
+        "cannot_tell": "Oversight matters, but a recruiter can't tell what the reviews covered or what you handled. One specific review would give the work some shape.",
+        "example": "Oversaw audits and compliance reviews for the branch, including [type of review and what you handled]",
+        "question": "What did one audit or compliance review cover, and what did you handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 5",
+        "line": "Handled escalated customer complaints",
+        "cannot_tell": "This says the complaints reached you, but not what kind of issue you handled or how you addressed it.",
+        "example": "Handled escalated customer complaints about [issue] by [what you did]",
+        "question": "What kind of escalated complaint did you handle, and what did you do about it?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Branch Manager",
+        "Assistant Branch Manager"
+      ],
+      "level": "Branch management",
+      "note": "Your experience points most directly to branch management in retail banking. The progression and deposit figures make that direction easy to see, though the time after December 2024 needs context.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 69
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 69,
+    "lifted_by_employer": false,
+    "verdict": "A branch manager with deposit growth and a team of 11, but no work dated after December 2024.",
+    "write_up": [
+      "A recruiter sees a progression from Personal Banker to Branch Manager, with deposit growth and a team of 11. The first hesitation is what you've been doing since the last role ended in December 2024. Without that context, a recruiter may move on.",
+      "The deposit line is the model: it names the work, the starting and ending figures, and the period. Bring that same detail to the audits and customer complaints, and add a dated line for the time since the branch role if you're comfortable doing so."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after December 2024.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since the branch role ended. A brief, honest dated line can answer that without requiring a long explanation.",
+        "example": "[dates] [work, study, caregiving, career break, or other activity]",
+        "question": "What would you be comfortable adding about your time since December 2024?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 1",
+        "line": "Managed a branch of 11 employees",
+        "cannot_tell": "The team size is useful, but the line doesn't say what those employees handled. Their roles would show what you managed day to day.",
+        "example": "Managed a branch of 11 employees who [describe their roles and work]",
+        "question": "What roles did the 11 employees hold, and what work did they handle?"
+      },
+      {
+        "kind": "keep",
+        "where": "Branch Manager, line 2",
+        "line": "Grew branch deposits from $48M to $63M over five years",
+        "cannot_tell": "Keep this as a model. It gives the deposit figures and the time period without making a recruiter guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 4",
+        "line": "Oversaw audits and compliance reviews for the branch",
+        "cannot_tell": "Oversight matters, but a recruiter can't tell what the reviews covered or what you handled. One specific review would give the work some shape.",
+        "example": "Oversaw audits and compliance reviews for the branch, including [type of review and what you handled]",
+        "question": "What did one audit or compliance review cover, and what did you handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 5",
+        "line": "Handled escalated customer complaints",
+        "cannot_tell": "This says the complaints reached you, but not what kind of issue you handled or how you addressed it.",
+        "example": "Handled escalated customer complaints about [issue] by [what you did]",
+        "question": "What kind of escalated complaint did you handle, and what did you do about it?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Branch Manager",
+        "Assistant Branch Manager"
+      ],
+      "level": "Branch management",
+      "note": "Your experience points most directly to branch management in retail banking. The progression and deposit figures make that direction easy to see, though the time after December 2024 needs context.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 69
+  },
+  "presentation": {
+    "score": 69,
+    "band": "Needs more context",
+    "model_score": 69,
+    "lifted_by_employer": false,
+    "verdict": "A branch manager with deposit growth and a team of 11, but no work dated after December 2024.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 88,
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after December 2024.",
+        "blanks": 2,
+        "question": "What would you be comfortable adding about your time since December 2024?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 1",
+        "line": "Managed a branch of 11 employees",
+        "blanks": 1,
+        "question": "What roles did the 11 employees hold, and what work did they handle?"
+      },
+      {
+        "kind": "keep",
+        "where": "Branch Manager, line 2",
+        "line": "Grew branch deposits from $48M to $63M over five years",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 4",
+        "line": "Oversaw audits and compliance reviews for the branch",
+        "blanks": 1,
+        "question": "What did one audit or compliance review cover, and what did you handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 5",
+        "line": "Handled escalated customer complaints",
+        "blanks": 2,
+        "question": "What kind of escalated complaint did you handle, and what did you do about it?"
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "dates": 1,
+      "line": 3,
+      "keep": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Branch Manager",
+        "Assistant Branch Manager"
+      ],
+      "level": "Branch management",
+      "note": "Your experience points most directly to branch management in retail banking. The progression and deposit figures make that direction easy to see, though the time after December 2024 needs context.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0078231,
+  "latency_ms": 17416
+}

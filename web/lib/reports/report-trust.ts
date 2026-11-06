@@ -1,5 +1,5 @@
 import crypto from "crypto";
-import { ResumeFeedbackResponseSchema, type ResumeFeedbackResponse } from "../validation/schemas";
+import { AnyReportSchema, isWorklistReport, type AnyReport } from "./report-shape";
 
 export const GROUNDED_REPORT_EVIDENCE_VERSION = "v3:source-grounded-signed";
 
@@ -30,8 +30,22 @@ function stableJson(value: unknown): string {
   return JSON.stringify(value) ?? "null";
 }
 
-function evidenceItems(payload: ResumeFeedbackResponse): EvidenceItem[] {
-  return (Array.isArray(payload.top_fixes) ? payload.top_fixes : [])
+/** The worklist report's evidence: each card's quoted line, with the question as the fix. */
+function worklistEvidenceItems(payload: AnyReport): EvidenceItem[] {
+  if (!isWorklistReport(payload)) return [];
+  return payload.cards.map((card) => ({
+    fix: card.question || card.cannot_tell,
+    confidence: "high",
+    impact_level: card.kind === "keep" ? "low" : "high",
+    effort: "moderate",
+    excerpt: card.line,
+    section: card.where,
+  }));
+}
+
+function evidenceItems(payload: AnyReport): EvidenceItem[] {
+  if (isWorklistReport(payload)) return worklistEvidenceItems(payload);
+  return (Array.isArray((payload as any).top_fixes) ? (payload as any).top_fixes : [])
     .map((fix: any) => ({
       fix: fix?.fix || "",
       confidence: fix?.confidence || "medium",
@@ -45,7 +59,7 @@ function evidenceItems(payload: ResumeFeedbackResponse): EvidenceItem[] {
     .filter((item: EvidenceItem) => item.fix || item.excerpt);
 }
 
-function reportSignature(report: ResumeFeedbackResponse, userId: string, items: EvidenceItem[]) {
+function reportSignature(report: AnyReport, userId: string, items: EvidenceItem[]) {
   return crypto.createHmac("sha256", signingSecret())
     .update(`stored-report-v1\n${userId}\n${stableJson(report)}\n${stableJson(items)}`)
     .digest("hex");
@@ -58,7 +72,7 @@ function signaturesMatch(supplied: unknown, expected: string) {
 
 export function buildGroundedReportTrustMetadata(payload: unknown, userId: string) {
   if (!userId) throw new Error("A user ID is required for stored report signing");
-  const report = ResumeFeedbackResponseSchema.parse(payload);
+  const report = AnyReportSchema.parse(payload);
   const evidence = evidenceItems(report);
   const confidenceValues = evidence.map((item: any) => item.confidence);
   const confidence_band = confidenceValues.includes("low")
@@ -82,9 +96,9 @@ export function parseTrustedStoredReport(
   evidenceVersion: unknown,
   evidenceJson: unknown,
   userId: string,
-): ResumeFeedbackResponse | null {
+): AnyReport | null {
   if (evidenceVersion !== GROUNDED_REPORT_EVIDENCE_VERSION) return null;
-  const parsed = ResumeFeedbackResponseSchema.safeParse(reportJson);
+  const parsed = AnyReportSchema.safeParse(reportJson);
   if (!parsed.success || !userId || !evidenceJson || typeof evidenceJson !== "object" || Array.isArray(evidenceJson)) {
     return null;
   }

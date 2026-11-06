@@ -1,0 +1,171 @@
+{
+  "case_id": "h3_strong_resume",
+  "batch": "holes",
+  "run": 1,
+  "note": "Senior product manager whose resume is already good.",
+  "resume_file": "../2026-11-live-judgment/resumes/h3_strong_resume.txt",
+  "resume_sha256": "711aca17e0f7318c1d0d4fa3e4669aff314c355a47734d7106bb2eb6fc012418",
+  "resume_words": 311,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": true,
+  "started_at": "2026-11-06T03:33:03.457Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4273,
+        "completion_tokens": 245,
+        "total_tokens": 4518,
+        "cached_prompt_tokens": 3095,
+        "cache_write_prompt_tokens": 1175,
+        "reasoning_tokens": 0
+      },
+      "cost_usd": 0.0028515,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 4158
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.003733,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1012
+    }
+  ],
+  "resume_prompt_sha256": "b2c0d186992d2d925493008c0a67067de9f704dc44ec074808b3bc7176463d9a",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 96,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments product manager whose launches, customer adoption, and team leadership are easy to follow.",
+    "write_up": [
+      "You show a clear progression from merchant onboarding to owning a payments platform roadmap across four product teams. The Northwind Pay launch, processor integrations and billing work make the case for senior product roles without relying on the headline.",
+      "The payment failure bullet is the model: it names the change you led, the drop in failures and the estimated revenue recovered for customers. The page is strong as it stands."
+    ],
+    "cards": [],
+    "fit": {
+      "roles": [
+        "Senior Product Manager, Payments Platform",
+        "Product Manager, Billing"
+      ],
+      "level": "Senior product manager",
+      "note": "Your experience points toward senior product roles in payments and billing. You also show product manager hiring and management alongside platform roadmap ownership.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 96,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments product manager whose launches, customer adoption, and team leadership are easy to follow.",
+    "write_up": [
+      "You show a clear progression from merchant onboarding to owning a payments platform roadmap across four product teams. The Northwind Pay launch, processor integrations and billing work make the case for senior product roles without relying on the headline.",
+      "The payment failure bullet is the model: it names the change you led, the drop in failures and the estimated revenue recovered for customers. The page is strong as it stands."
+    ],
+    "cards": [],
+    "fit": {
+      "roles": [
+        "Senior Product Manager, Payments Platform",
+        "Product Manager, Billing"
+      ],
+      "level": "Senior product manager",
+      "note": "Your experience points toward senior product roles in payments and billing. You also show product manager hiring and management alongside platform roadmap ownership.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 96
+  },
+  "severity": {
+    "promoted": [],
+    "replaced": [],
+    "led": null,
+    "critical_count": 1,
+    "more_critical": false,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "skipped": [],
+    "validation_attempts": 0,
+    "latency_ms": 1013,
+    "call_latency_ms": 1012,
+    "cost_usd": 0.003733,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 96,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments product manager whose launches, customer adoption, and team leadership are easy to follow.",
+    "write_up": [
+      "You show a clear progression from merchant onboarding to owning a payments platform roadmap across four product teams. The Northwind Pay launch, processor integrations and billing work make the case for senior product roles without relying on the headline.",
+      "The payment failure bullet is the model: it names the change you led, the drop in failures and the estimated revenue recovered for customers. The page is strong as it stands."
+    ],
+    "cards": [],
+    "fit": {
+      "roles": [
+        "Senior Product Manager, Payments Platform",
+        "Product Manager, Billing"
+      ],
+      "level": "Senior product manager",
+      "note": "Your experience points toward senior product roles in payments and billing. You also show product manager hiring and management alongside platform roadmap ownership.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 96
+  },
+  "presentation": {
+    "score": 96,
+    "band": "Clear and specific",
+    "model_score": 96,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments product manager whose launches, customer adoption, and team leadership are easy to follow.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 70,
+    "cards": [],
+    "card_count": 0,
+    "kinds": {},
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "none (none)",
+    "fit": {
+      "roles": [
+        "Senior Product Manager, Payments Platform",
+        "Product Manager, Billing"
+      ],
+      "level": "Senior product manager",
+      "note": "Your experience points toward senior product roles in payments and billing. You also show product manager hiring and management alongside platform roadmap ownership.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0065845,
+  "latency_ms": 5190
+}

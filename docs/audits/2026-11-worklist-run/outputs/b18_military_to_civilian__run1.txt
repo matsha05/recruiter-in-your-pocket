@@ -1,0 +1,28 @@
+# b18_military_to_civilian, run 1
+Resume: ../2026-11-live-judgment/resumes/b_military_to_civilian.txt (268 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 18e7e9ff; severity check off
+Outcome: report; cost $0.0061; 12.8s
+
+## Clear and specific (score 91; model wrote 91)
+## Verdict
+A logistics and maintenance leader whose people, equipment, and readiness results are easy to follow.
+
+## Write-up
+A recruiter sees a supervisor who has led maintenance, supply, and fuel teams, managed equipment, and improved vehicle readiness. The move toward civilian operations is clear. The main question is what the battalion's field logistics support involved day to day.
+
+The vehicle readiness line is your model: it gives the starting point, the finish, and the changes you made to get there. The inventory and promotion figures also give a recruiter something concrete to remember.
+
+## Cards (2; {"line":1,"keep":1}); severity off; added []
+1. [line] Platoon Sergeant, logistics support
+   line: "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises"
+   can't tell: The size of the assignment is clear, but logistics support can mean several things. Naming what you planned and provided would make the work more concrete for a civilian recruiter.
+   example: Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises, including [types of support provided]
+   question: What did the logistics support for those exercises include?
+2. [keep] Platoon Sergeant, vehicle readiness
+   line: "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule"
+   can't tell: Keep this as a model. It shows what changed, by how much, and what you did.
+
+## Fit
+Roles: ["operations supervisor","Maintenance Section Sergeant (E-6)"]
+Level: Supervisor
+Note: Your experience points toward operations and maintenance supervision, with supply and inventory work alongside it. The field exercise line is a useful place to spell out the logistics work for civilian employers.

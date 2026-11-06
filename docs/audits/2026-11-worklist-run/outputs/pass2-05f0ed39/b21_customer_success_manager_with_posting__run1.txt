@@ -1,0 +1,46 @@
+# b21_customer_success_manager_with_posting, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt (180 words), posting: ../2026-11-live-judgment/resumes/b_posting_customer_success_manager.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 05f0ed39; severity check off
+Outcome: report; cost $0.0099; 20.0s
+Case note: The same resume with a posting attached.
+
+## Mostly clear (score 78; model wrote 78)
+## Verdict
+A mid-market customer success manager with a defined book, but no retention or expansion results on the page.
+
+## Write-up
+You look relevant for this customer success role: you manage mid-market payroll accounts, run quarterly reviews, and work with Sales on at-risk renewals. The first hesitation is that the page doesn't say whether you owned renewal targets or what happened to those accounts.
+
+The 48-account line is the model: it names the customers, their industries, and the size of your book. For this posting, add verified retention or expansion results and any use of product data. Your onboarding checklist and work with Product are worth developing too, without claiming responsibilities you didn't have.
+
+## Cards (5; {"keep":1,"line":4}); severity off; added []
+1. [keep] Customer Success Manager, line 1
+   line: "Manage a book of 48 mid-market accounts across healthcare and manufacturing"
+   can't tell: This gives a recruiter a concrete picture of your book. It's a useful model for the rest of the role.
+2. [line] Customer Success Manager, line 2
+   line: "Run quarterly business reviews with customer finance and HR leads"
+   can't tell: The work is clear, but the posting asks for VP-level sponsors. The titles of the people in your reviews aren't stated.
+   example: Run quarterly business reviews with customer finance and HR leads, including [sponsor titles], on [topics or decisions]
+   question: What were the titles of the people in your reviews, and what topics or decisions did you cover?
+3. [line] Customer Success Manager, line 3
+   line: "Partnered with Sales on renewal strategy for at-risk accounts"
+   can't tell: The partnership is relevant, but your part in the strategy and what happened to the accounts are blank. This posting puts a lot of weight on retention.
+   example: Partnered with Sales on renewal strategy for at-risk accounts by [your contribution], with [result, if known]
+   question: What did you contribute to the renewal strategy, and what happened to those accounts?
+4. [line] Customer Success Manager, line 4
+   line: "Built an onboarding checklist now used by the whole CS team"
+   can't tell: A checklist adopted by the whole team is worth keeping. The line doesn't say what it covers or what changed after the team started using it.
+   example: Built an onboarding checklist now used by the whole CS team, covering [steps] and [what changed, if known]
+   question: What does the checklist cover, and did anything change after the team adopted it?
+5. [line] Customer Success Manager, line 5
+   line: "Handle escalations with Support and Product when payroll runs fail"
+   can't tell: The payroll problem is specific, but your part in resolving it isn't. The posting also asks for customer requests to be logged and prioritized with Product.
+   example: Handle escalations with Support and Product when payroll runs fail by [your contribution], including [any customer requests logged or prioritized]
+   question: What do you do during these escalations, and have you logged or prioritized customer requests with Product?
+
+## Fit
+Roles: ["Customer Success Manager","Customer Success Manager, Mid-Market"]
+Level: Experienced individual contributor
+Note: The posting asks for retention and expansion results, VP-level QBRs, product usage data, and a BI tool; the resume doesn't establish those. Your mid-market book, quarterly reviews, Sales partnership, Gainsight, and Salesforce are relevant. The posting's book is 60 to 80 accounts and about $4M in ARR; yours is 48 accounts, with ARR not stated.
+Posting: A mid-market SaaS customer success role accountable for renewals and expansion, onboarding, executive reviews, and identifying account risk with usage data.
+Missing: ["A track record of hitting retention or expansion targets, with numbers you can talk about","Experience running QBRs with VP-level sponsors","product usage data","a BI tool such as Looker","log and prioritize feature requests"]

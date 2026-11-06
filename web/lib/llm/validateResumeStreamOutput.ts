@@ -16,6 +16,10 @@ import {
   isRepairableResumeResponseError,
 } from "./reportRepair";
 import { isStableOpenAITransportError } from "../backend/openai-transport";
+import { isWorklistReportEnabled } from "../reports/report-shape";
+import { isWorklistReport } from "./worklist-schema";
+import { validateWorklistPayload } from "./worklist-validator";
+import { buildWorklistRepairMessages } from "./worklist-repair";
 
 type ResumeMode =
   | "resume"
@@ -29,6 +33,18 @@ type ChatMessage = {
   role: "system" | "user" | "assistant";
   content: string;
 };
+
+/**
+ * The resume report's validator: the worklist validator when the worklist prompt wrote the draft (or the
+ * draft says so), the Critical Miss validator otherwise. A v2 draft under the worklist flag is refused by
+ * the worklist validator and repaired into the worklist shape.
+ */
+export function validateResumePayload(parsed: unknown, text: string, options?: { forceGrounding?: boolean; jobDescription?: string }) {
+  if (isWorklistReportEnabled() || isWorklistReport(parsed)) {
+    return validateWorklistPayload(parsed, text, options);
+  }
+  return validateResumeModelPayload(parsed, text, options);
+}
 
 export async function validateResumeStreamOutput(input: {
   raw: string;
@@ -55,7 +71,7 @@ export async function validateResumeStreamOutput(input: {
       payload = validateCaseNegotiationPayload(parsedJson);
     } else {
       payload = ensureLayoutAndContentFields(
-        validateResumeModelPayload(parsedJson, input.text, input.validationOptions)
+        validateResumePayload(parsedJson, input.text, input.validationOptions)
       );
     }
     return { payload, replacementRaw: null as string | null, repairMs: 0 };
@@ -93,6 +109,7 @@ export async function validateResumeStreamOutput(input: {
     });
 
     const repairStartedAt = Date.now();
+    const worklist = isWorklistReportEnabled();
     try {
       const repaired = await runJson<any>({
         ctx: {
@@ -103,14 +120,16 @@ export async function validateResumeStreamOutput(input: {
         task: "resume_feedback",
         mode: "resume",
         model: input.model,
-        prompt_version: "resume_v2_repair",
+        prompt_version: worklist ? "resume_v3_repair" : "resume_v2_repair",
         reasoning_effort: resolveResumeRepairReasoningEffort(input.model),
-        schema_version: "report_v1",
-        messages: buildResumeRepairMessages(input.messages, input.raw, error),
+        schema_version: worklist ? "report_v3" : "report_v1",
+        messages: worklist
+          ? buildWorklistRepairMessages(input.messages, input.raw, error)
+          : buildResumeRepairMessages(input.messages, input.raw, error),
         signal: input.signal,
       });
       const payload = ensureLayoutAndContentFields(
-        validateResumeModelPayload(repaired.parsed, input.text, input.validationOptions)
+        validateResumePayload(repaired.parsed, input.text, input.validationOptions)
       );
       recordLaunchSignal("riyp.report.repair", { result: "completed" });
       logInfo({

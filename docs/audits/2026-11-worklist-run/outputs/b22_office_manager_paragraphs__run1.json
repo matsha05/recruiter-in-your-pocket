@@ -1,0 +1,244 @@
+{
+  "case_id": "b22_office_manager_paragraphs",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Paragraph format, no bullets.",
+  "resume_file": "../2026-11-live-judgment/resumes/b_office_manager_paragraphs.txt",
+  "resume_sha256": "ce33ce5aa6c528ef520a2ccc32684ac815b6084cea9e23d0a3885d92201fff58",
+  "resume_words": 219,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T04:15:24.617Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4261,
+        "completion_tokens": 1006,
+        "total_tokens": 5267,
+        "cached_prompt_tokens": 3502,
+        "cache_write_prompt_tokens": 756,
+        "reasoning_tokens": 444
+      },
+      "cost_usd": 0.0061531,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 12932
+    }
+  ],
+  "resume_prompt_sha256": "18e7e9ff21a0c2fda0fe219456e2d1f965de7d79bcc85173eaebd632dd83f42e",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 86,
+    "lifted_by_employer": false,
+    "verdict": "An office manager with clear law office responsibilities, bookkeeping volume and staff supervision.",
+    "write_up": [
+      "You come across as an office manager who keeps a law office running, from court deadlines and billing to supervising receptionists. A recruiter can see the size of the firm and the work. The main snag is that each job is packed into a paragraph, so some details are easy to miss.",
+      "The line about hiring two receptionists and onboarding practice management software works because it names both your responsibilities and the move away from paper files. Break the experience paragraphs into shorter bullets so those details stand out."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience",
+        "line": "Each role is written as a paragraph.",
+        "cannot_tell": "The work is there, but the long paragraphs make a recruiter hunt for billing, supervision and software. Give those responsibilities separate bullets.",
+        "example": "",
+        "question": "Which responsibilities would you put in separate bullets for each role?"
+      },
+      {
+        "kind": "keep",
+        "where": "Office Manager, final sentence",
+        "line": "I hired and supervise two receptionists and I onboarded the firm's new practice management software in 2022, which replaced paper files for all new matters.",
+        "cannot_tell": "Keep this level of detail. It names the people you supervise and what changed when the software was introduced.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Office Coordinator, payments and claims",
+        "line": "Posted payments and worked the insurance claims aging report each week.",
+        "cannot_tell": "A recruiter can see the weekly work, but 'worked the report' doesn't say what you did with it.",
+        "example": "Posted payments and worked the insurance claims aging report each week by [what you did with the report]",
+        "question": "What did you do with the insurance claims aging report each week?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Office Manager",
+        "Office Coordinator"
+      ],
+      "level": "Experienced office management",
+      "note": "Your recent work points toward office management in a small professional office, particularly a law practice. The earlier dental role also shows front desk and insurance experience.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 86,
+    "lifted_by_employer": false,
+    "verdict": "An office manager with clear law office responsibilities, bookkeeping volume and staff supervision.",
+    "write_up": [
+      "You come across as an office manager who keeps a law office running, from court deadlines and billing to supervising receptionists. A recruiter can see the size of the firm and the work. The main snag is that each job is packed into a paragraph, so some details are easy to miss.",
+      "The line about hiring two receptionists and onboarding practice management software works because it names both your responsibilities and the move away from paper files. Break the experience paragraphs into shorter bullets so those details stand out."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience",
+        "line": "Each role is written as a paragraph.",
+        "cannot_tell": "The work is there, but the long paragraphs make a recruiter hunt for billing, supervision and software. Give those responsibilities separate bullets.",
+        "example": "",
+        "question": "Which responsibilities would you put in separate bullets for each role?"
+      },
+      {
+        "kind": "keep",
+        "where": "Office Manager, final sentence",
+        "line": "Office Manager, Harrod and Blake Law Office, Louisville, KY, May 2018 to present. I run the front office for a six-attorney firm. I handle scheduling for the attorneys, manage the firm's calendar of court dates and filing deadlines, order supplies, and handle vendor contracts for the copier, phones, and cleaning. I do the bookkeeping in QuickBooks, including client billing of roughly 90 invoices a month and the monthly trust account reconciliation. I hired and supervise two receptionists and I onboarded the firm's new practice management software in 2022, which replaced paper files for all new matters.",
+        "cannot_tell": "Keep this level of detail. It names the people you supervise and what changed when the software was introduced.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Office Coordinator, payments and claims",
+        "line": "Office Coordinator, Riverside Family Dentistry, Louisville, KY, August 2014 to April 2018. Checked in patients, verified insurance, and scheduled appointments for a two-dentist practice that saw about 40 patients a day. Posted payments and worked the insurance claims aging report each week. Trained three new front desk staff over four years.",
+        "cannot_tell": "A recruiter can see the weekly work, but 'worked the report' doesn't say what you did with it.",
+        "example": "Posted payments and worked the insurance claims aging report each week by [what you did with the report]",
+        "question": "What did you do with the insurance claims aging report each week?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Office Manager",
+        "Office Coordinator"
+      ],
+      "level": "Experienced office management",
+      "note": "Your recent work points toward office management in a small professional office, particularly a law practice. The earlier dental role also shows front desk and insurance experience.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 86
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 86,
+    "lifted_by_employer": false,
+    "verdict": "An office manager with clear law office responsibilities, bookkeeping volume and staff supervision.",
+    "write_up": [
+      "You come across as an office manager who keeps a law office running, from court deadlines and billing to supervising receptionists. A recruiter can see the size of the firm and the work. The main snag is that each job is packed into a paragraph, so some details are easy to miss.",
+      "The line about hiring two receptionists and onboarding practice management software works because it names both your responsibilities and the move away from paper files. Break the experience paragraphs into shorter bullets so those details stand out."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience",
+        "line": "Each role is written as a paragraph.",
+        "cannot_tell": "The work is there, but the long paragraphs make a recruiter hunt for billing, supervision and software. Give those responsibilities separate bullets.",
+        "example": "",
+        "question": "Which responsibilities would you put in separate bullets for each role?"
+      },
+      {
+        "kind": "keep",
+        "where": "Office Manager, final sentence",
+        "line": "Office Manager, Harrod and Blake Law Office, Louisville, KY, May 2018 to present. I run the front office for a six-attorney firm. I handle scheduling for the attorneys, manage the firm's calendar of court dates and filing deadlines, order supplies, and handle vendor contracts for the copier, phones, and cleaning. I do the bookkeeping in QuickBooks, including client billing of roughly 90 invoices a month and the monthly trust account reconciliation. I hired and supervise two receptionists and I onboarded the firm's new practice management software in 2022, which replaced paper files for all new matters.",
+        "cannot_tell": "Keep this level of detail. It names the people you supervise and what changed when the software was introduced.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Office Coordinator, payments and claims",
+        "line": "Office Coordinator, Riverside Family Dentistry, Louisville, KY, August 2014 to April 2018. Checked in patients, verified insurance, and scheduled appointments for a two-dentist practice that saw about 40 patients a day. Posted payments and worked the insurance claims aging report each week. Trained three new front desk staff over four years.",
+        "cannot_tell": "A recruiter can see the weekly work, but 'worked the report' doesn't say what you did with it.",
+        "example": "Posted payments and worked the insurance claims aging report each week by [what you did with the report]",
+        "question": "What did you do with the insurance claims aging report each week?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Office Manager",
+        "Office Coordinator"
+      ],
+      "level": "Experienced office management",
+      "note": "Your recent work points toward office management in a small professional office, particularly a law practice. The earlier dental role also shows front desk and insurance experience.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 86
+  },
+  "presentation": {
+    "score": 86,
+    "band": "Clear and specific",
+    "model_score": 86,
+    "lifted_by_employer": false,
+    "verdict": "An office manager with clear law office responsibilities, bookkeeping volume and staff supervision.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 89,
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience",
+        "line": "Each role is written as a paragraph.",
+        "blanks": 0,
+        "question": "Which responsibilities would you put in separate bullets for each role?"
+      },
+      {
+        "kind": "keep",
+        "where": "Office Manager, final sentence",
+        "line": "Office Manager, Harrod and Blake Law Office, Louisville, KY, May 2018 to present. I run the front office for a six-attorney firm. I handle scheduling for the attorneys, manage the firm's calendar of court dates and filing deadlines, order supplies, and handle vendor contracts for the copier, phones, and cleaning. I do the bookkeeping in QuickBooks, including client billing of roughly 90 invoices a month and the monthly trust account reconciliation. I hired and supervise two receptionists and I onboarded the firm's new practice management software in 2022, which replaced paper files for all new matters.",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Office Coordinator, payments and claims",
+        "line": "Office Coordinator, Riverside Family Dentistry, Louisville, KY, August 2014 to April 2018. Checked in patients, verified insurance, and scheduled appointments for a two-dentist practice that saw about 40 patients a day. Posted payments and worked the insurance claims aging report each week. Trained three new front desk staff over four years.",
+        "blanks": 1,
+        "question": "What did you do with the insurance claims aging report each week?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "structure": 1,
+      "keep": 1,
+      "line": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Office Manager",
+        "Office Coordinator"
+      ],
+      "level": "Experienced office management",
+      "note": "Your recent work points toward office management in a small professional office, particularly a law practice. The earlier dental role also shows front desk and insurance experience.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0061531,
+  "latency_ms": 12937
+}

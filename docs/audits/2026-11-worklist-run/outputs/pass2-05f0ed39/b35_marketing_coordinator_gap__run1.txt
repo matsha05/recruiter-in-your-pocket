@@ -1,0 +1,39 @@
+# b35_marketing_coordinator_gap, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_marketing_coordinator_gap_1.txt (126 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 05f0ed39; severity check off
+Outcome: report; cost $0.0060; 14.0s
+Case note: Gap with nothing after it.
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+A marketing coordinator with concrete email and event work, but nothing dated after March 2024.
+
+## Write-up
+You come across as a marketing coordinator who has worked across email, events, copy and social media. The first hesitation is what you've been doing since your last role ended in March 2024. A recruiter may move on rather than guess.
+
+The weekly email calendar is your best model: it names your responsibility, cadence and list size in one line. The earlier tasting events and blog work could use more detail about your part.
+
+## Cards (4; {"dates":1,"keep":1,"line":2}); severity off; added []
+1. [dates] Dates
+   line: "Nothing is dated after March 2024."
+   can't tell: A recruiter can't tell what you've been doing since the Juniper role ended. A dated line can answer that question without making a reader guess.
+   example: [dates] [work, study, job search, or career break, if applicable]
+   question: What have you been doing since March 2024 that you'd be comfortable adding, and what were the dates?
+2. [keep] Marketing Coordinator, line 1
+   line: "Managed the weekly email calendar for a list of 120,000 subscribers"
+   can't tell: Keep this as a model. It shows what you managed, how often and the size of the list.
+3. [line] Marketing Assistant, line 1
+   line: "Helped plan in-store tasting events"
+   can't tell: 'Helped plan' leaves your part of the events open. Name the work you contributed.
+   example: Helped plan in-store tasting events by [specific contribution]
+   question: What did you do to help plan the tasting events?
+4. [line] Marketing Assistant, line 2
+   line: "Updated the company blog and newsletter"
+   can't tell: 'Updated' could mean writing, editing or publishing. Say which work was yours.
+   example: Updated the company blog and newsletter by [specific work]
+   question: What did you do when updating the blog and newsletter?
+
+## Fit
+Roles: ["Marketing Coordinator","Marketing Assistant"]
+Level: Coordinator
+Note: Your experience points toward marketing coordinator roles spanning email, events and content. The work is named, but the time since March 2024 needs an explanation.

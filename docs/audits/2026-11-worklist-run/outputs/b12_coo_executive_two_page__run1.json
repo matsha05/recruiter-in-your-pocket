@@ -1,0 +1,184 @@
+{
+  "case_id": "b12_coo_executive_two_page",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Executive, two pages.",
+  "resume_file": "../2026-11-live-judgment/resumes/b_coo_executive.txt",
+  "resume_sha256": "213474e9b27355f8a085204e3dac05f65782d74d43b9b531cb2afd6a3afe1b79",
+  "resume_words": 463,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T04:14:43.944Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5214,
+        "completion_tokens": 554,
+        "total_tokens": 5768,
+        "cached_prompt_tokens": 3502,
+        "cache_write_prompt_tokens": 1709,
+        "reasoning_tokens": 196
+      },
+      "cost_usd": 0.00508435,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 9235
+    }
+  ],
+  "resume_prompt_sha256": "18e7e9ff21a0c2fda0fe219456e2d1f965de7d79bcc85173eaebd632dd83f42e",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 95,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare COO with growth, operating results, and board-facing responsibility clearly on the page.",
+    "write_up": [
+      "A recruiter sees a healthcare operations executive who has grown a dental organization while improving margins, integration time, and clinician retention. The current role puts the size of the business and your responsibility for it up front.",
+      "The integration playbook line is a good model: it names what you changed and how much faster the work became. Earlier roles are just as easy to follow, particularly the surgery center turnaround."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, integration line",
+        "line": "- Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "cannot_tell": "Keep this as a model. It connects a specific operating change to a result a recruiter can grasp at a glance.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Operating Officer",
+        "Senior Vice President, Operations",
+        "Vice President, Clinic Operations"
+      ],
+      "level": "Senior executive",
+      "note": "Your experience points toward senior operations leadership in multi-site healthcare. The dental growth, clinic operations, and board reporting give a recruiter several concrete ways to place you.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 95,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare COO with growth, operating results, and board-facing responsibility clearly on the page.",
+    "write_up": [
+      "A recruiter sees a healthcare operations executive who has grown a dental organization while improving margins, integration time, and clinician retention. The current role puts the size of the business and your responsibility for it up front.",
+      "The integration playbook line is a good model: it names what you changed and how much faster the work became. Earlier roles are just as easy to follow, particularly the surgery center turnaround."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, integration line",
+        "line": "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "cannot_tell": "Keep this as a model. It connects a specific operating change to a result a recruiter can grasp at a glance.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Operating Officer",
+        "Senior Vice President, Operations",
+        "Vice President, Clinic Operations"
+      ],
+      "level": "Senior executive",
+      "note": "Your experience points toward senior operations leadership in multi-site healthcare. The dental growth, clinic operations, and board reporting give a recruiter several concrete ways to place you.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 95
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 95,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare COO with growth, operating results, and board-facing responsibility clearly on the page.",
+    "write_up": [
+      "A recruiter sees a healthcare operations executive who has grown a dental organization while improving margins, integration time, and clinician retention. The current role puts the size of the business and your responsibility for it up front.",
+      "The integration playbook line is a good model: it names what you changed and how much faster the work became. Earlier roles are just as easy to follow, particularly the surgery center turnaround."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, integration line",
+        "line": "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "cannot_tell": "Keep this as a model. It connects a specific operating change to a result a recruiter can grasp at a glance.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Operating Officer",
+        "Senior Vice President, Operations",
+        "Vice President, Clinic Operations"
+      ],
+      "level": "Senior executive",
+      "note": "Your experience points toward senior operations leadership in multi-site healthcare. The dental growth, clinic operations, and board reporting give a recruiter several concrete ways to place you.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 95
+  },
+  "presentation": {
+    "score": 95,
+    "band": "Clear and specific",
+    "model_score": 95,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare COO with growth, operating results, and board-facing responsibility clearly on the page.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 70,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, integration line",
+        "line": "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 1,
+    "kinds": {
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Chief Operating Officer",
+        "Senior Vice President, Operations",
+        "Vice President, Clinic Operations"
+      ],
+      "level": "Senior executive",
+      "note": "Your experience points toward senior operations leadership in multi-site healthcare. The dental growth, clinic operations, and board reporting give a recruiter several concrete ways to place you.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00508435,
+  "latency_ms": 9237
+}

@@ -1,0 +1,28 @@
+# b22_office_manager_paragraphs, run 1
+Resume: ../2026-11-live-judgment/resumes/b_office_manager_paragraphs.txt (219 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt b2c0d186; severity check on
+Outcome: report; cost $0.0067; 13.5s
+Case note: Paragraph format, no bullets.
+
+## Mostly clear (score 84; model wrote 84)
+## Verdict
+An office manager with specific legal and dental office experience, worth moving forward for similar roles.
+
+## Write-up
+You come across as an office manager who can handle a small professional office's calendar, billing, vendors and staff. The work is specific enough to move forward for similar roles. The hesitation is visual: each job is a dense paragraph, so the bookkeeping and software work take longer to find.
+
+The practice management software sentence is the model. It says what you onboarded, when, and what it replaced. Break the job paragraphs into bullets so the rest of that work is just as easy to find.
+
+## Cards (2; {"structure":1,"keep":1}); severity none (none); added []
+1. [structure] Experience
+   line: "Each role is written as a paragraph."
+   can't tell: The responsibilities are there, but the billing, supervision and software work compete for attention in one block. A recruiter scanning quickly could miss them.
+   question: Which responsibilities and projects do you want to put first when you break each role into bullets?
+2. [keep] Office Manager, software
+   line: "Office Manager, Harrod and Blake Law Office, Louisville, KY, May 2018 to present. I run the front office for a six-attorney firm. I handle scheduling for the attorneys, manage the firm's calendar of court dates and filing deadlines, order supplies, and handle vendor contracts for the copier, phones, and cleaning. I do the bookkeeping in QuickBooks, including client billing of roughly 90 invoices a month and the monthly trust account reconciliation. I hired and supervise two receptionists and I onboarded the firm's new practice management software in 2022, which replaced paper files for all new matters."
+   can't tell: Keep this as a model: it names your work and the change from paper files.
+
+## Fit
+Roles: ["Office Manager","Office Coordinator"]
+Level: Experienced office manager
+Note: Your experience points toward office management and coordination in small professional practices. The legal office role combines scheduling, billing, bookkeeping, vendor contracts and staff supervision.

@@ -1,0 +1,33 @@
+# b19_non_native_english, run 1
+Resume: ../2026-11-live-judgment/resumes/b_non_native_english.txt (237 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 18e7e9ff; severity check off
+Outcome: report; cost $0.0051; 11.1s
+
+## Mostly clear (score 82; model wrote 82)
+## Verdict
+An experienced accountant with substantial accounts payable work and a few responsibilities still left vague.
+
+## Write-up
+A recruiter sees an accountant with experience in Vietnam and the US, now processing around 400 vendor invoices a month. The main question is what you handle during the current month-end close.
+
+The strongest line is the reduction in closing time from 12 days to 7 days. It names the work, the change and how you made it. Use that level of detail to explain the junior accountants' work and your current closing duties.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] Accounts Payable Clerk, line 4
+   line: "Help the controller for month end closing"
+   can't tell: Help could mean several things. A recruiter can't tell which closing tasks were yours.
+   example: Help the controller with month end closing by [specific tasks]
+   question: Which month-end closing tasks do you help the controller with?
+2. [line] Senior Accountant, line 2
+   line: "Lead team of 3 junior accountants"
+   can't tell: The team size is clear, but not what the junior accountants handled. Their work would show what you led.
+   example: Lead a team of 3 junior accountants who [team responsibilities]
+   question: What work did the 3 junior accountants handle?
+3. [keep] Senior Accountant, line 4
+   line: "Reduce the month end closing from 12 days to 7 days by make new checklist and template"
+   can't tell: Keep this as a model. It shows the change and the checklist and template behind it.
+
+## Fit
+Roles: ["Staff Accountant","Accounts Payable Specialist"]
+Level: Experienced accounting professional
+Note: Your current invoice work points toward accounts payable roles. Your general ledger, financial statement and closing work also gives a recruiter a reason to consider you for staff accountant roles.

@@ -1,0 +1,33 @@
+# b01_icu_nurse, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_icu_nurse_1.txt (153 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt b2c0d186; severity check on
+Outcome: report; cost $0.0061; 11.0s
+
+## Mostly clear (score 84; model wrote 84)
+## Verdict
+A medical ICU nurse with clear clinical responsibilities and a few supporting roles that need more detail.
+
+## Write-up
+You come across as a medical ICU nurse with telemetry experience, CCRN certification, and regular charge nurse shifts. The clinical work is easy to follow. The main hesitation is that committee membership and rapid response calls don't show what you contributed.
+
+The direct-care line is the model: two critically ill patients per shift in a 24-bed medical ICU. It tells a recruiter where you work and what your patient assignment looks like without making them guess.
+
+## Cards (3; {"keep":1,"line":2}); severity none (none); added []
+1. [keep] Staff Nurse, Medical ICU, line 1
+   line: "Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU"
+   can't tell: This gives the patient assignment and unit size together. It's a useful model for the less specific lines.
+2. [line] Staff Nurse, Medical ICU, line 5
+   line: "Member of the unit's sepsis bundle compliance committee"
+   can't tell: Membership tells me where you participated, but not what you did on the committee. Your contribution would make this more useful than the committee name alone.
+   example: Member of the unit's sepsis bundle compliance committee; [specific contribution]
+   question: What did you contribute to the sepsis bundle compliance committee?
+3. [line] Staff Nurse, Telemetry, line 2
+   line: "Responded to rapid response calls as part of the floor team"
+   can't tell: I know you responded as part of the floor team, but not what you did during those calls. A specific action would help explain your role.
+   example: Responded to rapid response calls as part of the floor team, [specific actions]
+   question: What actions did you take during rapid response calls?
+
+## Fit
+Roles: ["Staff Nurse, Medical ICU","Staff Nurse, Telemetry"]
+Level: Staff nurse with charge responsibilities
+Note: Your experience points most directly to medical ICU nursing, with earlier telemetry work. Ventilator care, vasoactive drips, continuous renal replacement therapy, and CCRN are all visible on the page.

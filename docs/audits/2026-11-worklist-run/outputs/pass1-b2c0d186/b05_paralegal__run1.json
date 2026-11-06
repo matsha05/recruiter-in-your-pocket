@@ -1,0 +1,240 @@
+{
+  "case_id": "b05_paralegal",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_paralegal_1.txt",
+  "resume_sha256": "1860914f19aa0734b31d49c2046f7d394bc16dd5acb16f4c1fd6ee102a7f8568",
+  "resume_words": 144,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": true,
+  "started_at": "2026-11-06T03:34:17.664Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 3775,
+        "completion_tokens": 883,
+        "total_tokens": 4658,
+        "cached_prompt_tokens": 3095,
+        "cache_write_prompt_tokens": 677,
+        "reasoning_tokens": 391
+      },
+      "cost_usd": 0.005419,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 12078
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.001152,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 921
+    }
+  ],
+  "resume_prompt_sha256": "b2c0d186992d2d925493008c0a67067de9f704dc44ec074808b3bc7176463d9a",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 81,
+    "lifted_by_employer": false,
+    "verdict": "A senior litigation paralegal with clear discovery experience and room to explain her trial work.",
+    "write_up": [
+      "You come across as a litigation paralegal who supports partners on commercial and employment cases, with earlier personal injury work. The main pause is at trial support: the resume says you supported two jury trials, but not what you did during them.",
+      "The Relativity line is the model here. It names the work, the tool, and productions of up to 250,000 pages without making a reader guess. The rest of the page is easy to follow, with experience ahead of education and dates on both roles."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Litigation Paralegal, line 2",
+        "line": "- Manage document productions of up to 250,000 pages in Relativity",
+        "cannot_tell": "No guesswork needed about the work, tool, or production size. This is a useful model for the other bullets.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Litigation Paralegal, line 4",
+        "line": "- Prepare trial binders and exhibits; supported two jury trials in 2025",
+        "cannot_tell": "The binders and exhibits are clear, but your part in the two jury trials is still open. Trial work is worth making concrete.",
+        "example": "Prepare trial binders and exhibits; supported two jury trials in 2025 by [specific trial responsibilities]",
+        "question": "What did you do to support the two jury trials?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Litigation Paralegal",
+        "Paralegal"
+      ],
+      "level": "Experienced, senior paralegal",
+      "note": "Your experience points toward litigation paralegal work, particularly discovery and document production. The trial line could show more of what you contributed during proceedings.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 81,
+    "lifted_by_employer": false,
+    "verdict": "A senior litigation paralegal with clear discovery experience and room to explain her trial work.",
+    "write_up": [
+      "You come across as a litigation paralegal who supports partners on commercial and employment cases, with earlier personal injury work. The main pause is at trial support: the resume says you supported two jury trials, but not what you did during them.",
+      "The Relativity line is the model here. It names the work, the tool, and productions of up to 250,000 pages without making a reader guess. The rest of the page is easy to follow, with experience ahead of education and dates on both roles."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Litigation Paralegal, line 2",
+        "line": "Manage document productions of up to 250,000 pages in Relativity",
+        "cannot_tell": "No guesswork needed about the work, tool, or production size. This is a useful model for the other bullets.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Litigation Paralegal, line 4",
+        "line": "Prepare trial binders and exhibits; supported two jury trials in 2025",
+        "cannot_tell": "The binders and exhibits are clear, but your part in the two jury trials is still open. Trial work is worth making concrete.",
+        "example": "Prepare trial binders and exhibits; supported two jury trials in 2025 by [specific trial responsibilities]",
+        "question": "What did you do to support the two jury trials?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Litigation Paralegal",
+        "Paralegal"
+      ],
+      "level": "Experienced, senior paralegal",
+      "note": "Your experience points toward litigation paralegal work, particularly discovery and document production. The trial line could show more of what you contributed during proceedings.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 81
+  },
+  "severity": {
+    "promoted": [],
+    "replaced": [],
+    "led": null,
+    "critical_count": 1,
+    "more_critical": false,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "skipped": [],
+    "validation_attempts": 0,
+    "latency_ms": 921,
+    "call_latency_ms": 921,
+    "cost_usd": 0.001152,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 81,
+    "lifted_by_employer": false,
+    "verdict": "A senior litigation paralegal with clear discovery experience and room to explain her trial work.",
+    "write_up": [
+      "You come across as a litigation paralegal who supports partners on commercial and employment cases, with earlier personal injury work. The main pause is at trial support: the resume says you supported two jury trials, but not what you did during them.",
+      "The Relativity line is the model here. It names the work, the tool, and productions of up to 250,000 pages without making a reader guess. The rest of the page is easy to follow, with experience ahead of education and dates on both roles."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Litigation Paralegal, line 2",
+        "line": "Manage document productions of up to 250,000 pages in Relativity",
+        "cannot_tell": "No guesswork needed about the work, tool, or production size. This is a useful model for the other bullets.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Litigation Paralegal, line 4",
+        "line": "Prepare trial binders and exhibits; supported two jury trials in 2025",
+        "cannot_tell": "The binders and exhibits are clear, but your part in the two jury trials is still open. Trial work is worth making concrete.",
+        "example": "Prepare trial binders and exhibits; supported two jury trials in 2025 by [specific trial responsibilities]",
+        "question": "What did you do to support the two jury trials?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Litigation Paralegal",
+        "Paralegal"
+      ],
+      "level": "Experienced, senior paralegal",
+      "note": "Your experience points toward litigation paralegal work, particularly discovery and document production. The trial line could show more of what you contributed during proceedings.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 81
+  },
+  "presentation": {
+    "score": 81,
+    "band": "Mostly clear",
+    "model_score": 81,
+    "lifted_by_employer": false,
+    "verdict": "A senior litigation paralegal with clear discovery experience and room to explain her trial work.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 86,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Litigation Paralegal, line 2",
+        "line": "Manage document productions of up to 250,000 pages in Relativity",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Litigation Paralegal, line 4",
+        "line": "Prepare trial binders and exhibits; supported two jury trials in 2025",
+        "blanks": 1,
+        "question": "What did you do to support the two jury trials?"
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "keep": 1,
+      "line": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "none (none)",
+    "fit": {
+      "roles": [
+        "Senior Litigation Paralegal",
+        "Paralegal"
+      ],
+      "level": "Experienced, senior paralegal",
+      "note": "Your experience points toward litigation paralegal work, particularly discovery and document production. The trial line could show more of what you contributed during proceedings.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.006571,
+  "latency_ms": 13002
+}

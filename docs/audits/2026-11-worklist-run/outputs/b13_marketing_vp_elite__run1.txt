@@ -1,0 +1,29 @@
+# b13_marketing_vp_elite, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/golden/synth_marketing_manager_vp_elite_1766960221358.txt (730 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 18e7e9ff; severity check off
+Outcome: report; cost $0.0076; 11.0s
+Case note: Executive, strong (golden).
+
+## Clear and specific (score 92; model wrote 92)
+## Verdict
+A marketing executive with team leadership, budgets, and measurable growth across successive roles.
+
+## Write-up
+A recruiter can follow your progression to Chief Marketing Officer and see the size of the organization, budget, and SaaS platform you lead. The current role connects campaigns, launches, and acquisition work to specific results.
+
+The account-based marketing line is a good model: it names the program, pipeline contribution, and change in win rates. The launch-process line could say more about what you changed and how launch success was defined.
+
+## Cards (2; {"line":1,"keep":1}); severity off; added []
+1. [line] Chief Marketing Officer, line 3
+   line: "I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years."
+   can't tell: The results are there, but the revamp itself is a blank. A recruiter also can't tell what counted as a successful launch.
+   example: I decided to revamp the product launch process by [what you changed], shortening time-to-market by 30% and increasing launch success rate to 90%, measured by [how launch success was defined], resulting in a $15M incremental revenue increase over 2 years.
+   question: What did you change in the launch process, and how was launch success defined?
+2. [keep] Vice President, Global Marketing, line 2
+   line: "I built and executed a comprehensive account-based marketing (ABM) program that increased pipeline contribution by $50M annually, lifting win rates by 15% among Fortune 500 clients."
+   can't tell: This is a useful model for the rest: it names what you built, who it reached, and what changed.
+
+## Fit
+Roles: ["Chief Marketing Officer","Vice President, Global Marketing"]
+Level: Executive marketing leadership
+Note: Your experience points toward senior marketing leadership in SaaS and enterprise technology. The current role shows responsibility for a global organization, a major budget, demand generation, and brand strategy.

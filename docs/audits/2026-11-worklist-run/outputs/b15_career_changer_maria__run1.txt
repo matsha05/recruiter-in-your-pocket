@@ -1,0 +1,53 @@
+# b15_career_changer_maria, run 1
+Resume: ../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/2-career-changer-maria.txt (315 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 18e7e9ff; severity check off
+Outcome: report; cost $0.0093; 20.7s
+Case note: Career changer (bar persona).
+
+## Mostly clear (score 75; model wrote 75)
+## Verdict
+An experienced math teacher making a credible move into analytics, with project work stronger than the summary.
+
+## Write-up
+A recruiter sees a math teacher moving into data analytics, with recent training and two relevant projects. The hesitation is that the analytics work is mostly in teaching and projects, not a dedicated analytics job.
+
+The Excel dashboard line is a good model: it names the tool, what it tracked, and the period covered. The next line says the department used it to decide which units needed re-teaching. Bring the projects closer to the top and give the assessment and benchmark work that same specificity.
+
+## Cards (7; {"line":5,"structure":1,"keep":1}); severity off; added []
+1. [line] Summary
+   line: "Dedicated educator with 8 years of experience transitioning into data analytics. Passionate about using data to tell stories and drive decisions. Strong analytical, communication, and problem-solving skills with a proven track record of success."
+   can't tell: These claims don't distinguish your analytics work. The dashboards and assessment work do.
+   example: Educator transitioning into data analytics with experience [analyzing what data] and building dashboards in Excel and Tableau.
+   question: Which data work and tools do you most want an analytics recruiter to notice?
+2. [structure] Structure
+   line: "Data Projects sits below Professional Experience."
+   can't tell: Your most direct examples of SQL, Python, Tableau, and Excel come after the teaching history. For an analytics application, a recruiter may not reach them as quickly as you'd like.
+   question: Could you move Data Projects above Professional Experience for analytics applications?
+3. [line] Mathematics Teacher, assessment data
+   line: "Analyzed student assessment data to identify learning gaps and adjust instruction"
+   can't tell: The analysis has a purpose, but the learning gaps and instructional changes are still a blank. One example would show how you used the data.
+   example: Analyzed student assessment data to identify [learning gap] and adjust instruction by [what you changed]
+   question: What learning gap did you find, and how did you adjust instruction?
+4. [line] Mathematics Teacher, Data Lead
+   line: "Served as Math Department Data Lead, compiling benchmark results for department meetings"
+   can't tell: Compiling benchmark results is useful work, but a recruiter can't tell what you produced for the meetings or how it was used.
+   example: Served as Math Department Data Lead, compiling benchmark results into [deliverable] for department meetings to [purpose]
+   question: What did you produce from the benchmark results, and what did the department use it for?
+5. [line] Middle School Math Teacher, professional learning
+   line: "Participated in professional learning communities"
+   can't tell: Participation doesn't say what you contributed. Name the work if it adds something useful to the story.
+   example: Participated in professional learning communities by [specific contribution]
+   question: What did you contribute to the professional learning communities?
+6. [line] Austin Housing Affordability Analysis, presentation
+   line: "Presented findings to a panel of instructors and peers"
+   can't tell: A recruiter knows who heard the presentation, but not what you found. A finding would make the housing analysis more memorable.
+   example: Presented findings on [specific finding] to a panel of instructors and peers
+   question: What was one finding you presented about Austin housing affordability?
+7. [keep] Student Performance Dashboard
+   line: "Built an Excel dashboard tracking AP Statistics pass rates and quiz scores over three years"
+   can't tell: Keep this as a model. It names the tool, the deliverable, the measures, and the period covered.
+
+## Fit
+Roles: ["Mathematics Teacher","Middle School Math Teacher"]
+Level: Experienced educator, entry-level analytics
+Note: Your teaching experience includes assessment analysis and department reporting. The projects and recent training make the move into analytics credible, though the page doesn't show a dedicated analytics role.

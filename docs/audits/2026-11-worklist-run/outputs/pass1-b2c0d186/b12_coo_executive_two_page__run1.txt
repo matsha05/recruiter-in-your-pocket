@@ -1,0 +1,24 @@
+# b12_coo_executive_two_page, run 1
+Resume: ../2026-11-live-judgment/resumes/b_coo_executive.txt (463 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt b2c0d186; severity check on
+Outcome: report; cost $0.0074; 10.0s
+Case note: Executive, two pages.
+
+## Clear and specific (score 94; model wrote 94)
+## Verdict
+A healthcare COO whose growth, operating results and board responsibilities are easy to see.
+
+## Write-up
+This is a strong case for moving forward on healthcare operations leadership roles. You show a progression from clinic operations to a private equity-backed dental organization, with the practice count, revenue and board reporting right up front.
+
+The integration playbook line is a model: it names what you changed and how much faster integrations became. The turnover, margin and surgery center lines do the same kind of work.
+
+## Cards (1; {"keep":1}); severity none (none); added []
+1. [keep] Chief Operating Officer, integration playbook
+   line: "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook"
+   can't tell: Nothing essential is hidden here. A recruiter can see what you changed and how much faster integration became.
+
+## Fit
+Roles: ["Chief Operating Officer","Senior Vice President, Operations"]
+Level: Executive
+Note: Your experience points to multi-site healthcare operations leadership, particularly in dental and physician services. The page shows both growth and operating work, with P&L ownership alongside the CFO and regular board reporting.

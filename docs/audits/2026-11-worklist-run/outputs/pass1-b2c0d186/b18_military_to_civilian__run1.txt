@@ -1,0 +1,35 @@
+# b18_military_to_civilian, run 1
+Resume: ../2026-11-live-judgment/resumes/b_military_to_civilian.txt (268 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt b2c0d186; severity check on
+Outcome: report; cost $0.0147; repair ran; 24.7s
+
+Validator refused the first draft: The model response failed the worklist contract at cards[1].cannot_tell: uses the retired phrase "the read".
+
+## Clear and specific (score 91; model wrote 91)
+## Verdict
+A strong Army logistics and maintenance resume with the management work and results attached.
+
+## Write-up
+I'd move this forward for operations and maintenance supervision. You show leadership across maintenance, supply and fuel, with equipment accountability, a parts budget and vehicle readiness figures a recruiter can use.
+
+The vehicle readiness line is the model: it says what changed and how you did it. The field exercise bullet could work harder by naming the logistics support you delivered, especially for someone outside the military.
+
+## Cards (3; {"line":2,"keep":1}); severity none (none); added []
+1. [line] Platoon Sergeant, line 3
+   line: "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises"
+   can't tell: The size of the exercise is clear, but logistics support can cover a lot. Naming what you provided would help someone outside the military understand the work.
+   example: Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises, including [support provided]
+   question: What logistics support did you plan and execute for those exercises?
+2. [keep] Platoon Sergeant, line 4
+   line: "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule"
+   can't tell: This names the problem, the changes you made and the result. It's a useful model for the rest of the page.
+3. [line] Wheeled Vehicle Mechanic, line 2
+   line: "Trained 9 junior mechanics"
+   can't tell: The number of mechanics is there, but not what you trained them to do.
+   example: Trained 9 junior mechanics in [skills or tasks]
+   question: What skills or tasks did you train the junior mechanics in?
+
+## Fit
+Roles: ["Platoon Sergeant (E-7), Forward Support Company","Maintenance Section Sergeant (E-6)","operations supervisor"]
+Level: Experienced supervisor
+Note: Your experience points toward operations, maintenance and supply supervision. Naming the field logistics work in civilian terms would make that transition easier to follow.

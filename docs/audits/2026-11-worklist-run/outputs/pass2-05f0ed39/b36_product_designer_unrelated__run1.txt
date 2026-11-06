@@ -1,0 +1,51 @@
+# b36_product_designer_unrelated, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_product_designer_unrelated_1.txt (147 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 05f0ed39; severity check off
+Outcome: report; cost $0.0212; repair ran; 46.1s
+Case note: Current job outside the field.
+
+Validator refused the first draft: The model response failed the worklist contract at cards[3].cannot_tell: uses the retired phrase "the read".
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+A product designer now working in a cafe, with named projects but few details on what changed.
+
+## Write-up
+You have product design experience across apps and agency work, followed by a current cafe job. A recruiter looking for a designer may hesitate: your last dated design role ended in February 2024, and the bullets say little about what changed through your work.
+
+The Figma line is your model. It names what you created and makes clear it was the app's first design system. Bring that specificity to the releases and usability tests. If you've done design work since Loop Fitness, add it with dates.
+
+## Cards (6; {"line":5,"keep":1}); severity off; added []
+1. [line] Barista, line 1
+   line: "Prepare drinks and serve customers in a busy cafe"
+   can't tell: A busy cafe could mean a lot of things. The line doesn't show how many customers you serve.
+   example: Prepare drinks and serve [number] customers [per shift] in a busy cafe
+   question: About how many customers do you serve in a typical shift?
+2. [line] Barista, line 2
+   line: "Train new baristas on espresso equipment"
+   can't tell: Training new baristas is useful responsibility. The line doesn't say how many people you've trained or what you teach them.
+   example: Train [number of] new baristas on espresso equipment [including what you teach]
+   question: How many new baristas have you trained, and what do you teach them on the equipment?
+3. [line] Product Designer, line 2
+   line: "Worked with two engineers and a product manager on weekly releases"
+   can't tell: The team and release rhythm are there, but your part in the releases isn't. A recruiter can't tell what you contributed as the designer.
+   example: Worked with two engineers and a product manager on weekly releases [your contribution]
+   question: What did you contribute to the weekly releases?
+4. [keep] Product Designer, line 3
+   line: "Created the app's first design system in Figma"
+   can't tell: Keep this as a model. It names the deliverable, the tool and what was new about the work.
+5. [line] Product Designer, line 4
+   line: "Ran usability tests with members before launches"
+   can't tell: You ran the tests, but the line doesn't say what members tested or what you learned. One example would give the work more substance.
+   example: Ran usability tests with members before launches [feature tested and finding or change, if known]
+   question: What did members test, and what did you learn or change as a result?
+6. [line] Junior Product Designer, line 1
+   line: "Designed marketing sites and app screens for agency clients"
+   can't tell: The types of work are clear, but the projects aren't named. One client or project would give the agency work a more distinct shape.
+   example: Designed marketing sites and app screens for agency clients [client or project and purpose]
+   question: Which client or project can you name, and what were you designing it for?
+
+## Fit
+Roles: ["Product Designer","Junior Product Designer"]
+Level: Product designer
+Note: Your experience points toward product design roles, particularly app work. The current cafe role accounts for your recent work, but the resume doesn't show design work after Loop Fitness.

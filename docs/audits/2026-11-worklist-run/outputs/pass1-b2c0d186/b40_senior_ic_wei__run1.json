@@ -1,0 +1,333 @@
+{
+  "case_id": "b40_senior_ic_wei",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Senior IC (bar persona).",
+  "resume_file": "../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/4-senior-ic-wei.txt",
+  "resume_sha256": "e95b41ee5391398ba259810d134ff4a7392766f8e7fa117ad93d5d19b8ed94a5",
+  "resume_words": 361,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": true,
+  "started_at": "2026-11-06T03:37:59.450Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4474,
+        "completion_tokens": 1382,
+        "total_tokens": 5856,
+        "cached_prompt_tokens": 3095,
+        "cache_write_prompt_tokens": 1376,
+        "reasoning_tokens": 505
+      },
+      "cost_usd": 0.00878775,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 18648
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.00353575,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 4276
+    }
+  ],
+  "resume_prompt_sha256": "b2c0d186992d2d925493008c0a67067de9f704dc44ec074808b3bc7176463d9a",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 83,
+    "lifted_by_employer": false,
+    "verdict": "A staff payments engineer with substantial platform work, though a few results need more detail.",
+    "write_up": [
+      "You look like a staff engineer who has grown through payments and distributed systems work. A recruiter would have plenty to discuss and a reason to move this forward. The main hesitation is what changed after the ledger redesign and how much reconciliation improved.",
+      "The idempotency line is the model: it names the framework, where it was adopted and the duplicate-charge incidents it eliminated. Give the ledger redesign and reconciliation work the same treatment where you can."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, ledger redesign",
+        "line": "- Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "cannot_tell": "The architecture change is clear. What improved for the ledger service isn't, and that would help a reader understand why the redesign mattered.",
+        "example": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB; [what improved, if measured]",
+        "question": "What changed for the ledger service after the redesign, and was it measured?"
+      },
+      {
+        "kind": "keep",
+        "where": "Staff Software Engineer, idempotency",
+        "line": "- Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents",
+        "cannot_tell": "Keep this as a model. It connects the framework you drove across payment services to the incidents it eliminated.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, multi-currency roadmap",
+        "line": "- Partnered with product and finance on the roadmap for multi-currency settlement",
+        "cannot_tell": "The partners and roadmap are named, but your contribution to the roadmap isn't. That makes it hard to see your part in the planning.",
+        "example": "Partnered with product and finance on the roadmap for multi-currency settlement, [your contribution to the roadmap]",
+        "question": "What did you contribute to the multi-currency settlement roadmap?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, reconciliation",
+        "line": "- Reduced reconciliation break rate and manual ops effort",
+        "cannot_tell": "You say both went down, but not by how much or what you did to reduce them. That leaves a useful result harder to assess.",
+        "example": "Reduced reconciliation break rate [by how much, if measured] and manual ops effort [by how much, if measured] by [what you did]",
+        "question": "What did you do to reduce the break rate and manual ops effort, and were the reductions measured?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, Kubernetes migration",
+        "line": "- Contributed to the migration of the control plane to Kubernetes",
+        "cannot_tell": "The migration is named, but your part in it isn't. A little detail would show what you contributed without claiming the whole move.",
+        "example": "Contributed to the migration of the control plane to Kubernetes by [your part in the migration]",
+        "question": "What part of the control plane migration did you work on?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Software Engineer",
+        "Senior Software Engineer"
+      ],
+      "level": "Staff-level individual contributor",
+      "note": "The page points toward staff software engineering work in payments infrastructure and distributed systems. It also shows earlier storage and fraud pipeline work, with technical leadership in the current role.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 83,
+    "lifted_by_employer": false,
+    "verdict": "A staff payments engineer with substantial platform work, though a few results need more detail.",
+    "write_up": [
+      "You look like a staff engineer who has grown through payments and distributed systems work. A recruiter would have plenty to discuss and a reason to move this forward. The main hesitation is what changed after the ledger redesign and how much reconciliation improved.",
+      "The idempotency line is the model: it names the framework, where it was adopted and the duplicate-charge incidents it eliminated. Give the ledger redesign and reconciliation work the same treatment where you can."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, ledger redesign",
+        "line": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "cannot_tell": "The architecture change is clear. What improved for the ledger service isn't, and that would help a reader understand why the redesign mattered.",
+        "example": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB; [what improved, if measured]",
+        "question": "What changed for the ledger service after the redesign, and was it measured?"
+      },
+      {
+        "kind": "keep",
+        "where": "Staff Software Engineer, idempotency",
+        "line": "Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents",
+        "cannot_tell": "Keep this as a model. It connects the framework you drove across payment services to the incidents it eliminated.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, multi-currency roadmap",
+        "line": "Partnered with product and finance on the roadmap for multi-currency settlement",
+        "cannot_tell": "The partners and roadmap are named, but your contribution to the roadmap isn't. That makes it hard to see your part in the planning.",
+        "example": "Partnered with product and finance on the roadmap for multi-currency settlement, [your contribution to the roadmap]",
+        "question": "What did you contribute to the multi-currency settlement roadmap?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, reconciliation",
+        "line": "Reduced reconciliation break rate and manual ops effort",
+        "cannot_tell": "You say both went down, but not by how much or what you did to reduce them. That leaves a useful result harder to assess.",
+        "example": "Reduced reconciliation break rate [by how much, if measured] and manual ops effort [by how much, if measured] by [what you did]",
+        "question": "What did you do to reduce the break rate and manual ops effort, and were the reductions measured?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, Kubernetes migration",
+        "line": "Contributed to the migration of the control plane to Kubernetes",
+        "cannot_tell": "The migration is named, but your part in it isn't. A little detail would show what you contributed without claiming the whole move.",
+        "example": "Contributed to the migration of the control plane to Kubernetes by [your part in the migration]",
+        "question": "What part of the control plane migration did you work on?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Software Engineer",
+        "Senior Software Engineer"
+      ],
+      "level": "Staff-level individual contributor",
+      "note": "The page points toward staff software engineering work in payments infrastructure and distributed systems. It also shows earlier storage and fraud pipeline work, with technical leadership in the current role.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 83
+  },
+  "severity": {
+    "promoted": [],
+    "replaced": [],
+    "led": null,
+    "critical_count": 1,
+    "more_critical": false,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "skipped": [],
+    "validation_attempts": 0,
+    "latency_ms": 4276,
+    "call_latency_ms": 4276,
+    "cost_usd": 0.00353575,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 83,
+    "lifted_by_employer": false,
+    "verdict": "A staff payments engineer with substantial platform work, though a few results need more detail.",
+    "write_up": [
+      "You look like a staff engineer who has grown through payments and distributed systems work. A recruiter would have plenty to discuss and a reason to move this forward. The main hesitation is what changed after the ledger redesign and how much reconciliation improved.",
+      "The idempotency line is the model: it names the framework, where it was adopted and the duplicate-charge incidents it eliminated. Give the ledger redesign and reconciliation work the same treatment where you can."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, ledger redesign",
+        "line": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "cannot_tell": "The architecture change is clear. What improved for the ledger service isn't, and that would help a reader understand why the redesign mattered.",
+        "example": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB; [what improved, if measured]",
+        "question": "What changed for the ledger service after the redesign, and was it measured?"
+      },
+      {
+        "kind": "keep",
+        "where": "Staff Software Engineer, idempotency",
+        "line": "Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents",
+        "cannot_tell": "Keep this as a model. It connects the framework you drove across payment services to the incidents it eliminated.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, multi-currency roadmap",
+        "line": "Partnered with product and finance on the roadmap for multi-currency settlement",
+        "cannot_tell": "The partners and roadmap are named, but your contribution to the roadmap isn't. That makes it hard to see your part in the planning.",
+        "example": "Partnered with product and finance on the roadmap for multi-currency settlement, [your contribution to the roadmap]",
+        "question": "What did you contribute to the multi-currency settlement roadmap?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, reconciliation",
+        "line": "Reduced reconciliation break rate and manual ops effort",
+        "cannot_tell": "You say both went down, but not by how much or what you did to reduce them. That leaves a useful result harder to assess.",
+        "example": "Reduced reconciliation break rate [by how much, if measured] and manual ops effort [by how much, if measured] by [what you did]",
+        "question": "What did you do to reduce the break rate and manual ops effort, and were the reductions measured?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, Kubernetes migration",
+        "line": "Contributed to the migration of the control plane to Kubernetes",
+        "cannot_tell": "The migration is named, but your part in it isn't. A little detail would show what you contributed without claiming the whole move.",
+        "example": "Contributed to the migration of the control plane to Kubernetes by [your part in the migration]",
+        "question": "What part of the control plane migration did you work on?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Software Engineer",
+        "Senior Software Engineer"
+      ],
+      "level": "Staff-level individual contributor",
+      "note": "The page points toward staff software engineering work in payments infrastructure and distributed systems. It also shows earlier storage and fraud pipeline work, with technical leadership in the current role.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 83
+  },
+  "presentation": {
+    "score": 83,
+    "band": "Mostly clear",
+    "model_score": 83,
+    "lifted_by_employer": false,
+    "verdict": "A staff payments engineer with substantial platform work, though a few results need more detail.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 77,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, ledger redesign",
+        "line": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "blanks": 1,
+        "question": "What changed for the ledger service after the redesign, and was it measured?"
+      },
+      {
+        "kind": "keep",
+        "where": "Staff Software Engineer, idempotency",
+        "line": "Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, multi-currency roadmap",
+        "line": "Partnered with product and finance on the roadmap for multi-currency settlement",
+        "blanks": 1,
+        "question": "What did you contribute to the multi-currency settlement roadmap?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, reconciliation",
+        "line": "Reduced reconciliation break rate and manual ops effort",
+        "blanks": 3,
+        "question": "What did you do to reduce the break rate and manual ops effort, and were the reductions measured?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, Kubernetes migration",
+        "line": "Contributed to the migration of the control plane to Kubernetes",
+        "blanks": 1,
+        "question": "What part of the control plane migration did you work on?"
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "line": 4,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "none (none)",
+    "fit": {
+      "roles": [
+        "Staff Software Engineer",
+        "Senior Software Engineer"
+      ],
+      "level": "Staff-level individual contributor",
+      "note": "The page points toward staff software engineering work in payments infrastructure and distributed systems. It also shows earlier storage and fraud pipeline work, with technical leadership in the current role.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0123235,
+  "latency_ms": 22927
+}

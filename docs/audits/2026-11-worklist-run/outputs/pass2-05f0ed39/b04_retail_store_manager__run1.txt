@@ -1,0 +1,28 @@
+# b04_retail_store_manager, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_retail_store_manager_1.txt (179 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 05f0ed39; severity check off
+Outcome: report; cost $0.0056; 12.2s
+
+## Needs more context (score 69; model wrote 69)
+## Verdict
+A store manager with strong current-store results and a two-store turnaround claim that needs backing up.
+
+## Write-up
+You show a progression from department supervisor to store manager, with sales, staffing and shrink figures for your current store. The headline claims two store turnarounds, but the results below it cover only the current store. A recruiter may hesitate over that claim.
+
+The fixed-schedule line is the model: it names what you changed and shows turnover before and after. Give the second turnaround that same treatment if you can verify it, or narrow the headline.
+
+## Cards (2; {"line":1,"keep":1}); severity off; added []
+1. [line] Headline
+   line: "Retail store manager who has turned around two underperforming stores in a 60-store regional chain."
+   can't tell: The bullets show results for your current store, but not a turnaround at the other store. The headline promises more than the work below it shows.
+   example: Retail store manager who has turned around two underperforming stores in a 60-store regional chain. [Results at each store]
+   question: Which two stores did you turn around, and what changed at each?
+2. [keep] Store Manager, turnover
+   line: "Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules"
+   can't tell: This line gives both the change you made and the turnover figures. It's a useful model for the turnaround claim.
+
+## Fit
+Roles: ["Store Manager","Assistant Store Manager"]
+Level: Store management
+Note: Your experience points to retail store management, with responsibility for staff, sales and inventory. The current role makes your work at one store particularly easy to follow.

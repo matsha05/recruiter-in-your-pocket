@@ -1,0 +1,23 @@
+# b26_construction_pm_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_construction_pm_strong_1.txt (136 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 18e7e9ff; severity check off
+Outcome: report; cost $0.0046; 9.3s
+
+## Clear and specific (score 91; model wrote 91)
+## Verdict
+A commercial construction project manager with project values, trade counts and results attached.
+
+## Write-up
+A recruiter can see the size of the projects you run, the trades you manage and the results you’ve delivered. This is a move-forward resume.
+
+The grocery store line is the model: project, value and schedule result in one sentence. If you have room, adding how you kept change orders under 3% would give that result more context.
+
+## Cards (1; {"keep":1}); severity off; added []
+1. [keep] Project Manager, line 2
+   line: "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024"
+   can't tell: Nothing essential is missing here. The project, its value and the schedule result are all in one line.
+
+## Fit
+Roles: ["Project Manager","Assistant Project Manager"]
+Level: Experienced project manager
+Note: Your experience points to project management in commercial tenant improvements and ground-up retail. The earlier Assistant Project Manager role shows your progression from submittals and schedules to running projects.

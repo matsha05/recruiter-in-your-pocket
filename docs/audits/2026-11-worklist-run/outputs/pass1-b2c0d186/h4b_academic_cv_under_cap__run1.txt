@@ -1,0 +1,35 @@
+# h4b_academic_cv_under_cap, run 1
+Resume: ../2026-11-live-judgment/resumes/h4b_academic_cv_under_cap.txt (3253 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt b2c0d186; severity check on
+Outcome: report; cost $0.0695; repair ran; 24.4s
+Case note: The same CV trimmed under the cap, to see what the model does with a CV shape.
+
+Validator refused the first draft: The model response failed the worklist contract at cards[2].cannot_tell: uses the retired phrase "the read".
+
+## Mostly clear (score 74; model wrote 74)
+## Verdict
+A tenured molecular biologist with funded research and mentoring experience, but repeated citations need checking.
+
+## Write-up
+You come across as a tenured molecular biologist with NIH funding, teaching and substantial mentoring experience. I'd hesitate to move the CV forward until the publication list is checked: the same titles and author lists appear under different years and volume details.
+
+The MB 310 redesign is the best-written line: it names the change and reports how evaluations moved without claiming the redesign caused it. Put academic appointments above education so your current work comes first.
+
+## Cards (3; {"structure":1,"line":1,"keep":1}); severity none (none); added []
+1. [structure] Structure
+   line: "Education sits above Academic Appointments."
+   can't tell: Your current tenured role comes after degrees earned earlier. Put Academic Appointments first so a recruiter reaches your current work sooner.
+   question: Can you move Academic Appointments above Education?
+2. [line] Publications, entry 1
+   line: "1. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2026). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 107(2), 1037-1052."
+   can't tell: This title and author list also appear in entries dated 2024, 2021 and 2018, with different volume and page details. Other titles repeat too. A recruiter can't tell which citations are correct, so check the full list against the published records.
+   example: [Verified citation from the published record]
+   question: What are the correct published citations for the repeated entries?
+3. [keep] Teaching, course redesign
+   line: "Course redesign: converted MB 310 to a flipped format in 2019; student evaluations rose from 3.9 to 4.5 of 5 over the following three offerings."
+   can't tell: This gives a recruiter the course, your change and the evaluation figures, without claiming the change caused the increase. It's a useful model for describing your work.
+
+## Fit
+Roles: ["Associate Professor (with tenure)"]
+Level: Tenured faculty
+Note: The CV points toward molecular biology faculty work, with research funding, teaching, mentoring and service all represented. The repeated publication entries need verification before a recruiter can readily trust the publication list.

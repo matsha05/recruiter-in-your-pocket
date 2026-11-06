@@ -1,0 +1,33 @@
+# h4b_academic_cv_under_cap, run 1
+Resume: ../2026-11-live-judgment/resumes/h4b_academic_cv_under_cap.txt (3253 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 05f0ed39; severity check off
+Outcome: report; cost $0.0241; 15.2s
+Case note: The same CV trimmed under the cap, to see what the model does with a CV shape.
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+A tenured molecular biologist with substantial funding and teaching detail, but publication entries that need checking.
+
+## Write-up
+You look like an established molecular biology faculty member: a tenured appointment, NIH funding as PI, teaching and mentoring. The hesitation is the publication list. Several entries repeat the same titles and authors across different years, with different citation details. A recruiter may move on rather than sort out which entries are correct.
+
+The MB 310 redesign is the model: it names what you changed and gives the evaluation figures over the following three offerings, without claiming the redesign caused the increase. Move Academic Appointments above Education, then check the publication list against the original records.
+
+## Cards (3; {"structure":1,"line":1,"keep":1}); severity off; added []
+1. [structure] Structure
+   line: "Education sits above Academic Appointments."
+   can't tell: Your current tenured appointment comes after two degrees. Put the faculty work first so a reader sees your present role sooner.
+   question: Can you move Academic Appointments above Education?
+2. [line] Publications, entry 1
+   line: "1. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2026). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 107(2), 1037-1052."
+   can't tell: The same authors and title also appear in entries 21 and 41, with different years and citation details. It's not clear whether these are distinct publications or repeated entries. Check the whole list against the original records.
+   example: [Verified publication citation, including authors, year, title, journal, volume and pages]
+   question: What are the verified citations for these entries, and are they distinct publications?
+3. [keep] Teaching, course redesign
+   line: "Course redesign: converted MB 310 to a flipped format in 2019; student evaluations rose from 3.9 to 4.5 of 5 over the following three offerings."
+   can't tell: Keep this as a model. It names your change and reports what happened afterward without claiming one caused the other.
+
+## Fit
+Roles: ["Associate Professor (with tenure)","Assistant Professor"]
+Level: Tenured faculty
+Note: Your appointments, grants, teaching and mentoring point toward molecular biology faculty roles. The repeated publication entries need verification before the list can do its job.

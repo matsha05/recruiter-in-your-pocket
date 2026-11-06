@@ -1,0 +1,348 @@
+{
+  "case_id": "b18_military_to_civilian",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/resumes/b_military_to_civilian.txt",
+  "resume_sha256": "c2dd1e89354ce1a86021927ffba5d85f65b3dfb021c3126f6459225f8bfd7a7e",
+  "resume_words": 268,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": true,
+  "started_at": "2026-11-06T03:35:49.108Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4211,
+        "completion_tokens": 962,
+        "total_tokens": 5173,
+        "cached_prompt_tokens": 3095,
+        "cache_write_prompt_tokens": 1113,
+        "reasoning_tokens": 360
+      },
+      "cost_usd": 0.006359,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 13416
+    },
+    {
+      "kind": "repair",
+      "usage": {
+        "prompt_tokens": 5027,
+        "completion_tokens": 803,
+        "total_tokens": 5830,
+        "cached_prompt_tokens": 3095,
+        "cache_write_prompt_tokens": 1929,
+        "reasoning_tokens": 315
+      },
+      "cost_usd": 0.006584,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 10027
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.00176075,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1226
+    }
+  ],
+  "resume_prompt_sha256": "b2c0d186992d2d925493008c0a67067de9f704dc44ec074808b3bc7176463d9a",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A strong Army logistics and maintenance resume with the management work and results attached.",
+    "write_up": [
+      "I'd move this forward for operations and maintenance supervision. You show leadership across maintenance, supply and fuel, with equipment accountability, a parts budget and vehicle readiness figures a recruiter can use.",
+      "The vehicle readiness line is the model: it says what changed and how you did it. The field exercise bullet could work harder by naming the logistics support you delivered, especially for a civilian reader."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Platoon Sergeant, line 3",
+        "line": "- Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises",
+        "cannot_tell": "The size of the exercise is clear, but logistics support can cover a lot. Naming what you provided would help a civilian reader understand the work.",
+        "example": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises, including [support provided]",
+        "question": "What logistics support did you plan and execute for those exercises?"
+      },
+      {
+        "kind": "keep",
+        "where": "Platoon Sergeant, line 4",
+        "line": "- Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "cannot_tell": "This gives the reader the problem, the change you made and the result. It's a useful model for the rest of the page.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Wheeled Vehicle Mechanic, line 2",
+        "line": "- Trained 9 junior mechanics",
+        "cannot_tell": "The number of mechanics is there, but not what you trained them to do.",
+        "example": "Trained 9 junior mechanics in [skills or tasks]",
+        "question": "What skills or tasks did you train the junior mechanics in?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Platoon Sergeant (E-7), Forward Support Company",
+        "Maintenance Section Sergeant (E-6)"
+      ],
+      "level": "Experienced supervisor",
+      "note": "The page points toward operations, maintenance and supply supervision. Your Army experience shows team leadership and equipment accountability; naming the field logistics work in civilian terms would make that transition easier to follow.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "initial_validation_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the worklist contract at cards[1].cannot_tell: uses the retired phrase \"the read\".",
+    "issues": [
+      {
+        "path": "cards[1].cannot_tell",
+        "message": "uses the retired phrase \"the read\""
+      }
+    ]
+  },
+  "model_output_repaired": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A strong Army logistics and maintenance resume with the management work and results attached.",
+    "write_up": [
+      "I'd move this forward for operations and maintenance supervision. You show leadership across maintenance, supply and fuel, with equipment accountability, a parts budget and vehicle readiness figures a recruiter can use.",
+      "The vehicle readiness line is the model: it says what changed and how you did it. The field exercise bullet could work harder by naming the logistics support you delivered, especially for someone outside the military."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Platoon Sergeant, line 3",
+        "line": "- Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises",
+        "cannot_tell": "The size of the exercise is clear, but logistics support can cover a lot. Naming what you provided would help someone outside the military understand the work.",
+        "example": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises, including [support provided]",
+        "question": "What logistics support did you plan and execute for those exercises?"
+      },
+      {
+        "kind": "keep",
+        "where": "Platoon Sergeant, line 4",
+        "line": "- Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "cannot_tell": "This names the problem, the changes you made and the result. It's a useful model for the rest of the page.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Wheeled Vehicle Mechanic, line 2",
+        "line": "- Trained 9 junior mechanics",
+        "cannot_tell": "The number of mechanics is there, but not what you trained them to do.",
+        "example": "Trained 9 junior mechanics in [skills or tasks]",
+        "question": "What skills or tasks did you train the junior mechanics in?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Platoon Sergeant (E-7), Forward Support Company",
+        "Maintenance Section Sergeant (E-6)",
+        "operations supervisor"
+      ],
+      "level": "Experienced supervisor",
+      "note": "Your experience points toward operations, maintenance and supply supervision. Naming the field logistics work in civilian terms would make that transition easier to follow.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "repaired": true,
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A strong Army logistics and maintenance resume with the management work and results attached.",
+    "write_up": [
+      "I'd move this forward for operations and maintenance supervision. You show leadership across maintenance, supply and fuel, with equipment accountability, a parts budget and vehicle readiness figures a recruiter can use.",
+      "The vehicle readiness line is the model: it says what changed and how you did it. The field exercise bullet could work harder by naming the logistics support you delivered, especially for someone outside the military."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Platoon Sergeant, line 3",
+        "line": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises",
+        "cannot_tell": "The size of the exercise is clear, but logistics support can cover a lot. Naming what you provided would help someone outside the military understand the work.",
+        "example": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises, including [support provided]",
+        "question": "What logistics support did you plan and execute for those exercises?"
+      },
+      {
+        "kind": "keep",
+        "where": "Platoon Sergeant, line 4",
+        "line": "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "cannot_tell": "This names the problem, the changes you made and the result. It's a useful model for the rest of the page.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Wheeled Vehicle Mechanic, line 2",
+        "line": "Trained 9 junior mechanics",
+        "cannot_tell": "The number of mechanics is there, but not what you trained them to do.",
+        "example": "Trained 9 junior mechanics in [skills or tasks]",
+        "question": "What skills or tasks did you train the junior mechanics in?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Platoon Sergeant (E-7), Forward Support Company",
+        "Maintenance Section Sergeant (E-6)",
+        "operations supervisor"
+      ],
+      "level": "Experienced supervisor",
+      "note": "Your experience points toward operations, maintenance and supply supervision. Naming the field logistics work in civilian terms would make that transition easier to follow.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 91
+  },
+  "severity": {
+    "promoted": [],
+    "replaced": [],
+    "led": null,
+    "critical_count": 1,
+    "more_critical": false,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "skipped": [],
+    "validation_attempts": 0,
+    "latency_ms": 1227,
+    "call_latency_ms": 1226,
+    "cost_usd": 0.00176075,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A strong Army logistics and maintenance resume with the management work and results attached.",
+    "write_up": [
+      "I'd move this forward for operations and maintenance supervision. You show leadership across maintenance, supply and fuel, with equipment accountability, a parts budget and vehicle readiness figures a recruiter can use.",
+      "The vehicle readiness line is the model: it says what changed and how you did it. The field exercise bullet could work harder by naming the logistics support you delivered, especially for someone outside the military."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Platoon Sergeant, line 3",
+        "line": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises",
+        "cannot_tell": "The size of the exercise is clear, but logistics support can cover a lot. Naming what you provided would help someone outside the military understand the work.",
+        "example": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises, including [support provided]",
+        "question": "What logistics support did you plan and execute for those exercises?"
+      },
+      {
+        "kind": "keep",
+        "where": "Platoon Sergeant, line 4",
+        "line": "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "cannot_tell": "This names the problem, the changes you made and the result. It's a useful model for the rest of the page.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Wheeled Vehicle Mechanic, line 2",
+        "line": "Trained 9 junior mechanics",
+        "cannot_tell": "The number of mechanics is there, but not what you trained them to do.",
+        "example": "Trained 9 junior mechanics in [skills or tasks]",
+        "question": "What skills or tasks did you train the junior mechanics in?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Platoon Sergeant (E-7), Forward Support Company",
+        "Maintenance Section Sergeant (E-6)",
+        "operations supervisor"
+      ],
+      "level": "Experienced supervisor",
+      "note": "Your experience points toward operations, maintenance and supply supervision. Naming the field logistics work in civilian terms would make that transition easier to follow.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 91
+  },
+  "presentation": {
+    "score": 91,
+    "band": "Clear and specific",
+    "model_score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A strong Army logistics and maintenance resume with the management work and results attached.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 67,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Platoon Sergeant, line 3",
+        "line": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises",
+        "blanks": 1,
+        "question": "What logistics support did you plan and execute for those exercises?"
+      },
+      {
+        "kind": "keep",
+        "where": "Platoon Sergeant, line 4",
+        "line": "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Wheeled Vehicle Mechanic, line 2",
+        "line": "Trained 9 junior mechanics",
+        "blanks": 1,
+        "question": "What skills or tasks did you train the junior mechanics in?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "line": 2,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "none (none)",
+    "fit": {
+      "roles": [
+        "Platoon Sergeant (E-7), Forward Support Company",
+        "Maintenance Section Sergeant (E-6)",
+        "operations supervisor"
+      ],
+      "level": "Experienced supervisor",
+      "note": "Your experience points toward operations, maintenance and supply supervision. Naming the field logistics work in civilian terms would make that transition easier to follow.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01470375,
+  "latency_ms": 24673
+}

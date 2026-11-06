@@ -1,0 +1,24 @@
+# b12_coo_executive_two_page, run 1
+Resume: ../2026-11-live-judgment/resumes/b_coo_executive.txt (463 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 05f0ed39; severity check off
+Outcome: report; cost $0.0054; 8.8s
+Case note: Executive, two pages.
+
+## Clear and specific (score 94; model wrote 94)
+## Verdict
+A healthcare COO whose growth and operating results are clear from the first pass.
+
+## Write-up
+You come across as a multi-site healthcare operator who has grown a dental organization while improving margins and retaining clinicians. Your current role makes the size of the operation and your reporting relationships clear.
+
+The integration playbook line is a strong model: it names what you changed and how much faster integration became. If you want to sharpen the resume further, you could explain which decisions you made as EHR sponsor.
+
+## Cards (1; {"keep":1}); severity off; added []
+1. [keep] Chief Operating Officer, line 4
+   line: "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook"
+   can't tell: Keep this as a model. It connects the playbook you standardized to a specific improvement in integration time.
+
+## Fit
+Roles: ["Chief Operating Officer","Senior Vice President, Operations","Vice President, Clinic Operations"]
+Level: Healthcare operations executive
+Note: Your experience points toward senior operations roles in multi-site healthcare, particularly dental and physician services. The current COO role shows both growth and day-to-day operating responsibility.

@@ -1,0 +1,329 @@
+{
+  "case_id": "b21_customer_success_manager_with_posting",
+  "batch": "breadth",
+  "run": 1,
+  "note": "The same resume with a posting attached.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt",
+  "resume_sha256": "fe00b25220442aa026e6aa909f700301c898f430bd2cf244eafbe182c75f316d",
+  "resume_words": 180,
+  "job_description_file": "../2026-11-live-judgment/resumes/b_posting_customer_success_manager.txt",
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T03:52:33.202Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4507,
+        "completion_tokens": 1704,
+        "total_tokens": 6211,
+        "cached_prompt_tokens": 3523,
+        "cache_write_prompt_tokens": 981,
+        "reasoning_tokens": 679
+      },
+      "cost_usd": 0.0099254,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 20017
+    }
+  ],
+  "resume_prompt_sha256": "05f0ed391d02c15c487cdf3fcd427706167ba6aa9a1ad58365cfcff658e9caea",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A mid-market customer success manager with a defined book, but no retention or expansion results on the page.",
+    "write_up": [
+      "You look relevant for this customer success role: you manage mid-market payroll accounts, run quarterly reviews, and work with Sales on at-risk renewals. The first hesitation is that the page doesn't say whether you owned renewal targets or what happened to those accounts.",
+      "The 48-account line is the model: it names the customers, their industries, and the size of your book. For this posting, add verified retention or expansion results and any use of product data. Your onboarding checklist and work with Product are worth developing too, without claiming responsibilities you didn't have."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 1",
+        "line": "- Manage a book of 48 mid-market accounts across healthcare and manufacturing",
+        "cannot_tell": "This gives a recruiter a concrete picture of your book. It's a useful model for the rest of the role.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 2",
+        "line": "- Run quarterly business reviews with customer finance and HR leads",
+        "cannot_tell": "The work is clear, but the posting asks for VP-level sponsors. The titles of the people in your reviews aren't stated.",
+        "example": "Run quarterly business reviews with customer finance and HR leads, including [sponsor titles], on [topics or decisions]",
+        "question": "What were the titles of the people in your reviews, and what topics or decisions did you cover?"
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "- Partnered with Sales on renewal strategy for at-risk accounts",
+        "cannot_tell": "The partnership is relevant, but your part in the strategy and what happened to the accounts are blank. This posting puts a lot of weight on retention.",
+        "example": "Partnered with Sales on renewal strategy for at-risk accounts by [your contribution], with [result, if known]",
+        "question": "What did you contribute to the renewal strategy, and what happened to those accounts?"
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 4",
+        "line": "- Built an onboarding checklist now used by the whole CS team",
+        "cannot_tell": "A checklist adopted by the whole team is worth keeping. The line doesn't say what it covers or what changed after the team started using it.",
+        "example": "Built an onboarding checklist now used by the whole CS team, covering [steps] and [what changed, if known]",
+        "question": "What does the checklist cover, and did anything change after the team adopted it?"
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 5",
+        "line": "- Handle escalations with Support and Product when payroll runs fail",
+        "cannot_tell": "The payroll problem is specific, but your part in resolving it isn't. The posting also asks for customer requests to be logged and prioritized with Product.",
+        "example": "Handle escalations with Support and Product when payroll runs fail by [your contribution], including [any customer requests logged or prioritized]",
+        "question": "What do you do during these escalations, and have you logged or prioritized customer requests with Product?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Customer Success Manager",
+        "Customer Success Manager, Mid-Market"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "The posting asks for retention and expansion results, VP-level QBRs, product usage data, and a BI tool; the resume doesn't establish those. Your mid-market book, quarterly reviews, Sales partnership, Gainsight, and Salesforce are relevant. The posting's book is 60 to 80 accounts and about $4M in ARR; yours is 48 accounts, with ARR not stated.",
+      "posting": {
+        "summary": "A mid-market SaaS customer success role accountable for renewals and expansion, onboarding, executive reviews, and identifying account risk with usage data.",
+        "missing": [
+          "A track record of hitting retention or expansion targets, with numbers you can talk about",
+          "Experience running QBRs with VP-level sponsors",
+          "product usage data",
+          "a BI tool such as Looker",
+          "log and prioritize feature requests"
+        ]
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A mid-market customer success manager with a defined book, but no retention or expansion results on the page.",
+    "write_up": [
+      "You look relevant for this customer success role: you manage mid-market payroll accounts, run quarterly reviews, and work with Sales on at-risk renewals. The first hesitation is that the page doesn't say whether you owned renewal targets or what happened to those accounts.",
+      "The 48-account line is the model: it names the customers, their industries, and the size of your book. For this posting, add verified retention or expansion results and any use of product data. Your onboarding checklist and work with Product are worth developing too, without claiming responsibilities you didn't have."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 1",
+        "line": "Manage a book of 48 mid-market accounts across healthcare and manufacturing",
+        "cannot_tell": "This gives a recruiter a concrete picture of your book. It's a useful model for the rest of the role.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 2",
+        "line": "Run quarterly business reviews with customer finance and HR leads",
+        "cannot_tell": "The work is clear, but the posting asks for VP-level sponsors. The titles of the people in your reviews aren't stated.",
+        "example": "Run quarterly business reviews with customer finance and HR leads, including [sponsor titles], on [topics or decisions]",
+        "question": "What were the titles of the people in your reviews, and what topics or decisions did you cover?"
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "Partnered with Sales on renewal strategy for at-risk accounts",
+        "cannot_tell": "The partnership is relevant, but your part in the strategy and what happened to the accounts are blank. This posting puts a lot of weight on retention.",
+        "example": "Partnered with Sales on renewal strategy for at-risk accounts by [your contribution], with [result, if known]",
+        "question": "What did you contribute to the renewal strategy, and what happened to those accounts?"
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 4",
+        "line": "Built an onboarding checklist now used by the whole CS team",
+        "cannot_tell": "A checklist adopted by the whole team is worth keeping. The line doesn't say what it covers or what changed after the team started using it.",
+        "example": "Built an onboarding checklist now used by the whole CS team, covering [steps] and [what changed, if known]",
+        "question": "What does the checklist cover, and did anything change after the team adopted it?"
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 5",
+        "line": "Handle escalations with Support and Product when payroll runs fail",
+        "cannot_tell": "The payroll problem is specific, but your part in resolving it isn't. The posting also asks for customer requests to be logged and prioritized with Product.",
+        "example": "Handle escalations with Support and Product when payroll runs fail by [your contribution], including [any customer requests logged or prioritized]",
+        "question": "What do you do during these escalations, and have you logged or prioritized customer requests with Product?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Customer Success Manager",
+        "Customer Success Manager, Mid-Market"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "The posting asks for retention and expansion results, VP-level QBRs, product usage data, and a BI tool; the resume doesn't establish those. Your mid-market book, quarterly reviews, Sales partnership, Gainsight, and Salesforce are relevant. The posting's book is 60 to 80 accounts and about $4M in ARR; yours is 48 accounts, with ARR not stated.",
+      "posting": {
+        "summary": "A mid-market SaaS customer success role accountable for renewals and expansion, onboarding, executive reviews, and identifying account risk with usage data.",
+        "missing": [
+          "A track record of hitting retention or expansion targets, with numbers you can talk about",
+          "Experience running QBRs with VP-level sponsors",
+          "product usage data",
+          "a BI tool such as Looker",
+          "log and prioritize feature requests"
+        ]
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 78
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A mid-market customer success manager with a defined book, but no retention or expansion results on the page.",
+    "write_up": [
+      "You look relevant for this customer success role: you manage mid-market payroll accounts, run quarterly reviews, and work with Sales on at-risk renewals. The first hesitation is that the page doesn't say whether you owned renewal targets or what happened to those accounts.",
+      "The 48-account line is the model: it names the customers, their industries, and the size of your book. For this posting, add verified retention or expansion results and any use of product data. Your onboarding checklist and work with Product are worth developing too, without claiming responsibilities you didn't have."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 1",
+        "line": "Manage a book of 48 mid-market accounts across healthcare and manufacturing",
+        "cannot_tell": "This gives a recruiter a concrete picture of your book. It's a useful model for the rest of the role.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 2",
+        "line": "Run quarterly business reviews with customer finance and HR leads",
+        "cannot_tell": "The work is clear, but the posting asks for VP-level sponsors. The titles of the people in your reviews aren't stated.",
+        "example": "Run quarterly business reviews with customer finance and HR leads, including [sponsor titles], on [topics or decisions]",
+        "question": "What were the titles of the people in your reviews, and what topics or decisions did you cover?"
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "Partnered with Sales on renewal strategy for at-risk accounts",
+        "cannot_tell": "The partnership is relevant, but your part in the strategy and what happened to the accounts are blank. This posting puts a lot of weight on retention.",
+        "example": "Partnered with Sales on renewal strategy for at-risk accounts by [your contribution], with [result, if known]",
+        "question": "What did you contribute to the renewal strategy, and what happened to those accounts?"
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 4",
+        "line": "Built an onboarding checklist now used by the whole CS team",
+        "cannot_tell": "A checklist adopted by the whole team is worth keeping. The line doesn't say what it covers or what changed after the team started using it.",
+        "example": "Built an onboarding checklist now used by the whole CS team, covering [steps] and [what changed, if known]",
+        "question": "What does the checklist cover, and did anything change after the team adopted it?"
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 5",
+        "line": "Handle escalations with Support and Product when payroll runs fail",
+        "cannot_tell": "The payroll problem is specific, but your part in resolving it isn't. The posting also asks for customer requests to be logged and prioritized with Product.",
+        "example": "Handle escalations with Support and Product when payroll runs fail by [your contribution], including [any customer requests logged or prioritized]",
+        "question": "What do you do during these escalations, and have you logged or prioritized customer requests with Product?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Customer Success Manager",
+        "Customer Success Manager, Mid-Market"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "The posting asks for retention and expansion results, VP-level QBRs, product usage data, and a BI tool; the resume doesn't establish those. Your mid-market book, quarterly reviews, Sales partnership, Gainsight, and Salesforce are relevant. The posting's book is 60 to 80 accounts and about $4M in ARR; yours is 48 accounts, with ARR not stated.",
+      "posting": {
+        "summary": "A mid-market SaaS customer success role accountable for renewals and expansion, onboarding, executive reviews, and identifying account risk with usage data.",
+        "missing": [
+          "A track record of hitting retention or expansion targets, with numbers you can talk about",
+          "Experience running QBRs with VP-level sponsors",
+          "product usage data",
+          "a BI tool such as Looker",
+          "log and prioritize feature requests"
+        ]
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 78
+  },
+  "presentation": {
+    "score": 78,
+    "band": "Mostly clear",
+    "model_score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A mid-market customer success manager with a defined book, but no retention or expansion results on the page.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 93,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 1",
+        "line": "Manage a book of 48 mid-market accounts across healthcare and manufacturing",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 2",
+        "line": "Run quarterly business reviews with customer finance and HR leads",
+        "blanks": 2,
+        "question": "What were the titles of the people in your reviews, and what topics or decisions did you cover?"
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "Partnered with Sales on renewal strategy for at-risk accounts",
+        "blanks": 2,
+        "question": "What did you contribute to the renewal strategy, and what happened to those accounts?"
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 4",
+        "line": "Built an onboarding checklist now used by the whole CS team",
+        "blanks": 2,
+        "question": "What does the checklist cover, and did anything change after the team adopted it?"
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 5",
+        "line": "Handle escalations with Support and Product when payroll runs fail",
+        "blanks": 2,
+        "question": "What do you do during these escalations, and have you logged or prioritized customer requests with Product?"
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "keep": 1,
+      "line": 4
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Customer Success Manager",
+        "Customer Success Manager, Mid-Market"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "The posting asks for retention and expansion results, VP-level QBRs, product usage data, and a BI tool; the resume doesn't establish those. Your mid-market book, quarterly reviews, Sales partnership, Gainsight, and Salesforce are relevant. The posting's book is 60 to 80 accounts and about $4M in ARR; yours is 48 accounts, with ARR not stated.",
+      "posting": {
+        "summary": "A mid-market SaaS customer success role accountable for renewals and expansion, onboarding, executive reviews, and identifying account risk with usage data.",
+        "missing": [
+          "A track record of hitting retention or expansion targets, with numbers you can talk about",
+          "Experience running QBRs with VP-level sponsors",
+          "product usage data",
+          "a BI tool such as Looker",
+          "log and prioritize feature requests"
+        ]
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0099254,
+  "latency_ms": 20021
+}

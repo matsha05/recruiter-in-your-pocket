@@ -1,0 +1,28 @@
+# b01_icu_nurse, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_icu_nurse_1.txt (153 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 05f0ed39; severity check off
+Outcome: report; cost $0.0039; 8.4s
+
+## Mostly clear (score 82; model wrote 82)
+## Verdict
+An ICU nurse with specific critical care experience and one committee role that needs more detail.
+
+## Write-up
+You look like a strong fit for staff nursing work in an ICU or telemetry unit. Your Arizona RN license, CCRN and current ICU work are easy to find. The main question is what you do on the sepsis committee beyond membership.
+
+The direct-care line is a good model: two critically ill patients per shift in a 24-bed medical ICU. It tells a recruiter what your work looks like without making them guess.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Staff Nurse, Medical ICU, line 1
+   line: "Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU"
+   can't tell: Keep this. It names the patients, your work and the setting in one line.
+2. [line] Staff Nurse, Medical ICU, line 5
+   line: "Member of the unit's sepsis bundle compliance committee"
+   can't tell: Committee membership doesn't say what you contributed. A specific piece of work would show your part.
+   example: Member of the unit's sepsis bundle compliance committee; [specific contribution]
+   question: What did you contribute to the sepsis bundle compliance committee?
+
+## Fit
+Roles: ["Staff Nurse, Medical ICU","Staff Nurse, Telemetry"]
+Level: Experienced staff nurse
+Note: Your recent work points toward ICU staff nursing, with earlier telemetry experience. The charge and precepting duties add to the clinical picture without claiming a management role.

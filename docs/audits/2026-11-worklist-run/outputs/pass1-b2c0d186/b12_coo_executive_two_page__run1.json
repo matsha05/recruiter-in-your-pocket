@@ -1,0 +1,208 @@
+{
+  "case_id": "b12_coo_executive_two_page",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Executive, two pages.",
+  "resume_file": "../2026-11-live-judgment/resumes/b_coo_executive.txt",
+  "resume_sha256": "213474e9b27355f8a085204e3dac05f65782d74d43b9b531cb2afd6a3afe1b79",
+  "resume_words": 463,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": true,
+  "started_at": "2026-11-06T03:35:00.564Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4807,
+        "completion_tokens": 541,
+        "total_tokens": 5348,
+        "cached_prompt_tokens": 3095,
+        "cache_write_prompt_tokens": 1709,
+        "reasoning_tokens": 190
+      },
+      "cost_usd": 0.004999,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 8813
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.00241575,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1206
+    }
+  ],
+  "resume_prompt_sha256": "b2c0d186992d2d925493008c0a67067de9f704dc44ec074808b3bc7176463d9a",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 94,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare COO whose growth, operating results and board responsibilities are easy to see.",
+    "write_up": [
+      "This is a strong case for moving forward on healthcare operations leadership roles. You show a progression from clinic operations to a private equity-backed dental organization, with the practice count, revenue and board reporting right up front.",
+      "The integration playbook line is a model: it names what you changed and how much faster integrations became. The turnover, margin and surgery center lines do the same kind of work."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, integration playbook",
+        "line": "- Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "cannot_tell": "Nothing essential is hidden here. A recruiter can see what you changed and how much faster integration became.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Operating Officer",
+        "Senior Vice President, Operations"
+      ],
+      "level": "Executive",
+      "note": "Your experience points to multi-site healthcare operations leadership, particularly in dental and physician services. The page shows both growth and operating work, with P&L ownership alongside the CFO and regular board reporting.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 94,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare COO whose growth, operating results and board responsibilities are easy to see.",
+    "write_up": [
+      "This is a strong case for moving forward on healthcare operations leadership roles. You show a progression from clinic operations to a private equity-backed dental organization, with the practice count, revenue and board reporting right up front.",
+      "The integration playbook line is a model: it names what you changed and how much faster integrations became. The turnover, margin and surgery center lines do the same kind of work."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, integration playbook",
+        "line": "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "cannot_tell": "Nothing essential is hidden here. A recruiter can see what you changed and how much faster integration became.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Operating Officer",
+        "Senior Vice President, Operations"
+      ],
+      "level": "Executive",
+      "note": "Your experience points to multi-site healthcare operations leadership, particularly in dental and physician services. The page shows both growth and operating work, with P&L ownership alongside the CFO and regular board reporting.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 94
+  },
+  "severity": {
+    "promoted": [],
+    "replaced": [],
+    "led": null,
+    "critical_count": 1,
+    "more_critical": false,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "skipped": [],
+    "validation_attempts": 0,
+    "latency_ms": 1206,
+    "call_latency_ms": 1206,
+    "cost_usd": 0.00241575,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 94,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare COO whose growth, operating results and board responsibilities are easy to see.",
+    "write_up": [
+      "This is a strong case for moving forward on healthcare operations leadership roles. You show a progression from clinic operations to a private equity-backed dental organization, with the practice count, revenue and board reporting right up front.",
+      "The integration playbook line is a model: it names what you changed and how much faster integrations became. The turnover, margin and surgery center lines do the same kind of work."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, integration playbook",
+        "line": "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "cannot_tell": "Nothing essential is hidden here. A recruiter can see what you changed and how much faster integration became.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Operating Officer",
+        "Senior Vice President, Operations"
+      ],
+      "level": "Executive",
+      "note": "Your experience points to multi-site healthcare operations leadership, particularly in dental and physician services. The page shows both growth and operating work, with P&L ownership alongside the CFO and regular board reporting.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 94
+  },
+  "presentation": {
+    "score": 94,
+    "band": "Clear and specific",
+    "model_score": 94,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare COO whose growth, operating results and board responsibilities are easy to see.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 68,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, integration playbook",
+        "line": "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 1,
+    "kinds": {
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "none (none)",
+    "fit": {
+      "roles": [
+        "Chief Operating Officer",
+        "Senior Vice President, Operations"
+      ],
+      "level": "Executive",
+      "note": "Your experience points to multi-site healthcare operations leadership, particularly in dental and physician services. The page shows both growth and operating work, with P&L ownership alongside the CFO and regular board reporting.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00741475,
+  "latency_ms": 10021
+}

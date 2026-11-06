@@ -1,0 +1,30 @@
+# b02_teacher, run 1
+Resume: ../2026-11-live-judgment/resumes/b_teacher.txt (202 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt b2c0d186; severity check on
+Outcome: report; cost $0.0102; repair ran; 16.8s
+
+Validator refused the first draft: The model response failed the worklist contract at write_up[1]: uses the retired phrase "the read".
+
+## Clear and specific (score 90; model wrote 90)
+## Verdict
+A strong elementary teaching resume with classroom results, grade-level leadership, and family engagement.
+
+## Write-up
+I'd move this forward for elementary teaching. Your current role shows the classroom you teach, the colleagues you lead, and work beyond the school day. Your Washington certificate and English Language Learner endorsement are easy to find.
+
+Your reading-growth bullet is a model for the rest: it names the district assessment, the change, and the period measured. The earlier committee line is one place where a recruiter has to guess what you contributed.
+
+## Cards (2; {"keep":1,"line":1}); severity none (none); added []
+1. [keep] 4th Grade Teacher, reading growth
+   line: "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years"
+   can't tell: This line gives a recruiter the measure, the change, and the time period without making them guess.
+2. [line] 2nd Grade Teacher, positive behavior support committee
+   line: "Served on the school's positive behavior support committee"
+   can't tell: Serving on the committee says where you participated, but not what you contributed. One specific piece of work would make it useful to a recruiter.
+   example: Served on the school's positive behavior support committee, [what you contributed]
+   question: What did you contribute to the positive behavior support committee?
+
+## Fit
+Roles: ["4th Grade Teacher","2nd Grade Teacher"]
+Level: Experienced elementary teacher
+Note: Your experience points toward elementary classroom teaching, particularly in grades 2 and 4. The grade-level leadership, family literacy night, and English Language Learner endorsement add to that classroom story.

@@ -1,4 +1,3 @@
-import { resolveResumeRepairReasoningEffort } from "@/lib/llm/model-config";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { maybeCreateSupabaseServerClient } from "@/lib/supabase/serverClient";
@@ -18,21 +17,15 @@ import {
   hashAnonymousIdentity,
 } from "@/lib/billing/anonymousIdentity";
 import { runJson } from "@/lib/llm/orchestrator";
-import {
-  buildResumeRepairMessages,
-  isRepairableResumeResponseError,
-} from "@/lib/llm/reportRepair";
 import { buildResumeProviderMessages } from "@/lib/llm/resume-provider-messages";
 import { resolveOpenAIModel } from "@/lib/llm/model-config";
 import { loadPromptForMode } from "@/lib/backend/prompts";
 import {
-  ensureLayoutAndContentFields,
   validateResumeFeedbackRequest,
   validateCaseResumePayload,
   validateCaseInterviewPayload,
   validateCaseNegotiationPayload,
   validateResumeIdeasPayload,
-  validateResumeModelPayload
 } from "@/lib/backend/validation";
 import { hashForLogs, logError, logInfo, logWarn } from "@/lib/observability/logger";
 import { getRequestId, routeLabel } from "@/lib/observability/requestContext";
@@ -60,6 +53,8 @@ import { makeValidatedReportReceipt } from "@/lib/reports/report-receipt";
 import { finalizeAuthenticatedGeneratedReport } from "@/lib/reports/finalize-generated-report";
 import { finalizeAnonymousGeneratedReport } from "@/lib/reports/finalize-anonymous-generated-report";
 import { severityCheckReport } from "@/lib/reports/severity-check-report";
+import { resumePromptVersion, resumeSchemaVersion } from "@/lib/reports/report-shape";
+import { validateResumeStreamOutput } from "@/lib/llm/validateResumeStreamOutput";
 import { requireAnonymousReportRecoveryId } from "@/lib/reports/anonymous-report-recovery-requirement";
 
 export const runtime = "nodejs";
@@ -273,8 +268,8 @@ export async function POST(request: Request) {
       task: mode === "resume_ideas" ? "resume_ideas" : "resume_feedback",
       mode,
       model,
-      prompt_version: mode === "resume_ideas" ? "resume_ideas_v1" : "resume_v2",
-      schema_version: mode === "resume_ideas" ? "ideas_v1" : "report_v1",
+      prompt_version: mode === "resume_ideas" ? "resume_ideas_v1" : resumePromptVersion(),
+      schema_version: mode === "resume_ideas" ? "ideas_v1" : resumeSchemaVersion(),
       messages,
       signal: request.signal,
     });
@@ -290,34 +285,20 @@ export async function POST(request: Request) {
     } else if (mode === "case_negotiation") {
       payload = validateCaseNegotiationPayload(parsedJson);
     } else {
-      try {
-        payload = validateResumeModelPayload(parsedJson, canonicalResumeText, effectiveJobDescription.validationOptions);
-        payload = ensureLayoutAndContentFields(payload);
-      } catch (err: any) {
-        if (mode !== "resume" || !isRepairableResumeResponseError(err)) throw err;
-
-        logWarn({
-          msg: "llm.response.repair_started",
-          request_id,
-          route,
-          user_id,
-          err: { name: err?.name || "ValidationError", message: err?.message || "Response validation failed" }
-        });
-        const repaired = await runJson<any>({
-          ctx: { request_id, user_id, route },
-          task: "resume_feedback",
-          mode: "resume",
-          model,
-          prompt_version: "resume_v2_repair",
-        reasoning_effort: resolveResumeRepairReasoningEffort(model),
-          schema_version: "report_v1",
-          messages: buildResumeRepairMessages(messages, initialRun.raw, err),
-          signal: request.signal,
-        });
-        payload = validateResumeModelPayload(repaired.parsed, canonicalResumeText, effectiveJobDescription.validationOptions);
-        payload = ensureLayoutAndContentFields(payload);
-        logInfo({ msg: "llm.response.repair_completed", request_id, route, user_id });
-      }
+      // The same validator and one bounded repair as the stream route (worklist or Critical Miss contract).
+      const validated = await validateResumeStreamOutput({
+        raw: initialRun.raw,
+        text: canonicalResumeText,
+        mode,
+        model,
+        messages,
+        requestId: request_id,
+        route,
+        userIdForLogs: user_id,
+        validationOptions: effectiveJobDescription.validationOptions,
+        signal: request.signal,
+      });
+      payload = validated.payload;
       // Further Critical Misses, when RIYP_SEVERITY_CHECK is on. Any failure keeps the report as validated.
       const severity = await severityCheckReport({
         payload,

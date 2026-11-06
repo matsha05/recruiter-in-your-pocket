@@ -1,0 +1,28 @@
+# b04_retail_store_manager, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_retail_store_manager_1.txt (179 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt b2c0d186; severity check on
+Outcome: report; cost $0.0059; 10.0s
+
+## Clear and specific (score 90; model wrote 90)
+## Verdict
+A store manager with strong sales, turnover and shrink figures, but only one turnaround detailed.
+
+## Write-up
+You look like a store manager who knows the numbers and the floor. The headline promises two turnarounds, though the work section gives the detail for only one.
+
+The turnover line is the model: it names the change you made and the move from 68% to 41%. The sales, customer satisfaction and shrink figures make the current store easy to understand, too.
+
+## Cards (2; {"line":1,"keep":1}); severity none (none); added []
+1. [line] Headline
+   line: "Retail store manager who has turned around two underperforming stores in a 60-store regional chain."
+   can't tell: The headline claims two turnarounds, but the work section doesn't show what changed at both stores. A recruiter will want to connect that claim to the jobs below.
+   example: Retail store manager who has turned around two underperforming stores in a 60-store regional chain: [what changed at each store].
+   question: Which two stores did you turn around, and what changed at each?
+2. [keep] Store Manager, line 3
+   line: "Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules"
+   can't tell: Keep this as a model. It shows what you changed and how staff turnover moved.
+
+## Fit
+Roles: ["Store Manager"]
+Level: Experienced store manager
+Note: Your experience points squarely to store management, with sales, staffing, customer satisfaction and inventory figures for the current store. The progression from department supervisor to store manager is easy to follow.

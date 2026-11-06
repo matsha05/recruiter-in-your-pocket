@@ -1,0 +1,21 @@
+# h3_strong_resume, run 1
+Resume: ../2026-11-live-judgment/resumes/h3_strong_resume.txt (311 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt b2c0d186; severity check on
+Outcome: report; cost $0.0066; 5.2s
+Case note: Senior product manager whose resume is already good.
+
+## Clear and specific (score 96; model wrote 96)
+## Verdict
+A senior payments product manager whose launches, customer adoption, and team leadership are easy to follow.
+
+## Write-up
+You show a clear progression from merchant onboarding to owning a payments platform roadmap across four product teams. The Northwind Pay launch, processor integrations and billing work make the case for senior product roles without relying on the headline.
+
+The payment failure bullet is the model: it names the change you led, the drop in failures and the estimated revenue recovered for customers. The page is strong as it stands.
+
+## Cards (0; {}); severity none (none); added []
+
+## Fit
+Roles: ["Senior Product Manager, Payments Platform","Product Manager, Billing"]
+Level: Senior product manager
+Note: Your experience points toward senior product roles in payments and billing. You also show product manager hiring and management alongside platform roadmap ownership.

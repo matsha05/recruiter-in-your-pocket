@@ -1,0 +1,33 @@
+# b01_icu_nurse, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_icu_nurse_1.txt (153 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 18e7e9ff; severity check off
+Outcome: report; cost $0.0060; 12.8s
+
+## Mostly clear (score 80; model wrote 80)
+## Verdict
+An experienced ICU nurse with a clear patient-care workload and a couple of duties that need detail.
+
+## Write-up
+A recruiter sees a medical ICU nurse with CCRN, charge nurse duties and prior telemetry experience. Your current patient assignment is specific, and the ventilator, vasoactive drip and renal replacement therapy work shows what that care involves.
+
+The direct care line is the model: it names the patients, assignment and unit. The sepsis committee and rapid response lines leave more room to say what you actually did.
+
+## Cards (3; {"keep":1,"line":2}); severity off; added []
+1. [keep] Staff Nurse, Medical ICU, line 1
+   line: "Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU"
+   can't tell: Keep this as a model. It tells a recruiter who you care for and what your assignment looks like.
+2. [line] Staff Nurse, Medical ICU, line 5
+   line: "Member of the unit's sepsis bundle compliance committee"
+   can't tell: Committee membership doesn't say what you did there. Your part could make this a more useful line.
+   example: Member of the unit's sepsis bundle compliance committee; [what you did as a member]
+   question: What did you do as a member of the committee?
+3. [line] Staff Nurse, Telemetry, line 2
+   line: "Responded to rapid response calls as part of the floor team"
+   can't tell: A recruiter knows you responded with the team, but not what you did during the calls.
+   example: Responded to rapid response calls as part of the floor team, including [what you did during calls]
+   question: What did you do during rapid response calls?
+
+## Fit
+Roles: ["Staff Nurse, Medical ICU","Staff Nurse, Telemetry"]
+Level: Experienced staff nurse
+Note: Your experience points most directly to medical ICU staff nursing, with telemetry work behind it. The CCRN and current charge nurse duties add to that picture.

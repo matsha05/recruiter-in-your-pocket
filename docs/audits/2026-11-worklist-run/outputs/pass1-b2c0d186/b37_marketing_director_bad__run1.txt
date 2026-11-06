@@ -1,0 +1,43 @@
+# b37_marketing_director_bad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_marketing_director_bad_1.txt (167 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt b2c0d186; severity check on
+Outcome: report; cost $0.0102; 21.1s
+Case note: Title above the work; key says no_recent_work, no_target_role, title_level_mismatch.
+
+## Mostly clear (score 74; model wrote 74)
+## Verdict
+A varied work history with concrete tasks, but the director title raises questions the marketing bullets don't answer.
+
+## Write-up
+Your latest job combines Instagram and product writing with order packing and customer emails. Those are clear tasks, but the Director of Marketing title makes a recruiter look for strategy, decisions or leadership that the bullets don't show. The page also leaves the time after January 2025 unaccounted for.
+
+The property records line is a good model: it names the work, the system and a daily volume. Your jobs span several fields, so naming the kind of role you want would help a reader know which experience to focus on.
+
+## Cards (5; {"line":2,"dates":1,"structure":1,"keep":1}); severity none (none); added []
+1. [line] Director of Marketing, title
+   line: "Director of Marketing"
+   can't tell: The title suggests responsibility beyond the tasks listed, but the bullets don't show what marketing decisions or leadership were yours. Keep your actual title and add those responsibilities if they were part of the job.
+   example: Director of Marketing | [marketing decisions or leadership responsibilities, if applicable]
+   question: What marketing decisions or leadership responsibilities did you have in this role, if any?
+2. [dates] Dates
+   line: "Nothing is dated after January 2025."
+   can't tell: A recruiter can't tell what you've been doing since the candle company role ended. A brief, honest line can account for that time without oversharing.
+   example: [Month Year - Month Year or Present] [work, study, caregiving, job search or career break, if applicable]
+   question: What would you be comfortable listing for the time since that role ended?
+3. [structure] Structure
+   line: "The resume doesn't name a target role, and the jobs span marketing, data entry, laboratory work and coffee service."
+   can't tell: A recruiter has to guess which direction you want to take next. A target title can help them understand which experience to focus on.
+   question: Which kind of job are you applying for now?
+4. [line] Director of Marketing, line 1
+   line: "Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers"
+   can't tell: The frequency and account size are here, but not what you posted or what the posts were meant to do. That would make the marketing work easier to picture.
+   example: Posted [type of content] 3 to 5 times a week on the company Instagram, which has 2,100 followers, to [purpose]
+   question: What kinds of posts did you create, and what were they meant to accomplish?
+5. [keep] Data Entry Clerk, line 1
+   line: "Entered 150 property records a day into the county title system"
+   can't tell: Keep this as a model. It tells a reader what you entered, where it went and how much you handled.
+
+## Fit
+Roles: ["Director of Marketing","Data Entry Clerk","Laboratory Assistant","Barista"]
+Level: Hands-on individual contributor; director title needs context
+Note: The recent work points toward hands-on marketing and customer operations, while earlier roles show data entry and laboratory support. The page doesn't yet show the strategy or leadership a reader might expect from a director title.

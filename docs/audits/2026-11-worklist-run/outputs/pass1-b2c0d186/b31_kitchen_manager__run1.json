@@ -1,0 +1,465 @@
+{
+  "case_id": "b31_kitchen_manager",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_kitchen_manager_1.txt",
+  "resume_sha256": "836be21294a27aec82bd92fc8dd36b03ccee25fd7f25cdf838a86a793237696a",
+  "resume_words": 120,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": true,
+  "started_at": "2026-11-06T03:36:52.126Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 3659,
+        "completion_tokens": 1122,
+        "total_tokens": 4781,
+        "cached_prompt_tokens": 3095,
+        "cache_write_prompt_tokens": 561,
+        "reasoning_tokens": 252
+      },
+      "cost_usd": 0.006469,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 13682
+    },
+    {
+      "kind": "repair",
+      "usage": {
+        "prompt_tokens": 4698,
+        "completion_tokens": 1048,
+        "total_tokens": 5746,
+        "cached_prompt_tokens": 3095,
+        "cache_write_prompt_tokens": 1600,
+        "reasoning_tokens": 347
+      },
+      "cost_usd": 0.00739775,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 13821
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.00123075,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1534
+    }
+  ],
+  "resume_prompt_sha256": "b2c0d186992d2d925493008c0a67067de9f704dc44ec074808b3bc7176463d9a",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 73,
+    "lifted_by_employer": false,
+    "verdict": "A kitchen manager with a clear progression, but the management work needs more detail.",
+    "write_up": [
+      "You moved from line cook to sous chef to kitchen manager, and the current job is easy to place. The hesitation is what managing the kitchen looks like day to day: the schedule, orders, inspections and training are listed, but not much is said about how you handle them.",
+      "The 180-seat restaurant line is the best model on the page. It names the job and gives the reader a concrete sense of the restaurant. Bring that same detail to the staff and the work behind the kitchen's daily operation."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Kitchen Manager, line 1",
+        "line": "- Run the kitchen for a 180-seat restaurant",
+        "cannot_tell": "This gives the reader a job and a restaurant size without making them guess. It's a useful model for the other bullets.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 2",
+        "line": "- Manage the kitchen staff schedule",
+        "cannot_tell": "The schedule is yours, but the page doesn't say how many people you schedule or what goes into it.",
+        "example": "Manage the kitchen staff schedule for [number] staff, [how you handle coverage]",
+        "question": "How many staff do you schedule, and how do you handle coverage?"
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 3",
+        "line": "- Order food and supplies from vendors",
+        "cannot_tell": "Ordering is part of the job, but the page doesn't show how you decide what to order or manage costs.",
+        "example": "Order food and supplies from vendors, [how you determine orders or manage costs]",
+        "question": "How do you decide what to order and manage food and supply costs?"
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 4",
+        "line": "- Keep the kitchen ready for health inspections",
+        "cannot_tell": "Inspection readiness matters in this job. The page doesn't show what you do to maintain it or what happened at inspections.",
+        "example": "Keep the kitchen ready for health inspections by [specific practices]; [inspection result, if known]",
+        "question": "What do you do to prepare the kitchen, and what were the inspection results?"
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 5",
+        "line": "- Train new line cooks",
+        "cannot_tell": "Training is useful management work, but the page doesn't say what you teach or how many cooks you've trained.",
+        "example": "Train new line cooks in [skills or procedures], including [number] cooks [time period]",
+        "question": "What do you teach new cooks, and how many have you trained over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Sous Chef, line 2",
+        "line": "- Helped plan seasonal menu changes",
+        "cannot_tell": "You helped plan the changes, but your part in that work isn't clear.",
+        "example": "Helped plan seasonal menu changes by [your contribution]",
+        "question": "What was your part in planning the seasonal menu changes?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Kitchen Manager",
+        "Sous Chef"
+      ],
+      "level": "Kitchen management",
+      "note": "The page points toward kitchen management, with earlier sous chef and line cook experience. The current role would be stronger with details about staff scheduling, purchasing, inspection preparation and training.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "initial_validation_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the worklist contract at write_up[1]: uses the retired phrase \"the read\".",
+    "issues": [
+      {
+        "path": "write_up[1]",
+        "message": "uses the retired phrase \"the read\""
+      },
+      {
+        "path": "cards[0].cannot_tell",
+        "message": "uses the retired phrase \"the read\""
+      }
+    ]
+  },
+  "model_output_repaired": {
+    "contract_version": "v3",
+    "score": 73,
+    "lifted_by_employer": false,
+    "verdict": "A kitchen manager with a clear progression, but the management work needs more detail.",
+    "write_up": [
+      "You moved from line cook to sous chef to kitchen manager, and the current job is easy to place. The hesitation is what managing the kitchen looks like day to day: the schedule, orders, inspections and training are listed, but not much is said about how you handle them.",
+      "The 180-seat restaurant line is the best model on the page. It names the job and gives a concrete sense of the restaurant. Bring that same detail to the staff and the work behind the kitchen's daily operation."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Kitchen Manager, line 1",
+        "line": "- Run the kitchen for a 180-seat restaurant",
+        "cannot_tell": "This gives a recruiter the job and the restaurant size without making them guess. It's a useful model for the other bullets.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 2",
+        "line": "- Manage the kitchen staff schedule",
+        "cannot_tell": "The schedule is yours, but the page doesn't say how many people you schedule or what goes into it.",
+        "example": "Manage the kitchen staff schedule: [number of staff], [how you handle coverage]",
+        "question": "How many staff do you schedule, and how do you handle coverage?"
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 3",
+        "line": "- Order food and supplies from vendors",
+        "cannot_tell": "Ordering is part of the job, but the page doesn't show how you decide what to order or manage costs.",
+        "example": "Order food and supplies from vendors: [how you determine orders or manage costs]",
+        "question": "How do you decide what to order and manage food and supply costs?"
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 4",
+        "line": "- Keep the kitchen ready for health inspections",
+        "cannot_tell": "Inspection readiness matters in this job. The page doesn't show what you do to maintain it or what happened at inspections.",
+        "example": "Keep the kitchen ready for health inspections: [specific practices], [inspection results, if known]",
+        "question": "What do you do to prepare the kitchen, and what were the inspection results?"
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 5",
+        "line": "- Train new line cooks",
+        "cannot_tell": "Training is useful management work, but the page doesn't say what you teach or how many cooks you've trained.",
+        "example": "Train new line cooks: [skills or procedures], [number trained and time period]",
+        "question": "What do you teach new cooks, and how many have you trained over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Sous Chef, line 2",
+        "line": "- Helped plan seasonal menu changes",
+        "cannot_tell": "You helped plan the changes, but your part in that work isn't clear.",
+        "example": "Helped plan seasonal menu changes: [your contribution]",
+        "question": "What was your part in planning the seasonal menu changes?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Kitchen Manager",
+        "Sous Chef"
+      ],
+      "level": "Kitchen management",
+      "note": "The page points toward kitchen management, with earlier sous chef and line cook experience. The current role would be stronger with details about staff scheduling, purchasing, inspection preparation and training.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "repaired": true,
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 73,
+    "lifted_by_employer": false,
+    "verdict": "A kitchen manager with a clear progression, but the management work needs more detail.",
+    "write_up": [
+      "You moved from line cook to sous chef to kitchen manager, and the current job is easy to place. The hesitation is what managing the kitchen looks like day to day: the schedule, orders, inspections and training are listed, but not much is said about how you handle them.",
+      "The 180-seat restaurant line is the best model on the page. It names the job and gives a concrete sense of the restaurant. Bring that same detail to the staff and the work behind the kitchen's daily operation."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Kitchen Manager, line 1",
+        "line": "Run the kitchen for a 180-seat restaurant",
+        "cannot_tell": "This gives a recruiter the job and the restaurant size without making them guess. It's a useful model for the other bullets.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 2",
+        "line": "Manage the kitchen staff schedule",
+        "cannot_tell": "The schedule is yours, but the page doesn't say how many people you schedule or what goes into it.",
+        "example": "Manage the kitchen staff schedule: [number of staff], [how you handle coverage]",
+        "question": "How many staff do you schedule, and how do you handle coverage?"
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 3",
+        "line": "Order food and supplies from vendors",
+        "cannot_tell": "Ordering is part of the job, but the page doesn't show how you decide what to order or manage costs.",
+        "example": "Order food and supplies from vendors: [how you determine orders or manage costs]",
+        "question": "How do you decide what to order and manage food and supply costs?"
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 4",
+        "line": "Keep the kitchen ready for health inspections",
+        "cannot_tell": "Inspection readiness matters in this job. The page doesn't show what you do to maintain it or what happened at inspections.",
+        "example": "Keep the kitchen ready for health inspections: [specific practices], [inspection results, if known]",
+        "question": "What do you do to prepare the kitchen, and what were the inspection results?"
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 5",
+        "line": "Train new line cooks",
+        "cannot_tell": "Training is useful management work, but the page doesn't say what you teach or how many cooks you've trained.",
+        "example": "Train new line cooks: [skills or procedures], [number trained and time period]",
+        "question": "What do you teach new cooks, and how many have you trained over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Sous Chef, line 2",
+        "line": "Helped plan seasonal menu changes",
+        "cannot_tell": "You helped plan the changes, but your part in that work isn't clear.",
+        "example": "Helped plan seasonal menu changes: [your contribution]",
+        "question": "What was your part in planning the seasonal menu changes?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Kitchen Manager",
+        "Sous Chef"
+      ],
+      "level": "Kitchen management",
+      "note": "The page points toward kitchen management, with earlier sous chef and line cook experience. The current role would be stronger with details about staff scheduling, purchasing, inspection preparation and training.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 73
+  },
+  "severity": {
+    "promoted": [],
+    "replaced": [],
+    "led": null,
+    "critical_count": 1,
+    "more_critical": false,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "skipped": [],
+    "validation_attempts": 0,
+    "latency_ms": 1535,
+    "call_latency_ms": 1534,
+    "cost_usd": 0.00123075,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 73,
+    "lifted_by_employer": false,
+    "verdict": "A kitchen manager with a clear progression, but the management work needs more detail.",
+    "write_up": [
+      "You moved from line cook to sous chef to kitchen manager, and the current job is easy to place. The hesitation is what managing the kitchen looks like day to day: the schedule, orders, inspections and training are listed, but not much is said about how you handle them.",
+      "The 180-seat restaurant line is the best model on the page. It names the job and gives a concrete sense of the restaurant. Bring that same detail to the staff and the work behind the kitchen's daily operation."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Kitchen Manager, line 1",
+        "line": "Run the kitchen for a 180-seat restaurant",
+        "cannot_tell": "This gives a recruiter the job and the restaurant size without making them guess. It's a useful model for the other bullets.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 2",
+        "line": "Manage the kitchen staff schedule",
+        "cannot_tell": "The schedule is yours, but the page doesn't say how many people you schedule or what goes into it.",
+        "example": "Manage the kitchen staff schedule: [number of staff], [how you handle coverage]",
+        "question": "How many staff do you schedule, and how do you handle coverage?"
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 3",
+        "line": "Order food and supplies from vendors",
+        "cannot_tell": "Ordering is part of the job, but the page doesn't show how you decide what to order or manage costs.",
+        "example": "Order food and supplies from vendors: [how you determine orders or manage costs]",
+        "question": "How do you decide what to order and manage food and supply costs?"
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 4",
+        "line": "Keep the kitchen ready for health inspections",
+        "cannot_tell": "Inspection readiness matters in this job. The page doesn't show what you do to maintain it or what happened at inspections.",
+        "example": "Keep the kitchen ready for health inspections: [specific practices], [inspection results, if known]",
+        "question": "What do you do to prepare the kitchen, and what were the inspection results?"
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 5",
+        "line": "Train new line cooks",
+        "cannot_tell": "Training is useful management work, but the page doesn't say what you teach or how many cooks you've trained.",
+        "example": "Train new line cooks: [skills or procedures], [number trained and time period]",
+        "question": "What do you teach new cooks, and how many have you trained over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Sous Chef, line 2",
+        "line": "Helped plan seasonal menu changes",
+        "cannot_tell": "You helped plan the changes, but your part in that work isn't clear.",
+        "example": "Helped plan seasonal menu changes: [your contribution]",
+        "question": "What was your part in planning the seasonal menu changes?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Kitchen Manager",
+        "Sous Chef"
+      ],
+      "level": "Kitchen management",
+      "note": "The page points toward kitchen management, with earlier sous chef and line cook experience. The current role would be stronger with details about staff scheduling, purchasing, inspection preparation and training.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 73
+  },
+  "presentation": {
+    "score": 73,
+    "band": "Mostly clear",
+    "model_score": 73,
+    "lifted_by_employer": false,
+    "verdict": "A kitchen manager with a clear progression, but the management work needs more detail.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 87,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Kitchen Manager, line 1",
+        "line": "Run the kitchen for a 180-seat restaurant",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 2",
+        "line": "Manage the kitchen staff schedule",
+        "blanks": 2,
+        "question": "How many staff do you schedule, and how do you handle coverage?"
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 3",
+        "line": "Order food and supplies from vendors",
+        "blanks": 1,
+        "question": "How do you decide what to order and manage food and supply costs?"
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 4",
+        "line": "Keep the kitchen ready for health inspections",
+        "blanks": 2,
+        "question": "What do you do to prepare the kitchen, and what were the inspection results?"
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 5",
+        "line": "Train new line cooks",
+        "blanks": 2,
+        "question": "What do you teach new cooks, and how many have you trained over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Sous Chef, line 2",
+        "line": "Helped plan seasonal menu changes",
+        "blanks": 1,
+        "question": "What was your part in planning the seasonal menu changes?"
+      }
+    ],
+    "card_count": 6,
+    "kinds": {
+      "keep": 1,
+      "line": 5
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "none (none)",
+    "fit": {
+      "roles": [
+        "Kitchen Manager",
+        "Sous Chef"
+      ],
+      "level": "Kitchen management",
+      "note": "The page points toward kitchen management, with earlier sous chef and line cook experience. The current role would be stronger with details about staff scheduling, purchasing, inspection preparation and training.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0150975,
+  "latency_ms": 29041
+}

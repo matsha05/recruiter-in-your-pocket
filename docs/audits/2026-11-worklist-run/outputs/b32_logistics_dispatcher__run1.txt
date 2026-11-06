@@ -1,0 +1,49 @@
+# b32_logistics_dispatcher, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_logistics_dispatcher_1.txt (105 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 18e7e9ff; severity check off
+Outcome: report; cost $0.0077; 16.3s
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+A dispatcher’s resume with a clear work history but little detail about the operation or daily decisions.
+
+## Write-up
+A recruiter sees a progression from warehouse work to dispatch assistant to dispatcher. The hesitation is the current job: the tasks are recognizable, but there’s no size or result attached to them.
+
+The load-tracking line is the best model here. It names both the work and who gets the update. Give the same treatment to driver issues and safety work, then add the size of the dispatch operation if you can verify it.
+
+## Cards (6; {"structure":1,"line":5}); severity off; added []
+1. [structure] Crossroads Regional Freight
+   line: "The resume does not describe the size of the dispatch operation."
+   can't tell: A recruiter can see regional trucking, but not how large the operation is or what it carries. One line of context would give the dispatch work a setting.
+   question: How many trucks or drivers are in the operation, and what kinds of freight does it handle?
+2. [line] Dispatcher, line 1
+   line: "Responsible for dispatching drivers"
+   can't tell: This names the job but not how much dispatching you handle. A driver count or typical workload would give it some weight.
+   example: Responsible for dispatching [number] drivers on [routes or schedules]
+   question: How many drivers do you dispatch, and what routes or schedules do you handle?
+3. [line] Dispatcher, line 3
+   line: "Handle driver issues on the road"
+   can't tell: Driver issues could mean several different things. A recruiter can't tell what you actually do when one comes up.
+   example: Handle [types of driver issues] on the road by [actions taken]
+   question: What kinds of driver issues do you handle, and what do you do about them?
+4. [line] Dispatcher, line 4
+   line: "Use TMS software daily"
+   can't tell: The skills section names McLeod TMS, but this line doesn't say what you use it to do.
+   example: Use McLeod TMS daily to [tasks completed]
+   question: What dispatch tasks do you complete in McLeod TMS?
+5. [line] Dispatcher, line 5
+   line: "Work with the safety team on driver hours"
+   can't tell: The safety team and driver hours give this a useful setting, but your part is still blank. What do you check or coordinate?
+   example: Work with the safety team on driver hours by [specific tasks]
+   question: What do you do with the safety team when working on driver hours?
+6. [line] Dispatch Assistant, line 2
+   line: "Helped dispatchers with paperwork"
+   can't tell: Paperwork could cover a lot. Naming the documents and your part would show what you learned before moving into dispatch.
+   example: Helped dispatchers with [type of paperwork] by [specific tasks]
+   question: What paperwork did you help dispatchers with, and what did you do to it?
+
+## Fit
+Roles: ["Dispatcher","Dispatch Assistant"]
+Level: Experienced dispatcher
+Note: Your experience points toward dispatcher work in regional trucking. The move from dispatch assistant to dispatcher is easy to follow, though the current role needs more detail about the operation and your decisions.

@@ -189,3 +189,12 @@ export function isSeverityCheckEnabled(value = process.env.RIYP_SEVERITY_CHECK) 
   if (["0", "false", "off"].includes(normalized)) return false;
   return SEVERITY_CHECK_DEFAULT;
 }
+
+/**
+ * The worklist report (contract v3) cards the structural problems itself. On the November 5, 2026 live set
+ * the check added a card to 1 of 47 worklist reports (docs/audits/2026-11-worklist-run.md), so the second
+ * call is off for it unless RIYP_SEVERITY_CHECK says "1" outright. The v2 report keeps the default above.
+ */
+export function isSeverityCheckEnabledForWorklist(value = process.env.RIYP_SEVERITY_CHECK) {
+  return ["1", "true", "on"].includes(String(value ?? "").trim().toLowerCase());
+}

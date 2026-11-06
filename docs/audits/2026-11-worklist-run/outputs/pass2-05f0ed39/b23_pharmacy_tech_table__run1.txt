@@ -1,0 +1,35 @@
+# b23_pharmacy_tech_table, run 1
+Resume: ../2026-11-live-judgment/resumes/b_pharmacy_tech_table.txt (209 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 05f0ed39; severity check off
+Outcome: report; cost $0.0147; repair ran; 28.6s
+Case note: Tables rendered to tab-separated text.
+
+Validator refused the first draft: The model response failed the worklist contract at cards[1].cannot_tell: uses the retired phrase "the read".
+
+## Clear and specific (score 87; model wrote 87)
+## Verdict
+A licensed pharmacy technician with specific inpatient and retail work, though the duties sit apart from the jobs.
+
+## Write-up
+You show current inpatient pharmacy work alongside retail experience, with a California license and sterile compounding certification. The main friction is layout: a recruiter has to move between two tables to connect the work to each employer.
+
+The cabinet restocking line is the model. It names 6 nursing units and gives the change in weekly stockout reports. Your cleanroom line is similarly concrete, with USP 797 and 800 and about 120 doses per shift.
+
+## Cards (3; {"structure":1,"keep":1,"line":1}); severity off; added []
+1. [structure] Experience and Duties and Results
+   line: "Experience and duties are in separate tables."
+   can't tell: The role titles connect the tables, but a recruiter has to look back to match each duty with its employer and dates. Put the duties and results directly under each job.
+   question: Can you place each duty and result under its matching job?
+2. [keep] Pharmacy Technician II, restocking
+   line: "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024"
+   can't tell: Keep this as a model. It names the work, the nursing units and the change in stockout reports.
+3. [line] Pharmacy Technician, prescriptions
+   line: "Pharmacy Technician Filled and verified prescriptions for a store doing 350 scripts a day"
+   can't tell: You say you verified prescriptions, but not which checks were yours. That distinction matters in pharmacy.
+   example: Filled and verified prescriptions for a store doing 350 scripts a day, including [what you verified] [when in the process]
+   question: What did you verify, and at what point in the prescription process?
+
+## Fit
+Roles: ["Pharmacy Technician II","Pharmacy Technician"]
+Level: Experienced pharmacy technician
+Note: Your current work points toward inpatient pharmacy technician roles, particularly sterile compounding and dispensing cabinet work. The earlier retail roles also show prescription and insurance work.

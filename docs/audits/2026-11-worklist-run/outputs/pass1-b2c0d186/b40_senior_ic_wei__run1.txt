@@ -1,0 +1,44 @@
+# b40_senior_ic_wei, run 1
+Resume: ../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/4-senior-ic-wei.txt (361 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt b2c0d186; severity check on
+Outcome: report; cost $0.0123; 22.9s
+Case note: Senior IC (bar persona).
+
+## Mostly clear (score 83; model wrote 83)
+## Verdict
+A staff payments engineer with substantial platform work, though a few results need more detail.
+
+## Write-up
+You look like a staff engineer who has grown through payments and distributed systems work. A recruiter would have plenty to discuss and a reason to move this forward. The main hesitation is what changed after the ledger redesign and how much reconciliation improved.
+
+The idempotency line is the model: it names the framework, where it was adopted and the duplicate-charge incidents it eliminated. Give the ledger redesign and reconciliation work the same treatment where you can.
+
+## Cards (5; {"line":4,"keep":1}); severity none (none); added []
+1. [line] Staff Software Engineer, ledger redesign
+   line: "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB"
+   can't tell: The architecture change is clear. What improved for the ledger service isn't, and that would help a reader understand why the redesign mattered.
+   example: Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB; [what improved, if measured]
+   question: What changed for the ledger service after the redesign, and was it measured?
+2. [keep] Staff Software Engineer, idempotency
+   line: "Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents"
+   can't tell: Keep this as a model. It connects the framework you drove across payment services to the incidents it eliminated.
+3. [line] Staff Software Engineer, multi-currency roadmap
+   line: "Partnered with product and finance on the roadmap for multi-currency settlement"
+   can't tell: The partners and roadmap are named, but your contribution to the roadmap isn't. That makes it hard to see your part in the planning.
+   example: Partnered with product and finance on the roadmap for multi-currency settlement, [your contribution to the roadmap]
+   question: What did you contribute to the multi-currency settlement roadmap?
+4. [line] Senior Software Engineer, reconciliation
+   line: "Reduced reconciliation break rate and manual ops effort"
+   can't tell: You say both went down, but not by how much or what you did to reduce them. That leaves a useful result harder to assess.
+   example: Reduced reconciliation break rate [by how much, if measured] and manual ops effort [by how much, if measured] by [what you did]
+   question: What did you do to reduce the break rate and manual ops effort, and were the reductions measured?
+5. [line] Software Engineer II, Kubernetes migration
+   line: "Contributed to the migration of the control plane to Kubernetes"
+   can't tell: The migration is named, but your part in it isn't. A little detail would show what you contributed without claiming the whole move.
+   example: Contributed to the migration of the control plane to Kubernetes by [your part in the migration]
+   question: What part of the control plane migration did you work on?
+
+## Fit
+Roles: ["Staff Software Engineer","Senior Software Engineer"]
+Level: Staff-level individual contributor
+Note: The page points toward staff software engineering work in payments infrastructure and distributed systems. It also shows earlier storage and fraud pipeline work, with technical leadership in the current role.

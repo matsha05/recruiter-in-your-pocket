@@ -1,0 +1,243 @@
+{
+  "case_id": "b08_warehouse_supervisor",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_warehouse_supervisor_1.txt",
+  "resume_sha256": "4f23aeaad42ee6b5836bf39d21414eb87585621802a43fd069caf4dd7d77509a",
+  "resume_words": 173,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T03:51:08.332Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4130,
+        "completion_tokens": 906,
+        "total_tokens": 5036,
+        "cached_prompt_tokens": 3406,
+        "cache_write_prompt_tokens": 721,
+        "reasoning_tokens": 332
+      },
+      "cost_usd": 0.00560455,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 11704
+    }
+  ],
+  "resume_prompt_sha256": "05f0ed391d02c15c487cdf3fcd427706167ba6aa9a1ad58365cfcff658e9caea",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A distribution supervisor with a clear progression and team size, but little on what changed.",
+    "write_up": [
+      "You’ve moved from picking to supervising outbound operations. A recruiter can see the night shift you run and the work it covers. The hesitation is that most bullets stop at duties, without showing how you handled the demands of the shift or what changed.",
+      "The 35-associate line is your model: it names your responsibility, the team size and the work. Add daily order volume to the scheduling line if you can verify it, and explain your part in the scanner rollout."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Shift Supervisor, line 1",
+        "line": "- Supervise a night shift of 35 associates across picking, packing, and loading",
+        "cannot_tell": "Keep this as a model. It tells a recruiter who you supervise and what the shift does.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 2",
+        "line": "- Schedule labor and assign zones based on daily order volume",
+        "cannot_tell": "The scheduling work is clear, but the daily volume you plan around isn't. That would give a recruiter a better sense of the demands on the shift.",
+        "example": "Schedule labor and assign zones based on daily order volume of [number] [orders]",
+        "question": "What daily order volume did you typically schedule around?"
+      },
+      {
+        "kind": "line",
+        "where": "Lead Associate, line 3",
+        "line": "- Helped roll out handheld scanners on the pick floor",
+        "cannot_tell": "The scanners are a useful detail, but 'helped' leaves your part blank. What did you do during the rollout?",
+        "example": "Helped roll out handheld scanners on the pick floor by [your contribution]",
+        "question": "What did you personally do to help roll out the scanners?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Shift Supervisor, Outbound Operations",
+        "Lead Associate"
+      ],
+      "level": "Frontline operations supervisor",
+      "note": "Your experience points toward distribution floor supervision, with earlier picking and lead work. The current role shows responsibility for a night shift across picking, packing and loading.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A distribution supervisor with a clear progression and team size, but little on what changed.",
+    "write_up": [
+      "You’ve moved from picking to supervising outbound operations. A recruiter can see the night shift you run and the work it covers. The hesitation is that most bullets stop at duties, without showing how you handled the demands of the shift or what changed.",
+      "The 35-associate line is your model: it names your responsibility, the team size and the work. Add daily order volume to the scheduling line if you can verify it, and explain your part in the scanner rollout."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Shift Supervisor, line 1",
+        "line": "Supervise a night shift of 35 associates across picking, packing, and loading",
+        "cannot_tell": "Keep this as a model. It tells a recruiter who you supervise and what the shift does.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 2",
+        "line": "Schedule labor and assign zones based on daily order volume",
+        "cannot_tell": "The scheduling work is clear, but the daily volume you plan around isn't. That would give a recruiter a better sense of the demands on the shift.",
+        "example": "Schedule labor and assign zones based on daily order volume of [number] [orders]",
+        "question": "What daily order volume did you typically schedule around?"
+      },
+      {
+        "kind": "line",
+        "where": "Lead Associate, line 3",
+        "line": "Helped roll out handheld scanners on the pick floor",
+        "cannot_tell": "The scanners are a useful detail, but 'helped' leaves your part blank. What did you do during the rollout?",
+        "example": "Helped roll out handheld scanners on the pick floor by [your contribution]",
+        "question": "What did you personally do to help roll out the scanners?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Shift Supervisor, Outbound Operations",
+        "Lead Associate"
+      ],
+      "level": "Frontline operations supervisor",
+      "note": "Your experience points toward distribution floor supervision, with earlier picking and lead work. The current role shows responsibility for a night shift across picking, packing and loading.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 78
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A distribution supervisor with a clear progression and team size, but little on what changed.",
+    "write_up": [
+      "You’ve moved from picking to supervising outbound operations. A recruiter can see the night shift you run and the work it covers. The hesitation is that most bullets stop at duties, without showing how you handled the demands of the shift or what changed.",
+      "The 35-associate line is your model: it names your responsibility, the team size and the work. Add daily order volume to the scheduling line if you can verify it, and explain your part in the scanner rollout."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Shift Supervisor, line 1",
+        "line": "Supervise a night shift of 35 associates across picking, packing, and loading",
+        "cannot_tell": "Keep this as a model. It tells a recruiter who you supervise and what the shift does.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 2",
+        "line": "Schedule labor and assign zones based on daily order volume",
+        "cannot_tell": "The scheduling work is clear, but the daily volume you plan around isn't. That would give a recruiter a better sense of the demands on the shift.",
+        "example": "Schedule labor and assign zones based on daily order volume of [number] [orders]",
+        "question": "What daily order volume did you typically schedule around?"
+      },
+      {
+        "kind": "line",
+        "where": "Lead Associate, line 3",
+        "line": "Helped roll out handheld scanners on the pick floor",
+        "cannot_tell": "The scanners are a useful detail, but 'helped' leaves your part blank. What did you do during the rollout?",
+        "example": "Helped roll out handheld scanners on the pick floor by [your contribution]",
+        "question": "What did you personally do to help roll out the scanners?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Shift Supervisor, Outbound Operations",
+        "Lead Associate"
+      ],
+      "level": "Frontline operations supervisor",
+      "note": "Your experience points toward distribution floor supervision, with earlier picking and lead work. The current role shows responsibility for a night shift across picking, packing and loading.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 78
+  },
+  "presentation": {
+    "score": 78,
+    "band": "Mostly clear",
+    "model_score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A distribution supervisor with a clear progression and team size, but little on what changed.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 81,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Shift Supervisor, line 1",
+        "line": "Supervise a night shift of 35 associates across picking, packing, and loading",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 2",
+        "line": "Schedule labor and assign zones based on daily order volume",
+        "blanks": 2,
+        "question": "What daily order volume did you typically schedule around?"
+      },
+      {
+        "kind": "line",
+        "where": "Lead Associate, line 3",
+        "line": "Helped roll out handheld scanners on the pick floor",
+        "blanks": 1,
+        "question": "What did you personally do to help roll out the scanners?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "keep": 1,
+      "line": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Shift Supervisor, Outbound Operations",
+        "Lead Associate"
+      ],
+      "level": "Frontline operations supervisor",
+      "note": "Your experience points toward distribution floor supervision, with earlier picking and lead work. The current role shows responsibility for a night shift across picking, packing and loading.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00560455,
+  "latency_ms": 11710
+}

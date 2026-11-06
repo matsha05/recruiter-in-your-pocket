@@ -1,0 +1,35 @@
+# b29_mechanical_engineer, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_mechanical_engineer_1.txt (143 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt b2c0d186; severity check on
+Outcome: report; cost $0.0161; repair ran; 33.7s
+
+Validator refused the first draft: The model response failed the worklist contract at cards[1].cannot_tell: uses the retired phrase "the read".
+
+## Mostly clear (score 80; model wrote 80)
+## Verdict
+A mechanical engineer with a clear product-design path, though the design decisions and results need more room.
+
+## Write-up
+A recruiter can see your progression from Mechanical Engineer I to II and the furniture design work behind it. This is a reasonable page to move forward for mechanical design roles, though it leaves questions about what your analysis and manufacturing support changed.
+
+The Arlo desk line is the model: it names the product and says you lead its mechanical design. Bring that same specificity to the engineering change orders, then add a design decision or result where you can verify one.
+
+## Cards (3; {"keep":1,"line":2}); severity none (none); added []
+1. [keep] Mechanical Engineer II, line 1
+   line: "Lead mechanical design for the Arlo height-adjustable desk platform"
+   can't tell: You name the platform and say you lead its mechanical design. A design decision or result would make it stronger still.
+2. [line] Mechanical Engineer II, line 4
+   line: "Run tolerance stack-ups and FEA on load-bearing components"
+   can't tell: The analysis is clear, but a recruiter can't tell which components you examined or what the findings meant for the design.
+   example: Run tolerance stack-ups and FEA on load-bearing components for [product or part], [finding or design decision]
+   question: Which components did you analyze, and what did the findings show or change?
+3. [line] Mechanical Engineer II, line 5
+   line: "Support manufacturing with engineering change orders"
+   can't tell: Support could cover several different jobs. A recruiter can't tell what you contributed to the change orders or what they addressed.
+   example: Support manufacturing with engineering change orders for [components or changes], [your contribution]
+   question: What did the change orders address, and what was your part in them?
+
+## Fit
+Roles: ["Mechanical Engineer II","Mechanical Engineer I"]
+Level: Experienced mechanical engineer
+Note: Your experience points toward mechanical design work on furniture and fixtures. The progression, named desk platform, supplier work and testing give a recruiter a solid starting point.

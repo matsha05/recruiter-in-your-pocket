@@ -1,0 +1,243 @@
+{
+  "case_id": "b19_non_native_english",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/resumes/b_non_native_english.txt",
+  "resume_sha256": "b6a26fe36825d1810e73236e21445163948f02ce6be0d9328e9ccaf50cb59c16",
+  "resume_words": 237,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T04:15:13.560Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4392,
+        "completion_tokens": 758,
+        "total_tokens": 5150,
+        "cached_prompt_tokens": 3502,
+        "cache_write_prompt_tokens": 887,
+        "reasoning_tokens": 220
+      },
+      "cost_usd": 0.00507685,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 11053
+    }
+  ],
+  "resume_prompt_sha256": "18e7e9ff21a0c2fda0fe219456e2d1f965de7d79bcc85173eaebd632dd83f42e",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 82,
+    "lifted_by_employer": false,
+    "verdict": "An experienced accountant with substantial accounts payable work and a few responsibilities still left vague.",
+    "write_up": [
+      "A recruiter sees an accountant with experience in Vietnam and the US, now processing around 400 vendor invoices a month. The main question is what you handle during the current month-end close.",
+      "The strongest line is the reduction in closing time from 12 days to 7 days. It names the work, the change and how you made it. Use that level of detail to explain the junior accountants' work and your current closing duties."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 4",
+        "line": "- Help the controller for month end closing",
+        "cannot_tell": "Help could mean several things. A recruiter can't tell which closing tasks were yours.",
+        "example": "Help the controller with month end closing by [specific tasks]",
+        "question": "Which month-end closing tasks do you help the controller with?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 2",
+        "line": "- Lead team of 3 junior accountants",
+        "cannot_tell": "The team size is clear, but not what the junior accountants handled. Their work would show what you led.",
+        "example": "Lead a team of 3 junior accountants who [team responsibilities]",
+        "question": "What work did the 3 junior accountants handle?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Accountant, line 4",
+        "line": "- Reduce the month end closing from 12 days to 7 days by make new checklist and template",
+        "cannot_tell": "Keep this as a model. It shows the change and the checklist and template behind it.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Specialist"
+      ],
+      "level": "Experienced accounting professional",
+      "note": "Your current invoice work points toward accounts payable roles. Your general ledger, financial statement and closing work also gives a recruiter a reason to consider you for staff accountant roles.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 82,
+    "lifted_by_employer": false,
+    "verdict": "An experienced accountant with substantial accounts payable work and a few responsibilities still left vague.",
+    "write_up": [
+      "A recruiter sees an accountant with experience in Vietnam and the US, now processing around 400 vendor invoices a month. The main question is what you handle during the current month-end close.",
+      "The strongest line is the reduction in closing time from 12 days to 7 days. It names the work, the change and how you made it. Use that level of detail to explain the junior accountants' work and your current closing duties."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 4",
+        "line": "Help the controller for month end closing",
+        "cannot_tell": "Help could mean several things. A recruiter can't tell which closing tasks were yours.",
+        "example": "Help the controller with month end closing by [specific tasks]",
+        "question": "Which month-end closing tasks do you help the controller with?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 2",
+        "line": "Lead team of 3 junior accountants",
+        "cannot_tell": "The team size is clear, but not what the junior accountants handled. Their work would show what you led.",
+        "example": "Lead a team of 3 junior accountants who [team responsibilities]",
+        "question": "What work did the 3 junior accountants handle?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Accountant, line 4",
+        "line": "Reduce the month end closing from 12 days to 7 days by make new checklist and template",
+        "cannot_tell": "Keep this as a model. It shows the change and the checklist and template behind it.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Specialist"
+      ],
+      "level": "Experienced accounting professional",
+      "note": "Your current invoice work points toward accounts payable roles. Your general ledger, financial statement and closing work also gives a recruiter a reason to consider you for staff accountant roles.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 82
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 82,
+    "lifted_by_employer": false,
+    "verdict": "An experienced accountant with substantial accounts payable work and a few responsibilities still left vague.",
+    "write_up": [
+      "A recruiter sees an accountant with experience in Vietnam and the US, now processing around 400 vendor invoices a month. The main question is what you handle during the current month-end close.",
+      "The strongest line is the reduction in closing time from 12 days to 7 days. It names the work, the change and how you made it. Use that level of detail to explain the junior accountants' work and your current closing duties."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 4",
+        "line": "Help the controller for month end closing",
+        "cannot_tell": "Help could mean several things. A recruiter can't tell which closing tasks were yours.",
+        "example": "Help the controller with month end closing by [specific tasks]",
+        "question": "Which month-end closing tasks do you help the controller with?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 2",
+        "line": "Lead team of 3 junior accountants",
+        "cannot_tell": "The team size is clear, but not what the junior accountants handled. Their work would show what you led.",
+        "example": "Lead a team of 3 junior accountants who [team responsibilities]",
+        "question": "What work did the 3 junior accountants handle?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Accountant, line 4",
+        "line": "Reduce the month end closing from 12 days to 7 days by make new checklist and template",
+        "cannot_tell": "Keep this as a model. It shows the change and the checklist and template behind it.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Specialist"
+      ],
+      "level": "Experienced accounting professional",
+      "note": "Your current invoice work points toward accounts payable roles. Your general ledger, financial statement and closing work also gives a recruiter a reason to consider you for staff accountant roles.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 82
+  },
+  "presentation": {
+    "score": 82,
+    "band": "Mostly clear",
+    "model_score": 82,
+    "lifted_by_employer": false,
+    "verdict": "An experienced accountant with substantial accounts payable work and a few responsibilities still left vague.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 74,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 4",
+        "line": "Help the controller for month end closing",
+        "blanks": 1,
+        "question": "Which month-end closing tasks do you help the controller with?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 2",
+        "line": "Lead team of 3 junior accountants",
+        "blanks": 1,
+        "question": "What work did the 3 junior accountants handle?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Accountant, line 4",
+        "line": "Reduce the month end closing from 12 days to 7 days by make new checklist and template",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "line": 2,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Specialist"
+      ],
+      "level": "Experienced accounting professional",
+      "note": "Your current invoice work points toward accounts payable roles. Your general ledger, financial statement and closing work also gives a recruiter a reason to consider you for staff accountant roles.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00507685,
+  "latency_ms": 11056
+}

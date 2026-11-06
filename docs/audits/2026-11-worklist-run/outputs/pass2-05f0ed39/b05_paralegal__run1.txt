@@ -1,0 +1,28 @@
+# b05_paralegal, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_paralegal_1.txt (144 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 05f0ed39; severity check off
+Outcome: report; cost $0.0067; 15.1s
+
+## Needs more context (score 69; model wrote 69)
+## Verdict
+A detailed litigation paralegal resume with a headline that claims more specialty experience than the jobs show.
+
+## Write-up
+Your current role shows substantial litigation work: four partners, document productions and two jury trials in 2025. The hesitation is the headline's seven years supporting commercial and employment cases. Your earlier role names personal injury, while the current role starts in October 2021.
+
+The Relativity line is the model for the rest: it names what you manage, the tool and the size of the productions. Tighten the headline to distinguish your overall paralegal experience from the case types shown.
+
+## Cards (2; {"line":1,"keep":1}); severity off; added []
+1. [line] Headline
+   line: "Litigation paralegal with seven years supporting commercial and employment cases."
+   can't tell: The seven years in commercial and employment cases aren't accounted for by the roles listed. Your earlier role names personal injury cases.
+   example: Litigation paralegal with seven years of experience, including commercial and employment cases.
+   question: Did your earlier work include commercial and employment cases, or should seven years describe your paralegal experience overall?
+2. [keep] Senior Litigation Paralegal, line 2
+   line: "Manage document productions of up to 250,000 pages in Relativity"
+   can't tell: Keep this as a model. It names the work, its size and the tool without making a reader guess.
+
+## Fit
+Roles: ["Senior Litigation Paralegal","Paralegal"]
+Level: Experienced, senior paralegal
+Note: Your experience points toward litigation paralegal work, particularly commercial and employment cases. The current role shows discovery, document production and trial preparation.

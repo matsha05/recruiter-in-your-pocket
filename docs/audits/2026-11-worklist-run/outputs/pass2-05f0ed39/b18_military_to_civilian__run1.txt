@@ -1,0 +1,28 @@
+# b18_military_to_civilian, run 1
+Resume: ../2026-11-live-judgment/resumes/b_military_to_civilian.txt (268 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 05f0ed39; severity check off
+Outcome: report; cost $0.0054; 10.5s
+
+## Clear and specific (score 92; model wrote 92)
+## Verdict
+A military logistics and maintenance leader with measurable results and a clear civilian direction.
+
+## Write-up
+You make a strong case for supply chain or operations supervision: team leadership, equipment accountability, field logistics and a parts budget are all on the page. A civilian recruiter may still want to know what the field logistics involved.
+
+The vehicle readiness line is the model: it names the problem, the change you made and the result. Your in-progress supply chain degree also fits the direction you’ve named.
+
+## Cards (2; {"line":1,"keep":1}); severity off; added []
+1. [line] Platoon Sergeant, line 3
+   line: "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises"
+   can't tell: The size is clear, but the support itself is still a blank. Naming what you planned and supplied would connect this work to civilian operations.
+   example: Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises, including [type of support]
+   question: What supplies or services did your logistics support cover during those exercises?
+2. [keep] Platoon Sergeant, line 4
+   line: "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule"
+   can't tell: Keep this as the model. It tells a recruiter what you changed and what happened to vehicle readiness.
+
+## Fit
+Roles: ["Platoon Sergeant (E-7), Forward Support Company","Maintenance Section Sergeant (E-6)"]
+Level: Experienced supervisor
+Note: Your experience points toward logistics, maintenance and operations supervision. Translating a few military terms into the work behind them would make the transition easier to follow.

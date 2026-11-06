@@ -1,0 +1,31 @@
+# b14_teacher_to_instructional_designer, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_teacher_to_instructional_designer_1.txt (164 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 05f0ed39; severity check off
+Outcome: report; cost $0.0106; repair ran; 20.5s
+Case note: Career changer.
+
+Validator refused the first draft: The model response failed the worklist contract at write_up[0]: uses the retired phrase "the open question is".
+
+## Mostly clear (score 78; model wrote 78)
+## Verdict
+A mathematics teacher with a concrete start in digital learning design and room to show more.
+
+## Write-up
+You come across as a mathematics teacher building digital learning work alongside the classroom job. A recruiter can see what you teach and the size of your classes, but may wonder how much design work sits beyond the examples here.
+
+The Canvas module is the model: it names the subject, format and what you redesigned. Add what the math department's professional learning community worked on, and that leadership line will carry more weight too.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Mathematics Teacher, Cedar Creek High School
+   line: "Redesigned the Algebra II unit on functions into a self-paced online module in Canvas"
+   can't tell: This line names the unit, format and platform. It gives a recruiter a concrete piece of your design work without making them guess.
+2. [line] Mathematics Teacher, Cedar Creek High School
+   line: "Lead the math department's professional learning community"
+   can't tell: The leadership is yours, but the work of the group is still a blank. What did you lead the department through?
+   example: Lead the math department's professional learning community [on a specific project or topic] [what changed, if known]
+   question: What did the community work on under your leadership, and what changed, if you know it?
+
+## Fit
+Roles: ["Mathematics Teacher"]
+Level: Experienced classroom teacher
+Note: Your experience points most directly to mathematics teaching. The Canvas module and exam-review videos also show classroom learning design; your instructional design certificate is in progress.

@@ -1,0 +1,53 @@
+# b15_career_changer_maria, run 1
+Resume: ../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/2-career-changer-maria.txt (315 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt b2c0d186; severity check on
+Outcome: report; cost $0.0141; 29.3s
+Case note: Career changer (bar persona).
+
+## Mostly clear (score 77; model wrote 77)
+## Verdict
+A math teacher moving into analytics, with useful projects but few findings attached.
+
+## Write-up
+A recruiter considering you for entry-level analytics has a reason to look: you've used data at school and built projects in Python, SQL, Tableau and Excel. The hesitation is that the page shows what you analyzed more often than what you found.
+
+The Student Performance Dashboard is the model. It names the measures, the tool and the department decision it supported. Move Data Projects above Professional Experience so that work is easier to find, and give the housing analysis a finding a reader can take away.
+
+## Cards (7; {"line":5,"structure":1,"keep":1}); severity none (none); added []
+1. [line] Summary
+   line: "Dedicated educator with 8 years of experience transitioning into data analytics. Passionate about using data to tell stories and drive decisions. Strong analytical, communication, and problem-solving skills with a proven track record of success."
+   can't tell: The transition is clear, but the summary doesn't give a recruiter a reason to connect teaching with analytics. Your dashboard does that work for you.
+   example: Mathematics Teacher transitioning into data analytics; built an Excel dashboard tracking AP Statistics pass rates and quiz scores over three years.
+   question: Which analytics role are you targeting, and which project would you most want a recruiter to notice?
+2. [structure] Structure
+   line: "Data Projects sits below Professional Experience."
+   can't tell: Your analytics work is lower on the page than the teaching history. A recruiter looking for analytics may not reach it as quickly.
+   question: Would you move Data Projects above Professional Experience for analytics applications?
+3. [line] Mathematics Teacher, assessment data
+   line: "Analyzed student assessment data to identify learning gaps and adjust instruction"
+   can't tell: You describe the purpose, but not what the data showed or how you adjusted instruction. That example would connect your teaching to the analytics work you want.
+   example: Analyzed student assessment data to identify learning gaps in [topic] and adjust instruction by [change].
+   question: What gap did you find, and how did you change instruction in response?
+4. [line] Mathematics Teacher, Data Lead
+   line: "Served as Math Department Data Lead, compiling benchmark results for department meetings"
+   can't tell: The benchmark results and meeting are named, but the work product isn't. A report, dashboard or other deliverable would help a reader picture your part.
+   example: Served as Math Department Data Lead, compiling benchmark results for department meetings in [deliverable].
+   question: What did you produce from the benchmark results for those meetings?
+5. [line] Middle School Math Teacher, professional learning communities
+   line: "Participated in professional learning communities"
+   can't tell: Participation could mean almost anything. A specific contribution would tell a reader what you did with the group.
+   example: Participated in professional learning communities, [specific contribution].
+   question: What did you contribute to a professional learning community?
+6. [line] Austin Housing Affordability Analysis, analysis
+   line: "Analyzed 10 years of Austin housing and income data using Python and SQL"
+   can't tell: The data and tools are there, but the finding isn't. For an analytics transition, a concrete finding would help a recruiter see what you can draw from the data.
+   example: Analyzed 10 years of Austin housing and income data using Python and SQL; found [finding].
+   question: What did your analysis find about Austin housing affordability?
+7. [keep] Student Performance Dashboard
+   line: "Built an Excel dashboard tracking AP Statistics pass rates and quiz scores over three years"
+   can't tell: Keep this as a model. It names the tool and measures, and the next line explains the decision the department used it for.
+
+## Fit
+Roles: ["Math Department Data Lead","Mathematics Teacher"]
+Level: Entry-level analytics transition
+Note: Your teaching work includes assessment analysis and department reporting, while the projects show analytics tools in use. The page points toward entry-level analytics, though it doesn't show a job held under an analytics title.

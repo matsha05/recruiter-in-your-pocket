@@ -1,4 +1,4 @@
-import { ResumeFeedbackResponseSchema } from "./resume-report-schema";
+import { parseAnyReport } from "../reports/report-shape";
 
 const invalidResumeCompletion = {
   ok: false as const,
@@ -17,11 +17,12 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 export function parseResumeStreamCompletion(event: unknown, mode: string) {
   if (!isRecord(event)) return { valid: false as const, failure: invalidResumeCompletion };
   if (mode !== "resume") return { valid: true as const, report: event.data };
-  if (event.ok !== true || !isRecord(event.data) || event.data.contract_version !== "v2") {
+  if (event.ok !== true || !isRecord(event.data) || (event.data.contract_version !== "v2" && event.data.contract_version !== "v3")) {
     return { valid: false as const, failure: invalidResumeCompletion };
   }
 
-  const parsedReport = ResumeFeedbackResponseSchema.safeParse(event.data);
+  // A v2 Critical Miss report or a v3 worklist report; anything else never reaches the page.
+  const parsedReport = parseAnyReport(event.data);
   return parsedReport.success
     ? { valid: true as const, report: parsedReport.data }
     : { valid: false as const, failure: invalidResumeCompletion };

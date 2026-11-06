@@ -59,6 +59,7 @@ import { requireAnonymousReportRecoveryId } from "@/lib/reports/anonymous-report
 import { severityCheckReport } from "@/lib/reports/severity-check-report";
 import { askFirstOffered, isAskFirstEnabled } from "@/lib/reports/ask-first";
 import { reserveRebuild } from "@/lib/reports/ask-first-rebuild";
+import { resumePromptVersion, resumeSchemaVersion } from "@/lib/reports/report-shape";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 // Worst case: main call 90 s, one incomplete retry, a repair call, the severity check and persistence.
@@ -428,8 +429,8 @@ export async function POST(request: Request) {
                             task: mode === "resume_ideas" ? "resume_ideas" : "resume_feedback",
                             mode,
                             model,
-                            prompt_version: mode === "resume_ideas" ? "resume_ideas_v1" : "resume_v2",
-                            schema_version: mode === "resume_ideas" ? "ideas_v1" : "report_v1",
+                            prompt_version: mode === "resume_ideas" ? "resume_ideas_v1" : resumePromptVersion(),
+                            schema_version: mode === "resume_ideas" ? "ideas_v1" : resumeSchemaVersion(),
                             messages,
                             signal: generationController.signal,
                             reasoning_effort: streamAttempt > 0
