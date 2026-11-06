@@ -1,0 +1,664 @@
+{
+  "version": 1,
+  "count": 12,
+  "date": "2026-11-05",
+  "purpose": "Blind pick for judge v5. Each item isolates one decision from docs/promptops/proposals/2026-11-prompt-rewrite-brief.md. Sides carry no label that says which is which.",
+  "items": [
+    {
+      "id": "bp5-01",
+      "role": "Staff Accountant",
+      "resume_text": "Kevin Tran\nSacramento, CA | kevin.tran@example.com | 555-0163\n\nStaff Accountant\n\nEXPERIENCE\n\nStaff Accountant\nRivermark Building Supply, Sacramento, CA\nJanuary 2022 - Present\n- Responsible for month-end close tasks\n- Prepare journal entries and account reconciliations\n- Assist with the annual audit\n- Maintain fixed asset schedules\n- Process accounts payable when needed\n\nAccounts Payable Clerk\nRivermark Building Supply, Sacramento, CA\nMarch 2020 - December 2021\n- Entered vendor invoices\n- Matched purchase orders to receipts\n- Answered vendor questions about payments\n\nEDUCATION\nB.S., Accounting, California State University, Sacramento, 2019\n\nSKILLS\nQuickBooks, NetSuite, Excel (pivot tables, VLOOKUP), account reconciliation",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "Your current staff accountant title and accounting degree are easy to find. The experience bullets are brief enough to scan, but most stop at the name of a task.",
+        "misses": [
+          {
+            "fix": "In the annual audit bullet, identify the schedules, records or other materials you assist with, if applicable.",
+            "why": "A specific contribution would make your audit assistance easier to understand without overstating your role.",
+            "resume_lines": [
+              "- Assist with the annual audit"
+            ]
+          },
+          {
+            "fix": "In the Rivermark Staff Accountant role, add the number of accounts you reconcile or a measurable close result, if you can verify it.",
+            "why": "Accounting managers often look for the scale or results of close work. The role lists relevant tasks, but doesn't show their volume or a measurable outcome.",
+            "resume_lines": [
+              "- Prepare journal entries and account reconciliations"
+            ]
+          }
+        ],
+        "fix": "In the annual audit bullet, identify the schedules, records or other materials you assist with, if applicable.",
+        "why": "A specific contribution would make your audit assistance easier to understand without overstating your role.",
+        "resume_lines": [
+          "- Assist with the annual audit"
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "Your move from Accounts Payable Clerk to Staff Accountant at Rivermark gives the work history a clear direction. The current role lists core accounting duties, but offers little detail about how you carry them out.",
+        "misses": [
+          {
+            "fix": "In the month-end close bullet, name the close tasks you handle beyond the journal entries and reconciliations already listed.",
+            "why": "That would distinguish your part of the close from the general responsibility.",
+            "resume_lines": [
+              "- Responsible for month-end close tasks"
+            ]
+          },
+          {
+            "fix": "In the fixed asset schedules bullet, add how many assets you track, if you can verify it.",
+            "why": "Accounting hiring managers often look for the scale of work handled. Your current role lists core duties but doesn't show their volume or measurable results.",
+            "resume_lines": [
+              "- Maintain fixed asset schedules"
+            ]
+          }
+        ],
+        "fix": "In the month-end close bullet, name the close tasks you handle beyond the journal entries and reconciliations already listed.",
+        "why": "That would distinguish your part of the close from the general responsibility.",
+        "resume_lines": [
+          "- Responsible for month-end close tasks"
+        ]
+      }
+    },
+    {
+      "id": "bp5-02",
+      "role": "Shift Lead applying for Marketing Manager",
+      "resume_text": "Mike Tanner\nDayton, OH | miketanner88@example.com | 555-0142\n\nOBJECTIVE\nHard-working team player seeking a challenging Marketing Manager position where I can utilize my skills and grow with a dynamic company.\n\nEXPERIENCE\n\nShift Lead\nQuickStop Fuel and Food, Dayton, OH\nJanuary 2023 - June 2023\n- Responsible for opening and closing the store\n- Handled cash register and customer complaints\n- Made sure shelves were stocked and the store was clean\n- Trained new employes when needed\n\nWarehouse Associate\nMiami Valley Distribution, Vandalia, OH\n- Picked and packed orders\n- Loaded and unloaded trucks\n- Used a forklift\n- Followed all saftey procedures\n\nSales Associate\nBuckeye Wireless, Dayton, OH\nMarch 2021 - November 2021\n- Sold phones and accessories to customers\n- Answered questions about plans\n- Kept the store looking nice\n\nDelivery Driver\nGino's Pizza, Kettering, OH\n- Delivered pizzas in a timely manor\n- Handled cash and credit payments\n- Helped in the kitchen when it was slow\n\nCrew Member\nBurger Barn, Dayton, OH\nAugust 2019 - February 2020\n- Took orders and worked the drive thru\n- Cleaned the dining room\n- Worked well as part of a team\n\nEDUCATION\nDayton Area Community College\nSome coursework in Business\n\nSKILLS\nCommunication, Team Player, Hard Working, Microsoft Office, Customer Service, Fast Learner, Dependable\n\nReferences available upon request.",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "Your recent dated role is Shift Lead at a fuel and food store, with responsibility for opening and closing. The Marketing Manager objective points in a different direction from the experience that follows.",
+        "misses": [
+          {
+            "fix": "In the wireless sales bullet, explain how you helped customers choose phones or accessories, using a specific example you can verify.",
+            "why": "That detail would show what your sales conversations involved rather than leaving the work at the transaction level.",
+            "resume_lines": [
+              "- Sold phones and accessories to customers"
+            ]
+          },
+          {
+            "fix": "Add dates to the Warehouse Associate and Delivery Driver entries.",
+            "why": "Two undated jobs out of five make the timeline unreadable; a reviewer can't tell what came when or how long anything lasted.",
+            "resume_lines": [
+              "Miami Valley Distribution, Vandalia, OH",
+              "Gino's Pizza, Kettering, OH"
+            ]
+          },
+          {
+            "fix": "Add one dated line covering June 2023 to today, and say what it was: work, study or a break, if true.",
+            "why": "The last dated job ended in June 2023. Nothing after it means the first question is what happened.",
+            "resume_lines": [
+              "January 2023 - June 2023"
+            ]
+          }
+        ],
+        "fix": "In the wireless sales bullet, explain how you helped customers choose phones or accessories, using a specific example you can verify.",
+        "why": "That detail would show what your sales conversations involved rather than leaving the work at the transaction level.",
+        "resume_lines": [
+          "- Sold phones and accessories to customers"
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "Marketing Manager is the stated goal and nothing on the page is marketing. Two of five jobs have no dates, and the last dated one ended in June 2023.",
+        "misses": [
+          {
+            "fix": "Say what job this resume is for. The objective asks for Marketing Manager and no role on the page is marketing: name the job you're actually applying for, or cut the objective.",
+            "why": "A reviewer screening for a marketing job stops at the first bullet. Screening for retail or warehouse work, the objective sends them away.",
+            "resume_lines": [
+              "Hard-working team player seeking a challenging Marketing Manager position where I can utilize my skills and grow with a dynamic company."
+            ]
+          },
+          {
+            "fix": "Add dates to the Warehouse Associate and Delivery Driver entries.",
+            "why": "Two undated jobs out of five make the timeline unreadable; a reviewer can't tell what came when or how long anything lasted.",
+            "resume_lines": [
+              "Miami Valley Distribution, Vandalia, OH",
+              "Gino's Pizza, Kettering, OH"
+            ]
+          },
+          {
+            "fix": "Add one dated line covering June 2023 to today, and say what it was: work, study or a break, if true.",
+            "why": "The last dated job ended in June 2023. Nothing after it means the first question is what happened.",
+            "resume_lines": [
+              "January 2023 - June 2023"
+            ]
+          }
+        ],
+        "fix": "Say what job this resume is for. The objective asks for Marketing Manager and no role on the page is marketing: name the job you're actually applying for, or cut the objective.",
+        "why": "A reviewer screening for a marketing job stops at the first bullet. Screening for retail or warehouse work, the objective sends them away.",
+        "resume_lines": [
+          "Hard-working team player seeking a challenging Marketing Manager position where I can utilize my skills and grow with a dynamic company."
+        ]
+      }
+    },
+    {
+      "id": "bp5-03",
+      "role": "New graduate, software engineer",
+      "resume_text": "DANIEL OKAFOR\nColumbus, OH | daniel.okafor@example.com | (614) 555-0142 | linkedin.com/in/danielokafor-example | github.com/dokafor-example\n\nOBJECTIVE\nMotivated and detail-oriented Computer Science graduate seeking a Software Engineer position where I can leverage my technical skills and passion for problem solving to contribute to a dynamic team.\n\nEDUCATION\nThe Ohio State University, Columbus, OH\nBachelor of Science in Computer Science and Engineering, May 2026\nGPA: 3.4/4.0\nRelevant Coursework: Data Structures and Algorithms, Operating Systems, Database Systems, Software Engineering, Computer Networks, Machine Learning, Web Development, Linear Algebra\n\nTECHNICAL SKILLS\nLanguages: Java, Python, C++, JavaScript, TypeScript, SQL, HTML/CSS\nFrameworks & Tools: React, Node.js, Express, Spring Boot, Git, Docker, Jenkins, AWS (EC2, S3), PostgreSQL, MongoDB, Jira, Agile/Scrum\nSoft Skills: Communication, Teamwork, Leadership, Time Management, Problem Solving\n\nEXPERIENCE\nSoftware Engineering Intern, Cardinal Health, Dublin, OH\nMay 2025 - August 2025\n- Responsible for developing features for an internal inventory management web application using React and Spring Boot\n- Participated in daily stand-ups and sprint planning meetings as part of an Agile team\n- Wrote unit tests to improve code quality and reliability\n- Collaborated with cross-functional teams to gather requirements and deliver solutions\n- Fixed bugs and performed code reviews\n\nIT Help Desk Assistant, OSU Office of Technology and Digital Innovation, Columbus, OH\nSeptember 2023 - May 2025\n- Provided technical support to students and faculty for hardware and software issues\n- Resolved tickets in a timely manner and documented solutions\n- Assisted with setting up laptops and classroom technology\n\nPROJECTS\nBuckeyeBites - Campus Food Ordering App (Team Capstone Project)\n- Developed a full-stack web application allowing students to order food from campus dining locations\n- Used React, Node.js, Express, and MongoDB\n- Implemented user authentication and a shopping cart feature\n- Worked in a team of 4 using Agile methodology\n\nPersonal Finance Tracker\n- Built a Python application to track expenses and visualize spending with matplotlib\n- Utilized SQLite for data storage\n\nWeather Dashboard\n- Created a weather dashboard using JavaScript and the OpenWeather API\n\nLEADERSHIP & ACTIVITIES\nMember, National Society of Black Engineers (NSBE), 2022 - 2026\nVolunteer, Code for Columbus Hackathon, 2024\nIntramural Soccer Team Captain, 2023 - 2025",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "Your internship and capstone both point toward web development. The capstone's authentication and shopping cart are useful details because they show what you implemented, not just the stack you used.",
+        "misses": [
+          {
+            "fix": "In the Cardinal Health inventory bullet, name a feature you developed and what it allowed users to do.",
+            "why": "A concrete feature would show the work behind the React and Spring Boot stack.",
+            "resume_lines": [
+              "Responsible for developing features for an internal inventory management web application using React and Spring Boot"
+            ]
+          }
+        ],
+        "fix": "In the Cardinal Health inventory bullet, name a feature you developed and what it allowed users to do.",
+        "why": "A concrete feature would show the work behind the React and Spring Boot stack.",
+        "resume_lines": [
+          "Responsible for developing features for an internal inventory management web application using React and Spring Boot"
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "Your internship and capstone both point toward web development. The capstone's authentication and shopping cart are useful details because they show what you implemented, not just the stack you used.",
+        "misses": [
+          {
+            "fix": "In the Cardinal Health internship, add the size of the Agile team you worked on or a measurable result of a feature you developed, if you can verify it.",
+            "why": "Engineering reviewers often look for the scale or results of an intern's work. The resume describes development and testing duties but doesn't show team size or measurable outcomes.",
+            "resume_lines": [
+              "- Participated in daily stand-ups and sprint planning meetings as part of an Agile team"
+            ]
+          }
+        ],
+        "fix": "In the Cardinal Health internship, add the size of the Agile team you worked on or a measurable result of a feature you developed, if you can verify it.",
+        "why": "Engineering reviewers often look for the scale or results of an intern's work. The resume describes development and testing duties but doesn't show team size or measurable outcomes.",
+        "resume_lines": [
+          "- Participated in daily stand-ups and sprint planning meetings as part of an Agile team"
+        ]
+      }
+    },
+    {
+      "id": "bp5-04",
+      "role": "Software Engineer",
+      "resume_text": "Maya Chen\nMountain View, CA | maya.chen@example.com | 555-0171\n\nSoftware engineer with six years building backend services.\n\nEXPERIENCE\n\nSoftware Engineer\nGoogle, Mountain View, CA\nJanuary 2023 - Present\n- Worked on features for an internal tool used by other engineering teams\n- Collaborated with cross-functional partners on requirements\n- Participated in code reviews, design reviews and the on-call rotation\n- Mentored a new team member\n\nSoftware Engineer\nHarborview Analytics (Series C, 400 employees), San Francisco, CA\nJune 2019 - December 2022\n- Built the ingestion service that moved 2 billion events a day from Kafka into BigQuery\n- Cut p95 query latency on the customer dashboard from 4.2 s to 900 ms by rewriting the aggregation layer\n- Led the migration of 14 services from EC2 to Kubernetes over nine months with two other engineers\n\nEDUCATION\nB.S., Computer Science, University of Washington, 2019\n\nSKILLS\nGo, Java, Python, Kubernetes, Kafka, BigQuery, gRPC",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "Three years at Google will get this resume read, and a reviewer takes the current role on the brand's credit. Clear and specific. The Harborview bullets carry the page; the Google bullets under the name don't say what you built.",
+        "misses": [
+          {
+            "fix": "In the Google internal-tool bullet, name the tool, the feature you built and who uses it.",
+            "why": "The name gets you the read. The line has to get you the interview, and right now a reviewer sees 'worked on features' under the strongest employer on the page.",
+            "resume_lines": [
+              "- Worked on features for an internal tool used by other engineering teams"
+            ]
+          }
+        ],
+        "fix": "In the Google internal-tool bullet, name the tool, the feature you built and who uses it.",
+        "why": "The name gets you the read. The line has to get you the interview, and right now a reviewer sees 'worked on features' under the strongest employer on the page.",
+        "resume_lines": [
+          "- Worked on features for an internal tool used by other engineering teams"
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "Your Harborview work is specific: the event volume, the latency change and the migration are easy to hold. The current role lists participation without a feature, so on what the page shows it reads Mostly clear.",
+        "misses": [
+          {
+            "fix": "In the Google internal-tool bullet, name the tool, the feature you built and who uses it.",
+            "why": "Three years of your most recent work currently read as 'worked on features', which a reviewer can't weigh.",
+            "resume_lines": [
+              "- Worked on features for an internal tool used by other engineering teams"
+            ]
+          }
+        ],
+        "fix": "In the Google internal-tool bullet, name the tool, the feature you built and who uses it.",
+        "why": "Three years of your most recent work currently read as 'worked on features', which a reviewer can't weigh.",
+        "resume_lines": [
+          "- Worked on features for an internal tool used by other engineering teams"
+        ]
+      }
+    },
+    {
+      "id": "bp5-05",
+      "role": "Senior Product Manager",
+      "resume_text": "Elena Vasquez\nDenver, CO | elena.vasquez@example.com | 555-0188 | linkedin.com/in/elenavasquez-example\n\nSenior Product Manager with nine years shipping B2B payments and billing products. Led the team that took Northwind Pay from launch to $48M ARR.\n\nEXPERIENCE\n\nSenior Product Manager, Payments Platform\nNorthwind Software (public, 3,200 employees), Denver, CO\nMarch 2022 - Present\n- Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers\n- Led the launch of Northwind Pay, which grew from $0 to $48M ARR in 26 months and reached 31% attach rate on new accounts\n- Cut payment failure rate from 4.1% to 1.6% by leading the move to network tokenization and smart retries, recovering an estimated $6.2M in annual revenue for customers\n- Negotiated and shipped the Adyen and Stripe processor integrations, cutting new-market launch time from 9 months to 11 weeks\n- Built the pricing model for interchange-plus billing with Finance, adopted by 2,400 customers in the first year\n- Hired and manage 3 product managers; two were promoted within 18 months\n\nProduct Manager, Billing\nNorthwind Software, Denver, CO\nJuly 2019 - February 2022\n- Shipped usage-based billing for the core platform, used by 1,900 customers and generating $12M ARR by year two\n- Reduced invoice disputes 38% by redesigning the invoice detail page after 40 customer interviews\n- Ran the weekly billing bug triage with Support and Engineering, cutting the open P1 backlog from 31 to 4 in one quarter\n\nAssociate Product Manager\nPeakline Fintech (Series B startup), Boulder, CO\nAugust 2017 - June 2019\n- Launched the merchant onboarding flow, raising completion from 52% to 79% over three releases\n- Wrote the PRDs and ran the beta for the first API product, signed by 14 design partners\n\nEDUCATION\nB.S., Industrial Engineering, Colorado State University, 2017\n\nSKILLS\nPayments and card networks, usage-based billing, pricing, SQL, Amplitude, Jira, roadmap planning, stakeholder management",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "You lead a payments platform roadmap, ship processor integrations, and manage product managers. The results are easy to find; the choices behind the largest launches are less visible.",
+        "misses": [
+          {
+            "fix": "In the payments platform roadmap bullet, add one example of a competing priority and how you decided what to pursue.",
+            "why": "That would show how you set direction for the four teams rather than only the breadth of the roadmap.",
+            "resume_lines": [
+              "Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers"
+            ]
+          },
+          {
+            "fix": "In the Northwind Pay launch bullet, add a specific product decision you made during the launch while retaining the growth and attach-rate figures.",
+            "why": "A concrete choice would give the commercial result more context without implying you caused all subsequent growth.",
+            "resume_lines": [
+              "Led the launch of Northwind Pay, which grew from $0 to $48M ARR in 26 months and reached 31% attach rate on new accounts"
+            ]
+          },
+          {
+            "fix": "Cut the $48M line from the summary; it repeats the first bullet of the current role.",
+            "why": "A reviewer reads the same result twice before reaching anything new.",
+            "resume_lines": [
+              "Led the team that took Northwind Pay from launch to $48M ARR."
+            ]
+          }
+        ],
+        "fix": "In the payments platform roadmap bullet, add one example of a competing priority and how you decided what to pursue.",
+        "why": "That would show how you set direction for the four teams rather than only the breadth of the roadmap.",
+        "resume_lines": [
+          "Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers"
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "You lead a payments platform roadmap, ship processor integrations, and manage product managers. The results are easy to find; the choices behind the largest launches are less visible.",
+        "misses": [
+          {
+            "fix": "In the payments platform roadmap bullet, add one example of a competing priority and how you decided what to pursue.",
+            "why": "That would show how you set direction for the four teams rather than only the breadth of the roadmap.",
+            "resume_lines": [
+              "Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers"
+            ]
+          }
+        ],
+        "fix": "In the payments platform roadmap bullet, add one example of a competing priority and how you decided what to pursue.",
+        "why": "That would show how you set direction for the four teams rather than only the breadth of the roadmap.",
+        "resume_lines": [
+          "Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers"
+        ]
+      }
+    },
+    {
+      "id": "bp5-06",
+      "role": "Data Analyst, against a registered nurse posting",
+      "resume_text": "Jordan Lee\nRaleigh, NC | jordan.lee@example.com | 555-0150\n\nData analyst with four years turning sales and operations data into reports that teams actually use.\n\nEXPERIENCE\n\nData Analyst\nCarolina Home Goods, Raleigh, NC\nFebruary 2023 - Present\n- Build and maintain 14 Power BI dashboards used by the sales, merchandising, and finance teams\n- Wrote the SQL model that replaced a 3-day manual weekly sales report with an automated one\n- Analyzed markdown timing for 2,100 SKUs; the merchandising team adopted the recommended schedule in two categories\n- Pull ad hoc analyses for the VP of Sales, about 10 requests a month\n\nJunior Analyst\nPiedmont Insurance Services, Durham, NC\nJuly 2021 - January 2023\n- Cleaned and reconciled policy data from three legacy systems in Python and Excel\n- Produced the monthly claims summary for the operations director\n- Documented the reporting data dictionary used by the analytics team\n\nEDUCATION\nB.S., Statistics, North Carolina State University, 2021\n\nSKILLS\nSQL, Power BI, Python (pandas), Excel, Tableau, data modeling",
+      "job_description": "Registered Nurse, Medical-Surgical Unit (Nights)\nTriangle Regional Medical Center, Raleigh, NC\n\nAbout the role\nWe are hiring a Registered Nurse for our 36-bed medical-surgical unit, night shift (7p to 7a), three 12-hour shifts per week with rotating weekends.\n\nRequirements\n- Current unrestricted North Carolina RN license or compact state license\n- BLS certification required; ACLS within six months of hire\n- Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered\n- Experience with Epic or a comparable EHR\n- Ability to manage a patient assignment of 5 to 6 patients\n- Strong communication with patients, families, and the interdisciplinary team\n\nResponsibilities\n- Assess, plan, implement, and evaluate patient care in collaboration with physicians and the care team\n- Administer medications and treatments per orders and unit protocol\n- Document care accurately and in a timely manner in the EHR\n- Educate patients and families on conditions, medications, and discharge plans\n- Precept students and new graduates as assigned",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "Your current role combines Power BI reporting, SQL automation, and merchandising analysis. The replacement of a 3-day manual report makes the reporting change particularly easy to understand.",
+        "misses": [
+          {
+            "fix": "In the VP of Sales analysis bullet, add an example of a business question you investigated.",
+            "why": "A specific question would show what the executive relied on your analysis to examine.",
+            "resume_lines": [
+              "- Pull ad hoc analyses for the VP of Sales, about 10 requests a month"
+            ]
+          }
+        ],
+        "fix": "In the VP of Sales analysis bullet, add an example of a business question you investigated.",
+        "why": "A specific question would show what the executive relied on your analysis to examine.",
+        "resume_lines": [
+          "- Pull ad hoc analyses for the VP of Sales, about 10 requests a month"
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "The posting is for a registered nurse on a medical-surgical unit. Nothing on this page is clinical, and a recruiter for that job stops at the first line. As a data analyst resume it's a good one.",
+        "misses": [
+          {
+            "fix": "Don't send this resume to this posting as it is. If you're applying anyway, put the reason in one line at the top: the license, the clinical training or the connection to nursing the posting asks for, if you have it.",
+            "why": "A recruiter screening nurses won't read the Power BI bullets. The only change that affects the outcome is the one that answers why you're applying.",
+            "resume_lines": [
+              "Data analyst with four years turning sales and operations data into reports that teams actually use."
+            ]
+          }
+        ],
+        "fix": "Don't send this resume to this posting as it is. If you're applying anyway, put the reason in one line at the top: the license, the clinical training or the connection to nursing the posting asks for, if you have it.",
+        "why": "A recruiter screening nurses won't read the Power BI bullets. The only change that affects the outcome is the one that answers why you're applying.",
+        "resume_lines": [
+          "Data analyst with four years turning sales and operations data into reports that teams actually use."
+        ]
+      }
+    },
+    {
+      "id": "bp5-07",
+      "role": "Shift Supervisor, freelance web developer",
+      "resume_text": "Jordan Alvarez\nTucson, AZ | jordan.alvarez@example.com | 555-0202\n\nEXPERIENCE\n\nShift Supervisor\nSaguaro Market, Tucson, AZ\nAugust 2023 - Present\n- Supervise cashiers and stockers on evening shifts\n- Count and reconcile registers at close\n- Help with weekly ordering and store resets\n\nFreelance Web Developer\nSelf-employed, Remote\n- Built small business websites in WordPress and Webflow\n- Set up online booking for a local salon\n\nMedical Billing Assistant\nDesert Health Partners, Tucson, AZ\nFebruary 2021 - July 2023\n- Entered insurance claims for a 4-physician practice\n- Followed up on denied claims with payers\n\nServer\nCactus Grill, Tucson, AZ\nJune 2018 - January 2021\n- Served a 70-seat dining room on weekend doubles\n\nEDUCATION\nCertificate, Full-Stack Web Development, Sonoran Code Academy, 2022\nB.A., Psychology, University of Arizona, 2018\n\nSKILLS\nHTML, CSS, JavaScript, WordPress, Webflow, medical billing, point-of-sale systems, customer service",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "Nothing says what job this is for: a shift supervisor, a web developer and a billing assistant share the page with no line naming a direction, and the freelance entry has no dates.",
+        "misses": [
+          {
+            "fix": "Add a one-line headline above Experience naming the role you want, if it reflects your target.",
+            "why": "A reviewer can't tell what to screen you for. Retail supervision, web development and medical billing are three different jobs, and the page doesn't pick one.",
+            "resume_lines": [
+              "No summary section present"
+            ]
+          },
+          {
+            "fix": "Add a start date and an end date, or Present if accurate, to the Freelance Web Developer entry.",
+            "why": "Dates would let a reader place the website work within your job history.",
+            "resume_lines": [
+              "Self-employed, Remote"
+            ]
+          },
+          {
+            "fix": "In the evening-shift supervision bullet, name a decision you make when directing cashiers and stockers.",
+            "why": "That would help a reader understand what the supervisor title involves.",
+            "resume_lines": [
+              "- Supervise cashiers and stockers on evening shifts"
+            ]
+          }
+        ],
+        "fix": "Add a one-line headline above Experience naming the role you want, if it reflects your target.",
+        "why": "A reviewer can't tell what to screen you for. Retail supervision, web development and medical billing are three different jobs, and the page doesn't pick one.",
+        "resume_lines": [
+          "No summary section present"
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "Shift Supervisor is your current role, with freelance website development listed separately. The freelance entry has no dates.",
+        "misses": [
+          {
+            "fix": "In the evening-shift supervision bullet, name a decision you make when directing cashiers and stockers.",
+            "why": "That would help a reader understand what the supervisor title involves.",
+            "resume_lines": [
+              "- Supervise cashiers and stockers on evening shifts"
+            ]
+          },
+          {
+            "fix": "Add a one-line headline above Experience naming the role you want, if it reflects your target.",
+            "why": "A hiring manager looks for the role you're pursuing. Your resume points to retail supervision, web development, and medical billing, but doesn't identify a target.",
+            "resume_lines": [
+              "No summary section present"
+            ]
+          },
+          {
+            "fix": "Add a start date and an end date, or Present if accurate, to the Freelance Web Developer entry.",
+            "why": "Dates would let a reader place the website work within your job history.",
+            "resume_lines": [
+              "Self-employed, Remote"
+            ]
+          }
+        ],
+        "fix": "In the evening-shift supervision bullet, name a decision you make when directing cashiers and stockers.",
+        "why": "That would help a reader understand what the supervisor title involves.",
+        "resume_lines": [
+          "- Supervise cashiers and stockers on evening shifts"
+        ]
+      }
+    },
+    {
+      "id": "bp5-08",
+      "role": "IT Help Desk Intern, first job",
+      "resume_text": "Daniel Osei\nColumbus, GA | daniel.osei@example.com | 555-0102\n\nIT support specialist with help desk experience, looking for a desktop support or junior systems role.\n\nEDUCATION\nA.A.S., Information Technology, Columbus Technical College, May 2025\n\nCERTIFICATIONS\nCompTIA A+, 2025\n\nEXPERIENCE\n\nIT Help Desk Intern\nChattahoochee County Schools, Columbus, GA\nJanuary 2025 - May 2025\n- Answered help desk tickets from teachers and staff\n- Imaged and set up laptops for classrooms\n- Reset passwords and accounts in Active Directory\n\nRetail Associate\nPeachtree Electronics, Columbus, GA\nJune 2022 - December 2024\n- Helped customers choose laptops, printers, and accessories\n- Set up new devices for customers at the service counter\n\nSKILLS\nWindows 10/11, Active Directory, Microsoft 365 administration, basic networking, ticketing systems",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "Your school help desk internship gives this resume a clear desktop-support direction. The brief bullets make it difficult to see how you handled the requests and devices.",
+        "misses": [
+          {
+            "fix": "In the Chattahoochee County Schools internship, add how many tickets or laptops you personally handled, if you can verify it.",
+            "why": "Desktop support hiring managers often look for the volume of work a candidate handled. The internship lists relevant duties, but doesn't show their scale or a measurable result.",
+            "resume_lines": [
+              "IT Help Desk Intern"
+            ]
+          }
+        ],
+        "fix": "In the Chattahoochee County Schools internship, add how many tickets or laptops you personally handled, if you can verify it.",
+        "why": "Desktop support hiring managers often look for the volume of work a candidate handled. The internship lists relevant duties, but doesn't show their scale or a measurable result.",
+        "resume_lines": [
+          "IT Help Desk Intern"
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "Your school help desk internship gives this resume a clear desktop-support direction. The brief bullets make it difficult to see how you handled the requests and devices.",
+        "misses": [
+          {
+            "fix": "In the school help desk ticket bullet, name the kinds of issues you handled and what you did to resolve or route them.",
+            "why": "A concrete example would show a reviewer what your ticket work involved beyond answering requests.",
+            "resume_lines": [
+              "- Answered help desk tickets from teachers and staff"
+            ]
+          }
+        ],
+        "fix": "In the school help desk ticket bullet, name the kinds of issues you handled and what you did to resolve or route them.",
+        "why": "A concrete example would show a reviewer what your ticket work involved beyond answering requests.",
+        "resume_lines": [
+          "- Answered help desk tickets from teachers and staff"
+        ]
+      }
+    },
+    {
+      "id": "bp5-09",
+      "role": "Director of Marketing at a candle shop",
+      "resume_text": "Priya Raman\nAustin, TX | priya.raman@example.com | 555-0204\n\nEXPERIENCE\n\nDirector of Marketing\nLumen Candle Co., Austin, TX\nMarch 2024 - January 2025\n- Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers\n- Wrote product descriptions for 40 candle scents on the website\n- Packed online orders during the holiday rush\n- Answered customer emails about shipping\n\nData Entry Clerk\nHill Country Title, Austin, TX\nMay 2021 - February 2024\n- Entered 150 property records a day into the county title system\n- Flagged missing documents for the closing team\n\nLaboratory Assistant\nTexas State University Department of Biology, San Marcos, TX\nJanuary 2020 - May 2021\n- Prepared media and glassware for 6 teaching labs a week\n\nBarista\nMesa Coffee, Austin, TX\nJune 2018 - December 2019\n- Opened the cafe three mornings a week\n- Trained 4 new baristas on espresso drinks\n\nEDUCATION\nB.S., Biology, Texas State University, 2021\n\nSKILLS\nInstagram, Canva, Shopify, Excel, data entry, lab safety, customer service",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "The title says director; the bullets say content and order support. Nothing since January 2025, and nothing says what job this is for.",
+        "misses": [
+          {
+            "fix": "Change the Director of Marketing title to what the job was, or add the director-level responsibilities if they were real.",
+            "why": "Posting to a 2,100-follower account and packing orders under a director title reads as inflated, and a reviewer discounts the rest of the page with it.",
+            "resume_lines": [
+              "Director of Marketing"
+            ]
+          },
+          {
+            "fix": "Add one dated line covering January 2025 to today.",
+            "why": "A marketing hiring manager may look for current skills, but the resume shows no activity after the Lumen role. Use a dated line such as \"Career break\" or \"Job search and coursework\" to name the period truthfully, and list freelance content work or marketing coursework only if true.",
+            "resume_lines": [
+              "March 2024 - January 2025"
+            ]
+          },
+          {
+            "fix": "Add one line at the top naming the job you want.",
+            "why": "Biology, title records, candles: four fields in five years and nothing says which one is next, so a reviewer can't tell what to screen you for.",
+            "resume_lines": [
+              "Instagram, Canva, Shopify, Excel, data entry, lab safety, customer service"
+            ]
+          },
+          {
+            "fix": "In the Instagram bullet, add which content or publishing decisions you made and any account result you can verify.",
+            "why": "That would show how much of the account's direction belonged to you rather than only how often you posted.",
+            "resume_lines": [
+              "- Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers"
+            ]
+          },
+          {
+            "fix": "In the Lumen role, add what the marketing did for the shop: orders, site traffic or followers gained, if you can verify it.",
+            "why": "The role's measure is sales. Every bullet is a task, and none says whether anything moved.",
+            "resume_lines": [
+              "- Wrote product descriptions for 40 candle scents on the website"
+            ]
+          }
+        ],
+        "fix": "Change the Director of Marketing title to what the job was, or add the director-level responsibilities if they were real.",
+        "why": "Posting to a 2,100-follower account and packing orders under a director title reads as inflated, and a reviewer discounts the rest of the page with it.",
+        "resume_lines": [
+          "Director of Marketing"
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "Your most recent title is Director of Marketing, but the bullets emphasize content production and order support. The 40 candle scent descriptions are worth keeping because they show the size of the writing assignment.",
+        "misses": [
+          {
+            "fix": "In the Instagram bullet, add which content or publishing decisions you made and any account result you can verify.",
+            "why": "That would show how much of the account's direction belonged to you rather than only how often you posted.",
+            "resume_lines": [
+              "- Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers"
+            ]
+          },
+          {
+            "fix": "Add one dated line covering January 2025 to today.",
+            "why": "A marketing hiring manager may look for current skills, but the resume shows no activity after the Lumen role. Use a dated line such as \"Career break\" or \"Job search and coursework\" to name the period truthfully, and list freelance content work or marketing coursework only if true.",
+            "resume_lines": [
+              "March 2024 - January 2025"
+            ]
+          },
+          {
+            "fix": "In the Lumen Candle Co. Director of Marketing role, add any marketing strategy or leadership responsibilities you held, if true, alongside the content production and order support work.",
+            "why": "A hiring manager may look for leadership and strategy behind a director title. The bullets show content production and customer support, but don't describe director-level responsibilities.",
+            "resume_lines": [
+              "Director of Marketing"
+            ]
+          }
+        ],
+        "fix": "In the Instagram bullet, add which content or publishing decisions you made and any account result you can verify.",
+        "why": "That would show how much of the account's direction belonged to you rather than only how often you posted.",
+        "resume_lines": [
+          "- Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers"
+        ]
+      }
+    },
+    {
+      "id": "bp5-10",
+      "role": "Operations Manager, formerly at Google",
+      "resume_text": "Robert Ellis\nAustin, TX | robert.ellis@example.com | 555-0193\n\nOperations leader with twelve years across technology and logistics.\n\nEXPERIENCE\n\nOperations Manager\nBrightline Freight Partners, Austin, TX\nMarch 2022 - Present\n- Responsible for daily operations of the Austin terminal\n- Manage a team of coordinators and dispatchers\n- Work with carriers and customers to resolve issues\n- Report weekly metrics to the regional director\n\nSenior Program Manager\nGoogle, Mountain View, CA\nFebruary 2016 - December 2021\n- Ran the data center capacity planning program for the Americas region, covering 11 sites and a $340M annual build budget\n- Cut the forecast-to-delivery cycle for new capacity from 14 months to 9 by consolidating three approval tracks into one\n- Managed a team of 6 program managers; two were promoted to lead regions\n\nProgram Manager\nDell Technologies, Round Rock, TX\nJuly 2012 - January 2016\n- Led the supply chain program for the enterprise server line, coordinating 40 suppliers across three continents\n- Reduced component shortages by 35% through a weekly risk review with the top 12 suppliers\n\nEDUCATION\nB.S., Industrial Engineering, Texas A&M University, 2012",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "Six years at Google and Dell put this resume in the read pile. Clear and specific. The Brightline role is thinner than the ones before it.",
+        "misses": [
+          {
+            "fix": "In the Brightline operations bullets, add the terminal's size: shipments a day, headcount, on-time rate, if you can verify them.",
+            "why": "Your earlier roles show scale; the current one doesn't yet.",
+            "resume_lines": [
+              "- Responsible for daily operations of the Austin terminal"
+            ]
+          }
+        ],
+        "fix": "In the Brightline operations bullets, add the terminal's size: shipments a day, headcount, on-time rate, if you can verify them.",
+        "why": "Your earlier roles show scale; the current one doesn't yet.",
+        "resume_lines": [
+          "- Responsible for daily operations of the Austin terminal"
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "The Google and Dell roles are specific and the last of them ended in 2021. The current role, the one a reviewer reads first, lists duties with no size and no result, so on what it shows the page reads Mostly clear. The logos don't carry a role that ended four years ago.",
+        "misses": [
+          {
+            "fix": "In the Brightline operations bullets, add the terminal's size: shipments a day, headcount, on-time rate, if you can verify them.",
+            "why": "The role a reviewer reads first is the one with nothing in it. Your Google bullets show you know how to write the line; this one needs the same.",
+            "resume_lines": [
+              "- Responsible for daily operations of the Austin terminal"
+            ]
+          }
+        ],
+        "fix": "In the Brightline operations bullets, add the terminal's size: shipments a day, headcount, on-time rate, if you can verify them.",
+        "why": "The role a reviewer reads first is the one with nothing in it. Your Google bullets show you know how to write the line; this one needs the same.",
+        "resume_lines": [
+          "- Responsible for daily operations of the Austin terminal"
+        ]
+      }
+    },
+    {
+      "id": "bp5-11",
+      "role": "HR Generalist, returning after a dated caregiving break",
+      "resume_text": "Laura Jensen\nMinneapolis, MN | laura.jensen@example.com | 555-0181\n\nHR generalist with experience in employee relations, benefits, and onboarding for manufacturing companies.\n\nEXPERIENCE\n\nCareer Break\nFamily caregiving\nSeptember 2022 - June 2025\n- Full-time caregiver for a family member\n\nHR Generalist\nNorthstar Plastics, Minneapolis, MN\nMarch 2018 - August 2022\n- Supported HR for a plant of 400 employees across three shifts\n- Handled employee relations questions and investigations with the HR manager\n- Coordinated open enrollment for medical and dental benefits\n- Ran new hire orientation every two weeks\n- Kept personnel files and HRIS records up to date\n\nHR Assistant\nNorthstar Plastics, Minneapolis, MN\nJune 2016 - February 2018\n- Processed new hire paperwork and I-9s\n- Scheduled interviews for production roles\n\nEDUCATION\nB.S., Human Resource Management, University of St. Thomas, 2016\n\nCERTIFICATIONS\nSHRM-CP, 2019\n\nSKILLS\nUKG, ADP Workforce Now, benefits administration, employee relations",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "The progression from HR Assistant to HR Generalist at Northstar Plastics is easy to follow. The caregiving break is stated plainly, while activity after June 2025 isn't shown.",
+        "misses": [
+          {
+            "fix": "In the employee relations bullet, name a type of question or investigation you handled and describe your contribution alongside the HR manager.",
+            "why": "A concrete example would distinguish your part in the work from the manager's without overstating your authority.",
+            "resume_lines": [
+              "- Handled employee relations questions and investigations with the HR manager"
+            ]
+          }
+        ],
+        "fix": "In the employee relations bullet, name a type of question or investigation you handled and describe your contribution alongside the HR manager.",
+        "why": "A concrete example would distinguish your part in the work from the manager's without overstating your authority.",
+        "resume_lines": [
+          "- Handled employee relations questions and investigations with the HR manager"
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "The caregiving break is dated and named, which is the right way to do it. It ended in June 2025, and the page says nothing about what's happened since or whether you're back in HR.",
+        "misses": [
+          {
+            "fix": "Add one line, dated from June 2025, saying you're returning to HR and what you've done since: a course, a contract, a volunteer HR project or the SHRM renewal, if true.",
+            "why": "An explained break that ended sixteen months ago leaves one open question, and it's the first one a reviewer asks.",
+            "resume_lines": [
+              "September 2022 - June 2025"
+            ]
+          },
+          {
+            "fix": "In the employee relations bullet, name a type of question or investigation you handled and describe your contribution alongside the HR manager.",
+            "why": "A concrete example would distinguish your part in the work from the manager's without overstating your authority.",
+            "resume_lines": [
+              "- Handled employee relations questions and investigations with the HR manager"
+            ]
+          }
+        ],
+        "fix": "Add one line, dated from June 2025, saying you're returning to HR and what you've done since: a course, a contract, a volunteer HR project or the SHRM renewal, if true.",
+        "why": "An explained break that ended sixteen months ago leaves one open question, and it's the first one a reviewer asks.",
+        "resume_lines": [
+          "September 2022 - June 2025"
+        ]
+      }
+    },
+    {
+      "id": "bp5-12",
+      "role": "Recent graduate calling himself a marketing manager",
+      "resume_text": "Sam Whitaker\nMadison, WI | sam.whitaker@example.com | 555-0207\n\nMarketing manager who has led credit union campaigns from strategy to launch.\n\nEDUCATION\nB.A., Economics, University of Wisconsin-Madison, May 2024\n\nEXPERIENCE\n\nMarketing Intern\nBadger State Credit Union, Madison, WI\nJune 2023 - May 2024\n- Helped with the member newsletter\n- Posted on the credit union's social media accounts\n- Supported planning for branch events\n\nResearch Assistant\nDepartment of Agricultural Economics, University of Wisconsin-Madison\nJanuary 2023 - May 2023\n- Cleaned survey data from 1,200 dairy farms in Stata for a pricing study\n- Wrote 15 literature summaries on farm subsidies\n\nFinance Intern\nLakeview Partners, Milwaukee, WI\nMay 2022 - August 2022\n- Updated monthly expense reports for a 20-person firm\n\nCampus Tour Guide\nUniversity of Wisconsin-Madison, Madison, WI\nSeptember 2021 - May 2023\n- Led tours for groups of up to 25 prospective students\n\nSKILLS\nExcel, Stata, Canva, survey design, public speaking",
+      "A": {
+        "label": "Critical Miss",
+        "verdict": "The opening calls you a marketing manager, while the credit union entry is a marketing internship. The research entry is more specific about what you worked on.",
+        "misses": [
+          {
+            "fix": "Revise the opening to match the responsibilities shown, or add a specific credit union campaign example that explains your stated leadership.",
+            "why": "The manager description and internship title currently leave a reviewer with different impressions of your level.",
+            "resume_lines": [
+              "Marketing manager who has led credit union campaigns from strategy to launch."
+            ]
+          },
+          {
+            "fix": "Add one dated line covering May 2024 to today.",
+            "why": "Marketing hiring managers look for current work and skills. The resume shows no relevant activity after the internship; use a dated line such as \"Career break\" or \"Job search and coursework\" to name the period truthfully. List campaign projects or volunteer marketing work if true.",
+            "resume_lines": [
+              "June 2023 - May 2024"
+            ]
+          },
+          {
+            "fix": "In the Badger State Credit Union social media bullet, add how many posts you personally published or a measurable result, if you can verify it.",
+            "why": "Marketing hiring managers look for the scale or results of recent work. The internship lists activities but doesn't show their volume or outcomes.",
+            "resume_lines": [
+              "- Posted on the credit union's social media accounts"
+            ]
+          }
+        ],
+        "fix": "Revise the opening to match the responsibilities shown, or add a specific credit union campaign example that explains your stated leadership.",
+        "why": "The manager description and internship title currently leave a reviewer with different impressions of your level.",
+        "resume_lines": [
+          "Marketing manager who has led credit union campaigns from strategy to launch."
+        ]
+      },
+      "B": {
+        "label": "Critical Miss",
+        "verdict": "You describe yourself as a marketing manager, while the credit union position is titled Marketing Intern. The experience bullets don't yet explain the campaign leadership claimed in the opening.",
+        "misses": [
+          {
+            "fix": "For the summary's campaign claim, add an example under the credit union role naming the campaign and stages you handled, or revise the opening if it overstates your work.",
+            "why": "A specific example would help a reviewer connect the manager description to the role listed below it.",
+            "resume_lines": [
+              "No summary section present"
+            ]
+          },
+          {
+            "fix": "Add one dated line covering May 2024 to today.",
+            "why": "Marketing hiring managers look for recent work or activity that shows current skills. The resume lists no relevant activity after the credit union internship. If accurate, use a dated line such as \"Career break\" or \"Job search and coursework\" and include freelance campaigns or marketing coursework only if true.",
+            "resume_lines": [
+              "June 2023 - May 2024"
+            ]
+          },
+          {
+            "fix": "In the Badger State Credit Union role, add the newsletter's audience size or a measurable result from your contribution, if you can verify it.",
+            "why": "Marketing hiring managers often look for the reach or results of recent work. The internship lists newsletter, social media and event duties, but doesn't show their scale or outcomes.",
+            "resume_lines": [
+              "- Helped with the member newsletter"
+            ]
+          }
+        ],
+        "fix": "For the summary's campaign claim, add an example under the credit union role naming the campaign and stages you handled, or revise the opening if it overstates your work.",
+        "why": "A specific example would help a reviewer connect the manager description to the role listed below it.",
+        "resume_lines": [
+          "No summary section present"
+        ]
+      }
+    }
+  ]
+}

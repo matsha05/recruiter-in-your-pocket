@@ -1,0 +1,139 @@
+{
+  "version": 1,
+  "count": 12,
+  "shuffle_seed": 20261105,
+  "date": "2026-11-05",
+  "selection": "Real sides are the shipped report's Verdict (first_impression) and flagged Critical Misses from the November 5 live-judgment outputs, verbatim. Composed sides are written to isolate one decision; each item's key names which.",
+  "decisions": {
+    "variance": "Two production runs on the same resume. Which Critical Miss set is right, or is there no real difference? (decision 17)",
+    "what_leads": "Does the structural problem a reviewer trips on first lead, or the line edit? (decision 6)",
+    "deliverable_exemption": "On a first role, is the Critical Miss the named deliverable or the count? (decision 4)",
+    "employer_tier_recent": "Does a current top-tier employer lift the band when its lines are vague, said out loud? (decision 5)",
+    "employer_tier_old": "Does a top-tier employer four years back lift a thin current role? The brief says no. (decision 5, the bound)",
+    "count_padding": "On a strong resume, one Critical Miss or three where two are small? (decisions 7 and 8)",
+    "count_beyond_three": "Three Critical Misses or five, when five would each cost the interview? (decision 7)",
+    "honest_mismatch": "When the mismatch is plain, does the Verdict say it first, then the fix? (decision 9, Matt said idk)"
+  },
+  "items": {
+    "bp5-01": {
+      "decision": "variance",
+      "brief_side": null,
+      "A_source": "production b06 run 2",
+      "B_source": "production b06 run 1",
+      "sides": {
+        "A": "y",
+        "B": "x"
+      }
+    },
+    "bp5-02": {
+      "decision": "what_leads",
+      "brief_side": "B",
+      "A_source": "composed: production h1 run 1 verdict and first fix, then the dates and the gap",
+      "B_source": "composed: structural first",
+      "sides": {
+        "A": "x",
+        "B": "y"
+      }
+    },
+    "bp5-03": {
+      "decision": "deliverable_exemption",
+      "brief_side": "A",
+      "A_source": "production b39 run 1, first Critical Miss",
+      "B_source": "production b39 run 1, second Critical Miss (severity check)",
+      "sides": {
+        "A": "y",
+        "B": "x"
+      }
+    },
+    "bp5-04": {
+      "decision": "employer_tier_recent",
+      "brief_side": "A",
+      "A_source": "composed: tier lifts the band, declared",
+      "B_source": "composed: evidence on the page only",
+      "sides": {
+        "A": "x",
+        "B": "y"
+      }
+    },
+    "bp5-05": {
+      "decision": "count_padding",
+      "brief_side": "B",
+      "A_source": "composed: production h3 run 2 plus its non-critical fix promoted and a summary edit",
+      "B_source": "production h3 run 2",
+      "sides": {
+        "A": "y",
+        "B": "x"
+      }
+    },
+    "bp5-06": {
+      "decision": "honest_mismatch",
+      "brief_side": "B",
+      "A_source": "production h5 run 1",
+      "B_source": "composed: honest mismatch in the Verdict, then the fix",
+      "sides": {
+        "A": "x",
+        "B": "y"
+      }
+    },
+    "bp5-07": {
+      "decision": "what_leads",
+      "brief_side": "A",
+      "A_source": "composed: production b16 run 1 reordered, target role first",
+      "B_source": "production b16 run 1",
+      "sides": {
+        "A": "y",
+        "B": "x"
+      }
+    },
+    "bp5-08": {
+      "decision": "deliverable_exemption",
+      "brief_side": "B",
+      "A_source": "production b10 run 1, third Critical Miss (severity check)",
+      "B_source": "production b10 run 1, first Critical Miss",
+      "sides": {
+        "A": "x",
+        "B": "y"
+      }
+    },
+    "bp5-09": {
+      "decision": "count_beyond_three",
+      "brief_side": "A",
+      "A_source": "composed: five Critical Misses",
+      "B_source": "production b37 run 1",
+      "sides": {
+        "A": "y",
+        "B": "x"
+      }
+    },
+    "bp5-10": {
+      "decision": "employer_tier_old",
+      "brief_side": "B",
+      "A_source": "composed: old logo lifts the band",
+      "B_source": "composed: no lift for an old logo",
+      "sides": {
+        "A": "x",
+        "B": "y"
+      }
+    },
+    "bp5-11": {
+      "decision": "honest_mismatch",
+      "brief_side": "B",
+      "A_source": "production b17 run 2",
+      "B_source": "composed: the explained break handled in the Verdict and first fix, then production b17 run 2's Critical Miss",
+      "sides": {
+        "A": "x",
+        "B": "y"
+      }
+    },
+    "bp5-12": {
+      "decision": "variance",
+      "brief_side": null,
+      "A_source": "production b11 run 2",
+      "B_source": "production b11 run 1",
+      "sides": {
+        "A": "y",
+        "B": "x"
+      }
+    }
+  }
+}

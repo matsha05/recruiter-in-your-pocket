@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "judge": "Matt",
+  "date": "2026-11-05",
+  "threshold": "Set before Matt saw the items: rubric v5 must reproduce at least 10 of 12 of his picks and clearly reverse none. Variance items may be 'no difference'. A side that cites an unsupported fact is vetoed.",
+  "tally": {
+    "A": 2,
+    "B": 4,
+    "no difference or both": 4,
+    "neither as written": 2,
+    "vetoes": 0
+  },
+  "outcome": "picks recorded; the framing finding below precedes any rubric v5 scoring",
+  "items": {
+    "bp5-01": {
+      "preferred": "no difference",
+      "picked_side": null,
+      "note": "I don't know that I am sold on the idea of a \"critical miss.\" Maybe, let's see. This resume is lacking detail all over. We need a sense of the scale, and the numbers! It's too vague. \"month end close tasks\"... ok? assist with the annual audit, well hwo big is the budget? process AP, well how much? and then for the AP clerk role, i mean something got kevin promoted to Staff so i'm wondering is that some project or what. he doesnt have to explicitly say oh this is waht got me promoted but yeah like some sense of ownership there. in general, A and B are catching my drift though."
+    },
+    "bp5-02": {
+      "preferred": "B",
+      "picked_side": "B",
+      "note": "definitely B, but this is just not a match. resume has some key misses like the lack of dates and lack of detail. we should give ideas on how to phrase gaps in employment, even if its a canned message or rotation of messages that pop up for the user. gaps can be explained, you need to lead with them generally. sabattical works if its honest, or taking care of family, or travel. even vague consulting if you really are doing some consulting. look into how other places recommend talking about gaps, esp on reddit or tech job advice."
+    },
+    "bp5-03": {
+      "preferred": "no difference",
+      "picked_side": null,
+      "note": "both are great. i'd actually want the experience first though as a rule, education below."
+    },
+    "bp5-04": {
+      "preferred": "A",
+      "picked_side": "A",
+      "note": "resume is WAY too vague on the google part. yes its google but sheesh this is so so vague. harborview has much better detail, almost perfect honestly! A is great in this scenario.\n\nim still wondering if critical miss is really the way to frame our product"
+    },
+    "bp5-05": {
+      "preferred": "neither",
+      "picked_side": null,
+      "note": "again i wouldnt call these critical misses. this resume is legit. great details, understanding their scope is easy and i like how they said company size. sometimes if its an unknown company giving the reader an idea of what kind of company this is is really helpful and a great idea. i wouldn't call these critical misses, but these are ways to make it even better for sure."
+    },
+    "bp5-06": {
+      "preferred": "B",
+      "picked_side": "B",
+      "note": "yeah i'd say B. could still be useful to give tips on the resume though."
+    },
+    "bp5-07": {
+      "preferred": "neither",
+      "picked_side": null,
+      "note": "so vague... true it doesnt say what job its for, but we dont require users to do that. so its not that big of a deal, some ppl just want feedback on the resume. the feedback here if no job is attached could be its unclear what kind of role you're positioning yourself for. especially for a resume like this a summary culd be useful if its not completely handwavy. needs to be sincere and genuine. yeah dates for the web developer entry is critical but equally is give me some examples of your work! even url's, etc."
+    },
+    "bp5-08": {
+      "preferred": "both",
+      "picked_side": null,
+      "note": "both are great. i would want to give BOTH pieces of advice here - the key is brief bullets make it super vague so giving the number of tickets or lpatops you handled and also the kinds of issues you handled and how you worked with cross functional teams. any projects too."
+    },
+    "bp5-09": {
+      "preferred": "A",
+      "picked_side": "A",
+      "note": "hmm nothing more recent, i think thats fine assuming its not jan 2025 to nov 2026. we may need to create some resource about handling employment gaps if there are big gaps like this.  but other than that, generally this is good but more detail would be helpful. hmm. yeah data entry clerk, meh its decent but again we need more storya nd more detail! we need a sense of your job. lab assistant, ok meh.\nagreed with all of your ideas and critical misses. so i guss 5 would be better. see, this is the problem with the \"critical miss\" idea. i do not agree that there is ONE critical miss or line that fucks someone up. i think we have bad resumes and good resumes. bad resumes get looked over. we want to make sure we're giving candidates the best possble shot of telling their story to get that interview."
+    },
+    "bp5-10": {
+      "preferred": "B",
+      "picked_side": "B",
+      "note": "B generally, but maybe moreso hey the logos and prestige are great but we you havent been there in 4 years so we need more detail on that brightline role"
+    },
+    "bp5-11": {
+      "preferred": "B",
+      "picked_side": "B",
+      "note": "B for sure. but also HR Generalist and HR assistant both are super vague in the bullets. no sense of what software is used, the volume of requests, the types of issues handled, etc. also other projects or people they worked with. like did they report to the CHRO or what"
+    },
+    "bp5-12": {
+      "preferred": "both",
+      "picked_side": null,
+      "note": "both are great. honestly all good advice. point is bulid this out we need details! i think giving examples could be incredibly helpful in our reviews. e.g. \"helped with the member newsletter\" maybe \"managed newsletter xyz for weekly distrubtion to 10,000 members or something like that. or grew list etc. or you know some ideas\"."
+    }
+  },
+  "notes_source": "Matt, verbatim, through the question UI on November 5, 2026 (US evening; items answered in three rounds of four)",
+  "finding": "Three times unprompted (bp5-01, bp5-04, bp5-09) and once more on a strong resume (bp5-05) Matt said he is not sold on the Critical Miss framing: 'i do not agree that there is ONE critical miss or line that fucks someone up. i think we have bad resumes and good resumes. bad resumes get looked over.' On strong resumes he wants improvements, not misses. On weak ones he wants every vague line called out with scale, numbers, examples and story, and example rewrites. Rubric v5 is on hold until the framing is decided.",
+  "against_the_brief": {
+    "bp5-02": "brief side B: matched",
+    "bp5-04": "brief side A: matched",
+    "bp5-06": "brief side B: matched",
+    "bp5-09": "brief side A: matched",
+    "bp5-10": "brief side B: matched (with his reframing)",
+    "bp5-11": "brief side B: matched",
+    "bp5-03": "brief side A (named deliverable): both; add the experience-above-education rule",
+    "bp5-08": "brief side B (named issues): both, give both",
+    "bp5-05": "brief side B (one Critical Miss): neither; no Critical Miss at all on a strong resume",
+    "bp5-07": "brief side A (target role first): neither; dates and work samples lead, a target line is not a big deal without a posting",
+    "bp5-01": "variance: no difference",
+    "bp5-12": "variance: both"
+  }
+}
