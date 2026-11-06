@@ -120,7 +120,7 @@ test.describe("launch red-team journeys", () => {
     await expect(page.getByTestId("worklist-report")).not.toContainText("Critical Miss");
     await expect(firstRead.getByTestId("worklist-write-up")).toContainText(sampleReport.write_up[0].slice(0, 40));
     await expect(page.getByText("Not a prediction of interviews or offers.", { exact: true })).toHaveCount(0);
-    await expect(page.getByTestId("score-basis")).toContainText("It doesn't predict interviews or offers.");
+    await expect(page.getByTestId("score-basis")).toContainText("Neither predicts interviews or offers.");
     await expect(page.getByRole("heading", { name: "Lines that need work.", exact: true })).toHaveCount(1);
 
     // The section tabs wait until the opening has scrolled away, then sit under the header.

@@ -73,7 +73,7 @@ export default function MethodologyPage() {
 
             <section className={rhythm.section} aria-labelledby="band-title">
                 <h2 id="band-title" className={rhythm.title}>Where your resume stands.</h2>
-                <p className={rhythm.deck}>One of four bands, with a line on what it means, and the number beside it. The band is what a recruiter would do with the resume after one pass.</p>
+                <p className={rhythm.deck}>One of five bands, with a line on what it means, and the number beside it. The top one, Ready to send, is earned: it means no line on the page needs work. The band is what a recruiter would do with the resume after one pass.</p>
                 <div className={styles.band}><ScoreBand score={sampleReport.score} /></div>
                 <section aria-label="What goes into the band">
                     <ol className={styles.parts}>

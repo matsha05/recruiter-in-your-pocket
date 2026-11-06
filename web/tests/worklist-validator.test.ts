@@ -228,3 +228,25 @@ assert.deepEqual(ungroundedTokensInExample("Ran the CRM migration.", RESUME), [{
 assert.ok(WorklistReportSchema.safeParse(MOCK_WORKLIST_REPORT).success);
 
 console.log("worklist-validator tests passed");
+
+// The top band is earned, not scored (Matt, Nov 6, 2026): "Ready to send" (93+) only when no card needs work; a page
+// with nothing to fix never sits below 90; the employer lift never reaches the top band. v2's labels are untouched.
+{
+  const keep = {
+    kind: "keep",
+    where: "Research Assistant, line 1",
+    line: "Cleaned survey data from 1,200 dairy farms in Stata for a pricing study",
+    cannot_tell: "The best-written line on the page. The marketing bullets should read like it.",
+    example: "",
+    question: "",
+  };
+  assert.throws(() => validateWorklistPayload(draft({ score: 95 }), RESUME, { forceGrounding: true }), /Ready to send/u, "93+ with work to do is refused");
+  assert.throws(() => validateWorklistPayload(draft({ score: 88, cards: [keep] }), RESUME, { forceGrounding: true }), /at least 90/u, "nothing to fix under 90 is refused");
+  assert.throws(() => validateWorklistPayload(draft({ score: 95, lifted_by_employer: true, cards: [keep] }), RESUME, { forceGrounding: true }), /lift/u, "the lift never reaches the top band");
+  const ready = validateWorklistPayload(draft({ score: 95, cards: [keep] }), RESUME, { forceGrounding: true });
+  assert.equal(ready.score_label, "Ready to send");
+  const clear = validateWorklistPayload(draft({ score: 90, cards: [keep] }), RESUME, { forceGrounding: true });
+  assert.equal(clear.score_label, "Clear and specific", "90 to 92 with nothing to fix is still Clear and specific");
+  assert.equal(validateWorklistPayload(draft({ score: 92 }), RESUME, { forceGrounding: true }).score_label, "Clear and specific", "92 with work to do is the top of Clear and specific");
+}
+console.log("worklist band rules passed");

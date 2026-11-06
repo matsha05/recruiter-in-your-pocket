@@ -1,0 +1,463 @@
+{
+  "case_id": "h6_unverifiable_claim",
+  "batch": "holes",
+  "run": 1,
+  "note": "\"Led a team of 40\" with nothing supporting it.",
+  "resume_file": "../2026-11-live-judgment/resumes/h6_unverifiable_claim.txt",
+  "resume_sha256": "f523ae9848d421f047135b3ca8cc16bd9eae87eabea7b39571b1276abb1d4378",
+  "resume_words": 145,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T04:49:39.729Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4343,
+        "completion_tokens": 1850,
+        "total_tokens": 6193,
+        "cached_prompt_tokens": 3689,
+        "cache_write_prompt_tokens": 651,
+        "reasoning_tokens": 605
+      },
+      "cost_usd": 0.0102512,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 21490
+    }
+  ],
+  "resume_prompt_sha256": "705c29972bf764486ea54aff743eed45a9ee81f97f985646e94bcbb4963504a4",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 65,
+    "lifted_by_employer": false,
+    "verdict": "A progression into operations management, with too little detail about what you managed or improved.",
+    "write_up": [
+      "A recruiter sees a move from sorting line lead to operations manager, but is likely to hesitate over what your team of 40 did and what changed under your management. The current role names responsibilities without showing enough of the work behind them.",
+      "The scanning system line is the strongest model: it names a concrete change on the floor. Add your part in the rollout, then bring that same detail to the fulfillment and process work."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Summary",
+        "line": "Operations leader who has led a team of 40 and delivered results in fast-paced environments.",
+        "cannot_tell": "The team count is useful, but the results are a blank. A recruiter can't tell what you delivered.",
+        "example": "Operations leader who has led a team of 40 and delivered [results] in fast-paced environments.",
+        "question": "What results did you deliver?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 1",
+        "line": "- Led a team of 40",
+        "cannot_tell": "Forty people is a substantial team, but a recruiter doesn't know what they did. Name the work you led.",
+        "example": "Led a team of 40 who [team responsibilities]",
+        "question": "What did the team of 40 do?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 2",
+        "line": "- Oversaw daily fulfillment operations",
+        "cannot_tell": "Fulfillment covers a lot of ground. Which operations were yours, and how much work moved through them?",
+        "example": "Oversaw daily fulfillment operations for [operations] handling [workload]",
+        "question": "Which fulfillment operations did you oversee, and what was the workload?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 3",
+        "line": "- Worked with the leadership team on goals and planning",
+        "cannot_tell": "The goals and your part in planning aren't visible. Pick one a recruiter can understand.",
+        "example": "Worked with the leadership team on [goal] and [your planning contribution]",
+        "question": "Which goal did you work on, and what did you contribute to the planning?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 4",
+        "line": "- Improved processes across the department",
+        "cannot_tell": "This claims improvement without naming a process or what changed. That's the result a recruiter will look for.",
+        "example": "Improved [processes] across the department, with [what changed]",
+        "question": "Which processes did you improve, and what changed?"
+      },
+      {
+        "kind": "line",
+        "where": "Assistant Operations Manager, line 1",
+        "line": "- Supported the operations manager with scheduling and reporting",
+        "cannot_tell": "Scheduling and reporting name the work, but supported leaves your part open. What did you prepare or handle?",
+        "example": "Supported the operations manager with scheduling and reporting by [your contribution]",
+        "question": "What did you handle in scheduling and reporting?"
+      },
+      {
+        "kind": "line",
+        "where": "Assistant Operations Manager, line 2",
+        "line": "- Helped roll out a new scanning system on the floor",
+        "cannot_tell": "The scanning system is a concrete project. Helped doesn't say which part of the rollout was yours.",
+        "example": "Helped roll out a new scanning system on the floor by [your contribution]",
+        "question": "What did you do during the scanning system rollout?"
+      },
+      {
+        "kind": "line",
+        "where": "Assistant Operations Manager, line 3",
+        "line": "- Covered the floor on weekends",
+        "cannot_tell": "A recruiter can tell when you covered the floor, but not what you handled there.",
+        "example": "Covered the floor on weekends, handling [responsibilities]",
+        "question": "What were your responsibilities when you covered the floor?"
+      },
+      {
+        "kind": "line",
+        "where": "Team Lead, line 1",
+        "line": "- Led a small team on the sorting line",
+        "cannot_tell": "The sorting line gives the team a job. How many people did you lead?",
+        "example": "Led a team of [number] on the sorting line",
+        "question": "How many people were on the team you led?"
+      },
+      {
+        "kind": "line",
+        "where": "Team Lead, line 2",
+        "line": "- Kept the line running during peak season",
+        "cannot_tell": "Peak season gives this useful context, but not what you did to keep the line running.",
+        "example": "Kept the line running during peak season by [what you did]",
+        "question": "What did you do to keep the sorting line running during peak season?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Operations Manager",
+        "Assistant Operations Manager",
+        "Team Lead"
+      ],
+      "level": "Operations management",
+      "note": "Your experience points toward fulfillment and operations management. The progression is clear; the current role needs more detail about the work and results.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 65,
+    "lifted_by_employer": false,
+    "verdict": "A progression into operations management, with too little detail about what you managed or improved.",
+    "write_up": [
+      "A recruiter sees a move from sorting line lead to operations manager, but is likely to hesitate over what your team of 40 did and what changed under your management. The current role names responsibilities without showing enough of the work behind them.",
+      "The scanning system line is the strongest model: it names a concrete change on the floor. Add your part in the rollout, then bring that same detail to the fulfillment and process work."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Summary",
+        "line": "Operations leader who has led a team of 40 and delivered results in fast-paced environments.",
+        "cannot_tell": "The team count is useful, but the results are a blank. A recruiter can't tell what you delivered.",
+        "example": "Operations leader who has led a team of 40 and delivered [results] in fast-paced environments.",
+        "question": "What results did you deliver?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 1",
+        "line": "Led a team of 40",
+        "cannot_tell": "Forty people is a substantial team, but a recruiter doesn't know what they did. Name the work you led.",
+        "example": "Led a team of 40 who [team responsibilities]",
+        "question": "What did the team of 40 do?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 2",
+        "line": "Oversaw daily fulfillment operations",
+        "cannot_tell": "Fulfillment covers a lot of ground. Which operations were yours, and how much work moved through them?",
+        "example": "Oversaw daily fulfillment operations for [operations] handling [workload]",
+        "question": "Which fulfillment operations did you oversee, and what was the workload?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 3",
+        "line": "Worked with the leadership team on goals and planning",
+        "cannot_tell": "The goals and your part in planning aren't visible. Pick one a recruiter can understand.",
+        "example": "Worked with the leadership team on [goal] and [your planning contribution]",
+        "question": "Which goal did you work on, and what did you contribute to the planning?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 4",
+        "line": "Improved processes across the department",
+        "cannot_tell": "This claims improvement without naming a process or what changed. That's the result a recruiter will look for.",
+        "example": "Improved [processes] across the department, with [what changed]",
+        "question": "Which processes did you improve, and what changed?"
+      },
+      {
+        "kind": "line",
+        "where": "Assistant Operations Manager, line 1",
+        "line": "Supported the operations manager with scheduling and reporting",
+        "cannot_tell": "Scheduling and reporting name the work, but supported leaves your part open. What did you prepare or handle?",
+        "example": "Supported the operations manager with scheduling and reporting by [your contribution]",
+        "question": "What did you handle in scheduling and reporting?"
+      },
+      {
+        "kind": "line",
+        "where": "Assistant Operations Manager, line 2",
+        "line": "Helped roll out a new scanning system on the floor",
+        "cannot_tell": "The scanning system is a concrete project. Helped doesn't say which part of the rollout was yours.",
+        "example": "Helped roll out a new scanning system on the floor by [your contribution]",
+        "question": "What did you do during the scanning system rollout?"
+      },
+      {
+        "kind": "line",
+        "where": "Assistant Operations Manager, line 3",
+        "line": "Covered the floor on weekends",
+        "cannot_tell": "A recruiter can tell when you covered the floor, but not what you handled there.",
+        "example": "Covered the floor on weekends, handling [responsibilities]",
+        "question": "What were your responsibilities when you covered the floor?"
+      },
+      {
+        "kind": "line",
+        "where": "Team Lead, line 1",
+        "line": "Led a small team on the sorting line",
+        "cannot_tell": "The sorting line gives the team a job. How many people did you lead?",
+        "example": "Led a team of [number] on the sorting line",
+        "question": "How many people were on the team you led?"
+      },
+      {
+        "kind": "line",
+        "where": "Team Lead, line 2",
+        "line": "Kept the line running during peak season",
+        "cannot_tell": "Peak season gives this useful context, but not what you did to keep the line running.",
+        "example": "Kept the line running during peak season by [what you did]",
+        "question": "What did you do to keep the sorting line running during peak season?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Operations Manager",
+        "Assistant Operations Manager",
+        "Team Lead"
+      ],
+      "level": "Operations management",
+      "note": "Your experience points toward fulfillment and operations management. The progression is clear; the current role needs more detail about the work and results.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 65
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 65,
+    "lifted_by_employer": false,
+    "verdict": "A progression into operations management, with too little detail about what you managed or improved.",
+    "write_up": [
+      "A recruiter sees a move from sorting line lead to operations manager, but is likely to hesitate over what your team of 40 did and what changed under your management. The current role names responsibilities without showing enough of the work behind them.",
+      "The scanning system line is the strongest model: it names a concrete change on the floor. Add your part in the rollout, then bring that same detail to the fulfillment and process work."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Summary",
+        "line": "Operations leader who has led a team of 40 and delivered results in fast-paced environments.",
+        "cannot_tell": "The team count is useful, but the results are a blank. A recruiter can't tell what you delivered.",
+        "example": "Operations leader who has led a team of 40 and delivered [results] in fast-paced environments.",
+        "question": "What results did you deliver?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 1",
+        "line": "Led a team of 40",
+        "cannot_tell": "Forty people is a substantial team, but a recruiter doesn't know what they did. Name the work you led.",
+        "example": "Led a team of 40 who [team responsibilities]",
+        "question": "What did the team of 40 do?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 2",
+        "line": "Oversaw daily fulfillment operations",
+        "cannot_tell": "Fulfillment covers a lot of ground. Which operations were yours, and how much work moved through them?",
+        "example": "Oversaw daily fulfillment operations for [operations] handling [workload]",
+        "question": "Which fulfillment operations did you oversee, and what was the workload?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 3",
+        "line": "Worked with the leadership team on goals and planning",
+        "cannot_tell": "The goals and your part in planning aren't visible. Pick one a recruiter can understand.",
+        "example": "Worked with the leadership team on [goal] and [your planning contribution]",
+        "question": "Which goal did you work on, and what did you contribute to the planning?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 4",
+        "line": "Improved processes across the department",
+        "cannot_tell": "This claims improvement without naming a process or what changed. That's the result a recruiter will look for.",
+        "example": "Improved [processes] across the department, with [what changed]",
+        "question": "Which processes did you improve, and what changed?"
+      },
+      {
+        "kind": "line",
+        "where": "Assistant Operations Manager, line 1",
+        "line": "Supported the operations manager with scheduling and reporting",
+        "cannot_tell": "Scheduling and reporting name the work, but supported leaves your part open. What did you prepare or handle?",
+        "example": "Supported the operations manager with scheduling and reporting by [your contribution]",
+        "question": "What did you handle in scheduling and reporting?"
+      },
+      {
+        "kind": "line",
+        "where": "Assistant Operations Manager, line 2",
+        "line": "Helped roll out a new scanning system on the floor",
+        "cannot_tell": "The scanning system is a concrete project. Helped doesn't say which part of the rollout was yours.",
+        "example": "Helped roll out a new scanning system on the floor by [your contribution]",
+        "question": "What did you do during the scanning system rollout?"
+      },
+      {
+        "kind": "line",
+        "where": "Assistant Operations Manager, line 3",
+        "line": "Covered the floor on weekends",
+        "cannot_tell": "A recruiter can tell when you covered the floor, but not what you handled there.",
+        "example": "Covered the floor on weekends, handling [responsibilities]",
+        "question": "What were your responsibilities when you covered the floor?"
+      },
+      {
+        "kind": "line",
+        "where": "Team Lead, line 1",
+        "line": "Led a small team on the sorting line",
+        "cannot_tell": "The sorting line gives the team a job. How many people did you lead?",
+        "example": "Led a team of [number] on the sorting line",
+        "question": "How many people were on the team you led?"
+      },
+      {
+        "kind": "line",
+        "where": "Team Lead, line 2",
+        "line": "Kept the line running during peak season",
+        "cannot_tell": "Peak season gives this useful context, but not what you did to keep the line running.",
+        "example": "Kept the line running during peak season by [what you did]",
+        "question": "What did you do to keep the sorting line running during peak season?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Operations Manager",
+        "Assistant Operations Manager",
+        "Team Lead"
+      ],
+      "level": "Operations management",
+      "note": "Your experience points toward fulfillment and operations management. The progression is clear; the current role needs more detail about the work and results.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 65
+  },
+  "presentation": {
+    "score": 65,
+    "band": "Needs more context",
+    "model_score": 65,
+    "lifted_by_employer": false,
+    "verdict": "A progression into operations management, with too little detail about what you managed or improved.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 76,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Summary",
+        "line": "Operations leader who has led a team of 40 and delivered results in fast-paced environments.",
+        "blanks": 1,
+        "question": "What results did you deliver?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 1",
+        "line": "Led a team of 40",
+        "blanks": 1,
+        "question": "What did the team of 40 do?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 2",
+        "line": "Oversaw daily fulfillment operations",
+        "blanks": 2,
+        "question": "Which fulfillment operations did you oversee, and what was the workload?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 3",
+        "line": "Worked with the leadership team on goals and planning",
+        "blanks": 2,
+        "question": "Which goal did you work on, and what did you contribute to the planning?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 4",
+        "line": "Improved processes across the department",
+        "blanks": 2,
+        "question": "Which processes did you improve, and what changed?"
+      },
+      {
+        "kind": "line",
+        "where": "Assistant Operations Manager, line 1",
+        "line": "Supported the operations manager with scheduling and reporting",
+        "blanks": 1,
+        "question": "What did you handle in scheduling and reporting?"
+      },
+      {
+        "kind": "line",
+        "where": "Assistant Operations Manager, line 2",
+        "line": "Helped roll out a new scanning system on the floor",
+        "blanks": 1,
+        "question": "What did you do during the scanning system rollout?"
+      },
+      {
+        "kind": "line",
+        "where": "Assistant Operations Manager, line 3",
+        "line": "Covered the floor on weekends",
+        "blanks": 1,
+        "question": "What were your responsibilities when you covered the floor?"
+      },
+      {
+        "kind": "line",
+        "where": "Team Lead, line 1",
+        "line": "Led a small team on the sorting line",
+        "blanks": 1,
+        "question": "How many people were on the team you led?"
+      },
+      {
+        "kind": "line",
+        "where": "Team Lead, line 2",
+        "line": "Kept the line running during peak season",
+        "blanks": 1,
+        "question": "What did you do to keep the sorting line running during peak season?"
+      }
+    ],
+    "card_count": 10,
+    "kinds": {
+      "line": 10
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Operations Manager",
+        "Assistant Operations Manager",
+        "Team Lead"
+      ],
+      "level": "Operations management",
+      "note": "Your experience points toward fulfillment and operations management. The progression is clear; the current role needs more detail about the work and results.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0102512,
+  "latency_ms": 21491
+}

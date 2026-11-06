@@ -1,33 +1,33 @@
 # h4b_academic_cv_under_cap, run 1
 Resume: ../2026-11-live-judgment/resumes/h4b_academic_cv_under_cap.txt (3253 words)
-Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 705c2997; severity check off
-Outcome: report; cost $0.0240; 14.1s
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
+Outcome: report; cost $0.0245; 20.5s
 Case note: The same CV trimmed under the cap, to see what the model does with a CV shape.
 
-## Mostly clear (score 79; model wrote 79)
+## Needs more context (score 68; model wrote 68)
 ## Verdict
-A tenured molecular biologist with funded research and substantial teaching, but repeated citations need attention.
+A tenured molecular biologist with substantial grants and teaching, but repeated publication entries invite a pause.
 
 ## Write-up
-You come across as a tenured molecular biologist with NIH funding, corresponding-author publications, teaching and graduate mentoring. A recruiter would have reason to move you forward, but the repeated paper titles and author lists with different publication details would make them pause.
+You come across as a tenured molecular biologist with NIH funding, teaching and mentoring experience. A recruiter would likely hold back, though: the same publication titles and author lists appear under different years and volume numbers throughout the bibliography. Check the original citations before sending this.
 
-The MB 310 redesign is the best model on the page: it names what you changed and gives the evaluation figures that followed. Put Academic Appointments above Education so your current faculty role is the first thing a reader sees, and check the publication list against the original citations.
+Put Academic Appointments above Education so your current work comes first. The MB 310 redesign is a model for the rest: it names what you changed and shows how evaluations moved over the following three offerings.
 
 ## Cards (3; {"structure":1,"line":1,"keep":1}); severity off; added []
-1. [structure] Section order
+1. [structure] Structure
    line: "Education sits above Academic Appointments."
-   can't tell: A reader reaches your degrees before your current faculty appointment. Lead with the work you've been doing.
+   can't tell: Your current faculty appointment comes after your degrees. Put Academic Appointments first so a recruiter sees your present role sooner.
    question: Can you move Academic Appointments above Education?
 2. [line] Publications, entry 1
    line: "1. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2026). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 107(2), 1037-1052."
-   can't tell: The same title and author list appear again with different years and publication details, including in entries 21 and 41. A reader can't tell whether these are separate papers or repeated entries. Other titles recur too, so check the full list.
-   example: Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. ([year]). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, [volume, issue and pages].
-   question: Are these separate papers or repeated entries, and what are the correct citation details for each?
+   can't tell: The same authors and title appear again in 2024, 2021 and 2018, with different volume and page details. That pattern recurs across the bibliography, so a recruiter can't tell which entries are distinct papers.
+   example: [correct citation for the Drp1 phosphorylation paper]
+   question: What are the correct citations for these entries, and which are distinct papers?
 3. [keep] Teaching, course redesign
    line: "Course redesign: converted MB 310 to a flipped format in 2019; student evaluations rose from 3.9 to 4.5 of 5 over the following three offerings."
-   can't tell: Keep the distinction between your redesign and the evaluations that followed. It gives the reader a concrete change without claiming more than the figures show.
+   can't tell: Keep this. It gives the course, your change and the period over which the evaluations rose, without claiming the redesign alone caused the increase.
 
 ## Fit
-Roles: ["Associate Professor (with tenure)"]
+Roles: ["Associate Professor (with tenure)","Assistant Professor","Postdoctoral Fellow"]
 Level: Tenured faculty
-Note: Your experience points toward research and teaching roles in molecular biology. The grants, courses, mentoring and service give a reader several ways to understand your faculty work.
+Note: Your experience points toward faculty work in molecular and cell biology, with grants, publications, teaching and mentoring all represented. The recurring publication entries need checking before they can serve you well.

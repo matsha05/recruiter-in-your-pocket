@@ -1,0 +1,38 @@
+# b09_executive_assistant_freelance, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_executive_assistant_freelance_1.txt (163 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
+Outcome: report; cost $0.0075; 22.5s
+
+## Mostly clear (score 76; model wrote 76)
+## Verdict
+An executive assistant with founder and CEO experience, plus a gap between Parkway and freelance work.
+
+## Write-up
+You support three founders now, after progressing from administrative assistant to executive assistant to the CEO at Parkway Logistics. A recruiter can follow that path, but may pause over the time between June 2023 and February 2025.
+
+The leadership offsite line is a good model: it names the event and its 40 attendees. Your investor meeting and department-head lines could say more about the arrangements and matters you handled.
+
+## Cards (4; {"dates":1,"line":2,"keep":1}); severity off; added []
+1. [dates] Dates
+   line: "The resume has no dated activity between June 2023 and February 2025."
+   can't tell: A recruiter can't tell what you were doing between Parkway and freelance work. A brief, honest explanation can answer that question.
+   example: June 2023 - [end date] [what you were doing]
+   question: What were you doing between leaving Parkway and starting freelance work?
+2. [line] Freelance Executive Assistant, line 3
+   line: "Coordinate investor meeting logistics across time zones"
+   can't tell: The meetings are named, but the arrangements you handle aren't. A few details would show what founders rely on you to coordinate.
+   example: Coordinate investor meeting logistics across time zones, including [logistics handled]
+   question: Which investor meeting arrangements do you handle?
+3. [keep] Executive Assistant to the CEO, line 3
+   line: "Planned the annual leadership offsite for 40 attendees"
+   can't tell: Keep this as a model. It gives you ownership of a recognizable piece of work and lets a recruiter picture who attended.
+4. [line] Executive Assistant to the CEO, line 4
+   line: "Served as the point of contact between the CEO and department heads"
+   can't tell: Being the point of contact doesn't say what crossed your desk. Name the matters you handled between the CEO and department heads.
+   example: Served as the point of contact between the CEO and department heads for [matters handled]
+   question: What matters did you handle between the CEO and department heads?
+
+## Fit
+Roles: ["Freelance Executive Assistant","Executive Assistant to the CEO"]
+Level: Experienced executive assistant
+Note: Your experience points toward executive assistant work with founders and senior leaders. The progression at Parkway and current support for three founders make that direction easy to follow.

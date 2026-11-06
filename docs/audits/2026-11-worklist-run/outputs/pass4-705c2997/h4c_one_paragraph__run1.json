@@ -1,0 +1,200 @@
+{
+  "case_id": "h4c_one_paragraph",
+  "batch": "holes",
+  "run": 1,
+  "note": "A resume pasted as one paragraph with no line breaks.",
+  "resume_file": "../2026-11-live-judgment/resumes/h4c_one_paragraph.txt",
+  "resume_sha256": "f511920a68961c81af3613491765d7123205582245e9adc00a8bf837d18c66ea",
+  "resume_words": 147,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T04:49:36.535Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4149,
+        "completion_tokens": 931,
+        "total_tokens": 5080,
+        "cached_prompt_tokens": 3689,
+        "cache_write_prompt_tokens": 457,
+        "reasoning_tokens": 391
+      },
+      "cost_usd": 0.0054137,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 11355
+    }
+  ],
+  "resume_prompt_sha256": "705c29972bf764486ea54aff743eed45a9ee81f97f985646e94bcbb4963504a4",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 85,
+    "lifted_by_employer": false,
+    "verdict": "An operations coordinator with dispatch numbers and a delivery improvement, but little detail on how it happened.",
+    "write_up": [
+      "A recruiter can see a progression from warehouse work to customer service and dispatch coordination. The current role has enough detail to move forward, with one question: what did you do to improve on-time delivery?",
+      "The dispatch line is the model: 18 drivers, two depots, and a daily responsibility. Add the work behind the 2024 improvement, and say how you kept the warehouse inventory count accurate."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Operations Coordinator, dispatch",
+        "line": "Coordinate daily dispatch for 18 drivers across two depots",
+        "cannot_tell": "Keep this as a model. It names the job and puts a number on the people and locations involved.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Operations Coordinator, on-time rate",
+        "line": "improved on-time rate from 91% to 96% in 2024",
+        "cannot_tell": "The improvement is worth keeping, but a recruiter can't tell what you did to make it happen.",
+        "example": "improved on-time rate from 91% to 96% in 2024 by [what you did]",
+        "question": "What did you do to improve the on-time rate?"
+      },
+      {
+        "kind": "line",
+        "where": "Warehouse Clerk, inventory",
+        "line": "kept the inventory count accurate",
+        "cannot_tell": "A recruiter can see that inventory was your job, but not how you checked or corrected the count.",
+        "example": "kept the inventory count accurate by [what you did]",
+        "question": "How did you check and correct the inventory count?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Operations Coordinator",
+        "Customer Service Representative",
+        "Warehouse Clerk"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "Your recent work points most directly to operations coordination and dispatch. The earlier parcel and warehouse roles add customer service and freight experience.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 85,
+    "lifted_by_employer": false,
+    "verdict": "An operations coordinator with dispatch numbers and a delivery improvement, but little detail on how it happened.",
+    "write_up": [
+      "A recruiter can see a progression from warehouse work to customer service and dispatch coordination. The current role has enough detail to move forward, with one question: what did you do to improve on-time delivery?",
+      "The dispatch line is the model: 18 drivers, two depots, and a daily responsibility. Add the work behind the 2024 improvement, and say how you kept the warehouse inventory count accurate."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Operations Coordinator, dispatch",
+        "line": "Carlos Mendes Richmond VA carlos.mendes@example.com 555-0171 Summary Operations coordinator with six years in logistics and customer service Experience Operations Coordinator River City Logistics Richmond VA April 2021 to Present Coordinate daily dispatch for 18 drivers across two depots track on-time delivery and report weekly to the regional manager resolve delivery exceptions with customers by phone and email trained 4 new coordinators on the dispatch software improved on-time rate from 91% to 96% in 2024 Customer Service Representative Dominion Parcel Richmond VA June 2019 to March 2021 answered 60 to 80 customer calls per day handled claims for damaged or lost packages kept records in Salesforce Warehouse Clerk Dominion Parcel Richmond VA February 2018 to May 2019 scanned and sorted inbound freight kept the inventory count accurate Education Associate of Applied Science Business Administration J. Sargeant Reynolds Community College 2018 Skills Dispatch software Salesforce Excel customer service scheduling",
+        "cannot_tell": "Keep this as a model. It names the job and puts a number on the people and locations involved.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Operations Coordinator",
+        "Customer Service Representative",
+        "Warehouse Clerk"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "Your recent work points most directly to operations coordination and dispatch. The earlier parcel and warehouse roles add customer service and freight experience.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 85
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 85,
+    "lifted_by_employer": false,
+    "verdict": "An operations coordinator with dispatch numbers and a delivery improvement, but little detail on how it happened.",
+    "write_up": [
+      "A recruiter can see a progression from warehouse work to customer service and dispatch coordination. The current role has enough detail to move forward, with one question: what did you do to improve on-time delivery?",
+      "The dispatch line is the model: 18 drivers, two depots, and a daily responsibility. Add the work behind the 2024 improvement, and say how you kept the warehouse inventory count accurate."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Operations Coordinator, dispatch",
+        "line": "Carlos Mendes Richmond VA carlos.mendes@example.com 555-0171 Summary Operations coordinator with six years in logistics and customer service Experience Operations Coordinator River City Logistics Richmond VA April 2021 to Present Coordinate daily dispatch for 18 drivers across two depots track on-time delivery and report weekly to the regional manager resolve delivery exceptions with customers by phone and email trained 4 new coordinators on the dispatch software improved on-time rate from 91% to 96% in 2024 Customer Service Representative Dominion Parcel Richmond VA June 2019 to March 2021 answered 60 to 80 customer calls per day handled claims for damaged or lost packages kept records in Salesforce Warehouse Clerk Dominion Parcel Richmond VA February 2018 to May 2019 scanned and sorted inbound freight kept the inventory count accurate Education Associate of Applied Science Business Administration J. Sargeant Reynolds Community College 2018 Skills Dispatch software Salesforce Excel customer service scheduling",
+        "cannot_tell": "Keep this as a model. It names the job and puts a number on the people and locations involved.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Operations Coordinator",
+        "Customer Service Representative",
+        "Warehouse Clerk"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "Your recent work points most directly to operations coordination and dispatch. The earlier parcel and warehouse roles add customer service and freight experience.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 85
+  },
+  "presentation": {
+    "score": 85,
+    "band": "Clear and specific",
+    "model_score": 85,
+    "lifted_by_employer": false,
+    "verdict": "An operations coordinator with dispatch numbers and a delivery improvement, but little detail on how it happened.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 66,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Operations Coordinator, dispatch",
+        "line": "Carlos Mendes Richmond VA carlos.mendes@example.com 555-0171 Summary Operations coordinator with six years in logistics and customer service Experience Operations Coordinator River City Logistics Richmond VA April 2021 to Present Coordinate daily dispatch for 18 drivers across two depots track on-time delivery and report weekly to the regional manager resolve delivery exceptions with customers by phone and email trained 4 new coordinators on the dispatch software improved on-time rate from 91% to 96% in 2024 Customer Service Representative Dominion Parcel Richmond VA June 2019 to March 2021 answered 60 to 80 customer calls per day handled claims for damaged or lost packages kept records in Salesforce Warehouse Clerk Dominion Parcel Richmond VA February 2018 to May 2019 scanned and sorted inbound freight kept the inventory count accurate Education Associate of Applied Science Business Administration J. Sargeant Reynolds Community College 2018 Skills Dispatch software Salesforce Excel customer service scheduling",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 1,
+    "kinds": {
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Operations Coordinator",
+        "Customer Service Representative",
+        "Warehouse Clerk"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "Your recent work points most directly to operations coordination and dispatch. The earlier parcel and warehouse roles add customer service and freight experience.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0054137,
+  "latency_ms": 11358
+}

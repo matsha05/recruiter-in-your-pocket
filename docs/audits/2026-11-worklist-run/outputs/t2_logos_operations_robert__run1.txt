@@ -1,44 +1,44 @@
 # t2_logos_operations_robert, run 1
 Resume: resumes/t2_logos_operations_robert.txt (183 words)
-Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 705c2997; severity check off
-Outcome: report; cost $0.0066; 13.8s
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
+Outcome: report; cost $0.0064; 15.3s
 Case note: Blind pick v5 bp5-10: a recognisable employer; decision 5 says the lift is one rung, bounded, declared.
 
-## Needs more context (score 68; model wrote 68)
+## Needs more context (score 69; model wrote 69)
 ## Verdict
-Strong program management results sit behind a current terminal role that leaves too much to guess.
+Strong program results at Google and Dell, but the current terminal role leaves too much to guess.
 
 ## Write-up
-A recruiter sees an operations manager with substantial program management experience at Google and Dell. The hesitation is the current role: the terminal, team, carrier issues and weekly reporting are named, but not how much you handle or what changed.
+A recruiter sees an operations manager with substantial program experience in data centers and supply chains. The hesitation is your current role: it names the terminal, team and weekly reports, but not how large the operation is or what you've changed there.
 
-The Google line about cutting the forecast-to-delivery cycle from 14 months to 9 is the model. It names the work, the change and how you made it. Give the Austin terminal work that same treatment where you can.
+The Google line about cutting the forecast-to-delivery cycle from 14 months to 9 is the model. It names the change and the approval work behind it. Give the terminal role that same level of detail so your recent work can stand alongside it.
 
 ## Cards (5; {"line":4,"keep":1}); severity off; added []
 1. [line] Operations Manager, line 1
    line: "Responsible for daily operations of the Austin terminal"
-   can't tell: Daily operations could cover a lot of ground. A recruiter can't tell which parts of the terminal you run or how much work moves through it.
-   example: Responsible for daily operations of the Austin terminal, including [responsibilities] and [operating measure]
-   question: Which daily operations are yours, and what measure shows how much the terminal handles?
+   can't tell: Daily operations could cover a lot. A recruiter can't tell which parts of the terminal you're responsible for or how much freight moves through it.
+   example: Responsible for daily operations of the Austin terminal, including [operations] and [freight volume]
+   question: Which terminal operations are yours, and how much freight moves through the terminal?
 2. [line] Operations Manager, line 2
    line: "Manage a team of coordinators and dispatchers"
-   can't tell: The team has a job, but a recruiter can't tell how many people you manage or what they handle.
-   example: Manage a team of [number] coordinators and dispatchers who handle [team responsibilities]
+   can't tell: You manage the team, but there's no count or description of what they handle. Those details would show the scale of the job.
+   example: Manage a team of [number] coordinators and dispatchers who handle [responsibilities]
    question: How many coordinators and dispatchers do you manage, and what do they handle?
 3. [line] Operations Manager, line 3
    line: "Work with carriers and customers to resolve issues"
-   can't tell: The people involved are clear; the issues aren't. One example would show what you deal with and what your part is.
-   example: Work with carriers and customers to resolve [type of issue] by [your part]
-   question: What kind of carrier or customer issue do you resolve, and what do you do to resolve it?
+   can't tell: The issues could be anything from a delayed shipment to a billing dispute. What lands on your desk?
+   example: Work with carriers and customers to resolve [types of issues] involving [work affected]
+   question: What kinds of issues do you work on with carriers and customers, and what work do they affect?
 4. [line] Operations Manager, line 4
    line: "Report weekly metrics to the regional director"
-   can't tell: A recruiter knows who receives the report, but not what you track or what the report is used for.
-   example: Report weekly metrics on [metrics] to the regional director for [decision or use]
-   question: Which metrics do you report, and what are they used for?
+   can't tell: The reporting cadence and recipient are clear. The metrics themselves are missing, so a recruiter can't tell what you track for the terminal.
+   example: Report weekly metrics on [metrics] to the regional director
+   question: Which metrics do you report to the regional director each week?
 5. [keep] Senior Program Manager, line 2
    line: "Cut the forecast-to-delivery cycle for new capacity from 14 months to 9 by consolidating three approval tracks into one"
-   can't tell: Keep this as a model: the before and after are attached to a concrete decision you made, so the work is easy to follow.
+   can't tell: Keep this as a model: it gives the before and after, then tells a recruiter what you did to make the change.
 
 ## Fit
 Roles: ["Operations Manager","Senior Program Manager","Program Manager"]
-Level: Operations and program management leader
-Note: Your experience points toward operations management and senior program management. The earlier roles show program scale and measurable changes; the current terminal role needs more detail to show the work you're doing now.
+Level: Manager and senior program manager
+Note: Your experience points to terminal operations and program management in data center capacity and supply chains. The earlier roles show the scale of your work; the current role needs more detail to do the same.
