@@ -22,7 +22,7 @@ export async function GET() {
       .order("created_at", { ascending: false });
 
     if (error) {
-      return NextResponse.json({ ok: false, message: "Failed to fetch passes" }, { status: 500 });
+      return NextResponse.json({ ok: false, message: "We couldn’t load your passes. Try again." }, { status: 500 });
     }
 
     return NextResponse.json({ ok: true, passes: data || [] });
@@ -30,8 +30,8 @@ export async function GET() {
     logError({
       msg: "billing.passes_failed",
       outcome: "internal_error",
-      err: { name: err?.name || "Error", message: err?.message || "Failed to fetch passes", code: err?.code },
+      err: { name: err?.name || "Error", message: err?.message || "We couldn’t load your passes. Try again.", code: err?.code },
     });
-    return NextResponse.json({ ok: false, message: err?.message || "Failed to fetch passes" }, { status: 500 });
+    return NextResponse.json({ ok: false, message: err?.message || "We couldn’t load your passes. Try again." }, { status: 500 });
   }
 }

@@ -241,6 +241,10 @@ The main report navigation uses these labels:
 
 Section headings follow the same names: `Fix this first.` / `Fix these two first.` / `Fix these three first.` and `Keep these. They're working.`
 
+#### Relabelled November 6, 2026: reports saved before the worklist
+
+Matt retired the name "Critical Miss", so reopened v2 reports and their PDFs no longer print it. The counting rule below still holds; only the words changed: `One problem to fix first.`, `Two problems. Start with this one.`, `Three problems. Start with this one.`, `More than three problems. Here are the three that matter most.`, the card labels `Fix this first` (one) or `Problem 1`, `Problem 2` (several) then `Fix 3`, and in the v2 re-check `Same problem as last time.`, `Your top problem changed.`, `One problem changed.` and `The summary line is the same.` A changed problem is still "changed", never "fixed". The rows below are the history.
+
 #### The Critical Miss count (v2 reports saved before November 6, 2026) (Matt, November 2, 2026: "i dont want to lie to people and say they have one critical miss if there are more")
 
 Once the severity check has flagged the report's Critical Misses, the count leads the fix section on the web and in the PDF, phones included. The heading says how many and where to start; the line under it says what makes them critical.

@@ -21,3 +21,4 @@ Left alone on purpose:
 | [How the report works](./methodology.md) | 3 |
 | [Sample report page](./sample-report.md) | 1 |
 | [Chrome extension popup](./extension.md) | 1 |
+| [Second pass: the rest of the flagged strings](./second-pass.md) | 65 |

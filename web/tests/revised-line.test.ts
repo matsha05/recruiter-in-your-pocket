@@ -214,22 +214,22 @@ const ordered = { top_fixes: flags(true, false) };
 assert.equal(withCriticalFirst(ordered), ordered, "already in order: the same object");
 
 // The count leads (copy-system §1); labels number the Critical Misses only when there are several.
-assert.deepEqual(criticalCountHeading({ count: 1, counted: true, more: false }), { title: "One Critical Miss. Fix it first.", lead: "It's the one most likely to cost you the interview." });
-assert.equal(criticalCountHeading({ count: 2, counted: true, more: false })?.title, "Two Critical Misses. Start with this one.");
-assert.equal(criticalCountHeading({ count: 3, counted: true, more: false })?.title, "Three Critical Misses. Start with this one.");
-assert.equal(criticalCountHeading({ count: 3, counted: true, more: true })?.title, "More than three Critical Misses. Here are the three that matter most.");
-assert.deepEqual([0, 1, 2].map((index) => fixLabel(index, { count: 1, counted: true, more: false })), ["Critical Miss", "Fix 2", "Fix 3"]);
-assert.deepEqual([0, 1, 2].map((index) => fixLabel(index, { count: 2, counted: true, more: false })), ["Critical Miss 1", "Critical Miss 2", "Fix 3"]);
-assert.deepEqual([0, 1, 2].map((index) => fixLabel(index, unflagged)), ["Critical Miss", "Fix 2", "Fix 3"]);
+assert.deepEqual(criticalCountHeading({ count: 1, counted: true, more: false }), { title: "One problem to fix first.", lead: "It's the one most likely to cost you the interview." });
+assert.equal(criticalCountHeading({ count: 2, counted: true, more: false })?.title, "Two problems. Start with this one.");
+assert.equal(criticalCountHeading({ count: 3, counted: true, more: false })?.title, "Three problems. Start with this one.");
+assert.equal(criticalCountHeading({ count: 3, counted: true, more: true })?.title, "More than three problems. Here are the three that matter most.");
+assert.deepEqual([0, 1, 2].map((index) => fixLabel(index, { count: 1, counted: true, more: false })), ["Fix this first", "Fix 2", "Fix 3"]);
+assert.deepEqual([0, 1, 2].map((index) => fixLabel(index, { count: 2, counted: true, more: false })), ["Problem 1", "Problem 2", "Fix 3"]);
+assert.deepEqual([0, 1, 2].map((index) => fixLabel(index, unflagged)), ["Fix this first", "Fix 2", "Fix 3"]);
 // A clear page with one miss (Matt, Nov 5, 2026): the question they'd ask, then what's worth tightening. Never "Critical Miss".
 const one = { count: 1, counted: true, more: false };
 assert.deepEqual(criticalCountHeading(one, "ready"), { title: "The question they'd ask.", lead: "Not a reason to pass on you. Worth a sentence before you send it." });
 assert.deepEqual(criticalCountHeading(unflagged, "ready"), { title: "The question they'd ask.", lead: "Not a reason to pass on you. Worth a sentence before you send it." }, "the question heading needs no count");
-assert.equal(criticalCountHeading({ count: 2, counted: true, more: false }, "ready")?.title, "Two Critical Misses. Start with this one.", "two flagged misses keep the count on any tone");
+assert.equal(criticalCountHeading({ count: 2, counted: true, more: false }, "ready")?.title, "Two problems. Start with this one.", "two flagged misses keep the count on any tone");
 assert.deepEqual([0, 1, 2].map((index) => fixLabel(index, one, "ready", 3)), ["The question they'd ask", "Worth tightening · 1 of 2", "Worth tightening · 2 of 2"]);
 assert.deepEqual([0, 1].map((index) => fixLabel(index, one, "ready", 2)), ["The question they'd ask", "Worth tightening"]);
-assert.deepEqual([0, 1, 2].map((index) => fixLabel(index, { count: 2, counted: true, more: false }, "ready", 3)), ["Critical Miss 1", "Critical Miss 2", "Fix 3"]);
-assert.equal(criticalCountHeading(one, "not_ready")?.title, "One Critical Miss. Fix it first.", "the bottom rung keeps the count heading");
+assert.deepEqual([0, 1, 2].map((index) => fixLabel(index, { count: 2, counted: true, more: false }, "ready", 3)), ["Problem 1", "Problem 2", "Fix 3"]);
+assert.equal(criticalCountHeading(one, "not_ready")?.title, "One problem to fix first.", "the bottom rung keeps the count heading");
 // A fix about something the resume doesn't have names it; there's no line to quote, mark or revise.
 assert.equal(missingFromResume("No summary section present"), "No summary section");
 assert.equal(missingFromResume("No LinkedIn profile provided."), "No LinkedIn profile");

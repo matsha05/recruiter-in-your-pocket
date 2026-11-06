@@ -18,7 +18,7 @@ const LINKEDIN_TOC_ITEMS = [
     { id: "linkedin-headline", label: "Headline", icon: PenLine },
     { id: "linkedin-about", label: "About section", icon: InsightSparkleIcon },
     { id: "linkedin-visibility", label: "Search visibility", icon: Search },
-    { id: "linkedin-quick-wins", label: "Fix these first", icon: Lightbulb },
+    { id: "linkedin-quick-wins", label: "Start with these", icon: Lightbulb },
 ] as const;
 
 export function LinkedInReportTOC({ activeId }: LinkedInReportTOCProps) {

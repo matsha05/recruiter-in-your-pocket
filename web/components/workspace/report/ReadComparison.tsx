@@ -57,19 +57,19 @@ export function ReadComparison({ previous, current }: ReadComparisonProps) {
     let title: string;
     let intro: string;
     if (gone.length === 0 && before.fixes.length > 0) {
-        title = single ? "Same Critical Miss as last time." : "Same Critical Misses as last time.";
-        intro = single ? "Your revision didn't change the Critical Miss. Start there again." : "Your revision didn't change them. Start with the first one again.";
+        title = single ? "Same problem as last time." : "Same problems as last time.";
+        intro = single ? "Your revision didn't change it. Let's start there again." : "Your revision didn't change them. Let's start with the first one again.";
     } else if (remaining.length === 0) {
-        title = single ? "Your Critical Miss changed." : "Your Critical Misses changed.";
-        intro = single ? "The report now leads with a new Critical Miss." : "The report now leads with new ones.";
+        title = single ? "Your top problem changed." : "Your top problems changed.";
+        intro = single ? "The report now leads with a new one." : "The report now leads with new ones.";
     } else {
-        title = gone.length === 1 ? "One Critical Miss changed." : `${gone.length} Critical Misses changed.`;
-        intro = `${remaining.length === 1 ? "One is" : `${remaining.length} are`} still there. Start with ${remaining.length === 1 ? "that one" : "those"} again.`;
+        title = gone.length === 1 ? "One problem changed." : `${gone.length} problems changed.`;
+        intro = `${remaining.length === 1 ? "One is" : `${remaining.length} are`} still there. Let's start with ${remaining.length === 1 ? "that one" : "those"} again.`;
     }
 
-    const caption = (when: string, count: number, index: number) => (count > 1 ? `${when} · Critical Miss ${index + 1}` : when);
+    const caption = (when: string, count: number, index: number) => (count > 1 ? `${when} · Problem ${index + 1}` : when);
     const lineOf = (fix: Fix) => (marksLine(fix) ? quotedLine(fix) : missingWhere(fix));
-    const sum = delta === null || delta === 0 ? null : delta > 0 ? `Up ${delta} since last time.` : `Down ${Math.abs(delta)} since last time.`;
+    const sum = delta === null || delta === 0 ? null : delta > 0 ? `Up ${delta} since last time. That's the right direction!` : `Down ${Math.abs(delta)} since last time.`;
 
     return (
         <section aria-labelledby="read-comparison-title" className={styles.root} data-testid="read-comparison">
@@ -98,7 +98,7 @@ export function ReadComparison({ previous, current }: ReadComparisonProps) {
 
             <p className={styles.sum}>
                 {sum && <span className={styles.delta}>{sum}</span>}
-                <span className={styles.sumQuiet}>{verdictSame ? "The Verdict reads the same." : "The Verdict changed too."}</span>
+                <span className={styles.sumQuiet}>{verdictSame ? "The summary line is the same." : "The summary line changed too."}</span>
             </p>
         </section>
     );

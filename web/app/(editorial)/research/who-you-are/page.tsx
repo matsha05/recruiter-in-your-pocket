@@ -140,7 +140,7 @@ export default function WhoYouArePage() {
             </p>
 
             <ArticleBridge question="Who does your resume say you are?">
-                The Verdict is a one-line read of who your resume says you are. If it isn&apos;t who you are, the resume isn&apos;t telling your story yet. When your resume doesn&apos;t make clear what you&apos;d do next, the write-up says so and the cards point to the lines.
+                Your report opens with one sentence on who your resume says you are. If it isn&apos;t who you are, the resume isn&apos;t telling your story yet. When your resume doesn&apos;t make clear what you&apos;d do next, the write-up says so and the report lists the lines to work on.
             </ArticleBridge>
 
             <h2 className="research-h2">Limitations</h2>

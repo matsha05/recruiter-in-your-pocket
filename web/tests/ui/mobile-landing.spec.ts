@@ -47,6 +47,6 @@ test("phone visitors read the whole story without opening anything", async ({ pa
   const clipping = page.locator("#how-it-works figure").first();
   await clipping.scrollIntoViewIfNeeded();
   await expect(clipping).toContainText("Introduced monthly renewal-risk reviews across the portfolio");
-  await expect(clipping.getByText("stops before saying what the reviews uncovered or changed", { exact: false })).toBeVisible();
+  await expect(clipping.getByText("see what you examined or what you did with the findings", { exact: false })).toBeVisible();
   await expect(page.locator("#main-content").getByRole("button", { expanded: false })).toHaveCount(0);
 });

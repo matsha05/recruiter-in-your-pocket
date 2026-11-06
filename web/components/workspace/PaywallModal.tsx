@@ -143,7 +143,7 @@ export default function PaywallModal({
             }
         } catch {
             Analytics.track("checkout_start_failed", { source: "paywall", tier: "30d" });
-            setError("Checkout could not start. Try again or restore an existing purchase.");
+            setError("Checkout didn’t start. Try again, or restore a purchase you’ve already made.");
         } finally {
             setLoading(false);
         }

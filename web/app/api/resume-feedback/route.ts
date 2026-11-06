@@ -452,7 +452,7 @@ export async function POST(request: Request) {
           ? "Connection hiccup. Try again in a moment."
           : code === "OPENAI_RESPONSE_PARSE_ERROR" ||
             code === "OPENAI_RESPONSE_NOT_JSON"
-            ? "I couldn't read the response cleanly. Try again."
+            ? "We couldn't read the report that came back. Try again."
             : code === "OPENAI_RESPONSE_SHAPE_INVALID"
               ? "We couldn’t finish this report on our side. Your resume wasn’t the problem."
             : err?.message || "I had trouble reading your resume just now. Try again in a moment.";

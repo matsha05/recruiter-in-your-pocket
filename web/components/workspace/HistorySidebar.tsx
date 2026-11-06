@@ -87,7 +87,7 @@ export default function HistorySidebar({
                 body: JSON.stringify({ name: editName.trim() })
             });
             const data = await res.json();
-            if (!res.ok || !data.ok) throw new ClientActionError(data.message, "The report couldn’t be renamed. Try again.");
+            if (!res.ok || !data.ok) throw new ClientActionError(data.message, "We couldn’t rename the report. Try again.");
             setReports(prev => prev.map(r =>
                 r.id === reportId ? { ...r, name: editName.trim() || undefined } : r
             ));
@@ -95,7 +95,7 @@ export default function HistorySidebar({
             setEditName("");
         } catch (error) {
             console.error("Failed to rename report:", error);
-            toast.error(getClientActionError(error, "The report couldn’t be renamed. Try again."));
+            toast.error(getClientActionError(error, "We couldn’t rename the report. Try again."));
         }
     };
 
@@ -107,13 +107,13 @@ export default function HistorySidebar({
                 body: JSON.stringify({ resume_variant: variant })
             });
             const data = await res.json();
-            if (!res.ok || !data.ok) throw new ClientActionError(data.message, "The label couldn’t be saved. Try again.");
+            if (!res.ok || !data.ok) throw new ClientActionError(data.message, "We couldn’t save the label. Try again.");
             setReports(prev => prev.map(r =>
                 r.id === reportId ? { ...r, resumeVariant: variant } : r
             ));
         } catch (error) {
             console.error("Failed to update variant:", error);
-            toast.error(getClientActionError(error, "The label couldn’t be saved. Try again."));
+            toast.error(getClientActionError(error, "We couldn’t save the label. Try again."));
         }
     };
 
@@ -128,11 +128,11 @@ export default function HistorySidebar({
         try {
             const res = await fetch("/api/reports");
             const data = await res.json().catch(() => ({}));
-            if (!res.ok || !data.ok || !Array.isArray(data.reports)) throw new ClientActionError(data.message, "Saved reports could not be loaded. Try again.");
+            if (!res.ok || !data.ok || !Array.isArray(data.reports)) throw new ClientActionError(data.message, "We couldn’t load My reports. Try again.");
             setReports(data.reports);
         } catch (error) {
             console.error("Failed to fetch reports:", error);
-            setLoadError(getClientActionError(error, "Saved reports could not be loaded. Try again."));
+            setLoadError(getClientActionError(error, "We couldn’t load My reports. Try again."));
         } finally {
             setLoading(false);
         }
@@ -160,12 +160,12 @@ export default function HistorySidebar({
                 setReports(prev => prev.filter(r => r.id !== reportId));
                 toast.success("Report deleted");
             } else {
-                toast.error(data.message || "The report couldn’t be deleted. Try again.");
+                toast.error(data.message || "We couldn’t delete the report. Try again.");
                 console.error("Delete failed:", data);
             }
         } catch (error) {
             console.error("Failed to delete report:", error);
-            toast.error("The report couldn’t be deleted. Try again.");
+            toast.error("We couldn’t delete the report. Try again.");
         } finally {
             setDeletingId(null);
         }
@@ -205,7 +205,7 @@ export default function HistorySidebar({
                                 <EmptyReportIcon className="size-4 text-brand" />
                             </div>
                             <SheetTitle className="font-display text-lg font-semibold">
-                                Saved reports
+                                My reports
                             </SheetTitle>
                         </div>
                         <SheetDescription className="sr-only">Review, compare, rename, or delete saved reports.</SheetDescription>
@@ -254,7 +254,7 @@ export default function HistorySidebar({
                             </div>
                         ) : loadError ? (
                             <div className="m-4 border-l-2 border-destructive bg-error-surface p-5" role="alert">
-                                <h3 className="font-display text-lg font-semibold text-destructive">Saved reports could not load</h3>
+                                <h3 className="font-display text-lg font-semibold text-destructive">We couldn’t load My reports</h3>
                                 <p className="mt-2 text-sm text-destructive/80">{loadError}</p>
                                 <Button type="button" variant="secondary" className="mt-4" onClick={() => void fetchReports()}>
                                     Try again
@@ -349,7 +349,7 @@ export default function HistorySidebar({
                                                         const [dataA, dataB] = await Promise.all([resA.json(), resB.json()]);
 
                                                         if (!resA.ok || !resB.ok || !dataA.ok || !dataB.ok) {
-                                                            throw new ClientActionError(dataA.message || dataB.message, "Reports could not be compared. Try again.");
+                                                            throw new ClientActionError(dataA.message || dataB.message, "We couldn’t compare those reports. Try again.");
                                                         }
                                                         {
                                                             const reportInfoA = reports.find(r => r.id === selectedForCompare[0]);
@@ -383,7 +383,7 @@ export default function HistorySidebar({
                                                         }
                                                     } catch (err) {
                                                         console.error('Failed to load reports for comparison:', err);
-                                                        toast.error(getClientActionError(err, "Reports could not be compared. Try again."));
+                                                        toast.error(getClientActionError(err, "We couldn’t compare those reports. Try again."));
                                                     } finally {
                                                         setLoadingComparison(false);
                                                     }

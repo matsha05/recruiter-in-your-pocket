@@ -461,7 +461,7 @@ test.describe("workspace command and completion handoffs", () => {
     await expect(page.getByTestId("workspace-run-report")).toHaveAccessibleName("Compare my revision");
     await page.getByTestId("workspace-run-report").click();
 
-    const comparison = page.getByRole("region", { name: "Your Critical Miss changed.", exact: true });
+    const comparison = page.getByRole("region", { name: "Your top problem changed.", exact: true });
     await expect(comparison).toBeVisible();
     const previous = comparison.getByRole("article", { name: "Last time" });
     const current = comparison.getByRole("article", { name: "Now" });

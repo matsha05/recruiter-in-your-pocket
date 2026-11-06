@@ -2,21 +2,21 @@
   "generated_by": "web/scripts/copy-inventory.cjs",
   "counts": {
     "files_scanned": 413,
-    "files_with_copy": 255,
-    "strings": 2992,
-    "unique_strings": 2507
+    "files_with_copy": 249,
+    "strings": 2962,
+    "unique_strings": 2479
   },
   "by_moment": {
     "research": 922,
     "account": 442,
     "marketing": 416,
-    "report": 319,
-    "pricing": 223,
-    "upload": 155,
-    "legal": 114,
-    "extension": 109,
+    "report": 311,
+    "pricing": 218,
+    "upload": 153,
+    "legal": 111,
+    "extension": 98,
     "shared": 85,
-    "rewrite": 63,
+    "rewrite": 62,
     "error": 54,
     "auth": 53,
     "analysis": 16,
@@ -9733,7 +9733,7 @@
       "table": "research"
     },
     {
-      "text": "The Verdict is a one-line read of who your resume says you are. If it isn&apos;t who you are, the resume isn&apos;t telling your story yet. When your resume doesn&apos;t make clear what you&apos;d do next, the write-up says so and the cards point to the lines.",
+      "text": "Your report opens with one sentence on who your resume says you are. If it isn&apos;t who you are, the resume isn&apos;t telling your story yet. When your resume doesn&apos;t make clear what you&apos;d do next, the write-up says so and the report lists the lines to work on.",
       "kind": "jsx-text",
       "line": 143,
       "file": "web/app/(editorial)/research/who-you-are/page.tsx",
@@ -10657,7 +10657,7 @@
       "table": "api"
     },
     {
-      "text": "Admin client not configured",
+      "text": "Account deletion isn’t available right now. Try again later, or write to support.",
       "kind": "key:message",
       "line": 123,
       "file": "web/app/api/account/delete/route.ts",
@@ -10679,7 +10679,7 @@
       "table": "api"
     },
     {
-      "text": "We could not verify every subscription, so your account was not deleted. Please contact support.",
+      "text": "We couldn’t check every subscription, so your account wasn’t deleted. Write to support and we’ll sort it out.",
       "kind": "key:message",
       "line": 154,
       "file": "web/app/api/account/delete/route.ts",
@@ -11372,7 +11372,7 @@
       "table": "api"
     },
     {
-      "text": "Please sign in first.",
+      "text": "Sign in first.",
       "kind": "key:message",
       "line": 43,
       "file": "web/app/api/billing/restore/route.ts",
@@ -11628,17 +11628,6 @@
       "text": "You're getting five more reports, good for 90 days. One payment. It does not renew.",
       "kind": "key:message",
       "line": 302,
-      "file": "web/app/api/checkout/route.ts",
-      "routes": [
-        "/api/checkout"
-      ],
-      "moment": "pricing",
-      "table": "api"
-    },
-    {
-      "text": "checkout:{idempotencyKey}:{requestedTier}:{checkoutSource}:{dedupeIdentity}{returnTo ? `:${returnTo}`…}",
-      "kind": "const",
-      "line": 317,
       "file": "web/app/api/checkout/route.ts",
       "routes": [
         "/api/checkout"
@@ -12208,7 +12197,7 @@
       "table": "api"
     },
     {
-      "text": "Please enter a valid LinkedIn profile URL (e.g., linkedin.com/in/yourname)",
+      "text": "Enter your LinkedIn profile address, like linkedin.com/in/yourname.",
       "kind": "key:message",
       "line": 267,
       "file": "web/app/api/linkedin-feedback-stream/route.ts",
@@ -12230,7 +12219,7 @@
       "table": "api"
     },
     {
-      "text": "We couldn't parse your LinkedIn profile. Please make sure you uploaded a valid LinkedIn PDF export.",
+      "text": "We couldn't read that LinkedIn PDF. Save a fresh PDF from your profile and upload it again.",
       "kind": "key:message",
       "line": 298,
       "file": "web/app/api/linkedin-feedback-stream/route.ts",
@@ -12384,7 +12373,7 @@
       "table": "api"
     },
     {
-      "text": "Failed to fetch passes",
+      "text": "We couldn’t load your passes. Try again.",
       "kind": "key:message",
       "line": 25,
       "file": "web/app/api/passes/route.ts",
@@ -12505,7 +12494,7 @@
       "table": "api"
     },
     {
-      "text": "Invalid report ID.",
+      "text": "We can’t find that report. Open it from My reports.",
       "kind": "key:message",
       "line": 16,
       "file": "web/app/api/reports/[id]/route.ts",
@@ -12571,7 +12560,7 @@
       "table": "api"
     },
     {
-      "text": "Invalid report ID.",
+      "text": "We can’t find that report. Open it from My reports.",
       "kind": "key:message",
       "line": 87,
       "file": "web/app/api/reports/[id]/route.ts",
@@ -12593,7 +12582,7 @@
       "table": "api"
     },
     {
-      "text": "Report ownership check failed",
+      "text": "We couldn’t confirm this report is yours. Refresh and try again.",
       "kind": "key:message",
       "line": 116,
       "file": "web/app/api/reports/[id]/route.ts",
@@ -12626,7 +12615,7 @@
       "table": "api"
     },
     {
-      "text": "Report delete failed",
+      "text": "We couldn’t delete this report. Try again.",
       "kind": "key:message",
       "line": 143,
       "file": "web/app/api/reports/[id]/route.ts",
@@ -12703,7 +12692,7 @@
       "table": "api"
     },
     {
-      "text": "Invalid report ID.",
+      "text": "We can’t find that report. Open it from My reports.",
       "kind": "key:message",
       "line": 184,
       "file": "web/app/api/reports/[id]/route.ts",
@@ -12978,7 +12967,7 @@
       "table": "api"
     },
     {
-      "text": "Please sign in before saving this recovered report.",
+      "text": "Sign in to save this recovered report.",
       "kind": "key:message",
       "line": 313,
       "file": "web/app/api/reports/recovery/route.ts",
@@ -13044,7 +13033,7 @@
       "table": "api"
     },
     {
-      "text": "Please sign in to verify ownership before saving this report.",
+      "text": "Sign in to save this report to your account.",
       "kind": "const",
       "line": 74,
       "file": "web/app/api/reports/route.ts",
@@ -13088,7 +13077,7 @@
       "table": "api"
     },
     {
-      "text": "Could not save this report. Check History before trying again.",
+      "text": "We couldn’t save this report. Check My reports before you try again.",
       "kind": "key:message",
       "line": 109,
       "file": "web/app/api/reports/route.ts",
@@ -13099,7 +13088,7 @@
       "table": "api"
     },
     {
-      "text": "Could not save this report. Check History before trying again.",
+      "text": "We couldn’t save this report. Check My reports before you try again.",
       "kind": "key:message",
       "line": 115,
       "file": "web/app/api/reports/route.ts",
@@ -13198,7 +13187,7 @@
       "table": "api"
     },
     {
-      "text": "I couldn't read the response cleanly. Try again.",
+      "text": "We couldn't read the report that came back. Try again.",
       "kind": "const",
       "line": 455,
       "file": "web/app/api/resume-feedback/route.ts",
@@ -13509,28 +13498,6 @@
       "text": "Sign in to manage your default resume.",
       "kind": "key:error",
       "line": 212,
-      "file": "web/app/api/user/default-resume/route.ts",
-      "routes": [
-        "/api/user/default-resume"
-      ],
-      "moment": "upload",
-      "table": "api"
-    },
-    {
-      "text": "resume_preview, resume_filename, resume_updated_at, skills_index, resume_embedding, resume_text",
-      "kind": "const",
-      "line": 219,
-      "file": "web/app/api/user/default-resume/route.ts",
-      "routes": [
-        "/api/user/default-resume"
-      ],
-      "moment": "upload",
-      "table": "api"
-    },
-    {
-      "text": "resume_preview, resume_filename, resume_updated_at, skills_index, resume_embedding",
-      "kind": "const",
-      "line": 220,
       "file": "web/app/api/user/default-resume/route.ts",
       "routes": [
         "/api/user/default-resume"
@@ -15682,7 +15649,7 @@
       "table": "workspace"
     },
     {
-      "text": "Could not save your name. Try again.",
+      "text": "We couldn’t save your name. Try again.",
       "kind": "call:setError",
       "line": 228,
       "file": "web/components/auth/AuthFlow.tsx",
@@ -16009,7 +15976,7 @@
       "table": "shared"
     },
     {
-      "text": "What would a recruiter question on yours?",
+      "text": "See what a recruiter would question on yours.",
       "kind": "jsx-text",
       "line": 84,
       "file": "web/components/compare/ComparisonPage.tsx",
@@ -16975,7 +16942,7 @@
       "table": "shared"
     },
     {
-      "text": "reads the whole resume the way a recruiter would and cards every line that needs work, with the first report free and no subscription. If you tailor the wording for many applications a week, Jobscan is built for that. If you want to know whether the resume itself holds up, start here.",
+      "text": "reads the whole resume the way a recruiter would and lists every line that needs work, with the first report free and no subscription. If you tailor the wording for many applications a week, Jobscan is built for that. If you want to know whether the resume itself holds up, start here.",
       "kind": "jsx-text",
       "line": 202,
       "file": "web/components/compare/comparisons.tsx",
@@ -17481,7 +17448,7 @@
       "table": "shared"
     },
     {
-      "text": "Fix the resume first, then tailor it. Run the free report on your base resume and work through the cards, then use Jobscan’s free scans for the vocabulary of a specific posting. Use a term only where it truthfully describes what you did; the report will flag a line that claims more than it shows.",
+      "text": "Fix the resume first, then tailor it. Run the free report on your base resume and work through the lines it lists, then use Jobscan’s free scans for the vocabulary of a specific posting. Use a term only where it truthfully describes what you did; the report will flag a line that claims more than it shows.",
       "kind": "jsx-text",
       "line": 288,
       "file": "web/components/compare/comparisons.tsx",
@@ -20319,7 +20286,7 @@
       "table": "shared"
     },
     {
-      "text": "You care more about what the page says than how it looks. The report quotes the lines a recruiter would question and starts with the one most likely to cost you the interview.",
+      "text": "You care more about what your resume says than how it looks. The report quotes the lines a recruiter would question, in the order they’d read them.",
       "kind": "jsx-text",
       "line": 842,
       "file": "web/components/compare/comparisons.tsx",
@@ -20363,7 +20330,7 @@
       "table": "shared"
     },
     {
-      "text": ". The Verdict is that line, read from your resume. If it isn’t who you are, that’s what to fix first.",
+      "text": ". Your report opens with that line, written from your resume. If it isn’t who you are, that’s what to fix first.",
       "kind": "jsx-text",
       "line": 845,
       "file": "web/components/compare/comparisons.tsx",
@@ -23622,7 +23589,7 @@
       "table": "home"
     },
     {
-      "text": "Get your report",
+      "text": "Get your free report",
       "kind": "attr:aria-label",
       "line": 32,
       "file": "web/components/landing/mineral/MobileReportCTA.tsx",
@@ -25855,7 +25822,7 @@
       "table": "workspace"
     },
     {
-      "text": "A Job Search Pass is required for another report",
+      "text": "Another report needs a Job Search Pass",
       "kind": "return",
       "line": 142,
       "file": "web/components/linkedin/LinkedInInputPanel.tsx",
@@ -26335,7 +26302,7 @@
       "table": "workspace"
     },
     {
-      "text": "The report did not identify specific roles from this profile.",
+      "text": "This profile doesn’t point to specific roles yet.",
       "kind": "jsx-text",
       "line": 226,
       "file": "web/components/linkedin/LinkedInReportPanel.tsx",
@@ -26371,7 +26338,7 @@
       "table": "workspace"
     },
     {
-      "text": "Fix these first",
+      "text": "Start with these",
       "kind": "attr:title",
       "line": 244,
       "file": "web/components/linkedin/LinkedInReportPanel.tsx",
@@ -26395,7 +26362,7 @@
       "table": "workspace"
     },
     {
-      "text": "No fixes were returned for this profile.",
+      "text": "There’s nothing to fix first on this profile.",
       "kind": "jsx-text",
       "line": 257,
       "file": "web/components/linkedin/LinkedInReportPanel.tsx",
@@ -26443,7 +26410,7 @@
       "table": "workspace"
     },
     {
-      "text": "Use suggested language only when every detail is factually accurate.",
+      "text": "Use the suggested wording only if every detail is true.",
       "kind": "jsx-text",
       "line": 282,
       "file": "web/components/linkedin/LinkedInReportPanel.tsx",
@@ -26671,7 +26638,7 @@
       "table": "workspace"
     },
     {
-      "text": "Fix these first",
+      "text": "Start with these",
       "kind": "key:label",
       "line": 21,
       "file": "web/components/linkedin/LinkedInReportTOC.tsx",
@@ -27718,7 +27685,7 @@
       "table": "shared"
     },
     {
-      "text": "We couldn't complete sign out. Please try again.",
+      "text": "We couldn't sign you out. Try again.",
       "kind": "call:toast.error",
       "line": 224,
       "file": "web/components/providers/AuthProvider.tsx",
@@ -27899,7 +27866,7 @@
       "table": "purchase"
     },
     {
-      "text": "Refreshing access…",
+      "text": "Checking for your pass…",
       "kind": "jsx-text",
       "line": 109,
       "file": "web/components/purchase/PurchaseConfirmedClient.tsx",
@@ -27932,7 +27899,7 @@
       "table": "purchase"
     },
     {
-      "text": "Verify purchase access",
+      "text": "Check for my pass",
       "kind": "jsx-text",
       "line": 117,
       "file": "web/components/purchase/PurchaseConfirmedClient.tsx",
@@ -28240,7 +28207,7 @@
       "table": "purchase"
     },
     {
-      "text": "Receipts could not load.",
+      "text": "We couldn’t load your receipts.",
       "kind": "jsx-text",
       "line": 200,
       "file": "web/components/purchase/PurchaseRestoreClient.tsx",
@@ -28894,7 +28861,7 @@
       "table": "shared"
     },
     {
-      "text": "What would they think of yours?",
+      "text": "Now see what they’d make of yours.",
       "kind": "jsx-text",
       "line": 148,
       "file": "web/components/research/AnswerArticle.tsx",
@@ -31765,7 +31732,7 @@
       "table": "workspace"
     },
     {
-      "text": "The report couldn’t be renamed. Try again.",
+      "text": "We couldn’t rename the report. Try again.",
       "kind": "call:ClientActionError",
       "line": 90,
       "file": "web/components/workspace/HistorySidebar.tsx",
@@ -31777,7 +31744,7 @@
       "table": "workspace"
     },
     {
-      "text": "The label couldn’t be saved. Try again.",
+      "text": "We couldn’t save the label. Try again.",
       "kind": "call:ClientActionError",
       "line": 110,
       "file": "web/components/workspace/HistorySidebar.tsx",
@@ -31789,7 +31756,7 @@
       "table": "workspace"
     },
     {
-      "text": "Saved reports could not be loaded. Try again.",
+      "text": "We couldn’t load My reports. Try again.",
       "kind": "call:ClientActionError",
       "line": 131,
       "file": "web/components/workspace/HistorySidebar.tsx",
@@ -31813,7 +31780,7 @@
       "table": "workspace"
     },
     {
-      "text": "The report couldn’t be deleted. Try again.",
+      "text": "We couldn’t delete the report. Try again.",
       "kind": "call:toast.error",
       "line": 168,
       "file": "web/components/workspace/HistorySidebar.tsx",
@@ -31837,7 +31804,7 @@
       "table": "workspace"
     },
     {
-      "text": "Saved reports",
+      "text": "My reports",
       "kind": "jsx-text",
       "line": 208,
       "file": "web/components/workspace/HistorySidebar.tsx",
@@ -31909,7 +31876,7 @@
       "table": "workspace"
     },
     {
-      "text": "Saved reports could not load",
+      "text": "We couldn’t load My reports",
       "kind": "jsx-text",
       "line": 257,
       "file": "web/components/workspace/HistorySidebar.tsx",
@@ -31993,7 +31960,7 @@
       "table": "workspace"
     },
     {
-      "text": "Reports could not be compared. Try again.",
+      "text": "We couldn’t compare those reports. Try again.",
       "kind": "call:ClientActionError",
       "line": 352,
       "file": "web/components/workspace/HistorySidebar.tsx",
@@ -32653,7 +32620,7 @@
       "table": "workspace"
     },
     {
-      "text": "Run Another",
+      "text": "New report",
       "kind": "jsx-text",
       "line": 118,
       "file": "web/components/workspace/LinkedInModeSection.tsx",
@@ -32665,7 +32632,7 @@
       "table": "workspace"
     },
     {
-      "text": "Get pass",
+      "text": "Get 5 more",
       "kind": "jsx-text",
       "line": 128,
       "file": "web/components/workspace/LinkedInModeSection.tsx",
@@ -32737,7 +32704,7 @@
       "table": "workspace"
     },
     {
-      "text": "Checkout could not start. Try again or restore an existing purchase.",
+      "text": "Checkout didn’t start. Try again, or restore a purchase you’ve already made.",
       "kind": "call:setError",
       "line": 146,
       "file": "web/components/workspace/PaywallModal.tsx",
@@ -33295,7 +33262,7 @@
       "table": "workspace"
     },
     {
-      "text": "Label each version, like “Product roles” or “Startups,” to keep them apart in your history.",
+      "text": "Label each version, like “Product roles” or “Startups,” to keep them apart in My reports.",
       "kind": "jsx-text",
       "line": 202,
       "file": "web/components/workspace/ResumeLabel.tsx",
@@ -33331,7 +33298,7 @@
       "table": "workspace"
     },
     {
-      "text": "Sign-in could not open. Try again to save this report.",
+      "text": "Sign-in didn’t open. Try again to save this report.",
       "kind": "call:setError",
       "line": 40,
       "file": "web/components/workspace/SaveReportPrompt.tsx",
@@ -35115,7 +35082,7 @@
       "table": "workspace"
     },
     {
-      "text": "Say what the related work was. It goes on the page as its own line, not into this one.",
+      "text": "Say what the related work was. It goes on your resume as its own line, not into this one.",
       "kind": "jsx-text",
       "line": 155,
       "file": "web/components/workspace/report/AskFirst.tsx",
@@ -35278,7 +35245,7 @@
       "table": "workspace"
     },
     {
-      "text": "{remaining.length === 1 ? …} still there. Start with {remaining.length === 1 ? …} again.",
+      "text": "{remaining.length === 1 ? …} still there. Let's start with {remaining.length === 1 ? …} again.",
       "kind": "assign",
       "line": 67,
       "file": "web/components/workspace/report/ReadComparison.tsx",
@@ -35291,7 +35258,7 @@
       "table": "workspace"
     },
     {
-      "text": "{when} · Critical Miss {index + 1}",
+      "text": "{when} · Problem {index + 1}",
       "kind": "const",
       "line": 70,
       "file": "web/components/workspace/report/ReadComparison.tsx",
@@ -35304,7 +35271,7 @@
       "table": "workspace"
     },
     {
-      "text": "Up {delta} since last time.",
+      "text": "Up {delta} since last time. That's the right direction!",
       "kind": "const",
       "line": 72,
       "file": "web/components/workspace/report/ReadComparison.tsx",
@@ -35369,7 +35336,7 @@
       "table": "workspace"
     },
     {
-      "text": "The Verdict reads the same.",
+      "text": "The summary line is the same.",
       "kind": "jsx-text",
       "line": 101,
       "file": "web/components/workspace/report/ReadComparison.tsx",
@@ -35382,7 +35349,7 @@
       "table": "workspace"
     },
     {
-      "text": "The Verdict changed too.",
+      "text": "The summary line changed too.",
       "kind": "jsx-text",
       "line": 101,
       "file": "web/components/workspace/report/ReadComparison.tsx",
@@ -35837,7 +35804,7 @@
       "table": "workspace"
     },
     {
-      "text": "Why the first read of you sticks",
+      "text": "Why a recruiter’s first impression sticks",
       "kind": "key:note",
       "line": 9,
       "file": "web/components/workspace/report/ResearchReceipts.tsx",
@@ -36035,19 +36002,6 @@
       "text": "Only what&apos;s true.",
       "kind": "jsx-text",
       "line": 248,
-      "file": "web/components/workspace/report/markup/LineLift.tsx",
-      "routes": [
-        "/reports/[id]",
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "rewrite",
-      "table": "workspace"
-    },
-    {
-      "text": "{baseId}-q{index + 1}",
-      "kind": "const",
-      "line": 254,
       "file": "web/components/workspace/report/markup/LineLift.tsx",
       "routes": [
         "/reports/[id]",
@@ -36344,35 +36298,9 @@
       "table": "workspace"
     },
     {
-      "text": "section-fix-{index + 1}",
-      "kind": "const",
-      "line": 168,
-      "file": "web/components/workspace/report/markup/MarkedRows.tsx",
-      "routes": [
-        "/reports/[id]",
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
       "text": "Hide this suggestion: {label}",
       "kind": "attr:aria-label",
       "line": 214,
-      "file": "web/components/workspace/report/markup/MarkedRows.tsx",
-      "routes": [
-        "/reports/[id]",
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "section-fix-{index + 1}",
-      "kind": "const",
-      "line": 263,
       "file": "web/components/workspace/report/markup/MarkedRows.tsx",
       "routes": [
         "/reports/[id]",
@@ -36628,19 +36556,6 @@
         "/workspace"
       ],
       "moment": "rewrite",
-      "table": "workspace"
-    },
-    {
-      "text": "local-{(hash >>> 0).toString(36)}",
-      "kind": "return",
-      "line": 59,
-      "file": "web/components/workspace/report/markup/useHiddenFixes.ts",
-      "routes": [
-        "/reports/[id]",
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
       "table": "workspace"
     },
     {
@@ -37048,7 +36963,7 @@
       "table": "shared"
     },
     {
-      "text": "Your saved reports",
+      "text": "Sign in to see My reports",
       "kind": "key:headline",
       "line": 11,
       "file": "web/lib/auth/content.ts",
@@ -37130,66 +37045,6 @@
       ],
       "moment": "email",
       "table": "api"
-    },
-    {
-      "text": "local primary = redis.call(\"GET\", KEYS[1]) local shadow = redis.call(\"GET\", KEYS[2]) if primary and string.sub(primary, 1, 10) == \"committed:\" then return 2 end if shadow and string.sub(shadow, 1, 10) == \"committed:\" then return 3 end if primary or shadow then return 4 end redis.call(\"SET\", KEYS[1], \"reserved:\" .. ARGV[1], \"EX\", ARGV[2]) redis.call(\"SET\", KEYS[2], \"reserved:\" .. ARGV[1], \"EX\", ARGV[2]) return 1",
-      "kind": "const",
-      "line": 114,
-      "file": "web/lib/billing/anonymousGenerationAccess.ts",
-      "routes": [
-        "/api/free-status",
-        "/api/reports/recovery",
-        "/api/resume-feedback",
-        "/api/resume-feedback-stream",
-        "/api/resume-ideas"
-      ],
-      "moment": "pricing",
-      "table": "shared"
-    },
-    {
-      "text": "local primary = redis.call(\"GET\", KEYS[1]) local shadow = redis.call(\"GET\", KEYS[2]) local reserved = \"reserved:\" .. ARGV[1] local committed = \"committed:\" .. ARGV[1] if (primary == committed or not primary) and (shadow == committed or not shadow) and (primary == committed or shadow == committed) then redis.call(\"SET\", KEYS[1], committed, \"EX\", ARGV[2]) redis.call(\"SET\", KEYS[2], committed, \"EX\", ARGV[2]) return 1 end if (primary ~= reserved and primary) or (shadow ~= reserved and shadow) or (not primary and not shadow) then return 0 end redis.call(\"SET\", KEYS[1], committed, \"EX\", ARGV[2]) redis.call(\"SET\", KEYS[2], committed, \"EX\", ARGV[2]) return 1",
-      "kind": "const",
-      "line": 134,
-      "file": "web/lib/billing/anonymousGenerationAccess.ts",
-      "routes": [
-        "/api/free-status",
-        "/api/reports/recovery",
-        "/api/resume-feedback",
-        "/api/resume-feedback-stream",
-        "/api/resume-ideas"
-      ],
-      "moment": "pricing",
-      "table": "shared"
-    },
-    {
-      "text": "local primary = redis.call(\"GET\", KEYS[1]) local shadow = redis.call(\"GET\", KEYS[2]) local reserved = \"reserved:\" .. ARGV[1] if not primary and not shadow then return 0 end if (primary and string.sub(primary, 1, 10) == \"committed:\") or (shadow and string.sub(shadow, 1, 10) == \"committed:\") then return 2 end if (primary and primary ~= reserved) or (shadow and shadow ~= reserved) then return 3 end redis.call(\"DEL\", KEYS[1]) redis.call(\"DEL\", KEYS[2]) return 1",
-      "kind": "const",
-      "line": 154,
-      "file": "web/lib/billing/anonymousGenerationAccess.ts",
-      "routes": [
-        "/api/free-status",
-        "/api/reports/recovery",
-        "/api/resume-feedback",
-        "/api/resume-feedback-stream",
-        "/api/resume-ideas"
-      ],
-      "moment": "pricing",
-      "table": "shared"
-    },
-    {
-      "text": "return { redis.call(\"GET\", KEYS[1]) or \"\", redis.call(\"GET\", KEYS[2]) or \"\" }",
-      "kind": "const",
-      "line": 174,
-      "file": "web/lib/billing/anonymousGenerationAccess.ts",
-      "routes": [
-        "/api/free-status",
-        "/api/reports/recovery",
-        "/api/resume-feedback",
-        "/api/resume-feedback-stream",
-        "/api/resume-ideas"
-      ],
-      "moment": "pricing",
-      "table": "shared"
     },
     {
       "text": "Monthly plan",
@@ -40389,17 +40244,6 @@
       "table": "shared"
     },
     {
-      "text": "local committed = \"committed:\" .. ARGV[1] local current = redis.call(\"GET\", KEYS[3]) if redis.call(\"GET\", KEYS[1]) ~= committed or redis.call(\"GET\", KEYS[2]) ~= committed then return 0 end if current == ARGV[3] then return 2 end if current ~= ARGV[2] then return 0 end if not redis.call(\"SET\", KEYS[3], ARGV[3], \"PX\", ARGV[4], \"XX\") then return 0 end return 1",
-      "kind": "const",
-      "line": 23,
-      "file": "web/lib/reports/anonymous-report-claim-tombstone.ts",
-      "routes": [
-        "/api/reports/recovery"
-      ],
-      "moment": "report",
-      "table": "api"
-    },
-    {
       "text": "Your report may still be finishing. Keep this tab open and it will appear here.",
       "kind": "const",
       "line": 18,
@@ -40438,54 +40282,6 @@
       "table": "api"
     },
     {
-      "text": "local committed = \"committed:\" .. ARGV[1] if redis.call(\"GET\", KEYS[1]) ~= committed or redis.call(\"GET\", KEYS[2]) ~= committed then return \"\" end return redis.call(\"GET\", KEYS[3]) or \"\"",
-      "kind": "const",
-      "line": 22,
-      "file": "web/lib/reports/anonymous-report-recovery.ts",
-      "routes": [
-        "/api/free-status",
-        "/api/reports/recovery",
-        "/api/resume-feedback",
-        "/api/resume-feedback-stream",
-        "/api/resume-ideas",
-        "/api/revise-line"
-      ],
-      "moment": "report",
-      "table": "shared"
-    },
-    {
-      "text": "local committed = \"committed:\" .. ARGV[1] if redis.call(\"GET\", KEYS[1]) ~= committed or redis.call(\"GET\", KEYS[2]) ~= committed then return 0 end redis.call(\"DEL\", KEYS[3]) return 1",
-      "kind": "const",
-      "line": 31,
-      "file": "web/lib/reports/anonymous-report-recovery.ts",
-      "routes": [
-        "/api/free-status",
-        "/api/reports/recovery",
-        "/api/resume-feedback",
-        "/api/resume-feedback-stream",
-        "/api/resume-ideas",
-        "/api/revise-line"
-      ],
-      "moment": "report",
-      "table": "shared"
-    },
-    {
-      "text": "local primary = redis.call(\"GET\", KEYS[1]) local shadow = redis.call(\"GET\", KEYS[2]) local recovery = redis.call(\"GET\", KEYS[3]) local reserved = \"reserved:\" .. ARGV[1] local committed = \"committed:\" .. ARGV[1] if recovery then if recovery == ARGV[4] and primary == committed and shadow == committed then return 2 end return 0 end if primary ~= reserved or shadow ~= reserved then return 0 end if not redis.call(\"SET\", KEYS[3], ARGV[4], \"EX\", ARGV[3], \"NX\") then return 0 end redis.call(\"SET\", KEYS[1], committed, \"EX\", ARGV[2]) redis.call(\"SET\", KEYS[2], committed, \"EX\", ARGV[2]) return 1",
-      "kind": "const",
-      "line": 41,
-      "file": "web/lib/reports/anonymous-report-recovery.ts",
-      "routes": [
-        "/api/free-status",
-        "/api/reports/recovery",
-        "/api/resume-feedback",
-        "/api/resume-feedback-stream",
-        "/api/resume-ideas",
-        "/api/revise-line"
-      ],
-      "moment": "report",
-      "table": "shared"
-    },
-    {
       "text": "Added after the first read",
       "kind": "const",
       "line": 25,
@@ -40499,7 +40295,7 @@
       "table": "workspace"
     },
     {
-      "text": "The related work, as you'd put it on the page",
+      "text": "The related work, as you'd put it on your resume",
       "kind": "return",
       "line": 98,
       "file": "web/lib/reports/ask-first.ts",
@@ -40551,7 +40347,7 @@
       "table": "workspace"
     },
     {
-      "text": "This report couldn’t be saved. Please try again.",
+      "text": "We couldn’t save this report. Try again.",
       "kind": "call:ClientActionError",
       "line": 30,
       "file": "web/lib/reports/client-report-save.ts",
@@ -40563,7 +40359,7 @@
       "table": "workspace"
     },
     {
-      "text": "We couldn’t confirm that this report was saved. Please try again.",
+      "text": "We couldn’t confirm that this report was saved. Try again.",
       "kind": "call:ClientActionError",
       "line": 33,
       "file": "web/lib/reports/client-report-save.ts",
@@ -40630,26 +40426,6 @@
       ],
       "moment": "report",
       "table": "workspace"
-    },
-    {
-      "text": "{word.slice(0, -1)}i",
-      "kind": "assign",
-      "line": 111,
-      "file": "web/lib/reports/observation-tokens.ts",
-      "routes": [
-        "/api/export-pdf",
-        "/api/reports/[id]",
-        "/api/reports/[id]/answers",
-        "/api/resume-feedback",
-        "/api/resume-feedback-stream",
-        "/api/revise-line",
-        "/launch/gauntlet",
-        "/reports/[id]",
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "shared"
     },
     {
       "text": "read in {remainder} s",
@@ -40805,7 +40581,7 @@
       "table": "shared"
     },
     {
-      "text": "More than three Critical Misses. Here are the three that matter most.",
+      "text": "More than three problems. Here are the three that matter most.",
       "kind": "key:title",
       "line": 113,
       "file": "web/lib/reports/report-presentation.ts",
@@ -40845,7 +40621,7 @@
       "table": "shared"
     },
     {
-      "text": "One Critical Miss. Fix it first.",
+      "text": "One problem to fix first.",
       "kind": "key:title",
       "line": 118,
       "file": "web/lib/reports/report-presentation.ts",
@@ -40885,7 +40661,7 @@
       "table": "shared"
     },
     {
-      "text": "Two Critical Misses. Start with this one.",
+      "text": "Two problems. Start with this one.",
       "kind": "key:title",
       "line": 119,
       "file": "web/lib/reports/report-presentation.ts",
@@ -40925,7 +40701,7 @@
       "table": "shared"
     },
     {
-      "text": "Three Critical Misses. Start with this one.",
+      "text": "Three problems. Start with this one.",
       "kind": "key:title",
       "line": 120,
       "file": "web/lib/reports/report-presentation.ts",
@@ -42246,39 +42022,6 @@
       "table": "settings"
     },
     {
-      "text": "local current = redis.call(\"GET\", KEYS[1]) if current then return 0 end redis.call(\"SET\", KEYS[1], \"reserved:\" .. ARGV[1], \"EX\", ARGV[2], \"NX\") return 1",
-      "kind": "const",
-      "line": 10,
-      "file": "web/lib/support/replyReservation.ts",
-      "routes": [
-        "/settings/support-reply/[emailId]"
-      ],
-      "moment": "legal",
-      "table": "settings"
-    },
-    {
-      "text": "local current = redis.call(\"GET\", KEYS[1]) local reserved = \"reserved:\" .. ARGV[1] local sent = \"sent:\" .. ARGV[2] if current == sent then return 1 end if current ~= reserved then return 0 end redis.call(\"SET\", KEYS[1], sent, \"EX\", ARGV[3]) return 1",
-      "kind": "const",
-      "line": 19,
-      "file": "web/lib/support/replyReservation.ts",
-      "routes": [
-        "/settings/support-reply/[emailId]"
-      ],
-      "moment": "legal",
-      "table": "settings"
-    },
-    {
-      "text": "local current = redis.call(\"GET\", KEYS[1]) local reserved = \"reserved:\" .. ARGV[1] if not current then return 1 end if current ~= reserved then return 0 end redis.call(\"DEL\", KEYS[1]) return 1",
-      "kind": "const",
-      "line": 33,
-      "file": "web/lib/support/replyReservation.ts",
-      "routes": [
-        "/settings/support-reply/[emailId]"
-      ],
-      "moment": "legal",
-      "table": "settings"
-    },
-    {
       "text": "Before you get a report",
       "kind": "key:title",
       "line": 2,
@@ -42490,7 +42233,7 @@
       "table": "extension"
     },
     {
-      "text": "Extension reloaded - please refresh the page",
+      "text": "The extension reloaded. Refresh the page.",
       "kind": "key:error",
       "line": 15,
       "file": "extension/src/content/indeed.ts",
@@ -42501,31 +42244,9 @@
       "table": "extension"
     },
     {
-      "text": "Extension reloaded - please refresh the page",
+      "text": "The extension reloaded. Refresh the page.",
       "kind": "key:error",
       "line": 21,
-      "file": "extension/src/content/indeed.ts",
-      "routes": [
-        "extension"
-      ],
-      "moment": "extension",
-      "table": "extension"
-    },
-    {
-      "text": ".jobsearch-JobInfoHeader-subtitle > div:nth-child(2)",
-      "kind": "const[]",
-      "line": 51,
-      "file": "extension/src/content/indeed.ts",
-      "routes": [
-        "extension"
-      ],
-      "moment": "extension",
-      "table": "extension"
-    },
-    {
-      "text": ".icl-u-xs-mt--xs .icl-Icon",
-      "kind": "const[]",
-      "line": 52,
       "file": "extension/src/content/indeed.ts",
       "routes": [
         "extension"
@@ -42754,105 +42475,6 @@
       "table": "extension"
     },
     {
-      "text": ".jobs-description__content .jobs-box__html-content",
-      "kind": "const[]",
-      "line": 12,
-      "file": "extension/src/content/selectors.ts",
-      "routes": [
-        "extension"
-      ],
-      "moment": "extension",
-      "table": "extension"
-    },
-    {
-      "text": ".jobs-search__job-details .jobs-box__html-content",
-      "kind": "const[]",
-      "line": 17,
-      "file": "extension/src/content/selectors.ts",
-      "routes": [
-        "extension"
-      ],
-      "moment": "extension",
-      "table": "extension"
-    },
-    {
-      "text": ".jobs-details__main-content .jobs-box__html-content",
-      "kind": "const[]",
-      "line": 18,
-      "file": "extension/src/content/selectors.ts",
-      "routes": [
-        "extension"
-      ],
-      "moment": "extension",
-      "table": "extension"
-    },
-    {
-      "text": ".jobs-details .jobs-box__html-content",
-      "kind": "const[]",
-      "line": 21,
-      "file": "extension/src/content/selectors.ts",
-      "routes": [
-        "extension"
-      ],
-      "moment": "extension",
-      "table": "extension"
-    },
-    {
-      "text": ".jobs-details-top-card ~ div .jobs-box__html-content",
-      "kind": "const[]",
-      "line": 22,
-      "file": "extension/src/content/selectors.ts",
-      "routes": [
-        "extension"
-      ],
-      "moment": "extension",
-      "table": "extension"
-    },
-    {
-      "text": ".scaffold-layout__detail .jobs-box__html-content",
-      "kind": "const[]",
-      "line": 23,
-      "file": "extension/src/content/selectors.ts",
-      "routes": [
-        "extension"
-      ],
-      "moment": "extension",
-      "table": "extension"
-    },
-    {
-      "text": ".job-view-layout .jobs-description",
-      "kind": "const[]",
-      "line": 26,
-      "file": "extension/src/content/selectors.ts",
-      "routes": [
-        "extension"
-      ],
-      "moment": "extension",
-      "table": "extension"
-    },
-    {
-      "text": ".jobs-unified-top-card + section .jobs-box__html-content",
-      "kind": "const[]",
-      "line": 27,
-      "file": "extension/src/content/selectors.ts",
-      "routes": [
-        "extension"
-      ],
-      "moment": "extension",
-      "table": "extension"
-    },
-    {
-      "text": "[data-job-id] .jobs-description",
-      "kind": "const[]",
-      "line": 30,
-      "file": "extension/src/content/selectors.ts",
-      "routes": [
-        "extension"
-      ],
-      "moment": "extension",
-      "table": "extension"
-    },
-    {
       "text": "article .jobs-box__html-content",
       "kind": "const[]",
       "line": 34,
@@ -42864,7 +42486,7 @@
       "table": "extension"
     },
     {
-      "text": "The extension could not open. Close it and try again.",
+      "text": "The extension didn’t open. Close it and try again.",
       "kind": "key:error",
       "line": 130,
       "file": "extension/src/popup/App.tsx",
@@ -42875,7 +42497,7 @@
       "table": "extension"
     },
     {
-      "text": "Could not load your saved jobs. Try Refresh.",
+      "text": "We couldn’t load your saved jobs. Try Refresh.",
       "kind": "key:error",
       "line": 157,
       "file": "extension/src/popup/App.tsx",
@@ -42996,7 +42618,7 @@
       "table": "extension"
     },
     {
-      "text": "Create one free",
+      "text": "Create a free account",
       "kind": "jsx-text",
       "line": 48,
       "file": "extension/src/popup/components/AuthPrompt.tsx",

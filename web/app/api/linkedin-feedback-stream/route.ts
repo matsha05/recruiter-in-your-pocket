@@ -264,7 +264,7 @@ export async function POST(request: Request) {
                         controller.enqueue(encoder.encode(JSON.stringify({
                             type: "error",
                             errorCode: "INVALID_URL",
-                            message: "Please enter a valid LinkedIn profile URL (e.g., linkedin.com/in/yourname)"
+                            message: "Enter your LinkedIn profile address, like linkedin.com/in/yourname."
                         }) + "\n"));
                         controller.close();
                         return;
@@ -295,7 +295,7 @@ export async function POST(request: Request) {
                     controller.enqueue(encoder.encode(JSON.stringify({
                         type: "error",
                         errorCode: "PARSE_ERROR",
-                        message: "We couldn't parse your LinkedIn profile. Please make sure you uploaded a valid LinkedIn PDF export."
+                        message: "We couldn't read that LinkedIn PDF. Save a fresh PDF from your profile and upload it again."
                     }) + "\n"));
                     controller.close();
                     return;

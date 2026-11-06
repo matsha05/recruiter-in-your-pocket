@@ -106,7 +106,7 @@ export default function PurchaseConfirmedClient() {
           <div className="flex flex-col gap-3 py-8 sm:flex-row sm:flex-wrap">
             {checkingAccountAccess ? (
               <Button type="button" variant="primary" disabled isLoading>
-                Refreshing access…
+                Checking for your pass…
               </Button>
             ) : state.status === "unlocked" && hasPaidAccess ? (
               <Button asChild variant="primary">
@@ -114,7 +114,7 @@ export default function PurchaseConfirmedClient() {
               </Button>
             ) : state.status === "unlocked" && user ? (
               <Button asChild variant="primary">
-                <Link href={restoreHref}>Verify purchase access <ArrowRight className="size-4" weight="bold" /></Link>
+                <Link href={restoreHref}>Check for my pass <ArrowRight className="size-4" weight="bold" /></Link>
               </Button>
             ) : state.status === "unlocked" ? (
               <Button asChild variant="primary">

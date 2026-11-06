@@ -133,7 +133,7 @@ assert.equal(related.answered, 1);
 assert.match(related.text, /- Duties included maintaining records and updating reports\.\s*\n/u, "the line stays as it was");
 assert.ok(related.text.endsWith(`${ASK_FIRST_ADDED_HEADING}\n- Kept the warehouse inventory sheet for a summer job`), "the related work is its own line");
 assert.ok(!related.text.includes("typed but left out"));
-assert.equal(askFirstPlaceholder("line", "related"), "The related work, as you'd put it on the page");
+assert.equal(askFirstPlaceholder("line", "related"), "The related work, as you'd put it on your resume");
 
 // ============================================
 // The request: a rebuild names the report it is written from

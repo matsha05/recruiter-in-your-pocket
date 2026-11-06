@@ -45,7 +45,7 @@ export default function AuthPrompt({ onLogin }: AuthPromptProps) {
             </div>
 
             <p className="auth-footer">
-                {popupContent.auth.footer} <a href={signupUrl} target="_blank" rel="noopener noreferrer">Create one free</a>
+                {popupContent.auth.footer} <a href={signupUrl} target="_blank" rel="noopener noreferrer">Create a free account</a>
             </p>
         </div>
     );

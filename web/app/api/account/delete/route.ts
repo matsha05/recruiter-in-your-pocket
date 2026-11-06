@@ -120,7 +120,7 @@ export async function DELETE(request: Request) {
                 status: 500,
                 latency_ms: Date.now() - startedAt,
                 outcome: "internal_error",
-                err: { name: "ConfigError", message: "Admin client not configured" }
+                err: { name: "ConfigError", message: "Account deletion isn’t available right now. Try again later, or write to support." }
             });
             return NextResponse.json(
                 { ok: false, errorCode: "INTERNAL_ERROR", message: "Account deletion is temporarily unavailable." },
@@ -151,7 +151,7 @@ export async function DELETE(request: Request) {
                     {
                         ok: false,
                         errorCode: "BILLING_CANCELLATION_FAILED",
-                        message: "We could not verify every subscription, so your account was not deleted. Please contact support.",
+                        message: "We couldn’t check every subscription, so your account wasn’t deleted. Write to support and we’ll sort it out.",
                     },
                     { status: 502 }
                 );

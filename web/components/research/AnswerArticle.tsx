@@ -145,7 +145,7 @@ export function AnswerArticle({ path, answer, answerSource, painNote, visualizat
                     </section>
 
                     <section className={styles.close} aria-labelledby="research-close-title">
-                        <h2 id="research-close-title" className={styles.closeTitle}>What would they think of yours?</h2>
+                        <h2 id="research-close-title" className={styles.closeTitle}>Now see what they&rsquo;d make of yours.</h2>
                         <Button asChild size="lg" className="flex-none">
                             <Link href="/workspace" data-analytics-cta="research_close">
                                 Get your free report <ArrowRight weight="bold" aria-hidden="true" />

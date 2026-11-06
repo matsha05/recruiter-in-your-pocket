@@ -355,7 +355,7 @@ for (const [label, report] of outputs) {
   // The Critical Miss is said once, on its own line: the opening read gives the Verdict and band only.
   // On a clear page with one miss the first row is the question they'd ask instead (Matt, Nov 5, 2026).
   const ready = reportTone(report.score, readCriticalMisses(integrity.report)) === "ready";
-  assert.ok(missRow.includes(ready ? "The question they'd ask" : "Critical Miss"), `${label}: the first marked line is the ${ready ? "question they'd ask" : "Critical Miss"}`);
+  assert.ok(ready ? missRow.includes("The question they'd ask") : /Fix this first|Problem 1/.test(missRow), `${label}: the first marked line is the ${ready ? "question they'd ask" : "Critical Miss"}`);
   if (ready) {
     assert.ok(!page.includes("Critical Miss"), `${label}: a clear page never says Critical Miss`);
     assert.ok(!pdf.includes("Critical Miss") && pdf.includes("The question they'd ask"), `${label}: nor does its PDF`);
