@@ -19,6 +19,7 @@ const articles = [
   "/research/star-method",
   "/research/who-you-are",
   "/research/gaps-and-pivots",
+  "/research/career-breaks",
   "/research/writing-quality-hire-probability",
 ] as const;
 

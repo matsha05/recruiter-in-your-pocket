@@ -141,6 +141,12 @@ export const categories: ResearchCategory[] = [
                 answer: "In one UK experiment, explaining a caregiving gap didn't help. Listing years in each job instead of dates did.",
             },
             {
+                id: "career-breaks",
+                href: "/research/career-breaks",
+                question: "How do I explain a career break?",
+                answer: "Briefly and truthfully. In the caregiving tests, naming the reason didn't earn callbacks, so keep the line plain and the experience easy to find.",
+            },
+            {
                 id: "who-you-are",
                 href: "/research/who-you-are",
                 question: "What does my resume say about who I am?",

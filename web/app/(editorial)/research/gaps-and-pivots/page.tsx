@@ -28,7 +28,7 @@ export default function GapsAndPivotsPage() {
                 href: "https://doi.org/10.1038/s41562-022-01485-6",
             }}
             painNote="You can stop drafting the apology."
-            nextQuestions={["who-you-are", "referral-advantage", "quantifying-impact"]}
+            nextQuestions={["career-breaks", "who-you-are", "referral-advantage"]}
             visualization={
                 <>
                     <h2 className="research-h2">A current gap and a career change both cost callbacks</h2>
@@ -149,7 +149,7 @@ export default function GapsAndPivotsPage() {
             </div>
 
             <p className="research-body mb-6">
-                <strong>Our advice on dates:</strong> show the years in each role. That&apos;s honest, and it helped in the largest test. Hiding dates altogether tends to raise the question you&apos;re trying to answer, and applications and background checks will ask for them anyway. Be ready to <ResearchLink to="star-method">tell the story behind the gap in a sentence</ResearchLink> when someone asks.
+                <strong>Our advice on dates:</strong> show the years in each role. That&apos;s honest, and it helped in the largest test. Hiding dates altogether tends to raise the question you&apos;re trying to answer, and applications and background checks will ask for them anyway. Be ready to <ResearchLink to="career-breaks">tell the story behind the gap in a sentence or two</ResearchLink> when someone asks.
             </p>
 
             <ArticleBridge question="What question does your resume leave open?">

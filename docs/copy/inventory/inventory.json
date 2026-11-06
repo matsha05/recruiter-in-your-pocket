@@ -1,13 +1,13 @@
 {
   "generated_by": "web/scripts/copy-inventory.cjs",
   "counts": {
-    "files_scanned": 413,
-    "files_with_copy": 249,
-    "strings": 2962,
-    "unique_strings": 2479
+    "files_scanned": 415,
+    "files_with_copy": 250,
+    "strings": 3005,
+    "unique_strings": 2520
   },
   "by_moment": {
-    "research": 922,
+    "research": 965,
     "account": 442,
     "marketing": 416,
     "report": 311,
@@ -4173,6 +4173,490 @@
       "file": "web/app/(editorial)/research/automation-and-bias/page.tsx",
       "routes": [
         "/research/automation-and-bias"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "How do I explain a career break?",
+      "kind": "key:title",
+      "line": 11,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "What field experiments found about naming the reason for a career break, what to write and say about it, and where the evidence runs out.",
+      "kind": "key:description",
+      "line": 12,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Briefly, and only with what’s true. In the caregiving tests, naming the reason didn’t help: it did no better than silence in the UK, and worse than a layoff explanation in the US. So keep the dates line plain, make your experience easy to find, and save the story for the interview.",
+      "kind": "jsx-text",
+      "line": 26,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "From a preregistered UK experiment with 9,022 employers (Kristal et al., 2023) and a US audit of 3,407 applications (Weisshaar, 2018).",
+      "kind": "jsx-text",
+      "line": 31,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "The line you write",
+      "kind": "key:title",
+      "line": 40,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Leave your last job’s end date as it is. Then give the break its own line with what you did, in a few plain words: caregiving, a career break and what you did in it, study, or freelance work if it was real. Call it a sabbatical only if you chose the time off. A job search isn’t a sabbatical, and neither is a layoff.",
+      "kind": "jsx-text",
+      "line": 49,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "One change did raise callbacks in the UK test:",
+      "kind": "jsx-text",
+      "line": 55,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": ". Applications still ask for the dates.",
+      "kind": "jsx-text",
+      "line": 55,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "The sentences you say",
+      "kind": "key:title",
+      "line": 60,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "“I took two years off to care for my dad, and that’s settled now. I finished a supply chain course while I was out. This job is inbound scheduling across three sites, which is what I ran before, and I want it back.”",
+      "kind": "jsx-text",
+      "line": 63,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "The truth in a sentence, what you kept sharp, then why this job. No apology, and no more detail than you want to give. A health reason can stay private: “I took time off for a health matter, and it’s resolved” is enough.",
+      "kind": "jsx-text",
+      "line": 68,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Our take, from fifteen years in hiring: tell the truth about it, and what you kept sharp. In one study, HR professionals read a long gap as low motivation more than anything else, so end on why you want this job.",
+      "kind": "jsx-text",
+      "line": 74,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "The person who vouches",
+      "kind": "key:title",
+      "line": 80,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "“I worked with Dana for five years. She ran inbound scheduling for three warehouses. If she’s looking, she’s worth a call.”",
+      "kind": "jsx-text",
+      "line": 83,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "When nothing on the resume explains a long break, a former manager or teammate who saw your work can. Start with them, and start early.",
+      "kind": "jsx-text",
+      "line": 88,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Referred applicants got interviews far more often",
+      "kind": "jsx-text",
+      "line": 93,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "in one recruiting platform’s data. For laid-off workers, contacts helped most early in the search.",
+      "kind": "jsx-text",
+      "line": 93,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Why Are Employers Put Off by Long Spells of Unemployment?",
+      "kind": "key:title",
+      "line": 104,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "People I Know: Job Search and Social Networks",
+      "kind": "key:title",
+      "line": 111,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Reducing discrimination against job seekers with and without employment gaps",
+      "kind": "key:title",
+      "line": 118,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "From Opt Out to Blocked Out: The Challenges for Labor Market Re-entry after Family-Related Employment Lapses",
+      "kind": "key:title",
+      "line": 125,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Sick and tell: A field experiment analyzing the effects of an illness-related employment gap on the callback rate",
+      "kind": "key:title",
+      "line": 132,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "First depressed, then discriminated against?",
+      "kind": "key:title",
+      "line": 139,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "The mark of mental health problems. A field experiment on hiring discrimination before and during COVID-19",
+      "kind": "key:title",
+      "line": 146,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "What does the dates line on your resume say?",
+      "kind": "attr:question",
+      "line": 153,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "If your resume leaves time unaccounted for, the report lists it under Lines that need work, with the last date as you wrote it and a blank for what you did. It won’t fill the blank in for you.",
+      "kind": "jsx-text",
+      "line": 154,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "What the tests found about naming the reason",
+      "kind": "jsx-text",
+      "line": 157,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "The UK experiment sent versions of one fictitious mother&apos;s application to 9,022 employers. With a gap of two and a half years, “Left to become a full-time mother and look after my children” got the same callbacks as the gap left unexplained.",
+      "kind": "jsx-text",
+      "line": 159,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "A US audit sent 3,407 applications for professional jobs in 50 cities, each from a parent with an 18-month gap or none. “Left to take care of my children” got interview requests 4.9% of the time for mothers and 5.4% for fathers. “Laid off due to downsizing” got 9.7% and 8.8%, and no gap about 15%. The study had no unexplained gap to compare, so it can&apos;t say whether leaving the reason off would have done better.",
+      "kind": "jsx-text",
+      "line": 163,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Health reasons went both ways. In a US audit, “I had a medical issue. It is now taken care of” did a little better than no explanation.",
+      "kind": "jsx-text",
+      "line": 167,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "In Belgium, naming depression did no better or worse than saying nothing.",
+      "kind": "jsx-text",
+      "line": 169,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "In Norway, a year out for “mental health challenges” drew interview invitations 20.7% of the time, against 28.5% for a year of travel.",
+      "kind": "jsx-text",
+      "line": 171,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Our take:",
+      "kind": "jsx-text",
+      "line": 175,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "a few true words do the job. If the reason is health, “Career break” is true and enough. If you’d rather say more, and it’s behind you, say it’s resolved. Spend the rest of the space on the work you did before the break and since.",
+      "kind": "jsx-text",
+      "line": 175,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Leave off a stopgap job far below your level",
+      "kind": "jsx-text",
+      "line": 178,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "In one US experiment,",
+      "kind": "jsx-text",
+      "line": 180,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "a recent job well below the applicant&apos;s skill level drew about as few callbacks as a year out of work",
+      "kind": "jsx-text",
+      "line": 180,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Our advice:",
+      "kind": "jsx-text",
+      "line": 180,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "list a course, a project, or freelance work in your field, and leave off work that reads like a step down. An application that asks for every job still gets the full list.",
+      "kind": "jsx-text",
+      "line": 180,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "These are audit studies: fictitious applications, measured by callbacks, not hires.",
+      "kind": "jsx-text",
+      "line": 185,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "The UK caregiving test used one mother and one wording. The US test had no unexplained gap to compare.",
+      "kind": "jsx-text",
+      "line": 186,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "We found no study of what to say about a break in an interview, or of “sabbatical,” travel, or a gap year as labels. Those parts are our take.",
+      "kind": "jsx-text",
+      "line": 187,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "No study has tested whether a referral makes up for a gap. The contacts study followed workers laid off when their plants closed, not people returning from a break.",
+      "kind": "jsx-text",
+      "line": 188,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "The studies span the UK, the US, Belgium, Norway, and Italy, and different kinds of jobs.",
+      "kind": "jsx-text",
+      "line": 189,
+      "file": "web/app/(editorial)/research/career-breaks/page.tsx",
+      "routes": [
+        "/research/career-breaks"
       ],
       "moment": "research",
       "table": "research"
@@ -14113,6 +14597,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -14404,6 +14889,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -14486,6 +14972,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -14568,6 +15055,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -14650,6 +15138,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -14732,6 +15221,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -14814,6 +15304,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -14896,6 +15387,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -14978,6 +15470,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -15060,6 +15553,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -15142,6 +15636,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -15224,6 +15719,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -15306,6 +15802,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -15388,6 +15885,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -15470,6 +15968,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -21629,6 +22128,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -23032,6 +23532,7 @@
         "/research",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -23088,6 +23589,7 @@
         "/research",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -23144,6 +23646,7 @@
         "/research",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -23802,6 +24305,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -24083,6 +24587,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -24163,6 +24668,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -24249,6 +24755,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -24316,6 +24823,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -24383,6 +24891,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -24450,6 +24959,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -24517,6 +25027,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -24584,6 +25095,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -24651,6 +25163,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -24718,6 +25231,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -24785,6 +25299,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -24852,6 +25367,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -24919,6 +25435,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -24986,6 +25503,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -25053,6 +25571,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -25120,6 +25639,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -25187,6 +25707,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -25254,6 +25775,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -25321,6 +25843,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -25388,6 +25911,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -25455,6 +25979,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -25522,6 +26047,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -26976,7 +27502,8 @@
       "file": "web/components/marketing/FictionalTag.tsx",
       "routes": [
         "/",
-        "/methodology"
+        "/methodology",
+        "/research/career-breaks"
       ],
       "moment": "marketing",
       "table": "home"
@@ -27421,6 +27948,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -27503,6 +28031,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -27585,6 +28114,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -27658,6 +28188,7 @@
         "/research",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -27723,6 +28254,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -28539,7 +29071,7 @@
     {
       "text": "All research",
       "kind": "jsx-text",
-      "line": 71,
+      "line": 73,
       "file": "web/components/research/AnswerArticle.tsx",
       "routes": [
         "/compare",
@@ -28553,6 +29085,7 @@
         "/llms.txt",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -28575,7 +29108,7 @@
     {
       "text": "(opens in a new tab)",
       "kind": "jsx-text",
-      "line": 85,
+      "line": 87,
       "file": "web/components/research/AnswerArticle.tsx",
       "routes": [
         "/compare",
@@ -28589,6 +29122,7 @@
         "/llms.txt",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -28611,7 +29145,7 @@
     {
       "text": "How we write these",
       "kind": "jsx-text",
-      "line": 96,
+      "line": 98,
       "file": "web/components/research/AnswerArticle.tsx",
       "routes": [
         "/compare",
@@ -28625,42 +29159,7 @@
         "/llms.txt",
         "/research/ats-myths",
         "/research/automation-and-bias",
-        "/research/gaps-and-pivots",
-        "/research/hiring-discrimination-meta-analysis",
-        "/research/how-recruiters-read",
-        "/research/human-vs-algorithm",
-        "/research/linkedin-visibility",
-        "/research/quantifying-impact",
-        "/research/referral-advantage",
-        "/research/resume-length-myths",
-        "/research/salary-history-bans",
-        "/research/skills-first-promise-reality",
-        "/research/social-screening",
-        "/research/spelling-errors-impact",
-        "/research/star-method",
-        "/research/who-you-are",
-        "/research/writing-quality-hire-probability"
-      ],
-      "moment": "research",
-      "table": "shared"
-    },
-    {
-      "text": "Research visualization",
-      "kind": "attr:aria-label",
-      "line": 101,
-      "file": "web/components/research/AnswerArticle.tsx",
-      "routes": [
-        "/compare",
-        "/compare/enhancv",
-        "/compare/jobscan",
-        "/compare/kickresume",
-        "/compare/resume-worded",
-        "/compare/rezi",
-        "/compare/teal",
-        "/compare/topresume",
-        "/llms.txt",
-        "/research/ats-myths",
-        "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -28683,7 +29182,7 @@
     {
       "text": "(opens in a new tab)",
       "kind": "jsx-text",
-      "line": 121,
+      "line": 123,
       "file": "web/components/research/AnswerArticle.tsx",
       "routes": [
         "/compare",
@@ -28697,6 +29196,7 @@
         "/llms.txt",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -28719,7 +29219,7 @@
     {
       "text": "Next questions",
       "kind": "jsx-text",
-      "line": 132,
+      "line": 134,
       "file": "web/components/research/AnswerArticle.tsx",
       "routes": [
         "/compare",
@@ -28733,6 +29233,7 @@
         "/llms.txt",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -28755,7 +29256,7 @@
     {
       "text": "How we write these",
       "kind": "jsx-text",
-      "line": 140,
+      "line": 142,
       "file": "web/components/research/AnswerArticle.tsx",
       "routes": [
         "/compare",
@@ -28769,6 +29270,7 @@
         "/llms.txt",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -28791,7 +29293,7 @@
     {
       "text": "We link every study we cite and say what it can’t tell you. When something is our advice rather than a finding, we say so. The date above is when the page last changed.",
       "kind": "jsx-text",
-      "line": 142,
+      "line": 144,
       "file": "web/components/research/AnswerArticle.tsx",
       "routes": [
         "/compare",
@@ -28805,6 +29307,7 @@
         "/llms.txt",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -28827,7 +29330,7 @@
     {
       "text": "The longer version",
       "kind": "jsx-text",
-      "line": 143,
+      "line": 145,
       "file": "web/components/research/AnswerArticle.tsx",
       "routes": [
         "/compare",
@@ -28841,6 +29344,7 @@
         "/llms.txt",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -28863,7 +29367,7 @@
     {
       "text": "Now see what they’d make of yours.",
       "kind": "jsx-text",
-      "line": 148,
+      "line": 150,
       "file": "web/components/research/AnswerArticle.tsx",
       "routes": [
         "/compare",
@@ -28877,6 +29381,7 @@
         "/llms.txt",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -28899,7 +29404,7 @@
     {
       "text": "Get your free report",
       "kind": "jsx-text",
-      "line": 151,
+      "line": 153,
       "file": "web/components/research/AnswerArticle.tsx",
       "routes": [
         "/compare",
@@ -28913,6 +29418,7 @@
         "/llms.txt",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -28935,7 +29441,7 @@
     {
       "text": "Our advice, from what the studies found",
       "kind": "jsx-text",
-      "line": 169,
+      "line": 171,
       "file": "web/components/research/AnswerArticle.tsx",
       "routes": [
         "/compare",
@@ -28949,6 +29455,7 @@
         "/llms.txt",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -28971,7 +29478,7 @@
     {
       "text": "(opens in a new tab)",
       "kind": "jsx-text",
-      "line": 214,
+      "line": 216,
       "file": "web/components/research/AnswerArticle.tsx",
       "routes": [
         "/compare",
@@ -28985,6 +29492,7 @@
         "/llms.txt",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -29007,7 +29515,7 @@
     {
       "text": "What it found",
       "kind": "jsx-text",
-      "line": 220,
+      "line": 222,
       "file": "web/components/research/AnswerArticle.tsx",
       "routes": [
         "/compare",
@@ -29021,6 +29529,7 @@
         "/llms.txt",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -29043,7 +29552,7 @@
     {
       "text": "How it was done",
       "kind": "jsx-text",
-      "line": 225,
+      "line": 227,
       "file": "web/components/research/AnswerArticle.tsx",
       "routes": [
         "/compare",
@@ -29057,6 +29566,7 @@
         "/llms.txt",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -29079,7 +29589,7 @@
     {
       "text": "What it can’t tell you",
       "kind": "jsx-text",
-      "line": 230,
+      "line": 232,
       "file": "web/components/research/AnswerArticle.tsx",
       "routes": [
         "/compare",
@@ -29093,6 +29603,7 @@
         "/llms.txt",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -29129,6 +29640,7 @@
         "/llms.txt",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -29165,6 +29677,7 @@
         "/llms.txt",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -29192,6 +29705,7 @@
       "routes": [
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/human-vs-algorithm",
@@ -29218,6 +29732,7 @@
       "routes": [
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/human-vs-algorithm",
@@ -29244,6 +29759,7 @@
       "routes": [
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/human-vs-algorithm",
@@ -29270,6 +29786,7 @@
       "routes": [
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/human-vs-algorithm",
@@ -29296,6 +29813,7 @@
       "routes": [
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/human-vs-algorithm",
@@ -29322,6 +29840,7 @@
       "routes": [
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/human-vs-algorithm",
@@ -29348,6 +29867,7 @@
       "routes": [
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/human-vs-algorithm",
@@ -29374,6 +29894,7 @@
       "routes": [
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/human-vs-algorithm",
@@ -29400,6 +29921,7 @@
       "routes": [
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/human-vs-algorithm",
@@ -29426,6 +29948,7 @@
       "routes": [
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/human-vs-algorithm",
@@ -29463,6 +29986,7 @@
         "/research",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -29502,6 +30026,7 @@
         "/research",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -29541,6 +30066,7 @@
         "/research",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -29580,6 +30106,7 @@
         "/research",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -29619,6 +30146,7 @@
         "/research",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -29658,6 +30186,7 @@
         "/research",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -29697,6 +30226,7 @@
         "/research",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -30280,6 +30810,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -30360,6 +30891,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -30440,6 +30972,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -30520,6 +31053,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -30600,6 +31134,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -30680,6 +31215,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -30760,6 +31296,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -30840,6 +31377,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -30920,6 +31458,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -31013,6 +31552,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -31096,6 +31636,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -31178,6 +31719,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -31288,6 +31830,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -37091,6 +37634,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -37179,6 +37723,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -37267,6 +37812,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -37355,6 +37901,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -37443,6 +37990,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
@@ -39314,6 +39862,7 @@
         "/research",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -39383,6 +39932,7 @@
         "/research",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -39452,6 +40002,7 @@
         "/research",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -39521,6 +40072,7 @@
         "/research",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -39590,6 +40142,7 @@
         "/research",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -39659,6 +40212,7 @@
         "/research",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -39728,6 +40282,7 @@
         "/research",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -39797,6 +40352,7 @@
         "/research",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -39866,6 +40422,7 @@
         "/research",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -39935,6 +40492,7 @@
         "/research",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -40004,6 +40562,7 @@
         "/research",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -40073,6 +40632,7 @@
         "/research",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -40142,6 +40702,7 @@
         "/research",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -40211,6 +40772,7 @@
         "/research",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -41893,6 +42455,7 @@
         "/research",
         "/research/ats-myths",
         "/research/automation-and-bias",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-recruiters-read",
@@ -41956,6 +42519,7 @@
         "/research/automation-and-bias",
         "/research/automation-filter-points",
         "/research/bias-limits-optimization",
+        "/research/career-breaks",
         "/research/gaps-and-pivots",
         "/research/hiring-discrimination-meta-analysis",
         "/research/how-people-scan",
