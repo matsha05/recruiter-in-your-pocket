@@ -1,0 +1,438 @@
+{
+  "case_id": "b10_it_support_recent_grad",
+  "batch": "breadth",
+  "run": 1,
+  "note": "First job.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_it_support_recent_grad_1.txt",
+  "resume_sha256": "6aac1aade9d7a63c473e324e9d4010a6421ea06868ff0b898b625a8534cf26dc",
+  "resume_words": 119,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": true,
+  "started_at": "2026-11-06T03:34:43.041Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 3678,
+        "completion_tokens": 1283,
+        "total_tokens": 4961,
+        "cached_prompt_tokens": 3095,
+        "cache_write_prompt_tokens": 580,
+        "reasoning_tokens": 430
+      },
+      "cost_usd": 0.00729775,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 16108
+    },
+    {
+      "kind": "repair",
+      "usage": {
+        "prompt_tokens": 4701,
+        "completion_tokens": 1807,
+        "total_tokens": 6508,
+        "cached_prompt_tokens": 3095,
+        "cache_write_prompt_tokens": 1603,
+        "reasoning_tokens": 967
+      },
+      "cost_usd": 0.0111965,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 21387
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.00153075,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 2047
+    }
+  ],
+  "resume_prompt_sha256": "b2c0d186992d2d925493008c0a67067de9f704dc44ec074808b3bc7176463d9a",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 76,
+    "lifted_by_employer": false,
+    "verdict": "An entry-level IT support resume with concrete tasks, but no account of time after the internship.",
+    "write_up": [
+      "You have school help desk experience, earlier device setup work in retail, and a CompTIA A+. The work points toward desktop support, but the latest dated job ends in May 2025. A recruiter will wonder what you've been doing since.",
+      "The Active Directory line is the model: it names the task and the tool without making the reader guess. Put Experience above Education, then add a little more detail about the tickets and classroom laptops."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after May 2025.",
+        "cannot_tell": "The page doesn't say what you've been doing since the internship. A brief, honest line would help a recruiter place that time.",
+        "example": "[dates]  [work, study, job search or other activity, if applicable]",
+        "question": "What have you been doing since May 2025 that you'd like to include?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "cannot_tell": "Your work is the stronger starting point now that you have experience in both IT and retail. A recruiter has to scroll past Education and Certifications to find it.",
+        "example": "",
+        "question": "Can you move Experience above Education and Certifications?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 1",
+        "line": "- Answered help desk tickets from teachers and staff",
+        "cannot_tell": "The audience is clear, but the tickets could cover almost anything. A typical issue and the volume, if you know it, would show more of your help desk work.",
+        "example": "Answered help desk tickets from teachers and staff about [typical issues], handling [number or range] [per time period, if known]",
+        "question": "What issues did you typically handle, and roughly how many tickets did you answer if you know?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 2",
+        "line": "- Imaged and set up laptops for classrooms",
+        "cannot_tell": "The classroom work is easy to picture, but its size and the setup aren't on the page. Either would help distinguish it from a generic setup bullet.",
+        "example": "Imaged and set up [number or range, if known] laptops for classrooms, including [setup tasks]",
+        "question": "How many laptops did you set up, if you know, and what did the setup involve?"
+      },
+      {
+        "kind": "line",
+        "where": "Skills",
+        "line": "Windows 10/11, Active Directory, Microsoft 365 administration, basic networking, ticketing systems",
+        "cannot_tell": "Microsoft 365 administration is listed, but the page doesn't show what you administered or where you used it. That matters for the systems direction you're considering.",
+        "example": "Windows 10/11, Active Directory, Microsoft 365 administration [tasks and where you performed them], basic networking, ticketing systems",
+        "question": "What Microsoft 365 administration tasks have you performed, and where?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "IT Help Desk Intern"
+      ],
+      "level": "Entry-level IT support",
+      "note": "The internship and retail device setup point toward desktop support. The page shows less about systems administration beyond Active Directory, so specific Microsoft 365 tasks would help explain that direction.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "initial_validation_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the worklist contract at write_up[1]: uses the retired phrase \"the read\".",
+    "issues": [
+      {
+        "path": "write_up[1]",
+        "message": "uses the retired phrase \"the read\""
+      }
+    ]
+  },
+  "model_output_repaired": {
+    "contract_version": "v3",
+    "score": 76,
+    "lifted_by_employer": false,
+    "verdict": "An entry-level IT support resume with concrete tasks, but no account of time after the internship.",
+    "write_up": [
+      "You have school help desk experience, earlier device setup work in retail, and a CompTIA A+. The latest dated job ends in May 2025, so a recruiter will wonder what you've been doing since.",
+      "The Active Directory bullet is your best model: it names both the task and the tool. Put Experience above Education, then add a little more detail about the tickets and classroom laptops."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "The latest dated job ends in May 2025.",
+        "cannot_tell": "The page doesn't say what you've been doing since the internship. A brief, honest line would help place that time.",
+        "example": "[dates]  [work, study, job search or other activity, if applicable]",
+        "question": "What have you been doing since May 2025 that you'd like to include?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "cannot_tell": "Your work is the stronger starting point now that you have experience in both IT and retail. It currently comes after Education and Certifications.",
+        "example": "",
+        "question": "Can you move Experience above Education and Certifications?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 1",
+        "line": "- Answered help desk tickets from teachers and staff",
+        "cannot_tell": "The audience is clear, but the tickets could cover almost anything. A typical issue and the volume, if you know it, would show more of your help desk work.",
+        "example": "Answered help desk tickets from teachers and staff [typical issues] [ticket volume and time period, if known]",
+        "question": "What issues did you typically handle, and roughly how many tickets did you answer if you know?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 2",
+        "line": "- Imaged and set up laptops for classrooms",
+        "cannot_tell": "The classroom work is easy to picture, but its size and the setup aren't on the page. Either would help distinguish it from a generic setup bullet.",
+        "example": "Imaged and set up laptops for classrooms [number of laptops, if known] [imaging and setup tasks]",
+        "question": "How many laptops did you set up, if you know, and what did the setup involve?"
+      },
+      {
+        "kind": "line",
+        "where": "Skills",
+        "line": "Windows 10/11, Active Directory, Microsoft 365 administration, basic networking, ticketing systems",
+        "cannot_tell": "Microsoft 365 administration is listed, but the page doesn't show what you administered or where you used it. That matters for the systems direction you're considering.",
+        "example": "Windows 10/11, Active Directory, Microsoft 365 administration [tasks and where you performed them], basic networking, ticketing systems",
+        "question": "What Microsoft 365 administration tasks have you performed, and where?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "IT Help Desk Intern"
+      ],
+      "level": "Entry-level IT support",
+      "note": "The internship and retail device setup point toward desktop support. The page shows less about systems administration beyond Active Directory, so specific Microsoft 365 tasks would help explain that direction.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "repaired": true,
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 76,
+    "lifted_by_employer": false,
+    "verdict": "An entry-level IT support resume with concrete tasks, but no account of time after the internship.",
+    "write_up": [
+      "You have school help desk experience, earlier device setup work in retail, and a CompTIA A+. The latest dated job ends in May 2025, so a recruiter will wonder what you've been doing since.",
+      "The Active Directory bullet is your best model: it names both the task and the tool. Put Experience above Education, then add a little more detail about the tickets and classroom laptops."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "The latest dated job ends in May 2025.",
+        "cannot_tell": "The page doesn't say what you've been doing since the internship. A brief, honest line would help place that time.",
+        "example": "[dates] [work, study, job search or other activity, if applicable]",
+        "question": "What have you been doing since May 2025 that you'd like to include?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "cannot_tell": "Your work is the stronger starting point now that you have experience in both IT and retail. It currently comes after Education and Certifications.",
+        "example": "",
+        "question": "Can you move Experience above Education and Certifications?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 1",
+        "line": "Answered help desk tickets from teachers and staff",
+        "cannot_tell": "The audience is clear, but the tickets could cover almost anything. A typical issue and the volume, if you know it, would show more of your help desk work.",
+        "example": "Answered help desk tickets from teachers and staff [typical issues] [ticket volume and time period, if known]",
+        "question": "What issues did you typically handle, and roughly how many tickets did you answer if you know?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 2",
+        "line": "Imaged and set up laptops for classrooms",
+        "cannot_tell": "The classroom work is easy to picture, but its size and the setup aren't on the page. Either would help distinguish it from a generic setup bullet.",
+        "example": "Imaged and set up laptops for classrooms [number of laptops, if known] [imaging and setup tasks]",
+        "question": "How many laptops did you set up, if you know, and what did the setup involve?"
+      },
+      {
+        "kind": "line",
+        "where": "Skills",
+        "line": "Windows 10/11, Active Directory, Microsoft 365 administration, basic networking, ticketing systems",
+        "cannot_tell": "Microsoft 365 administration is listed, but the page doesn't show what you administered or where you used it. That matters for the systems direction you're considering.",
+        "example": "Windows 10/11, Active Directory, Microsoft 365 administration [tasks and where you performed them], basic networking, ticketing systems",
+        "question": "What Microsoft 365 administration tasks have you performed, and where?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "IT Help Desk Intern"
+      ],
+      "level": "Entry-level IT support",
+      "note": "The internship and retail device setup point toward desktop support. The page shows less about systems administration beyond Active Directory, so specific Microsoft 365 tasks would help explain that direction.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 76
+  },
+  "severity": {
+    "promoted": [],
+    "replaced": [],
+    "led": null,
+    "critical_count": 1,
+    "more_critical": false,
+    "answer": {
+      "critical_misses": [
+        {
+          "source": "fix_3",
+          "kind": "no_evidence_latest_role",
+          "fix": "",
+          "why": "",
+          "excerpt": "",
+          "section": "",
+          "effort": "moderate"
+        }
+      ],
+      "more_critical": false
+    },
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "skipped": [
+      {
+        "kind": "no_evidence_latest_role",
+        "reason": "no_such_fix"
+      }
+    ],
+    "validation_attempts": 0,
+    "latency_ms": 2048,
+    "call_latency_ms": 2047,
+    "cost_usd": 0.00153075,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 76,
+    "lifted_by_employer": false,
+    "verdict": "An entry-level IT support resume with concrete tasks, but no account of time after the internship.",
+    "write_up": [
+      "You have school help desk experience, earlier device setup work in retail, and a CompTIA A+. The latest dated job ends in May 2025, so a recruiter will wonder what you've been doing since.",
+      "The Active Directory bullet is your best model: it names both the task and the tool. Put Experience above Education, then add a little more detail about the tickets and classroom laptops."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "The latest dated job ends in May 2025.",
+        "cannot_tell": "The page doesn't say what you've been doing since the internship. A brief, honest line would help place that time.",
+        "example": "[dates] [work, study, job search or other activity, if applicable]",
+        "question": "What have you been doing since May 2025 that you'd like to include?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "cannot_tell": "Your work is the stronger starting point now that you have experience in both IT and retail. It currently comes after Education and Certifications.",
+        "example": "",
+        "question": "Can you move Experience above Education and Certifications?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 1",
+        "line": "Answered help desk tickets from teachers and staff",
+        "cannot_tell": "The audience is clear, but the tickets could cover almost anything. A typical issue and the volume, if you know it, would show more of your help desk work.",
+        "example": "Answered help desk tickets from teachers and staff [typical issues] [ticket volume and time period, if known]",
+        "question": "What issues did you typically handle, and roughly how many tickets did you answer if you know?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 2",
+        "line": "Imaged and set up laptops for classrooms",
+        "cannot_tell": "The classroom work is easy to picture, but its size and the setup aren't on the page. Either would help distinguish it from a generic setup bullet.",
+        "example": "Imaged and set up laptops for classrooms [number of laptops, if known] [imaging and setup tasks]",
+        "question": "How many laptops did you set up, if you know, and what did the setup involve?"
+      },
+      {
+        "kind": "line",
+        "where": "Skills",
+        "line": "Windows 10/11, Active Directory, Microsoft 365 administration, basic networking, ticketing systems",
+        "cannot_tell": "Microsoft 365 administration is listed, but the page doesn't show what you administered or where you used it. That matters for the systems direction you're considering.",
+        "example": "Windows 10/11, Active Directory, Microsoft 365 administration [tasks and where you performed them], basic networking, ticketing systems",
+        "question": "What Microsoft 365 administration tasks have you performed, and where?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "IT Help Desk Intern"
+      ],
+      "level": "Entry-level IT support",
+      "note": "The internship and retail device setup point toward desktop support. The page shows less about systems administration beyond Active Directory, so specific Microsoft 365 tasks would help explain that direction.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 76
+  },
+  "presentation": {
+    "score": 76,
+    "band": "Mostly clear",
+    "model_score": 76,
+    "lifted_by_employer": false,
+    "verdict": "An entry-level IT support resume with concrete tasks, but no account of time after the internship.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 66,
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "The latest dated job ends in May 2025.",
+        "blanks": 2,
+        "question": "What have you been doing since May 2025 that you'd like to include?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "blanks": 0,
+        "question": "Can you move Experience above Education and Certifications?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 1",
+        "line": "Answered help desk tickets from teachers and staff",
+        "blanks": 2,
+        "question": "What issues did you typically handle, and roughly how many tickets did you answer if you know?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 2",
+        "line": "Imaged and set up laptops for classrooms",
+        "blanks": 2,
+        "question": "How many laptops did you set up, if you know, and what did the setup involve?"
+      },
+      {
+        "kind": "line",
+        "where": "Skills",
+        "line": "Windows 10/11, Active Directory, Microsoft 365 administration, basic networking, ticketing systems",
+        "blanks": 1,
+        "question": "What Microsoft 365 administration tasks have you performed, and where?"
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "dates": 1,
+      "structure": 1,
+      "line": 3
+    },
+    "structural_from_model": 2,
+    "severity_added": [],
+    "severity_skipped": [
+      {
+        "kind": "no_evidence_latest_role",
+        "reason": "no_such_fix"
+      }
+    ],
+    "severity_outcome": "none (none)",
+    "fit": {
+      "roles": [
+        "IT Help Desk Intern"
+      ],
+      "level": "Entry-level IT support",
+      "note": "The internship and retail device setup point toward desktop support. The page shows less about systems administration beyond Active Directory, so specific Microsoft 365 tasks would help explain that direction.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.020025,
+  "latency_ms": 39546
+}

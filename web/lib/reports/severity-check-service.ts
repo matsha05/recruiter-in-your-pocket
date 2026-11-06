@@ -12,6 +12,9 @@ import {
   type SeverityKind,
 } from "../llm/severity-check-model";
 import { criticalCount, keepsFirstFix, mergeSeverityCheck, sameFirstFix, type SeveritySkip } from "./severity-check";
+import { isWorklistReport, type WorklistReport } from "../llm/worklist-schema";
+import { validateWorklistPayload } from "../llm/worklist-validator";
+import { mergeSeverityIntoWorklist, worklistAsSeverityReport } from "./worklist-severity";
 
 export type SeverityOutcomeKind = "added" | "none" | "fallback" | "error";
 export type SeverityReason = "added" | "promoted" | "none" | "validation" | "first_fix_changed" | "timeout" | "provider";
@@ -137,6 +140,45 @@ export function settleSeverityCheck(input: {
 }
 
 /**
+ * The severity check on a worklist report: the same call, with the cards shown as the report's fixes, and
+ * each new structural item added as a card unless the model already carded that line. Validation of the
+ * merged report runs the worklist validator; a merge it refuses ships the model's own cards unchanged.
+ */
+export function settleWorklistSeverityCheck(input: {
+  payload: WorklistReport;
+  answer: SeverityCheckAnswer;
+  resumeText: string;
+  validationOptions?: ValidationOptions;
+}): Omit<SeverityOutcome, "latency_ms" | "cost_usd" | "prompt_version"> {
+  // The worklist has no Critical Miss; the signal's count reads as one plus the cards the check added.
+  const base = {
+    promoted: [] as number[],
+    replaced: [] as number[],
+    led: null,
+    critical_count: 1,
+    more_critical: false,
+    answer: input.answer,
+  };
+  const limits = [2, 1];
+  let attempts = 0;
+  let detail: string | undefined;
+  for (const limit of limits) {
+    const merged = mergeSeverityIntoWorklist(input.payload, input.answer, limit);
+    if (merged.added.length === 0) {
+      return { ...base, payload: input.payload, outcome: "none", reason: "none", added: [], skipped: merged.skipped.map((skip) => ({ kind: skip.kind, reason: skip.reason === "promotion" ? "no_such_fix" : skip.reason === "already_carded" ? "already_flagged" : "empty" })), validation_attempts: attempts, detail };
+    }
+    attempts += 1;
+    try {
+      const validated = ensureLayoutAndContentFields(validateWorklistPayload(structuredClone(merged.report), input.resumeText, input.validationOptions));
+      return { ...base, critical_count: 1 + merged.added.length, payload: validated, outcome: "added", reason: "added", added: merged.added, skipped: merged.skipped.map((skip) => ({ kind: skip.kind, reason: skip.reason === "promotion" ? "no_such_fix" : skip.reason === "already_carded" ? "already_flagged" : "empty" })), validation_attempts: attempts, detail };
+    } catch (error: any) {
+      detail = String(error?.message || error).slice(0, 300);
+    }
+  }
+  return { ...base, payload: input.payload, outcome: "fallback", reason: "validation", added: [], skipped: [], validation_attempts: attempts, detail };
+}
+
+/**
  * Runs the severity check on a validated resume report. Never throws: on any failure the report ships
  * unchanged, with its one Critical Miss, as before the check existed.
  */
@@ -151,11 +193,12 @@ export async function applySeverityCheck(input: {
   deadlineMs?: number;
 }): Promise<SeverityOutcome> {
   const startedAt = Date.now();
+  const worklist = isWorklistReport(input.payload);
   let response: SeverityCheckResponse;
   try {
     response = await withDeadline((input.request || requestSeverityCheck)({
       resumeText: input.resumeText,
-      report: input.payload,
+      report: worklist ? worklistAsSeverityReport(input.payload) : input.payload,
       today: input.today || todayForPrompt(),
       signal: input.signal,
     }), input.deadlineMs ?? SEVERITY_CHECK_TIMEOUT_MS + DEADLINE_SLACK_MS);
@@ -179,12 +222,14 @@ export async function applySeverityCheck(input: {
       detail: code || String(error?.message || "unknown").slice(0, 120),
     };
   }
-  const settled = settleSeverityCheck({
-    payload: input.payload,
-    answer: response.answer,
-    resumeText: input.resumeText,
-    validationOptions: input.validationOptions,
-  });
+  const settled = worklist
+    ? settleWorklistSeverityCheck({ payload: input.payload, answer: response.answer, resumeText: input.resumeText, validationOptions: input.validationOptions })
+    : settleSeverityCheck({
+      payload: input.payload,
+      answer: response.answer,
+      resumeText: input.resumeText,
+      validationOptions: input.validationOptions,
+    });
   return {
     ...settled,
     latency_ms: Date.now() - startedAt,

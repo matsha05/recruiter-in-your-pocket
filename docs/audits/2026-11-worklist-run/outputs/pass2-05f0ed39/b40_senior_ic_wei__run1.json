@@ -1,0 +1,243 @@
+{
+  "case_id": "b40_senior_ic_wei",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Senior IC (bar persona).",
+  "resume_file": "../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/4-senior-ic-wei.txt",
+  "resume_sha256": "e95b41ee5391398ba259810d134ff4a7392766f8e7fa117ad93d5d19b8ed94a5",
+  "resume_words": 361,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T04:09:50.635Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4785,
+        "completion_tokens": 1091,
+        "total_tokens": 5876,
+        "cached_prompt_tokens": 3406,
+        "cache_write_prompt_tokens": 1376,
+        "reasoning_tokens": 455
+      },
+      "cost_usd": 0.0073483,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 14549
+    }
+  ],
+  "resume_prompt_sha256": "05f0ed391d02c15c487cdf3fcd427706167ba6aa9a1ad58365cfcff658e9caea",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 82,
+    "lifted_by_employer": false,
+    "verdict": "Staff-level payments infrastructure work, with strong technical detail but few measures of what the biggest changes achieved.",
+    "write_up": [
+      "You lead ledger and settlement work and have a credible path from storage infrastructure to payments. A recruiter can see the architecture decisions and the duplicate-charge problem you addressed. The main question is how much the ledger redesign changed the platform.",
+      "The fraud scoring pipeline line is a useful model: it names what you built, the tools, the workload, and the p99 latency. Bring that same specificity to the ledger redesign and reconciliation improvements where you can."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, ledger redesign",
+        "line": "- Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "cannot_tell": "The architecture change is concrete, but the line doesn't say what the redesign achieved in practice. A measure of the platform before and after would give the work more weight.",
+        "example": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB; [what changed and how it was measured]",
+        "question": "What changed after the redesign, and how was it measured?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, fraud pipeline",
+        "line": "- Built the real-time fraud scoring pipeline (Flink, Kafka) processing payment events with p99 latency under 50ms",
+        "cannot_tell": "Keep this as a model. It names the pipeline, its tools, what it processes, and a performance measure.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, reconciliation",
+        "line": "- Reduced reconciliation break rate and manual ops effort",
+        "cannot_tell": "The improvements are clear, but their size isn't. The preceding line explains the service, so this is the place to show what changed.",
+        "example": "Reduced reconciliation break rate [before and after] and manual ops effort [how much]",
+        "question": "How did the break rate and manual ops effort change, if you have those figures?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Software Engineer",
+        "Senior Software Engineer"
+      ],
+      "level": "Staff-level software engineering",
+      "note": "Your experience points toward distributed systems and payments infrastructure, with technical leadership in your current role. The earlier object storage and fraud pipeline work adds depth to that story.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 82,
+    "lifted_by_employer": false,
+    "verdict": "Staff-level payments infrastructure work, with strong technical detail but few measures of what the biggest changes achieved.",
+    "write_up": [
+      "You lead ledger and settlement work and have a credible path from storage infrastructure to payments. A recruiter can see the architecture decisions and the duplicate-charge problem you addressed. The main question is how much the ledger redesign changed the platform.",
+      "The fraud scoring pipeline line is a useful model: it names what you built, the tools, the workload, and the p99 latency. Bring that same specificity to the ledger redesign and reconciliation improvements where you can."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, ledger redesign",
+        "line": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "cannot_tell": "The architecture change is concrete, but the line doesn't say what the redesign achieved in practice. A measure of the platform before and after would give the work more weight.",
+        "example": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB; [what changed and how it was measured]",
+        "question": "What changed after the redesign, and how was it measured?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, fraud pipeline",
+        "line": "Built the real-time fraud scoring pipeline (Flink, Kafka) processing payment events with p99 latency under 50ms",
+        "cannot_tell": "Keep this as a model. It names the pipeline, its tools, what it processes, and a performance measure.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, reconciliation",
+        "line": "Reduced reconciliation break rate and manual ops effort",
+        "cannot_tell": "The improvements are clear, but their size isn't. The preceding line explains the service, so this is the place to show what changed.",
+        "example": "Reduced reconciliation break rate [before and after] and manual ops effort [how much]",
+        "question": "How did the break rate and manual ops effort change, if you have those figures?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Software Engineer",
+        "Senior Software Engineer"
+      ],
+      "level": "Staff-level software engineering",
+      "note": "Your experience points toward distributed systems and payments infrastructure, with technical leadership in your current role. The earlier object storage and fraud pipeline work adds depth to that story.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 82
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 82,
+    "lifted_by_employer": false,
+    "verdict": "Staff-level payments infrastructure work, with strong technical detail but few measures of what the biggest changes achieved.",
+    "write_up": [
+      "You lead ledger and settlement work and have a credible path from storage infrastructure to payments. A recruiter can see the architecture decisions and the duplicate-charge problem you addressed. The main question is how much the ledger redesign changed the platform.",
+      "The fraud scoring pipeline line is a useful model: it names what you built, the tools, the workload, and the p99 latency. Bring that same specificity to the ledger redesign and reconciliation improvements where you can."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, ledger redesign",
+        "line": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "cannot_tell": "The architecture change is concrete, but the line doesn't say what the redesign achieved in practice. A measure of the platform before and after would give the work more weight.",
+        "example": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB; [what changed and how it was measured]",
+        "question": "What changed after the redesign, and how was it measured?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, fraud pipeline",
+        "line": "Built the real-time fraud scoring pipeline (Flink, Kafka) processing payment events with p99 latency under 50ms",
+        "cannot_tell": "Keep this as a model. It names the pipeline, its tools, what it processes, and a performance measure.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, reconciliation",
+        "line": "Reduced reconciliation break rate and manual ops effort",
+        "cannot_tell": "The improvements are clear, but their size isn't. The preceding line explains the service, so this is the place to show what changed.",
+        "example": "Reduced reconciliation break rate [before and after] and manual ops effort [how much]",
+        "question": "How did the break rate and manual ops effort change, if you have those figures?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Software Engineer",
+        "Senior Software Engineer"
+      ],
+      "level": "Staff-level software engineering",
+      "note": "Your experience points toward distributed systems and payments infrastructure, with technical leadership in your current role. The earlier object storage and fraud pipeline work adds depth to that story.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 82
+  },
+  "presentation": {
+    "score": 82,
+    "band": "Mostly clear",
+    "model_score": 82,
+    "lifted_by_employer": false,
+    "verdict": "Staff-level payments infrastructure work, with strong technical detail but few measures of what the biggest changes achieved.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 77,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, ledger redesign",
+        "line": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "blanks": 1,
+        "question": "What changed after the redesign, and how was it measured?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, fraud pipeline",
+        "line": "Built the real-time fraud scoring pipeline (Flink, Kafka) processing payment events with p99 latency under 50ms",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, reconciliation",
+        "line": "Reduced reconciliation break rate and manual ops effort",
+        "blanks": 2,
+        "question": "How did the break rate and manual ops effort change, if you have those figures?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "line": 2,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Staff Software Engineer",
+        "Senior Software Engineer"
+      ],
+      "level": "Staff-level software engineering",
+      "note": "Your experience points toward distributed systems and payments infrastructure, with technical leadership in your current role. The earlier object storage and fraud pipeline work adds depth to that story.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0073483,
+  "latency_ms": 14552
+}

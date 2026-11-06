@@ -1,4 +1,6 @@
 import { getOpenAIResponseFormat } from "@/lib/llm/response-format";
+import { isWorklistReportEnabled } from "../reports/report-shape";
+import { MOCK_WORKLIST_REPORT } from "./mock-worklist-report";
 import {
   getProductionChatCompletionTuning,
   increaseReasoningEffort,
@@ -74,6 +76,8 @@ export function extractJsonFromText(text: unknown) {
 }
 
 function getMockOpenAIResponse(mode: Mode) {
+  // The worklist report (contract v3) when the flag writes it; the Critical Miss mock otherwise.
+  if (mode === "resume" && isWorklistReportEnabled()) return structuredClone(MOCK_WORKLIST_REPORT);
   if (mode === "resume_ideas") {
     return {
       questions: [

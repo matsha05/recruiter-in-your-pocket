@@ -1,0 +1,243 @@
+{
+  "case_id": "b33_nonprofit_program_manager",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_nonprofit_program_manager_1.txt",
+  "resume_sha256": "eed001bb0dd40fc28e9488669ec9cea7f7a73eecaca46214d5f584dae2b6d5c9",
+  "resume_words": 146,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T04:15:59.019Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4165,
+        "completion_tokens": 1196,
+        "total_tokens": 5361,
+        "cached_prompt_tokens": 3502,
+        "cache_write_prompt_tokens": 660,
+        "reasoning_tokens": 605
+      },
+      "cost_usd": 0.0069831,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 17099
+    }
+  ],
+  "resume_prompt_sha256": "18e7e9ff21a0c2fda0fe219456e2d1f965de7d79bcc85173eaebd632dd83f42e",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 76,
+    "lifted_by_employer": false,
+    "verdict": "A youth workforce program manager with a clear progression, though the size and results of the program are missing.",
+    "write_up": [
+      "A recruiter sees a progression from program coordinator to manager, with responsibility for summer jobs, staff, funder reports and employer partners. The work is clear enough to move forward, but the page doesn't say how many students the program places or what happens after placement.",
+      "The grant reporting line is a useful model: it names what you write and who receives it. Give the summer program and the team that same treatment, with their size and work attached."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Program Manager, line 1",
+        "line": "- Manage a summer jobs program placing high school students with local employers",
+        "cannot_tell": "The program is easy to picture, but its size and results are missing. A recruiter can't tell how many students or employers are involved, or what happened after placement.",
+        "example": "Manage a summer jobs program placing [number] high school students with [number] local employers, with [result, if known]",
+        "question": "How many students and employers were involved, and what placement result can you verify?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 2",
+        "line": "- Supervise 4 program coordinators and 20 seasonal staff",
+        "cannot_tell": "The team size is there, but not what the team does. That work would show a recruiter what you're managing.",
+        "example": "Supervise 4 program coordinators and 20 seasonal staff who [team responsibilities]",
+        "question": "What do the coordinators and seasonal staff handle?"
+      },
+      {
+        "kind": "keep",
+        "where": "Program Manager, line 3",
+        "line": "- Write grant reports for city and foundation funders",
+        "cannot_tell": "Keep this as a model. It names the deliverable and the people receiving it without making a recruiter guess.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Program Manager, Youth Workforce",
+        "Program Coordinator"
+      ],
+      "level": "Program manager",
+      "note": "Your experience points toward youth workforce program management, with earlier coordination work at the same organization. Staff supervision, employer recruitment and grant reporting are all visible.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 76,
+    "lifted_by_employer": false,
+    "verdict": "A youth workforce program manager with a clear progression, though the size and results of the program are missing.",
+    "write_up": [
+      "A recruiter sees a progression from program coordinator to manager, with responsibility for summer jobs, staff, funder reports and employer partners. The work is clear enough to move forward, but the page doesn't say how many students the program places or what happens after placement.",
+      "The grant reporting line is a useful model: it names what you write and who receives it. Give the summer program and the team that same treatment, with their size and work attached."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Program Manager, line 1",
+        "line": "Manage a summer jobs program placing high school students with local employers",
+        "cannot_tell": "The program is easy to picture, but its size and results are missing. A recruiter can't tell how many students or employers are involved, or what happened after placement.",
+        "example": "Manage a summer jobs program placing [number] high school students with [number] local employers, with [result, if known]",
+        "question": "How many students and employers were involved, and what placement result can you verify?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 2",
+        "line": "Supervise 4 program coordinators and 20 seasonal staff",
+        "cannot_tell": "The team size is there, but not what the team does. That work would show a recruiter what you're managing.",
+        "example": "Supervise 4 program coordinators and 20 seasonal staff who [team responsibilities]",
+        "question": "What do the coordinators and seasonal staff handle?"
+      },
+      {
+        "kind": "keep",
+        "where": "Program Manager, line 3",
+        "line": "Write grant reports for city and foundation funders",
+        "cannot_tell": "Keep this as a model. It names the deliverable and the people receiving it without making a recruiter guess.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Program Manager, Youth Workforce",
+        "Program Coordinator"
+      ],
+      "level": "Program manager",
+      "note": "Your experience points toward youth workforce program management, with earlier coordination work at the same organization. Staff supervision, employer recruitment and grant reporting are all visible.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 76
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 76,
+    "lifted_by_employer": false,
+    "verdict": "A youth workforce program manager with a clear progression, though the size and results of the program are missing.",
+    "write_up": [
+      "A recruiter sees a progression from program coordinator to manager, with responsibility for summer jobs, staff, funder reports and employer partners. The work is clear enough to move forward, but the page doesn't say how many students the program places or what happens after placement.",
+      "The grant reporting line is a useful model: it names what you write and who receives it. Give the summer program and the team that same treatment, with their size and work attached."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Program Manager, line 1",
+        "line": "Manage a summer jobs program placing high school students with local employers",
+        "cannot_tell": "The program is easy to picture, but its size and results are missing. A recruiter can't tell how many students or employers are involved, or what happened after placement.",
+        "example": "Manage a summer jobs program placing [number] high school students with [number] local employers, with [result, if known]",
+        "question": "How many students and employers were involved, and what placement result can you verify?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 2",
+        "line": "Supervise 4 program coordinators and 20 seasonal staff",
+        "cannot_tell": "The team size is there, but not what the team does. That work would show a recruiter what you're managing.",
+        "example": "Supervise 4 program coordinators and 20 seasonal staff who [team responsibilities]",
+        "question": "What do the coordinators and seasonal staff handle?"
+      },
+      {
+        "kind": "keep",
+        "where": "Program Manager, line 3",
+        "line": "Write grant reports for city and foundation funders",
+        "cannot_tell": "Keep this as a model. It names the deliverable and the people receiving it without making a recruiter guess.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Program Manager, Youth Workforce",
+        "Program Coordinator"
+      ],
+      "level": "Program manager",
+      "note": "Your experience points toward youth workforce program management, with earlier coordination work at the same organization. Staff supervision, employer recruitment and grant reporting are all visible.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 76
+  },
+  "presentation": {
+    "score": 76,
+    "band": "Mostly clear",
+    "model_score": 76,
+    "lifted_by_employer": false,
+    "verdict": "A youth workforce program manager with a clear progression, though the size and results of the program are missing.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 78,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Program Manager, line 1",
+        "line": "Manage a summer jobs program placing high school students with local employers",
+        "blanks": 3,
+        "question": "How many students and employers were involved, and what placement result can you verify?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 2",
+        "line": "Supervise 4 program coordinators and 20 seasonal staff",
+        "blanks": 1,
+        "question": "What do the coordinators and seasonal staff handle?"
+      },
+      {
+        "kind": "keep",
+        "where": "Program Manager, line 3",
+        "line": "Write grant reports for city and foundation funders",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "line": 2,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Program Manager, Youth Workforce",
+        "Program Coordinator"
+      ],
+      "level": "Program manager",
+      "note": "Your experience points toward youth workforce program management, with earlier coordination work at the same organization. Staff supervision, employer recruitment and grant reporting are all visible.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0069831,
+  "latency_ms": 17100
+}

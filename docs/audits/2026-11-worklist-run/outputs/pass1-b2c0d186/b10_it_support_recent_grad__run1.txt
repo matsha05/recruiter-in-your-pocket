@@ -1,0 +1,47 @@
+# b10_it_support_recent_grad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_it_support_recent_grad_1.txt (119 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt b2c0d186; severity check on
+Outcome: report; cost $0.0200; repair ran; 39.5s
+Case note: First job.
+
+Validator refused the first draft: The model response failed the worklist contract at write_up[1]: uses the retired phrase "the read".
+
+## Mostly clear (score 76; model wrote 76)
+## Verdict
+An entry-level IT support resume with concrete tasks, but no account of time after the internship.
+
+## Write-up
+You have school help desk experience, earlier device setup work in retail, and a CompTIA A+. The latest dated job ends in May 2025, so a recruiter will wonder what you've been doing since.
+
+The Active Directory bullet is your best model: it names both the task and the tool. Put Experience above Education, then add a little more detail about the tickets and classroom laptops.
+
+## Cards (5; {"dates":1,"structure":1,"line":3}); severity none (none); added []
+1. [dates] Dates
+   line: "The latest dated job ends in May 2025."
+   can't tell: The page doesn't say what you've been doing since the internship. A brief, honest line would help place that time.
+   example: [dates] [work, study, job search or other activity, if applicable]
+   question: What have you been doing since May 2025 that you'd like to include?
+2. [structure] Structure
+   line: "Education sits above Experience."
+   can't tell: Your work is the stronger starting point now that you have experience in both IT and retail. It currently comes after Education and Certifications.
+   question: Can you move Experience above Education and Certifications?
+3. [line] IT Help Desk Intern, line 1
+   line: "Answered help desk tickets from teachers and staff"
+   can't tell: The audience is clear, but the tickets could cover almost anything. A typical issue and the volume, if you know it, would show more of your help desk work.
+   example: Answered help desk tickets from teachers and staff [typical issues] [ticket volume and time period, if known]
+   question: What issues did you typically handle, and roughly how many tickets did you answer if you know?
+4. [line] IT Help Desk Intern, line 2
+   line: "Imaged and set up laptops for classrooms"
+   can't tell: The classroom work is easy to picture, but its size and the setup aren't on the page. Either would help distinguish it from a generic setup bullet.
+   example: Imaged and set up laptops for classrooms [number of laptops, if known] [imaging and setup tasks]
+   question: How many laptops did you set up, if you know, and what did the setup involve?
+5. [line] Skills
+   line: "Windows 10/11, Active Directory, Microsoft 365 administration, basic networking, ticketing systems"
+   can't tell: Microsoft 365 administration is listed, but the page doesn't show what you administered or where you used it. That matters for the systems direction you're considering.
+   example: Windows 10/11, Active Directory, Microsoft 365 administration [tasks and where you performed them], basic networking, ticketing systems
+   question: What Microsoft 365 administration tasks have you performed, and where?
+
+## Fit
+Roles: ["IT Help Desk Intern"]
+Level: Entry-level IT support
+Note: The internship and retail device setup point toward desktop support. The page shows less about systems administration beyond Active Directory, so specific Microsoft 365 tasks would help explain that direction.

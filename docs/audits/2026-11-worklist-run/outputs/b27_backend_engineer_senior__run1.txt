@@ -1,0 +1,23 @@
+# b27_backend_engineer_senior, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_backend_engineer_senior_1.txt (190 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 18e7e9ff; severity check off
+Outcome: report; cost $0.0035; 6.7s
+
+## Clear and specific (score 94; model wrote 94)
+## Verdict
+A senior payments engineer with concrete results across authorization, ledger, billing, and audit work.
+
+## Write-up
+A recruiter can follow your progression from billing APIs to leading payments platform work. The headline matches the jobs, and the recent bullets show both technical ownership and what changed.
+
+The ledger line is the model: it names what you built and puts the reconciliation improvement right beside it. The audit and contract testing lines are just as direct. There’s little a recruiter has to guess on a first pass.
+
+## Cards (1; {"keep":1}); severity off; added []
+1. [keep] Senior Software Engineer, Payments Platform, line 2
+   line: "Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10"
+   can't tell: Keep this as a model. It names the service you built and shows what changed without making a recruiter guess.
+
+## Fit
+Roles: ["Senior Software Engineer, Payments Platform","Software Engineer"]
+Level: Senior engineer
+Note: Your experience points toward backend payments and billing work, with service design, audit leadership, and mentoring. The headline is consistent with the work described.

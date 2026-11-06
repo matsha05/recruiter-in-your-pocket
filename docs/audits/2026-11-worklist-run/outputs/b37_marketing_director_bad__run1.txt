@@ -1,0 +1,43 @@
+# b37_marketing_director_bad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_marketing_director_bad_1.txt (167 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 18e7e9ff; severity check off
+Outcome: report; cost $0.0088; 20.5s
+Case note: Title above the work; key says no_recent_work, no_target_role, title_level_mismatch.
+
+## Needs more context (score 63; model wrote 63)
+## Verdict
+A director title sits above hands-on marketing work, with no recent work or target role named.
+
+## Write-up
+You have hands-on marketing and operations experience at a candle company, preceded by data entry and lab work. A recruiter may hesitate over the Director of Marketing title: the bullets show posting and product copy, but not the decisions or responsibilities behind the title.
+
+The line about writing product descriptions for 40 candle scents works because it names the deliverable and its size. Nothing is dated after January 2025, and the different kinds of work leave your next target open. Naming that target and accounting for the time since the candle company, if you choose to, would give the story a direction.
+
+## Cards (5; {"line":2,"dates":1,"structure":1,"keep":1}); severity off; added []
+1. [line] Director of Marketing, title
+   line: "Director of Marketing"
+   can't tell: The title suggests a broader job than the bullets describe. Keep your actual title, but add the marketing decisions or other responsibilities you held if they aren't on the page yet.
+   example: Director of Marketing: [marketing decisions or responsibilities beyond posting and product descriptions, if applicable]
+   question: What marketing decisions or other responsibilities did you hold in this role?
+2. [dates] Dates
+   line: "Nothing is dated after January 2025."
+   can't tell: A recruiter can't tell what you've been doing since the candle company. A dated line can answer that without a long explanation.
+   example: [dates] [work, study, caregiving, job search or career break, if applicable]
+   question: Is there work or another activity since January 2025 that you'd like to include?
+3. [structure] Structure
+   line: "The page doesn't name a target job."
+   can't tell: Marketing, data entry and lab work point in different directions. A recruiter has to guess which work you want to do next.
+   question: Which kind of job are you applying for now?
+4. [line] Director of Marketing, line 1
+   line: "Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers"
+   can't tell: The frequency and follower count are there, but not what you posted or whether the posts achieved anything you tracked. That detail would give the marketing work more substance.
+   example: Posted [type of content] 3 to 5 times a week on the company Instagram, which has 2,100 followers; [result, if tracked]
+   question: What did you post, and did you track any results?
+5. [keep] Director of Marketing, line 2
+   line: "Wrote product descriptions for 40 candle scents on the website"
+   can't tell: Keep this as a model. It names what you wrote, where it appeared and how many scents it covered.
+
+## Fit
+Roles: ["Director of Marketing","Data Entry Clerk","Laboratory Assistant"]
+Level: Hands-on contributor; latest title is director
+Note: The latest role points toward hands-on marketing and ecommerce work, while the earlier jobs show data entry and lab preparation. The director title needs more detail about your responsibilities if you're targeting similar titles.

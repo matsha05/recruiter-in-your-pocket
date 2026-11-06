@@ -1,0 +1,108 @@
+{
+  "batch": "holes",
+  "model": "gpt-6.1-terra",
+  "effort": "medium",
+  "today": "2026-11-05",
+  "severity_check": false,
+  "budget_usd": 2,
+  "spent_usd": 0.10164505,
+  "calls": 9,
+  "runs": [
+    {
+      "stem": "h3_strong_resume__run1",
+      "outcome": "report",
+      "cost_usd": 0.00415205,
+      "score": 94,
+      "band": "Clear and specific",
+      "cards": 1,
+      "structural_from_model": 0,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "h4a_academic_cv_15_pages__run1",
+      "outcome": "request_refused",
+      "cost_usd": 0,
+      "score": null,
+      "band": null,
+      "cards": null,
+      "structural_from_model": null,
+      "severity_added": null,
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "h4b_academic_cv_under_cap__run1",
+      "outcome": "report",
+      "cost_usd": 0.0240558,
+      "score": 68,
+      "band": "Needs more context",
+      "cards": 3,
+      "structural_from_model": 1,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "h1_bad_resume__run1",
+      "outcome": "report",
+      "cost_usd": 0.0116258,
+      "score": 45,
+      "band": "Needs more context",
+      "cards": 12,
+      "structural_from_model": 3,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "h2_thin_resume__run1",
+      "outcome": "report",
+      "cost_usd": 0.02373475,
+      "score": 64,
+      "band": "Needs more context",
+      "cards": 6,
+      "structural_from_model": 0,
+      "severity_added": [],
+      "repaired": true,
+      "refusal": "The model response failed the worklist contract at cards[3].cannot_tell: uses the retired phrase \"the read\"."
+    },
+    {
+      "stem": "h4c_one_paragraph__run1",
+      "outcome": "report",
+      "cost_usd": 0.00467455,
+      "score": 83,
+      "band": "Mostly clear",
+      "cards": 1,
+      "structural_from_model": 0,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "h5_mismatched_posting__run1",
+      "outcome": "report",
+      "cost_usd": 0.01049425,
+      "score": 86,
+      "band": "Clear and specific",
+      "cards": 3,
+      "structural_from_model": 0,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "h6_unverifiable_claim__run1",
+      "outcome": "report",
+      "cost_usd": 0.02290785,
+      "score": 64,
+      "band": "Needs more context",
+      "cards": 10,
+      "structural_from_model": 1,
+      "severity_added": [],
+      "repaired": true,
+      "refusal": "The model response failed the worklist contract at cards[0].cannot_tell: uses the retired phrase \"the read\"."
+    }
+  ]
+}

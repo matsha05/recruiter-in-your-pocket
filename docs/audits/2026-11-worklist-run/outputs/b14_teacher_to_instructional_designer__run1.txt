@@ -1,0 +1,31 @@
+# b14_teacher_to_instructional_designer, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_teacher_to_instructional_designer_1.txt (164 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 18e7e9ff; severity check off
+Outcome: report; cost $0.0151; repair ran; 20.4s
+Case note: Career changer.
+
+Validator refused the first draft: The model response failed the worklist contract at write_up[0]: uses the retired phrase "the open question is".
+
+## Mostly clear (score 80; model wrote 80)
+## Verdict
+A mathematics teacher with clear classroom work and a concrete start in digital learning design.
+
+## Write-up
+A recruiter can see the classes you teach, their size, and your move into digital learning design. Your department leadership leaves a question: what does the group work on?
+
+The Canvas module is the line to build around: it names the subject, the format, and the tool. If you can add what changed for students, it would make the design work even stronger.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Mathematics Teacher, Cedar Creek High School, line 2
+   line: "Redesigned the Algebra II unit on functions into a self-paced online module in Canvas"
+   can't tell: This names what you redesigned and where students use it. It's a good model for the rest of the page.
+2. [line] Mathematics Teacher, Cedar Creek High School, line 3
+   line: "Lead the math department's professional learning community"
+   can't tell: A recruiter knows you lead the group, but not what it works on or what you lead it to do.
+   example: Lead the math department's professional learning community, focusing on [topics] and [what the group produces or changes]
+   question: What does the group work on, and what have you led it to produce or change?
+
+## Fit
+Roles: ["Mathematics Teacher"]
+Level: Experienced educator
+Note: Your experience points first to mathematics teaching, with a developing focus on digital learning design. The Canvas module, portfolio, and certificate in progress make that direction visible.

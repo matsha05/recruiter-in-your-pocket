@@ -1,0 +1,399 @@
+{
+  "case_id": "t2_logos_operations_robert",
+  "batch": "tier",
+  "run": 1,
+  "note": "Blind pick v5 bp5-10: a recognisable employer; decision 5 says the lift is one rung, bounded, declared.",
+  "resume_file": "resumes/t2_logos_operations_robert.txt",
+  "resume_sha256": "dadfd0700868e9bb51ded2848f7368630310b4dedb9f164be5b3bdc9ceea6e96",
+  "resume_words": 183,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T03:50:11.119Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4135,
+        "completion_tokens": 1068,
+        "total_tokens": 5203,
+        "cached_prompt_tokens": 3406,
+        "cache_write_prompt_tokens": 726,
+        "reasoning_tokens": 280
+      },
+      "cost_usd": 0.0064208,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 13113
+    },
+    {
+      "kind": "repair",
+      "usage": {
+        "prompt_tokens": 5096,
+        "completion_tokens": 1409,
+        "total_tokens": 6505,
+        "cached_prompt_tokens": 3406,
+        "cache_write_prompt_tokens": 1687,
+        "reasoning_tokens": 616
+      },
+      "cost_usd": 0.00932705,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 16970
+    }
+  ],
+  "resume_prompt_sha256": "05f0ed391d02c15c487cdf3fcd427706167ba6aa9a1ad58365cfcff658e9caea",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A strong program management history, but the current terminal job leaves too much to guess.",
+    "write_up": [
+      "You look like an operations manager with substantial program management experience. A recruiter may hesitate over the current role: the terminal work is named, but its size and results aren't.",
+      "The Google capacity-planning line is a model: it names the program, region, sites and budget. Bring some of that detail to Brightline, especially the team size and what the weekly metrics track."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 1",
+        "line": "- Responsible for daily operations of the Austin terminal",
+        "cannot_tell": "The terminal is named, but not what you handle day to day or how much freight moves through it. That's the first question about your current job.",
+        "example": "Responsible for daily operations of the Austin terminal, including [specific responsibilities] and [terminal throughput]",
+        "question": "Which daily operations are yours, and what measure best describes the terminal's size?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 2",
+        "line": "- Manage a team of coordinators and dispatchers",
+        "cannot_tell": "You manage the team, but its size and work aren't stated. Both matter for a management role.",
+        "example": "Manage a team of [number] coordinators and dispatchers responsible for [work]",
+        "question": "How many coordinators and dispatchers do you manage, and what are they responsible for?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 3",
+        "line": "- Work with carriers and customers to resolve issues",
+        "cannot_tell": "The parties are clear, but the issues aren't. One specific example would show what you handle.",
+        "example": "Work with carriers and customers to resolve [specific issue] by [your part in resolving it]",
+        "question": "What kind of issue have you worked on with carriers and customers, and what did you do?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 4",
+        "line": "- Report weekly metrics to the regional director",
+        "cannot_tell": "The weekly reporting line names its audience, but not the metrics or how they're used.",
+        "example": "Report weekly [metrics] to the regional director for [how the metrics are used]",
+        "question": "Which metrics do you report, and how does the regional director use them?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Program Manager, line 1",
+        "line": "- Ran the data center capacity planning program for the Americas region, covering 11 sites and a $340M annual build budget",
+        "cannot_tell": "Keep this as a model. It names the program and gives its size without making the reader guess.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Operations Manager",
+        "Senior Program Manager",
+        "Program Manager"
+      ],
+      "level": "Operations and program management",
+      "note": "Your experience points toward operations management and senior program management. The Google and Dell Technologies roles show program size and results; the current terminal role needs comparable detail.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "initial_validation_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the worklist contract at cards[4].cannot_tell: uses the retired phrase \"the read\".",
+    "issues": [
+      {
+        "path": "cards[4].cannot_tell",
+        "message": "uses the retired phrase \"the read\""
+      }
+    ]
+  },
+  "model_output_repaired": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A strong program management history, but the current terminal job leaves too much to guess.",
+    "write_up": [
+      "You look like an operations manager with substantial program management experience. A recruiter may hesitate over the current role: the terminal work is named, but its size and results aren't.",
+      "The Google forecast-to-delivery line is a model: it says what you changed, how you changed it and what happened. Bring some of that detail to Brightline, especially the team size and what the weekly metrics track."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 1",
+        "line": "- Responsible for daily operations of the Austin terminal",
+        "cannot_tell": "The terminal is named, but not what you handle day to day or how much freight moves through it. That's the first question about your current job.",
+        "example": "Responsible for daily operations of the Austin terminal [specific responsibilities] [terminal throughput]",
+        "question": "Which daily operations are yours, and what measure best describes the terminal's size?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 2",
+        "line": "- Manage a team of coordinators and dispatchers",
+        "cannot_tell": "You manage the team, but its size and work aren't stated. Both matter for a management role.",
+        "example": "Manage a team of coordinators and dispatchers [team size] [team responsibilities]",
+        "question": "How many coordinators and dispatchers do you manage, and what are they responsible for?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 3",
+        "line": "- Work with carriers and customers to resolve issues",
+        "cannot_tell": "The parties are clear, but the issues aren't. One specific example would show what you handle.",
+        "example": "Work with carriers and customers to resolve issues [specific issue] [your part in resolving it]",
+        "question": "What kind of issue have you worked on with carriers and customers, and what did you do?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 4",
+        "line": "- Report weekly metrics to the regional director",
+        "cannot_tell": "The weekly reporting line names its audience, but not the metrics or how they're used.",
+        "example": "Report weekly metrics to the regional director [metrics] [how the metrics are used]",
+        "question": "Which metrics do you report, and how does the regional director use them?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Program Manager, line 2",
+        "line": "- Cut the forecast-to-delivery cycle for new capacity from 14 months to 9 by consolidating three approval tracks into one",
+        "cannot_tell": "Keep this as a model. It tells me what changed and how you did it.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Operations Manager",
+        "Senior Program Manager",
+        "Program Manager"
+      ],
+      "level": "Operations and program management",
+      "note": "Your experience points toward operations management and senior program management. The Google and Dell Technologies roles show program size and results; the current terminal role needs comparable detail.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "repaired": true,
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A strong program management history, but the current terminal job leaves too much to guess.",
+    "write_up": [
+      "You look like an operations manager with substantial program management experience. A recruiter may hesitate over the current role: the terminal work is named, but its size and results aren't.",
+      "The Google forecast-to-delivery line is a model: it says what you changed, how you changed it and what happened. Bring some of that detail to Brightline, especially the team size and what the weekly metrics track."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 1",
+        "line": "Responsible for daily operations of the Austin terminal",
+        "cannot_tell": "The terminal is named, but not what you handle day to day or how much freight moves through it. That's the first question about your current job.",
+        "example": "Responsible for daily operations of the Austin terminal [specific responsibilities] [terminal throughput]",
+        "question": "Which daily operations are yours, and what measure best describes the terminal's size?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 2",
+        "line": "Manage a team of coordinators and dispatchers",
+        "cannot_tell": "You manage the team, but its size and work aren't stated. Both matter for a management role.",
+        "example": "Manage a team of coordinators and dispatchers [team size] [team responsibilities]",
+        "question": "How many coordinators and dispatchers do you manage, and what are they responsible for?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 3",
+        "line": "Work with carriers and customers to resolve issues",
+        "cannot_tell": "The parties are clear, but the issues aren't. One specific example would show what you handle.",
+        "example": "Work with carriers and customers to resolve issues [specific issue] [your part in resolving it]",
+        "question": "What kind of issue have you worked on with carriers and customers, and what did you do?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 4",
+        "line": "Report weekly metrics to the regional director",
+        "cannot_tell": "The weekly reporting line names its audience, but not the metrics or how they're used.",
+        "example": "Report weekly metrics to the regional director [metrics] [how the metrics are used]",
+        "question": "Which metrics do you report, and how does the regional director use them?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Program Manager, line 2",
+        "line": "Cut the forecast-to-delivery cycle for new capacity from 14 months to 9 by consolidating three approval tracks into one",
+        "cannot_tell": "Keep this as a model. It tells me what changed and how you did it.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Operations Manager",
+        "Senior Program Manager",
+        "Program Manager"
+      ],
+      "level": "Operations and program management",
+      "note": "Your experience points toward operations management and senior program management. The Google and Dell Technologies roles show program size and results; the current terminal role needs comparable detail.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 68
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A strong program management history, but the current terminal job leaves too much to guess.",
+    "write_up": [
+      "You look like an operations manager with substantial program management experience. A recruiter may hesitate over the current role: the terminal work is named, but its size and results aren't.",
+      "The Google forecast-to-delivery line is a model: it says what you changed, how you changed it and what happened. Bring some of that detail to Brightline, especially the team size and what the weekly metrics track."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 1",
+        "line": "Responsible for daily operations of the Austin terminal",
+        "cannot_tell": "The terminal is named, but not what you handle day to day or how much freight moves through it. That's the first question about your current job.",
+        "example": "Responsible for daily operations of the Austin terminal [specific responsibilities] [terminal throughput]",
+        "question": "Which daily operations are yours, and what measure best describes the terminal's size?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 2",
+        "line": "Manage a team of coordinators and dispatchers",
+        "cannot_tell": "You manage the team, but its size and work aren't stated. Both matter for a management role.",
+        "example": "Manage a team of coordinators and dispatchers [team size] [team responsibilities]",
+        "question": "How many coordinators and dispatchers do you manage, and what are they responsible for?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 3",
+        "line": "Work with carriers and customers to resolve issues",
+        "cannot_tell": "The parties are clear, but the issues aren't. One specific example would show what you handle.",
+        "example": "Work with carriers and customers to resolve issues [specific issue] [your part in resolving it]",
+        "question": "What kind of issue have you worked on with carriers and customers, and what did you do?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 4",
+        "line": "Report weekly metrics to the regional director",
+        "cannot_tell": "The weekly reporting line names its audience, but not the metrics or how they're used.",
+        "example": "Report weekly metrics to the regional director [metrics] [how the metrics are used]",
+        "question": "Which metrics do you report, and how does the regional director use them?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Program Manager, line 2",
+        "line": "Cut the forecast-to-delivery cycle for new capacity from 14 months to 9 by consolidating three approval tracks into one",
+        "cannot_tell": "Keep this as a model. It tells me what changed and how you did it.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Operations Manager",
+        "Senior Program Manager",
+        "Program Manager"
+      ],
+      "level": "Operations and program management",
+      "note": "Your experience points toward operations management and senior program management. The Google and Dell Technologies roles show program size and results; the current terminal role needs comparable detail.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 68
+  },
+  "presentation": {
+    "score": 68,
+    "band": "Needs more context",
+    "model_score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A strong program management history, but the current terminal job leaves too much to guess.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 66,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 1",
+        "line": "Responsible for daily operations of the Austin terminal",
+        "blanks": 2,
+        "question": "Which daily operations are yours, and what measure best describes the terminal's size?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 2",
+        "line": "Manage a team of coordinators and dispatchers",
+        "blanks": 2,
+        "question": "How many coordinators and dispatchers do you manage, and what are they responsible for?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 3",
+        "line": "Work with carriers and customers to resolve issues",
+        "blanks": 2,
+        "question": "What kind of issue have you worked on with carriers and customers, and what did you do?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 4",
+        "line": "Report weekly metrics to the regional director",
+        "blanks": 2,
+        "question": "Which metrics do you report, and how does the regional director use them?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Program Manager, line 2",
+        "line": "Cut the forecast-to-delivery cycle for new capacity from 14 months to 9 by consolidating three approval tracks into one",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "line": 4,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Operations Manager",
+        "Senior Program Manager",
+        "Program Manager"
+      ],
+      "level": "Operations and program management",
+      "note": "Your experience points toward operations management and senior program management. The Google and Dell Technologies roles show program size and results; the current terminal role needs comparable detail.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01574785,
+  "latency_ms": 30111
+}

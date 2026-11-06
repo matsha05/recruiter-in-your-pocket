@@ -1,0 +1,33 @@
+# b07_account_executive, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_account_executive_1.txt (145 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt b2c0d186; severity check on
+Outcome: report; cost $0.0057; 10.4s
+
+## Clear and specific (score 86; model wrote 86)
+## Verdict
+A mid-market HR software seller with a promotion, quota attainment and a partner referral program.
+
+## Write-up
+You look like an account executive who moved up from SDR and can point to a strong sales year. The main hesitation is that your part in demos and security reviews is less clear than your closed revenue.
+
+The $1.1M new ARR line is the model: it names what you closed, when, and how it compared with quota. The payroll partner line also gives a recruiter something concrete to remember.
+
+## Cards (3; {"keep":1,"line":2}); severity none (none); added []
+1. [keep] Account Executive, line 1
+   line: "Closed $1.1M in new annual recurring revenue in 2025, 108% of quota"
+   can't tell: This line gives the revenue, year and quota comparison together. It makes your sales performance easy to understand.
+2. [line] Account Executive, line 4
+   line: "Work with solutions engineers on demos and security reviews"
+   can't tell: The people and activities are named, but your part in the demos and reviews isn't. A recruiter can't tell how you move those conversations forward.
+   example: Work with solutions engineers on demos and security reviews, [your contribution]
+   question: What do you do in the demos and security reviews alongside the solutions engineers?
+3. [line] Sales Development Representative, line 3
+   line: "Top SDR in two quarters"
+   can't tell: The ranking is useful, but the page doesn't say what it was based on. That leaves the achievement a little hard to judge.
+   example: Top SDR in two quarters, ranked by [measure]
+   question: What measure determined the top SDR ranking?
+
+## Fit
+Roles: ["Account Executive, Mid-Market","Sales Development Representative"]
+Level: Mid-market account executive
+Note: Your experience points to mid-market software sales, with full-cycle work and a prior SDR role. The quota and new ARR figures give the account executive story a firm footing.

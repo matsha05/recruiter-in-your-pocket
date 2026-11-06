@@ -1,0 +1,41 @@
+# b21_customer_success_manager_with_posting, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt (180 words), posting: ../2026-11-live-judgment/resumes/b_posting_customer_success_manager.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt b2c0d186; severity check on
+Outcome: report; cost $0.0098; 18.7s
+Case note: The same resume with a posting attached.
+
+## Mostly clear (score 80; model wrote 80)
+## Verdict
+A mid-market customer success manager with a clear account book, but no renewal results on the page.
+
+## Write-up
+You look like a credible fit for the mid-market customer success role: you manage 48 accounts, run QBRs, and work with Sales on at-risk renewals. The hesitation is that the posting asks for a track record against retention or expansion targets, and your resume doesn't give those results.
+
+The 48-account line is the model for the rest: it names your book, customer segment, and industries without making anyone guess. Bring that same specificity to the renewal strategy and onboarding checklist. The posting also asks for VP-level QBRs and usage data; the page doesn't establish either.
+
+## Cards (4; {"keep":1,"line":3}); severity none (none); added []
+1. [keep] Customer Success Manager, line 1
+   line: "Manage a book of 48 mid-market accounts across healthcare and manufacturing"
+   can't tell: This gives a recruiter a concrete picture of your book and who you serve. It's a good model for the other bullets.
+2. [line] Customer Success Manager, line 2
+   line: "Run quarterly business reviews with customer finance and HR leads"
+   can't tell: The work and audience are clear, but the posting asks specifically for VP-level sponsors. It isn't clear whether any of those leads were at that level.
+   example: Run quarterly business reviews with customer finance and HR leads [sponsor levels, if applicable] [topics reviewed or decisions made]
+   question: What levels were the finance and HR leads, and what did you review or decide with them?
+3. [line] Customer Success Manager, line 3
+   line: "Partnered with Sales on renewal strategy for at-risk accounts"
+   can't tell: The partnership is clear, but your part in the strategy and any renewal results aren't. Those details matter for a job accountable for retention.
+   example: Partnered with Sales on renewal strategy for at-risk accounts [your contribution] [renewal results, if known]
+   question: What did you contribute to the renewal strategy, and what renewal results can you verify?
+4. [line] Customer Success Manager, line 4
+   line: "Built an onboarding checklist now used by the whole CS team"
+   can't tell: The team uses the checklist, which is useful to know. What it covers and whether it changed onboarding are still open.
+   example: Built an onboarding checklist [what it covers] now used by the whole CS team [what changed, if known]
+   question: What does the checklist cover, and did it change onboarding in a way you can verify?
+
+## Fit
+Roles: ["Customer Success Manager, Mid-Market","Customer Success Manager"]
+Level: Experienced individual contributor
+Note: The posting asks for quantified retention or expansion results, VP-level QBRs, and usage-data work that the resume doesn't show. Your 48 mid-market accounts, QBRs, at-risk renewal work, Gainsight, and Salesforce make the role a plausible match. Emphasize those, and add verified renewal results and sponsor levels if you have them.
+Posting: Mid-market SaaS customer success role owning renewals, expansion, onboarding, QBRs, and at-risk account plans.
+Missing: ["A track record of hitting retention or expansion targets, with numbers you can talk about","Experience running QBRs with VP-level sponsors","a BI tool such as Looker","Identify at-risk accounts early using product usage data","log and prioritize feature requests"]

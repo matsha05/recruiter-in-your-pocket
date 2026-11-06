@@ -1,0 +1,23 @@
+# b26_construction_pm_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_construction_pm_strong_1.txt (136 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt b2c0d186; severity check on
+Outcome: report; cost $0.0050; 12.3s
+
+## Clear and specific (score 91; model wrote 91)
+## Verdict
+A construction project manager with project values, trade counts and results attached to the work.
+
+## Write-up
+You come across as a construction project manager who runs concurrent tenant improvements and has delivered a grocery store build. The project values, trade counts and change-order figures make the work easy to place.
+
+The grocery store line is the model: it names the build, its value and when you delivered it against schedule. If you have room, you could add what helped you finish ahead of schedule.
+
+## Cards (1; {"keep":1}); severity none (none); added []
+1. [keep] Project Manager, line 2
+   line: "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024"
+   can't tell: The build, contract value and finish against schedule are all here. A recruiter doesn't have to guess what you delivered.
+
+## Fit
+Roles: ["Project Manager","Assistant Project Manager"]
+Level: Experienced project manager
+Note: Your experience points toward commercial construction project management, particularly tenant improvements and retail builds. The page shows both current project ownership and earlier scheduling and submittal work.

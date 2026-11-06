@@ -1,0 +1,33 @@
+# b33_nonprofit_program_manager, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_nonprofit_program_manager_1.txt (146 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 18e7e9ff; severity check off
+Outcome: report; cost $0.0070; 17.1s
+
+## Mostly clear (score 76; model wrote 76)
+## Verdict
+A youth workforce program manager with a clear progression, though the size and results of the program are missing.
+
+## Write-up
+A recruiter sees a progression from program coordinator to manager, with responsibility for summer jobs, staff, funder reports and employer partners. The work is clear enough to move forward, but the page doesn't say how many students the program places or what happens after placement.
+
+The grant reporting line is a useful model: it names what you write and who receives it. Give the summer program and the team that same treatment, with their size and work attached.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] Program Manager, line 1
+   line: "Manage a summer jobs program placing high school students with local employers"
+   can't tell: The program is easy to picture, but its size and results are missing. A recruiter can't tell how many students or employers are involved, or what happened after placement.
+   example: Manage a summer jobs program placing [number] high school students with [number] local employers, with [result, if known]
+   question: How many students and employers were involved, and what placement result can you verify?
+2. [line] Program Manager, line 2
+   line: "Supervise 4 program coordinators and 20 seasonal staff"
+   can't tell: The team size is there, but not what the team does. That work would show a recruiter what you're managing.
+   example: Supervise 4 program coordinators and 20 seasonal staff who [team responsibilities]
+   question: What do the coordinators and seasonal staff handle?
+3. [keep] Program Manager, line 3
+   line: "Write grant reports for city and foundation funders"
+   can't tell: Keep this as a model. It names the deliverable and the people receiving it without making a recruiter guess.
+
+## Fit
+Roles: ["Program Manager, Youth Workforce","Program Coordinator"]
+Level: Program manager
+Note: Your experience points toward youth workforce program management, with earlier coordination work at the same organization. Staff supervision, employer recruitment and grant reporting are all visible.

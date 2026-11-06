@@ -1,0 +1,27 @@
+Maya Chen
+Mountain View, CA | maya.chen@example.com | 555-0171
+
+Software engineer with six years building backend services.
+
+EXPERIENCE
+
+Software Engineer
+Google, Mountain View, CA
+January 2023 - Present
+- Worked on features for an internal tool used by other engineering teams
+- Collaborated with cross-functional partners on requirements
+- Participated in code reviews, design reviews and the on-call rotation
+- Mentored a new team member
+
+Software Engineer
+Harborview Analytics (Series C, 400 employees), San Francisco, CA
+June 2019 - December 2022
+- Built the ingestion service that moved 2 billion events a day from Kafka into BigQuery
+- Cut p95 query latency on the customer dashboard from 4.2 s to 900 ms by rewriting the aggregation layer
+- Led the migration of 14 services from EC2 to Kubernetes over nine months with two other engineers
+
+EDUCATION
+B.S., Computer Science, University of Washington, 2019
+
+SKILLS
+Go, Java, Python, Kubernetes, Kafka, BigQuery, gRPC

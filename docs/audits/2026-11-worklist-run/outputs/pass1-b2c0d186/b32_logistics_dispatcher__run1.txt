@@ -1,0 +1,48 @@
+# b32_logistics_dispatcher, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_logistics_dispatcher_1.txt (105 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt b2c0d186; severity check on
+Outcome: report; cost $0.0085; 17.5s
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+A dispatcher’s resume with recognizable duties, but too little detail about the operation to move forward confidently.
+
+## Write-up
+You look like a regional trucking dispatcher who worked up from dispatch assistant. A recruiter can follow the jobs, but may pass because the current role doesn't say how many drivers you dispatch or what you do when a driver has a problem.
+
+The load-tracking line is the best model: it names the work and who gets the updates. Bring that same detail to the TMS, safety and paperwork lines, then add the driver count if you can verify it.
+
+## Cards (6; {"line":5,"keep":1}); severity none (none); added []
+1. [line] Dispatcher, line 1
+   line: "Responsible for dispatching drivers"
+   can't tell: Dispatching is the core of the job, but the line doesn't say how many drivers you handle or how you dispatch them.
+   example: Responsible for dispatching [number] drivers [how often], including [dispatching tasks]
+   question: How many drivers do you dispatch, how often, and what does that work involve?
+2. [keep] Dispatcher, line 2
+   line: "Track loads and update customers on delivery status"
+   can't tell: Keep this as a model. It names both the work and the people who receive the updates.
+3. [line] Dispatcher, line 3
+   line: "Handle driver issues on the road"
+   can't tell: Driver issues could mean several things. The line doesn't show what comes to you or what you do about it.
+   example: Handle driver issues on the road, including [types of issues], by [actions you take]
+   question: What kinds of driver issues do you handle, and what do you do to address them?
+4. [line] Dispatcher, line 4
+   line: "Use TMS software daily"
+   can't tell: Daily use is useful to know, but it doesn't say what you do in the software. McLeod TMS is already named in Skills.
+   example: Use TMS software daily to [tasks]
+   question: What tasks do you perform in the TMS each day?
+5. [line] Dispatcher, line 5
+   line: "Work with the safety team on driver hours"
+   can't tell: The safety team and driver hours are named, but your part in that work is still a guess.
+   example: Work with the safety team on driver hours by [your tasks]
+   question: What do you do with the safety team when working on driver hours?
+6. [line] Dispatch Assistant, line 2
+   line: "Helped dispatchers with paperwork"
+   can't tell: Paperwork doesn't tell a recruiter which documents you handled or what help you provided.
+   example: Helped dispatchers with [type of paperwork] by [your tasks]
+   question: Which paperwork did you help dispatchers with, and what did you do?
+
+## Fit
+Roles: ["Dispatcher","Dispatch Assistant"]
+Level: Experienced dispatcher
+Note: Your experience points toward dispatch work in regional trucking, with an earlier dispatch assistant role at the same company. The current role would be stronger with the driver count and more detail on road issues and safety work.

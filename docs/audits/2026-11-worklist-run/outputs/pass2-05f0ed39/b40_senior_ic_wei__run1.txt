@@ -1,0 +1,34 @@
+# b40_senior_ic_wei, run 1
+Resume: ../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/4-senior-ic-wei.txt (361 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 05f0ed39; severity check off
+Outcome: report; cost $0.0073; 14.6s
+Case note: Senior IC (bar persona).
+
+## Mostly clear (score 82; model wrote 82)
+## Verdict
+Staff-level payments infrastructure work, with strong technical detail but few measures of what the biggest changes achieved.
+
+## Write-up
+You lead ledger and settlement work and have a credible path from storage infrastructure to payments. A recruiter can see the architecture decisions and the duplicate-charge problem you addressed. The main question is how much the ledger redesign changed the platform.
+
+The fraud scoring pipeline line is a useful model: it names what you built, the tools, the workload, and the p99 latency. Bring that same specificity to the ledger redesign and reconciliation improvements where you can.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] Staff Software Engineer, ledger redesign
+   line: "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB"
+   can't tell: The architecture change is concrete, but the line doesn't say what the redesign achieved in practice. A measure of the platform before and after would give the work more weight.
+   example: Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB; [what changed and how it was measured]
+   question: What changed after the redesign, and how was it measured?
+2. [keep] Senior Software Engineer, fraud pipeline
+   line: "Built the real-time fraud scoring pipeline (Flink, Kafka) processing payment events with p99 latency under 50ms"
+   can't tell: Keep this as a model. It names the pipeline, its tools, what it processes, and a performance measure.
+3. [line] Senior Software Engineer, reconciliation
+   line: "Reduced reconciliation break rate and manual ops effort"
+   can't tell: The improvements are clear, but their size isn't. The preceding line explains the service, so this is the place to show what changed.
+   example: Reduced reconciliation break rate [before and after] and manual ops effort [how much]
+   question: How did the break rate and manual ops effort change, if you have those figures?
+
+## Fit
+Roles: ["Staff Software Engineer","Senior Software Engineer"]
+Level: Staff-level software engineering
+Note: Your experience points toward distributed systems and payments infrastructure, with technical leadership in your current role. The earlier object storage and fraud pipeline work adds depth to that story.

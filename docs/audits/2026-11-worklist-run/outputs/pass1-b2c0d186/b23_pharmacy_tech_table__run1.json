@@ -1,0 +1,345 @@
+{
+  "case_id": "b23_pharmacy_tech_table",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Tables rendered to tab-separated text.",
+  "resume_file": "../2026-11-live-judgment/resumes/b_pharmacy_tech_table.txt",
+  "resume_sha256": "872695c37eba2c67784784b9af67edda0387ea5b8bbb90cd54d25ac0f2941367",
+  "resume_words": 209,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": true,
+  "started_at": "2026-11-06T03:36:13.783Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 3993,
+        "completion_tokens": 1017,
+        "total_tokens": 5010,
+        "cached_prompt_tokens": 3095,
+        "cache_write_prompt_tokens": 895,
+        "reasoning_tokens": 446
+      },
+      "cost_usd": 0.0063615,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 13622
+    },
+    {
+      "kind": "repair",
+      "usage": {
+        "prompt_tokens": 4774,
+        "completion_tokens": 719,
+        "total_tokens": 5493,
+        "cached_prompt_tokens": 3095,
+        "cache_write_prompt_tokens": 1676,
+        "reasoning_tokens": 262
+      },
+      "cost_usd": 0.00584775,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 11260
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.00148075,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1230
+    }
+  ],
+  "resume_prompt_sha256": "b2c0d186992d2d925493008c0a67067de9f704dc44ec074808b3bc7176463d9a",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 84,
+    "lifted_by_employer": false,
+    "verdict": "An experienced pharmacy technician with concrete inpatient and retail work, plus one verification detail worth clarifying.",
+    "write_up": [
+      "You come across as a licensed pharmacy technician with both inpatient and retail experience. The sterile compounding work, nursing units and training counts make the current job easy to picture. The retail prescription line leaves one question: what did verification involve?",
+      "The dispensing cabinet line is the model: it names your work, the 6 nursing units and the change in stockout reports. Put duties under each job rather than in a separate table, so a reader doesn't have to match them up."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience",
+        "line": "Experience and duties appear in separate tables.",
+        "cannot_tell": "The roles are labeled, but a reader has to move between tables to connect the work to each employer and date.",
+        "example": "",
+        "question": "Can you place each duty directly under its corresponding job?"
+      },
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, dispensing cabinets",
+        "line": "Pharmacy Technician II\tManage the automated dispensing cabinet restocking for 6 nursing units\tStockout reports down from 9 to 2 per week in 2024",
+        "cannot_tell": "Keep this as a model. It names the work, the units and the stockout reports without making the reader hunt for details.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Pharmacy Technician, prescriptions",
+        "line": "Pharmacy Technician\tFilled and verified prescriptions for a store doing 350 scripts a day",
+        "cannot_tell": "Verification can mean different checks in a pharmacy. Naming the checks you performed would make your part easier to understand.",
+        "example": "Filled and verified prescriptions for a store doing 350 scripts a day, including [checks you performed]",
+        "question": "What checks did you perform when verifying prescriptions?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Pharmacy Technician II",
+        "Pharmacy Technician"
+      ],
+      "level": "Experienced pharmacy technician",
+      "note": "The page points toward inpatient and retail pharmacy technician roles. Sterile compounding, cabinet restocking and technician training are particularly well described.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "initial_validation_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the worklist contract at cards[1].cannot_tell: uses the retired phrase \"the read\".",
+    "issues": [
+      {
+        "path": "cards[1].cannot_tell",
+        "message": "uses the retired phrase \"the read\""
+      }
+    ]
+  },
+  "model_output_repaired": {
+    "contract_version": "v3",
+    "score": 84,
+    "lifted_by_employer": false,
+    "verdict": "An experienced pharmacy technician with concrete inpatient and retail work, plus one verification detail worth clarifying.",
+    "write_up": [
+      "You come across as a licensed pharmacy technician with both inpatient and retail experience. The sterile compounding work, nursing units and training counts make the current job easy to picture. The retail prescription line leaves one question: what did verification involve?",
+      "The dispensing cabinet line is the model: it names your work, the 6 nursing units and the change in stockout reports. Put duties under each job rather than in a separate table, so recruiters don't have to match them up."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience",
+        "line": "Experience and duties appear in separate tables.",
+        "cannot_tell": "The roles are labeled, but recruiters have to move between tables to connect the work to each employer and date.",
+        "example": "",
+        "question": "Can you place each duty directly under its corresponding job?"
+      },
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, dispensing cabinets",
+        "line": "Pharmacy Technician II\tManage the automated dispensing cabinet restocking for 6 nursing units\tStockout reports down from 9 to 2 per week in 2024",
+        "cannot_tell": "Keep this as a model. It names the work, the units and the stockout reports without making anyone hunt for details.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Pharmacy Technician, prescriptions",
+        "line": "Pharmacy Technician\tFilled and verified prescriptions for a store doing 350 scripts a day",
+        "cannot_tell": "Verification can mean different checks in a pharmacy. Naming the checks you performed would make your part easier to understand.",
+        "example": "Filled and verified prescriptions for a store doing 350 scripts a day, including [checks you performed]",
+        "question": "What checks did you perform when verifying prescriptions?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Pharmacy Technician II",
+        "Pharmacy Technician"
+      ],
+      "level": "Experienced pharmacy technician",
+      "note": "The page points toward inpatient and retail pharmacy technician roles. Sterile compounding, cabinet restocking and technician training are particularly well described.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "repaired": true,
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 84,
+    "lifted_by_employer": false,
+    "verdict": "An experienced pharmacy technician with concrete inpatient and retail work, plus one verification detail worth clarifying.",
+    "write_up": [
+      "You come across as a licensed pharmacy technician with both inpatient and retail experience. The sterile compounding work, nursing units and training counts make the current job easy to picture. The retail prescription line leaves one question: what did verification involve?",
+      "The dispensing cabinet line is the model: it names your work, the 6 nursing units and the change in stockout reports. Put duties under each job rather than in a separate table, so recruiters don't have to match them up."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience",
+        "line": "Experience and duties appear in separate tables.",
+        "cannot_tell": "The roles are labeled, but recruiters have to move between tables to connect the work to each employer and date.",
+        "example": "",
+        "question": "Can you place each duty directly under its corresponding job?"
+      },
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, dispensing cabinets",
+        "line": "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024",
+        "cannot_tell": "Keep this as a model. It names the work, the units and the stockout reports without making anyone hunt for details.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Pharmacy Technician, prescriptions",
+        "line": "Pharmacy Technician Filled and verified prescriptions for a store doing 350 scripts a day",
+        "cannot_tell": "Verification can mean different checks in a pharmacy. Naming the checks you performed would make your part easier to understand.",
+        "example": "Filled and verified prescriptions for a store doing 350 scripts a day, including [checks you performed]",
+        "question": "What checks did you perform when verifying prescriptions?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Pharmacy Technician II",
+        "Pharmacy Technician"
+      ],
+      "level": "Experienced pharmacy technician",
+      "note": "The page points toward inpatient and retail pharmacy technician roles. Sterile compounding, cabinet restocking and technician training are particularly well described.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 84
+  },
+  "severity": {
+    "promoted": [],
+    "replaced": [],
+    "led": null,
+    "critical_count": 1,
+    "more_critical": false,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "skipped": [],
+    "validation_attempts": 0,
+    "latency_ms": 1231,
+    "call_latency_ms": 1230,
+    "cost_usd": 0.00148075,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 84,
+    "lifted_by_employer": false,
+    "verdict": "An experienced pharmacy technician with concrete inpatient and retail work, plus one verification detail worth clarifying.",
+    "write_up": [
+      "You come across as a licensed pharmacy technician with both inpatient and retail experience. The sterile compounding work, nursing units and training counts make the current job easy to picture. The retail prescription line leaves one question: what did verification involve?",
+      "The dispensing cabinet line is the model: it names your work, the 6 nursing units and the change in stockout reports. Put duties under each job rather than in a separate table, so recruiters don't have to match them up."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience",
+        "line": "Experience and duties appear in separate tables.",
+        "cannot_tell": "The roles are labeled, but recruiters have to move between tables to connect the work to each employer and date.",
+        "example": "",
+        "question": "Can you place each duty directly under its corresponding job?"
+      },
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, dispensing cabinets",
+        "line": "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024",
+        "cannot_tell": "Keep this as a model. It names the work, the units and the stockout reports without making anyone hunt for details.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Pharmacy Technician, prescriptions",
+        "line": "Pharmacy Technician Filled and verified prescriptions for a store doing 350 scripts a day",
+        "cannot_tell": "Verification can mean different checks in a pharmacy. Naming the checks you performed would make your part easier to understand.",
+        "example": "Filled and verified prescriptions for a store doing 350 scripts a day, including [checks you performed]",
+        "question": "What checks did you perform when verifying prescriptions?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Pharmacy Technician II",
+        "Pharmacy Technician"
+      ],
+      "level": "Experienced pharmacy technician",
+      "note": "The page points toward inpatient and retail pharmacy technician roles. Sterile compounding, cabinet restocking and technician training are particularly well described.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 84
+  },
+  "presentation": {
+    "score": 84,
+    "band": "Mostly clear",
+    "model_score": 84,
+    "lifted_by_employer": false,
+    "verdict": "An experienced pharmacy technician with concrete inpatient and retail work, plus one verification detail worth clarifying.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 81,
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience",
+        "line": "Experience and duties appear in separate tables.",
+        "blanks": 0,
+        "question": "Can you place each duty directly under its corresponding job?"
+      },
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, dispensing cabinets",
+        "line": "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Pharmacy Technician, prescriptions",
+        "line": "Pharmacy Technician Filled and verified prescriptions for a store doing 350 scripts a day",
+        "blanks": 1,
+        "question": "What checks did you perform when verifying prescriptions?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "structure": 1,
+      "keep": 1,
+      "line": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "none (none)",
+    "fit": {
+      "roles": [
+        "Pharmacy Technician II",
+        "Pharmacy Technician"
+      ],
+      "level": "Experienced pharmacy technician",
+      "note": "The page points toward inpatient and retail pharmacy technician roles. Sterile compounding, cabinet restocking and technician training are particularly well described.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01369,
+  "latency_ms": 26115
+}

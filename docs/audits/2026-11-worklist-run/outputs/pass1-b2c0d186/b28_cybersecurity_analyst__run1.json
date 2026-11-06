@@ -1,0 +1,271 @@
+{
+  "case_id": "b28_cybersecurity_analyst",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_cybersecurity_analyst_1.txt",
+  "resume_sha256": "3af143d6457f920bcfc404cff6c5ed95c9a5719c1320855f0e0d464650526db6",
+  "resume_words": 154,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": true,
+  "started_at": "2026-11-06T03:36:39.899Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 3782,
+        "completion_tokens": 845,
+        "total_tokens": 4627,
+        "cached_prompt_tokens": 3095,
+        "cache_write_prompt_tokens": 684,
+        "reasoning_tokens": 237
+      },
+      "cost_usd": 0.00523775,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 11160
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.00123575,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1063
+    }
+  ],
+  "resume_prompt_sha256": "b2c0d186992d2d925493008c0a67067de9f704dc44ec074808b3bc7176463d9a",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A senior detection and response resume with measurable results and a few opportunities to explain the work.",
+    "write_up": [
+      "You look ready for a senior detection and response role: the page shows Splunk detection work, incident response leadership and SOC experience across client environments. The main question is what the purple-team exercises and automation actually involved.",
+      "The detection-rules line is the model: it names Splunk, MITRE ATT&CK, 140+ rules and a 35% reduction in false-positive alerts. That gives a recruiter both the work and what changed."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Security Analyst, line 1",
+        "line": "- Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%",
+        "cannot_tell": "Keep this as a model for the other bullets. It names what you built, where you built it and what changed.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Security Analyst, line 3",
+        "line": "- Run monthly purple-team exercises with the red team",
+        "cannot_tell": "The frequency and collaborators are clear. The page doesn't say what the exercises test or what you do with the findings.",
+        "example": "Run monthly purple-team exercises with the red team, [what you test and do with the findings]",
+        "question": "What do the exercises test, and what do you do with the findings?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Security Analyst, line 4",
+        "line": "- Automated alert enrichment with Python and the Splunk SOAR platform",
+        "cannot_tell": "The tools and task are clear. A detail about the information added to alerts would show what the automation does for responders.",
+        "example": "Automated alert enrichment with Python and the Splunk SOAR platform, [information added to alerts] and [what changed, if known]",
+        "question": "What information does the automation add to alerts, and what changed for responders, if you know?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Security Analyst, Detection and Response",
+        "Security Operations Analyst"
+      ],
+      "level": "Senior individual contributor",
+      "note": "Your experience points toward detection engineering and incident response, with earlier managed security operations work. The current role shows both hands-on technical work and leadership during incidents.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A senior detection and response resume with measurable results and a few opportunities to explain the work.",
+    "write_up": [
+      "You look ready for a senior detection and response role: the page shows Splunk detection work, incident response leadership and SOC experience across client environments. The main question is what the purple-team exercises and automation actually involved.",
+      "The detection-rules line is the model: it names Splunk, MITRE ATT&CK, 140+ rules and a 35% reduction in false-positive alerts. That gives a recruiter both the work and what changed."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Security Analyst, line 1",
+        "line": "Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%",
+        "cannot_tell": "Keep this as a model for the other bullets. It names what you built, where you built it and what changed.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Security Analyst, line 3",
+        "line": "Run monthly purple-team exercises with the red team",
+        "cannot_tell": "The frequency and collaborators are clear. The page doesn't say what the exercises test or what you do with the findings.",
+        "example": "Run monthly purple-team exercises with the red team, [what you test and do with the findings]",
+        "question": "What do the exercises test, and what do you do with the findings?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Security Analyst, line 4",
+        "line": "Automated alert enrichment with Python and the Splunk SOAR platform",
+        "cannot_tell": "The tools and task are clear. A detail about the information added to alerts would show what the automation does for responders.",
+        "example": "Automated alert enrichment with Python and the Splunk SOAR platform, [information added to alerts] and [what changed, if known]",
+        "question": "What information does the automation add to alerts, and what changed for responders, if you know?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Security Analyst, Detection and Response",
+        "Security Operations Analyst"
+      ],
+      "level": "Senior individual contributor",
+      "note": "Your experience points toward detection engineering and incident response, with earlier managed security operations work. The current role shows both hands-on technical work and leadership during incidents.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "severity": {
+    "promoted": [],
+    "replaced": [],
+    "led": null,
+    "critical_count": 1,
+    "more_critical": false,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "skipped": [],
+    "validation_attempts": 0,
+    "latency_ms": 1063,
+    "call_latency_ms": 1063,
+    "cost_usd": 0.00123575,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A senior detection and response resume with measurable results and a few opportunities to explain the work.",
+    "write_up": [
+      "You look ready for a senior detection and response role: the page shows Splunk detection work, incident response leadership and SOC experience across client environments. The main question is what the purple-team exercises and automation actually involved.",
+      "The detection-rules line is the model: it names Splunk, MITRE ATT&CK, 140+ rules and a 35% reduction in false-positive alerts. That gives a recruiter both the work and what changed."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Security Analyst, line 1",
+        "line": "Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%",
+        "cannot_tell": "Keep this as a model for the other bullets. It names what you built, where you built it and what changed.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Security Analyst, line 3",
+        "line": "Run monthly purple-team exercises with the red team",
+        "cannot_tell": "The frequency and collaborators are clear. The page doesn't say what the exercises test or what you do with the findings.",
+        "example": "Run monthly purple-team exercises with the red team, [what you test and do with the findings]",
+        "question": "What do the exercises test, and what do you do with the findings?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Security Analyst, line 4",
+        "line": "Automated alert enrichment with Python and the Splunk SOAR platform",
+        "cannot_tell": "The tools and task are clear. A detail about the information added to alerts would show what the automation does for responders.",
+        "example": "Automated alert enrichment with Python and the Splunk SOAR platform, [information added to alerts] and [what changed, if known]",
+        "question": "What information does the automation add to alerts, and what changed for responders, if you know?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Security Analyst, Detection and Response",
+        "Security Operations Analyst"
+      ],
+      "level": "Senior individual contributor",
+      "note": "Your experience points toward detection engineering and incident response, with earlier managed security operations work. The current role shows both hands-on technical work and leadership during incidents.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "presentation": {
+    "score": 88,
+    "band": "Clear and specific",
+    "model_score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A senior detection and response resume with measurable results and a few opportunities to explain the work.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 67,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Security Analyst, line 1",
+        "line": "Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Security Analyst, line 3",
+        "line": "Run monthly purple-team exercises with the red team",
+        "blanks": 1,
+        "question": "What do the exercises test, and what do you do with the findings?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Security Analyst, line 4",
+        "line": "Automated alert enrichment with Python and the Splunk SOAR platform",
+        "blanks": 2,
+        "question": "What information does the automation add to alerts, and what changed for responders, if you know?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "keep": 1,
+      "line": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "none (none)",
+    "fit": {
+      "roles": [
+        "Senior Security Analyst, Detection and Response",
+        "Security Operations Analyst"
+      ],
+      "level": "Senior individual contributor",
+      "note": "Your experience points toward detection engineering and incident response, with earlier managed security operations work. The current role shows both hands-on technical work and leadership during incidents.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0064735,
+  "latency_ms": 12225
+}

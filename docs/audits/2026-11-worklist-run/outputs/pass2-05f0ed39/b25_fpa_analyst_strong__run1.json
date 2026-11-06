@@ -1,0 +1,180 @@
+{
+  "case_id": "b25_fpa_analyst_strong",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_fpa_analyst_strong_1.txt",
+  "resume_sha256": "e8604c5c03930c475f944d36090e8f6db4af1ffc417c634667c5450ff68f9cd2",
+  "resume_words": 138,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T03:52:55.919Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4036,
+        "completion_tokens": 520,
+        "total_tokens": 4556,
+        "cached_prompt_tokens": 3406,
+        "cache_write_prompt_tokens": 627,
+        "reasoning_tokens": 171
+      },
+      "cost_usd": 0.00355705,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 7260
+    }
+  ],
+  "resume_prompt_sha256": "05f0ed391d02c15c487cdf3fcd427706167ba6aa9a1ad58365cfcff658e9caea",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst with budget ownership, forecasting results, and pricing work for consumer brands.",
+    "write_up": [
+      "You make the work easy to place: a $240M operating budget, forecasts, pricing models and monthly conversations with finance and brand leaders. The earlier role adds close reporting and a useful Power BI automation.",
+      "The forecast line is the model for the rest. It names what you built and shows forecast error falling from 7% to 2.5%. There isn't much a recruiter has to guess about your recent work."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "- Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "This gives a recruiter both the work and the change it made. It's a good model for future bullets.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A",
+        "Financial Analyst"
+      ],
+      "level": "Senior individual contributor",
+      "note": "Your experience points toward senior FP&A work in budgeting, forecasting and pricing. The resume also shows plant reporting and Power BI automation.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst with budget ownership, forecasting results, and pricing work for consumer brands.",
+    "write_up": [
+      "You make the work easy to place: a $240M operating budget, forecasts, pricing models and monthly conversations with finance and brand leaders. The earlier role adds close reporting and a useful Power BI automation.",
+      "The forecast line is the model for the rest. It names what you built and shows forecast error falling from 7% to 2.5%. There isn't much a recruiter has to guess about your recent work."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "This gives a recruiter both the work and the change it made. It's a good model for future bullets.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A",
+        "Financial Analyst"
+      ],
+      "level": "Senior individual contributor",
+      "note": "Your experience points toward senior FP&A work in budgeting, forecasting and pricing. The resume also shows plant reporting and Power BI automation.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 91
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst with budget ownership, forecasting results, and pricing work for consumer brands.",
+    "write_up": [
+      "You make the work easy to place: a $240M operating budget, forecasts, pricing models and monthly conversations with finance and brand leaders. The earlier role adds close reporting and a useful Power BI automation.",
+      "The forecast line is the model for the rest. It names what you built and shows forecast error falling from 7% to 2.5%. There isn't much a recruiter has to guess about your recent work."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "This gives a recruiter both the work and the change it made. It's a good model for future bullets.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A",
+        "Financial Analyst"
+      ],
+      "level": "Senior individual contributor",
+      "note": "Your experience points toward senior FP&A work in budgeting, forecasting and pricing. The resume also shows plant reporting and Power BI automation.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 91
+  },
+  "presentation": {
+    "score": 91,
+    "band": "Clear and specific",
+    "model_score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst with budget ownership, forecasting results, and pricing work for consumer brands.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 69,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 1,
+    "kinds": {
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A",
+        "Financial Analyst"
+      ],
+      "level": "Senior individual contributor",
+      "note": "Your experience points toward senior FP&A work in budgeting, forecasting and pricing. The resume also shows plant reporting and Power BI automation.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00355705,
+  "latency_ms": 7262
+}

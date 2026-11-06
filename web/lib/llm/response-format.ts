@@ -1,3 +1,6 @@
+import { isWorklistReportEnabled } from "../reports/report-shape";
+import { WORKLIST_REPORT_RESPONSE_FORMAT } from "./worklist-schema";
+
 type LlmMode =
   | "resume"
   | "resume_ideas"
@@ -246,5 +249,6 @@ export const RESUME_REPORT_RESPONSE_FORMAT = {
 const LEGACY_JSON_RESPONSE_FORMAT = { type: "json_object" } as const;
 
 export function getOpenAIResponseFormat(mode: LlmMode) {
-  return mode === "resume" ? RESUME_REPORT_RESPONSE_FORMAT : LEGACY_JSON_RESPONSE_FORMAT;
+  if (mode !== "resume") return LEGACY_JSON_RESPONSE_FORMAT;
+  return isWorklistReportEnabled() ? WORKLIST_REPORT_RESPONSE_FORMAT : RESUME_REPORT_RESPONSE_FORMAT;
 }

@@ -1,0 +1,243 @@
+{
+  "case_id": "b28_cybersecurity_analyst",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_cybersecurity_analyst_1.txt",
+  "resume_sha256": "3af143d6457f920bcfc404cff6c5ed95c9a5719c1320855f0e0d464650526db6",
+  "resume_words": 154,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T03:53:08.888Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4093,
+        "completion_tokens": 1586,
+        "total_tokens": 5679,
+        "cached_prompt_tokens": 3406,
+        "cache_write_prompt_tokens": 684,
+        "reasoning_tokens": 964
+      },
+      "cost_usd": 0.0089583,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 930438
+    }
+  ],
+  "resume_prompt_sha256": "05f0ed391d02c15c487cdf3fcd427706167ba6aa9a1ad58365cfcff658e9caea",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A senior detection and response analyst with measurable results and a few details left to add.",
+    "write_up": [
+      "You look like a senior detection and response analyst with measurable work in financial services and earlier SOC experience across 30 client environments. The main question is what your alert-enrichment automation changed in practice.",
+      "The Splunk rule bullet is the model: 140+ rules, MITRE ATT&CK mapping, and a 35% reduction in false-positive alerts. Your incident-response line also gives a before-and-after containment measure."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Security Analyst, line 1",
+        "line": "- Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%",
+        "cannot_tell": "The rule count, ATT&CK mapping and reduction in false-positive alerts show what you built and what changed. Use this as the model for other bullets.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Security Analyst, line 4",
+        "line": "- Automated alert enrichment with Python and the Splunk SOAR platform",
+        "cannot_tell": "The tools and task are clear, but not which alerts you enriched or what the automation changed. One concrete detail would show why you built it.",
+        "example": "Automated alert enrichment with Python and the Splunk SOAR platform for [alert types]; [information added and what changed, if known]",
+        "question": "What information did you add to which alerts, and what changed after automation?"
+      },
+      {
+        "kind": "line",
+        "where": "Security Operations Analyst, line 3",
+        "line": "- Tuned EDR policies in CrowdStrike Falcon",
+        "cannot_tell": "The product is named, but not which policies you tuned or why. That leaves the security problem out of the story.",
+        "example": "Tuned EDR policies in CrowdStrike Falcon for [policy area or security problem]; [what changed, if known]",
+        "question": "Which policies did you tune, what problem were you addressing, and what changed, if you know?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Security Analyst, Detection and Response",
+        "Security Operations Analyst"
+      ],
+      "level": "Senior analyst",
+      "note": "Your current role points to detection and response in financial services; the earlier role adds managed security operations. The certifications and tools reinforce that direction.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A senior detection and response analyst with measurable results and a few details left to add.",
+    "write_up": [
+      "You look like a senior detection and response analyst with measurable work in financial services and earlier SOC experience across 30 client environments. The main question is what your alert-enrichment automation changed in practice.",
+      "The Splunk rule bullet is the model: 140+ rules, MITRE ATT&CK mapping, and a 35% reduction in false-positive alerts. Your incident-response line also gives a before-and-after containment measure."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Security Analyst, line 1",
+        "line": "Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%",
+        "cannot_tell": "The rule count, ATT&CK mapping and reduction in false-positive alerts show what you built and what changed. Use this as the model for other bullets.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Security Analyst, line 4",
+        "line": "Automated alert enrichment with Python and the Splunk SOAR platform",
+        "cannot_tell": "The tools and task are clear, but not which alerts you enriched or what the automation changed. One concrete detail would show why you built it.",
+        "example": "Automated alert enrichment with Python and the Splunk SOAR platform for [alert types]; [information added and what changed, if known]",
+        "question": "What information did you add to which alerts, and what changed after automation?"
+      },
+      {
+        "kind": "line",
+        "where": "Security Operations Analyst, line 3",
+        "line": "Tuned EDR policies in CrowdStrike Falcon",
+        "cannot_tell": "The product is named, but not which policies you tuned or why. That leaves the security problem out of the story.",
+        "example": "Tuned EDR policies in CrowdStrike Falcon for [policy area or security problem]; [what changed, if known]",
+        "question": "Which policies did you tune, what problem were you addressing, and what changed, if you know?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Security Analyst, Detection and Response",
+        "Security Operations Analyst"
+      ],
+      "level": "Senior analyst",
+      "note": "Your current role points to detection and response in financial services; the earlier role adds managed security operations. The certifications and tools reinforce that direction.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A senior detection and response analyst with measurable results and a few details left to add.",
+    "write_up": [
+      "You look like a senior detection and response analyst with measurable work in financial services and earlier SOC experience across 30 client environments. The main question is what your alert-enrichment automation changed in practice.",
+      "The Splunk rule bullet is the model: 140+ rules, MITRE ATT&CK mapping, and a 35% reduction in false-positive alerts. Your incident-response line also gives a before-and-after containment measure."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Security Analyst, line 1",
+        "line": "Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%",
+        "cannot_tell": "The rule count, ATT&CK mapping and reduction in false-positive alerts show what you built and what changed. Use this as the model for other bullets.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Security Analyst, line 4",
+        "line": "Automated alert enrichment with Python and the Splunk SOAR platform",
+        "cannot_tell": "The tools and task are clear, but not which alerts you enriched or what the automation changed. One concrete detail would show why you built it.",
+        "example": "Automated alert enrichment with Python and the Splunk SOAR platform for [alert types]; [information added and what changed, if known]",
+        "question": "What information did you add to which alerts, and what changed after automation?"
+      },
+      {
+        "kind": "line",
+        "where": "Security Operations Analyst, line 3",
+        "line": "Tuned EDR policies in CrowdStrike Falcon",
+        "cannot_tell": "The product is named, but not which policies you tuned or why. That leaves the security problem out of the story.",
+        "example": "Tuned EDR policies in CrowdStrike Falcon for [policy area or security problem]; [what changed, if known]",
+        "question": "Which policies did you tune, what problem were you addressing, and what changed, if you know?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Security Analyst, Detection and Response",
+        "Security Operations Analyst"
+      ],
+      "level": "Senior analyst",
+      "note": "Your current role points to detection and response in financial services; the earlier role adds managed security operations. The certifications and tools reinforce that direction.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "presentation": {
+    "score": 89,
+    "band": "Clear and specific",
+    "model_score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A senior detection and response analyst with measurable results and a few details left to add.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 62,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Security Analyst, line 1",
+        "line": "Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Security Analyst, line 4",
+        "line": "Automated alert enrichment with Python and the Splunk SOAR platform",
+        "blanks": 2,
+        "question": "What information did you add to which alerts, and what changed after automation?"
+      },
+      {
+        "kind": "line",
+        "where": "Security Operations Analyst, line 3",
+        "line": "Tuned EDR policies in CrowdStrike Falcon",
+        "blanks": 2,
+        "question": "Which policies did you tune, what problem were you addressing, and what changed, if you know?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "keep": 1,
+      "line": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Security Analyst, Detection and Response",
+        "Security Operations Analyst"
+      ],
+      "level": "Senior analyst",
+      "note": "Your current role points to detection and response in financial services; the earlier role adds managed security operations. The certifications and tools reinforce that direction.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0089583,
+  "latency_ms": 930440
+}

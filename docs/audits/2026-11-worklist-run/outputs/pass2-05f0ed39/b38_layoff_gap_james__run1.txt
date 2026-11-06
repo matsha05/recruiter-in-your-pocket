@@ -1,0 +1,61 @@
+# b38_layoff_gap_james, run 1
+Resume: ../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/3-layoff-gap-james.txt (313 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 05f0ed39; severity check off
+Outcome: report; cost $0.0206; repair ran; 37.8s
+Case note: Layoff gap (bar persona).
+
+Validator refused the first draft: The model response failed the worklist contract at cards[4].cannot_tell: uses the retired phrase "the read".
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+A senior B2B marketer with strong prior results, but freelance work that leaves too much to guess.
+
+## Write-up
+You have a credible senior marketing story: demand generation, a team, a budget and measurable MQL growth at Velocity. The hesitation is your current freelance work. It names the projects but not their size, your part in each or what came of them, so a recruiter may move on despite the stronger earlier role.
+
+The MQL line is the model: it names the measure, the change and the cost direction. Bring one or two freelance projects to that level where you can verify the details.
+
+## Cards (8; {"line":7,"keep":1}); severity off; added []
+1. [line] Freelance Marketing Consultant, line 1
+   line: "Provided marketing strategy and execution support for small businesses and startups"
+   can't tell: Support covers a lot of ground. A recruiter can't tell which strategy was yours or how much client work you took on.
+   example: Provided marketing strategy and execution support for [number] small businesses and startups, including [specific work]
+   question: How many small businesses and startups did you support, and what specific strategy or execution work did you do?
+2. [line] Freelance Marketing Consultant, line 2
+   line: "Projects included website copy, email campaigns, and paid social setup"
+   can't tell: These are useful deliverables, but the line doesn't say what you personally did on a project or what happened after. Pick one you can describe.
+   example: Projects included website copy, email campaigns, and paid social setup; [your contribution] to [project] and [result, if known]
+   question: Which project can you describe, what was your contribution, and what happened after the work?
+3. [keep] Senior Marketing Manager, line 5
+   line: "Increased MQL volume by 35% year over year while reducing cost per lead"
+   can't tell: Keep this as a model. It gives a recruiter a concrete change and shows that cost per lead fell at the same time.
+4. [line] Marketing Manager, line 1
+   line: "Managed content marketing and email programs"
+   can't tell: The programs are named, but not the work inside them. One specific content or email program would give this line something to hold onto.
+   example: Managed content marketing and email programs, including [specific program or deliverable]
+   question: Which content or email program best shows what you managed?
+5. [line] Marketing Manager, line 2
+   line: "Grew blog traffic significantly through SEO-driven content strategy"
+   can't tell: 'Significantly' doesn't say how much traffic grew. If you have the figures and period, put them here.
+   example: Grew blog traffic [amount] over [period] through SEO-driven content strategy
+   question: How much did blog traffic grow, and over what period?
+6. [line] Marketing Manager, line 3
+   line: "Ran webinar program generating pipeline for the sales team"
+   can't tell: The webinar program generated pipeline, but its size is blank. A pipeline figure or a concrete example would show what the program produced.
+   example: Ran webinar program generating [pipeline figure or example] for the sales team
+   question: What pipeline figure or specific example can you verify from the webinar program?
+7. [line] Marketing Coordinator, line 1
+   line: "Supported campaign execution, event logistics, and social media"
+   can't tell: 'Supported' doesn't say which tasks were yours. Name a campaign or event and the part you handled.
+   example: Supported campaign execution, event logistics, and social media for [campaign or event], including [your tasks]
+   question: Which campaign or event did you support, and what tasks did you handle?
+8. [line] Marketing Coordinator, line 2
+   line: "Created sales enablement materials"
+   can't tell: A recruiter knows you made materials, but not what kind. Naming one would make the work more concrete.
+   example: Created sales enablement materials, including [material]
+   question: What sales enablement material did you create?
+
+## Fit
+Roles: ["Senior Marketing Manager","Marketing Manager","Freelance Marketing Consultant"]
+Level: Senior marketing manager
+Note: Your experience points toward senior marketing management in B2B SaaS, especially demand generation and marketing operations. The freelance section needs more detail to show what your current work adds to that story.

@@ -1,0 +1,311 @@
+{
+  "case_id": "b37_marketing_director_bad",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Title above the work; key says no_recent_work, no_target_role, title_level_mismatch.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_marketing_director_bad_1.txt",
+  "resume_sha256": "f0624d59dceceb9ee73afca05ff983f8205d3da2ebe4712711eb2596bd129439",
+  "resume_words": 167,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T04:16:16.120Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4242,
+        "completion_tokens": 1540,
+        "total_tokens": 5782,
+        "cached_prompt_tokens": 3502,
+        "cache_write_prompt_tokens": 737,
+        "reasoning_tokens": 689
+      },
+      "cost_usd": 0.00879935,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 20480
+    }
+  ],
+  "resume_prompt_sha256": "18e7e9ff21a0c2fda0fe219456e2d1f965de7d79bcc85173eaebd632dd83f42e",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 63,
+    "lifted_by_employer": false,
+    "verdict": "A director title sits above hands-on marketing work, with no recent work or target role named.",
+    "write_up": [
+      "You have hands-on marketing and operations experience at a candle company, preceded by data entry and lab work. A recruiter may hesitate over the Director of Marketing title: the bullets show posting and product copy, but not the decisions or responsibilities behind the title.",
+      "The line about writing product descriptions for 40 candle scents works because it names the deliverable and its size. Nothing is dated after January 2025, and the different kinds of work leave your next target open. Naming that target and accounting for the time since the candle company, if you choose to, would give the story a direction."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Director of Marketing, title",
+        "line": "Director of Marketing",
+        "cannot_tell": "The title suggests a broader job than the bullets describe. Keep your actual title, but add the marketing decisions or other responsibilities you held if they aren't on the page yet.",
+        "example": "Director of Marketing: [marketing decisions or responsibilities beyond posting and product descriptions, if applicable]",
+        "question": "What marketing decisions or other responsibilities did you hold in this role?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after January 2025.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since the candle company. A dated line can answer that without a long explanation.",
+        "example": "[dates]  [work, study, caregiving, job search or career break, if applicable]",
+        "question": "Is there work or another activity since January 2025 that you'd like to include?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "The page doesn't name a target job.",
+        "cannot_tell": "Marketing, data entry and lab work point in different directions. A recruiter has to guess which work you want to do next.",
+        "example": "",
+        "question": "Which kind of job are you applying for now?"
+      },
+      {
+        "kind": "line",
+        "where": "Director of Marketing, line 1",
+        "line": "- Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers",
+        "cannot_tell": "The frequency and follower count are there, but not what you posted or whether the posts achieved anything you tracked. That detail would give the marketing work more substance.",
+        "example": "Posted [type of content] 3 to 5 times a week on the company Instagram, which has 2,100 followers; [result, if tracked]",
+        "question": "What did you post, and did you track any results?"
+      },
+      {
+        "kind": "keep",
+        "where": "Director of Marketing, line 2",
+        "line": "- Wrote product descriptions for 40 candle scents on the website",
+        "cannot_tell": "Keep this as a model. It names what you wrote, where it appeared and how many scents it covered.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Director of Marketing",
+        "Data Entry Clerk",
+        "Laboratory Assistant"
+      ],
+      "level": "Hands-on contributor; latest title is director",
+      "note": "The latest role points toward hands-on marketing and ecommerce work, while the earlier jobs show data entry and lab preparation. The director title needs more detail about your responsibilities if you're targeting similar titles.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 63,
+    "lifted_by_employer": false,
+    "verdict": "A director title sits above hands-on marketing work, with no recent work or target role named.",
+    "write_up": [
+      "You have hands-on marketing and operations experience at a candle company, preceded by data entry and lab work. A recruiter may hesitate over the Director of Marketing title: the bullets show posting and product copy, but not the decisions or responsibilities behind the title.",
+      "The line about writing product descriptions for 40 candle scents works because it names the deliverable and its size. Nothing is dated after January 2025, and the different kinds of work leave your next target open. Naming that target and accounting for the time since the candle company, if you choose to, would give the story a direction."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Director of Marketing, title",
+        "line": "Director of Marketing",
+        "cannot_tell": "The title suggests a broader job than the bullets describe. Keep your actual title, but add the marketing decisions or other responsibilities you held if they aren't on the page yet.",
+        "example": "Director of Marketing: [marketing decisions or responsibilities beyond posting and product descriptions, if applicable]",
+        "question": "What marketing decisions or other responsibilities did you hold in this role?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after January 2025.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since the candle company. A dated line can answer that without a long explanation.",
+        "example": "[dates] [work, study, caregiving, job search or career break, if applicable]",
+        "question": "Is there work or another activity since January 2025 that you'd like to include?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "The page doesn't name a target job.",
+        "cannot_tell": "Marketing, data entry and lab work point in different directions. A recruiter has to guess which work you want to do next.",
+        "example": "",
+        "question": "Which kind of job are you applying for now?"
+      },
+      {
+        "kind": "line",
+        "where": "Director of Marketing, line 1",
+        "line": "Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers",
+        "cannot_tell": "The frequency and follower count are there, but not what you posted or whether the posts achieved anything you tracked. That detail would give the marketing work more substance.",
+        "example": "Posted [type of content] 3 to 5 times a week on the company Instagram, which has 2,100 followers; [result, if tracked]",
+        "question": "What did you post, and did you track any results?"
+      },
+      {
+        "kind": "keep",
+        "where": "Director of Marketing, line 2",
+        "line": "Wrote product descriptions for 40 candle scents on the website",
+        "cannot_tell": "Keep this as a model. It names what you wrote, where it appeared and how many scents it covered.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Director of Marketing",
+        "Data Entry Clerk",
+        "Laboratory Assistant"
+      ],
+      "level": "Hands-on contributor; latest title is director",
+      "note": "The latest role points toward hands-on marketing and ecommerce work, while the earlier jobs show data entry and lab preparation. The director title needs more detail about your responsibilities if you're targeting similar titles.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 63
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 63,
+    "lifted_by_employer": false,
+    "verdict": "A director title sits above hands-on marketing work, with no recent work or target role named.",
+    "write_up": [
+      "You have hands-on marketing and operations experience at a candle company, preceded by data entry and lab work. A recruiter may hesitate over the Director of Marketing title: the bullets show posting and product copy, but not the decisions or responsibilities behind the title.",
+      "The line about writing product descriptions for 40 candle scents works because it names the deliverable and its size. Nothing is dated after January 2025, and the different kinds of work leave your next target open. Naming that target and accounting for the time since the candle company, if you choose to, would give the story a direction."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Director of Marketing, title",
+        "line": "Director of Marketing",
+        "cannot_tell": "The title suggests a broader job than the bullets describe. Keep your actual title, but add the marketing decisions or other responsibilities you held if they aren't on the page yet.",
+        "example": "Director of Marketing: [marketing decisions or responsibilities beyond posting and product descriptions, if applicable]",
+        "question": "What marketing decisions or other responsibilities did you hold in this role?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after January 2025.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since the candle company. A dated line can answer that without a long explanation.",
+        "example": "[dates] [work, study, caregiving, job search or career break, if applicable]",
+        "question": "Is there work or another activity since January 2025 that you'd like to include?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "The page doesn't name a target job.",
+        "cannot_tell": "Marketing, data entry and lab work point in different directions. A recruiter has to guess which work you want to do next.",
+        "example": "",
+        "question": "Which kind of job are you applying for now?"
+      },
+      {
+        "kind": "line",
+        "where": "Director of Marketing, line 1",
+        "line": "Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers",
+        "cannot_tell": "The frequency and follower count are there, but not what you posted or whether the posts achieved anything you tracked. That detail would give the marketing work more substance.",
+        "example": "Posted [type of content] 3 to 5 times a week on the company Instagram, which has 2,100 followers; [result, if tracked]",
+        "question": "What did you post, and did you track any results?"
+      },
+      {
+        "kind": "keep",
+        "where": "Director of Marketing, line 2",
+        "line": "Wrote product descriptions for 40 candle scents on the website",
+        "cannot_tell": "Keep this as a model. It names what you wrote, where it appeared and how many scents it covered.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Director of Marketing",
+        "Data Entry Clerk",
+        "Laboratory Assistant"
+      ],
+      "level": "Hands-on contributor; latest title is director",
+      "note": "The latest role points toward hands-on marketing and ecommerce work, while the earlier jobs show data entry and lab preparation. The director title needs more detail about your responsibilities if you're targeting similar titles.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 63
+  },
+  "presentation": {
+    "score": 63,
+    "band": "Needs more context",
+    "model_score": 63,
+    "lifted_by_employer": false,
+    "verdict": "A director title sits above hands-on marketing work, with no recent work or target role named.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 102,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Director of Marketing, title",
+        "line": "Director of Marketing",
+        "blanks": 1,
+        "question": "What marketing decisions or other responsibilities did you hold in this role?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after January 2025.",
+        "blanks": 2,
+        "question": "Is there work or another activity since January 2025 that you'd like to include?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "The page doesn't name a target job.",
+        "blanks": 0,
+        "question": "Which kind of job are you applying for now?"
+      },
+      {
+        "kind": "line",
+        "where": "Director of Marketing, line 1",
+        "line": "Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers",
+        "blanks": 2,
+        "question": "What did you post, and did you track any results?"
+      },
+      {
+        "kind": "keep",
+        "where": "Director of Marketing, line 2",
+        "line": "Wrote product descriptions for 40 candle scents on the website",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "line": 2,
+      "dates": 1,
+      "structure": 1,
+      "keep": 1
+    },
+    "structural_from_model": 2,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Director of Marketing",
+        "Data Entry Clerk",
+        "Laboratory Assistant"
+      ],
+      "level": "Hands-on contributor; latest title is director",
+      "note": "The latest role points toward hands-on marketing and ecommerce work, while the earlier jobs show data entry and lab preparation. The director title needs more detail about your responsibilities if you're targeting similar titles.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00879935,
+  "latency_ms": 20481
+}

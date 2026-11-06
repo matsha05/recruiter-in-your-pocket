@@ -1,0 +1,31 @@
+# b13_marketing_vp_elite, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/golden/synth_marketing_manager_vp_elite_1766960221358.txt (730 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt b2c0d186; severity check on
+Outcome: report; cost $0.0119; 15.5s
+Case note: Executive, strong (golden).
+
+## Clear and specific (score 91; model wrote 91)
+## Verdict
+A marketing executive’s resume with team, budget, growth, and launch results attached.
+
+## Write-up
+You come across as a CMO with a substantial SaaS marketing organization and a track record across demand generation, launches, and brand. A recruiter has plenty to take forward; the main questions are what changed in the launch process and what your P&L responsibility covered.
+
+The multi-channel campaign line is a good model: it names the strategy, the growth in qualified leads, and your contribution to recurring revenue growth without claiming sole credit.
+
+## Cards (2; {"line":2}); severity none (none); added []
+1. [line] Chief Marketing Officer, line 3
+   line: "I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years."
+   can't tell: The results are substantial, but the revamp itself is a black box. A reader also doesn't know how you defined a successful launch.
+   example: I decided to revamp the product launch process by [what changed], shortening time-to-market by 30% and increasing launch success rate to 90% [how success was defined], resulting in a $15M incremental revenue increase over 2 years.
+   question: What changed in the launch process, and how did you define a successful launch?
+2. [line] Skills
+   line: "Budget & P&L Management ($25M+)"
+   can't tell: The experience section shows a marketing budget, but it doesn't explain your P&L responsibilities. That's a distinction a reader will care about for an executive role.
+   example: Budget & P&L Management ($25M+); [P&L responsibilities]
+   question: Which parts of the P&L were you responsible for?
+
+## Fit
+Roles: ["Chief Marketing Officer","Vice President, Global Marketing"]
+Level: Executive marketing leadership
+Note: The page points toward senior marketing leadership in SaaS and B2B technology. It shows global teams, substantial budgets, and work across demand generation, positioning, and product launches.

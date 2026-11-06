@@ -1,0 +1,23 @@
+# b25_fpa_analyst_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_fpa_analyst_strong_1.txt (138 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt b2c0d186; severity check on
+Outcome: report; cost $0.0045; 8.8s
+
+## Clear and specific (score 92; model wrote 92)
+## Verdict
+A senior FP&A analyst with budget ownership and measurable forecasting and pricing results.
+
+## Write-up
+You come across as a senior FP&A analyst trusted with a $240M operating budget and regular presentations to the division CFO. The pricing review and automated sales flash give a recruiter more than a list of responsibilities.
+
+The forecast line is the model: it names what you built and how forecast error changed. The page is easy to follow, with experience above education and a headline that fits the work.
+
+## Cards (1; {"keep":1}); severity none (none); added []
+1. [keep] Senior Financial Analyst, FP&A, line 2
+   line: "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%"
+   can't tell: Nothing essential is hidden here. You name what you built and show how forecast error changed.
+
+## Fit
+Roles: ["Senior Financial Analyst, FP&A","Financial Analyst"]
+Level: Senior analyst
+Note: Your experience points clearly toward senior FP&A work in budgeting, forecasting and pricing. The division budget and CFO presentations show the level at which you operate.

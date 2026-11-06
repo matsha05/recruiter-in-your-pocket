@@ -4,7 +4,7 @@ import crypto from "node:crypto";
 import { getRedisClient } from "../redis/client";
 import { allowsExplicitLocalAnonymousAccessFallback } from "../billing/anonymousAccessFallback";
 import { makeValidatedReportReceipt, validatedReportReceiptClaim } from "./report-receipt";
-import { ResumeFeedbackResponseSchema, type ResumeFeedbackResponse } from "../validation/schemas";
+import { AnyReportSchema, type AnyReport } from "./report-shape";
 import {
   ANONYMOUS_COMMITTED_TTL_SECONDS,
   ANONYMOUS_RECOVERY_TTL_SECONDS,
@@ -70,7 +70,7 @@ export type AnonymousReportRecoveryEnvelope = {
   created_at: string;
   expires_at: string;
   report_digest: string;
-  report: ResumeFeedbackResponse;
+  report: AnyReport;
   report_receipt: string;
   resume_hash: string;
   signature: string;
@@ -169,7 +169,7 @@ export function createAnonymousReportRecovery(input: {
   ttlSeconds?: number;
   now?: number;
 }): AnonymousReportRecoveryCommit & { envelope: AnonymousReportRecoveryEnvelope } {
-  const report = ResumeFeedbackResponseSchema.parse(input.report);
+  const report = AnyReportSchema.parse(input.report);
   const recoveryId = input.recoveryId;
   const ttlSeconds = Math.floor(input.ttlSeconds || ANONYMOUS_REPORT_RECOVERY_TTL_SECONDS);
   if (
@@ -238,7 +238,7 @@ export function parseAnonymousReportRecovery(
       || expiresAt <= now
       || expiresAt > createdAt + ANONYMOUS_REPORT_RECOVERY_TTL_SECONDS * 1000
     ) return null;
-    const parsedReport = ResumeFeedbackResponseSchema.safeParse(value.report);
+    const parsedReport = AnyReportSchema.safeParse(value.report);
     if (!parsedReport.success) return null;
     const digest = crypto.createHash("sha256").update(stableJson(parsedReport.data)).digest("hex");
     if (digest !== value.report_digest) return null;

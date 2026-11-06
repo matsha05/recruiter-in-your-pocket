@@ -1,0 +1,184 @@
+{
+  "case_id": "b12_coo_executive_two_page",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Executive, two pages.",
+  "resume_file": "../2026-11-live-judgment/resumes/b_coo_executive.txt",
+  "resume_sha256": "213474e9b27355f8a085204e3dac05f65782d74d43b9b531cb2afd6a3afe1b79",
+  "resume_words": 463,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T03:51:37.246Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5118,
+        "completion_tokens": 618,
+        "total_tokens": 5736,
+        "cached_prompt_tokens": 3406,
+        "cache_write_prompt_tokens": 1709,
+        "reasoning_tokens": 262
+      },
+      "cost_usd": 0.00539955,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 8798
+    }
+  ],
+  "resume_prompt_sha256": "05f0ed391d02c15c487cdf3fcd427706167ba6aa9a1ad58365cfcff658e9caea",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 94,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare COO whose growth and operating results are clear from the first pass.",
+    "write_up": [
+      "You come across as a multi-site healthcare operator who has grown a dental organization while improving margins and retaining clinicians. Your current role makes the size of the operation and your reporting relationships clear.",
+      "The integration playbook line is a strong model: it names what you changed and how much faster integration became. If you want to sharpen the resume further, you could explain which decisions you made as EHR sponsor."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, line 4",
+        "line": "- Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "cannot_tell": "Keep this as a model. It connects the playbook you standardized to a specific improvement in integration time.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Operating Officer",
+        "Senior Vice President, Operations",
+        "Vice President, Clinic Operations"
+      ],
+      "level": "Healthcare operations executive",
+      "note": "Your experience points toward senior operations roles in multi-site healthcare, particularly dental and physician services. The current COO role shows both growth and day-to-day operating responsibility.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 94,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare COO whose growth and operating results are clear from the first pass.",
+    "write_up": [
+      "You come across as a multi-site healthcare operator who has grown a dental organization while improving margins and retaining clinicians. Your current role makes the size of the operation and your reporting relationships clear.",
+      "The integration playbook line is a strong model: it names what you changed and how much faster integration became. If you want to sharpen the resume further, you could explain which decisions you made as EHR sponsor."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, line 4",
+        "line": "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "cannot_tell": "Keep this as a model. It connects the playbook you standardized to a specific improvement in integration time.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Operating Officer",
+        "Senior Vice President, Operations",
+        "Vice President, Clinic Operations"
+      ],
+      "level": "Healthcare operations executive",
+      "note": "Your experience points toward senior operations roles in multi-site healthcare, particularly dental and physician services. The current COO role shows both growth and day-to-day operating responsibility.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 94
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 94,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare COO whose growth and operating results are clear from the first pass.",
+    "write_up": [
+      "You come across as a multi-site healthcare operator who has grown a dental organization while improving margins and retaining clinicians. Your current role makes the size of the operation and your reporting relationships clear.",
+      "The integration playbook line is a strong model: it names what you changed and how much faster integration became. If you want to sharpen the resume further, you could explain which decisions you made as EHR sponsor."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, line 4",
+        "line": "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "cannot_tell": "Keep this as a model. It connects the playbook you standardized to a specific improvement in integration time.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Operating Officer",
+        "Senior Vice President, Operations",
+        "Vice President, Clinic Operations"
+      ],
+      "level": "Healthcare operations executive",
+      "note": "Your experience points toward senior operations roles in multi-site healthcare, particularly dental and physician services. The current COO role shows both growth and day-to-day operating responsibility.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 94
+  },
+  "presentation": {
+    "score": 94,
+    "band": "Clear and specific",
+    "model_score": 94,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare COO whose growth and operating results are clear from the first pass.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 71,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, line 4",
+        "line": "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 1,
+    "kinds": {
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Chief Operating Officer",
+        "Senior Vice President, Operations",
+        "Vice President, Clinic Operations"
+      ],
+      "level": "Healthcare operations executive",
+      "note": "Your experience points toward senior operations roles in multi-site healthcare, particularly dental and physician services. The current COO role shows both growth and day-to-day operating responsibility.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00539955,
+  "latency_ms": 8800
+}

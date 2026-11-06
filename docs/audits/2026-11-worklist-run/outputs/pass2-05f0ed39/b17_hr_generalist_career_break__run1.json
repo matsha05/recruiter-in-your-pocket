@@ -1,0 +1,317 @@
+{
+  "case_id": "b17_hr_generalist_career_break",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Returner after caregiving, break dated and named.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_hr_generalist_career_break_1.txt",
+  "resume_sha256": "59c9f2306490959a56a0d7a38268e6b5db0ff40531b47983bc495f857cae8f0b",
+  "resume_words": 145,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T03:52:06.017Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4097,
+        "completion_tokens": 1046,
+        "total_tokens": 5143,
+        "cached_prompt_tokens": 3406,
+        "cache_write_prompt_tokens": 688,
+        "reasoning_tokens": 447
+      },
+      "cost_usd": 0.0062633,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 13719
+    },
+    {
+      "kind": "repair",
+      "usage": {
+        "prompt_tokens": 4908,
+        "completion_tokens": 874,
+        "total_tokens": 5782,
+        "cached_prompt_tokens": 3406,
+        "cache_write_prompt_tokens": 1499,
+        "reasoning_tokens": 382
+      },
+      "cost_usd": 0.00641705,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 18963
+    }
+  ],
+  "resume_prompt_sha256": "05f0ed391d02c15c487cdf3fcd427706167ba6aa9a1ad58365cfcff658e9caea",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "An HR generalist with solid manufacturing experience and a gap after a clearly dated caregiving break.",
+    "write_up": [
+      "You come across as an HR generalist who supported a 400-employee plant across three shifts, with earlier HR assistant experience at the same company. The caregiving break is clearly dated, but nothing accounts for the time after June 2025. That leaves a recruiter with a question before they get to your HR work.",
+      "“Ran new hire orientation every two weeks” is a useful model: it names the work and how often you did it. Your investigations line could do more to show your part alongside the HR manager."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after June 2025.",
+        "cannot_tell": "The caregiving break has an end date, but the page doesn't say what you've done since. A recruiter may hesitate over that blank.",
+        "example": "[dates]  [work, caregiving, study or job search, if applicable]",
+        "question": "Is there work, caregiving, study or another activity since June 2025 that you'd be comfortable adding?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 2",
+        "line": "- Handled employee relations questions and investigations with the HR manager",
+        "cannot_tell": "You handled questions and investigations with the HR manager, but your part in the investigations isn't clear. A specific type of issue and your contribution would show what you did.",
+        "example": "Handled [type of employee relations questions] and [your part in investigations] with the HR manager",
+        "question": "What kinds of questions did you handle, and what was your part in the investigations?"
+      },
+      {
+        "kind": "keep",
+        "where": "HR Generalist, line 4",
+        "line": "- Ran new hire orientation every two weeks",
+        "cannot_tell": "Keep this as a model. It names a task you owned and gives its cadence without making the reader guess.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "HR Generalist",
+        "HR Assistant"
+      ],
+      "level": "Experienced HR generalist",
+      "note": "Your experience points toward HR generalist work in a manufacturing setting. The promotion from HR Assistant and the plant's size give a recruiter useful context.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "initial_validation_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the worklist contract at cards[2].cannot_tell: uses the retired phrase \"the read\".",
+    "issues": [
+      {
+        "path": "cards[2].cannot_tell",
+        "message": "uses the retired phrase \"the read\""
+      }
+    ]
+  },
+  "model_output_repaired": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "An HR generalist with manufacturing experience and a gap after a clearly dated caregiving break.",
+    "write_up": [
+      "You come across as an HR generalist who supported a 400-employee plant across three shifts, with earlier HR assistant experience at the same company. The caregiving break is clearly dated, but nothing accounts for the time after June 2025. That leaves a recruiter with a question before they get to your HR work.",
+      "“Ran new hire orientation every two weeks” is a useful model: it names the work and how often you did it. Your investigations line could do more to show your part alongside the HR manager."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after June 2025.",
+        "cannot_tell": "The caregiving break has an end date, but the page doesn't say what you've done since. A recruiter may hesitate over that blank.",
+        "example": "[dates]  [work, caregiving, study or job search, if applicable]",
+        "question": "Is there work, caregiving, study or another activity since June 2025 that you'd be comfortable adding?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 2",
+        "line": "- Handled employee relations questions and investigations with the HR manager",
+        "cannot_tell": "You handled questions and investigations with the HR manager, but your part in the investigations isn't clear. A type of issue and your contribution would show what you did.",
+        "example": "Handled employee relations questions and investigations with the HR manager, including [types of questions and your part in investigations]",
+        "question": "What kinds of questions did you handle, and what was your part in the investigations?"
+      },
+      {
+        "kind": "keep",
+        "where": "HR Generalist, line 4",
+        "line": "- Ran new hire orientation every two weeks",
+        "cannot_tell": "Keep this as a model. It names a task you ran and gives its cadence without making anyone guess.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "HR Generalist",
+        "HR Assistant"
+      ],
+      "level": "Experienced HR generalist",
+      "note": "Your experience points toward HR generalist work in a manufacturing setting. The assistant and generalist roles at the same company give a recruiter a straightforward work history.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "repaired": true,
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "An HR generalist with manufacturing experience and a gap after a clearly dated caregiving break.",
+    "write_up": [
+      "You come across as an HR generalist who supported a 400-employee plant across three shifts, with earlier HR assistant experience at the same company. The caregiving break is clearly dated, but nothing accounts for the time after June 2025. That leaves a recruiter with a question before they get to your HR work.",
+      "“Ran new hire orientation every two weeks” is a useful model: it names the work and how often you did it. Your investigations line could do more to show your part alongside the HR manager."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after June 2025.",
+        "cannot_tell": "The caregiving break has an end date, but the page doesn't say what you've done since. A recruiter may hesitate over that blank.",
+        "example": "[dates] [work, caregiving, study or job search, if applicable]",
+        "question": "Is there work, caregiving, study or another activity since June 2025 that you'd be comfortable adding?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 2",
+        "line": "Handled employee relations questions and investigations with the HR manager",
+        "cannot_tell": "You handled questions and investigations with the HR manager, but your part in the investigations isn't clear. A type of issue and your contribution would show what you did.",
+        "example": "Handled employee relations questions and investigations with the HR manager, including [types of questions and your part in investigations]",
+        "question": "What kinds of questions did you handle, and what was your part in the investigations?"
+      },
+      {
+        "kind": "keep",
+        "where": "HR Generalist, line 4",
+        "line": "Ran new hire orientation every two weeks",
+        "cannot_tell": "Keep this as a model. It names a task you ran and gives its cadence without making anyone guess.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "HR Generalist",
+        "HR Assistant"
+      ],
+      "level": "Experienced HR generalist",
+      "note": "Your experience points toward HR generalist work in a manufacturing setting. The assistant and generalist roles at the same company give a recruiter a straightforward work history.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 67
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "An HR generalist with manufacturing experience and a gap after a clearly dated caregiving break.",
+    "write_up": [
+      "You come across as an HR generalist who supported a 400-employee plant across three shifts, with earlier HR assistant experience at the same company. The caregiving break is clearly dated, but nothing accounts for the time after June 2025. That leaves a recruiter with a question before they get to your HR work.",
+      "“Ran new hire orientation every two weeks” is a useful model: it names the work and how often you did it. Your investigations line could do more to show your part alongside the HR manager."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after June 2025.",
+        "cannot_tell": "The caregiving break has an end date, but the page doesn't say what you've done since. A recruiter may hesitate over that blank.",
+        "example": "[dates] [work, caregiving, study or job search, if applicable]",
+        "question": "Is there work, caregiving, study or another activity since June 2025 that you'd be comfortable adding?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 2",
+        "line": "Handled employee relations questions and investigations with the HR manager",
+        "cannot_tell": "You handled questions and investigations with the HR manager, but your part in the investigations isn't clear. A type of issue and your contribution would show what you did.",
+        "example": "Handled employee relations questions and investigations with the HR manager, including [types of questions and your part in investigations]",
+        "question": "What kinds of questions did you handle, and what was your part in the investigations?"
+      },
+      {
+        "kind": "keep",
+        "where": "HR Generalist, line 4",
+        "line": "Ran new hire orientation every two weeks",
+        "cannot_tell": "Keep this as a model. It names a task you ran and gives its cadence without making anyone guess.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "HR Generalist",
+        "HR Assistant"
+      ],
+      "level": "Experienced HR generalist",
+      "note": "Your experience points toward HR generalist work in a manufacturing setting. The assistant and generalist roles at the same company give a recruiter a straightforward work history.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 67
+  },
+  "presentation": {
+    "score": 67,
+    "band": "Needs more context",
+    "model_score": 67,
+    "lifted_by_employer": false,
+    "verdict": "An HR generalist with manufacturing experience and a gap after a clearly dated caregiving break.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 88,
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after June 2025.",
+        "blanks": 2,
+        "question": "Is there work, caregiving, study or another activity since June 2025 that you'd be comfortable adding?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 2",
+        "line": "Handled employee relations questions and investigations with the HR manager",
+        "blanks": 1,
+        "question": "What kinds of questions did you handle, and what was your part in the investigations?"
+      },
+      {
+        "kind": "keep",
+        "where": "HR Generalist, line 4",
+        "line": "Ran new hire orientation every two weeks",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "dates": 1,
+      "line": 1,
+      "keep": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "HR Generalist",
+        "HR Assistant"
+      ],
+      "level": "Experienced HR generalist",
+      "note": "Your experience points toward HR generalist work in a manufacturing setting. The assistant and generalist roles at the same company give a recruiter a straightforward work history.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01268035,
+  "latency_ms": 32687
+}

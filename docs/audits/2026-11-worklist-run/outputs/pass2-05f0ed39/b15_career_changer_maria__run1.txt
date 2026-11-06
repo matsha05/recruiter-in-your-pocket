@@ -1,0 +1,54 @@
+# b15_career_changer_maria, run 1
+Resume: ../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/2-career-changer-maria.txt (315 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 05f0ed39; severity check off
+Outcome: report; cost $0.0110; 25.9s
+Case note: Career changer (bar persona).
+
+## Mostly clear (score 75; model wrote 75)
+## Verdict
+An experienced math teacher making a credible move into analytics, with project findings still missing.
+
+## Write-up
+You have a clear teaching history and recent analytics training. A recruiter can see the direction you want to go, but your analytics work so far is shown through projects and teaching rather than a dedicated analytics job. The summary's claims are less persuasive than the work below them.
+
+The Student Performance Dashboard is your best model: you name the Excel dashboard, the measures it tracked, and the department decision it informed. Give the housing project a similarly concrete finding, and show more of what you did with assessment data in the classroom.
+
+## Cards (7; {"line":6,"keep":1}); severity off; added []
+1. [line] Summary
+   line: "Dedicated educator with 8 years of experience transitioning into data analytics. Passionate about using data to tell stories and drive decisions. Strong analytical, communication, and problem-solving skills with a proven track record of success."
+   can't tell: This claims success without saying what you accomplished. Your dashboard and department work make a more useful introduction.
+   example: Analyzed student assessment data and built an Excel dashboard tracking AP Statistics pass rates and quiz scores over three years
+   question: Which teaching or data project accomplishment best represents the analytics work you want to do?
+2. [line] Mathematics Teacher, line 2
+   line: "Developed and implemented engaging curriculum aligned with state standards"
+   can't tell: The subjects are named elsewhere, but this doesn't say what you developed. A concrete lesson or curriculum component would give the work shape.
+   example: Developed and implemented [specific curriculum component] aligned with state standards
+   question: What specific curriculum component did you develop and implement?
+3. [line] Mathematics Teacher, line 3
+   line: "Analyzed student assessment data to identify learning gaps and adjust instruction"
+   can't tell: The analysis has a purpose, but the gaps and instructional changes are hidden. One example would show how you used the data.
+   example: Analyzed student assessment data to identify [specific learning gaps] and adjust instruction by [instructional change]
+   question: What learning gap did you find, and how did you adjust instruction?
+4. [line] Mathematics Teacher, line 4
+   line: "Served as Math Department Data Lead, compiling benchmark results for department meetings"
+   can't tell: The Data Lead role is relevant to your transition. It doesn't say how you compiled the results or what the department did with them.
+   example: Served as Math Department Data Lead, compiling benchmark results [how you compiled them] for department meetings [how the results were used]
+   question: How did you compile the benchmark results, and how were they used in department meetings?
+5. [line] Middle School Math Teacher, line 3
+   line: "Participated in professional learning communities"
+   can't tell: Participation alone doesn't say what you contributed. Name the work, or use the space for something more relevant to analytics.
+   example: Participated in professional learning communities, [specific contribution]
+   question: What did you contribute to the professional learning communities?
+6. [line] Austin Housing Affordability Analysis, line 2
+   line: "Created a Tableau dashboard showing affordability trends by zip code"
+   can't tell: The dashboard and its subject are clear, but the trends aren't. A finding would show what your analysis revealed.
+   example: Created a Tableau dashboard showing affordability trends by zip code, including [specific finding]
+   question: What affordability trend did the dashboard show?
+7. [keep] Student Performance Dashboard, line 2
+   line: "Used by the math department to decide which units needed re-teaching"
+   can't tell: Keep this connection. It names the decision the dashboard informed, rather than stopping at the tool.
+
+## Fit
+Roles: ["Mathematics Teacher","Middle School Math Teacher"]
+Level: Experienced educator, entry-level analytics
+Note: Your teaching work includes assessment analysis and department reporting, and the projects show SQL, Python, Tableau and Excel in use. The move into analytics is credible, though the resume doesn't show a dedicated analytics job.

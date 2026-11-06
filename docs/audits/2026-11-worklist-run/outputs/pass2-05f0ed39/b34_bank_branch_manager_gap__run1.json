@@ -1,0 +1,279 @@
+{
+  "case_id": "b34_bank_branch_manager_gap",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Gap with nothing after it.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_bank_branch_manager_gap_1.txt",
+  "resume_sha256": "1420c9932b5d35b979aa4d895b875e2ef456676f1017e3f83c5ee350ae9ca189",
+  "resume_words": 129,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T04:08:55.306Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4017,
+        "completion_tokens": 1142,
+        "total_tokens": 5159,
+        "cached_prompt_tokens": 3406,
+        "cache_write_prompt_tokens": 608,
+        "reasoning_tokens": 425
+      },
+      "cost_usd": 0.0066433,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 14416
+    }
+  ],
+  "resume_prompt_sha256": "05f0ed391d02c15c487cdf3fcd427706167ba6aa9a1ad58365cfcff658e9caea",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A branch manager with deposit growth and team leadership, but no account of work after December 2024.",
+    "write_up": [
+      "You show a progression from personal banker to branch manager, with deposit growth and an 11-person branch. The hesitation is the time after December 2024: the resume doesn't say what you've been doing since, so a recruiter may move on rather than guess.",
+      "The deposit line is your model. It names the work, the starting and ending figures, and the period. Add a little more about your part in audits and the complaints you handled, then account for the recent time honestly."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after December 2024.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since the branch manager role ended. A dated line gives them an answer instead of a question.",
+        "example": "[start date - end date] [work, study, career break, or other activity, if applicable]",
+        "question": "What have you been doing since December 2024 that you could date on the resume?"
+      },
+      {
+        "kind": "keep",
+        "where": "Branch Manager, line 2",
+        "line": "- Grew branch deposits from $48M to $63M over five years",
+        "cannot_tell": "Keep this as a model. It names what you grew, the starting and ending figures, and the period.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 4",
+        "line": "- Oversaw audits and compliance reviews for the branch",
+        "cannot_tell": "Oversaw tells me you were responsible, but not what you did during the audits or reviews. Your part in preparing for them or addressing findings would make the work more concrete.",
+        "example": "Oversaw audits and compliance reviews for the branch, [what you did] and [finding or result, if known]",
+        "question": "What did you do for the audits and compliance reviews, and what findings or results can you share?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 5",
+        "line": "- Handled escalated customer complaints",
+        "cannot_tell": "The line names the work, but not the kinds of problems that reached you or how you handled them. One example would show your judgment.",
+        "example": "Handled escalated customer complaints about [issue], [what you did]",
+        "question": "What kind of escalated complaint did you handle, and what did you do about it?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Branch Manager",
+        "Assistant Branch Manager",
+        "Personal Banker"
+      ],
+      "level": "Branch management",
+      "note": "Your experience points toward branch management in retail banking. The recent time after your last dated role is the main question to address.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A branch manager with deposit growth and team leadership, but no account of work after December 2024.",
+    "write_up": [
+      "You show a progression from personal banker to branch manager, with deposit growth and an 11-person branch. The hesitation is the time after December 2024: the resume doesn't say what you've been doing since, so a recruiter may move on rather than guess.",
+      "The deposit line is your model. It names the work, the starting and ending figures, and the period. Add a little more about your part in audits and the complaints you handled, then account for the recent time honestly."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after December 2024.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since the branch manager role ended. A dated line gives them an answer instead of a question.",
+        "example": "[start date - end date] [work, study, career break, or other activity, if applicable]",
+        "question": "What have you been doing since December 2024 that you could date on the resume?"
+      },
+      {
+        "kind": "keep",
+        "where": "Branch Manager, line 2",
+        "line": "Grew branch deposits from $48M to $63M over five years",
+        "cannot_tell": "Keep this as a model. It names what you grew, the starting and ending figures, and the period.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 4",
+        "line": "Oversaw audits and compliance reviews for the branch",
+        "cannot_tell": "Oversaw tells me you were responsible, but not what you did during the audits or reviews. Your part in preparing for them or addressing findings would make the work more concrete.",
+        "example": "Oversaw audits and compliance reviews for the branch, [what you did] and [finding or result, if known]",
+        "question": "What did you do for the audits and compliance reviews, and what findings or results can you share?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 5",
+        "line": "Handled escalated customer complaints",
+        "cannot_tell": "The line names the work, but not the kinds of problems that reached you or how you handled them. One example would show your judgment.",
+        "example": "Handled escalated customer complaints about [issue], [what you did]",
+        "question": "What kind of escalated complaint did you handle, and what did you do about it?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Branch Manager",
+        "Assistant Branch Manager",
+        "Personal Banker"
+      ],
+      "level": "Branch management",
+      "note": "Your experience points toward branch management in retail banking. The recent time after your last dated role is the main question to address.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 68
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A branch manager with deposit growth and team leadership, but no account of work after December 2024.",
+    "write_up": [
+      "You show a progression from personal banker to branch manager, with deposit growth and an 11-person branch. The hesitation is the time after December 2024: the resume doesn't say what you've been doing since, so a recruiter may move on rather than guess.",
+      "The deposit line is your model. It names the work, the starting and ending figures, and the period. Add a little more about your part in audits and the complaints you handled, then account for the recent time honestly."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after December 2024.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since the branch manager role ended. A dated line gives them an answer instead of a question.",
+        "example": "[start date - end date] [work, study, career break, or other activity, if applicable]",
+        "question": "What have you been doing since December 2024 that you could date on the resume?"
+      },
+      {
+        "kind": "keep",
+        "where": "Branch Manager, line 2",
+        "line": "Grew branch deposits from $48M to $63M over five years",
+        "cannot_tell": "Keep this as a model. It names what you grew, the starting and ending figures, and the period.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 4",
+        "line": "Oversaw audits and compliance reviews for the branch",
+        "cannot_tell": "Oversaw tells me you were responsible, but not what you did during the audits or reviews. Your part in preparing for them or addressing findings would make the work more concrete.",
+        "example": "Oversaw audits and compliance reviews for the branch, [what you did] and [finding or result, if known]",
+        "question": "What did you do for the audits and compliance reviews, and what findings or results can you share?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 5",
+        "line": "Handled escalated customer complaints",
+        "cannot_tell": "The line names the work, but not the kinds of problems that reached you or how you handled them. One example would show your judgment.",
+        "example": "Handled escalated customer complaints about [issue], [what you did]",
+        "question": "What kind of escalated complaint did you handle, and what did you do about it?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Branch Manager",
+        "Assistant Branch Manager",
+        "Personal Banker"
+      ],
+      "level": "Branch management",
+      "note": "Your experience points toward branch management in retail banking. The recent time after your last dated role is the main question to address.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 68
+  },
+  "presentation": {
+    "score": 68,
+    "band": "Needs more context",
+    "model_score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A branch manager with deposit growth and team leadership, but no account of work after December 2024.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 82,
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after December 2024.",
+        "blanks": 2,
+        "question": "What have you been doing since December 2024 that you could date on the resume?"
+      },
+      {
+        "kind": "keep",
+        "where": "Branch Manager, line 2",
+        "line": "Grew branch deposits from $48M to $63M over five years",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 4",
+        "line": "Oversaw audits and compliance reviews for the branch",
+        "blanks": 2,
+        "question": "What did you do for the audits and compliance reviews, and what findings or results can you share?"
+      },
+      {
+        "kind": "line",
+        "where": "Branch Manager, line 5",
+        "line": "Handled escalated customer complaints",
+        "blanks": 2,
+        "question": "What kind of escalated complaint did you handle, and what did you do about it?"
+      }
+    ],
+    "card_count": 4,
+    "kinds": {
+      "dates": 1,
+      "keep": 1,
+      "line": 2
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Branch Manager",
+        "Assistant Branch Manager",
+        "Personal Banker"
+      ],
+      "level": "Branch management",
+      "note": "Your experience points toward branch management in retail banking. The recent time after your last dated role is the main question to address.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0066433,
+  "latency_ms": 14418
+}

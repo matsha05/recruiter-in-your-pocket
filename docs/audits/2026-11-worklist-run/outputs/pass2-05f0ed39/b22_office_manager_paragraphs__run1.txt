@@ -1,0 +1,28 @@
+# b22_office_manager_paragraphs, run 1
+Resume: ../2026-11-live-judgment/resumes/b_office_manager_paragraphs.txt (219 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 05f0ed39; severity check off
+Outcome: report; cost $0.0048; 10.0s
+Case note: Paragraph format, no bullets.
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+An experienced office manager with legal billing, staff supervision, and a software transition clearly described.
+
+## Write-up
+You come across as an office manager who keeps a small law office running, from court deadlines and trust reconciliation to supervising receptionists. The work is specific; the main hesitation is that it takes some digging through long paragraphs to find it.
+
+The practice management software line is a good model: you say what you onboarded and that it replaced paper files for all new matters. Break the job paragraphs into bullets so the billing, supervision, and software work are easier to spot.
+
+## Cards (2; {"structure":1,"keep":1}); severity off; added []
+1. [structure] Experience
+   line: "Each job is written as a paragraph."
+   can't tell: Your billing, staff supervision, and software work are all there, but they're packed together. Separate bullets would let a recruiter find them faster.
+   question: Which responsibilities and changes would you put in separate bullets under each job?
+2. [keep] Office Manager, software and supervision
+   line: "Office Manager, Harrod and Blake Law Office, Louisville, KY, May 2018 to present. I run the front office for a six-attorney firm. I handle scheduling for the attorneys, manage the firm's calendar of court dates and filing deadlines, order supplies, and handle vendor contracts for the copier, phones, and cleaning. I do the bookkeeping in QuickBooks, including client billing of roughly 90 invoices a month and the monthly trust account reconciliation. I hired and supervise two receptionists and I onboarded the firm's new practice management software in 2022, which replaced paper files for all new matters."
+   can't tell: Keep the specifics here when you split the paragraph. The software work names both your role and what changed.
+
+## Fit
+Roles: ["Office Manager","Office Coordinator"]
+Level: Experienced office management
+Note: Your recent work points toward office management in a small professional office, particularly a law office. The dental role also shows patient scheduling, insurance work, and front desk training.

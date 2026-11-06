@@ -1,0 +1,34 @@
+# b13_marketing_vp_elite, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/golden/synth_marketing_manager_vp_elite_1766960221358.txt (730 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 05f0ed39; severity check off
+Outcome: report; cost $0.0115; 20.6s
+Case note: Executive, strong (golden).
+
+## Clear and specific (score 91; model wrote 91)
+## Verdict
+A marketing executive with team and budget leadership, backed by specific growth results.
+
+## Write-up
+You come across as a senior marketing leader who has run large teams and budgets while growing demand, revenue, and customer retention. The current role is strong, though the product launch bullet leaves the actual process changes to the imagination.
+
+The account-based marketing bullet at Viridian is a good model: it names the program, its pipeline contribution, and the change in win rates. One distinction to check in Skills: a 45-person organization isn't necessarily 45 direct reports.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] Chief Marketing Officer, line 3
+   line: "I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years."
+   can't tell: The results are specific, but the process change isn't. A concrete change would show how you got there.
+   example: I decided to revamp the product launch process by [what you changed], shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.
+   question: What did you change in the product launch process?
+2. [keep] Vice President, Global Marketing, line 2
+   line: "I built and executed a comprehensive account-based marketing (ABM) program that increased pipeline contribution by $50M annually, lifting win rates by 15% among Fortune 500 clients."
+   can't tell: Keep this as a model. It names what you built, who it reached, and the results.
+3. [line] Skills
+   line: "Cross-Functional Team Leadership (up to 45 direct reports)"
+   can't tell: Your current role names a 45-person organization, but doesn't say how many people reported directly to you. Tie this figure to the role where it applies.
+   example: Cross-Functional Team Leadership (up to 45 direct reports) at [role or employer]
+   question: Which role had up to 45 direct reports?
+
+## Fit
+Roles: ["Chief Marketing Officer","Vice President, Global Marketing"]
+Level: Executive marketing leadership
+Note: Your experience points toward senior marketing leadership in SaaS and B2B technology. The current role shows responsibility for brand, demand generation, and a global team.

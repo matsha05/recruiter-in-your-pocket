@@ -1,0 +1,180 @@
+{
+  "case_id": "h3_strong_resume",
+  "batch": "holes",
+  "run": 1,
+  "note": "Senior product manager whose resume is already good.",
+  "resume_file": "../2026-11-live-judgment/resumes/h3_strong_resume.txt",
+  "resume_sha256": "711aca17e0f7318c1d0d4fa3e4669aff314c355a47734d7106bb2eb6fc012418",
+  "resume_words": 311,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T03:48:54.562Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4584,
+        "completion_tokens": 502,
+        "total_tokens": 5086,
+        "cached_prompt_tokens": 3406,
+        "cache_write_prompt_tokens": 1175,
+        "reasoning_tokens": 130
+      },
+      "cost_usd": 0.00415205,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 7637
+    }
+  ],
+  "resume_prompt_sha256": "05f0ed391d02c15c487cdf3fcd427706167ba6aa9a1ad58365cfcff658e9caea",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 94,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments product manager with launches, revenue, reliability improvements and people management on the record.",
+    "write_up": [
+      "You make a strong case for senior payments product work. The roadmap covers 4 product teams, and the bullets show what you shipped, who used it and what changed.",
+      "The payment failure rate line is the model: it names the problem, the fix and the estimated revenue recovered for customers. The billing and onboarding work holds up just as well. There isn't much a recruiter needs to guess."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Product Manager, Payments Platform, line 3",
+        "line": "- Cut payment failure rate from 4.1% to 1.6% by leading the move to network tokenization and smart retries, recovering an estimated $6.2M in annual revenue for customers",
+        "cannot_tell": "This line gives the problem, your part in the fix and the estimated value to customers. Keep it as a model.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Product Manager, Payments Platform",
+        "Product Manager, Billing"
+      ],
+      "level": "Senior product manager with people management",
+      "note": "Your experience points to payments platform and billing product roles. The current role combines a multi-team roadmap with hiring and managing product managers.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 94,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments product manager with launches, revenue, reliability improvements and people management on the record.",
+    "write_up": [
+      "You make a strong case for senior payments product work. The roadmap covers 4 product teams, and the bullets show what you shipped, who used it and what changed.",
+      "The payment failure rate line is the model: it names the problem, the fix and the estimated revenue recovered for customers. The billing and onboarding work holds up just as well. There isn't much a recruiter needs to guess."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Product Manager, Payments Platform, line 3",
+        "line": "Cut payment failure rate from 4.1% to 1.6% by leading the move to network tokenization and smart retries, recovering an estimated $6.2M in annual revenue for customers",
+        "cannot_tell": "This line gives the problem, your part in the fix and the estimated value to customers. Keep it as a model.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Product Manager, Payments Platform",
+        "Product Manager, Billing"
+      ],
+      "level": "Senior product manager with people management",
+      "note": "Your experience points to payments platform and billing product roles. The current role combines a multi-team roadmap with hiring and managing product managers.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 94
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 94,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments product manager with launches, revenue, reliability improvements and people management on the record.",
+    "write_up": [
+      "You make a strong case for senior payments product work. The roadmap covers 4 product teams, and the bullets show what you shipped, who used it and what changed.",
+      "The payment failure rate line is the model: it names the problem, the fix and the estimated revenue recovered for customers. The billing and onboarding work holds up just as well. There isn't much a recruiter needs to guess."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Product Manager, Payments Platform, line 3",
+        "line": "Cut payment failure rate from 4.1% to 1.6% by leading the move to network tokenization and smart retries, recovering an estimated $6.2M in annual revenue for customers",
+        "cannot_tell": "This line gives the problem, your part in the fix and the estimated value to customers. Keep it as a model.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Product Manager, Payments Platform",
+        "Product Manager, Billing"
+      ],
+      "level": "Senior product manager with people management",
+      "note": "Your experience points to payments platform and billing product roles. The current role combines a multi-team roadmap with hiring and managing product managers.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 94
+  },
+  "presentation": {
+    "score": 94,
+    "band": "Clear and specific",
+    "model_score": 94,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments product manager with launches, revenue, reliability improvements and people management on the record.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 68,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Product Manager, Payments Platform, line 3",
+        "line": "Cut payment failure rate from 4.1% to 1.6% by leading the move to network tokenization and smart retries, recovering an estimated $6.2M in annual revenue for customers",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 1,
+    "kinds": {
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Product Manager, Payments Platform",
+        "Product Manager, Billing"
+      ],
+      "level": "Senior product manager with people management",
+      "note": "Your experience points to payments platform and billing product roles. The current role combines a multi-team roadmap with hiring and managing product managers.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00415205,
+  "latency_ms": 7658
+}

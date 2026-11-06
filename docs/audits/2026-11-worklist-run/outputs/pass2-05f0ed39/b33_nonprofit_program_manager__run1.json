@@ -1,0 +1,273 @@
+{
+  "case_id": "b33_nonprofit_program_manager",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_nonprofit_program_manager_1.txt",
+  "resume_sha256": "eed001bb0dd40fc28e9488669ec9cea7f7a73eecaca46214d5f584dae2b6d5c9",
+  "resume_words": 146,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T04:08:52.695Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4069,
+        "completion_tokens": 1378,
+        "total_tokens": 5447,
+        "cached_prompt_tokens": 3406,
+        "cache_write_prompt_tokens": 660,
+        "reasoning_tokens": 669
+      },
+      "cost_usd": 0.0078883,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 17330
+    }
+  ],
+  "resume_prompt_sha256": "05f0ed391d02c15c487cdf3fcd427706167ba6aa9a1ad58365cfcff658e9caea",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 74,
+    "lifted_by_employer": false,
+    "verdict": "A youth workforce program manager with a clear progression, but few details on program size or results.",
+    "write_up": [
+      "You moved from tutoring ninth graders to managing a summer jobs program and supervising staff. A recruiter can follow that progression, but can't tell how many students the program places or what happened for them.",
+      "The summer jobs line is your best model: it names the program, the students and the employers. Add its size and any results you can verify, then give the same treatment to partner recruitment and Salesforce tracking."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 1",
+        "line": "- Manage a summer jobs program placing high school students with local employers",
+        "cannot_tell": "The work is clear, but the number of students placed and what happened for them are missing. Those are central to understanding the program.",
+        "example": "Manage a summer jobs program placing [number] high school students with local employers; [result, if known]",
+        "question": "How many students does the program place, and what results can you verify?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 2",
+        "line": "- Supervise 4 program coordinators and 20 seasonal staff",
+        "cannot_tell": "The staffing numbers are useful. The line doesn't say what the coordinators and seasonal staff do under your supervision.",
+        "example": "Supervise 4 program coordinators and 20 seasonal staff [what they do]",
+        "question": "What do the coordinators and seasonal staff do under your supervision?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 4",
+        "line": "- Recruit and onboard employer partners",
+        "cannot_tell": "You name the job, but not how many partners you recruited or what onboarding involved.",
+        "example": "Recruit and onboard [number] employer partners, [what onboarding involves]",
+        "question": "How many employer partners have you recruited, and what does onboarding involve?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 5",
+        "line": "- Track participant outcomes in Salesforce",
+        "cannot_tell": "Salesforce is named, but the measures aren't. Knowing what you track and how it's used would make this more useful than a tool mention.",
+        "example": "Track [participant measures] in Salesforce for [purpose]",
+        "question": "Which participant measures do you track, and how are they used?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Program Manager, Youth Workforce",
+        "Program Coordinator"
+      ],
+      "level": "Program manager",
+      "note": "Your experience points toward youth workforce program management, with earlier coordination and direct student support. The staff numbers establish management responsibility; program placement figures would give the work more context.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 74,
+    "lifted_by_employer": false,
+    "verdict": "A youth workforce program manager with a clear progression, but few details on program size or results.",
+    "write_up": [
+      "You moved from tutoring ninth graders to managing a summer jobs program and supervising staff. A recruiter can follow that progression, but can't tell how many students the program places or what happened for them.",
+      "The summer jobs line is your best model: it names the program, the students and the employers. Add its size and any results you can verify, then give the same treatment to partner recruitment and Salesforce tracking."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 1",
+        "line": "Manage a summer jobs program placing high school students with local employers",
+        "cannot_tell": "The work is clear, but the number of students placed and what happened for them are missing. Those are central to understanding the program.",
+        "example": "Manage a summer jobs program placing [number] high school students with local employers; [result, if known]",
+        "question": "How many students does the program place, and what results can you verify?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 2",
+        "line": "Supervise 4 program coordinators and 20 seasonal staff",
+        "cannot_tell": "The staffing numbers are useful. The line doesn't say what the coordinators and seasonal staff do under your supervision.",
+        "example": "Supervise 4 program coordinators and 20 seasonal staff [what they do]",
+        "question": "What do the coordinators and seasonal staff do under your supervision?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 4",
+        "line": "Recruit and onboard employer partners",
+        "cannot_tell": "You name the job, but not how many partners you recruited or what onboarding involved.",
+        "example": "Recruit and onboard [number] employer partners, [what onboarding involves]",
+        "question": "How many employer partners have you recruited, and what does onboarding involve?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 5",
+        "line": "Track participant outcomes in Salesforce",
+        "cannot_tell": "Salesforce is named, but the measures aren't. Knowing what you track and how it's used would make this more useful than a tool mention.",
+        "example": "Track [participant measures] in Salesforce for [purpose]",
+        "question": "Which participant measures do you track, and how are they used?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Program Manager, Youth Workforce",
+        "Program Coordinator"
+      ],
+      "level": "Program manager",
+      "note": "Your experience points toward youth workforce program management, with earlier coordination and direct student support. The staff numbers establish management responsibility; program placement figures would give the work more context.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 74
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 74,
+    "lifted_by_employer": false,
+    "verdict": "A youth workforce program manager with a clear progression, but few details on program size or results.",
+    "write_up": [
+      "You moved from tutoring ninth graders to managing a summer jobs program and supervising staff. A recruiter can follow that progression, but can't tell how many students the program places or what happened for them.",
+      "The summer jobs line is your best model: it names the program, the students and the employers. Add its size and any results you can verify, then give the same treatment to partner recruitment and Salesforce tracking."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 1",
+        "line": "Manage a summer jobs program placing high school students with local employers",
+        "cannot_tell": "The work is clear, but the number of students placed and what happened for them are missing. Those are central to understanding the program.",
+        "example": "Manage a summer jobs program placing [number] high school students with local employers; [result, if known]",
+        "question": "How many students does the program place, and what results can you verify?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 2",
+        "line": "Supervise 4 program coordinators and 20 seasonal staff",
+        "cannot_tell": "The staffing numbers are useful. The line doesn't say what the coordinators and seasonal staff do under your supervision.",
+        "example": "Supervise 4 program coordinators and 20 seasonal staff [what they do]",
+        "question": "What do the coordinators and seasonal staff do under your supervision?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 4",
+        "line": "Recruit and onboard employer partners",
+        "cannot_tell": "You name the job, but not how many partners you recruited or what onboarding involved.",
+        "example": "Recruit and onboard [number] employer partners, [what onboarding involves]",
+        "question": "How many employer partners have you recruited, and what does onboarding involve?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 5",
+        "line": "Track participant outcomes in Salesforce",
+        "cannot_tell": "Salesforce is named, but the measures aren't. Knowing what you track and how it's used would make this more useful than a tool mention.",
+        "example": "Track [participant measures] in Salesforce for [purpose]",
+        "question": "Which participant measures do you track, and how are they used?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Program Manager, Youth Workforce",
+        "Program Coordinator"
+      ],
+      "level": "Program manager",
+      "note": "Your experience points toward youth workforce program management, with earlier coordination and direct student support. The staff numbers establish management responsibility; program placement figures would give the work more context.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 74
+  },
+  "presentation": {
+    "score": 74,
+    "band": "Mostly clear",
+    "model_score": 74,
+    "lifted_by_employer": false,
+    "verdict": "A youth workforce program manager with a clear progression, but few details on program size or results.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 72,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 1",
+        "line": "Manage a summer jobs program placing high school students with local employers",
+        "blanks": 2,
+        "question": "How many students does the program place, and what results can you verify?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 2",
+        "line": "Supervise 4 program coordinators and 20 seasonal staff",
+        "blanks": 1,
+        "question": "What do the coordinators and seasonal staff do under your supervision?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 4",
+        "line": "Recruit and onboard employer partners",
+        "blanks": 2,
+        "question": "How many employer partners have you recruited, and what does onboarding involve?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 5",
+        "line": "Track participant outcomes in Salesforce",
+        "blanks": 2,
+        "question": "Which participant measures do you track, and how are they used?"
+      }
+    ],
+    "card_count": 4,
+    "kinds": {
+      "line": 4
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Program Manager, Youth Workforce",
+        "Program Coordinator"
+      ],
+      "level": "Program manager",
+      "note": "Your experience points toward youth workforce program management, with earlier coordination and direct student support. The staff numbers establish management responsibility; program placement figures would give the work more context.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0078883,
+  "latency_ms": 17332
+}

@@ -1,0 +1,275 @@
+{
+  "case_id": "b35_marketing_coordinator_gap",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Gap with nothing after it.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_marketing_coordinator_gap_1.txt",
+  "resume_sha256": "eb744b698d829395ca7fb3ace93d0351860ad9281132916fbf232d42c03ebf78",
+  "resume_words": 126,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T04:16:03.268Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4089,
+        "completion_tokens": 1296,
+        "total_tokens": 5385,
+        "cached_prompt_tokens": 3502,
+        "cache_write_prompt_tokens": 584,
+        "reasoning_tokens": 643
+      },
+      "cost_usd": 0.0073881,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 17397
+    }
+  ],
+  "resume_prompt_sha256": "18e7e9ff21a0c2fda0fe219456e2d1f965de7d79bcc85173eaebd632dd83f42e",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 69,
+    "lifted_by_employer": false,
+    "verdict": "A marketing coordinator with concrete email and event work, but nothing dated after March 2024.",
+    "write_up": [
+      "A recruiter sees consumer-brand marketing work across email, events and social media. The first hesitation is what you've been doing since the last role ended in March 2024.",
+      "The weekly email calendar is the line to follow: it gives both the cadence and the list size without overstating your part. The earlier tasting events and newsletter work leave more for a recruiter to guess."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after March 2024.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since your last listed role. A dated line can answer that without pretending it was another job.",
+        "example": "[dates]  [work, study, caregiving, career break or other activity, if accurate]",
+        "question": "What have you been doing since March 2024 that you'd be comfortable dating on the resume?"
+      },
+      {
+        "kind": "keep",
+        "where": "Marketing Coordinator, line 1",
+        "line": "- Managed the weekly email calendar for a list of 120,000 subscribers",
+        "cannot_tell": "This gives a recruiter the cadence and the list size. It's a good model for making the rest of your work concrete.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Assistant, line 1",
+        "line": "- Helped plan in-store tasting events",
+        "cannot_tell": "Helped plan leaves your part of the tasting events open. Say what you handled.",
+        "example": "Helped plan in-store tasting events by [your contribution]",
+        "question": "What did you do to help plan the tasting events?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Assistant, line 2",
+        "line": "- Updated the company blog and newsletter",
+        "cannot_tell": "Updated could mean writing, editing or publishing. A recruiter can't tell which work was yours.",
+        "example": "Updated the company blog and newsletter with [what you wrote or changed]",
+        "question": "What did you write or change for the blog and newsletter?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Marketing Coordinator",
+        "Marketing Assistant"
+      ],
+      "level": "Coordinator",
+      "note": "Your experience points toward marketing coordinator work across email, events, copy and social media. The most recent role gives a list size and event cadence; adding your activities since it ended would make the timeline easier to follow.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 69,
+    "lifted_by_employer": false,
+    "verdict": "A marketing coordinator with concrete email and event work, but nothing dated after March 2024.",
+    "write_up": [
+      "A recruiter sees consumer-brand marketing work across email, events and social media. The first hesitation is what you've been doing since the last role ended in March 2024.",
+      "The weekly email calendar is the line to follow: it gives both the cadence and the list size without overstating your part. The earlier tasting events and newsletter work leave more for a recruiter to guess."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after March 2024.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since your last listed role. A dated line can answer that without pretending it was another job.",
+        "example": "[dates] [work, study, caregiving, career break or other activity, if accurate]",
+        "question": "What have you been doing since March 2024 that you'd be comfortable dating on the resume?"
+      },
+      {
+        "kind": "keep",
+        "where": "Marketing Coordinator, line 1",
+        "line": "Managed the weekly email calendar for a list of 120,000 subscribers",
+        "cannot_tell": "This gives a recruiter the cadence and the list size. It's a good model for making the rest of your work concrete.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Assistant, line 1",
+        "line": "Helped plan in-store tasting events",
+        "cannot_tell": "Helped plan leaves your part of the tasting events open. Say what you handled.",
+        "example": "Helped plan in-store tasting events by [your contribution]",
+        "question": "What did you do to help plan the tasting events?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Assistant, line 2",
+        "line": "Updated the company blog and newsletter",
+        "cannot_tell": "Updated could mean writing, editing or publishing. A recruiter can't tell which work was yours.",
+        "example": "Updated the company blog and newsletter with [what you wrote or changed]",
+        "question": "What did you write or change for the blog and newsletter?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Marketing Coordinator",
+        "Marketing Assistant"
+      ],
+      "level": "Coordinator",
+      "note": "Your experience points toward marketing coordinator work across email, events, copy and social media. The most recent role gives a list size and event cadence; adding your activities since it ended would make the timeline easier to follow.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 69
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 69,
+    "lifted_by_employer": false,
+    "verdict": "A marketing coordinator with concrete email and event work, but nothing dated after March 2024.",
+    "write_up": [
+      "A recruiter sees consumer-brand marketing work across email, events and social media. The first hesitation is what you've been doing since the last role ended in March 2024.",
+      "The weekly email calendar is the line to follow: it gives both the cadence and the list size without overstating your part. The earlier tasting events and newsletter work leave more for a recruiter to guess."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after March 2024.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since your last listed role. A dated line can answer that without pretending it was another job.",
+        "example": "[dates] [work, study, caregiving, career break or other activity, if accurate]",
+        "question": "What have you been doing since March 2024 that you'd be comfortable dating on the resume?"
+      },
+      {
+        "kind": "keep",
+        "where": "Marketing Coordinator, line 1",
+        "line": "Managed the weekly email calendar for a list of 120,000 subscribers",
+        "cannot_tell": "This gives a recruiter the cadence and the list size. It's a good model for making the rest of your work concrete.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Assistant, line 1",
+        "line": "Helped plan in-store tasting events",
+        "cannot_tell": "Helped plan leaves your part of the tasting events open. Say what you handled.",
+        "example": "Helped plan in-store tasting events by [your contribution]",
+        "question": "What did you do to help plan the tasting events?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Assistant, line 2",
+        "line": "Updated the company blog and newsletter",
+        "cannot_tell": "Updated could mean writing, editing or publishing. A recruiter can't tell which work was yours.",
+        "example": "Updated the company blog and newsletter with [what you wrote or changed]",
+        "question": "What did you write or change for the blog and newsletter?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Marketing Coordinator",
+        "Marketing Assistant"
+      ],
+      "level": "Coordinator",
+      "note": "Your experience points toward marketing coordinator work across email, events, copy and social media. The most recent role gives a list size and event cadence; adding your activities since it ended would make the timeline easier to follow.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 69
+  },
+  "presentation": {
+    "score": 69,
+    "band": "Needs more context",
+    "model_score": 69,
+    "lifted_by_employer": false,
+    "verdict": "A marketing coordinator with concrete email and event work, but nothing dated after March 2024.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 64,
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after March 2024.",
+        "blanks": 2,
+        "question": "What have you been doing since March 2024 that you'd be comfortable dating on the resume?"
+      },
+      {
+        "kind": "keep",
+        "where": "Marketing Coordinator, line 1",
+        "line": "Managed the weekly email calendar for a list of 120,000 subscribers",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Assistant, line 1",
+        "line": "Helped plan in-store tasting events",
+        "blanks": 1,
+        "question": "What did you do to help plan the tasting events?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Assistant, line 2",
+        "line": "Updated the company blog and newsletter",
+        "blanks": 1,
+        "question": "What did you write or change for the blog and newsletter?"
+      }
+    ],
+    "card_count": 4,
+    "kinds": {
+      "dates": 1,
+      "keep": 1,
+      "line": 2
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Marketing Coordinator",
+        "Marketing Assistant"
+      ],
+      "level": "Coordinator",
+      "note": "Your experience points toward marketing coordinator work across email, events, copy and social media. The most recent role gives a list size and event cadence; adding your activities since it ended would make the timeline easier to follow.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0073881,
+  "latency_ms": 17398
+}

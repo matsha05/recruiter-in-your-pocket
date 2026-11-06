@@ -1,0 +1,272 @@
+{
+  "case_id": "b17_hr_generalist_career_break",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Returner after caregiving, break dated and named.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_hr_generalist_career_break_1.txt",
+  "resume_sha256": "59c9f2306490959a56a0d7a38268e6b5db0ff40531b47983bc495f857cae8f0b",
+  "resume_words": 145,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": true,
+  "started_at": "2026-11-06T03:35:38.047Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 3786,
+        "completion_tokens": 1030,
+        "total_tokens": 4816,
+        "cached_prompt_tokens": 3095,
+        "cache_write_prompt_tokens": 688,
+        "reasoning_tokens": 413
+      },
+      "cost_usd": 0.00616775,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 14032
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.00145325,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1634
+    }
+  ],
+  "resume_prompt_sha256": "b2c0d186992d2d925493008c0a67067de9f704dc44ec074808b3bc7176463d9a",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 76,
+    "lifted_by_employer": false,
+    "verdict": "An HR generalist with solid plant experience and a period after the caregiving break to account for.",
+    "write_up": [
+      "You come across as an HR generalist who supported a 400-employee plant across three shifts, with earlier experience as an HR assistant. The caregiving break is explained, but nothing is dated after June 2025. A recruiter will wonder what you've been doing since.",
+      "The orientation line is a useful model: it names the work and says how often you ran it. The employee relations line could use more of that detail, particularly about your part in investigations."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after June 2025.",
+        "cannot_tell": "The caregiving break has an end date, but the page doesn't say what followed. A reader is left guessing about that time.",
+        "example": "[July 2025 - Present]  [What you have been doing, if you choose to include it]",
+        "question": "What have you been doing since the caregiving break ended that you'd be comfortable putting on the page?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 2",
+        "line": "- Handled employee relations questions and investigations with the HR manager",
+        "cannot_tell": "You handled the work with the HR manager, but the line doesn't say what your part in the investigations involved. That matters for a generalist role.",
+        "example": "Handled employee relations questions and investigations with the HR manager, including [types of questions or investigations] and [your part in the investigations]",
+        "question": "What kinds of questions or investigations did you handle, and what was your part in the investigations?"
+      },
+      {
+        "kind": "keep",
+        "where": "HR Generalist, line 4",
+        "line": "- Ran new hire orientation every two weeks",
+        "cannot_tell": "This tells a reader exactly what you ran and how often. It's a good model for the rest of the page.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "HR Generalist",
+        "HR Assistant"
+      ],
+      "level": "Experienced HR generalist",
+      "note": "Your experience points toward HR generalist work in a manufacturing setting, with earlier HR assistant experience at the same company. The page also lists a SHRM-CP and HR systems, though the latest dated HR role ended in August 2022.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 76,
+    "lifted_by_employer": false,
+    "verdict": "An HR generalist with solid plant experience and a period after the caregiving break to account for.",
+    "write_up": [
+      "You come across as an HR generalist who supported a 400-employee plant across three shifts, with earlier experience as an HR assistant. The caregiving break is explained, but nothing is dated after June 2025. A recruiter will wonder what you've been doing since.",
+      "The orientation line is a useful model: it names the work and says how often you ran it. The employee relations line could use more of that detail, particularly about your part in investigations."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after June 2025.",
+        "cannot_tell": "The caregiving break has an end date, but the page doesn't say what followed. A reader is left guessing about that time.",
+        "example": "[July 2025 - Present] [What you have been doing, if you choose to include it]",
+        "question": "What have you been doing since the caregiving break ended that you'd be comfortable putting on the page?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 2",
+        "line": "Handled employee relations questions and investigations with the HR manager",
+        "cannot_tell": "You handled the work with the HR manager, but the line doesn't say what your part in the investigations involved. That matters for a generalist role.",
+        "example": "Handled employee relations questions and investigations with the HR manager, including [types of questions or investigations] and [your part in the investigations]",
+        "question": "What kinds of questions or investigations did you handle, and what was your part in the investigations?"
+      },
+      {
+        "kind": "keep",
+        "where": "HR Generalist, line 4",
+        "line": "Ran new hire orientation every two weeks",
+        "cannot_tell": "This tells a reader exactly what you ran and how often. It's a good model for the rest of the page.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "HR Generalist",
+        "HR Assistant"
+      ],
+      "level": "Experienced HR generalist",
+      "note": "Your experience points toward HR generalist work in a manufacturing setting, with earlier HR assistant experience at the same company. The page also lists a SHRM-CP and HR systems, though the latest dated HR role ended in August 2022.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 76
+  },
+  "severity": {
+    "promoted": [],
+    "replaced": [],
+    "led": null,
+    "critical_count": 1,
+    "more_critical": false,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "skipped": [],
+    "validation_attempts": 0,
+    "latency_ms": 1634,
+    "call_latency_ms": 1634,
+    "cost_usd": 0.00145325,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 76,
+    "lifted_by_employer": false,
+    "verdict": "An HR generalist with solid plant experience and a period after the caregiving break to account for.",
+    "write_up": [
+      "You come across as an HR generalist who supported a 400-employee plant across three shifts, with earlier experience as an HR assistant. The caregiving break is explained, but nothing is dated after June 2025. A recruiter will wonder what you've been doing since.",
+      "The orientation line is a useful model: it names the work and says how often you ran it. The employee relations line could use more of that detail, particularly about your part in investigations."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after June 2025.",
+        "cannot_tell": "The caregiving break has an end date, but the page doesn't say what followed. A reader is left guessing about that time.",
+        "example": "[July 2025 - Present] [What you have been doing, if you choose to include it]",
+        "question": "What have you been doing since the caregiving break ended that you'd be comfortable putting on the page?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 2",
+        "line": "Handled employee relations questions and investigations with the HR manager",
+        "cannot_tell": "You handled the work with the HR manager, but the line doesn't say what your part in the investigations involved. That matters for a generalist role.",
+        "example": "Handled employee relations questions and investigations with the HR manager, including [types of questions or investigations] and [your part in the investigations]",
+        "question": "What kinds of questions or investigations did you handle, and what was your part in the investigations?"
+      },
+      {
+        "kind": "keep",
+        "where": "HR Generalist, line 4",
+        "line": "Ran new hire orientation every two weeks",
+        "cannot_tell": "This tells a reader exactly what you ran and how often. It's a good model for the rest of the page.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "HR Generalist",
+        "HR Assistant"
+      ],
+      "level": "Experienced HR generalist",
+      "note": "Your experience points toward HR generalist work in a manufacturing setting, with earlier HR assistant experience at the same company. The page also lists a SHRM-CP and HR systems, though the latest dated HR role ended in August 2022.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 76
+  },
+  "presentation": {
+    "score": 76,
+    "band": "Mostly clear",
+    "model_score": 76,
+    "lifted_by_employer": false,
+    "verdict": "An HR generalist with solid plant experience and a period after the caregiving break to account for.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 77,
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after June 2025.",
+        "blanks": 2,
+        "question": "What have you been doing since the caregiving break ended that you'd be comfortable putting on the page?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 2",
+        "line": "Handled employee relations questions and investigations with the HR manager",
+        "blanks": 2,
+        "question": "What kinds of questions or investigations did you handle, and what was your part in the investigations?"
+      },
+      {
+        "kind": "keep",
+        "where": "HR Generalist, line 4",
+        "line": "Ran new hire orientation every two weeks",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "dates": 1,
+      "line": 1,
+      "keep": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "none (none)",
+    "fit": {
+      "roles": [
+        "HR Generalist",
+        "HR Assistant"
+      ],
+      "level": "Experienced HR generalist",
+      "note": "Your experience points toward HR generalist work in a manufacturing setting, with earlier HR assistant experience at the same company. The page also lists a SHRM-CP and HR systems, though the latest dated HR role ended in August 2022.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.007621,
+  "latency_ms": 15669
+}

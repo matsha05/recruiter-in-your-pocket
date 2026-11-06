@@ -1,0 +1,48 @@
+# b31_kitchen_manager, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_kitchen_manager_1.txt (120 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 05f0ed39; severity check off
+Outcome: report; cost $0.0073; 16.0s
+
+## Mostly clear (score 74; model wrote 74)
+## Verdict
+A kitchen manager with clear restaurant progression, but unanswered questions about staff size and inspections.
+
+## Write-up
+You came up from line cook to kitchen manager, and the work is easy to follow. A recruiter can see the 180-seat restaurant and ServSafe Manager certification, but not how many people you schedule or what happened at inspections.
+
+The 180-seat line is the model: it names your job and gives the restaurant a size. Add a few similarly concrete details to the scheduling, ordering and training work.
+
+## Cards (6; {"keep":1,"line":5}); severity off; added []
+1. [keep] Kitchen Manager, line 1
+   line: "Run the kitchen for a 180-seat restaurant"
+   can't tell: This gives the job a setting and a size without making a reader guess.
+2. [line] Kitchen Manager, line 2
+   line: "Manage the kitchen staff schedule"
+   can't tell: The scheduling job is clear, but the number of people on that schedule isn't.
+   example: Manage the kitchen staff schedule for [number] [staff or roles]
+   question: How many people do you schedule, and which roles do they cover?
+3. [line] Kitchen Manager, line 3
+   line: "Order food and supplies from vendors"
+   can't tell: A recruiter can see what you order, but not how often or how much you handle.
+   example: Order food and supplies from vendors [frequency], with [budget or order volume, if known]
+   question: How often do you order, and what budget or order volume can you verify?
+4. [line] Kitchen Manager, line 4
+   line: "Keep the kitchen ready for health inspections"
+   can't tell: Inspection readiness matters, but this doesn't say what you do to maintain it or what the inspections found.
+   example: Keep the kitchen ready for health inspections by [actions]; [inspection result, if known]
+   question: What do you do to prepare for inspections, and what were the results?
+5. [line] Kitchen Manager, line 5
+   line: "Train new line cooks"
+   can't tell: Training is part of the job, but the number of cooks and what you teach them are left open.
+   example: Train [number] new line cooks on [skills or procedures]
+   question: How many new line cooks have you trained, and what did you teach them?
+6. [line] Sous Chef, line 2
+   line: "Helped plan seasonal menu changes"
+   can't tell: Your part in the menu changes isn't named. Keep the shared ownership, but say what you contributed.
+   example: Helped plan seasonal menu changes by [your contribution] for [dishes or menu items]
+   question: What did you contribute to the seasonal menu changes, and which dishes were involved?
+
+## Fit
+Roles: ["Kitchen Manager","Sous Chef"]
+Level: Restaurant kitchen management
+Note: Your experience points toward kitchen management and sous chef work. The progression from line cook and the ServSafe Manager certification support that direction.

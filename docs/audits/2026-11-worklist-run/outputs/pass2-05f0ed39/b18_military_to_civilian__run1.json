@@ -1,0 +1,212 @@
+{
+  "case_id": "b18_military_to_civilian",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/resumes/b_military_to_civilian.txt",
+  "resume_sha256": "c2dd1e89354ce1a86021927ffba5d85f65b3dfb021c3126f6459225f8bfd7a7e",
+  "resume_words": 268,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T03:52:11.939Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4522,
+        "completion_tokens": 768,
+        "total_tokens": 5290,
+        "cached_prompt_tokens": 3406,
+        "cache_write_prompt_tokens": 1113,
+        "reasoning_tokens": 270
+      },
+      "cost_usd": 0.00540455,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 10497
+    }
+  ],
+  "resume_prompt_sha256": "05f0ed391d02c15c487cdf3fcd427706167ba6aa9a1ad58365cfcff658e9caea",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 92,
+    "lifted_by_employer": false,
+    "verdict": "A military logistics and maintenance leader with measurable results and a clear civilian direction.",
+    "write_up": [
+      "You make a strong case for supply chain or operations supervision: team leadership, equipment accountability, field logistics and a parts budget are all on the page. A civilian recruiter may still want to know what the field logistics involved.",
+      "The vehicle readiness line is the model: it names the problem, the change you made and the result. Your in-progress supply chain degree also fits the direction you’ve named."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Platoon Sergeant, line 3",
+        "line": "- Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises",
+        "cannot_tell": "The size is clear, but the support itself is still a blank. Naming what you planned and supplied would connect this work to civilian operations.",
+        "example": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises, including [type of support]",
+        "question": "What supplies or services did your logistics support cover during those exercises?"
+      },
+      {
+        "kind": "keep",
+        "where": "Platoon Sergeant, line 4",
+        "line": "- Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "cannot_tell": "Keep this as the model. It tells a recruiter what you changed and what happened to vehicle readiness.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Platoon Sergeant (E-7), Forward Support Company",
+        "Maintenance Section Sergeant (E-6)"
+      ],
+      "level": "Experienced supervisor",
+      "note": "Your experience points toward logistics, maintenance and operations supervision. Translating a few military terms into the work behind them would make the transition easier to follow.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 92,
+    "lifted_by_employer": false,
+    "verdict": "A military logistics and maintenance leader with measurable results and a clear civilian direction.",
+    "write_up": [
+      "You make a strong case for supply chain or operations supervision: team leadership, equipment accountability, field logistics and a parts budget are all on the page. A civilian recruiter may still want to know what the field logistics involved.",
+      "The vehicle readiness line is the model: it names the problem, the change you made and the result. Your in-progress supply chain degree also fits the direction you’ve named."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Platoon Sergeant, line 3",
+        "line": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises",
+        "cannot_tell": "The size is clear, but the support itself is still a blank. Naming what you planned and supplied would connect this work to civilian operations.",
+        "example": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises, including [type of support]",
+        "question": "What supplies or services did your logistics support cover during those exercises?"
+      },
+      {
+        "kind": "keep",
+        "where": "Platoon Sergeant, line 4",
+        "line": "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "cannot_tell": "Keep this as the model. It tells a recruiter what you changed and what happened to vehicle readiness.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Platoon Sergeant (E-7), Forward Support Company",
+        "Maintenance Section Sergeant (E-6)"
+      ],
+      "level": "Experienced supervisor",
+      "note": "Your experience points toward logistics, maintenance and operations supervision. Translating a few military terms into the work behind them would make the transition easier to follow.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 92
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 92,
+    "lifted_by_employer": false,
+    "verdict": "A military logistics and maintenance leader with measurable results and a clear civilian direction.",
+    "write_up": [
+      "You make a strong case for supply chain or operations supervision: team leadership, equipment accountability, field logistics and a parts budget are all on the page. A civilian recruiter may still want to know what the field logistics involved.",
+      "The vehicle readiness line is the model: it names the problem, the change you made and the result. Your in-progress supply chain degree also fits the direction you’ve named."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Platoon Sergeant, line 3",
+        "line": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises",
+        "cannot_tell": "The size is clear, but the support itself is still a blank. Naming what you planned and supplied would connect this work to civilian operations.",
+        "example": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises, including [type of support]",
+        "question": "What supplies or services did your logistics support cover during those exercises?"
+      },
+      {
+        "kind": "keep",
+        "where": "Platoon Sergeant, line 4",
+        "line": "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "cannot_tell": "Keep this as the model. It tells a recruiter what you changed and what happened to vehicle readiness.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Platoon Sergeant (E-7), Forward Support Company",
+        "Maintenance Section Sergeant (E-6)"
+      ],
+      "level": "Experienced supervisor",
+      "note": "Your experience points toward logistics, maintenance and operations supervision. Translating a few military terms into the work behind them would make the transition easier to follow.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 92
+  },
+  "presentation": {
+    "score": 92,
+    "band": "Clear and specific",
+    "model_score": 92,
+    "lifted_by_employer": false,
+    "verdict": "A military logistics and maintenance leader with measurable results and a clear civilian direction.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 68,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Platoon Sergeant, line 3",
+        "line": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises",
+        "blanks": 1,
+        "question": "What supplies or services did your logistics support cover during those exercises?"
+      },
+      {
+        "kind": "keep",
+        "where": "Platoon Sergeant, line 4",
+        "line": "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "line": 1,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Platoon Sergeant (E-7), Forward Support Company",
+        "Maintenance Section Sergeant (E-6)"
+      ],
+      "level": "Experienced supervisor",
+      "note": "Your experience points toward logistics, maintenance and operations supervision. Translating a few military terms into the work behind them would make the transition easier to follow.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00540455,
+  "latency_ms": 10500
+}

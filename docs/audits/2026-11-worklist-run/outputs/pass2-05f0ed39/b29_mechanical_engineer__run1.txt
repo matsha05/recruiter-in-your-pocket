@@ -1,0 +1,43 @@
+# b29_mechanical_engineer, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_mechanical_engineer_1.txt (143 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 05f0ed39; severity check off
+Outcome: report; cost $0.0104; 932.6s
+
+## Needs more context (score 69; model wrote 69)
+## Verdict
+A mechanical engineer with a named desk platform, but little about its scale or results.
+
+## Write-up
+You've moved from Mechanical Engineer I to II at a furniture company, with design, analysis and supplier work. The current role names the desk platform but gives no measure of its size or result, so a recruiter may hesitate and move on.
+
+The SolidWorks line is a useful model: it names the deliverables and GD&T. Add what you led on Arlo and what your supplier work or analyses changed, where you can verify it.
+
+## Cards (5; {"line":4,"keep":1}); severity off; added []
+1. [line] Mechanical Engineer II, line 1
+   line: "Lead mechanical design for the Arlo height-adjustable desk platform"
+   can't tell: Arlo is a real product to anchor the story, but the line doesn't say what you designed or how far the platform got.
+   example: Lead mechanical design for the Arlo height-adjustable desk platform, including [specific design work] and [product stage or result, if known]
+   question: What design work did you lead on Arlo, and what stage or result can you verify?
+2. [keep] Mechanical Engineer II, line 2
+   line: "Create 3D models and drawings in SolidWorks with GD&T"
+   can't tell: This names both the deliverables and the methods. It's a useful model for spelling out the work behind the other bullets.
+3. [line] Mechanical Engineer II, line 3
+   line: "Work with suppliers in Mexico and Taiwan on tooling and first-article inspection"
+   can't tell: The locations and work are named, but 'work with' leaves your part open. A specific contribution would show what you handled.
+   example: Work with suppliers in Mexico and Taiwan on tooling and first-article inspection, [your specific contribution] and [result, if known]
+   question: What did you do on tooling and first-article inspection, and what came of it?
+4. [line] Mechanical Engineer II, line 4
+   line: "Run tolerance stack-ups and FEA on load-bearing components"
+   can't tell: The analyses are clear, but the components and decisions behind them aren't. Name one component and what the analysis informed.
+   example: Run tolerance stack-ups and FEA on load-bearing components, including [component], to [decision or result, if known]
+   question: Which load-bearing component did you analyze, and what decision or result followed?
+5. [line] Mechanical Engineer II, line 5
+   line: "Support manufacturing with engineering change orders"
+   can't tell: 'Support' doesn't say what you did with the change orders. A specific change would show your part without making it bigger than it was.
+   example: Support manufacturing with engineering change orders by [your contribution] for [specific change or problem]
+   question: What did you do on a change order, and what change or problem did it address?
+
+## Fit
+Roles: ["Mechanical Engineer II","Mechanical Engineer I"]
+Level: Mid-level
+Note: Your experience points toward mechanical design for furniture and fixtures. The progression and technical work are clear; the current role needs more detail about what the work produced.

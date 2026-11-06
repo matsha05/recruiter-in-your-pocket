@@ -1,0 +1,28 @@
+# b04_retail_store_manager, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_retail_store_manager_1.txt (179 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 18e7e9ff; severity check off
+Outcome: report; cost $0.0051; 10.3s
+
+## Mostly clear (score 84; model wrote 84)
+## Verdict
+A retail manager with strong store results, though the claimed second turnaround isn't explained.
+
+## Write-up
+A recruiter sees a store manager running a $9.4M location, with sales growth, lower turnover and reduced shrink. The headline claims two store turnarounds, but the work history only shows results for the current store.
+
+The fixed-schedule line is the model: it names what you changed and shows turnover before and after. Add the details behind the second turnaround so the headline earns its place.
+
+## Cards (2; {"line":1,"keep":1}); severity off; added []
+1. [line] Headline
+   line: "Retail store manager who has turned around two underperforming stores in a 60-store regional chain."
+   can't tell: The current store has results attached, but a recruiter can't see what changed at the second store. That leaves part of your opening claim unsupported.
+   example: Retail store manager who has turned around two underperforming stores in a 60-store regional chain, including [what changed at each store]
+   question: Which two stores did you turn around, and what changed at each one?
+2. [keep] Store Manager, line 3
+   line: "Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules"
+   can't tell: Keep this as a model. It connects the scheduling change to a before-and-after measure.
+
+## Fit
+Roles: ["Store Manager","Assistant Store Manager"]
+Level: Experienced store manager
+Note: Your experience points to retail store management, with responsibility for employees, sales and inventory. The progression from Department Supervisor to Store Manager is easy to follow.

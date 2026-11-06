@@ -1,0 +1,59 @@
+# b11_recent_grad_bad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_recent_grad_bad_1.txt (151 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt b2c0d186; severity check on
+Outcome: report; cost $0.0222; repair ran; 41.7s
+Case note: First job, weak; count-check key says no_evidence_latest_role, no_recent_work, title_level_mismatch.
+
+Validator refused the first draft: The model response failed the worklist contract at cards[0].cannot_tell: uses the retired phrase "the page currently supports".
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+A marketing intern's resume with a manager's headline and no work dated after May 2024.
+
+## Write-up
+You have credit union marketing experience, but the headline claims manager-level campaign leadership that the bullets don't establish. A recruiter would hesitate over that mismatch and the unaccounted time after May 2024.
+
+The dairy farm research line is the model: it names the data, Stata and the pricing study. Move Experience above Education, then give the newsletter, social posts and branch events the same treatment: what you actually did.
+
+## Cards (8; {"line":4,"dates":1,"structure":2,"keep":1}); severity none (none); added []
+1. [line] Headline
+   line: "Marketing manager who has led credit union campaigns from strategy to launch."
+   can't tell: The experience section names a Marketing Intern role, but the bullets don't establish campaign leadership from strategy to launch. The manager headline promises more than the work below it shows.
+   example: Marketing Intern with experience in [credit union marketing work you can verify].
+   question: What credit union marketing work can you describe accurately in your headline?
+2. [dates] Dates
+   line: "Nothing is dated after May 2024."
+   can't tell: A recruiter can't tell what you've been doing since the internship ended. A brief, honest entry would make the timeline easier to follow.
+   example: [Month Year - Month Year] [Work, study, job search, career break or other activity]
+   question: What have you been doing since May 2024 that you'd be comfortable including?
+3. [structure] Structure
+   line: "Education sits above Experience."
+   can't tell: Your work is the stronger reason to keep reading, but it comes after your degree. Put Experience first so the credit union role is easier to find.
+   question: Can you move Experience above Education?
+4. [structure] Marketing Intern, employer
+   line: "Badger State Credit Union is named as an employer, but its size isn't given."
+   can't tell: Someone unfamiliar with the credit union can't tell how large an organization you worked for. A short description could help put the marketing work in context.
+   question: Is there a member count or other description of the credit union's size you can verify?
+5. [line] Marketing Intern, line 1
+   line: "Helped with the member newsletter"
+   can't tell: Helped hides the job. A recruiter can't tell whether you wrote, designed or distributed the newsletter.
+   example: Helped with the member newsletter by [your contribution], [frequency].
+   question: What did you do for the newsletter, and how often did it go out?
+6. [line] Marketing Intern, line 2
+   line: "Posted on the credit union's social media accounts"
+   can't tell: Posting is a task, but the accounts and cadence are missing. Those details would help a recruiter picture the work.
+   example: Posted on the credit union's social media accounts, including [accounts], [frequency], sharing [content].
+   question: Which accounts did you post on, what did you post, and how often?
+7. [line] Marketing Intern, line 3
+   line: "Supported planning for branch events"
+   can't tell: Supported planning doesn't say what part was yours or what kind of events they were. Either detail would make the work easier to picture.
+   example: Supported planning for branch events by [your contribution] for [type of event].
+   question: What events did you support, and what did you do to help plan them?
+8. [keep] Research Assistant, line 1
+   line: "Cleaned survey data from 1,200 dairy farms in Stata for a pricing study"
+   can't tell: Keep this as the model. It names the work, the data, the tool and the study, so a recruiter can picture what you did.
+
+## Fit
+Roles: ["Marketing Intern","Research Assistant"]
+Level: Early career
+Note: The page points toward marketing internships or research assistant work. The credit union bullets need more detail before the manager headline is justified.

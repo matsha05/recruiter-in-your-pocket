@@ -1,0 +1,46 @@
+# t2_logos_operations_robert, run 1
+Resume: resumes/t2_logos_operations_robert.txt (183 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 05f0ed39; severity check off
+Outcome: report; cost $0.0157; repair ran; 30.1s
+Case note: Blind pick v5 bp5-10: a recognisable employer; decision 5 says the lift is one rung, bounded, declared.
+
+Validator refused the first draft: The model response failed the worklist contract at cards[4].cannot_tell: uses the retired phrase "the read".
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+A strong program management history, but the current terminal job leaves too much to guess.
+
+## Write-up
+You look like an operations manager with substantial program management experience. A recruiter may hesitate over the current role: the terminal work is named, but its size and results aren't.
+
+The Google forecast-to-delivery line is a model: it says what you changed, how you changed it and what happened. Bring some of that detail to Brightline, especially the team size and what the weekly metrics track.
+
+## Cards (5; {"line":4,"keep":1}); severity off; added []
+1. [line] Operations Manager, line 1
+   line: "Responsible for daily operations of the Austin terminal"
+   can't tell: The terminal is named, but not what you handle day to day or how much freight moves through it. That's the first question about your current job.
+   example: Responsible for daily operations of the Austin terminal [specific responsibilities] [terminal throughput]
+   question: Which daily operations are yours, and what measure best describes the terminal's size?
+2. [line] Operations Manager, line 2
+   line: "Manage a team of coordinators and dispatchers"
+   can't tell: You manage the team, but its size and work aren't stated. Both matter for a management role.
+   example: Manage a team of coordinators and dispatchers [team size] [team responsibilities]
+   question: How many coordinators and dispatchers do you manage, and what are they responsible for?
+3. [line] Operations Manager, line 3
+   line: "Work with carriers and customers to resolve issues"
+   can't tell: The parties are clear, but the issues aren't. One specific example would show what you handle.
+   example: Work with carriers and customers to resolve issues [specific issue] [your part in resolving it]
+   question: What kind of issue have you worked on with carriers and customers, and what did you do?
+4. [line] Operations Manager, line 4
+   line: "Report weekly metrics to the regional director"
+   can't tell: The weekly reporting line names its audience, but not the metrics or how they're used.
+   example: Report weekly metrics to the regional director [metrics] [how the metrics are used]
+   question: Which metrics do you report, and how does the regional director use them?
+5. [keep] Senior Program Manager, line 2
+   line: "Cut the forecast-to-delivery cycle for new capacity from 14 months to 9 by consolidating three approval tracks into one"
+   can't tell: Keep this as a model. It tells me what changed and how you did it.
+
+## Fit
+Roles: ["Operations Manager","Senior Program Manager","Program Manager"]
+Level: Operations and program management
+Note: Your experience points toward operations management and senior program management. The Google and Dell Technologies roles show program size and results; the current terminal role needs comparable detail.

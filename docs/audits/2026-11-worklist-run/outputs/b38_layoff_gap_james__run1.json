@@ -1,0 +1,340 @@
+{
+  "case_id": "b38_layoff_gap_james",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Layoff gap (bar persona).",
+  "resume_file": "../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/3-layoff-gap-james.txt",
+  "resume_sha256": "9ff2c78d35a73e7b304020c79e4a236c0f62eb85a82de37c83724da8a6ce928d",
+  "resume_words": 313,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T04:16:20.667Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4718,
+        "completion_tokens": 1609,
+        "total_tokens": 6327,
+        "cached_prompt_tokens": 3502,
+        "cache_write_prompt_tokens": 1213,
+        "reasoning_tokens": 633
+      },
+      "cost_usd": 0.00973935,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 19208
+    }
+  ],
+  "resume_prompt_sha256": "18e7e9ff21a0c2fda0fe219456e2d1f965de7d79bcc85173eaebd632dd83f42e",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 69,
+    "lifted_by_employer": false,
+    "verdict": "A senior B2B SaaS marketer with strong earlier results, but a current consulting role that needs more detail.",
+    "write_up": [
+      "You've led demand generation, managed marketers and a budget, and now consult for small businesses and startups. The consulting work names the projects, but not their size or results. A recruiter is likely to hesitate and move on unless the pile is thin.",
+      "The MQL line is your model: it gives a year-over-year increase and says cost per lead fell. Bring that same specificity to a consulting project and the earlier blog and webinar work, where you can verify the details."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Freelance Marketing Consultant, line 1",
+        "line": "- Provided marketing strategy and execution support for small businesses and startups",
+        "cannot_tell": "Support covers a lot of ground. A recruiter can't tell how many clients you worked with or what strategy work was yours.",
+        "example": "Provided marketing strategy and execution support for [number] small businesses and startups, including [specific strategy work]",
+        "question": "How many clients did you support, and what strategy work did you do for them?"
+      },
+      {
+        "kind": "line",
+        "where": "Freelance Marketing Consultant, line 2",
+        "line": "- Projects included website copy, email campaigns, and paid social setup",
+        "cannot_tell": "The project types are named, but the line leaves your contribution and any results open. Pick one project a recruiter can follow.",
+        "example": "Projects included website copy, email campaigns, and paid social setup, including [your specific contribution to one project] and [result, if known]",
+        "question": "What did you contribute to one of these projects, and what happened afterward, if you know?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Marketing Manager, ABM line",
+        "line": "- Launched ABM program targeting enterprise accounts",
+        "cannot_tell": "You launched the program, but a recruiter can't tell what it involved or how many accounts it targeted.",
+        "example": "Launched ABM program targeting [number] enterprise accounts through [program activities]",
+        "question": "How many accounts did the program target, and what activities did it include?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Marketing Manager, MQL line",
+        "line": "- Increased MQL volume by 35% year over year while reducing cost per lead",
+        "cannot_tell": "Keep this as a model. It names the measure, the year-over-year change, and the direction of cost per lead.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Manager, blog line",
+        "line": "- Grew blog traffic significantly through SEO-driven content strategy",
+        "cannot_tell": "'Significantly' leaves the change to the reader's imagination. A figure and timeframe would make the growth concrete.",
+        "example": "Grew blog traffic by [amount] over [timeframe] through SEO-driven content strategy",
+        "question": "How much did blog traffic grow, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Manager, webinar line",
+        "line": "- Ran webinar program generating pipeline for the sales team",
+        "cannot_tell": "The sales connection is useful, but the pipeline is unmeasured and the webinars are unnamed. One example would give this work some shape.",
+        "example": "Ran webinar program including [webinar topic], generating [pipeline amount, if known] in pipeline for the sales team",
+        "question": "What was one webinar about, and how much pipeline did the program generate, if you know?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Marketing Manager",
+        "Marketing Manager",
+        "Freelance Marketing Consultant"
+      ],
+      "level": "Senior marketing manager",
+      "note": "Your experience points toward senior marketing roles in B2B SaaS, particularly demand generation and marketing operations. The consulting projects need more detail to show what you've done most recently.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 69,
+    "lifted_by_employer": false,
+    "verdict": "A senior B2B SaaS marketer with strong earlier results, but a current consulting role that needs more detail.",
+    "write_up": [
+      "You've led demand generation, managed marketers and a budget, and now consult for small businesses and startups. The consulting work names the projects, but not their size or results. A recruiter is likely to hesitate and move on unless the pile is thin.",
+      "The MQL line is your model: it gives a year-over-year increase and says cost per lead fell. Bring that same specificity to a consulting project and the earlier blog and webinar work, where you can verify the details."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Freelance Marketing Consultant, line 1",
+        "line": "Provided marketing strategy and execution support for small businesses and startups",
+        "cannot_tell": "Support covers a lot of ground. A recruiter can't tell how many clients you worked with or what strategy work was yours.",
+        "example": "Provided marketing strategy and execution support for [number] small businesses and startups, including [specific strategy work]",
+        "question": "How many clients did you support, and what strategy work did you do for them?"
+      },
+      {
+        "kind": "line",
+        "where": "Freelance Marketing Consultant, line 2",
+        "line": "Projects included website copy, email campaigns, and paid social setup",
+        "cannot_tell": "The project types are named, but the line leaves your contribution and any results open. Pick one project a recruiter can follow.",
+        "example": "Projects included website copy, email campaigns, and paid social setup, including [your specific contribution to one project] and [result, if known]",
+        "question": "What did you contribute to one of these projects, and what happened afterward, if you know?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Marketing Manager, ABM line",
+        "line": "Launched ABM program targeting enterprise accounts",
+        "cannot_tell": "You launched the program, but a recruiter can't tell what it involved or how many accounts it targeted.",
+        "example": "Launched ABM program targeting [number] enterprise accounts through [program activities]",
+        "question": "How many accounts did the program target, and what activities did it include?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Marketing Manager, MQL line",
+        "line": "Increased MQL volume by 35% year over year while reducing cost per lead",
+        "cannot_tell": "Keep this as a model. It names the measure, the year-over-year change, and the direction of cost per lead.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Manager, blog line",
+        "line": "Grew blog traffic significantly through SEO-driven content strategy",
+        "cannot_tell": "'Significantly' leaves the change to the reader's imagination. A figure and timeframe would make the growth concrete.",
+        "example": "Grew blog traffic by [amount] over [timeframe] through SEO-driven content strategy",
+        "question": "How much did blog traffic grow, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Manager, webinar line",
+        "line": "Ran webinar program generating pipeline for the sales team",
+        "cannot_tell": "The sales connection is useful, but the pipeline is unmeasured and the webinars are unnamed. One example would give this work some shape.",
+        "example": "Ran webinar program including [webinar topic], generating [pipeline amount, if known] in pipeline for the sales team",
+        "question": "What was one webinar about, and how much pipeline did the program generate, if you know?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Marketing Manager",
+        "Marketing Manager",
+        "Freelance Marketing Consultant"
+      ],
+      "level": "Senior marketing manager",
+      "note": "Your experience points toward senior marketing roles in B2B SaaS, particularly demand generation and marketing operations. The consulting projects need more detail to show what you've done most recently.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 69
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 69,
+    "lifted_by_employer": false,
+    "verdict": "A senior B2B SaaS marketer with strong earlier results, but a current consulting role that needs more detail.",
+    "write_up": [
+      "You've led demand generation, managed marketers and a budget, and now consult for small businesses and startups. The consulting work names the projects, but not their size or results. A recruiter is likely to hesitate and move on unless the pile is thin.",
+      "The MQL line is your model: it gives a year-over-year increase and says cost per lead fell. Bring that same specificity to a consulting project and the earlier blog and webinar work, where you can verify the details."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Freelance Marketing Consultant, line 1",
+        "line": "Provided marketing strategy and execution support for small businesses and startups",
+        "cannot_tell": "Support covers a lot of ground. A recruiter can't tell how many clients you worked with or what strategy work was yours.",
+        "example": "Provided marketing strategy and execution support for [number] small businesses and startups, including [specific strategy work]",
+        "question": "How many clients did you support, and what strategy work did you do for them?"
+      },
+      {
+        "kind": "line",
+        "where": "Freelance Marketing Consultant, line 2",
+        "line": "Projects included website copy, email campaigns, and paid social setup",
+        "cannot_tell": "The project types are named, but the line leaves your contribution and any results open. Pick one project a recruiter can follow.",
+        "example": "Projects included website copy, email campaigns, and paid social setup, including [your specific contribution to one project] and [result, if known]",
+        "question": "What did you contribute to one of these projects, and what happened afterward, if you know?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Marketing Manager, ABM line",
+        "line": "Launched ABM program targeting enterprise accounts",
+        "cannot_tell": "You launched the program, but a recruiter can't tell what it involved or how many accounts it targeted.",
+        "example": "Launched ABM program targeting [number] enterprise accounts through [program activities]",
+        "question": "How many accounts did the program target, and what activities did it include?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Marketing Manager, MQL line",
+        "line": "Increased MQL volume by 35% year over year while reducing cost per lead",
+        "cannot_tell": "Keep this as a model. It names the measure, the year-over-year change, and the direction of cost per lead.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Manager, blog line",
+        "line": "Grew blog traffic significantly through SEO-driven content strategy",
+        "cannot_tell": "'Significantly' leaves the change to the reader's imagination. A figure and timeframe would make the growth concrete.",
+        "example": "Grew blog traffic by [amount] over [timeframe] through SEO-driven content strategy",
+        "question": "How much did blog traffic grow, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Manager, webinar line",
+        "line": "Ran webinar program generating pipeline for the sales team",
+        "cannot_tell": "The sales connection is useful, but the pipeline is unmeasured and the webinars are unnamed. One example would give this work some shape.",
+        "example": "Ran webinar program including [webinar topic], generating [pipeline amount, if known] in pipeline for the sales team",
+        "question": "What was one webinar about, and how much pipeline did the program generate, if you know?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Marketing Manager",
+        "Marketing Manager",
+        "Freelance Marketing Consultant"
+      ],
+      "level": "Senior marketing manager",
+      "note": "Your experience points toward senior marketing roles in B2B SaaS, particularly demand generation and marketing operations. The consulting projects need more detail to show what you've done most recently.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 69
+  },
+  "presentation": {
+    "score": 69,
+    "band": "Needs more context",
+    "model_score": 69,
+    "lifted_by_employer": false,
+    "verdict": "A senior B2B SaaS marketer with strong earlier results, but a current consulting role that needs more detail.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 81,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Freelance Marketing Consultant, line 1",
+        "line": "Provided marketing strategy and execution support for small businesses and startups",
+        "blanks": 2,
+        "question": "How many clients did you support, and what strategy work did you do for them?"
+      },
+      {
+        "kind": "line",
+        "where": "Freelance Marketing Consultant, line 2",
+        "line": "Projects included website copy, email campaigns, and paid social setup",
+        "blanks": 2,
+        "question": "What did you contribute to one of these projects, and what happened afterward, if you know?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Marketing Manager, ABM line",
+        "line": "Launched ABM program targeting enterprise accounts",
+        "blanks": 2,
+        "question": "How many accounts did the program target, and what activities did it include?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Marketing Manager, MQL line",
+        "line": "Increased MQL volume by 35% year over year while reducing cost per lead",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Manager, blog line",
+        "line": "Grew blog traffic significantly through SEO-driven content strategy",
+        "blanks": 2,
+        "question": "How much did blog traffic grow, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Manager, webinar line",
+        "line": "Ran webinar program generating pipeline for the sales team",
+        "blanks": 2,
+        "question": "What was one webinar about, and how much pipeline did the program generate, if you know?"
+      }
+    ],
+    "card_count": 6,
+    "kinds": {
+      "line": 5,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Marketing Manager",
+        "Marketing Manager",
+        "Freelance Marketing Consultant"
+      ],
+      "level": "Senior marketing manager",
+      "note": "Your experience points toward senior marketing roles in B2B SaaS, particularly demand generation and marketing operations. The consulting projects need more detail to show what you've done most recently.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00973935,
+  "latency_ms": 19210
+}

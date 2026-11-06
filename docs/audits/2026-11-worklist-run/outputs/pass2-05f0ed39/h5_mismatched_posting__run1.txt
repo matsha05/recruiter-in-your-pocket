@@ -1,0 +1,36 @@
+# h5_mismatched_posting, run 1
+Resume: ../2026-11-live-judgment/resumes/h5_data_analyst.txt (166 words), posting: ../2026-11-live-judgment/resumes/h5_nursing_posting.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 05f0ed39; severity check off
+Outcome: report; cost $0.0105; 12.8s
+Case note: Data analyst against a registered nurse posting.
+
+## Clear and specific (score 86; model wrote 86)
+## Verdict
+A specific data analyst resume, but not a match for the medical-surgical nursing role.
+
+## Write-up
+You come across as a data analyst who builds reports and helps sales and merchandising teams make decisions. The SQL model that replaced a 3-day manual report is concrete. The markdown line is the best model for the rest: it names the analysis, its size, and the schedule the team adopted.
+
+The nursing posting is a different profession. Your resume doesn't show an RN license, nursing credentials, or patient-care experience. The score reflects the data analyst work the resume points toward, not its fit for this nursing job.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] Data Analyst, line 1
+   line: "Build and maintain 14 Power BI dashboards used by the sales, merchandising, and finance teams"
+   can't tell: The number of dashboards and their users are clear. What they track is still a blank.
+   example: Build and maintain 14 Power BI dashboards tracking [metrics] used by the sales, merchandising, and finance teams
+   question: What do the dashboards track?
+2. [keep] Data Analyst, line 3
+   line: "Analyzed markdown timing for 2,100 SKUs; the merchandising team adopted the recommended schedule in two categories"
+   can't tell: Keep this as a model. It names the analysis, the number of SKUs, and what the merchandising team adopted.
+3. [line] Data Analyst, line 4
+   line: "Pull ad hoc analyses for the VP of Sales, about 10 requests a month"
+   can't tell: The audience and frequency are clear, but the analyses could cover almost anything. Name a topic or decision.
+   example: Pull ad hoc analyses on [topics] for the VP of Sales, about 10 requests a month, informing [decisions, if known]
+   question: What do these analyses cover, and what decisions do they inform?
+
+## Fit
+Roles: ["Data Analyst","Junior Analyst"]
+Level: Experienced individual contributor
+Note: The medical-surgical nursing role requires an RN license and patient-care skills that your resume doesn't show. Your experience instead points toward data analyst roles using SQL, Power BI, and reporting for business teams.
+Posting: The posting is for a night-shift medical-surgical RN. The resume describes data analysis rather than nursing or clinical care.
+Missing: ["Current unrestricted North Carolina RN license or compact state license","BLS certification","acute care nursing experience","Experience with Epic or a comparable EHR","Ability to manage a patient assignment of 5 to 6 patients","Administer medications and treatments per orders and unit protocol"]

@@ -1,0 +1,33 @@
+# b30_social_worker, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_social_worker_1.txt (127 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt b2c0d186; severity check on
+Outcome: report; cost $0.0068; 15.1s
+
+## Mostly clear (score 78; model wrote 78)
+## Verdict
+A licensed social worker with clear child welfare duties, but little detail on the size of the caseload.
+
+## Write-up
+You have a straightforward child welfare and family services resume, with an Ohio LMSW and current casework experience. It's worth a closer look for caseworker roles. The first hesitation is the caseload: the page doesn't say how many families you carry.
+
+The intake screening line is the best model here. It names the clients and the three kinds of assistance you screened for, so nobody has to guess what the work involved. A little more detail on the current caseload and services would make that role just as easy to picture.
+
+## Cards (3; {"line":2,"keep":1}); severity none (none); added []
+1. [line] Family Services Caseworker, line 1
+   line: "Carry a caseload of families involved with child protective services"
+   can't tell: The families are clear, but the size of your caseload isn't. That's a useful measure of the work in this role.
+   example: Carry a caseload of [number] families involved with child protective services
+   question: How many families are typically on your caseload?
+2. [line] Family Services Caseworker, line 3
+   line: "Coordinate services with schools, courts, and mental health providers"
+   can't tell: You've named the partners, but not the services you coordinate. A concrete example would help a reader picture your part.
+   example: Coordinate [types of services] with schools, courts, and mental health providers
+   question: What services do you coordinate with these partners?
+3. [keep] Intake Specialist, line 1
+   line: "Screened walk-in clients for housing, food, and utility assistance"
+   can't tell: Keep this as a model: it names who you screened and what assistance they needed.
+
+## Fit
+Roles: ["Family Services Caseworker","Intake Specialist"]
+Level: Experienced caseworker
+Note: Your experience points toward family services casework and client intake. The current role names child protective services, home visits and court reports; adding caseload size would help place the work.

@@ -1,0 +1,28 @@
+# b02_teacher, run 1
+Resume: ../2026-11-live-judgment/resumes/b_teacher.txt (202 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 18e7e9ff; severity check off
+Outcome: report; cost $0.0047; 9.7s
+
+## Clear and specific (score 90; model wrote 90)
+## Verdict
+An experienced elementary teacher with classroom results, grade-level leadership, and a clear record of family engagement.
+
+## Write-up
+A recruiter sees a Washington-certified elementary teacher who teaches core subjects, leads grade-level planning, and works with English language learners. The classroom size, reading growth, and curriculum pilot make the work concrete.
+
+The reading growth line is the model: it names the district assessment, the change, and the period. The earlier committee line is the one place where your contribution is still a question.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] 4th Grade Teacher, line 2
+   line: "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years"
+   can't tell: Keep this as a model. It names the measure, the change, and the period without making a recruiter guess.
+2. [line] 2nd Grade Teacher, line 3
+   line: "Served on the school's positive behavior support committee"
+   can't tell: Committee membership doesn't say what you contributed. Name the work you took part in.
+   example: Served on the school's positive behavior support committee, where I [what you contributed]
+   question: What did you contribute to the committee's work?
+
+## Fit
+Roles: ["4th Grade Teacher","2nd Grade Teacher"]
+Level: Experienced elementary teacher
+Note: Your experience points to elementary classroom teaching, with grade-level planning and curriculum training alongside it. The English Language Learner endorsement adds a specific qualification for work with multilingual students.

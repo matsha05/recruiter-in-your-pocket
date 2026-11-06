@@ -1,0 +1,44 @@
+# b40_senior_ic_wei, run 1
+Resume: ../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/4-senior-ic-wei.txt (361 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 18e7e9ff; severity check off
+Outcome: report; cost $0.0085; 16.9s
+Case note: Senior IC (bar persona).
+
+## Mostly clear (score 81; model wrote 81)
+## Verdict
+A staff engineer with substantial payments infrastructure work, though the size of the current platform is unclear.
+
+## Write-up
+You come across as a staff engineer leading payments infrastructure work, with a ledger redesign and duplicate-charge prevention to show for it. A recruiter can see the technical decisions, but not how much traffic or data the platform handles.
+
+The fraud scoring pipeline line is the model: it names what you built, the tools and the latency. Add that kind of detail to the ledger redesign and your part in the settlement roadmap.
+
+## Cards (5; {"line":4,"keep":1}); severity off; added []
+1. [line] Staff Software Engineer, line 1
+   line: "Technical lead for the ledger and settlement platform team"
+   can't tell: A recruiter knows which team you lead, but not its size or the decisions you own. Those details matter for a staff role.
+   example: Technical lead for the ledger and settlement platform team of [number and roles of team members], leading [decisions or work you directed]
+   question: How big is the team, who is on it, and what decisions or work do you lead?
+2. [line] Staff Software Engineer, line 2
+   line: "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB"
+   can't tell: The architecture change is clear. What the new ledger handles, or what improved after the redesign, isn't.
+   example: Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, handling [volume] and [what changed, if known]
+   question: What volume does the ledger handle, and what changed after the redesign?
+3. [line] Staff Software Engineer, line 6
+   line: "Partnered with product and finance on the roadmap for multi-currency settlement"
+   can't tell: The partners and subject are named, but your contribution to the roadmap is still a blank. Did you shape priorities, define the technical approach, or do something else?
+   example: Partnered with product and finance on [your contribution] to the roadmap for multi-currency settlement
+   question: What did you contribute to the multi-currency settlement roadmap?
+4. [keep] Senior Software Engineer, line 1
+   line: "Built the real-time fraud scoring pipeline (Flink, Kafka) processing payment events with p99 latency under 50ms"
+   can't tell: Keep this as a model. It names the system, the tools and a latency measure without making a recruiter guess what you built.
+5. [line] Senior Software Engineer, line 3
+   line: "Reduced reconciliation break rate and manual ops effort"
+   can't tell: Both changes matter, but the line doesn't say how you achieved them or how much they changed.
+   example: Reduced reconciliation break rate [from and to, if known] and manual ops effort [from and to, if known] by [how]
+   question: What did you do to reduce the break rate and manual work, and how much did each change?
+
+## Fit
+Roles: ["Staff Software Engineer","Senior Software Engineer"]
+Level: Staff-level engineering
+Note: Your experience points toward distributed systems and payments infrastructure roles. The ledger, settlement and fraud work give a recruiter concrete systems to discuss; platform volume and team leadership details would round out the staff-level story.

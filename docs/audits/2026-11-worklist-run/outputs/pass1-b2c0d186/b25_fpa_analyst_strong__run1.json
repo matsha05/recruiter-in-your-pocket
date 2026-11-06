@@ -1,0 +1,208 @@
+{
+  "case_id": "b25_fpa_analyst_strong",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_fpa_analyst_strong_1.txt",
+  "resume_sha256": "e8604c5c03930c475f944d36090e8f6db4af1ffc417c634667c5450ff68f9cd2",
+  "resume_words": 138,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": true,
+  "started_at": "2026-11-06T03:36:25.052Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 3725,
+        "completion_tokens": 522,
+        "total_tokens": 4247,
+        "cached_prompt_tokens": 3095,
+        "cache_write_prompt_tokens": 627,
+        "reasoning_tokens": 182
+      },
+      "cost_usd": 0.0035515,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 7782
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.000997,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1018
+    }
+  ],
+  "resume_prompt_sha256": "b2c0d186992d2d925493008c0a67067de9f704dc44ec074808b3bc7176463d9a",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 92,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst with budget ownership and measurable forecasting and pricing results.",
+    "write_up": [
+      "You come across as a senior FP&A analyst trusted with a $240M operating budget and regular presentations to the division CFO. The pricing review and automated sales flash give a recruiter more than a list of responsibilities.",
+      "The forecast line is the model: it names what you built and how forecast error changed. The page is easy to follow, with experience above education and a headline that fits the work."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "- Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "Nothing essential is hidden here. You name what you built and show how forecast error changed.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A",
+        "Financial Analyst"
+      ],
+      "level": "Senior analyst",
+      "note": "Your experience points clearly toward senior FP&A work in budgeting, forecasting and pricing. The division budget and CFO presentations show the level at which you operate.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 92,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst with budget ownership and measurable forecasting and pricing results.",
+    "write_up": [
+      "You come across as a senior FP&A analyst trusted with a $240M operating budget and regular presentations to the division CFO. The pricing review and automated sales flash give a recruiter more than a list of responsibilities.",
+      "The forecast line is the model: it names what you built and how forecast error changed. The page is easy to follow, with experience above education and a headline that fits the work."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "Nothing essential is hidden here. You name what you built and show how forecast error changed.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A",
+        "Financial Analyst"
+      ],
+      "level": "Senior analyst",
+      "note": "Your experience points clearly toward senior FP&A work in budgeting, forecasting and pricing. The division budget and CFO presentations show the level at which you operate.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 92
+  },
+  "severity": {
+    "promoted": [],
+    "replaced": [],
+    "led": null,
+    "critical_count": 1,
+    "more_critical": false,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "skipped": [],
+    "validation_attempts": 0,
+    "latency_ms": 1018,
+    "call_latency_ms": 1018,
+    "cost_usd": 0.000997,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 92,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst with budget ownership and measurable forecasting and pricing results.",
+    "write_up": [
+      "You come across as a senior FP&A analyst trusted with a $240M operating budget and regular presentations to the division CFO. The pricing review and automated sales flash give a recruiter more than a list of responsibilities.",
+      "The forecast line is the model: it names what you built and how forecast error changed. The page is easy to follow, with experience above education and a headline that fits the work."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "Nothing essential is hidden here. You name what you built and show how forecast error changed.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A",
+        "Financial Analyst"
+      ],
+      "level": "Senior analyst",
+      "note": "Your experience points clearly toward senior FP&A work in budgeting, forecasting and pricing. The division budget and CFO presentations show the level at which you operate.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 92
+  },
+  "presentation": {
+    "score": 92,
+    "band": "Clear and specific",
+    "model_score": 92,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst with budget ownership and measurable forecasting and pricing results.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 70,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 1,
+    "kinds": {
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "none (none)",
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A",
+        "Financial Analyst"
+      ],
+      "level": "Senior analyst",
+      "note": "Your experience points clearly toward senior FP&A work in budgeting, forecasting and pricing. The division budget and CFO presentations show the level at which you operate.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0045485,
+  "latency_ms": 8802
+}

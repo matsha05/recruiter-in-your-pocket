@@ -215,6 +215,16 @@ Two candidates from [the proposal](proposals/2026-11-not-every-bullet-needs-a-nu
 - Candidate B, the resume prompt's rule 10 and VOICE line (`e09ca912` against `83b2a2d1`): GATE: FAIL, preferred 2 of 22, production 7, 0 vetoes, both count checks pass. "Led a team of 40" kept 0 of 3 with the question present 3 of 3 (was 3 of 3 kept).
 - Spend $3.7366 (estimate $3.67; stop line $12). Receipts: `tests/fixtures/results/summary_*bullet_number*.md`, `tests/fixtures/results/judge/*bullet-number*`. Neither prompt changed.
 
+### The worklist report, resume prompt v3 — November 6 (built behind a flag; Matt's read pending)
+
+The report shape Matt chose on November 5 (`docs/design/2026-11-worklist-report/`): score and rung, the recruiter's write-up, one card per line that needs work, no Critical Miss. Prompt `web/prompts/resume_v3.txt` (`18e7e9ff`), contract `v3` (`web/lib/llm/worklist-schema.ts`), validator `web/lib/llm/worklist-validator.ts`. It writes the report only when `RIYP_WORKLIST_REPORT=1`; `resume_v2.txt` (`83b2a2d1`) is unchanged and still the default. Record: [2026-11-worklist-run.md](../audits/2026-11-worklist-run.md).
+
+- Golden synthetic 10: 4 PASS, 6 WARN, 0 FAIL. Count-check 12: 11 PASS, 1 WARN, 0 FAIL. The warnings are score drift against v2's expected ranges from the fourth rung and the dated read, and one example without a blank; justified in the record.
+- Live set, 50 runs on the shipped prompt: 49 reports, 1 request refused before the call (the 15-page CV), 1 draft repaired (a retired phrase), 0 never shipped. Replaying every saved draft through the final validator gives the same counts.
+- The severity check added a card to 1 of 96 worklist reports across the two passes it ran on, so it is off for worklist reports unless `RIYP_SEVERITY_CHECK=1`.
+- The Critical Miss judge cannot score this shape; the worklist's judge question is drafted in `docs/evals/worklist-rubric.md`. This wave is gated on the counts above plus Matt reading five reports (a bad, a thin, a strong, a mismatch, a top-tier employer) and saying yes.
+- Spend $2.15 (runner $1.42, eval harness $0.72) of the $12 planned; stop line $15. Synthetic resumes only; the smoke tier's real resumes were not sent.
+
 ### Previous bounded launch proof — October 30 (historical)
 
 The unchanged original ten-fixture `gpt-6.1-terra` run `eval_1793394208092` replays as **10 PASS, 0 WARN, 0 FAIL** through candidate `f9d3903813c2449b205ec39baec9f344650006e5`. Its original **9 PASS, 0 WARN, 1 FAIL** and all provider outputs remain retained; the sole final rejection was corrected by adding the editorial noun “description” to the existing assessment vocabulary with paired fabrication controls. No report prose or selected output was replaced. The replay is bound to source JSON SHA-256 `b6e20c5669bbeb80b7b612993339a6a38a8c033813e2bb60a2502fab4bb41111`.

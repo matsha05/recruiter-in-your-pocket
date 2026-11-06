@@ -19,6 +19,11 @@ export interface ReportPreview {
 export function reportPreview(payload: unknown): ReportPreview | null {
   const report = payload as Record<string, any> | null;
   if (!report || typeof report !== "object") return null;
+  // The worklist report (contract v3): the verdict and the band are final after validation; it has no Critical Miss.
+  if (report.contract_version === "v3") {
+    if (typeof report.verdict !== "string" || typeof report.score !== "number" || typeof report.score_label !== "string") return null;
+    return { first_impression: report.verdict, score: report.score, score_label: report.score_label, critical_miss: null };
+  }
   if (typeof report.first_impression !== "string" || typeof report.score !== "number" || typeof report.score_label !== "string") return null;
   const first = Array.isArray(report.top_fixes) ? report.top_fixes[0] : null;
   const evidence = first?.evidence;

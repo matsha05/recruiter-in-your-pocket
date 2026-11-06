@@ -1,0 +1,580 @@
+{
+  "case_id": "h1_bad_resume",
+  "batch": "holes",
+  "run": 1,
+  "note": "Ten things wrong: filler objective, wrong target role, duty bullets, no results, five jobs in four years, two undated roles, typos, gap since June 2023, soft-skill skills list, references line.",
+  "resume_file": "../2026-11-live-judgment/resumes/h1_bad_resume.txt",
+  "resume_sha256": "1eaa5e429b7924630129a05ca0abf276d687ce664ed89726eb783fa17e025fb8",
+  "resume_words": 217,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": true,
+  "started_at": "2026-11-06T03:33:03.456Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4024,
+        "completion_tokens": 2342,
+        "total_tokens": 6366,
+        "cached_prompt_tokens": 3095,
+        "cache_write_prompt_tokens": 926,
+        "reasoning_tokens": 725
+      },
+      "cost_usd": 0.01302525,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 29953
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.002777,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 4207
+    }
+  ],
+  "resume_prompt_sha256": "b2c0d186992d2d925493008c0a67067de9f704dc44ec074808b3bc7176463d9a",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 49,
+    "lifted_by_employer": false,
+    "verdict": "A retail and service resume aimed at marketing management, with undated jobs and little detail behind the duties.",
+    "write_up": [
+      "Your experience points to retail, warehouse and food service work, but the objective asks for a Marketing Manager job. Nothing on the page explains the connection. Two jobs have no dates, and the most recent dated job ends in June 2023, so a recruiter can't place your recent work.",
+      "The phone sales line works best: it names what you sold and who you sold it to. Give the shift lead and training work that same specificity, add the missing dates, and proofread the final file."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Objective",
+        "line": "Hard-working team player seeking a challenging Marketing Manager position where I can utilize my skills and grow with a dynamic company.",
+        "cannot_tell": "The page doesn't show marketing work or explain why you're targeting a manager role. The objective could point to a job you can support with the experience below, or connect your marketing experience if it's missing from the page.",
+        "example": "[Target job title] with experience in [relevant work or skills]",
+        "question": "What job are you targeting, and which of your experiences or skills are most relevant to it?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after June 2023; two roles have no dates.",
+        "cannot_tell": "A recruiter can't tell what you've done since your last dated job, or whether either undated role came later. That makes the recent part of your work history hard to place.",
+        "example": "[Dates]  [Work, study, job search, caregiving or other activity, if applicable]",
+        "question": "What have you been doing since June 2023, and which dates and activities are you comfortable adding?"
+      },
+      {
+        "kind": "dates",
+        "where": "Warehouse Associate and Delivery Driver",
+        "line": "The Warehouse Associate and Delivery Driver roles have no dates.",
+        "cannot_tell": "Their place in your work history is unclear. Dates would show when you held each job and whether either is more recent than the shift lead role.",
+        "example": "[Dates]  Warehouse Associate, Miami Valley Distribution\n[Dates]  Delivery Driver, Gino's Pizza",
+        "question": "When did you start and finish each of these jobs?"
+      },
+      {
+        "kind": "structure",
+        "where": "Experience",
+        "line": "The page gives employer names and locations, but not their size.",
+        "cannot_tell": "The shift lead title doesn't show how large the store or shifts were. A short description could help a stranger picture the setting.",
+        "example": "",
+        "question": "Can you describe the QuickStop store or typical shift staffing in one line?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Lead, line 1",
+        "line": "- Responsible for opening and closing the store",
+        "cannot_tell": "Opening and closing are named, but the lead responsibilities behind them aren't. A few specifics would show what you were trusted to handle.",
+        "example": "Responsible for opening and closing the store, including [specific duties]",
+        "question": "What did you handle when opening and closing the store?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Lead, line 2",
+        "line": "- Handled cash register and customer complaints",
+        "cannot_tell": "The work is recognizable, but the complaints are a blank. An example of one you handled would make the customer service work easier to picture.",
+        "example": "Handled cash register and customer complaints, including [type of complaint and how you handled it]",
+        "question": "What kind of customer complaint did you handle, and what did you do about it?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Lead, line 3",
+        "line": "- Made sure shelves were stocked and the store was clean",
+        "cannot_tell": "This describes the basics but doesn't show what your shift lead role involved in getting them done. Your part in the work would help distinguish it from a general store duty.",
+        "example": "Made sure shelves were stocked and the store was clean by [specific actions]",
+        "question": "What did you personally do to keep the shelves stocked and the store clean?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Lead, line 4",
+        "line": "- Trained new employes when needed",
+        "cannot_tell": "Training new employees is useful experience, but the line doesn't say what you taught them or how many. Those details would help show the responsibility you had.",
+        "example": "Trained [number] new employees in [tasks]",
+        "question": "What did you train new employees to do, and how many did you train, if you know?"
+      },
+      {
+        "kind": "line",
+        "where": "Warehouse Associate, line 1",
+        "line": "- Picked and packed orders",
+        "cannot_tell": "The task is clear, but the orders and pace aren't. A detail about what you handled or the volume would make the warehouse work more concrete.",
+        "example": "Picked and packed [type of orders], [volume or frequency, if known]",
+        "question": "What kinds of orders did you pick and pack, and do you know the usual volume?"
+      },
+      {
+        "kind": "line",
+        "where": "Warehouse Associate, line 4",
+        "line": "- Followed all saftey procedures",
+        "cannot_tell": "The line doesn't say which procedures mattered in your warehouse work. A specific practice would tell a recruiter more than a general assurance.",
+        "example": "Followed [specific safety procedures] while [warehouse task]",
+        "question": "Which safety procedures did you follow, and during what work?"
+      },
+      {
+        "kind": "keep",
+        "where": "Sales Associate, line 1",
+        "line": "- Sold phones and accessories to customers",
+        "cannot_tell": "Keep this as a model for naming the work. It tells a recruiter what you sold and who you sold it to.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Sales Associate, line 3",
+        "line": "- Kept the store looking nice",
+        "cannot_tell": "Looking nice could mean displays, cleaning or something else. Naming the work would make this more useful.",
+        "example": "Kept the store [specific actions or areas]",
+        "question": "What did you do to maintain the store?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Marketing Manager",
+        "Shift Lead",
+        "Sales Associate",
+        "Warehouse Associate"
+      ],
+      "level": "Frontline retail and service, with shift lead experience",
+      "note": "The page doesn't show marketing work to support the Marketing Manager objective. It points more directly to retail, customer service and warehouse roles, with some shift lead and training experience.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 49,
+    "lifted_by_employer": false,
+    "verdict": "A retail and service resume aimed at marketing management, with undated jobs and little detail behind the duties.",
+    "write_up": [
+      "Your experience points to retail, warehouse and food service work, but the objective asks for a Marketing Manager job. Nothing on the page explains the connection. Two jobs have no dates, and the most recent dated job ends in June 2023, so a recruiter can't place your recent work.",
+      "The phone sales line works best: it names what you sold and who you sold it to. Give the shift lead and training work that same specificity, add the missing dates, and proofread the final file."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Objective",
+        "line": "Hard-working team player seeking a challenging Marketing Manager position where I can utilize my skills and grow with a dynamic company.",
+        "cannot_tell": "The page doesn't show marketing work or explain why you're targeting a manager role. The objective could point to a job you can support with the experience below, or connect your marketing experience if it's missing from the page.",
+        "example": "[Target job title] with experience in [relevant work or skills]",
+        "question": "What job are you targeting, and which of your experiences or skills are most relevant to it?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after June 2023; two roles have no dates.",
+        "cannot_tell": "A recruiter can't tell what you've done since your last dated job, or whether either undated role came later. That makes the recent part of your work history hard to place.",
+        "example": "[Dates] [Work, study, job search, caregiving or other activity, if applicable]",
+        "question": "What have you been doing since June 2023, and which dates and activities are you comfortable adding?"
+      },
+      {
+        "kind": "dates",
+        "where": "Warehouse Associate and Delivery Driver",
+        "line": "The Warehouse Associate and Delivery Driver roles have no dates.",
+        "cannot_tell": "Their place in your work history is unclear. Dates would show when you held each job and whether either is more recent than the shift lead role.",
+        "example": "[Dates] Warehouse Associate, Miami Valley Distribution\n[Dates] Delivery Driver, Gino's Pizza",
+        "question": "When did you start and finish each of these jobs?"
+      },
+      {
+        "kind": "structure",
+        "where": "Experience",
+        "line": "The page gives employer names and locations, but not their size.",
+        "cannot_tell": "The shift lead title doesn't show how large the store or shifts were. A short description could help a stranger picture the setting.",
+        "example": "",
+        "question": "Can you describe the QuickStop store or typical shift staffing in one line?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Lead, line 1",
+        "line": "Responsible for opening and closing the store",
+        "cannot_tell": "Opening and closing are named, but the lead responsibilities behind them aren't. A few specifics would show what you were trusted to handle.",
+        "example": "Responsible for opening and closing the store, including [specific duties]",
+        "question": "What did you handle when opening and closing the store?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Lead, line 2",
+        "line": "Handled cash register and customer complaints",
+        "cannot_tell": "The work is recognizable, but the complaints are a blank. An example of one you handled would make the customer service work easier to picture.",
+        "example": "Handled cash register and customer complaints, including [type of complaint and how you handled it]",
+        "question": "What kind of customer complaint did you handle, and what did you do about it?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Lead, line 3",
+        "line": "Made sure shelves were stocked and the store was clean",
+        "cannot_tell": "This describes the basics but doesn't show what your shift lead role involved in getting them done. Your part in the work would help distinguish it from a general store duty.",
+        "example": "Made sure shelves were stocked and the store was clean by [specific actions]",
+        "question": "What did you personally do to keep the shelves stocked and the store clean?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Lead, line 4",
+        "line": "Trained new employes when needed",
+        "cannot_tell": "Training new employees is useful experience, but the line doesn't say what you taught them or how many. Those details would help show the responsibility you had.",
+        "example": "Trained [number] new employees in [tasks]",
+        "question": "What did you train new employees to do, and how many did you train, if you know?"
+      },
+      {
+        "kind": "line",
+        "where": "Warehouse Associate, line 1",
+        "line": "Picked and packed orders",
+        "cannot_tell": "The task is clear, but the orders and pace aren't. A detail about what you handled or the volume would make the warehouse work more concrete.",
+        "example": "Picked and packed [type of orders], [volume or frequency, if known]",
+        "question": "What kinds of orders did you pick and pack, and do you know the usual volume?"
+      },
+      {
+        "kind": "line",
+        "where": "Warehouse Associate, line 4",
+        "line": "Followed all saftey procedures",
+        "cannot_tell": "The line doesn't say which procedures mattered in your warehouse work. A specific practice would tell a recruiter more than a general assurance.",
+        "example": "Followed [specific safety procedures] while [warehouse task]",
+        "question": "Which safety procedures did you follow, and during what work?"
+      },
+      {
+        "kind": "keep",
+        "where": "Sales Associate, line 1",
+        "line": "Sold phones and accessories to customers",
+        "cannot_tell": "Keep this as a model for naming the work. It tells a recruiter what you sold and who you sold it to.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Sales Associate, line 3",
+        "line": "Kept the store looking nice",
+        "cannot_tell": "Looking nice could mean displays, cleaning or something else. Naming the work would make this more useful.",
+        "example": "Kept the store [specific actions or areas]",
+        "question": "What did you do to maintain the store?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Marketing Manager",
+        "Shift Lead",
+        "Sales Associate",
+        "Warehouse Associate"
+      ],
+      "level": "Frontline retail and service, with shift lead experience",
+      "note": "The page doesn't show marketing work to support the Marketing Manager objective. It points more directly to retail, customer service and warehouse roles, with some shift lead and training experience.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 49
+  },
+  "severity": {
+    "promoted": [],
+    "replaced": [],
+    "led": null,
+    "critical_count": 1,
+    "more_critical": false,
+    "answer": {
+      "critical_misses": [
+        {
+          "source": "fix_3",
+          "kind": "missing_dates",
+          "fix": "",
+          "why": "",
+          "excerpt": "",
+          "section": "",
+          "effort": "quick"
+        }
+      ],
+      "more_critical": false
+    },
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "skipped": [
+      {
+        "kind": "missing_dates",
+        "reason": "no_such_fix"
+      }
+    ],
+    "validation_attempts": 0,
+    "latency_ms": 4207,
+    "call_latency_ms": 4207,
+    "cost_usd": 0.002777,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 49,
+    "lifted_by_employer": false,
+    "verdict": "A retail and service resume aimed at marketing management, with undated jobs and little detail behind the duties.",
+    "write_up": [
+      "Your experience points to retail, warehouse and food service work, but the objective asks for a Marketing Manager job. Nothing on the page explains the connection. Two jobs have no dates, and the most recent dated job ends in June 2023, so a recruiter can't place your recent work.",
+      "The phone sales line works best: it names what you sold and who you sold it to. Give the shift lead and training work that same specificity, add the missing dates, and proofread the final file."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Objective",
+        "line": "Hard-working team player seeking a challenging Marketing Manager position where I can utilize my skills and grow with a dynamic company.",
+        "cannot_tell": "The page doesn't show marketing work or explain why you're targeting a manager role. The objective could point to a job you can support with the experience below, or connect your marketing experience if it's missing from the page.",
+        "example": "[Target job title] with experience in [relevant work or skills]",
+        "question": "What job are you targeting, and which of your experiences or skills are most relevant to it?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after June 2023; two roles have no dates.",
+        "cannot_tell": "A recruiter can't tell what you've done since your last dated job, or whether either undated role came later. That makes the recent part of your work history hard to place.",
+        "example": "[Dates] [Work, study, job search, caregiving or other activity, if applicable]",
+        "question": "What have you been doing since June 2023, and which dates and activities are you comfortable adding?"
+      },
+      {
+        "kind": "dates",
+        "where": "Warehouse Associate and Delivery Driver",
+        "line": "The Warehouse Associate and Delivery Driver roles have no dates.",
+        "cannot_tell": "Their place in your work history is unclear. Dates would show when you held each job and whether either is more recent than the shift lead role.",
+        "example": "[Dates] Warehouse Associate, Miami Valley Distribution\n[Dates] Delivery Driver, Gino's Pizza",
+        "question": "When did you start and finish each of these jobs?"
+      },
+      {
+        "kind": "structure",
+        "where": "Experience",
+        "line": "The page gives employer names and locations, but not their size.",
+        "cannot_tell": "The shift lead title doesn't show how large the store or shifts were. A short description could help a stranger picture the setting.",
+        "example": "",
+        "question": "Can you describe the QuickStop store or typical shift staffing in one line?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Lead, line 1",
+        "line": "Responsible for opening and closing the store",
+        "cannot_tell": "Opening and closing are named, but the lead responsibilities behind them aren't. A few specifics would show what you were trusted to handle.",
+        "example": "Responsible for opening and closing the store, including [specific duties]",
+        "question": "What did you handle when opening and closing the store?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Lead, line 2",
+        "line": "Handled cash register and customer complaints",
+        "cannot_tell": "The work is recognizable, but the complaints are a blank. An example of one you handled would make the customer service work easier to picture.",
+        "example": "Handled cash register and customer complaints, including [type of complaint and how you handled it]",
+        "question": "What kind of customer complaint did you handle, and what did you do about it?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Lead, line 3",
+        "line": "Made sure shelves were stocked and the store was clean",
+        "cannot_tell": "This describes the basics but doesn't show what your shift lead role involved in getting them done. Your part in the work would help distinguish it from a general store duty.",
+        "example": "Made sure shelves were stocked and the store was clean by [specific actions]",
+        "question": "What did you personally do to keep the shelves stocked and the store clean?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Lead, line 4",
+        "line": "Trained new employes when needed",
+        "cannot_tell": "Training new employees is useful experience, but the line doesn't say what you taught them or how many. Those details would help show the responsibility you had.",
+        "example": "Trained [number] new employees in [tasks]",
+        "question": "What did you train new employees to do, and how many did you train, if you know?"
+      },
+      {
+        "kind": "line",
+        "where": "Warehouse Associate, line 1",
+        "line": "Picked and packed orders",
+        "cannot_tell": "The task is clear, but the orders and pace aren't. A detail about what you handled or the volume would make the warehouse work more concrete.",
+        "example": "Picked and packed [type of orders], [volume or frequency, if known]",
+        "question": "What kinds of orders did you pick and pack, and do you know the usual volume?"
+      },
+      {
+        "kind": "line",
+        "where": "Warehouse Associate, line 4",
+        "line": "Followed all saftey procedures",
+        "cannot_tell": "The line doesn't say which procedures mattered in your warehouse work. A specific practice would tell a recruiter more than a general assurance.",
+        "example": "Followed [specific safety procedures] while [warehouse task]",
+        "question": "Which safety procedures did you follow, and during what work?"
+      },
+      {
+        "kind": "keep",
+        "where": "Sales Associate, line 1",
+        "line": "Sold phones and accessories to customers",
+        "cannot_tell": "Keep this as a model for naming the work. It tells a recruiter what you sold and who you sold it to.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Sales Associate, line 3",
+        "line": "Kept the store looking nice",
+        "cannot_tell": "Looking nice could mean displays, cleaning or something else. Naming the work would make this more useful.",
+        "example": "Kept the store [specific actions or areas]",
+        "question": "What did you do to maintain the store?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Marketing Manager",
+        "Shift Lead",
+        "Sales Associate",
+        "Warehouse Associate"
+      ],
+      "level": "Frontline retail and service, with shift lead experience",
+      "note": "The page doesn't show marketing work to support the Marketing Manager objective. It points more directly to retail, customer service and warehouse roles, with some shift lead and training experience.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 49
+  },
+  "presentation": {
+    "score": 49,
+    "band": "Needs more context",
+    "model_score": 49,
+    "lifted_by_employer": false,
+    "verdict": "A retail and service resume aimed at marketing management, with undated jobs and little detail behind the duties.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 85,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Objective",
+        "line": "Hard-working team player seeking a challenging Marketing Manager position where I can utilize my skills and grow with a dynamic company.",
+        "blanks": 2,
+        "question": "What job are you targeting, and which of your experiences or skills are most relevant to it?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after June 2023; two roles have no dates.",
+        "blanks": 2,
+        "question": "What have you been doing since June 2023, and which dates and activities are you comfortable adding?"
+      },
+      {
+        "kind": "dates",
+        "where": "Warehouse Associate and Delivery Driver",
+        "line": "The Warehouse Associate and Delivery Driver roles have no dates.",
+        "blanks": 2,
+        "question": "When did you start and finish each of these jobs?"
+      },
+      {
+        "kind": "structure",
+        "where": "Experience",
+        "line": "The page gives employer names and locations, but not their size.",
+        "blanks": 0,
+        "question": "Can you describe the QuickStop store or typical shift staffing in one line?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Lead, line 1",
+        "line": "Responsible for opening and closing the store",
+        "blanks": 1,
+        "question": "What did you handle when opening and closing the store?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Lead, line 2",
+        "line": "Handled cash register and customer complaints",
+        "blanks": 1,
+        "question": "What kind of customer complaint did you handle, and what did you do about it?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Lead, line 3",
+        "line": "Made sure shelves were stocked and the store was clean",
+        "blanks": 1,
+        "question": "What did you personally do to keep the shelves stocked and the store clean?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Lead, line 4",
+        "line": "Trained new employes when needed",
+        "blanks": 2,
+        "question": "What did you train new employees to do, and how many did you train, if you know?"
+      },
+      {
+        "kind": "line",
+        "where": "Warehouse Associate, line 1",
+        "line": "Picked and packed orders",
+        "blanks": 2,
+        "question": "What kinds of orders did you pick and pack, and do you know the usual volume?"
+      },
+      {
+        "kind": "line",
+        "where": "Warehouse Associate, line 4",
+        "line": "Followed all saftey procedures",
+        "blanks": 2,
+        "question": "Which safety procedures did you follow, and during what work?"
+      },
+      {
+        "kind": "keep",
+        "where": "Sales Associate, line 1",
+        "line": "Sold phones and accessories to customers",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Sales Associate, line 3",
+        "line": "Kept the store looking nice",
+        "blanks": 1,
+        "question": "What did you do to maintain the store?"
+      }
+    ],
+    "card_count": 12,
+    "kinds": {
+      "line": 8,
+      "dates": 2,
+      "structure": 1,
+      "keep": 1
+    },
+    "structural_from_model": 3,
+    "severity_added": [],
+    "severity_skipped": [
+      {
+        "kind": "missing_dates",
+        "reason": "no_such_fix"
+      }
+    ],
+    "severity_outcome": "none (none)",
+    "fit": {
+      "roles": [
+        "Marketing Manager",
+        "Shift Lead",
+        "Sales Associate",
+        "Warehouse Associate"
+      ],
+      "level": "Frontline retail and service, with shift lead experience",
+      "note": "The page doesn't show marketing work to support the Marketing Manager objective. It points more directly to retail, customer service and warehouse roles, with some shift lead and training experience.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01580225,
+  "latency_ms": 34167
+}

@@ -1,0 +1,309 @@
+{
+  "case_id": "b20_customer_success_manager",
+  "batch": "breadth",
+  "run": 1,
+  "note": "No posting.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt",
+  "resume_sha256": "fe00b25220442aa026e6aa909f700301c898f430bd2cf244eafbe182c75f316d",
+  "resume_words": 180,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T04:15:15.767Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4269,
+        "completion_tokens": 1243,
+        "total_tokens": 5512,
+        "cached_prompt_tokens": 3502,
+        "cache_write_prompt_tokens": 764,
+        "reasoning_tokens": 412
+      },
+      "cost_usd": 0.0073481,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 15414
+    }
+  ],
+  "resume_prompt_sha256": "18e7e9ff21a0c2fda0fe219456e2d1f965de7d79bcc85173eaebd632dd83f42e",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 79,
+    "lifted_by_employer": false,
+    "verdict": "A customer success manager with a defined account book and room to explain renewal and escalation work.",
+    "write_up": [
+      "You look like a customer success manager who grew out of payroll support. A recruiter can see the account book and the work around it, but will have questions about your part in renewal strategy and what happened when payroll runs failed.",
+      "The 48-account line is the model: it names the customers and the size of your book without making the reader guess. The onboarding checklist is another useful detail. Add what it covers or changed, if you know, and the work becomes more memorable."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 1",
+        "line": "- Manage a book of 48 mid-market accounts across healthcare and manufacturing",
+        "cannot_tell": "This gives a recruiter the size of your book and the industries you serve in one sentence. Use it as a model for the rest.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "- Partnered with Sales on renewal strategy for at-risk accounts",
+        "cannot_tell": "Partnered leaves your part of the strategy open. A recruiter can't tell what you contributed or what happened to those renewals.",
+        "example": "Partnered with Sales on renewal strategy for at-risk accounts by [your contribution]; [what happened, if known]",
+        "question": "What did you contribute to the renewal strategy, and what happened to those accounts?"
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 4",
+        "line": "- Built an onboarding checklist now used by the whole CS team",
+        "cannot_tell": "The team-wide use is worth keeping. What the checklist covers, or what changed after it was adopted, would show why it matters.",
+        "example": "Built an onboarding checklist covering [steps] that is now used by the whole CS team; [what changed, if known]",
+        "question": "What does the checklist cover, and did anything change after the team started using it?"
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 5",
+        "line": "- Handle escalations with Support and Product when payroll runs fail",
+        "cannot_tell": "Payroll failures are a concrete problem. Your part in resolving an escalation isn't yet clear.",
+        "example": "Handle escalations with Support and Product when payroll runs fail by [your actions]; [what happened, if known]",
+        "question": "What do you do during a payroll failure escalation, and what happened in an example you can describe?"
+      },
+      {
+        "kind": "line",
+        "where": "Account Coordinator, line 2",
+        "line": "- Answered client questions by phone and email",
+        "cannot_tell": "This says how clients reached you, but not what they needed help with. One type of question would make the work more distinct.",
+        "example": "Answered client questions about [topic] by phone and email",
+        "question": "What kinds of questions did clients ask you?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Customer Success Manager",
+        "Customer Support Specialist",
+        "Account Coordinator"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "Your experience points most directly to customer success work with mid-market software accounts. Payroll support and insurance account coordination give the customer-facing work a clear path.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 79,
+    "lifted_by_employer": false,
+    "verdict": "A customer success manager with a defined account book and room to explain renewal and escalation work.",
+    "write_up": [
+      "You look like a customer success manager who grew out of payroll support. A recruiter can see the account book and the work around it, but will have questions about your part in renewal strategy and what happened when payroll runs failed.",
+      "The 48-account line is the model: it names the customers and the size of your book without making the reader guess. The onboarding checklist is another useful detail. Add what it covers or changed, if you know, and the work becomes more memorable."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 1",
+        "line": "Manage a book of 48 mid-market accounts across healthcare and manufacturing",
+        "cannot_tell": "This gives a recruiter the size of your book and the industries you serve in one sentence. Use it as a model for the rest.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "Partnered with Sales on renewal strategy for at-risk accounts",
+        "cannot_tell": "Partnered leaves your part of the strategy open. A recruiter can't tell what you contributed or what happened to those renewals.",
+        "example": "Partnered with Sales on renewal strategy for at-risk accounts by [your contribution]; [what happened, if known]",
+        "question": "What did you contribute to the renewal strategy, and what happened to those accounts?"
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 4",
+        "line": "Built an onboarding checklist now used by the whole CS team",
+        "cannot_tell": "The team-wide use is worth keeping. What the checklist covers, or what changed after it was adopted, would show why it matters.",
+        "example": "Built an onboarding checklist covering [steps] that is now used by the whole CS team; [what changed, if known]",
+        "question": "What does the checklist cover, and did anything change after the team started using it?"
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 5",
+        "line": "Handle escalations with Support and Product when payroll runs fail",
+        "cannot_tell": "Payroll failures are a concrete problem. Your part in resolving an escalation isn't yet clear.",
+        "example": "Handle escalations with Support and Product when payroll runs fail by [your actions]; [what happened, if known]",
+        "question": "What do you do during a payroll failure escalation, and what happened in an example you can describe?"
+      },
+      {
+        "kind": "line",
+        "where": "Account Coordinator, line 2",
+        "line": "Answered client questions by phone and email",
+        "cannot_tell": "This says how clients reached you, but not what they needed help with. One type of question would make the work more distinct.",
+        "example": "Answered client questions about [topic] by phone and email",
+        "question": "What kinds of questions did clients ask you?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Customer Success Manager",
+        "Customer Support Specialist",
+        "Account Coordinator"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "Your experience points most directly to customer success work with mid-market software accounts. Payroll support and insurance account coordination give the customer-facing work a clear path.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 79
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 79,
+    "lifted_by_employer": false,
+    "verdict": "A customer success manager with a defined account book and room to explain renewal and escalation work.",
+    "write_up": [
+      "You look like a customer success manager who grew out of payroll support. A recruiter can see the account book and the work around it, but will have questions about your part in renewal strategy and what happened when payroll runs failed.",
+      "The 48-account line is the model: it names the customers and the size of your book without making the reader guess. The onboarding checklist is another useful detail. Add what it covers or changed, if you know, and the work becomes more memorable."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 1",
+        "line": "Manage a book of 48 mid-market accounts across healthcare and manufacturing",
+        "cannot_tell": "This gives a recruiter the size of your book and the industries you serve in one sentence. Use it as a model for the rest.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "Partnered with Sales on renewal strategy for at-risk accounts",
+        "cannot_tell": "Partnered leaves your part of the strategy open. A recruiter can't tell what you contributed or what happened to those renewals.",
+        "example": "Partnered with Sales on renewal strategy for at-risk accounts by [your contribution]; [what happened, if known]",
+        "question": "What did you contribute to the renewal strategy, and what happened to those accounts?"
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 4",
+        "line": "Built an onboarding checklist now used by the whole CS team",
+        "cannot_tell": "The team-wide use is worth keeping. What the checklist covers, or what changed after it was adopted, would show why it matters.",
+        "example": "Built an onboarding checklist covering [steps] that is now used by the whole CS team; [what changed, if known]",
+        "question": "What does the checklist cover, and did anything change after the team started using it?"
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 5",
+        "line": "Handle escalations with Support and Product when payroll runs fail",
+        "cannot_tell": "Payroll failures are a concrete problem. Your part in resolving an escalation isn't yet clear.",
+        "example": "Handle escalations with Support and Product when payroll runs fail by [your actions]; [what happened, if known]",
+        "question": "What do you do during a payroll failure escalation, and what happened in an example you can describe?"
+      },
+      {
+        "kind": "line",
+        "where": "Account Coordinator, line 2",
+        "line": "Answered client questions by phone and email",
+        "cannot_tell": "This says how clients reached you, but not what they needed help with. One type of question would make the work more distinct.",
+        "example": "Answered client questions about [topic] by phone and email",
+        "question": "What kinds of questions did clients ask you?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Customer Success Manager",
+        "Customer Support Specialist",
+        "Account Coordinator"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "Your experience points most directly to customer success work with mid-market software accounts. Payroll support and insurance account coordination give the customer-facing work a clear path.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 79
+  },
+  "presentation": {
+    "score": 79,
+    "band": "Mostly clear",
+    "model_score": 79,
+    "lifted_by_employer": false,
+    "verdict": "A customer success manager with a defined account book and room to explain renewal and escalation work.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 85,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 1",
+        "line": "Manage a book of 48 mid-market accounts across healthcare and manufacturing",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "Partnered with Sales on renewal strategy for at-risk accounts",
+        "blanks": 2,
+        "question": "What did you contribute to the renewal strategy, and what happened to those accounts?"
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 4",
+        "line": "Built an onboarding checklist now used by the whole CS team",
+        "blanks": 2,
+        "question": "What does the checklist cover, and did anything change after the team started using it?"
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 5",
+        "line": "Handle escalations with Support and Product when payroll runs fail",
+        "blanks": 2,
+        "question": "What do you do during a payroll failure escalation, and what happened in an example you can describe?"
+      },
+      {
+        "kind": "line",
+        "where": "Account Coordinator, line 2",
+        "line": "Answered client questions by phone and email",
+        "blanks": 1,
+        "question": "What kinds of questions did clients ask you?"
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "keep": 1,
+      "line": 4
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Customer Success Manager",
+        "Customer Support Specialist",
+        "Account Coordinator"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "Your experience points most directly to customer success work with mid-market software accounts. Payroll support and insurance account coordination give the customer-facing work a clear path.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0073481,
+  "latency_ms": 15417
+}

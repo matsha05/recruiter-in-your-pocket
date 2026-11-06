@@ -98,7 +98,7 @@ export async function persistGeneratedReport(input: {
     ...(input.savedJobId ? { saved_job_id: input.savedJobId } : {}),
     resume_preview: resumePreview(input.resumeText),
     job_description_text: input.jobDescriptionText || null,
-    target_role: input.payload.job_alignment?.role_fit?.best_fit_roles?.[0] || null,
+    target_role: input.payload.job_alignment?.role_fit?.best_fit_roles?.[0] || input.payload.fit?.roles?.[0] || null,
     created_at: new Date().toISOString(),
   };
   try {
@@ -176,7 +176,7 @@ export async function persistReceiptValidatedReport(input: {
   }
   const trust = buildGroundedReportTrustMetadata(input.payload, input.userId);
   const preview = String(
-    input.payload.summary || input.payload.score_comment_short || input.payload.score_comment_long || "Resume report",
+    input.payload.summary || input.payload.verdict || input.payload.score_comment_short || input.payload.score_comment_long || "Resume report",
   ).trim().slice(0, 200);
   if (!input.admin) throw persistenceError();
   const { data, error } = await input.admin.rpc("claim_anonymous_report_receipt", {
@@ -191,7 +191,7 @@ export async function persistReceiptValidatedReport(input: {
     p_evidence_json: trust.evidence_json,
     p_evidence_version: trust.evidence_version,
     p_resume_preview: preview || "Resume report",
-    p_target_role: input.payload.job_alignment?.role_fit?.best_fit_roles?.[0] || null,
+    p_target_role: input.payload.job_alignment?.role_fit?.best_fit_roles?.[0] || input.payload.fit?.roles?.[0] || null,
     p_created_at: createdAt,
   });
   if (error) throw persistenceError();

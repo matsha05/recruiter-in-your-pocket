@@ -1,0 +1,274 @@
+{
+  "case_id": "b07_account_executive",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_account_executive_1.txt",
+  "resume_sha256": "f964f76d12cdd6ba10596473b309c0f44b18de7112f27369c32227cd287f6e94",
+  "resume_words": 145,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T04:14:23.854Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4186,
+        "completion_tokens": 957,
+        "total_tokens": 5143,
+        "cached_prompt_tokens": 3502,
+        "cache_write_prompt_tokens": 681,
+        "reasoning_tokens": 283
+      },
+      "cost_usd": 0.00581435,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 12229
+    }
+  ],
+  "resume_prompt_sha256": "18e7e9ff21a0c2fda0fe219456e2d1f965de7d79bcc85173eaebd632dd83f42e",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A mid-market account executive with quota attainment, a promotion, and a partner program that sourced deals.",
+    "write_up": [
+      "A recruiter sees an HR software seller who moved from SDR to account executive and closed $1.1M in new annual recurring revenue in 2025. The quota figure makes that line especially useful: it puts the revenue against a target.",
+      "The referral program is another strong detail. The earlier SDR work could use a little more context, particularly how many meetings you booked and what made you the top SDR."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Account Executive, Mid-Market, line 1",
+        "line": "- Closed $1.1M in new annual recurring revenue in 2025, 108% of quota",
+        "cannot_tell": "Keep this as a model. It names what you closed, when, and how it compared with quota.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Account Executive, Mid-Market, line 4",
+        "line": "- Work with solutions engineers on demos and security reviews",
+        "cannot_tell": "A recruiter can see who you work with, but not what you handle in the demos or security reviews. Your part would round out the full-cycle sales story.",
+        "example": "Work with solutions engineers on demos and security reviews, handling [your part of the work]",
+        "question": "What do you handle in the demos and security reviews?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 1",
+        "line": "- Booked meetings for three account executives",
+        "cannot_tell": "The three account executives give this some context. The number of meetings would show how much you booked.",
+        "example": "Booked [number] meetings for three account executives over [time period]",
+        "question": "How many meetings did you book, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 3",
+        "line": "- Top SDR in two quarters",
+        "cannot_tell": "Top SDR is worth keeping, but a recruiter can't tell what the ranking measured or who you were ranked against.",
+        "example": "Top SDR in two quarters based on [ranking measure] among [comparison group]",
+        "question": "What was the ranking based on, and who was included?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Account Executive, Mid-Market",
+        "Sales Development Representative"
+      ],
+      "level": "Mid-market account executive",
+      "note": "Your recent work points toward mid-market account executive roles in HR software. The SDR promotion and partner program add useful context to the quota result.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A mid-market account executive with quota attainment, a promotion, and a partner program that sourced deals.",
+    "write_up": [
+      "A recruiter sees an HR software seller who moved from SDR to account executive and closed $1.1M in new annual recurring revenue in 2025. The quota figure makes that line especially useful: it puts the revenue against a target.",
+      "The referral program is another strong detail. The earlier SDR work could use a little more context, particularly how many meetings you booked and what made you the top SDR."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Account Executive, Mid-Market, line 1",
+        "line": "Closed $1.1M in new annual recurring revenue in 2025, 108% of quota",
+        "cannot_tell": "Keep this as a model. It names what you closed, when, and how it compared with quota.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Account Executive, Mid-Market, line 4",
+        "line": "Work with solutions engineers on demos and security reviews",
+        "cannot_tell": "A recruiter can see who you work with, but not what you handle in the demos or security reviews. Your part would round out the full-cycle sales story.",
+        "example": "Work with solutions engineers on demos and security reviews, handling [your part of the work]",
+        "question": "What do you handle in the demos and security reviews?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 1",
+        "line": "Booked meetings for three account executives",
+        "cannot_tell": "The three account executives give this some context. The number of meetings would show how much you booked.",
+        "example": "Booked [number] meetings for three account executives over [time period]",
+        "question": "How many meetings did you book, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 3",
+        "line": "Top SDR in two quarters",
+        "cannot_tell": "Top SDR is worth keeping, but a recruiter can't tell what the ranking measured or who you were ranked against.",
+        "example": "Top SDR in two quarters based on [ranking measure] among [comparison group]",
+        "question": "What was the ranking based on, and who was included?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Account Executive, Mid-Market",
+        "Sales Development Representative"
+      ],
+      "level": "Mid-market account executive",
+      "note": "Your recent work points toward mid-market account executive roles in HR software. The SDR promotion and partner program add useful context to the quota result.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A mid-market account executive with quota attainment, a promotion, and a partner program that sourced deals.",
+    "write_up": [
+      "A recruiter sees an HR software seller who moved from SDR to account executive and closed $1.1M in new annual recurring revenue in 2025. The quota figure makes that line especially useful: it puts the revenue against a target.",
+      "The referral program is another strong detail. The earlier SDR work could use a little more context, particularly how many meetings you booked and what made you the top SDR."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Account Executive, Mid-Market, line 1",
+        "line": "Closed $1.1M in new annual recurring revenue in 2025, 108% of quota",
+        "cannot_tell": "Keep this as a model. It names what you closed, when, and how it compared with quota.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Account Executive, Mid-Market, line 4",
+        "line": "Work with solutions engineers on demos and security reviews",
+        "cannot_tell": "A recruiter can see who you work with, but not what you handle in the demos or security reviews. Your part would round out the full-cycle sales story.",
+        "example": "Work with solutions engineers on demos and security reviews, handling [your part of the work]",
+        "question": "What do you handle in the demos and security reviews?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 1",
+        "line": "Booked meetings for three account executives",
+        "cannot_tell": "The three account executives give this some context. The number of meetings would show how much you booked.",
+        "example": "Booked [number] meetings for three account executives over [time period]",
+        "question": "How many meetings did you book, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 3",
+        "line": "Top SDR in two quarters",
+        "cannot_tell": "Top SDR is worth keeping, but a recruiter can't tell what the ranking measured or who you were ranked against.",
+        "example": "Top SDR in two quarters based on [ranking measure] among [comparison group]",
+        "question": "What was the ranking based on, and who was included?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Account Executive, Mid-Market",
+        "Sales Development Representative"
+      ],
+      "level": "Mid-market account executive",
+      "note": "Your recent work points toward mid-market account executive roles in HR software. The SDR promotion and partner program add useful context to the quota result.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "presentation": {
+    "score": 88,
+    "band": "Clear and specific",
+    "model_score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A mid-market account executive with quota attainment, a promotion, and a partner program that sourced deals.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 69,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Account Executive, Mid-Market, line 1",
+        "line": "Closed $1.1M in new annual recurring revenue in 2025, 108% of quota",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Account Executive, Mid-Market, line 4",
+        "line": "Work with solutions engineers on demos and security reviews",
+        "blanks": 1,
+        "question": "What do you handle in the demos and security reviews?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 1",
+        "line": "Booked meetings for three account executives",
+        "blanks": 2,
+        "question": "How many meetings did you book, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 3",
+        "line": "Top SDR in two quarters",
+        "blanks": 2,
+        "question": "What was the ranking based on, and who was included?"
+      }
+    ],
+    "card_count": 4,
+    "kinds": {
+      "keep": 1,
+      "line": 3
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Account Executive, Mid-Market",
+        "Sales Development Representative"
+      ],
+      "level": "Mid-market account executive",
+      "note": "Your recent work points toward mid-market account executive roles in HR software. The SDR promotion and partner program add useful context to the quota result.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00581435,
+  "latency_ms": 12231
+}

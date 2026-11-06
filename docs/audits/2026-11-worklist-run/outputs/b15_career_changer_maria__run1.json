@@ -1,0 +1,368 @@
+{
+  "case_id": "b15_career_changer_maria",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Career changer (bar persona).",
+  "resume_file": "../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/2-career-changer-maria.txt",
+  "resume_sha256": "cf6e68aeefb5409ae44ad20d35b5dfe5a27f0f29de2d56c226d1b8891078a1b0",
+  "resume_words": 315,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T04:14:55.026Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4666,
+        "completion_tokens": 1537,
+        "total_tokens": 6203,
+        "cached_prompt_tokens": 3502,
+        "cache_write_prompt_tokens": 1161,
+        "reasoning_tokens": 512
+      },
+      "cost_usd": 0.00931435,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 20732
+    }
+  ],
+  "resume_prompt_sha256": "18e7e9ff21a0c2fda0fe219456e2d1f965de7d79bcc85173eaebd632dd83f42e",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 75,
+    "lifted_by_employer": false,
+    "verdict": "An experienced math teacher making a credible move into analytics, with project work stronger than the summary.",
+    "write_up": [
+      "A recruiter sees a math teacher moving into data analytics, with recent training and two relevant projects. The hesitation is that the analytics work is mostly in teaching and projects, not a dedicated analytics job.",
+      "The Excel dashboard line is a good model: it names the tool, what it tracked, and the period covered. The next line says the department used it to decide which units needed re-teaching. Bring the projects closer to the top and give the assessment and benchmark work that same specificity."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Summary",
+        "line": "Passionate about using data to tell stories and drive decisions. Strong analytical, communication, and problem-solving skills with a proven track record of success.",
+        "cannot_tell": "These claims don't distinguish your analytics work. The dashboards and assessment work do.",
+        "example": "Educator transitioning into data analytics with experience [analyzing what data] and building dashboards in Excel and Tableau.",
+        "question": "Which data work and tools do you most want an analytics recruiter to notice?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Data Projects sits below Professional Experience.",
+        "cannot_tell": "Your most direct examples of SQL, Python, Tableau, and Excel come after the teaching history. For an analytics application, a recruiter may not reach them as quickly as you'd like.",
+        "example": "",
+        "question": "Could you move Data Projects above Professional Experience for analytics applications?"
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, assessment data",
+        "line": "- Analyzed student assessment data to identify learning gaps and adjust instruction",
+        "cannot_tell": "The analysis has a purpose, but the learning gaps and instructional changes are still a blank. One example would show how you used the data.",
+        "example": "Analyzed student assessment data to identify [learning gap] and adjust instruction by [what you changed]",
+        "question": "What learning gap did you find, and how did you adjust instruction?"
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, Data Lead",
+        "line": "- Served as Math Department Data Lead, compiling benchmark results for department meetings",
+        "cannot_tell": "Compiling benchmark results is useful work, but a recruiter can't tell what you produced for the meetings or how it was used.",
+        "example": "Served as Math Department Data Lead, compiling benchmark results into [deliverable] for department meetings to [purpose]",
+        "question": "What did you produce from the benchmark results, and what did the department use it for?"
+      },
+      {
+        "kind": "line",
+        "where": "Middle School Math Teacher, professional learning",
+        "line": "- Participated in professional learning communities",
+        "cannot_tell": "Participation doesn't say what you contributed. Name the work if it adds something useful to the story.",
+        "example": "Participated in professional learning communities by [specific contribution]",
+        "question": "What did you contribute to the professional learning communities?"
+      },
+      {
+        "kind": "line",
+        "where": "Austin Housing Affordability Analysis, presentation",
+        "line": "- Presented findings to a panel of instructors and peers",
+        "cannot_tell": "A recruiter knows who heard the presentation, but not what you found. A finding would make the housing analysis more memorable.",
+        "example": "Presented findings on [specific finding] to a panel of instructors and peers",
+        "question": "What was one finding you presented about Austin housing affordability?"
+      },
+      {
+        "kind": "keep",
+        "where": "Student Performance Dashboard",
+        "line": "- Built an Excel dashboard tracking AP Statistics pass rates and quiz scores over three years",
+        "cannot_tell": "Keep this as a model. It names the tool, the deliverable, the measures, and the period covered.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mathematics Teacher",
+        "Middle School Math Teacher"
+      ],
+      "level": "Experienced educator, entry-level analytics",
+      "note": "Your teaching experience includes assessment analysis and department reporting. The projects and recent training make the move into analytics credible, though the page doesn't show a dedicated analytics role.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 75,
+    "lifted_by_employer": false,
+    "verdict": "An experienced math teacher making a credible move into analytics, with project work stronger than the summary.",
+    "write_up": [
+      "A recruiter sees a math teacher moving into data analytics, with recent training and two relevant projects. The hesitation is that the analytics work is mostly in teaching and projects, not a dedicated analytics job.",
+      "The Excel dashboard line is a good model: it names the tool, what it tracked, and the period covered. The next line says the department used it to decide which units needed re-teaching. Bring the projects closer to the top and give the assessment and benchmark work that same specificity."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Summary",
+        "line": "Dedicated educator with 8 years of experience transitioning into data analytics. Passionate about using data to tell stories and drive decisions. Strong analytical, communication, and problem-solving skills with a proven track record of success.",
+        "cannot_tell": "These claims don't distinguish your analytics work. The dashboards and assessment work do.",
+        "example": "Educator transitioning into data analytics with experience [analyzing what data] and building dashboards in Excel and Tableau.",
+        "question": "Which data work and tools do you most want an analytics recruiter to notice?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Data Projects sits below Professional Experience.",
+        "cannot_tell": "Your most direct examples of SQL, Python, Tableau, and Excel come after the teaching history. For an analytics application, a recruiter may not reach them as quickly as you'd like.",
+        "example": "",
+        "question": "Could you move Data Projects above Professional Experience for analytics applications?"
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, assessment data",
+        "line": "Analyzed student assessment data to identify learning gaps and adjust instruction",
+        "cannot_tell": "The analysis has a purpose, but the learning gaps and instructional changes are still a blank. One example would show how you used the data.",
+        "example": "Analyzed student assessment data to identify [learning gap] and adjust instruction by [what you changed]",
+        "question": "What learning gap did you find, and how did you adjust instruction?"
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, Data Lead",
+        "line": "Served as Math Department Data Lead, compiling benchmark results for department meetings",
+        "cannot_tell": "Compiling benchmark results is useful work, but a recruiter can't tell what you produced for the meetings or how it was used.",
+        "example": "Served as Math Department Data Lead, compiling benchmark results into [deliverable] for department meetings to [purpose]",
+        "question": "What did you produce from the benchmark results, and what did the department use it for?"
+      },
+      {
+        "kind": "line",
+        "where": "Middle School Math Teacher, professional learning",
+        "line": "Participated in professional learning communities",
+        "cannot_tell": "Participation doesn't say what you contributed. Name the work if it adds something useful to the story.",
+        "example": "Participated in professional learning communities by [specific contribution]",
+        "question": "What did you contribute to the professional learning communities?"
+      },
+      {
+        "kind": "line",
+        "where": "Austin Housing Affordability Analysis, presentation",
+        "line": "Presented findings to a panel of instructors and peers",
+        "cannot_tell": "A recruiter knows who heard the presentation, but not what you found. A finding would make the housing analysis more memorable.",
+        "example": "Presented findings on [specific finding] to a panel of instructors and peers",
+        "question": "What was one finding you presented about Austin housing affordability?"
+      },
+      {
+        "kind": "keep",
+        "where": "Student Performance Dashboard",
+        "line": "Built an Excel dashboard tracking AP Statistics pass rates and quiz scores over three years",
+        "cannot_tell": "Keep this as a model. It names the tool, the deliverable, the measures, and the period covered.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mathematics Teacher",
+        "Middle School Math Teacher"
+      ],
+      "level": "Experienced educator, entry-level analytics",
+      "note": "Your teaching experience includes assessment analysis and department reporting. The projects and recent training make the move into analytics credible, though the page doesn't show a dedicated analytics role.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 75
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 75,
+    "lifted_by_employer": false,
+    "verdict": "An experienced math teacher making a credible move into analytics, with project work stronger than the summary.",
+    "write_up": [
+      "A recruiter sees a math teacher moving into data analytics, with recent training and two relevant projects. The hesitation is that the analytics work is mostly in teaching and projects, not a dedicated analytics job.",
+      "The Excel dashboard line is a good model: it names the tool, what it tracked, and the period covered. The next line says the department used it to decide which units needed re-teaching. Bring the projects closer to the top and give the assessment and benchmark work that same specificity."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Summary",
+        "line": "Dedicated educator with 8 years of experience transitioning into data analytics. Passionate about using data to tell stories and drive decisions. Strong analytical, communication, and problem-solving skills with a proven track record of success.",
+        "cannot_tell": "These claims don't distinguish your analytics work. The dashboards and assessment work do.",
+        "example": "Educator transitioning into data analytics with experience [analyzing what data] and building dashboards in Excel and Tableau.",
+        "question": "Which data work and tools do you most want an analytics recruiter to notice?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Data Projects sits below Professional Experience.",
+        "cannot_tell": "Your most direct examples of SQL, Python, Tableau, and Excel come after the teaching history. For an analytics application, a recruiter may not reach them as quickly as you'd like.",
+        "example": "",
+        "question": "Could you move Data Projects above Professional Experience for analytics applications?"
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, assessment data",
+        "line": "Analyzed student assessment data to identify learning gaps and adjust instruction",
+        "cannot_tell": "The analysis has a purpose, but the learning gaps and instructional changes are still a blank. One example would show how you used the data.",
+        "example": "Analyzed student assessment data to identify [learning gap] and adjust instruction by [what you changed]",
+        "question": "What learning gap did you find, and how did you adjust instruction?"
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, Data Lead",
+        "line": "Served as Math Department Data Lead, compiling benchmark results for department meetings",
+        "cannot_tell": "Compiling benchmark results is useful work, but a recruiter can't tell what you produced for the meetings or how it was used.",
+        "example": "Served as Math Department Data Lead, compiling benchmark results into [deliverable] for department meetings to [purpose]",
+        "question": "What did you produce from the benchmark results, and what did the department use it for?"
+      },
+      {
+        "kind": "line",
+        "where": "Middle School Math Teacher, professional learning",
+        "line": "Participated in professional learning communities",
+        "cannot_tell": "Participation doesn't say what you contributed. Name the work if it adds something useful to the story.",
+        "example": "Participated in professional learning communities by [specific contribution]",
+        "question": "What did you contribute to the professional learning communities?"
+      },
+      {
+        "kind": "line",
+        "where": "Austin Housing Affordability Analysis, presentation",
+        "line": "Presented findings to a panel of instructors and peers",
+        "cannot_tell": "A recruiter knows who heard the presentation, but not what you found. A finding would make the housing analysis more memorable.",
+        "example": "Presented findings on [specific finding] to a panel of instructors and peers",
+        "question": "What was one finding you presented about Austin housing affordability?"
+      },
+      {
+        "kind": "keep",
+        "where": "Student Performance Dashboard",
+        "line": "Built an Excel dashboard tracking AP Statistics pass rates and quiz scores over three years",
+        "cannot_tell": "Keep this as a model. It names the tool, the deliverable, the measures, and the period covered.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mathematics Teacher",
+        "Middle School Math Teacher"
+      ],
+      "level": "Experienced educator, entry-level analytics",
+      "note": "Your teaching experience includes assessment analysis and department reporting. The projects and recent training make the move into analytics credible, though the page doesn't show a dedicated analytics role.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 75
+  },
+  "presentation": {
+    "score": 75,
+    "band": "Mostly clear",
+    "model_score": 75,
+    "lifted_by_employer": false,
+    "verdict": "An experienced math teacher making a credible move into analytics, with project work stronger than the summary.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 85,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Summary",
+        "line": "Dedicated educator with 8 years of experience transitioning into data analytics. Passionate about using data to tell stories and drive decisions. Strong analytical, communication, and problem-solving skills with a proven track record of success.",
+        "blanks": 1,
+        "question": "Which data work and tools do you most want an analytics recruiter to notice?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Data Projects sits below Professional Experience.",
+        "blanks": 0,
+        "question": "Could you move Data Projects above Professional Experience for analytics applications?"
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, assessment data",
+        "line": "Analyzed student assessment data to identify learning gaps and adjust instruction",
+        "blanks": 2,
+        "question": "What learning gap did you find, and how did you adjust instruction?"
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, Data Lead",
+        "line": "Served as Math Department Data Lead, compiling benchmark results for department meetings",
+        "blanks": 2,
+        "question": "What did you produce from the benchmark results, and what did the department use it for?"
+      },
+      {
+        "kind": "line",
+        "where": "Middle School Math Teacher, professional learning",
+        "line": "Participated in professional learning communities",
+        "blanks": 1,
+        "question": "What did you contribute to the professional learning communities?"
+      },
+      {
+        "kind": "line",
+        "where": "Austin Housing Affordability Analysis, presentation",
+        "line": "Presented findings to a panel of instructors and peers",
+        "blanks": 1,
+        "question": "What was one finding you presented about Austin housing affordability?"
+      },
+      {
+        "kind": "keep",
+        "where": "Student Performance Dashboard",
+        "line": "Built an Excel dashboard tracking AP Statistics pass rates and quiz scores over three years",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 7,
+    "kinds": {
+      "line": 5,
+      "structure": 1,
+      "keep": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Mathematics Teacher",
+        "Middle School Math Teacher"
+      ],
+      "level": "Experienced educator, entry-level analytics",
+      "note": "Your teaching experience includes assessment analysis and department reporting. The projects and recent training make the move into analytics credible, though the page doesn't show a dedicated analytics role.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00931435,
+  "latency_ms": 20739
+}

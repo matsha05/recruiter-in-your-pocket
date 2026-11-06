@@ -1,0 +1,34 @@
+# b14_teacher_to_instructional_designer, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_teacher_to_instructional_designer_1.txt (164 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt b2c0d186; severity check on
+Outcome: report; cost $0.0074; 15.5s
+Case note: Career changer.
+
+## Mostly clear (score 80; model wrote 80)
+## Verdict
+An experienced math teacher with a clear start in digital learning design, but few details on what changed.
+
+## Write-up
+A recruiter sees a math teacher who teaches advanced courses and is building digital learning experience. The hesitation is that the learning design work is still a small part of the page, with little about how students responded to it.
+
+The Canvas module line is the model: it names the subject, the format and the platform. Give the professional learning community and the video work a little more of that same substance.
+
+## Cards (3; {"keep":1,"line":2}); severity none (none); added []
+1. [keep] Cedar Creek High School, line 2
+   line: "Redesigned the Algebra II unit on functions into a self-paced online module in Canvas"
+   can't tell: This works because a reader can picture the unit and what you made from it. It's a useful model for the other learning design work.
+2. [line] Cedar Creek High School, line 3
+   line: "Lead the math department's professional learning community"
+   can't tell: The leadership is yours, but the page doesn't say what the community works on. A topic or deliverable would make the work easier to picture.
+   example: Lead the math department's professional learning community on [topics], producing [deliverable]
+   question: What does the community work on, and what has it produced?
+3. [line] Cedar Creek High School, line 4
+   line: "Created video walkthroughs that students use for exam review"
+   can't tell: Exam review gives the videos a purpose, but their content is still a blank. A topic and any student response you can verify would give the work more weight.
+   example: Created video walkthroughs on [topics] that students use for exam review; [student response, if known]
+   question: What topics did the walkthroughs cover, and what do you know about students' response to them?
+
+## Fit
+Roles: ["Mathematics Teacher"]
+Level: Experienced teacher
+Note: The page fits mathematics teaching most directly. The Canvas module, portfolio and certificate in progress also point toward digital learning design, though that work has less room on the page.

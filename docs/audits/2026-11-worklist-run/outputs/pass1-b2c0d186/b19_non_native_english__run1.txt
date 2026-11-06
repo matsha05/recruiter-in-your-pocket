@@ -1,0 +1,33 @@
+# b19_non_native_english, run 1
+Resume: ../2026-11-live-judgment/resumes/b_non_native_english.txt (237 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt b2c0d186; severity check on
+Outcome: report; cost $0.0070; 12.6s
+
+## Mostly clear (score 83; model wrote 83)
+## Verdict
+An experienced accountant with solid accounts payable detail and one standout closing improvement.
+
+## Write-up
+You show accounting experience in Vietnam and US accounts payable work, including around 400 vendor invoices a month in QuickBooks. A recruiter can see the work, but your part in the current month-end close is still a blank.
+
+The best line is the closing improvement: 12 days to 7, using a new checklist and template. Give the team leadership line the same concrete treatment, and polish the phrasing throughout so the accounting work doesn't have to compete with grammar.
+
+## Cards (3; {"line":2,"keep":1}); severity none (none); added []
+1. [line] Accounts Payable Clerk, line 4
+   line: "Help the controller for month end closing"
+   can't tell: Helping with the close could mean several different tasks. A recruiter can't tell which pieces were yours.
+   example: Help the controller with month-end closing by [specific tasks]
+   question: Which month-end closing tasks do you help the controller with?
+2. [line] Senior Accountant, line 2
+   line: "Lead team of 3 junior accountants"
+   can't tell: The team size is there, but not what the junior accountants worked on under your leadership.
+   example: Lead a team of 3 junior accountants working on [accounting work]
+   question: What accounting work did the team handle under your leadership?
+3. [keep] Senior Accountant, line 4
+   line: "Reduce the month end closing from 12 days to 7 days by make new checklist and template"
+   can't tell: Keep this as the model: it names the improvement and the checklist and template you made to achieve it.
+
+## Fit
+Roles: ["Staff Accountant","Accounts Payable Specialist"]
+Level: Experienced accountant
+Note: The current role points directly to accounts payable. Your earlier general ledger, fixed assets and financial statement work also supports the Staff Accountant direction; spelling out your current closing tasks would help that case.

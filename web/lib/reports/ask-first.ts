@@ -106,7 +106,9 @@ export function reportToneOf(report: Pick<ReportData, "score" | "top_fixes" | "m
 }
 
 /** Whether this report's page gets the questions first: the bottom rung, with a line to ask about. */
-export function askFirstOffered(report: Pick<ReportData, "score" | "top_fixes" | "more_critical">) {
+export function askFirstOffered(report: Pick<ReportData, "score" | "top_fixes" | "more_critical"> & { contract_version?: string }) {
+  // The worklist report asks on each card instead (Nov 5, 2026); the questions-first screen is the v2 report's.
+  if (report.contract_version === "v3") return false;
   return reportToneOf(report) === "not_ready" && (report.top_fixes || []).length > 0;
 }
 

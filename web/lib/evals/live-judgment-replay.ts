@@ -15,6 +15,9 @@ import { withCriticalFirst } from "../reports/report-presentation";
 import { resolveEffectiveJobDescription } from "../security/effectiveJobDescription";
 import { sanitizeUserInput } from "../security/inputSanitization";
 import type { SeverityCheckAnswer } from "../llm/severity-check-model";
+import { isWorklistReport } from "../llm/worklist-schema";
+import { validateWorklistPayload } from "../llm/worklist-validator";
+import { settleWorklistSeverityCheck } from "../reports/severity-check-service";
 
 export type RefusalDetector =
   | "summary_presence"
@@ -79,6 +82,15 @@ export interface SavedRun {
 
 export function classifyRefusal(message: string): Refusal {
   const text = String(message || "");
+  // The worklist validator's refusals (contract v3) name the card and the check.
+  let worklist = text.match(/failed the worklist contract at ([^\s:]+): (.+?)\.?$/u);
+  if (worklist) {
+    const [, path, reason] = worklist;
+    if (/not on the resume as written|matches more than one/u.test(reason)) return { detector: "ambiguous_excerpt", path, facts: [], message: text };
+    if (/outside a bracket|states a (?:number|name)/u.test(reason)) return { detector: "narrative_facts", path, facts: [reason.replace(/^.*: "/u, "").replace(/"$/u, "")], message: text };
+    if (/retired phrase/u.test(reason)) return { detector: "not_actionable", path, facts: [reason], message: text };
+    return { detector: "other", path, facts: [reason], message: text };
+  }
   const facts = (list: string) => list.split(/,\s*/u).map((item) => item.trim().replace(/\.$/u, "")).filter(Boolean);
   let match = text.match(/at section_review\.Summary: the source contains this section/u);
   if (match) return { detector: "summary_presence", path: "section_review.Summary", facts: [], message: text };
@@ -127,9 +139,11 @@ function fixSummary(fix: any): FixSummary {
   };
 }
 
-function validateDraft(draft: any, resumeText: string, validationOptions: { jobDescription?: string }): { decision: DraftDecision; payload: any } {
+function validateDraft(draft: any, resumeText: string, validationOptions: { jobDescription?: string; forceGrounding?: boolean }): { decision: DraftDecision; payload: any } {
   try {
-    const payload = ensureLayoutAndContentFields(validateResumeModelPayload(structuredClone(draft), resumeText, validationOptions));
+    const payload = ensureLayoutAndContentFields(isWorklistReport(draft)
+      ? validateWorklistPayload(structuredClone(draft), resumeText, validationOptions)
+      : validateResumeModelPayload(structuredClone(draft), resumeText, validationOptions));
     return { decision: { decision: "shipped" }, payload };
   } catch (error: any) {
     return { decision: { decision: "refused", refusal: classifyRefusal(String(error?.message || error)) }, payload: null };
@@ -187,11 +201,25 @@ export function replaySavedRun(saved: SavedRun): ReplayResult {
   const answer: SeverityCheckAnswer | undefined = record.severity?.answer;
   let shipped = payload;
   if (answer) {
-    const settled = settleSeverityCheck({ payload, answer, resumeText, validationOptions });
+    const settled = isWorklistReport(payload)
+      ? settleWorklistSeverityCheck({ payload, answer, resumeText, validationOptions })
+      : settleSeverityCheck({ payload, answer, resumeText, validationOptions });
     shipped = settled.payload;
     base.severity = { applied: true, outcome: settled.outcome, reason: settled.reason, added: settled.added, promoted: settled.promoted, led: settled.led };
   } else {
     base.severity = { applied: false };
+  }
+  if (isWorklistReport(shipped)) {
+    // A worklist report: every card is a "fix" here, the structural ones flagged, so the counts read across both shapes.
+    base.fixes = shipped.cards.map((card) => ({ fix: card.question || card.cannot_tell, excerpt: card.line, section: card.where, critical: card.kind === "structure" || card.kind === "dates" }));
+    base.critical_misses = base.fixes.filter((fix) => fix.critical === true);
+    base.verdict = shipped.verdict;
+    base.score = shipped.score;
+    if (saved.jobDescription) {
+      base.jd_match_summary = shipped.fit.posting.summary || null;
+      base.jd_missing = shipped.fit.posting.missing;
+    }
+    return base;
   }
   const ordered = withCriticalFirst(shipped);
   base.fixes = (ordered.top_fixes || []).map(fixSummary);

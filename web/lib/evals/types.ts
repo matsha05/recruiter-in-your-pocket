@@ -133,6 +133,8 @@ export interface FixtureResult {
     initial_validation_error?: string;
     /** Report-integrity measurements on the validated output; reported, not gated. */
     integrity?: ReportIntegrityMetrics;
+    /** The worklist report's shape (contract v3): cards, kinds, blanks, the write-up's length. Reported, not gated. */
+    worklist?: import("./worklist-checks").WorklistMetrics;
     /** Critical Miss judge (lib/evals/judge) on one report, synthetic fixtures only. Reported here; the prompt-change gate is `eval:judge -- compare`. */
     judge_result?: {
         judge: string;

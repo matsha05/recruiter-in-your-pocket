@@ -1,0 +1,306 @@
+{
+  "case_id": "b17_hr_generalist_career_break",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Returner after caregiving, break dated and named.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_hr_generalist_career_break_1.txt",
+  "resume_sha256": "59c9f2306490959a56a0d7a38268e6b5db0ff40531b47983bc495f857cae8f0b",
+  "resume_words": 145,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T04:14:59.414Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4193,
+        "completion_tokens": 1590,
+        "total_tokens": 5783,
+        "cached_prompt_tokens": 3502,
+        "cache_write_prompt_tokens": 688,
+        "reasoning_tokens": 728
+      },
+      "cost_usd": 0.0089881,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 19364
+    }
+  ],
+  "resume_prompt_sha256": "18e7e9ff21a0c2fda0fe219456e2d1f965de7d79bcc85173eaebd632dd83f42e",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "A manufacturing HR generalist with solid plant experience and an unaccounted-for stretch after the caregiving break.",
+    "write_up": [
+      "You have a clear HR generalist story at Northstar Plastics, including work across three shifts at a 400-employee plant. The caregiving break is dated, but a recruiter will wonder what you've been doing since June 2025.",
+      "The orientation line is a good model: it names the work and says how often you ran it. Give the investigations and open enrollment lines that same detail about your part. The headline also suggests more than one manufacturing employer, while the page names one."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "HR generalist with experience in employee relations, benefits, and onboarding for manufacturing companies.",
+        "cannot_tell": "The headline suggests multiple manufacturing employers, but the page names one. Use the singular unless another employer is missing.",
+        "example": "HR generalist with experience in employee relations, benefits, and onboarding for Northstar Plastics.",
+        "question": "Was Northstar Plastics your only manufacturing employer, or is another role missing?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after June 2025.",
+        "cannot_tell": "Your caregiving break explains the time through June 2025, but not what came after. A short, honest line can answer the question without sharing more than you want to.",
+        "example": "[July 2025 - Present]  [Work, caregiving, study, job search, or other activity, if accurate]",
+        "question": "What, if anything, would you like to add about your time after June 2025?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 2",
+        "line": "- Handled employee relations questions and investigations with the HR manager",
+        "cannot_tell": "A recruiter can see that you handled questions and worked on investigations, but not what kinds of issues came up or what your part in the investigations involved.",
+        "example": "Handled employee relations questions about [topics] and investigations with the HR manager by [your part in the investigations]",
+        "question": "What kinds of questions did you handle, and what was your part in the investigations?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 3",
+        "line": "- Coordinated open enrollment for medical and dental benefits",
+        "cannot_tell": "Coordinated could cover several different jobs. Say what you handled and, if you know it, how many employees the enrollment covered.",
+        "example": "Coordinated open enrollment for medical and dental benefits by [what you handled] for [number] employees",
+        "question": "What did you handle during open enrollment, and how many employees did it cover?"
+      },
+      {
+        "kind": "keep",
+        "where": "HR Generalist, line 4",
+        "line": "- Ran new hire orientation every two weeks",
+        "cannot_tell": "Keep this as a model. It names what you ran and how often, so a recruiter doesn't have to guess.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "HR Generalist",
+        "HR Assistant"
+      ],
+      "level": "Experienced generalist",
+      "note": "Your experience points toward HR generalist work in a plant setting, with earlier HR assistant experience at the same employer. The dated caregiving break is straightforward; the period after it is still a question.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "A manufacturing HR generalist with solid plant experience and an unaccounted-for stretch after the caregiving break.",
+    "write_up": [
+      "You have a clear HR generalist story at Northstar Plastics, including work across three shifts at a 400-employee plant. The caregiving break is dated, but a recruiter will wonder what you've been doing since June 2025.",
+      "The orientation line is a good model: it names the work and says how often you ran it. Give the investigations and open enrollment lines that same detail about your part. The headline also suggests more than one manufacturing employer, while the page names one."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "HR generalist with experience in employee relations, benefits, and onboarding for manufacturing companies.",
+        "cannot_tell": "The headline suggests multiple manufacturing employers, but the page names one. Use the singular unless another employer is missing.",
+        "example": "HR generalist with experience in employee relations, benefits, and onboarding for Northstar Plastics.",
+        "question": "Was Northstar Plastics your only manufacturing employer, or is another role missing?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after June 2025.",
+        "cannot_tell": "Your caregiving break explains the time through June 2025, but not what came after. A short, honest line can answer the question without sharing more than you want to.",
+        "example": "[July 2025 - Present] [Work, caregiving, study, job search, or other activity, if accurate]",
+        "question": "What, if anything, would you like to add about your time after June 2025?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 2",
+        "line": "Handled employee relations questions and investigations with the HR manager",
+        "cannot_tell": "A recruiter can see that you handled questions and worked on investigations, but not what kinds of issues came up or what your part in the investigations involved.",
+        "example": "Handled employee relations questions about [topics] and investigations with the HR manager by [your part in the investigations]",
+        "question": "What kinds of questions did you handle, and what was your part in the investigations?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 3",
+        "line": "Coordinated open enrollment for medical and dental benefits",
+        "cannot_tell": "Coordinated could cover several different jobs. Say what you handled and, if you know it, how many employees the enrollment covered.",
+        "example": "Coordinated open enrollment for medical and dental benefits by [what you handled] for [number] employees",
+        "question": "What did you handle during open enrollment, and how many employees did it cover?"
+      },
+      {
+        "kind": "keep",
+        "where": "HR Generalist, line 4",
+        "line": "Ran new hire orientation every two weeks",
+        "cannot_tell": "Keep this as a model. It names what you ran and how often, so a recruiter doesn't have to guess.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "HR Generalist",
+        "HR Assistant"
+      ],
+      "level": "Experienced generalist",
+      "note": "Your experience points toward HR generalist work in a plant setting, with earlier HR assistant experience at the same employer. The dated caregiving break is straightforward; the period after it is still a question.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 67
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "A manufacturing HR generalist with solid plant experience and an unaccounted-for stretch after the caregiving break.",
+    "write_up": [
+      "You have a clear HR generalist story at Northstar Plastics, including work across three shifts at a 400-employee plant. The caregiving break is dated, but a recruiter will wonder what you've been doing since June 2025.",
+      "The orientation line is a good model: it names the work and says how often you ran it. Give the investigations and open enrollment lines that same detail about your part. The headline also suggests more than one manufacturing employer, while the page names one."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "HR generalist with experience in employee relations, benefits, and onboarding for manufacturing companies.",
+        "cannot_tell": "The headline suggests multiple manufacturing employers, but the page names one. Use the singular unless another employer is missing.",
+        "example": "HR generalist with experience in employee relations, benefits, and onboarding for Northstar Plastics.",
+        "question": "Was Northstar Plastics your only manufacturing employer, or is another role missing?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after June 2025.",
+        "cannot_tell": "Your caregiving break explains the time through June 2025, but not what came after. A short, honest line can answer the question without sharing more than you want to.",
+        "example": "[July 2025 - Present] [Work, caregiving, study, job search, or other activity, if accurate]",
+        "question": "What, if anything, would you like to add about your time after June 2025?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 2",
+        "line": "Handled employee relations questions and investigations with the HR manager",
+        "cannot_tell": "A recruiter can see that you handled questions and worked on investigations, but not what kinds of issues came up or what your part in the investigations involved.",
+        "example": "Handled employee relations questions about [topics] and investigations with the HR manager by [your part in the investigations]",
+        "question": "What kinds of questions did you handle, and what was your part in the investigations?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 3",
+        "line": "Coordinated open enrollment for medical and dental benefits",
+        "cannot_tell": "Coordinated could cover several different jobs. Say what you handled and, if you know it, how many employees the enrollment covered.",
+        "example": "Coordinated open enrollment for medical and dental benefits by [what you handled] for [number] employees",
+        "question": "What did you handle during open enrollment, and how many employees did it cover?"
+      },
+      {
+        "kind": "keep",
+        "where": "HR Generalist, line 4",
+        "line": "Ran new hire orientation every two weeks",
+        "cannot_tell": "Keep this as a model. It names what you ran and how often, so a recruiter doesn't have to guess.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "HR Generalist",
+        "HR Assistant"
+      ],
+      "level": "Experienced generalist",
+      "note": "Your experience points toward HR generalist work in a plant setting, with earlier HR assistant experience at the same employer. The dated caregiving break is straightforward; the period after it is still a question.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 67
+  },
+  "presentation": {
+    "score": 67,
+    "band": "Needs more context",
+    "model_score": 67,
+    "lifted_by_employer": false,
+    "verdict": "A manufacturing HR generalist with solid plant experience and an unaccounted-for stretch after the caregiving break.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 81,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "HR generalist with experience in employee relations, benefits, and onboarding for manufacturing companies.",
+        "blanks": 0,
+        "question": "Was Northstar Plastics your only manufacturing employer, or is another role missing?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after June 2025.",
+        "blanks": 2,
+        "question": "What, if anything, would you like to add about your time after June 2025?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 2",
+        "line": "Handled employee relations questions and investigations with the HR manager",
+        "blanks": 2,
+        "question": "What kinds of questions did you handle, and what was your part in the investigations?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 3",
+        "line": "Coordinated open enrollment for medical and dental benefits",
+        "blanks": 2,
+        "question": "What did you handle during open enrollment, and how many employees did it cover?"
+      },
+      {
+        "kind": "keep",
+        "where": "HR Generalist, line 4",
+        "line": "Ran new hire orientation every two weeks",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "line": 3,
+      "dates": 1,
+      "keep": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "HR Generalist",
+        "HR Assistant"
+      ],
+      "level": "Experienced generalist",
+      "note": "Your experience points toward HR generalist work in a plant setting, with earlier HR assistant experience at the same employer. The dated caregiving break is straightforward; the period after it is still a question.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0089881,
+  "latency_ms": 19367
+}

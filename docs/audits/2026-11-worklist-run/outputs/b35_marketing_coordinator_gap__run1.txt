@@ -1,0 +1,39 @@
+# b35_marketing_coordinator_gap, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_marketing_coordinator_gap_1.txt (126 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 18e7e9ff; severity check off
+Outcome: report; cost $0.0074; 17.4s
+Case note: Gap with nothing after it.
+
+## Needs more context (score 69; model wrote 69)
+## Verdict
+A marketing coordinator with concrete email and event work, but nothing dated after March 2024.
+
+## Write-up
+A recruiter sees consumer-brand marketing work across email, events and social media. The first hesitation is what you've been doing since the last role ended in March 2024.
+
+The weekly email calendar is the line to follow: it gives both the cadence and the list size without overstating your part. The earlier tasting events and newsletter work leave more for a recruiter to guess.
+
+## Cards (4; {"dates":1,"keep":1,"line":2}); severity off; added []
+1. [dates] Dates
+   line: "Nothing is dated after March 2024."
+   can't tell: A recruiter can't tell what you've been doing since your last listed role. A dated line can answer that without pretending it was another job.
+   example: [dates] [work, study, caregiving, career break or other activity, if accurate]
+   question: What have you been doing since March 2024 that you'd be comfortable dating on the resume?
+2. [keep] Marketing Coordinator, line 1
+   line: "Managed the weekly email calendar for a list of 120,000 subscribers"
+   can't tell: This gives a recruiter the cadence and the list size. It's a good model for making the rest of your work concrete.
+3. [line] Marketing Assistant, line 1
+   line: "Helped plan in-store tasting events"
+   can't tell: Helped plan leaves your part of the tasting events open. Say what you handled.
+   example: Helped plan in-store tasting events by [your contribution]
+   question: What did you do to help plan the tasting events?
+4. [line] Marketing Assistant, line 2
+   line: "Updated the company blog and newsletter"
+   can't tell: Updated could mean writing, editing or publishing. A recruiter can't tell which work was yours.
+   example: Updated the company blog and newsletter with [what you wrote or changed]
+   question: What did you write or change for the blog and newsletter?
+
+## Fit
+Roles: ["Marketing Coordinator","Marketing Assistant"]
+Level: Coordinator
+Note: Your experience points toward marketing coordinator work across email, events, copy and social media. The most recent role gives a list size and event cadence; adding your activities since it ended would make the timeline easier to follow.

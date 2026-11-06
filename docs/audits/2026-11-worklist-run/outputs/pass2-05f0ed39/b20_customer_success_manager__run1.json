@@ -1,0 +1,316 @@
+{
+  "case_id": "b20_customer_success_manager",
+  "batch": "breadth",
+  "run": 1,
+  "note": "No posting.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt",
+  "resume_sha256": "fe00b25220442aa026e6aa909f700301c898f430bd2cf244eafbe182c75f316d",
+  "resume_words": 180,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T03:52:33.186Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4173,
+        "completion_tokens": 937,
+        "total_tokens": 5110,
+        "cached_prompt_tokens": 3406,
+        "cache_write_prompt_tokens": 764,
+        "reasoning_tokens": 333
+      },
+      "cost_usd": 0.0058133,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 11636
+    },
+    {
+      "kind": "repair",
+      "usage": {
+        "prompt_tokens": 4990,
+        "completion_tokens": 887,
+        "total_tokens": 5877,
+        "cached_prompt_tokens": 3406,
+        "cache_write_prompt_tokens": 1581,
+        "reasoning_tokens": 286
+      },
+      "cost_usd": 0.00658455,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 11092
+    }
+  ],
+  "resume_prompt_sha256": "05f0ed391d02c15c487cdf3fcd427706167ba6aa9a1ad58365cfcff658e9caea",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 80,
+    "lifted_by_employer": false,
+    "verdict": "A customer success manager with a defined book of business, but few details on renewals and escalations.",
+    "write_up": [
+      "You manage 48 mid-market accounts in payroll software, with earlier experience in payroll support. A recruiter can see the progression and would likely move you forward, with questions about your part in renewal strategy and what happened when payroll runs failed.",
+      "The onboarding checklist is the line to follow: it names what you built and says the whole CS team uses it. Add the same kind of detail to the renewal and escalation work, including results where you can verify them."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "- Partnered with Sales on renewal strategy for at-risk accounts",
+        "cannot_tell": "Partnered tells me who you worked with, but not what you contributed to the renewal strategy. That's a useful distinction for a customer success role.",
+        "example": "Partnered with Sales on renewal strategy for at-risk accounts, [your contribution] and [renewal result, if known]",
+        "question": "What was your part in the renewal strategy, and what happened with those accounts?"
+      },
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 4",
+        "line": "- Built an onboarding checklist now used by the whole CS team",
+        "cannot_tell": "Keep this as a model. It names the thing you built and who uses it, without making the reader guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 5",
+        "line": "- Handle escalations with Support and Product when payroll runs fail",
+        "cannot_tell": "The payroll problem is concrete, but your part in handling it is still broad. One example of your actions and the resolution would give this line more weight.",
+        "example": "Handle escalations with Support and Product when payroll runs fail, [your actions] and [resolution, if known]",
+        "question": "What do you do during a payroll escalation, and how was one resolved?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Customer Success Manager",
+        "Customer Support Specialist"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "Your experience points most directly to Customer Success Manager roles in B2B software. The payroll support work also gives you a useful technical service background.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "initial_validation_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the worklist contract at cards[1].cannot_tell: uses the retired phrase \"the read\".",
+    "issues": [
+      {
+        "path": "cards[1].cannot_tell",
+        "message": "uses the retired phrase \"the read\""
+      }
+    ]
+  },
+  "model_output_repaired": {
+    "contract_version": "v3",
+    "score": 80,
+    "lifted_by_employer": false,
+    "verdict": "A customer success manager with a defined book of business, but few details on renewals and escalations.",
+    "write_up": [
+      "You manage 48 mid-market accounts in payroll software, with earlier experience in payroll support. A recruiter can see the progression and would likely move you forward, with questions about your part in renewal strategy and what happened when payroll runs failed.",
+      "The onboarding checklist is the line to follow: it names what you built and says the whole CS team uses it. Add that kind of detail to the renewal and escalation work, including results where you can verify them."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "- Partnered with Sales on renewal strategy for at-risk accounts",
+        "cannot_tell": "Partnered tells me who you worked with, but not what you contributed to the renewal strategy. That distinction matters in a customer success role.",
+        "example": "Partnered with Sales on renewal strategy for at-risk accounts, [your contribution] and [renewal result, if known]",
+        "question": "What was your part in the renewal strategy, and what happened with those accounts?"
+      },
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 4",
+        "line": "- Built an onboarding checklist now used by the whole CS team",
+        "cannot_tell": "Keep this as a model. It names the thing you built and who uses it, so nobody has to guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 5",
+        "line": "- Handle escalations with Support and Product when payroll runs fail",
+        "cannot_tell": "The payroll problem is concrete, but your part in handling it is still broad. One example of your actions and the resolution would give this line more weight.",
+        "example": "Handle escalations with Support and Product when payroll runs fail, [your actions] and [resolution, if known]",
+        "question": "What do you do during a payroll escalation, and how was one resolved?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Customer Success Manager",
+        "Customer Support Specialist"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "Your experience points most directly to Customer Success Manager roles in B2B software. The payroll support work also gives you a useful service background.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "repaired": true,
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 80,
+    "lifted_by_employer": false,
+    "verdict": "A customer success manager with a defined book of business, but few details on renewals and escalations.",
+    "write_up": [
+      "You manage 48 mid-market accounts in payroll software, with earlier experience in payroll support. A recruiter can see the progression and would likely move you forward, with questions about your part in renewal strategy and what happened when payroll runs failed.",
+      "The onboarding checklist is the line to follow: it names what you built and says the whole CS team uses it. Add that kind of detail to the renewal and escalation work, including results where you can verify them."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "Partnered with Sales on renewal strategy for at-risk accounts",
+        "cannot_tell": "Partnered tells me who you worked with, but not what you contributed to the renewal strategy. That distinction matters in a customer success role.",
+        "example": "Partnered with Sales on renewal strategy for at-risk accounts, [your contribution] and [renewal result, if known]",
+        "question": "What was your part in the renewal strategy, and what happened with those accounts?"
+      },
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 4",
+        "line": "Built an onboarding checklist now used by the whole CS team",
+        "cannot_tell": "Keep this as a model. It names the thing you built and who uses it, so nobody has to guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 5",
+        "line": "Handle escalations with Support and Product when payroll runs fail",
+        "cannot_tell": "The payroll problem is concrete, but your part in handling it is still broad. One example of your actions and the resolution would give this line more weight.",
+        "example": "Handle escalations with Support and Product when payroll runs fail, [your actions] and [resolution, if known]",
+        "question": "What do you do during a payroll escalation, and how was one resolved?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Customer Success Manager",
+        "Customer Support Specialist"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "Your experience points most directly to Customer Success Manager roles in B2B software. The payroll support work also gives you a useful service background.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 80
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 80,
+    "lifted_by_employer": false,
+    "verdict": "A customer success manager with a defined book of business, but few details on renewals and escalations.",
+    "write_up": [
+      "You manage 48 mid-market accounts in payroll software, with earlier experience in payroll support. A recruiter can see the progression and would likely move you forward, with questions about your part in renewal strategy and what happened when payroll runs failed.",
+      "The onboarding checklist is the line to follow: it names what you built and says the whole CS team uses it. Add that kind of detail to the renewal and escalation work, including results where you can verify them."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "Partnered with Sales on renewal strategy for at-risk accounts",
+        "cannot_tell": "Partnered tells me who you worked with, but not what you contributed to the renewal strategy. That distinction matters in a customer success role.",
+        "example": "Partnered with Sales on renewal strategy for at-risk accounts, [your contribution] and [renewal result, if known]",
+        "question": "What was your part in the renewal strategy, and what happened with those accounts?"
+      },
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 4",
+        "line": "Built an onboarding checklist now used by the whole CS team",
+        "cannot_tell": "Keep this as a model. It names the thing you built and who uses it, so nobody has to guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 5",
+        "line": "Handle escalations with Support and Product when payroll runs fail",
+        "cannot_tell": "The payroll problem is concrete, but your part in handling it is still broad. One example of your actions and the resolution would give this line more weight.",
+        "example": "Handle escalations with Support and Product when payroll runs fail, [your actions] and [resolution, if known]",
+        "question": "What do you do during a payroll escalation, and how was one resolved?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Customer Success Manager",
+        "Customer Support Specialist"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "Your experience points most directly to Customer Success Manager roles in B2B software. The payroll support work also gives you a useful service background.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 80
+  },
+  "presentation": {
+    "score": 80,
+    "band": "Mostly clear",
+    "model_score": 80,
+    "lifted_by_employer": false,
+    "verdict": "A customer success manager with a defined book of business, but few details on renewals and escalations.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 80,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "Partnered with Sales on renewal strategy for at-risk accounts",
+        "blanks": 2,
+        "question": "What was your part in the renewal strategy, and what happened with those accounts?"
+      },
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 4",
+        "line": "Built an onboarding checklist now used by the whole CS team",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 5",
+        "line": "Handle escalations with Support and Product when payroll runs fail",
+        "blanks": 2,
+        "question": "What do you do during a payroll escalation, and how was one resolved?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "line": 2,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Customer Success Manager",
+        "Customer Support Specialist"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "Your experience points most directly to Customer Success Manager roles in B2B software. The payroll support work also gives you a useful service background.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01239785,
+  "latency_ms": 22731
+}

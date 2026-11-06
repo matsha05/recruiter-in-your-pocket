@@ -1,0 +1,303 @@
+{
+  "case_id": "b10_it_support_recent_grad",
+  "batch": "breadth",
+  "run": 1,
+  "note": "First job.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_it_support_recent_grad_1.txt",
+  "resume_sha256": "6aac1aade9d7a63c473e324e9d4010a6421ea06868ff0b898b625a8534cf26dc",
+  "resume_words": 119,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T04:14:38.131Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4085,
+        "completion_tokens": 1305,
+        "total_tokens": 5390,
+        "cached_prompt_tokens": 3502,
+        "cache_write_prompt_tokens": 580,
+        "reasoning_tokens": 512
+      },
+      "cost_usd": 0.0074281,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 16890
+    }
+  ],
+  "resume_prompt_sha256": "18e7e9ff21a0c2fda0fe219456e2d1f965de7d79bcc85173eaebd632dd83f42e",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 64,
+    "lifted_by_employer": false,
+    "verdict": "A help desk intern with relevant technical skills, but little detail on ticket volume and no recent work listed.",
+    "write_up": [
+      "You have a clear target: desktop support or a junior systems role. A recruiter can see school help desk work, retail device support, and an A+ certification. The hesitation is that the internship bullets don't show how much work you handled or what happened after May 2025.",
+      "The Active Directory line is your best model: it names the task and the tool without making a recruiter guess. Put Experience above Education, then add the size or typical requests behind the help desk work where you can verify them."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "The latest listed job ended May 2025.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since the internship. A dated line can answer that without making them guess.",
+        "example": "[Month Year - Month Year]  [Work, study, job search, caregiving, or other activity, if applicable]",
+        "question": "What have you been doing since May 2025 that you could honestly add with dates?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "cannot_tell": "Your retail and help desk work are relevant to the jobs you want, but a recruiter reaches them after Education and Certifications. Put Experience first so that work gets seen sooner.",
+        "example": "",
+        "question": "Can you move Experience above Education and Certifications?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 1",
+        "line": "- Answered help desk tickets from teachers and staff",
+        "cannot_tell": "A recruiter knows who sent the tickets, but not what problems you handled or how many came through. Those details would show the shape of your help desk work.",
+        "example": "Answered help desk tickets from teachers and staff about [common issues], handling [number] tickets [per period]",
+        "question": "What issues did you commonly handle, and how many tickets did you answer in a typical period?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 2",
+        "line": "- Imaged and set up laptops for classrooms",
+        "cannot_tell": "The task is relevant to desktop support, but the number of laptops and what setup involved are left open.",
+        "example": "Imaged and set up [number] laptops for classrooms, including [setup tasks]",
+        "question": "How many laptops did you image and set up, and what did the setup involve?"
+      },
+      {
+        "kind": "keep",
+        "where": "IT Help Desk Intern, line 3",
+        "line": "- Reset passwords and accounts in Active Directory",
+        "cannot_tell": "This names both the work and the tool. Use that same directness in the other internship bullets.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "IT Help Desk Intern"
+      ],
+      "level": "Entry level",
+      "note": "Your internship and retail device work point toward desktop support. The junior systems direction is less developed on the page, though the Active Directory work is relevant.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 64,
+    "lifted_by_employer": false,
+    "verdict": "A help desk intern with relevant technical skills, but little detail on ticket volume and no recent work listed.",
+    "write_up": [
+      "You have a clear target: desktop support or a junior systems role. A recruiter can see school help desk work, retail device support, and an A+ certification. The hesitation is that the internship bullets don't show how much work you handled or what happened after May 2025.",
+      "The Active Directory line is your best model: it names the task and the tool without making a recruiter guess. Put Experience above Education, then add the size or typical requests behind the help desk work where you can verify them."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "The latest listed job ended May 2025.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since the internship. A dated line can answer that without making them guess.",
+        "example": "[Month Year - Month Year] [Work, study, job search, caregiving, or other activity, if applicable]",
+        "question": "What have you been doing since May 2025 that you could honestly add with dates?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "cannot_tell": "Your retail and help desk work are relevant to the jobs you want, but a recruiter reaches them after Education and Certifications. Put Experience first so that work gets seen sooner.",
+        "example": "",
+        "question": "Can you move Experience above Education and Certifications?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 1",
+        "line": "Answered help desk tickets from teachers and staff",
+        "cannot_tell": "A recruiter knows who sent the tickets, but not what problems you handled or how many came through. Those details would show the shape of your help desk work.",
+        "example": "Answered help desk tickets from teachers and staff about [common issues], handling [number] tickets [per period]",
+        "question": "What issues did you commonly handle, and how many tickets did you answer in a typical period?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 2",
+        "line": "Imaged and set up laptops for classrooms",
+        "cannot_tell": "The task is relevant to desktop support, but the number of laptops and what setup involved are left open.",
+        "example": "Imaged and set up [number] laptops for classrooms, including [setup tasks]",
+        "question": "How many laptops did you image and set up, and what did the setup involve?"
+      },
+      {
+        "kind": "keep",
+        "where": "IT Help Desk Intern, line 3",
+        "line": "Reset passwords and accounts in Active Directory",
+        "cannot_tell": "This names both the work and the tool. Use that same directness in the other internship bullets.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "IT Help Desk Intern"
+      ],
+      "level": "Entry level",
+      "note": "Your internship and retail device work point toward desktop support. The junior systems direction is less developed on the page, though the Active Directory work is relevant.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 64
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 64,
+    "lifted_by_employer": false,
+    "verdict": "A help desk intern with relevant technical skills, but little detail on ticket volume and no recent work listed.",
+    "write_up": [
+      "You have a clear target: desktop support or a junior systems role. A recruiter can see school help desk work, retail device support, and an A+ certification. The hesitation is that the internship bullets don't show how much work you handled or what happened after May 2025.",
+      "The Active Directory line is your best model: it names the task and the tool without making a recruiter guess. Put Experience above Education, then add the size or typical requests behind the help desk work where you can verify them."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "The latest listed job ended May 2025.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since the internship. A dated line can answer that without making them guess.",
+        "example": "[Month Year - Month Year] [Work, study, job search, caregiving, or other activity, if applicable]",
+        "question": "What have you been doing since May 2025 that you could honestly add with dates?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "cannot_tell": "Your retail and help desk work are relevant to the jobs you want, but a recruiter reaches them after Education and Certifications. Put Experience first so that work gets seen sooner.",
+        "example": "",
+        "question": "Can you move Experience above Education and Certifications?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 1",
+        "line": "Answered help desk tickets from teachers and staff",
+        "cannot_tell": "A recruiter knows who sent the tickets, but not what problems you handled or how many came through. Those details would show the shape of your help desk work.",
+        "example": "Answered help desk tickets from teachers and staff about [common issues], handling [number] tickets [per period]",
+        "question": "What issues did you commonly handle, and how many tickets did you answer in a typical period?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 2",
+        "line": "Imaged and set up laptops for classrooms",
+        "cannot_tell": "The task is relevant to desktop support, but the number of laptops and what setup involved are left open.",
+        "example": "Imaged and set up [number] laptops for classrooms, including [setup tasks]",
+        "question": "How many laptops did you image and set up, and what did the setup involve?"
+      },
+      {
+        "kind": "keep",
+        "where": "IT Help Desk Intern, line 3",
+        "line": "Reset passwords and accounts in Active Directory",
+        "cannot_tell": "This names both the work and the tool. Use that same directness in the other internship bullets.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "IT Help Desk Intern"
+      ],
+      "level": "Entry level",
+      "note": "Your internship and retail device work point toward desktop support. The junior systems direction is less developed on the page, though the Active Directory work is relevant.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 64
+  },
+  "presentation": {
+    "score": 64,
+    "band": "Needs more context",
+    "model_score": 64,
+    "lifted_by_employer": false,
+    "verdict": "A help desk intern with relevant technical skills, but little detail on ticket volume and no recent work listed.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 88,
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "The latest listed job ended May 2025.",
+        "blanks": 2,
+        "question": "What have you been doing since May 2025 that you could honestly add with dates?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "blanks": 0,
+        "question": "Can you move Experience above Education and Certifications?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 1",
+        "line": "Answered help desk tickets from teachers and staff",
+        "blanks": 3,
+        "question": "What issues did you commonly handle, and how many tickets did you answer in a typical period?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 2",
+        "line": "Imaged and set up laptops for classrooms",
+        "blanks": 2,
+        "question": "How many laptops did you image and set up, and what did the setup involve?"
+      },
+      {
+        "kind": "keep",
+        "where": "IT Help Desk Intern, line 3",
+        "line": "Reset passwords and accounts in Active Directory",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "dates": 1,
+      "structure": 1,
+      "line": 2,
+      "keep": 1
+    },
+    "structural_from_model": 2,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "IT Help Desk Intern"
+      ],
+      "level": "Entry level",
+      "note": "Your internship and retail device work point toward desktop support. The junior systems direction is less developed on the page, though the Active Directory work is relevant.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0074281,
+  "latency_ms": 16892
+}

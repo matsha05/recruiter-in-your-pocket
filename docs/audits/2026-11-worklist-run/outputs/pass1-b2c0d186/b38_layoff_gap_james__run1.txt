@@ -1,0 +1,66 @@
+# b38_layoff_gap_james, run 1
+Resume: ../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/3-layoff-gap-james.txt (313 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt b2c0d186; severity check on
+Outcome: report; cost $0.0233; repair ran; 40.8s
+Case note: Layoff gap (bar persona).
+
+Validator refused the first draft: The model response failed the worklist contract at write_up[0]: uses the retired phrase "harder to place".
+
+## Mostly clear (score 79; model wrote 79)
+## Verdict
+A senior B2B SaaS marketer with a clear management record, though the freelance and earlier work need more detail.
+
+## Write-up
+You look like a senior marketing manager who moved into consulting after a reduction in force. The Velocity role shows a team, a budget and a measurable gain in MQLs. Your current freelance work names the projects, but leaves your individual contributions less clear.
+
+The MQL line is the model: it says what moved and by how much, while also noting the reduction in cost per lead. Bring that same specificity to the ABM program and the Bridgepoint blog and webinars where you can verify it.
+
+## Cards (9; {"line":8,"keep":1}); severity none (none); added []
+1. [line] Freelance Marketing Consultant, line 1
+   line: "Provided marketing strategy and execution support for small businesses and startups"
+   can't tell: Support could cover a lot of ground. The next line names the projects, but not which parts you personally handled.
+   example: Provided marketing strategy and execution support for small businesses and startups, including [specific work you did] and [result, if known]
+   question: What did you personally do on those projects, and what happened as a result, if you know?
+2. [line] Senior Marketing Manager, ABM program
+   line: "Launched ABM program targeting enterprise accounts"
+   can't tell: The launch is yours, but the program itself is still a black box. A recruiter can't tell what it involved or what happened after launch.
+   example: Launched ABM program targeting enterprise accounts, including [program activities] and [result, if known]
+   question: What did the ABM program involve, and what happened after launch?
+3. [keep] Senior Marketing Manager, MQLs
+   line: "Increased MQL volume by 35% year over year while reducing cost per lead"
+   can't tell: Keep this as a model. It gives a recruiter a concrete change in MQL volume and names the improvement in cost per lead.
+4. [line] Marketing Manager, content and email
+   line: "Managed content marketing and email programs"
+   can't tell: The programs are yours, but a recruiter can't tell what they included. A specific piece of content or email program would make the work easier to picture.
+   example: Managed content marketing and email programs, including [specific content or email program]
+   question: What content or email programs did you manage?
+5. [line] Marketing Manager, blog traffic
+   line: "Grew blog traffic significantly through SEO-driven content strategy"
+   can't tell: The strategy and direction are there, but 'significantly' leaves the size of the growth unclear.
+   example: Grew blog traffic by [amount] over [period] through SEO-driven content strategy
+   question: How much did blog traffic grow, and over what period?
+6. [line] Marketing Manager, webinar program
+   line: "Ran webinar program generating pipeline for the sales team"
+   can't tell: The program generated pipeline, but there's no indication of how much. That would help a recruiter understand its contribution.
+   example: Ran webinar program generating [pipeline amount] for the sales team over [period]
+   question: How much pipeline did the webinar program generate, and over what period?
+7. [line] Marketing Manager, operations and reporting
+   line: "Managed marketing operations and reporting in Marketo and Salesforce"
+   can't tell: The tools are named, but the reports and their purpose aren't. One example would show what you managed in them.
+   example: Managed marketing operations and reporting in Marketo and Salesforce, including [specific report or operations work]
+   question: What reports or operations work did you manage in Marketo and Salesforce?
+8. [line] Marketing Coordinator, line 1
+   line: "Supported campaign execution, event logistics, and social media"
+   can't tell: The work areas are named, but 'supported' doesn't show what you handled in any of them.
+   example: Supported campaign execution, event logistics, and social media by [specific tasks you handled]
+   question: Which campaign, event or social media tasks did you personally handle?
+9. [line] Marketing Coordinator, line 2
+   line: "Created sales enablement materials"
+   can't tell: A recruiter can't picture the materials. Naming them would make the work easier to understand.
+   example: Created [types of sales enablement materials] for [audience or purpose]
+   question: What materials did you create, and who used them or what were they for?
+
+## Fit
+Roles: ["Senior Marketing Manager","Marketing Manager","Freelance Marketing Consultant"]
+Level: Senior manager
+Note: The page points toward senior marketing management, particularly demand generation and marketing operations in B2B SaaS. Your current consulting work is relevant, but needs more detail about your own contributions.

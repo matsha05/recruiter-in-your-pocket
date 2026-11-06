@@ -1,0 +1,30 @@
+# b02_teacher, run 1
+Resume: ../2026-11-live-judgment/resumes/b_teacher.txt (202 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 05f0ed39; severity check off
+Outcome: report; cost $0.0091; repair ran; 16.2s
+
+Validator refused the first draft: The model response failed the worklist contract at write_up[1]: uses the retired phrase "the read".
+
+## Clear and specific (score 89; model wrote 89)
+## Verdict
+An experienced elementary teacher with classroom results, team leadership, and the credentials for K-8 teaching.
+
+## Write-up
+A recruiter can see your classroom work, leadership, and Washington teaching credentials quickly. This resume is likely to move forward for elementary teaching roles.
+
+Your district assessment line is the model: it shows the change in reading growth over three years. The behavior committee line is the one place where your contribution stays hidden.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] 4th Grade Teacher, reading growth
+   line: "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years"
+   can't tell: This gives a recruiter a concrete measure of your students' reading growth. It's a useful model for showing what changed.
+2. [line] 2nd Grade Teacher, committee
+   line: "Served on the school's positive behavior support committee"
+   can't tell: Committee membership doesn't say what you contributed. Name a piece of work you did there.
+   example: Served on the school's positive behavior support committee, [specific contribution]
+   question: What did you contribute to the school's positive behavior support committee?
+
+## Fit
+Roles: ["4th Grade Teacher","2nd Grade Teacher"]
+Level: Experienced elementary teacher
+Note: Your experience points to elementary classroom teaching, with grade-level leadership and work with English language learners. Your Washington K-8 certification and ELL endorsement are easy to find.

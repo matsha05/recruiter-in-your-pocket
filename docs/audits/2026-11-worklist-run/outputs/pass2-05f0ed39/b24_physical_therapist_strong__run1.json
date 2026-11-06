@@ -1,0 +1,212 @@
+{
+  "case_id": "b24_physical_therapist_strong",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_physical_therapist_strong_1.txt",
+  "resume_sha256": "7e013454a20249375bdb6727bacd79d8babaf49afa5b0b57f3dd11c862937163",
+  "resume_words": 154,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T03:52:53.225Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4110,
+        "completion_tokens": 676,
+        "total_tokens": 4786,
+        "cached_prompt_tokens": 3406,
+        "cache_write_prompt_tokens": 701,
+        "reasoning_tokens": 192
+      },
+      "cost_usd": 0.00442955,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 8600
+    }
+  ],
+  "resume_prompt_sha256": "05f0ed391d02c15c487cdf3fcd427706167ba6aa9a1ad58365cfcff658e9caea",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A senior outpatient physical therapist with a clear patient load, a named program, and a reported function measure.",
+    "write_up": [
+      "You come across as an outpatient orthopedic therapist who treats sports and post-surgical cases, mentors newer therapists, and builds programs. The work is easy to follow, and the patient volumes give it size.",
+      "The return-to-run line is a good model: it names what you built and how many patients completed it. The 92% function figure is useful too; naming the measure and patient count would give it more context."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Physical Therapist, line 2",
+        "line": "- Built a return-to-run program that 85 patients completed in 2025",
+        "cannot_tell": "This line names the program, your part in it, and how many patients completed it. It's a useful model for the rest of the page.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Physical Therapist, line 4",
+        "line": "- In 2025, 92% of discharged patients improved their patient-reported function scores",
+        "cannot_tell": "The improvement is worth keeping. The line doesn't say which function measure you used or how many discharged patients were included.",
+        "example": "In 2025, 92% of discharged patients improved their patient-reported function scores [measure; number of discharged patients included]",
+        "question": "Which function measure was used, and how many discharged patients were included in the 2025 figure?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Physical Therapist",
+        "Physical Therapist"
+      ],
+      "level": "Senior clinician",
+      "note": "Your experience points to outpatient physical therapy roles, particularly orthopedic and sports rehabilitation. The mentoring and aide scheduling also show responsibilities beyond direct patient care.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A senior outpatient physical therapist with a clear patient load, a named program, and a reported function measure.",
+    "write_up": [
+      "You come across as an outpatient orthopedic therapist who treats sports and post-surgical cases, mentors newer therapists, and builds programs. The work is easy to follow, and the patient volumes give it size.",
+      "The return-to-run line is a good model: it names what you built and how many patients completed it. The 92% function figure is useful too; naming the measure and patient count would give it more context."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Physical Therapist, line 2",
+        "line": "Built a return-to-run program that 85 patients completed in 2025",
+        "cannot_tell": "This line names the program, your part in it, and how many patients completed it. It's a useful model for the rest of the page.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Physical Therapist, line 4",
+        "line": "In 2025, 92% of discharged patients improved their patient-reported function scores",
+        "cannot_tell": "The improvement is worth keeping. The line doesn't say which function measure you used or how many discharged patients were included.",
+        "example": "In 2025, 92% of discharged patients improved their patient-reported function scores [measure; number of discharged patients included]",
+        "question": "Which function measure was used, and how many discharged patients were included in the 2025 figure?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Physical Therapist",
+        "Physical Therapist"
+      ],
+      "level": "Senior clinician",
+      "note": "Your experience points to outpatient physical therapy roles, particularly orthopedic and sports rehabilitation. The mentoring and aide scheduling also show responsibilities beyond direct patient care.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A senior outpatient physical therapist with a clear patient load, a named program, and a reported function measure.",
+    "write_up": [
+      "You come across as an outpatient orthopedic therapist who treats sports and post-surgical cases, mentors newer therapists, and builds programs. The work is easy to follow, and the patient volumes give it size.",
+      "The return-to-run line is a good model: it names what you built and how many patients completed it. The 92% function figure is useful too; naming the measure and patient count would give it more context."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Physical Therapist, line 2",
+        "line": "Built a return-to-run program that 85 patients completed in 2025",
+        "cannot_tell": "This line names the program, your part in it, and how many patients completed it. It's a useful model for the rest of the page.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Physical Therapist, line 4",
+        "line": "In 2025, 92% of discharged patients improved their patient-reported function scores",
+        "cannot_tell": "The improvement is worth keeping. The line doesn't say which function measure you used or how many discharged patients were included.",
+        "example": "In 2025, 92% of discharged patients improved their patient-reported function scores [measure; number of discharged patients included]",
+        "question": "Which function measure was used, and how many discharged patients were included in the 2025 figure?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Physical Therapist",
+        "Physical Therapist"
+      ],
+      "level": "Senior clinician",
+      "note": "Your experience points to outpatient physical therapy roles, particularly orthopedic and sports rehabilitation. The mentoring and aide scheduling also show responsibilities beyond direct patient care.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "presentation": {
+    "score": 89,
+    "band": "Clear and specific",
+    "model_score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A senior outpatient physical therapist with a clear patient load, a named program, and a reported function measure.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 69,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Physical Therapist, line 2",
+        "line": "Built a return-to-run program that 85 patients completed in 2025",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Physical Therapist, line 4",
+        "line": "In 2025, 92% of discharged patients improved their patient-reported function scores",
+        "blanks": 1,
+        "question": "Which function measure was used, and how many discharged patients were included in the 2025 figure?"
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "keep": 1,
+      "line": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Physical Therapist",
+        "Physical Therapist"
+      ],
+      "level": "Senior clinician",
+      "note": "Your experience points to outpatient physical therapy roles, particularly orthopedic and sports rehabilitation. The mentoring and aide scheduling also show responsibilities beyond direct patient care.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00442955,
+  "latency_ms": 8602
+}

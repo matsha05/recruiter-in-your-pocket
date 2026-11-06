@@ -1,0 +1,50 @@
+# b31_kitchen_manager, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_kitchen_manager_1.txt (120 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt b2c0d186; severity check on
+Outcome: report; cost $0.0151; repair ran; 29.0s
+
+Validator refused the first draft: The model response failed the worklist contract at write_up[1]: uses the retired phrase "the read".
+
+## Mostly clear (score 73; model wrote 73)
+## Verdict
+A kitchen manager with a clear progression, but the management work needs more detail.
+
+## Write-up
+You moved from line cook to sous chef to kitchen manager, and the current job is easy to place. The hesitation is what managing the kitchen looks like day to day: the schedule, orders, inspections and training are listed, but not much is said about how you handle them.
+
+The 180-seat restaurant line is the best model on the page. It names the job and gives a concrete sense of the restaurant. Bring that same detail to the staff and the work behind the kitchen's daily operation.
+
+## Cards (6; {"keep":1,"line":5}); severity none (none); added []
+1. [keep] Kitchen Manager, line 1
+   line: "Run the kitchen for a 180-seat restaurant"
+   can't tell: This gives a recruiter the job and the restaurant size without making them guess. It's a useful model for the other bullets.
+2. [line] Kitchen Manager, line 2
+   line: "Manage the kitchen staff schedule"
+   can't tell: The schedule is yours, but the page doesn't say how many people you schedule or what goes into it.
+   example: Manage the kitchen staff schedule: [number of staff], [how you handle coverage]
+   question: How many staff do you schedule, and how do you handle coverage?
+3. [line] Kitchen Manager, line 3
+   line: "Order food and supplies from vendors"
+   can't tell: Ordering is part of the job, but the page doesn't show how you decide what to order or manage costs.
+   example: Order food and supplies from vendors: [how you determine orders or manage costs]
+   question: How do you decide what to order and manage food and supply costs?
+4. [line] Kitchen Manager, line 4
+   line: "Keep the kitchen ready for health inspections"
+   can't tell: Inspection readiness matters in this job. The page doesn't show what you do to maintain it or what happened at inspections.
+   example: Keep the kitchen ready for health inspections: [specific practices], [inspection results, if known]
+   question: What do you do to prepare the kitchen, and what were the inspection results?
+5. [line] Kitchen Manager, line 5
+   line: "Train new line cooks"
+   can't tell: Training is useful management work, but the page doesn't say what you teach or how many cooks you've trained.
+   example: Train new line cooks: [skills or procedures], [number trained and time period]
+   question: What do you teach new cooks, and how many have you trained over what period?
+6. [line] Sous Chef, line 2
+   line: "Helped plan seasonal menu changes"
+   can't tell: You helped plan the changes, but your part in that work isn't clear.
+   example: Helped plan seasonal menu changes: [your contribution]
+   question: What was your part in planning the seasonal menu changes?
+
+## Fit
+Roles: ["Kitchen Manager","Sous Chef"]
+Level: Kitchen management
+Note: The page points toward kitchen management, with earlier sous chef and line cook experience. The current role would be stronger with details about staff scheduling, purchasing, inspection preparation and training.

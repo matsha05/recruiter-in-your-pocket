@@ -1,0 +1,180 @@
+{
+  "case_id": "b27_backend_engineer_senior",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_backend_engineer_senior_1.txt",
+  "resume_sha256": "92a71c8e81a037980a571ba4d2007cab76d8f9f04b6517e1ff23e45a0383be59",
+  "resume_words": 190,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T04:15:38.956Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4274,
+        "completion_tokens": 470,
+        "total_tokens": 4744,
+        "cached_prompt_tokens": 3502,
+        "cache_write_prompt_tokens": 769,
+        "reasoning_tokens": 124
+      },
+      "cost_usd": 0.00348935,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 6663
+    }
+  ],
+  "resume_prompt_sha256": "18e7e9ff21a0c2fda0fe219456e2d1f965de7d79bcc85173eaebd632dd83f42e",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 94,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments engineer with concrete results across authorization, ledger, billing, and audit work.",
+    "write_up": [
+      "A recruiter can follow your progression from billing APIs to leading payments platform work. The headline matches the jobs, and the recent bullets show both technical ownership and what changed.",
+      "The ledger line is the model: it names what you built and puts the reconciliation improvement right beside it. The audit and contract testing lines are just as direct. There’s little a recruiter has to guess on a first pass."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "- Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10",
+        "cannot_tell": "Keep this as a model. It names the service you built and shows what changed without making a recruiter guess.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Software Engineer, Payments Platform",
+        "Software Engineer"
+      ],
+      "level": "Senior engineer",
+      "note": "Your experience points toward backend payments and billing work, with service design, audit leadership, and mentoring. The headline is consistent with the work described.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 94,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments engineer with concrete results across authorization, ledger, billing, and audit work.",
+    "write_up": [
+      "A recruiter can follow your progression from billing APIs to leading payments platform work. The headline matches the jobs, and the recent bullets show both technical ownership and what changed.",
+      "The ledger line is the model: it names what you built and puts the reconciliation improvement right beside it. The audit and contract testing lines are just as direct. There’s little a recruiter has to guess on a first pass."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10",
+        "cannot_tell": "Keep this as a model. It names the service you built and shows what changed without making a recruiter guess.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Software Engineer, Payments Platform",
+        "Software Engineer"
+      ],
+      "level": "Senior engineer",
+      "note": "Your experience points toward backend payments and billing work, with service design, audit leadership, and mentoring. The headline is consistent with the work described.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 94
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 94,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments engineer with concrete results across authorization, ledger, billing, and audit work.",
+    "write_up": [
+      "A recruiter can follow your progression from billing APIs to leading payments platform work. The headline matches the jobs, and the recent bullets show both technical ownership and what changed.",
+      "The ledger line is the model: it names what you built and puts the reconciliation improvement right beside it. The audit and contract testing lines are just as direct. There’s little a recruiter has to guess on a first pass."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10",
+        "cannot_tell": "Keep this as a model. It names the service you built and shows what changed without making a recruiter guess.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Software Engineer, Payments Platform",
+        "Software Engineer"
+      ],
+      "level": "Senior engineer",
+      "note": "Your experience points toward backend payments and billing work, with service design, audit leadership, and mentoring. The headline is consistent with the work described.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 94
+  },
+  "presentation": {
+    "score": 94,
+    "band": "Clear and specific",
+    "model_score": 94,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments engineer with concrete results across authorization, ledger, billing, and audit work.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 70,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 1,
+    "kinds": {
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Software Engineer, Payments Platform",
+        "Software Engineer"
+      ],
+      "level": "Senior engineer",
+      "note": "Your experience points toward backend payments and billing work, with service design, audit leadership, and mentoring. The headline is consistent with the work described.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00348935,
+  "latency_ms": 6666
+}

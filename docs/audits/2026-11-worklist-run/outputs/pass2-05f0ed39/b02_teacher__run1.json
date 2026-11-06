@@ -1,0 +1,277 @@
+{
+  "case_id": "b02_teacher",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/resumes/b_teacher.txt",
+  "resume_sha256": "7d89b420ec093fb2b4c948a14fbcee2a65d2a90d95c146e4f916e2d0a37955ee",
+  "resume_words": 202,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T03:50:41.875Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4250,
+        "completion_tokens": 660,
+        "total_tokens": 4910,
+        "cached_prompt_tokens": 3406,
+        "cache_write_prompt_tokens": 841,
+        "reasoning_tokens": 219
+      },
+      "cost_usd": 0.00452455,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 9666
+    },
+    {
+      "kind": "repair",
+      "usage": {
+        "prompt_tokens": 4920,
+        "completion_tokens": 496,
+        "total_tokens": 5416,
+        "cached_prompt_tokens": 3406,
+        "cache_write_prompt_tokens": 1511,
+        "reasoning_tokens": 146
+      },
+      "cost_usd": 0.00454205,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 6559
+    }
+  ],
+  "resume_prompt_sha256": "05f0ed391d02c15c487cdf3fcd427706167ba6aa9a1ad58365cfcff658e9caea",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "An experienced elementary teacher with classroom results, team leadership, and the credentials for K-8 teaching.",
+    "write_up": [
+      "A recruiter can see your classroom work, leadership, and Washington teaching credentials quickly. This is a resume likely to move forward for elementary teaching roles.",
+      "The reading growth line is the model: it names the assessment and shows the change over three years. The behavior committee line is the one place where your contribution stays hidden."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "4th Grade Teacher, reading growth",
+        "line": "- Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years",
+        "cannot_tell": "This gives a recruiter a concrete measure of your students' reading growth. It's a useful model for showing what changed.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "2nd Grade Teacher, committee",
+        "line": "- Served on the school's positive behavior support committee",
+        "cannot_tell": "Committee membership doesn't say what you contributed. Name a piece of work you did there.",
+        "example": "Served on the school's positive behavior support committee, [specific contribution]",
+        "question": "What did you contribute to the school's positive behavior support committee?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "4th Grade Teacher",
+        "2nd Grade Teacher"
+      ],
+      "level": "Experienced elementary teacher",
+      "note": "Your experience points to elementary classroom teaching, with grade-level leadership and work with English language learners. Your Washington K-8 certification and ELL endorsement are easy to find.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "initial_validation_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the worklist contract at write_up[1]: uses the retired phrase \"the read\".",
+    "issues": [
+      {
+        "path": "write_up[1]",
+        "message": "uses the retired phrase \"the read\""
+      }
+    ]
+  },
+  "model_output_repaired": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "An experienced elementary teacher with classroom results, team leadership, and the credentials for K-8 teaching.",
+    "write_up": [
+      "A recruiter can see your classroom work, leadership, and Washington teaching credentials quickly. This resume is likely to move forward for elementary teaching roles.",
+      "Your district assessment line is the model: it shows the change in reading growth over three years. The behavior committee line is the one place where your contribution stays hidden."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "4th Grade Teacher, reading growth",
+        "line": "- Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years",
+        "cannot_tell": "This gives a recruiter a concrete measure of your students' reading growth. It's a useful model for showing what changed.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "2nd Grade Teacher, committee",
+        "line": "- Served on the school's positive behavior support committee",
+        "cannot_tell": "Committee membership doesn't say what you contributed. Name a piece of work you did there.",
+        "example": "Served on the school's positive behavior support committee, [specific contribution]",
+        "question": "What did you contribute to the school's positive behavior support committee?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "4th Grade Teacher",
+        "2nd Grade Teacher"
+      ],
+      "level": "Experienced elementary teacher",
+      "note": "Your experience points to elementary classroom teaching, with grade-level leadership and work with English language learners. Your Washington K-8 certification and ELL endorsement are easy to find.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "repaired": true,
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "An experienced elementary teacher with classroom results, team leadership, and the credentials for K-8 teaching.",
+    "write_up": [
+      "A recruiter can see your classroom work, leadership, and Washington teaching credentials quickly. This resume is likely to move forward for elementary teaching roles.",
+      "Your district assessment line is the model: it shows the change in reading growth over three years. The behavior committee line is the one place where your contribution stays hidden."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "4th Grade Teacher, reading growth",
+        "line": "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years",
+        "cannot_tell": "This gives a recruiter a concrete measure of your students' reading growth. It's a useful model for showing what changed.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "2nd Grade Teacher, committee",
+        "line": "Served on the school's positive behavior support committee",
+        "cannot_tell": "Committee membership doesn't say what you contributed. Name a piece of work you did there.",
+        "example": "Served on the school's positive behavior support committee, [specific contribution]",
+        "question": "What did you contribute to the school's positive behavior support committee?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "4th Grade Teacher",
+        "2nd Grade Teacher"
+      ],
+      "level": "Experienced elementary teacher",
+      "note": "Your experience points to elementary classroom teaching, with grade-level leadership and work with English language learners. Your Washington K-8 certification and ELL endorsement are easy to find.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "An experienced elementary teacher with classroom results, team leadership, and the credentials for K-8 teaching.",
+    "write_up": [
+      "A recruiter can see your classroom work, leadership, and Washington teaching credentials quickly. This resume is likely to move forward for elementary teaching roles.",
+      "Your district assessment line is the model: it shows the change in reading growth over three years. The behavior committee line is the one place where your contribution stays hidden."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "4th Grade Teacher, reading growth",
+        "line": "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years",
+        "cannot_tell": "This gives a recruiter a concrete measure of your students' reading growth. It's a useful model for showing what changed.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "2nd Grade Teacher, committee",
+        "line": "Served on the school's positive behavior support committee",
+        "cannot_tell": "Committee membership doesn't say what you contributed. Name a piece of work you did there.",
+        "example": "Served on the school's positive behavior support committee, [specific contribution]",
+        "question": "What did you contribute to the school's positive behavior support committee?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "4th Grade Teacher",
+        "2nd Grade Teacher"
+      ],
+      "level": "Experienced elementary teacher",
+      "note": "Your experience points to elementary classroom teaching, with grade-level leadership and work with English language learners. Your Washington K-8 certification and ELL endorsement are easy to find.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "presentation": {
+    "score": 89,
+    "band": "Clear and specific",
+    "model_score": 89,
+    "lifted_by_employer": false,
+    "verdict": "An experienced elementary teacher with classroom results, team leadership, and the credentials for K-8 teaching.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 54,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "4th Grade Teacher, reading growth",
+        "line": "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "2nd Grade Teacher, committee",
+        "line": "Served on the school's positive behavior support committee",
+        "blanks": 1,
+        "question": "What did you contribute to the school's positive behavior support committee?"
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "keep": 1,
+      "line": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "4th Grade Teacher",
+        "2nd Grade Teacher"
+      ],
+      "level": "Experienced elementary teacher",
+      "note": "Your experience points to elementary classroom teaching, with grade-level leadership and work with English language learners. Your Washington K-8 certification and ELL endorsement are easy to find.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0090666,
+  "latency_ms": 16249
+}

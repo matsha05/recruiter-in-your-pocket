@@ -1,0 +1,212 @@
+{
+  "case_id": "b05_paralegal",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_paralegal_1.txt",
+  "resume_sha256": "1860914f19aa0734b31d49c2046f7d394bc16dd5acb16f4c1fd6ee102a7f8568",
+  "resume_words": 144,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T03:50:53.211Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4086,
+        "completion_tokens": 1139,
+        "total_tokens": 5225,
+        "cached_prompt_tokens": 3406,
+        "cache_write_prompt_tokens": 677,
+        "reasoning_tokens": 653
+      },
+      "cost_usd": 0.00671455,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 15116
+    }
+  ],
+  "resume_prompt_sha256": "05f0ed391d02c15c487cdf3fcd427706167ba6aa9a1ad58365cfcff658e9caea",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 69,
+    "lifted_by_employer": false,
+    "verdict": "A detailed litigation paralegal resume with a headline that claims more specialty experience than the jobs show.",
+    "write_up": [
+      "Your current role shows substantial litigation work: four partners, document productions and two jury trials in 2025. The hesitation is the headline's seven years supporting commercial and employment cases. Your earlier role names personal injury, while the current role starts in October 2021.",
+      "The Relativity line is the model for the rest: it names what you manage, the tool and the size of the productions. Tighten the headline to distinguish your overall paralegal experience from the case types shown."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Litigation paralegal with seven years supporting commercial and employment cases.",
+        "cannot_tell": "The seven years in commercial and employment cases aren't accounted for by the roles listed. Your earlier role names personal injury cases.",
+        "example": "Litigation paralegal with seven years of experience, including commercial and employment cases.",
+        "question": "Did your earlier work include commercial and employment cases, or should seven years describe your paralegal experience overall?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Litigation Paralegal, line 2",
+        "line": "- Manage document productions of up to 250,000 pages in Relativity",
+        "cannot_tell": "Keep this as a model. It names the work, its size and the tool without making a reader guess.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Litigation Paralegal",
+        "Paralegal"
+      ],
+      "level": "Experienced, senior paralegal",
+      "note": "Your experience points toward litigation paralegal work, particularly commercial and employment cases. The current role shows discovery, document production and trial preparation.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 69,
+    "lifted_by_employer": false,
+    "verdict": "A detailed litigation paralegal resume with a headline that claims more specialty experience than the jobs show.",
+    "write_up": [
+      "Your current role shows substantial litigation work: four partners, document productions and two jury trials in 2025. The hesitation is the headline's seven years supporting commercial and employment cases. Your earlier role names personal injury, while the current role starts in October 2021.",
+      "The Relativity line is the model for the rest: it names what you manage, the tool and the size of the productions. Tighten the headline to distinguish your overall paralegal experience from the case types shown."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Litigation paralegal with seven years supporting commercial and employment cases.",
+        "cannot_tell": "The seven years in commercial and employment cases aren't accounted for by the roles listed. Your earlier role names personal injury cases.",
+        "example": "Litigation paralegal with seven years of experience, including commercial and employment cases.",
+        "question": "Did your earlier work include commercial and employment cases, or should seven years describe your paralegal experience overall?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Litigation Paralegal, line 2",
+        "line": "Manage document productions of up to 250,000 pages in Relativity",
+        "cannot_tell": "Keep this as a model. It names the work, its size and the tool without making a reader guess.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Litigation Paralegal",
+        "Paralegal"
+      ],
+      "level": "Experienced, senior paralegal",
+      "note": "Your experience points toward litigation paralegal work, particularly commercial and employment cases. The current role shows discovery, document production and trial preparation.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 69
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 69,
+    "lifted_by_employer": false,
+    "verdict": "A detailed litigation paralegal resume with a headline that claims more specialty experience than the jobs show.",
+    "write_up": [
+      "Your current role shows substantial litigation work: four partners, document productions and two jury trials in 2025. The hesitation is the headline's seven years supporting commercial and employment cases. Your earlier role names personal injury, while the current role starts in October 2021.",
+      "The Relativity line is the model for the rest: it names what you manage, the tool and the size of the productions. Tighten the headline to distinguish your overall paralegal experience from the case types shown."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Litigation paralegal with seven years supporting commercial and employment cases.",
+        "cannot_tell": "The seven years in commercial and employment cases aren't accounted for by the roles listed. Your earlier role names personal injury cases.",
+        "example": "Litigation paralegal with seven years of experience, including commercial and employment cases.",
+        "question": "Did your earlier work include commercial and employment cases, or should seven years describe your paralegal experience overall?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Litigation Paralegal, line 2",
+        "line": "Manage document productions of up to 250,000 pages in Relativity",
+        "cannot_tell": "Keep this as a model. It names the work, its size and the tool without making a reader guess.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Litigation Paralegal",
+        "Paralegal"
+      ],
+      "level": "Experienced, senior paralegal",
+      "note": "Your experience points toward litigation paralegal work, particularly commercial and employment cases. The current role shows discovery, document production and trial preparation.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 69
+  },
+  "presentation": {
+    "score": 69,
+    "band": "Needs more context",
+    "model_score": 69,
+    "lifted_by_employer": false,
+    "verdict": "A detailed litigation paralegal resume with a headline that claims more specialty experience than the jobs show.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 79,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Litigation paralegal with seven years supporting commercial and employment cases.",
+        "blanks": 0,
+        "question": "Did your earlier work include commercial and employment cases, or should seven years describe your paralegal experience overall?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Litigation Paralegal, line 2",
+        "line": "Manage document productions of up to 250,000 pages in Relativity",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "line": 1,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Litigation Paralegal",
+        "Paralegal"
+      ],
+      "level": "Experienced, senior paralegal",
+      "note": "Your experience points toward litigation paralegal work, particularly commercial and employment cases. The current role shows discovery, document production and trial preparation.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00671455,
+  "latency_ms": 15119
+}

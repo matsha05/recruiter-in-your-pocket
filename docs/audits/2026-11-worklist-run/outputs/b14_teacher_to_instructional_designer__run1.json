@@ -1,0 +1,272 @@
+{
+  "case_id": "b14_teacher_to_instructional_designer",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Career changer.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_teacher_to_instructional_designer_1.txt",
+  "resume_sha256": "834ed54c2de68b69a032d304a18dda36925e354522e5b1cfe475d0beca0b4e9a",
+  "resume_words": 164,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T04:14:53.182Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4253,
+        "completion_tokens": 957,
+        "total_tokens": 5210,
+        "cached_prompt_tokens": 3502,
+        "cache_write_prompt_tokens": 748,
+        "reasoning_tokens": 503
+      },
+      "cost_usd": 0.0058981,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 12590
+    },
+    {
+      "kind": "repair",
+      "usage": {
+        "prompt_tokens": 4940,
+        "completion_tokens": 606,
+        "total_tokens": 5546,
+        "cached_prompt_tokens": 0,
+        "cache_write_prompt_tokens": 4937,
+        "reasoning_tokens": 234
+      },
+      "cost_usd": 0.00920425,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 7782
+    }
+  ],
+  "resume_prompt_sha256": "18e7e9ff21a0c2fda0fe219456e2d1f965de7d79bcc85173eaebd632dd83f42e",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 80,
+    "lifted_by_employer": false,
+    "verdict": "A mathematics teacher with clear classroom work and a concrete start in digital learning design.",
+    "write_up": [
+      "A recruiter can see the classes you teach, their size, and your move into digital learning design. The open question is what your department leadership involves.",
+      "The Canvas module is the line to build around: it names the subject, the format, and the tool. If you can add what changed for students, it would make the design work even stronger."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 2",
+        "line": "- Redesigned the Algebra II unit on functions into a self-paced online module in Canvas",
+        "cannot_tell": "This names what you redesigned and where students use it. It's a good model for the rest of the page.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 3",
+        "line": "- Lead the math department's professional learning community",
+        "cannot_tell": "A recruiter knows you lead the group, but not what it works on or what you lead it to do.",
+        "example": "Lead the math department's professional learning community, focusing on [topics] and [what the group produces or changes]",
+        "question": "What does the group work on, and what have you led it to produce or change?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mathematics Teacher"
+      ],
+      "level": "Experienced educator",
+      "note": "Your experience points first to mathematics teaching, with a developing focus on digital learning design. The Canvas module, portfolio, and certificate in progress make that direction visible.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "initial_validation_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the worklist contract at write_up[0]: uses the retired phrase \"the open question is\".",
+    "issues": [
+      {
+        "path": "write_up[0]",
+        "message": "uses the retired phrase \"the open question is\""
+      }
+    ]
+  },
+  "model_output_repaired": {
+    "contract_version": "v3",
+    "score": 80,
+    "lifted_by_employer": false,
+    "verdict": "A mathematics teacher with clear classroom work and a concrete start in digital learning design.",
+    "write_up": [
+      "A recruiter can see the classes you teach, their size, and your move into digital learning design. Your department leadership leaves a question: what does the group work on?",
+      "The Canvas module is the line to build around: it names the subject, the format, and the tool. If you can add what changed for students, it would make the design work even stronger."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 2",
+        "line": "- Redesigned the Algebra II unit on functions into a self-paced online module in Canvas",
+        "cannot_tell": "This names what you redesigned and where students use it. It's a good model for the rest of the page.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 3",
+        "line": "- Lead the math department's professional learning community",
+        "cannot_tell": "A recruiter knows you lead the group, but not what it works on or what you lead it to do.",
+        "example": "Lead the math department's professional learning community, focusing on [topics] and [what the group produces or changes]",
+        "question": "What does the group work on, and what have you led it to produce or change?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mathematics Teacher"
+      ],
+      "level": "Experienced educator",
+      "note": "Your experience points first to mathematics teaching, with a developing focus on digital learning design. The Canvas module, portfolio, and certificate in progress make that direction visible.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "repaired": true,
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 80,
+    "lifted_by_employer": false,
+    "verdict": "A mathematics teacher with clear classroom work and a concrete start in digital learning design.",
+    "write_up": [
+      "A recruiter can see the classes you teach, their size, and your move into digital learning design. Your department leadership leaves a question: what does the group work on?",
+      "The Canvas module is the line to build around: it names the subject, the format, and the tool. If you can add what changed for students, it would make the design work even stronger."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 2",
+        "line": "Redesigned the Algebra II unit on functions into a self-paced online module in Canvas",
+        "cannot_tell": "This names what you redesigned and where students use it. It's a good model for the rest of the page.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 3",
+        "line": "Lead the math department's professional learning community",
+        "cannot_tell": "A recruiter knows you lead the group, but not what it works on or what you lead it to do.",
+        "example": "Lead the math department's professional learning community, focusing on [topics] and [what the group produces or changes]",
+        "question": "What does the group work on, and what have you led it to produce or change?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mathematics Teacher"
+      ],
+      "level": "Experienced educator",
+      "note": "Your experience points first to mathematics teaching, with a developing focus on digital learning design. The Canvas module, portfolio, and certificate in progress make that direction visible.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 80
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 80,
+    "lifted_by_employer": false,
+    "verdict": "A mathematics teacher with clear classroom work and a concrete start in digital learning design.",
+    "write_up": [
+      "A recruiter can see the classes you teach, their size, and your move into digital learning design. Your department leadership leaves a question: what does the group work on?",
+      "The Canvas module is the line to build around: it names the subject, the format, and the tool. If you can add what changed for students, it would make the design work even stronger."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 2",
+        "line": "Redesigned the Algebra II unit on functions into a self-paced online module in Canvas",
+        "cannot_tell": "This names what you redesigned and where students use it. It's a good model for the rest of the page.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 3",
+        "line": "Lead the math department's professional learning community",
+        "cannot_tell": "A recruiter knows you lead the group, but not what it works on or what you lead it to do.",
+        "example": "Lead the math department's professional learning community, focusing on [topics] and [what the group produces or changes]",
+        "question": "What does the group work on, and what have you led it to produce or change?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mathematics Teacher"
+      ],
+      "level": "Experienced educator",
+      "note": "Your experience points first to mathematics teaching, with a developing focus on digital learning design. The Canvas module, portfolio, and certificate in progress make that direction visible.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 80
+  },
+  "presentation": {
+    "score": 80,
+    "band": "Mostly clear",
+    "model_score": 80,
+    "lifted_by_employer": false,
+    "verdict": "A mathematics teacher with clear classroom work and a concrete start in digital learning design.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 63,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 2",
+        "line": "Redesigned the Algebra II unit on functions into a self-paced online module in Canvas",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 3",
+        "line": "Lead the math department's professional learning community",
+        "blanks": 2,
+        "question": "What does the group work on, and what have you led it to produce or change?"
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "keep": 1,
+      "line": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Mathematics Teacher"
+      ],
+      "level": "Experienced educator",
+      "note": "Your experience points first to mathematics teaching, with a developing focus on digital learning design. The Canvas module, portfolio, and certificate in progress make that direction visible.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01510235,
+  "latency_ms": 20376
+}

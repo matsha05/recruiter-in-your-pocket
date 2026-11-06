@@ -1,0 +1,382 @@
+{
+  "case_id": "b36_product_designer_unrelated",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Current job outside the field.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_product_designer_unrelated_1.txt",
+  "resume_sha256": "1bdb9ae79f9dbe3ee5291318e6f8912d3364acecf7899188406d07eba1db153f",
+  "resume_words": 147,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": true,
+  "started_at": "2026-11-06T03:37:33.145Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 3746,
+        "completion_tokens": 1320,
+        "total_tokens": 5066,
+        "cached_prompt_tokens": 3095,
+        "cache_write_prompt_tokens": 648,
+        "reasoning_tokens": 512
+      },
+      "cost_usd": 0.00756775,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 17304
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.004272,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 8993
+    }
+  ],
+  "resume_prompt_sha256": "b2c0d186992d2d925493008c0a67067de9f704dc44ec074808b3bc7176463d9a",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A product designer with concrete app work, but few details on what changed and a more recent barista role.",
+    "write_up": [
+      "Your design work is easy to follow: booking flows, a design system and member testing. The first hesitation is recency. Your latest role is as a barista, and the last dated product design role ended in February 2024.",
+      "The class booking bullet is the model: it names what you designed and where it lived. Bring that same detail to the weekly releases and usability tests, and add what changed where you can verify it."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Product Designer, line 1",
+        "line": "- Designed the class booking flow for the iOS and Android apps",
+        "cannot_tell": "This gives a recruiter a specific piece of the product and the platforms you designed for. It's a useful model for the rest.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Product Designer, line 2",
+        "line": "- Worked with two engineers and a product manager on weekly releases",
+        "cannot_tell": "The team and cadence are clear. Your contribution to those releases isn't.",
+        "example": "Worked with two engineers and a product manager on weekly releases, [your design contribution]",
+        "question": "What design work did you contribute to the weekly releases?"
+      },
+      {
+        "kind": "line",
+        "where": "Product Designer, line 3",
+        "line": "- Created the app's first design system in Figma",
+        "cannot_tell": "Creating the first system is concrete. A little more about what went into it and how it was used would help a recruiter understand the work.",
+        "example": "Created the app's first design system in Figma, including [components or guidelines]; [how it was used, if applicable]",
+        "question": "What did the design system include, and how was it used?"
+      },
+      {
+        "kind": "line",
+        "where": "Product Designer, line 4",
+        "line": "- Ran usability tests with members before launches",
+        "cannot_tell": "You ran the tests, but the page doesn't say what you tested or what you learned. That makes it hard to connect the research to a design decision.",
+        "example": "Ran usability tests with members before launches on [what you tested]; [what you learned or changed, if known]",
+        "question": "What did you test with members, and what did you learn or change?"
+      },
+      {
+        "kind": "line",
+        "where": "Junior Product Designer, line 1",
+        "line": "- Designed marketing sites and app screens for agency clients",
+        "cannot_tell": "The deliverables are clear, but the client work is still broad. One example would give a recruiter something specific to picture.",
+        "example": "Designed marketing sites and app screens for agency clients, including [a project or product you can name]",
+        "question": "Which client project or product can you describe here?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Product Designer",
+        "Junior Product Designer"
+      ],
+      "level": "Product designer",
+      "note": "The page points toward product design work across mobile apps and web. The current barista role is clear, but the resume doesn't show product design work after February 2024.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A product designer with concrete app work, but few details on what changed and a more recent barista role.",
+    "write_up": [
+      "Your design work is easy to follow: booking flows, a design system and member testing. The first hesitation is recency. Your latest role is as a barista, and the last dated product design role ended in February 2024.",
+      "The class booking bullet is the model: it names what you designed and where it lived. Bring that same detail to the weekly releases and usability tests, and add what changed where you can verify it."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Product Designer, line 1",
+        "line": "Designed the class booking flow for the iOS and Android apps",
+        "cannot_tell": "This gives a recruiter a specific piece of the product and the platforms you designed for. It's a useful model for the rest.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Product Designer, line 2",
+        "line": "Worked with two engineers and a product manager on weekly releases",
+        "cannot_tell": "The team and cadence are clear. Your contribution to those releases isn't.",
+        "example": "Worked with two engineers and a product manager on weekly releases, [your design contribution]",
+        "question": "What design work did you contribute to the weekly releases?"
+      },
+      {
+        "kind": "line",
+        "where": "Product Designer, line 3",
+        "line": "Created the app's first design system in Figma",
+        "cannot_tell": "Creating the first system is concrete. A little more about what went into it and how it was used would help a recruiter understand the work.",
+        "example": "Created the app's first design system in Figma, including [components or guidelines]; [how it was used, if applicable]",
+        "question": "What did the design system include, and how was it used?"
+      },
+      {
+        "kind": "line",
+        "where": "Product Designer, line 4",
+        "line": "Ran usability tests with members before launches",
+        "cannot_tell": "You ran the tests, but the page doesn't say what you tested or what you learned. That makes it hard to connect the research to a design decision.",
+        "example": "Ran usability tests with members before launches on [what you tested]; [what you learned or changed, if known]",
+        "question": "What did you test with members, and what did you learn or change?"
+      },
+      {
+        "kind": "line",
+        "where": "Junior Product Designer, line 1",
+        "line": "Designed marketing sites and app screens for agency clients",
+        "cannot_tell": "The deliverables are clear, but the client work is still broad. One example would give a recruiter something specific to picture.",
+        "example": "Designed marketing sites and app screens for agency clients, including [a project or product you can name]",
+        "question": "Which client project or product can you describe here?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Product Designer",
+        "Junior Product Designer"
+      ],
+      "level": "Product designer",
+      "note": "The page points toward product design work across mobile apps and web. The current barista role is clear, but the resume doesn't show product design work after February 2024.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 78
+  },
+  "severity": {
+    "promoted": [],
+    "replaced": [],
+    "led": null,
+    "critical_count": 2,
+    "more_critical": false,
+    "answer": {
+      "critical_misses": [
+        {
+          "source": "new",
+          "kind": "no_recent_work",
+          "fix": "Add recent product design work, such as a freelance or personal project, if true.",
+          "why": "Hiring managers usually look for evidence of current design skills. The resume shows past app design work and a current cafe role, but no recent product design activity.",
+          "excerpt": "March 2021 - February 2024",
+          "section": "Experience",
+          "effort": "moderate"
+        },
+        {
+          "source": "new",
+          "kind": "no_evidence_latest_role",
+          "fix": "In the Loop Fitness class booking flow bullet, add a measurable result, such as a change in bookings, if you can verify it.",
+          "why": "Hiring managers usually look for the scope or results of a designer's work. The resume shows what you designed, but not the volume you owned or a measurable outcome.",
+          "excerpt": "- Designed the class booking flow for the iOS and Android apps",
+          "section": "Experience",
+          "effort": "moderate"
+        }
+      ],
+      "more_critical": false
+    },
+    "outcome": "added",
+    "reason": "added",
+    "added": [
+      "no_recent_work"
+    ],
+    "skipped": [
+      {
+        "kind": "no_evidence_latest_role",
+        "reason": "already_flagged"
+      }
+    ],
+    "validation_attempts": 1,
+    "latency_ms": 8996,
+    "call_latency_ms": 8993,
+    "cost_usd": 0.004272,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 78,
+    "score_label": "Mostly clear",
+    "lifted_by_employer": false,
+    "verdict": "A product designer with concrete app work, but few details on what changed and a more recent barista role.",
+    "write_up": [
+      "Your design work is easy to follow: booking flows, a design system and member testing. The first hesitation is recency. Your latest role is as a barista, and the last dated product design role ended in February 2024.",
+      "The class booking bullet is the model: it names what you designed and where it lived. Bring that same detail to the weekly releases and usability tests, and add what changed where you can verify it."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "March 2021 - February 2024",
+        "cannot_tell": "Hiring managers usually look for evidence of current design skills. The resume shows past app design work and a current cafe role, but no recent product design activity.",
+        "example": "[Month Year] - Present [Career break, caregiving, study, a job search, or freelance work, whichever is true]",
+        "question": "Can you add recent product design work, such as a freelance or personal project, if true, if true?"
+      },
+      {
+        "kind": "keep",
+        "where": "Product Designer, line 1",
+        "line": "Designed the class booking flow for the iOS and Android apps",
+        "cannot_tell": "This gives a recruiter a specific piece of the product and the platforms you designed for. It's a useful model for the rest.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Product Designer, line 2",
+        "line": "Worked with two engineers and a product manager on weekly releases",
+        "cannot_tell": "The team and cadence are clear. Your contribution to those releases isn't.",
+        "example": "Worked with two engineers and a product manager on weekly releases, [your design contribution]",
+        "question": "What design work did you contribute to the weekly releases?"
+      },
+      {
+        "kind": "line",
+        "where": "Product Designer, line 3",
+        "line": "Created the app's first design system in Figma",
+        "cannot_tell": "Creating the first system is concrete. A little more about what went into it and how it was used would help a recruiter understand the work.",
+        "example": "Created the app's first design system in Figma, including [components or guidelines]; [how it was used, if applicable]",
+        "question": "What did the design system include, and how was it used?"
+      },
+      {
+        "kind": "line",
+        "where": "Product Designer, line 4",
+        "line": "Ran usability tests with members before launches",
+        "cannot_tell": "You ran the tests, but the page doesn't say what you tested or what you learned. That makes it hard to connect the research to a design decision.",
+        "example": "Ran usability tests with members before launches on [what you tested]; [what you learned or changed, if known]",
+        "question": "What did you test with members, and what did you learn or change?"
+      },
+      {
+        "kind": "line",
+        "where": "Junior Product Designer, line 1",
+        "line": "Designed marketing sites and app screens for agency clients",
+        "cannot_tell": "The deliverables are clear, but the client work is still broad. One example would give a recruiter something specific to picture.",
+        "example": "Designed marketing sites and app screens for agency clients, including [a project or product you can name]",
+        "question": "Which client project or product can you describe here?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Product Designer",
+        "Junior Product Designer"
+      ],
+      "level": "Product designer",
+      "note": "The page points toward product design work across mobile apps and web. The current barista role is clear, but the resume doesn't show product design work after February 2024.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 78
+  },
+  "presentation": {
+    "score": 78,
+    "band": "Mostly clear",
+    "model_score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A product designer with concrete app work, but few details on what changed and a more recent barista role.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 74,
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "March 2021 - February 2024",
+        "blanks": 2,
+        "question": "Can you add recent product design work, such as a freelance or personal project, if true, if true?"
+      },
+      {
+        "kind": "keep",
+        "where": "Product Designer, line 1",
+        "line": "Designed the class booking flow for the iOS and Android apps",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Product Designer, line 2",
+        "line": "Worked with two engineers and a product manager on weekly releases",
+        "blanks": 1,
+        "question": "What design work did you contribute to the weekly releases?"
+      },
+      {
+        "kind": "line",
+        "where": "Product Designer, line 3",
+        "line": "Created the app's first design system in Figma",
+        "blanks": 2,
+        "question": "What did the design system include, and how was it used?"
+      },
+      {
+        "kind": "line",
+        "where": "Product Designer, line 4",
+        "line": "Ran usability tests with members before launches",
+        "blanks": 2,
+        "question": "What did you test with members, and what did you learn or change?"
+      },
+      {
+        "kind": "line",
+        "where": "Junior Product Designer, line 1",
+        "line": "Designed marketing sites and app screens for agency clients",
+        "blanks": 1,
+        "question": "Which client project or product can you describe here?"
+      }
+    ],
+    "card_count": 6,
+    "kinds": {
+      "dates": 1,
+      "keep": 1,
+      "line": 4
+    },
+    "structural_from_model": 0,
+    "severity_added": [
+      "no_recent_work"
+    ],
+    "severity_skipped": [
+      {
+        "kind": "no_evidence_latest_role",
+        "reason": "already_flagged"
+      }
+    ],
+    "severity_outcome": "added (added)",
+    "fit": {
+      "roles": [
+        "Product Designer",
+        "Junior Product Designer"
+      ],
+      "level": "Product designer",
+      "note": "The page points toward product design work across mobile apps and web. The current barista role is clear, but the resume doesn't show product design work after February 2024.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01183975,
+  "latency_ms": 26303
+}

@@ -1,0 +1,267 @@
+{
+  "case_id": "b21_customer_success_manager_with_posting",
+  "batch": "breadth",
+  "run": 1,
+  "note": "The same resume with a posting attached.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt",
+  "resume_sha256": "fe00b25220442aa026e6aa909f700301c898f430bd2cf244eafbe182c75f316d",
+  "resume_words": 180,
+  "job_description_file": "../2026-11-live-judgment/resumes/b_posting_customer_success_manager.txt",
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T04:15:18.783Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4603,
+        "completion_tokens": 1386,
+        "total_tokens": 5989,
+        "cached_prompt_tokens": 3619,
+        "cache_write_prompt_tokens": 981,
+        "reasoning_tokens": 646
+      },
+      "cost_usd": 0.0083402,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 18528
+    }
+  ],
+  "resume_prompt_sha256": "18e7e9ff21a0c2fda0fe219456e2d1f965de7d79bcc85173eaebd632dd83f42e",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A mid-market customer success manager with a clear book of business and unanswered questions about renewals.",
+    "write_up": [
+      "A recruiter sees customer success and support work in payroll software, including a book of 48 mid-market accounts. For this job, the hesitation is renewal ownership: you partnered with Sales on at-risk accounts, but the resume doesn't say what happened or whether you carried retention targets.",
+      "The 48-account line is a good model. It names the customers and the size of the book without making a recruiter guess. Your QBRs, onboarding checklist and Gainsight experience are relevant here; add what you can verify about sponsor seniority, usage data and renewals."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 1",
+        "line": "- Manage a book of 48 mid-market accounts across healthcare and manufacturing",
+        "cannot_tell": "This gives a recruiter the size of your book and the industries you serve. It's a useful model for the renewal bullet below it.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 2",
+        "line": "- Run quarterly business reviews with customer finance and HR leads",
+        "cannot_tell": "The audience and cadence are here, but their seniority isn't. This job asks for QBRs with VP-level sponsors.",
+        "example": "Run quarterly business reviews with customer finance and HR leads, including [sponsor titles, if applicable], covering [topics or decisions]",
+        "question": "What were the sponsors' titles, and what did the reviews cover?"
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "- Partnered with Sales on renewal strategy for at-risk accounts",
+        "cannot_tell": "Partnered could mean several things. Your part in the save plans and any renewal figures matter for a job with retention targets.",
+        "example": "Partnered with Sales on renewal strategy for at-risk accounts by [your contribution], with [renewal result, if known]",
+        "question": "What did you contribute to the renewal strategy, and what renewal figures can you verify?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Customer Success Manager",
+        "Customer Success Manager, Mid-Market"
+      ],
+      "level": "Experienced customer success manager",
+      "note": "The job asks for ownership of renewals and expansion, but your resume describes partnering on renewal strategy without retention figures. Your mid-market SaaS work, QBRs, Gainsight and Salesforce are relevant; emphasize any verified work with usage data, senior sponsors and feature requests.",
+      "posting": {
+        "summary": "The role owns 60 to 80 mid-market accounts, runs onboarding and QBRs, and carries retention and expansion targets.",
+        "missing": [
+          "A track record of hitting retention or expansion targets, with numbers you can talk about",
+          "product usage data",
+          "a BI tool such as Looker",
+          "Experience running QBRs with VP-level sponsors",
+          "log and prioritize feature requests"
+        ]
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A mid-market customer success manager with a clear book of business and unanswered questions about renewals.",
+    "write_up": [
+      "A recruiter sees customer success and support work in payroll software, including a book of 48 mid-market accounts. For this job, the hesitation is renewal ownership: you partnered with Sales on at-risk accounts, but the resume doesn't say what happened or whether you carried retention targets.",
+      "The 48-account line is a good model. It names the customers and the size of the book without making a recruiter guess. Your QBRs, onboarding checklist and Gainsight experience are relevant here; add what you can verify about sponsor seniority, usage data and renewals."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 1",
+        "line": "Manage a book of 48 mid-market accounts across healthcare and manufacturing",
+        "cannot_tell": "This gives a recruiter the size of your book and the industries you serve. It's a useful model for the renewal bullet below it.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 2",
+        "line": "Run quarterly business reviews with customer finance and HR leads",
+        "cannot_tell": "The audience and cadence are here, but their seniority isn't. This job asks for QBRs with VP-level sponsors.",
+        "example": "Run quarterly business reviews with customer finance and HR leads, including [sponsor titles, if applicable], covering [topics or decisions]",
+        "question": "What were the sponsors' titles, and what did the reviews cover?"
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "Partnered with Sales on renewal strategy for at-risk accounts",
+        "cannot_tell": "Partnered could mean several things. Your part in the save plans and any renewal figures matter for a job with retention targets.",
+        "example": "Partnered with Sales on renewal strategy for at-risk accounts by [your contribution], with [renewal result, if known]",
+        "question": "What did you contribute to the renewal strategy, and what renewal figures can you verify?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Customer Success Manager",
+        "Customer Success Manager, Mid-Market"
+      ],
+      "level": "Experienced customer success manager",
+      "note": "The job asks for ownership of renewals and expansion, but your resume describes partnering on renewal strategy without retention figures. Your mid-market SaaS work, QBRs, Gainsight and Salesforce are relevant; emphasize any verified work with usage data, senior sponsors and feature requests.",
+      "posting": {
+        "summary": "The role owns 60 to 80 mid-market accounts, runs onboarding and QBRs, and carries retention and expansion targets.",
+        "missing": [
+          "A track record of hitting retention or expansion targets, with numbers you can talk about",
+          "product usage data",
+          "a BI tool such as Looker",
+          "Experience running QBRs with VP-level sponsors",
+          "log and prioritize feature requests"
+        ]
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 78
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A mid-market customer success manager with a clear book of business and unanswered questions about renewals.",
+    "write_up": [
+      "A recruiter sees customer success and support work in payroll software, including a book of 48 mid-market accounts. For this job, the hesitation is renewal ownership: you partnered with Sales on at-risk accounts, but the resume doesn't say what happened or whether you carried retention targets.",
+      "The 48-account line is a good model. It names the customers and the size of the book without making a recruiter guess. Your QBRs, onboarding checklist and Gainsight experience are relevant here; add what you can verify about sponsor seniority, usage data and renewals."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 1",
+        "line": "Manage a book of 48 mid-market accounts across healthcare and manufacturing",
+        "cannot_tell": "This gives a recruiter the size of your book and the industries you serve. It's a useful model for the renewal bullet below it.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 2",
+        "line": "Run quarterly business reviews with customer finance and HR leads",
+        "cannot_tell": "The audience and cadence are here, but their seniority isn't. This job asks for QBRs with VP-level sponsors.",
+        "example": "Run quarterly business reviews with customer finance and HR leads, including [sponsor titles, if applicable], covering [topics or decisions]",
+        "question": "What were the sponsors' titles, and what did the reviews cover?"
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "Partnered with Sales on renewal strategy for at-risk accounts",
+        "cannot_tell": "Partnered could mean several things. Your part in the save plans and any renewal figures matter for a job with retention targets.",
+        "example": "Partnered with Sales on renewal strategy for at-risk accounts by [your contribution], with [renewal result, if known]",
+        "question": "What did you contribute to the renewal strategy, and what renewal figures can you verify?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Customer Success Manager",
+        "Customer Success Manager, Mid-Market"
+      ],
+      "level": "Experienced customer success manager",
+      "note": "The job asks for ownership of renewals and expansion, but your resume describes partnering on renewal strategy without retention figures. Your mid-market SaaS work, QBRs, Gainsight and Salesforce are relevant; emphasize any verified work with usage data, senior sponsors and feature requests.",
+      "posting": {
+        "summary": "The role owns 60 to 80 mid-market accounts, runs onboarding and QBRs, and carries retention and expansion targets.",
+        "missing": [
+          "A track record of hitting retention or expansion targets, with numbers you can talk about",
+          "product usage data",
+          "a BI tool such as Looker",
+          "Experience running QBRs with VP-level sponsors",
+          "log and prioritize feature requests"
+        ]
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 78
+  },
+  "presentation": {
+    "score": 78,
+    "band": "Mostly clear",
+    "model_score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A mid-market customer success manager with a clear book of business and unanswered questions about renewals.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 90,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 1",
+        "line": "Manage a book of 48 mid-market accounts across healthcare and manufacturing",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 2",
+        "line": "Run quarterly business reviews with customer finance and HR leads",
+        "blanks": 2,
+        "question": "What were the sponsors' titles, and what did the reviews cover?"
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "Partnered with Sales on renewal strategy for at-risk accounts",
+        "blanks": 2,
+        "question": "What did you contribute to the renewal strategy, and what renewal figures can you verify?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "keep": 1,
+      "line": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Customer Success Manager",
+        "Customer Success Manager, Mid-Market"
+      ],
+      "level": "Experienced customer success manager",
+      "note": "The job asks for ownership of renewals and expansion, but your resume describes partnering on renewal strategy without retention figures. Your mid-market SaaS work, QBRs, Gainsight and Salesforce are relevant; emphasize any verified work with usage data, senior sponsors and feature requests.",
+      "posting": {
+        "summary": "The role owns 60 to 80 mid-market accounts, runs onboarding and QBRs, and carries retention and expansion targets.",
+        "missing": [
+          "A track record of hitting retention or expansion targets, with numbers you can talk about",
+          "product usage data",
+          "a BI tool such as Looker",
+          "Experience running QBRs with VP-level sponsors",
+          "log and prioritize feature requests"
+        ]
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0083402,
+  "latency_ms": 18532
+}

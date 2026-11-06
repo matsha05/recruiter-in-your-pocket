@@ -1,0 +1,236 @@
+{
+  "case_id": "b04_retail_store_manager",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_retail_store_manager_1.txt",
+  "resume_sha256": "44e7ec6fe998a1b320b02b5bb24f3945f6d89a3e2777dca5e1be857f4727486b",
+  "resume_words": 179,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": true,
+  "started_at": "2026-11-06T03:34:11.827Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 3873,
+        "completion_tokens": 690,
+        "total_tokens": 4563,
+        "cached_prompt_tokens": 3095,
+        "cache_write_prompt_tokens": 775,
+        "reasoning_tokens": 224
+      },
+      "cost_usd": 0.0045765,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 9010
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.001292,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 1021
+    }
+  ],
+  "resume_prompt_sha256": "b2c0d186992d2d925493008c0a67067de9f704dc44ec074808b3bc7176463d9a",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A store manager with strong sales, turnover and shrink figures, but only one turnaround detailed.",
+    "write_up": [
+      "You look like a store manager who knows the numbers and the floor. The headline promises two turnarounds, though the work section gives the detail for only one.",
+      "The turnover line is the model: it names the change you made and the move from 68% to 41%. The sales, customer satisfaction and shrink figures make the current store easy to understand, too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain.",
+        "cannot_tell": "The headline claims two turnarounds, but the work section doesn't show what changed at both stores. A recruiter will want to connect that claim to the jobs below.",
+        "example": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain: [what changed at each store].",
+        "question": "Which two stores did you turn around, and what changed at each?"
+      },
+      {
+        "kind": "keep",
+        "where": "Store Manager, line 3",
+        "line": "- Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules",
+        "cannot_tell": "Keep this as a model. It shows what you changed and how staff turnover moved.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Store Manager"
+      ],
+      "level": "Experienced store manager",
+      "note": "Your experience points squarely to store management, with sales, staffing, customer satisfaction and inventory figures for the current store. The progression from department supervisor to store manager is easy to follow.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A store manager with strong sales, turnover and shrink figures, but only one turnaround detailed.",
+    "write_up": [
+      "You look like a store manager who knows the numbers and the floor. The headline promises two turnarounds, though the work section gives the detail for only one.",
+      "The turnover line is the model: it names the change you made and the move from 68% to 41%. The sales, customer satisfaction and shrink figures make the current store easy to understand, too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain.",
+        "cannot_tell": "The headline claims two turnarounds, but the work section doesn't show what changed at both stores. A recruiter will want to connect that claim to the jobs below.",
+        "example": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain: [what changed at each store].",
+        "question": "Which two stores did you turn around, and what changed at each?"
+      },
+      {
+        "kind": "keep",
+        "where": "Store Manager, line 3",
+        "line": "Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules",
+        "cannot_tell": "Keep this as a model. It shows what you changed and how staff turnover moved.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Store Manager"
+      ],
+      "level": "Experienced store manager",
+      "note": "Your experience points squarely to store management, with sales, staffing, customer satisfaction and inventory figures for the current store. The progression from department supervisor to store manager is easy to follow.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 90
+  },
+  "severity": {
+    "promoted": [],
+    "replaced": [],
+    "led": null,
+    "critical_count": 1,
+    "more_critical": false,
+    "answer": {
+      "critical_misses": [],
+      "more_critical": false
+    },
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "skipped": [],
+    "validation_attempts": 0,
+    "latency_ms": 1021,
+    "call_latency_ms": 1021,
+    "cost_usd": 0.001292,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A store manager with strong sales, turnover and shrink figures, but only one turnaround detailed.",
+    "write_up": [
+      "You look like a store manager who knows the numbers and the floor. The headline promises two turnarounds, though the work section gives the detail for only one.",
+      "The turnover line is the model: it names the change you made and the move from 68% to 41%. The sales, customer satisfaction and shrink figures make the current store easy to understand, too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain.",
+        "cannot_tell": "The headline claims two turnarounds, but the work section doesn't show what changed at both stores. A recruiter will want to connect that claim to the jobs below.",
+        "example": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain: [what changed at each store].",
+        "question": "Which two stores did you turn around, and what changed at each?"
+      },
+      {
+        "kind": "keep",
+        "where": "Store Manager, line 3",
+        "line": "Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules",
+        "cannot_tell": "Keep this as a model. It shows what you changed and how staff turnover moved.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Store Manager"
+      ],
+      "level": "Experienced store manager",
+      "note": "Your experience points squarely to store management, with sales, staffing, customer satisfaction and inventory figures for the current store. The progression from department supervisor to store manager is easy to follow.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 90
+  },
+  "presentation": {
+    "score": 90,
+    "band": "Clear and specific",
+    "model_score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A store manager with strong sales, turnover and shrink figures, but only one turnaround detailed.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 62,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain.",
+        "blanks": 1,
+        "question": "Which two stores did you turn around, and what changed at each?"
+      },
+      {
+        "kind": "keep",
+        "where": "Store Manager, line 3",
+        "line": "Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "line": 1,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "none (none)",
+    "fit": {
+      "roles": [
+        "Store Manager"
+      ],
+      "level": "Experienced store manager",
+      "note": "Your experience points squarely to store management, with sales, staffing, customer satisfaction and inventory figures for the current store. The progression from department supervisor to store manager is easy to follow.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0058685,
+  "latency_ms": 10032
+}

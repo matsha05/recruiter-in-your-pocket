@@ -1,0 +1,243 @@
+{
+  "case_id": "b05_paralegal",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_paralegal_1.txt",
+  "resume_sha256": "1860914f19aa0734b31d49c2046f7d394bc16dd5acb16f4c1fd6ee102a7f8568",
+  "resume_words": 144,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T04:14:23.300Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4182,
+        "completion_tokens": 1163,
+        "total_tokens": 5345,
+        "cached_prompt_tokens": 3502,
+        "cache_write_prompt_tokens": 677,
+        "reasoning_tokens": 557
+      },
+      "cost_usd": 0.00683935,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 14825
+    }
+  ],
+  "resume_prompt_sha256": "18e7e9ff21a0c2fda0fe219456e2d1f965de7d79bcc85173eaebd632dd83f42e",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 79,
+    "lifted_by_employer": false,
+    "verdict": "A litigation paralegal with substantial production and trial work, though the headline's case-specific years need checking.",
+    "write_up": [
+      "A recruiter can see commercial and employment litigation work for four partners, including discovery and trial preparation. The hesitation is in the headline: it claims seven years supporting those case types, but the earlier role names personal injury cases.",
+      "The Relativity production line is the model. It names what you manage, the tool, and a useful measure of size. Your trial line is also promising; one detail about your part in the two jury trials would give it more weight."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Litigation paralegal with seven years supporting commercial and employment cases.",
+        "cannot_tell": "The dated roles don't establish seven years specifically on commercial and employment cases. Those case types appear under your current role; the earlier one names personal injury.",
+        "example": "Litigation paralegal with [verified years] supporting commercial and employment cases.",
+        "question": "Did you support commercial or employment cases before your current role, and how many years can you verify?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Litigation Paralegal, line 2",
+        "line": "- Manage document productions of up to 250,000 pages in Relativity",
+        "cannot_tell": "Keep this as a model. It gives a recruiter the work, the tool, and the size without making them guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Litigation Paralegal, line 4",
+        "line": "- Prepare trial binders and exhibits; supported two jury trials in 2025",
+        "cannot_tell": "Two jury trials are worth naming. What you did to support those trials beyond preparing binders and exhibits isn't clear.",
+        "example": "Prepare trial binders and exhibits; supported two jury trials in 2025 by [specific trial support]",
+        "question": "What did you do to support the two jury trials?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Litigation Paralegal",
+        "Paralegal"
+      ],
+      "level": "Senior paralegal",
+      "note": "Your recent work points toward litigation paralegal roles involving discovery, document production, and trial preparation. The earlier personal injury work adds another case type.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 79,
+    "lifted_by_employer": false,
+    "verdict": "A litigation paralegal with substantial production and trial work, though the headline's case-specific years need checking.",
+    "write_up": [
+      "A recruiter can see commercial and employment litigation work for four partners, including discovery and trial preparation. The hesitation is in the headline: it claims seven years supporting those case types, but the earlier role names personal injury cases.",
+      "The Relativity production line is the model. It names what you manage, the tool, and a useful measure of size. Your trial line is also promising; one detail about your part in the two jury trials would give it more weight."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Litigation paralegal with seven years supporting commercial and employment cases.",
+        "cannot_tell": "The dated roles don't establish seven years specifically on commercial and employment cases. Those case types appear under your current role; the earlier one names personal injury.",
+        "example": "Litigation paralegal with [verified years] supporting commercial and employment cases.",
+        "question": "Did you support commercial or employment cases before your current role, and how many years can you verify?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Litigation Paralegal, line 2",
+        "line": "Manage document productions of up to 250,000 pages in Relativity",
+        "cannot_tell": "Keep this as a model. It gives a recruiter the work, the tool, and the size without making them guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Litigation Paralegal, line 4",
+        "line": "Prepare trial binders and exhibits; supported two jury trials in 2025",
+        "cannot_tell": "Two jury trials are worth naming. What you did to support those trials beyond preparing binders and exhibits isn't clear.",
+        "example": "Prepare trial binders and exhibits; supported two jury trials in 2025 by [specific trial support]",
+        "question": "What did you do to support the two jury trials?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Litigation Paralegal",
+        "Paralegal"
+      ],
+      "level": "Senior paralegal",
+      "note": "Your recent work points toward litigation paralegal roles involving discovery, document production, and trial preparation. The earlier personal injury work adds another case type.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 79
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 79,
+    "lifted_by_employer": false,
+    "verdict": "A litigation paralegal with substantial production and trial work, though the headline's case-specific years need checking.",
+    "write_up": [
+      "A recruiter can see commercial and employment litigation work for four partners, including discovery and trial preparation. The hesitation is in the headline: it claims seven years supporting those case types, but the earlier role names personal injury cases.",
+      "The Relativity production line is the model. It names what you manage, the tool, and a useful measure of size. Your trial line is also promising; one detail about your part in the two jury trials would give it more weight."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Litigation paralegal with seven years supporting commercial and employment cases.",
+        "cannot_tell": "The dated roles don't establish seven years specifically on commercial and employment cases. Those case types appear under your current role; the earlier one names personal injury.",
+        "example": "Litigation paralegal with [verified years] supporting commercial and employment cases.",
+        "question": "Did you support commercial or employment cases before your current role, and how many years can you verify?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Litigation Paralegal, line 2",
+        "line": "Manage document productions of up to 250,000 pages in Relativity",
+        "cannot_tell": "Keep this as a model. It gives a recruiter the work, the tool, and the size without making them guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Litigation Paralegal, line 4",
+        "line": "Prepare trial binders and exhibits; supported two jury trials in 2025",
+        "cannot_tell": "Two jury trials are worth naming. What you did to support those trials beyond preparing binders and exhibits isn't clear.",
+        "example": "Prepare trial binders and exhibits; supported two jury trials in 2025 by [specific trial support]",
+        "question": "What did you do to support the two jury trials?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Litigation Paralegal",
+        "Paralegal"
+      ],
+      "level": "Senior paralegal",
+      "note": "Your recent work points toward litigation paralegal roles involving discovery, document production, and trial preparation. The earlier personal injury work adds another case type.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 79
+  },
+  "presentation": {
+    "score": 79,
+    "band": "Mostly clear",
+    "model_score": 79,
+    "lifted_by_employer": false,
+    "verdict": "A litigation paralegal with substantial production and trial work, though the headline's case-specific years need checking.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 80,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Litigation paralegal with seven years supporting commercial and employment cases.",
+        "blanks": 1,
+        "question": "Did you support commercial or employment cases before your current role, and how many years can you verify?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Litigation Paralegal, line 2",
+        "line": "Manage document productions of up to 250,000 pages in Relativity",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Litigation Paralegal, line 4",
+        "line": "Prepare trial binders and exhibits; supported two jury trials in 2025",
+        "blanks": 1,
+        "question": "What did you do to support the two jury trials?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "line": 2,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Litigation Paralegal",
+        "Paralegal"
+      ],
+      "level": "Senior paralegal",
+      "note": "Your recent work points toward litigation paralegal roles involving discovery, document production, and trial preparation. The earlier personal injury work adds another case type.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00683935,
+  "latency_ms": 14829
+}

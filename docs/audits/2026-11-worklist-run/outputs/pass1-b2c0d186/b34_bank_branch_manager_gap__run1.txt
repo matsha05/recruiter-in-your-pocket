@@ -1,0 +1,39 @@
+# b34_bank_branch_manager_gap, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_bank_branch_manager_gap_1.txt (129 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt b2c0d186; severity check on
+Outcome: report; cost $0.0071; 13.8s
+Case note: Gap with nothing after it.
+
+## Mostly clear (score 79; model wrote 79)
+## Verdict
+A branch manager with clear banking progression and deposit growth, but no work dated after December 2024.
+
+## Write-up
+You progressed from personal banker to branch manager at Magnolia Community Bank, managing 11 employees and growing deposits. That gives a recruiter a clear reason to keep reading. The first pause is that nothing is dated after December 2024.
+
+The deposit line is the model: it says what you grew, from $48M to $63M, and over what period. The audit and complaint lines name important work, but a little more about what you handled would make them more useful.
+
+## Cards (4; {"dates":1,"keep":1,"line":2}); severity none (none); added []
+1. [dates] Dates
+   line: "Nothing is dated after December 2024."
+   can't tell: A recruiter can't tell what you've been doing since the branch manager role ended. A short, honest line can account for that time.
+   example: [dates] [work, study, caregiving, job search, career break or other activity, if applicable]
+   question: What have you been doing since December 2024 that you'd be comfortable listing, and when?
+2. [keep] Branch Manager, line 2
+   line: "Grew branch deposits from $48M to $63M over five years"
+   can't tell: Keep this as a model. It names the measure, the starting and ending figures, and the period.
+3. [line] Branch Manager, line 4
+   line: "Oversaw audits and compliance reviews for the branch"
+   can't tell: Oversaw tells me you were responsible, but not what the audits covered or what you did with their findings. That's useful context for another branch management role.
+   example: Oversaw [types of audits] and compliance reviews for the branch; [actions taken on findings]
+   question: What did the audits and reviews cover, and what did you do with their findings?
+4. [line] Branch Manager, line 5
+   line: "Handled escalated customer complaints"
+   can't tell: I can see that escalations came to you, but not what kinds of problems you resolved. An example would show how you handled them.
+   example: Handled escalated customer complaints about [type of issue], [how you addressed them]
+   question: What kind of escalated complaint did you handle, and how did you address it?
+
+## Fit
+Roles: ["Branch Manager","Assistant Branch Manager"]
+Level: Branch management
+Note: Your experience points to retail banking branch management, with earlier teller operations and account-opening work. Adding what you've done since December 2024 would help a recruiter place your current situation.

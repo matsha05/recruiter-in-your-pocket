@@ -1,0 +1,54 @@
+# b06_staff_accountant, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_staff_accountant_1.txt (98 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 18e7e9ff; severity check off
+Outcome: report; cost $0.0088; 20.4s
+
+## Needs more context (score 65; model wrote 65)
+## Verdict
+A staff accountant with a clear progression, but too little detail about the work to move forward confidently.
+
+## Write-up
+You moved from accounts payable into a staff accountant role at Rivermark Building Supply. A recruiter can follow that progression, but the current bullets don't show how much work you handle or what you own within the close.
+
+“Prepare journal entries and account reconciliations” is the best starting point: it names two deliverables rather than a general responsibility. Add the kinds of entries and accounts, then bring that same specificity to the audit and fixed asset work.
+
+## Cards (7; {"structure":1,"line":6}); severity off; added []
+1. [structure] Experience
+   line: "The resume does not describe Rivermark Building Supply beyond its name."
+   can't tell: A recruiter may not know the business or its size. A short description could give your accounting work a setting.
+   question: How would you describe the business and its size in one line?
+2. [line] Staff Accountant, line 1
+   line: "Responsible for month-end close tasks"
+   can't tell: This names the close but leaves your part of it blank. A recruiter needs to know which tasks are yours.
+   example: Responsible for month-end close tasks, including [specific tasks] for [accounts or entities]
+   question: Which close tasks are yours, and what accounts or entities do they cover?
+3. [line] Staff Accountant, line 2
+   line: "Prepare journal entries and account reconciliations"
+   can't tell: The deliverables are clear, but the types and volume aren't. Those details would show what your accounting work covers.
+   example: Prepare journal entries for [types of transactions] and account reconciliations for [accounts], covering [number] [period]
+   question: What kinds of entries and accounts do you handle, and how many do you prepare in a typical period?
+4. [line] Staff Accountant, line 3
+   line: "Assist with the annual audit"
+   can't tell: Assist could mean several things. What did you prepare or provide for the audit?
+   example: Assist with the annual audit by [specific audit task] for [accounts or requests]
+   question: What do you do for the annual audit, and which accounts or requests does your work cover?
+5. [line] Staff Accountant, line 4
+   line: "Maintain fixed asset schedules"
+   can't tell: The schedule is named, but not what you maintain in it. The types or number of assets would give the work some shape.
+   example: Maintain fixed asset schedules for [types or number of assets], including [specific updates]
+   question: What assets do the schedules cover, and what updates do you make?
+6. [line] Staff Accountant, line 5
+   line: "Process accounts payable when needed"
+   can't tell: It's not clear which part of accounts payable you still handle or how often. That matters because it's also your previous job.
+   example: Process accounts payable when needed, including [specific tasks] for [volume or frequency]
+   question: Which accounts payable tasks do you handle now, and how often or in what volume?
+7. [line] Accounts Payable Clerk, line 1
+   line: "Entered vendor invoices"
+   can't tell: Invoice entry is clear, but the volume would help a recruiter understand the workload.
+   example: Entered [number] vendor invoices per [period]
+   question: How many vendor invoices did you typically enter in a given period?
+
+## Fit
+Roles: ["Staff Accountant","Accounts Payable Clerk"]
+Level: Staff accountant
+Note: Your experience points toward staff accounting, with earlier accounts payable work at the same employer. The close, audit and reconciliation bullets need more detail to show the breadth of your current work.

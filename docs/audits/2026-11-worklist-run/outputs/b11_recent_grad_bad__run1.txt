@@ -1,0 +1,53 @@
+# b11_recent_grad_bad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_recent_grad_bad_1.txt (151 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 18e7e9ff; severity check off
+Outcome: report; cost $0.0081; 17.2s
+Case note: First job, weak; count-check key says no_evidence_latest_role, no_recent_work, title_level_mismatch.
+
+## Needs more context (score 62; model wrote 62)
+## Verdict
+An intern's resume with a manager's headline and no account of work after May 2024.
+
+## Write-up
+You have marketing internship experience at a credit union, but the headline claims campaign leadership that the bullets don't show. A recruiter also has to guess what you've done since May 2024.
+
+The dairy farm line is the model: it names the data, the tool and the study. Bring Experience above Education, then give the newsletter, social posts and branch events that same specificity.
+
+## Cards (7; {"line":4,"dates":1,"structure":1,"keep":1}); severity off; added []
+1. [line] Headline
+   line: "Marketing manager who has led credit union campaigns from strategy to launch."
+   can't tell: The internship bullets don't show campaign leadership or manager-level work. The headline promises a different job from the one described below.
+   example: Marketing Intern with experience in [credit union marketing work you did]
+   question: What credit union marketing work did you actually do that you want to lead with?
+2. [dates] Dates
+   line: "Nothing is dated after May 2024."
+   can't tell: A recruiter can't tell what you've been doing since your last dated role. An honest line about that time can answer the question before they move on.
+   example: [dates] [work, study, caregiving, job search or other activity, if applicable]
+   question: What have you been doing since May 2024 that you're comfortable putting on the resume?
+3. [structure] Structure
+   line: "Education sits above Experience."
+   can't tell: Your work history is more useful to a recruiter than the degree as a first stop. Put Experience first so the credit union work is easier to find.
+   question: Can you move Experience above Education?
+4. [line] Marketing Intern, line 1
+   line: "Helped with the member newsletter"
+   can't tell: 'Helped' hides the job. A recruiter can't tell what part of the newsletter was yours or how widely it went.
+   example: Helped with the member newsletter by [your contribution], [how often], for [number of members]
+   question: What did you contribute to the newsletter, how often, and how many members received it?
+5. [line] Marketing Intern, line 2
+   line: "Posted on the credit union's social media accounts"
+   can't tell: Posting is a task, but the content and frequency are missing. A specific example would show what you put in front of members.
+   example: Posted [type of content] on the credit union's social media accounts [how often], [what changed, if known]
+   question: What did you post, how often, and did anything change that you can verify?
+6. [line] Marketing Intern, line 3
+   line: "Supported planning for branch events"
+   can't tell: A recruiter can't tell what planning work you handled or what the events were. Name one and keep your contribution at its actual size.
+   example: Supported planning for [event name] by [your contribution]
+   question: Which branch event did you support, and what did you do for it?
+7. [keep] Research Assistant, line 1
+   line: "Cleaned survey data from 1,200 dairy farms in Stata for a pricing study"
+   can't tell: Keep this as a model. It names the work, the data, the tool and what the study was for.
+
+## Fit
+Roles: ["Marketing Intern","Research Assistant"]
+Level: Early career
+Note: Your experience points toward entry-level marketing and research work. The credit union bullets need more detail before they show the campaign leadership claimed in the headline.

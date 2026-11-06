@@ -1,0 +1,364 @@
+{
+  "case_id": "b29_mechanical_engineer",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_mechanical_engineer_1.txt",
+  "resume_sha256": "415a2cd89f45a119a48620793f6f06d7e83938cf3176426d201256d134ab6044",
+  "resume_words": 143,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": true,
+  "started_at": "2026-11-06T03:36:45.634Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 3737,
+        "completion_tokens": 1023,
+        "total_tokens": 4760,
+        "cached_prompt_tokens": 3095,
+        "cache_write_prompt_tokens": 639,
+        "reasoning_tokens": 437
+      },
+      "cost_usd": 0.0060715,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 14685
+    },
+    {
+      "kind": "repair",
+      "usage": {
+        "prompt_tokens": 4536,
+        "completion_tokens": 683,
+        "total_tokens": 5219,
+        "cached_prompt_tokens": 3095,
+        "cache_write_prompt_tokens": 1438,
+        "reasoning_tokens": 215
+      },
+      "cost_usd": 0.00537025,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 8671
+    },
+    {
+      "kind": "severity",
+      "usage": null,
+      "cost_usd": 0.00463075,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 10319
+    }
+  ],
+  "resume_prompt_sha256": "b2c0d186992d2d925493008c0a67067de9f704dc44ec074808b3bc7176463d9a",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 80,
+    "lifted_by_employer": false,
+    "verdict": "A mechanical engineer with a clear product-design path, though the design decisions and results need more room.",
+    "write_up": [
+      "A recruiter can see your progression from Mechanical Engineer I to II and the furniture design work behind it. This is a reasonable page to move forward for mechanical design roles, though it leaves a reader wanting to know what your analysis and manufacturing support changed.",
+      "The Arlo desk line is the model: it names the product and says you lead its mechanical design. Bring that same specificity to the engineering change orders, then add a design decision or result where you can verify one."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Mechanical Engineer II, line 1",
+        "line": "- Lead mechanical design for the Arlo height-adjustable desk platform",
+        "cannot_tell": "You name the platform and say you lead its mechanical design. That gives the work a home; a design decision or result would make it stronger still.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 4",
+        "line": "- Run tolerance stack-ups and FEA on load-bearing components",
+        "cannot_tell": "The analysis is clear, but the reader can't see which components you examined or what the findings meant for the design.",
+        "example": "Run tolerance stack-ups and FEA on load-bearing components for [product or part], [finding or design decision]",
+        "question": "Which components did you analyze, and what did the findings show or change?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 5",
+        "line": "- Support manufacturing with engineering change orders",
+        "cannot_tell": "Support could cover several different jobs. A reader can't tell what you contributed to the change orders or what they addressed.",
+        "example": "Support manufacturing with engineering change orders for [components or changes], [your contribution]",
+        "question": "What did the change orders address, and what was your part in them?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mechanical Engineer II",
+        "Mechanical Engineer I"
+      ],
+      "level": "Experienced mechanical engineer",
+      "note": "Your experience points toward mechanical design work on furniture and fixtures. The progression, named desk platform, supplier work and testing give a recruiter a solid starting point.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "initial_validation_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the worklist contract at cards[1].cannot_tell: uses the retired phrase \"the read\".",
+    "issues": [
+      {
+        "path": "cards[1].cannot_tell",
+        "message": "uses the retired phrase \"the read\""
+      }
+    ]
+  },
+  "model_output_repaired": {
+    "contract_version": "v3",
+    "score": 80,
+    "lifted_by_employer": false,
+    "verdict": "A mechanical engineer with a clear product-design path, though the design decisions and results need more room.",
+    "write_up": [
+      "A recruiter can see your progression from Mechanical Engineer I to II and the furniture design work behind it. This is a reasonable page to move forward for mechanical design roles, though it leaves questions about what your analysis and manufacturing support changed.",
+      "The Arlo desk line is the model: it names the product and says you lead its mechanical design. Bring that same specificity to the engineering change orders, then add a design decision or result where you can verify one."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Mechanical Engineer II, line 1",
+        "line": "- Lead mechanical design for the Arlo height-adjustable desk platform",
+        "cannot_tell": "You name the platform and say you lead its mechanical design. A design decision or result would make it stronger still.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 4",
+        "line": "- Run tolerance stack-ups and FEA on load-bearing components",
+        "cannot_tell": "The analysis is clear, but a recruiter can't tell which components you examined or what the findings meant for the design.",
+        "example": "Run tolerance stack-ups and FEA on load-bearing components for [product or part], [finding or design decision]",
+        "question": "Which components did you analyze, and what did the findings show or change?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 5",
+        "line": "- Support manufacturing with engineering change orders",
+        "cannot_tell": "Support could cover several different jobs. A recruiter can't tell what you contributed to the change orders or what they addressed.",
+        "example": "Support manufacturing with engineering change orders for [components or changes], [your contribution]",
+        "question": "What did the change orders address, and what was your part in them?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mechanical Engineer II",
+        "Mechanical Engineer I"
+      ],
+      "level": "Experienced mechanical engineer",
+      "note": "Your experience points toward mechanical design work on furniture and fixtures. The progression, named desk platform, supplier work and testing give a recruiter a solid starting point.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "repaired": true,
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 80,
+    "lifted_by_employer": false,
+    "verdict": "A mechanical engineer with a clear product-design path, though the design decisions and results need more room.",
+    "write_up": [
+      "A recruiter can see your progression from Mechanical Engineer I to II and the furniture design work behind it. This is a reasonable page to move forward for mechanical design roles, though it leaves questions about what your analysis and manufacturing support changed.",
+      "The Arlo desk line is the model: it names the product and says you lead its mechanical design. Bring that same specificity to the engineering change orders, then add a design decision or result where you can verify one."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Mechanical Engineer II, line 1",
+        "line": "Lead mechanical design for the Arlo height-adjustable desk platform",
+        "cannot_tell": "You name the platform and say you lead its mechanical design. A design decision or result would make it stronger still.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 4",
+        "line": "Run tolerance stack-ups and FEA on load-bearing components",
+        "cannot_tell": "The analysis is clear, but a recruiter can't tell which components you examined or what the findings meant for the design.",
+        "example": "Run tolerance stack-ups and FEA on load-bearing components for [product or part], [finding or design decision]",
+        "question": "Which components did you analyze, and what did the findings show or change?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 5",
+        "line": "Support manufacturing with engineering change orders",
+        "cannot_tell": "Support could cover several different jobs. A recruiter can't tell what you contributed to the change orders or what they addressed.",
+        "example": "Support manufacturing with engineering change orders for [components or changes], [your contribution]",
+        "question": "What did the change orders address, and what was your part in them?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mechanical Engineer II",
+        "Mechanical Engineer I"
+      ],
+      "level": "Experienced mechanical engineer",
+      "note": "Your experience points toward mechanical design work on furniture and fixtures. The progression, named desk platform, supplier work and testing give a recruiter a solid starting point.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 80
+  },
+  "severity": {
+    "promoted": [],
+    "replaced": [],
+    "led": null,
+    "critical_count": 1,
+    "more_critical": false,
+    "answer": {
+      "critical_misses": [
+        {
+          "source": "new",
+          "kind": "no_evidence_latest_role",
+          "fix": "In the Westhaven Mechanical Engineer II role, add how many components you personally designed for the Arlo desk platform, if you can verify it.",
+          "why": "Hiring managers usually look for the scale or results of a mechanical engineer's design work. The resume describes the work but doesn't show its volume or a measurable result.",
+          "excerpt": "- Lead mechanical design for the Arlo height-adjustable desk platform",
+          "section": "PROFESSIONAL EXPERIENCE",
+          "effort": "moderate"
+        }
+      ],
+      "more_critical": false
+    },
+    "outcome": "none",
+    "reason": "none",
+    "added": [],
+    "skipped": [
+      {
+        "kind": "no_evidence_latest_role",
+        "reason": "already_flagged"
+      }
+    ],
+    "validation_attempts": 0,
+    "latency_ms": 10320,
+    "call_latency_ms": 10319,
+    "cost_usd": 0.00463075,
+    "model": "gpt-6.1-terra",
+    "prompt_version": "severity_check_v1:f1bb4571"
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 80,
+    "lifted_by_employer": false,
+    "verdict": "A mechanical engineer with a clear product-design path, though the design decisions and results need more room.",
+    "write_up": [
+      "A recruiter can see your progression from Mechanical Engineer I to II and the furniture design work behind it. This is a reasonable page to move forward for mechanical design roles, though it leaves questions about what your analysis and manufacturing support changed.",
+      "The Arlo desk line is the model: it names the product and says you lead its mechanical design. Bring that same specificity to the engineering change orders, then add a design decision or result where you can verify one."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Mechanical Engineer II, line 1",
+        "line": "Lead mechanical design for the Arlo height-adjustable desk platform",
+        "cannot_tell": "You name the platform and say you lead its mechanical design. A design decision or result would make it stronger still.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 4",
+        "line": "Run tolerance stack-ups and FEA on load-bearing components",
+        "cannot_tell": "The analysis is clear, but a recruiter can't tell which components you examined or what the findings meant for the design.",
+        "example": "Run tolerance stack-ups and FEA on load-bearing components for [product or part], [finding or design decision]",
+        "question": "Which components did you analyze, and what did the findings show or change?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 5",
+        "line": "Support manufacturing with engineering change orders",
+        "cannot_tell": "Support could cover several different jobs. A recruiter can't tell what you contributed to the change orders or what they addressed.",
+        "example": "Support manufacturing with engineering change orders for [components or changes], [your contribution]",
+        "question": "What did the change orders address, and what was your part in them?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mechanical Engineer II",
+        "Mechanical Engineer I"
+      ],
+      "level": "Experienced mechanical engineer",
+      "note": "Your experience points toward mechanical design work on furniture and fixtures. The progression, named desk platform, supplier work and testing give a recruiter a solid starting point.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 80
+  },
+  "presentation": {
+    "score": 80,
+    "band": "Mostly clear",
+    "model_score": 80,
+    "lifted_by_employer": false,
+    "verdict": "A mechanical engineer with a clear product-design path, though the design decisions and results need more room.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 82,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Mechanical Engineer II, line 1",
+        "line": "Lead mechanical design for the Arlo height-adjustable desk platform",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 4",
+        "line": "Run tolerance stack-ups and FEA on load-bearing components",
+        "blanks": 2,
+        "question": "Which components did you analyze, and what did the findings show or change?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 5",
+        "line": "Support manufacturing with engineering change orders",
+        "blanks": 2,
+        "question": "What did the change orders address, and what was your part in them?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "keep": 1,
+      "line": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [
+      {
+        "kind": "no_evidence_latest_role",
+        "reason": "already_flagged"
+      }
+    ],
+    "severity_outcome": "none (none)",
+    "fit": {
+      "roles": [
+        "Mechanical Engineer II",
+        "Mechanical Engineer I"
+      ],
+      "level": "Experienced mechanical engineer",
+      "note": "Your experience points toward mechanical design work on furniture and fixtures. The progression, named desk platform, supplier work and testing give a recruiter a solid starting point.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0160725,
+  "latency_ms": 33679
+}
