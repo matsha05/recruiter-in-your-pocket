@@ -1,0 +1,244 @@
+{
+  "case_id": "b23_pharmacy_tech_table",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Tables rendered to tab-separated text.",
+  "resume_file": "../2026-11-live-judgment/resumes/b_pharmacy_tech_table.txt",
+  "resume_sha256": "872695c37eba2c67784784b9af67edda0387ea5b8bbb90cd54d25ac0f2941367",
+  "resume_words": 209,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T17:56:55.849Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5379,
+        "completion_tokens": 1108,
+        "total_tokens": 6487,
+        "cached_prompt_tokens": 4481,
+        "cache_write_prompt_tokens": 895,
+        "reasoning_tokens": 512
+      },
+      "cost_usd": 0.0068858,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 17435
+    }
+  ],
+  "resume_prompt_sha256": "f4ff18ca80174dffdce77796c99b298e4ced5fdab817d0ec307d0b591839e910",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A certified pharmacy technician with substantial inpatient and retail experience, backed by clear measures of the work.",
+    "write_up": [
+      "A recruiter sees current inpatient pharmacy work, including sterile compounding and dispensing cabinet restocking, alongside earlier retail experience. The duties sit apart from the dated jobs, so a recruiter has to match them back to each role.",
+      "The restocking line is a great model: it names the work, the 6 nursing units, and the change in stockout reports. Your resume isn't likely to be the reason you don't hear back. How competitive a job is will still matter."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience and Duties and Results",
+        "line": "Duties and results sit in a separate section from the dated roles.",
+        "cannot_tell": "A recruiter has to move between sections to connect the work with its employer and dates. Put each duty directly under its matching role.",
+        "example": "",
+        "question": "Can you group each duty under its matching dated role?"
+      },
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, restocking",
+        "line": "Pharmacy Technician II\tManage the automated dispensing cabinet restocking for 6 nursing units\tStockout reports down from 9 to 2 per week in 2024",
+        "cannot_tell": "Keep this as a model. It pairs your responsibility with a concrete measure and gives the stockout figures a time frame.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Pharmacy Technician, immunization scheduling",
+        "line": "Pharmacy Technician\tRan the immunization scheduling during the 2021 flu and COVID seasons",
+        "cannot_tell": "The scheduling work is clear, but a recruiter can't tell how much of it you handled. The number of appointments would give that work more context.",
+        "example": "Ran the immunization scheduling during the 2021 flu and COVID seasons for [number of appointments]",
+        "question": "How many appointments did you schedule during those seasons?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Pharmacy Technician II",
+        "Pharmacy Technician"
+      ],
+      "level": "Experienced pharmacy technician",
+      "note": "Your experience points to inpatient and retail pharmacy technician roles. Sterile compounding, cabinet restocking, and your certifications are especially relevant to inpatient work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A certified pharmacy technician with substantial inpatient and retail experience, backed by clear measures of the work.",
+    "write_up": [
+      "A recruiter sees current inpatient pharmacy work, including sterile compounding and dispensing cabinet restocking, alongside earlier retail experience. The duties sit apart from the dated jobs, so a recruiter has to match them back to each role.",
+      "The restocking line is a great model: it names the work, the 6 nursing units, and the change in stockout reports. Your resume isn't likely to be the reason you don't hear back. How competitive a job is will still matter."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience and Duties and Results",
+        "line": "Duties and results sit in a separate section from the dated roles.",
+        "cannot_tell": "A recruiter has to move between sections to connect the work with its employer and dates. Put each duty directly under its matching role.",
+        "example": "",
+        "question": "Can you group each duty under its matching dated role?"
+      },
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, restocking",
+        "line": "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024",
+        "cannot_tell": "Keep this as a model. It pairs your responsibility with a concrete measure and gives the stockout figures a time frame.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Pharmacy Technician, immunization scheduling",
+        "line": "Pharmacy Technician Ran the immunization scheduling during the 2021 flu and COVID seasons",
+        "cannot_tell": "The scheduling work is clear, but a recruiter can't tell how much of it you handled. The number of appointments would give that work more context.",
+        "example": "Ran the immunization scheduling during the 2021 flu and COVID seasons for [number of appointments]",
+        "question": "How many appointments did you schedule during those seasons?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Pharmacy Technician II",
+        "Pharmacy Technician"
+      ],
+      "level": "Experienced pharmacy technician",
+      "note": "Your experience points to inpatient and retail pharmacy technician roles. Sterile compounding, cabinet restocking, and your certifications are especially relevant to inpatient work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A certified pharmacy technician with substantial inpatient and retail experience, backed by clear measures of the work.",
+    "write_up": [
+      "A recruiter sees current inpatient pharmacy work, including sterile compounding and dispensing cabinet restocking, alongside earlier retail experience. The duties sit apart from the dated jobs, so a recruiter has to match them back to each role.",
+      "The restocking line is a great model: it names the work, the 6 nursing units, and the change in stockout reports. Your resume isn't likely to be the reason you don't hear back. How competitive a job is will still matter."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience and Duties and Results",
+        "line": "Duties and results sit in a separate section from the dated roles.",
+        "cannot_tell": "A recruiter has to move between sections to connect the work with its employer and dates. Put each duty directly under its matching role.",
+        "example": "",
+        "question": "Can you group each duty under its matching dated role?"
+      },
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, restocking",
+        "line": "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024",
+        "cannot_tell": "Keep this as a model. It pairs your responsibility with a concrete measure and gives the stockout figures a time frame.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Pharmacy Technician, immunization scheduling",
+        "line": "Pharmacy Technician Ran the immunization scheduling during the 2021 flu and COVID seasons",
+        "cannot_tell": "The scheduling work is clear, but a recruiter can't tell how much of it you handled. The number of appointments would give that work more context.",
+        "example": "Ran the immunization scheduling during the 2021 flu and COVID seasons for [number of appointments]",
+        "question": "How many appointments did you schedule during those seasons?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Pharmacy Technician II",
+        "Pharmacy Technician"
+      ],
+      "level": "Experienced pharmacy technician",
+      "note": "Your experience points to inpatient and retail pharmacy technician roles. Sterile compounding, cabinet restocking, and your certifications are especially relevant to inpatient work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "presentation": {
+    "score": 88,
+    "band": "Clear and specific",
+    "model_score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A certified pharmacy technician with substantial inpatient and retail experience, backed by clear measures of the work.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 78,
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience and Duties and Results",
+        "line": "Duties and results sit in a separate section from the dated roles.",
+        "blanks": 0,
+        "question": "Can you group each duty under its matching dated role?"
+      },
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, restocking",
+        "line": "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Pharmacy Technician, immunization scheduling",
+        "line": "Pharmacy Technician Ran the immunization scheduling during the 2021 flu and COVID seasons",
+        "blanks": 1,
+        "question": "How many appointments did you schedule during those seasons?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "structure": 1,
+      "keep": 1,
+      "line": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Pharmacy Technician II",
+        "Pharmacy Technician"
+      ],
+      "level": "Experienced pharmacy technician",
+      "note": "Your experience points to inpatient and retail pharmacy technician roles. Sterile compounding, cabinet restocking, and your certifications are especially relevant to inpatient work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0068858,
+  "latency_ms": 17438
+}

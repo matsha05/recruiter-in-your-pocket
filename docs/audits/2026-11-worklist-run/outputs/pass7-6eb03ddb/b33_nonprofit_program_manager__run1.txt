@@ -1,0 +1,40 @@
+# b33_nonprofit_program_manager, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_nonprofit_program_manager_1.txt (146 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 6eb03ddb; severity check off
+Outcome: report; cost $0.0064; 13.9s
+
+## Mostly clear (score 75; model wrote 75)
+## Verdict
+A youth workforce manager with clear responsibilities, but unanswered questions about the reach of the summer jobs program.
+
+## Write-up
+A recruiter can see your progression from coordinator to youth workforce program manager and would have a clear reason to keep reading. The first question is how many students and employers the summer jobs program reaches.
+
+Your grant reporting line works especially well: it names what you write and who receives it. Let's start with the summer jobs line, then show what the people you supervise do and what you track in Salesforce.
+
+## Cards (4; {"line":4}); severity off; added []
+1. [line] Program Manager, line 1
+   line: "Manage a summer jobs program placing high school students with local employers"
+   can't tell: This names the program and who it serves, but not how many students it places or employers it reaches. Those details would show how much the program handles.
+   example: Manage a summer jobs program placing [number] high school students with [number] local employers [frequency]
+   question: How many high school students does the program place, with how many local employers, and how often?
+2. [line] Program Manager, line 2
+   line: "Supervise 4 program coordinators and 20 seasonal staff"
+   can't tell: The team counts are useful, but a recruiter can't tell what the coordinators and seasonal staff handle under your supervision.
+   example: Supervise 4 program coordinators and 20 seasonal staff who [what the team handles]
+   question: What do the coordinators and seasonal staff handle?
+3. [line] Program Manager, line 4
+   line: "Recruit and onboard employer partners"
+   can't tell: A recruiter can see your part in bringing partners in, but not how many employers you've recruited and onboarded.
+   example: Recruit and onboard [number] employer partners [time period]
+   question: How many employer partners have you recruited and onboarded, and over what period?
+4. [line] Program Manager, line 5
+   line: "Track participant outcomes in Salesforce"
+   can't tell: Salesforce is named, but the participant outcomes aren't. Knowing what you track would show what the program follows after placement.
+   example: Track [participant outcomes] in Salesforce
+   question: Which participant outcomes do you track in Salesforce?
+
+## Fit
+Roles: ["Program Manager, Youth Workforce","Program Coordinator"]
+Level: Program manager
+Note: Your experience points toward youth workforce program management, with earlier coordinator work at Harbor Pathways. The summer jobs program and staff supervision make that direction clear; participant and employer counts would show more about its reach.

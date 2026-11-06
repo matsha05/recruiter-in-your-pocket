@@ -1,33 +1,40 @@
 # b19_non_native_english, run 1
 Resume: ../2026-11-live-judgment/resumes/b_non_native_english.txt (237 words)
-Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
-Outcome: report; cost $0.0063; 17.3s
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0069; 13.9s
 
-## Mostly clear (score 83; model wrote 83)
+## Mostly clear (score 82; model wrote 82)
 ## Verdict
-Accounts payable work in Houston, backed by senior accounting experience, with a few responsibilities still needing detail.
+Accounting experience in Vietnam and the US, with clear payables volume and a strong month-end improvement.
 
 ## Write-up
-You process around 400 vendor invoices a month in QuickBooks and have earlier experience with financial statements, an audit and a small accounting team. A recruiter can see the fit for accounts payable or staff accounting, though your part in the current month-end close is still a question.
+Your resume points toward Staff Accountant and Accounts Payable Specialist roles. A recruiter can follow your move from senior accounting in Vietnam to bookkeeping and payables in Houston, and would likely move it forward with a few questions about your part in the work.
 
-The strongest line is the one about reducing month-end closing from 12 days to 7 days. It names what you made and shows the change in closing time. Use that level of detail to explain the work you helped with and what your team handled.
+Your strongest line is the month-end close at Minh Phat Trading Company: it gives the starting and ending times and names the checklist and template you made. Your current role also gives a useful picture of your workload, with around 400 vendor invoices a month in QuickBooks.
 
-## Cards (3; {"line":2,"keep":1}); severity off; added []
+Let's start with what you helped the controller do at month end, then add what your junior accountants handled and your part in the audit. Those details can connect your US payables work with the broader accounting experience you're bringing to your next role.
+
+## Cards (4; {"line":3,"keep":1}); severity off; added []
 1. [line] Accounts Payable Clerk, line 4
    line: "Help the controller for month end closing"
-   can't tell: 'Help' hides your part of the close. A recruiter can't tell which accounts or tasks you handled alongside the controller.
-   example: Help the controller with month end closing by completing [tasks]
-   question: Which month-end closing tasks did you handle for the controller?
+   can't tell: Helping with the close could mean several different things. A recruiter can't tell which tasks were yours.
+   example: Help the controller with month end closing by [month-end tasks]
+   question: Which month-end tasks did you handle for the controller?
 2. [line] Senior Accountant, line 2
    line: "Lead team of 3 junior accountants"
-   can't tell: The team count is there, but not the work. What did the junior accountants handle under your direction?
-   example: Lead team of 3 junior accountants who handle [work the team handles]
-   question: What work did the 3 junior accountants handle?
-3. [keep] Senior Accountant, line 4
+   can't tell: The team count is clear, but a recruiter can't tell what the junior accountants worked on under your lead.
+   example: Lead team of 3 junior accountants who [accounting tasks]
+   question: What accounting work did the 3 junior accountants handle?
+3. [line] Senior Accountant, line 3
+   line: "Work with external auditor for year end audit, no major finding in 5 years"
+   can't tell: The audit record is useful, but your part in the audit isn't named. What did you prepare or discuss with the auditor?
+   example: Work with external auditor on year end audit by [audit responsibilities]; no major finding in 5 years
+   question: What did you do to support the external auditor during the year end audit?
+4. [keep] Senior Accountant, line 4
    line: "Reduce the month end closing from 12 days to 7 days by make new checklist and template"
-   can't tell: Keep this as your model. The checklist and template give the shorter close a concrete story.
+   can't tell: Keep this as a model. It ties the change in closing time to the tools you made, so a recruiter can see both your contribution and what changed.
 
 ## Fit
-Roles: ["Staff Accountant","Accounts Payable Specialist","Accounts Payable Clerk"]
+Roles: ["Staff Accountant","Accounts Payable Specialist"]
 Level: Experienced accounting professional
-Note: Your current invoice and payment work points toward accounts payable, while your earlier general ledger and financial statement work supports a staff accountant search. The US GAAP certificate adds useful context; the resume doesn't say how you've applied US GAAP on the job.
+Note: Your current invoice processing and vendor reconciliation point toward accounts payable work. Your general ledger, financial statements and month-end experience also support the Staff Accountant direction.

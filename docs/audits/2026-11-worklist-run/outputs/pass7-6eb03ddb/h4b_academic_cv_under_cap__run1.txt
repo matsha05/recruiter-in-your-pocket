@@ -1,0 +1,33 @@
+# h4b_academic_cv_under_cap, run 1
+Resume: ../2026-11-live-judgment/resumes/h4b_academic_cv_under_cap.txt (3253 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 6eb03ddb; severity check off
+Outcome: report; cost $0.0235; 14.7s
+Case note: The same CV trimmed under the cap, to see what the model does with a CV shape.
+
+## Mostly clear (score 78; model wrote 78)
+## Verdict
+A tenured molecular biologist with substantial research funding and teaching experience, but repeated publication entries need attention.
+
+## Write-up
+Your resume shows a tenured molecular biologist with NIH funding, publications, teaching and mentoring. A recruiter could move it forward, but the repeated publication titles and authors across different years raise a question worth resolving first.
+
+Your MB 310 redesign is a strong model: it names the change you made and the evaluation figures that followed. Move Academic Appointments above Education so your current role is visible sooner, then check the repeated citations against your publication records.
+
+## Cards (3; {"structure":1,"line":1,"keep":1}); severity off; added []
+1. [structure] Structure
+   line: "Education sits above Academic Appointments."
+   can't tell: Your current tenured role comes after your degrees. Put Academic Appointments first so a recruiter sees your faculty work immediately.
+   question: Can you move Academic Appointments above Education?
+2. [line] Publications, entry 1
+   line: "1. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2026). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 107(2), 1037-1052."
+   can't tell: The same authors, title and journal also appear in entries dated 2024, 2021 and 2018, with different volume and page details. A reader can't tell whether these are separate publications or citations that need correcting. Check these and the other repeated titles against your records.
+   example: [correct publication citation]
+   question: What are the correct citations for these entries?
+3. [keep] Teaching, course redesign
+   line: "Course redesign: converted MB 310 to a flipped format in 2019; student evaluations rose from 3.9 to 4.5 of 5 over the following three offerings."
+   can't tell: Keep this as a model. It connects your own course change with a dated measure, without claiming the redesign alone caused the increase.
+
+## Fit
+Roles: ["Associate Professor (with tenure)","Assistant Professor"]
+Level: Tenured faculty
+Note: Your experience points toward faculty roles in molecular and cell biology, with research funding, teaching and mentoring all represented. The publication entries need a careful check before you send the resume.

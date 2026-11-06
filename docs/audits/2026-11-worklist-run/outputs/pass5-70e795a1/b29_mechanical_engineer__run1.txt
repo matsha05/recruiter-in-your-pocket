@@ -1,0 +1,38 @@
+# b29_mechanical_engineer, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_mechanical_engineer_1.txt (143 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
+Outcome: report; cost $0.0070; 19.4s
+
+## Needs more context (score 69; model wrote 69)
+## Verdict
+A furniture design engineer with a named desk platform, but little to show how much the work changed.
+
+## Write-up
+You come across as a mechanical engineer who progressed at Westhaven and now leads design for a height-adjustable desk platform. A recruiter can see the work, but the current role gives no sense of how much of it there is or what changed because of it.
+
+The prototype testing line is a useful model: it names the work and the BIFMA standards you tested against. Bring that same precision to your supplier work and engineering change orders, then give the desk platform a result or measure if you have one.
+
+## Cards (4; {"line":3,"keep":1}); severity off; added []
+1. [line] Mechanical Engineer II, line 1
+   line: "Lead mechanical design for the Arlo height-adjustable desk platform"
+   can't tell: The desk platform gives your lead role a real anchor. A recruiter still can't tell how much the design involved or what came of it.
+   example: Lead mechanical design for the Arlo height-adjustable desk platform, including [design responsibilities] and [result]
+   question: What did your design work include, and what came of it?
+2. [line] Mechanical Engineer II, line 3
+   line: "Work with suppliers in Mexico and Taiwan on tooling and first-article inspection"
+   can't tell: The locations and the work are there, but 'work with' leaves your part open. What did you do on tooling and first-article inspection?
+   example: Work with suppliers in Mexico and Taiwan on tooling and first-article inspection, including [your responsibilities]
+   question: What were your responsibilities with the suppliers on tooling and first-article inspection?
+3. [line] Mechanical Engineer II, line 5
+   line: "Support manufacturing with engineering change orders"
+   can't tell: 'Support' hides your part in the change orders. A recruiter can't tell what was being changed or what you contributed.
+   example: Support manufacturing with engineering change orders for [what changed], including [your contribution]
+   question: What did the change orders cover, and what was your part?
+4. [keep] Mechanical Engineer I, line 2
+   line: "Ran prototype testing to BIFMA standards"
+   can't tell: Keep the action and the standard together. They show what you tested against without making a recruiter guess.
+
+## Fit
+Roles: ["Mechanical Engineer II","Mechanical Engineer I"]
+Level: Mechanical engineer with six years in product design
+Note: Your experience points toward mechanical design work in commercial furniture and fixtures. The desk platform, supplier work, testing and SolidWorks skills give those roles a clear foundation.

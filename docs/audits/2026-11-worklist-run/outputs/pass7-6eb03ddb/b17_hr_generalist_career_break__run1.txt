@@ -1,0 +1,44 @@
+# b17_hr_generalist_career_break, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_hr_generalist_career_break_1.txt (145 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 6eb03ddb; severity check off
+Outcome: report; cost $0.0080; 19.0s
+Case note: Returner after caregiving, break dated and named.
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+An HR generalist with manufacturing experience and a caregiving break, followed by unaccounted time.
+
+## Write-up
+A recruiter sees HR generalist experience in a manufacturing plant, including employee relations, benefits and onboarding. It's common for a resume to leave time after a caregiving break unexplained, but yours ends in June 2025, so a recruiter has to guess what came next. That may make them hesitate.
+
+Let's start by accounting for that time, then add your part in the Northstar Plastics investigations and enrollment work. The plant line is your model: it names the workforce and shifts you supported, so a recruiter can place your work.
+
+## Cards (5; {"dates":1,"keep":1,"line":3}); severity off; added []
+1. [dates] Dates
+   line: "Nothing is dated after June 2025."
+   can't tell: A recruiter can't tell what you've done since the caregiving entry ended. If caregiving continued, you can say so. Otherwise, an honest career break, study, volunteering or real paid work can account for the time; a referral may also matter more when a gap is unexplained.
+   example: June 2025 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]
+   question: What have you been doing since June 2025?
+2. [keep] HR Generalist, line 1
+   line: "Supported HR for a plant of 400 employees across three shifts"
+   can't tell: Keep this as a model. It makes your supporting role clear and gives the recruiter a concrete picture of the people you served.
+3. [line] HR Generalist, line 2
+   line: "Handled employee relations questions and investigations with the HR manager"
+   can't tell: A recruiter knows you worked with the HR manager, but not what your part in the investigations was. Naming that work would show how you handled employee concerns.
+   example: Handled employee relations questions and investigations with the HR manager, including [your responsibilities]
+   question: What did you personally handle during the questions and investigations?
+4. [line] HR Generalist, line 3
+   line: "Coordinated open enrollment for medical and dental benefits"
+   can't tell: Coordinating enrollment can cover several jobs. A recruiter can't tell which parts were yours.
+   example: Coordinated open enrollment for medical and dental benefits, including [your responsibilities]
+   question: Which parts of open enrollment did you handle?
+5. [line] HR Generalist, line 5
+   line: "Kept personnel files and HRIS records up to date"
+   can't tell: The resume names UKG and ADP Workforce Now, but doesn't say how you used them. Connecting a tool to your records work, if it fits, would show what you did with it.
+   example: Kept personnel files and HRIS records up to date using [tool] for [records work]
+   question: Which tool did you use for this work, and what records did you maintain in it?
+
+## Fit
+Roles: ["HR Generalist","HR Assistant"]
+Level: Experienced HR generalist
+Note: Your experience points toward HR generalist work, particularly in manufacturing. The caregiving break is clearly named; the time after it needs an update.

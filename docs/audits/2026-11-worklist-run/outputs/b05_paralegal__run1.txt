@@ -1,28 +1,30 @@
 # b05_paralegal, run 1
 Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_paralegal_1.txt (144 words)
-Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
-Outcome: report; cost $0.0056; 15.7s
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0059; 14.6s
 
 ## Mostly clear (score 82; model wrote 82)
 ## Verdict
-A litigation paralegal with substantial document production experience and a little room to explain trial support.
+A senior litigation paralegal whose case work and production experience are easy to follow.
 
 ## Write-up
-A recruiter sees a senior litigation paralegal supporting four partners, managing large document productions and preparing discovery. The work is easy to follow, though your part in the two jury trials is less clear.
+Your resume tells a clear story: you moved from personal injury work at Summit Legal Group to commercial and employment litigation at Harlan & Pike. A recruiter can see the work you do for attorneys, from discovery through trial preparation.
 
-The Relativity line is your model: it names the work, the tool and the production volume, including the upper limit. The discovery and filing lines also give a recruiter concrete work to hold onto.
+The Relativity line is your best model. It names the tool, the work you manage and how large a production can be. Your current role also shows support for four partners and two jury trials, though a recruiter may want to know more about your part in those trials.
+
+Start with the trial line. Add what your support involved beyond the binders and exhibits, if there's more to tell. You don't need to force a number into every line; the named legal work already carries much of the story.
 
 ## Cards (2; {"keep":1,"line":1}); severity off; added []
 1. [keep] Senior Litigation Paralegal, line 2
    line: "Manage document productions of up to 250,000 pages in Relativity"
-   can't tell: Keep this as a model. It tells a recruiter what you manage and gives them a sense of how much material can be involved.
+   can't tell: Keep this as a model: the production, its upper range and the tool are all there, with your responsibility stated plainly.
 2. [line] Senior Litigation Paralegal, line 4
    line: "Prepare trial binders and exhibits; supported two jury trials in 2025"
-   can't tell: The two trials are worth mentioning, but supported leaves your part in them open. What did you handle?
-   example: Prepare trial binders and exhibits; supported two jury trials in 2025 by [trial support duties]
-   question: What did you do to support the two jury trials?
+   can't tell: The two trials are worth highlighting, but a recruiter can't tell what your trial support involved beyond the binders and exhibits.
+   example: Prepare trial binders and exhibits; supported two jury trials in 2025 by [trial support tasks]
+   question: What did your support for the two jury trials involve?
 
 ## Fit
 Roles: ["Senior Litigation Paralegal","Paralegal"]
 Level: Senior paralegal
-Note: Your experience points toward litigation paralegal work, particularly commercial and employment cases. The earlier personal injury work adds another practice area.
+Note: Your experience points toward litigation paralegal roles, particularly those involving commercial and employment cases. The Relativity productions and trial support add substance to that direction.

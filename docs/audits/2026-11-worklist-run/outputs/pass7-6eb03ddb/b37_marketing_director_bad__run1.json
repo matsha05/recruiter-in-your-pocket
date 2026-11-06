@@ -1,0 +1,311 @@
+{
+  "case_id": "b37_marketing_director_bad",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Title above the work; key says no_recent_work, no_target_role, title_level_mismatch.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_marketing_director_bad_1.txt",
+  "resume_sha256": "f0624d59dceceb9ee73afca05ff983f8205d3da2ebe4712711eb2596bd129439",
+  "resume_words": 167,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T18:02:44.754Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5276,
+        "completion_tokens": 1589,
+        "total_tokens": 6865,
+        "cached_prompt_tokens": 4536,
+        "cache_write_prompt_tokens": 737,
+        "reasoning_tokens": 663
+      },
+      "cost_usd": 0.00909605,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 25350
+    }
+  ],
+  "resume_prompt_sha256": "6eb03ddb4b32b2b65339085225b39b2ec67a805518799139b60e8c299167a186",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 60,
+    "lifted_by_employer": false,
+    "verdict": "A varied work history with a director title the marketing duties don't yet explain and recent time unaccounted for.",
+    "write_up": [
+      "It's common for a resume to contain several kinds of work without naming the next job. Here, a recruiter sees candle marketing, title records and lab work, but may pass because the Director of Marketing title suggests responsibilities the bullets don't show, and nothing accounts for the time after January 2025.",
+      "Let's start with the Lumen role and add any marketing decisions or responsibilities that were yours. The property records line is a good model: it names the work, the system and how many records you entered each day. Once you choose the kind of job you want next, we can make that direction easier to spot."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Director of Marketing title",
+        "line": "Director of Marketing",
+        "cannot_tell": "The title suggests marketing leadership, but the bullets show posting, product descriptions and order support. A recruiter can't tell whether you set marketing priorities or had other responsibilities. Keep your actual title and add those details if they were part of your job.",
+        "example": "Director of Marketing: [marketing responsibilities and decisions]",
+        "question": "What marketing responsibilities or decisions did you have beyond the work already listed?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after January 2025.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since the Lumen role ended. If you took care of a family member, you can say so. A career break can also name a course, project, volunteering or travel; include freelance work only if it was real. If there is nothing to add, a referral may matter more.",
+        "example": "January 2025 - Present  [what you did]",
+        "question": "What have you been doing since the Lumen role ended, and what dates would accurately describe it?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "The resume doesn't name the job you're seeking.",
+        "cannot_tell": "Marketing, data entry and lab work point in different directions. A recruiter has to guess which job you want next. Once you've chosen one, put that direction near the top and give its most relevant work room.",
+        "example": "",
+        "question": "Which kind of job do you want this resume to pursue?"
+      },
+      {
+        "kind": "line",
+        "where": "Director of Marketing, line 1",
+        "line": "- Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers",
+        "cannot_tell": "The posting frequency and follower count are useful, but a recruiter can't tell what you posted or what the posts were meant to do for the candle business.",
+        "example": "Posted [type of content] 3 to 5 times a week on the company Instagram, which has 2,100 followers, to [purpose]",
+        "question": "What kind of content did you post, and what was it intended to do?"
+      },
+      {
+        "kind": "keep",
+        "where": "Data Entry Clerk, line 1",
+        "line": "- Entered 150 property records a day into the county title system",
+        "cannot_tell": "Keep this line. It gives a recruiter a concrete daily measure alongside the task, without making them guess what you handled.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Director of Marketing",
+        "Data Entry Clerk",
+        "Laboratory Assistant"
+      ],
+      "level": "Individual contributor; director title needs context",
+      "note": "The most recent work points toward social media and product content, while the earlier roles show data entry and lab preparation. The resume doesn't yet show the broader marketing leadership a recruiter might expect from the director title.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 60,
+    "lifted_by_employer": false,
+    "verdict": "A varied work history with a director title the marketing duties don't yet explain and recent time unaccounted for.",
+    "write_up": [
+      "It's common for a resume to contain several kinds of work without naming the next job. Here, a recruiter sees candle marketing, title records and lab work, but may pass because the Director of Marketing title suggests responsibilities the bullets don't show, and nothing accounts for the time after January 2025.",
+      "Let's start with the Lumen role and add any marketing decisions or responsibilities that were yours. The property records line is a good model: it names the work, the system and how many records you entered each day. Once you choose the kind of job you want next, we can make that direction easier to spot."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Director of Marketing title",
+        "line": "Director of Marketing",
+        "cannot_tell": "The title suggests marketing leadership, but the bullets show posting, product descriptions and order support. A recruiter can't tell whether you set marketing priorities or had other responsibilities. Keep your actual title and add those details if they were part of your job.",
+        "example": "Director of Marketing: [marketing responsibilities and decisions]",
+        "question": "What marketing responsibilities or decisions did you have beyond the work already listed?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after January 2025.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since the Lumen role ended. If you took care of a family member, you can say so. A career break can also name a course, project, volunteering or travel; include freelance work only if it was real. If there is nothing to add, a referral may matter more.",
+        "example": "January 2025 - Present [what you did]",
+        "question": "What have you been doing since the Lumen role ended, and what dates would accurately describe it?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "The resume doesn't name the job you're seeking.",
+        "cannot_tell": "Marketing, data entry and lab work point in different directions. A recruiter has to guess which job you want next. Once you've chosen one, put that direction near the top and give its most relevant work room.",
+        "example": "",
+        "question": "Which kind of job do you want this resume to pursue?"
+      },
+      {
+        "kind": "line",
+        "where": "Director of Marketing, line 1",
+        "line": "Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers",
+        "cannot_tell": "The posting frequency and follower count are useful, but a recruiter can't tell what you posted or what the posts were meant to do for the candle business.",
+        "example": "Posted [type of content] 3 to 5 times a week on the company Instagram, which has 2,100 followers, to [purpose]",
+        "question": "What kind of content did you post, and what was it intended to do?"
+      },
+      {
+        "kind": "keep",
+        "where": "Data Entry Clerk, line 1",
+        "line": "Entered 150 property records a day into the county title system",
+        "cannot_tell": "Keep this line. It gives a recruiter a concrete daily measure alongside the task, without making them guess what you handled.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Director of Marketing",
+        "Data Entry Clerk",
+        "Laboratory Assistant"
+      ],
+      "level": "Individual contributor; director title needs context",
+      "note": "The most recent work points toward social media and product content, while the earlier roles show data entry and lab preparation. The resume doesn't yet show the broader marketing leadership a recruiter might expect from the director title.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 60
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 60,
+    "lifted_by_employer": false,
+    "verdict": "A varied work history with a director title the marketing duties don't yet explain and recent time unaccounted for.",
+    "write_up": [
+      "It's common for a resume to contain several kinds of work without naming the next job. Here, a recruiter sees candle marketing, title records and lab work, but may pass because the Director of Marketing title suggests responsibilities the bullets don't show, and nothing accounts for the time after January 2025.",
+      "Let's start with the Lumen role and add any marketing decisions or responsibilities that were yours. The property records line is a good model: it names the work, the system and how many records you entered each day. Once you choose the kind of job you want next, we can make that direction easier to spot."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Director of Marketing title",
+        "line": "Director of Marketing",
+        "cannot_tell": "The title suggests marketing leadership, but the bullets show posting, product descriptions and order support. A recruiter can't tell whether you set marketing priorities or had other responsibilities. Keep your actual title and add those details if they were part of your job.",
+        "example": "Director of Marketing: [marketing responsibilities and decisions]",
+        "question": "What marketing responsibilities or decisions did you have beyond the work already listed?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after January 2025.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since the Lumen role ended. If you took care of a family member, you can say so. A career break can also name a course, project, volunteering or travel; include freelance work only if it was real. If there is nothing to add, a referral may matter more.",
+        "example": "January 2025 - Present [what you did]",
+        "question": "What have you been doing since the Lumen role ended, and what dates would accurately describe it?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "The resume doesn't name the job you're seeking.",
+        "cannot_tell": "Marketing, data entry and lab work point in different directions. A recruiter has to guess which job you want next. Once you've chosen one, put that direction near the top and give its most relevant work room.",
+        "example": "",
+        "question": "Which kind of job do you want this resume to pursue?"
+      },
+      {
+        "kind": "line",
+        "where": "Director of Marketing, line 1",
+        "line": "Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers",
+        "cannot_tell": "The posting frequency and follower count are useful, but a recruiter can't tell what you posted or what the posts were meant to do for the candle business.",
+        "example": "Posted [type of content] 3 to 5 times a week on the company Instagram, which has 2,100 followers, to [purpose]",
+        "question": "What kind of content did you post, and what was it intended to do?"
+      },
+      {
+        "kind": "keep",
+        "where": "Data Entry Clerk, line 1",
+        "line": "Entered 150 property records a day into the county title system",
+        "cannot_tell": "Keep this line. It gives a recruiter a concrete daily measure alongside the task, without making them guess what you handled.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Director of Marketing",
+        "Data Entry Clerk",
+        "Laboratory Assistant"
+      ],
+      "level": "Individual contributor; director title needs context",
+      "note": "The most recent work points toward social media and product content, while the earlier roles show data entry and lab preparation. The resume doesn't yet show the broader marketing leadership a recruiter might expect from the director title.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 60
+  },
+  "presentation": {
+    "score": 60,
+    "band": "Needs more context",
+    "model_score": 60,
+    "lifted_by_employer": false,
+    "verdict": "A varied work history with a director title the marketing duties don't yet explain and recent time unaccounted for.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 107,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Director of Marketing title",
+        "line": "Director of Marketing",
+        "blanks": 1,
+        "question": "What marketing responsibilities or decisions did you have beyond the work already listed?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after January 2025.",
+        "blanks": 1,
+        "question": "What have you been doing since the Lumen role ended, and what dates would accurately describe it?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "The resume doesn't name the job you're seeking.",
+        "blanks": 0,
+        "question": "Which kind of job do you want this resume to pursue?"
+      },
+      {
+        "kind": "line",
+        "where": "Director of Marketing, line 1",
+        "line": "Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers",
+        "blanks": 2,
+        "question": "What kind of content did you post, and what was it intended to do?"
+      },
+      {
+        "kind": "keep",
+        "where": "Data Entry Clerk, line 1",
+        "line": "Entered 150 property records a day into the county title system",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "line": 2,
+      "dates": 1,
+      "structure": 1,
+      "keep": 1
+    },
+    "structural_from_model": 2,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Director of Marketing",
+        "Data Entry Clerk",
+        "Laboratory Assistant"
+      ],
+      "level": "Individual contributor; director title needs context",
+      "note": "The most recent work points toward social media and product content, while the earlier roles show data entry and lab preparation. The resume doesn't yet show the broader marketing leadership a recruiter might expect from the director title.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00909605,
+  "latency_ms": 25353
+}

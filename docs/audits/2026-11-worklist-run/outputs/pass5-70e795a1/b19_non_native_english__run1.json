@@ -1,0 +1,247 @@
+{
+  "case_id": "b19_non_native_english",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/resumes/b_non_native_english.txt",
+  "resume_sha256": "b6a26fe36825d1810e73236e21445163948f02ce6be0d9328e9ccaf50cb59c16",
+  "resume_words": 237,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T16:36:08.367Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4682,
+        "completion_tokens": 992,
+        "total_tokens": 5674,
+        "cached_prompt_tokens": 3792,
+        "cache_write_prompt_tokens": 887,
+        "reasoning_tokens": 399
+      },
+      "cost_usd": 0.00626135,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 17340
+    }
+  ],
+  "resume_prompt_sha256": "70e795a1e91877ad12f5394154dccd644b9f9d298e123ca182963a0e3e089350",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 83,
+    "lifted_by_employer": false,
+    "verdict": "Accounts payable work in Houston, backed by senior accounting experience, with a few responsibilities still needing detail.",
+    "write_up": [
+      "You process around 400 vendor invoices a month in QuickBooks and have earlier experience with financial statements, an audit and a small accounting team. A recruiter can see the fit for accounts payable or staff accounting, though your part in the current month-end close is still a question.",
+      "The strongest line is the one about reducing month-end closing from 12 days to 7 days. It names what you made and shows the change in closing time. Use that level of detail to explain the work you helped with and what your team handled."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 4",
+        "line": "- Help the controller for month end closing",
+        "cannot_tell": "'Help' hides your part of the close. A recruiter can't tell which accounts or tasks you handled alongside the controller.",
+        "example": "Help the controller with month end closing by completing [tasks]",
+        "question": "Which month-end closing tasks did you handle for the controller?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 2",
+        "line": "- Lead team of 3 junior accountants",
+        "cannot_tell": "The team count is there, but not the work. What did the junior accountants handle under your direction?",
+        "example": "Lead team of 3 junior accountants who handle [work the team handles]",
+        "question": "What work did the 3 junior accountants handle?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Accountant, line 4",
+        "line": "- Reduce the month end closing from 12 days to 7 days by make new checklist and template",
+        "cannot_tell": "Keep this as your model. The checklist and template give the shorter close a concrete story.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Specialist",
+        "Accounts Payable Clerk"
+      ],
+      "level": "Experienced accounting professional",
+      "note": "Your current invoice and payment work points toward accounts payable, while your earlier general ledger and financial statement work supports a staff accountant search. The US GAAP certificate adds useful context; the resume doesn't say how you've applied US GAAP on the job.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 83,
+    "lifted_by_employer": false,
+    "verdict": "Accounts payable work in Houston, backed by senior accounting experience, with a few responsibilities still needing detail.",
+    "write_up": [
+      "You process around 400 vendor invoices a month in QuickBooks and have earlier experience with financial statements, an audit and a small accounting team. A recruiter can see the fit for accounts payable or staff accounting, though your part in the current month-end close is still a question.",
+      "The strongest line is the one about reducing month-end closing from 12 days to 7 days. It names what you made and shows the change in closing time. Use that level of detail to explain the work you helped with and what your team handled."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 4",
+        "line": "Help the controller for month end closing",
+        "cannot_tell": "'Help' hides your part of the close. A recruiter can't tell which accounts or tasks you handled alongside the controller.",
+        "example": "Help the controller with month end closing by completing [tasks]",
+        "question": "Which month-end closing tasks did you handle for the controller?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 2",
+        "line": "Lead team of 3 junior accountants",
+        "cannot_tell": "The team count is there, but not the work. What did the junior accountants handle under your direction?",
+        "example": "Lead team of 3 junior accountants who handle [work the team handles]",
+        "question": "What work did the 3 junior accountants handle?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Accountant, line 4",
+        "line": "Reduce the month end closing from 12 days to 7 days by make new checklist and template",
+        "cannot_tell": "Keep this as your model. The checklist and template give the shorter close a concrete story.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Specialist",
+        "Accounts Payable Clerk"
+      ],
+      "level": "Experienced accounting professional",
+      "note": "Your current invoice and payment work points toward accounts payable, while your earlier general ledger and financial statement work supports a staff accountant search. The US GAAP certificate adds useful context; the resume doesn't say how you've applied US GAAP on the job.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 83
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 83,
+    "lifted_by_employer": false,
+    "verdict": "Accounts payable work in Houston, backed by senior accounting experience, with a few responsibilities still needing detail.",
+    "write_up": [
+      "You process around 400 vendor invoices a month in QuickBooks and have earlier experience with financial statements, an audit and a small accounting team. A recruiter can see the fit for accounts payable or staff accounting, though your part in the current month-end close is still a question.",
+      "The strongest line is the one about reducing month-end closing from 12 days to 7 days. It names what you made and shows the change in closing time. Use that level of detail to explain the work you helped with and what your team handled."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 4",
+        "line": "Help the controller for month end closing",
+        "cannot_tell": "'Help' hides your part of the close. A recruiter can't tell which accounts or tasks you handled alongside the controller.",
+        "example": "Help the controller with month end closing by completing [tasks]",
+        "question": "Which month-end closing tasks did you handle for the controller?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 2",
+        "line": "Lead team of 3 junior accountants",
+        "cannot_tell": "The team count is there, but not the work. What did the junior accountants handle under your direction?",
+        "example": "Lead team of 3 junior accountants who handle [work the team handles]",
+        "question": "What work did the 3 junior accountants handle?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Accountant, line 4",
+        "line": "Reduce the month end closing from 12 days to 7 days by make new checklist and template",
+        "cannot_tell": "Keep this as your model. The checklist and template give the shorter close a concrete story.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Specialist",
+        "Accounts Payable Clerk"
+      ],
+      "level": "Experienced accounting professional",
+      "note": "Your current invoice and payment work points toward accounts payable, while your earlier general ledger and financial statement work supports a staff accountant search. The US GAAP certificate adds useful context; the resume doesn't say how you've applied US GAAP on the job.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 83
+  },
+  "presentation": {
+    "score": 83,
+    "band": "Mostly clear",
+    "model_score": 83,
+    "lifted_by_employer": false,
+    "verdict": "Accounts payable work in Houston, backed by senior accounting experience, with a few responsibilities still needing detail.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 93,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 4",
+        "line": "Help the controller for month end closing",
+        "blanks": 1,
+        "question": "Which month-end closing tasks did you handle for the controller?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 2",
+        "line": "Lead team of 3 junior accountants",
+        "blanks": 1,
+        "question": "What work did the 3 junior accountants handle?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Accountant, line 4",
+        "line": "Reduce the month end closing from 12 days to 7 days by make new checklist and template",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "line": 2,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Specialist",
+        "Accounts Payable Clerk"
+      ],
+      "level": "Experienced accounting professional",
+      "note": "Your current invoice and payment work points toward accounts payable, while your earlier general ledger and financial statement work supports a staff accountant search. The US GAAP certificate adds useful context; the resume doesn't say how you've applied US GAAP on the job.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00626135,
+  "latency_ms": 17342
+}

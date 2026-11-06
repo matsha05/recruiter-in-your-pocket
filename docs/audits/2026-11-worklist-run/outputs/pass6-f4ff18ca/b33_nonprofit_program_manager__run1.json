@@ -1,0 +1,273 @@
+{
+  "case_id": "b33_nonprofit_program_manager",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_nonprofit_program_manager_1.txt",
+  "resume_sha256": "eed001bb0dd40fc28e9488669ec9cea7f7a73eecaca46214d5f584dae2b6d5c9",
+  "resume_words": 146,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T17:57:47.497Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5144,
+        "completion_tokens": 1471,
+        "total_tokens": 6615,
+        "cached_prompt_tokens": 4481,
+        "cache_write_prompt_tokens": 660,
+        "reasoning_tokens": 701
+      },
+      "cost_usd": 0.00840705,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 21464
+    }
+  ],
+  "resume_prompt_sha256": "f4ff18ca80174dffdce77796c99b298e4ced5fdab817d0ec307d0b591839e910",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 69,
+    "lifted_by_employer": false,
+    "verdict": "A youth workforce program manager with clear responsibilities, but little to show how large the programs are.",
+    "write_up": [
+      "A recruiter sees a progression from program coordinator to manager, with staff supervision and employer partnerships. This is pretty common, and it won't stand out in a pile: the recent role names the work, but leaves the scale of the summer jobs program and what the team handles open to guesswork. Let's start with the most recent role.",
+      "The summer jobs line is your best model. It names the program, the students and where they're placed. Add how many students take part, then bring that same detail to the team, grant reports and employer partnerships."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 1",
+        "line": "- Manage a summer jobs program placing high school students with local employers",
+        "cannot_tell": "A recruiter can see who the program serves, but not how many students it places. That number would show how much work the program involves.",
+        "example": "Manage a summer jobs program placing [number] high school students with local employers [timeframe]",
+        "question": "How many high school students does the program place, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 2",
+        "line": "- Supervise 4 program coordinators and 20 seasonal staff",
+        "cannot_tell": "The staff count is useful, but a recruiter can't tell what the team does. Name the work you supervise.",
+        "example": "Supervise 4 program coordinators and 20 seasonal staff who [what the team handles]",
+        "question": "What work do the coordinators and seasonal staff handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 3",
+        "line": "- Write grant reports for city and foundation funders",
+        "cannot_tell": "The funders are named by type, but the reports themselves are still a blank. What do you report on, and how often?",
+        "example": "Write grant reports on [report content] for city and foundation funders [frequency]",
+        "question": "What do your grant reports cover, and how often do you write them?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 4",
+        "line": "- Recruit and onboard employer partners",
+        "cannot_tell": "A recruiter knows you bring in partners, but not how many or what onboarding involves. Those details would show the work behind the partnerships.",
+        "example": "Recruit and onboard [number] employer partners [timeframe], including [onboarding work]",
+        "question": "How many employer partners do you recruit and onboard over a typical period, and what does onboarding involve?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Program Manager, Youth Workforce",
+        "Program Coordinator"
+      ],
+      "level": "Program manager",
+      "note": "Your experience points toward youth workforce program management, with earlier coordinator work at Harbor Pathways. The staff count establishes management responsibility; program and partnership numbers would show more of what you manage.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 69,
+    "lifted_by_employer": false,
+    "verdict": "A youth workforce program manager with clear responsibilities, but little to show how large the programs are.",
+    "write_up": [
+      "A recruiter sees a progression from program coordinator to manager, with staff supervision and employer partnerships. This is pretty common, and it won't stand out in a pile: the recent role names the work, but leaves the scale of the summer jobs program and what the team handles open to guesswork. Let's start with the most recent role.",
+      "The summer jobs line is your best model. It names the program, the students and where they're placed. Add how many students take part, then bring that same detail to the team, grant reports and employer partnerships."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 1",
+        "line": "Manage a summer jobs program placing high school students with local employers",
+        "cannot_tell": "A recruiter can see who the program serves, but not how many students it places. That number would show how much work the program involves.",
+        "example": "Manage a summer jobs program placing [number] high school students with local employers [timeframe]",
+        "question": "How many high school students does the program place, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 2",
+        "line": "Supervise 4 program coordinators and 20 seasonal staff",
+        "cannot_tell": "The staff count is useful, but a recruiter can't tell what the team does. Name the work you supervise.",
+        "example": "Supervise 4 program coordinators and 20 seasonal staff who [what the team handles]",
+        "question": "What work do the coordinators and seasonal staff handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 3",
+        "line": "Write grant reports for city and foundation funders",
+        "cannot_tell": "The funders are named by type, but the reports themselves are still a blank. What do you report on, and how often?",
+        "example": "Write grant reports on [report content] for city and foundation funders [frequency]",
+        "question": "What do your grant reports cover, and how often do you write them?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 4",
+        "line": "Recruit and onboard employer partners",
+        "cannot_tell": "A recruiter knows you bring in partners, but not how many or what onboarding involves. Those details would show the work behind the partnerships.",
+        "example": "Recruit and onboard [number] employer partners [timeframe], including [onboarding work]",
+        "question": "How many employer partners do you recruit and onboard over a typical period, and what does onboarding involve?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Program Manager, Youth Workforce",
+        "Program Coordinator"
+      ],
+      "level": "Program manager",
+      "note": "Your experience points toward youth workforce program management, with earlier coordinator work at Harbor Pathways. The staff count establishes management responsibility; program and partnership numbers would show more of what you manage.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 69
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 69,
+    "lifted_by_employer": false,
+    "verdict": "A youth workforce program manager with clear responsibilities, but little to show how large the programs are.",
+    "write_up": [
+      "A recruiter sees a progression from program coordinator to manager, with staff supervision and employer partnerships. This is pretty common, and it won't stand out in a pile: the recent role names the work, but leaves the scale of the summer jobs program and what the team handles open to guesswork. Let's start with the most recent role.",
+      "The summer jobs line is your best model. It names the program, the students and where they're placed. Add how many students take part, then bring that same detail to the team, grant reports and employer partnerships."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 1",
+        "line": "Manage a summer jobs program placing high school students with local employers",
+        "cannot_tell": "A recruiter can see who the program serves, but not how many students it places. That number would show how much work the program involves.",
+        "example": "Manage a summer jobs program placing [number] high school students with local employers [timeframe]",
+        "question": "How many high school students does the program place, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 2",
+        "line": "Supervise 4 program coordinators and 20 seasonal staff",
+        "cannot_tell": "The staff count is useful, but a recruiter can't tell what the team does. Name the work you supervise.",
+        "example": "Supervise 4 program coordinators and 20 seasonal staff who [what the team handles]",
+        "question": "What work do the coordinators and seasonal staff handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 3",
+        "line": "Write grant reports for city and foundation funders",
+        "cannot_tell": "The funders are named by type, but the reports themselves are still a blank. What do you report on, and how often?",
+        "example": "Write grant reports on [report content] for city and foundation funders [frequency]",
+        "question": "What do your grant reports cover, and how often do you write them?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 4",
+        "line": "Recruit and onboard employer partners",
+        "cannot_tell": "A recruiter knows you bring in partners, but not how many or what onboarding involves. Those details would show the work behind the partnerships.",
+        "example": "Recruit and onboard [number] employer partners [timeframe], including [onboarding work]",
+        "question": "How many employer partners do you recruit and onboard over a typical period, and what does onboarding involve?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Program Manager, Youth Workforce",
+        "Program Coordinator"
+      ],
+      "level": "Program manager",
+      "note": "Your experience points toward youth workforce program management, with earlier coordinator work at Harbor Pathways. The staff count establishes management responsibility; program and partnership numbers would show more of what you manage.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 69
+  },
+  "presentation": {
+    "score": 69,
+    "band": "Needs more context",
+    "model_score": 69,
+    "lifted_by_employer": false,
+    "verdict": "A youth workforce program manager with clear responsibilities, but little to show how large the programs are.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 95,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 1",
+        "line": "Manage a summer jobs program placing high school students with local employers",
+        "blanks": 2,
+        "question": "How many high school students does the program place, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 2",
+        "line": "Supervise 4 program coordinators and 20 seasonal staff",
+        "blanks": 1,
+        "question": "What work do the coordinators and seasonal staff handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 3",
+        "line": "Write grant reports for city and foundation funders",
+        "blanks": 2,
+        "question": "What do your grant reports cover, and how often do you write them?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 4",
+        "line": "Recruit and onboard employer partners",
+        "blanks": 3,
+        "question": "How many employer partners do you recruit and onboard over a typical period, and what does onboarding involve?"
+      }
+    ],
+    "card_count": 4,
+    "kinds": {
+      "line": 4
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Program Manager, Youth Workforce",
+        "Program Coordinator"
+      ],
+      "level": "Program manager",
+      "note": "Your experience points toward youth workforce program management, with earlier coordinator work at Harbor Pathways. The staff count establishes management responsibility; program and partnership numbers would show more of what you manage.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00840705,
+  "latency_ms": 21466
+}

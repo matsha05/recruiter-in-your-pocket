@@ -1,0 +1,28 @@
+# b22_office_manager_paragraphs, run 1
+Resume: ../2026-11-live-judgment/resumes/b_office_manager_paragraphs.txt (219 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 6eb03ddb; severity check off
+Outcome: report; cost $0.0064; 13.9s
+Case note: Paragraph format, no bullets.
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+An experienced office manager whose resume shows the work, the people, and the volume.
+
+## Write-up
+This is a strong office manager resume! A recruiter can see the six-attorney office you run, the billing you handle, and the receptionists you supervise. The QuickBooks line is a great model: it names both the monthly invoice volume and the trust account reconciliation.
+
+The main thing slowing a recruiter down is the long paragraph under each job. Break those responsibilities into bullets, and add what you did to onboard the new practice management software. Your resume isn't likely to be the thing holding you back; how competitive a particular job is will matter too.
+
+## Cards (2; {"structure":1,"keep":1}); severity off; added []
+1. [structure] Experience
+   line: "Each role's responsibilities are written in a paragraph."
+   can't tell: A recruiter has to search through the paragraphs to pick out the billing, supervision, and software work. Separate bullets would let those responsibilities stand on their own.
+   question: Which responsibilities would you put in separate bullets under each role?
+2. [keep] Office Manager, bookkeeping
+   line: "Office Manager, Harrod and Blake Law Office, Louisville, KY, May 2018 to present. I run the front office for a six-attorney firm. I handle scheduling for the attorneys, manage the firm's calendar of court dates and filing deadlines, order supplies, and handle vendor contracts for the copier, phones, and cleaning. I do the bookkeeping in QuickBooks, including client billing of roughly 90 invoices a month and the monthly trust account reconciliation. I hired and supervise two receptionists and I onboarded the firm's new practice management software in 2022, which replaced paper files for all new matters."
+   can't tell: Keep this as a model. It pairs a named tool with two distinct responsibilities and tells a recruiter how much billing you handle.
+
+## Fit
+Roles: ["Office Manager","Office Coordinator"]
+Level: Experienced office manager
+Note: Your experience points toward office management and coordination roles in professional practices. The law office work shows bookkeeping, staff supervision, scheduling, and vendor responsibilities.

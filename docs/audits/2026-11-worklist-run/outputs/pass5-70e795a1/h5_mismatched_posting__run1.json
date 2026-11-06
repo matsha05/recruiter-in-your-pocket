@@ -1,0 +1,240 @@
+{
+  "case_id": "h5_mismatched_posting",
+  "batch": "holes",
+  "run": 1,
+  "note": "Data analyst against a registered nurse posting.",
+  "resume_file": "../2026-11-live-judgment/resumes/h5_data_analyst.txt",
+  "resume_sha256": "7bbdd7afb1b8ee26ca438829f18fe67486123dfaa7fc822193ebc907d0875abf",
+  "resume_words": 166,
+  "job_description_file": "../2026-11-live-judgment/resumes/h5_nursing_posting.txt",
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T16:33:12.549Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4806,
+        "completion_tokens": 1074,
+        "total_tokens": 5880,
+        "cached_prompt_tokens": 0,
+        "cache_write_prompt_tokens": 4803,
+        "reasoning_tokens": 467
+      },
+      "cost_usd": 0.01137675,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 16380
+    }
+  ],
+  "resume_prompt_sha256": "70e795a1e91877ad12f5394154dccd644b9f9d298e123ca182963a0e3e089350",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A strong data analyst resume, but not a match for the nursing role as presented.",
+    "write_up": [
+      "A recruiter sees a data analyst who builds dashboards, automates reporting and advises merchandising. The hesitation is the job you supplied: the resume doesn't show an RN license, clinical experience or patient care.",
+      "The SQL model is the line to copy. It names the work and the manual report it replaced. Your ad hoc analyses have a useful request count, but their subjects are still a blank."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Data Analyst, line 2",
+        "line": "- Wrote the SQL model that replaced a 3-day manual weekly sales report with an automated one",
+        "cannot_tell": "Keep this as a model. It connects your SQL work to a concrete change in the weekly reporting process.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Data Analyst, line 4",
+        "line": "- Pull ad hoc analyses for the VP of Sales, about 10 requests a month",
+        "cannot_tell": "The request count is useful, but the analyses could cover almost anything. What does the VP ask you to investigate?",
+        "example": "Pull ad hoc analyses on [analysis topics] for the VP of Sales, about 10 requests a month",
+        "question": "What topics do the VP of Sales' requests cover?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Data Analyst",
+        "Registered Nurse, Medical-Surgical Unit (Nights)"
+      ],
+      "level": "Experienced data analyst",
+      "note": "This resume doesn't show the nursing license, certifications, EHR experience or patient care the registered nurse role asks for. Your reporting and communication with business teams fit data analyst work; they don't establish clinical qualifications. Add nursing credentials and experience only if you have them.",
+      "posting": {
+        "summary": "The role requires a licensed RN to provide and document medical-surgical patient care on night shifts. The resume shows analytics and reporting work, not nursing qualifications.",
+        "missing": [
+          "Current unrestricted North Carolina RN license or compact state license",
+          "BLS certification required; ACLS within six months of hire",
+          "Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered",
+          "Experience with Epic or a comparable EHR",
+          "Ability to manage a patient assignment of 5 to 6 patients",
+          "Strong communication with patients, families, and the interdisciplinary team"
+        ]
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A strong data analyst resume, but not a match for the nursing role as presented.",
+    "write_up": [
+      "A recruiter sees a data analyst who builds dashboards, automates reporting and advises merchandising. The hesitation is the job you supplied: the resume doesn't show an RN license, clinical experience or patient care.",
+      "The SQL model is the line to copy. It names the work and the manual report it replaced. Your ad hoc analyses have a useful request count, but their subjects are still a blank."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Data Analyst, line 2",
+        "line": "Wrote the SQL model that replaced a 3-day manual weekly sales report with an automated one",
+        "cannot_tell": "Keep this as a model. It connects your SQL work to a concrete change in the weekly reporting process.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Data Analyst, line 4",
+        "line": "Pull ad hoc analyses for the VP of Sales, about 10 requests a month",
+        "cannot_tell": "The request count is useful, but the analyses could cover almost anything. What does the VP ask you to investigate?",
+        "example": "Pull ad hoc analyses on [analysis topics] for the VP of Sales, about 10 requests a month",
+        "question": "What topics do the VP of Sales' requests cover?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Data Analyst",
+        "Registered Nurse, Medical-Surgical Unit (Nights)"
+      ],
+      "level": "Experienced data analyst",
+      "note": "This resume doesn't show the nursing license, certifications, EHR experience or patient care the registered nurse role asks for. Your reporting and communication with business teams fit data analyst work; they don't establish clinical qualifications. Add nursing credentials and experience only if you have them.",
+      "posting": {
+        "summary": "The role requires a licensed RN to provide and document medical-surgical patient care on night shifts. The resume shows analytics and reporting work, not nursing qualifications.",
+        "missing": [
+          "Current unrestricted North Carolina RN license or compact state license",
+          "BLS certification required; ACLS within six months of hire",
+          "Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered",
+          "Experience with Epic or a comparable EHR",
+          "Ability to manage a patient assignment of 5 to 6 patients",
+          "Strong communication with patients, families, and the interdisciplinary team"
+        ]
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A strong data analyst resume, but not a match for the nursing role as presented.",
+    "write_up": [
+      "A recruiter sees a data analyst who builds dashboards, automates reporting and advises merchandising. The hesitation is the job you supplied: the resume doesn't show an RN license, clinical experience or patient care.",
+      "The SQL model is the line to copy. It names the work and the manual report it replaced. Your ad hoc analyses have a useful request count, but their subjects are still a blank."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Data Analyst, line 2",
+        "line": "Wrote the SQL model that replaced a 3-day manual weekly sales report with an automated one",
+        "cannot_tell": "Keep this as a model. It connects your SQL work to a concrete change in the weekly reporting process.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Data Analyst, line 4",
+        "line": "Pull ad hoc analyses for the VP of Sales, about 10 requests a month",
+        "cannot_tell": "The request count is useful, but the analyses could cover almost anything. What does the VP ask you to investigate?",
+        "example": "Pull ad hoc analyses on [analysis topics] for the VP of Sales, about 10 requests a month",
+        "question": "What topics do the VP of Sales' requests cover?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Data Analyst",
+        "Registered Nurse, Medical-Surgical Unit (Nights)"
+      ],
+      "level": "Experienced data analyst",
+      "note": "This resume doesn't show the nursing license, certifications, EHR experience or patient care the registered nurse role asks for. Your reporting and communication with business teams fit data analyst work; they don't establish clinical qualifications. Add nursing credentials and experience only if you have them.",
+      "posting": {
+        "summary": "The role requires a licensed RN to provide and document medical-surgical patient care on night shifts. The resume shows analytics and reporting work, not nursing qualifications.",
+        "missing": [
+          "Current unrestricted North Carolina RN license or compact state license",
+          "BLS certification required; ACLS within six months of hire",
+          "Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered",
+          "Experience with Epic or a comparable EHR",
+          "Ability to manage a patient assignment of 5 to 6 patients",
+          "Strong communication with patients, families, and the interdisciplinary team"
+        ]
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "presentation": {
+    "score": 88,
+    "band": "Clear and specific",
+    "model_score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A strong data analyst resume, but not a match for the nursing role as presented.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 67,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Data Analyst, line 2",
+        "line": "Wrote the SQL model that replaced a 3-day manual weekly sales report with an automated one",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Data Analyst, line 4",
+        "line": "Pull ad hoc analyses for the VP of Sales, about 10 requests a month",
+        "blanks": 1,
+        "question": "What topics do the VP of Sales' requests cover?"
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "keep": 1,
+      "line": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Data Analyst",
+        "Registered Nurse, Medical-Surgical Unit (Nights)"
+      ],
+      "level": "Experienced data analyst",
+      "note": "This resume doesn't show the nursing license, certifications, EHR experience or patient care the registered nurse role asks for. Your reporting and communication with business teams fit data analyst work; they don't establish clinical qualifications. Add nursing credentials and experience only if you have them.",
+      "posting": {
+        "summary": "The role requires a licensed RN to provide and document medical-surgical patient care on night shifts. The resume shows analytics and reporting work, not nursing qualifications.",
+        "missing": [
+          "Current unrestricted North Carolina RN license or compact state license",
+          "BLS certification required; ACLS within six months of hire",
+          "Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered",
+          "Experience with Epic or a comparable EHR",
+          "Ability to manage a patient assignment of 5 to 6 patients",
+          "Strong communication with patients, families, and the interdisciplinary team"
+        ]
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01137675,
+  "latency_ms": 16382
+}

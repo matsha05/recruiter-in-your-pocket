@@ -1,49 +1,51 @@
 # b36_product_designer_unrelated, run 1
 Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_product_designer_unrelated_1.txt (147 words)
-Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
-Outcome: report; cost $0.0093; 26.5s
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0104; 25.6s
 Case note: Current job outside the field.
 
 ## Needs more context (score 68; model wrote 68)
 ## Verdict
-A product designer with solid named projects, but no recent design role and too little detail on the work.
+A product designer with named deliverables, but little about the decisions or results behind them.
 
 ## Write-up
-A recruiter sees product design work on fitness apps, followed by a current barista job. The switch is accounted for, but the last design role ended in February 2024. The cafe bullets don't say how many customers you serve or baristas you train, and some design bullets leave your contribution open.
+You designed apps at Loop Fitness and sites and app screens at Brightpath Studio, and you're now a barista at Ferry Street Coffee. It's common for design resumes to list deliverables without explaining the decisions behind them. Here, that makes it harder to stand out for product design work because a recruiter can't see what the designs solved.
 
-The line about creating the app's first design system in Figma is the model: it names the deliverable, the tool and what made the work new. Give the booking flow and usability tests a little more of that substance.
+The Figma design system is the best model: it names what you created, where you built it, and why it was a first for the app. Your current job accounts for the time since Loop Fitness, but your resume doesn't show product design work after that role.
+
+Let's start with the Loop Fitness booking flow and weekly releases. Add the problem you worked on and your contribution, then use the usability tests to show what you did with the findings. Your portfolio link gives you another place to show that work.
 
 ## Cards (6; {"line":5,"keep":1}); severity off; added []
 1. [line] Barista, line 1
    line: "Prepare drinks and serve customers in a busy cafe"
-   can't tell: A recruiter can't tell how many customers you serve. A typical shift count would make the cafe work more concrete.
-   example: Prepare drinks and serve [number] customers per [time period] in a busy cafe
-   question: About how many customers do you serve in a typical shift?
+   can't tell: A recruiter can see the job, but not how many customers you serve or drinks you prepare. A measure of the work would give the current role more substance.
+   example: Prepare drinks and serve [number] customers [time period] in a busy cafe
+   question: How many customers do you serve in a typical shift?
 2. [line] Barista, line 2
    line: "Train new baristas on espresso equipment"
-   can't tell: Training is useful work. How many new baristas have you trained, and what do you teach them?
-   example: Train [number] new baristas on espresso equipment, covering [training topics]
-   question: How many new baristas have you trained, and what does the equipment training cover?
+   can't tell: Training new baristas is useful to know. How many have you trained, and what does the training cover?
+   example: Train [number] new baristas on espresso equipment, covering [what training includes]
+   question: How many new baristas have you trained, and what do you teach them?
 3. [line] Product Designer, line 1
    line: "Designed the class booking flow for the iOS and Android apps"
-   can't tell: The booking flow is a clear project. The problem you were designing for isn't here.
+   can't tell: The booking flow is a clear piece of work, but the problem behind it is missing. That makes it tough to see how you approached the design.
    example: Designed the class booking flow for the iOS and Android apps to address [booking problem]
-   question: What booking problem was the flow designed to address?
+   question: What booking problem did the flow address?
 4. [line] Product Designer, line 2
    line: "Worked with two engineers and a product manager on weekly releases"
-   can't tell: The team and release rhythm are clear. Your part in those releases isn't.
-   example: Worked with two engineers and a product manager on weekly releases, contributing [your work] to [what shipped]
-   question: What did you contribute to the weekly releases, and what shipped?
+   can't tell: The team and release rhythm are clear, but your contribution to those releases isn't. What design work did you bring to them?
+   example: Worked with two engineers and a product manager on weekly releases, contributing [your design work]
+   question: What design work did you contribute to the weekly releases?
 5. [keep] Product Designer, line 3
    line: "Created the app's first design system in Figma"
-   can't tell: Keep this. It gives you ownership of a recognizable piece of product work without making a recruiter guess at your part.
+   can't tell: Keep this as a model. It gives you ownership of a distinct piece of work rather than leaving a recruiter to guess what you contributed.
 6. [line] Product Designer, line 4
    line: "Ran usability tests with members before launches"
-   can't tell: You ran the tests, but a recruiter can't tell what members tested or what you did with their feedback.
-   example: Ran usability tests with members before launches to test [what you tested], then [what you did with feedback]
-   question: What did members test, and what did you do with their feedback?
+   can't tell: A recruiter knows who took part and when you tested, but not what you did with what you learned. That connection matters for a product design role.
+   example: Ran usability tests with members before launches and [what you did with the findings]
+   question: What did you do with the findings from those tests?
 
 ## Fit
 Roles: ["Product Designer","Junior Product Designer"]
-Level: Product designer with earlier junior experience
-Note: Your experience points to product design roles, particularly mobile app work. The current cafe role accounts for your time, while the portfolio and more detail on the design projects can show what you bring back to that work.
+Level: Product designer with prior experience
+Note: Your design work points toward product design roles involving apps and web experiences. The most recent product design role ended in February 2024, so showing the thinking behind that work will be important.

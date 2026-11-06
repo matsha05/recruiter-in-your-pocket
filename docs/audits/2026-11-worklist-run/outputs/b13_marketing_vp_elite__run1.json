@@ -11,58 +11,51 @@
   "model": "gpt-6.1-terra",
   "reasoning_effort": "medium",
   "severity_check": false,
-  "started_at": "2026-11-06T16:35:21.165Z",
+  "started_at": "2026-11-06T18:15:36.072Z",
   "calls": [
     {
       "kind": "report",
       "usage": {
-        "prompt_tokens": 6184,
-        "completion_tokens": 1358,
-        "total_tokens": 7542,
-        "cached_prompt_tokens": 3792,
+        "prompt_tokens": 7077,
+        "completion_tokens": 966,
+        "total_tokens": 8043,
+        "cached_prompt_tokens": 4685,
         "cache_write_prompt_tokens": 2389,
-        "reasoning_tokens": 695
+        "reasoning_tokens": 364
       },
-      "cost_usd": 0.00996885,
+      "cost_usd": 0.0080535,
       "model": "gpt-6.1-terra",
-      "latency_ms": 19968
+      "latency_ms": 11824
     }
   ],
-  "resume_prompt_sha256": "70e795a1e91877ad12f5394154dccd644b9f9d298e123ca182963a0e3e089350",
+  "resume_prompt_sha256": "0a19c3ee70395ec8fb0584d4bea1b93da77aeca37469b4d47211bc8568544f0c",
   "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
   "model_output": {
     "contract_version": "v3",
-    "score": 88,
+    "score": 91,
     "lifted_by_employer": false,
-    "verdict": "A marketing executive with team, budget, and growth results attached, plus a few details worth sharpening.",
+    "verdict": "A marketing executive with a clear record of leading teams and growing demand, revenue, and market share.",
     "write_up": [
-      "A recruiter will see a marketing executive who leads a 45-person organization and manages a $25M annual budget, with results attached across demand generation and launches. The launch line gives the gains but not what you changed in the process.",
-      "The account-based marketing line is a good model: you built and executed the program, then named its pipeline contribution and win-rate gains. Add the launch process change and spell out your P&L responsibilities to make the leadership story more concrete."
+      "Your resume makes a strong case for senior marketing leadership! From marketing strategy at Maven Interactive to Chief Marketing Officer at Novara Technologies, you show the teams and budgets you led alongside the business results.",
+      "The customer advocacy line at Viridian is a model: it names the program you launched and connects it to retention and upsell revenue. Your current role leads the experience section, and its results make the progression to CMO easy to follow.",
+      "The main detail to add is what changed in Novara's product launch process. Otherwise, your resume is unlikely to be the thing holding you back; competition for senior roles will matter too."
     ],
     "cards": [
       {
         "kind": "line",
         "where": "Chief Marketing Officer, line 3",
         "line": "- I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.",
-        "cannot_tell": "The launch gains are substantial, but a recruiter can't tell what changed in the process. Name the change behind the decision.",
-        "example": "I decided to revamp the product launch process by [process change], shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.",
-        "question": "What did you change in the product launch process?"
+        "cannot_tell": "The results are substantial, but a recruiter can't tell what you changed in the launch process or how launch success was measured. Those details would show what went into the improvement.",
+        "example": "I decided to revamp the product launch process by [change], shortening time-to-market by 30% and increasing launch success rate, measured by [measure], to 90%, resulting in a $15M incremental revenue increase over 2 years.",
+        "question": "What did you change in the launch process, and how did you measure launch success?"
       },
       {
         "kind": "keep",
-        "where": "Vice President, Global Marketing, line 2",
-        "line": "- I built and executed a comprehensive account-based marketing (ABM) program that increased pipeline contribution by $50M annually, lifting win rates by 15% among Fortune 500 clients.",
-        "cannot_tell": "Keep the named program and the figures tied to it. That combination shows both the work you owned and why it mattered.",
+        "where": "Vice President, Global Marketing, line 3",
+        "line": "- I led the development and launch of a new customer advocacy program that increased customer retention by 12% and generated $4M in upsell revenue within 18 months.",
+        "cannot_tell": "Keep this as a model. It makes your ownership clear and gives the recruiter a timeframe for the results.",
         "example": "",
         "question": ""
-      },
-      {
-        "kind": "line",
-        "where": "Skills",
-        "line": "- Budget & P&L Management ($25M+)",
-        "cannot_tell": "Your budget responsibility is clear in Experience. Your P&L responsibilities aren't described there, and they're important for an executive role.",
-        "example": "Budget & P&L Management ($25M+), including [P&L responsibilities]",
-        "question": "Which P&L responsibilities did you own?"
       }
     ],
     "fit": {
@@ -70,8 +63,8 @@
         "Chief Marketing Officer",
         "Vice President, Global Marketing"
       ],
-      "level": "Senior marketing executive",
-      "note": "Your experience points toward senior marketing leadership in SaaS and B2B technology. The team and budget figures, along with demand generation and launch results, back up that direction.",
+      "level": "Executive marketing leadership",
+      "note": "Your experience points toward senior marketing leadership in technology, particularly SaaS and B2B. The resume shows global team leadership, demand generation, brand work, and revenue growth.",
       "posting": {
         "summary": "",
         "missing": []
@@ -80,37 +73,30 @@
   },
   "validated_report": {
     "contract_version": "v3",
-    "score": 88,
+    "score": 91,
     "lifted_by_employer": false,
-    "verdict": "A marketing executive with team, budget, and growth results attached, plus a few details worth sharpening.",
+    "verdict": "A marketing executive with a clear record of leading teams and growing demand, revenue, and market share.",
     "write_up": [
-      "A recruiter will see a marketing executive who leads a 45-person organization and manages a $25M annual budget, with results attached across demand generation and launches. The launch line gives the gains but not what you changed in the process.",
-      "The account-based marketing line is a good model: you built and executed the program, then named its pipeline contribution and win-rate gains. Add the launch process change and spell out your P&L responsibilities to make the leadership story more concrete."
+      "Your resume makes a strong case for senior marketing leadership! From marketing strategy at Maven Interactive to Chief Marketing Officer at Novara Technologies, you show the teams and budgets you led alongside the business results.",
+      "The customer advocacy line at Viridian is a model: it names the program you launched and connects it to retention and upsell revenue. Your current role leads the experience section, and its results make the progression to CMO easy to follow.",
+      "The main detail to add is what changed in Novara's product launch process. Otherwise, your resume is unlikely to be the thing holding you back; competition for senior roles will matter too."
     ],
     "cards": [
       {
         "kind": "line",
         "where": "Chief Marketing Officer, line 3",
         "line": "I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.",
-        "cannot_tell": "The launch gains are substantial, but a recruiter can't tell what changed in the process. Name the change behind the decision.",
-        "example": "I decided to revamp the product launch process by [process change], shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.",
-        "question": "What did you change in the product launch process?"
+        "cannot_tell": "The results are substantial, but a recruiter can't tell what you changed in the launch process or how launch success was measured. Those details would show what went into the improvement.",
+        "example": "I decided to revamp the product launch process by [change], shortening time-to-market by 30% and increasing launch success rate, measured by [measure], to 90%, resulting in a $15M incremental revenue increase over 2 years.",
+        "question": "What did you change in the launch process, and how did you measure launch success?"
       },
       {
         "kind": "keep",
-        "where": "Vice President, Global Marketing, line 2",
-        "line": "I built and executed a comprehensive account-based marketing (ABM) program that increased pipeline contribution by $50M annually, lifting win rates by 15% among Fortune 500 clients.",
-        "cannot_tell": "Keep the named program and the figures tied to it. That combination shows both the work you owned and why it mattered.",
+        "where": "Vice President, Global Marketing, line 3",
+        "line": "I led the development and launch of a new customer advocacy program that increased customer retention by 12% and generated $4M in upsell revenue within 18 months.",
+        "cannot_tell": "Keep this as a model. It makes your ownership clear and gives the recruiter a timeframe for the results.",
         "example": "",
         "question": ""
-      },
-      {
-        "kind": "line",
-        "where": "Skills",
-        "line": "Budget & P&L Management ($25M+)",
-        "cannot_tell": "Your budget responsibility is clear in Experience. Your P&L responsibilities aren't described there, and they're important for an executive role.",
-        "example": "Budget & P&L Management ($25M+), including [P&L responsibilities]",
-        "question": "Which P&L responsibilities did you own?"
       }
     ],
     "fit": {
@@ -118,8 +104,8 @@
         "Chief Marketing Officer",
         "Vice President, Global Marketing"
       ],
-      "level": "Senior marketing executive",
-      "note": "Your experience points toward senior marketing leadership in SaaS and B2B technology. The team and budget figures, along with demand generation and launch results, back up that direction.",
+      "level": "Executive marketing leadership",
+      "note": "Your experience points toward senior marketing leadership in technology, particularly SaaS and B2B. The resume shows global team leadership, demand generation, brand work, and revenue growth.",
       "posting": {
         "summary": "",
         "missing": []
@@ -129,41 +115,34 @@
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 88
+    "content_score": 91
   },
   "shipped_report": {
     "contract_version": "v3",
-    "score": 88,
+    "score": 91,
     "lifted_by_employer": false,
-    "verdict": "A marketing executive with team, budget, and growth results attached, plus a few details worth sharpening.",
+    "verdict": "A marketing executive with a clear record of leading teams and growing demand, revenue, and market share.",
     "write_up": [
-      "A recruiter will see a marketing executive who leads a 45-person organization and manages a $25M annual budget, with results attached across demand generation and launches. The launch line gives the gains but not what you changed in the process.",
-      "The account-based marketing line is a good model: you built and executed the program, then named its pipeline contribution and win-rate gains. Add the launch process change and spell out your P&L responsibilities to make the leadership story more concrete."
+      "Your resume makes a strong case for senior marketing leadership! From marketing strategy at Maven Interactive to Chief Marketing Officer at Novara Technologies, you show the teams and budgets you led alongside the business results.",
+      "The customer advocacy line at Viridian is a model: it names the program you launched and connects it to retention and upsell revenue. Your current role leads the experience section, and its results make the progression to CMO easy to follow.",
+      "The main detail to add is what changed in Novara's product launch process. Otherwise, your resume is unlikely to be the thing holding you back; competition for senior roles will matter too."
     ],
     "cards": [
       {
         "kind": "line",
         "where": "Chief Marketing Officer, line 3",
         "line": "I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.",
-        "cannot_tell": "The launch gains are substantial, but a recruiter can't tell what changed in the process. Name the change behind the decision.",
-        "example": "I decided to revamp the product launch process by [process change], shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.",
-        "question": "What did you change in the product launch process?"
+        "cannot_tell": "The results are substantial, but a recruiter can't tell what you changed in the launch process or how launch success was measured. Those details would show what went into the improvement.",
+        "example": "I decided to revamp the product launch process by [change], shortening time-to-market by 30% and increasing launch success rate, measured by [measure], to 90%, resulting in a $15M incremental revenue increase over 2 years.",
+        "question": "What did you change in the launch process, and how did you measure launch success?"
       },
       {
         "kind": "keep",
-        "where": "Vice President, Global Marketing, line 2",
-        "line": "I built and executed a comprehensive account-based marketing (ABM) program that increased pipeline contribution by $50M annually, lifting win rates by 15% among Fortune 500 clients.",
-        "cannot_tell": "Keep the named program and the figures tied to it. That combination shows both the work you owned and why it mattered.",
+        "where": "Vice President, Global Marketing, line 3",
+        "line": "I led the development and launch of a new customer advocacy program that increased customer retention by 12% and generated $4M in upsell revenue within 18 months.",
+        "cannot_tell": "Keep this as a model. It makes your ownership clear and gives the recruiter a timeframe for the results.",
         "example": "",
         "question": ""
-      },
-      {
-        "kind": "line",
-        "where": "Skills",
-        "line": "Budget & P&L Management ($25M+)",
-        "cannot_tell": "Your budget responsibility is clear in Experience. Your P&L responsibilities aren't described there, and they're important for an executive role.",
-        "example": "Budget & P&L Management ($25M+), including [P&L responsibilities]",
-        "question": "Which P&L responsibilities did you own?"
       }
     ],
     "fit": {
@@ -171,8 +150,8 @@
         "Chief Marketing Officer",
         "Vice President, Global Marketing"
       ],
-      "level": "Senior marketing executive",
-      "note": "Your experience points toward senior marketing leadership in SaaS and B2B technology. The team and budget figures, along with demand generation and launch results, back up that direction.",
+      "level": "Executive marketing leadership",
+      "note": "Your experience points toward senior marketing leadership in technology, particularly SaaS and B2B. The resume shows global team leadership, demand generation, brand work, and revenue growth.",
       "posting": {
         "summary": "",
         "missing": []
@@ -182,42 +161,35 @@
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 88
+    "content_score": 91
   },
   "presentation": {
-    "score": 88,
+    "score": 91,
     "band": "Clear and specific",
-    "model_score": 88,
+    "model_score": 91,
     "lifted_by_employer": false,
-    "verdict": "A marketing executive with team, budget, and growth results attached, plus a few details worth sharpening.",
-    "write_up_paragraphs": 2,
-    "write_up_words": 80,
+    "verdict": "A marketing executive with a clear record of leading teams and growing demand, revenue, and market share.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 108,
     "cards": [
       {
         "kind": "line",
         "where": "Chief Marketing Officer, line 3",
         "line": "I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.",
-        "blanks": 1,
-        "question": "What did you change in the product launch process?"
+        "blanks": 2,
+        "question": "What did you change in the launch process, and how did you measure launch success?"
       },
       {
         "kind": "keep",
-        "where": "Vice President, Global Marketing, line 2",
-        "line": "I built and executed a comprehensive account-based marketing (ABM) program that increased pipeline contribution by $50M annually, lifting win rates by 15% among Fortune 500 clients.",
+        "where": "Vice President, Global Marketing, line 3",
+        "line": "I led the development and launch of a new customer advocacy program that increased customer retention by 12% and generated $4M in upsell revenue within 18 months.",
         "blanks": 0,
         "question": ""
-      },
-      {
-        "kind": "line",
-        "where": "Skills",
-        "line": "Budget & P&L Management ($25M+)",
-        "blanks": 1,
-        "question": "Which P&L responsibilities did you own?"
       }
     ],
-    "card_count": 3,
+    "card_count": 2,
     "kinds": {
-      "line": 2,
+      "line": 1,
       "keep": 1
     },
     "structural_from_model": 0,
@@ -229,8 +201,8 @@
         "Chief Marketing Officer",
         "Vice President, Global Marketing"
       ],
-      "level": "Senior marketing executive",
-      "note": "Your experience points toward senior marketing leadership in SaaS and B2B technology. The team and budget figures, along with demand generation and launch results, back up that direction.",
+      "level": "Executive marketing leadership",
+      "note": "Your experience points toward senior marketing leadership in technology, particularly SaaS and B2B. The resume shows global team leadership, demand generation, brand work, and revenue growth.",
       "posting": {
         "summary": "",
         "missing": []
@@ -238,6 +210,6 @@
     }
   },
   "outcome": "report",
-  "cost_usd": 0.00996885,
-  "latency_ms": 19970
+  "cost_usd": 0.0080535,
+  "latency_ms": 11841
 }

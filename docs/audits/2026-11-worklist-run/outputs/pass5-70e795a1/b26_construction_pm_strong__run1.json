@@ -1,0 +1,212 @@
+{
+  "case_id": "b26_construction_pm_strong",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_construction_pm_strong_1.txt",
+  "resume_sha256": "548c7db64c756b5fab695853a27156e8aa67858a31cab50680d65e1ef14cc181",
+  "resume_words": 136,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T16:36:47.894Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4440,
+        "completion_tokens": 818,
+        "total_tokens": 5258,
+        "cached_prompt_tokens": 3792,
+        "cache_write_prompt_tokens": 645,
+        "reasoning_tokens": 333
+      },
+      "cost_usd": 0.00508885,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 14577
+    }
+  ],
+  "resume_prompt_sha256": "70e795a1e91877ad12f5394154dccd644b9f9d298e123ca182963a0e3e089350",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A construction project manager with project values, trade counts and delivery results a recruiter can use.",
+    "write_up": [
+      "You manage concurrent tenant-improvement projects and have delivered a grocery store build. A recruiter can see the project values, the number of trades and where you beat schedule. The main question is how you kept change orders down.",
+      "The grocery store line is the model: it names the build, its value and when you delivered it against schedule. Your earlier scheduling work is specific, too, and Experience is where it belongs, above Education."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Project Manager, line 2",
+        "line": "- Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024",
+        "cannot_tell": "Keep this. It ties a concrete project to a delivery result without making the reader hunt for context.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Project Manager, line 4",
+        "line": "- Kept change orders under 3% of contract value across 2024 and 2025 projects",
+        "cannot_tell": "The result is strong, but a recruiter can't see what you did to keep change orders down. Your approach would show how you managed that part of the work.",
+        "example": "Kept change orders under 3% of contract value across 2024 and 2025 projects by [approach]",
+        "question": "What did you do to keep change orders under 3% of contract value across those projects?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Project Manager",
+        "Assistant Project Manager"
+      ],
+      "level": "Experienced project manager",
+      "note": "Your experience points toward construction project management in tenant improvements and retail builds. The current role shows both concurrent project management and a completed grocery store build.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A construction project manager with project values, trade counts and delivery results a recruiter can use.",
+    "write_up": [
+      "You manage concurrent tenant-improvement projects and have delivered a grocery store build. A recruiter can see the project values, the number of trades and where you beat schedule. The main question is how you kept change orders down.",
+      "The grocery store line is the model: it names the build, its value and when you delivered it against schedule. Your earlier scheduling work is specific, too, and Experience is where it belongs, above Education."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Project Manager, line 2",
+        "line": "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024",
+        "cannot_tell": "Keep this. It ties a concrete project to a delivery result without making the reader hunt for context.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Project Manager, line 4",
+        "line": "Kept change orders under 3% of contract value across 2024 and 2025 projects",
+        "cannot_tell": "The result is strong, but a recruiter can't see what you did to keep change orders down. Your approach would show how you managed that part of the work.",
+        "example": "Kept change orders under 3% of contract value across 2024 and 2025 projects by [approach]",
+        "question": "What did you do to keep change orders under 3% of contract value across those projects?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Project Manager",
+        "Assistant Project Manager"
+      ],
+      "level": "Experienced project manager",
+      "note": "Your experience points toward construction project management in tenant improvements and retail builds. The current role shows both concurrent project management and a completed grocery store build.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 90
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A construction project manager with project values, trade counts and delivery results a recruiter can use.",
+    "write_up": [
+      "You manage concurrent tenant-improvement projects and have delivered a grocery store build. A recruiter can see the project values, the number of trades and where you beat schedule. The main question is how you kept change orders down.",
+      "The grocery store line is the model: it names the build, its value and when you delivered it against schedule. Your earlier scheduling work is specific, too, and Experience is where it belongs, above Education."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Project Manager, line 2",
+        "line": "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024",
+        "cannot_tell": "Keep this. It ties a concrete project to a delivery result without making the reader hunt for context.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Project Manager, line 4",
+        "line": "Kept change orders under 3% of contract value across 2024 and 2025 projects",
+        "cannot_tell": "The result is strong, but a recruiter can't see what you did to keep change orders down. Your approach would show how you managed that part of the work.",
+        "example": "Kept change orders under 3% of contract value across 2024 and 2025 projects by [approach]",
+        "question": "What did you do to keep change orders under 3% of contract value across those projects?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Project Manager",
+        "Assistant Project Manager"
+      ],
+      "level": "Experienced project manager",
+      "note": "Your experience points toward construction project management in tenant improvements and retail builds. The current role shows both concurrent project management and a completed grocery store build.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 90
+  },
+  "presentation": {
+    "score": 90,
+    "band": "Clear and specific",
+    "model_score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A construction project manager with project values, trade counts and delivery results a recruiter can use.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 73,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Project Manager, line 2",
+        "line": "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Project Manager, line 4",
+        "line": "Kept change orders under 3% of contract value across 2024 and 2025 projects",
+        "blanks": 1,
+        "question": "What did you do to keep change orders under 3% of contract value across those projects?"
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "keep": 1,
+      "line": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Project Manager",
+        "Assistant Project Manager"
+      ],
+      "level": "Experienced project manager",
+      "note": "Your experience points toward construction project management in tenant improvements and retail builds. The current role shows both concurrent project management and a completed grocery store build.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00508885,
+  "latency_ms": 14579
+}

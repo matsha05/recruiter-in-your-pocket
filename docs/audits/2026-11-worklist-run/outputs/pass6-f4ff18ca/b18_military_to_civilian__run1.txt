@@ -1,0 +1,33 @@
+# b18_military_to_civilian, run 1
+Resume: ../2026-11-live-judgment/resumes/b_military_to_civilian.txt (268 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt f4ff18ca; severity check off
+Outcome: report; cost $0.0063; 12.5s
+
+## Clear and specific (score 89; model wrote 89)
+## Verdict
+A military logistics and maintenance leader with measurable results and a clear civilian target.
+
+## Write-up
+A recruiter sees a leader who has managed people, equipment and maintenance for Army units. Your target of supply chain or operations supervision fits that work. The main question is what logistics support looked like during the field exercises, especially for a civilian reader.
+
+The vehicle readiness line is a strong model: it names the problem, the change you made and the improvement from 18% to 6%. Your resume isn't going to be the reason you don't hear back. How competitive a particular civilian role is will matter too.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] Platoon Sergeant, field exercises
+   line: "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises"
+   can't tell: The battalion and exercises show how much you supported, but a civilian recruiter can't tell what the logistics support involved. Name the work you planned and executed.
+   example: Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises, including [what support involved]
+   question: What did the logistics support involve during those exercises?
+2. [keep] Platoon Sergeant, vehicle readiness
+   line: "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule"
+   can't tell: Keep this as a model. It gives a recruiter the before and after, plus the two decisions you made to get there.
+3. [line] Wheeled Vehicle Mechanic, training
+   line: "Trained 9 junior mechanics"
+   can't tell: You name how many mechanics you trained, but not what you taught them. That detail would show what your training covered.
+   example: Trained 9 junior mechanics in [skills or tasks]
+   question: What skills or tasks did you train the junior mechanics to perform?
+
+## Fit
+Roles: ["Platoon Sergeant (E-7), Forward Support Company","Maintenance Section Sergeant (E-6)","Wheeled Vehicle Mechanic (E-4 to E-5)"]
+Level: Experienced supervisor
+Note: Your Army experience points toward the supply chain or operations supervisor work you name. The maintenance leadership, equipment accountability and parts budget give a civilian recruiter concrete work to consider.

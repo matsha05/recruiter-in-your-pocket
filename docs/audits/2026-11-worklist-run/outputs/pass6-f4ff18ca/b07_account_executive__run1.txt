@@ -1,0 +1,33 @@
+# b07_account_executive, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_account_executive_1.txt (145 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt f4ff18ca; severity check off
+Outcome: report; cost $0.0054; 11.3s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A mid-market account executive with a promotion, quota attainment and a referral program that sourced deals.
+
+## Write-up
+A recruiter sees an HR software seller who moved from SDR to account executive and closed $1.1M in new annual recurring revenue in 2025, at 108% of quota. That line works because it puts your sales result and quota attainment together. The referral program adds another concrete win.
+
+This resume isn't going to be the reason you don't hear back. How competitive an account executive opening is will still matter. You can make the demos and SDR ranking more useful by adding your part and what the ranking measured.
+
+## Cards (3; {"keep":1,"line":2}); severity off; added []
+1. [keep] Account Executive, Mid-Market, line 1
+   line: "Closed $1.1M in new annual recurring revenue in 2025, 108% of quota"
+   can't tell: Keep this as a model. It names what you closed, when you closed it and how you performed against your target.
+2. [line] Account Executive, Mid-Market, line 4
+   line: "Work with solutions engineers on demos and security reviews"
+   can't tell: A recruiter knows who you work with, but not your part in the demos and security reviews. What do you handle alongside the engineers?
+   example: Work with solutions engineers on demos and security reviews, contributing [your part]
+   question: What do you handle in the demos and security reviews?
+3. [line] Sales Development Representative, line 3
+   line: "Top SDR in two quarters"
+   can't tell: Top SDR is a strong distinction, but a recruiter can't tell what it was based on. Name the measure used for the ranking.
+   example: Top SDR in two quarters, measured by [ranking measure]
+   question: What was the Top SDR ranking based on?
+
+## Fit
+Roles: ["Account Executive, Mid-Market"]
+Level: Mid-market account executive
+Note: Your experience points to mid-market account executive roles in HR software. The promotion, full-cycle sales work and quota attainment make that direction easy to follow.

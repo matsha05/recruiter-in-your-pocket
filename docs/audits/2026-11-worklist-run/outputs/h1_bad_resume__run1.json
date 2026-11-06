@@ -11,140 +11,142 @@
   "model": "gpt-6.1-terra",
   "reasoning_effort": "medium",
   "severity_check": false,
-  "started_at": "2026-11-06T16:32:43.346Z",
+  "started_at": "2026-11-06T18:13:39.752Z",
   "calls": [
     {
       "kind": "report",
       "usage": {
-        "prompt_tokens": 4721,
-        "completion_tokens": 2068,
-        "total_tokens": 6789,
-        "cached_prompt_tokens": 3792,
-        "cache_write_prompt_tokens": 926,
-        "reasoning_tokens": 512
+        "prompt_tokens": 5614,
+        "completion_tokens": 2350,
+        "total_tokens": 7964,
+        "cached_prompt_tokens": 0,
+        "cache_write_prompt_tokens": 5611,
+        "reasoning_tokens": 692
       },
-      "cost_usd": 0.0116901,
+      "cost_usd": 0.01876675,
       "model": "gpt-6.1-terra",
-      "latency_ms": 32256
+      "latency_ms": 29857
     }
   ],
-  "resume_prompt_sha256": "70e795a1e91877ad12f5394154dccd644b9f9d298e123ca182963a0e3e089350",
+  "resume_prompt_sha256": "0a19c3ee70395ec8fb0584d4bea1b93da77aeca37469b4d47211bc8568544f0c",
   "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
   "model_output": {
     "contract_version": "v3",
     "score": 42,
     "lifted_by_employer": false,
-    "verdict": "Retail and warehouse jobs sit under a Marketing Manager objective, with little detail on the work and several dates missing.",
+    "verdict": "Your resume names a Marketing Manager goal, but the work shown is mostly retail and warehouse duties.",
     "write_up": [
-      "You show retail, warehouse, delivery and food service experience, but the Marketing Manager objective isn't backed up by marketing work on the page. A recruiter also has to guess when two jobs happened and what you've done since the last dated role ended in June 2023.",
-      "The phone sales line is the most concrete: it names what you sold and who you sold it to. Use that level of detail for the shift lead work, then add the dates and replace the objective with a target that matches the experience you want to use."
+      "Your resume traces work from Burger Barn to Buckeye Wireless and a Shift Lead role at QuickStop, with warehouse and delivery jobs too. It's common to list duties this way, but it won't stand out for a Marketing Manager job: a recruiter can't see marketing work or what you accomplished in these roles.",
+      "The forklift line gives a recruiter something concrete to hold onto because it names equipment you used. The dated work ends in June 2023, though two roles have no dates, so a recruiter can't tell when you last worked.",
+      "Let's start with the QuickStop role: add dates for the undated jobs, then give the opening and closing line a concrete detail. If you've done marketing work or projects, add those too. If not, consider naming a target job that matches the experience you can show."
     ],
     "cards": [
       {
         "kind": "line",
         "where": "Objective",
         "line": "Hard-working team player seeking a challenging Marketing Manager position where I can utilize my skills and grow with a dynamic company.",
-        "cannot_tell": "Marketing Manager isn't supported by the jobs listed. A recruiter can't see marketing work or management responsibilities behind that target.",
-        "example": "Seeking a [target role] using experience in sales, customer service and store operations.",
-        "question": "What role are you targeting, and do you have marketing experience to add if that's still your goal?"
+        "cannot_tell": "The jobs below don't show marketing management work, so a recruiter has to guess why you're targeting that role. The team-player language doesn't tell them what you bring.",
+        "example": "Seeking a [target role] position, bringing experience in [relevant work]",
+        "question": "What job are you targeting, and which work from your experience is most relevant to it?"
       },
       {
         "kind": "dates",
         "where": "Dates",
-        "line": "The last dated role ends in June 2023; two roles have no dates.",
-        "cannot_tell": "A recruiter can't tell whether either undated role is more recent or what you've done since the last dated job. Put the missing dates in first, then account for any remaining time.",
-        "example": "June 2023 - Present  [what you've been doing]",
-        "question": "What have you been doing since June 2023, including any work, study, caregiving or job search?"
+        "line": "The latest dated role ends in June 2023, and two roles have no dates.",
+        "cannot_tell": "A recruiter can't tell when you last worked or what you've done since June 2023. Date the two roles first; if time is still unaccounted for, you can name caregiving, a career break and what you did during it, or real freelance work.",
+        "example": "June 2023 - [end date]  [what you did]",
+        "question": "What were you doing after June 2023, and when were you doing it?"
       },
       {
-        "kind": "dates",
-        "where": "Warehouse Associate dates",
-        "line": "The Warehouse Associate role has no dates.",
-        "cannot_tell": "This could be your most recent job or an earlier one. The dates decide where it belongs.",
-        "example": "[Month Year] - [Month Year]  Warehouse Associate, Miami Valley Distribution",
-        "question": "When did you start and finish at Miami Valley Distribution?"
-      },
-      {
-        "kind": "dates",
-        "where": "Delivery Driver dates",
-        "line": "The Delivery Driver role has no dates.",
-        "cannot_tell": "A recruiter can't place this job in your work history.",
-        "example": "[Month Year] - [Month Year]  Delivery Driver, Gino's Pizza",
-        "question": "When did you start and finish at Gino's Pizza?"
+        "kind": "structure",
+        "where": "QuickStop Fuel and Food",
+        "line": "The resume lists QuickStop Fuel and Food without a description of the business.",
+        "cannot_tell": "A recruiter may not know QuickStop. A short description of the store or how busy it was could give the Shift Lead work useful context, if you can describe it accurately.",
+        "example": "",
+        "question": "How would you describe the store and how busy it was?"
       },
       {
         "kind": "line",
         "where": "Shift Lead, line 1",
         "line": "- Responsible for opening and closing the store",
-        "cannot_tell": "Opening and closing could include cash, security or other checks. What was yours to handle?",
-        "example": "Opened and closed the store, including [opening or closing responsibilities].",
-        "question": "What did you personally handle when opening and closing?"
+        "cannot_tell": "Opening and closing can cover several jobs. A recruiter can't tell which parts were yours as Shift Lead.",
+        "example": "Opened and closed the store, including [opening and closing tasks]",
+        "question": "Which opening and closing tasks did you handle?"
       },
       {
         "kind": "line",
         "where": "Shift Lead, line 2",
         "line": "- Handled cash register and customer complaints",
-        "cannot_tell": "The register work is clear, but the complaints could be anything. One example would show how you handled customers as a shift lead.",
-        "example": "Handled cash register and customer complaints, including [type of complaint] by [action taken].",
-        "question": "What kind of customer complaint did you handle, and what did you do?"
+        "cannot_tell": "This names the work, but not what you did when a customer had a complaint. One example would show how you handled it.",
+        "example": "Handled cash register and customer complaints, including [complaint and action taken]",
+        "question": "What was one customer complaint you handled, and what did you do?"
       },
       {
         "kind": "line",
         "where": "Shift Lead, line 3",
         "line": "- Made sure shelves were stocked and the store was clean",
-        "cannot_tell": "A recruiter can't tell what you did yourself or whether you directed anyone else. That distinction matters in a shift lead role.",
-        "example": "Made sure shelves were stocked and the store was clean by [your actions].",
-        "question": "What did you do to keep shelves stocked and the store clean?"
+        "cannot_tell": "A recruiter can't tell whether you stocked and cleaned yourself, directed others, or both. That distinction matters for a lead role.",
+        "example": "Made sure shelves were stocked and the store was clean by [your actions]",
+        "question": "What did you personally do to keep shelves stocked and the store clean?"
       },
       {
         "kind": "line",
         "where": "Shift Lead, line 4",
         "line": "- Trained new employes when needed",
-        "cannot_tell": "Training is useful experience, but the job doesn't say what you taught or how many people you trained.",
-        "example": "Trained [number] new employees when needed on [tasks taught].",
+        "cannot_tell": "Training is useful experience, but the line doesn't say what you taught or how many people you trained.",
+        "example": "Trained [number] new employees on [tasks]",
         "question": "How many new employees did you train, and what did you teach them?"
+      },
+      {
+        "kind": "dates",
+        "where": "Warehouse Associate",
+        "line": "The Warehouse Associate role has no dates.",
+        "cannot_tell": "Without dates, a recruiter can't place this job alongside your other work or know whether it was recent.",
+        "example": "[Month Year] - [Month Year]  Warehouse Associate, Miami Valley Distribution",
+        "question": "When did you start and finish at Miami Valley Distribution?"
       },
       {
         "kind": "line",
         "where": "Warehouse Associate, line 1",
         "line": "- Picked and packed orders",
-        "cannot_tell": "This names the work, but not what you handled or how much. That helps distinguish one warehouse job from another.",
-        "example": "Picked and packed [type of orders], handling [number] orders per [time period].",
+        "cannot_tell": "A recruiter can see the task, but not what kinds of orders you handled or how much work came through.",
+        "example": "Picked and packed [number] [type of orders] orders per [time period]",
         "question": "What kinds of orders did you pick and pack, and how many did you typically handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Warehouse Associate, line 4",
+        "line": "- Followed all saftey procedures",
+        "cannot_tell": "Safety matters in a warehouse, but this doesn't say which procedures were part of your work.",
+        "example": "Followed [safety procedures] while [warehouse task]",
+        "question": "Which safety procedures did you follow, and during what work?"
       },
       {
         "kind": "line",
         "where": "Sales Associate, line 1",
         "line": "- Sold phones and accessories to customers",
-        "cannot_tell": "The products and customers are clear. A sales measure or a detail about how you helped customers choose would give this more weight.",
-        "example": "Sold phones and accessories to customers, helping them choose based on [customer needs].",
-        "question": "What customer needs did you consider when recommending phones and accessories?"
+        "cannot_tell": "This names what you sold, but a recruiter can't tell how much you sold or how you helped customers choose.",
+        "example": "Sold phones and accessories to customers, handling [sales volume] and [customer needs]",
+        "question": "How much did you sell, and what customer needs did you help with?"
       },
       {
         "kind": "line",
         "where": "Sales Associate, line 3",
         "line": "- Kept the store looking nice",
-        "cannot_tell": "A recruiter can't tell what you did to maintain the store.",
-        "example": "Kept the store looking nice by [store maintenance tasks].",
-        "question": "What store maintenance tasks did you handle?"
-      },
-      {
-        "kind": "line",
-        "where": "Delivery Driver, line 3",
-        "line": "- Helped in the kitchen when it was slow",
-        "cannot_tell": "'Helped' leaves the kitchen work blank. Did you prepare food, package orders or do something else?",
-        "example": "Helped in the kitchen when it was slow by [kitchen tasks].",
-        "question": "What kitchen tasks did you help with?"
+        "cannot_tell": "A recruiter can't tell what store work that involved. Name the tasks rather than asking them to guess.",
+        "example": "Kept the store looking nice by [store tasks]",
+        "question": "What did you do to keep the store looking nice?"
       }
     ],
     "fit": {
       "roles": [
+        "Marketing Manager",
         "Shift Lead",
-        "Sales Associate",
-        "Warehouse Associate"
+        "Warehouse Associate",
+        "Sales Associate"
       ],
-      "level": "Frontline and shift lead",
-      "note": "Marketing Manager is the stated target, but the resume doesn't show marketing work. Your listed experience points more directly to retail, customer service and warehouse roles; the missing dates leave recency uncertain.",
+      "level": "Entry-level retail and warehouse experience",
+      "note": "The Marketing Manager objective isn't backed by marketing work on the resume. The experience shown points more directly to retail sales, store operations and warehouse work; add any real marketing projects or experience if that's the direction you want.",
       "posting": {
         "summary": "",
         "missing": []
@@ -155,117 +157,119 @@
     "contract_version": "v3",
     "score": 42,
     "lifted_by_employer": false,
-    "verdict": "Retail and warehouse jobs sit under a Marketing Manager objective, with little detail on the work and several dates missing.",
+    "verdict": "Your resume names a Marketing Manager goal, but the work shown is mostly retail and warehouse duties.",
     "write_up": [
-      "You show retail, warehouse, delivery and food service experience, but the Marketing Manager objective isn't backed up by marketing work on the page. A recruiter also has to guess when two jobs happened and what you've done since the last dated role ended in June 2023.",
-      "The phone sales line is the most concrete: it names what you sold and who you sold it to. Use that level of detail for the shift lead work, then add the dates and replace the objective with a target that matches the experience you want to use."
+      "Your resume traces work from Burger Barn to Buckeye Wireless and a Shift Lead role at QuickStop, with warehouse and delivery jobs too. It's common to list duties this way, but it won't stand out for a Marketing Manager job: a recruiter can't see marketing work or what you accomplished in these roles.",
+      "The forklift line gives a recruiter something concrete to hold onto because it names equipment you used. The dated work ends in June 2023, though two roles have no dates, so a recruiter can't tell when you last worked.",
+      "Let's start with the QuickStop role: add dates for the undated jobs, then give the opening and closing line a concrete detail. If you've done marketing work or projects, add those too. If not, consider naming a target job that matches the experience you can show."
     ],
     "cards": [
       {
         "kind": "line",
         "where": "Objective",
         "line": "Hard-working team player seeking a challenging Marketing Manager position where I can utilize my skills and grow with a dynamic company.",
-        "cannot_tell": "Marketing Manager isn't supported by the jobs listed. A recruiter can't see marketing work or management responsibilities behind that target.",
-        "example": "Seeking a [target role] using experience in sales, customer service and store operations.",
-        "question": "What role are you targeting, and do you have marketing experience to add if that's still your goal?"
+        "cannot_tell": "The jobs below don't show marketing management work, so a recruiter has to guess why you're targeting that role. The team-player language doesn't tell them what you bring.",
+        "example": "Seeking a [target role] position, bringing experience in [relevant work]",
+        "question": "What job are you targeting, and which work from your experience is most relevant to it?"
       },
       {
         "kind": "dates",
         "where": "Dates",
-        "line": "The last dated role ends in June 2023; two roles have no dates.",
-        "cannot_tell": "A recruiter can't tell whether either undated role is more recent or what you've done since the last dated job. Put the missing dates in first, then account for any remaining time.",
-        "example": "June 2023 - Present [what you've been doing]",
-        "question": "What have you been doing since June 2023, including any work, study, caregiving or job search?"
+        "line": "The latest dated role ends in June 2023, and two roles have no dates.",
+        "cannot_tell": "A recruiter can't tell when you last worked or what you've done since June 2023. Date the two roles first; if time is still unaccounted for, you can name caregiving, a career break and what you did during it, or real freelance work.",
+        "example": "June 2023 - [end date] [what you did]",
+        "question": "What were you doing after June 2023, and when were you doing it?"
       },
       {
-        "kind": "dates",
-        "where": "Warehouse Associate dates",
-        "line": "The Warehouse Associate role has no dates.",
-        "cannot_tell": "This could be your most recent job or an earlier one. The dates decide where it belongs.",
-        "example": "[Month Year] - [Month Year] Warehouse Associate, Miami Valley Distribution",
-        "question": "When did you start and finish at Miami Valley Distribution?"
-      },
-      {
-        "kind": "dates",
-        "where": "Delivery Driver dates",
-        "line": "The Delivery Driver role has no dates.",
-        "cannot_tell": "A recruiter can't place this job in your work history.",
-        "example": "[Month Year] - [Month Year] Delivery Driver, Gino's Pizza",
-        "question": "When did you start and finish at Gino's Pizza?"
+        "kind": "structure",
+        "where": "QuickStop Fuel and Food",
+        "line": "The resume lists QuickStop Fuel and Food without a description of the business.",
+        "cannot_tell": "A recruiter may not know QuickStop. A short description of the store or how busy it was could give the Shift Lead work useful context, if you can describe it accurately.",
+        "example": "",
+        "question": "How would you describe the store and how busy it was?"
       },
       {
         "kind": "line",
         "where": "Shift Lead, line 1",
         "line": "Responsible for opening and closing the store",
-        "cannot_tell": "Opening and closing could include cash, security or other checks. What was yours to handle?",
-        "example": "Opened and closed the store, including [opening or closing responsibilities].",
-        "question": "What did you personally handle when opening and closing?"
+        "cannot_tell": "Opening and closing can cover several jobs. A recruiter can't tell which parts were yours as Shift Lead.",
+        "example": "Opened and closed the store, including [opening and closing tasks]",
+        "question": "Which opening and closing tasks did you handle?"
       },
       {
         "kind": "line",
         "where": "Shift Lead, line 2",
         "line": "Handled cash register and customer complaints",
-        "cannot_tell": "The register work is clear, but the complaints could be anything. One example would show how you handled customers as a shift lead.",
-        "example": "Handled cash register and customer complaints, including [type of complaint] by [action taken].",
-        "question": "What kind of customer complaint did you handle, and what did you do?"
+        "cannot_tell": "This names the work, but not what you did when a customer had a complaint. One example would show how you handled it.",
+        "example": "Handled cash register and customer complaints, including [complaint and action taken]",
+        "question": "What was one customer complaint you handled, and what did you do?"
       },
       {
         "kind": "line",
         "where": "Shift Lead, line 3",
         "line": "Made sure shelves were stocked and the store was clean",
-        "cannot_tell": "A recruiter can't tell what you did yourself or whether you directed anyone else. That distinction matters in a shift lead role.",
-        "example": "Made sure shelves were stocked and the store was clean by [your actions].",
-        "question": "What did you do to keep shelves stocked and the store clean?"
+        "cannot_tell": "A recruiter can't tell whether you stocked and cleaned yourself, directed others, or both. That distinction matters for a lead role.",
+        "example": "Made sure shelves were stocked and the store was clean by [your actions]",
+        "question": "What did you personally do to keep shelves stocked and the store clean?"
       },
       {
         "kind": "line",
         "where": "Shift Lead, line 4",
         "line": "Trained new employes when needed",
-        "cannot_tell": "Training is useful experience, but the job doesn't say what you taught or how many people you trained.",
-        "example": "Trained [number] new employees when needed on [tasks taught].",
+        "cannot_tell": "Training is useful experience, but the line doesn't say what you taught or how many people you trained.",
+        "example": "Trained [number] new employees on [tasks]",
         "question": "How many new employees did you train, and what did you teach them?"
+      },
+      {
+        "kind": "dates",
+        "where": "Warehouse Associate",
+        "line": "The Warehouse Associate role has no dates.",
+        "cannot_tell": "Without dates, a recruiter can't place this job alongside your other work or know whether it was recent.",
+        "example": "[Month Year] - [Month Year] Warehouse Associate, Miami Valley Distribution",
+        "question": "When did you start and finish at Miami Valley Distribution?"
       },
       {
         "kind": "line",
         "where": "Warehouse Associate, line 1",
         "line": "Picked and packed orders",
-        "cannot_tell": "This names the work, but not what you handled or how much. That helps distinguish one warehouse job from another.",
-        "example": "Picked and packed [type of orders], handling [number] orders per [time period].",
+        "cannot_tell": "A recruiter can see the task, but not what kinds of orders you handled or how much work came through.",
+        "example": "Picked and packed [number] [type of orders] orders per [time period]",
         "question": "What kinds of orders did you pick and pack, and how many did you typically handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Warehouse Associate, line 4",
+        "line": "Followed all saftey procedures",
+        "cannot_tell": "Safety matters in a warehouse, but this doesn't say which procedures were part of your work.",
+        "example": "Followed [safety procedures] while [warehouse task]",
+        "question": "Which safety procedures did you follow, and during what work?"
       },
       {
         "kind": "line",
         "where": "Sales Associate, line 1",
         "line": "Sold phones and accessories to customers",
-        "cannot_tell": "The products and customers are clear. A sales measure or a detail about how you helped customers choose would give this more weight.",
-        "example": "Sold phones and accessories to customers, helping them choose based on [customer needs].",
-        "question": "What customer needs did you consider when recommending phones and accessories?"
+        "cannot_tell": "This names what you sold, but a recruiter can't tell how much you sold or how you helped customers choose.",
+        "example": "Sold phones and accessories to customers, handling [sales volume] and [customer needs]",
+        "question": "How much did you sell, and what customer needs did you help with?"
       },
       {
         "kind": "line",
         "where": "Sales Associate, line 3",
         "line": "Kept the store looking nice",
-        "cannot_tell": "A recruiter can't tell what you did to maintain the store.",
-        "example": "Kept the store looking nice by [store maintenance tasks].",
-        "question": "What store maintenance tasks did you handle?"
-      },
-      {
-        "kind": "line",
-        "where": "Delivery Driver, line 3",
-        "line": "Helped in the kitchen when it was slow",
-        "cannot_tell": "'Helped' leaves the kitchen work blank. Did you prepare food, package orders or do something else?",
-        "example": "Helped in the kitchen when it was slow by [kitchen tasks].",
-        "question": "What kitchen tasks did you help with?"
+        "cannot_tell": "A recruiter can't tell what store work that involved. Name the tasks rather than asking them to guess.",
+        "example": "Kept the store looking nice by [store tasks]",
+        "question": "What did you do to keep the store looking nice?"
       }
     ],
     "fit": {
       "roles": [
+        "Marketing Manager",
         "Shift Lead",
-        "Sales Associate",
-        "Warehouse Associate"
+        "Warehouse Associate",
+        "Sales Associate"
       ],
-      "level": "Frontline and shift lead",
-      "note": "Marketing Manager is the stated target, but the resume doesn't show marketing work. Your listed experience points more directly to retail, customer service and warehouse roles; the missing dates leave recency uncertain.",
+      "level": "Entry-level retail and warehouse experience",
+      "note": "The Marketing Manager objective isn't backed by marketing work on the resume. The experience shown points more directly to retail sales, store operations and warehouse work; add any real marketing projects or experience if that's the direction you want.",
       "posting": {
         "summary": "",
         "missing": []
@@ -281,117 +285,119 @@
     "contract_version": "v3",
     "score": 42,
     "lifted_by_employer": false,
-    "verdict": "Retail and warehouse jobs sit under a Marketing Manager objective, with little detail on the work and several dates missing.",
+    "verdict": "Your resume names a Marketing Manager goal, but the work shown is mostly retail and warehouse duties.",
     "write_up": [
-      "You show retail, warehouse, delivery and food service experience, but the Marketing Manager objective isn't backed up by marketing work on the page. A recruiter also has to guess when two jobs happened and what you've done since the last dated role ended in June 2023.",
-      "The phone sales line is the most concrete: it names what you sold and who you sold it to. Use that level of detail for the shift lead work, then add the dates and replace the objective with a target that matches the experience you want to use."
+      "Your resume traces work from Burger Barn to Buckeye Wireless and a Shift Lead role at QuickStop, with warehouse and delivery jobs too. It's common to list duties this way, but it won't stand out for a Marketing Manager job: a recruiter can't see marketing work or what you accomplished in these roles.",
+      "The forklift line gives a recruiter something concrete to hold onto because it names equipment you used. The dated work ends in June 2023, though two roles have no dates, so a recruiter can't tell when you last worked.",
+      "Let's start with the QuickStop role: add dates for the undated jobs, then give the opening and closing line a concrete detail. If you've done marketing work or projects, add those too. If not, consider naming a target job that matches the experience you can show."
     ],
     "cards": [
       {
         "kind": "line",
         "where": "Objective",
         "line": "Hard-working team player seeking a challenging Marketing Manager position where I can utilize my skills and grow with a dynamic company.",
-        "cannot_tell": "Marketing Manager isn't supported by the jobs listed. A recruiter can't see marketing work or management responsibilities behind that target.",
-        "example": "Seeking a [target role] using experience in sales, customer service and store operations.",
-        "question": "What role are you targeting, and do you have marketing experience to add if that's still your goal?"
+        "cannot_tell": "The jobs below don't show marketing management work, so a recruiter has to guess why you're targeting that role. The team-player language doesn't tell them what you bring.",
+        "example": "Seeking a [target role] position, bringing experience in [relevant work]",
+        "question": "What job are you targeting, and which work from your experience is most relevant to it?"
       },
       {
         "kind": "dates",
         "where": "Dates",
-        "line": "The last dated role ends in June 2023; two roles have no dates.",
-        "cannot_tell": "A recruiter can't tell whether either undated role is more recent or what you've done since the last dated job. Put the missing dates in first, then account for any remaining time.",
-        "example": "June 2023 - Present [what you've been doing]",
-        "question": "What have you been doing since June 2023, including any work, study, caregiving or job search?"
+        "line": "The latest dated role ends in June 2023, and two roles have no dates.",
+        "cannot_tell": "A recruiter can't tell when you last worked or what you've done since June 2023. Date the two roles first; if time is still unaccounted for, you can name caregiving, a career break and what you did during it, or real freelance work.",
+        "example": "June 2023 - [end date] [what you did]",
+        "question": "What were you doing after June 2023, and when were you doing it?"
       },
       {
-        "kind": "dates",
-        "where": "Warehouse Associate dates",
-        "line": "The Warehouse Associate role has no dates.",
-        "cannot_tell": "This could be your most recent job or an earlier one. The dates decide where it belongs.",
-        "example": "[Month Year] - [Month Year] Warehouse Associate, Miami Valley Distribution",
-        "question": "When did you start and finish at Miami Valley Distribution?"
-      },
-      {
-        "kind": "dates",
-        "where": "Delivery Driver dates",
-        "line": "The Delivery Driver role has no dates.",
-        "cannot_tell": "A recruiter can't place this job in your work history.",
-        "example": "[Month Year] - [Month Year] Delivery Driver, Gino's Pizza",
-        "question": "When did you start and finish at Gino's Pizza?"
+        "kind": "structure",
+        "where": "QuickStop Fuel and Food",
+        "line": "The resume lists QuickStop Fuel and Food without a description of the business.",
+        "cannot_tell": "A recruiter may not know QuickStop. A short description of the store or how busy it was could give the Shift Lead work useful context, if you can describe it accurately.",
+        "example": "",
+        "question": "How would you describe the store and how busy it was?"
       },
       {
         "kind": "line",
         "where": "Shift Lead, line 1",
         "line": "Responsible for opening and closing the store",
-        "cannot_tell": "Opening and closing could include cash, security or other checks. What was yours to handle?",
-        "example": "Opened and closed the store, including [opening or closing responsibilities].",
-        "question": "What did you personally handle when opening and closing?"
+        "cannot_tell": "Opening and closing can cover several jobs. A recruiter can't tell which parts were yours as Shift Lead.",
+        "example": "Opened and closed the store, including [opening and closing tasks]",
+        "question": "Which opening and closing tasks did you handle?"
       },
       {
         "kind": "line",
         "where": "Shift Lead, line 2",
         "line": "Handled cash register and customer complaints",
-        "cannot_tell": "The register work is clear, but the complaints could be anything. One example would show how you handled customers as a shift lead.",
-        "example": "Handled cash register and customer complaints, including [type of complaint] by [action taken].",
-        "question": "What kind of customer complaint did you handle, and what did you do?"
+        "cannot_tell": "This names the work, but not what you did when a customer had a complaint. One example would show how you handled it.",
+        "example": "Handled cash register and customer complaints, including [complaint and action taken]",
+        "question": "What was one customer complaint you handled, and what did you do?"
       },
       {
         "kind": "line",
         "where": "Shift Lead, line 3",
         "line": "Made sure shelves were stocked and the store was clean",
-        "cannot_tell": "A recruiter can't tell what you did yourself or whether you directed anyone else. That distinction matters in a shift lead role.",
-        "example": "Made sure shelves were stocked and the store was clean by [your actions].",
-        "question": "What did you do to keep shelves stocked and the store clean?"
+        "cannot_tell": "A recruiter can't tell whether you stocked and cleaned yourself, directed others, or both. That distinction matters for a lead role.",
+        "example": "Made sure shelves were stocked and the store was clean by [your actions]",
+        "question": "What did you personally do to keep shelves stocked and the store clean?"
       },
       {
         "kind": "line",
         "where": "Shift Lead, line 4",
         "line": "Trained new employes when needed",
-        "cannot_tell": "Training is useful experience, but the job doesn't say what you taught or how many people you trained.",
-        "example": "Trained [number] new employees when needed on [tasks taught].",
+        "cannot_tell": "Training is useful experience, but the line doesn't say what you taught or how many people you trained.",
+        "example": "Trained [number] new employees on [tasks]",
         "question": "How many new employees did you train, and what did you teach them?"
+      },
+      {
+        "kind": "dates",
+        "where": "Warehouse Associate",
+        "line": "The Warehouse Associate role has no dates.",
+        "cannot_tell": "Without dates, a recruiter can't place this job alongside your other work or know whether it was recent.",
+        "example": "[Month Year] - [Month Year] Warehouse Associate, Miami Valley Distribution",
+        "question": "When did you start and finish at Miami Valley Distribution?"
       },
       {
         "kind": "line",
         "where": "Warehouse Associate, line 1",
         "line": "Picked and packed orders",
-        "cannot_tell": "This names the work, but not what you handled or how much. That helps distinguish one warehouse job from another.",
-        "example": "Picked and packed [type of orders], handling [number] orders per [time period].",
+        "cannot_tell": "A recruiter can see the task, but not what kinds of orders you handled or how much work came through.",
+        "example": "Picked and packed [number] [type of orders] orders per [time period]",
         "question": "What kinds of orders did you pick and pack, and how many did you typically handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Warehouse Associate, line 4",
+        "line": "Followed all saftey procedures",
+        "cannot_tell": "Safety matters in a warehouse, but this doesn't say which procedures were part of your work.",
+        "example": "Followed [safety procedures] while [warehouse task]",
+        "question": "Which safety procedures did you follow, and during what work?"
       },
       {
         "kind": "line",
         "where": "Sales Associate, line 1",
         "line": "Sold phones and accessories to customers",
-        "cannot_tell": "The products and customers are clear. A sales measure or a detail about how you helped customers choose would give this more weight.",
-        "example": "Sold phones and accessories to customers, helping them choose based on [customer needs].",
-        "question": "What customer needs did you consider when recommending phones and accessories?"
+        "cannot_tell": "This names what you sold, but a recruiter can't tell how much you sold or how you helped customers choose.",
+        "example": "Sold phones and accessories to customers, handling [sales volume] and [customer needs]",
+        "question": "How much did you sell, and what customer needs did you help with?"
       },
       {
         "kind": "line",
         "where": "Sales Associate, line 3",
         "line": "Kept the store looking nice",
-        "cannot_tell": "A recruiter can't tell what you did to maintain the store.",
-        "example": "Kept the store looking nice by [store maintenance tasks].",
-        "question": "What store maintenance tasks did you handle?"
-      },
-      {
-        "kind": "line",
-        "where": "Delivery Driver, line 3",
-        "line": "Helped in the kitchen when it was slow",
-        "cannot_tell": "'Helped' leaves the kitchen work blank. Did you prepare food, package orders or do something else?",
-        "example": "Helped in the kitchen when it was slow by [kitchen tasks].",
-        "question": "What kitchen tasks did you help with?"
+        "cannot_tell": "A recruiter can't tell what store work that involved. Name the tasks rather than asking them to guess.",
+        "example": "Kept the store looking nice by [store tasks]",
+        "question": "What did you do to keep the store looking nice?"
       }
     ],
     "fit": {
       "roles": [
+        "Marketing Manager",
         "Shift Lead",
-        "Sales Associate",
-        "Warehouse Associate"
+        "Warehouse Associate",
+        "Sales Associate"
       ],
-      "level": "Frontline and shift lead",
-      "note": "Marketing Manager is the stated target, but the resume doesn't show marketing work. Your listed experience points more directly to retail, customer service and warehouse roles; the missing dates leave recency uncertain.",
+      "level": "Entry-level retail and warehouse experience",
+      "note": "The Marketing Manager objective isn't backed by marketing work on the resume. The experience shown points more directly to retail sales, store operations and warehouse work; add any real marketing projects or experience if that's the direction you want.",
       "posting": {
         "summary": "",
         "missing": []
@@ -408,58 +414,51 @@
     "band": "Needs more context",
     "model_score": 42,
     "lifted_by_employer": false,
-    "verdict": "Retail and warehouse jobs sit under a Marketing Manager objective, with little detail on the work and several dates missing.",
-    "write_up_paragraphs": 2,
-    "write_up_words": 94,
+    "verdict": "Your resume names a Marketing Manager goal, but the work shown is mostly retail and warehouse duties.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 138,
     "cards": [
       {
         "kind": "line",
         "where": "Objective",
         "line": "Hard-working team player seeking a challenging Marketing Manager position where I can utilize my skills and grow with a dynamic company.",
-        "blanks": 1,
-        "question": "What role are you targeting, and do you have marketing experience to add if that's still your goal?"
+        "blanks": 2,
+        "question": "What job are you targeting, and which work from your experience is most relevant to it?"
       },
       {
         "kind": "dates",
         "where": "Dates",
-        "line": "The last dated role ends in June 2023; two roles have no dates.",
-        "blanks": 1,
-        "question": "What have you been doing since June 2023, including any work, study, caregiving or job search?"
+        "line": "The latest dated role ends in June 2023, and two roles have no dates.",
+        "blanks": 2,
+        "question": "What were you doing after June 2023, and when were you doing it?"
       },
       {
-        "kind": "dates",
-        "where": "Warehouse Associate dates",
-        "line": "The Warehouse Associate role has no dates.",
-        "blanks": 2,
-        "question": "When did you start and finish at Miami Valley Distribution?"
-      },
-      {
-        "kind": "dates",
-        "where": "Delivery Driver dates",
-        "line": "The Delivery Driver role has no dates.",
-        "blanks": 2,
-        "question": "When did you start and finish at Gino's Pizza?"
+        "kind": "structure",
+        "where": "QuickStop Fuel and Food",
+        "line": "The resume lists QuickStop Fuel and Food without a description of the business.",
+        "blanks": 0,
+        "question": "How would you describe the store and how busy it was?"
       },
       {
         "kind": "line",
         "where": "Shift Lead, line 1",
         "line": "Responsible for opening and closing the store",
         "blanks": 1,
-        "question": "What did you personally handle when opening and closing?"
+        "question": "Which opening and closing tasks did you handle?"
       },
       {
         "kind": "line",
         "where": "Shift Lead, line 2",
         "line": "Handled cash register and customer complaints",
-        "blanks": 2,
-        "question": "What kind of customer complaint did you handle, and what did you do?"
+        "blanks": 1,
+        "question": "What was one customer complaint you handled, and what did you do?"
       },
       {
         "kind": "line",
         "where": "Shift Lead, line 3",
         "line": "Made sure shelves were stocked and the store was clean",
         "blanks": 1,
-        "question": "What did you do to keep shelves stocked and the store clean?"
+        "question": "What did you personally do to keep shelves stocked and the store clean?"
       },
       {
         "kind": "line",
@@ -467,6 +466,13 @@
         "line": "Trained new employes when needed",
         "blanks": 2,
         "question": "How many new employees did you train, and what did you teach them?"
+      },
+      {
+        "kind": "dates",
+        "where": "Warehouse Associate",
+        "line": "The Warehouse Associate role has no dates.",
+        "blanks": 2,
+        "question": "When did you start and finish at Miami Valley Distribution?"
       },
       {
         "kind": "line",
@@ -477,30 +483,31 @@
       },
       {
         "kind": "line",
+        "where": "Warehouse Associate, line 4",
+        "line": "Followed all saftey procedures",
+        "blanks": 2,
+        "question": "Which safety procedures did you follow, and during what work?"
+      },
+      {
+        "kind": "line",
         "where": "Sales Associate, line 1",
         "line": "Sold phones and accessories to customers",
-        "blanks": 1,
-        "question": "What customer needs did you consider when recommending phones and accessories?"
+        "blanks": 2,
+        "question": "How much did you sell, and what customer needs did you help with?"
       },
       {
         "kind": "line",
         "where": "Sales Associate, line 3",
         "line": "Kept the store looking nice",
         "blanks": 1,
-        "question": "What store maintenance tasks did you handle?"
-      },
-      {
-        "kind": "line",
-        "where": "Delivery Driver, line 3",
-        "line": "Helped in the kitchen when it was slow",
-        "blanks": 1,
-        "question": "What kitchen tasks did you help with?"
+        "question": "What did you do to keep the store looking nice?"
       }
     ],
     "card_count": 12,
     "kinds": {
       "line": 9,
-      "dates": 3
+      "dates": 2,
+      "structure": 1
     },
     "structural_from_model": 3,
     "severity_added": [],
@@ -508,12 +515,13 @@
     "severity_outcome": "off",
     "fit": {
       "roles": [
+        "Marketing Manager",
         "Shift Lead",
-        "Sales Associate",
-        "Warehouse Associate"
+        "Warehouse Associate",
+        "Sales Associate"
       ],
-      "level": "Frontline and shift lead",
-      "note": "Marketing Manager is the stated target, but the resume doesn't show marketing work. Your listed experience points more directly to retail, customer service and warehouse roles; the missing dates leave recency uncertain.",
+      "level": "Entry-level retail and warehouse experience",
+      "note": "The Marketing Manager objective isn't backed by marketing work on the resume. The experience shown points more directly to retail sales, store operations and warehouse work; add any real marketing projects or experience if that's the direction you want.",
       "posting": {
         "summary": "",
         "missing": []
@@ -521,6 +529,6 @@
     }
   },
   "outcome": "report",
-  "cost_usd": 0.0116901,
-  "latency_ms": 32261
+  "cost_usd": 0.01876675,
+  "latency_ms": 29873
 }

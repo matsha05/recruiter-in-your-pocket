@@ -21,7 +21,7 @@ assert.deepEqual(JSON.parse(JSON.stringify(sample)), JSON.parse(JSON.stringify(W
 assert.equal(generated.model, "gpt-6.1-terra", "the sample records the production model it was generated with");
 assert.match(generated.prompt_sha256, /^[0-9a-f]{64}$/, "the sample records the prompt it was generated with");
 assert.equal(generated.prompt_version, "resume_v3", "the sample is generated on the worklist prompt");
-assert.match(generated.prompt_sha256, /^70e795a1/, "the sample is generated on the shipped worklist prompt");
+assert.match(generated.prompt_sha256, /^0a19c3ee/, "the sample is generated on the shipped worklist prompt");
 
 // Every quoted line is on Jordan's resume, once; every example keeps its facts inside brackets or on the page.
 for (const [index, card] of sample.cards.entries()) {

@@ -1,0 +1,38 @@
+# b19_non_native_english, run 1
+Resume: ../2026-11-live-judgment/resumes/b_non_native_english.txt (237 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 6eb03ddb; severity check off
+Outcome: report; cost $0.0070; 15.6s
+
+## Mostly clear (score 82; model wrote 82)
+## Verdict
+An accountant with substantial experience and a clear accounts payable workload, with a few details still to fill in.
+
+## Write-up
+A recruiter can see your path from senior accounting in Vietnam to bookkeeping and accounts payable in Houston. Processing around 400 vendor invoices every month gives the current role a useful measure. The main question is what part of month-end closing is yours.
+
+Your best line is the one about reducing month-end closing from 12 days to 7 days. It names both the change and the checklist and template you made. Use that as a model when you add detail to your current closing work and your earlier team management.
+
+## Cards (4; {"line":3,"keep":1}); severity off; added []
+1. [line] Accounts Payable Clerk, line 4
+   line: "Help the controller for month end closing"
+   can't tell: A recruiter can't tell which closing tasks you help with. That matters for the Staff Accountant role you're seeking.
+   example: Help the controller with [month-end closing tasks]
+   question: Which month-end closing tasks do you help the controller with?
+2. [line] Senior Accountant, line 1
+   line: "Responsible for general ledger, fixed assets and monthly financial statements of company with 150 employees and revenue about 20 million USD"
+   can't tell: The company details give context, but 'responsible for' leaves your day-to-day accounting work open to interpretation. Name the work you did on the ledger, assets and statements.
+   example: Responsible for [general ledger and fixed asset tasks] and [monthly financial statement tasks] at a company with 150 employees and revenue about 20 million USD
+   question: What did you do with the general ledger, fixed assets and monthly financial statements?
+3. [line] Senior Accountant, line 2
+   line: "Lead team of 3 junior accountants"
+   can't tell: A recruiter can see that you led three junior accountants, but not what the team handled.
+   example: Lead team of 3 junior accountants who [work handled by the team]
+   question: What work did the three junior accountants handle?
+4. [keep] Senior Accountant, line 4
+   line: "Reduce the month end closing from 12 days to 7 days by make new checklist and template"
+   can't tell: Keep this as your model. It gives a before and after, then tells the recruiter what you made to get there.
+
+## Fit
+Roles: ["Staff Accountant","Accounts Payable Specialist","Accounts Payable Clerk"]
+Level: Experienced accountant
+Note: Your recent invoice processing points toward accounts payable, while your earlier general ledger and financial statement work points toward staff accounting. Your experience leading junior accountants also gives recruiters a view of your earlier responsibilities.

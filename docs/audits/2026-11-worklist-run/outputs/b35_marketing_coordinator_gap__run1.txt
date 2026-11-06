@@ -1,54 +1,41 @@
 # b35_marketing_coordinator_gap, run 1
 Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_marketing_coordinator_gap_1.txt (126 words)
-Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
-Outcome: report; cost $0.0091; 25.3s
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0072; 16.2s
 Case note: Gap with nothing after it.
 
 ## Needs more context (score 68; model wrote 68)
 ## Verdict
-A marketing coordinator with concrete email experience, but no account of work since March 2024.
+A marketing coordinator with clear campaign work and unaccounted time after March 2024.
 
 ## Write-up
-A recruiter sees a marketing coordinator who managed a weekly email calendar and coordinated trade shows. The first pause is that nothing accounts for the time after March 2024, so they may move on despite the work being easy to follow.
+Your resume tells a straightforward story: marketing work at Fernwood Coffee Roasters, followed by email, events, copy and social media at Juniper Outdoor Co. The work is easy to follow, but nothing accounts for the time after March 2024. That leaves a recruiter with a question before they can place your recent experience.
 
-The email calendar line is your model: it gives both the cadence and the subscriber count. The event and social media lines could tell a recruiter more about your part in the work.
+The weekly email calendar is your best model: it names the work, its frequency and the 120,000-subscriber list. It's common to leave earlier assistant work brief, but the Fernwood lines don't yet show enough of your part to stand out in a pile.
 
-## Cards (7; {"dates":1,"keep":1,"line":5}); severity off; added []
+Let's start with what you've done since March 2024, then add your part in the tasting events and what you updated for the blog and newsletter. You don't need to change the lines that already name the work.
+
+## Cards (4; {"dates":1,"keep":1,"line":2}); severity off; added []
 1. [dates] Dates
    line: "Nothing is dated after March 2024."
-   can't tell: A recruiter can't tell what you've been doing since your last role. A short, honest line can answer the question before they move on.
-   example: March 2024 - Present [what you've been doing]
-   question: What have you been doing since March 2024 that you'd be comfortable putting on the resume?
+   can't tell: A recruiter can't tell what you've done since the Juniper role. If you took care of a family member, you can name that; a career break can also include a course, project, volunteering or travel. Include freelance or consulting work only if it was real.
+   example: March 2024 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]
+   question: What have you done since March 2024 that you'd like to include?
 2. [keep] Marketing Coordinator, line 1
    line: "Managed the weekly email calendar for a list of 120,000 subscribers"
-   can't tell: Keep the cadence and subscriber count together. They show how much of a recurring responsibility you managed without claiming a result the line doesn't establish.
-3. [line] Marketing Coordinator, line 2
-   line: "Coordinated trade show logistics for four events a year"
-   can't tell: Four events a year gives the work a pace, but logistics could cover a lot. Which parts were yours?
-   example: Coordinated [logistics handled] for four trade show events a year
-   question: Which trade show logistics did you coordinate?
-4. [line] Marketing Coordinator, line 4
-   line: "Scheduled social posts across Instagram and Facebook"
-   can't tell: A recruiter knows the platforms, but not which accounts you scheduled for or how often. Those details show what the regular work involved.
-   example: Scheduled social posts for [account names] across Instagram and Facebook [frequency]
-   question: Which accounts did you schedule posts for, and how often?
-5. [line] Marketing Coordinator, line 5
-   line: "Tracked campaign results in a monthly report for the marketing director"
-   can't tell: The audience and cadence are clear. The missing piece is what you tracked in the report.
-   example: Tracked [campaign metrics] in a monthly report for the marketing director
-   question: Which campaign metrics did you track in the monthly report?
-6. [line] Marketing Assistant, line 1
+   can't tell: Keep this as a model. It gives a recruiter a concrete sense of the email work without making them guess how often it happened or who it reached.
+3. [line] Marketing Assistant, line 1
    line: "Helped plan in-store tasting events"
-   can't tell: 'Helped' leaves your part of the planning open. Name what you handled and how often the events happened.
-   example: Helped plan in-store tasting events by [planning work] for [event frequency] events
-   question: What planning work did you handle, and how often were the tasting events held?
-7. [line] Marketing Assistant, line 2
+   can't tell: Helping plan the events could mean several things. What part of the planning was yours?
+   example: Helped plan in-store tasting events by [planning work]
+   question: What did you do to help plan the tasting events?
+4. [line] Marketing Assistant, line 2
    line: "Updated the company blog and newsletter"
-   can't tell: Updating could mean several things, from editing to publishing. What did you do for each?
-   example: Updated the company blog and newsletter by [work on blog] and [work on newsletter]
-   question: What did you do to update the blog and the newsletter?
+   can't tell: A recruiter can see where you worked, but not what you added or changed. Name the content you handled.
+   example: Updated the company blog and newsletter with [content]
+   question: What content did you update for the blog and newsletter?
 
 ## Fit
 Roles: ["Marketing Coordinator","Marketing Assistant"]
-Level: Coordinator-level marketing
-Note: Your experience points toward marketing coordinator work across email, events, copy and social media. A brief account of your time after March 2024 would help a recruiter place that experience in the present.
+Level: Coordinator
+Note: Your experience points toward marketing coordinator work across email, events, copy and social media. The dated work ends in March 2024, so adding any relevant activity since then would help a recruiter understand where you are now.

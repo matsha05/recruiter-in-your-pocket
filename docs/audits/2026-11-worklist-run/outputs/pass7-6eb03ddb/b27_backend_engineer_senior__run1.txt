@@ -1,0 +1,28 @@
+# b27_backend_engineer_senior, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_backend_engineer_senior_1.txt (190 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 6eb03ddb; severity check off
+Outcome: report; cost $0.0043; 9.0s
+
+## Clear and specific (score 91; model wrote 91)
+## Verdict
+A senior payments engineer whose resume shows substantial technical work and what it changed.
+
+## Write-up
+This is a strong resume! You show a recruiter the systems you built, their demands, and the results, from faster invoices to fewer reconciliation breaks. The ledger line is a great model: it names the service and shows the change in monthly breaks.
+
+Your resume isn't likely to be the thing holding you back. How competitive a particular job is will still matter. One small improvement: say what the billing dashboards tracked so that work is as concrete as the rest.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Senior Software Engineer, Payments Platform, line 2
+   line: "Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10"
+   can't tell: Keep this as a model. It connects your own build to a before-and-after measure without making the reader guess what improved.
+2. [line] Software Engineer, line 3
+   line: "Added observability with OpenTelemetry and Grafana dashboards for the billing team"
+   can't tell: A recruiter can see the tools and the team, but not what the dashboards tracked. Naming that would give the billing work one more concrete detail.
+   example: Added observability with OpenTelemetry and Grafana dashboards for the billing team to track [what the dashboards tracked]
+   question: What did the dashboards track for the billing team?
+
+## Fit
+Roles: ["Senior Software Engineer, Payments Platform","Software Engineer"]
+Level: Senior software engineer
+Note: Your experience points toward senior backend work in payments and billing. The current role shows both hands-on systems work and team leadership.

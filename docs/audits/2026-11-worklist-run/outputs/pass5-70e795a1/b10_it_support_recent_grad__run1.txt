@@ -1,0 +1,50 @@
+# b10_it_support_recent_grad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_it_support_recent_grad_1.txt (119 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
+Outcome: report; cost $0.0089; 27.4s
+Case note: First job.
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+An early-career IT resume with relevant help desk work, but little sense of its volume and a recent work gap.
+
+## Write-up
+You have a help desk internship, retail device experience, an IT degree and CompTIA A+. A recruiter can see the direction, but the latest job doesn't say how many tickets or laptops you handled. The time after May 2025 also raises a question.
+
+The classroom laptop line is the strongest: it names both the work and where the laptops went. Give the ticket and account work that same treatment, with volume where you know it. Move Experience above Education so the school help desk work comes first.
+
+## Cards (6; {"dates":1,"structure":1,"line":4}); severity off; added []
+1. [dates] Dates
+   line: "The latest dated role ended May 2025."
+   can't tell: A recruiter can't tell what you've been doing since the internship ended. A short, honest line can account for that time.
+   example: May 2025 - Present [what you've been doing]
+   question: What have you been doing since May 2025 that you can include on the resume?
+2. [structure] Structure
+   line: "Education sits above Experience."
+   can't tell: Your help desk and retail work are the quickest way to show what you've done. Put Experience before Education.
+   question: Can you move Experience above Education and Certifications?
+3. [line] IT Help Desk Intern, line 1
+   line: "Answered help desk tickets from teachers and staff"
+   can't tell: A recruiter knows who sent the tickets, but not what problems you handled or how many came through.
+   example: Answered [number] help desk tickets per [time period] from teachers and staff about [types of problems]
+   question: What kinds of problems did the tickets cover, and about how many did you handle?
+4. [line] IT Help Desk Intern, line 2
+   line: "Imaged and set up laptops for classrooms"
+   can't tell: This names a concrete job. How many laptops did you image and set up?
+   example: Imaged and set up [number] laptops for classrooms
+   question: How many classroom laptops did you image and set up?
+5. [line] IT Help Desk Intern, line 3
+   line: "Reset passwords and accounts in Active Directory"
+   can't tell: Active Directory is relevant to the roles you're seeking. The number of requests would show how regularly you handled this work.
+   example: Reset passwords and accounts in Active Directory, handling [number] requests per [time period]
+   question: How many password and account reset requests did you handle, and over what period?
+6. [line] Retail Associate, line 2
+   line: "Set up new devices for customers at the service counter"
+   can't tell: Device setup can mean a few things. The steps you handled could show a recruiter more of your hands-on support work.
+   example: Set up new devices for customers at the service counter, including [setup tasks]
+   question: What setup tasks did you handle for customers?
+
+## Fit
+Roles: ["IT Help Desk Intern","desktop support","junior systems role"]
+Level: Early career
+Note: Your school help desk work and retail device setup point toward desktop support. The junior systems direction is plausible, but the page says less about systems administration beyond Active Directory account resets.

@@ -1,0 +1,29 @@
+# b13_marketing_vp_elite, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/golden/synth_marketing_manager_vp_elite_1766960221358.txt (730 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt f4ff18ca; severity check off
+Outcome: report; cost $0.0081; 14.2s
+Case note: Executive, strong (golden).
+
+## Clear and specific (score 90; model wrote 90)
+## Verdict
+A marketing executive whose resume connects global leadership to revenue, pipeline, and customer growth.
+
+## Write-up
+A recruiter sees a Chief Marketing Officer leading a global organization, a $25M budget, and demand generation for a SaaS platform. Your resume connects that leadership to results across several roles, so a recruiter rarely has to guess what you did.
+
+The account-based marketing line at Viridian is a great model: it names the program you built and ties it to pipeline and win rates. Define what counted as a successful launch at Novara, and your resume gets even stronger. Your resume isn't likely to be the reason you don't hear back; how competitive an executive role is will matter too.
+
+## Cards (2; {"line":1,"keep":1}); severity off; added []
+1. [line] Chief Marketing Officer, product launch
+   line: "I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years."
+   can't tell: The launch results are substantial, but a recruiter can't tell what counted as a successful launch. Naming the measure would make the 90% more meaningful.
+   example: I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, measured by [success measure], resulting in a $15M incremental revenue increase over 2 years.
+   question: How did you measure whether a launch was successful?
+2. [keep] Vice President, Global Marketing, ABM program
+   line: "I built and executed a comprehensive account-based marketing (ABM) program that increased pipeline contribution by $50M annually, lifting win rates by 15% among Fortune 500 clients."
+   can't tell: Keep this as a model. You make your ownership clear and name both the customers and the business measures.
+
+## Fit
+Roles: ["Chief Marketing Officer","Vice President, Global Marketing"]
+Level: Executive marketing leadership
+Note: Your experience points toward senior marketing leadership in SaaS and other B2B technology businesses. Your current role shows organization and budget leadership alongside demand generation and brand work.

@@ -1,33 +1,35 @@
 # b28_cybersecurity_analyst, run 1
 Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_cybersecurity_analyst_1.txt (154 words)
-Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
-Outcome: report; cost $0.0049; 12.8s
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0065; 14.4s
 
 ## Clear and specific (score 88; model wrote 88)
 ## Verdict
-A senior security analyst with measurable detection and response work, plus a few useful details left to add.
+A senior security analyst with detection and response results that make the progression easy to follow.
 
 ## Write-up
-A recruiter sees a security analyst who builds detections and leads incident response in a bank. The reduction in false positives and faster containment give the recent work weight. The purple-team and automation bullets leave a couple of questions about what changed.
+This is a strong security resume! Your move from monitoring client environments at Northgate Managed Security to detection and incident response at Capital Ridge Bank makes sense, and your recent work shows what changed.
 
-The Splunk detection line is the model: it names the work, the framework and the reduction in false-positive alerts. Your earlier SOC work and certifications reinforce the direction.
+The Splunk detection line is a great model: it names the rules, the framework and the reduction in false positives. Your incident response work adds a containment measure, and your certifications reinforce the direction of your experience.
+
+Let's add a little more about the purple-team exercises and alert enrichment. Your resume is unlikely to be the reason you don't get a callback; competition for the role matters too.
 
 ## Cards (3; {"keep":1,"line":2}); severity off; added []
 1. [keep] Senior Security Analyst, line 1
    line: "Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%"
-   can't tell: Keep this one. It connects a concrete technical task to a result without making the recruiter guess what you built.
+   can't tell: Keep this as a model. It pairs a concrete security task with its scale and a change a recruiter can understand.
 2. [line] Senior Security Analyst, line 3
    line: "Run monthly purple-team exercises with the red team"
-   can't tell: The frequency and partner are clear. What the exercises test, and what comes out of them, would show how they contribute to detection and response.
-   example: Run monthly purple-team exercises with the red team to test [what was tested], resulting in [what changed]
-   question: What did the exercises test, and what changed as a result?
+   can't tell: The cadence and partners are clear, but a recruiter can't tell what the exercises focus on. Name what you work through with the red team.
+   example: Run monthly purple-team exercises with the red team focused on [exercise focus]
+   question: What do the exercises focus on?
 3. [line] Senior Security Analyst, line 4
    line: "Automated alert enrichment with Python and the Splunk SOAR platform"
-   can't tell: The tools are named, but the enrichment itself is still abstract. Say what information you added to alerts and what the automation changed.
-   example: Automated alert enrichment with [information added] using Python and the Splunk SOAR platform, resulting in [what changed]
-   question: What information did the automation add to alerts, and what changed after you built it?
+   can't tell: The tools and task are there. What information does the automation add, and to which alerts?
+   example: Automated alert enrichment with Python and the Splunk SOAR platform, adding [information added] to [alerts enriched]
+   question: What information does the automation add, and which alerts does it enrich?
 
 ## Fit
 Roles: ["Senior Security Analyst, Detection and Response","Security Operations Analyst"]
-Level: Senior individual contributor
-Note: Your recent work points toward senior detection and incident response roles, particularly in financial services. The earlier managed security work adds experience across client environments.
+Level: Senior analyst
+Note: Your experience points toward detection and incident response work, with a foundation in security operations. The bank role shows both hands-on engineering and incident response leadership.

@@ -1,0 +1,39 @@
+# b17_hr_generalist_career_break, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_hr_generalist_career_break_1.txt (145 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
+Outcome: report; cost $0.0075; 22.3s
+Case note: Returner after caregiving, break dated and named.
+
+## Needs more context (score 67; model wrote 67)
+## Verdict
+An HR generalist with solid plant experience, but unaccounted time since caregiving ended invites a question.
+
+## Write-up
+A recruiter sees an HR generalist who supported a manufacturing plant, then took a clearly explained caregiving break. The hesitation is what you've been doing since June 2025. A brief, honest update would close that gap.
+
+The plant line is the model: it names your level of responsibility, the 400 employees and the three shifts. Bring that same detail to your part in investigations and open enrollment. Your SHRM-CP and HR systems also point toward generalist work.
+
+## Cards (4; {"dates":1,"keep":1,"line":2}); severity off; added []
+1. [dates] Dates
+   line: "Nothing is dated after June 2025."
+   can't tell: Your caregiving break has an end date, but a recruiter can't tell what you've been doing since. A short update can answer that without asking you to share more than you're comfortable with.
+   example: June 2025 - Present [what you've been doing]
+   question: What have you been doing since June 2025 that you're comfortable including?
+2. [keep] HR Generalist, line 1
+   line: "Supported HR for a plant of 400 employees across three shifts"
+   can't tell: Keep this as a model. It gives a recruiter a concrete setting for your HR work without claiming you ran the whole function.
+3. [line] HR Generalist, line 2
+   line: "Handled employee relations questions and investigations with the HR manager"
+   can't tell: A recruiter can see you worked with the HR manager, but not what part of the investigations was yours. That distinction matters for a generalist role.
+   example: Handled employee relations questions and investigations with the HR manager, including [your responsibilities]
+   question: What did you personally handle during employee relations questions and investigations?
+4. [line] HR Generalist, line 3
+   line: "Coordinated open enrollment for medical and dental benefits"
+   can't tell: Open enrollment is recognizable work, but coordinating it can cover several different jobs. Which parts did you handle?
+   example: Coordinated open enrollment for medical and dental benefits, including [your responsibilities]
+   question: What parts of medical and dental open enrollment did you coordinate?
+
+## Fit
+Roles: ["HR Generalist","HR Assistant"]
+Level: Experienced HR generalist
+Note: Your Northstar Plastics roles point toward HR generalist work in a plant setting, with earlier HR assistant experience. The caregiving break is explained; an update after June 2025 would complete the timeline.

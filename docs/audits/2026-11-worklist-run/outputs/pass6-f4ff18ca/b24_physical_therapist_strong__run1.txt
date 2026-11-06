@@ -1,0 +1,28 @@
+# b24_physical_therapist_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_physical_therapist_strong_1.txt (154 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt f4ff18ca; severity check off
+Outcome: report; cost $0.0045; 10.1s
+
+## Clear and specific (score 90; model wrote 90)
+## Verdict
+A senior outpatient physical therapist whose patient load, programs, mentoring, and patient-reported results are easy to see.
+
+## Write-up
+A recruiter sees a licensed Minnesota physical therapist with outpatient orthopedic and sports rehab experience, plus mentoring and scheduling work. Your resume isn't going to be the reason you don't hear back. How competitive a particular job is will also matter.
+
+The return-to-run program line is a great model: you built a named program and say how many patients completed it. One useful addition would be the measure and patient count behind the 2025 function scores.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Senior Physical Therapist, line 2
+   line: "Built a return-to-run program that 85 patients completed in 2025"
+   can't tell: Keep this line. It gives a recruiter both your role in the program and a concrete picture of its use.
+2. [line] Senior Physical Therapist, line 4
+   line: "In 2025, 92% of discharged patients improved their patient-reported function scores"
+   can't tell: This is a strong result, but a recruiter can't tell how many discharged patients are included or which measure was used. Those details would give the percentage more context.
+   example: In 2025, 92% of [number] discharged patients improved their patient-reported function scores on [measure]
+   question: How many discharged patients were included, and which function measure did they complete?
+
+## Fit
+Roles: ["Senior Physical Therapist","Physical Therapist"]
+Level: Senior clinician
+Note: Your experience points toward outpatient orthopedic physical therapy, including sports and post-surgical rehab. The mentoring and aide scheduling add senior-level responsibilities.

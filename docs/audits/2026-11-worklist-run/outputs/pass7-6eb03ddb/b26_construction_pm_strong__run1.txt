@@ -1,0 +1,28 @@
+# b26_construction_pm_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_construction_pm_strong_1.txt (136 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 6eb03ddb; severity check off
+Outcome: report; cost $0.0050; 12.0s
+
+## Clear and specific (score 89; model wrote 89)
+## Verdict
+A construction project manager with project values, trade counts and delivery results a recruiter can quickly grasp.
+
+## Write-up
+Your resume makes a strong case for construction project management! A recruiter can see the projects you run, their value and the trades you manage. The $14M grocery store line stands out because it names the build and says it finished three weeks ahead of schedule.
+
+The change-order result is strong too. Adding how you kept it under 3% would show more of your approach. Your resume is unlikely to be what stands between you and a callback; a referral and how competitive the job is can still matter.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Project Manager, line 2
+   line: "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024"
+   can't tell: Keep this as a model: it puts your ownership, the project value and the schedule result together in one line.
+2. [line] Project Manager, line 4
+   line: "Kept change orders under 3% of contract value across 2024 and 2025 projects"
+   can't tell: This is a useful result. A recruiter can't yet tell what you did to keep change orders under that mark.
+   example: Kept change orders under 3% of contract value across 2024 and 2025 projects by [what you did to manage change orders]
+   question: What did you do to keep change orders under 3% of contract value?
+
+## Fit
+Roles: ["Project Manager","Assistant Project Manager"]
+Level: Experienced project manager
+Note: Your experience points toward construction project management for commercial tenant improvements and retail builds. The project values, trade counts and schedule result make that direction easy to follow.

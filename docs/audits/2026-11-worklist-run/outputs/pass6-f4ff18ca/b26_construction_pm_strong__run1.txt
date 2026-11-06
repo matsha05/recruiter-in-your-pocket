@@ -1,0 +1,23 @@
+# b26_construction_pm_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_construction_pm_strong_1.txt (136 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt f4ff18ca; severity check off
+Outcome: report; cost $0.0037; 9.6s
+
+## Clear and specific (score 92; model wrote 92)
+## Verdict
+A construction project manager with project values, trade counts, and results a recruiter can quickly grasp.
+
+## Write-up
+A recruiter sees a project manager running commercial construction jobs with clear figures for project value, trade count, schedule, and change orders. The $14M grocery store line is especially strong: it names the build, its value, and when you delivered it against schedule.
+
+Your resume isn't likely to be the reason you don't hear back. How competitive the job is and whether you have a referral can matter too. The rest of the resume backs up your headline, and Experience is right where it belongs, above Education.
+
+## Cards (1; {"keep":1}); severity off; added []
+1. [keep] Project Manager, line 2
+   line: "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024"
+   can't tell: Keep this as a model. It gives a recruiter a particular project to remember and shows what you accomplished on it.
+
+## Fit
+Roles: ["Project Manager","Assistant Project Manager"]
+Level: Experienced project manager
+Note: Your experience points toward construction project management, particularly tenant improvements and retail builds. The earlier assistant project manager work shows the progression into your current role.

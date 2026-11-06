@@ -1,0 +1,42 @@
+# b06_staff_accountant, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_staff_accountant_1.txt (98 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
+Outcome: report; cost $0.0085; 27.7s
+
+## Needs more context (score 65; model wrote 65)
+## Verdict
+A staff accountant with a clear progression, but little detail on the accounts or volume handled.
+
+## Write-up
+You moved from accounts payable clerk to staff accountant at Rivermark. A recruiter can follow that path, but the current job gives no sense of how much you handle or what changed.
+
+The purchase order line is your best model: it names the documents you matched and the work you did with them. Bring that same detail to the close and audit, then add a measure of the work where you can.
+
+## Cards (5; {"structure":1,"line":3,"keep":1}); severity off; added []
+1. [structure] Rivermark Building Supply
+   line: "The page doesn't say how large Rivermark Building Supply is."
+   can't tell: A recruiter may not know the business. One short description could put your accounting work in context.
+   question: How large is Rivermark Building Supply, and what does it supply?
+2. [line] Staff Accountant, line 1
+   line: "Responsible for month-end close tasks"
+   can't tell: Month-end close covers a lot of work. Which parts are yours beyond the entries and reconciliations listed below?
+   example: Responsible for [month-end close tasks] for [accounts or entities]
+   question: Which other close tasks are yours, and which accounts or entities do they cover?
+3. [line] Staff Accountant, line 2
+   line: "Prepare journal entries and account reconciliations"
+   can't tell: The deliverables are named, but the accounts and volume aren't. Those details would show how much work you handle.
+   example: Prepare journal entries and reconcile [number] [account types] accounts
+   question: What types of accounts do you reconcile, and how many?
+4. [line] Staff Accountant, line 3
+   line: "Assist with the annual audit"
+   can't tell: Assist could mean several things. A recruiter can't tell what you prepared or handled for the audit.
+   example: Assist with the annual audit by [audit work performed]
+   question: What work did you do for the annual audit?
+5. [keep] Accounts Payable Clerk, line 2
+   line: "Matched purchase orders to receipts"
+   can't tell: This gives the reader two concrete documents and tells them what you did with them. Use that level of detail for the broader close and audit lines.
+
+## Fit
+Roles: ["Staff Accountant","Accounts Payable Clerk"]
+Level: Staff accountant
+Note: Your current title and accounting degree point toward staff accountant work, with earlier accounts payable experience. The next improvement is to show which accounts you handle and how much work sits behind the close.

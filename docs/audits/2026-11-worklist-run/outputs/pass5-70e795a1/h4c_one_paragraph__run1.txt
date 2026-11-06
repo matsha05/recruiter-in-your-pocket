@@ -1,0 +1,26 @@
+# h4c_one_paragraph, run 1
+Resume: ../2026-11-live-judgment/resumes/h4c_one_paragraph.txt (147 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
+Outcome: report; cost $0.0185; repair ran; 36.6s
+Case note: A resume pasted as one paragraph with no line breaks.
+
+Validator refused the first draft: The model response failed the worklist contract at score: is 86 with no card that needs work; a page with nothing to fix scores at least 90.
+
+## Clear and specific (score 90; model wrote 90)
+## Verdict
+A logistics coordinator with clear dispatch responsibilities and a measurable improvement in on-time delivery.
+
+## Write-up
+A recruiter can see your progression from warehouse work to customer service and dispatch. The improvement in on-time delivery is a strong result; the next question is what you did to achieve it.
+
+The dispatch line is a model for the rest. It names the daily work, the 18 drivers and the two depots. Your inventory line could use a little more about the work behind the count.
+
+## Cards (1; {"keep":1}); severity off; added []
+1. [keep] Operations Coordinator, dispatch
+   line: "Carlos Mendes Richmond VA carlos.mendes@example.com 555-0171 Summary Operations coordinator with six years in logistics and customer service Experience Operations Coordinator River City Logistics Richmond VA April 2021 to Present Coordinate daily dispatch for 18 drivers across two depots track on-time delivery and report weekly to the regional manager resolve delivery exceptions with customers by phone and email trained 4 new coordinators on the dispatch software improved on-time rate from 91% to 96% in 2024 Customer Service Representative Dominion Parcel Richmond VA June 2019 to March 2021 answered 60 to 80 customer calls per day handled claims for damaged or lost packages kept records in Salesforce Warehouse Clerk Dominion Parcel Richmond VA February 2018 to May 2019 scanned and sorted inbound freight kept the inventory count accurate Education Associate of Applied Science Business Administration J. Sargeant Reynolds Community College 2018 Skills Dispatch software Salesforce Excel customer service scheduling"
+   can't tell: Keep this level of detail. The drivers and depots give a recruiter a concrete picture of your responsibility.
+
+## Fit
+Roles: ["Operations Coordinator","Customer Service Representative","Warehouse Clerk"]
+Level: Experienced coordinator
+Note: Your recent work points most directly to Operations Coordinator roles in logistics. Your earlier warehouse and customer service jobs show experience with both freight and delivery issues.

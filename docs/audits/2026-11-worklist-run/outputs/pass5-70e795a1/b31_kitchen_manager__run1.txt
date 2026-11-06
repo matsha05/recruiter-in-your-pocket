@@ -1,0 +1,48 @@
+# b31_kitchen_manager, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_kitchen_manager_1.txt (120 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
+Outcome: report; cost $0.0073; 19.8s
+
+## Mostly clear (score 72; model wrote 72)
+## Verdict
+A kitchen manager with a clear career progression, but too little detail on staffing and kitchen operations.
+
+## Write-up
+You’ve progressed from line cook to kitchen manager, and a recruiter can see the work you handle now. The hesitation is how much of it you handle: the staff schedule, ordering and training all need a little more detail.
+
+The 180-seat restaurant line is the best model here. It names your job and gives a recruiter a concrete sense of the restaurant. Bring that same detail to the staff and kitchen routines.
+
+## Cards (6; {"keep":1,"line":5}); severity off; added []
+1. [keep] Kitchen Manager, line 1
+   line: "Run the kitchen for a 180-seat restaurant"
+   can't tell: Keep this. It puts a recognizable number beside your responsibility without making the reader hunt for it.
+2. [line] Kitchen Manager, line 2
+   line: "Manage the kitchen staff schedule"
+   can't tell: The schedule is yours, but a recruiter can't tell how many people or shifts it covers.
+   example: Manage the kitchen staff schedule for [number] staff across [shifts]
+   question: How many staff and shifts does the schedule cover?
+3. [line] Kitchen Manager, line 3
+   line: "Order food and supplies from vendors"
+   can't tell: A recruiter can see what you order, but not how often or how much you handle.
+   example: Order food and supplies from vendors [ordering frequency], with orders totaling [order value] per [period]
+   question: How often do you order, and what is the value of those orders over a typical period?
+4. [line] Kitchen Manager, line 4
+   line: "Keep the kitchen ready for health inspections"
+   can't tell: Inspection readiness matters in this job. What do you do to keep the kitchen ready?
+   example: Keep the kitchen ready for health inspections by [inspection preparation tasks]
+   question: What tasks do you handle to prepare the kitchen for health inspections?
+5. [line] Kitchen Manager, line 5
+   line: "Train new line cooks"
+   can't tell: Training is part of the job, but the line leaves out what you teach and how many cooks you train.
+   example: Train [number] new line cooks per [period] on [skills or procedures]
+   question: How many new line cooks do you train in a typical period, and what do you teach them?
+6. [line] Sous Chef, line 2
+   line: "Helped plan seasonal menu changes"
+   can't tell: You helped with the menu, but your part in the planning is still a blank.
+   example: Helped plan seasonal menu changes by [contribution] for [dishes or menu items]
+   question: What did you contribute to the seasonal menu changes, and which dishes or menu items did you work on?
+
+## Fit
+Roles: ["Kitchen Manager","Sous Chef"]
+Level: Experienced kitchen manager
+Note: Your experience points toward kitchen management and sous chef roles. The progression and ServSafe Manager certification are easy to find; staffing and ordering details would give recruiters a better picture of your current job.

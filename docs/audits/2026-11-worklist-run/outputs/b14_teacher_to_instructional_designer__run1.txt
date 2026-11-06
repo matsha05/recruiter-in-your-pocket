@@ -1,39 +1,41 @@
 # b14_teacher_to_instructional_designer, run 1
 Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_teacher_to_instructional_designer_1.txt (164 words)
-Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
-Outcome: report; cost $0.0072; 22.6s
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0076; 16.9s
 Case note: Career changer.
 
-## Mostly clear (score 78; model wrote 78)
+## Mostly clear (score 79; model wrote 79)
 ## Verdict
-A mathematics teacher with classroom depth and an emerging digital learning portfolio.
+A mathematics teacher with clear classroom experience and a developing digital learning design portfolio.
 
 ## Write-up
-A recruiter sees a current math teacher who has started designing digital learning materials. The hesitation is what the Canvas module and professional learning community involved beyond their titles.
+Your resume points toward mathematics teaching, with digital learning design emerging as a second direction. A recruiter can see the classes you teach and the materials you create, so the teaching story is easy to follow. The design work is promising but needs a little more detail for someone reading it as a career move.
 
-The teaching line is your model: it names Algebra II and AP Statistics, five sections, and 28 to 32 students. Your certificate is clearly marked in progress. A little more about the module and videos would help connect your classroom work to the portfolio.
+The Canvas functions module is your best model: it names the subject, the format and the platform. Your current teaching line also gives a recruiter a useful picture of your classes. One thing to check is the experience count in your headline against the teaching dates below it.
 
-## Cards (4; {"keep":1,"line":3}); severity off; added []
-1. [keep] Mathematics Teacher, Cedar Creek High School, line 1
-   line: "Teach Algebra II and AP Statistics to five sections of 28 to 32 students"
-   can't tell: Keep this as a model. It puts the subjects and the students together, so a recruiter doesn't have to guess who you're teaching.
-2. [line] Mathematics Teacher, Cedar Creek High School, line 2
+Start by updating that count, then add what you do with the professional learning community and what goes into the exam-review videos. Those details can show more of your work without taking space away from the classroom experience.
+
+## Cards (4; {"line":3,"keep":1}); severity off; added []
+1. [line] Headline
+   line: "Educator with nine years of classroom experience and a growing portfolio of digital learning design."
+   can't tell: The headline says nine years, but your teaching dates begin in August 2015 and run to Present. Check that the count reflects your actual classroom experience.
+   example: Educator with [number] years of classroom experience and a growing portfolio of digital learning design.
+   question: How many years of classroom experience should the headline state now?
+2. [keep] Cedar Creek High School, line 2
    line: "Redesigned the Algebra II unit on functions into a self-paced online module in Canvas"
-   can't tell: The module is a useful bridge to digital learning design. A recruiter can't tell what students did in it.
-   example: Redesigned the Algebra II unit on functions into a self-paced online module in Canvas, including [learning activities]
-   question: What learning activities did you include in the module?
-3. [line] Mathematics Teacher, Cedar Creek High School, line 3
+   can't tell: Keep this as a model. It gives the recruiter a concrete piece of learning material rather than just a list of design skills.
+3. [line] Cedar Creek High School, line 3
    line: "Lead the math department's professional learning community"
-   can't tell: Leading the community tells a recruiter you have a role with colleagues, but not what you lead them to do.
-   example: Lead the math department's professional learning community through [activities] focused on [topics]
-   question: What activities do you lead, and what topics do colleagues work on?
-4. [line] Mathematics Teacher, Cedar Creek High School, line 4
+   can't tell: Leading the community is useful experience, but a recruiter can't tell what the group works on or what you do to lead it.
+   example: Lead the math department's professional learning community by [leadership activity] as the group works on [work]
+   question: What do you do to lead the group, and what does it work on?
+4. [line] Cedar Creek High School, line 4
    line: "Created video walkthroughs that students use for exam review"
-   can't tell: Exam review gives the videos a purpose. Their subjects and number would show more of the work you created.
-   example: Created [number] video walkthroughs on [topics] that students use for exam review
-   question: How many walkthroughs did you create, and what topics do they cover?
+   can't tell: The videos are relevant to learning design, but their subject and how you made them aren't stated. Those details would show more of your design work.
+   example: Created video walkthroughs on [topics] using [tool] that students use for exam review
+   question: What topics do the walkthroughs cover, and what did you use to create them?
 
 ## Fit
 Roles: ["Mathematics Teacher"]
-Level: Experienced classroom teacher
-Note: Your experience points most directly to mathematics teaching, with digital learning design work in the classroom. The Canvas module, video walkthroughs, and certificate in progress give you a starting point for discussing that direction.
+Level: Experienced teacher with developing design work
+Note: Your experience points most directly to Mathematics Teacher roles. The Canvas module, video walkthroughs and certificate in progress also show a developing interest in digital learning design.

@@ -1,0 +1,58 @@
+# b15_career_changer_maria, run 1
+Resume: ../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/2-career-changer-maria.txt (315 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt f4ff18ca; severity check off
+Outcome: report; cost $0.0111; 26.4s
+Case note: Career changer (bar persona).
+
+## Mostly clear (score 75; model wrote 75)
+## Verdict
+A math teacher moving into analytics, with useful projects and a few unanswered questions about the analysis.
+
+## Write-up
+A recruiter sees a math teacher making a deliberate move into data analytics, with a certificate, bootcamp and two relevant projects. There’s enough here to move forward with questions, but the summary relies on generic strengths, and the projects sit below the teaching history.
+
+The Student Performance Dashboard is a strong model: you name the Excel dashboard, what it tracked and, in the next line, how the department used it. Let’s bring that kind of detail to the assessment work and housing project, and put the projects where an analytics recruiter will see them sooner.
+
+## Cards (8; {"line":6,"structure":1,"keep":1}); severity off; added []
+1. [line] Summary
+   line: "Dedicated educator with 8 years of experience transitioning into data analytics. Passionate about using data to tell stories and drive decisions. Strong analytical, communication, and problem-solving skills with a proven track record of success."
+   can't tell: These strengths could describe many people. Your dashboards give you a more concrete way to show what you bring to analytics.
+   example: Educator transitioning into data analytics with experience using Python, SQL, Tableau and Excel to [analysis or project result]
+   question: Which analysis or project result best represents the work you want to do next?
+2. [structure] Section order
+   line: "DATA PROJECTS sits below PROFESSIONAL EXPERIENCE."
+   can't tell: Your projects show the analytics tools in use, but a recruiter has to get through the teaching history to find them. Consider moving them above your experience for analytics applications.
+   question: Which project would you put first for the analytics work you want?
+3. [line] Mathematics Teacher, curriculum
+   line: "Developed and implemented engaging curriculum aligned with state standards"
+   can't tell: A recruiter can see you developed curriculum, but not what you made. One unit or teaching resource would make the work more concrete.
+   example: Developed and implemented [unit or teaching resource] aligned with state standards
+   question: What unit or teaching resource did you develop?
+4. [line] Mathematics Teacher, assessment data
+   line: "Analyzed student assessment data to identify learning gaps and adjust instruction"
+   can't tell: This connects teaching to analytics, but it leaves the analysis and adjustment unnamed. What did you find, and what did you change in response?
+   example: Analyzed student assessment data using [tool or method] to identify [learning gap] and adjust [instructional approach]
+   question: How did you analyze the assessments, and what learning gap and instructional adjustment can you name?
+5. [line] Mathematics Teacher, Data Lead
+   line: "Served as Math Department Data Lead, compiling benchmark results for department meetings"
+   can't tell: The Data Lead work is relevant to your move, but a recruiter can't tell how you compiled the results or what the department examined with them.
+   example: Served as Math Department Data Lead, compiling benchmark results for department meetings using [tool or method] to examine [question]
+   question: How did you compile the benchmark results, and what question did the department examine?
+6. [line] Middle School Math Teacher, professional learning
+   line: "Participated in professional learning communities"
+   can't tell: Participation can mean a lot of things. A recruiter can't tell what you contributed or worked on with the group.
+   example: Participated in professional learning communities by [contribution] on [topic]
+   question: What did you contribute to a professional learning community, and what was the group working on?
+7. [line] Austin Housing Affordability Analysis, dashboard
+   line: "Created a Tableau dashboard showing affordability trends by zip code"
+   can't tell: The dashboard and subject are clear. The finding is the missing piece: what did the trends show?
+   example: Created a Tableau dashboard showing affordability trends by zip code, including [key finding]
+   question: What finding from the dashboard can you name?
+8. [keep] Student Performance Dashboard
+   line: "Built an Excel dashboard tracking AP Statistics pass rates and quiz scores over three years"
+   can't tell: Keep this as a model. It gives the tool, the measures and the time covered without making the reader guess.
+
+## Fit
+Roles: ["Mathematics Teacher","Middle School Math Teacher"]
+Level: Experienced educator transitioning into entry-level analytics
+Note: Your teaching history shows assessment and reporting work, while the bootcamp and dashboards show a move toward data analytics. The projects will do more for that transition if they appear earlier and include a finding from the housing analysis.

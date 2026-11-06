@@ -1,0 +1,247 @@
+{
+  "case_id": "b04_retail_store_manager",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_retail_store_manager_1.txt",
+  "resume_sha256": "44e7ec6fe998a1b320b02b5bb24f3945f6d89a3e2777dca5e1be857f4727486b",
+  "resume_words": 179,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T17:55:07.017Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5259,
+        "completion_tokens": 1090,
+        "total_tokens": 6349,
+        "cached_prompt_tokens": 4481,
+        "cache_write_prompt_tokens": 775,
+        "reasoning_tokens": 474
+      },
+      "cost_usd": 0.0066458,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 16441
+    }
+  ],
+  "resume_prompt_sha256": "f4ff18ca80174dffdce77796c99b298e4ced5fdab817d0ec307d0b591839e910",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 83,
+    "lifted_by_employer": false,
+    "verdict": "A store manager with strong sales and staffing results, but a second claimed turnaround needs support.",
+    "write_up": [
+      "A recruiter sees a store manager running a $9.4M location, with gains in sales and reductions in turnover and shrink. That's a strong story. The first hesitation is your headline: it claims two store turnarounds, but the jobs below show results for only one.",
+      "Your turnover line is a great model. It gives the starting point, the result and the scheduling change you made. Add what changed at the second store, then give the department supervisor role a little more detail."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain.",
+        "cannot_tell": "The jobs below show strong results at one store, but don't show what changed at the second. A recruiter can't connect both turnarounds to the work you describe.",
+        "example": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain, including [what changed at the second store].",
+        "question": "What changed at the second store, and what did you do as part of its turnaround?"
+      },
+      {
+        "kind": "keep",
+        "where": "Store Manager, turnover line",
+        "line": "- Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules",
+        "cannot_tell": "Keep this as your model: the before-and-after figures make the staffing change concrete, and the fixed schedules show what you did.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Department Supervisor",
+        "line": "- Supervised the lumber and building materials department",
+        "cannot_tell": "A recruiter knows which department you supervised, but not what the job involved or whether you supervised staff. A little detail would show how you started managing store operations.",
+        "example": "Supervised the lumber and building materials department, including [work supervised] and [staff responsibilities].",
+        "question": "What work and staff responsibilities did you supervise in the department?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Store Manager",
+        "Assistant Store Manager",
+        "Department Supervisor"
+      ],
+      "level": "Store management",
+      "note": "Your experience points toward store management roles. The current role shows responsibility for a large store and results across sales, staffing and inventory.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 83,
+    "lifted_by_employer": false,
+    "verdict": "A store manager with strong sales and staffing results, but a second claimed turnaround needs support.",
+    "write_up": [
+      "A recruiter sees a store manager running a $9.4M location, with gains in sales and reductions in turnover and shrink. That's a strong story. The first hesitation is your headline: it claims two store turnarounds, but the jobs below show results for only one.",
+      "Your turnover line is a great model. It gives the starting point, the result and the scheduling change you made. Add what changed at the second store, then give the department supervisor role a little more detail."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain.",
+        "cannot_tell": "The jobs below show strong results at one store, but don't show what changed at the second. A recruiter can't connect both turnarounds to the work you describe.",
+        "example": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain, including [what changed at the second store].",
+        "question": "What changed at the second store, and what did you do as part of its turnaround?"
+      },
+      {
+        "kind": "keep",
+        "where": "Store Manager, turnover line",
+        "line": "Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules",
+        "cannot_tell": "Keep this as your model: the before-and-after figures make the staffing change concrete, and the fixed schedules show what you did.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Department Supervisor",
+        "line": "Supervised the lumber and building materials department",
+        "cannot_tell": "A recruiter knows which department you supervised, but not what the job involved or whether you supervised staff. A little detail would show how you started managing store operations.",
+        "example": "Supervised the lumber and building materials department, including [work supervised] and [staff responsibilities].",
+        "question": "What work and staff responsibilities did you supervise in the department?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Store Manager",
+        "Assistant Store Manager",
+        "Department Supervisor"
+      ],
+      "level": "Store management",
+      "note": "Your experience points toward store management roles. The current role shows responsibility for a large store and results across sales, staffing and inventory.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 83
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 83,
+    "lifted_by_employer": false,
+    "verdict": "A store manager with strong sales and staffing results, but a second claimed turnaround needs support.",
+    "write_up": [
+      "A recruiter sees a store manager running a $9.4M location, with gains in sales and reductions in turnover and shrink. That's a strong story. The first hesitation is your headline: it claims two store turnarounds, but the jobs below show results for only one.",
+      "Your turnover line is a great model. It gives the starting point, the result and the scheduling change you made. Add what changed at the second store, then give the department supervisor role a little more detail."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain.",
+        "cannot_tell": "The jobs below show strong results at one store, but don't show what changed at the second. A recruiter can't connect both turnarounds to the work you describe.",
+        "example": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain, including [what changed at the second store].",
+        "question": "What changed at the second store, and what did you do as part of its turnaround?"
+      },
+      {
+        "kind": "keep",
+        "where": "Store Manager, turnover line",
+        "line": "Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules",
+        "cannot_tell": "Keep this as your model: the before-and-after figures make the staffing change concrete, and the fixed schedules show what you did.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Department Supervisor",
+        "line": "Supervised the lumber and building materials department",
+        "cannot_tell": "A recruiter knows which department you supervised, but not what the job involved or whether you supervised staff. A little detail would show how you started managing store operations.",
+        "example": "Supervised the lumber and building materials department, including [work supervised] and [staff responsibilities].",
+        "question": "What work and staff responsibilities did you supervise in the department?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Store Manager",
+        "Assistant Store Manager",
+        "Department Supervisor"
+      ],
+      "level": "Store management",
+      "note": "Your experience points toward store management roles. The current role shows responsibility for a large store and results across sales, staffing and inventory.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 83
+  },
+  "presentation": {
+    "score": 83,
+    "band": "Mostly clear",
+    "model_score": 83,
+    "lifted_by_employer": false,
+    "verdict": "A store manager with strong sales and staffing results, but a second claimed turnaround needs support.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 81,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain.",
+        "blanks": 1,
+        "question": "What changed at the second store, and what did you do as part of its turnaround?"
+      },
+      {
+        "kind": "keep",
+        "where": "Store Manager, turnover line",
+        "line": "Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Department Supervisor",
+        "line": "Supervised the lumber and building materials department",
+        "blanks": 2,
+        "question": "What work and staff responsibilities did you supervise in the department?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "line": 2,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Store Manager",
+        "Assistant Store Manager",
+        "Department Supervisor"
+      ],
+      "level": "Store management",
+      "note": "Your experience points toward store management roles. The current role shows responsibility for a large store and results across sales, staffing and inventory.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0066458,
+  "latency_ms": 16445
+}

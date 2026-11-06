@@ -1,0 +1,28 @@
+# b18_military_to_civilian, run 1
+Resume: ../2026-11-live-judgment/resumes/b_military_to_civilian.txt (268 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
+Outcome: report; cost $0.0050; 11.9s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+Army maintenance and logistics leadership with measurable results, aimed at a civilian supervisor role.
+
+## Write-up
+A recruiter can see the move you're making: from Army maintenance and logistics leadership to a supply chain or operations supervisor role. The team, equipment and battalion responsibilities are concrete. The main question is how some of the military work translates to a civilian shop.
+
+The vehicle readiness line is the model: it gives the starting rate, the finish and the two changes you made. The earlier mechanic role could say a little more about what you taught the junior mechanics.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Platoon Sergeant, vehicle readiness
+   line: "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule"
+   can't tell: Keep this as a model. You name the operational problem and show what you did about it, without making a recruiter guess which work was yours.
+2. [line] Wheeled Vehicle Mechanic, line 2
+   line: "Trained 9 junior mechanics"
+   can't tell: A recruiter can see how many mechanics you trained, but not what you taught them. The subject would show what skills you passed on.
+   example: Trained 9 junior mechanics in [maintenance tasks]
+   question: What did you train the junior mechanics to do?
+
+## Fit
+Roles: ["Platoon Sergeant (E-7), Forward Support Company","Maintenance Section Sergeant (E-6)"]
+Level: Experienced supervisor
+Note: Your experience points toward maintenance, logistics and operations supervision. The resume names a civilian direction and gives a recruiter concrete team and equipment responsibilities to connect to it.

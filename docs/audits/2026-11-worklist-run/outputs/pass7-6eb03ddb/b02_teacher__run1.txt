@@ -1,0 +1,28 @@
+# b02_teacher, run 1
+Resume: ../2026-11-live-judgment/resumes/b_teacher.txt (202 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 6eb03ddb; severity check off
+Outcome: report; cost $0.0046; 9.3s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+An elementary teacher with classroom leadership, family engagement, and measurable reading growth.
+
+## Write-up
+This is a strong teaching resume! A recruiter can see the students you teach, the team you lead, and the reading growth your class made. The assessment line is the model: it names the measure and shows how it changed over three years.
+
+The committee line in your 2nd Grade Teacher role leaves one question about your contribution, but the rest gives a recruiter plenty to work with. Your resume isn't likely to be the thing holding you back; how competitive a teaching job is will matter too.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] 4th Grade Teacher, line 2
+   line: "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years"
+   can't tell: Keep this as a model. It connects your teaching to a named district assessment and gives the starting and ending figures.
+2. [line] 2nd Grade Teacher, line 3
+   line: "Served on the school's positive behavior support committee"
+   can't tell: A recruiter can see which committee you joined, but not what you did on it. One contribution would show how you supported the school's work.
+   example: Served on the school's positive behavior support committee and [what you did]
+   question: What did you contribute to the positive behavior support committee?
+
+## Fit
+Roles: ["4th Grade Teacher","2nd Grade Teacher"]
+Level: Experienced elementary teacher
+Note: Your experience points toward elementary classroom teaching, with grade-level leadership and work with English language learners. Your Washington K-8 certification and English Language Learner endorsement are easy to find.

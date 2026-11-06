@@ -1,0 +1,33 @@
+# b05_paralegal, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_paralegal_1.txt (144 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 6eb03ddb; severity check off
+Outcome: report; cost $0.0070; 18.3s
+
+## Mostly clear (score 81; model wrote 81)
+## Verdict
+A senior litigation paralegal with substantial document production and trial preparation experience.
+
+## Write-up
+A recruiter can see your litigation work quickly: you support four partners, draft discovery documents and prepare for trial. They'd likely move forward with a few questions about the demands of the docket and how attorneys used your summaries.
+
+The Relativity line is a strong model because it names what you manage, the tool and how large the productions can be. Let's add a little more context to the deadline and summary work without trying to put a number on every line.
+
+## Cards (3; {"keep":1,"line":2}); severity off; added []
+1. [keep] Senior Litigation Paralegal, line 2
+   line: "Manage document productions of up to 250,000 pages in Relativity"
+   can't tell: Keep this line. It gives a recruiter a concrete picture of your responsibility without making them guess how much material you're handling.
+2. [line] Senior Litigation Paralegal, line 5
+   line: "Track court deadlines in the firm's docketing system"
+   can't tell: A recruiter can see that you track deadlines, but not how many cases you're tracking or which system you use. That context would show more of the demands of the job.
+   example: Track court deadlines for [number] cases in [docketing system]
+   question: How many cases do you track deadlines for, and what's the docketing system called?
+3. [line] Paralegal, line 2
+   line: "Summarized medical records and deposition transcripts"
+   can't tell: The materials are clear, but a recruiter can't tell how the summaries were used. That detail would connect your work to the personal injury cases.
+   example: Summarized medical records and deposition transcripts for [purpose]
+   question: How did the attorneys use your summaries?
+
+## Fit
+Roles: ["Senior Litigation Paralegal","Paralegal"]
+Level: Senior paralegal
+Note: Your experience points toward litigation paralegal roles, particularly those involving commercial and employment cases. The earlier personal injury work adds another litigation setting, while Relativity and trial preparation are clear strengths.

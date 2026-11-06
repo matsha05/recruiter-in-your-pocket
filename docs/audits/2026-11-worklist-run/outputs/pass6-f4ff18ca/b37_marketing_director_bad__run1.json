@@ -1,0 +1,373 @@
+{
+  "case_id": "b37_marketing_director_bad",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Title above the work; key says no_recent_work, no_target_role, title_level_mismatch.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_marketing_director_bad_1.txt",
+  "resume_sha256": "f0624d59dceceb9ee73afca05ff983f8205d3da2ebe4712711eb2596bd129439",
+  "resume_words": 167,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T17:58:08.965Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5221,
+        "completion_tokens": 1945,
+        "total_tokens": 7166,
+        "cached_prompt_tokens": 4481,
+        "cache_write_prompt_tokens": 737,
+        "reasoning_tokens": 804
+      },
+      "cost_usd": 0.0108733,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 28820
+    }
+  ],
+  "resume_prompt_sha256": "f4ff18ca80174dffdce77796c99b298e4ced5fdab817d0ec307d0b591839e910",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 60,
+    "lifted_by_employer": false,
+    "verdict": "Your resume shows concrete work across several fields, but the director title and time since your last role raise questions.",
+    "write_up": [
+      "This is pretty common, and it won't stand out in a pile. A recruiter can see your marketing, data entry and lab work, but the Director of Marketing title suggests a level of responsibility the bullets don't yet show. Your resume also leaves the time after January 2025 unexplained, and the mix of roles makes your next target unclear. Let's start with the most recent role.",
+      "The candle descriptions line is a good model: it names what you wrote, where it went and how many scents it covered. Keep that detail, then add any director-level work you actually did and make the next job you're targeting clear."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Director of Marketing title",
+        "line": "Director of Marketing",
+        "cannot_tell": "The title is senior, but the bullets show posting, product descriptions, order packing and customer emails. A recruiter can't tell whether you also directed marketing plans, people or spending.",
+        "example": "Director of Marketing: [marketing decisions or responsibilities]",
+        "question": "What marketing decisions or responsibilities did you have beyond the work already listed?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after January 2025.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since the Lumen Candle Co. role. If you were caregiving, you can name it as caregiving. A career break can include a course, project, volunteering or travel; list freelance or consulting work only if it was real. Call it a sabbatical only if you chose time off for travel, study or rest.",
+        "example": "January 2025 - Present  [what you did: caregiving, a career break, study, travel, freelance work if real]",
+        "question": "What have you been doing since January 2025 that you'd be comfortable putting on your resume?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Your resume doesn't name a target job.",
+        "cannot_tell": "Marketing, data entry, lab work and customer service point in different directions. A recruiter has to guess which job you want next.",
+        "example": "",
+        "question": "Which job are you targeting with this version of your resume?"
+      },
+      {
+        "kind": "line",
+        "where": "Director of Marketing, Instagram line",
+        "line": "- Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers",
+        "cannot_tell": "The posting frequency is useful, but a recruiter can't tell what you posted or what happened after. The follower count describes the account, not a change you made.",
+        "example": "Posted [content] 3 to 5 times a week on the company Instagram, which has 2,100 followers; [what changed]",
+        "question": "What did you post, and what changes did you track, if any?"
+      },
+      {
+        "kind": "keep",
+        "where": "Director of Marketing, product descriptions line",
+        "line": "- Wrote product descriptions for 40 candle scents on the website",
+        "cannot_tell": "Keep this. It gives a recruiter a concrete piece of work to remember without making them guess what your part was.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Director of Marketing, online orders line",
+        "line": "- Packed online orders during the holiday rush",
+        "cannot_tell": "A recruiter can see that you packed orders, but not how much of the holiday work you handled. That context matters alongside a marketing title.",
+        "example": "Packed [number] online orders [frequency] during the holiday rush",
+        "question": "How many online orders did you pack, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Director of Marketing, customer emails line",
+        "line": "- Answered customer emails about shipping",
+        "cannot_tell": "Shipping emails could cover a lot of different questions. A recruiter can't tell what you handled or how often.",
+        "example": "Answered [number] customer emails [frequency] about shipping, including [shipping issue]",
+        "question": "What shipping questions did you handle, and about how many emails did you answer over what period?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Director of Marketing",
+        "Data Entry Clerk",
+        "Laboratory Assistant"
+      ],
+      "level": "Mixed experience; senior marketing title needs context",
+      "note": "Your resume points toward marketing, data entry and lab support, but it doesn't say which you want next. The marketing work is concrete, though the bullets don't yet show the responsibilities a recruiter might expect from the director title.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 60,
+    "lifted_by_employer": false,
+    "verdict": "Your resume shows concrete work across several fields, but the director title and time since your last role raise questions.",
+    "write_up": [
+      "This is pretty common, and it won't stand out in a pile. A recruiter can see your marketing, data entry and lab work, but the Director of Marketing title suggests a level of responsibility the bullets don't yet show. Your resume also leaves the time after January 2025 unexplained, and the mix of roles makes your next target unclear. Let's start with the most recent role.",
+      "The candle descriptions line is a good model: it names what you wrote, where it went and how many scents it covered. Keep that detail, then add any director-level work you actually did and make the next job you're targeting clear."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Director of Marketing title",
+        "line": "Director of Marketing",
+        "cannot_tell": "The title is senior, but the bullets show posting, product descriptions, order packing and customer emails. A recruiter can't tell whether you also directed marketing plans, people or spending.",
+        "example": "Director of Marketing: [marketing decisions or responsibilities]",
+        "question": "What marketing decisions or responsibilities did you have beyond the work already listed?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after January 2025.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since the Lumen Candle Co. role. If you were caregiving, you can name it as caregiving. A career break can include a course, project, volunteering or travel; list freelance or consulting work only if it was real. Call it a sabbatical only if you chose time off for travel, study or rest.",
+        "example": "January 2025 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]",
+        "question": "What have you been doing since January 2025 that you'd be comfortable putting on your resume?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Your resume doesn't name a target job.",
+        "cannot_tell": "Marketing, data entry, lab work and customer service point in different directions. A recruiter has to guess which job you want next.",
+        "example": "",
+        "question": "Which job are you targeting with this version of your resume?"
+      },
+      {
+        "kind": "line",
+        "where": "Director of Marketing, Instagram line",
+        "line": "Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers",
+        "cannot_tell": "The posting frequency is useful, but a recruiter can't tell what you posted or what happened after. The follower count describes the account, not a change you made.",
+        "example": "Posted [content] 3 to 5 times a week on the company Instagram, which has 2,100 followers; [what changed]",
+        "question": "What did you post, and what changes did you track, if any?"
+      },
+      {
+        "kind": "keep",
+        "where": "Director of Marketing, product descriptions line",
+        "line": "Wrote product descriptions for 40 candle scents on the website",
+        "cannot_tell": "Keep this. It gives a recruiter a concrete piece of work to remember without making them guess what your part was.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Director of Marketing, online orders line",
+        "line": "Packed online orders during the holiday rush",
+        "cannot_tell": "A recruiter can see that you packed orders, but not how much of the holiday work you handled. That context matters alongside a marketing title.",
+        "example": "Packed [number] online orders [frequency] during the holiday rush",
+        "question": "How many online orders did you pack, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Director of Marketing, customer emails line",
+        "line": "Answered customer emails about shipping",
+        "cannot_tell": "Shipping emails could cover a lot of different questions. A recruiter can't tell what you handled or how often.",
+        "example": "Answered [number] customer emails [frequency] about shipping, including [shipping issue]",
+        "question": "What shipping questions did you handle, and about how many emails did you answer over what period?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Director of Marketing",
+        "Data Entry Clerk",
+        "Laboratory Assistant"
+      ],
+      "level": "Mixed experience; senior marketing title needs context",
+      "note": "Your resume points toward marketing, data entry and lab support, but it doesn't say which you want next. The marketing work is concrete, though the bullets don't yet show the responsibilities a recruiter might expect from the director title.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 60
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 60,
+    "lifted_by_employer": false,
+    "verdict": "Your resume shows concrete work across several fields, but the director title and time since your last role raise questions.",
+    "write_up": [
+      "This is pretty common, and it won't stand out in a pile. A recruiter can see your marketing, data entry and lab work, but the Director of Marketing title suggests a level of responsibility the bullets don't yet show. Your resume also leaves the time after January 2025 unexplained, and the mix of roles makes your next target unclear. Let's start with the most recent role.",
+      "The candle descriptions line is a good model: it names what you wrote, where it went and how many scents it covered. Keep that detail, then add any director-level work you actually did and make the next job you're targeting clear."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Director of Marketing title",
+        "line": "Director of Marketing",
+        "cannot_tell": "The title is senior, but the bullets show posting, product descriptions, order packing and customer emails. A recruiter can't tell whether you also directed marketing plans, people or spending.",
+        "example": "Director of Marketing: [marketing decisions or responsibilities]",
+        "question": "What marketing decisions or responsibilities did you have beyond the work already listed?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after January 2025.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since the Lumen Candle Co. role. If you were caregiving, you can name it as caregiving. A career break can include a course, project, volunteering or travel; list freelance or consulting work only if it was real. Call it a sabbatical only if you chose time off for travel, study or rest.",
+        "example": "January 2025 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]",
+        "question": "What have you been doing since January 2025 that you'd be comfortable putting on your resume?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Your resume doesn't name a target job.",
+        "cannot_tell": "Marketing, data entry, lab work and customer service point in different directions. A recruiter has to guess which job you want next.",
+        "example": "",
+        "question": "Which job are you targeting with this version of your resume?"
+      },
+      {
+        "kind": "line",
+        "where": "Director of Marketing, Instagram line",
+        "line": "Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers",
+        "cannot_tell": "The posting frequency is useful, but a recruiter can't tell what you posted or what happened after. The follower count describes the account, not a change you made.",
+        "example": "Posted [content] 3 to 5 times a week on the company Instagram, which has 2,100 followers; [what changed]",
+        "question": "What did you post, and what changes did you track, if any?"
+      },
+      {
+        "kind": "keep",
+        "where": "Director of Marketing, product descriptions line",
+        "line": "Wrote product descriptions for 40 candle scents on the website",
+        "cannot_tell": "Keep this. It gives a recruiter a concrete piece of work to remember without making them guess what your part was.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Director of Marketing, online orders line",
+        "line": "Packed online orders during the holiday rush",
+        "cannot_tell": "A recruiter can see that you packed orders, but not how much of the holiday work you handled. That context matters alongside a marketing title.",
+        "example": "Packed [number] online orders [frequency] during the holiday rush",
+        "question": "How many online orders did you pack, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Director of Marketing, customer emails line",
+        "line": "Answered customer emails about shipping",
+        "cannot_tell": "Shipping emails could cover a lot of different questions. A recruiter can't tell what you handled or how often.",
+        "example": "Answered [number] customer emails [frequency] about shipping, including [shipping issue]",
+        "question": "What shipping questions did you handle, and about how many emails did you answer over what period?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Director of Marketing",
+        "Data Entry Clerk",
+        "Laboratory Assistant"
+      ],
+      "level": "Mixed experience; senior marketing title needs context",
+      "note": "Your resume points toward marketing, data entry and lab support, but it doesn't say which you want next. The marketing work is concrete, though the bullets don't yet show the responsibilities a recruiter might expect from the director title.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 60
+  },
+  "presentation": {
+    "score": 60,
+    "band": "Needs more context",
+    "model_score": 60,
+    "lifted_by_employer": false,
+    "verdict": "Your resume shows concrete work across several fields, but the director title and time since your last role raise questions.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 107,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Director of Marketing title",
+        "line": "Director of Marketing",
+        "blanks": 1,
+        "question": "What marketing decisions or responsibilities did you have beyond the work already listed?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after January 2025.",
+        "blanks": 1,
+        "question": "What have you been doing since January 2025 that you'd be comfortable putting on your resume?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Your resume doesn't name a target job.",
+        "blanks": 0,
+        "question": "Which job are you targeting with this version of your resume?"
+      },
+      {
+        "kind": "line",
+        "where": "Director of Marketing, Instagram line",
+        "line": "Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers",
+        "blanks": 2,
+        "question": "What did you post, and what changes did you track, if any?"
+      },
+      {
+        "kind": "keep",
+        "where": "Director of Marketing, product descriptions line",
+        "line": "Wrote product descriptions for 40 candle scents on the website",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Director of Marketing, online orders line",
+        "line": "Packed online orders during the holiday rush",
+        "blanks": 2,
+        "question": "How many online orders did you pack, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Director of Marketing, customer emails line",
+        "line": "Answered customer emails about shipping",
+        "blanks": 3,
+        "question": "What shipping questions did you handle, and about how many emails did you answer over what period?"
+      }
+    ],
+    "card_count": 7,
+    "kinds": {
+      "line": 4,
+      "dates": 1,
+      "structure": 1,
+      "keep": 1
+    },
+    "structural_from_model": 2,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Director of Marketing",
+        "Data Entry Clerk",
+        "Laboratory Assistant"
+      ],
+      "level": "Mixed experience; senior marketing title needs context",
+      "note": "Your resume points toward marketing, data entry and lab support, but it doesn't say which you want next. The marketing work is concrete, though the bullets don't yet show the responsibilities a recruiter might expect from the director title.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0108733,
+  "latency_ms": 28822
+}

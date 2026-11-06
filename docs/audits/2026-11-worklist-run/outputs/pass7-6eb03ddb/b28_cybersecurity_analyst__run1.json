@@ -1,0 +1,243 @@
+{
+  "case_id": "b28_cybersecurity_analyst",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_cybersecurity_analyst_1.txt",
+  "resume_sha256": "3af143d6457f920bcfc404cff6c5ed95c9a5719c1320855f0e0d464650526db6",
+  "resume_words": 154,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T18:02:10.104Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5223,
+        "completion_tokens": 920,
+        "total_tokens": 6143,
+        "cached_prompt_tokens": 4536,
+        "cache_write_prompt_tokens": 684,
+        "reasoning_tokens": 330
+      },
+      "cost_usd": 0.0056848,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 12288
+    }
+  ],
+  "resume_prompt_sha256": "6eb03ddb4b32b2b65339085225b39b2ec67a805518799139b60e8c299167a186",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A senior security analyst with detection and response work backed by results.",
+    "write_up": [
+      "This is a strong security resume! A recruiter can see both your detection work at Capital Ridge Bank and the drop in false-positive alerts. The Splunk rule line is a model: it names the work, the tools, and what changed.",
+      "Your resume is unlikely to be the thing holding you back; competition for the role will still matter. If you can add what the alert enrichment and EDR tuning changed, those lines will carry more of the story."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Security Analyst, line 1",
+        "line": "- Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%",
+        "cannot_tell": "Keep this as your model. It gives a recruiter a concrete measure of the rules you built and the reduction they produced.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Security Analyst, line 4",
+        "line": "- Automated alert enrichment with Python and the Splunk SOAR platform",
+        "cannot_tell": "The tools and task are clear, but a recruiter can't see what information the automation added or what changed for the response team.",
+        "example": "Automated alert enrichment with Python and the Splunk SOAR platform using [information added], resulting in [result]",
+        "question": "What information did the automation add to alerts, and what changed as a result?"
+      },
+      {
+        "kind": "line",
+        "where": "Security Operations Analyst, line 3",
+        "line": "- Tuned EDR policies in CrowdStrike Falcon",
+        "cannot_tell": "A recruiter knows which policies you worked on, but not what prompted the tuning or what changed afterward.",
+        "example": "Tuned EDR policies in CrowdStrike Falcon to address [problem], resulting in [result]",
+        "question": "What problem were you tuning the policies to address, and what changed?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Security Analyst, Detection and Response",
+        "Security Operations Analyst"
+      ],
+      "level": "Senior security analyst",
+      "note": "Your experience points toward detection engineering and incident response roles, particularly in financial services. Your earlier managed security work also shows experience across client environments.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A senior security analyst with detection and response work backed by results.",
+    "write_up": [
+      "This is a strong security resume! A recruiter can see both your detection work at Capital Ridge Bank and the drop in false-positive alerts. The Splunk rule line is a model: it names the work, the tools, and what changed.",
+      "Your resume is unlikely to be the thing holding you back; competition for the role will still matter. If you can add what the alert enrichment and EDR tuning changed, those lines will carry more of the story."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Security Analyst, line 1",
+        "line": "Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%",
+        "cannot_tell": "Keep this as your model. It gives a recruiter a concrete measure of the rules you built and the reduction they produced.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Security Analyst, line 4",
+        "line": "Automated alert enrichment with Python and the Splunk SOAR platform",
+        "cannot_tell": "The tools and task are clear, but a recruiter can't see what information the automation added or what changed for the response team.",
+        "example": "Automated alert enrichment with Python and the Splunk SOAR platform using [information added], resulting in [result]",
+        "question": "What information did the automation add to alerts, and what changed as a result?"
+      },
+      {
+        "kind": "line",
+        "where": "Security Operations Analyst, line 3",
+        "line": "Tuned EDR policies in CrowdStrike Falcon",
+        "cannot_tell": "A recruiter knows which policies you worked on, but not what prompted the tuning or what changed afterward.",
+        "example": "Tuned EDR policies in CrowdStrike Falcon to address [problem], resulting in [result]",
+        "question": "What problem were you tuning the policies to address, and what changed?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Security Analyst, Detection and Response",
+        "Security Operations Analyst"
+      ],
+      "level": "Senior security analyst",
+      "note": "Your experience points toward detection engineering and incident response roles, particularly in financial services. Your earlier managed security work also shows experience across client environments.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A senior security analyst with detection and response work backed by results.",
+    "write_up": [
+      "This is a strong security resume! A recruiter can see both your detection work at Capital Ridge Bank and the drop in false-positive alerts. The Splunk rule line is a model: it names the work, the tools, and what changed.",
+      "Your resume is unlikely to be the thing holding you back; competition for the role will still matter. If you can add what the alert enrichment and EDR tuning changed, those lines will carry more of the story."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Security Analyst, line 1",
+        "line": "Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%",
+        "cannot_tell": "Keep this as your model. It gives a recruiter a concrete measure of the rules you built and the reduction they produced.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Security Analyst, line 4",
+        "line": "Automated alert enrichment with Python and the Splunk SOAR platform",
+        "cannot_tell": "The tools and task are clear, but a recruiter can't see what information the automation added or what changed for the response team.",
+        "example": "Automated alert enrichment with Python and the Splunk SOAR platform using [information added], resulting in [result]",
+        "question": "What information did the automation add to alerts, and what changed as a result?"
+      },
+      {
+        "kind": "line",
+        "where": "Security Operations Analyst, line 3",
+        "line": "Tuned EDR policies in CrowdStrike Falcon",
+        "cannot_tell": "A recruiter knows which policies you worked on, but not what prompted the tuning or what changed afterward.",
+        "example": "Tuned EDR policies in CrowdStrike Falcon to address [problem], resulting in [result]",
+        "question": "What problem were you tuning the policies to address, and what changed?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Security Analyst, Detection and Response",
+        "Security Operations Analyst"
+      ],
+      "level": "Senior security analyst",
+      "note": "Your experience points toward detection engineering and incident response roles, particularly in financial services. Your earlier managed security work also shows experience across client environments.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "presentation": {
+    "score": 88,
+    "band": "Clear and specific",
+    "model_score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A senior security analyst with detection and response work backed by results.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 78,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Security Analyst, line 1",
+        "line": "Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Security Analyst, line 4",
+        "line": "Automated alert enrichment with Python and the Splunk SOAR platform",
+        "blanks": 2,
+        "question": "What information did the automation add to alerts, and what changed as a result?"
+      },
+      {
+        "kind": "line",
+        "where": "Security Operations Analyst, line 3",
+        "line": "Tuned EDR policies in CrowdStrike Falcon",
+        "blanks": 2,
+        "question": "What problem were you tuning the policies to address, and what changed?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "keep": 1,
+      "line": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Security Analyst, Detection and Response",
+        "Security Operations Analyst"
+      ],
+      "level": "Senior security analyst",
+      "note": "Your experience points toward detection engineering and incident response roles, particularly in financial services. Your earlier managed security work also shows experience across client environments.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0056848,
+  "latency_ms": 12291
+}

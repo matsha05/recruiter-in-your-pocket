@@ -1,0 +1,39 @@
+# b17_hr_generalist_career_break, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_hr_generalist_career_break_1.txt (145 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt f4ff18ca; severity check off
+Outcome: report; cost $0.0083; 21.9s
+Case note: Returner after caregiving, break dated and named.
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+An HR generalist with manufacturing experience and a caregiving break, followed by unaccounted time.
+
+## Write-up
+A recruiter sees HR work at a manufacturing plant with 400 employees across three shifts, followed by a clearly named caregiving break. The first question is what you've done since June 2025.
+
+This is pretty common, and the recent work needs a little more detail to stand out in a pile. Let's start with your HR Generalist role: explain your part in investigations and open enrollment. The orientation line is a good model because it names work you ran and how often you ran it.
+
+## Cards (4; {"dates":1,"line":2,"keep":1}); severity off; added []
+1. [dates] Dates
+   line: "Nothing is dated after June 2025."
+   can't tell: A recruiter can't tell what you've done since the caregiving break ended. If you continued caregiving, say so; if you took a career break, you can name what you did during it, such as study, a project, volunteering or travel. List freelance work only if it was real, and a sabbatical only if you chose time off for travel, study or rest.
+   example: June 2025 - Present [what you did]
+   question: What have you done since June 2025, and what dates apply?
+2. [line] HR Generalist, line 2
+   line: "Handled employee relations questions and investigations with the HR manager"
+   can't tell: The HR manager worked on these with you, but a recruiter can't tell which parts were yours. Your role in an investigation would show how you handled employee relations.
+   example: Handled employee relations questions and investigations with the HR manager, including [your part in the investigations]
+   question: What was your part in the investigations?
+3. [line] HR Generalist, line 3
+   line: "Coordinated open enrollment for medical and dental benefits"
+   can't tell: A recruiter knows which benefits you worked on, but not what coordinating enrollment involved. Name the parts you handled.
+   example: Coordinated open enrollment for medical and dental benefits, including [enrollment tasks]
+   question: Which parts of open enrollment did you handle?
+4. [keep] HR Generalist, line 4
+   line: "Ran new hire orientation every two weeks"
+   can't tell: Keep this as a model: it gives you ownership of a recognizable part of onboarding and puts it on a regular schedule.
+
+## Fit
+Roles: ["HR Generalist","HR Assistant"]
+Level: Experienced HR generalist returning after a career break
+Note: Your experience points toward HR generalist work in manufacturing, with benefits, employee relations and onboarding responsibilities. Your SHRM-CP and HRIS tools add to that picture; explaining the time after the caregiving break would address the first date question.

@@ -1,48 +1,45 @@
 # b31_kitchen_manager, run 1
 Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_kitchen_manager_1.txt (120 words)
-Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
-Outcome: report; cost $0.0073; 19.8s
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0055; 11.4s
 
-## Mostly clear (score 72; model wrote 72)
+## Mostly clear (score 74; model wrote 74)
 ## Verdict
-A kitchen manager with a clear career progression, but too little detail on staffing and kitchen operations.
+A kitchen manager who worked up from line cook, with room to show more of the management work.
 
 ## Write-up
-You’ve progressed from line cook to kitchen manager, and a recruiter can see the work you handle now. The hesitation is how much of it you handle: the staff schedule, ordering and training all need a little more detail.
+Your resume shows a move from line cook to sous chef at Alamo Street Kitchen, then to kitchen manager at River Walk Grill. A recruiter can follow that progression and see the work, though some management lines leave them guessing about how many people or what decisions were yours.
 
-The 180-seat restaurant line is the best model here. It names your job and gives a recruiter a concrete sense of the restaurant. Bring that same detail to the staff and kitchen routines.
+The 180-seat restaurant line is your best model: it names the job and gives the kitchen context. Your ServSafe Manager certification also fits the work you're doing.
 
-## Cards (6; {"keep":1,"line":5}); severity off; added []
+Let's start with the River Walk Grill schedule and training lines. Add the staff count and what training covered, then give the seasonal menu line more detail about your contribution.
+
+## Cards (5; {"keep":1,"line":4}); severity off; added []
 1. [keep] Kitchen Manager, line 1
    line: "Run the kitchen for a 180-seat restaurant"
-   can't tell: Keep this. It puts a recognizable number beside your responsibility without making the reader hunt for it.
+   can't tell: Keep this as a model. It gives a recruiter a concrete picture of the restaurant alongside your responsibility.
 2. [line] Kitchen Manager, line 2
    line: "Manage the kitchen staff schedule"
-   can't tell: The schedule is yours, but a recruiter can't tell how many people or shifts it covers.
-   example: Manage the kitchen staff schedule for [number] staff across [shifts]
-   question: How many staff and shifts does the schedule cover?
-3. [line] Kitchen Manager, line 3
-   line: "Order food and supplies from vendors"
-   can't tell: A recruiter can see what you order, but not how often or how much you handle.
-   example: Order food and supplies from vendors [ordering frequency], with orders totaling [order value] per [period]
-   question: How often do you order, and what is the value of those orders over a typical period?
-4. [line] Kitchen Manager, line 4
+   can't tell: A recruiter can see that scheduling is yours, but not how many people you schedule. That helps show the demands of the job.
+   example: Manage the kitchen staff schedule for [number] staff
+   question: How many kitchen staff do you schedule?
+3. [line] Kitchen Manager, line 4
    line: "Keep the kitchen ready for health inspections"
-   can't tell: Inspection readiness matters in this job. What do you do to keep the kitchen ready?
-   example: Keep the kitchen ready for health inspections by [inspection preparation tasks]
-   question: What tasks do you handle to prepare the kitchen for health inspections?
-5. [line] Kitchen Manager, line 5
+   can't tell: This names the responsibility, but not what you do to keep the kitchen ready. Your day-to-day checks would show how you handle it.
+   example: Keep the kitchen ready for health inspections by [inspection preparation work]
+   question: What work do you do to keep the kitchen ready for inspections?
+4. [line] Kitchen Manager, line 5
    line: "Train new line cooks"
-   can't tell: Training is part of the job, but the line leaves out what you teach and how many cooks you train.
-   example: Train [number] new line cooks per [period] on [skills or procedures]
-   question: How many new line cooks do you train in a typical period, and what do you teach them?
-6. [line] Sous Chef, line 2
+   can't tell: Training new cooks is part of your management work. What do you teach them, and how many have you trained?
+   example: Train [number] new line cooks on [training topics]
+   question: How many new line cooks have you trained, and what did their training cover?
+5. [line] Sous Chef, line 2
    line: "Helped plan seasonal menu changes"
-   can't tell: You helped with the menu, but your part in the planning is still a blank.
-   example: Helped plan seasonal menu changes by [contribution] for [dishes or menu items]
-   question: What did you contribute to the seasonal menu changes, and which dishes or menu items did you work on?
+   can't tell: The menu changes are named, but your part in planning them isn't. Keep the shared ownership and tell the recruiter what you contributed.
+   example: Helped plan seasonal menu changes by [your contribution]
+   question: What did you contribute to planning the seasonal menu changes?
 
 ## Fit
 Roles: ["Kitchen Manager","Sous Chef"]
-Level: Experienced kitchen manager
-Note: Your experience points toward kitchen management and sous chef roles. The progression and ServSafe Manager certification are easy to find; staffing and ordering details would give recruiters a better picture of your current job.
+Level: Kitchen management
+Note: Your experience points toward kitchen management and sous chef roles. The progression from line cook to kitchen manager is easy to follow, and the current role names a 180-seat restaurant.

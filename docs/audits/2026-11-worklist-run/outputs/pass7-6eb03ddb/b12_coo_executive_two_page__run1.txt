@@ -1,0 +1,24 @@
+# b12_coo_executive_two_page, run 1
+Resume: ../2026-11-live-judgment/resumes/b_coo_executive.txt (463 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 6eb03ddb; severity check off
+Outcome: report; cost $0.0050; 7.1s
+Case note: Executive, two pages.
+
+## Clear and specific (score 96; model wrote 96)
+## Verdict
+A healthcare operations executive with substantial growth and operating results attached.
+
+## Write-up
+This is a standout executive resume! A recruiter can see the 140-practice operation you lead, the growth from 38 practices, and the improvement in same-store EBITDA margin.
+
+The integration playbook line is a great model: it names the change you made and the drop from 7 months to 10 weeks. Your resume isn't likely to be the reason you don't get a call back. How competitive the role is and whether you have a referral can still matter.
+
+## Cards (1; {"keep":1}); severity off; added []
+1. [keep] Chief Operating Officer, integration playbook
+   line: "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook"
+   can't tell: Keep this line. It puts the before and after next to the method, so a recruiter can see what your work changed.
+
+## Fit
+Roles: ["Chief Operating Officer","Senior Vice President, Operations","Vice President, Clinic Operations"]
+Level: Senior executive
+Note: Your experience points to healthcare operations leadership across multi-site organizations. The current role shows responsibility for a large practice network, its operating plan and its P&L.

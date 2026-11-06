@@ -1,0 +1,24 @@
+{
+  "case_id": "h4a_academic_cv_15_pages",
+  "batch": "holes",
+  "run": 1,
+  "note": "Over the 30,000-character request cap; expected to be refused before any model call.",
+  "resume_file": "../2026-11-live-judgment/resumes/h4a_academic_cv_15_pages.txt",
+  "resume_sha256": "c83739ba906703c58a5cdee1d8c3cdec6742bb3b849cbeada487fa110f314c48",
+  "resume_words": 5313,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T16:32:51.999Z",
+  "calls": [],
+  "outcome": "request_refused",
+  "request_refusal": {
+    "message": "Something in your request needs a quick tweak before I can give you feedback.",
+    "fieldErrors": {
+      "text": "Your resume text is very long. Try trimming extra content."
+    }
+  },
+  "cost_usd": 0
+}

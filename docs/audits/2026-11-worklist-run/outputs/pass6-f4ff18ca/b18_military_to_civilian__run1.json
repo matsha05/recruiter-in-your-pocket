@@ -1,0 +1,247 @@
+{
+  "case_id": "b18_military_to_civilian",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/resumes/b_military_to_civilian.txt",
+  "resume_sha256": "c2dd1e89354ce1a86021927ffba5d85f65b3dfb021c3126f6459225f8bfd7a7e",
+  "resume_words": 268,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T17:56:33.081Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5597,
+        "completion_tokens": 946,
+        "total_tokens": 6543,
+        "cached_prompt_tokens": 4481,
+        "cache_write_prompt_tokens": 1113,
+        "reasoning_tokens": 299
+      },
+      "cost_usd": 0.0063483,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 12514
+    }
+  ],
+  "resume_prompt_sha256": "f4ff18ca80174dffdce77796c99b298e4ced5fdab817d0ec307d0b591839e910",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A military logistics and maintenance leader with measurable results and a clear civilian target.",
+    "write_up": [
+      "A recruiter sees a leader who has managed people, equipment and maintenance for Army units. Your target of supply chain or operations supervision fits that work. The main question is what logistics support looked like during the field exercises, especially for a civilian reader.",
+      "The vehicle readiness line is a strong model: it names the problem, the change you made and the improvement from 18% to 6%. Your resume isn't going to be the reason you don't hear back. How competitive a particular civilian role is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Platoon Sergeant, field exercises",
+        "line": "- Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises",
+        "cannot_tell": "The battalion and exercises show how much you supported, but a civilian recruiter can't tell what the logistics support involved. Name the work you planned and executed.",
+        "example": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises, including [what support involved]",
+        "question": "What did the logistics support involve during those exercises?"
+      },
+      {
+        "kind": "keep",
+        "where": "Platoon Sergeant, vehicle readiness",
+        "line": "- Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "cannot_tell": "Keep this as a model. It gives a recruiter the before and after, plus the two decisions you made to get there.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Wheeled Vehicle Mechanic, training",
+        "line": "- Trained 9 junior mechanics",
+        "cannot_tell": "You name how many mechanics you trained, but not what you taught them. That detail would show what your training covered.",
+        "example": "Trained 9 junior mechanics in [skills or tasks]",
+        "question": "What skills or tasks did you train the junior mechanics to perform?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Platoon Sergeant (E-7), Forward Support Company",
+        "Maintenance Section Sergeant (E-6)",
+        "Wheeled Vehicle Mechanic (E-4 to E-5)"
+      ],
+      "level": "Experienced supervisor",
+      "note": "Your Army experience points toward the supply chain or operations supervisor work you name. The maintenance leadership, equipment accountability and parts budget give a civilian recruiter concrete work to consider.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A military logistics and maintenance leader with measurable results and a clear civilian target.",
+    "write_up": [
+      "A recruiter sees a leader who has managed people, equipment and maintenance for Army units. Your target of supply chain or operations supervision fits that work. The main question is what logistics support looked like during the field exercises, especially for a civilian reader.",
+      "The vehicle readiness line is a strong model: it names the problem, the change you made and the improvement from 18% to 6%. Your resume isn't going to be the reason you don't hear back. How competitive a particular civilian role is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Platoon Sergeant, field exercises",
+        "line": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises",
+        "cannot_tell": "The battalion and exercises show how much you supported, but a civilian recruiter can't tell what the logistics support involved. Name the work you planned and executed.",
+        "example": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises, including [what support involved]",
+        "question": "What did the logistics support involve during those exercises?"
+      },
+      {
+        "kind": "keep",
+        "where": "Platoon Sergeant, vehicle readiness",
+        "line": "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "cannot_tell": "Keep this as a model. It gives a recruiter the before and after, plus the two decisions you made to get there.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Wheeled Vehicle Mechanic, training",
+        "line": "Trained 9 junior mechanics",
+        "cannot_tell": "You name how many mechanics you trained, but not what you taught them. That detail would show what your training covered.",
+        "example": "Trained 9 junior mechanics in [skills or tasks]",
+        "question": "What skills or tasks did you train the junior mechanics to perform?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Platoon Sergeant (E-7), Forward Support Company",
+        "Maintenance Section Sergeant (E-6)",
+        "Wheeled Vehicle Mechanic (E-4 to E-5)"
+      ],
+      "level": "Experienced supervisor",
+      "note": "Your Army experience points toward the supply chain or operations supervisor work you name. The maintenance leadership, equipment accountability and parts budget give a civilian recruiter concrete work to consider.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A military logistics and maintenance leader with measurable results and a clear civilian target.",
+    "write_up": [
+      "A recruiter sees a leader who has managed people, equipment and maintenance for Army units. Your target of supply chain or operations supervision fits that work. The main question is what logistics support looked like during the field exercises, especially for a civilian reader.",
+      "The vehicle readiness line is a strong model: it names the problem, the change you made and the improvement from 18% to 6%. Your resume isn't going to be the reason you don't hear back. How competitive a particular civilian role is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Platoon Sergeant, field exercises",
+        "line": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises",
+        "cannot_tell": "The battalion and exercises show how much you supported, but a civilian recruiter can't tell what the logistics support involved. Name the work you planned and executed.",
+        "example": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises, including [what support involved]",
+        "question": "What did the logistics support involve during those exercises?"
+      },
+      {
+        "kind": "keep",
+        "where": "Platoon Sergeant, vehicle readiness",
+        "line": "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "cannot_tell": "Keep this as a model. It gives a recruiter the before and after, plus the two decisions you made to get there.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Wheeled Vehicle Mechanic, training",
+        "line": "Trained 9 junior mechanics",
+        "cannot_tell": "You name how many mechanics you trained, but not what you taught them. That detail would show what your training covered.",
+        "example": "Trained 9 junior mechanics in [skills or tasks]",
+        "question": "What skills or tasks did you train the junior mechanics to perform?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Platoon Sergeant (E-7), Forward Support Company",
+        "Maintenance Section Sergeant (E-6)",
+        "Wheeled Vehicle Mechanic (E-4 to E-5)"
+      ],
+      "level": "Experienced supervisor",
+      "note": "Your Army experience points toward the supply chain or operations supervisor work you name. The maintenance leadership, equipment accountability and parts budget give a civilian recruiter concrete work to consider.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "presentation": {
+    "score": 89,
+    "band": "Clear and specific",
+    "model_score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A military logistics and maintenance leader with measurable results and a clear civilian target.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 89,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Platoon Sergeant, field exercises",
+        "line": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises",
+        "blanks": 1,
+        "question": "What did the logistics support involve during those exercises?"
+      },
+      {
+        "kind": "keep",
+        "where": "Platoon Sergeant, vehicle readiness",
+        "line": "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Wheeled Vehicle Mechanic, training",
+        "line": "Trained 9 junior mechanics",
+        "blanks": 1,
+        "question": "What skills or tasks did you train the junior mechanics to perform?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "line": 2,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Platoon Sergeant (E-7), Forward Support Company",
+        "Maintenance Section Sergeant (E-6)",
+        "Wheeled Vehicle Mechanic (E-4 to E-5)"
+      ],
+      "level": "Experienced supervisor",
+      "note": "Your Army experience points toward the supply chain or operations supervisor work you name. The maintenance leadership, equipment accountability and parts budget give a civilian recruiter concrete work to consider.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0063483,
+  "latency_ms": 12517
+}

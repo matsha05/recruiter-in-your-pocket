@@ -1,0 +1,243 @@
+{
+  "case_id": "b07_account_executive",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_account_executive_1.txt",
+  "resume_sha256": "f964f76d12cdd6ba10596473b309c0f44b18de7112f27369c32227cd287f6e94",
+  "resume_words": 145,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T16:34:39.504Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4476,
+        "completion_tokens": 730,
+        "total_tokens": 5206,
+        "cached_prompt_tokens": 3792,
+        "cache_write_prompt_tokens": 681,
+        "reasoning_tokens": 154
+      },
+      "cost_usd": 0.00469385,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 12278
+    }
+  ],
+  "resume_prompt_sha256": "70e795a1e91877ad12f5394154dccd644b9f9d298e123ca182963a0e3e089350",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A mid-market HR software seller with a promotion, quota results, and a referral program.",
+    "write_up": [
+      "A recruiter sees an account executive who moved up from SDR and closed $1.1M in new annual recurring revenue in 2025. The referral program adds another useful detail. The main question is how you earned the top SDR ranking.",
+      "The revenue line is the model: it names the sales result, the year, and quota attainment. Add the measure behind the SDR ranking and the number of meetings booked to give that earlier role the same weight."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Account Executive, line 1",
+        "line": "- Closed $1.1M in new annual recurring revenue in 2025, 108% of quota",
+        "cannot_tell": "Keep this. It puts your sales performance against a target, so a recruiter doesn't have to guess what the dollar figure meant.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 1",
+        "line": "- Booked meetings for three account executives",
+        "cannot_tell": "You say who the meetings were for, but not how many you booked or over what period. That would show how much meeting generation you handled.",
+        "example": "Booked [number] meetings for three account executives in [period]",
+        "question": "How many meetings did you book, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 3",
+        "line": "- Top SDR in two quarters",
+        "cannot_tell": "A recruiter can see you ranked first, but not what the ranking measured. Meetings, revenue, or another measure would tell them what you excelled at.",
+        "example": "Top SDR in two quarters based on [ranking measure]",
+        "question": "What measure determined the top SDR ranking?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Account Executive, Mid-Market",
+        "Sales Development Representative"
+      ],
+      "level": "Mid-market account executive",
+      "note": "Your experience points toward mid-market HR software sales, with full-cycle work and a prior SDR role. The quota and referral figures give a recruiter a concrete reason to keep reading.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A mid-market HR software seller with a promotion, quota results, and a referral program.",
+    "write_up": [
+      "A recruiter sees an account executive who moved up from SDR and closed $1.1M in new annual recurring revenue in 2025. The referral program adds another useful detail. The main question is how you earned the top SDR ranking.",
+      "The revenue line is the model: it names the sales result, the year, and quota attainment. Add the measure behind the SDR ranking and the number of meetings booked to give that earlier role the same weight."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Account Executive, line 1",
+        "line": "Closed $1.1M in new annual recurring revenue in 2025, 108% of quota",
+        "cannot_tell": "Keep this. It puts your sales performance against a target, so a recruiter doesn't have to guess what the dollar figure meant.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 1",
+        "line": "Booked meetings for three account executives",
+        "cannot_tell": "You say who the meetings were for, but not how many you booked or over what period. That would show how much meeting generation you handled.",
+        "example": "Booked [number] meetings for three account executives in [period]",
+        "question": "How many meetings did you book, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 3",
+        "line": "Top SDR in two quarters",
+        "cannot_tell": "A recruiter can see you ranked first, but not what the ranking measured. Meetings, revenue, or another measure would tell them what you excelled at.",
+        "example": "Top SDR in two quarters based on [ranking measure]",
+        "question": "What measure determined the top SDR ranking?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Account Executive, Mid-Market",
+        "Sales Development Representative"
+      ],
+      "level": "Mid-market account executive",
+      "note": "Your experience points toward mid-market HR software sales, with full-cycle work and a prior SDR role. The quota and referral figures give a recruiter a concrete reason to keep reading.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A mid-market HR software seller with a promotion, quota results, and a referral program.",
+    "write_up": [
+      "A recruiter sees an account executive who moved up from SDR and closed $1.1M in new annual recurring revenue in 2025. The referral program adds another useful detail. The main question is how you earned the top SDR ranking.",
+      "The revenue line is the model: it names the sales result, the year, and quota attainment. Add the measure behind the SDR ranking and the number of meetings booked to give that earlier role the same weight."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Account Executive, line 1",
+        "line": "Closed $1.1M in new annual recurring revenue in 2025, 108% of quota",
+        "cannot_tell": "Keep this. It puts your sales performance against a target, so a recruiter doesn't have to guess what the dollar figure meant.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 1",
+        "line": "Booked meetings for three account executives",
+        "cannot_tell": "You say who the meetings were for, but not how many you booked or over what period. That would show how much meeting generation you handled.",
+        "example": "Booked [number] meetings for three account executives in [period]",
+        "question": "How many meetings did you book, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 3",
+        "line": "Top SDR in two quarters",
+        "cannot_tell": "A recruiter can see you ranked first, but not what the ranking measured. Meetings, revenue, or another measure would tell them what you excelled at.",
+        "example": "Top SDR in two quarters based on [ranking measure]",
+        "question": "What measure determined the top SDR ranking?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Account Executive, Mid-Market",
+        "Sales Development Representative"
+      ],
+      "level": "Mid-market account executive",
+      "note": "Your experience points toward mid-market HR software sales, with full-cycle work and a prior SDR role. The quota and referral figures give a recruiter a concrete reason to keep reading.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "presentation": {
+    "score": 88,
+    "band": "Clear and specific",
+    "model_score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A mid-market HR software seller with a promotion, quota results, and a referral program.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 76,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Account Executive, line 1",
+        "line": "Closed $1.1M in new annual recurring revenue in 2025, 108% of quota",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 1",
+        "line": "Booked meetings for three account executives",
+        "blanks": 2,
+        "question": "How many meetings did you book, and over what period?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 3",
+        "line": "Top SDR in two quarters",
+        "blanks": 1,
+        "question": "What measure determined the top SDR ranking?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "keep": 1,
+      "line": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Account Executive, Mid-Market",
+        "Sales Development Representative"
+      ],
+      "level": "Mid-market account executive",
+      "note": "Your experience points toward mid-market HR software sales, with full-cycle work and a prior SDR role. The quota and referral figures give a recruiter a concrete reason to keep reading.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00469385,
+  "latency_ms": 12282
+}
