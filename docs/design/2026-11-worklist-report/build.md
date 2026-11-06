@@ -53,6 +53,19 @@ A fresh subagent that had not seen the build reviewed the 390, 1024 and 1440 cap
 
 Copy the critique read as AI, and what changed: "specific" in blanks (banned in the prompt); "verify" ("actually did"); "size it" ("how big"); "get you read" and "rung" in the person's text (the product's words stay out of the report); commentary about writing ("give the line a job to do") replaced by the work itself. The critique's "working, don't touch" list (the opening row, the write-up in the pen, the clipping with the marker, blue blanks in a Literata example, the dashed statement, the keep tick, the "Left for now" line) is unchanged.
 
+## Second pass: the page, not the boxes (November 6)
+
+Matt read the five in the Report Lab: "i love the content i think its way improved. visualization i'm unsure of." A deep pass on the captures at 390, 1024 and 1440 against the brand system found four things, and the list was rebuilt around them:
+
+| Finding | What changed |
+| --- | --- |
+| The page ignored its width: everything sat in a 46rem column on the left of a 1200px sheet, so two-thirds of the paper was empty at desktop and the strong resume's one card floated in a blank field. | From 960px each entry is a row of three columns: the margin (where the line sits, "5 of 12", the Filled in pill), the evidence (the clipping with the marker, then what a recruiter can't tell), and the answer (the question, then the example). A keep entry has no answer column and takes the width. The write-up keeps its reading column. |
+| Twelve identical bordered boxes, the card farm the brand system names as a hard no: every card stacked the same five parts with three left-rule treatments, and the bad resume ran to about 8,000px at 1440. | Entries are divided by hairlines, never boxed; the pen note lost its rule (it is the margin-note register, in the pen, and needs no frame); the only frames left are the clipping's paper and the dashed statement of a structural item. The bad resume is about 5,400px at 1440. |
+| The fields dominated: a labelled form grid under each question, 24 fields on the bad resume, every label repeating the blank already in the sentence. | The example is the form. Each blank is a field inside the sentence, in the candidate's blue, named by its placeholder and sized to what it holds; a phrase-length blank or answer takes its own line. The question above is the group's label. Copy still waits for every blank. |
+| The v2 leftovers ("Why we read it this way", the score link) sat between the cards and the fit section. | They follow the fit section, before the rung disclosure, so the list runs straight into fit. |
+
+Checked after: no horizontal overflow at 390, 1024 or 1440 on the bad, tier and strong fixtures; a comma after a blank stays on the blank's line; a filled entry shows its pill in the margin and Copy under the example; the inline fields keep their accessible names (the blank's label) and the question as the group label.
+
 ## Verification
 
 On the production build in the worktree, with the mock model and hermetic Supabase values:

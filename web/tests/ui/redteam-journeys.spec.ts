@@ -155,7 +155,7 @@ test.describe("launch red-team journeys", () => {
     await expect(blanks).toHaveCount(labels.length);
     for (let index = 0; index < labels.length; index += 1) await blanks.nth(index).fill(`answer ${index + 1}`);
     await expect(card.getByTestId("worklist-copy")).toBeVisible();
-    await expect(card.getByTestId("worklist-example")).toContainText("answer 1");
+    await expect(blanks.first()).toHaveValue("answer 1");
     await expect(card).toContainText("Every fact in it is from your resume or your answers.");
     // Brackets on the page are the person's blanks, never a draft presented as writing.
     await expect(page.locator("#section-fixes")).not.toContainText("These are drafts.");
@@ -206,12 +206,11 @@ test.describe("launch red-team journeys", () => {
     expect(blankCount).toBeGreaterThan(0);
     await expect(card.getByTestId("worklist-copy")).toHaveCount(0);
     await blanks.first().fill("3 launch teams");
-    await expect(card.getByTestId("worklist-example")).toContainText("3 launch teams");
+    await expect(blanks.first()).toHaveValue("3 launch teams");
     if (blankCount > 1) await expect(card.getByTestId("worklist-copy")).toHaveCount(0);
     for (let index = 1; index < blankCount; index += 1) await blanks.nth(index).fill(`answer ${index}`);
     await expect(card.getByTestId("worklist-copy")).toBeVisible();
     await expect(card).toContainText("Every fact in it is from your resume or your answers.");
-    await expect(card.getByTestId("worklist-example")).not.toContainText("[");
 
     // An anonymous report keeps nothing: no save-to-report notice, and no feedback mailto.
     await expect(card.getByTestId("worklist-kept")).toHaveCount(0);

@@ -117,8 +117,6 @@ export function WorklistReport({
         {work.length > 0 && <p className={styles.unlisted}>{UNLISTED_LINES_NOTE}</p>}
       </section>
 
-      <ResearchReceipts />
-
       {(report.fit.note || report.fit.roles.length > 0) && (
         <section id="section-role" className={cn(shared.role, "scroll-mt-36")} aria-labelledby="role-title">
           <h2 id="role-title" className={shared.sectionTitle}>{fitHeading(report)}</h2>
@@ -143,6 +141,8 @@ export function WorklistReport({
           </div>
         </section>
       )}
+
+      <ResearchReceipts />
 
       <details id="section-score" className={cn("ui-disclosure group scroll-mt-36", shared.disclosure)} data-testid="score-basis">
         <summary className={cn("focus-ring", shared.disclosureSummary)}>

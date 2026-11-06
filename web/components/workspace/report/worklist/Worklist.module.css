@@ -1,9 +1,12 @@
 /*
  * The worklist report (Matt, Nov 5, 2026; docs/design/2026-11-worklist-report/): the score and its rung, the
- * recruiter's write-up in the pen, then one card per line that needs work, in the order a recruiter hits them.
- * Phone first: one column, the write-up at reading width, each card a bordered block on the ground with the
- * quoted line on its strip of paper. The highlighter marks the quoted line and nothing else; the pen writes the
- * recruiter's words; the blue ink is the candidate's blanks and answers. Shared type roles and tokens only.
+ * recruiter's write-up in the pen, then one entry per line that needs work, in the order a recruiter hits them.
+ * The list is a document, not a stack of boxes: entries are divided by hairlines, and on a wide screen each one
+ * is a row of three columns, the margin (where the line sits), the evidence (the line as the site's clipping
+ * with the marker across it, and what a recruiter can't tell), and the answer (the question, then the example
+ * with the detail in). The example is the form: every blank is a field inside the sentence, in the candidate's
+ * blue. The highlighter marks the quoted line and nothing else; the pen writes the recruiter's words. Phone
+ * first: one column. Shared type roles and tokens only.
  */
 
 .root {
@@ -65,7 +68,7 @@
     font: var(--type-small);
 }
 
-/* ---------- The cards ---------- */
+/* ---------- The list ---------- */
 
 .page {
     border-top: 1px solid hsl(var(--line));
@@ -85,43 +88,40 @@
     color: hsl(var(--muted-foreground));
 }
 
-/* The cards sit at reading width, the write-up's column, so the fields never outsize the line they serve. */
 .cards {
-    display: grid;
-    gap: 0.875rem;
-    max-width: 46rem;
-    margin: 1.25rem 0 0;
+    margin: 0.75rem 0 0;
     padding: 0;
     list-style: none;
 }
 
-/* A card is a bordered block on the ground, never paper: the paper inside it is the one real line. */
+/* An entry: a hairline above, never a box. The paper inside it is the one real line. */
 .card {
     display: grid;
-    gap: 0.75rem;
-    border: 1px solid hsl(var(--line));
-    border-radius: var(--radius-inset);
-    padding: 1rem;
+    gap: 0.875rem;
+    border-top: 1px solid hsl(var(--line));
+    padding: 1.25rem 0 1.5rem;
     scroll-margin-top: 9rem;
 }
 
+.card:first-child {
+    border-top: 0;
+    padding-top: 0.5rem;
+}
+
 .card[data-kind="keep"] {
-    border-color: hsl(var(--pen) / 0.55);
+    border-top-color: hsl(var(--pen) / 0.45);
 }
 
-.card[data-state="left"] {
-    border-style: dashed;
-}
-
-.head {
+.margin {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
     gap: 0.25rem 0.75rem;
 }
 
-/* Where the line sits on the page. Ink, not olive: olive belongs beside the marker, and a structural card has none. */
+/* Where the line sits on the page. Ink, not olive: olive belongs beside the marker, and a structural entry has none. */
 .where {
+    margin: 0;
     color: hsl(var(--text-strong));
     font: var(--type-label);
 }
@@ -139,6 +139,7 @@
 }
 
 .whereQuiet {
+    margin: 0;
     color: hsl(var(--muted-foreground));
     font: var(--type-label);
     font-weight: var(--weight-body);
@@ -148,6 +149,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.25rem;
+    margin: 0;
     border-radius: 999px;
     background: hsl(var(--pen-tint));
     padding: 0.125rem 0.5rem;
@@ -155,9 +157,17 @@
     font: var(--type-label);
 }
 
+.evidence,
+.answer {
+    display: grid;
+    gap: 0.75rem;
+    align-content: start;
+    min-width: 0;
+}
+
 /* The line as written: the site's clipping, with the marker across it. */
 .strip {
-    max-width: 40rem;
+    max-width: 36rem;
 }
 
 .quote {
@@ -166,9 +176,9 @@
     text-wrap: pretty;
 }
 
-/* The keep card's line carries the blue-ink rule of a quoted line, not the marker. */
+/* The keep entry's line carries the blue-ink rule of a quoted line, not the marker. */
 .keepLine {
-    max-width: 40rem;
+    max-width: 36rem;
     margin: 0;
     border-left: 2px solid hsl(var(--blue-ink));
     padding-left: 0.875rem;
@@ -179,7 +189,7 @@
 
 /* A structural item (section order, dates, a gap): the recruiter's statement of fact about the page. */
 .statement {
-    max-width: 40rem;
+    max-width: 36rem;
     margin: 0;
     border: 1px dashed hsl(var(--pen) / 0.7);
     border-radius: var(--radius-inset);
@@ -189,29 +199,33 @@
     text-wrap: pretty;
 }
 
-/* What a recruiter can't tell: the pen's note. */
+/* What a recruiter can't tell: the pen's note, in the margin-note register. */
 .cannot {
-    max-width: 56ch;
+    max-width: 52ch;
     margin: 0;
-    border-left: 1px solid hsl(var(--pen));
-    padding-left: 0.75rem;
     color: hsl(var(--pen));
     font: var(--type-note);
     text-wrap: pretty;
 }
 
-.card[data-kind="keep"] .cannot {
-    font-style: normal;
+/* The question is the prompt for the blanks below it. */
+.question {
+    max-width: 52ch;
+    margin: 0;
+    font: var(--type-body);
+    font-weight: var(--weight-label);
 }
 
-/* The example: the line with the detail in, as the person's own line-to-be. The blanks are theirs. */
+/* The example: the line with the detail in, as the person's own line-to-be. The blanks are theirs, and they type into them. */
 .example {
-    max-width: 44rem;
+    min-width: 0;
+    max-width: 40rem;
     margin: 0;
     border-left: 2px solid hsl(var(--blue-ink));
     padding-left: 0.875rem;
     font: var(--type-lead);
     font-family: var(--font-editorial);
+    line-height: 1.85;
     text-wrap: pretty;
 }
 
@@ -231,51 +245,59 @@
     text-underline-offset: var(--link-offset);
 }
 
-/* The question and the fields that fill the blanks. */
-.ask {
-    display: grid;
-    gap: 0.5rem;
+/* A blank as a field: a blue underline in the sentence, as wide as its name until the person's words widen it.
+   The span stays inline so the field's cap is the sentence's width, and the punctuation after it can't wrap alone. */
+.blankField {
+    white-space: nowrap;
 }
 
-.question {
-    max-width: 52ch;
-    margin: 0;
-    font: var(--type-body);
-    font-weight: var(--weight-label);
+/* A blank whose name is a phrase gets its own line, so the name reads whole instead of being cut. */
+.blankField[data-long] {
+    display: block;
+    white-space: normal;
 }
 
-.fields {
-    display: grid;
-    gap: 0.5rem;
+.blankField[data-long] .blankInput {
+    width: 100% !important;
 }
 
-.field {
-    display: grid;
-    gap: 0.25rem;
+.blankInput {
+    display: inline-block;
+    box-sizing: border-box;
+    max-width: calc(100% - 0.1em);
+    min-width: 3ch;
+    margin: 0 0.05em;
+    border: 0;
+    border-bottom: 1.5px solid hsl(var(--blue-ink) / 0.55);
+    border-radius: 0;
+    background: hsl(var(--blue-ink) / 0.045);
+    padding: 0.05em 0.3em;
+    color: hsl(var(--blue-ink));
+    font: inherit;
+    line-height: 1.45;
+    vertical-align: baseline;
+    transition: border-color var(--duration-fast) var(--ease), background-color var(--duration-fast) var(--ease);
 }
 
-/* The field's name is ours, so it is ink; the blue stays on the blank in the example and on the answer. */
-.fieldLabel {
-    color: hsl(var(--text-strong));
-    font: var(--type-label);
+.blankInput::placeholder {
+    color: hsl(var(--blue-ink) / 0.7);
+    opacity: 1;
 }
 
-.input {
-    width: 100%;
-    min-height: 3rem;
-    border: 1px solid hsl(var(--control-line));
-    border-radius: var(--radius);
-    background: hsl(var(--card));
-    padding: 0.625rem 0.875rem;
-    color: hsl(var(--text-strong));
-    font: var(--type-body);
-    transition: border-color var(--duration-fast) var(--ease);
+.blankInput:hover {
+    border-bottom-color: hsl(var(--blue-ink));
 }
 
-.input:focus-visible {
-    border-color: hsl(var(--pen));
+.blankInput:focus-visible {
+    border-bottom-color: hsl(var(--blue-ink));
+    background: hsl(var(--blue-ink) / 0.08);
     outline: 2px solid hsl(var(--pen));
     outline-offset: 2px;
+}
+
+.blankField[data-filled] .blankInput {
+    background: transparent;
+    border-bottom-color: hsl(var(--blue-ink));
 }
 
 .tools {
@@ -294,7 +316,9 @@
 }
 
 .unlisted {
-    margin-top: 1rem;
+    margin-top: 0.5rem;
+    border-top: 1px solid hsl(var(--line));
+    padding-top: 1rem;
     color: hsl(var(--muted-foreground));
     font: var(--type-small);
 }
@@ -364,19 +388,55 @@
     }
 
     .card {
-        padding: 1.25rem 1.5rem 1.5rem;
-    }
-
-    .fields[data-count="2"],
-    .fields[data-count="3"],
-    .fields[data-count="4"] {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding: 1.5rem 0 1.75rem;
     }
 }
 
+/* The row: the margin, the evidence, the answer. The two columns share the width; the margin keeps its own. */
 @media (min-width: 960px) {
+    .cards {
+        margin-top: 1rem;
+    }
+
+    .card {
+        grid-template-columns: 9rem minmax(0, 1fr) minmax(0, 1fr);
+        column-gap: 2.5rem;
+        padding: 1.75rem 0 2rem;
+    }
+
+    .card:first-child {
+        padding-top: 0.75rem;
+    }
+
+    /* A keep entry has no answer column: its line and note take the width. */
+    .card[data-kind="keep"] {
+        grid-template-columns: 9rem minmax(0, 1fr);
+    }
+
+    .card[data-kind="keep"] .keepLine {
+        max-width: 44rem;
+    }
+
+    .margin {
+        display: grid;
+        align-content: start;
+        gap: 0.25rem;
+        padding-top: 0.125rem;
+    }
+
     .fitGrid {
         grid-template-columns: minmax(0, 1fr) 19rem;
         column-gap: 3.5rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .card {
+        grid-template-columns: 10rem minmax(0, 1fr) minmax(0, 1.05fr);
+        column-gap: 3rem;
+    }
+
+    .card[data-kind="keep"] {
+        grid-template-columns: 10rem minmax(0, 1fr);
     }
 }

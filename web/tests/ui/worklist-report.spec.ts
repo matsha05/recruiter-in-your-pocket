@@ -67,7 +67,9 @@ test("the answers fill the blanks word for word, Copy waits for every blank, and
   await expect(blanks).toHaveCount(lineLabels.length);
   await expect(card.getByTestId("worklist-copy")).toHaveCount(0);
   await blanks.first().fill("12");
-  await expect(card.getByTestId("worklist-example")).toContainText("12");
+  // The blanks are fields inside the example itself; the typed words are the field's value.
+  await expect(blanks.first()).toHaveValue("12");
+  await expect(blanks.first()).toHaveAccessibleName(lineLabels[0]);
   await expect(card.getByTestId("worklist-copy")).toHaveCount(0);
   for (let index = 1; index < lineLabels.length; index += 1) await blanks.nth(index).fill(`answer ${index}`);
   await expect(card.getByTestId("worklist-copy")).toBeVisible();
@@ -97,7 +99,7 @@ test("a saved report reopened elsewhere fills the blanks from the kept answers",
   await page.goto(`/reports/${REPORT_ID}`, { waitUntil: "domcontentloaded" });
   const card = page.getByTestId("worklist-card").nth(lineCard);
   await expect(card).toBeVisible({ timeout: 30_000 });
-  await expect(card.getByTestId("worklist-example")).toContainText("12");
+  await expect(card.getByTestId("worklist-blank").first()).toHaveValue("12");
   await expect(card.getByTestId("worklist-copy")).toBeVisible();
   await expect(card).toContainText("Filled in");
   await expect(card.getByTestId("worklist-kept")).toContainText("Kept with this report");
