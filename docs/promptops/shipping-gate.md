@@ -13,6 +13,20 @@ This is a non-negotiable quality gate that protects the core value of RIYP: reli
 
 ---
 
+## The copy rule (November 6, 2026)
+
+> **New or changed user-facing copy goes through the copy system before a PR.**
+
+The reference is [`docs/copy-system.md`](../copy-system.md): the voice chart, tone by moment, the "this, not that" pairs, the tics, the glossary and the review procedure (§7). Before a PR that adds or changes a string a reader sees:
+
+1. `npm run copy:inventory` from `web/`, and commit the updated tables. The PR's diff of `docs/copy/inventory/` is the list of what changed.
+2. `npm run copy:check`: the inventory is current, no string trips a pattern check that isn't in the known baseline (`docs/copy/lint-baseline.json`), and the voice judge's tests pass. Free; it runs in the launch gate.
+3. The voice judge on the new strings: write them to a strings file and run `RIYP_ALLOW_PAID_EVALS=true npm run copy:judge -- file <strings.json> --budget-usd 0.5`. A "no" is fixed or argued in the PR; a "flat" is a prompt to read the line aloud again, not a failure. Record the run's spend under "Voice judge" below.
+4. The read-aloud and the questions in §7. When the judge and the read-aloud disagree, the read-aloud wins, and a line Matt approved is never rewritten on the judge's word.
+5. Brand-level lines (the homepage, founder facts, a new aside on pricing or a report ending, the dial) go to Matt through the question UI.
+
+The report's model-written words are outside this rule: they change only through the prompt gate below.
+
 ## Passing Criteria
 
 Before any prompt modification can be merged or deployed:
@@ -129,7 +143,8 @@ Spend (token-calculated, synthetic product strings only; the copy-judge cap is $
 | Calibration v4, tuning and held-out sets | 64 | 6 | $0.0712 |
 | First-seen routes of the inventory (prompt v3), for the rewrites | 1,357 | 68 | $1.1866 |
 | The rewritten lines, before the rewrite PR (prompt v4) | 42 | 4 | $0.0411 |
-| Total | | | $1.4929 |
+| The launch gate's threshold check, once, before the gate PR (held-out set: kappa 0.52, 3 of 4 "no" caught) | 24 | 2 | $0.0341 |
+| Total | | | $1.5270 |
 
 ---
 
