@@ -106,6 +106,29 @@ Recalibration of judge `critical-miss-judge-v4` after the count decision ([summa
 
 These numbers are in-sample: the rubric was refined on the same ten items Matt picked. A change to the judge prompt changes `judge_prompt_sha256` and needs a fresh `calibrate --set all` (and `--set count`) before its verdicts count.
 
+### Voice judge (product copy; local, never gates prompt changes)
+
+Built November 6, 2026 for the copy system (`docs/copy-system.md`). `npm run copy:judge` from `web/` scores product copy against the voice chart, the tone by moment and the tic list, and proposes a rewrite for each string that isn't "us". It judges the interface, emails and public pages, never the model's report prose, and it never runs in production. Every call needs `RIYP_ALLOW_PAID_EVALS=true`; `--budget-usd` (at most $5) is the ceiling for a run, and `--dry-run` runs the free pattern checks with no call. It runs on `gpt-6.1-sol` and refuses the generator's model. How it works and how to read it: [docs/copy/judge/README.md](../copy/judge/README.md).
+
+Calibration of prompt `voice-judge-v4` (SHA-256 `17027da35aa907af2d118f6b947a454a9c27f7f80707ad882ada8424cf9914a1`; v3 plus the fifth band in its glossary, with the same verdicts) against hand labels made before each set's first run (the copy-system session's; Matt set the rating round aside and gave his own words, which are the prompt's examples):
+
+| Set | Exact (us, flat, no) | Cohen's kappa | Labelled "no" that it failed | Its "no" that were right |
+| --- | --- | --- | --- | --- |
+| Tuning, 40 lines | 31 of 40 | 0.58 | 6 of 6 | 6 of 7 |
+| Held out, 24 lines, never used to change the prompt | 19 of 24 | 0.58 | 3 of 4 | 3 of 3 |
+
+Known biases: more lenient than the labels on cool, literal lines; it keeps editing out the sign-in email's warm opening, an aside Matt approved. When the judge and the read-aloud disagree, the read-aloud wins. A change to the judge prompt changes its SHA and needs a fresh `calibrate` on both sets before its verdicts count.
+
+Spend (token-calculated, synthetic product strings only; the copy-judge cap is $5):
+
+| Run | Strings | Calls | Spend |
+| --- | --- | --- | --- |
+| Calibration v1, tuning set | 40 | 4 | $0.0506 |
+| Calibration v2, tuning and held-out sets | 64 | 6 | $0.0696 |
+| Calibration v3, tuning and held-out sets | 64 | 6 | $0.0738 |
+| Calibration v4, tuning and held-out sets | 64 | 6 | $0.0712 |
+| Total so far | | | $0.2652 |
+
 ---
 
 ## Workflow

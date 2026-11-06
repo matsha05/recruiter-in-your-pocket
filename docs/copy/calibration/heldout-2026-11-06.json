@@ -1,0 +1,157 @@
+{
+  "version": 1,
+  "date": "2026-11-06",
+  "purpose": "Held-out set for the voice judge: 24 lines from the inventory, labelled by hand before any judge run, never used to tune the prompt. Agreement on this set is the honest number.",
+  "scale": {
+    "us": "Sounds like Matt in this moment, or a literal control or fact exactly right for its job.",
+    "flat": "Correct but stiff, generic or cold for its moment, or a small tic a careful reader might miss.",
+    "no": "A reader would feel the miss: a coined or retired word, please, Title Case on a control, an internal term, a slogan, a rhetorical pitch, an unearned exclamation point, empty praise, an invented feeling, or a joke where trust is at stake."
+  },
+  "real_lines": [
+    {
+      "id": 1,
+      "moment": "upload",
+      "where": "web/components/workspace/InputPanel.tsx:185",
+      "text": "Paste your resume"
+    },
+    {
+      "id": 2,
+      "moment": "auth",
+      "where": "web/components/auth/AuthFlow.tsx:29",
+      "text": "That email address doesn’t look right. Check it and try again."
+    },
+    {
+      "id": 3,
+      "moment": "auth",
+      "where": "web/components/auth/AuthFlow.tsx:312",
+      "text": "No password. The code works once and expires soon."
+    },
+    {
+      "id": 4,
+      "moment": "auth",
+      "where": "web/components/auth/AuthFlow.tsx:129",
+      "text": "Too many sign-in emails were sent. Wait before requesting another."
+    },
+    {
+      "id": 5,
+      "moment": "auth",
+      "where": "web/components/auth/AuthFlow.tsx:251",
+      "text": "We sent an 8-digit code to {email}"
+    },
+    {
+      "id": 6,
+      "moment": "pricing",
+      "where": "web/components/marketing/PricingPageClient.tsx:78",
+      "text": "Checkout canceled. Nothing was charged."
+    },
+    {
+      "id": 7,
+      "moment": "pricing",
+      "where": "web/components/marketing/PricingPageClient.tsx:146",
+      "text": "Full refund within 14 days: write to support from your checkout email."
+    },
+    {
+      "id": 8,
+      "moment": "pricing",
+      "where": "web/components/marketing/PricingPageClient.tsx:155",
+      "text": "Weighing other tools?"
+    },
+    {
+      "id": 9,
+      "moment": "marketing",
+      "where": "web/app/opengraph-image.tsx:44",
+      "text": "Here’s the note Jordan never saw."
+    },
+    {
+      "id": 10,
+      "moment": "marketing",
+      "where": "web/components/landing/home/HiringTruths.tsx:12",
+      "text": "We point to the line that already has one, and ask for the detail you left out."
+    },
+    {
+      "id": 11,
+      "moment": "marketing",
+      "where": "web/components/landing/home/HiringTruths.tsx:15",
+      "text": "Your best example stops right before the good part."
+    },
+    {
+      "id": 12,
+      "moment": "marketing",
+      "where": "web/components/landing/home/HiringTruths.tsx:20",
+      "text": "We’ll rewrite your line. Only from your facts."
+    },
+    {
+      "id": 13,
+      "moment": "analysis",
+      "where": "web/components/workspace/AnalysisScanning.tsx:165",
+      "text": "Still working on your resume report. You can keep waiting, retry, or stop."
+    },
+    {
+      "id": 14,
+      "moment": "analysis",
+      "where": "web/components/workspace/AnalysisScanning.tsx:234",
+      "text": "Keep this tab open."
+    },
+    {
+      "id": 15,
+      "moment": "account",
+      "where": "web/components/workspace/SaveReportPrompt.tsx:82",
+      "text": "Sign in to save"
+    },
+    {
+      "id": 16,
+      "moment": "account",
+      "where": "web/components/workspace/SaveReportPrompt.tsx:93",
+      "text": "Maybe later"
+    },
+    {
+      "id": 17,
+      "moment": "account",
+      "where": "web/components/reports/ReportHistoryList.tsx:125",
+      "text": "Nothing here yet"
+    },
+    {
+      "id": 18,
+      "moment": "account",
+      "where": "web/app/(app)/reports/page.tsx:85",
+      "text": "Your report history could not load."
+    },
+    {
+      "id": 19,
+      "moment": "account",
+      "where": "web/components/reports/ReportHistoryList.tsx:110",
+      "text": "Report deleted"
+    },
+    {
+      "id": 20,
+      "moment": "account",
+      "where": "web/components/workspace/SettingsClient.tsx:272",
+      "text": "We're gathering your account data for download."
+    },
+    {
+      "id": 21,
+      "moment": "pricing",
+      "where": "web/components/shared/PricingCard.tsx:87",
+      "text": "Opening checkout..."
+    },
+    {
+      "id": 22,
+      "moment": "pricing",
+      "where": "web/components/marketing/PricingPageClient.tsx:135",
+      "text": "Passes are paused for now"
+    },
+    {
+      "id": 23,
+      "moment": "upload",
+      "where": "web/components/workspace/LinkedInModeSection.tsx:128",
+      "text": "Get pass"
+    },
+    {
+      "id": 24,
+      "moment": "upload",
+      "where": "web/components/workspace/LinkedInModeSection.tsx:118",
+      "text": "Run Another"
+    }
+  ],
+  "situations": []
+}
