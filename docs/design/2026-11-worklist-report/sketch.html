@@ -1,0 +1,145 @@
+<title>Report shape sketches</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;600;800&family=Literata:ital,wght@0,400;1,400&display=swap">
+<style>
+:root{--bg:#f4f4f1;--fg:#111513;--muted:#5a605c;--line:#dfe0dc;--inset:#e9eae6;--pen:#1f5a46;--sheet:#ffffff;--hl:#ffe14d;--hlsoft:#fff6c2;--olive:#6b5400;--blue:#2448a8}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#15171a;--fg:#ececea;--muted:#a2a7a3;--line:#2e3236;--inset:#22262a;--pen:#7fc7a6;--sheet:#1d2024;--hl:#d4b82a;--hlsoft:#3b3414;--olive:#e8d27a;--blue:#8fa8ff;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#15171a;--fg:#ececea;--muted:#a2a7a3;--line:#2e3236;--inset:#22262a;--pen:#7fc7a6;--sheet:#1d2024;--hl:#d4b82a;--hlsoft:#3b3414;--olive:#e8d27a;--blue:#8fa8ff;color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font:16px/1.5 "Schibsted Grotesk",system-ui,sans-serif;padding-block:2rem 5rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main{max-width:64rem;margin:0 auto}
+h1{font-size:1.6rem;font-weight:800;margin:0 0 .25rem;text-wrap:balance}
+.lede{color:var(--muted);max-width:62ch;margin:0 0 2.5rem}
+.sketch{border-top:1px solid var(--line);padding:2.5rem 0}
+.sketch>h2{font-size:1.1rem;margin:0 0 .25rem}.sketch>p.note{color:var(--muted);max-width:62ch;margin:0 0 1.5rem}
+.sheet{background:var(--sheet);border:1px solid var(--line);border-radius:18px;padding:1.5rem;max-width:100%}
+.top{display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:baseline;margin:0 0 1.25rem}
+.score{font-size:2.6rem;font-weight:800;line-height:1}.rung{font-weight:600}.rung small{display:block;font-weight:400;color:var(--muted)}
+.pen{font-family:Literata,Georgia,serif;color:var(--pen)}
+.pen p{margin:0 0 .9rem;max-width:64ch}
+h3.sec{font-size:.8rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin:1.75rem 0 .75rem}
+/* resume with margin notes */
+.resume{font:14px/1.5 "Schibsted Grotesk",system-ui,sans-serif}
+.resume .r{margin:0 0 .1rem}.resume .h{font-weight:600;margin:1rem 0 0}.resume .meta{color:var(--muted)}
+.line{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:.5rem 1.25rem;align-items:start;margin:.35rem 0}
+@media (max-width:720px){.line{grid-template-columns:1fr}}
+.line .r{background:linear-gradient(transparent 55%,var(--hl) 55%,var(--hl) 92%,transparent 92%);padding:0 .15rem;display:inline}
+.mn{font-family:Literata,Georgia,serif;font-style:italic;color:var(--pen);font-size:.95rem;border-left:2px solid var(--pen);padding-left:.75rem;min-width:0}
+.mn b{font-style:normal;font-weight:600}
+.mn .ex{font-style:normal;color:var(--fg);background:var(--hlsoft);border-radius:6px;padding:.35rem .5rem;margin:.4rem 0 0;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.9rem}
+.mn .ex span{color:var(--blue)}
+.mn .q{margin:.35rem 0 0;font-style:normal;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:.9rem;color:var(--muted)}
+.gap{border:1px dashed var(--pen);border-radius:10px;padding:.5rem .75rem;margin:.5rem 0;color:var(--pen);font-style:italic;font-family:Literata,Georgia,serif}
+/* worklist */
+.work{display:grid;gap:.75rem}
+.item{border:1px solid var(--line);border-radius:12px;padding:1rem;background:var(--sheet)}
+.item .was{font-size:.9rem;color:var(--muted);margin:0 0 .35rem}.item .was q{quotes:"“" "”"}
+.item .ask{font-family:Literata,Georgia,serif;font-style:italic;color:var(--pen);margin:0 0 .5rem}
+.item .ex{background:var(--hlsoft);border-radius:6px;padding:.4rem .6rem;font-size:.92rem;margin:0}.item .ex span{color:var(--blue)}
+.item .k{font-size:.75rem;letter-spacing:.04em;text-transform:uppercase;color:var(--olive);margin:0 0 .35rem}
+.keep{border-color:var(--pen)}.keep .k{color:var(--pen)}
+.small{font-size:.9rem;color:var(--muted)}
+</style>
+<main>
+<h1>Two shapes for the report</h1>
+<p class="lede">Same resume (Sam, the recent graduate from the pick), same content, two orders. Neither uses the word Critical Miss. Every example rewrite is an example: the blue parts are what Sam would fill in, nothing is invented as fact.</p>
+
+<section class="sketch" id="one">
+<h2>Shape 1. The resume itself, with notes in the margin. Then the write-up.</h2>
+<p class="note">The page is Sam's resume. The lines that need work are marked and get a note beside them: what's missing, an example of the line with it in, and the question that fills it. Lines that are fine are left alone. The write-up comes after, as long as it needs to be.</p>
+<div class="sheet">
+  <div class="top"><div class="score">64</div><div class="rung">Needs more context<small>A recruiter sees an intern's resume with a manager's headline.</small></div></div>
+
+  <div class="resume">
+    <p class="r"><b>Sam Whitaker</b></p>
+    <p class="r meta">Madison, WI | sam.whitaker@example.com | 555-0207</p>
+
+    <div class="line">
+      <p class="r">Marketing manager who has led credit union campaigns from strategy to launch.</p>
+      <div class="mn"><b>This is the first line a recruiter reads, and the next line says Marketing Intern.</b> The headline promises a manager; the page shows an intern who helped. Say what you are, and what you want.
+        <p class="ex">Economics graduate (May 2024) with a year in credit union marketing, looking for a <span>[marketing coordinator]</span> role.</p>
+        <p class="q">What job are you going for? One title.</p></div>
+    </div>
+
+    <p class="h">EDUCATION</p>
+    <p class="r">B.A., Economics, University of Wisconsin-Madison, May 2024</p>
+    <p class="gap">Move Experience above Education. You have a year of it; lead with it.</p>
+
+    <p class="h">EXPERIENCE</p>
+    <p class="r"><b>Marketing Intern</b>, Badger State Credit Union, Madison, WI</p>
+    <p class="r meta">June 2023 - May 2024</p>
+    <div class="line">
+      <p class="r">- Helped with the member newsletter</p>
+      <div class="mn"><b>"Helped" hides the job.</b> Did you write it, build it, send it? To how many people, how often?
+        <p class="ex">Wrote and built the monthly member newsletter in <span>[tool]</span>, sent to <span>[number]</span> members; <span>[one thing that changed, if true]</span>.</p>
+        <p class="q">What part of the newsletter was yours, and how many members got it?</p></div>
+    </div>
+    <div class="line">
+      <p class="r">- Posted on the credit union's social media accounts</p>
+      <div class="mn"><b>Posting is a task. Which accounts, how often, and did anything move?</b>
+        <p class="ex">Ran the credit union's <span>[Instagram and Facebook]</span> accounts, <span>[number]</span> posts a week; followers went from <span>[number]</span> to <span>[number]</span> over the year, if you know it.</p>
+        <p class="q">Which accounts, how often, and do you know the follower or engagement numbers?</p></div>
+    </div>
+    <div class="line">
+      <p class="r">- Supported planning for branch events</p>
+      <div class="mn"><b>Name one event.</b> A recruiter can hold "the fall member appreciation day at two branches, 300 people". They can't hold "supported planning".
+        <p class="ex">Planned <span>[event name]</span> at <span>[number]</span> branches with the branch managers: <span>[what you handled]</span>.</p>
+        <p class="q">Which event, and what did you handle?</p></div>
+    </div>
+    <div class="gap">Nothing is dated after May 2024. A recruiter reading in November 2026 will ask what the last eighteen months were. One honest line covers it: a job search, coursework, family, travel, freelance work if real. Write it as a dated entry so it reads as part of the story, not a hole in it.</div>
+
+    <p class="r"><b>Research Assistant</b>, Department of Agricultural Economics, University of Wisconsin-Madison</p>
+    <p class="r meta">January 2023 - May 2023</p>
+    <p class="r">- Cleaned survey data from 1,200 dairy farms in Stata for a pricing study</p>
+    <p class="r">- Wrote 15 literature summaries on farm subsidies</p>
+
+    <p class="r"><b>Finance Intern</b>, Lakeview Partners, Milwaukee, WI</p>
+    <p class="r meta">May 2022 - August 2022</p>
+    <p class="r">- Updated monthly expense reports for a 20-person firm</p>
+
+    <p class="r"><b>Campus Tour Guide</b>, University of Wisconsin-Madison</p>
+    <p class="r meta">September 2021 - May 2023</p>
+    <p class="r">- Led tours for groups of up to 25 prospective students</p>
+
+    <p class="h">SKILLS</p>
+    <p class="r">Excel, Stata, Canva, survey design, public speaking</p>
+  </div>
+
+  <h3 class="sec">What I'd tell you</h3>
+  <div class="pen">
+    <p>The resume says manager and the experience says intern, and that mismatch is the first thing a recruiter sees. It isn't fatal; it's a credibility problem on line one, and everything after it gets read with a little suspicion. The fix is cheap: say what you are. A year of credit union marketing straight out of an economics degree is a fine story for a coordinator role. It just isn't the story the headline tells.</p>
+    <p>Below that, the marketing internship is three lines that could belong to anyone. The research job, by contrast, is the best-written thing on the page: 1,200 farms, Stata, 15 summaries. Nobody has to guess what you did. The marketing bullets need the same treatment, and you already know how to write it. Which accounts, how many members, which event. If a number moved, say so. If it didn't, say what you made.</p>
+    <p>Two structural things. Put Experience above Education; you have a year of it and the degree isn't the headline. And date the time since May 2024, whatever it was. A dated line reads as a decision. A blank reads as a question, and recruiters don't call to ask it.</p>
+  </div>
+</div>
+</section>
+
+<section class="sketch" id="two">
+<h2>Shape 2. The write-up first. Then a worklist of the lines, one card each.</h2>
+<p class="note">Opens with the recruiter's write-up, as long as it needs to be. Then the lines that need work, in the order a recruiter trips on them, each as a card: the line as written, what a recruiter can't tell from it, an example of the line with the detail in, and the question. The resume isn't reproduced; the cards quote it.</p>
+<div class="sheet">
+  <div class="top"><div class="score">64</div><div class="rung">Needs more context<small>A recruiter sees an intern's resume with a manager's headline.</small></div></div>
+  <div class="pen">
+    <p>The resume says manager and the experience says intern, and that mismatch is the first thing a recruiter sees. It isn't fatal; it's a credibility problem on line one, and everything after it gets read with a little suspicion. The fix is cheap: say what you are. A year of credit union marketing straight out of an economics degree is a fine story for a coordinator role. It just isn't the story the headline tells.</p>
+    <p>Below that, the marketing internship is three lines that could belong to anyone. The research job, by contrast, is the best-written thing on the page: 1,200 farms, Stata, 15 summaries. Nobody has to guess what you did. The marketing bullets need the same treatment, and you already know how to write it. Which accounts, how many members, which event. If a number moved, say so. If it didn't, say what you made.</p>
+    <p>Two structural things. Put Experience above Education; you have a year of it and the degree isn't the headline. And date the time since May 2024, whatever it was. A dated line reads as a decision. A blank reads as a question, and recruiters don't call to ask it.</p>
+  </div>
+
+  <h3 class="sec">Line by line, in the order a recruiter hits them</h3>
+  <div class="work">
+    <div class="item"><p class="k">Line 1</p><p class="was"><q>Marketing manager who has led credit union campaigns from strategy to launch.</q></p><p class="ask">The headline promises a manager; the next line says intern. Say what you are, and what you want.</p><p class="ex">Economics graduate (May 2024) with a year in credit union marketing, looking for a <span>[marketing coordinator]</span> role.</p></div>
+    <div class="item"><p class="k">Structure</p><p class="was">Education sits above Experience.</p><p class="ask">You have a year of experience. Lead with it; the degree isn't the headline.</p></div>
+    <div class="item"><p class="k">Dates</p><p class="was">Nothing after May 2024.</p><p class="ask">A recruiter reading in November 2026 will ask what the last eighteen months were. One honest dated line covers it: a search, coursework, family, travel, freelance if real.</p><p class="ex"><span>[June 2024 - Present]</span> &nbsp; <span>[Job search and marketing coursework]</span></p></div>
+    <div class="item"><p class="k">Marketing Intern, line 1</p><p class="was"><q>Helped with the member newsletter</q></p><p class="ask">"Helped" hides the job. Did you write it, build it, send it? To how many people, how often?</p><p class="ex">Wrote and built the monthly member newsletter in <span>[tool]</span>, sent to <span>[number]</span> members.</p></div>
+    <div class="item"><p class="k">Marketing Intern, line 2</p><p class="was"><q>Posted on the credit union's social media accounts</q></p><p class="ask">Posting is a task. Which accounts, how often, and did anything move?</p><p class="ex">Ran the <span>[Instagram and Facebook]</span> accounts, <span>[number]</span> posts a week; followers <span>[from]</span> to <span>[to]</span>, if you know it.</p></div>
+    <div class="item"><p class="k">Marketing Intern, line 3</p><p class="was"><q>Supported planning for branch events</q></p><p class="ask">Name one event. A recruiter can hold "the fall member day at two branches, 300 people". They can't hold "supported planning".</p><p class="ex">Planned <span>[event name]</span> at <span>[number]</span> branches with the branch managers: <span>[what you handled]</span>.</p></div>
+    <div class="item keep"><p class="k">Keep as is</p><p class="was"><q>Cleaned survey data from 1,200 dairy farms in Stata for a pricing study</q></p><p class="ask">This is the best-written line on the page. The marketing bullets should read like it.</p></div>
+  </div>
+  <p class="small" style="margin:1rem 0 0">Lines not listed are fine as written.</p>
+</div>
+</section>
+
+<section class="sketch">
+<h2>What's the same in both</h2>
+<p class="note">Score and rung stay. The write-up is the recruiter's own words, two or three paragraphs, not a forced summary. Every marked line gets three things: what a recruiter can't tell from it, an example with the detail in (blanks in blue), and the question that fills the blank. Strong resumes get fewer marks and a shorter write-up, never a manufactured problem. Gaps get a dated-line example and honest phrasings, not "add relevant activity".</p>
+</section>
+</main>
