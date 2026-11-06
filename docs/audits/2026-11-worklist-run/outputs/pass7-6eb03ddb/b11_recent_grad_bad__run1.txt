@@ -1,0 +1,53 @@
+# b11_recent_grad_bad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_recent_grad_bad_1.txt (151 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 6eb03ddb; severity check off
+Outcome: report; cost $0.0077; 18.1s
+Case note: First job, weak; count-check key says no_evidence_latest_role, no_recent_work, title_level_mismatch.
+
+## Needs more context (score 54; model wrote 54)
+## Verdict
+A marketing intern’s resume with a manager headline and little detail about the marketing work.
+
+## Write-up
+This is common on early-career resumes: the headline reaches ahead of the jobs, while the recent work is described in broad strokes. A recruiter sees credit union marketing experience, but can’t tell what you did on the newsletter, social accounts or events. The manager headline and the unaccounted time since May 2024 make them hesitate too.
+
+Let’s start with the Marketing Intern role, especially the newsletter line. Your dairy farm research line is a good model: it names the task, the study, the tool and the number of farms. Move Experience above Education so that work is easier to find.
+
+## Cards (7; {"line":4,"dates":1,"structure":1,"keep":1}); severity off; added []
+1. [line] Headline
+   line: "Marketing manager who has led credit union campaigns from strategy to launch."
+   can't tell: The jobs describe an internship and supporting work, not a marketing manager role or campaigns you led from strategy to launch. A recruiter may question the headline before getting to your experience.
+   example: Marketing Intern with experience in member newsletters, social media and branch events at Badger State Credit Union
+   question: Did you lead a campaign from strategy to launch, and where could you show that work on your resume?
+2. [dates] Dates
+   line: "Nothing is dated after May 2024."
+   can't tell: A recruiter can’t tell what you’ve been doing since your last dated role. Add an honest account of that time: caregiving can be named as such, and a career break can include a course, project, volunteering or travel. Freelance work belongs there if you did it.
+   example: May 2024 - Present [what you did]
+   question: What have you been doing since May 2024 that you’d be comfortable including?
+3. [structure] Structure
+   line: "Education sits above Experience."
+   can't tell: Your work is the stronger introduction now. Put Experience first so a recruiter reaches the credit union and research work sooner.
+   question: Can you move Experience above Education?
+4. [line] Marketing Intern, line 1
+   line: "Helped with the member newsletter"
+   can't tell: A recruiter can’t tell which part of the newsletter was yours. Writing, editing and sending it are different jobs.
+   example: Helped with the member newsletter by [your contribution] for [audience]
+   question: What did you do for the newsletter, and who received it?
+5. [line] Marketing Intern, line 2
+   line: "Posted on the credit union's social media accounts"
+   can't tell: Posting is a start, but the line doesn’t say what you shared or how often. That makes the work easy to skim past.
+   example: Posted [content] on the credit union's social media accounts [frequency]
+   question: What did you post, and how often?
+6. [line] Marketing Intern, line 3
+   line: "Supported planning for branch events"
+   can't tell: A recruiter can’t tell what you handled in the planning or what kind of event it was. One example would give them something to remember.
+   example: Supported planning for [branch event] by [your contribution]
+   question: Which branch event did you support, and what did you do for it?
+7. [keep] Research Assistant, line 1
+   line: "Cleaned survey data from 1,200 dairy farms in Stata for a pricing study"
+   can't tell: Keep this one. It makes your contribution distinct from the broader study and gives the reader a concrete sense of the work.
+
+## Fit
+Roles: ["Marketing Intern","Research Assistant"]
+Level: Early career
+Note: Your experience points toward marketing internship work and research support. The marketing manager headline goes beyond what the listed jobs currently show, so bring it closer to the work you can describe.

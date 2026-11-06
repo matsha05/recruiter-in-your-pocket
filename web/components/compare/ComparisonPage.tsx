@@ -81,7 +81,7 @@ export function ComparisonPage({ entry }: { entry: Comparison }) {
                                 {index === 1 ? (
                                     <aside className={styles.bridge} aria-label="See it on your own resume">
                                         <div>
-                                            <p className={styles.bridgeTitle}>What would a recruiter question on yours?</p>
+                                            <p className={styles.bridgeTitle}>See what a recruiter would question on yours.</p>
                                             <p className={styles.bridgeBody}>
                                                 The free report is the complete report: the write-up, every line that needs work, and the example for each. No card, no account, and nothing held back for the pass. <Link href="/sample-report" className="focus-ring riyp-link">See a complete report on a fictional resume</Link> before you run yours.
                                             </p>

@@ -1,0 +1,33 @@
+# b23_pharmacy_tech_table, run 1
+Resume: ../2026-11-live-judgment/resumes/b_pharmacy_tech_table.txt (209 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 6eb03ddb; severity check off
+Outcome: report; cost $0.0076; 18.2s
+Case note: Tables rendered to tab-separated text.
+
+## Clear and specific (score 87; model wrote 87)
+## Verdict
+A licensed pharmacy technician with strong inpatient and retail experience, backed by concrete numbers.
+
+## Write-up
+Your resume makes your pharmacy work easy to grasp! A recruiter can see sterile compounding, dispensing cabinet work and retail experience, with numbers attached to much of it. The stockout line is especially strong: it names the six nursing units and shows the change in weekly reports.
+
+Your resume isn't likely to be the reason you don't get a call back. How competitive an opening is matters too. Put the duties under their matching jobs so a recruiter doesn't have to switch between sections, and add a little more to the immunization scheduling line if you can.
+
+## Cards (3; {"structure":1,"keep":1,"line":1}); severity off; added []
+1. [structure] Experience and Duties and Results
+   line: "The jobs and their duties are in separate sections."
+   can't tell: A recruiter has to move between the job list and the duties to match each role to its employer and dates.
+   question: Can you move each duty under its matching job and employer?
+2. [keep] Pharmacy Technician II, dispensing cabinets
+   line: "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024"
+   can't tell: Keep this as a model. It puts your responsibility next to a before-and-after measure without making the reader guess which work you're describing.
+3. [line] Pharmacy Technician, immunization scheduling
+   line: "Pharmacy Technician Ran the immunization scheduling during the 2021 flu and COVID seasons"
+   can't tell: A recruiter can see that you ran scheduling, but not how many appointments you handled. That would help show how much scheduling the job involved.
+   example: Ran the immunization scheduling during the 2021 flu and COVID seasons, scheduling [number] appointments
+   question: How many appointments did you schedule during those seasons?
+
+## Fit
+Roles: ["Pharmacy Technician II","Pharmacy Technician"]
+Level: Experienced technician
+Note: Your experience points toward inpatient and retail pharmacy technician roles. Your sterile compounding work and certification are particularly relevant to inpatient pharmacy.

@@ -8,7 +8,7 @@ const AUTH_COPY: Record<AuthContext, AuthCopy> = {
   report: { headline: "Save this report" },
   settings: { headline: "Your account settings" },
   paywall: { headline: "Sign in to use your pass" },
-  history: { headline: "Your saved reports" },
+  history: { headline: "Sign in to see My reports" },
   extension: { headline: "Sync saved jobs across devices" },
   free_report: { headline: "Get your free report" },
 };

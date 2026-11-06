@@ -1,0 +1,43 @@
+# b30_social_worker, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_social_worker_1.txt (127 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 6eb03ddb; severity check off
+Outcome: report; cost $0.0077; 17.6s
+
+## Needs more context (score 66; model wrote 66)
+## Verdict
+A licensed social worker with child welfare experience, but little detail on the caseload or casework.
+
+## Write-up
+A recruiter sees a licensed social worker doing child welfare casework after intake work in basic-needs services. This is a common resume pattern: the duties are recognizable, but the recent role doesn't say how many families you work with or what the casework involves. A recruiter may hesitate and move on.
+
+Let's start with your Family Services Caseworker role and the caseload line. Your intake line about screening walk-in clients is a good model: it names who you worked with and the kinds of assistance they needed. Add that kind of detail to the recent work, without sharing private client information.
+
+## Cards (5; {"line":4,"keep":1}); severity off; added []
+1. [line] Family Services Caseworker, line 1
+   line: "Carry a caseload of families involved with child protective services"
+   can't tell: A recruiter can't tell how many families are on your caseload. That's a useful way to understand the work you manage.
+   example: Carry a caseload of [number] families involved with child protective services
+   question: How many families are typically on your caseload?
+2. [line] Family Services Caseworker, line 2
+   line: "Complete safety and risk assessments during home visits"
+   can't tell: The assessments are named, but a recruiter can't tell what decisions they inform. That connection would show how the work fits into a family's case.
+   example: Complete safety and risk assessments during home visits to inform [decision]
+   question: What decisions do your safety and risk assessments inform?
+3. [line] Family Services Caseworker, line 3
+   line: "Coordinate services with schools, courts, and mental health providers"
+   can't tell: You name the people you coordinate with, but not the services. Give a recruiter one or two examples of what you arrange.
+   example: Coordinate [services] with schools, courts, and mental health providers
+   question: What services do you coordinate with these partners?
+4. [keep] Intake Specialist, line 1
+   line: "Screened walk-in clients for housing, food, and utility assistance"
+   can't tell: Keep this as a model. It gives the reader a concrete picture of the intake work instead of relying on the job title.
+5. [line] Intake Specialist, line 2
+   line: "Connected clients to county benefit programs"
+   can't tell: A recruiter can see that you connected clients to benefits, but not which programs. Naming them would make the referral work more concrete.
+   example: Connected clients to [county benefit programs]
+   question: Which county benefit programs did you connect clients to?
+
+## Fit
+Roles: ["Family Services Caseworker","Intake Specialist"]
+Level: Experienced caseworker
+Note: Your experience points toward child welfare and family services casework, with earlier intake experience. Your Ohio LMSW and current work with families give a recruiter a clear field to place you in.

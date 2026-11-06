@@ -1,0 +1,48 @@
+# b10_it_support_recent_grad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_it_support_recent_grad_1.txt (119 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt f4ff18ca; severity check off
+Outcome: report; cost $0.0092; 24.3s
+Case note: First job.
+
+## Needs more context (score 59; model wrote 59)
+## Verdict
+A help desk internship and retail experience, with no dated work after May 2025.
+
+## Write-up
+This is pretty common, and it won't stand out in a pile yet. A recruiter sees school help desk work and customer-facing device experience, but the internship doesn't say how many tickets or laptops you handled. Nothing accounts for the time after May 2025. Let's start with the most recent role.
+
+The Active Directory line is your best model: it names the task and the tool. Move Experience above Education, then add the missing details to the ticket and laptop lines.
+
+## Cards (6; {"dates":1,"structure":1,"line":3,"keep":1}); severity off; added []
+1. [dates] Dates
+   line: "No work is dated after May 2025."
+   can't tell: A recruiter can't tell what you've done since the internship. If you were caregiving, you can name that. A career break can include a course, project, volunteering or travel; freelance or consulting work belongs there if it was real. Use sabbatical only for time you chose for travel, study or rest, and give any work its actual dates.
+   example: May 2025 - Present [what you did]
+   question: What have you done since May 2025, and when did you do it?
+2. [structure] Structure
+   line: "Education sits above Experience."
+   can't tell: Your retail work and internship give you experience to lead with. Put Experience above Education so a recruiter sees that work first.
+   question: Can you move Experience above Education?
+3. [line] IT Help Desk Intern, line 1
+   line: "Answered help desk tickets from teachers and staff"
+   can't tell: A recruiter can see who sent the tickets, but not what problems you handled or how many came your way.
+   example: Answered [number] help desk tickets [frequency] from teachers and staff about [issues]
+   question: What issues did the tickets cover, and how many did you handle in a typical period?
+4. [line] IT Help Desk Intern, line 2
+   line: "Imaged and set up laptops for classrooms"
+   can't tell: Classroom laptops are a useful detail. How many did you set up, and what did you use to image them?
+   example: Imaged and set up [number] laptops for classrooms using [tool]
+   question: How many laptops did you image and set up, and what tool did you use?
+5. [keep] IT Help Desk Intern, line 3
+   line: "Reset passwords and accounts in Active Directory"
+   can't tell: Keep this as a model. It tells a recruiter what you handled instead of relying on a broad phrase like technical support.
+6. [line] Retail Associate, line 2
+   line: "Set up new devices for customers at the service counter"
+   can't tell: A recruiter can see where you worked with customers, but not what the device setup involved.
+   example: Set up new devices for customers at the service counter, including [setup tasks]
+   question: What setup tasks did you handle for customers?
+
+## Fit
+Roles: ["IT Help Desk Intern"]
+Level: Entry-level IT support
+Note: Your internship points toward desktop support, with customer service experience from Peachtree Electronics. The resume names a junior systems role as another goal, but shows less systems work beyond Active Directory.

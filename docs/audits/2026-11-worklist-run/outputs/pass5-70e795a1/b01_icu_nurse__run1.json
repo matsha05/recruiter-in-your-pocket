@@ -1,0 +1,274 @@
+{
+  "case_id": "b01_icu_nurse",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_icu_nurse_1.txt",
+  "resume_sha256": "a52d8cb032163bcc7edaa524fe56cb06594cccf78f90a9ba023148de11fe18ef",
+  "resume_words": 153,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T16:34:08.865Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 4470,
+        "completion_tokens": 1098,
+        "total_tokens": 5568,
+        "cached_prompt_tokens": 3792,
+        "cache_write_prompt_tokens": 675,
+        "reasoning_tokens": 395
+      },
+      "cost_usd": 0.00652635,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 17155
+    }
+  ],
+  "resume_prompt_sha256": "70e795a1e91877ad12f5394154dccd644b9f9d298e123ca182963a0e3e089350",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 83,
+    "lifted_by_employer": false,
+    "verdict": "An ICU nurse with critical care credentials and a clear patient assignment, with a few responsibilities left unexplained.",
+    "write_up": [
+      "A recruiter sees an experienced medical ICU nurse who manages ventilated patients, vasoactive drips and continuous renal replacement therapy. Your Arizona RN license and CCRN are easy to find. The main question is what your charge and committee work involves.",
+      "The direct-care line is the model: it gives the patient assignment and the setting in one sentence. Add your own responsibilities to the committee and rapid response work, and a recruiter won't have to guess at your part."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Staff Nurse, Medical ICU, line 1",
+        "line": "- Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU",
+        "cannot_tell": "Keep this as a model. It puts your daily assignment beside the unit you work in, without making a recruiter hunt for either.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 3",
+        "line": "- Serve as charge nurse two shifts per month",
+        "cannot_tell": "The frequency is clear, but charge nurse responsibilities can differ by unit. What are you responsible for on those shifts?",
+        "example": "Serve as charge nurse two shifts per month, with responsibility for [charge nurse responsibilities]",
+        "question": "What are your main responsibilities when you serve as charge nurse?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 5",
+        "line": "- Member of the unit's sepsis bundle compliance committee",
+        "cannot_tell": "Membership names the committee, not your part in its work. A recruiter can't tell what you contribute.",
+        "example": "Member of the unit's sepsis bundle compliance committee, contributing [your contribution]",
+        "question": "What have you contributed to the sepsis bundle compliance committee?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Telemetry, line 2",
+        "line": "- Responded to rapid response calls as part of the floor team",
+        "cannot_tell": "You were part of the floor team, but your responsibilities during a call aren't clear. Naming them would show what you brought to the response.",
+        "example": "Responded to rapid response calls as part of the floor team, with responsibility for [your responsibilities during calls]",
+        "question": "What were you responsible for during rapid response calls?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Nurse, Medical ICU",
+        "Staff Nurse, Telemetry"
+      ],
+      "level": "Experienced staff nurse",
+      "note": "Your experience points most directly to medical ICU staff nursing, with earlier telemetry work. The charge and preceptor duties add useful context to your bedside experience.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 83,
+    "lifted_by_employer": false,
+    "verdict": "An ICU nurse with critical care credentials and a clear patient assignment, with a few responsibilities left unexplained.",
+    "write_up": [
+      "A recruiter sees an experienced medical ICU nurse who manages ventilated patients, vasoactive drips and continuous renal replacement therapy. Your Arizona RN license and CCRN are easy to find. The main question is what your charge and committee work involves.",
+      "The direct-care line is the model: it gives the patient assignment and the setting in one sentence. Add your own responsibilities to the committee and rapid response work, and a recruiter won't have to guess at your part."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Staff Nurse, Medical ICU, line 1",
+        "line": "Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU",
+        "cannot_tell": "Keep this as a model. It puts your daily assignment beside the unit you work in, without making a recruiter hunt for either.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 3",
+        "line": "Serve as charge nurse two shifts per month",
+        "cannot_tell": "The frequency is clear, but charge nurse responsibilities can differ by unit. What are you responsible for on those shifts?",
+        "example": "Serve as charge nurse two shifts per month, with responsibility for [charge nurse responsibilities]",
+        "question": "What are your main responsibilities when you serve as charge nurse?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 5",
+        "line": "Member of the unit's sepsis bundle compliance committee",
+        "cannot_tell": "Membership names the committee, not your part in its work. A recruiter can't tell what you contribute.",
+        "example": "Member of the unit's sepsis bundle compliance committee, contributing [your contribution]",
+        "question": "What have you contributed to the sepsis bundle compliance committee?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Telemetry, line 2",
+        "line": "Responded to rapid response calls as part of the floor team",
+        "cannot_tell": "You were part of the floor team, but your responsibilities during a call aren't clear. Naming them would show what you brought to the response.",
+        "example": "Responded to rapid response calls as part of the floor team, with responsibility for [your responsibilities during calls]",
+        "question": "What were you responsible for during rapid response calls?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Nurse, Medical ICU",
+        "Staff Nurse, Telemetry"
+      ],
+      "level": "Experienced staff nurse",
+      "note": "Your experience points most directly to medical ICU staff nursing, with earlier telemetry work. The charge and preceptor duties add useful context to your bedside experience.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 83
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 83,
+    "lifted_by_employer": false,
+    "verdict": "An ICU nurse with critical care credentials and a clear patient assignment, with a few responsibilities left unexplained.",
+    "write_up": [
+      "A recruiter sees an experienced medical ICU nurse who manages ventilated patients, vasoactive drips and continuous renal replacement therapy. Your Arizona RN license and CCRN are easy to find. The main question is what your charge and committee work involves.",
+      "The direct-care line is the model: it gives the patient assignment and the setting in one sentence. Add your own responsibilities to the committee and rapid response work, and a recruiter won't have to guess at your part."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Staff Nurse, Medical ICU, line 1",
+        "line": "Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU",
+        "cannot_tell": "Keep this as a model. It puts your daily assignment beside the unit you work in, without making a recruiter hunt for either.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 3",
+        "line": "Serve as charge nurse two shifts per month",
+        "cannot_tell": "The frequency is clear, but charge nurse responsibilities can differ by unit. What are you responsible for on those shifts?",
+        "example": "Serve as charge nurse two shifts per month, with responsibility for [charge nurse responsibilities]",
+        "question": "What are your main responsibilities when you serve as charge nurse?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 5",
+        "line": "Member of the unit's sepsis bundle compliance committee",
+        "cannot_tell": "Membership names the committee, not your part in its work. A recruiter can't tell what you contribute.",
+        "example": "Member of the unit's sepsis bundle compliance committee, contributing [your contribution]",
+        "question": "What have you contributed to the sepsis bundle compliance committee?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Telemetry, line 2",
+        "line": "Responded to rapid response calls as part of the floor team",
+        "cannot_tell": "You were part of the floor team, but your responsibilities during a call aren't clear. Naming them would show what you brought to the response.",
+        "example": "Responded to rapid response calls as part of the floor team, with responsibility for [your responsibilities during calls]",
+        "question": "What were you responsible for during rapid response calls?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Nurse, Medical ICU",
+        "Staff Nurse, Telemetry"
+      ],
+      "level": "Experienced staff nurse",
+      "note": "Your experience points most directly to medical ICU staff nursing, with earlier telemetry work. The charge and preceptor duties add useful context to your bedside experience.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 83
+  },
+  "presentation": {
+    "score": 83,
+    "band": "Mostly clear",
+    "model_score": 83,
+    "lifted_by_employer": false,
+    "verdict": "An ICU nurse with critical care credentials and a clear patient assignment, with a few responsibilities left unexplained.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 78,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Staff Nurse, Medical ICU, line 1",
+        "line": "Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 3",
+        "line": "Serve as charge nurse two shifts per month",
+        "blanks": 1,
+        "question": "What are your main responsibilities when you serve as charge nurse?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 5",
+        "line": "Member of the unit's sepsis bundle compliance committee",
+        "blanks": 1,
+        "question": "What have you contributed to the sepsis bundle compliance committee?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Telemetry, line 2",
+        "line": "Responded to rapid response calls as part of the floor team",
+        "blanks": 1,
+        "question": "What were you responsible for during rapid response calls?"
+      }
+    ],
+    "card_count": 4,
+    "kinds": {
+      "keep": 1,
+      "line": 3
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Staff Nurse, Medical ICU",
+        "Staff Nurse, Telemetry"
+      ],
+      "level": "Experienced staff nurse",
+      "note": "Your experience points most directly to medical ICU staff nursing, with earlier telemetry work. The charge and preceptor duties add useful context to your bedside experience.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00652635,
+  "latency_ms": 17160
+}

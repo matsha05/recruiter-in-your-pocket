@@ -1,33 +1,35 @@
 # h4b_academic_cv_under_cap, run 1
 Resume: ../2026-11-live-judgment/resumes/h4b_academic_cv_under_cap.txt (3253 words)
-Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
-Outcome: report; cost $0.0245; 20.5s
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0240; 15.7s
 Case note: The same CV trimmed under the cap, to see what the model does with a CV shape.
 
-## Needs more context (score 68; model wrote 68)
+## Mostly clear (score 76; model wrote 76)
 ## Verdict
-A tenured molecular biologist with substantial grants and teaching, but repeated publication entries invite a pause.
+A tenured molecular biologist with strong grants and mentoring, but repeated publication entries need attention.
 
 ## Write-up
-You come across as a tenured molecular biologist with NIH funding, teaching and mentoring experience. A recruiter would likely hold back, though: the same publication titles and author lists appear under different years and volume numbers throughout the bibliography. Check the original citations before sending this.
+Your resume tells the story of a tenured Associate Professor at Riverbend State University working on mitochondrial dynamics, with NIH funding, teaching and substantial mentoring. A recruiter for a faculty role would likely move it forward, but the repeated publication titles and author lists raise a question about the bibliography.
 
-Put Academic Appointments above Education so your current work comes first. The MB 310 redesign is a model for the rest: it names what you changed and shows how evaluations moved over the following three offerings.
+The MB 310 redesign is a strong model: it names your change and reports the evaluations that followed without claiming the change caused them. Your academic appointments also show a clear progression, though Education comes before that experience.
+
+Let's start by comparing the repeated publication entries with your original bibliography. Then move Academic Appointments above Education and leave the teaching and mentoring details intact. The strength of the grants and mentoring is worth preserving.
 
 ## Cards (3; {"structure":1,"line":1,"keep":1}); severity off; added []
 1. [structure] Structure
    line: "Education sits above Academic Appointments."
-   can't tell: Your current faculty appointment comes after your degrees. Put Academic Appointments first so a recruiter sees your present role sooner.
+   can't tell: A recruiter reaches your degrees before seeing your current tenured appointment. Put the faculty progression first so your present role leads.
    question: Can you move Academic Appointments above Education?
 2. [line] Publications, entry 1
    line: "1. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2026). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 107(2), 1037-1052."
-   can't tell: The same authors and title appear again in 2024, 2021 and 2018, with different volume and page details. That pattern recurs across the bibliography, so a recruiter can't tell which entries are distinct papers.
-   example: [correct citation for the Drp1 phosphorylation paper]
-   question: What are the correct citations for these entries, and which are distinct papers?
+   can't tell: The same author list and title appear again under 2024 and 2021 with different citation details. A reader can't tell whether these are distinct publications or repeated entries. The pattern appears elsewhere in the list, too.
+   example: [correct citation for the Drp1 phosphorylation publication]
+   question: What are the correct citations in your original bibliography, and which repeated entries belong in the list?
 3. [keep] Teaching, course redesign
    line: "Course redesign: converted MB 310 to a flipped format in 2019; student evaluations rose from 3.9 to 4.5 of 5 over the following three offerings."
-   can't tell: Keep this. It gives the course, your change and the period over which the evaluations rose, without claiming the redesign alone caused the increase.
+   can't tell: Keep this as a model. It gives the course, your action and the period over which the evaluations changed, without overstating what caused the rise.
 
 ## Fit
-Roles: ["Associate Professor (with tenure)","Assistant Professor","Postdoctoral Fellow"]
+Roles: ["Associate Professor (with tenure)","Assistant Professor"]
 Level: Tenured faculty
-Note: Your experience points toward faculty work in molecular and cell biology, with grants, publications, teaching and mentoring all represented. The recurring publication entries need checking before they can serve you well.
+Note: Your experience points toward faculty roles in molecular and cell biology. Grants, corresponding-author publications, teaching and mentoring all speak to that work, though the publication list needs checking.

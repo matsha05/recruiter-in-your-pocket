@@ -1,33 +1,35 @@
 # b22_office_manager_paragraphs, run 1
 Resume: ../2026-11-live-judgment/resumes/b_office_manager_paragraphs.txt (219 words)
-Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
-Outcome: report; cost $0.0069; 20.0s
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0077; 16.6s
 Case note: Paragraph format, no bullets.
 
-## Clear and specific (score 88; model wrote 88)
+## Mostly clear (score 82; model wrote 82)
 ## Verdict
-An experienced office manager with billing, supervision and software work a recruiter can picture.
+An experienced office manager whose work is specific, but packed into paragraphs.
 
 ## Write-up
-You come across as an office manager who handles both the daily running of a law office and its financial administration. The work is substantial, though the long role paragraphs make a recruiter pick through it.
+Your resume tells a consistent story: you moved from supporting claims adjusters to coordinating a dental office, then managing the front office at Harrod and Blake. A recruiter can see the bookkeeping, staff supervision and deadline management that make you a credible office manager.
 
-The QuickBooks line is the model: it names client billing, roughly 90 invoices a month and the monthly trust account reconciliation. Break the experience paragraphs into bullets so those details don't get buried.
+The QuickBooks sentence is a strong model because it names both the work and its regular volume. The experience section is in long paragraphs, though, so a recruiter has to search for details like the trust reconciliation and the move away from paper files.
+
+Let's turn the recent role into bullets, starting with bookkeeping and staff supervision. Then add what you did to bring in the new practice management software and what working the dental claims report involved.
 
 ## Cards (3; {"structure":1,"keep":1,"line":1}); severity off; added []
 1. [structure] Experience
-   line: "Experience is presented in paragraphs."
-   can't tell: Your billing, supervision and software work sit inside one long paragraph. Separate bullets would let a recruiter find each responsibility on a quick pass.
-   question: Which responsibilities would you group into separate bullets under each role?
+   line: "The experience section uses paragraphs rather than bullets."
+   can't tell: Your strongest responsibilities are there, but they're easy to miss inside long paragraphs. Give the bookkeeping, staff supervision and software work separate bullets.
+   question: Which responsibilities in each role would you put in their own bullets?
 2. [keep] Office Manager, bookkeeping
    line: "Office Manager, Harrod and Blake Law Office, Louisville, KY, May 2018 to present. I run the front office for a six-attorney firm. I handle scheduling for the attorneys, manage the firm's calendar of court dates and filing deadlines, order supplies, and handle vendor contracts for the copier, phones, and cleaning. I do the bookkeeping in QuickBooks, including client billing of roughly 90 invoices a month and the monthly trust account reconciliation. I hired and supervise two receptionists and I onboarded the firm's new practice management software in 2022, which replaced paper files for all new matters."
-   can't tell: Keep this as a model. It puts the tool, the recurring work and the invoice volume together without making a reader guess.
-3. [line] Office Coordinator, claims
+   can't tell: Keep this as a model. It tells a recruiter which system you use, what you handle in it and how much billing comes through.
+3. [line] Office Coordinator, payments and claims
    line: "Office Coordinator, Riverside Family Dentistry, Louisville, KY, August 2014 to April 2018. Checked in patients, verified insurance, and scheduled appointments for a two-dentist practice that saw about 40 patients a day. Posted payments and worked the insurance claims aging report each week. Trained three new front desk staff over four years."
-   can't tell: 'Worked the report' leaves your part open. What did you do with the aging claims each week?
-   example: Posted payments and worked the insurance claims aging report each week by [actions taken].
-   question: What actions did you take on the claims in the aging report?
+   can't tell: A recruiter can see that you posted payments, but not what working the claims aging report involved. That part could show more of your insurance work.
+   example: Posted payments and worked the insurance claims aging report each week by [work done on claims].
+   question: What did you do with the claims on the aging report each week?
 
 ## Fit
 Roles: ["Office Manager","Office Coordinator"]
 Level: Experienced office manager
-Note: Your recent work points toward office management in a professional services setting. The earlier dental office work also shows patient scheduling and insurance administration.
+Note: Your experience points most directly to office management and coordination roles. The law office work shows bookkeeping, staff supervision and deadline management, while the dental role adds patient scheduling and insurance work.

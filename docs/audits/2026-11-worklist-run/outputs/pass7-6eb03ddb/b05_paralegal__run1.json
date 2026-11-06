@@ -1,0 +1,243 @@
+{
+  "case_id": "b05_paralegal",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_paralegal_1.txt",
+  "resume_sha256": "1860914f19aa0734b31d49c2046f7d394bc16dd5acb16f4c1fd6ee102a7f8568",
+  "resume_words": 144,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T18:00:43.402Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5216,
+        "completion_tokens": 1191,
+        "total_tokens": 6407,
+        "cached_prompt_tokens": 4536,
+        "cache_write_prompt_tokens": 677,
+        "reasoning_tokens": 597
+      },
+      "cost_usd": 0.00703105,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 18335
+    }
+  ],
+  "resume_prompt_sha256": "6eb03ddb4b32b2b65339085225b39b2ec67a805518799139b60e8c299167a186",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 81,
+    "lifted_by_employer": false,
+    "verdict": "A senior litigation paralegal with substantial document production and trial preparation experience.",
+    "write_up": [
+      "A recruiter can see your litigation work quickly: you support four partners, draft discovery documents and prepare for trial. They'd likely move forward with a few questions about the demands of the docket and how attorneys used your summaries.",
+      "The Relativity line is a strong model because it names what you manage, the tool and how large the productions can be. Let's add a little more context to the deadline and summary work without trying to put a number on every line."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Litigation Paralegal, line 2",
+        "line": "- Manage document productions of up to 250,000 pages in Relativity",
+        "cannot_tell": "Keep this line. It gives a recruiter a concrete picture of your responsibility without making them guess how much material you're handling.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Litigation Paralegal, line 5",
+        "line": "- Track court deadlines in the firm's docketing system",
+        "cannot_tell": "A recruiter can see that you track deadlines, but not how many cases you're tracking or which system you use. That context would show more of the demands of the job.",
+        "example": "Track court deadlines for [number] cases in [docketing system]",
+        "question": "How many cases do you track deadlines for, and what's the docketing system called?"
+      },
+      {
+        "kind": "line",
+        "where": "Paralegal, line 2",
+        "line": "- Summarized medical records and deposition transcripts",
+        "cannot_tell": "The materials are clear, but a recruiter can't tell how the summaries were used. That detail would connect your work to the personal injury cases.",
+        "example": "Summarized medical records and deposition transcripts for [purpose]",
+        "question": "How did the attorneys use your summaries?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Litigation Paralegal",
+        "Paralegal"
+      ],
+      "level": "Senior paralegal",
+      "note": "Your experience points toward litigation paralegal roles, particularly those involving commercial and employment cases. The earlier personal injury work adds another litigation setting, while Relativity and trial preparation are clear strengths.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 81,
+    "lifted_by_employer": false,
+    "verdict": "A senior litigation paralegal with substantial document production and trial preparation experience.",
+    "write_up": [
+      "A recruiter can see your litigation work quickly: you support four partners, draft discovery documents and prepare for trial. They'd likely move forward with a few questions about the demands of the docket and how attorneys used your summaries.",
+      "The Relativity line is a strong model because it names what you manage, the tool and how large the productions can be. Let's add a little more context to the deadline and summary work without trying to put a number on every line."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Litigation Paralegal, line 2",
+        "line": "Manage document productions of up to 250,000 pages in Relativity",
+        "cannot_tell": "Keep this line. It gives a recruiter a concrete picture of your responsibility without making them guess how much material you're handling.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Litigation Paralegal, line 5",
+        "line": "Track court deadlines in the firm's docketing system",
+        "cannot_tell": "A recruiter can see that you track deadlines, but not how many cases you're tracking or which system you use. That context would show more of the demands of the job.",
+        "example": "Track court deadlines for [number] cases in [docketing system]",
+        "question": "How many cases do you track deadlines for, and what's the docketing system called?"
+      },
+      {
+        "kind": "line",
+        "where": "Paralegal, line 2",
+        "line": "Summarized medical records and deposition transcripts",
+        "cannot_tell": "The materials are clear, but a recruiter can't tell how the summaries were used. That detail would connect your work to the personal injury cases.",
+        "example": "Summarized medical records and deposition transcripts for [purpose]",
+        "question": "How did the attorneys use your summaries?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Litigation Paralegal",
+        "Paralegal"
+      ],
+      "level": "Senior paralegal",
+      "note": "Your experience points toward litigation paralegal roles, particularly those involving commercial and employment cases. The earlier personal injury work adds another litigation setting, while Relativity and trial preparation are clear strengths.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 81
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 81,
+    "lifted_by_employer": false,
+    "verdict": "A senior litigation paralegal with substantial document production and trial preparation experience.",
+    "write_up": [
+      "A recruiter can see your litigation work quickly: you support four partners, draft discovery documents and prepare for trial. They'd likely move forward with a few questions about the demands of the docket and how attorneys used your summaries.",
+      "The Relativity line is a strong model because it names what you manage, the tool and how large the productions can be. Let's add a little more context to the deadline and summary work without trying to put a number on every line."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Litigation Paralegal, line 2",
+        "line": "Manage document productions of up to 250,000 pages in Relativity",
+        "cannot_tell": "Keep this line. It gives a recruiter a concrete picture of your responsibility without making them guess how much material you're handling.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Litigation Paralegal, line 5",
+        "line": "Track court deadlines in the firm's docketing system",
+        "cannot_tell": "A recruiter can see that you track deadlines, but not how many cases you're tracking or which system you use. That context would show more of the demands of the job.",
+        "example": "Track court deadlines for [number] cases in [docketing system]",
+        "question": "How many cases do you track deadlines for, and what's the docketing system called?"
+      },
+      {
+        "kind": "line",
+        "where": "Paralegal, line 2",
+        "line": "Summarized medical records and deposition transcripts",
+        "cannot_tell": "The materials are clear, but a recruiter can't tell how the summaries were used. That detail would connect your work to the personal injury cases.",
+        "example": "Summarized medical records and deposition transcripts for [purpose]",
+        "question": "How did the attorneys use your summaries?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Litigation Paralegal",
+        "Paralegal"
+      ],
+      "level": "Senior paralegal",
+      "note": "Your experience points toward litigation paralegal roles, particularly those involving commercial and employment cases. The earlier personal injury work adds another litigation setting, while Relativity and trial preparation are clear strengths.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 81
+  },
+  "presentation": {
+    "score": 81,
+    "band": "Mostly clear",
+    "model_score": 81,
+    "lifted_by_employer": false,
+    "verdict": "A senior litigation paralegal with substantial document production and trial preparation experience.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 82,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Litigation Paralegal, line 2",
+        "line": "Manage document productions of up to 250,000 pages in Relativity",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Litigation Paralegal, line 5",
+        "line": "Track court deadlines in the firm's docketing system",
+        "blanks": 2,
+        "question": "How many cases do you track deadlines for, and what's the docketing system called?"
+      },
+      {
+        "kind": "line",
+        "where": "Paralegal, line 2",
+        "line": "Summarized medical records and deposition transcripts",
+        "blanks": 1,
+        "question": "How did the attorneys use your summaries?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "keep": 1,
+      "line": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Litigation Paralegal",
+        "Paralegal"
+      ],
+      "level": "Senior paralegal",
+      "note": "Your experience points toward litigation paralegal roles, particularly those involving commercial and employment cases. The earlier personal injury work adds another litigation setting, while Relativity and trial preparation are clear strengths.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00703105,
+  "latency_ms": 18336
+}

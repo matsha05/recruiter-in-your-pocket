@@ -1,0 +1,33 @@
+# b07_account_executive, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_account_executive_1.txt (145 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 6eb03ddb; severity check off
+Outcome: report; cost $0.0053; 12.2s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A mid-market account executive with a promotion and sales results a recruiter can quickly understand.
+
+## Write-up
+This is a strong sales resume! Your promotion, quota attainment, and partner-sourced deals give a recruiter a clear picture of your work. The 2025 revenue line is the model: it names what you closed and puts it against quota.
+
+Your resume is unlikely to be the reason you don't get a call back. The competition and the particular role still matter. To make it even better, add your part in demos and security reviews, and explain what earned the top SDR ranking.
+
+## Cards (3; {"keep":1,"line":2}); severity off; added []
+1. [keep] Account Executive, Mid-Market, line 1
+   line: "Closed $1.1M in new annual recurring revenue in 2025, 108% of quota"
+   can't tell: Keep this as a model. It gives the sales figure, the period, and the target comparison in one line.
+2. [line] Account Executive, Mid-Market, line 4
+   line: "Work with solutions engineers on demos and security reviews"
+   can't tell: A recruiter knows who you work with, but not what you contribute to the demos or reviews.
+   example: Work with solutions engineers on demos and security reviews, handling [your contribution]
+   question: What part of the demos and security reviews do you handle?
+3. [line] Sales Development Representative, line 3
+   line: "Top SDR in two quarters"
+   can't tell: The ranking stands out, but a recruiter can't tell what it was based on.
+   example: Top SDR in two quarters, measured by [ranking measure]
+   question: What measure was used to name the top SDR?
+
+## Fit
+Roles: ["Account Executive, Mid-Market","Sales Development Representative"]
+Level: Mid-market account executive
+Note: Your experience points toward mid-market account executive roles selling software. The SDR promotion and full-cycle sales work also show how you got there.

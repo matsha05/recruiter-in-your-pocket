@@ -11,16 +11,16 @@ Routes: `/research`, `/research/ats-myths`, `/research/automation-and-bias`, `/r
 | 1 | research | `web/app/(editorial)/research/page.tsx:12` | key:title | Resume and hiring research: the questions job seekers ask |
 | 2 | research | `web/app/(editorial)/research/page.tsx:13` | key:description | Does one typo sink you? Do recruiters really give it six seconds? Short answers from studies, recruiter experiments, and platform documentation, with sources. |
 | 3 | research | `web/components/research/HubFindings.tsx:14` | key:label | Applied cold |
-| 4 | research | `web/components/research/HubFindings.tsx:25` | jsx-text | Three findings, drawn |
-| 5 | research | `web/components/research/HubFindings.tsx:41` | jsx-text | Read the answer |
-| 6 | research | `web/components/research/HubFindings.tsx:52` | attr:question | Do recruiters only spend six seconds on a resume? |
-| 7 | research | `web/components/research/HubFindings.tsx:55` | jsx-text | What 2,043 resume reviews showed, section by section. Pina et al., 2023. |
-| 8 | research | `web/components/research/HubFindings.tsx:57` | attr:aria-label | Resume sections and what the study found for each |
-| 9 | research | `web/components/research/HubFindings.tsx:74` | attr:question | Will one typo on my resume cost me the interview? |
-| 10 | research | `web/components/research/HubFindings.tsx:77` | jsx-text | Against the same resume without errors. One typo wasn’t tested. Sterkens et al., PLOS ONE, 2023, 445 hiring professionals. |
-| 11 | research | `web/components/research/HubFindings.tsx:84` | jsx-text | &minus; |
-| 12 | research | `web/components/research/HubFindings.tsx:106` | attr:question | How much does a referral really help? |
-| 13 | research | `web/components/research/HubFindings.tsx:109` | jsx-text | Applications that reached an interview, per 100. Ashby customer data, 2021 to 2024, 38 million applications. |
+| 4 | research | `web/components/research/HubFindings.tsx:26` | jsx-text | Three findings, drawn |
+| 5 | research | `web/components/research/HubFindings.tsx:42` | jsx-text | Read the answer |
+| 6 | research | `web/components/research/HubFindings.tsx:53` | attr:question | Do recruiters only spend six seconds on a resume? |
+| 7 | research | `web/components/research/HubFindings.tsx:56` | jsx-text | What 2,043 resume reviews showed, section by section. “No comparable result” doesn’t mean a section never matters. Pina et al., 2023. |
+| 8 | research | `web/components/research/HubFindings.tsx:58` | attr:aria-label | Resume sections and what the study found for each |
+| 9 | research | `web/components/research/HubFindings.tsx:75` | attr:question | Will one typo on my resume cost me the interview? |
+| 10 | research | `web/components/research/HubFindings.tsx:78` | jsx-text | Against the same resume without errors. One typo wasn’t tested. Sterkens et al., PLOS ONE, 2023, 445 hiring professionals. |
+| 11 | research | `web/components/research/HubFindings.tsx:85` | jsx-text | &minus; |
+| 12 | research | `web/components/research/HubFindings.tsx:107` | attr:question | How much does a referral really help? |
+| 13 | research | `web/components/research/HubFindings.tsx:110` | jsx-text | Applications that reached an interview, per 100. Ashby customer data, 2021 to 2024, 38 million applications. |
 | 14 | research | `web/components/research/ResearchHub.tsx:25` | jsx-text | What the research says about getting hired. |
 | 15 | research | `web/components/research/ResearchHub.tsx:27` | jsx-text | questions job seekers ask, each answered from a named study or the platform’s own documentation. Open one for what it found, how it was done and what it can’t tell you. |
 | 16 | research | `web/components/research/ResearchHub.tsx:37` | jsx-text | Got the offer? The negotiation guides and the offer calculator are under |
@@ -29,15 +29,15 @@ Routes: `/research`, `/research/ats-myths`, `/research/automation-and-bias`, `/r
 | 19 | research | `web/components/research/ResearchHub.tsx:41` | jsx-text | How we write research |
 | 20 | research | `web/components/research/ResearchHub.tsx:46` | jsx-text | Want this kind of read on your own resume? |
 | 21 | research | `web/components/research/ResearchHub.tsx:49` | jsx-text | Get your free report |
-| 22 | research | `web/components/research/ResearchIndex.tsx:36` | jsx-text | Every question |
-| 23 | research | `web/components/research/ResearchIndex.tsx:39` | jsx-text | Find a question |
-| 24 | research | `web/components/research/ResearchIndex.tsx:46` | attr:placeholder | Try typo, gap or LinkedIn |
-| 25 | research | `web/components/research/ResearchIndex.tsx:64` | jsx-text | The question |
-| 26 | research | `web/components/research/ResearchIndex.tsx:65` | jsx-text | The short answer, and what it rests on |
-| 27 | research | `web/components/research/ResearchIndex.tsx:72` | jsx-text | {category.shown.length} questions |
-| 28 | research | `web/components/research/ResearchIndex.tsx:82` | jsx-text | None of the |
-| 29 | research | `web/components/research/ResearchIndex.tsx:82` | jsx-text | questions match “ |
-| 30 | research | `web/components/research/ResearchIndex.tsx:82` | jsx-text | ”. Try a word like typo, referral or LinkedIn. |
+| 22 | research | `web/components/research/ResearchIndex.tsx:36` | const | {n} questions |
+| 23 | research | `web/components/research/ResearchIndex.tsx:40` | jsx-text | Every question |
+| 24 | research | `web/components/research/ResearchIndex.tsx:43` | jsx-text | Find a question |
+| 25 | research | `web/components/research/ResearchIndex.tsx:51` | attr:placeholder | Try typo, gap or LinkedIn |
+| 26 | research | `web/components/research/ResearchIndex.tsx:71` | jsx-text | The question |
+| 27 | research | `web/components/research/ResearchIndex.tsx:72` | jsx-text | The short answer, and what it rests on |
+| 28 | research | `web/components/research/ResearchIndex.tsx:88` | jsx-text | None of the |
+| 29 | research | `web/components/research/ResearchIndex.tsx:88` | jsx-text | questions match “ |
+| 30 | research | `web/components/research/ResearchIndex.tsx:88` | jsx-text | ”. Try a word like typo, referral or LinkedIn. |
 
 ## /research/ats-myths
 
@@ -645,7 +645,7 @@ Routes: `/research`, `/research/ats-myths`, `/research/automation-and-bias`, `/r
 | 41 | research | `web/app/(editorial)/research/who-you-are/page.tsx:134` | attr:title | It points at the next job |
 | 42 | research | `web/app/(editorial)/research/who-you-are/page.tsx:139` | jsx-text | A summary at the top helps only if it&apos;s specific: one line that names who you are and what you&apos;re best at. A paragraph of adjectives doesn&apos;t. If your career zigzags, find the thread and lead with it. Most zigzags have one: a problem you kept solving, a kind of team you kept building. Say it, so the reader doesn&apos;t have to guess. |
 | 43 | research | `web/app/(editorial)/research/who-you-are/page.tsx:142` | attr:question | Who does your resume say you are? |
-| 44 | research | `web/app/(editorial)/research/who-you-are/page.tsx:143` | jsx-text | The Verdict is a one-line read of who your resume says you are. If it isn&apos;t who you are, the resume isn&apos;t telling your story yet. When your resume doesn&apos;t make clear what you&apos;d do next, the write-up says so and the cards point to the lines. |
+| 44 | research | `web/app/(editorial)/research/who-you-are/page.tsx:143` | jsx-text | Your report opens with one sentence on who your resume says you are. If it isn&apos;t who you are, the resume isn&apos;t telling your story yet. When your resume doesn&apos;t make clear what you&apos;d do next, the write-up says so and the report lists the lines to work on. |
 | 45 | research | `web/app/(editorial)/research/who-you-are/page.tsx:148` | jsx-text | The first-impression study measured mock interviews, not resume screening. Only the internship offers were real. |
 | 46 | research | `web/app/(editorial)/research/who-you-are/page.tsx:149` | jsx-text | The career-order and evaluation studies come from online freelance marketplaces, not salaried hiring. We read the career-order study&apos;s published summary; the full paper is paywalled. |
 | 47 | research | `web/app/(editorial)/research/who-you-are/page.tsx:150` | jsx-text | The fit research is qualitative and comes from elite firms. It describes what evaluators do, including where that becomes bias, not what they should do. |

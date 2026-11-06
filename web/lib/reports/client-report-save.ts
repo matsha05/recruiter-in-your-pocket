@@ -27,10 +27,10 @@ async function postReceiptValidatedReport(report: object, fetchImpl: FetchLike) 
       recoveryId
       && (result.errorCode === "REPORT_RECEIPT_CONSUMED" || result.errorCode === "RECOVERED_REPORT_GONE")
     ) clearAnonymousReportRecoveryMarker(recoveryId);
-    throw new ClientActionError(result.message, "This report couldn’t be saved. Please try again.");
+    throw new ClientActionError(result.message, "We couldn’t save this report. Try again.");
   }
   const saved = attachStoredReportId(report, result.reportId);
-  if (!buildPdfExportRequest(saved)) throw new ClientActionError(null, "We couldn’t confirm that this report was saved. Please try again.");
+  if (!buildPdfExportRequest(saved)) throw new ClientActionError(null, "We couldn’t confirm that this report was saved. Try again.");
   if (recoveryId) clearAnonymousReportRecoveryMarker(recoveryId);
   return saved;
 }

@@ -11,56 +11,57 @@
   "model": "gpt-6.1-terra",
   "reasoning_effort": "medium",
   "severity_check": false,
-  "started_at": "2026-11-06T16:37:25.531Z",
+  "started_at": "2026-11-06T18:16:54.944Z",
   "calls": [
     {
       "kind": "report",
       "usage": {
-        "prompt_tokens": 4403,
-        "completion_tokens": 1419,
-        "total_tokens": 5822,
-        "cached_prompt_tokens": 3792,
+        "prompt_tokens": 5296,
+        "completion_tokens": 1276,
+        "total_tokens": 6572,
+        "cached_prompt_tokens": 4685,
         "cache_write_prompt_tokens": 608,
-        "reasoning_tokens": 628
+        "reasoning_tokens": 414
       },
-      "cost_usd": 0.0080476,
+      "cost_usd": 0.00737725,
       "model": "gpt-6.1-terra",
-      "latency_ms": 23108
+      "latency_ms": 16700
     }
   ],
-  "resume_prompt_sha256": "70e795a1e91877ad12f5394154dccd644b9f9d298e123ca182963a0e3e089350",
+  "resume_prompt_sha256": "0a19c3ee70395ec8fb0584d4bea1b93da77aeca37469b4d47211bc8568544f0c",
   "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
   "model_output": {
     "contract_version": "v3",
-    "score": 68,
+    "score": 76,
     "lifted_by_employer": false,
-    "verdict": "A branch manager with deposit growth and a gap after the last dated role.",
+    "verdict": "A branch manager with deposit growth and a clear progression, but no account of work since December 2024.",
     "write_up": [
-      "A recruiter sees a progression from personal banker to branch manager, with responsibility for 11 employees and growing deposits. The hesitation comes after December 2024: the page doesn't say what you've been doing since.",
-      "The deposit line is the model. It names the measure, the starting and ending amounts, and the period. Give the branch team, audits and customer complaints a little more substance, and account for the time after the bank role."
+      "You progressed from Personal Banker to Branch Manager at Magnolia Community Bank, with deposit growth and an 11-person branch on your resume. A recruiter can see the banking work, but the time since your last role ended leaves a question before they move forward.",
+      "The deposit line is your best model: it names the result, the starting and ending figures, and the period. Your experience is easy to follow, with each role and its dates in order.",
+      "Let's start by accounting for the time after December 2024 in a way that's true to your situation. Then add what your branch employees handled and what you oversaw in audits and compliance reviews."
     ],
     "cards": [
       {
         "kind": "dates",
         "where": "Dates",
         "line": "Nothing is dated after December 2024.",
-        "cannot_tell": "A recruiter can't tell what you've been doing since the branch manager role ended. A brief, honest line can answer that question before they move on.",
-        "example": "December 2024 - Present  [what you've been doing]",
-        "question": "What have you been doing since December 2024 that you'd be comfortable putting on the resume?"
+        "cannot_tell": "A recruiter can't tell what you've done since the Branch Manager role ended. If you took care of a family member, naming that is a real option. A career break can also include a course, project, volunteering or travel; include freelance work only if you did it.",
+        "example": "December 2024 - Present  [what you did]",
+        "question": "What would you like to include about your time since December 2024?"
       },
       {
         "kind": "line",
         "where": "Branch Manager, line 1",
         "line": "- Managed a branch of 11 employees",
-        "cannot_tell": "The headcount is useful, but it doesn't say what the team handled. Which roles reported to you, and what were they responsible for?",
-        "example": "Managed a branch of 11 employees across [roles and responsibilities]",
-        "question": "What roles were on the team, and what did they handle?"
+        "cannot_tell": "The team count is useful, but a recruiter can't tell what those employees handled. That would show more of what running the branch involved.",
+        "example": "Managed a branch of 11 employees who handled [work handled]",
+        "question": "What work did the 11 employees handle?"
       },
       {
         "kind": "keep",
         "where": "Branch Manager, line 2",
         "line": "- Grew branch deposits from $48M to $63M over five years",
-        "cannot_tell": "Keep this as a model. It gives a recruiter a concrete change to carry away, rather than just a list of branch duties.",
+        "cannot_tell": "Keep this line. It gives a recruiter a concrete change to connect to your branch leadership, rather than leaving them with a list of duties.",
         "example": "",
         "question": ""
       },
@@ -68,17 +69,17 @@
         "kind": "line",
         "where": "Branch Manager, line 4",
         "line": "- Oversaw audits and compliance reviews for the branch",
-        "cannot_tell": "A recruiter knows you oversaw the reviews, but not what that involved or what followed. Your part in the work would make the responsibility more concrete.",
-        "example": "Oversaw audits and compliance reviews for the branch, including [work you handled] and [what followed]",
-        "question": "What did you handle during the audits and reviews, and what followed?"
+        "cannot_tell": "A recruiter knows you oversaw the reviews, but not which parts were yours or what came out of them. Those details matter in a branch manager role.",
+        "example": "Oversaw audits and compliance reviews for the branch, including [work overseen] and [review result]",
+        "question": "What did you oversee in the audits and reviews, and what were the results?"
       },
       {
         "kind": "line",
         "where": "Branch Manager, line 5",
         "line": "- Handled escalated customer complaints",
-        "cannot_tell": "Complaints reached you, but the page doesn't say what kinds of issues they involved or what you did with them.",
-        "example": "Handled escalated customer complaints about [issues] by [actions]",
-        "question": "What kinds of complaints reached you, and how did you handle them?"
+        "cannot_tell": "A recruiter can't tell what kinds of complaints reached you or how you handled them. One example would show the decisions you made.",
+        "example": "Handled escalated customer complaints about [complaint types] by [actions taken]",
+        "question": "What kinds of complaints did you handle, and what did you do to address them?"
       }
     ],
     "fit": {
@@ -86,8 +87,8 @@
         "Branch Manager",
         "Assistant Branch Manager"
       ],
-      "level": "Branch management",
-      "note": "Your experience points toward retail banking branch management, with earlier teller operations and account-opening work. The period after December 2024 is the main question to address.",
+      "level": "Experienced branch manager",
+      "note": "Your experience points most directly to retail banking branch leadership. The progression and deposit growth are strong, while the period after your last role needs an account.",
       "posting": {
         "summary": "",
         "missing": []
@@ -96,35 +97,36 @@
   },
   "validated_report": {
     "contract_version": "v3",
-    "score": 68,
+    "score": 76,
     "lifted_by_employer": false,
-    "verdict": "A branch manager with deposit growth and a gap after the last dated role.",
+    "verdict": "A branch manager with deposit growth and a clear progression, but no account of work since December 2024.",
     "write_up": [
-      "A recruiter sees a progression from personal banker to branch manager, with responsibility for 11 employees and growing deposits. The hesitation comes after December 2024: the page doesn't say what you've been doing since.",
-      "The deposit line is the model. It names the measure, the starting and ending amounts, and the period. Give the branch team, audits and customer complaints a little more substance, and account for the time after the bank role."
+      "You progressed from Personal Banker to Branch Manager at Magnolia Community Bank, with deposit growth and an 11-person branch on your resume. A recruiter can see the banking work, but the time since your last role ended leaves a question before they move forward.",
+      "The deposit line is your best model: it names the result, the starting and ending figures, and the period. Your experience is easy to follow, with each role and its dates in order.",
+      "Let's start by accounting for the time after December 2024 in a way that's true to your situation. Then add what your branch employees handled and what you oversaw in audits and compliance reviews."
     ],
     "cards": [
       {
         "kind": "dates",
         "where": "Dates",
         "line": "Nothing is dated after December 2024.",
-        "cannot_tell": "A recruiter can't tell what you've been doing since the branch manager role ended. A brief, honest line can answer that question before they move on.",
-        "example": "December 2024 - Present [what you've been doing]",
-        "question": "What have you been doing since December 2024 that you'd be comfortable putting on the resume?"
+        "cannot_tell": "A recruiter can't tell what you've done since the Branch Manager role ended. If you took care of a family member, naming that is a real option. A career break can also include a course, project, volunteering or travel; include freelance work only if you did it.",
+        "example": "December 2024 - Present [what you did]",
+        "question": "What would you like to include about your time since December 2024?"
       },
       {
         "kind": "line",
         "where": "Branch Manager, line 1",
         "line": "Managed a branch of 11 employees",
-        "cannot_tell": "The headcount is useful, but it doesn't say what the team handled. Which roles reported to you, and what were they responsible for?",
-        "example": "Managed a branch of 11 employees across [roles and responsibilities]",
-        "question": "What roles were on the team, and what did they handle?"
+        "cannot_tell": "The team count is useful, but a recruiter can't tell what those employees handled. That would show more of what running the branch involved.",
+        "example": "Managed a branch of 11 employees who handled [work handled]",
+        "question": "What work did the 11 employees handle?"
       },
       {
         "kind": "keep",
         "where": "Branch Manager, line 2",
         "line": "Grew branch deposits from $48M to $63M over five years",
-        "cannot_tell": "Keep this as a model. It gives a recruiter a concrete change to carry away, rather than just a list of branch duties.",
+        "cannot_tell": "Keep this line. It gives a recruiter a concrete change to connect to your branch leadership, rather than leaving them with a list of duties.",
         "example": "",
         "question": ""
       },
@@ -132,17 +134,17 @@
         "kind": "line",
         "where": "Branch Manager, line 4",
         "line": "Oversaw audits and compliance reviews for the branch",
-        "cannot_tell": "A recruiter knows you oversaw the reviews, but not what that involved or what followed. Your part in the work would make the responsibility more concrete.",
-        "example": "Oversaw audits and compliance reviews for the branch, including [work you handled] and [what followed]",
-        "question": "What did you handle during the audits and reviews, and what followed?"
+        "cannot_tell": "A recruiter knows you oversaw the reviews, but not which parts were yours or what came out of them. Those details matter in a branch manager role.",
+        "example": "Oversaw audits and compliance reviews for the branch, including [work overseen] and [review result]",
+        "question": "What did you oversee in the audits and reviews, and what were the results?"
       },
       {
         "kind": "line",
         "where": "Branch Manager, line 5",
         "line": "Handled escalated customer complaints",
-        "cannot_tell": "Complaints reached you, but the page doesn't say what kinds of issues they involved or what you did with them.",
-        "example": "Handled escalated customer complaints about [issues] by [actions]",
-        "question": "What kinds of complaints reached you, and how did you handle them?"
+        "cannot_tell": "A recruiter can't tell what kinds of complaints reached you or how you handled them. One example would show the decisions you made.",
+        "example": "Handled escalated customer complaints about [complaint types] by [actions taken]",
+        "question": "What kinds of complaints did you handle, and what did you do to address them?"
       }
     ],
     "fit": {
@@ -150,50 +152,51 @@
         "Branch Manager",
         "Assistant Branch Manager"
       ],
-      "level": "Branch management",
-      "note": "Your experience points toward retail banking branch management, with earlier teller operations and account-opening work. The period after December 2024 is the main question to address.",
+      "level": "Experienced branch manager",
+      "note": "Your experience points most directly to retail banking branch leadership. The progression and deposit growth are strong, while the period after your last role needs an account.",
       "posting": {
         "summary": "",
         "missing": []
       }
     },
-    "score_label": "Needs more context",
+    "score_label": "Mostly clear",
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 68
+    "content_score": 76
   },
   "shipped_report": {
     "contract_version": "v3",
-    "score": 68,
+    "score": 76,
     "lifted_by_employer": false,
-    "verdict": "A branch manager with deposit growth and a gap after the last dated role.",
+    "verdict": "A branch manager with deposit growth and a clear progression, but no account of work since December 2024.",
     "write_up": [
-      "A recruiter sees a progression from personal banker to branch manager, with responsibility for 11 employees and growing deposits. The hesitation comes after December 2024: the page doesn't say what you've been doing since.",
-      "The deposit line is the model. It names the measure, the starting and ending amounts, and the period. Give the branch team, audits and customer complaints a little more substance, and account for the time after the bank role."
+      "You progressed from Personal Banker to Branch Manager at Magnolia Community Bank, with deposit growth and an 11-person branch on your resume. A recruiter can see the banking work, but the time since your last role ended leaves a question before they move forward.",
+      "The deposit line is your best model: it names the result, the starting and ending figures, and the period. Your experience is easy to follow, with each role and its dates in order.",
+      "Let's start by accounting for the time after December 2024 in a way that's true to your situation. Then add what your branch employees handled and what you oversaw in audits and compliance reviews."
     ],
     "cards": [
       {
         "kind": "dates",
         "where": "Dates",
         "line": "Nothing is dated after December 2024.",
-        "cannot_tell": "A recruiter can't tell what you've been doing since the branch manager role ended. A brief, honest line can answer that question before they move on.",
-        "example": "December 2024 - Present [what you've been doing]",
-        "question": "What have you been doing since December 2024 that you'd be comfortable putting on the resume?"
+        "cannot_tell": "A recruiter can't tell what you've done since the Branch Manager role ended. If you took care of a family member, naming that is a real option. A career break can also include a course, project, volunteering or travel; include freelance work only if you did it.",
+        "example": "December 2024 - Present [what you did]",
+        "question": "What would you like to include about your time since December 2024?"
       },
       {
         "kind": "line",
         "where": "Branch Manager, line 1",
         "line": "Managed a branch of 11 employees",
-        "cannot_tell": "The headcount is useful, but it doesn't say what the team handled. Which roles reported to you, and what were they responsible for?",
-        "example": "Managed a branch of 11 employees across [roles and responsibilities]",
-        "question": "What roles were on the team, and what did they handle?"
+        "cannot_tell": "The team count is useful, but a recruiter can't tell what those employees handled. That would show more of what running the branch involved.",
+        "example": "Managed a branch of 11 employees who handled [work handled]",
+        "question": "What work did the 11 employees handle?"
       },
       {
         "kind": "keep",
         "where": "Branch Manager, line 2",
         "line": "Grew branch deposits from $48M to $63M over five years",
-        "cannot_tell": "Keep this as a model. It gives a recruiter a concrete change to carry away, rather than just a list of branch duties.",
+        "cannot_tell": "Keep this line. It gives a recruiter a concrete change to connect to your branch leadership, rather than leaving them with a list of duties.",
         "example": "",
         "question": ""
       },
@@ -201,17 +204,17 @@
         "kind": "line",
         "where": "Branch Manager, line 4",
         "line": "Oversaw audits and compliance reviews for the branch",
-        "cannot_tell": "A recruiter knows you oversaw the reviews, but not what that involved or what followed. Your part in the work would make the responsibility more concrete.",
-        "example": "Oversaw audits and compliance reviews for the branch, including [work you handled] and [what followed]",
-        "question": "What did you handle during the audits and reviews, and what followed?"
+        "cannot_tell": "A recruiter knows you oversaw the reviews, but not which parts were yours or what came out of them. Those details matter in a branch manager role.",
+        "example": "Oversaw audits and compliance reviews for the branch, including [work overseen] and [review result]",
+        "question": "What did you oversee in the audits and reviews, and what were the results?"
       },
       {
         "kind": "line",
         "where": "Branch Manager, line 5",
         "line": "Handled escalated customer complaints",
-        "cannot_tell": "Complaints reached you, but the page doesn't say what kinds of issues they involved or what you did with them.",
-        "example": "Handled escalated customer complaints about [issues] by [actions]",
-        "question": "What kinds of complaints reached you, and how did you handle them?"
+        "cannot_tell": "A recruiter can't tell what kinds of complaints reached you or how you handled them. One example would show the decisions you made.",
+        "example": "Handled escalated customer complaints about [complaint types] by [actions taken]",
+        "question": "What kinds of complaints did you handle, and what did you do to address them?"
       }
     ],
     "fit": {
@@ -219,41 +222,41 @@
         "Branch Manager",
         "Assistant Branch Manager"
       ],
-      "level": "Branch management",
-      "note": "Your experience points toward retail banking branch management, with earlier teller operations and account-opening work. The period after December 2024 is the main question to address.",
+      "level": "Experienced branch manager",
+      "note": "Your experience points most directly to retail banking branch leadership. The progression and deposit growth are strong, while the period after your last role needs an account.",
       "posting": {
         "summary": "",
         "missing": []
       }
     },
-    "score_label": "Needs more context",
+    "score_label": "Mostly clear",
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 68
+    "content_score": 76
   },
   "presentation": {
-    "score": 68,
-    "band": "Needs more context",
-    "model_score": 68,
+    "score": 76,
+    "band": "Mostly clear",
+    "model_score": 76,
     "lifted_by_employer": false,
-    "verdict": "A branch manager with deposit growth and a gap after the last dated role.",
-    "write_up_paragraphs": 2,
-    "write_up_words": 73,
+    "verdict": "A branch manager with deposit growth and a clear progression, but no account of work since December 2024.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 111,
     "cards": [
       {
         "kind": "dates",
         "where": "Dates",
         "line": "Nothing is dated after December 2024.",
         "blanks": 1,
-        "question": "What have you been doing since December 2024 that you'd be comfortable putting on the resume?"
+        "question": "What would you like to include about your time since December 2024?"
       },
       {
         "kind": "line",
         "where": "Branch Manager, line 1",
         "line": "Managed a branch of 11 employees",
         "blanks": 1,
-        "question": "What roles were on the team, and what did they handle?"
+        "question": "What work did the 11 employees handle?"
       },
       {
         "kind": "keep",
@@ -267,14 +270,14 @@
         "where": "Branch Manager, line 4",
         "line": "Oversaw audits and compliance reviews for the branch",
         "blanks": 2,
-        "question": "What did you handle during the audits and reviews, and what followed?"
+        "question": "What did you oversee in the audits and reviews, and what were the results?"
       },
       {
         "kind": "line",
         "where": "Branch Manager, line 5",
         "line": "Handled escalated customer complaints",
         "blanks": 2,
-        "question": "What kinds of complaints reached you, and how did you handle them?"
+        "question": "What kinds of complaints did you handle, and what did you do to address them?"
       }
     ],
     "card_count": 5,
@@ -292,8 +295,8 @@
         "Branch Manager",
         "Assistant Branch Manager"
       ],
-      "level": "Branch management",
-      "note": "Your experience points toward retail banking branch management, with earlier teller operations and account-opening work. The period after December 2024 is the main question to address.",
+      "level": "Experienced branch manager",
+      "note": "Your experience points most directly to retail banking branch leadership. The progression and deposit growth are strong, while the period after your last role needs an account.",
       "posting": {
         "summary": "",
         "missing": []
@@ -301,6 +304,6 @@
     }
   },
   "outcome": "report",
-  "cost_usd": 0.0080476,
-  "latency_ms": 23110
+  "cost_usd": 0.00737725,
+  "latency_ms": 16721
 }

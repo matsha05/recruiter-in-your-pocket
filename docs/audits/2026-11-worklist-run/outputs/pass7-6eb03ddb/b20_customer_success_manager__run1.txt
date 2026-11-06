@@ -1,0 +1,39 @@
+# b20_customer_success_manager, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt (180 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 6eb03ddb; severity check off
+Outcome: report; cost $0.0060; 12.5s
+Case note: No posting.
+
+## Mostly clear (score 79; model wrote 79)
+## Verdict
+A customer success manager with a defined account book and team-wide onboarding work, but questions about renewals remain.
+
+## Write-up
+A recruiter can see your path from payroll support into customer success, with 48 mid-market accounts and regular reviews with finance and HR leads. The resume is likely to move forward, though your part in renewal strategy and payroll escalations could be more explicit.
+
+The onboarding checklist is a strong model: you name what you built and show that the whole CS team uses it. Let’s bring that same detail to your work with Sales and your response when payroll runs fail.
+
+## Cards (4; {"line":3,"keep":1}); severity off; added []
+1. [line] Customer Success Manager, line 3
+   line: "Partnered with Sales on renewal strategy for at-risk accounts"
+   can't tell: A recruiter can see who you worked with, but not what you contributed to the renewal strategy. Your part matters for a customer success role.
+   example: Partnered with Sales on renewal strategy for at-risk accounts by [contribution]
+   question: What did you contribute to the renewal strategy for those accounts?
+2. [keep] Customer Success Manager, line 4
+   line: "Built an onboarding checklist now used by the whole CS team"
+   can't tell: Keep this as a model. It gives the recruiter a concrete deliverable and shows who uses it, without making them guess what you made.
+3. [line] Customer Success Manager, line 5
+   line: "Handle escalations with Support and Product when payroll runs fail"
+   can't tell: Failed payroll runs are important, but a recruiter can't tell what you do during an escalation. Name your part in getting the issue addressed.
+   example: Handle escalations with Support and Product when payroll runs fail by [action]
+   question: What do you do with Support and Product when a payroll run fails?
+4. [line] Account Coordinator, line 2
+   line: "Answered client questions by phone and email"
+   can't tell: This names the channels but not the questions. A little more about what clients needed would make the insurance work more distinct.
+   example: Answered small business client questions about [topics] by phone and email
+   question: What kinds of questions did small business clients ask?
+
+## Fit
+Roles: ["Customer Success Manager","Customer Support Specialist"]
+Level: Experienced individual contributor
+Note: Your recent work points most directly to customer success roles serving mid-market software accounts. Your earlier payroll support work also gives a recruiter a clear view of your customer service background.

@@ -15,7 +15,7 @@ import {
 import {
   hubspotJobDescription,
   hubspotSource,
-  schemaValidReport,
+  schemaValidWorklistReport,
 } from "./helpers/report-fidelity-fixture";
 
 function originalLoadSentry() {
@@ -76,7 +76,10 @@ async function run() {
         runJson: async () => {
           providerCalls += 1;
           if (providerSucceeds) {
-            return { parsed: structuredClone(schemaValidReport), raw: JSON.stringify(schemaValidReport) };
+            return {
+              parsed: structuredClone(schemaValidWorklistReport),
+              raw: JSON.stringify(schemaValidWorklistReport),
+            };
           }
           throw Object.assign(new Error("synthetic provider failure"), {
             code: "OPENAI_NETWORK_ERROR",
@@ -297,10 +300,16 @@ async function run() {
     assert.equal(completedResponse.status, 200);
     assert.equal(completedPayload.recovery_id, recoveryId);
     assert.equal(completedPayload.report_receipt, null, "the server-only recovery receipt must not become a bearer token");
-    assert.equal(completedPayload.data.score, schemaValidReport.score);
-    assert.equal(completedPayload.data.summary, schemaValidReport.summary);
-    assert.equal(completedPayload.data.contract_version, schemaValidReport.contract_version);
+    assert.equal(completedPayload.data.score, schemaValidWorklistReport.score);
+    assert.equal(completedPayload.data.verdict, schemaValidWorklistReport.verdict);
+    assert.deepEqual(completedPayload.data.write_up, schemaValidWorklistReport.write_up);
+    assert.equal(completedPayload.data.contract_version, schemaValidWorklistReport.contract_version);
     assert.equal(providerCalls, 2, "validated sync output must finalize through recovery exactly once");
+    assert.deepEqual(
+      takeSignals("riyp.report.repair"),
+      [],
+      "the provider's report must be the one delivered, not a repair pass that bypasses the provider mock",
+    );
 
     const committedIdentity = { id: "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa" };
     const originalNetworkRequest = new Request("http://localhost", {

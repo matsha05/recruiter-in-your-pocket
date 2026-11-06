@@ -1,0 +1,49 @@
+# b40_senior_ic_wei, run 1
+Resume: ../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/4-senior-ic-wei.txt (361 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
+Outcome: report; cost $0.0091; 24.3s
+Case note: Senior IC (bar persona).
+
+## Mostly clear (score 79; model wrote 79)
+## Verdict
+A staff engineer with substantial payments architecture work, but few measures of its reach or results.
+
+## Write-up
+A recruiter sees a staff engineer leading payments infrastructure work, with earlier experience in fraud and object storage. The main question is how far the ledger redesign reached and what changed after it shipped.
+
+The fraud pipeline line is a good model: it names the system, its tools and a latency measure. Bring some of that detail to the staff role, especially the team lead work and the ledger redesign.
+
+## Cards (6; {"line":5,"keep":1}); severity off; added []
+1. [line] Staff Software Engineer, line 1
+   line: "Technical lead for the ledger and settlement platform team"
+   can't tell: The platform is named, but the team and your leadership work aren't. A recruiter will want to know how many engineers were involved and what you led.
+   example: Technical lead for the ledger and settlement platform team of [number] engineers, responsible for [leadership responsibilities]
+   question: How many engineers were on the team, and what were your responsibilities as technical lead?
+2. [line] Staff Software Engineer, line 2
+   line: "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB"
+   can't tell: The architecture change is concrete. What isn't here is what the redesign changed for the ledger or the people using it.
+   example: Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, resulting in [what changed]
+   question: What changed after the ledger redesign, and how was it measured?
+3. [keep] Senior Software Engineer, line 1
+   line: "Built the real-time fraud scoring pipeline (Flink, Kafka) processing payment events with p99 latency under 50ms"
+   can't tell: Keep this as a model. It connects your own work to a concrete performance measure without making the reader guess what the pipeline handled.
+4. [line] Senior Software Engineer, line 3
+   line: "Reduced reconciliation break rate and manual ops effort"
+   can't tell: Two useful improvements are named, but a recruiter can't tell how much either changed.
+   example: Reduced reconciliation break rate by [change in break rate] and manual ops effort by [change in ops effort]
+   question: How did the reconciliation break rate and manual ops effort change?
+5. [line] Software Engineer II, line 3
+   line: "Improved API latency and availability through caching and request coalescing"
+   can't tell: The methods are clear, but the improvements have no measure attached. What changed for latency and availability?
+   example: Improved API latency by [change in latency] and availability by [change in availability] through caching and request coalescing
+   question: How did API latency and availability change after the caching and request coalescing work?
+6. [line] Software Engineer II, line 4
+   line: "Contributed to the migration of the control plane to Kubernetes"
+   can't tell: The migration is named, but your part in it isn't. Keep the contribution at its actual level and say which piece was yours.
+   example: Contributed to the migration of the control plane to Kubernetes by [your contribution]
+   question: What part of the control plane migration did you work on?
+
+## Fit
+Roles: ["Staff Software Engineer","Senior Software Engineer"]
+Level: Staff-level software engineering
+Note: Your experience points toward payments infrastructure and distributed systems roles. The architecture work and technical leadership are clear; measures of the ledger redesign and team leadership would help establish their reach.

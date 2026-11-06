@@ -6,7 +6,7 @@ import styles from "./ResearchReceipts.module.css";
 // for it, linked to the article that backs it (docs/research-library-strategy.md, §4). The
 // mapping is ours; the studies didn't test the score, and /methodology says so.
 const RECEIPTS = [
-    { part: "How your experience fits together", note: "Why the first read of you sticks", href: "/research/who-you-are", cta: "report_research_story" },
+    { part: "How your experience fits together", note: "Why a recruiter’s first impression sticks", href: "/research/who-you-are", cta: "report_research_story" },
     { part: "The results you show", note: "Why we keep asking what changed", href: "/research/quantifying-impact", cta: "report_research_impact" },
     { part: "How clearly each line reads", note: "Where a recruiter’s attention goes", href: "/research/how-recruiters-read", cta: "report_research_clarity" },
     { part: "How easy the text is to follow", note: "How much a typo really costs", href: "/research/spelling-errors-impact", cta: "report_research_readability" },

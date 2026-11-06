@@ -1,0 +1,43 @@
+# b29_mechanical_engineer, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_mechanical_engineer_1.txt (143 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 6eb03ddb; severity check off
+Outcome: report; cost $0.0080; 19.5s
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+A mechanical engineer with a named desk platform and solid tools, but few details about what changed.
+
+## Write-up
+A recruiter sees six years in furniture and fixture design, including a lead role on the Arlo desk platform. This is a common sticking point: your recent work names the tasks, but not how far the designs went or what changed. That makes it tougher to stand out in a pile. Let's start with the Arlo line and build out what you led.
+
+The SolidWorks line is a useful model because it names the drawings, the tool, and GD&T. Your supplier work, analysis, and engineering change orders could use a little more about your part in each.
+
+## Cards (5; {"line":4,"keep":1}); severity off; added []
+1. [line] Mechanical Engineer II, line 1
+   line: "Lead mechanical design for the Arlo height-adjustable desk platform"
+   can't tell: Leading design for a named platform is a strong start. A recruiter can't tell which parts of the design you led or what stage the platform reached.
+   example: Lead mechanical design for the Arlo height-adjustable desk platform, including [design work] through [development stage]
+   question: Which design work did you lead, and what stage did the platform reach?
+2. [keep] Mechanical Engineer II, line 2
+   line: "Create 3D models and drawings in SolidWorks with GD&T"
+   can't tell: Keep this one. It gives a recruiter something concrete you produce and shows how you work.
+3. [line] Mechanical Engineer II, line 3
+   line: "Work with suppliers in Mexico and Taiwan on tooling and first-article inspection"
+   can't tell: The supplier locations and the work are clear, but your part in tooling and inspection isn't. Did you review designs, resolve issues, or do something else?
+   example: Work with suppliers in Mexico and Taiwan on tooling and first-article inspection, including [your contribution]
+   question: What did you do with the suppliers on tooling and first-article inspection?
+4. [line] Mechanical Engineer II, line 4
+   line: "Run tolerance stack-ups and FEA on load-bearing components"
+   can't tell: A recruiter can see the analyses you run, but not what you use them to decide. Name a component or design decision to show how the work is used.
+   example: Run tolerance stack-ups and FEA on load-bearing components, including [component], to inform [design decision]
+   question: Which component did you analyze, and what design decision did that work inform?
+5. [line] Mechanical Engineer II, line 5
+   line: "Support manufacturing with engineering change orders"
+   can't tell: Support can mean several things here. A recruiter can't tell what you contributed to the change orders or what they addressed.
+   example: Support manufacturing with engineering change orders by [your contribution] for [component or issue]
+   question: What did you do for the engineering change orders, and what component or issue did they address?
+
+## Fit
+Roles: ["Mechanical Engineer II","Mechanical Engineer I"]
+Level: Experienced mechanical engineer
+Note: Your experience points to mechanical design roles in furniture and related products. The Arlo platform, supplier work, and SolidWorks drawings give a recruiter a clear starting point; the recent role needs more about the designs and decisions behind them.

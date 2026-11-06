@@ -1,0 +1,29 @@
+# b13_marketing_vp_elite, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/golden/synth_marketing_manager_vp_elite_1766960221358.txt (730 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 6eb03ddb; severity check off
+Outcome: report; cost $0.0081; 12.3s
+Case note: Executive, strong (golden).
+
+## Clear and specific (score 89; model wrote 89)
+## Verdict
+An experienced marketing executive whose resume connects leadership decisions to growth across several roles.
+
+## Write-up
+Your resume makes a strong case for senior marketing leadership! A recruiter can see the teams and budgets you managed, along with the changes in leads, revenue and customer acquisition. The account-based marketing line at Viridian works especially well because it names the program and ties it to pipeline and win rates.
+
+The product launch line at Novara could say more about what changed in the process. Otherwise, your resume is unlikely to be the thing standing between you and a callback; competition for the role and a referral can matter too.
+
+## Cards (2; {"line":1,"keep":1}); severity off; added []
+1. [line] Chief Marketing Officer, line 3
+   line: "I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years."
+   can't tell: The results are substantial, but a recruiter can't tell what changed in the launch process. Name the change behind the decision.
+   example: I decided to revamp the product launch process by [process change], shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.
+   question: What changed in the product launch process?
+2. [keep] Vice President, Global Marketing, line 2
+   line: "I built and executed a comprehensive account-based marketing (ABM) program that increased pipeline contribution by $50M annually, lifting win rates by 15% among Fortune 500 clients."
+   can't tell: Keep this as a model. It shows your part in building and executing the program, then gives a recruiter two concrete measures of what followed.
+
+## Fit
+Roles: ["Chief Marketing Officer","Vice President, Global Marketing"]
+Level: Executive marketing leadership
+Note: Your experience points toward executive marketing roles in SaaS and enterprise technology. The resume shows leadership across demand generation, brand, product launches and global teams.

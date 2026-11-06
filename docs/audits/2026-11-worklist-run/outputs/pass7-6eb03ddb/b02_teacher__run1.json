@@ -1,0 +1,212 @@
+{
+  "case_id": "b02_teacher",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/resumes/b_teacher.txt",
+  "resume_sha256": "7d89b420ec093fb2b4c948a14fbcee2a65d2a90d95c146e4f916e2d0a37955ee",
+  "resume_words": 202,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T18:00:34.142Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5380,
+        "completion_tokens": 658,
+        "total_tokens": 6038,
+        "cached_prompt_tokens": 4536,
+        "cache_write_prompt_tokens": 841,
+        "reasoning_tokens": 169
+      },
+      "cost_usd": 0.00457105,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 9231
+    }
+  ],
+  "resume_prompt_sha256": "6eb03ddb4b32b2b65339085225b39b2ec67a805518799139b60e8c299167a186",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "An elementary teacher with classroom leadership, family engagement, and measurable reading growth.",
+    "write_up": [
+      "This is a strong teaching resume! A recruiter can see the students you teach, the team you lead, and the reading growth your class made. The assessment line is the model: it names the measure and shows how it changed over three years.",
+      "The committee line in your 2nd Grade Teacher role leaves one question about your contribution, but the rest gives a recruiter plenty to work with. Your resume isn't likely to be the thing holding you back; how competitive a teaching job is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "4th Grade Teacher, line 2",
+        "line": "- Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years",
+        "cannot_tell": "Keep this as a model. It connects your teaching to a named district assessment and gives the starting and ending figures.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "2nd Grade Teacher, line 3",
+        "line": "- Served on the school's positive behavior support committee",
+        "cannot_tell": "A recruiter can see which committee you joined, but not what you did on it. One contribution would show how you supported the school's work.",
+        "example": "Served on the school's positive behavior support committee and [what you did]",
+        "question": "What did you contribute to the positive behavior support committee?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "4th Grade Teacher",
+        "2nd Grade Teacher"
+      ],
+      "level": "Experienced elementary teacher",
+      "note": "Your experience points toward elementary classroom teaching, with grade-level leadership and work with English language learners. Your Washington K-8 certification and English Language Learner endorsement are easy to find.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "An elementary teacher with classroom leadership, family engagement, and measurable reading growth.",
+    "write_up": [
+      "This is a strong teaching resume! A recruiter can see the students you teach, the team you lead, and the reading growth your class made. The assessment line is the model: it names the measure and shows how it changed over three years.",
+      "The committee line in your 2nd Grade Teacher role leaves one question about your contribution, but the rest gives a recruiter plenty to work with. Your resume isn't likely to be the thing holding you back; how competitive a teaching job is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "4th Grade Teacher, line 2",
+        "line": "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years",
+        "cannot_tell": "Keep this as a model. It connects your teaching to a named district assessment and gives the starting and ending figures.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "2nd Grade Teacher, line 3",
+        "line": "Served on the school's positive behavior support committee",
+        "cannot_tell": "A recruiter can see which committee you joined, but not what you did on it. One contribution would show how you supported the school's work.",
+        "example": "Served on the school's positive behavior support committee and [what you did]",
+        "question": "What did you contribute to the positive behavior support committee?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "4th Grade Teacher",
+        "2nd Grade Teacher"
+      ],
+      "level": "Experienced elementary teacher",
+      "note": "Your experience points toward elementary classroom teaching, with grade-level leadership and work with English language learners. Your Washington K-8 certification and English Language Learner endorsement are easy to find.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "An elementary teacher with classroom leadership, family engagement, and measurable reading growth.",
+    "write_up": [
+      "This is a strong teaching resume! A recruiter can see the students you teach, the team you lead, and the reading growth your class made. The assessment line is the model: it names the measure and shows how it changed over three years.",
+      "The committee line in your 2nd Grade Teacher role leaves one question about your contribution, but the rest gives a recruiter plenty to work with. Your resume isn't likely to be the thing holding you back; how competitive a teaching job is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "4th Grade Teacher, line 2",
+        "line": "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years",
+        "cannot_tell": "Keep this as a model. It connects your teaching to a named district assessment and gives the starting and ending figures.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "2nd Grade Teacher, line 3",
+        "line": "Served on the school's positive behavior support committee",
+        "cannot_tell": "A recruiter can see which committee you joined, but not what you did on it. One contribution would show how you supported the school's work.",
+        "example": "Served on the school's positive behavior support committee and [what you did]",
+        "question": "What did you contribute to the positive behavior support committee?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "4th Grade Teacher",
+        "2nd Grade Teacher"
+      ],
+      "level": "Experienced elementary teacher",
+      "note": "Your experience points toward elementary classroom teaching, with grade-level leadership and work with English language learners. Your Washington K-8 certification and English Language Learner endorsement are easy to find.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "presentation": {
+    "score": 88,
+    "band": "Clear and specific",
+    "model_score": 88,
+    "lifted_by_employer": false,
+    "verdict": "An elementary teacher with classroom leadership, family engagement, and measurable reading growth.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 88,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "4th Grade Teacher, line 2",
+        "line": "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "2nd Grade Teacher, line 3",
+        "line": "Served on the school's positive behavior support committee",
+        "blanks": 1,
+        "question": "What did you contribute to the positive behavior support committee?"
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "keep": 1,
+      "line": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "4th Grade Teacher",
+        "2nd Grade Teacher"
+      ],
+      "level": "Experienced elementary teacher",
+      "note": "Your experience points toward elementary classroom teaching, with grade-level leadership and work with English language learners. Your Washington K-8 certification and English Language Learner endorsement are easy to find.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00457105,
+  "latency_ms": 9259
+}

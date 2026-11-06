@@ -127,7 +127,7 @@ export default function App() {
             await loadJobs(isAuthenticated);
         } catch (err) {
             console.error('[RIYP] Init error:', err);
-            dispatch({ type: 'patch', patch: { error: 'The extension could not open. Close it and try again.', view: 'error' } });
+            dispatch({ type: 'patch', patch: { error: 'The extension didn’t open. Close it and try again.', view: 'error' } });
         } finally {
             refreshing.current = false;
         }
@@ -146,7 +146,7 @@ export default function App() {
                 if (response.error?.includes('Not authenticated') || response.error?.includes('AUTH_REQUIRED')) {
                     dispatch({ type: 'patch', patch: { view: 'unauthenticated' } });
                 } else {
-                    throw new Error(response.error || 'Could not load your saved jobs. Try Refresh.');
+                    throw new Error(response.error || 'We couldn’t load your saved jobs. Try Refresh.');
                 }
             }
         } catch (err) {
@@ -154,7 +154,7 @@ export default function App() {
             dispatch({
                 type: 'patch',
                 patch: {
-                    error: err instanceof Error ? err.message : 'Could not load your saved jobs. Try Refresh.',
+                    error: err instanceof Error ? err.message : 'We couldn’t load your saved jobs. Try Refresh.',
                     view: 'error',
                 },
             });

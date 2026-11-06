@@ -221,7 +221,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             if (mountedRef.current) {
                 console.error("Sign out error:", error);
                 // Every page mounts this provider, so sonner loads only when a toast is due.
-                void import("sonner").then(({ toast }) => toast.error("We couldn't complete sign out. Please try again."));
+                void import("sonner").then(({ toast }) => toast.error("We couldn't sign you out. Try again."));
             }
         } finally {
             controller.abort();

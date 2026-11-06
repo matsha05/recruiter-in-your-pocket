@@ -1,33 +1,40 @@
 # b07_account_executive, run 1
 Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_account_executive_1.txt (145 words)
-Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 70e795a1; severity check off
-Outcome: report; cost $0.0047; 12.3s
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0063; 13.7s
 
-## Clear and specific (score 88; model wrote 88)
+## Clear and specific (score 87; model wrote 87)
 ## Verdict
-A mid-market HR software seller with a promotion, quota results, and a referral program.
+A mid-market account executive with a promotion, quota attainment, and a referral program that sourced deals.
 
 ## Write-up
-A recruiter sees an account executive who moved up from SDR and closed $1.1M in new annual recurring revenue in 2025. The referral program adds another useful detail. The main question is how you earned the top SDR ranking.
+This is a strong sales resume! You show the move from SDR to Account Executive at Crestview HR Cloud, then put revenue, quota attainment, and partner-sourced deals behind it. A recruiter can see both what you sell and how you've performed.
 
-The revenue line is the model: it names the sales result, the year, and quota attainment. Add the measure behind the SDR ranking and the number of meetings booked to give that earlier role the same weight.
+The $1.1M revenue line is the model: it names the result, the year, and how it compares with quota. Your headline matches the work, and the promotion makes the progression easy to follow.
 
-## Cards (3; {"keep":1,"line":2}); severity off; added []
-1. [keep] Account Executive, line 1
+Your resume isn't likely to be the thing standing between you and a callback. Let's add your part in demos and a little more context to the SDR results; the competitiveness of each role will matter too.
+
+## Cards (4; {"keep":1,"line":3}); severity off; added []
+1. [keep] Account Executive, Mid-Market, line 1
    line: "Closed $1.1M in new annual recurring revenue in 2025, 108% of quota"
-   can't tell: Keep this. It puts your sales performance against a target, so a recruiter doesn't have to guess what the dollar figure meant.
-2. [line] Sales Development Representative, line 1
+   can't tell: Keep this as a model. It gives a recruiter a concrete sales result and a benchmark without making them hunt for either.
+2. [line] Account Executive, Mid-Market, line 4
+   line: "Work with solutions engineers on demos and security reviews"
+   can't tell: A recruiter can see who you work with, but not your part in the demos or security reviews. That distinction matters in a full-cycle sales role.
+   example: Work with solutions engineers on demos and security reviews, handling [your part]
+   question: What do you handle in the demos and security reviews?
+3. [line] Sales Development Representative, line 1
    line: "Booked meetings for three account executives"
-   can't tell: You say who the meetings were for, but not how many you booked or over what period. That would show how much meeting generation you handled.
-   example: Booked [number] meetings for three account executives in [period]
+   can't tell: Three account executives gives the work some context, but not how many meetings you booked. That number would show more of your SDR production.
+   example: Booked [number] meetings for three account executives over [time period]
    question: How many meetings did you book, and over what period?
-3. [line] Sales Development Representative, line 3
+4. [line] Sales Development Representative, line 3
    line: "Top SDR in two quarters"
-   can't tell: A recruiter can see you ranked first, but not what the ranking measured. Meetings, revenue, or another measure would tell them what you excelled at.
-   example: Top SDR in two quarters based on [ranking measure]
-   question: What measure determined the top SDR ranking?
+   can't tell: Being the top SDR is worth keeping. A recruiter can't tell what the ranking was based on or who you were measured against.
+   example: Top SDR in two quarters based on [measure] among [comparison group]
+   question: What measure earned you the top SDR ranking, and who was in the comparison group?
 
 ## Fit
 Roles: ["Account Executive, Mid-Market","Sales Development Representative"]
 Level: Mid-market account executive
-Note: Your experience points toward mid-market HR software sales, with full-cycle work and a prior SDR role. The quota and referral figures give a recruiter a concrete reason to keep reading.
+Note: Your experience points most directly to mid-market HR software sales. The SDR promotion and quota result also show the path into your current full-cycle role.

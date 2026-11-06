@@ -197,7 +197,7 @@ export default function PurchaseRestoreClient() {
 
           {receiptsState === "error" ? (
             <div role="alert" className="rounded-xl border border-destructive bg-error-surface px-5 py-4 text-sm text-destructive">
-              <p className="font-semibold">Receipts could not load.</p>
+              <p className="font-semibold">We couldn’t load your receipts.</p>
               <p className="mt-1">{receiptsMessage}</p>
               <Button type="button" variant="secondary" size="sm" className="mt-4" onClick={handleLoadReceipts} disabled={isReceiptsLoading}>
                 Try again

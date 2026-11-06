@@ -1,0 +1,212 @@
+{
+  "case_id": "b12_coo_executive_two_page",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Executive, two pages.",
+  "resume_file": "../2026-11-live-judgment/resumes/b_coo_executive.txt",
+  "resume_sha256": "213474e9b27355f8a085204e3dac05f65782d74d43b9b531cb2afd6a3afe1b79",
+  "resume_words": 463,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T17:55:50.761Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6193,
+        "completion_tokens": 1153,
+        "total_tokens": 7346,
+        "cached_prompt_tokens": 4481,
+        "cache_write_prompt_tokens": 1709,
+        "reasoning_tokens": 675
+      },
+      "cost_usd": 0.0081283,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 18527
+    }
+  ],
+  "resume_prompt_sha256": "f4ff18ca80174dffdce77796c99b298e4ced5fdab817d0ec307d0b591839e910",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare operations executive with practice growth, financial results, and board-facing responsibility clearly laid out.",
+    "write_up": [
+      "Your resume shows a COO who has grown a dental organization while managing a large operation. The integration line is especially strong: it names the playbook you standardized and shows the time saved.",
+      "This resume isn't likely to be the reason you don't hear back. Competition for a COO role matters too. If you revise one older line, add what changed after the Epic go-live."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, integration line",
+        "line": "- Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "cannot_tell": "Keep this as a model. It puts the before and after right next to the work you led, so a recruiter can see both at once.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Vice President, Clinic Operations, Epic line",
+        "line": "- Led the Epic go-live across the clinics in 2013",
+        "cannot_tell": "A recruiter can see that you led the go-live, but not what changed for the clinics afterward. If you know the result, add it.",
+        "example": "Led the Epic go-live across the clinics in 2013, with [result]",
+        "question": "What changed for the clinics after the Epic go-live?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Operating Officer",
+        "Senior Vice President, Operations"
+      ],
+      "level": "Healthcare operations executive",
+      "note": "Your experience points to senior operations roles in multi-site healthcare. Practice growth, P&L ownership, and value-based contracts give a recruiter several concrete reasons to consider you.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare operations executive with practice growth, financial results, and board-facing responsibility clearly laid out.",
+    "write_up": [
+      "Your resume shows a COO who has grown a dental organization while managing a large operation. The integration line is especially strong: it names the playbook you standardized and shows the time saved.",
+      "This resume isn't likely to be the reason you don't hear back. Competition for a COO role matters too. If you revise one older line, add what changed after the Epic go-live."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, integration line",
+        "line": "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "cannot_tell": "Keep this as a model. It puts the before and after right next to the work you led, so a recruiter can see both at once.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Vice President, Clinic Operations, Epic line",
+        "line": "Led the Epic go-live across the clinics in 2013",
+        "cannot_tell": "A recruiter can see that you led the go-live, but not what changed for the clinics afterward. If you know the result, add it.",
+        "example": "Led the Epic go-live across the clinics in 2013, with [result]",
+        "question": "What changed for the clinics after the Epic go-live?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Operating Officer",
+        "Senior Vice President, Operations"
+      ],
+      "level": "Healthcare operations executive",
+      "note": "Your experience points to senior operations roles in multi-site healthcare. Practice growth, P&L ownership, and value-based contracts give a recruiter several concrete reasons to consider you.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 91
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare operations executive with practice growth, financial results, and board-facing responsibility clearly laid out.",
+    "write_up": [
+      "Your resume shows a COO who has grown a dental organization while managing a large operation. The integration line is especially strong: it names the playbook you standardized and shows the time saved.",
+      "This resume isn't likely to be the reason you don't hear back. Competition for a COO role matters too. If you revise one older line, add what changed after the Epic go-live."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, integration line",
+        "line": "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "cannot_tell": "Keep this as a model. It puts the before and after right next to the work you led, so a recruiter can see both at once.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Vice President, Clinic Operations, Epic line",
+        "line": "Led the Epic go-live across the clinics in 2013",
+        "cannot_tell": "A recruiter can see that you led the go-live, but not what changed for the clinics afterward. If you know the result, add it.",
+        "example": "Led the Epic go-live across the clinics in 2013, with [result]",
+        "question": "What changed for the clinics after the Epic go-live?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Operating Officer",
+        "Senior Vice President, Operations"
+      ],
+      "level": "Healthcare operations executive",
+      "note": "Your experience points to senior operations roles in multi-site healthcare. Practice growth, P&L ownership, and value-based contracts give a recruiter several concrete reasons to consider you.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 91
+  },
+  "presentation": {
+    "score": 91,
+    "band": "Clear and specific",
+    "model_score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare operations executive with practice growth, financial results, and board-facing responsibility clearly laid out.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 65,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, integration line",
+        "line": "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Vice President, Clinic Operations, Epic line",
+        "line": "Led the Epic go-live across the clinics in 2013",
+        "blanks": 1,
+        "question": "What changed for the clinics after the Epic go-live?"
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "keep": 1,
+      "line": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Chief Operating Officer",
+        "Senior Vice President, Operations"
+      ],
+      "level": "Healthcare operations executive",
+      "note": "Your experience points to senior operations roles in multi-site healthcare. Practice growth, P&L ownership, and value-based contracts give a recruiter several concrete reasons to consider you.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0081283,
+  "latency_ms": 18530
+}

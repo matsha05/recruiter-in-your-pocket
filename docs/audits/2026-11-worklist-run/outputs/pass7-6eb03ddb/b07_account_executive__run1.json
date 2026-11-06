@@ -1,0 +1,243 @@
+{
+  "case_id": "b07_account_executive",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_account_executive_1.txt",
+  "resume_sha256": "f964f76d12cdd6ba10596473b309c0f44b18de7112f27369c32227cd287f6e94",
+  "resume_words": 145,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T18:00:47.534Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5220,
+        "completion_tokens": 852,
+        "total_tokens": 6072,
+        "cached_prompt_tokens": 4536,
+        "cache_write_prompt_tokens": 681,
+        "reasoning_tokens": 291
+      },
+      "cost_usd": 0.00534105,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 12152
+    }
+  ],
+  "resume_prompt_sha256": "6eb03ddb4b32b2b65339085225b39b2ec67a805518799139b60e8c299167a186",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A mid-market account executive with a promotion and sales results a recruiter can quickly understand.",
+    "write_up": [
+      "This is a strong sales resume! Your promotion, quota attainment, and partner-sourced deals give a recruiter a clear picture of your work. The 2025 revenue line is the model: it names what you closed and puts it against quota.",
+      "Your resume is unlikely to be the reason you don't get a call back. The competition and the particular role still matter. To make it even better, add your part in demos and security reviews, and explain what earned the top SDR ranking."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Account Executive, Mid-Market, line 1",
+        "line": "- Closed $1.1M in new annual recurring revenue in 2025, 108% of quota",
+        "cannot_tell": "Keep this as a model. It gives the sales figure, the period, and the target comparison in one line.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Account Executive, Mid-Market, line 4",
+        "line": "- Work with solutions engineers on demos and security reviews",
+        "cannot_tell": "A recruiter knows who you work with, but not what you contribute to the demos or reviews.",
+        "example": "Work with solutions engineers on demos and security reviews, handling [your contribution]",
+        "question": "What part of the demos and security reviews do you handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 3",
+        "line": "- Top SDR in two quarters",
+        "cannot_tell": "The ranking stands out, but a recruiter can't tell what it was based on.",
+        "example": "Top SDR in two quarters, measured by [ranking measure]",
+        "question": "What measure was used to name the top SDR?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Account Executive, Mid-Market",
+        "Sales Development Representative"
+      ],
+      "level": "Mid-market account executive",
+      "note": "Your experience points toward mid-market account executive roles selling software. The SDR promotion and full-cycle sales work also show how you got there.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A mid-market account executive with a promotion and sales results a recruiter can quickly understand.",
+    "write_up": [
+      "This is a strong sales resume! Your promotion, quota attainment, and partner-sourced deals give a recruiter a clear picture of your work. The 2025 revenue line is the model: it names what you closed and puts it against quota.",
+      "Your resume is unlikely to be the reason you don't get a call back. The competition and the particular role still matter. To make it even better, add your part in demos and security reviews, and explain what earned the top SDR ranking."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Account Executive, Mid-Market, line 1",
+        "line": "Closed $1.1M in new annual recurring revenue in 2025, 108% of quota",
+        "cannot_tell": "Keep this as a model. It gives the sales figure, the period, and the target comparison in one line.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Account Executive, Mid-Market, line 4",
+        "line": "Work with solutions engineers on demos and security reviews",
+        "cannot_tell": "A recruiter knows who you work with, but not what you contribute to the demos or reviews.",
+        "example": "Work with solutions engineers on demos and security reviews, handling [your contribution]",
+        "question": "What part of the demos and security reviews do you handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 3",
+        "line": "Top SDR in two quarters",
+        "cannot_tell": "The ranking stands out, but a recruiter can't tell what it was based on.",
+        "example": "Top SDR in two quarters, measured by [ranking measure]",
+        "question": "What measure was used to name the top SDR?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Account Executive, Mid-Market",
+        "Sales Development Representative"
+      ],
+      "level": "Mid-market account executive",
+      "note": "Your experience points toward mid-market account executive roles selling software. The SDR promotion and full-cycle sales work also show how you got there.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A mid-market account executive with a promotion and sales results a recruiter can quickly understand.",
+    "write_up": [
+      "This is a strong sales resume! Your promotion, quota attainment, and partner-sourced deals give a recruiter a clear picture of your work. The 2025 revenue line is the model: it names what you closed and puts it against quota.",
+      "Your resume is unlikely to be the reason you don't get a call back. The competition and the particular role still matter. To make it even better, add your part in demos and security reviews, and explain what earned the top SDR ranking."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Account Executive, Mid-Market, line 1",
+        "line": "Closed $1.1M in new annual recurring revenue in 2025, 108% of quota",
+        "cannot_tell": "Keep this as a model. It gives the sales figure, the period, and the target comparison in one line.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Account Executive, Mid-Market, line 4",
+        "line": "Work with solutions engineers on demos and security reviews",
+        "cannot_tell": "A recruiter knows who you work with, but not what you contribute to the demos or reviews.",
+        "example": "Work with solutions engineers on demos and security reviews, handling [your contribution]",
+        "question": "What part of the demos and security reviews do you handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 3",
+        "line": "Top SDR in two quarters",
+        "cannot_tell": "The ranking stands out, but a recruiter can't tell what it was based on.",
+        "example": "Top SDR in two quarters, measured by [ranking measure]",
+        "question": "What measure was used to name the top SDR?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Account Executive, Mid-Market",
+        "Sales Development Representative"
+      ],
+      "level": "Mid-market account executive",
+      "note": "Your experience points toward mid-market account executive roles selling software. The SDR promotion and full-cycle sales work also show how you got there.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "presentation": {
+    "score": 88,
+    "band": "Clear and specific",
+    "model_score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A mid-market account executive with a promotion and sales results a recruiter can quickly understand.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 82,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Account Executive, Mid-Market, line 1",
+        "line": "Closed $1.1M in new annual recurring revenue in 2025, 108% of quota",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Account Executive, Mid-Market, line 4",
+        "line": "Work with solutions engineers on demos and security reviews",
+        "blanks": 1,
+        "question": "What part of the demos and security reviews do you handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 3",
+        "line": "Top SDR in two quarters",
+        "blanks": 1,
+        "question": "What measure was used to name the top SDR?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "keep": 1,
+      "line": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Account Executive, Mid-Market",
+        "Sales Development Representative"
+      ],
+      "level": "Mid-market account executive",
+      "note": "Your experience points toward mid-market account executive roles selling software. The SDR promotion and full-cycle sales work also show how you got there.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00534105,
+  "latency_ms": 12156
+}

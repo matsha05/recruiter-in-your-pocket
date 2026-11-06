@@ -37,7 +37,7 @@ export function registerActionFailureCases({ origin, savedReportId, report }: {
       const name = page.getByLabel("Name Original name", { exact: true });
       await name.fill("Operations resume");
       await name.press("Enter");
-      await expect(page.getByText(failure === "api" ? API_MESSAGE : "The report couldn’t be renamed. Try again.", { exact: true })).toBeVisible();
+      await expect(page.getByText(failure === "api" ? API_MESSAGE : "We couldn’t rename the report. Try again.", { exact: true })).toBeVisible();
       await expect(name).toHaveValue("Operations resume");
       await name.press("Enter");
       await expect(page.getByRole("button", { name: "Rename Operations resume", exact: true })).toBeVisible();

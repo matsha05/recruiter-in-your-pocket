@@ -1,0 +1,336 @@
+{
+  "case_id": "b31_kitchen_manager",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_kitchen_manager_1.txt",
+  "resume_sha256": "836be21294a27aec82bd92fc8dd36b03ccee25fd7f25cdf838a86a793237696a",
+  "resume_words": 120,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T18:02:18.199Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5100,
+        "completion_tokens": 1288,
+        "total_tokens": 6388,
+        "cached_prompt_tokens": 4536,
+        "cache_write_prompt_tokens": 561,
+        "reasoning_tokens": 413
+      },
+      "cost_usd": 0.00737105,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 17030
+    }
+  ],
+  "resume_prompt_sha256": "6eb03ddb4b32b2b65339085225b39b2ec67a805518799139b60e8c299167a186",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 72,
+    "lifted_by_employer": false,
+    "verdict": "A kitchen manager with restaurant experience, but too few details about the staff, ordering, and training.",
+    "write_up": [
+      "A recruiter can see your progression from line cook to kitchen manager and may move your resume forward with questions. The first hesitation is how much of the scheduling, ordering, and training you handle at River Walk Grill.",
+      "The 180-seat restaurant line works because it names your responsibility and gives a concrete sense of the restaurant. Let's build on that in the lines that follow, starting with the kitchen staff schedule."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Kitchen Manager, line 1",
+        "line": "- Run the kitchen for a 180-seat restaurant",
+        "cannot_tell": "Keep this as a model. It puts the job and a useful measure together, so a recruiter doesn't have to guess what setting you manage.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 2",
+        "line": "- Manage the kitchen staff schedule",
+        "cannot_tell": "Scheduling is central to a kitchen manager's job, but a recruiter can't tell how many people you schedule or which shifts you cover.",
+        "example": "Manage the kitchen staff schedule for [number] staff across [shifts]",
+        "question": "How many kitchen staff do you schedule, and which shifts does the schedule cover?"
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 3",
+        "line": "- Order food and supplies from vendors",
+        "cannot_tell": "A recruiter can see what you order, but not how much purchasing you handle. The order frequency or spend would give that responsibility some weight.",
+        "example": "Order food and supplies from vendors [frequency], with [order spend]",
+        "question": "How often do you order food and supplies, and what is the spend you handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 4",
+        "line": "- Keep the kitchen ready for health inspections",
+        "cannot_tell": "Keeping the kitchen inspection-ready matters, but this doesn't say what you do to prepare it.",
+        "example": "Keep the kitchen ready for health inspections by [preparation tasks]",
+        "question": "What tasks do you handle to keep the kitchen ready for health inspections?"
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 5",
+        "line": "- Train new line cooks",
+        "cannot_tell": "Training new cooks is useful management experience. A recruiter can't tell how many cooks you train or what you teach them.",
+        "example": "Train [number] new line cooks on [training topics]",
+        "question": "How many new line cooks have you trained, and what did you teach them?"
+      },
+      {
+        "kind": "line",
+        "where": "Sous Chef, line 2",
+        "line": "- Helped plan seasonal menu changes",
+        "cannot_tell": "Your part in the menu changes is still a blank. Name a contribution and a menu item so a recruiter can see what you helped plan.",
+        "example": "Helped plan seasonal menu changes, contributing [contribution] to [menu item]",
+        "question": "What did you contribute to a seasonal menu change, and which menu item did it involve?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Kitchen Manager",
+        "Sous Chef"
+      ],
+      "level": "Restaurant kitchen management",
+      "note": "Your experience points toward kitchen management and sous chef roles. The progression and ServSafe Manager certification are clear; more detail about staff and purchasing would help distinguish your management work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 72,
+    "lifted_by_employer": false,
+    "verdict": "A kitchen manager with restaurant experience, but too few details about the staff, ordering, and training.",
+    "write_up": [
+      "A recruiter can see your progression from line cook to kitchen manager and may move your resume forward with questions. The first hesitation is how much of the scheduling, ordering, and training you handle at River Walk Grill.",
+      "The 180-seat restaurant line works because it names your responsibility and gives a concrete sense of the restaurant. Let's build on that in the lines that follow, starting with the kitchen staff schedule."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Kitchen Manager, line 1",
+        "line": "Run the kitchen for a 180-seat restaurant",
+        "cannot_tell": "Keep this as a model. It puts the job and a useful measure together, so a recruiter doesn't have to guess what setting you manage.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 2",
+        "line": "Manage the kitchen staff schedule",
+        "cannot_tell": "Scheduling is central to a kitchen manager's job, but a recruiter can't tell how many people you schedule or which shifts you cover.",
+        "example": "Manage the kitchen staff schedule for [number] staff across [shifts]",
+        "question": "How many kitchen staff do you schedule, and which shifts does the schedule cover?"
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 3",
+        "line": "Order food and supplies from vendors",
+        "cannot_tell": "A recruiter can see what you order, but not how much purchasing you handle. The order frequency or spend would give that responsibility some weight.",
+        "example": "Order food and supplies from vendors [frequency], with [order spend]",
+        "question": "How often do you order food and supplies, and what is the spend you handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 4",
+        "line": "Keep the kitchen ready for health inspections",
+        "cannot_tell": "Keeping the kitchen inspection-ready matters, but this doesn't say what you do to prepare it.",
+        "example": "Keep the kitchen ready for health inspections by [preparation tasks]",
+        "question": "What tasks do you handle to keep the kitchen ready for health inspections?"
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 5",
+        "line": "Train new line cooks",
+        "cannot_tell": "Training new cooks is useful management experience. A recruiter can't tell how many cooks you train or what you teach them.",
+        "example": "Train [number] new line cooks on [training topics]",
+        "question": "How many new line cooks have you trained, and what did you teach them?"
+      },
+      {
+        "kind": "line",
+        "where": "Sous Chef, line 2",
+        "line": "Helped plan seasonal menu changes",
+        "cannot_tell": "Your part in the menu changes is still a blank. Name a contribution and a menu item so a recruiter can see what you helped plan.",
+        "example": "Helped plan seasonal menu changes, contributing [contribution] to [menu item]",
+        "question": "What did you contribute to a seasonal menu change, and which menu item did it involve?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Kitchen Manager",
+        "Sous Chef"
+      ],
+      "level": "Restaurant kitchen management",
+      "note": "Your experience points toward kitchen management and sous chef roles. The progression and ServSafe Manager certification are clear; more detail about staff and purchasing would help distinguish your management work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 72
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 72,
+    "lifted_by_employer": false,
+    "verdict": "A kitchen manager with restaurant experience, but too few details about the staff, ordering, and training.",
+    "write_up": [
+      "A recruiter can see your progression from line cook to kitchen manager and may move your resume forward with questions. The first hesitation is how much of the scheduling, ordering, and training you handle at River Walk Grill.",
+      "The 180-seat restaurant line works because it names your responsibility and gives a concrete sense of the restaurant. Let's build on that in the lines that follow, starting with the kitchen staff schedule."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Kitchen Manager, line 1",
+        "line": "Run the kitchen for a 180-seat restaurant",
+        "cannot_tell": "Keep this as a model. It puts the job and a useful measure together, so a recruiter doesn't have to guess what setting you manage.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 2",
+        "line": "Manage the kitchen staff schedule",
+        "cannot_tell": "Scheduling is central to a kitchen manager's job, but a recruiter can't tell how many people you schedule or which shifts you cover.",
+        "example": "Manage the kitchen staff schedule for [number] staff across [shifts]",
+        "question": "How many kitchen staff do you schedule, and which shifts does the schedule cover?"
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 3",
+        "line": "Order food and supplies from vendors",
+        "cannot_tell": "A recruiter can see what you order, but not how much purchasing you handle. The order frequency or spend would give that responsibility some weight.",
+        "example": "Order food and supplies from vendors [frequency], with [order spend]",
+        "question": "How often do you order food and supplies, and what is the spend you handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 4",
+        "line": "Keep the kitchen ready for health inspections",
+        "cannot_tell": "Keeping the kitchen inspection-ready matters, but this doesn't say what you do to prepare it.",
+        "example": "Keep the kitchen ready for health inspections by [preparation tasks]",
+        "question": "What tasks do you handle to keep the kitchen ready for health inspections?"
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 5",
+        "line": "Train new line cooks",
+        "cannot_tell": "Training new cooks is useful management experience. A recruiter can't tell how many cooks you train or what you teach them.",
+        "example": "Train [number] new line cooks on [training topics]",
+        "question": "How many new line cooks have you trained, and what did you teach them?"
+      },
+      {
+        "kind": "line",
+        "where": "Sous Chef, line 2",
+        "line": "Helped plan seasonal menu changes",
+        "cannot_tell": "Your part in the menu changes is still a blank. Name a contribution and a menu item so a recruiter can see what you helped plan.",
+        "example": "Helped plan seasonal menu changes, contributing [contribution] to [menu item]",
+        "question": "What did you contribute to a seasonal menu change, and which menu item did it involve?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Kitchen Manager",
+        "Sous Chef"
+      ],
+      "level": "Restaurant kitchen management",
+      "note": "Your experience points toward kitchen management and sous chef roles. The progression and ServSafe Manager certification are clear; more detail about staff and purchasing would help distinguish your management work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 72
+  },
+  "presentation": {
+    "score": 72,
+    "band": "Mostly clear",
+    "model_score": 72,
+    "lifted_by_employer": false,
+    "verdict": "A kitchen manager with restaurant experience, but too few details about the staff, ordering, and training.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 71,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Kitchen Manager, line 1",
+        "line": "Run the kitchen for a 180-seat restaurant",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 2",
+        "line": "Manage the kitchen staff schedule",
+        "blanks": 2,
+        "question": "How many kitchen staff do you schedule, and which shifts does the schedule cover?"
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 3",
+        "line": "Order food and supplies from vendors",
+        "blanks": 2,
+        "question": "How often do you order food and supplies, and what is the spend you handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 4",
+        "line": "Keep the kitchen ready for health inspections",
+        "blanks": 1,
+        "question": "What tasks do you handle to keep the kitchen ready for health inspections?"
+      },
+      {
+        "kind": "line",
+        "where": "Kitchen Manager, line 5",
+        "line": "Train new line cooks",
+        "blanks": 2,
+        "question": "How many new line cooks have you trained, and what did you teach them?"
+      },
+      {
+        "kind": "line",
+        "where": "Sous Chef, line 2",
+        "line": "Helped plan seasonal menu changes",
+        "blanks": 2,
+        "question": "What did you contribute to a seasonal menu change, and which menu item did it involve?"
+      }
+    ],
+    "card_count": 6,
+    "kinds": {
+      "keep": 1,
+      "line": 5
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Kitchen Manager",
+        "Sous Chef"
+      ],
+      "level": "Restaurant kitchen management",
+      "note": "Your experience points toward kitchen management and sous chef roles. The progression and ServSafe Manager certification are clear; more detail about staff and purchasing would help distinguish your management work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00737105,
+  "latency_ms": 17032
+}

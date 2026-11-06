@@ -1,0 +1,305 @@
+{
+  "case_id": "b40_senior_ic_wei",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Senior IC (bar persona).",
+  "resume_file": "../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/4-senior-ic-wei.txt",
+  "resume_sha256": "e95b41ee5391398ba259810d134ff4a7392766f8e7fa117ad93d5d19b8ed94a5",
+  "resume_words": 361,
+  "job_description_file": null,
+  "today": "2026-11-05",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-06T18:03:02.743Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5915,
+        "completion_tokens": 1534,
+        "total_tokens": 7449,
+        "cached_prompt_tokens": 4536,
+        "cache_write_prompt_tokens": 1376,
+        "reasoning_tokens": 598
+      },
+      "cost_usd": 0.0096198,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 21484
+    }
+  ],
+  "resume_prompt_sha256": "6eb03ddb4b32b2b65339085225b39b2ec67a805518799139b60e8c299167a186",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 81,
+    "lifted_by_employer": false,
+    "verdict": "A staff engineer with a strong payments architecture story and a few important unanswered questions about scale.",
+    "write_up": [
+      "A recruiter can see a staff engineer leading payments infrastructure work, with earlier experience in fraud scoring and storage systems. The work is concrete enough to move forward, though the ledger redesign leaves a question about how much it handled and what changed.",
+      "The idempotency line is a great model: it names the framework, where you drove adoption, and the duplicate-charge incidents it eliminated. Let's give the ledger redesign and a couple of the improvement claims that same substance."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, ledger redesign",
+        "line": "- Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "cannot_tell": "The architecture is specific, but a recruiter can't tell how much the ledger handled or what changed after the redesign. Those details would show why the move mattered.",
+        "example": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, handling [workload] and resulting in [what changed]",
+        "question": "What workload did the ledger handle, and what changed after the redesign?"
+      },
+      {
+        "kind": "keep",
+        "where": "Staff Software Engineer, idempotency framework",
+        "line": "- Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents",
+        "cannot_tell": "Keep this as a model. It connects your adoption work to a concrete problem that no longer occurred, without making the reader guess why the framework mattered.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, incident response",
+        "line": "- Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services",
+        "cannot_tell": "The incident leadership is clear. What happened after you introduced error budgets and SLOs is still open.",
+        "example": "Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services, with [what changed]",
+        "question": "What changed after you introduced the error budgets and SLOs?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, reconciliation",
+        "line": "- Reduced reconciliation break rate and manual ops effort",
+        "cannot_tell": "This names two improvements but leaves a recruiter guessing how much they changed and what you did to reduce them.",
+        "example": "Reduced reconciliation break rate from [starting rate] to [ending rate] and manual ops effort by [amount] through [what you did]",
+        "question": "What did you do to reduce the break rate and manual effort, and how much did each change?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, API performance",
+        "line": "- Improved API latency and availability through caching and request coalescing",
+        "cannot_tell": "The methods are clear, but the improvements aren't sized. A before-and-after measure would show what the caching and request coalescing accomplished.",
+        "example": "Improved API latency from [starting latency] to [ending latency] and availability from [starting availability] to [ending availability] through caching and request coalescing",
+        "question": "How did API latency and availability change after that work?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Software Engineer",
+        "Senior Software Engineer"
+      ],
+      "level": "Staff-level engineering",
+      "note": "Your experience points toward staff engineering work in distributed systems and payments. The ledger redesign, incident leadership, and idempotency work support that direction; measures of the systems and their improvements would make the story stronger.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 81,
+    "lifted_by_employer": false,
+    "verdict": "A staff engineer with a strong payments architecture story and a few important unanswered questions about scale.",
+    "write_up": [
+      "A recruiter can see a staff engineer leading payments infrastructure work, with earlier experience in fraud scoring and storage systems. The work is concrete enough to move forward, though the ledger redesign leaves a question about how much it handled and what changed.",
+      "The idempotency line is a great model: it names the framework, where you drove adoption, and the duplicate-charge incidents it eliminated. Let's give the ledger redesign and a couple of the improvement claims that same substance."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, ledger redesign",
+        "line": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "cannot_tell": "The architecture is specific, but a recruiter can't tell how much the ledger handled or what changed after the redesign. Those details would show why the move mattered.",
+        "example": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, handling [workload] and resulting in [what changed]",
+        "question": "What workload did the ledger handle, and what changed after the redesign?"
+      },
+      {
+        "kind": "keep",
+        "where": "Staff Software Engineer, idempotency framework",
+        "line": "Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents",
+        "cannot_tell": "Keep this as a model. It connects your adoption work to a concrete problem that no longer occurred, without making the reader guess why the framework mattered.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, incident response",
+        "line": "Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services",
+        "cannot_tell": "The incident leadership is clear. What happened after you introduced error budgets and SLOs is still open.",
+        "example": "Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services, with [what changed]",
+        "question": "What changed after you introduced the error budgets and SLOs?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, reconciliation",
+        "line": "Reduced reconciliation break rate and manual ops effort",
+        "cannot_tell": "This names two improvements but leaves a recruiter guessing how much they changed and what you did to reduce them.",
+        "example": "Reduced reconciliation break rate from [starting rate] to [ending rate] and manual ops effort by [amount] through [what you did]",
+        "question": "What did you do to reduce the break rate and manual effort, and how much did each change?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, API performance",
+        "line": "Improved API latency and availability through caching and request coalescing",
+        "cannot_tell": "The methods are clear, but the improvements aren't sized. A before-and-after measure would show what the caching and request coalescing accomplished.",
+        "example": "Improved API latency from [starting latency] to [ending latency] and availability from [starting availability] to [ending availability] through caching and request coalescing",
+        "question": "How did API latency and availability change after that work?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Software Engineer",
+        "Senior Software Engineer"
+      ],
+      "level": "Staff-level engineering",
+      "note": "Your experience points toward staff engineering work in distributed systems and payments. The ledger redesign, incident leadership, and idempotency work support that direction; measures of the systems and their improvements would make the story stronger.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 81
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 81,
+    "lifted_by_employer": false,
+    "verdict": "A staff engineer with a strong payments architecture story and a few important unanswered questions about scale.",
+    "write_up": [
+      "A recruiter can see a staff engineer leading payments infrastructure work, with earlier experience in fraud scoring and storage systems. The work is concrete enough to move forward, though the ledger redesign leaves a question about how much it handled and what changed.",
+      "The idempotency line is a great model: it names the framework, where you drove adoption, and the duplicate-charge incidents it eliminated. Let's give the ledger redesign and a couple of the improvement claims that same substance."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, ledger redesign",
+        "line": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "cannot_tell": "The architecture is specific, but a recruiter can't tell how much the ledger handled or what changed after the redesign. Those details would show why the move mattered.",
+        "example": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, handling [workload] and resulting in [what changed]",
+        "question": "What workload did the ledger handle, and what changed after the redesign?"
+      },
+      {
+        "kind": "keep",
+        "where": "Staff Software Engineer, idempotency framework",
+        "line": "Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents",
+        "cannot_tell": "Keep this as a model. It connects your adoption work to a concrete problem that no longer occurred, without making the reader guess why the framework mattered.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, incident response",
+        "line": "Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services",
+        "cannot_tell": "The incident leadership is clear. What happened after you introduced error budgets and SLOs is still open.",
+        "example": "Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services, with [what changed]",
+        "question": "What changed after you introduced the error budgets and SLOs?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, reconciliation",
+        "line": "Reduced reconciliation break rate and manual ops effort",
+        "cannot_tell": "This names two improvements but leaves a recruiter guessing how much they changed and what you did to reduce them.",
+        "example": "Reduced reconciliation break rate from [starting rate] to [ending rate] and manual ops effort by [amount] through [what you did]",
+        "question": "What did you do to reduce the break rate and manual effort, and how much did each change?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, API performance",
+        "line": "Improved API latency and availability through caching and request coalescing",
+        "cannot_tell": "The methods are clear, but the improvements aren't sized. A before-and-after measure would show what the caching and request coalescing accomplished.",
+        "example": "Improved API latency from [starting latency] to [ending latency] and availability from [starting availability] to [ending availability] through caching and request coalescing",
+        "question": "How did API latency and availability change after that work?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Software Engineer",
+        "Senior Software Engineer"
+      ],
+      "level": "Staff-level engineering",
+      "note": "Your experience points toward staff engineering work in distributed systems and payments. The ledger redesign, incident leadership, and idempotency work support that direction; measures of the systems and their improvements would make the story stronger.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 81
+  },
+  "presentation": {
+    "score": 81,
+    "band": "Mostly clear",
+    "model_score": 81,
+    "lifted_by_employer": false,
+    "verdict": "A staff engineer with a strong payments architecture story and a few important unanswered questions about scale.",
+    "write_up_paragraphs": 2,
+    "write_up_words": 79,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, ledger redesign",
+        "line": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "blanks": 2,
+        "question": "What workload did the ledger handle, and what changed after the redesign?"
+      },
+      {
+        "kind": "keep",
+        "where": "Staff Software Engineer, idempotency framework",
+        "line": "Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, incident response",
+        "line": "Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services",
+        "blanks": 1,
+        "question": "What changed after you introduced the error budgets and SLOs?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, reconciliation",
+        "line": "Reduced reconciliation break rate and manual ops effort",
+        "blanks": 4,
+        "question": "What did you do to reduce the break rate and manual effort, and how much did each change?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, API performance",
+        "line": "Improved API latency and availability through caching and request coalescing",
+        "blanks": 4,
+        "question": "How did API latency and availability change after that work?"
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "line": 4,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Staff Software Engineer",
+        "Senior Software Engineer"
+      ],
+      "level": "Staff-level engineering",
+      "note": "Your experience points toward staff engineering work in distributed systems and payments. The ledger redesign, incident leadership, and idempotency work support that direction; measures of the systems and their improvements would make the story stronger.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0096198,
+  "latency_ms": 21487
+}

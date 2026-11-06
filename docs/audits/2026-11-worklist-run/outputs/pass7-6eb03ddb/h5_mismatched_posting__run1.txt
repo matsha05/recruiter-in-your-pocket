@@ -1,0 +1,31 @@
+# h5_mismatched_posting, run 1
+Resume: ../2026-11-live-judgment/resumes/h5_data_analyst.txt (166 words), posting: ../2026-11-live-judgment/resumes/h5_nursing_posting.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-05; prompt 6eb03ddb; severity check off
+Outcome: report; cost $0.0122; 15.5s
+Case note: Data analyst against a registered nurse posting.
+
+## Clear and specific (score 87; model wrote 87)
+## Verdict
+A strong data analyst resume that doesn't show the qualifications for this nursing role.
+
+## Write-up
+Your analytics work is well documented: a recruiter can see the dashboards you maintain, the report you automated, and the recommendations merchandising adopted. The markdown line is especially strong because it names the analysis and the decision that followed!
+
+Your resume is in good shape for data analyst roles. For this nursing job, though, it doesn't show an RN license or clinical work. The score reflects your analyst resume, not your fit for the nursing posting. For analyst applications, how competitive the job is will also matter.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Data Analyst, line 3
+   line: "Analyzed markdown timing for 2,100 SKUs; the merchandising team adopted the recommended schedule in two categories"
+   can't tell: Keep this as a model. It tells a recruiter what you examined, how much was involved, and who used your recommendation.
+2. [line] Data Analyst, line 4
+   line: "Pull ad hoc analyses for the VP of Sales, about 10 requests a month"
+   can't tell: A recruiter can see how often you get requests, but not what you analyze or what decisions the work informs.
+   example: Pull ad hoc analyses on [analysis topics] for the VP of Sales, about 10 requests a month, to inform [decisions]
+   question: What do you analyze for the VP of Sales, and what decisions does that work inform?
+
+## Fit
+Roles: ["Data Analyst","Registered Nurse, Medical-Surgical Unit (Nights)"]
+Level: Experienced data analyst
+Note: The nursing role requires an RN license and patient care skills that your resume doesn't show. Your reporting and work with sales, merchandising, and finance teams are relevant communication experience, but they don't establish clinical qualifications. If you have nursing credentials or clinical experience, add them.
+Posting: This is a night-shift medical-surgical nursing role requiring licensure, patient care, medication administration, EHR documentation, and communication with patients and care teams.
+Missing: ["Current unrestricted North Carolina RN license or compact state license","BLS certification required; ACLS within six months of hire","Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered","Experience with Epic or a comparable EHR","Ability to manage a patient assignment of 5 to 6 patients","Administer medications and treatments per orders and unit protocol"]

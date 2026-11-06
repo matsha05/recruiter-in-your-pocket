@@ -11,48 +11,49 @@
   "model": "gpt-6.1-terra",
   "reasoning_effort": "medium",
   "severity_check": false,
-  "started_at": "2026-11-06T16:34:22.974Z",
+  "started_at": "2026-11-06T18:14:53.413Z",
   "calls": [
     {
       "kind": "report",
       "usage": {
-        "prompt_tokens": 4570,
-        "completion_tokens": 1022,
-        "total_tokens": 5592,
-        "cached_prompt_tokens": 3792,
+        "prompt_tokens": 5463,
+        "completion_tokens": 978,
+        "total_tokens": 6441,
+        "cached_prompt_tokens": 4685,
         "cache_write_prompt_tokens": 775,
-        "reasoning_tokens": 529
+        "reasoning_tokens": 459
       },
-      "cost_usd": 0.00627135,
+      "cost_usd": 0.006096,
       "model": "gpt-6.1-terra",
-      "latency_ms": 17159
+      "latency_ms": 13371
     }
   ],
-  "resume_prompt_sha256": "70e795a1e91877ad12f5394154dccd644b9f9d298e123ca182963a0e3e089350",
+  "resume_prompt_sha256": "0a19c3ee70395ec8fb0584d4bea1b93da77aeca37469b4d47211bc8568544f0c",
   "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
   "model_output": {
     "contract_version": "v3",
-    "score": 82,
+    "score": 84,
     "lifted_by_employer": false,
-    "verdict": "A store manager with strong results at one location and a second turnaround that needs an explanation.",
+    "verdict": "A store manager with strong results in Charlotte and a two-store turnaround claim that needs backing.",
     "write_up": [
-      "A recruiter sees a retail manager running a $9.4M store, with sales growth, lower turnover and less shrink. The headline claims two store turnarounds, but the work below only shows what changed at one.",
-      "The fixed-schedule line is the model: it names the change you made and gives the turnover figures on both sides. Add the story behind the other turnaround, and the headline has something to stand on."
+      "Your resume shows a progression from department supervisor to store manager at Carolina Home & Garden. The Charlotte role makes a strong case: a recruiter can see the store you run and the changes in sales, turnover and shrink.",
+      "The turnover line is a great model because it connects fixed schedules to a drop from 68% to 41%. The headline promises two store turnarounds, though the Gastonia roles don't yet show what changed there.",
+      "Start with that headline. Add what you did and what changed at each store, if you can, or narrow the claim to the turnaround your resume shows."
     ],
     "cards": [
       {
         "kind": "line",
         "where": "Headline",
         "line": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain.",
-        "cannot_tell": "The results below show what changed at your current store, but not what happened at the other one. A recruiter will look for both stories after reading this claim.",
-        "example": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain; at the other store, [what you changed and what happened]",
-        "question": "What did you change at the other store, and what happened there?"
+        "cannot_tell": "The Charlotte results are clear, but a recruiter can't see the second turnaround in the Gastonia roles. That makes the headline a bigger claim than the jobs currently back up.",
+        "example": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain by [actions at each store], with [results at each store].",
+        "question": "What did you do at each store, and what changed?"
       },
       {
         "kind": "keep",
-        "where": "Store Manager, line 3",
+        "where": "Store Manager, turnover line",
         "line": "- Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules",
-        "cannot_tell": "Keep this as your model. A recruiter can see both your decision and the movement in a measure that matters for a store.",
+        "cannot_tell": "Keep this as a model. It gives a before and after and names the management decision behind the change.",
         "example": "",
         "question": ""
       }
@@ -62,8 +63,8 @@
         "Store Manager",
         "Assistant Store Manager"
       ],
-      "level": "Store manager",
-      "note": "Your experience points toward store management, with earlier assistant manager and department supervisor work. The current role makes your management responsibilities and store results easy to see.",
+      "level": "Store management",
+      "note": "Your experience points most directly to store management. The Charlotte role shows responsibility for a $9.4M store and 42 employees, with several measurable improvements.",
       "posting": {
         "summary": "",
         "missing": []
@@ -72,27 +73,28 @@
   },
   "validated_report": {
     "contract_version": "v3",
-    "score": 82,
+    "score": 84,
     "lifted_by_employer": false,
-    "verdict": "A store manager with strong results at one location and a second turnaround that needs an explanation.",
+    "verdict": "A store manager with strong results in Charlotte and a two-store turnaround claim that needs backing.",
     "write_up": [
-      "A recruiter sees a retail manager running a $9.4M store, with sales growth, lower turnover and less shrink. The headline claims two store turnarounds, but the work below only shows what changed at one.",
-      "The fixed-schedule line is the model: it names the change you made and gives the turnover figures on both sides. Add the story behind the other turnaround, and the headline has something to stand on."
+      "Your resume shows a progression from department supervisor to store manager at Carolina Home & Garden. The Charlotte role makes a strong case: a recruiter can see the store you run and the changes in sales, turnover and shrink.",
+      "The turnover line is a great model because it connects fixed schedules to a drop from 68% to 41%. The headline promises two store turnarounds, though the Gastonia roles don't yet show what changed there.",
+      "Start with that headline. Add what you did and what changed at each store, if you can, or narrow the claim to the turnaround your resume shows."
     ],
     "cards": [
       {
         "kind": "line",
         "where": "Headline",
         "line": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain.",
-        "cannot_tell": "The results below show what changed at your current store, but not what happened at the other one. A recruiter will look for both stories after reading this claim.",
-        "example": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain; at the other store, [what you changed and what happened]",
-        "question": "What did you change at the other store, and what happened there?"
+        "cannot_tell": "The Charlotte results are clear, but a recruiter can't see the second turnaround in the Gastonia roles. That makes the headline a bigger claim than the jobs currently back up.",
+        "example": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain by [actions at each store], with [results at each store].",
+        "question": "What did you do at each store, and what changed?"
       },
       {
         "kind": "keep",
-        "where": "Store Manager, line 3",
+        "where": "Store Manager, turnover line",
         "line": "Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules",
-        "cannot_tell": "Keep this as your model. A recruiter can see both your decision and the movement in a measure that matters for a store.",
+        "cannot_tell": "Keep this as a model. It gives a before and after and names the management decision behind the change.",
         "example": "",
         "question": ""
       }
@@ -102,8 +104,8 @@
         "Store Manager",
         "Assistant Store Manager"
       ],
-      "level": "Store manager",
-      "note": "Your experience points toward store management, with earlier assistant manager and department supervisor work. The current role makes your management responsibilities and store results easy to see.",
+      "level": "Store management",
+      "note": "Your experience points most directly to store management. The Charlotte role shows responsibility for a $9.4M store and 42 employees, with several measurable improvements.",
       "posting": {
         "summary": "",
         "missing": []
@@ -113,31 +115,32 @@
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 82
+    "content_score": 84
   },
   "shipped_report": {
     "contract_version": "v3",
-    "score": 82,
+    "score": 84,
     "lifted_by_employer": false,
-    "verdict": "A store manager with strong results at one location and a second turnaround that needs an explanation.",
+    "verdict": "A store manager with strong results in Charlotte and a two-store turnaround claim that needs backing.",
     "write_up": [
-      "A recruiter sees a retail manager running a $9.4M store, with sales growth, lower turnover and less shrink. The headline claims two store turnarounds, but the work below only shows what changed at one.",
-      "The fixed-schedule line is the model: it names the change you made and gives the turnover figures on both sides. Add the story behind the other turnaround, and the headline has something to stand on."
+      "Your resume shows a progression from department supervisor to store manager at Carolina Home & Garden. The Charlotte role makes a strong case: a recruiter can see the store you run and the changes in sales, turnover and shrink.",
+      "The turnover line is a great model because it connects fixed schedules to a drop from 68% to 41%. The headline promises two store turnarounds, though the Gastonia roles don't yet show what changed there.",
+      "Start with that headline. Add what you did and what changed at each store, if you can, or narrow the claim to the turnaround your resume shows."
     ],
     "cards": [
       {
         "kind": "line",
         "where": "Headline",
         "line": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain.",
-        "cannot_tell": "The results below show what changed at your current store, but not what happened at the other one. A recruiter will look for both stories after reading this claim.",
-        "example": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain; at the other store, [what you changed and what happened]",
-        "question": "What did you change at the other store, and what happened there?"
+        "cannot_tell": "The Charlotte results are clear, but a recruiter can't see the second turnaround in the Gastonia roles. That makes the headline a bigger claim than the jobs currently back up.",
+        "example": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain by [actions at each store], with [results at each store].",
+        "question": "What did you do at each store, and what changed?"
       },
       {
         "kind": "keep",
-        "where": "Store Manager, line 3",
+        "where": "Store Manager, turnover line",
         "line": "Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules",
-        "cannot_tell": "Keep this as your model. A recruiter can see both your decision and the movement in a measure that matters for a store.",
+        "cannot_tell": "Keep this as a model. It gives a before and after and names the management decision behind the change.",
         "example": "",
         "question": ""
       }
@@ -147,8 +150,8 @@
         "Store Manager",
         "Assistant Store Manager"
       ],
-      "level": "Store manager",
-      "note": "Your experience points toward store management, with earlier assistant manager and department supervisor work. The current role makes your management responsibilities and store results easy to see.",
+      "level": "Store management",
+      "note": "Your experience points most directly to store management. The Charlotte role shows responsibility for a $9.4M store and 42 employees, with several measurable improvements.",
       "posting": {
         "summary": "",
         "missing": []
@@ -158,27 +161,27 @@
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 82
+    "content_score": 84
   },
   "presentation": {
-    "score": 82,
+    "score": 84,
     "band": "Mostly clear",
-    "model_score": 82,
+    "model_score": 84,
     "lifted_by_employer": false,
-    "verdict": "A store manager with strong results at one location and a second turnaround that needs an explanation.",
-    "write_up_paragraphs": 2,
-    "write_up_words": 69,
+    "verdict": "A store manager with strong results in Charlotte and a two-store turnaround claim that needs backing.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 101,
     "cards": [
       {
         "kind": "line",
         "where": "Headline",
         "line": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain.",
-        "blanks": 1,
-        "question": "What did you change at the other store, and what happened there?"
+        "blanks": 2,
+        "question": "What did you do at each store, and what changed?"
       },
       {
         "kind": "keep",
-        "where": "Store Manager, line 3",
+        "where": "Store Manager, turnover line",
         "line": "Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules",
         "blanks": 0,
         "question": ""
@@ -198,8 +201,8 @@
         "Store Manager",
         "Assistant Store Manager"
       ],
-      "level": "Store manager",
-      "note": "Your experience points toward store management, with earlier assistant manager and department supervisor work. The current role makes your management responsibilities and store results easy to see.",
+      "level": "Store management",
+      "note": "Your experience points most directly to store management. The Charlotte role shows responsibility for a $9.4M store and 42 employees, with several measurable improvements.",
       "posting": {
         "summary": "",
         "missing": []
@@ -207,6 +210,6 @@
     }
   },
   "outcome": "report",
-  "cost_usd": 0.00627135,
-  "latency_ms": 17159
+  "cost_usd": 0.006096,
+  "latency_ms": 13497
 }

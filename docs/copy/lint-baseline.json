@@ -3,13 +3,21 @@
   "updated": "2026-11-06",
   "entries": [
     {
+      "text": "The extension reloaded. Refresh the page.",
+      "moment": "extension",
+      "tics": [
+        "coined_word"
+      ],
+      "where": "extension/src/content/indeed.ts:15"
+    },
+    {
       "text": "Extension reloaded - please refresh the page",
       "moment": "extension",
       "tics": [
         "coined_word",
         "please"
       ],
-      "where": "extension/src/content/indeed.ts:15"
+      "where": "extension/src/content/linkedin.ts:26"
     },
     {
       "text": "Save job descriptions, compare them with your resume, and track your applications.",
@@ -332,14 +340,6 @@
       "where": "web/app/(editorial)/research/who-you-are/page.tsx:109"
     },
     {
-      "text": "The Verdict is a one-line read of who your resume says you are. If it isn&apos;t who you are, the resume isn&apos;t telling your story yet. When your resume doesn&apos;t make clear what you&apos;d do next, the write-up says so and the cards point to the lines.",
-      "moment": "research",
-      "tics": [
-        "retired_name"
-      ],
-      "where": "web/app/(editorial)/research/who-you-are/page.tsx:143"
-    },
-    {
       "text": "Whatever a stranger can say about you in one line. In mock structured interviews, first impressions predicted the final ratings and, later, real internship offers. That study was about interviews, not resumes, but our experience is that the first read of a resume works the same way.",
       "moment": "research",
       "tics": [
@@ -405,22 +405,6 @@
       "where": "web/app/(marketing)/page.tsx:8"
     },
     {
-      "text": "Admin client not configured",
-      "moment": "account",
-      "tics": [
-        "internal_term"
-      ],
-      "where": "web/app/api/account/delete/route.ts:123"
-    },
-    {
-      "text": "We could not verify every subscription, so your account was not deleted. Please contact support.",
-      "moment": "account",
-      "tics": [
-        "please"
-      ],
-      "where": "web/app/api/account/delete/route.ts:154"
-    },
-    {
       "text": "Failed to fetch analytics",
       "moment": "error",
       "tics": [
@@ -443,14 +427,6 @@
         "internal_term"
       ],
       "where": "web/app/api/billing/confirm/route.ts:363"
-    },
-    {
-      "text": "Please sign in first.",
-      "moment": "pricing",
-      "tics": [
-        "please"
-      ],
-      "where": "web/app/api/billing/restore/route.ts:43"
     },
     {
       "text": "Could not open checkout from this page. Refresh the page and try again.",
@@ -485,52 +461,12 @@
       "where": "web/app/api/extension/quick-match/route.ts:92"
     },
     {
-      "text": "Please enter a valid LinkedIn profile URL (e.g., linkedin.com/in/yourname)",
-      "moment": "report",
-      "tics": [
-        "please"
-      ],
-      "where": "web/app/api/linkedin-feedback-stream/route.ts:267"
-    },
-    {
-      "text": "We couldn't parse your LinkedIn profile. Please make sure you uploaded a valid LinkedIn PDF export.",
-      "moment": "report",
-      "tics": [
-        "please"
-      ],
-      "where": "web/app/api/linkedin-feedback-stream/route.ts:298"
-    },
-    {
-      "text": "Failed to fetch passes",
-      "moment": "pricing",
-      "tics": [
-        "internal_term"
-      ],
-      "where": "web/app/api/passes/route.ts:25"
-    },
-    {
       "text": "Could not confirm access to this report. Refresh the page and try again.",
       "moment": "account",
       "tics": [
         "coined_word"
       ],
       "where": "web/app/api/reports/[id]/route.ts:119"
-    },
-    {
-      "text": "Please sign in before saving this recovered report.",
-      "moment": "account",
-      "tics": [
-        "please"
-      ],
-      "where": "web/app/api/reports/recovery/route.ts:313"
-    },
-    {
-      "text": "Please sign in to verify ownership before saving this report.",
-      "moment": "account",
-      "tics": [
-        "please"
-      ],
-      "where": "web/app/api/reports/route.ts:74"
     },
     {
       "text": "Support email forwarding is not configured",
@@ -603,14 +539,6 @@
         "coined_word"
       ],
       "where": "web/components/compare/comparisons.tsx:170"
-    },
-    {
-      "text": "reads the whole resume the way a recruiter would and cards every line that needs work, with the first report free and no subscription. If you tailor the wording for many applications a week, Jobscan is built for that. If you want to know whether the resume itself holds up, start here.",
-      "moment": "marketing",
-      "tics": [
-        "coined_word"
-      ],
-      "where": "web/components/compare/comparisons.tsx:202"
     },
     {
       "text": "what changed, how you measured it, and what you did to get there",
@@ -692,22 +620,6 @@
         "coined_word"
       ],
       "where": "web/components/compare/comparisons.tsx:783"
-    },
-    {
-      "text": "You care more about what the page says than how it looks. The report quotes the lines a recruiter would question and starts with the one most likely to cost you the interview.",
-      "moment": "marketing",
-      "tics": [
-        "coined_word"
-      ],
-      "where": "web/components/compare/comparisons.tsx:842"
-    },
-    {
-      "text": ". The Verdict is that line, read from your resume. If it isn’t who you are, that’s what to fix first.",
-      "moment": "marketing",
-      "tics": [
-        "retired_name"
-      ],
-      "where": "web/components/compare/comparisons.tsx:845"
     },
     {
       "text": "What it won’t do: design the page, offer templates, or export a styled resume. The PDF you can download is the report.",
@@ -846,14 +758,6 @@
       "where": "web/components/marketing/PricingPageClient.tsx:98"
     },
     {
-      "text": "We couldn't complete sign out. Please try again.",
-      "moment": "shared",
-      "tics": [
-        "please"
-      ],
-      "where": "web/components/providers/AuthProvider.tsx:224"
-    },
-    {
       "text": "We link every study we cite and say what it can’t tell you. When something is our advice rather than a finding, we say so. The date above is when the page last changed.",
       "moment": "research",
       "tics": [
@@ -910,52 +814,12 @@
       "where": "web/components/settings/DefaultResumeSection.tsx:88"
     },
     {
-      "text": "Run Another",
-      "moment": "upload",
-      "tics": [
-        "title_case"
-      ],
-      "where": "web/components/workspace/LinkedInModeSection.tsx:118"
-    },
-    {
-      "text": "Say what the related work was. It goes on the page as its own line, not into this one.",
-      "moment": "rewrite",
-      "tics": [
-        "coined_word"
-      ],
-      "where": "web/components/workspace/report/AskFirst.tsx:155"
-    },
-    {
-      "text": "The Verdict changed too.",
-      "moment": "report",
-      "tics": [
-        "retired_name"
-      ],
-      "where": "web/components/workspace/report/ReadComparison.tsx:101"
-    },
-    {
-      "text": "The Verdict reads the same.",
-      "moment": "report",
-      "tics": [
-        "retired_name"
-      ],
-      "where": "web/components/workspace/report/ReadComparison.tsx:101"
-    },
-    {
-      "text": "{remaining.length === 1 ? …} still there. Start with {remaining.length === 1 ? …} again.",
+      "text": "{remaining.length === 1 ? …} still there. Let's start with {remaining.length === 1 ? …} again.",
       "moment": "report",
       "tics": [
         "punch_fragments"
       ],
       "where": "web/components/workspace/report/ReadComparison.tsx:67"
-    },
-    {
-      "text": "{when} · Critical Miss {index + 1}",
-      "moment": "report",
-      "tics": [
-        "retired_name"
-      ],
-      "where": "web/components/workspace/report/ReadComparison.tsx:70"
     },
     {
       "text": "Keep this one",
@@ -964,14 +828,6 @@
         "retired_name"
       ],
       "where": "web/components/workspace/report/ReportStream.tsx:281"
-    },
-    {
-      "text": "Why the first read of you sticks",
-      "moment": "report",
-      "tics": [
-        "coined_word"
-      ],
-      "where": "web/components/workspace/report/ResearchReceipts.tsx:9"
     },
     {
       "text": "Five sheets of paper: the Job Search Pass",
@@ -1038,68 +894,12 @@
       "where": "web/lib/reports/ask-first.ts:25"
     },
     {
-      "text": "The related work, as you'd put it on the page",
-      "moment": "rewrite",
-      "tics": [
-        "coined_word"
-      ],
-      "where": "web/lib/reports/ask-first.ts:98"
-    },
-    {
-      "text": "This report couldn’t be saved. Please try again.",
-      "moment": "report",
-      "tics": [
-        "please"
-      ],
-      "where": "web/lib/reports/client-report-save.ts:30"
-    },
-    {
-      "text": "We couldn’t confirm that this report was saved. Please try again.",
-      "moment": "report",
-      "tics": [
-        "please"
-      ],
-      "where": "web/lib/reports/client-report-save.ts:33"
-    },
-    {
       "text": "The report request failed with status {response.status}. Please try again.",
       "moment": "report",
       "tics": [
         "please"
       ],
       "where": "web/lib/reports/generation-operation-marker.ts:4"
-    },
-    {
-      "text": "More than three Critical Misses. Here are the three that matter most.",
-      "moment": "report",
-      "tics": [
-        "retired_name"
-      ],
-      "where": "web/lib/reports/report-presentation.ts:113"
-    },
-    {
-      "text": "One Critical Miss. Fix it first.",
-      "moment": "report",
-      "tics": [
-        "retired_name"
-      ],
-      "where": "web/lib/reports/report-presentation.ts:118"
-    },
-    {
-      "text": "Two Critical Misses. Start with this one.",
-      "moment": "report",
-      "tics": [
-        "retired_name"
-      ],
-      "where": "web/lib/reports/report-presentation.ts:119"
-    },
-    {
-      "text": "Three Critical Misses. Start with this one.",
-      "moment": "report",
-      "tics": [
-        "retired_name"
-      ],
-      "where": "web/lib/reports/report-presentation.ts:120"
     },
     {
       "text": "The question they'd ask",

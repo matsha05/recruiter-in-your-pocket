@@ -152,7 +152,7 @@ export function AskFirst({
                     </div>
                   )}
                   {answer.relation === "related" && (
-                    <p className={styles.related}>Say what the related work was. It goes on the page as its own line, not into this one.</p>
+                    <p className={styles.related}>Say what the related work was. It goes on your resume as its own line, not into this one.</p>
                   )}
                   {answer.relation === "none" ? (
                     <p className={report.liftSkipped}>Left out.</p>

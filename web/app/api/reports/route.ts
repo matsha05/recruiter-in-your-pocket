@@ -71,7 +71,7 @@ export async function POST(request: NextRequest) {
 
     if (!sessionUser) {
       const flagMessage = isLaunchFlagEnabled("guestReportSave")
-        ? "Please sign in to verify ownership before saving this report."
+        ? "Sign in to save this report to your account."
         : "Report saving is available after sign-in.";
 
       return NextResponse.json(
@@ -106,13 +106,13 @@ export async function POST(request: NextRequest) {
     logError({
       msg: "reports.save_failed",
       outcome: "internal_error",
-      err: { name: error?.name || "Error", message: "Could not save this report. Check History before trying again.", code: error?.code },
+      err: { name: error?.name || "Error", message: "We couldn’t save this report. Check My reports before you try again.", code: error?.code },
     });
     const status = Number(error?.httpStatus || 0) || 500;
     return NextResponse.json({
       ok: false,
       errorCode: error?.code || "SAVE_REPORT_FAILED",
-      message: "Could not save this report. Check History before trying again.",
+      message: "We couldn’t save this report. Check My reports before you try again.",
     }, { status });
   }
 }

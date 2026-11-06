@@ -110,14 +110,14 @@ export function criticalCountHeading(misses: CriticalMisses, tone: ReportTone = 
   if (!misses.counted) return null;
   if (misses.more) {
     return {
-      title: "More than three Critical Misses. Here are the three that matter most.",
+      title: "More than three problems. Here are the three that matter most.",
       lead: "Any one of them could cost you the interview on its own. Start with the first.",
     };
   }
   // A judgment, not a guarantee: it says nothing about the rest of the report (Matt, Nov 2).
-  if (misses.count === 1) return { title: "One Critical Miss. Fix it first.", lead: "It's the one most likely to cost you the interview." };
-  if (misses.count === 2) return { title: "Two Critical Misses. Start with this one.", lead: "Either one could cost you the interview on its own." };
-  return { title: "Three Critical Misses. Start with this one.", lead: "Any one of them could cost you the interview on its own." };
+  if (misses.count === 1) return { title: "One problem to fix first.", lead: "It's the one most likely to cost you the interview." };
+  if (misses.count === 2) return { title: "Two problems. Start with this one.", lead: "Either one could cost you the interview on its own." };
+  return { title: "Three problems. Start with this one.", lead: "Any one of them could cost you the interview on its own." };
 }
 
 /**
@@ -140,7 +140,8 @@ export function fixLabel(index: number, misses: CriticalMisses, tone: ReportTone
     return total > 2 ? `Worth tightening · ${index} of ${total - 1}` : "Worth tightening";
   }
   if (index >= misses.count) return `Fix ${index + 1}`;
-  return misses.count > 1 ? `Critical Miss ${index + 1}` : "Critical Miss";
+  // The retired name stays out of reopened v2 reports too (Matt retired it; November 6, 2026).
+  return misses.count > 1 ? `Problem ${index + 1}` : "Fix this first";
 }
 
 export function questionForPlaceholder(key: string) {

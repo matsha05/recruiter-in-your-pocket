@@ -310,7 +310,7 @@ export async function POST(request: NextRequest) {
       return privateJson({
         ok: false,
         errorCode: "AUTH_REQUIRED",
-        message: "Please sign in before saving this recovered report.",
+        message: "Sign in to save this recovered report.",
       }, 401);
     }
     const admin = createSupabaseAdminClient();
