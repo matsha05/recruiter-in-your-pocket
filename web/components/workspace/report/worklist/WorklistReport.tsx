@@ -161,6 +161,7 @@ export function WorklistReport({
         isSignedIn={isSignedIn}
         isExhausted={isExhausted}
         ready={ready}
+        clean={ready}
         allAddressed={allAddressed}
         revisedCount={filled.length}
         onStartReport={onStartReport}

@@ -36,15 +36,15 @@ export const popupContent = {
   footer: {
     onboarding: {
       title: "For feedback on your resume, open Recruiter in Your Pocket.",
-      cta: "Review my resume",
+      cta: "Get your free report",
     },
     unauthenticated: {
       title: "You can also get a report on your resume.",
-      cta: "Review my resume",
+      cta: "Get your free report",
     },
     empty: {
       title: "Get resume feedback with or without a job description.",
-      cta: "Review my resume",
+      cta: "Get your free report",
     },
     jobs: {
       title: "Select a job to compare it with your resume.",

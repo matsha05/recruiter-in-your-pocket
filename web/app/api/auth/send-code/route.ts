@@ -75,7 +75,7 @@ export async function POST(request: NextRequest) {
             const res = NextResponse.json(
                 {
                     ok: false,
-                    message: "Could not send your sign-in code. Try again shortly.",
+                    message: "We couldn’t send your sign-in code. Try again in a moment.",
                     errorCode: code
                 },
                 { status: 503 }
@@ -102,7 +102,7 @@ export async function POST(request: NextRequest) {
             err: { name: (error as any)?.name || "Error", message: (error as any)?.message || "Failed to send code", stack: (error as any)?.stack }
         });
         const res = NextResponse.json(
-            { ok: false, message: "Could not send your sign-in code. Try again shortly." },
+            { ok: false, message: "We couldn’t send your sign-in code. Try again in a moment." },
             { status: 500 }
         );
         res.headers.set("x-request-id", request_id);

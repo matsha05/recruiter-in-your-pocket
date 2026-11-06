@@ -13,7 +13,7 @@ Routes: `/pricing`. Strings: 39 (38 unique).
 | 3 | pricing | `web/app/(marketing)/pricing/page.tsx:14` | key:description | Compare revisions or review your next applications with five additional reports over 90 days. One payment, no automatic renewal. |
 | 4 | pricing | `web/app/(marketing)/pricing/page.tsx:21` | key:title | Your first resume report is free. Five more are $29. |
 | 5 | pricing | `web/app/(marketing)/pricing/page.tsx:22` | key:description | Five additional reports to compare revisions or review applications over 90 days. One payment, no automatic renewal. |
-| 6 | pricing | `web/components/marketing/PricingPageClient.tsx:41` | const | Could not open checkout. Try again. If this continues, contact support. |
+| 6 | pricing | `web/components/marketing/PricingPageClient.tsx:41` | const | Checkout didn’t open. Try again, and if it keeps happening, write to support. |
 | 7 | pricing | `web/components/marketing/PricingPageClient.tsx:73` | jsx-text | Your first report is free. Five more are $29. |
 | 8 | pricing | `web/components/marketing/PricingPageClient.tsx:78` | jsx-text | Checkout canceled. |
 | 9 | pricing | `web/components/marketing/PricingPageClient.tsx:78` | jsx-text | Nothing was charged. |
@@ -40,8 +40,8 @@ Routes: `/pricing`. Strings: 39 (38 unique).
 | 30 | pricing | `web/components/marketing/PricingPageClient.tsx:147` | jsx-text | Your saved reports and their PDFs stay open. Another report needs a new pass. |
 | 31 | pricing | `web/components/marketing/PricingPageClient.tsx:149` | jsx-text | Taxes may apply at checkout. |
 | 32 | pricing | `web/components/marketing/PricingPageClient.tsx:152` | attr:aria-label | Other tools and restoring a purchase |
-| 33 | pricing | `web/components/marketing/PricingPageClient.tsx:155` | jsx-text | Weighing other tools? |
-| 34 | pricing | `web/components/marketing/PricingPageClient.tsx:157` | jsx-text | A writer, a keyword scanner, a builder, and a recruiter’s read are different purchases, and the read is the one that decides: |
+| 33 | pricing | `web/components/marketing/PricingPageClient.tsx:155` | jsx-text | Other tools do different jobs. |
+| 34 | pricing | `web/components/marketing/PricingPageClient.tsx:157` | jsx-text | Writers rewrite, keyword scanners match words, builders lay it out. A recruiter decides whether you get the call, and |
 | 35 | pricing | `web/components/marketing/PricingPageClient.tsx:158` | jsx-text | recruiters who spent longer on Experience were more likely to move a resume forward |
 | 36 | pricing | `web/components/marketing/PricingPageClient.tsx:159` | jsx-text | See how we compare with seven tools |
 | 37 | pricing | `web/components/marketing/PricingPageClient.tsx:159` | jsx-text | , Jobscan and TopResume among them, with each one’s own prices. |

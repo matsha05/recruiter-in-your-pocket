@@ -65,7 +65,7 @@ export async function POST(request: NextRequest) {
                 outcome: "provider_error",
                 err: { name: "SupabaseError", message: error.message }
             });
-            const res = NextResponse.json({ ok: false, message: "That code was not accepted. Check the latest email or request a new code." }, { status: 400 });
+            const res = NextResponse.json({ ok: false, message: "That code didn’t work. Check the latest email or request a new code." }, { status: 400 });
             res.headers.set("x-request-id", request_id);
             return res;
         }

@@ -16,7 +16,7 @@ export function MobileNav({ workspaceReportVisible = false }: { workspaceReportV
     return (
         <NavDrawer
             triggerClassName="md:hidden"
-            description="Navigate the studio, reports, settings, and account actions."
+            description="Open your reports, settings and account."
             footer={authLoading ? (
                 <p className="min-h-11 text-sm text-muted-foreground" role="status" aria-live="polite">
                     Checking account…

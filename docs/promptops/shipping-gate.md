@@ -127,7 +127,9 @@ Spend (token-calculated, synthetic product strings only; the copy-judge cap is $
 | Calibration v2, tuning and held-out sets | 64 | 6 | $0.0696 |
 | Calibration v3, tuning and held-out sets | 64 | 6 | $0.0738 |
 | Calibration v4, tuning and held-out sets | 64 | 6 | $0.0712 |
-| Total so far | | | $0.2652 |
+| First-seen routes of the inventory (prompt v3), for the rewrites | 1,357 | 68 | $1.1866 |
+| The rewritten lines, before the rewrite PR (prompt v4) | 42 | 4 | $0.0411 |
+| Total | | | $1.4929 |
 
 ---
 

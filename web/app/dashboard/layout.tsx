@@ -4,7 +4,7 @@ import { AppHeader } from "@/components/layout/AppHeader";
 
 export const metadata: Metadata = {
   title: "Your progress",
-  description: "What keeps tripping recruiters up in your resume, and what keeps landing.",
+  description: "What keeps coming up across your reports, and what keeps working.",
   robots: PRIVATE_ROUTE_ROBOTS,
 };
 

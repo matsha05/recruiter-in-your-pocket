@@ -45,7 +45,7 @@ const PASS_BULLETS = [
 ];
 
 // The title names what the visitor was doing when the pass came up; the list and price are the same every time.
-const DEFAULT_UNLOCK_TITLE = "Want another read?";
+const DEFAULT_UNLOCK_TITLE = "Five more reads.";
 const CONTEXT_UNLOCK_TITLE: Record<UnlockSection, string> = {
     evidence_ledger: "Check your revised resume",
     bullet_upgrades: "See what your edits changed",

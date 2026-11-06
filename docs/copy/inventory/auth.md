@@ -8,7 +8,7 @@ Routes: `/auth`. Strings: 7 (7 unique).
 
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
-| 1 | auth | `web/app/auth/page.tsx:12` | key:description | Sign in to access saved reports and role context you choose to keep. |
+| 1 | auth | `web/app/auth/page.tsx:12` | key:description | Sign in to see your saved reports and the job postings you kept. |
 | 2 | auth | `web/app/auth/page.tsx:24` | jsx-text | Skip to content |
 | 3 | auth | `web/app/auth/page.tsx:26` | attr:aria-label | Recruiter in Your Pocket home |
 | 4 | auth | `web/components/auth/AuthClient.tsx:40` | jsx-text | You&apos;re already signed in. |

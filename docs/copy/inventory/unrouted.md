@@ -10,7 +10,7 @@ Routes: none. Strings: 15 (15 unique).
 | --- | --- | --- | --- | --- |
 | 1 | other | `web/app/global-error.tsx:23` | jsx-text | Recruiter in Your Pocket |
 | 2 | other | `web/app/global-error.tsx:27` | jsx-text | We couldn&apos;t load the app. |
-| 3 | other | `web/app/global-error.tsx:30` | jsx-text | Something broke on our end. If it keeps happening, email support and include the error reference below, if you see one. |
+| 3 | other | `web/app/global-error.tsx:30` | jsx-text | Our bad. Something broke on our end. If it keeps happening, email support and include the error reference below, if you see one. |
 | 4 | other | `web/app/global-error.tsx:35` | jsx-text | Try loading again |
 | 5 | other | `web/app/global-error.tsx:38` | jsx-text | Open my workspace |
 | 6 | other | `web/app/global-error.tsx:41` | jsx-text | Contact support |

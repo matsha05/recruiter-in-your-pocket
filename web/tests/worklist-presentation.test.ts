@@ -65,7 +65,7 @@ import { MOCK_WORKLIST_REPORT } from "../lib/backend/mock-worklist-report";
   assert.equal(comparison.added.length, 0);
   assert.equal(comparison.title, "1 line is off the list.");
   assert.equal(comparison.intro, "1 is still there.");
-  assert.equal(comparison.sum, "Up 8 since last time.");
+  assert.equal(comparison.sum, "Up 8 since last time. That's the right direction!");
   const same = compareWorklists(mock, mock);
   assert.equal(same.title, "The same lines are on the list.");
   assert.equal(same.sum, null);

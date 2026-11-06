@@ -38,7 +38,7 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
 
     async function handleCheckout() {
         const tier: PricingTier = "30d";
-        let checkoutError = "Could not open checkout. Try again. If this continues, contact support.";
+        let checkoutError = "Checkout didn’t open. Try again, and if it keeps happening, write to support.";
         try {
             setLoadingTier(tier);
             Analytics.checkoutStarted(tier, 29);
@@ -152,9 +152,9 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
             <section className={cn(rhythm.section, rhythm.close)} aria-label="Other tools and restoring a purchase">
                 <div className={styles.asides}>
                     <div>
-                        <h2>Weighing other tools?</h2>
+                        <h2>Other tools do different jobs.</h2>
                         <p>
-                            A writer, a keyword scanner, a builder, and a recruiter&rsquo;s read are different purchases, and the read is the one that decides:{" "}
+                            Writers rewrite, keyword scanners match words, builders lay it out. A recruiter decides whether you get the call, and{" "}
                             <ResearchLink to="how-recruiters-read">recruiters who spent longer on Experience were more likely to move a resume forward</ResearchLink>.{" "}
                             <Link href="/compare" className="riyp-link">See how we compare with seven tools</Link>, Jobscan and TopResume among them, with each one&rsquo;s own prices.
                         </p>
