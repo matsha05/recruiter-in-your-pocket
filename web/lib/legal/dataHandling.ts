@@ -23,21 +23,21 @@ export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
   {
     dataType: "Report output + resume preview",
     purpose: "So you can open past reports, compare versions, inspect evidence excerpts, and export.",
-    retention: "A completed anonymous report output and its evidence excerpts are held for browser recovery for no more than 24 hours; the raw anonymous resume and job description are not stored by RIYP. If you sign in and save, history includes report output, evidence excerpts, a short resume preview, any job description you add, and the answers you type under a Critical Miss with the revised line built from them, until you delete the report or account.",
+    retention: "A completed anonymous report output and its evidence excerpts are held for browser recovery for no more than 24 hours; the raw anonymous resume and job description are not stored by RIYP. If you sign in and save, history includes report output, evidence excerpts, a short resume preview, any job description you add, and the answers you type into a card's blanks, until you delete the report or account.",
     userControl: "Anonymous recovery expires automatically. Delete saved reports in Reports, or delete your account in Settings.",
     processor: "Upstash, Supabase"
   },
   {
-    dataType: "Answers you add under a Critical Miss",
+    dataType: "Answers you add to a card",
     purpose: "Build a revised line from your own answers, so you can copy it into your resume.",
     retention: "Sent to OpenAI with the resume line you're improving, to smooth the wording. RIYP does not store your answers. OpenAI may retain API abuse-monitoring logs containing customer content for up to 30 days by default.",
     userControl: "Every question is optional. Only answers you type are sent.",
     processor: "OpenAI"
   },
   {
-    dataType: "Feedback on the Critical Miss",
+    dataType: "Feedback on a report",
     purpose: "Check whether the report picked the right thing to fix first, and improve future reports.",
-    retention: "We store your yes or no, any note you write, and the Critical Miss wording, which can name an employer or project from your resume. We don't store the resume itself. Feedback is kept for 12 months to check report quality, then deleted. Feedback from a signed-in account is also deleted when you delete the account.",
+    retention: "We store your yes or no, any note you write, and the report wording it was about, which can name an employer or project from your resume. We don't store the resume itself. Feedback is kept for 12 months to check report quality, then deleted. Feedback from a signed-in account is also deleted when you delete the account.",
     userControl: "Feedback is optional. Delete your account in Settings to remove feedback you sent while signed in.",
     processor: "Supabase"
   },
@@ -102,7 +102,7 @@ export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
 export const TRUST_PROMISES = [
   "Your upload is encrypted in transit.",
   "Completed anonymous report output can be recovered in the same browser for up to 24 hours, but is not saved to an account automatically. RIYP does not store the raw anonymous resume or job description.",
-  "Signed-in reports save report output, evidence excerpts, a short resume preview, any job description you add, and the answers you type under a Critical Miss with the revised line built from them. You can delete reports from Reports.",
+  "Signed-in reports save report output, evidence excerpts, a short resume preview, any job description you add, and the answers you type into a card's blanks. You can delete reports from Reports.",
   "Deleting your account removes your reports and usage history from our database.",
   "We don't sell your data or opt it into model training. OpenAI API data is not used to train models by default.",
   "The band summarizes this resume review. It doesn’t predict interviews or offers.",

@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import { LandingMineral } from "@/components/landing/LandingMineral";
 import { FREE_REPORT_ENTITLEMENT } from "@/lib/billing/pricing";
 
-const homepageDescription = "Get a free resume report with feedback on what recruiters may notice, which details need explanation, and up to three changes to make before you apply.";
+const homepageDescription = "Get a free resume report: what a recruiter takes from your page, the lines they trip on, and what to add to each one before you apply.";
 
 // A shared link leads with the hero's story; search results keep the plain description.
 const shareTitle = "See what a recruiter sees: free resume report";
-const shareDescription = "Find the one thing to fix first. Your first report is free. No account or card.";
+const shareDescription = "See what a recruiter sees, line by line. Your first report is free. No account or card.";
 const shareImage = {
   url: "/og/home?v=20261104",
   width: 1200,

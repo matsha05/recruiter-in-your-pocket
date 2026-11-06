@@ -51,12 +51,12 @@ export const SAME_RESUME_DATE = "2026-11-05";
 
 /** What ours said to that resume, the same on every page that ran. */
 const OURS_ON_THE_SAME_RESUME =
-    "Ours led with the resume’s own numbers in the Verdict, circled one Critical Miss with the line it came from, and questioned a “300% reduction in time to hire” as a figure that can’t be right. Thirty-six seconds without the posting, a minute and a half with it, and no line misread. One resume, one role, one day.";
+    "Ours led with the resume’s own numbers, put one line first with the line it came from, and questioned a “300% reduction in time to hire” as a figure that can’t be right. Thirty-six seconds without the posting, a minute and a half with it, and no line misread. One resume, one role, one day, on the report as it ran then; the report now cards every line a recruiter trips on, not one.";
 
 const ourRows = {
     whatItIs: "A report on the resume you already have, read against a recruiter’s review criteria.",
     whoReads: "AI applies review criteria written by a recruiter with 15 years in hiring. Nobody reads individual reports.",
-    whatYouGet: "A Verdict, the Critical Misses that could cost you the interview in the order to fix them, a note on each line that needs work, and rewrites built only from your facts.",
+    whatYouGet: "A recruiter’s write-up, then every line that needs work in the order a recruiter hits it, with what they can’t tell from it and an example built only from your facts.",
     price: "The first report is free. Then $29 once for five more reports, good for 90 days.",
     free: "One complete report. No card, no account, nothing held back.",
     renewal: "None. The pass expires after 90 days and never renews.",
@@ -167,7 +167,7 @@ export const comparisons: Comparison[] = [
                 title: "Using both",
                 paragraphs: [
                     <>
-                        Run the free report before you buy a rewrite, so you know what the writer has to fix and what facts to put in the intake. Run it again on the draft that comes back, and check that the Critical Miss it found the first time is gone.
+                        Run the free report before you buy a rewrite, so you know what the writer has to fix and what facts to put in the intake. Run it again on the draft that comes back, and check that the lines it carded the first time are off the list.
                     </>,
                 ],
             },
@@ -199,7 +199,7 @@ export const comparisons: Comparison[] = [
         },
         answer: (
             <>
-                Jobscan compares your resume to one job posting and scores the keyword match, with five free scans a month and a subscription for more. {OUR_NAME} reads the whole resume the way a recruiter would and tells you what could cost you the interview, with the first report free and no subscription.
+                Jobscan compares your resume to one job posting and scores the keyword match, with five free scans a month and a subscription for more. {OUR_NAME} reads the whole resume the way a recruiter would and cards every line that needs work, with the first report free and no subscription.
                 If you tailor the wording for many applications a week, Jobscan is built for that. If you want to know whether the resume itself holds up, start here.
             </>
         ),
@@ -285,7 +285,7 @@ export const comparisons: Comparison[] = [
                 title: "Using both",
                 paragraphs: [
                     <>
-                        Fix the resume first, then tailor it. Run the free report on your base resume and clear the Critical Misses, then use Jobscan’s free scans for the vocabulary of a specific posting. Use a term only where it truthfully describes what you did; the report will flag a line that claims more than it shows.
+                        Fix the resume first, then tailor it. Run the free report on your base resume and work through the cards, then use Jobscan’s free scans for the vocabulary of a specific posting. Use a term only where it truthfully describes what you did; the report will flag a line that claims more than it shows.
                     </>,
                 ],
             },
@@ -330,7 +330,7 @@ export const comparisons: Comparison[] = [
             {
                 label: "What you get back",
                 them: "A score with a line-by-line analysis, a LinkedIn keyword analysis, sample lines from other candidates, and AI rewrites.",
-                us: "A Verdict, the Critical Misses in the order to fix them, a note on each line that needs work, and rewrites built only from facts you supplied. No sample lines from anyone else’s resume.",
+                us: "A recruiter’s write-up, every line that needs work in the order a recruiter hits it, what they can’t tell from each, and an example built only from facts you supplied. No sample lines from anyone else’s resume.",
             },
             {
                 label: "Who does the work",
@@ -453,7 +453,7 @@ export const comparisons: Comparison[] = [
             {
                 label: "What you get back",
                 them: "A resume you build in Teal, exported as a PDF or Word file, plus AI bullets, summaries, and cover letters.",
-                us: "A Verdict, the Critical Misses in the order to fix them, a note on each line, and rewrites from your facts. Download it as a PDF when you sign in.",
+                us: "A recruiter’s write-up, every line that needs work in order, what they can’t tell from each, and an example from your facts. Download it as a PDF when you sign in.",
             },
             {
                 label: "Price",
@@ -516,7 +516,7 @@ export const comparisons: Comparison[] = [
                 title: "Using both",
                 paragraphs: [
                     <>
-                        Build and track in Teal, then export the resume you plan to send and run it through the free report before it goes out. If the report finds a Critical Miss, fix it in Teal and export again.
+                        Build and track in Teal, then export the resume you plan to send and run it through the free report before it goes out. If the report cards a line, fix it in Teal and export again.
                     </>,
                 ],
             },
@@ -752,7 +752,7 @@ export const comparisons: Comparison[] = [
                 title: "Using both",
                 paragraphs: [
                     <>
-                        Build in Rezi if the live score keeps you writing, then export the PDF and run the free report before it goes out. Where the score says you’re done and the report finds a Critical Miss, trust the Critical Miss: it’s the question a recruiter would ask.
+                        Build in Rezi if the live score keeps you writing, then export the PDF and run the free report before it goes out. Where the score says you’re done and the report cards a line, trust the card: it’s the question a recruiter would ask.
                     </>,
                 ],
             },

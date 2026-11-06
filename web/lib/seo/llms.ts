@@ -18,7 +18,7 @@ type LlmsInput = {
 
 const REPORT_PAGES: Array<{ path: string; name: string; note: string }> = [
   { path: "/", name: "Get your free report", note: "Upload the resume you have and read what a recruiter would question before you send it." },
-  { path: "/sample-report", name: "A sample report", note: "One complete report on one resume: the Verdict, the Critical Misses in the order to fix them, and the rewrites." },
+  { path: "/sample-report", name: "A sample report", note: "One complete report on one resume: the recruiter's write-up, the lines that need work in the order a recruiter hits them, and an example for each." },
   { path: "/pricing", name: "Pricing", note: "The first report is free, with no card and no account. Then $29 once for five more reports, good for 90 days. Nothing renews." },
   { path: "/methodology", name: "How the report works", note: "" },
   { path: "/help", name: "Help", note: "Plain answers about the score, applicant tracking systems, privacy, and the pass." },
@@ -42,7 +42,7 @@ export function llmsText({ comparisons, pricesRead }: LlmsInput) {
   const sections = [
     `# ${SITE_NAME}`,
     "",
-    "> A free report that reads the resume you already have the way a recruiter would: a Verdict, the Critical Misses that could cost you the interview, and rewrites built only from your facts. The first report is free; then $29 once for five more, good for 90 days. No subscription.",
+    "> A free report that reads the resume you already have the way a recruiter would: a recruiter's write-up, the lines that need work in order, and examples built only from your facts. The first report is free; then $29 once for five more, good for 90 days. No subscription.",
     "",
     `${SITE_NAME} is at ${SITE_URL}. It is AI applying a recruiter's review criteria, not a person reading each resume. It gives no keyword score and no interview odds, and it does not build, design, or track resumes. The pages below are the questions job seekers ask, each answered in one line from the article's own sources; the full article and its citations are behind the link. Dates are the day a page's content last changed.`,
     "",

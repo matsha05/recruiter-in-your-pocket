@@ -77,7 +77,7 @@ export default function HowRecruitersReadPage() {
             />
 
             <ArticleBridge question="What does your Experience section say first?">
-                Your report opens with a Verdict: a plain-words summary of what your resume says first. If your role, scope, or results are unclear in a way that could cost you the interview, a Critical Miss says so, starting with the one to fix first. It can&rsquo;t tell you how long anyone will look.
+                Your report opens with a recruiter&rsquo;s write-up: what your resume says first, in plain words. Where your role, scope, or results are unclear, the line gets a card, in the order a recruiter hits it. It can&rsquo;t tell you how long anyone will look.
             </ArticleBridge>
 
             <h2 className="research-h2">What the evidence says</h2>

@@ -24,7 +24,7 @@ test.describe("score language", () => {
     await page.goto("/pricing", { waitUntil: "domcontentloaded" });
     await expect(page.locator("body")).not.toContainText("First Impression score");
     // Both the live and the paused pricing layouts describe the free report this way.
-    await expect(page.locator("body")).toContainText("where your resume stands");
+    await expect(page.locator("body")).toContainText("Where your resume stands, the recruiter’s write-up, and every line that needs work.");
   });
 });
 

@@ -38,8 +38,8 @@ assert.equal(getCheckoutModeForTier("30d"), "payment", "Job Search Pass is a one
 assert.equal(getTierLabel("30d"), "Job Search Pass");
 assert.equal(normalizeRequestedTier("pack"), "30d", "legacy pack receipts still normalize safely");
 assert.equal(PRICING_PLANS["30d"].price, "$29");
-// The re-check compares versions; it never claims the Critical Miss was fixed (ReadComparison says "changed").
-assert.ok(PRICING_PLANS["30d"].features.some(({ text }) => /Critical Miss changed/.test(text)));
+// The re-check compares versions; it never claims a line was fixed (the comparison says a line came off the list).
+assert.ok(PRICING_PLANS["30d"].features.some(({ text }) => /which lines came off the list/.test(text)));
 assert.ok(!PRICING_PLANS["30d"].features.some(({ text }) => /\bfixed\b/i.test(text)), "pricing must not promise a fix");
 assert.match(FREE_REPORT_ENTITLEMENT.promise, /first complete report is free/i);
 assert.match(FREE_REPORT_ENTITLEMENT.promise, /no card required/i);

@@ -37,7 +37,7 @@ export function VersionComparisonView({ reportA, reportB, onClose }: VersionComp
                     <span className="text-sm text-muted-foreground">{label(older)} → {label(newer)}</span>
                 </div>
                 <DialogDescription className="sr-only">
-                    The Critical Miss, score, and Verdict from your earlier report beside the newer one.
+                    The lines, score and verdict from your earlier report beside the newer one.
                 </DialogDescription>
                 <div className="flex-1 overflow-y-auto px-6 pt-6">
                     <ReadComparison previous={{ ...older.report, score: older.score }} current={{ ...newer.report, score: newer.score }} />
