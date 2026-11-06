@@ -66,7 +66,7 @@ export default function MethodologyPage() {
                 <p className={rhythm.deck}>What your resume says first, in plain words, judged against the criteria.</p>
                 <div className={styles.verdict}>
                     <span className={styles.verdictLabel}>Verdict</span>
-                    <p className={styles.verdictText}>{sampleReport.first_impression}</p>
+                    <p className={styles.verdictText}>{sampleReport.verdict}</p>
                 </div>
                 <div className={rhythm.link}><FictionalTag className={styles.tag} /></div>
             </section>

@@ -31,6 +31,14 @@ resolver._resolveFilename = function resolveAlias(this: unknown, request: string
 (require as NodeJS.Require).extensions[".txt"] = (module, filename) => {
     module.exports = readFileSync(filename, "utf8");
 };
+// The route's validator pulls in server-only modules; outside Next the marker is a no-op, as in the test runner.
+type Loader = { _load: (request: string, ...rest: unknown[]) => unknown };
+const loader = Module as unknown as Loader;
+const originalLoad = loader._load;
+loader._load = function loadModule(this: unknown, request: string, ...rest: unknown[]) {
+    if (request === "server-only") return {};
+    return originalLoad.call(this, request, ...rest);
+};
 
 const sha256 = (value: string) => createHash("sha256").update(value).digest("hex");
 
@@ -39,44 +47,51 @@ async function main() {
 
     const { runJson } = await import("../lib/llm/orchestrator");
     const { buildResumeRepairMessages, isRepairableResumeResponseError } = await import("../lib/llm/reportRepair");
+    const { buildWorklistRepairMessages } = await import("../lib/llm/worklist-repair");
     const { buildResumeProviderMessages } = await import("../lib/llm/resume-provider-messages");
     const { resolveOpenAIModel, resolveResumeRepairReasoningEffort } = await import("../lib/llm/model-config");
     const { loadPromptForMode } = await import("../lib/backend/prompts");
-    const { ensureLayoutAndContentFields, validateResumeModelPayload } = await import("../lib/backend/validation");
+    const { ensureLayoutAndContentFields } = await import("../lib/backend/validation");
+    const { validateResumePayload } = await import("../lib/llm/validateResumeStreamOutput");
+    const { isWorklistReportEnabled, resumePromptVersion, resumeSchemaVersion } = await import("../lib/reports/report-shape");
     const { resolveEffectiveJobDescription } = await import("../lib/security/effectiveJobDescription");
+    // The worklist prompt reads dates against today, as the route sends them.
+    const today = process.env.RIYP_SAMPLE_TODAY || new Date().toISOString().slice(0, 10);
 
     const mode = "resume" as const;
     const text = await readFile(RESUME_PATH, "utf8");
     const model = resolveOpenAIModel(mode);
     const systemPrompt = await loadPromptForMode(mode);
     const effectiveJobDescription = resolveEffectiveJobDescription("");
-    const { messages, sanitization } = buildResumeProviderMessages({ mode, systemPrompt, text, effectiveJobDescription });
+    const { messages, sanitization } = buildResumeProviderMessages({ mode, systemPrompt, text, effectiveJobDescription, today });
     const resumeText = sanitization.sanitizedText;
     const ctx = { request_id: `sample-report-${Date.now()}`, route: "scripts/generate-sample-report" };
 
     console.log(`Generating with ${model} (one paid call, two if the repair runs)...`);
     const initial = await runJson<unknown>({
         ctx, task: "resume_feedback", mode, model,
-        prompt_version: "resume_v2", schema_version: "report_v1", messages,
+        prompt_version: resumePromptVersion(), schema_version: resumeSchemaVersion(), messages,
     });
     const telemetry = [initial.telemetry];
 
     let payload: unknown;
     let repaired = false;
     try {
-        payload = ensureLayoutAndContentFields(validateResumeModelPayload(initial.parsed, resumeText, effectiveJobDescription.validationOptions));
+        payload = ensureLayoutAndContentFields(validateResumePayload(initial.parsed, resumeText, effectiveJobDescription.validationOptions));
     } catch (error) {
         if (!isRepairableResumeResponseError(error)) throw error;
         console.log(`Validation failed (${(error as Error).message}); running the production repair pass...`);
         const repair = await runJson<unknown>({
             ctx, task: "resume_feedback", mode, model,
-            prompt_version: "resume_v2_repair",
+            prompt_version: `${resumePromptVersion()}_repair`,
             reasoning_effort: resolveResumeRepairReasoningEffort(model),
-            schema_version: "report_v1",
-            messages: buildResumeRepairMessages(messages, initial.raw, error as Error),
+            schema_version: resumeSchemaVersion(),
+            messages: isWorklistReportEnabled()
+                ? buildWorklistRepairMessages(messages, initial.raw, error as Error)
+                : buildResumeRepairMessages(messages, initial.raw, error as Error),
         });
         telemetry.push(repair.telemetry);
-        payload = ensureLayoutAndContentFields(validateResumeModelPayload(repair.parsed, resumeText, effectiveJobDescription.validationOptions));
+        payload = ensureLayoutAndContentFields(validateResumePayload(repair.parsed, resumeText, effectiveJobDescription.validationOptions));
         repaired = true;
     }
 
@@ -84,6 +99,8 @@ async function main() {
         generated_at: new Date().toISOString(),
         model,
         prompt_sha256: sha256(systemPrompt),
+        prompt_version: resumePromptVersion(),
+        today,
         resume_sha256: sha256(text),
         repaired,
         telemetry,

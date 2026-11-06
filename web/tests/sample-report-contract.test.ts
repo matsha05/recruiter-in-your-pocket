@@ -1,12 +1,14 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import path from "node:path";
-import { buildReportRewritePresentation } from "../lib/reports/report-presentation";
-import { ResumeFeedbackResponseSchema } from "../lib/validation/schemas";
+import { WorklistReportSchema } from "../lib/llm/worklist-schema";
+import { resolveCardLine } from "../lib/llm/worklist-grounding";
+import { JORDAN_EXAMPLE } from "../lib/marketing/jordan-example";
 
 // The public sample is Jordan's report: real output from the production prompt on a fictional resume
-// (tests/fixtures/sample). It must stay real output, and it must not promise what reports don't deliver.
-const sample = ResumeFeedbackResponseSchema.parse(JSON.parse(readFileSync(
+// (tests/fixtures/sample). It must stay real output, in the shape the route writes (the worklist report,
+// since November 6, 2026), and it must not promise what reports don't deliver.
+const sample = WorklistReportSchema.parse(JSON.parse(readFileSync(
   path.join(process.cwd(), "public/sample-report.json"), "utf8",
 )));
 const resume = readFileSync(path.join(process.cwd(), "tests/fixtures/sample/jordan-miller-resume.txt"), "utf8");
@@ -14,27 +16,24 @@ const generated = JSON.parse(readFileSync(
   path.join(process.cwd(), "tests/fixtures/sample/jordan-miller-report.generated.json"), "utf8",
 ));
 
-assert.deepEqual(JSON.parse(JSON.stringify(sample)), JSON.parse(JSON.stringify(ResumeFeedbackResponseSchema.parse(generated.payload))),
+assert.deepEqual(JSON.parse(JSON.stringify(sample)), JSON.parse(JSON.stringify(WorklistReportSchema.parse(generated.payload))),
   "the sample is the generated payload, unedited");
 assert.equal(generated.model, "gpt-6.1-terra", "the sample records the production model it was generated with");
 assert.match(generated.prompt_sha256, /^[0-9a-f]{64}$/, "the sample records the prompt it was generated with");
+assert.equal(generated.prompt_version, "resume_v3", "the sample is generated on the worklist prompt");
+assert.match(generated.prompt_sha256, /^705c2997/, "the sample is generated on the shipped worklist prompt");
 
-const presentation = buildReportRewritePresentation(sample.top_fixes, sample.rewrites);
-assert.equal(presentation.fixes.length, 3);
-assert.deepEqual(sample.rewrites, [], "until answer-to-line ships (plan 2.2), the sample shows no rewrites (D3)");
-
-const requirements = [
-  { request: /renewal-risk review bullet/i, source: "- Introduced monthly renewal-risk reviews across the portfolio" },
-  { request: /business review bullet/i, source: "- Ran quarterly business reviews with customer leadership teams" },
-  { request: /Brightpath assistance bullet/i, source: "- Assisted account managers with various tasks as needed" },
-];
-for (const [index, { fix, rewrite }] of presentation.fixes.entries()) {
-  assert.match(fix.fix || "", requirements[index].request);
-  const evidence = typeof fix.evidence === "string" ? fix.evidence : fix.evidence?.excerpt;
-  assert.equal(evidence, requirements[index].source, "every recommendation must preserve its actual quoted source");
-  assert.ok(resume.includes(evidence!), `fix ${index + 1} quotes a line that is on Jordan's resume`);
-  assert.equal(rewrite, undefined, "a fact question must not be padded with a synthetic rewrite");
+// Every quoted line is on Jordan's resume, once; every example keeps its facts inside brackets or on the page.
+for (const [index, card] of sample.cards.entries()) {
+  if (card.kind === "line" || card.kind === "keep") {
+    assert.equal(resolveCardLine(card.line, resume).status, "resolved", `card ${index + 1} quotes a line that is on Jordan's resume`);
+  }
+  if (card.kind !== "keep") {
+    assert.ok(card.question, `card ${index + 1} asks the question that fills its blanks`);
+  }
 }
+assert.ok(sample.cards.some((card) => card.kind === "keep"), "the sample shows the line the rest should read like");
+assert.ok(!/critical miss|the read\b/iu.test(JSON.stringify(sample)), "the retired names never appear");
 
 // The homepage hero draws Jordan's resume; the lines it shows must be the resume the sample read.
 for (const line of [
@@ -44,20 +43,17 @@ for (const line of [
   "Assisted account managers with various tasks as needed",
 ]) assert.ok(resume.includes(line), `Jordan's resume includes "${line}"`);
 
-// The homepage quotes this report word for word: the sentence printed under the Verdict, the Critical
-// Miss line, and the Critical Miss's "What to add" questions.
-assert.equal(sample.score_comment_short, "Your account portfolio and review cadence are specific, but results remain unclear.");
+// The homepage and the methodology page quote this report word for word: the verdict, a card's line, that
+// card's note, and its question.
+assert.equal(sample.verdict, JORDAN_EXAMPLE.verdict, "the homepage's verdict is the sample's");
+const quotedCard = sample.cards.find((card) => card.line === JORDAN_EXAMPLE.line);
+assert.ok(quotedCard, "the homepage quotes a line the sample cards");
+assert.equal(quotedCard?.cannot_tell, JORDAN_EXAMPLE.note, "the homepage's note is the card's own words");
+assert.equal(quotedCard?.question, JORDAN_EXAMPLE.asks[0].question, "the methodology page asks the card's question");
 const homepage = readFileSync(path.join(process.cwd(), "lib/marketing/jordan-example.ts"), "utf8");
-for (const quote of [
-  "Your account portfolio and review cadence are specific, but",
-  "results remain unclear.",
-  "Introduced monthly renewal-risk reviews across the portfolio",
-  "What factors did you review when identifying renewal risk across the portfolio?",
-  "What changed in your renewal workflow after you introduced the monthly risk reviews?",
-]) {
-  assert.ok(JSON.stringify(sample).includes(quote), `the sample report says "${quote}"`);
-  assert.ok(homepage.includes(quote), `the homepage example quotes "${quote}"`);
+for (const quote of [JORDAN_EXAMPLE.verdict, JORDAN_EXAMPLE.line, JORDAN_EXAMPLE.note, JORDAN_EXAMPLE.asks[0].question]) {
+  assert.ok(JSON.stringify(sample).includes(quote.replace(/"/g, '\\"')), `the sample report says "${quote}"`);
+  assert.ok(homepage.includes(quote.replace(/"/g, '\\"')), `the homepage example quotes "${quote}"`);
 }
-assert.match(generated.prompt_sha256, /^83b2a2d1/, "the sample is generated on the production prompt");
 
 console.log("Sample report content contracts passed");

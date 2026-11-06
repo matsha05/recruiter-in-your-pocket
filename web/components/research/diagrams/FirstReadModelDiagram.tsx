@@ -3,37 +3,36 @@
 import sampleReport from "@/public/sample-report.json";
 import { DiagramCaption, DiagramFigure } from "@/components/shared/diagrams/DiagramPrimitives";
 import { LiftedTrace } from "@/components/shared/LiftedTrace";
-import type { ReportData } from "@/components/workspace/report/ReportTypes";
 import { ScoreBand } from "@/components/workspace/report/markup/ScoreBand";
-import { criticalMissReason, fixCardSlots, reconcileReport } from "@/lib/reports/report-integrity";
 
-// Every line below is one the sample report shows after its integrity pass, so the
-// figure quotes what a reader of the report actually sees. The band is the report's own
-// ScoreBand: a first report shows where the resume stands, never the number (D5).
-const sample = reconcileReport(sampleReport as ReportData);
-const criticalMiss = sample.report.top_fixes?.[0];
-const criticalMissWhy = criticalMissReason(sample);
+// Every line below is one the sample report shows, so the figure quotes what a reader of the report actually
+// sees: the verdict, the band, and the first card (the line as written, what a recruiter can't tell from it).
+type SampleCard = { kind: string; where: string; line: string; cannot_tell: string; example: string; question: string };
+const cards = sampleReport.cards as SampleCard[];
+const firstCard = cards.find((card) => card.kind !== "keep");
+const keepCard = cards.find((card) => card.kind === "keep");
+const cardAbout = (pattern: RegExp) => cards.find((card) => card.kind !== "keep" && pattern.test(`${card.cannot_tell} ${card.question}`));
 
 const weighs = [
     {
         title: "The results you show",
         question: "Does each example say what changed because of your work?",
-        finding: fixCardSlots(sample, 1).why,
+        finding: cardAbout(/what (?:changed|happened|followed)|result/iu)?.cannot_tell,
     },
     {
         title: "How clearly each line reads",
         question: "Can a recruiter tell what you did, and how much you owned, on the first pass?",
-        finding: fixCardSlots(sample, 2).why,
+        finding: cardAbout(/what you (?:actually )?did|hides the job|your contribution/iu)?.cannot_tell,
     },
     {
         title: "How your experience fits together",
         question: "Does the resume point at the role you want next?",
-        finding: sample.structuralGaps[0]?.text,
+        finding: cardAbout(/job you want|role you(?:'re| are) seeking|target/iu)?.cannot_tell,
     },
     {
         title: "How easy the text is to follow",
         question: "Reading the text alone, can someone find your roles, dates, and results quickly?",
-        finding: sample.report.strengths?.[0],
+        finding: keepCard?.cannot_tell,
     },
 ];
 
@@ -42,28 +41,28 @@ const NO_NOTE = "The sample report has no note here.";
 
 const reviewPath = [
     { label: "Your lines" },
-    { label: "The read" },
-    { label: "Critical Miss" },
+    { label: "What a recruiter can't tell" },
+    { label: "The line with the detail in" },
 ];
 
 export function FirstReadModelDiagram() {
     return (
-        <DiagramFigure className="max-w-[62rem]" label="Worked example from the sample report: the Verdict, the band, the Critical Miss, and the four things behind the band">
+        <DiagramFigure className="max-w-[62rem]" label="Worked example from the sample report: the verdict, the band, the first line that needs work, and the four things behind the band">
             <div className="overflow-hidden rounded-sheet border border-line bg-card">
                 <div className="grid lg:grid-cols-[20rem_minmax(0,1fr)]">
                     <section className="flex flex-col justify-between gap-8 border-b border-line bg-muted p-6 lg:border-b-0 lg:border-r lg:p-8" aria-label="How the sample report opens">
                         <div>
                             <p className="riyp-verdict-label text-brand">Verdict</p>
-                            <p className="mt-3 font-serif text-lg text-foreground">{sampleReport.first_impression}</p>
+                            <p className="mt-3 font-serif text-lg text-foreground">{sampleReport.verdict}</p>
                         </div>
                         <div className="flex flex-col gap-5">
                         <div className="border-t border-line pt-1">
                             <ScoreBand score={sampleReport.score} />
                         </div>
-                        <div className="rounded-xl border border-[hsl(var(--miss-line))] bg-[hsl(var(--miss-surface))] p-4">
-                            <p className="riyp-verdict-label text-[hsl(var(--brass))]">Critical Miss</p>
-                            <p className="mt-1.5 text-base font-bold text-foreground">{criticalMiss?.fix}</p>
-                            {criticalMissWhy && <p className="mt-1.5 text-sm text-foreground/80">{criticalMissWhy}</p>}
+                        <div className="rounded-xl border border-line p-4">
+                            <p className="text-label font-semibold text-[hsl(var(--brass))]">{firstCard?.where}</p>
+                            <p className="mt-1.5 font-serif text-base text-foreground">{firstCard?.line}</p>
+                            {firstCard?.cannot_tell && <p className="mt-1.5 text-sm text-[hsl(var(--pen))]">{firstCard.cannot_tell}</p>}
                         </div>
                         </div>
                     </section>
@@ -92,7 +91,7 @@ export function FirstReadModelDiagram() {
                     <LiftedTrace
                         items={reviewPath}
                         progress={100}
-                        ariaLabel="How the lines on your resume become the Critical Miss"
+                        ariaLabel="How the lines on your resume become the cards"
                     />
                 </div>
             </div>

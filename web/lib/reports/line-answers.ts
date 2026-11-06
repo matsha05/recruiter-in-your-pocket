@@ -1,14 +1,16 @@
 /**
  * The answers a signed-in reader gives under a Critical Miss, and the revised line they chose, kept
  * with the saved report (W3: "the answer you can keep"). Stored as `reports.line_answers`, a JSON object
- * keyed by the fix's position ("0", "1", "2"). It holds only what the reader typed and the line built
+ * keyed by the fix's position ("0", "1", "2"; on the worklist report, the card's position, up to "11", with
+ * each blank's label as the question). It holds only what the reader typed and the line built
  * from it; never the resume. It is returned by GET /api/reports/:id, written by PATCH
  * /api/reports/:id/answers, printed by the PDF, and deleted with the report or the account.
  */
 
 import type { LiftAnswer } from "./revised-line";
 
-export const LINE_ANSWER_LIMITS = { fixes: 3, answers: 3, question: 300, text: 300, line: 600, body: 8 * 1024 } as const;
+/** The worklist report (Nov 5, 2026) keeps one entry per card, up to its twelve cards and six blanks each. */
+export const LINE_ANSWER_LIMITS = { fixes: 12, answers: 6, question: 300, text: 300, line: 600, body: 8 * 1024 } as const;
 
 export type StoredLineAnswer =
   | { question: string; kind: "answered"; text: string }
@@ -76,7 +78,7 @@ export function parseStoredLineAnswers(value: unknown): StoredLineAnswersByFix |
   if (!value || typeof value !== "object" || Array.isArray(value)) return null;
   const out: StoredLineAnswersByFix = {};
   for (const [key, entry] of Object.entries(value as Record<string, unknown>)) {
-    if (!/^[0-2]$/u.test(key) || !entry || typeof entry !== "object") continue;
+    if (!/^(?:[0-9]|1[01])$/u.test(key) || !entry || typeof entry !== "object") continue;
     const record = entry as Record<string, unknown>;
     const parsed = parseLineAnswersPatch({ fix_index: Number(key), answers: record.answers, line: record.line ?? null, source: record.source });
     if (!parsed) continue;

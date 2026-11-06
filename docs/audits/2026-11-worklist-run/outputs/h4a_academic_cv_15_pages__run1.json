@@ -11,7 +11,7 @@
   "model": "gpt-6.1-terra",
   "reasoning_effort": "medium",
   "severity_check": false,
-  "started_at": "2026-11-06T04:13:14.569Z",
+  "started_at": "2026-11-06T04:49:22.855Z",
   "calls": [],
   "outcome": "request_refused",
   "request_refusal": {

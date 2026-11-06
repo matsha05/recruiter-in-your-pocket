@@ -16,13 +16,23 @@ import {
 } from "../lib/reports/report-receipt";
 import { buildGroundedReportTrustMetadata, parseTrustedStoredReport } from "../lib/reports/report-trust";
 import { ResumeFeedbackResponseSchema } from "../lib/validation/schemas";
+import { WorklistReportSchema } from "../lib/llm/worklist-schema";
 import { schemaValidReport } from "./helpers/report-fidelity-fixture";
 
-const sampleReportPath = path.join(process.cwd(), "public", "sample-report.json");
+// The public sample is Jordan's worklist report (contract v3) since November 6, 2026; the v2 shape below is
+// what every report saved before it still has, kept as a fixture so the v2 PDF stays covered.
+const publicSample = JSON.parse(readFileSync(path.join(process.cwd(), "public", "sample-report.json"), "utf8"));
+assert.ok(WorklistReportSchema.safeParse(publicSample).success, "the public sample must match the worklist contract");
+const publicNormalized = normalizeReportForPdf(publicSample);
+assert.ok(publicNormalized?.worklist, "the public sample normalizes for the PDF with its worklist content");
+assert.equal(publicNormalized?.worklist?.cards.length, publicSample.cards.length, "every card reaches the PDF");
+assert.match(renderReportHtml(publicNormalized!), /class="card"/u, "the PDF prints the cards");
+
+const sampleReportPath = path.join(process.cwd(), "tests", "fixtures", "sample", "jordan-miller-report.v2.json");
 const sampleReport = JSON.parse(readFileSync(sampleReportPath, "utf8"));
 const parsedSampleReport = ResumeFeedbackResponseSchema.safeParse(sampleReport);
 if (!parsedSampleReport.success) {
-  assert.fail(`public sample must match the production report schema: ${parsedSampleReport.error.message}`);
+  assert.fail(`the kept v2 sample must match the v2 report schema: ${parsedSampleReport.error.message}`);
 }
 
 const normalizedSample = normalizeReportForPdf(sampleReport);

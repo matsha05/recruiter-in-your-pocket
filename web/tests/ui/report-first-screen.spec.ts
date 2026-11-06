@@ -8,7 +8,8 @@ import { splitVerdict } from "../../lib/reports/report-opening";
 // sentence, the band, the count and the first Critical Miss with its first question all fit without
 // scrolling, for the sample and the five longest saved Verdicts.
 
-type Report = typeof sampleReport;
+// Either shape: the worklist sample, or the saved v2 outputs.
+type Report = Record<string, any>;
 const PHONE = { width: 390, height: 844 };
 
 const longestSaved = [...liveOutputs.runs]
@@ -21,11 +22,12 @@ const flagged = (() => {
   const base = longestSaved[0].report;
   return {
     name: `${longestSaved[0].name}, two Critical Misses`,
-    report: { ...base, top_fixes: base.top_fixes.map((fix, index) => ({ ...fix, critical: index < 2 })), more_critical: false } as Report,
+    report: { ...base, top_fixes: (base.top_fixes as Array<Record<string, unknown>>).map((fix, index) => ({ ...fix, critical: index < 2 })), more_critical: false } as Report,
   };
 })();
 
-const cases = [{ name: "the sample", report: sampleReport as Report }, ...longestSaved, flagged];
+// The saved outputs are the v2 shape every report saved before the worklist still has.
+const cases = [...longestSaved, flagged];
 
 async function declinePrivacyChoice(page: Page) {
   const decline = page.getByRole("button", { name: "Decline analytics", exact: true });
@@ -67,6 +69,18 @@ function viewportBottomOf(locator: ReturnType<Page["locator"]>) {
 test.describe("the report's first screen on a phone", () => {
   test.use({ viewport: PHONE, isMobile: true, hasTouch: true, contextOptions: { reducedMotion: "reduce" } });
 
+  test("the sample (the worklist report) shows the score, the rung, the verdict and the write-up without scrolling", async ({ page }) => {
+    await openReport(page, sampleReport);
+    expect(await page.evaluate(() => window.scrollY)).toBe(0);
+    await expect(page.getByTestId("report-header-row")).toBeInViewport({ ratio: 1 });
+    await expect(page.getByTestId("worklist-score")).toHaveText(String(sampleReport.score));
+    await expect(page.getByTestId("score-band")).toBeInViewport({ ratio: 1 });
+    await expect(page.locator("#section-first-impression h1")).toHaveText(sampleReport.verdict);
+    await expect(page.locator("#section-first-impression h1")).toBeInViewport({ ratio: 1 });
+    await expect(page.getByTestId("worklist-write-up").locator("p").first()).toBeInViewport({ ratio: 0.5 });
+    await expect(page.getByTestId("worklist-card")).toHaveCount(sampleReport.cards.length);
+  });
+
   for (const { name, report } of cases) {
     test(`shows the Verdict, the band and the first question without scrolling for ${name}`, async ({ page }) => {
       await openReport(page, report);
@@ -107,12 +121,14 @@ test.describe("the report's first screen on a phone", () => {
   });
 
   test("Read the rest opens the Verdict in place and Save sits in the section row", async ({ page }) => {
-    await openReport(page, sampleReport as Report);
+    // A saved v2 report whose Verdict splits; the worklist report has no fold.
+    const folded = longestSaved.find(({ report }) => splitVerdict(report.first_impression).rest)!;
+    await openReport(page, folded.report);
     const rest = page.locator("#verdict-rest");
     await expect(rest).toBeHidden();
     await page.getByRole("button", { name: "Read the rest", exact: true }).click();
     await expect(rest).toBeVisible();
-    await expect(rest).toContainText(sampleReport.score_comment_short);
+    await expect(rest).toContainText(splitVerdict(folded.report.first_impression).rest!);
     await expect(page.getByRole("button", { name: "Read the rest", exact: true })).toHaveCount(0);
 
     // The sample has no Save; the section row still carries the tabs with their full names (WCAG 2.5.3).
@@ -126,7 +142,7 @@ test.describe("the report's first screen on a phone", () => {
 });
 
 test.describe("the header row on every route", () => {
-  const RESUME = "Daniel Okafor\nColumbus, OH · daniel.okafor@example.com\n\nEXPERIENCE\n" + sampleReport.top_fixes.map((fix) => fix.evidence.excerpt).join("\n") + "\n" + "Participated in daily stand-ups and sprint planning meetings as part of an Agile team. ".repeat(4);
+  const RESUME = "Daniel Okafor\nColumbus, OH · daniel.okafor@example.com\n\nEXPERIENCE\n" + sampleReport.cards.map((card) => card.line).join("\n") + "\n" + "Participated in daily stand-ups and sprint planning meetings as part of an Agile team. ".repeat(4);
 
   test("a fresh report names the person, the role and how long the read took", async ({ page }) => {
     await page.addInitScript((report) => {

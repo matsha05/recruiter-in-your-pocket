@@ -27,21 +27,17 @@ export const JORDAN_ROLE_FIT = {
 } as const;
 
 /**
- * The homepage's worked example and the hero's reviewer note. The read, the line and the questions are
- * quoted word for word from Jordan's generated sample report (public/sample-report.json, production
- * prompt resume_v2 83b2a2d1): the read is the sentence the report prints under its Verdict, and the
- * questions are the Critical Miss's "What to add". The note is the fictional hiring team's, written to
- * ask what the report asks. Regenerate the sample and update these together when the prompt changes.
+ * The homepage's worked example and the hero's reviewer note. The verdict, the line, the note and the question
+ * are quoted word for word from Jordan's generated sample report (public/sample-report.json, the worklist
+ * prompt resume_v3 705c2997): the verdict is the report's one-sentence read, the line is a card's quoted
+ * line, the note is that card's "what a recruiter can't tell", and the question is the card's question.
+ * Regenerate the sample and update these together when the prompt changes.
  */
 export const JORDAN_EXAMPLE = {
-    verdict: {
-        lead: "Your account portfolio and review cadence are specific, but",
-        miss: "results remain unclear.",
-    },
+    verdict: "A customer success manager with a defined SaaS portfolio, but few details about renewals.",
     line: "Introduced monthly renewal-risk reviews across the portfolio",
-    note: "Solid book of business, but the renewal-risk reviews stop right before the good part. What did Jordan look for, and what changed?",
+    note: "The cadence and subject are clear. What did you do in the reviews, and what followed from them?",
     asks: [
-        { question: "What factors did you review when identifying renewal risk across the portfolio?" },
-        { question: "What changed in your renewal workflow after you introduced the monthly risk reviews?" },
+        { question: "What did you do in the reviews, and what followed from them?" },
     ],
 } as const;

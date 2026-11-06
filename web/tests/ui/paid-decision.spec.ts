@@ -405,7 +405,7 @@ test.describe("paid decision boundary", () => {
       await page.setViewportSize({ width: 390, height: 844 });
       const accountRequests = await installPaidAuthMocks(page);
 
-      const sampleReport = JSON.parse(fs.readFileSync(path.join(process.cwd(), "public", "sample-report.json"), "utf8"));
+      const sampleReport = JSON.parse(fs.readFileSync(path.join(process.cwd(), "tests", "fixtures", "sample", "jordan-miller-report.v2.json"), "utf8"));
       const existingReport = {
         ...sampleReport,
         // Exercise actual receipt-save restoration, even if the sample gains an ID.

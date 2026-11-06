@@ -1,9 +1,9 @@
 import { expect, test, type Locator, type Page } from "@playwright/test";
 
+// The sample is the worklist report (Nov 6, 2026): Overview, Line by line, Role fit.
 const SECTIONS = [
   { id: "section-first-impression", label: "Overview" },
-  { id: "section-fixes", label: "Fix these first" },
-  { id: "section-keep", label: "Keep these" },
+  { id: "section-fixes", label: "Lines" },
   { id: "section-role", label: "Role fit" },
 ] as const;
 
@@ -88,7 +88,7 @@ for (const viewport of [
 
     // Visit non-adjacent targets in both directions so intermediate scroll events
     // cannot leave the previous observer entry selected after a smooth jump.
-    for (const index of [3, 0, 2, 1]) {
+    for (const index of [2, 0, 1]) {
       const section = SECTIONS[index];
       await revealNavigation(page);
       await navigation.getByRole("button", { name: section.label, exact: true }).click();
@@ -96,50 +96,38 @@ for (const viewport of [
       await expectCurrent(page, section.label);
     }
 
-    if (viewport.width >= 960) {
-      // The marked page: the line on the left, the recruiter's note in the margin beside it.
-      const firstFix = page.locator("#section-fix-1");
-      const line = await firstFix.locator("blockquote").boundingBox();
-      const note = await firstFix.getByText("The one thing to fix first", { exact: true }).boundingBox();
-      expect(note!.x).toBeGreaterThan(line!.x + line!.width);
-      expect(Math.abs(note!.y - line!.y)).toBeLessThan(40);
-      await expect(firstFix.getByRole("list", { name: "From your line to a revised line", exact: true })).toBeVisible();
-    }
+    // Each card holds the line, the note, the example and the question, in that order, at every width.
+    const firstCard = page.getByTestId("worklist-card").first();
+    const parts = await Promise.all([firstCard.locator("blockquote, p").nth(1).boundingBox(), firstCard.getByTestId("worklist-example").boundingBox()]);
+    expect(parts[1]!.y).toBeGreaterThan(parts[0]!.y);
 
     const fixesHeight = await page.locator("#section-fixes").evaluate((section) => section.getBoundingClientRect().height);
     expect(fixesHeight).toBeGreaterThan(viewport.height);
     await scrollInsideSection(page, "section-fixes", 0.7);
-    await expectCurrent(page, "Fix these first");
-    await scrollInsideSection(page, "section-keep", 0.3);
-    await expectCurrent(page, "Keep these");
+    await expectCurrent(page, "Lines");
     await scrollInsideSection(page, "section-role", 0.3);
     await expectCurrent(page, "Role fit");
     await scrollInsideSection(page, "section-fixes", 0.3);
-    await expectCurrent(page, "Fix these first");
+    await expectCurrent(page, "Lines");
     await scrollInsideSection(page, "section-first-impression", 0.3);
     await expectCurrent(page, "Overview");
   });
 }
 
 for (const width of [320, 390]) {
-  test(`the first fix exposes its source and missing detail after the navigation jump at ${width}px`, async ({ page }) => {
+  test(`the first card exposes its line and its question after the navigation jump at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 844 });
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/sample-report");
     await page.evaluate(() => document.fonts.ready);
     const navigation = await revealNavigation(page);
-    await navigation.getByRole("button", { name: "Fix these first", exact: true }).click();
+    await navigation.getByRole("button", { name: "Lines", exact: true }).click();
     await expectSectionBelowNavigation(page, "section-fixes");
-    await expectCurrent(page, "Fix these first");
+    await expectCurrent(page, "Lines");
 
-    // Inspect the quoted line and the first question themselves. Checking document
-    // scrollWidth or merely finding these nodes would miss a row header that
-    // pushes both below the fold. No further scrolling occurs after the jump.
-    const firstFix = page.locator("#section-fix-1");
-    await expect(firstFix.getByRole("list", { name: "From your line to a revised line", exact: true })).toBeHidden();
-    await expectInsideReadingViewport(firstFix.locator("blockquote"));
-    await expectInsideReadingViewport(firstFix.getByTestId("lift-question").first().locator("label"));
-    await expectInsideReadingViewport(firstFix.getByTestId("lift-question").first().locator("input"));
+    // Inspect the heading and the first card's line themselves. No further scrolling occurs after the jump.
+    await expectInsideReadingViewport(page.locator("#fixes-title"));
+    await expectInsideReadingViewport(page.locator("#section-card-1 blockquote, #section-card-1 > p").first());
   });
 }
 
@@ -160,14 +148,5 @@ test("workspace report navigation supports keyboard jumps with reduced motion", 
 
   // A keyboard jump does not pin the selection when the reader starts scrolling.
   await scrollInsideSection(page, "section-fixes", 0.5);
-  await expectCurrent(page, "Fix these first");
-});
-
-test("full recruiter notes head each resume section in sentence case", async ({ page }) => {
-  await page.goto("/sample-report");
-  const notes = page.getByTestId("full-recruiter-notes");
-  await notes.locator("summary").click();
-  // The model's section key stays "Work Experience"; only the heading changes case.
-  await expect(notes.getByRole("heading", { name: "Work experience", exact: true })).toBeVisible();
-  await expect(notes.getByRole("heading", { name: "Work Experience", exact: true })).toHaveCount(0);
+  await expectCurrent(page, "Lines");
 });

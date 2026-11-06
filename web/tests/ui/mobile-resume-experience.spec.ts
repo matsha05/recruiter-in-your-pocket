@@ -96,12 +96,10 @@ for (const width of [320, 390]) {
       await expect(page.getByTestId("score-band")).toContainText(scoreBandFor(sampleReport.score).name);
       await expect(page.getByTestId("score-band")).not.toContainText("/100");
 
-      // The first screen holds the Verdict, the Critical Miss once, and its first question (plan item 2.5).
-      const miss = page.getByTestId("critical-miss");
-      await expect(page.getByText("Critical Miss", { exact: true })).toHaveCount(1);
-      await expect(miss.locator("blockquote")).toBeInViewport({ ratio: 1 });
-      // The plan's target is a 390px phone; at 320 the line itself still lands on the first screen.
-      if (width >= 390) await expect(miss.getByTestId("lift-question").first().locator("input")).toBeInViewport({ ratio: 1 });
+      // The first screen holds the score, the verdict and the write-up's first lines; the cards follow the write-up.
+      await expect(page.getByTestId("worklist-score")).toBeInViewport({ ratio: 1 });
+      await expect(page.getByTestId("worklist-write-up").locator("p").first()).toBeInViewport({ ratio: 0.3 });
+      await expect(page.getByTestId("worklist-report")).not.toContainText("Critical Miss");
 
       // The section tabs wait until the opening read has scrolled away, then sit under the header.
       const nav = page.getByRole("navigation", { name: "Resume report sections" });
@@ -112,8 +110,8 @@ for (const width of [320, 390]) {
       await expect(nav).toBeVisible();
       const buttons = await nav.getByRole("button").all();
       const bounds = await Promise.all(buttons.map((button) => button.boundingBox()));
-      // Keep appears only when the report has strengths beyond the one shown in the opening read.
-      expect([3, 4]).toContain(bounds.length);
+      // The worklist's three sections: Overview, Line by line, Role fit.
+      expect(bounds.length).toBe(3);
       for (const box of bounds) {
         expect(box!.height).toBeGreaterThanOrEqual(44);
         expect(box!.width).toBeGreaterThanOrEqual(44);
@@ -122,16 +120,13 @@ for (const width of [320, 390]) {
         expect(box!.x + box!.width).toBeLessThanOrEqual(width);
       }
 
-      for (const [label, section] of [["Fix these first", "section-fixes"], ["Role fit", "section-role"], ["Overview", "section-first-impression"]]) {
+      for (const [label, section] of [["Lines", "section-fixes"], ["Role fit", "section-role"], ["Overview", "section-first-impression"]]) {
         // By section, through a CSS locator: back at Overview the tabs leave the screen again, and the check still reads them.
         const button = page.locator(`nav[aria-label="Resume report sections"] button[data-section="${section}"]`);
         await expect(button).toHaveAccessibleName(label);
         await button.click();
         await expect(button).toHaveAttribute("aria-current", "location");
-        // On phones the fix section's heading is for screen readers; its first visible line is the Critical Miss.
-        const heading = section === "section-fixes"
-          ? page.locator("#section-fix-1 blockquote")
-          : page.locator(`#${section}`).getByRole("heading").first();
+        const heading = page.locator(`#${section}`).getByRole("heading").first();
         await expect(heading).toBeInViewport();
         // The selected section changes before the mobile scroll has settled.
         await expect.poll(() => heading.evaluate((element) => {

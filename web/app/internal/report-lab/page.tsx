@@ -3,6 +3,7 @@ import path from "node:path";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ReportLab, { type LabFixture } from "@/components/internal/report-lab/ReportLab";
+import { MOCK_WORKLIST_REPORT } from "@/lib/backend/mock-worklist-report";
 
 export const dynamic = "force-dynamic";
 
@@ -11,6 +12,35 @@ const internalPagesEnabled = () => process.env.NODE_ENV !== "production" || proc
 export function generateMetadata(): Metadata {
   if (!internalPagesEnabled()) return {};
   return { title: "Report Lab", robots: { index: false, follow: false } };
+}
+
+// The worklist report (Nov 6, 2026): the five reports Matt reads, as the live-set runner saved them, plus the mock.
+function loadWorklistFixtures(root: string): LabFixture[] {
+  const auditDir = path.join(root, "..", "docs/audits/2026-11-worklist-run");
+  const cases: Array<{ id: string; label: string; resume: string }> = [
+    { id: "worklist-bad", label: "worklist · the bad resume (Mike)", resume: "../2026-11-live-judgment/resumes/h1_bad_resume.txt" },
+    { id: "worklist-thin", label: "worklist · the thin resume (Priya)", resume: "../2026-11-live-judgment/resumes/h2_thin_resume.txt" },
+    { id: "worklist-strong", label: "worklist · the strong resume (Elena)", resume: "../2026-11-live-judgment/resumes/h3_strong_resume.txt" },
+    { id: "worklist-mismatch", label: "worklist · the mismatched posting (data analyst, nursing role)", resume: "../2026-11-live-judgment/resumes/h5_data_analyst.txt" },
+    { id: "worklist-tier", label: "worklist · the Google engineer (Maya)", resume: "resumes/t1_google_engineer_maya.txt" },
+  ];
+  const stems: Record<string, string> = { "worklist-bad": "h1_bad_resume", "worklist-thin": "h2_thin_resume", "worklist-strong": "h3_strong_resume", "worklist-mismatch": "h5_mismatched_posting", "worklist-tier": "t1_google_engineer_maya" };
+  const fixtures: LabFixture[] = [];
+  for (const item of cases) {
+    const file = path.join(auditDir, "outputs", `${stems[item.id]}__run1.json`);
+    if (!fs.existsSync(file)) continue;
+    const record = JSON.parse(fs.readFileSync(file, "utf8"));
+    if (!record.shipped_report) continue;
+    const resumePath = path.resolve(auditDir, item.resume);
+    fixtures.push({
+      id: item.id,
+      label: `${item.label} · ${record.shipped_report.score}`,
+      report: record.shipped_report,
+      resumeText: fs.existsSync(resumePath) ? fs.readFileSync(resumePath, "utf8") : undefined,
+    });
+  }
+  fixtures.push({ id: "worklist-mock", label: "worklist · the mock (Alex Rivera) · 66", report: structuredClone(MOCK_WORKLIST_REPORT) as unknown as LabFixture["report"], resumeText: "Alex Rivera\nCustomer Operations\nExperience\nBuilt customer workflows in HubSpot for 120 customers.\nDocumented the workflow and trained the support team on customer onboarding.\nRan weekly onboarding reviews with account managers and kept the checklist current." });
+  return fixtures;
 }
 
 // Real production-prompt outputs (synthetic golden resumes), as the eval harness saved them.
@@ -92,7 +122,8 @@ function loadFixtures(): LabFixture[] {
   }
   const sample = JSON.parse(fs.readFileSync(path.join(root, "public/sample-report.json"), "utf8"));
   fixtures.push({ id: "sample", label: `sample report (fictional) · ${sample.score}`, report: sample, sample: true });
-  return fixtures;
+  // The worklist fixtures lead: they are the report the route writes now; the rest are the v2 shape saved reports keep.
+  return [...loadWorklistFixtures(root), ...fixtures];
 }
 
 export default async function ReportLabPage({ searchParams }: { searchParams: Promise<{ fixture?: string; as?: string }> }) {

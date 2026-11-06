@@ -9,7 +9,7 @@ export { isWorklistReport };
  * Miss report). RIYP_WORKLIST_REPORT: "0"/"false"/"off" writes the v2 report; unset or on writes the
  * worklist report. The flag is the kill switch for the launch, not a product setting.
  */
-export const WORKLIST_REPORT_DEFAULT = false;
+export const WORKLIST_REPORT_DEFAULT = true;
 
 export function isWorklistReportEnabled(value = process.env.RIYP_WORKLIST_REPORT) {
   const normalized = String(value ?? "").trim().toLowerCase();

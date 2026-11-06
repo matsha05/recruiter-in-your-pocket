@@ -17,7 +17,7 @@ const RESUME_TEXT = [
   "B.S. Business Administration, State University",
 ].join("\n");
 
-const STAGES = ["Sent", "Reading", "Writing the notes", "Checking every quote", "Checking for more misses"];
+const STAGES = ["Sent", "Reading", "Writing the notes", "Checking every quote"];
 
 async function openWorkspaceAsGuest(page: Page) {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;

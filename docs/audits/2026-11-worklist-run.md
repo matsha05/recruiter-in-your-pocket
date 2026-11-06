@@ -10,11 +10,16 @@ Files: `2026-11-worklist-run/manifest.json` (the live-judgment set by reference,
 | --- | --- | --- | --- | --- | --- | --- |
 | 1 | `b2c0d186` | 48 (6 holes, 40 breadth, 2 refused before the call) | 47 | 13 (27%) | 0 | Every repair was a retired phrase, 12 of them "the read" written in passing. Scores on labeled bad resumes ran 74 to 76 ("Mostly clear"). The severity check added a card on 1 of 47 reports. |
 | 2 | `05f0ed39` | 50 (holes, breadth, 2 tier) | 49 | 11 (22%) | 0 | Still "the read". The rung rule ("each structural problem holds the page to Needs more context") over-corrected: the entry-level PM golden fixture fell to 69 against an 82 to 92 range. |
-| 3 | `18e7e9ff` (shipped) | 50 | 49 | 1 (2%) | 0 | The validator rewrites "the read" to "the first pass" instead of refusing; the rung rule became "costs a rung, never Clear and specific"; the example must read as a finished bullet. |
+| 3 | `18e7e9ff` | 50 | 49 | 1 (2%) | 0 | The validator rewrites "the read" to "the first pass" instead of refusing; the rung rule became "costs a rung, never Clear and specific"; the example must read as a finished bullet. |
+| 4 | `705c2997` (shipped) | 10 (holes, tier) + golden 10 | 9 + 10 | 0 | 0 | After the surface's outside critique: blanks are short nouns ("[number]", "[tool]"), never "specific" or a suggested answer; a dates example starts with the page's own last date; one example per undated role; the keep note says what to copy in words the write-up didn't use; "verify", "size it" and the product's own words ("rung", "get you read") stay out of the person's report. |
 
 Replaying pass 2's 49 drafts through the final validator: 48 ship as the first draft, 1 after repair, 0 never ship. The same for pass 3. The one pass-3 repair is "the open question is" in a write-up; the validator refused it and the repair shipped.
 
-## The shipped prompt on the live set (pass 3)
+## Pass 4, the shipped prompt (`705c2997`)
+
+The critique ran on the surface built on pass 3's prompt; the prompt changes it asked for are copy, not judgment, so pass 4 re-ran the holes, the tier cases and the synthetic golden set rather than the whole breadth set. Holes and tier: 9 reports of 9 that reached the model, 0 repairs, scores within two points of pass 3 on every case but the academic CV (74 to 79); the bad resume's three dates cards now read "June 2023 - Present [work, study, job search, caregiving, travel or career break]" and one "[Month Year] - [Month Year] Warehouse Associate, Miami Valley Distribution" per undated role; the lift fired on the Google engineer again (75) and declared itself without "get you read". Golden synthetic: 6 PASS, 4 WARN, 0 FAIL (the same score drifts as pass 3, plus one card whose example has no blank). The sample (`public/sample-report.json`) is generated on this prompt. Pass 3's full breadth set stays in `outputs/pass3-18e7e9ff/` as the record of the larger measurement; the pass 4 outputs are in `outputs/`.
+
+## The prompt on the live set (pass 3, `18e7e9ff`, the full set)
 
 - 49 reports; 1 request refused before any call (the 15-page CV, as production refuses it).
 - Cards per report: mean 4.1, median 4, from 1 (the strong pages, a single keep card) to 12 (the bad resume, the cap).
@@ -42,15 +47,16 @@ The six golden warnings are five `W_SCORE_DRIFT` and one `W_MECHANICAL_COPY`. Th
 
 | What | Cost |
 | --- | --- |
-| Runner passes 1 to 3 (holes, breadth, tier), by the runner's ledgers | $1.42 |
-| Eval harness runs (first look, two golden synthetic, two count-check, one golden on pass 2) | $0.72 |
-| Total | $2.15 of the $12 planned for this wave; stop line $15 |
+| Runner passes 1 to 4 (holes, breadth, tier), by the runner's ledgers | $1.51 |
+| Eval harness runs (first look, three golden synthetic, two count-check, one golden on pass 2) | $0.86 |
+| The sample, generated twice | $0.02 |
+| Total | $2.39 of the $12 planned for this wave; stop line $15 |
 
-Remaining on the November 5 cap after this run: about $41.56.
+Remaining on the November 5 cap after this run: about $41.32.
 
 ## Not measured here
 
-- The judge in `web/lib/evals/judge/` compares Critical Misses and was not run; the worklist's judge question is drafted in `docs/evals/worklist-rubric.md` (step 4 of this wave).
+- The judge in `web/lib/evals/judge/` compares Critical Misses and was not run; the worklist's judge question is drafted in `docs/evals/worklist-rubric.md`.
 - Matt's read of five reports (a bad, a thin, a strong, a mismatch and a top-tier-employer case) decides whether the prompt ships to everyone; the candidates are `h1_bad_resume`, `h2_thin_resume`, `h3_strong_resume`, `h5_mismatched_posting` and `t1_google_engineer_maya` in `outputs/`.
 - Variance across repeats (brief decision 17): one run per case here. The pass-2 and pass-3 runs of the same cases on near-identical prompts put the same lines on cards in most reports, but that is two prompts, not two draws.
 

@@ -3,7 +3,7 @@ import puppeteer from "puppeteer";
 import puppeteerCore from "puppeteer-core";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import type { ReportForPdf } from "../reports/pdf-export";
+import type { ReportForPdf, WorklistForPdf } from "../reports/pdf-export";
 import { criticalCountHeading, fixLabel, fixPlanHeadingForCount, missingFromResume, readCriticalMisses, TIGHTENING_HEADING } from "../reports/report-presentation";
 import { marginNoteFromFix } from "../reports/revised-line";
 import { SCORE_BANDS, reportTone, scoreBandIndex } from "../reports/score-band";
@@ -43,7 +43,95 @@ function firstSentence(value: string): string {
   return sentence.length > 220 ? `${sentence.slice(0, 217).trimEnd()}...` : sentence;
 }
 
+/** The example's bracketed blanks in the candidate's blue, or the filled line when the person answered. */
+function exampleHtml(card: WorklistForPdf["cards"][number]) {
+  if (card.filled) return `<div class="card-example"><span class="blank-filled">${escapeHtml(card.filled)}</span><div class="card-example-note">Your line, with the blanks filled from your answers.</div></div>`;
+  if (!card.example) return "";
+  const html = escapeHtml(card.example).replace(/\[([^\]]*)\]/gu, (_, label: string) => `<span class="blank">[${label}]</span>`);
+  return `<div class="card-example">${html}</div>`;
+}
+
+function renderWorklistHtml(report: ReportForPdf, worklist: WorklistForPdf) {
+  const generatedOn = new Date().toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
+  const bandIndex = Math.max(0, scoreBandIndex(report.score));
+  const band = SCORE_BANDS[bandIndex];
+  const work = worklist.cards.filter((card) => card.kind !== "keep");
+  const heading = work.length === 0 ? "Nothing here needs work." : "Line by line, in the order a recruiter hits them.";
+  const cardHtml = (card: WorklistForPdf["cards"][number]) => {
+    const keep = card.kind === "keep";
+    const quoted = card.kind === "line" || card.kind === "keep";
+    const line = quoted
+      ? `<div class="card-line${keep ? " ink" : ""}">${keep ? escapeHtml(card.line) : `<span class="miss-mark">${escapeHtml(card.line)}</span>`}</div>`
+      : `<div class="card-statement">${escapeHtml(card.line)}</div>`;
+    return `<div class="card${keep ? " keep" : ""}">
+        <div class="card-where">${keep ? "Keep as is" : escapeHtml(card.where)}${keep ? '<span class="card-where-quiet">The model for the rest</span>' : ""}</div>
+        ${line}
+        <div class="pen-note">${escapeHtml(card.cannot_tell)}</div>
+        ${keep ? "" : exampleHtml(card)}
+        ${!keep && card.question ? `<div class="card-question">${escapeHtml(card.question)}</div>` : ""}
+      </div>`;
+  };
+  const fit = worklist.fit;
+  const fitHtml = fit.note || fit.roles.length ? `
+    <section class="section alignment-section">
+      <div class="section-kicker">Role fit</div>
+      <h2>${fit.posting.summary ? "How your experience fits this role" : "Roles your experience points toward"}</h2>
+      ${fit.posting.summary ? `<div class="positioning-suggestion"><p>${escapeHtml(fit.posting.summary)}</p></div>` : ""}
+      ${fit.note ? `<div class="positioning-suggestion"><p>${escapeHtml(fit.note)}</p></div>` : ""}
+      ${fit.roles.length ? `<div class="tag-row"><span class="tag-label">${fit.posting.summary ? "The role" : "Roles to consider"}</span>${fit.roles.map((role) => `<span class="tag">${escapeHtml(role)}</span>`).join("")}</div>` : ""}
+      ${fit.posting.missing.length ? `<div class="marked-questions"><div class="marked-questions-label accent">What the posting asks for that the page doesn't show</div>${fit.posting.missing.map((item) => `<div class="marked-question">${escapeHtml(item)}</div>`).join("")}</div>` : ""}
+      ${fit.level ? `<div class="alignment-meta"><span class="meta-item"><strong>How the page reads</strong> ${escapeHtml(fit.level)}</span></div>` : ""}
+    </section>` : "";
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Resume report | Recruiter in Your Pocket</title>
+  <style>${pdfReportStyles(PDF_FONTS)}</style>
+</head>
+<body>
+  <header>
+    <div class="brand-block">
+      <div class="brand-wordmark">Recruiter <span class="brand-in">in</span> Your Pocket</div>
+      <div class="tagline">Resume report</div>
+    </div>
+    <div class="date">${escapeHtml(generatedOn)}</div>
+  </header>
+
+  <section class="hero">
+    <div class="score-row">
+      <div class="score">${report.score}</div>
+      <div class="band">
+        <div class="band-name">${escapeHtml(band.name)}</div>
+        <div class="band-scale">${SCORE_BANDS.map((_, index) => `<span class="band-bar${index === bandIndex ? " current" : ""}"></span>`).join("")}</div>
+        <div class="band-anchor">${escapeHtml(band.anchor)}</div>
+      </div>
+    </div>
+    <h1>${escapeHtml(worklist.verdict)}</h1>
+    <div class="write-up">${worklist.write_up.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}</div>
+    <div class="score-note">The rung is what a recruiter does with the page after one pass; the number says where in the rung it sits. It doesn't predict interviews or offers.${worklist.lifted_by_employer ? " A recent employer whose hiring bar recruiters know on sight lifted this page one rung." : ""}</div>
+  </section>
+
+  <section class="section priority-section">
+    <div class="section-kicker">${work.length === 0 ? "Before you send it" : "Line by line"}</div>
+    <div class="section-header"><h2>${escapeHtml(heading)}</h2>${work.length === 0 ? '<p class="count-lead">Send it. Then read it against the posting you\'re going for.</p>' : ""}</div>
+    ${worklist.cards.map(cardHtml).join("")}
+    ${work.length > 0 ? '<p class="unlisted">Lines not listed are fine as written.</p>' : ""}
+  </section>
+
+  ${fitHtml}
+
+  <footer>
+    <div>A recruiter&rsquo;s review criteria, applied by AI. Every fact in an example is your resume&rsquo;s or yours; the blanks are yours to fill.</div>
+    <div>recruiterinyourpocket.com</div>
+  </footer>
+</body>
+</html>`;
+}
+
 export function renderReportHtml(report: ReportForPdf) {
+  if (report.worklist) return renderWorklistHtml(report, report.worklist);
   const generatedOn = new Date().toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
   // Same order as the web report: the Verdict and score band, then the marked lines, Critical Miss first.
   const verdict = report.first_impression || report.score_comment_short || firstSentence(report.summary);

@@ -49,6 +49,8 @@ export const ANALYTICS_EVENT_PROPERTIES = {
   sm1_fix_copied: [],
   // The Critical Miss's revised line now carries the fact it asked for (plan item 2.3).
   critical_miss_addressed: ["sample"],
+  // The worklist report (Nov 5, 2026): a line with its blanks filled, copied. The card's kind, never its text.
+  worklist_line_copied: ["kind"],
   // Ask-first (Nov 5, 2026): the not-ready page's questions were answered and the report written again, or skipped.
   ask_first_written: ["answers", "questions"],
   ask_first_skipped: ["questions"],
