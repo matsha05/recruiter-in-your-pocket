@@ -105,7 +105,7 @@ export const categories: ResearchCategory[] = [
                 title: "How the report works",
                 href: "/methodology",
                 question: "How does your report decide?",
-                answer: "AI applies a recruiter's criteria. Here's how the Verdict, the band, and the Critical Miss are made, and what they can't tell you.",
+                answer: "AI applies a recruiter's criteria. Here's how the score, the write-up and the cards are made, and what they can't tell you.",
             },
         ],
     },

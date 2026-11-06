@@ -40,7 +40,7 @@ const COMPLETE_REPORT_SUBTITLE = `${JOB_SEARCH_PASS_DECISION.freeBoundary} ${JOB
 // The price row under the list carries the term and the renewal fact.
 const PASS_BULLETS = [
     "5 more complete reports",
-    "Re-check a revision and see whether your Critical Miss changed",
+    "Re-check a revision and see which lines came off the list",
     "Read your resume against each job posting",
 ];
 

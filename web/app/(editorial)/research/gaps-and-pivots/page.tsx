@@ -153,7 +153,7 @@ export default function GapsAndPivotsPage() {
             </p>
 
             <ArticleBridge question="What question does your resume leave open?">
-                If a gap or a pivot is the question your resume leaves open, the Verdict says so in plain words. If it could cost you the interview on its own, it becomes a Critical Miss, with a fix that keeps your facts intact.
+                If a gap or a pivot is the question your resume leaves open, the write-up says so in plain words, and the gap gets a card of its own: an honest dated line with the blank for what you were doing, never a story invented for you.
             </ArticleBridge>
 
             <h2 className="research-h2">Limitations</h2>

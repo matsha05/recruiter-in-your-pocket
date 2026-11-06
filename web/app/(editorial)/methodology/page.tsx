@@ -16,8 +16,8 @@ const PATH = "/methodology";
 
 export const metadata = pageMetadata({
     path: PATH,
-    title: "How the resume report works: score, Verdict, Critical Miss",
-    description: "How your report reaches its Verdict, where your resume stands, and its Critical Miss, what it can't tell you, and how suggested edits protect your facts.",
+    title: "How the report works: the score, the write-up, the lines",
+    description: "How your report reaches its score, what the write-up says, how each line gets its card, what it can't tell you, and how the examples protect your facts.",
     type: "article",
 });
 
@@ -47,7 +47,7 @@ const SOURCES = [
 
 /**
  * How the report works (Nov 4, 2026): cut to the density rule. One part of the report per section with one
- * object each (the Verdict as the report prints it, the band, the Critical Miss as a clipping), the facts rule,
+ * object each (the Verdict as the report prints it, the rung, a card's line as a clipping), the facts rule,
  * what the report can't tell you, the disclosure as the signed note, and the research-method note that every
  * article links to. The methods explained by Linear's Method and Shape Up run 15 to 85 words a section with no
  * diagrams; the "what it can't tell you" section is the one no precedent has.
@@ -73,7 +73,7 @@ export default function MethodologyPage() {
 
             <section className={rhythm.section} aria-labelledby="band-title">
                 <h2 id="band-title" className={rhythm.title}>Where your resume stands.</h2>
-                <p className={rhythm.deck}>One of three bands, with a line on what it means. The number behind it appears only when two reads are compared.</p>
+                <p className={rhythm.deck}>One of four rungs, with a line on what it means, and the number beside it. The rung is what a recruiter does with the page after one pass.</p>
                 <div className={styles.band}><ScoreBand score={sampleReport.score} /></div>
                 <section aria-label="What goes into the band">
                     <ol className={styles.parts}>
@@ -82,9 +82,9 @@ export default function MethodologyPage() {
                 </section>
             </section>
 
-            <section className={rhythm.section} aria-labelledby="miss-title">
-                <h2 id="miss-title" className={rhythm.title}>The Critical Miss.</h2>
-                <p className={rhythm.deck}>A problem that could cost you the interview on its own. The report quotes the line, says what&rsquo;s missing, and asks for it instead of guessing. Up to three, the first to fix first.</p>
+            <section className={rhythm.section} aria-labelledby="lines-title">
+                <h2 id="lines-title" className={rhythm.title}>Line by line.</h2>
+                <p className={rhythm.deck}>Every line a recruiter trips on gets a card: the line as written, what they can&rsquo;t tell from it, an example with the blanks for you to fill, and the question that fills them. Nothing in an example is invented; the facts are your resume&rsquo;s or yours.</p>
                 <Clipping
                     caption="A line from Jordan’s resume, and the report’s question"
                     line={JORDAN_EXAMPLE.line}
@@ -100,7 +100,7 @@ export default function MethodologyPage() {
 
             <section className={rhythm.section} aria-labelledby="facts-title">
                 <h2 id="facts-title" className={rhythm.title}>Only from your facts.</h2>
-                <p className={rhythm.deck}>The revised line is your line plus your answers, word for word. Skip a question and it stays out. Add something that isn&rsquo;t in your answers and it can&rsquo;t be copied until you add it as one.</p>
+                <p className={rhythm.deck}>Every example keeps your facts and leaves blanks for the rest. Your answers go into the blanks word for word, and the line can&rsquo;t be copied until every blank is yours. A recognisable recent employer can lift the page one rung; the write-up says so when it does.</p>
             </section>
 
             <section className={rhythm.section} aria-labelledby="cant-title">

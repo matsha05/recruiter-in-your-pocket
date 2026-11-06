@@ -106,7 +106,7 @@ export default function DiscriminationMetaPage() {
             </div>
 
             <ArticleBridge question="Is anything on the page raising avoidable doubt?">
-                No resume report can tell you why you were turned down, or whether bias played a part. Your Critical Misses are the problems on the page that could cost you the interview. Fixing them won&apos;t close a gap that lives in the hiring process itself.
+                No resume report can tell you why you were turned down, or whether bias played a part. The report cards the lines on the page a recruiter trips on. Fixing them won&apos;t close a gap that lives in the hiring process itself.
             </ArticleBridge>
 
             <h2 className="research-h2">Limitations</h2>

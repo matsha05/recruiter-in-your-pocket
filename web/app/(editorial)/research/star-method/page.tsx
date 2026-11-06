@@ -112,7 +112,7 @@ export default function StarMethodPage() {
             </ul>
 
             <ArticleBridge question="Does each line show what was yours?">
-                When a line hides your part or the result, the Critical Miss usually says so first. Fixing it gives you the headline of a story you can tell, and the score weighs how easy it is to follow what you did.
+                When a line hides your part or the result, it gets a card that asks for them. Filling it gives you the headline of a story you can tell, and the score weighs how easy it is to follow what you did.
             </ArticleBridge>
 
             <h2 className="research-h2">Limitations</h2>

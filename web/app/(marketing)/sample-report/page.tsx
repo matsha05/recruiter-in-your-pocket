@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Sample report",
-  description: "A complete resume report on a fictional candidate, Jordan: what works, the lines behind each note, and the one thing to fix first.",
+  description: "A complete resume report on a fictional candidate, Jordan: what a recruiter takes from the page, and the lines that need work, one card each.",
   alternates: {
     canonical: "/sample-report",
   },

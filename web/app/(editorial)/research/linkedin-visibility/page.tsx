@@ -169,7 +169,7 @@ export default function LinkedInVisibilityPage() {
             </ul>
 
             <ArticleBridge question="Does your resume name the role plainly?">
-                Your report reads your resume, not your LinkedIn profile. It flags what&apos;s missing or unclear, and each Critical Miss is a problem that could cost you the interview on its own, starting with the one to fix first. Fix the resume, then carry the same plain language over to your profile.
+                Your report reads your resume, not your LinkedIn profile. It cards each line a recruiter trips on, in the order they hit it, and asks for what&apos;s missing instead of inventing it. Fix the resume, then carry the same plain language over to your profile.
             </ArticleBridge>
         </AnswerArticle>
     );

@@ -36,7 +36,7 @@ export const PRICING_PLANS: Record<PricingTierId, PricingPlan> = {
     features: [
       { text: "One complete resume report", bold: true },
       { text: "Your Verdict and where your resume stands" },
-      { text: "Up to three Critical Misses, with the lines behind them" },
+      { text: "Every line that needs work, with the line as written and what to add" },
       { text: "A revised line, written only from your facts" },
       { text: "PDF export and saved reports when you sign in. No card needed." }
     ]
@@ -49,7 +49,7 @@ export const PRICING_PLANS: Record<PricingTierId, PricingPlan> = {
     buttonText: "Get 5 more reports · $29",
     features: [
       { text: "5 more complete reports", bold: true },
-      { text: "Re-check a revision and see whether your Critical Miss changed" },
+      { text: "Re-check a revision and see which lines came off the list" },
       { text: "Read your resume against each job posting" },
       { text: "$29 once. Good for 90 days. No automatic renewal." }
     ]

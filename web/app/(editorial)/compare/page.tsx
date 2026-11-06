@@ -22,7 +22,7 @@ export const metadata = pageMetadata({
 const OUR_NAME = "Recruiter in Your Pocket";
 
 const ourRow = {
-    does: "Reads the resume you have the way a recruiter would: a Verdict, the Critical Misses to fix first, and rewrites from your facts.",
+    does: "Reads the resume you have the way a recruiter would: the write-up, the lines that need work in the order they hit them, and an example for each built only from your facts.",
     costs: "$29 once for five more reports, good for 90 days. No renewal.",
     free: "The first complete report. No card, no account.",
 };

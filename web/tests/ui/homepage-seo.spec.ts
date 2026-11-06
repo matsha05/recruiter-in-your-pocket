@@ -1,8 +1,8 @@
 import { expect, test } from "@playwright/test";
 import { JORDAN_EXAMPLE } from "../../lib/marketing/jordan-example";
 
-const shareDescription = "Find the one thing to fix first. Your first report is free. No account or card.";
-const homepageDescription = "Get a free resume report with feedback on what recruiters may notice, which details need explanation, and up to three changes to make before you apply.";
+const shareDescription = "See what a recruiter sees, line by line. Your first report is free. No account or card.";
+const homepageDescription = "Get a free resume report: what a recruiter takes from your page, the lines they trip on, and what to add to each one before you apply.";
 
 test.describe("homepage feedback and SEO contract", () => {
   test("the homepage explains the report and keeps the offer tool in the footer", async ({ page }) => {
@@ -59,7 +59,7 @@ test.describe("homepage feedback and SEO contract", () => {
     await expect(progress).not.toContainText("fixed");
     const truths = homepage.locator("#what-we-look-for");
     await expect(truths.getByRole("heading", { level: 2 })).toHaveText("What we look for, line by line.");
-    await expect(truths).toContainText("Not forty tips. Every Critical Miss, and the one to fix first.");
+    await expect(truths).toContainText("Not forty tips. Every line a recruiter trips on, in the order they hit it.");
     await expect(truths).toContainText("No ATS score. No interview odds.");
 
     // The founder note (Nov 4, 2026): a drawing and a signed note, no name, no photograph, no profile link, no employer names.

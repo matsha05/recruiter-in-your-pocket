@@ -13,7 +13,7 @@ export function HiringTruths() {
                 </div>
                 <div className={styles.row}>
                     <dt className={styles.quote}>Your best example stops right before the good part.</dt>
-                    <dd className={styles.answer}><strong>Not forty tips.</strong> Every Critical Miss, and the one to fix first.</dd>
+                    <dd className={styles.answer}><strong>Not forty tips.</strong> Every line a recruiter trips on, in the order they hit it.</dd>
                 </div>
                 <div className={styles.row}>
                     <dt className={styles.quote}>No ATS score. No interview odds.</dt>

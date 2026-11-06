@@ -159,7 +159,7 @@ export default function QuantifyingImpactPage() {
             </p>
 
             <ArticleBridge question="Which of your lines stop before the result?">
-                When a line says what you did but not what changed, it often becomes the Critical Miss. We&apos;ll ask for the result or the scale. We won&apos;t invent one for you.
+                When a line says what you did but not what changed, it gets a card. We&apos;ll ask for the result or the scale. We won&apos;t invent one for you.
             </ArticleBridge>
 
             <h2 className="research-h2">What the evidence does not prove</h2>

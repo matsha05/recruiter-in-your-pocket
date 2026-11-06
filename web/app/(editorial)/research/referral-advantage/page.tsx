@@ -138,7 +138,7 @@ export default function ReferralAdvantagePage() {
             </p>
 
             <ArticleBridge question="Is it ready for a real read?">
-                A referral buys you a real read. The Verdict sums up what your resume says first, so check it before someone puts their name next to yours. Your referrer can vouch for you, but they can&apos;t fix your resume. Your Critical Misses are the problems that could cost you the interview on their own; start with the first.
+                A referral buys you a real read. The write-up sums up what your resume says first, so check it before someone puts their name next to yours. Your referrer can vouch for you, but they can&apos;t fix your resume. The cards are the lines a recruiter trips on; work through them in order.
             </ArticleBridge>
 
             <h2 className="research-h2">Limitations</h2>

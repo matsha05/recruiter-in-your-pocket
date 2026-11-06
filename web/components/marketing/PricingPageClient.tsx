@@ -100,7 +100,7 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                     <div className={cn(styles.words, styles.wordsFree)}>
                         <h2>First report</h2>
                         <span className={styles.price}>$0</span>
-                        <p>Your Verdict, where your resume stands, and up to three Critical Misses. {FREE_REPORT_ENTITLEMENT.promise}</p>
+                        <p>Where your resume stands, the recruiter&rsquo;s write-up, and every line that needs work. {FREE_REPORT_ENTITLEMENT.promise}</p>
                     </div>
                     <div className={cn(styles.words, styles.wordsPass)}>
                         <h2>Job Search Pass</h2>

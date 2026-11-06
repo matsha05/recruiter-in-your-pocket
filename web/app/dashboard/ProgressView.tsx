@@ -22,7 +22,7 @@ function movementSentence(first: number, latest: number, count: number) {
     if (count < 2) return "One report so far. Save your next version and you'll see how it moves.";
     const change = latest - first;
     if (change > 0) return `Up ${change} since your first report.`;
-    if (change < 0) return `Down ${Math.abs(change)} since your first report. Read the latest Critical Miss before changing it again.`;
+    if (change < 0) return `Down ${Math.abs(change)} since your first report. Read the latest write-up before changing it again.`;
     return "Same score as your first report. The written findings show what moved.";
 }
 
