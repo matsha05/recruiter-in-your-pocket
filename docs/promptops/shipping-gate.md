@@ -110,7 +110,7 @@ These numbers are in-sample: the rubric was refined on the same ten items Matt p
 
 Built November 6, 2026 for the copy system (`docs/copy-system.md`). `npm run copy:judge` from `web/` scores product copy against the voice chart, the tone by moment and the tic list, and proposes a rewrite for each string that isn't "us". It judges the interface, emails and public pages, never the model's report prose, and it never runs in production. Every call needs `RIYP_ALLOW_PAID_EVALS=true`; `--budget-usd` (at most $5) is the ceiling for a run, and `--dry-run` runs the free pattern checks with no call. It runs on `gpt-6.1-sol` and refuses the generator's model. How it works and how to read it: [docs/copy/judge/README.md](../copy/judge/README.md).
 
-Calibration of prompt `voice-judge-v3` (SHA-256 `e14a3ebf7dfd63937a186be14a921d72385e24d03473d615e73ce7caf83482be`) against hand labels made before each set's first run (the copy-system session's; Matt set the rating round aside and gave his own words, which are the prompt's examples):
+Calibration of prompt `voice-judge-v4` (SHA-256 `17027da35aa907af2d118f6b947a454a9c27f7f80707ad882ada8424cf9914a1`; v3 plus the fifth band in its glossary, with the same verdicts) against hand labels made before each set's first run (the copy-system session's; Matt set the rating round aside and gave his own words, which are the prompt's examples):
 
 | Set | Exact (us, flat, no) | Cohen's kappa | Labelled "no" that it failed | Its "no" that were right |
 | --- | --- | --- | --- | --- |
@@ -126,7 +126,8 @@ Spend (token-calculated, synthetic product strings only; the copy-judge cap is $
 | Calibration v1, tuning set | 40 | 4 | $0.0506 |
 | Calibration v2, tuning and held-out sets | 64 | 6 | $0.0696 |
 | Calibration v3, tuning and held-out sets | 64 | 6 | $0.0738 |
-| Total so far | | | $0.1940 |
+| Calibration v4, tuning and held-out sets | 64 | 6 | $0.0712 |
+| Total so far | | | $0.2652 |
 
 ---
 

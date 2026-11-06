@@ -14,7 +14,7 @@
 import { createHash } from "node:crypto";
 import { TICS, VERDICTS } from "./types";
 
-export const VOICE_JUDGE_PROMPT_VERSION = "voice-judge-v3";
+export const VOICE_JUDGE_PROMPT_VERSION = "voice-judge-v4";
 
 /** We are / we are not, with Matt's words for each. Mirrors docs/copy-system.md §1. */
 export const VOICE_CHART: Array<{ are: string; not: string; matt: string }> = [
@@ -85,7 +85,7 @@ const GLOSSARY = `- The start button, signed out: "Get your free report". From s
 - Where saved reports live: "My reports".
 - The paid offer: "Job Search Pass", five more reports for $29, good for 90 days, no automatic renewal.
 - The one-line sentence under the score has no label; never "Verdict" with a capital V.
-- The four bands: "Not ready yet", "Needs more context", "Mostly clear", "Clear and specific". Never "rungs".
+- The bands: "Not ready yet", "Needs more context", "Mostly clear", "Clear and specific", and on the worklist report a fifth, "Ready to send", earned only when no line needs work. Never "rungs".
 - A paid re-run of a revision: a "re-check"; a line comes "off the list", never "fixed".
 - The negotiation section: "After the offer". The example report: "Sample report", or "See Jordan's report".
 - Who speaks: "we" is the candidate and us; "you" is the candidate; "I" only in the founder note.`;

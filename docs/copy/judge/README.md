@@ -30,8 +30,10 @@ Two sets, both real strings from the site:
 | v2 | held out | 20 of 24 | 0.67 | 4 of 4 | 4 of 5 |
 | v3 | tuning | 31 of 40 | 0.58 | 6 of 6 | 6 of 7 |
 | v3 | held out | 19 of 24 | 0.58 | 3 of 4 | 3 of 3 |
+| v4 | tuning | 31 of 40 | 0.58 | 6 of 6 | 6 of 7 |
+| v4 | held out | 19 of 24 | 0.58 | 3 of 4 | 3 of 3 |
 
-v3 is the shipped prompt. The differences between v2 and v3 are about one line, which is run-to-run noise at this size, so tuning stopped there. A kappa near 0.6 is moderate-to-substantial agreement; the LLM-as-judge literature puts strong judges near human-human agreement, and this one is close to that on the call that matters.
+v4 is the shipped prompt; it differs from v3 only in the glossary, which now names the worklist's fifth band, `Ready to send` (PR 82). The differences between v2 and v3 are about one line, which is run-to-run noise at this size, so tuning stopped there. A kappa near 0.6 is moderate-to-substantial agreement; the LLM-as-judge literature puts strong judges near human-human agreement, and this one is close to that on the call that matters.
 
 What the numbers say, in words:
 
@@ -44,8 +46,9 @@ What changed between versions, all from the tuning set's disagreements:
 
 - v2: asides where people pause are the voice and must not be edited out; a line beside a button need not repeat it; ownership in an error is not a joke; "flat" covers stiff, passive and swap-test lines.
 - v3: a specific figure about a named thing ("244 applicants") is not an invented statistic; a sign-in email's opening may be warm.
+- v4: the glossary names the fifth band. Same verdicts as v3 on both sets.
 
-Every run's full record (each line, the label, the verdict, the reason and the rewrite) is beside this file: `calibration-v1-2026-11-06.*`, `calibration-v2-*`, `calibration-v3-*`.
+Every run's full record (each line, the label, the verdict, the reason and the rewrite) is beside this file: `calibration-v1-2026-11-06.*`, `calibration-v2-*`, `calibration-v3-*`, `calibration-v4-*`.
 
 ## Spend
 

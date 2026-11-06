@@ -23,7 +23,7 @@ const copySystem = readFileSync(path.join(repoRoot, "docs/copy-system.md"), "utf
 
 // A prompt change needs a fresh calibration on both sets: the shipped prompt is the one the held-out record measured.
 {
-  const record = JSON.parse(readFileSync(path.join(repoRoot, "docs/copy/judge/calibration-v3-heldout-2026-11-06.json"), "utf8"));
+  const record = JSON.parse(readFileSync(path.join(repoRoot, "docs/copy/judge/calibration-v4-heldout-2026-11-06.json"), "utf8"));
   assert.equal(voiceJudgePromptSha256(), record.meta.prompt_sha256, "the judge prompt changed: rerun npm run copy:judge -- calibrate on both sets and point this test at the new record");
 }
 
