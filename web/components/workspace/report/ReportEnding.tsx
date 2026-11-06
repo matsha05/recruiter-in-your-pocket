@@ -34,7 +34,7 @@ export interface ReportEndingProps {
 export function ReportEnding({ isSample, isSignedIn, isExhausted, ready, clean = false, allAddressed, revisedCount, onStartReport, onStartRevision, onSaveReport, isSavingReport = false, onUpgrade }: ReportEndingProps) {
   // Matt, November 6, 2026: on a strong resume, say so and say the resume isn't the problem (copy system §3, pair 40).
   const readyEnding = ready ? (clean ? "This is killer! Send it." : "Send it. Then read it against the posting you're going for.") : null;
-  const readyNote = ready && clean ? "Your resume won't be the reason you don't get the call. Read it against the posting you're going for, and look at whether anyone can bring you in." : null;
+  const readyNote = ready && clean ? "Every line says what you did and what changed, so your resume won't be the reason you don't get the call. Read it against the posting you're going for, and look at whether anyone can bring you in." : null;
   const revisionLabel = ready ? "Read it against a posting" : "Compare my revision";
   const addressedHeading = `${revisedCount > 1 ? "Your lines are ready. Drop them" : "Your line is ready. Drop it"} into your resume and see what changed.`;
 

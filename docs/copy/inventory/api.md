@@ -50,9 +50,9 @@ Routes: `/api/account/delete`, `/api/account/export`, `/api/analytics`, `/api/au
 | 1 | auth | `web/app/api/auth/send-code/route.ts:22` | key:message | Too many attempts. Try again shortly. |
 | 2 | auth | `web/app/api/auth/send-code/route.ts:33` | key:message | Enter a valid email address. |
 | 3 | auth | `web/app/api/auth/send-code/route.ts:43` | key:message | Too many attempts for this email. Try again later. |
-| 4 | auth | `web/app/api/auth/send-code/route.ts:78` | key:message | Could not send your sign-in code. Try again shortly. |
+| 4 | auth | `web/app/api/auth/send-code/route.ts:78` | key:message | We couldn’t send your sign-in code. Try again in a moment. |
 | 5 | auth | `web/app/api/auth/send-code/route.ts:87` | key:message | Code sent |
-| 6 | auth | `web/app/api/auth/send-code/route.ts:105` | key:message | Could not send your sign-in code. Try again shortly. |
+| 6 | auth | `web/app/api/auth/send-code/route.ts:105` | key:message | We couldn’t send your sign-in code. Try again in a moment. |
 
 ## /api/auth/send-code, /api/stripe/webhook
 
@@ -75,7 +75,7 @@ Routes: `/api/account/delete`, `/api/account/export`, `/api/analytics`, `/api/au
 | 1 | auth | `web/app/api/auth/verify-code/route.ts:19` | key:message | Too many attempts. Try again shortly. |
 | 2 | auth | `web/app/api/auth/verify-code/route.ts:32` | key:message | Enter your email address and sign-in code. |
 | 3 | auth | `web/app/api/auth/verify-code/route.ts:42` | key:message | Too many code attempts. Request a new code and try again later. |
-| 4 | auth | `web/app/api/auth/verify-code/route.ts:68` | key:message | That code was not accepted. Check the latest email or request a new code. |
+| 4 | auth | `web/app/api/auth/verify-code/route.ts:68` | key:message | That code didn’t work. Check the latest email or request a new code. |
 | 5 | auth | `web/app/api/auth/verify-code/route.ts:75` | key:message | Could not complete sign-in. Try again. |
 | 6 | auth | `web/app/api/auth/verify-code/route.ts:108` | key:message | Could not check your sign-in code. Try again. |
 

@@ -8,8 +8,8 @@ Routes: `/methodology`. Strings: 32 (32 unique).
 
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
-| 1 | marketing | `web/app/(editorial)/methodology/page.tsx:19` | key:title | How the report works: the score, the write-up, the lines |
-| 2 | marketing | `web/app/(editorial)/methodology/page.tsx:20` | key:description | How your report reaches its score, what the write-up says, how each line gets its card, what it can't tell you, and how the examples protect your facts. |
+| 1 | marketing | `web/app/(editorial)/methodology/page.tsx:19` | key:title | How the resume report works |
+| 2 | marketing | `web/app/(editorial)/methodology/page.tsx:20` | key:description | How your report reaches its score, what the write-up says, which lines need work, what it can't tell you, and how the examples protect your facts. |
 | 3 | marketing | `web/app/(editorial)/methodology/page.tsx:25` | const | A recruiter with fifteen years in hiring wrote these criteria. AI applies them, the same way to every resume, and nobody reads yours but you. Check every suggested edit against what you actually did. |
 | 4 | marketing | `web/app/(editorial)/methodology/page.tsx:29` | const[] | The results you show. |
 | 5 | marketing | `web/app/(editorial)/methodology/page.tsx:30` | const[] | How clearly each line reads. |
@@ -20,10 +20,10 @@ Routes: `/methodology`. Strings: 32 (32 unique).
 | 10 | marketing | `web/app/(editorial)/methodology/page.tsx:59` | jsx-text | How the report works. |
 | 11 | marketing | `web/app/(editorial)/methodology/page.tsx:60` | jsx-text | A recruiter wrote the criteria. AI applies them to your resume, line by line, and quotes the line behind every note. |
 | 12 | marketing | `web/app/(editorial)/methodology/page.tsx:61` | jsx-text | See Jordan’s report |
-| 13 | marketing | `web/app/(editorial)/methodology/page.tsx:65` | jsx-text | The Verdict. |
+| 13 | marketing | `web/app/(editorial)/methodology/page.tsx:65` | jsx-text | The write-up. |
 | 14 | marketing | `web/app/(editorial)/methodology/page.tsx:66` | jsx-text | What your resume says first, in plain words, judged against the criteria. |
 | 15 | marketing | `web/app/(editorial)/methodology/page.tsx:75` | jsx-text | Where your resume stands. |
-| 16 | marketing | `web/app/(editorial)/methodology/page.tsx:76` | jsx-text | One of four bands, with a line on what it means, and the number beside it. The band is what a recruiter would do with the resume after one pass. |
+| 16 | marketing | `web/app/(editorial)/methodology/page.tsx:76` | jsx-text | One of five bands, with a line on what it means, and the number beside it. The top one, Ready to send, is earned: it means no line on the page needs work. The band is what a recruiter would do with the resume after one pass. |
 | 17 | marketing | `web/app/(editorial)/methodology/page.tsx:78` | attr:aria-label | What goes into the band |
 | 18 | marketing | `web/app/(editorial)/methodology/page.tsx:86` | jsx-text | Lines that need work. |
 | 19 | marketing | `web/app/(editorial)/methodology/page.tsx:87` | jsx-text | Every line a recruiter trips on gets a card: the line as written, what they can’t tell from it, an example with the blanks for you to fill, and the question that fills them. Nothing in an example is invented; the facts are your resume’s or yours. |

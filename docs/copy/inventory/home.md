@@ -8,18 +8,18 @@ Routes: `/`, `/methodology`. Strings: 66 (61 unique).
 
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
-| 1 | marketing | `web/app/(marketing)/page.tsx:5` | const | Get a free resume report: what a recruiter takes from your page, the lines they trip on, and what to add to each one before you apply. |
+| 1 | marketing | `web/app/(marketing)/page.tsx:5` | const | A free resume report that shows what a recruiter takes from your resume, the lines they’d stop on, and what to add to each one before you apply. |
 | 2 | marketing | `web/app/(marketing)/page.tsx:8` | const | See what a recruiter sees: free resume report |
 | 3 | marketing | `web/app/(marketing)/page.tsx:9` | const | See what a recruiter sees, line by line. Your first report is free. No account or card. |
 | 4 | marketing | `web/app/(marketing)/page.tsx:14` | key:alt | 244 people applied for the job you wanted. A pile of 244 sheets of paper, eighteen of them green: the ones who got called back. |
 | 5 | marketing | `web/app/(marketing)/page.tsx:55` | key:description | {FREE_REPORT_ENTITLEMENT.p…} {FREE_REPORT_ENTITLEMENT.b…} No account required. |
 | 6 | marketing | `web/app/(marketing)/page.tsx:61` | key:description | Five additional resume reports over 90 days. One payment of $29, with no automatic renewal. |
 | 7 | error | `web/app/error.tsx:32` | jsx-text | That page didn’t load. |
-| 8 | error | `web/app/error.tsx:35` | jsx-text | Something broke on our end, not yours. Saved reports aren’t affected. |
+| 8 | error | `web/app/error.tsx:35` | jsx-text | Our bad. Something broke on our end. Your saved reports are fine. |
 | 9 | error | `web/app/error.tsx:40` | jsx-text | Try again |
 | 10 | error | `web/app/error.tsx:44` | jsx-text | Go to the homepage |
 | 11 | error | `web/app/error.tsx:51` | jsx-text | Error reference |
-| 12 | marketing | `web/app/manifest.ts:7` | key:description | See what a recruiter sees: your Verdict, where your resume stands, and what to fix first. |
+| 12 | marketing | `web/app/manifest.ts:7` | key:description | See what a recruiter sees in your resume, line by line. |
 | 13 | error | `web/app/not-found.tsx:9` | key:title | Page not found |
 | 14 | error | `web/app/not-found.tsx:10` | key:description | The page you requested could not be found. |
 | 15 | error | `web/app/not-found.tsx:27` | jsx-text | We can’t find that page. |
@@ -44,11 +44,11 @@ Routes: `/`, `/methodology`. Strings: 66 (61 unique).
 | 34 | marketing | `web/components/landing/home/HiringTruths.tsx:12` | jsx-text | Show the result instead. |
 | 35 | marketing | `web/components/landing/home/HiringTruths.tsx:12` | jsx-text | We point to the line that already has one, and ask for the detail you left out. |
 | 36 | marketing | `web/components/landing/home/HiringTruths.tsx:15` | jsx-text | Your best example stops right before the good part. |
-| 37 | marketing | `web/components/landing/home/HiringTruths.tsx:16` | jsx-text | Not forty tips. |
-| 38 | marketing | `web/components/landing/home/HiringTruths.tsx:16` | jsx-text | Every line a recruiter trips on, in the order they hit it. |
-| 39 | marketing | `web/components/landing/home/HiringTruths.tsx:19` | jsx-text | No ATS score. No interview odds. |
-| 40 | marketing | `web/components/landing/home/HiringTruths.tsx:20` | jsx-text | Just what reads clearly and what doesn’t. |
-| 41 | marketing | `web/components/landing/home/HiringTruths.tsx:20` | jsx-text | We’ll rewrite your line. Only from your facts. |
+| 37 | marketing | `web/components/landing/home/HiringTruths.tsx:16` | jsx-text | We show you where. |
+| 38 | marketing | `web/components/landing/home/HiringTruths.tsx:16` | jsx-text | The lines a recruiter would stop on, in the order they’d read them. |
+| 39 | marketing | `web/components/landing/home/HiringTruths.tsx:19` | jsx-text | Nobody can score you against an ATS or tell you your interview odds. |
+| 40 | marketing | `web/components/landing/home/HiringTruths.tsx:20` | jsx-text | So we don’t pretend to. |
+| 41 | marketing | `web/components/landing/home/HiringTruths.tsx:20` | jsx-text | We tell you which lines are clear, and rewrite yours only from your facts. |
 | 42 | marketing | `web/components/landing/home/NoteSection.tsx:19` | jsx-text | Here’s the note Jordan never saw. |
 | 43 | marketing | `web/components/landing/home/NoteSection.tsx:27` | jsx-text | See Jordan’s full report |
 | 44 | marketing | `web/components/landing/home/PileHero.tsx:42` | jsx-text | job you wanted. |

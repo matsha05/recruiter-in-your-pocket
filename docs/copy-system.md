@@ -219,7 +219,7 @@ The report's unit is the line, not the Critical Miss (`docs/design/2026-11-workl
 | --- | --- |
 | The one-sentence read under the score | The verdict (the model's sentence; no label above it) |
 | The recruiter's paragraphs | The write-up (no heading; it follows the verdict in the pen) |
-| The section of cards | `Lines that need work.` with the lead `Top to bottom, the way a recruiter reads.` (report tab `Lines`, the short form of the heading); on a page with no work: `Nothing here needs work.`, and the ending `This is killer! Send it.` with `Your resume won't be the reason you don't get the call. Read it against the posting you're going for, and look at whether anyone can bring you in.` (November 6, 2026, copy system §3, pair 40) |
+| The section of cards | `Lines that need work.` with the lead `Top to bottom, the way a recruiter reads.` (report tab `Lines`, the short form of the heading); on a page with no work: `Nothing here needs work.`, and the ending `This is killer! Send it.` with `Every line says what you did and what changed, so your resume won't be the reason you don't get the call. Read it against the posting you're going for, and look at whether anyone can bring you in.` (November 6, 2026, copy system §3, pair 40) |
 | A card's label | The model's `where` (`Marketing Intern, line 1`, `Dates`, `Structure`); on the keep card `Don't touch this one` (the voice guide's reference line) with `Write the others like it.` |
 | What a recruiter can't tell | The model's words in the pen; no label |
 | The example | The line with the detail in, blanks in the candidate's blue; no label; once filled, `Filled in` on the card |

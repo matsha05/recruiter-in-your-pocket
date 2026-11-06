@@ -238,11 +238,11 @@ export function CommandPalette({ defaultOpen = false, defaultReportVisible = fal
                     <CommandItem
                         onSelect={() => runCommand(
                             () => push("/"),
-                            { id: "nav:/", label: "Go to home", icon: "Home" }
+                            { id: "nav:/", label: "Go home", icon: "Home" }
                         )}
                     >
                         <House className="mr-2 size-4" />
-                        <span>Go to home</span>
+                        <span>Go home</span>
                     </CommandItem>
                     <CommandItem
                         onSelect={() => runCommand(

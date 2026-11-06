@@ -9,11 +9,11 @@ Routes: `/reports`. Strings: 21 (21 unique).
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
 | 1 | account | `web/app/(app)/reports/page.tsx:14` | key:title | My reports |
-| 2 | account | `web/app/(app)/reports/page.tsx:15` | key:description | Your saved resume reports, with the Verdict, score, and fixes from each. |
+| 2 | account | `web/app/(app)/reports/page.tsx:15` | key:description | Every report you’ve saved, with its score and the lines that needed work. |
 | 3 | account | `web/app/(app)/reports/page.tsx:45` | attr:title | Your saved reports |
 | 4 | account | `web/app/(app)/reports/page.tsx:70` | jsx-text | New report |
-| 5 | account | `web/app/(app)/reports/page.tsx:79` | jsx-text | Showing your latest 50 reports. Older reports remain stored and can be included in an account export. |
-| 6 | account | `web/app/(app)/reports/page.tsx:85` | jsx-text | Your report history could not load. |
+| 5 | account | `web/app/(app)/reports/page.tsx:79` | jsx-text | These are your latest 50 reports. Older ones are still saved, and an account export includes them. |
+| 6 | account | `web/app/(app)/reports/page.tsx:85` | jsx-text | We couldn’t load My reports. |
 | 7 | account | `web/app/(app)/reports/page.tsx:91` | jsx-text | Try again |
 | 8 | account | `web/app/(app)/reports/page.tsx:98` | jsx-text | Contact support |
 | 9 | account | `web/components/reports/ReportHistoryList.tsx:28` | return | Saved report |
