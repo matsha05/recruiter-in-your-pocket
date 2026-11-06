@@ -139,7 +139,7 @@ export function LinkedInInputPanel({
             return `${paid} paid report${paid === 1 ? '' : 's'} remaining`;
         }
         if (freeUsesRemaining > 0) return 'Your first report is free';
-        return 'A Job Search Pass is required for another report';
+        return 'Another report needs a Job Search Pass';
     };
 
     return (

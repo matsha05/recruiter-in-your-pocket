@@ -40,7 +40,7 @@ async function restorePurchases() {
 
     if (!user?.id || !user.email) {
       return NextResponse.json(
-        { ok: false, restored: 0, message: "Please sign in first." },
+        { ok: false, restored: 0, message: "Sign in first." },
         { status: 401 }
       );
     }

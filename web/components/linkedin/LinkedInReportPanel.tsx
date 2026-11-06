@@ -223,7 +223,7 @@ export function LinkedInReportPanel({
                             {(report.role_fit?.best_fit_roles || []).map((role, index) => (
                                 <li key={`${role}-${index}`} className="py-3 font-display text-xl riyp-weight-520 text-ink">{role}</li>
                             ))}
-                            {(!report.role_fit?.best_fit_roles || report.role_fit.best_fit_roles.length === 0) && <li className="py-3 text-sm text-muted-foreground">The report did not identify specific roles from this profile.</li>}
+                            {(!report.role_fit?.best_fit_roles || report.role_fit.best_fit_roles.length === 0) && <li className="py-3 text-sm text-muted-foreground">This profile doesn&rsquo;t point to specific roles yet.</li>}
                         </ul>
                     </div>
                     <div className="space-y-6">
@@ -241,7 +241,7 @@ export function LinkedInReportPanel({
                 <ReportSectionHeader
                     icon={<HiddenGemIcon className="size-4 text-brand" />}
                     number="06"
-                    title="Fix these first"
+                    title="Start with these"
                     subtitle="Each one says why it matters and how much work it takes."
                 />
 
@@ -254,7 +254,7 @@ export function LinkedInReportPanel({
                             <p className="riyp-type-10px font-semibold uppercase riyp-track-012 text-brand">{fix.effort}</p>
                         </div>
                     ))}
-                    {(!report.top_fixes || report.top_fixes.length === 0) && <p className="py-5 text-sm text-muted-foreground">No fixes were returned for this profile.</p>}
+                    {(!report.top_fixes || report.top_fixes.length === 0) && <p className="py-5 text-sm text-muted-foreground">There&rsquo;s nothing to fix first on this profile.</p>}
                 </div>
             </section>
 
@@ -279,7 +279,7 @@ export function LinkedInReportPanel({
                                 {rewrite.enhancement_note && <p className="mt-4 text-xs text-muted-foreground">{rewrite.enhancement_note}</p>}
                             </div>
                         ))}
-                        <p className="text-xs text-muted-foreground">Use suggested language only when every detail is factually accurate.</p>
+                        <p className="text-xs text-muted-foreground">Use the suggested wording only if every detail is true.</p>
                     </div>
                 </section>
             )}

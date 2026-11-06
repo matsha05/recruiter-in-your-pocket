@@ -29,7 +29,7 @@ export function MobileReportCTA() {
   if (!visible) return null;
   // A portal keeps the fixed action outside animated page containers.
   return createPortal(
-    <nav className={styles.rail} aria-label="Get your report" data-testid="mobile-report-cta">
+    <nav className={styles.rail} aria-label="Get your free report" data-testid="mobile-report-cta">
       <Button asChild className="w-full">
         <Link href="/workspace" data-analytics-cta="mobile_sticky_report">Get your free report <ArrowRight aria-hidden="true" /></Link>
       </Button>

@@ -21,10 +21,10 @@ Routes: `/purchase/confirmed`, `/purchase/restore`. Strings: 51 (47 unique).
 | 11 | pricing | `web/components/purchase/PurchaseConfirmedClient.tsx:84` | const | Your payment is confirmed. Sign in with your checkout email to use the pass. |
 | 12 | pricing | `web/components/purchase/PurchaseConfirmedClient.tsx:102` | jsx-text | Confirmation reference |
 | 13 | pricing | `web/components/purchase/PurchaseConfirmedClient.tsx:102` | jsx-text | . Include it if you write to us. |
-| 14 | pricing | `web/components/purchase/PurchaseConfirmedClient.tsx:109` | jsx-text | Refreshing access… |
+| 14 | pricing | `web/components/purchase/PurchaseConfirmedClient.tsx:109` | jsx-text | Checking for your pass… |
 | 15 | pricing | `web/components/purchase/PurchaseConfirmedClient.tsx:113` | jsx-text | Compare my revision |
 | 16 | pricing | `web/components/purchase/PurchaseConfirmedClient.tsx:113` | jsx-text | Back to my report |
-| 17 | pricing | `web/components/purchase/PurchaseConfirmedClient.tsx:117` | jsx-text | Verify purchase access |
+| 17 | pricing | `web/components/purchase/PurchaseConfirmedClient.tsx:117` | jsx-text | Check for my pass |
 | 18 | pricing | `web/components/purchase/PurchaseConfirmedClient.tsx:121` | jsx-text | Sign in to use your pass |
 | 19 | pricing | `web/components/purchase/PurchaseConfirmedClient.tsx:125` | jsx-text | Check again |
 | 20 | pricing | `web/components/purchase/PurchaseConfirmedClient.tsx:131` | jsx-text | Restore access |
@@ -61,6 +61,6 @@ Routes: `/purchase/confirmed`, `/purchase/restore`. Strings: 51 (47 unique).
 | 22 | pricing | `web/components/purchase/PurchaseRestoreClient.tsx:187` | jsx-text | View receipts |
 | 23 | pricing | `web/components/purchase/PurchaseRestoreClient.tsx:190` | jsx-text | Back to my comparison |
 | 24 | pricing | `web/components/purchase/PurchaseRestoreClient.tsx:190` | jsx-text | Back to workspace |
-| 25 | pricing | `web/components/purchase/PurchaseRestoreClient.tsx:200` | jsx-text | Receipts could not load. |
+| 25 | pricing | `web/components/purchase/PurchaseRestoreClient.tsx:200` | jsx-text | We couldn’t load your receipts. |
 | 26 | pricing | `web/components/purchase/PurchaseRestoreClient.tsx:203` | jsx-text | Try again |
 | 27 | pricing | `web/components/purchase/PurchaseRestoreClient.tsx:224` | jsx-text | View receipt |

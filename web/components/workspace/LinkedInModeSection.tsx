@@ -115,7 +115,7 @@ export default function LinkedInModeSection({
                   className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded text-sm font-medium bg-brand text-white hover:bg-brand/90 transition-colors"
                 >
                   <Plus className="size-4" />
-                  <span className="hidden sm:inline">Run Another</span>
+                  <span className="hidden sm:inline">New report</span>
                   <span className="sm:hidden">New</span>
                 </button>
               ) : null}
@@ -125,7 +125,7 @@ export default function LinkedInModeSection({
                   className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded text-sm font-medium bg-premium text-white hover:bg-premium/90 transition-colors"
                 >
                   <span className="hidden sm:inline">{JOB_SEARCH_PASS_DECISION.cta}</span>
-                  <span className="sm:hidden">Get pass</span>
+                  <span className="sm:hidden">Get 5 more</span>
                   <ArrowRight className="size-4" />
                 </button>
               )}

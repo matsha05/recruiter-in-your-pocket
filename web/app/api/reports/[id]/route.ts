@@ -13,7 +13,7 @@ export async function GET(request: NextRequest, context: { params: Promise<{ id:
 
     if (!reportId || typeof reportId !== "string" || reportId.length < 10) {
       return NextResponse.json(
-        { ok: false, errorCode: "INVALID_REPORT_ID", message: "Invalid report ID.", report: null },
+        { ok: false, errorCode: "INVALID_REPORT_ID", message: "We can’t find that report. Open it from My reports.", report: null },
         { status: 400 }
       );
     }
@@ -84,7 +84,7 @@ export async function DELETE(request: NextRequest, context: { params: Promise<{ 
 
     if (!reportId || typeof reportId !== "string" || reportId.length < 10) {
       return NextResponse.json(
-        { ok: false, errorCode: "INVALID_REPORT_ID", message: "Invalid report ID." },
+        { ok: false, errorCode: "INVALID_REPORT_ID", message: "We can’t find that report. Open it from My reports." },
         { status: 400 }
       );
     }
@@ -113,7 +113,7 @@ export async function DELETE(request: NextRequest, context: { params: Promise<{ 
         msg: "reports.delete_ownership_check_failed",
         outcome: "provider_error",
         supabase: { table: "reports", op: "select", error_code: String(fetchError.code || "DELETE_FETCH_FAILED") },
-        err: { name: "SupabaseError", message: "Report ownership check failed", code: String(fetchError.code || "DELETE_FETCH_FAILED") },
+        err: { name: "SupabaseError", message: "We couldn’t confirm this report is yours. Refresh and try again.", code: String(fetchError.code || "DELETE_FETCH_FAILED") },
       });
       return NextResponse.json(
         { ok: false, errorCode: "DELETE_FAILED", message: "Could not confirm access to this report. Refresh the page and try again." },
@@ -140,7 +140,7 @@ export async function DELETE(request: NextRequest, context: { params: Promise<{ 
         msg: "reports.delete_failed",
         outcome: "provider_error",
         supabase: { table: "reports", op: "delete", error_code: String(deleteError.code || "DELETE_FAILED") },
-        err: { name: "SupabaseError", message: "Report delete failed", code: String(deleteError.code || "DELETE_FAILED") },
+        err: { name: "SupabaseError", message: "We couldn’t delete this report. Try again.", code: String(deleteError.code || "DELETE_FAILED") },
       });
       return NextResponse.json(
         { ok: false, errorCode: "DELETE_FAILED", message: "Could not delete this report." },
@@ -181,7 +181,7 @@ export async function PATCH(request: NextRequest, context: { params: Promise<{ i
 
     if (!reportId || typeof reportId !== "string" || reportId.length < 10) {
       return NextResponse.json(
-        { ok: false, errorCode: "INVALID_REPORT_ID", message: "Invalid report ID." },
+        { ok: false, errorCode: "INVALID_REPORT_ID", message: "We can’t find that report. Open it from My reports." },
         { status: 400 }
       );
     }

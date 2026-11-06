@@ -144,7 +144,8 @@ Spend (token-calculated, synthetic product strings only; the copy-judge cap is $
 | First-seen routes of the inventory (prompt v3), for the rewrites | 1,357 | 68 | $1.1866 |
 | The rewritten lines, before the rewrite PR (prompt v4) | 42 | 4 | $0.0411 |
 | The launch gate's threshold check, once, before the gate PR (held-out set: kappa 0.52, 3 of 4 "no" caught) | 24 | 2 | $0.0341 |
-| Total | | | $1.5270 |
+| The second pass's rewritten lines | 70 | 6 | $0.0675 |
+| Total | | | $1.5945 |
 
 ---
 

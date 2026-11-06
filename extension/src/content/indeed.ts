@@ -12,13 +12,13 @@ async function safeMessage(message: ExtensionMessage): Promise<any> {
     try {
         if (!chrome.runtime?.id) {
             console.warn('[RIYP] Extension context invalidated, please reload the page');
-            return { success: false, error: 'Extension reloaded - please refresh the page' };
+            return { success: false, error: 'The extension reloaded. Refresh the page.' };
         }
         return await chrome.runtime.sendMessage(message);
     } catch (error: any) {
         if (error?.message?.includes('Extension context invalidated')) {
             console.warn('[RIYP] Extension context invalidated, please reload the page');
-            return { success: false, error: 'Extension reloaded - please refresh the page' };
+            return { success: false, error: 'The extension reloaded. Refresh the page.' };
         }
         throw error;
     }

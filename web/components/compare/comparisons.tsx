@@ -199,7 +199,7 @@ export const comparisons: Comparison[] = [
         },
         answer: (
             <>
-                Jobscan compares your resume to one job posting and scores the keyword match, with five free scans a month and a subscription for more. {OUR_NAME} reads the whole resume the way a recruiter would and cards every line that needs work, with the first report free and no subscription.
+                Jobscan compares your resume to one job posting and scores the keyword match, with five free scans a month and a subscription for more. {OUR_NAME} reads the whole resume the way a recruiter would and lists every line that needs work, with the first report free and no subscription.
                 If you tailor the wording for many applications a week, Jobscan is built for that. If you want to know whether the resume itself holds up, start here.
             </>
         ),
@@ -285,7 +285,7 @@ export const comparisons: Comparison[] = [
                 title: "Using both",
                 paragraphs: [
                     <>
-                        Fix the resume first, then tailor it. Run the free report on your base resume and work through the cards, then use Jobscan’s free scans for the vocabulary of a specific posting. Use a term only where it truthfully describes what you did; the report will flag a line that claims more than it shows.
+                        Fix the resume first, then tailor it. Run the free report on your base resume and work through the lines it lists, then use Jobscan’s free scans for the vocabulary of a specific posting. Use a term only where it truthfully describes what you did; the report will flag a line that claims more than it shows.
                     </>,
                 ],
             },
@@ -839,10 +839,10 @@ export const comparisons: Comparison[] = [
                 title: `When ${OUR_NAME} is the better choice`,
                 paragraphs: [
                     <>
-                        You care more about what the page says than how it looks. The report quotes the lines a recruiter would question and starts with the one most likely to cost you the interview.
+                        You care more about what your resume says than how it looks. The report quotes the lines a recruiter would question, in the order they’d read them.
                     </>,
                     <>
-                        You want the resume to say who you are, which is a sentence, not a template: <ResearchLink to="who-you-are">a recruiter is trying to say who you are in one line and explain you to a hiring manager</ResearchLink>. The Verdict is that line, read from your resume. If it isn’t who you are, that’s what to fix first.
+                        You want the resume to say who you are, which is a sentence, not a template: <ResearchLink to="who-you-are">a recruiter is trying to say who you are in one line and explain you to a hiring manager</ResearchLink>. Your report opens with that line, written from your resume. If it isn’t who you are, that’s what to fix first.
                     </>,
                     <>
                         What it won’t do: design the page, offer templates, or export a styled resume. The PDF you can download is the report.

@@ -95,7 +95,7 @@ function kindOf(fix: Fix): AskFirstKind {
  * the placeholder says the shape of the answer. Never an example answer.
  */
 export function askFirstPlaceholder(kind: AskFirstKind, relation: AskFirstRelation = "did") {
-  if (relation === "related") return "The related work, as you'd put it on the page";
+  if (relation === "related") return "The related work, as you'd put it on your resume";
   if (kind === "since") return "What you've done since, with dates";
   if (kind === "headline") return "The title you're applying for, as the posting writes it";
   return "Your answer";

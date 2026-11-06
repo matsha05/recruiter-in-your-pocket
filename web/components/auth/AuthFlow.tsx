@@ -225,7 +225,7 @@ export function AuthFlow({
       }
       finishAuth();
     } catch (err: any) {
-      setError("Could not save your name. Try again.");
+      setError("We couldn’t save your name. Try again.");
     } finally {
       setLoading(false);
       setLoadingAction(null);

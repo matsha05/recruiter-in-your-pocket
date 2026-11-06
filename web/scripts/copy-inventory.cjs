@@ -266,6 +266,8 @@ const NOISE = [
     /^[a-z]+(-[a-z]+)+$/, /^\$\{/, /\{\{/, /^(GET|POST|PUT|DELETE|PATCH|OPTIONS)$/, /^\w+\(.*\)$/, /^[a-z]+:\/\//, /^data-/, /^var\(--/,
     /^(en|en-US|UTC|ISO|UUID|JSON|HTML|CSS|URL|API|PDF|DOCX|TXT|OTP)$/, /^Content-Type|^Authorization|^Bearer /, /^\d{4}-\d{2}-\d{2}/,
     /^(?:[A-Za-z-]+\s*:\s*[^;]+;\s*)+$/, /^(src|href|rel|target|sizes|viewport|charset|name|property)$/, /^riyp[-_]/, /^[A-Za-z]+\.(ts|tsx|js|cjs|json|md)$/,
+    // Lua scripts for Redis, CSS selectors, generated ids and column lists are code, not copy (November 6, 2026).
+    /redis\.call\(/, /^[.#[][a-z]/i, /^[\w-]*\{[^}]+\}[\w-]*(?:\{[^}]+\}[\w-]*)*$/, /^[a-z]+_[a-z_]+(?:, [a-z_]+)+$/, /^[a-z]+:\{/,
     /^__/, /^\w+\/\w+/, /^[A-Za-z]{1,2}$/, /^(true|false|null|undefined)$/, /^[A-Za-z][\w$]*(\.[\w$]+)+$/, /^(sm|md|lg|xl|xs|2xl)$/,
 ];
 

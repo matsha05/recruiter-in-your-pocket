@@ -37,7 +37,7 @@ export default function SaveReportPrompt({
         try {
             await onRequestAuth();
         } catch {
-            setError("Sign-in could not open. Try again to save this report.");
+            setError("Sign-in didn’t open. Try again to save this report.");
         } finally {
             setLoading(false);
         }
