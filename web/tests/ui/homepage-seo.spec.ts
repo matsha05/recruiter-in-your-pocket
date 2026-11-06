@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { JORDAN_EXAMPLE } from "../../lib/marketing/jordan-example";
 
 const shareDescription = "Find the one thing to fix first. Your first report is free. No account or card.";
 const homepageDescription = "Get a free resume report with feedback on what recruiters may notice, which details need explanation, and up to three changes to make before you apply.";
@@ -42,8 +43,9 @@ test.describe("homepage feedback and SEO contract", () => {
     const example = homepage.locator("#how-it-works");
     await expect(example.getByRole("heading", { level: 2, name: "Here’s the note Jordan never saw." })).toBeVisible();
     await expect(example.getByText("Fictional example", { exact: true })).toBeVisible();
-    await expect(example).toContainText("Introduced monthly renewal-risk reviews across the portfolio");
-    await expect(example).toContainText("What did Jordan look for, and what changed?");
+    // The clipping is requoted from the sample report (lib/marketing/jordan-example.ts), so it follows the sample.
+    await expect(example).toContainText(JORDAN_EXAMPLE.line);
+    await expect(example).toContainText(JORDAN_EXAMPLE.note);
     await expect(example).not.toContainText("What factors did you review");
     await expect(example).not.toContainText("Jordan’s answer");
     await expect(example).not.toContainText("Blank on purpose");
