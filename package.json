@@ -21,7 +21,7 @@
     "simulate:cohort": "node scripts/simulate-founder-cohort.cjs",
     "test:cohort-simulation": "node tests/founder-cohort-simulation.test.js",
     "assets:chrome-web-store": "npm run assets:chrome-web-store --prefix web",
-    "test": "npm run test:release-evidence && node tests/next_server_marker.test.js && node tests/smoke_endpoints.js && node tests/contract_resume_feedback.js && node tests/contract_resume_ideas.js && npm run test:pdf-export --prefix web && node tests/contract_export_pdf.js && node tests/test_ready_and_auth.js",
+    "test": "npm run test:monthly-measure && npm run test:release-evidence && node tests/next_server_marker.test.js && node tests/smoke_endpoints.js && node tests/contract_resume_feedback.js && node tests/contract_resume_ideas.js && npm run test:pdf-export --prefix web && node tests/contract_export_pdf.js && node tests/test_ready_and_auth.js",
     "test:release-evidence": "node tests/release_evidence.test.js",
     "test:ready": "node tests/test_ready_and_auth.js",
     "eval:dry-run": "npm run eval:dry-run --prefix web",
@@ -32,7 +32,9 @@
     "calibrate": "node scripts/calibrate_score.js",
     "migrate": "node scripts/migrate.js",
     "migrate:check": "node scripts/migrate.js --check",
-    "migrate:replay-check": "node scripts/migrate.js --replay-check"
+    "migrate:replay-check": "node scripts/migrate.js --replay-check",
+    "measure:monthly": "node scripts/monthly-measure.mjs",
+    "test:monthly-measure": "node --test tests/monthly-measure.test.mjs"
   },
   "keywords": [
     "resume",
@@ -69,6 +71,7 @@
   "devDependencies": {
     "@electric-sql/pglite": "0.4.6",
     "concurrently": "^9.2.1",
+    "googleapis": "189.0.0",
     "nodemon": "^3.1.11",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
   },

@@ -1,0 +1,140 @@
+{
+  "id": "resp_04a930df424e6178016aed0ab6b0d487d1aae6d519512723cb",
+  "object": "response",
+  "created_at": 1793919670,
+  "status": "completed",
+  "access_programs": {
+    "cyber": "standard"
+  },
+  "background": false,
+  "billing": {
+    "payer": "developer"
+  },
+  "completed_at": 1793919673,
+  "error": null,
+  "frequency_penalty": 0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": 1200,
+  "max_tool_calls": null,
+  "model": "gpt-6.1-terra",
+  "moderation": null,
+  "output": [
+    {
+      "id": "rs_04a930df424e6178016aed0ab7941c87d192f299dce86c7012",
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": "gAAAAABq7Qq5SaqEbQZNEh3HsLwiZp196fSMcxi-YMBiELnIDy3S5Z8x2s0_MTgNBxJ1U86AHTJaUZAZ3yWjgGt1_JI6AFcoYXgILFHWAvrhGeAAjvkoGQOuHrgeV8srIj71xgRzsw62nx6QaiK16JeVJCv5V3XbQs0lIsfL5eu_kg7NnMguMk8B5po8fAuwqkDCY9bfoWupAkF-q_sxQe4RmdNMmaUEC5mmZMwf74Cb1bV_2-1hS5x9sRPjA5d17NcMZhAIysDe-c9qX4K_dHhJoy2f_p8CICs1DKt8CyF4I1bwIJ15_rKCBXc_3db2uL9xAgNoiOup5ykuJ6RgAuHHQryN1gR_7D21yVu0OKr1E4yjr2BGmwE1Pimwcy7F65UUFab4UFdULf4NXRbU9VdSU8p_zaB9DT_EQzV2Zcu_G4sjeeRrMrov-re6PVxpOp2PATAz3Elk92WXBUyW3XB8ljg7SBCrLd4UnNW-EH7EScBydZArwE1jtLDCULdFFbT5BlQCTlA_tpAlDku2aVyp0-tSSndpRN3AzT33gRyBXhLrfiHkdWJvXSCh8ScDbY8pO5i7G8iObxaS1E-GLT8yht2oouK4bu49nFEnBKnh5deZmA2cFWpHZMQtaIwn04LykfsWUbQgzZNUZ5URAGrU6Cn0owRoT6TU8CnGhaNrhFUzwr0wZ3Q7T99DjSVbyqZtAcTkQxaam8fD7V2l_Xs-yqZ3XIliTiVrv95lUDLw5mLpy6lsLt-y7r4287RYpylMLeH9sYWGpdLMLzalSiV1DYOY7wGubAt0ibljOAP1c-aaQsU63I0MP5zmut_z6TEQ15HaGTYH7A9sZXzGnnavS9FmIxZyaINwGvCsJjbpwRbvbN8YHYR0clEvpfSkxHj-OJBxsrmf8Vw7uh1Gnnd6SxHzQtcChrvzg53T25YtFRGM7ql_MuGiA3JWHM_qZR8AakiY-x1vFwBrwSwwnwwRL_yHkRgvsaiWtGdGRmz37aI-pNiciIXhVl0D4hPjt6fjfr9BwEW6QXQihV69lfWHGNZkOUBIXvJ-KGCzTUHmC0zH6oNpM1lEr8hIj7x1vGHwLNi3aYdfcgQjYv5_dqHufQq3XRzYIUsCHrlKNz52wpiJ5NWU0eQbZrBeIlFv4jnpIiqeTjCdzszMlUWYJMMZ32S9FSeVLEwoxQKU6Jtybfpi5ULU67uWRkXiiVb_VuWgYRQeamDly61sRn6EeuqY-o-CNToAEbv4R7Au613SexGNR_KOhslOkBCVJpns8kx6toKMjEFC9DlBz3_nTMUwraASFfazkn4pjV25GBXBB__islX6GvJHiSM9pM6Ubmwa8YEZFPtCgKzgtj_QDdIWTW8SwgEXOQNRf3uMqJ3FdHkEYRA4zw6UoH2s2dKxr6IorkQvVOmErq1367JI5P7GPGHe_K12VO1KnFvNoF1FUE4B_yBGosTxaTOBQbN1TEVedakYPDj8W3ABOKErZtplUjpP7cLNU4iNl_YJRDYIgaD57NJECugPTOUymG1mLWS0dTV-R4JuCUXYytkz0NDWzgYzcjzl_40rnpMi3JUy2HUYwFqwfxSO3cvAtgF3QH4QQX0UJP-UiUpIwW-bvWdpNolACaOKqurjz_0C4jgDPOK7iagkuneoWS3IkaV7dZbLlAM94ApIbQPWO7eY-PjXUsKzUy-zwSyVV_dwo1exgugb0Yl-G7iwZ-Q4nYV4I5upDdbdh4oJd8r9ZEJFacPy6r9v9e1ttTyAJLg1SECVw3dhmB3eu8QDwXa6W5fBzzKmFTbEmKH2vaKi26dnYA1qeBHgAiTW7OpFtNP7VF27fYNeQW8pE1WprRwiMUg_osce2qwZbyjH9xCbZDxEBhIAKAUwslqDdppaMdBZ4r7zhfOCFWa_y4IHx_Zszvli001FBKYsTGeHpoqieUUiyu9Flg520KP9uKV32j7w9fRcaZg5n3o3azBI2dAoIKIWJBqoqHu6HL9cmBUl0ICPzTG72zBImffvqowLEjVMuF94YNe2DVRVHN4eqK6XgKpSFMpL6P2iR1ov5AWRuvq77myfY7ZSDdnusuiXAHXeL_SYx846VkHoe2-68MPTvFnxIfoNx0XEvJ7m98e3nJon_SVXtPnpAE1Cksp55v596tYcMjVBEMKjfdpIKomTa4yb9SKFou0TftSG1ryFf5aGWvxI01UZenRS0mumeekg2OioIaWVoUr6k-2WgnFXxgFpGQ9I3wsbhxOa",
+      "summary": []
+    },
+    {
+      "id": "msg_04a930df424e6178016aed0ab8662887d19db814b4a13ddb73",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"tools\":[],\"mainClaim\":\"One page is a good default for a resume, but two pages can be appropriate for substantial relevant experience; the answer asks for the applicant’s years of experience and target role.\",\"evidenceQuote\":\"Resume Format | Center for Career Success | Case Western Reserve University\",\"evidenceIndices\":[0]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "medium",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1,
+  "text": {
+    "format": {
+      "type": "json_schema",
+      "description": null,
+      "name": "answer_metadata",
+      "schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tools": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "mainClaim": {
+            "type": "string"
+          },
+          "evidenceQuote": {
+            "type": "string"
+          },
+          "evidenceIndices": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "tools",
+          "mainClaim",
+          "evidenceQuote",
+          "evidenceIndices"
+        ]
+      },
+      "strict": true
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 686,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 134,
+    "output_tokens_details": {
+      "reasoning_tokens": 59
+    },
+    "total_tokens": 820
+  },
+  "user": null,
+  "metadata": {}
+}

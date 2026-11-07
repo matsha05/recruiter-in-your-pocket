@@ -1,0 +1,152 @@
+{
+  "id": "resp_0ed8e80615ff4cc8016aed0a36d87c87d1a9fe9a4b33da0a26",
+  "object": "response",
+  "created_at": 1793919542,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "developer"
+  },
+  "completed_at": 1793919555,
+  "error": null,
+  "frequency_penalty": 0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": 1536,
+  "max_tool_calls": 1,
+  "model": "gpt-6-astra",
+  "moderation": null,
+  "output": [
+    {
+      "id": "ws_0ed8e80615ff4cc8016aed0a389ec087d1a1962123bd0aca5e",
+      "type": "web_search_call",
+      "status": "completed",
+      "action": {
+        "type": "search",
+        "queries": [
+          "site.tealhq.com resume builder free premium pricing",
+          "site.jobscan.co pricing resume scanner",
+          "site.rezi.ai pricing resume builder"
+        ],
+        "query": "site.tealhq.com resume builder free premium pricing"
+      }
+    },
+    {
+      "id": "msg_0ed8e80615ff4cc8016aed0a3cbcbc87d1abaa3f0faa4c68d3",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [
+            {
+              "type": "url_citation",
+              "end_index": 349,
+              "start_index": 285,
+              "title": "Teal+ Pricing | Premium Features to Level Up Your Career",
+              "url": "https://www.tealhq.com/pricing?utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 688,
+              "start_index": 624,
+              "title": "Teal+ Pricing | Premium Features to Level Up Your Career",
+              "url": "https://www.tealhq.com/pricing?utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 938,
+              "start_index": 880,
+              "title": "Rezi Pricing - All Plans Include A 30-Day Money Back Guarantee",
+              "url": "https://www.rezi.ai/pricing?utm_source=openai"
+            }
+          ],
+          "logprobs": [],
+          "text": "**I’d start with Teal’s free plan** if you’re applying to multiple jobs. It combines a resume builder with application tracking and lets you create unlimited resume versions, though free AI writing is limited. That makes it my default pick without knowing your budget or career stage. ([tealhq.com](https://www.tealhq.com/pricing?utm_source=openai))\n\nI’d narrow the choice to these:\n\n| Tool | When I’d choose it | Cost and main limitation |\n|---|---|---|\n| **Teal** | You want to tailor resumes **and organize your job search**. | Free tier; Teal+ is **$29 every 30 days**. Free AI credits and keyword matching are limited. ([tealhq.com](https://www.tealhq.com/pricing?utm_source=openai)) |\n| **Rezi** | Your priority is **AI-assisted resume writing**, with keyword targeting and resume feedback. | Free tier includes **one resume and three PDF downloads**; Pro is **$29/month**. ([rezi.ai](https://www.rezi.ai/pricing?utm_source=openai)) |\n\n**My recommendation:** Try Teal free first. If you mainly need help drafting and rewriting bullet points rather than managing applications, try Rezi’s free tier instead. I wouldn’t buy a subscription until you’ve tested it with your actual resume and one target job.\n\nWhichever you choose, require the AI to preserve your facts—no invented skills, responsibilities, or performance numbers—and review every bullet before submitting.\n\n**What kind of job are you targeting, and do you already have a resume or need to build one from scratch?**"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "low",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1,
+  "text": {
+    "format": {
+      "type": "text"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": {
+    "type": "web_search_preview"
+  },
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 1
+    }
+  },
+  "tools": [
+    {
+      "type": "web_search",
+      "return_token_budget": "default",
+      "search_content_types": [
+        "text"
+      ],
+      "search_context_size": "low",
+      "user_location": {
+        "type": "approximate",
+        "city": null,
+        "country": "US",
+        "region": null,
+        "timezone": null
+      }
+    }
+  ],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 12748,
+    "input_tokens_details": {
+      "cache_write_tokens": 4321,
+      "cached_tokens": 0
+    },
+    "output_tokens": 385,
+    "output_tokens_details": {
+      "reasoning_tokens": 53
+    },
+    "total_tokens": 13133
+  },
+  "user": null,
+  "metadata": {}
+}

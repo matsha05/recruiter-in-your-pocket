@@ -1,0 +1,140 @@
+{
+  "id": "resp_07eb56d146860b56016aed0a97778887d1bbfed6866d358337",
+  "object": "response",
+  "created_at": 1793919639,
+  "status": "completed",
+  "access_programs": {
+    "cyber": "standard"
+  },
+  "background": false,
+  "billing": {
+    "payer": "developer"
+  },
+  "completed_at": 1793919644,
+  "error": null,
+  "frequency_penalty": 0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": 1200,
+  "max_tool_calls": null,
+  "model": "gpt-6.1-terra",
+  "moderation": null,
+  "output": [
+    {
+      "id": "rs_07eb56d146860b56016aed0a98a59c87d180ec2e43534ec5b1",
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": "gAAAAABq7Qqcr_EQlX5XNRouPdgleSOICiwDIGhaxG2OBk8eE4nrJ10ELTyvp6yBg-H2GlzlJkzMWM13ChKbCdWNCILNUWw9IFMpxgldyGKo9iRmBwrrEHVXoGDDVI0D4KfGV3eb4ugCSaZLYiwwq-zKk1QfpU4ApQL1UDFbMZbcAPUWaHo_gFYH6L3_H5iqOOBTlknT9F4gPZ62YNnkjPjp5yPVKYQimxiKeRlgK1QTkVzJoywKOjlLn8qqsiIeeQQDoefpu3pdZWdpCg-uNdQaNpVaaqNw1kYgLLFupTjro9xSw1wYYWLBU_11iHnL6qftm7bKwqlcHwH9sAes6C0EEb9VqdhQhKPyFS96HL3JFCxNNMKUT1J9xhugvUaXIA71Y4PEZ2miI64fnwMAgLJyvzDra2ftbUvxxIKrisJIoVz08SpMf6otq4AnBuXLIJgsw-kcGjFAskEX7R2gYlONSnDrOAbIatkEtjvATSxUNxejIgxPdJDVzKhi2IN7dn76ctgn3ZujFjucir2q8BcWJkOtP5Kdj8H15EwCzuFgB3Fes4DPwbKqw6SWmlHtmxPMkEmpDgIw3zENzOAi5GCvqwkX1vDCmmIwWcXrZkP9jzMiXNZ1E-V1kcA-QkOLL9zVQeaeV7s6dGoovJmZvgMBAzP1Lil8_F5F0Oq-Pvjh_WZFYLAHjNkJGvCbzWc7cNtxJ3yeoao_nQvNFylb-MMZI4shjlwudEjpMrdi0ZGIr7gPjENg4MEGa1nOiyTKnc5S93mn-Di1lbMdkFPz74F3QPWkPqfEzBZm1uZ0U6QzPvlvVOBQIWZ108M7jHtcGm500iKMdpEV10XJvTs68qiKc8HcH6Sr8g21JuFYJTvXjQKjyO0q5qUfsEYnto4_B2z61L5hdEAawIRYAV_T3d8rCcd4pzBD03FL67cJmqR2QqDbumbd4NUtq8pQZdawEwLIZe7R_r3jlNZ0KN-wGyVPz6QZqNb1VB7xMfC3rsdepDPCugUkaXey-6Z9rx4Ftqaha1X5TJhvy2_A1nejFi4WFbsELdQenfRncbJEP3kLybeEB2NiQYYvaL1eIS9G9Y-Pf15OHIdFrl_Wsm7Hm3osZLKMUFbKd7XeK6wRe8RPBKuUdVaL_lBo1Po2VIVAP2AgL4-XsIUcGGAC_fbIUdsV2c6lZrQPdBt0x6LdAN8VteFeI-46_KHv6mOHk8LcRTOUfOg-QjHGwoP_qJLcFdW9OD3OIogUt-Tc6YyT9I3MusOTGuTZfgP0bnffuUexImoTKqTU_YsQU3zJTvzXSV-NtEYyOi_eirjzQVKW48vH9nOdI8Tbqrr8n-AIwP3-BQP3Jt9cdY3KBWh7ykAJzMjuuZneSVF94zlBzXq3so-0p-8BYM3QUFeZZA5PztMG3QQZv1dJfvi7Q7cbQoakvWuOoL5RQqCeE2DOMkDIPaoRGmM3zfn-A5_VD1EKZXm6_YDnufUEbhqDOuV2lSFojyGxivLDvBBBtufmT7N8DOZib4dam5R1Z0nge0vo9qRKh6zKih6hmrVg78tR0Owuif1A8B5JDwm4FLGWWBdgk-vLosgcBcAD0xMPM3j1X1V82PVL5YiSa2ZM9JY1Y7mjK0_9rnVdoIoAV6w9H3AGFIrpVpO-sU9rMc2umZ9EByWQf-zvGCQOVj72lbfonIFe1HzupwGTneJbKjCmuX9-5AViXzyqXt1MIH7Ifpz64MMzZLdD8QtpIJGb85IW1azRp9x6QsEnTv2cGY573UIYnxjFh9PY0Zk8ZZjiBJZRvdrcfXuN0uVUO-I3XzgZn92CI3NihyKtVUJkPLWPFiSnT8eNbstz2secWN6qjxvbXY7GlRuolwlnR0ofaIZbFxFN_sRwlt7CWoOYEGiDY-dRpJbUcj3z6rZz5MUF2cOm7BX2DNtpyscL3PW-LyJuVFewZtyEvf75VkP9-r2AzXw7c2WU_lwLg2LWs1_xTEsbbHYDOC-cjZGKVhbuYyecPNURPEwN9J3W9G3jw91GMqj2xCiScL_iTUzmWnO-45UdoKXlr01qV7BnhCyb4cNmGJkWjQOb30X2D-e1kMryeyE_qgjngrBmDwJyo_DtQoRJBL2vg3jf0kg1vvvnlrvs_NJrLaQYAwoEpZj7DeJRXh7kx_exMTRKWa4rZnGWV7GJaqBSsS4V8q9FIPu-DvdOY4HFwOKjwmJe4gAzNFo9CmkbvIOKrx6UTv5fsdvvsPMJCVYS11MCinxI0xPTspV102uVCPAPjPyOLkG1jku_1ymFK7QmrqoYhZEeskZR306KAB_D7gAr8TK7Y4NO4QU2e06_08tpTOP0dwQd3wH1NU7bmTLE1Xt62iFjLwzoxTWvFY-CctX7BS10vlXcrFv9KvDjYxyMTn-Hf4lq4Oo1JSY1ggfqVaVCr7-bZ8SxpNR3aJ7zZLkBcs0HK21eo9_slYOaO5j8-hFUphcIUdKDREhbBRakVeLrphKHOU1BeZg1k0ebYk_-dR5l7H9UytmDIiY-eZHKI_hRHVkLyASXcJZW8hjt04Pc9h558fGSqgvdU6rXKtVG5RVi8UmLOYVgnDgJyNseaZNtpcSnvL5PanZpPWt2doTM5wCUDfF8UBEBMcRb2cYpEOZuxBUp8bhjbl8o0_Jbq4ehIiBXuyvSapBzVDalzGUXTV8Gv6MncWB4t9x3lTe9Lm0IiwHC0KtjORTsOqmrCyLNPYLdkI-3NjJSTEAg6OYstXMwWcHs8TDhj9KgVOHdL_UTxOGTzR3EFVm227CRwq6Rmec9ep7RTsm62TPFjhKeTWi2UvDghQ56SzW_rGVdMuLAmZsRffTQk8jNlGZPreOCqF0hgxTX8MM1QY_zOf3wPBjhnB5fuUtQWcRyZkZTGHKL85_4LTZZUY8eY7VGag7hecvDSqvHtVhLqX1OoUIrTIkB0m9COWuN4H5BRDwiJxsX076WO900gZTLOf5mwZU1KZWRRE9Ippc7Y9Q8rEBxefFj6v7DdMDC3-Clyz_RvyE7YCl0kdE3tDd9EGOnl7Em0EmjBbTaZSa26M7cnDrD22rnQBwprCHHP_2XH8XTNOPRTFHefZN99DNeKnXdMp6ASyaJzB58K--_czT2Bc3C9AkJTj_vIcfedUi5JWvECWomc-fa2Jy7vCfNXm1tBEQGMNrHyQhovMJUspj_npqyl_jvimCjhE4-COoap7cp5Rj5vwsztPqbbepaCFAIv3onjojsO4fbVPB_2ZAIbVFRsLSxl-kuubbsyOUqU1WfzKm7DqfaP6wWHEd4lmI22AVnGwzHhN0rgwNs2RJo6ihIJvC1si-xynaE3LO5hIg4VdJPJS0cVdQWQakSIwWudlIPynMQZSf8AEUO1tCkjtr7Pi0dLM1yd7PjO6hKFx2vazit9kWpomeHrn4fl5B5tUJ3NsCQL9iiiIyl_-wbsBtjHisQDZnFzkQwu8JEhcV82ZThbzXJadhfVjr6zFrajb-CPBXvjWWWnUZTSAozJSHHFINdV3AVH8YNp0jZFG4dpr0IGYS9zLOH-612FyArUjQh8z8zNKr6kCBQ9TiYYO4D56VCH7R1FLajpxacmWakKwgZDYiJmlY1lWeHBTN5ZFhbyOKuWg-7LB3piw1I1IN8jVqckB5I-pQX78wJM_gAb35dVAnt27MWyKTWtRdAyzm4ZRu-ffW_fOr9MTfbfaUF9FoQHIkVdrx9AW-IU7S0gvYBq2HYZSknvB1gbiKciWU6mYsvIUm_aHBQoQQ2lp6A9ieugxHs648iog6r9KuWgQPF22WQ",
+      "summary": []
+    },
+    {
+      "id": "msg_07eb56d146860b56016aed0a9b5c9087d1b7cb2285f5cbd36f",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"tools\":[],\"mainClaim\":\"Recruiters generally scan resumes for relevant fit first, then read more closely for evidence before deciding whether to interview.\",\"evidenceQuote\":\"How to Read an Applicant Resume: Resume Review Tips\",\"evidenceIndices\":[0,1,2,3]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "medium",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1,
+  "text": {
+    "format": {
+      "type": "json_schema",
+      "description": null,
+      "name": "answer_metadata",
+      "schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tools": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "mainClaim": {
+            "type": "string"
+          },
+          "evidenceQuote": {
+            "type": "string"
+          },
+          "evidenceIndices": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "tools",
+          "mainClaim",
+          "evidenceQuote",
+          "evidenceIndices"
+        ]
+      },
+      "strict": true
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 1010,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 266,
+    "output_tokens_details": {
+      "reasoning_tokens": 200
+    },
+    "total_tokens": 1276
+  },
+  "user": null,
+  "metadata": {}
+}

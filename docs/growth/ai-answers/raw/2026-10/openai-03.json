@@ -1,0 +1,165 @@
+{
+  "id": "resp_0eb863839db2879a016aed0a5bf0b087d1bc007c5cd9c75475",
+  "object": "response",
+  "created_at": 1793919580,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "developer"
+  },
+  "completed_at": 1793919595,
+  "error": null,
+  "frequency_penalty": 0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": 1536,
+  "max_tool_calls": 1,
+  "model": "gpt-6-astra",
+  "moderation": null,
+  "output": [
+    {
+      "id": "ws_0eb863839db2879a016aed0a5d79e487d186d09754d229446c",
+      "type": "web_search_call",
+      "status": "completed",
+      "action": {
+        "type": "search",
+        "queries": [
+          "site.jobscan.co pricing premium resume scanner",
+          "site.tealhq.com pricing Teal+ resume job tracker"
+        ],
+        "query": "site.jobscan.co pricing premium resume scanner"
+      }
+    },
+    {
+      "id": "msg_0eb863839db2879a016aed0a616df487d1bb0c536fe59a7d04",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [
+            {
+              "type": "url_citation",
+              "end_index": 346,
+              "start_index": 282,
+              "title": "Teal+ Pricing | Premium Features to Level Up Your Career",
+              "url": "https://www.tealhq.com/pricing?utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 1269,
+              "start_index": 1191,
+              "title": "Jobscan vs. Teal: Which Tool is Right For You in 2026?",
+              "url": "https://www.jobscan.co/blog/jobscan-vs-teal/?utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 1516,
+              "start_index": 1438,
+              "title": "Jobscan vs. Teal: Which Tool is Right For You in 2026?",
+              "url": "https://www.jobscan.co/blog/jobscan-vs-teal/?utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 1726,
+              "start_index": 1662,
+              "title": "Teal+ Pricing | Premium Features to Level Up Your Career",
+              "url": "https://www.tealhq.com/pricing?utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 1950,
+              "start_index": 1886,
+              "title": "Teal+ Pricing | Premium Features to Level Up Your Career",
+              "url": "https://www.tealhq.com/pricing?utm_source=openai"
+            }
+          ],
+          "logprobs": [],
+          "text": "**My recommendation: start with Teal for managing your job search; choose Jobscan if your main need is checking an existing résumé against specific job descriptions.** That’s a fit-based recommendation from their published features—not a claim that either produces more interviews. ([tealhq.com](https://www.tealhq.com/pricing?utm_source=openai))\n\n| | **Jobscan** | **Teal** |\n|---|---|---|\n| **Best fit** | Focused résumé matching and ATS-oriented feedback | Building tailored résumés and organizing applications |\n| **Résumé tailoring** | Upload your résumé and a job description for match insights; premium adds AI optimization | Build résumé versions with keyword matching, analysis, and AI writing |\n| **Application tracking** | Includes a job tracker | Unlimited free tracking, with saved jobs, notes, and application statuses |\n| **Free version** | Limited résumé scans and premium insights | Unlimited résumés and job tracking; limited keyword insights and AI credits |\n| **Paid pricing, USD** | $49.95/month or $89.95 every three months | $13 every seven days, $29 every 30 days, or $79 every 90 days |\n\nSources: Jobscan’s published comparison and Teal’s pricing and tracker pages. ([jobscan.co](https://www.jobscan.co/blog/jobscan-vs-teal/?utm_source=openai))\n\n### Which I’d choose\n\n- **Already have a résumé you like, but want targeted feedback? Jobscan.** Its upload-and-compare workflow is a good fit for that specific task. ([jobscan.co](https://www.jobscan.co/blog/jobscan-vs-teal/?utm_source=openai))\n- **Need to create several résumé versions and keep applications organized? Teal.** Its free plan already covers unlimited résumés and tracking. ([tealhq.com](https://www.tealhq.com/pricing?utm_source=openai))\n- **Want the lower-cost paid option? Teal+.** Its 30-day plan is substantially cheaper than Jobscan’s monthly plan; the quarterly price difference is smaller. ([tealhq.com](https://www.tealhq.com/pricing?utm_source=openai))\n\n**My practical approach:** try Teal’s free plan and Jobscan’s limited free scans before subscribing. Pay only if the additional feedback or workflow saves you meaningful time. I wouldn’t pay for both initially.\n\nAre you mainly looking for **ATS feedback, résumé writing, or application tracking**?"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "low",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1,
+  "text": {
+    "format": {
+      "type": "text"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": {
+    "type": "web_search_preview"
+  },
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 1
+    }
+  },
+  "tools": [
+    {
+      "type": "web_search",
+      "return_token_budget": "default",
+      "search_content_types": [
+        "text"
+      ],
+      "search_context_size": "low",
+      "user_location": {
+        "type": "approximate",
+        "city": null,
+        "country": "US",
+        "region": null,
+        "timezone": null
+      }
+    }
+  ],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 12908,
+    "input_tokens_details": {
+      "cache_write_tokens": 9,
+      "cached_tokens": 4309
+    },
+    "output_tokens": 565,
+    "output_tokens_details": {
+      "reasoning_tokens": 46
+    },
+    "total_tokens": 13473
+  },
+  "user": null,
+  "metadata": {}
+}
