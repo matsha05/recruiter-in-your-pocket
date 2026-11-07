@@ -11,21 +11,21 @@ Routes: `/reports`. Strings: 21 (21 unique).
 | 1 | account | `web/app/(app)/reports/page.tsx:14` | key:title | My reports |
 | 2 | account | `web/app/(app)/reports/page.tsx:15` | key:description | Every report you’ve saved, with its score and the lines that needed work. |
 | 3 | account | `web/app/(app)/reports/page.tsx:45` | attr:title | Your saved reports |
-| 4 | account | `web/app/(app)/reports/page.tsx:70` | jsx-text | New report |
-| 5 | account | `web/app/(app)/reports/page.tsx:79` | jsx-text | These are your latest 50 reports. Older ones are still saved, and an account export includes them. |
-| 6 | account | `web/app/(app)/reports/page.tsx:85` | jsx-text | We couldn’t load My reports. |
-| 7 | account | `web/app/(app)/reports/page.tsx:91` | jsx-text | Try again |
-| 8 | account | `web/app/(app)/reports/page.tsx:98` | jsx-text | Contact support |
-| 9 | account | `web/components/reports/ReportHistoryList.tsx:28` | return | Saved report |
-| 10 | account | `web/components/reports/ReportHistoryList.tsx:83` | call:ClientActionError | Could not rename this report. Try again. |
-| 11 | account | `web/components/reports/ReportHistoryList.tsx:106` | call:ClientActionError | Could not delete this report. Try again. |
-| 12 | account | `web/components/reports/ReportHistoryList.tsx:110` | call:toast.success | Report deleted |
-| 13 | account | `web/components/reports/ReportHistoryList.tsx:125` | jsx-text | Nothing here yet |
-| 14 | account | `web/components/reports/ReportHistoryList.tsx:130` | jsx-text | Get your free report |
-| 15 | account | `web/components/reports/ReportHistoryList.tsx:160` | jsx-text | Report name |
-| 16 | account | `web/components/reports/ReportHistoryList.tsx:172` | attr:placeholder | Name this version |
-| 17 | account | `web/components/reports/ReportHistoryList.tsx:179` | attr:loadingLabel | Saving… |
-| 18 | account | `web/components/reports/ReportHistoryList.tsx:189` | attr:aria-label | Cancel rename |
-| 19 | account | `web/components/reports/ReportHistoryList.tsx:223` | attr:aria-label | Delete {title} |
-| 20 | account | `web/components/reports/ReportHistoryList.tsx:238` | attr:title | Delete this report? |
-| 21 | account | `web/components/reports/ReportHistoryList.tsx:239` | attr:description | {reportToDelete ? reportTi…} will be permanently deleted. Your account and any other saved reports will stay intact. |
+| 4 | account | `web/app/(app)/reports/page.tsx:62` | jsx-text | New report |
+| 5 | account | `web/app/(app)/reports/page.tsx:71` | jsx-text | These are your latest 50 reports. Older ones are still saved, and an account export includes them. |
+| 6 | account | `web/app/(app)/reports/page.tsx:77` | jsx-text | We couldn’t load My reports. |
+| 7 | account | `web/app/(app)/reports/page.tsx:83` | jsx-text | Try again |
+| 8 | account | `web/app/(app)/reports/page.tsx:90` | jsx-text | Contact support |
+| 9 | account | `web/components/reports/ReportHistoryList.tsx:27` | return | Saved report |
+| 10 | account | `web/components/reports/ReportHistoryList.tsx:82` | call:ClientActionError | Could not rename this report. Try again. |
+| 11 | account | `web/components/reports/ReportHistoryList.tsx:105` | call:ClientActionError | Could not delete this report. Try again. |
+| 12 | account | `web/components/reports/ReportHistoryList.tsx:109` | call:toast.success | Report deleted |
+| 13 | account | `web/components/reports/ReportHistoryList.tsx:124` | jsx-text | Nothing here yet |
+| 14 | account | `web/components/reports/ReportHistoryList.tsx:129` | jsx-text | Get my report |
+| 15 | account | `web/components/reports/ReportHistoryList.tsx:156` | jsx-text | Report name |
+| 16 | account | `web/components/reports/ReportHistoryList.tsx:168` | attr:placeholder | Name this version |
+| 17 | account | `web/components/reports/ReportHistoryList.tsx:175` | attr:loadingLabel | Saving… |
+| 18 | account | `web/components/reports/ReportHistoryList.tsx:185` | attr:aria-label | Cancel rename |
+| 19 | account | `web/components/reports/ReportHistoryList.tsx:219` | attr:aria-label | Delete {title} |
+| 20 | account | `web/components/reports/ReportHistoryList.tsx:234` | attr:title | Delete this report? |
+| 21 | account | `web/components/reports/ReportHistoryList.tsx:235` | attr:description | {reportToDelete ? reportTi…} will be permanently deleted. Your account and any other saved reports will stay intact. |

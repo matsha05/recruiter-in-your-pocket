@@ -3,22 +3,22 @@
   "counts": {
     "files_scanned": 418,
     "files_with_copy": 251,
-    "strings": 2986,
-    "unique_strings": 2501
+    "strings": 2991,
+    "unique_strings": 2502
   },
   "by_moment": {
     "research": 946,
     "account": 442,
     "marketing": 416,
-    "report": 311,
+    "report": 313,
     "pricing": 218,
-    "upload": 153,
+    "upload": 155,
     "legal": 111,
     "extension": 98,
     "shared": 85,
     "rewrite": 62,
+    "auth": 54,
     "error": 54,
-    "auth": 53,
     "analysis": 16,
     "other": 11,
     "pdf": 6,
@@ -160,7 +160,7 @@
     {
       "text": "New report",
       "kind": "jsx-text",
-      "line": 70,
+      "line": 62,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -171,7 +171,7 @@
     {
       "text": "These are your latest 50 reports. Older ones are still saved, and an account export includes them.",
       "kind": "jsx-text",
-      "line": 79,
+      "line": 71,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -182,7 +182,7 @@
     {
       "text": "We couldn’t load My reports.",
       "kind": "jsx-text",
-      "line": 85,
+      "line": 77,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -193,7 +193,7 @@
     {
       "text": "Try again",
       "kind": "jsx-text",
-      "line": 91,
+      "line": 83,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -204,7 +204,7 @@
     {
       "text": "Contact support",
       "kind": "jsx-text",
-      "line": 98,
+      "line": 90,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -15760,9 +15760,22 @@
       "table": "workspace"
     },
     {
+      "text": "Not there? Check spam and Promotions.",
+      "kind": "jsx-text",
+      "line": 252,
+      "file": "web/components/auth/AuthFlow.tsx",
+      "routes": [
+        "/auth",
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "auth",
+      "table": "workspace"
+    },
+    {
       "text": "Email address",
       "kind": "jsx-text",
-      "line": 282,
+      "line": 283,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -15775,7 +15788,7 @@
     {
       "text": "Sending sign-in code…",
       "kind": "attr:loadingLabel",
-      "line": 307,
+      "line": 308,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -15788,7 +15801,7 @@
     {
       "text": "Send sign-in code",
       "kind": "jsx-text",
-      "line": 308,
+      "line": 309,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -15801,7 +15814,7 @@
     {
       "text": "No password. The code works once and expires soon.",
       "kind": "jsx-text",
-      "line": 312,
+      "line": 313,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -15814,7 +15827,7 @@
     {
       "text": "Sign-in code",
       "kind": "jsx-text",
-      "line": 320,
+      "line": 321,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -15827,7 +15840,7 @@
     {
       "text": "Verify code",
       "kind": "jsx-text",
-      "line": 348,
+      "line": 349,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -15840,7 +15853,7 @@
     {
       "text": "Use a different email",
       "kind": "jsx-text",
-      "line": 366,
+      "line": 367,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -15853,7 +15866,7 @@
     {
       "text": "Resend in {resendCooldown}s",
       "kind": "jsx-text",
-      "line": 377,
+      "line": 378,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -15866,7 +15879,7 @@
     {
       "text": "Resend code",
       "kind": "jsx-text",
-      "line": 377,
+      "line": 378,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -15879,7 +15892,7 @@
     {
       "text": "First name",
       "kind": "jsx-text",
-      "line": 386,
+      "line": 387,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -15892,7 +15905,7 @@
     {
       "text": "Saving your name…",
       "kind": "attr:loadingLabel",
-      "line": 403,
+      "line": 404,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -15905,7 +15918,7 @@
     {
       "text": "Skip for now",
       "kind": "jsx-text",
-      "line": 412,
+      "line": 413,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -28361,7 +28374,7 @@
       "table": "reports-id"
     },
     {
-      "text": "Check a revision",
+      "text": "Compare my revision",
       "kind": "jsx-text",
       "line": 148,
       "file": "web/components/reports/ReportDetailClient.tsx",
@@ -28484,7 +28497,7 @@
     {
       "text": "Saved report",
       "kind": "return",
-      "line": 28,
+      "line": 27,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28495,7 +28508,7 @@
     {
       "text": "Could not rename this report. Try again.",
       "kind": "call:ClientActionError",
-      "line": 83,
+      "line": 82,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28506,7 +28519,7 @@
     {
       "text": "Could not delete this report. Try again.",
       "kind": "call:ClientActionError",
-      "line": 106,
+      "line": 105,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28517,7 +28530,7 @@
     {
       "text": "Report deleted",
       "kind": "call:toast.success",
-      "line": 110,
+      "line": 109,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28528,7 +28541,7 @@
     {
       "text": "Nothing here yet",
       "kind": "jsx-text",
-      "line": 125,
+      "line": 124,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28537,9 +28550,9 @@
       "table": "reports"
     },
     {
-      "text": "Get your free report",
+      "text": "Get my report",
       "kind": "jsx-text",
-      "line": 130,
+      "line": 129,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28550,7 +28563,7 @@
     {
       "text": "Report name",
       "kind": "jsx-text",
-      "line": 160,
+      "line": 156,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28561,7 +28574,7 @@
     {
       "text": "Name this version",
       "kind": "attr:placeholder",
-      "line": 172,
+      "line": 168,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28572,7 +28585,7 @@
     {
       "text": "Saving…",
       "kind": "attr:loadingLabel",
-      "line": 179,
+      "line": 175,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28583,7 +28596,7 @@
     {
       "text": "Cancel rename",
       "kind": "attr:aria-label",
-      "line": 189,
+      "line": 185,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28594,7 +28607,7 @@
     {
       "text": "Delete {title}",
       "kind": "attr:aria-label",
-      "line": 223,
+      "line": 219,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28605,7 +28618,7 @@
     {
       "text": "Delete this report?",
       "kind": "attr:title",
-      "line": 238,
+      "line": 234,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28616,7 +28629,7 @@
     {
       "text": "{reportToDelete ? reportTi…} will be permanently deleted. Your account and any other saved reports will stay intact.",
       "kind": "attr:description",
-      "line": 239,
+      "line": 235,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -31808,7 +31821,7 @@
       "table": "workspace"
     },
     {
-      "text": "If you retry and this one also finishes, both count as reports. Waiting is usually the better bet.",
+      "text": "Retry stops this one and starts over. Waiting is usually faster.",
       "kind": "jsx-text",
       "line": 201,
       "file": "web/components/workspace/AnalysisScanning.tsx",
@@ -32220,7 +32233,7 @@
     {
       "text": "{paid} {paid === 1 ? \"report\" : \"…} left on your pass",
       "kind": "return",
-      "line": 120,
+      "line": 123,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32232,7 +32245,7 @@
     {
       "text": "Sign in for your free report, or get a Job Search Pass",
       "kind": "return",
-      "line": 122,
+      "line": 127,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32244,7 +32257,43 @@
     {
       "text": "Another report needs a Job Search Pass",
       "kind": "return",
-      "line": 123,
+      "line": 128,
+      "file": "web/components/workspace/InputPanel.tsx",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "upload",
+      "table": "workspace"
+    },
+    {
+      "text": "Compare my revision",
+      "kind": "const",
+      "line": 134,
+      "file": "web/components/workspace/InputPanel.tsx",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "upload",
+      "table": "workspace"
+    },
+    {
+      "text": "Get my report",
+      "kind": "const",
+      "line": 135,
+      "file": "web/components/workspace/InputPanel.tsx",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "upload",
+      "table": "workspace"
+    },
+    {
+      "text": "Get your free report",
+      "kind": "const",
+      "line": 135,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32256,7 +32305,7 @@
     {
       "text": "Now let’s see what changed.",
       "kind": "jsx-text",
-      "line": 140,
+      "line": 151,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32268,7 +32317,7 @@
     {
       "text": "Let’s see what they see.",
       "kind": "jsx-text",
-      "line": 140,
+      "line": 151,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32280,7 +32329,7 @@
     {
       "text": "Open your last report",
       "kind": "jsx-text",
-      "line": 144,
+      "line": 155,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32292,7 +32341,7 @@
     {
       "text": "New reports are paused for now.",
       "kind": "jsx-text",
-      "line": 163,
+      "line": 174,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32304,7 +32353,7 @@
     {
       "text": "We&apos;re fixing a problem, so an upload won&apos;t run yet. Saved reports still open.",
       "kind": "jsx-text",
-      "line": 165,
+      "line": 176,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32316,7 +32365,7 @@
     {
       "text": "Check status",
       "kind": "jsx-text",
-      "line": 166,
+      "line": 177,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32328,7 +32377,7 @@
     {
       "text": "Resume input",
       "kind": "attr:aria-label",
-      "line": 172,
+      "line": 183,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32340,7 +32389,7 @@
     {
       "text": "Paste your resume",
       "kind": "jsx-text",
-      "line": 185,
+      "line": 196,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32352,7 +32401,7 @@
     {
       "text": "Upload a file",
       "kind": "jsx-text",
-      "line": 192,
+      "line": 203,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32364,7 +32413,7 @@
     {
       "text": "Resume text",
       "kind": "jsx-text",
-      "line": 195,
+      "line": 206,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32376,7 +32425,7 @@
     {
       "text": "That&apos;s",
       "kind": "jsx-text",
-      "line": 209,
+      "line": 220,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32388,7 +32437,7 @@
     {
       "text": "characters. We need at least",
       "kind": "jsx-text",
-      "line": 209,
+      "line": 220,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32400,7 +32449,7 @@
     {
       "text": "to review it, so add the whole resume, including your experience.",
       "kind": "jsx-text",
-      "line": 209,
+      "line": 220,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32412,7 +32461,7 @@
     {
       "text": "What we read",
       "kind": "jsx-text",
-      "line": 219,
+      "line": 230,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32424,7 +32473,7 @@
     {
       "text": "We could only read",
       "kind": "jsx-text",
-      "line": 229,
+      "line": 240,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32436,7 +32485,7 @@
     {
       "text": "characters, and we need at least",
       "kind": "jsx-text",
-      "line": 229,
+      "line": 240,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32448,7 +32497,7 @@
     {
       "text": ". A scanned or image-only PDF often does this. Paste the text instead.",
       "kind": "jsx-text",
-      "line": 229,
+      "line": 240,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32460,7 +32509,7 @@
     {
       "text": "Text we read from your file",
       "kind": "attr:aria-label",
-      "line": 232,
+      "line": 243,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32472,7 +32521,7 @@
     {
       "text": "Paste the text instead",
       "kind": "jsx-text",
-      "line": 235,
+      "line": 246,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32484,7 +32533,7 @@
     {
       "text": "Fix the text",
       "kind": "jsx-text",
-      "line": 235,
+      "line": 246,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32496,7 +32545,7 @@
     {
       "text": "Paste the text instead",
       "kind": "jsx-text",
-      "line": 250,
+      "line": 261,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32508,7 +32557,7 @@
     {
       "text": "See Jordan&apos;s report",
       "kind": "jsx-text",
-      "line": 254,
+      "line": 265,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32520,7 +32569,7 @@
     {
       "text": "OpenAI writes the report from your resume, and we don’t opt it into model training.",
       "kind": "jsx-text",
-      "line": 264,
+      "line": 275,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32532,7 +32581,7 @@
     {
       "text": "OpenAI writes the report from your resume. We don’t store the resume or opt it into model training.",
       "kind": "jsx-text",
-      "line": 265,
+      "line": 276,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32544,7 +32593,7 @@
     {
       "text": "How we handle your data",
       "kind": "jsx-text",
-      "line": 266,
+      "line": 277,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32556,7 +32605,7 @@
     {
       "text": "Compare with a job",
       "kind": "jsx-text",
-      "line": 281,
+      "line": 292,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32568,7 +32617,7 @@
     {
       "text": "(optional)",
       "kind": "jsx-text",
-      "line": 281,
+      "line": 292,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32580,7 +32629,7 @@
     {
       "text": "Job posting",
       "kind": "jsx-text",
-      "line": 289,
+      "line": 300,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32592,7 +32641,7 @@
     {
       "text": "Paste the job posting here…",
       "kind": "attr:placeholder",
-      "line": 296,
+      "line": 307,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32604,7 +32653,7 @@
     {
       "text": "Reading your resume…",
       "kind": "attr:loadingLabel",
-      "line": 309,
+      "line": 320,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32616,19 +32665,7 @@
     {
       "text": "Reports are paused",
       "kind": "jsx-text",
-      "line": 311,
-      "file": "web/components/workspace/InputPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "Compare my revision",
-      "kind": "jsx-text",
-      "line": 313,
+      "line": 322,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -34011,7 +34048,7 @@
       "table": "settings"
     },
     {
-      "text": "Everything we hold about you, as a file.",
+      "text": "Your reports, passes, receipts and profile, as a file.",
       "kind": "jsx-text",
       "line": 587,
       "file": "web/components/workspace/SettingsClient.tsx",
@@ -34661,7 +34698,7 @@
     {
       "text": "Report stopped",
       "kind": "call:toast.info",
-      "line": 233,
+      "line": 256,
       "file": "web/components/workspace/WorkspaceClient.tsx",
       "routes": [
         "/sample-report",
@@ -34673,7 +34710,7 @@
     {
       "text": "The sample report didn't load",
       "kind": "call:toast.error",
-      "line": 386,
+      "line": 409,
       "file": "web/components/workspace/WorkspaceClient.tsx",
       "routes": [
         "/sample-report",
@@ -34685,7 +34722,7 @@
     {
       "text": "Refresh to try again, or start with your own resume.",
       "kind": "key:description",
-      "line": 387,
+      "line": 410,
       "file": "web/components/workspace/WorkspaceClient.tsx",
       "routes": [
         "/sample-report",
@@ -34697,7 +34734,7 @@
     {
       "text": "Upload your LinkedIn PDF again to retry.",
       "kind": "call:toast.message",
-      "line": 400,
+      "line": 423,
       "file": "web/components/workspace/WorkspaceClient.tsx",
       "routes": [
         "/sample-report",
@@ -34709,7 +34746,7 @@
     {
       "text": "This report is missing details needed for a PDF. Contact support for help exporting it.",
       "kind": "call:toast.error",
-      "line": 425,
+      "line": 451,
       "file": "web/components/workspace/WorkspaceClient.tsx",
       "routes": [
         "/sample-report",
@@ -35466,7 +35503,7 @@
     {
       "text": "This is killer! Send it.",
       "kind": "const",
-      "line": 36,
+      "line": 37,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -35479,7 +35516,7 @@
     {
       "text": "Send it. Then read it against the posting you're going for.",
       "kind": "const",
-      "line": 36,
+      "line": 37,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -35492,7 +35529,7 @@
     {
       "text": "Every line says what you did and what changed, so your resume won't be the reason you don't get the call. Read it against the posting you're going for, and look at whether anyone can bring you in.",
       "kind": "const",
-      "line": 37,
+      "line": 38,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -35505,7 +35542,7 @@
     {
       "text": "Read it against a posting",
       "kind": "const",
-      "line": 38,
+      "line": 39,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -35518,7 +35555,7 @@
     {
       "text": "Compare my revision",
       "kind": "const",
-      "line": 38,
+      "line": 39,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -35531,7 +35568,7 @@
     {
       "text": "{revisedCount > 1 ? \"Your …} into your resume and see what changed.",
       "kind": "const",
-      "line": 39,
+      "line": 40,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -35544,7 +35581,7 @@
     {
       "text": "Your lines are ready. Drop them",
       "kind": "const",
-      "line": 39,
+      "line": 40,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -35557,7 +35594,7 @@
     {
       "text": "Your line is ready. Drop it",
       "kind": "const",
-      "line": 39,
+      "line": 40,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -35570,7 +35607,7 @@
     {
       "text": "That’s Jordan’s. Yours is next.",
       "kind": "jsx-text",
-      "line": 45,
+      "line": 46,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -35583,7 +35620,7 @@
     {
       "text": "Get your free report",
       "kind": "jsx-text",
-      "line": 46,
+      "line": 47,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -35596,7 +35633,7 @@
     {
       "text": "Your line is ready. Save this version.",
       "kind": "jsx-text",
-      "line": 55,
+      "line": 56,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -35609,7 +35646,7 @@
     {
       "text": "Save this version.",
       "kind": "jsx-text",
-      "line": 55,
+      "line": 56,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -35622,7 +35659,7 @@
     {
       "text": "Your answers and the revised line stay with it.",
       "kind": "jsx-text",
-      "line": 57,
+      "line": 58,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -35635,7 +35672,7 @@
     {
       "text": "Saving…",
       "kind": "jsx-text",
-      "line": 60,
+      "line": 61,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -35648,7 +35685,7 @@
     {
       "text": "Save this version",
       "kind": "jsx-text",
-      "line": 60,
+      "line": 61,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -35661,7 +35698,33 @@
     {
       "text": "Compare my revision",
       "kind": "jsx-text",
-      "line": 63,
+      "line": 64,
+      "file": "web/components/workspace/report/ReportEnding.tsx",
+      "routes": [
+        "/reports/[id]",
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "Kept in",
+      "kind": "jsx-text",
+      "line": 81,
+      "file": "web/components/workspace/report/ReportEnding.tsx",
+      "routes": [
+        "/reports/[id]",
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "My reports",
+      "kind": "jsx-text",
+      "line": 81,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -35674,7 +35737,7 @@
     {
       "text": "The comparison lasts for this visit. Save the report to keep it.",
       "kind": "jsx-text",
-      "line": 98,
+      "line": 100,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -38384,7 +38447,7 @@
       "table": "help"
     },
     {
-      "text": "OpenAI generates reports and smooths the revised lines you build from your answers, Supabase handles auth and database storage, Stripe handles billing, Vercel provides hosting and basic page statistics, Sentry handles error and performance monitoring, and Mixpanel handles optional product analytics after you allow it. Vercel's page statistics use no cookies: they record the page, the referring site, approximate location, and device and browser type, identify a visit only by a hash that is discarded after 24 hours, and never include report ids or other private parts of a page address. Upstash provides shared rate limiting and short-lived idempotency storage. Inngest coordinates background account-export jobs and PDF generation when those features are used. Resend delivers authentication email and receives public support mail; support messages and attachments are forwarded to and handled in Google (Gmail). Stripe manages card data on its systems. We never have access to it.",
+      "text": "OpenAI generates reports and smooths the revised lines you build from your answers, Supabase handles auth and database storage, Stripe handles billing, Vercel provides hosting and basic page statistics, Sentry handles error and performance monitoring, and Mixpanel handles optional product analytics after you allow it. Vercel's page statistics use no cookies: they record the page, the referring site, approximate location, and device and browser type, identify a visit only by a hash that is discarded after 24 hours, and never include report ids or other private parts of a page address. Upstash provides shared rate limiting and short-lived idempotency storage. Inngest coordinates background account-export jobs when you request one. Resend delivers authentication email and receives public support mail; support messages and attachments are forwarded to and handled in Google (Gmail). Stripe manages card data on its systems. We never have access to it.",
       "kind": "key:value",
       "line": 110,
       "file": "web/lib/legal/content.ts",

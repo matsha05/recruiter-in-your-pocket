@@ -141,6 +141,8 @@ async function installWorkspaceHarness(page: Page) {
     throw new Error(`Unmocked workspace harness request: ${url.pathname}`);
   });
   await page.route("**/api/free-status", (route) => route.fulfill({ json: { ok: true, free_uses_left: 1 } }));
+  // A signed-in workspace asks for the newest saved report so it can offer it back (Nov 6, 2026).
+  await page.route("**/api/reports?limit=1", (route) => route.fulfill({ json: { ok: true, reports: [] } }));
   await page.route("**/api/generation-status", (route) => route.fulfill({ json: { ok: true, paused: false } }));
   await page.route("**/api/reports/recovery?*", (route) => route.fulfill({ status: 202, json: { ok: false, status: "pending" } }));
   await page.route(`**/api/extension/saved-jobs/${JOB.id}`, (route) => route.fulfill({ json: { success: true, data: JOB } }));
@@ -278,7 +280,7 @@ test.describe("workspace command and completion handoffs", () => {
     await expect(page.getByRole("button", { name: "Retry", exact: true })).toHaveCount(0);
     await page.clock.fastForward(31_000);
     await expect(page.getByRole("complementary", { name: "Report still in progress" })).toBeVisible();
-    await expect(page.getByText(/both count as reports/)).toBeVisible();
+    await expect(page.getByText(/Retry stops this one and starts over/)).toBeVisible();
   });
 
   test("Upload Resume opens the native picker from paste mode and applies parsed text", async ({ page }) => {

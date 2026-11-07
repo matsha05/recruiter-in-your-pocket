@@ -21,6 +21,8 @@ type ResumeModeSectionProps = {
   commandUploadName?: string | null;
   onRun: () => void;
   freeUsesRemaining: number;
+  /** The server has answered what's left; until then a signed-in person isn't promised a free report. */
+  freeStatusKnown?: boolean;
   user: AuthUser | null;
   onSampleReport: () => void;
   onOpenLastReport?: () => void;
@@ -66,6 +68,7 @@ export default function ResumeModeSection({
   commandUploadName,
   onRun,
   freeUsesRemaining,
+  freeStatusKnown = true,
   user,
   onSampleReport,
   onOpenLastReport,
@@ -140,6 +143,7 @@ export default function ResumeModeSection({
           onRun={onRun}
           isLoading={isLoading}
           freeUsesRemaining={freeUsesRemaining}
+          freeStatusKnown={freeStatusKnown}
           user={user}
           onSampleReport={onSampleReport}
           onOpenLastReport={onOpenLastReport}

@@ -12,7 +12,7 @@ Routes: `/reports/[id]`. Strings: 15 (15 unique).
 | 2 | report | `web/components/reports/ReportDetailClient.tsx:102` | call:toast.error | This report is missing details needed for a PDF. Contact support for help exporting it. |
 | 3 | report | `web/components/reports/ReportDetailClient.tsx:116` | call:ClientActionError | The PDF couldn’t download. Try exporting again. |
 | 4 | report | `web/components/reports/ReportDetailClient.tsx:144` | jsx-text | My reports |
-| 5 | report | `web/components/reports/ReportDetailClient.tsx:148` | jsx-text | Check a revision |
+| 5 | report | `web/components/reports/ReportDetailClient.tsx:148` | jsx-text | Compare my revision |
 | 6 | report | `web/components/reports/ReportDetailClient.tsx:148` | jsx-text | New report |
 | 7 | report | `web/components/reports/ReportDetailClient.tsx:157` | jsx-text | Loading report… |
 | 8 | report | `web/components/reports/ReportDetailClient.tsx:166` | jsx-text | Report not found |

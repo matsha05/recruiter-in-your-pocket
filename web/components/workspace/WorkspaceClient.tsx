@@ -2,7 +2,7 @@
 
 import { getClientActionError } from "@/lib/client-action-error";
 
-import { useState, useCallback, useEffect, useLayoutEffect, useRef } from "react";
+import { useState, useCallback, useEffect, useLayoutEffect, useRef, type SetStateAction } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/components/providers/AuthProvider";
 import WorkspaceOverlays from "@/components/workspace/WorkspaceOverlays";
@@ -86,6 +86,14 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     const [rebuiltAnswers, setRebuiltAnswers] = useState(0);
     const [skipSample, setSkipSample] = useState(false);
     const [freeUsesRemaining, setFreeUsesRemaining] = useState(1);
+    // Until the server says what's left, a signed-in person isn't told they have a free report (audit, Nov 5, 2026).
+    const [freeStatusKnown, setFreeStatusKnown] = useState(false);
+    const setKnownFreeUses = useCallback((value: SetStateAction<number>) => {
+        setFreeStatusKnown(true);
+        setFreeUsesRemaining(value);
+    }, []);
+    // A signed-in person's newest saved report, so the workspace can offer it back.
+    const [lastSavedReportId, setLastSavedReportId] = useState<string | null>(null);
     const [analysisStartedAt, setAnalysisStartedAt] = useState<number | null>(null);
     const [analysisStage, setAnalysisStage] = useState<GenerationStage | null>(null);
     // How long the report took, for its header row: from the run's start to the report's arrival. The
@@ -195,7 +203,22 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
 
     const hasPaidAccess = Boolean(user?.membership && user.membership !== "free");
     const canExportPdf = Boolean(user?.canExportPdf);
-    const { refreshFreeStatus } = useFreeStatus({ accountId: user?.id ?? null, refreshUser, setFreeUsesRemaining, hasPaidAccess });
+    const { refreshFreeStatus } = useFreeStatus({ accountId: user?.id ?? null, refreshUser, setFreeUsesRemaining: setKnownFreeUses, hasPaidAccess });
+    const signedInId = user?.id ?? null;
+    useEffect(() => {
+        setFreeStatusKnown(false);
+        setLastSavedReportId(null);
+        if (!signedInId) return;
+        const controller = new AbortController();
+        fetch("/api/reports?limit=1", { signal: controller.signal })
+            .then((res) => (res.ok ? res.json() : null))
+            .then((data) => {
+                const id = data?.reports?.[0]?.id;
+                if (!controller.signal.aborted) setLastSavedReportId(typeof id === "string" ? id : null);
+            })
+            .catch(() => undefined);
+        return () => controller.abort();
+    }, [signedInId]);
 
     const beginAnalysis = useCallback((mode: "resume" | "linkedin") => {
         resetReportCompletion();
@@ -409,7 +432,10 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     const [isExporting, setIsExporting] = useState(false);
 
     const handleExportPdf = useCallback(async (overrideReport?: any) => {
-        if (!canExportPdf) { setIsPaywallOpen(true); return; }
+        if (!canExportPdf) {
+            if (!user) { setAuthContext("report"); setIsAuthOpen(true); } else setIsPaywallOpen(true);
+            return;
+        }
         let payload = overrideReport || report;
         if (!payload) return;
 
@@ -564,7 +590,10 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
                             freeUsesRemaining={effectiveUsesRemaining}
                             user={user}
                             onSampleReport={handleResumeSample}
-                            onOpenLastReport={hasRecoverableReport ? () => setRecoveryDismissed(false) : undefined}
+                            onOpenLastReport={hasRecoverableReport
+                                ? () => setRecoveryDismissed(false)
+                                : lastSavedReportId && !comparisonBaseline ? () => push(`/reports/${lastSavedReportId}`) : undefined}
+                            freeStatusKnown={freeStatusKnown}
                             loadedJobContext={loadedJobContext}
                             onExportPdf={canExportPdf ? handleExportPdf : undefined}
                             isExporting={isExporting}

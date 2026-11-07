@@ -86,7 +86,7 @@ Routes: `/settings/account`, `/settings/billing`, `/settings/matching`, `/settin
 | 69 | account | `web/components/workspace/SettingsClient.tsx:536` | attr:aria-label | Settings sections |
 | 70 | account | `web/components/workspace/SettingsClient.tsx:576` | key:label | Saving… |
 | 71 | account | `web/components/workspace/SettingsClient.tsx:586` | jsx-text | Your data |
-| 72 | account | `web/components/workspace/SettingsClient.tsx:587` | jsx-text | Everything we hold about you, as a file. |
+| 72 | account | `web/components/workspace/SettingsClient.tsx:587` | jsx-text | Your reports, passes, receipts and profile, as a file. |
 | 73 | account | `web/components/workspace/SettingsClient.tsx:595` | key:label | Preparing export… |
 | 74 | account | `web/components/workspace/SettingsClient.tsx:600` | jsx-text | Delete account |
 | 75 | account | `web/components/workspace/SettingsClient.tsx:601` | jsx-text | Your reports and your account go with it. Nothing comes back. |

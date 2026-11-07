@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef } from "react";
 import type { ReadonlyURLSearchParams } from "next/navigation";
 import type { Dispatch, SetStateAction } from "react";
+import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 
 type JobContext = {
   id: string;
@@ -43,6 +44,8 @@ export function useJobContextFromExtension({
   }, [query, setLoadedJobContext]);
 
   useEffect(() => {
+    // Saved jobs come from the extension; with it held back, ?job= and extension-local links load nothing.
+    if (!isLaunchFlagEnabled("extensionSync")) return;
     if (dismissedQueryRef.current === query) return;
     dismissedQueryRef.current = null;
     const params = new URLSearchParams(query);

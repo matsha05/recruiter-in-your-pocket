@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ArrowRight } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { JOB_SEARCH_PASS_DECISION } from "@/lib/billing/pricing";
@@ -77,6 +78,7 @@ export function ReportEnding({ isSample, isSignedIn, isExhausted, ready, clean =
         {!allAddressed && readyNote && <p className={styles.endingCopy}>{readyNote}</p>}
         {isExhausted && <p className={styles.endingCopy}>{JOB_SEARCH_PASS_DECISION.freeBoundary} {JOB_SEARCH_PASS_DECISION.whenToBuy}</p>}
         <div><Button variant="primary" onClick={onStartRevision}>{revisionLabel}<ArrowRight className="size-4" weight="bold" /></Button></div>
+        <p className={styles.endingNote} data-testid="report-kept">Kept in <Link href="/reports" className="riyp-link">My reports</Link>.</p>
         {isExhausted && <p className={styles.endingNote}>{JOB_SEARCH_PASS_DECISION.terms}</p>}
       </section>
     );

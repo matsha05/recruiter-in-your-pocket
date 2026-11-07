@@ -145,7 +145,7 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
           </Link>
           {/* The header already offers "New report"; from a saved report the next step is checking a revision against it. */}
           <Link href={revisionHref || "/workspace"} className="riyp-link-nav inline-flex min-h-11 items-center text-sm font-medium text-muted-foreground hover:text-foreground">
-            {revisionHref ? "Check a revision" : "New report"}
+            {revisionHref ? "Compare my revision" : "New report"}
           </Link>
         </div>
       </div>
@@ -218,7 +218,8 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
 
       {state === "ready" && report && (
         <div className="flex-1">
-          <div className="h-4 md:h-6" aria-hidden="true" />
+          {/* On a phone the report's own header row sits right under the page bar: no blank strip between them (audit, Nov 5). */}
+          <div className="hidden md:block md:h-6" aria-hidden="true" />
           <ReportPanel
             isSavedReport
             report={report}

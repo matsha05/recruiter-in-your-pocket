@@ -198,7 +198,7 @@ export default function AnalysisScanning({
                     <aside className={styles.slow} aria-label="Report still in progress">
                         <div>
                             <p className={styles.slowTitle}>Still going. Longer resumes can take a little more time.</p>
-                            <p className={styles.slowNote}>If you retry and this one also finishes, both count as reports. Waiting is usually the better bet.</p>
+                            <p className={styles.slowNote}>Retry stops this one and starts over. Waiting is usually faster.</p>
                         </div>
                         <div className={styles.slowActions}>
                             {onRetry ? <Button variant="secondary" size="sm" onClick={onRetry}>Retry</Button> : null}

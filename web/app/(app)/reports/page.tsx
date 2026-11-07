@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { ArrowRight, ChartLineUp, GoogleChromeLogo, WarningCircle } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight, GoogleChromeLogo, WarningCircle } from "@phosphor-icons/react/dist/ssr";
 import { createSupabaseServerClient } from "@/lib/supabase/serverClient";
 import { AppPageIntro } from "@/components/layout/AppPageIntro";
 import { launchFlags } from "@/lib/launch/flags";
@@ -55,14 +55,6 @@ export default async function ReportsPage() {
                   </Link>
                 </Button>
               ) : null}
-              <Button asChild variant="secondary">
-                <Link
-                  href="/dashboard"
-                >
-                  <ChartLineUp className="size-4" aria-hidden="true" />
-                  Progress
-                </Link>
-              </Button>
               <Button asChild>
                 <Link
                   href="/workspace"
