@@ -1,0 +1,7 @@
+URL: https://resumeworded.com/workers/no-login-smr-signup-page.php?setcareerlevel=1#!
+Observed: 2026-11-05 20:00:58.130 UTC
+Scope: visible status text only; surrounding product marketing excluded.
+
+Create a free account to continue.
+Complete the check below to continue.
+Cancel verification

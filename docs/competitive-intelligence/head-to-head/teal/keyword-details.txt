@@ -1,0 +1,25 @@
+{
+  "time": "2026-11-05T20:32:32.948Z",
+  "out": [
+    {
+      "keyword": "Full Lifecycle Recruiting",
+      "detail": "Write Bullet\nAdd to Skills\nNot Found in Resume\nFrom: Requirements"
+    },
+    {
+      "keyword": "Greenhouse",
+      "detail": "Write Bullet\nAdd to Skills\nNot Found in Resume\nFrom: Requirements"
+    },
+    {
+      "keyword": "Applicant Tracking System",
+      "detail": "Write Bullet\nAdd to Skills\nNot Found in Resume\nFrom: Requirements"
+    },
+    {
+      "keyword": "Bar Calibration",
+      "detail": "Write Bullet\nAdd to Skills\nNot Found in Resume\nFrom: Requirements"
+    },
+    {
+      "keyword": "Interview Loop Design",
+      "detail": "Write Bullet\nAdd to Skills\nNot Found in Resume\nFrom: Requirements"
+    }
+  ]
+}

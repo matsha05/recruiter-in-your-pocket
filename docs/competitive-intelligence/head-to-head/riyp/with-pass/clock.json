@@ -1,0 +1,46 @@
+{
+  "submitAt": "2026-11-05T21:06:59.937Z",
+  "lastWaitCaptureAt": "2026-11-05T21:08:20.808Z",
+  "verdictAt": "2026-11-05T21:08:32.120Z",
+  "firstNonWaitAt": "2026-11-05T21:08:32.120Z",
+  "observations": [
+    {
+      "at": "2026-11-05T21:06:59.986Z",
+      "waiting": true,
+      "stage": "Sending your resume"
+    },
+    {
+      "at": "2026-11-05T21:07:26.045Z",
+      "waiting": true,
+      "stage": "Writing the notes"
+    },
+    {
+      "at": "2026-11-05T21:07:41.331Z",
+      "waiting": true,
+      "stage": "Checking every quote"
+    },
+    {
+      "at": "2026-11-05T21:08:20.734Z",
+      "waiting": true,
+      "stage": "Checking for more misses"
+    },
+    {
+      "at": "2026-11-05T21:08:32.120Z",
+      "waiting": false,
+      "stage": "Finished"
+    }
+  ],
+  "uploadAt": "2026-11-05T21:05:24.148Z",
+  "fullReportObservedAt": "2026-11-05T21:08:32.120Z",
+  "expandedNotesCapturedAt": "2026-11-05T21:11:09.491Z",
+  "passBefore": 5,
+  "passBeforeAt": "2026-11-05T21:05:24.081Z",
+  "passAfter": 4,
+  "passAfterAt": "2026-11-05T21:11:59.348Z",
+  "firstScreenAt": "2026-11-05T21:05:24.213Z",
+  "retainedFirstScreenFileMtime": "2026-11-05T21:05:42.659Z",
+  "postingVerifiedAt": "2026-11-05T21:06:52.272Z",
+  "postingCharacters": 6856,
+  "lastWaitingObservedAt": "2026-11-05T21:08:23.844Z",
+  "fullExpandedScreenshotAt": "2026-11-05T21:11:59.348Z"
+}

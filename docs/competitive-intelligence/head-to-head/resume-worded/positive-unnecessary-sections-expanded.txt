@@ -1,0 +1,70 @@
+All checks
+✓ Passed · 2 of 6
+←
+→
+Unnecessary sections
+10/10
+
+Resume standards have changed over the last decade. Some sections have become less useful to hiring managers and including them wastes space, and may tell hiring managers that you're out of touch with modern standards.
+
+PASSED · 3 — NO UNNECESSARY SECTIONS FOUND
+✓
+No references section
+Great - you shouldn't include a references section in your resume. Employers will ask you directly if they ever need to contact your references.
+⌃
+✓
+No objective
+While you can include a short summary on your resume, do not include an objective in your resume. It is clear to hiring managers that you are looking for a job. There's no need to restate it at the top of your resume. In 2026, an objective is considered by hiring managers to be an outdated section.
+⌃
+✓
+No hobbies or interests section
+Things like hobbies and interests should be removed from your resume. They're only used as a filler for very junior resumes, and including them on your resume when you have experience shows a lack of professionalism and judgment.
+⌃
+Common questions
+Answered by real recruiters and hiring managers
+What sections should you avoid on your resume, and why?
+
+Objective: All recruiters agree that an Objective is superfluous on a resume. The company already knows what you’re looking for because you applied for a specific position. Having an objective section may even exclude you from other similar positions that might be interesting to you. This is different from a resume summary, which is fine to include on your resume (but follows a different format to an outdated objective section)
+
+
+
+
+References: References (or even 'References available upon request') never belongs on a resume. It just wastes space. Employers will ask you directly if they ever need to contact your references.
+
+
+
+What should I put in place of the objective?
+
+Nothing is required. Your name, contact details and your most recent role already say what you do. If you want an opener, write a two-line summary: what you do, how long you've done it, and the one or two results you're known for. It describes you, not what you're looking for, which is the difference between a summary and an objective.
+
+What if the employer asks for references?
+
+Send them separately when asked, usually after an interview: a short document with each person's name, title, company, relationship to you and contact details. Let your references know first. Nothing about them belongs on the resume itself.
+
+Should I include [x] section on my resume? How do I decide what sections to include?
+
+Many candidates often ask whether or not they should include a specific section on their resume. Common questions we often get as recruiters are: Should I write about my extra-curricular or volunteer experiences? What about the online courses I did? Or specific coursework projects I completed at college?
+
+The answer is to include what's relevant to the skills the job is looking for. Your resume serves one purpose: To help an employer find out if you're a good fit or not for a role. That means you need to add/remove sections that help convince an employer you're a good fit!
+
+For example, if you're applying for a programming job and you don't have any formal work experience or degree to support it, you absolutely should include details about an online course you did or the programming projects you worked on! Similarly, if you're applying for a role that requires you to have specific hard skills or knowledge of different tools, you should absolutely include a Skills section! If you're having trouble deciding whether or not to include a section or specific details on your resume, remember to always think hard about how it fits into your story as an applicant.
+
+Common sections candidates have on their resume include:
+
+Extracurricular / Activities: You can include projects, extra-curricular or leadership experiences that are relevant to your role. Particularly if you're in college or a recent graduate, you can use this section to describe additional experiences, like leadership activities, volunteering work or university projects. Change the name of the section depending on what you list. In the image next to the question, we've gone through a few examples of how to list your extracurricular experiences on your resume.
+
+
+
+
+Skills: A Skills section is common to include on a resume. You can include languages, technical skills, professional societies / memberships or interests. Note that there is no fixed format - it can vary based on what you are trying to showcase. Please do not use visuals, bar graphs or the like to represent your skills! These take up space and are hard to interpret by both recruiters and automated resume screeners.
+
+
+
+
+Awards: You should list any awards you’ve received, including those that don’t seem directly applicable to the skillset are often relevant in showing your accomplishments. Ensure you state the context of your awards.
+
+6
+/10
+NEXT FIX
+Repetition
++3 pts

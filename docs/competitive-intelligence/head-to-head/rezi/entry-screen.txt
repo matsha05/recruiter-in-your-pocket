@@ -1,0 +1,800 @@
+Product
+Enterprise
+Enterprise
+Templates
+Resources
+Pricing
+Pricing
+Login
+Login
+Try for free
+Try for free
+
+Also available on
+
+App Store
+App Store
+Claude
+Claude
+Codex
+Codex
+ChatGPT
+ChatGPT
+Chrome Extension
+Chrome Extension
+Ranked #1 AI Resume Builder by Forbes
+
+Join 4.8 million job seekers. Build, improve, and tailor your resume with AI. Try it free—no credit card required.
+
+Try for free
+Try for free
+
+4.7
+/ 5.0
+
+4.8 million users
+
+Upload or drop your resume to get started
+
+Score resume
+Score resume
+Create Resumes
+Search Jobs
+Practice Interviews
+AI Resume Agent
+Create Cover Letters
+ALL JOBS
+SAVED
+(1)
+APPLIED
+(1)
+INTERVIEWING
+(1)
+REJECTED
+(1)
+UPGRADE
+A
+Senior Software Engineer
+New York
+Level
+Workplace: Remote
+Job Type
+Salary
+Date Posted
+Skills
+CLEAR ALL
+Search based on  My First Resume  ·  Last edited 2h ago
+All Jobs
+HIDE
+BEST MATCH
+91
+Senior Software Engineer, Sync
+Linear  ·  New York, NY
+Oct 25, 2024  · Viewed
+90
+Software Engineer, Frontend Platform
+Vercel  ·  New York, NY
+Oct 23, 2024  · Viewed
+72
+Software Engineer, Contract
+Cursor  ·  New York, NY
+Oct 8, 2024
+Software Engineer, Frontend Platform
+Vercel
+Remote  ·  New York, NY; San Francisco, CA; Remote (US)
+APPLY NOW
+TARGET RESUME
+90
+Strong Match
+·  Based on My First Resume
+Criterion
+Score
+Confidence
+React and Next.js
+95
+High
+Web performance
+90
+High
+Developer experience
+87
+Medium
+Build tooling
+82
+Medium
+Edge and serverless
+76
+High
+Rust
+48
+Low
+Keywords You Match
+Next.js
+React
+TypeScript
+Keywords to Add
+Turbopack
+Rust
+Description
+Vercel is the platform for frontend developers, giving teams the speed and reliability to ship the web. You’ll join a small, senior team that ships every week, talks directly with customers and owns problems from idea to production. We care about craft, clear writing and moving quickly without cutting corners.
+Responsibilities
+Build the dashboard and tooling developers use every day.
+Make deployments faster and easier to understand.
+Partner with the Next.js team on new platform features.
+Requirements
+Strong experience with react and Next.js
+Strong experience with web performance
+Strong experience with developer experience
+Strong experience with build tooling
+4+ years building and shipping production software
+Clear written and verbal communication
+Nice to have
+Hands-on experience with Turbopack
+Hands-on experience with Rust
+Benefits
+Competitive salary and meaningful equity
+Medical, dental and vision coverage for you and your family
+Flexible time off and paid parental leave
+Annual learning and home office budget
+Compensation
+$170K base salary  ·  Full-time  ·  Mid-level
+Helping users land jobs at 1,000+ companies such as
+
+“Rezi is an awesome AI-based resume builder that includes templates to help you design a resume that is sure to check the boxes when it comes to applicant tracking systems. This is a great jumping off point to kickstart a new resume.”
+
+Ashley Stahl
+
+Career Contributor
+
+62.18%
+
+Success
+Average is ~3%, as of 2025 data.
+
+Interview Rate
+
+4.8 million
+
+Total Users
+
+8.23 / 10
+
+Avg. User Review
+
+Rezi in Action
+
+Create the resume to land your dream job
+Build
+
+A resume that's ready before you apply. Clean sections, consistent spacing, ATS-compatible formatting — applied as you type, not after.
+
+Learn more
+Learn more about Build
+Build
+Score
+
+Know exactly where you stand. The Rezi Score breaks down your resume section by section. No guessing what's weak. You see it, then fix it.
+
+Learn more
+Learn more about Score
+Score
+Target
+
+Match the job. Paste a job description and Rezi pulls every keyword you're missing. Add them in seconds and go from generic to targeted.
+
+Learn more
+Learn more about Target
+Target
+
+“Rezi is super upfront and continues to improve over time. I've recommended Rezi to several of my friends and colleagues. I just love this product so much.”
+
+Ricky M.
+
+Software Engineer
+
+Upload photo
+Charles Bloomberg
+Seoul, South Korea
+charlesbloomberg@gmail.com
+(621) 799-5548
+in/cbloomberg
+PROFESSIONAL SUMMARY
+
+Passion for building inspiring companies through industry-leading tech, design, and execution. An experienced early-stage global executive with an economics degree from the University of Wisconsin - Madison. Looking to join as a global startup consultant.
+
+PROFESSIONAL EXPERIENCE
+
+CEO & Founder | Rezi
+
+August 2015—Present, Seoul, South Korea
+
+• Built Rezi - the most loved resume software in the world, trusted by over 2,227,254 users.
+
+• Founded Rezi at the age of 22. At 23, successfully globalized into South Korea growing to be South Korea's leading English resume company, the most awarded global startup in South Korea, and securing over $650,000 in investment, grants, and awards.
+
+• Collaborated with the development team to engineer scalable partnership strategies such as redemption-code-based access which resulted in over 50,000 new users in 1 month with zero marketing dollars spent.
+
+• Accountable for developing new business models as a response towards market conditions and opportunities which resulted in the development of 3 new core departments including e-learning, global recruiting, and data-vending.
+
+• 13 full time employees; 2,227,254 users; $650,000 total raised investment; $40,000,000 valuation.
+
+Web Developer | Kaplan
+
+May 2015—November 2015, La Crosse, WI
+
+• Executed website redesign of kaplancleantech.com using Expression Engine as a CMS while working with marketing and sales teams. Optimized 3 landing page variants using HTML, A/B testing software and customer feedback to increase leads for sales teams.
+
+• Managed SEO campaigns using Moz Analytics, monitored site performance, and prepared ranking reports that were shared with the management team.
+
+• Executed Google Analytics tracking campaigns to maximize the effectiveness of 5 email re-marketing initiatives deployed using Salesforce software. Used Salesforce Object Query Language, C, and Python to search for data for specific information.
+
+• Led content design for onboarding flows to improve new-user activation.
+
+Marketing Analyst | Kaplan
+
+November 2014—May 2015, La Crosse, WI
+
+• Relied and implement Tableau dashboards to track 6 marketing KPIs. Used data to create reports circulated amongst leadership. Collaborated with marketing specialists to improve marketing strategies to maximize ROI such as introducing Facebook retargeting.
+
+• Used SurveyMonkey to collect over 100 customer feedbacks used to conduct analysis, identify market trends, and calculate NPS. Used customer feedback data and optimization software to present and suggest website improvements to management.
+
+• Managed mobile 2 PPC strategy efforts, using Google AdWords Editor and Marin, by teaching marketing specialists best practices to prepare for the behavioral shift towards increased reliance on mobile.
+
+• Partnered with product analysts to prioritize the product roadmap from user research.
+
+Web Development Intern | Wisconsin Public Television
+
+June 2012—September 2012, Madison, WI
+
+• Integrated Analytics and marketing pixels to track behavior when introducing promos which brought in over $235k in sales.
+
+• Redesigned company intranet to integrate current company processes with new website.
+
+EDUCATION
+
+Bachelor of Science in Economics | University of Wisconsin - Madison
+
+Powers-Knapp Scholar, 2014
+
+EXPERT-LEVEL SKILLS
+
+Leadership: Speaking, Fundraising, Product Development, Communication, Partnerships, International Marketing
+
+Front End: HTML, CSS, Bootstrap, Webflow
+
+Fields of Interest: Early-Stage Fundraising, Global Entrepreneurship, Web Design, Growth
+
+GENERATE BULLET
+Customize
+Color
+Profile Pic
+Dividers
+
+The Problem
+
+You're not getting ghosted by humans
+
+Most companies use software called Applicant Tracking Systems (ATS) to screen resumes automatically before a recruiter touches them. If your resume isn't structured correctly, doesn't include the right keywords, or gets tripped up by a stray table or graphic – it's filtered out. Silently. Without explanation.
+
+Applicant Tracking System
+
+Filtered out by ATS
+
+Your Resume
+Submitted
+Scanning
+Qualification Match
+Against the job description
+
+0%
+
+Parsed Fields
+Name
+Scanning
+Contact Info
+Scanning
+Experience
+Scanning
+Skills
+Scanning
+Hard Skills Matched
+Confluence
+Figma
+SQL
+Jira
+Job Requirements Missing
+SaaS
+User Stories
+Agile
+Go-to-market
+Product Roadmap
+Sprint Planning
+
+Resume Formats & Examples
+
+ATS-friendly resume formats that land jobs
+
+Use a template that guides you. Our ATS-compliant designs are trusted by 4.8 million job seekers.
+
+Most Popular
+
+Simple
+
+Modern
+
+Creative
+
+Compact
+
+Customize
+Customize
+Download
+Download
+Modern
+
+A sleek design optimized for the tech industry. This template features distinct sections for technical skills and languages, making it the top choice for developers, engineers, and IT professionals who need to showcase expertise at a glance.
+
+Customize
+Customize
+Download
+Download
+Harvard
+
+The definitive Harvard resume format, trusted by top universities and Ivy League graduates. This clean, education-first layout is ideal for students and recent graduates targeting competitive roles in finance, consulting, and academia.
+
+Customize
+Customize
+Download
+Download
+Jake's Resume
+
+Our adaptation of Jake's Resume from Overleaf, now available without LaTeX coding. This high-density, single-column layout is a standard for software engineers and developers who need to showcase skills and projects.
+
+Customize
+Customize
+Download
+Download
+Highlight
+
+A professional modern resume template that uses subtle color accents to guide the recruiter's eye. Perfect for creative professionals and tech startups looking to stand out while maintaining strict ATS compatibility and high content density.
+
+Find inspiration with great resume examples
+Programming
+
+9 resumes
+
+Programming
+Marketing
+
+6 resumes
+
+Marketing
+Engineering
+
+12 resumes
+
+Engineering
+Business
+
+5 resumes
+
+Business
+Finance
+
+3 resumes
+
+Finance
+Student
+
+9 resumes
+
+Student
+Design
+
+3 resumes
+
+Design
+Legal
+
+1 resumes
+
+Legal
+Medical
+
+3 resumes
+
+Medical
+View all
+
+Over 70+ resume examples to use
+
+View all resume examples
+
+“I'm very happy with the software. I tailored my husband's resume with a very professional template. My favorite features are the rewritten AI bullet points and the keyword targeting!”
+
+Natalia Betancourt
+
+South Korea
+
+Find real open jobs and get hired fast
+
+Use Rezi’s new job search tool. Find the right opportunity, create a perfect resume, track your application.
+
+Learn more
+Learn more about Find real open jobs and get hired fast
+Your AI-powered resume agent, built to get you hired
+
+Write, tailor, score and optimize your resume through a single conversation. The Rezi AI Agent handles the details so you can focus on the interviews.
+
+Learn more
+Learn more about Your AI-powered resume agent, built to get you hired
+Mock Interview giving practice for real results
+
+Sharpen your interview question and answer skills with Rezi AI Interview. Job-tailored questions, focused on your resume.
+
+Learn more
+Learn more about Mock Interview giving practice for real results
+
+Tools
+
+All the tools you need to get hired in one platform
+
+AI Resume Agent
+
+AI Resume Agent
+
+Job Search
+
+Job Search
+
+AI Interview
+
+AI Interview
+
+Keyword Targeting
+
+Keyword Targeting
+
+Rezi Score
+
+Rezi Score
+
+AI Summary Writer
+
+AI Summary Writer
+
+AI Resignation Letter Generator
+
+AI Resignation Letter Generator
+
+AI Cover Letter Generator
+
+AI Cover Letter Generator
+
+Resume Bullet Point Generator
+
+Resume Bullet Point Generator
+
+Wall of Love
+
+4.8 million users trust Rezi
+
+Resume Building felt like pulling teeth – until I found Rezi.
+
+Davis Allen
+
+Software Developer
+
+I was blown away by Rezi. It streamlined everything...
+
+Celine Watko
+
+I needed a resume tool as smart as my work.
+
+Yosra Naceur
+
+Data Scientist
+
+“A great tool that is very helpful. I found the Rezi system easy to use and very helpful as I was working on getting my resume in shape for job applications.”
+
+Dakota Rubin
+
+United States
+
+Written via
+
+“This is actually one of the first reviews I’ve ever written for a business, and that alone says a lot. I highly recommend Rezi to anyone who’s job searching, it makes the entire process so much easier.”
+
+Yazan Alkhatib
+
+United States
+
+Written via
+
+“Reduced my time per application from 1-2 hours down to 15 minutes.”
+
+Kixxx
+
+Experience with Rezi
+
+“I love how simple and convenient it is to use and been coming back to update it every time I need a fresh resume.”
+
+Zara Wazir
+
+U.A.E.
+
+Written via
+
+100% Money-back Guarantee
+
+Choose from our most popular plans
+
+Pays for itself with the time you’ll save creating one resume. You can also try Rezi for free to see how you like it before committing.
+
+View all features
+View all features
+
+4.7 out of 5
+
+across 250 reviews
+
+“I was able to land a job in 42 days and couldn’t have done it without the help of a quality resume.”
+
+Matthew Deltoro
+
+United States via Trustpilot
+
+Pro
+
+$29 / month
+
+Access to all features plus unlimited AI & free monthly review.
+
+Get started
+Get started
+
+Unlimited Resumes
+
+Unlimited AI Interviews
+
+Unlimited PDF Downloads
+
+Access to all templates
+
+AI Resume Writer
+
+AI Resume Editor
+
+Rezi Score
+
+Keyword Targeting
+
+Free
+
+$0
+
+Get a feel for how it works. No payment required.
+
+Get started
+Get started
+
+1 Resume
+
+1 AI Interview
+
+3 PDF Downloads
+
+Standard Format Templates
+
+AI Resume Writer
+
+AI Resume Editor
+
+Frequently Asked Questions
+
+Your questions, answered.
+
+General
+
+Pricing
+
+Formats
+
+Partners
+
+Why would I use an AI resume builder?
+
+An AI resume maker helps you build a resume perfectly fit for the job you want. Top-notch AI resume builders are designed to speak the language hiring managers are looking for, increasing your chances of standing out in the crowd. It aligns your skills and experience with the job description effectively.
+
+What’s the best way to use an AI resume builder?
+Aren’t all resumes written with AI similar?
+Will employers know I used AI to write a resume?
+Can I use AI to optimize an existing resume?
+How does Rezi tailor my resume to specific job descriptions?
+Swipe right on your next job and get hired in weeks, not months.
+Download App
+Download App
+
+Connect to your existing Rezi account
+
+Join 4.8 million users
+
+62.18% review rate for applicants
+
+Join 4.8 million job seekers helped since September 2019
+
+support@rezi.io
+support@rezi.io
+
+4.7 / 5.0
+
+250 reviews
+
+(View Trustpilot reviews)
+
+Product
+
+AI Resume Builder
+
+AI Resume Builder
+
+Resume Summary Generator
+
+Resume Summary Generator
+
+AI Keyword Scanner
+
+AI Keyword Scanner
+
+ATS Resume Checker
+
+ATS Resume Checker
+
+Resume Guides
+
+How to Write a Resume
+
+How to Write a Resume
+
+Resume Formatting
+
+Resume Formatting
+
+Resume Summary
+
+Resume Summary
+
+Resume Keywords
+
+Resume Keywords
+View all
+View all
+
+Resume Templates
+
+Simple Resumes
+
+Simple Resumes
+
+Modern Resumes
+
+Modern Resumes
+
+Compact Resumes
+
+Compact Resumes
+
+Creative Resumes
+
+Creative Resumes
+View all
+View all
+
+AI Career Tools
+
+Cover Letter Writer
+
+Cover Letter Writer
+
+Interactive Interview Practice
+
+Interactive Interview Practice
+
+Resignation Letter Writer
+
+Resignation Letter Writer
+
+Job Search
+
+Job Search
+
+Employers
+
+Rezi Enterprise
+
+Rezi Enterprise
+
+Sourcing API
+
+Sourcing API
+
+Resources
+
+Cover Letter Examples
+
+Cover Letter Examples
+
+Resignation Letter Examples
+
+Resignation Letter Examples
+
+Rezi Mobile App
+
+Rezi Mobile App
+
+Chrome Extension
+
+Chrome Extension
+
+User Guides
+
+User Guides
+
+Career Blog
+
+Career Blog
+
+Company
+
+Pricing
+
+Pricing
+
+About Us
+
+About Us
+
+Editorial Process
+
+Editorial Process
+
+Our Authors
+
+Our Authors
+
+AI Information
+
+AI Information
+
+User Reviews
+
+User Reviews
+
+Creator Program
+
+NEW
+Creator Program
+
+Contact Support
+
+Contact Support
+
+Contact Sales
+
+Contact Sales
+
+Browse our products
+
+Resumatic
+
+Resumatic
+
+Resumai
+
+Resumai
+
+© 2026 Rezi
+
+All Systems Operational
+Terms & Privacy
+Product Changelog
