@@ -11,7 +11,7 @@ An article opens the way its row on the Research hub does: the reader's question
 
 1. **All research**: the back link
 2. **The question**: the H1, in the words people search. It comes from the hub (`ResearchHubData.ts`); the page doesn't set it.
-3. **The answer**: two or three plain sentences in Literata, in ink (Nov 6, 2026: the pen is the recruiter's words; an answer from a study is ours). A reader who stops here leaves with the truth. Its first sentence is the hub row's verdict.
+3. **The answer**: the hub row's verdict, verbatim, then at most two plain sentences, 35 words in all, in Literata, in ink (Nov 6, 2026: the pen is the recruiter's words; an answer from a study is ours). A reader who stops here leaves with the truth. `tests/search-foundation.test.ts` fails if the opening drifts from the row, and `tests/ui/research-surface.spec.ts` checks the rendered page. Where a study came from (who ran it, on what, how many) goes in the body or its evidence entry, not here.
 4. **The source line**: the study behind the answer, named, with how big it was, and a link to it
 5. **The pain line** (optional): one margin note beside the answer
 6. **Meta line**: pillar, "Updated Month Year", and a link to "How we write these"
@@ -33,7 +33,7 @@ An article opens the way its row on the Research hub does: the reader's question
 - **No FAQ block.** A follow-up question that repeats the body is cut; one that adds something becomes body content. Questions a reader asks next go in `nextQuestions`, as hub ids.
 - Every article is listed in `web/lib/seo/public-pages.ts` with its published and updated dates. Bump `updated` when the content changes (a corrected claim, a new section), never for styling.
 - The search description says what the article found and its limit, from the article's own text, in 70 to 160 characters.
-- Say a limit once: in the source line, the evidence, or Limitations, not in every figure and caption.
+- Say a limit once: in the source line, the evidence, or Limitations, not in every figure and caption. Describe a study once below the opening: where an article has an `EvidenceList`, its entries are the one place for what a study found, how it was done and what it can't tell you, and no body paragraph restates one. The Sources list stays (its anchors serve the citations and the JSON-LD).
 - Figures carry the number and source in the caption only. Draw published numbers; never invent defaults or example rates. When the finding is about the resume, draw the resume (`SectionFindingsFigure`).
 - Label anything that is ours: "Our advice", "Our take".
 - Uppercase labels are reserved for Verdict and Critical Miss (`.riyp-verdict-label`).

@@ -20,7 +20,7 @@ export default function ResumeLengthPage() {
             answer={
                 <>
                     No. In one national study, recruiters at major accounting firms ranked two-page versions of strong entry-level resumes above one-page versions.
-                    It&rsquo;s one narrow, dated test, so the useful rule is simpler: use a second page when it adds experience that matters for the role.
+                    Use a second page when it adds experience that matters for the role.
                 </>
             }
             answerSource={{
@@ -34,7 +34,7 @@ export default function ResumeLengthPage() {
                 <>
                     <h2 className="research-h2">When to use a second page</h2>
                     <p className="research-body mb-6">
-                        Put your most relevant experience on page one. Consider a second page when it adds useful work, projects, or qualifications that would otherwise be cut. This is editing advice, not a finding tested across every role.
+                        The study ranked finished resumes. Where to put things is our editing advice, not a finding it tested.
                     </p>
                     <PageTwoGateDiagram />
                 </>
@@ -55,7 +55,7 @@ export default function ResumeLengthPage() {
                 <Citation id="source-1">1</Citation>
             </p>
             <p className="research-body mb-6">
-                The two-page versions ranked more favorably. That is useful because it contradicts the claim that a second page is automatically harmful. It does not establish that two pages are better in every market.
+                The two-page versions ranked more favorably. That contradicts the claim that a second page is automatically harmful. It does not establish that two pages are better in every market, so use it to reject a rigid one-page rule, not to replace it with a rigid two-page one.
                 <Citation id="source-1">1</Citation>
             </p>
 
@@ -64,6 +64,7 @@ export default function ResumeLengthPage() {
                 <li>The study covered entry-level accounting candidates, not every role or career stage.</li>
                 <li>Recruiters ranked supplied resumes. The study did not measure real callbacks, interviews, or hires.</li>
                 <li>The study was published in 2001, 25 years ago, when the firms were still the &ldquo;Big Six&rdquo; and before today&apos;s digital application workflow.</li>
+                <li>Packets went to 570 recruiters. We could read only the abstract, which doesn&apos;t say how many replied; the full paper is paywalled.</li>
             </ul>
 
             <h2 className="research-h2">A better editing rule</h2>
@@ -82,13 +83,6 @@ export default function ResumeLengthPage() {
             <ArticleBridge question="Which lines are earning their space?">
                 Your report reads for relevance, scope, ownership, and results. Page count isn&apos;t a shortcut in your score. It reads your text, not your PDF&apos;s layout, so open the final file at 100% and check the density yourself.
             </ArticleBridge>
-
-            <h2 className="research-h2">Limitations</h2>
-            <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
-                <li>This is a peer-reviewed study, but its setting is narrow and dated.</li>
-                <li>Packets went to 570 recruiters. We could read only the abstract, which doesn&apos;t say how many replied; the full paper is paywalled.</li>
-                <li>Use the finding to reject a rigid one-page rule, not to replace it with a rigid two-page rule.</li>
-            </ul>
         </AnswerArticle>
     );
 }

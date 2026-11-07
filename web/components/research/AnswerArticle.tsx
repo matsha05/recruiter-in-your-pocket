@@ -28,7 +28,7 @@ export interface ResearchSource {
 interface AnswerArticleProps {
     /** The article's path. Its question comes from the hub and its dates from PUBLIC_PAGES. */
     path: string;
-    /** Two or three plain sentences that answer the question. */
+    /** The hub row's verdict, verbatim, then at most two plain sentences: 35 words in all (tests/search-foundation.test.ts). */
     answer: ReactNode;
     /** The study behind the answer, named, with how big it was. */
     answerSource: { text: ReactNode; href?: string; linkLabel?: string };
@@ -75,7 +75,7 @@ export function AnswerArticle({ path, answer, answerSource, painNote, visualizat
                         <h1 className={styles.question}>{entry.question}</h1>
                         <div className={styles.answerGrid}>
                             <div>
-                                <p className={styles.answer}>{answer}</p>
+                                <p className={styles.answer} data-testid="article-answer">{answer}</p>
                                 <p className={styles.answerSource}>
                                     {answerSource.text}
                                     {answerSource.href ? (

@@ -20,7 +20,7 @@ export default function StarMethodPage() {
             answer={
                 <>
                     For the story behind a line, yes. Just don&rsquo;t force every bullet into the formula.
-                    Structured interviews ask every candidate job-related questions and rate the answers against standards set in advance, and across many studies they&rsquo;ve proved more reliable and more predictive of job performance than unstructured ones.
+                    Structured interviews ask everyone the same questions and have proved more predictive of job performance than unstructured ones.
                 </>
             }
             answerSource={{
@@ -117,7 +117,7 @@ export default function StarMethodPage() {
 
             <h2 className="research-h2">Limitations</h2>
             <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
-                <li>The research is about how employers run interviews. It doesn&apos;t test the STAR acronym itself.</li>
+                <li>The research is about how employers run interviews, not about resumes.</li>
                 <li>No study cited here tests whether STAR-shaped resume lines get more interviews.</li>
             </ul>
         </AnswerArticle>

@@ -1,5 +1,5 @@
 import { pageMetadata } from "@/lib/seo/metadata";
-import { ArticleInsight, Citation } from "@/components/research/ResearchArticle";
+import { Citation } from "@/components/research/ResearchArticle";
 import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
 import { ResearchLink } from "@/components/research/ResearchLink";
 import { ErrorImpactDiagram } from "@/components/research/diagrams/ErrorImpactDiagram";
@@ -20,8 +20,8 @@ export default function SpellingErrorsPage() {
             path={PATH}
             answer={
                 <>
-                    Don&rsquo;t panic over one. In a 2020 experiment in Belgium, graduate resumes with five spelling errors were rated 1.85 points lower on a 0&ndash;10 interview scale than error-free ones.
-                    A single typo wasn&rsquo;t tested, and these were hypothetical judgments, not observed callbacks.
+                    Don&rsquo;t panic over one. Five spelling errors cost 1.85 points on a 0&ndash;10 interview rating in one experiment.
+                    A single typo wasn&rsquo;t tested.
                 </>
             }
             answerSource={{
@@ -33,7 +33,7 @@ export default function SpellingErrorsPage() {
                 <>
                     <h2 className="research-h2">What the experiment actually tested</h2>
                     <p className="research-body mb-6">
-                        In April 2020, 445 recruiters in Flanders, Belgium, rated Dutch-language resumes from recent graduates with zero, two, or five spelling errors, across eight occupations. Both error conditions lowered ratings, with a larger penalty at five errors. A single typo was not tested.
+                        In April 2020, 445 recruiters in Flanders, Belgium, rated Dutch-language resumes from recent graduates with zero, two, or five spelling errors, across eight occupations. Both error conditions lowered the hypothetical interview rating, with a larger penalty at five errors.
                         <Citation id="source-1">1</Citation>
                     </p>
                     <ErrorImpactDiagram figureNumber={1} />
@@ -51,25 +51,13 @@ export default function SpellingErrorsPage() {
         >
             <h2 className="research-h2">The penalty grows when errors become a pattern</h2>
             <p className="research-body mb-6">
-                In the study, recruiters evaluated fictitious resumes with a randomized number of spelling errors. They assigned the five-error version a lower hypothetical interview rating than the error-free version.
-                <Citation id="source-1">1</Citation>
-            </p>
-            <p className="research-body mb-6">
                 The two-error penalty was about the same across applicants, jobs, and recruiters. The five-error penalty varied: it was larger among recruiters who care more about language, and smaller for jobs that require more education and for applicants who listed volunteer work. A larger penalty for jobs with heavy writing demands was borderline.
                 <Citation id="source-1">1</Citation>
             </p>
-
-            <div className="not-prose my-8">
-                <ArticleInsight
-                    title="What recruiters inferred"
-                    desc={
-                        <>
-                            Recruiters rated applicants with repeated errors lower on interpersonal skills, conscientiousness, and mental ability. Those are impressions, not proof about the applicant.
-                            <Citation id="source-1">1</Citation>
-                        </>
-                    }
-                />
-            </div>
+            <p className="research-body mb-6">
+                Recruiters also rated applicants with repeated errors lower on interpersonal skills, conscientiousness, and mental ability.
+                <Citation id="source-1">1</Citation>
+            </p>
 
             <div className="not-prose my-10">
                 <InferenceLadderDiagram figureNumber={2} />

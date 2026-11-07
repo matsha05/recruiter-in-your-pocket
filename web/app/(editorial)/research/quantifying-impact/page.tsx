@@ -20,8 +20,8 @@ export default function QuantifyingImpactPage() {
             path={PATH}
             answer={
                 <>
-                    Say what changed, how you measured it, and what you did to get there. That&rsquo;s practitioner guidance, not a tested rule: no study we know of pits a quantified bullet against a duty-style one.
-                    What research does show is that recruiters infer what you can do from what you did.
+                    Say what changed. Then how you measured it, and what you did to get there.
+                    That&rsquo;s practitioner advice, not a tested rule, though research shows recruiters infer what you can do from what you did.
                 </>
             }
             answerSource={{
@@ -164,8 +164,7 @@ export default function QuantifyingImpactPage() {
 
             <h2 className="research-h2">What the evidence does not prove</h2>
             <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
-                <li>Bock&apos;s X–Y–Z formula is experienced practitioner guidance, not a controlled trial.</li>
-                <li>No study cited here tests quantified bullets directly. The audit study varied overall resume strength, and the writing experiment varied clarity.</li>
+                <li>No study cited here tests quantified bullets directly.</li>
                 <li>The recruiter studies are correlational, and the writing experiment ran on an online work platform.</li>
                 <li>Neither source justifies inventing a metric or forcing a number into every bullet.</li>
             </ul>

@@ -19,8 +19,8 @@ export default function SalaryHistoryPage() {
             path={PATH}
             answer={
                 <>
-                    There&rsquo;s no one right answer. In a field experiment, employers made negative inferences about candidates who didn&rsquo;t disclose, but for higher-paid candidates, disclosing brought higher salary offers and fewer callbacks.
-                    Know the local rule, ask for the employer&rsquo;s range, and prepare your own number.
+                    There&rsquo;s no one right answer. For higher-paid candidates, disclosing brought higher offers and fewer callbacks, and not disclosing drew negative inferences.
+                    Know the local rule, ask for the range, and prepare your own number.
                 </>
             }
             answerSource={{
@@ -33,7 +33,7 @@ export default function SalaryHistoryPage() {
                 <>
                     <h2 className="research-h2">Choose the reference point you can defend</h2>
                     <p className="research-body mb-6">
-                        General negotiation experiments show that first offers can pull final settlements toward the opening number. That supports preparing a role-based range, but it does not prove that withholding salary history always improves an individual outcome.
+                        Across three general negotiation experiments, the party making the first offer did better, and first offers strongly predicted final settlements. That supports preparing a role-based range. It does not prove that withholding salary history improves an individual outcome.
                         <Citation id="source-3">3</Citation>
                     </p>
                     <SalaryLeverage />
@@ -99,17 +99,10 @@ export default function SalaryHistoryPage() {
                 Your report won&apos;t tell you what to ask for. It reads your resume: the write-up says what it says first, and each line a recruiter trips on gets a card that asks for what&apos;s missing instead of inventing it.
             </ArticleBridge>
 
-            <h2 className="research-h2">Why the first number matters</h2>
-            <p className="research-body mb-6">
-                Across three general negotiation experiments, the party making the first offer obtained a better outcome, and first offers strongly predicted final settlements. Those experiments were not salary-history-ban studies, so use them for the narrower lesson: prepare the reference point you want to discuss and the evidence behind it.
-                <Citation id="source-3">3</Citation>
-            </p>
-
             <h2 className="research-h2">Limitations</h2>
             <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
                 <li>Legal requirements vary by jurisdiction. This is not legal advice.</li>
-                <li>The ban study is an NBER working paper, and we describe the audit study from its 2023 working-paper version. Neither is a guarantee about an individual negotiation.</li>
-                <li>The negotiation experiments tested first offers generally, not salary-history disclosure specifically.</li>
+                <li>Neither study says what will happen in an individual negotiation.</li>
             </ul>
         </AnswerArticle>
     );

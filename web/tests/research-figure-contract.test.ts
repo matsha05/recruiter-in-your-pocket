@@ -45,7 +45,7 @@ try {
 
   const article = readFileSync(path.join(process.cwd(), "app/(editorial)/research/spelling-errors-impact/page.tsx"), "utf8");
   assert.match(article, /Five errors: −1\.85 on a 0–10 interview rating/);
-  assert.match(article, /hypothetical judgments, not observed callbacks/);
+  assert.match(article, /hypothetical interview rating/);
   assert.doesNotMatch(article, /18\.5|81\.5|percentage-point/,
     "article and figure must use the same original rating units");
   assert.match(article, /https:\/\/journals\.plos\.org\/plosone\/article\?id=10\.1371\/journal\.pone\.0283280/);
