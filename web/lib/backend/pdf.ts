@@ -52,7 +52,7 @@ function exampleHtml(card: WorklistForPdf["cards"][number]) {
 }
 
 function renderWorklistHtml(report: ReportForPdf, worklist: WorklistForPdf) {
-  const generatedOn = new Date().toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
+  const generatedOn = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
   const bandIndex = Math.max(0, worklistBandIndex(report.score));
   const band = WORKLIST_BANDS[bandIndex];
   const work = worklist.cards.filter((card) => card.kind !== "keep");
@@ -124,7 +124,7 @@ function renderWorklistHtml(report: ReportForPdf, worklist: WorklistForPdf) {
 
   <footer>
     <div>A recruiter&rsquo;s review criteria, applied by AI. Every fact in an example is your resume&rsquo;s or yours; the blanks are yours to fill.</div>
-    <div>recruiterinyourpocket.com</div>
+    <div style="white-space: nowrap">recruiterinyourpocket.com</div>
   </footer>
 </body>
 </html>`;
@@ -132,7 +132,7 @@ function renderWorklistHtml(report: ReportForPdf, worklist: WorklistForPdf) {
 
 export function renderReportHtml(report: ReportForPdf) {
   if (report.worklist) return renderWorklistHtml(report, report.worklist);
-  const generatedOn = new Date().toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
+  const generatedOn = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
   // Same order as the web report: the Verdict and score band, then the marked lines, Critical Miss first.
   const verdict = report.first_impression || report.score_comment_short || firstSentence(report.summary);
   const verdictReason = report.score_comment_short && report.score_comment_short !== verdict ? report.score_comment_short : "";
@@ -239,9 +239,6 @@ export function renderReportHtml(report: ReportForPdf) {
         ${report.job_alignment.role_fit?.seniority_read ? `
           <span class="meta-item"><strong>Seniority</strong> ${escapeHtml(report.job_alignment.role_fit.seniority_read)}</span>
         ` : ""}
-        ${report.job_alignment.role_fit?.company_stage_fit ? `
-          <span class="meta-item"><strong>Company stage</strong> ${escapeHtml(report.job_alignment.role_fit.company_stage_fit)}</span>
-        ` : ""}
         ${report.job_alignment.role_fit?.industry_signals?.length ? `
           <span class="meta-item"><strong>Industries</strong> ${report.job_alignment.role_fit.industry_signals.map(s => escapeHtml(s)).join(", ")}</span>
         ` : ""}
@@ -321,7 +318,7 @@ export function renderReportHtml(report: ReportForPdf) {
 
   <footer>
     <div>A recruiter&rsquo;s review criteria, applied by AI. Check every suggested detail against what you actually did.</div>
-    <div>recruiterinyourpocket.com</div>
+    <div style="white-space: nowrap">recruiterinyourpocket.com</div>
   </footer>
   </div>
 </body>

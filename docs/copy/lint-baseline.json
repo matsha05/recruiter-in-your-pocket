@@ -196,20 +196,12 @@
       "where": "web/app/(editorial)/research/page.tsx:12"
     },
     {
-      "text": "It tested help with wording on short profiles, not adding results, but it shows that how clearly a profile reads can change outcomes.",
-      "moment": "research",
-      "tics": [
-        "not_x_but_y"
-      ],
-      "where": "web/app/(editorial)/research/quantifying-impact/page.tsx:103"
-    },
-    {
       "text": "When a line says what you did but not what changed, it gets a card. We&apos;ll ask for the result or the scale. We won&apos;t invent one for you.",
       "moment": "research",
       "tics": [
         "coined_word"
       ],
-      "where": "web/app/(editorial)/research/quantifying-impact/page.tsx:162"
+      "where": "web/app/(editorial)/research/quantifying-impact/page.tsx:149"
     },
     {
       "text": "No study we know of isolates a quantified bullet against a duty-style one. What the research does show is how recruiters use what&apos;s on the page.",
@@ -217,7 +209,15 @@
       "tics": [
         "coined_word"
       ],
-      "where": "web/app/(editorial)/research/quantifying-impact/page.tsx:84"
+      "where": "web/app/(editorial)/research/quantifying-impact/page.tsx:76"
+    },
+    {
+      "text": "It tested help with wording on short profiles, not adding results, but it shows that how clearly a profile reads can change outcomes.",
+      "moment": "research",
+      "tics": [
+        "not_x_but_y"
+      ],
+      "where": "web/app/(editorial)/research/quantifying-impact/page.tsx:90"
     },
     {
       "text": ". A referral gets you a hearing. It doesn’t pass the read for you.",
@@ -845,7 +845,7 @@
       "where": "web/lib/billing/pricing.ts:54"
     },
     {
-      "text": "OpenAI generates reports and smooths the revised lines you build from your answers, Supabase handles auth and database storage, Stripe handles billing, Vercel provides hosting and basic page statistics, Sentry handles error and performance monitoring, and Mixpanel handles optional product analytics after you allow it. Vercel's page statistics use no cookies: they record the page, the referring site, approximate location, and device and browser type, identify a visit only by a hash that is discarded after 24 hours, and never include report ids or other private parts of a page address. Upstash provides shared rate limiting and short-lived idempotency storage. Inngest coordinates background account-export jobs and PDF generation when those features are used. Resend delivers authentication email and receives public support mail; support messages and attachments are forwarded to and handled in Google (Gmail). Stripe manages card data on its systems. We never have access to it.",
+      "text": "OpenAI generates reports and smooths the revised lines you build from your answers, Supabase handles auth and database storage, Stripe handles billing, Vercel provides hosting and basic page statistics, Sentry handles error and performance monitoring, and Mixpanel handles optional product analytics after you allow it. Vercel's page statistics use no cookies: they record the page, the referring site, approximate location, and device and browser type, identify a visit only by a hash that is discarded after 24 hours, and never include report ids or other private parts of a page address. Upstash provides shared rate limiting and short-lived idempotency storage. Inngest coordinates background account-export jobs when you request one. Resend delivers authentication email and receives public support mail; support messages and attachments are forwarded to and handled in Google (Gmail). Stripe manages card data on its systems. We never have access to it.",
       "moment": "legal",
       "tics": [
         "coined_word"

@@ -30,7 +30,7 @@ export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
   {
     dataType: "Answers you add to a card",
     purpose: "Build a revised line from your own answers, so you can copy it into your resume.",
-    retention: "Sent to OpenAI with the resume line you're improving, to smooth the wording. RIYP does not store your answers. OpenAI may retain API abuse-monitoring logs containing customer content for up to 30 days by default.",
+    retention: "Sent to OpenAI with the resume line you're improving, to smooth the wording. Signed out, RIYP doesn't keep them; signed in, they're saved with the report until you delete it or your account. OpenAI may retain API abuse-monitoring logs containing customer content for up to 30 days by default.",
     userControl: "Every question is optional. Only answers you type are sent.",
     processor: "OpenAI"
   },

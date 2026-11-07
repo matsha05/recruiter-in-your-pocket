@@ -584,7 +584,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
                                 </div>
                                 <div className={settings.row}>
                                     <h2 className={settings.rowHead}>Your data</h2>
-                                    <div className={settings.rowBody}><p>Everything we hold about you, as a file.</p></div>
+                                    <div className={settings.rowBody}><p>Your reports, passes, receipts and profile, as a file.</p></div>
                                     <div className={settings.rowAction}>
                                         <Button type="button"
                                             onClick={handleExportData}

@@ -27,6 +27,8 @@ interface InputPanelProps {
     onRun: () => void;
     isLoading: boolean;
     freeUsesRemaining: number;
+    /** The server has answered what's left. Signed in and unknown: no free-report promise, no hint. */
+    freeStatusKnown?: boolean;
     user?: any | null;
     onSampleReport?: () => void;
     onOpenLastReport?: () => void;
@@ -49,6 +51,7 @@ export default function InputPanel({
     onRun,
     isLoading,
     freeUsesRemaining,
+    freeStatusKnown = true,
     user,
     onOpenLastReport,
     loadedJobContext,
@@ -114,14 +117,22 @@ export default function InputPanel({
     // The line under the button says what the next report costs, only when the button can't.
     const getRunHint = () => {
         const membership = user?.membership;
-        if (membership === "monthly" || membership === "lifetime" || freeUsesRemaining > 0) return null;
+        if (membership === "monthly" || membership === "lifetime") return null;
         if (membership === "credit") {
             const paid = Number(user?.paidUsesLeft || 0);
             return `${paid} ${paid === 1 ? "report" : "reports"} left on your pass`;
         }
+        if (user && !freeStatusKnown) return null;
+        if (freeUsesRemaining > 0) return null;
         if (!user) return "Sign in for your free report, or get a Job Search Pass";
         return "Another report needs a Job Search Pass";
     };
+
+    // A pass holder or a signed-in person whose status hasn't loaded yet is never promised a free report.
+    const hasPass = Boolean(user?.membership && user.membership !== "free");
+    const runLabel = isRevision
+        ? "Compare my revision"
+        : hasPass || (user && !freeStatusKnown) || freeUsesRemaining <= 0 ? "Get my report" : "Get your free report";
 
     const charCount = resumeText.trim().length;
     const isTooShort = charCount > 0 && charCount < MIN_RESUME_CHARS;
@@ -310,7 +321,7 @@ export default function InputPanel({
                         >
                             {generationPaused ? "Reports are paused" : isTooShort ? "Add more of your resume to begin" : hasContent ? (
                                 <span className="flex items-center gap-2">
-                                    {isRevision ? "Compare my revision" : freeUsesRemaining > 0 ? "Get your free report" : "Get my report"} <ArrowRight className="size-5" weight="bold" />
+                                    {runLabel} <ArrowRight className="size-5" weight="bold" />
                                 </span>
                             ) : showPaste ? "Paste your resume to begin" : hasRejectedResume ? "Choose a valid resume to begin" : "Choose a resume to begin"}
                         </Button>

@@ -248,7 +248,8 @@ export function AuthFlow({
   // Only the code step needs a line under the title: which inbox to check.
   const stepSubtitle = step === "code" ? (
     <p className="text-base text-muted-foreground">
-      We sent an 8-digit code to <span className="font-medium text-foreground">{email || "your email"}</span>
+      We sent an 8-digit code to <span className="font-medium text-foreground">{email || "your email"}</span>.
+      {" "}Not there? Check spam and Promotions.
     </p>
   ) : null;
   // The page variant sits bare on the ground (Nov 4, 2026): no card, no padding of its own; app/auth lays it out.

@@ -9,7 +9,6 @@ import { ArrowRight, PencilSimple, Trash, X } from "@phosphor-icons/react";
 import { toast } from "sonner";
 import ConfirmModal from "@/components/shared/ConfirmModal";
 import { EmptyReportIcon } from "@/components/icons";
-import { ScoreBadge } from "@/components/shared/ScoreBadge";
 import { scoreBandFor } from "@/lib/reports/score-band";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -127,7 +126,7 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
           <Link
             href="/workspace"
           >
-            Get your free report
+            Get my report
             <ArrowRight className="size-4" weight="bold" aria-hidden="true" />
           </Link>
         </Button>
@@ -141,14 +140,11 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
         {reports.map((report) => {
           const title = reportTitle(report);
           const isRenaming = renamingId === report.id;
-          // The number appears only when there is a second read to compare it with (design-system §8b).
-          const comparable = reports.length >= 2;
 
           return (
-            <article key={report.id} className="riyp-surface-link grid grid-cols-[3.75rem_minmax(0,1fr)] gap-x-4 gap-y-3 p-5 sm:grid-cols-[4.5rem_minmax(0,1fr)_auto] sm:gap-x-6 sm:p-6">
-              {comparable
-                ? <ScoreBadge score={report.score ?? 0} className="pt-0.5" />
-                : <p className="pt-1 text-label text-foreground" data-testid="report-band">{scoreBandFor(report.score ?? 0).name}</p>}
+            <article key={report.id} className="riyp-surface-link grid grid-cols-[6.5rem_minmax(0,1fr)] gap-x-4 gap-y-3 p-5 sm:grid-cols-[8rem_minmax(0,1fr)_auto] sm:gap-x-6 sm:p-6">
+              {/* The band, as the report shows it; the score shows only as a change, on a re-check (Nov 6, 2026). */}
+              <p className="pt-1 text-label text-foreground" data-testid="report-band">{scoreBandFor(report.score ?? 0).name}</p>
               <div className="min-w-0">
                 <p className="text-xs text-muted-foreground [overflow-wrap:anywhere]">
                   {formatReportDate(report.createdAt)}

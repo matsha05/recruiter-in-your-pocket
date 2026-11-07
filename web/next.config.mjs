@@ -84,6 +84,8 @@ const nextConfig = {
     return [
       // The methodology article and page were merged into one "How the report works" page.
       { source: "/research/how-we-score", destination: "/methodology", permanent: true },
+      // Progress isn't a surface we show a customer yet (audit, Nov 5, 2026): signed in or not, it lands on My reports.
+      { source: "/dashboard", destination: "/reports", permanent: false },
       ...activeRetiredRedirects,
       ...(!extensionSyncEnabled ? [{
         source: "/extension",
