@@ -1,5 +1,5 @@
 /* Three moves, each with its note in the opening's margin column (40rem + 17rem, 4rem apart).
-   Move titles are the body's h2 role, so the page has one heading size. */
+   Move titles share the body's h2 role (`.research-h2`, the title role since Nov 6), so the page has one heading size. */
 
 .moves {
     margin: 0;
@@ -25,8 +25,8 @@
     align-items: baseline;
     gap: 0.75rem;
     margin: 0;
-    font: var(--type-heading);
-    letter-spacing: var(--tracking-heading);
+    font: var(--type-title);
+    letter-spacing: var(--tracking-title);
     text-wrap: balance;
 }
 
