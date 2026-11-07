@@ -135,6 +135,15 @@ export const categories: ResearchCategory[] = [
                 evidence: { kind: "Preregistered experiment", cite: "Kristal et al., 2023 · 9,022 UK employers" },
             }),
             study({
+                id: "career-breaks",
+                keywords: ["sabbatical", "time off", "caregiving", "returning to work", "interview", "gap", "layoff", "referral"],
+                href: "/research/career-breaks",
+                question: "How do I explain a career break?",
+                verdict: "Briefly, and only with what’s true.",
+                finding: "Naming caregiving did no better than silence in a UK test, and worse than a layoff in a US one.",
+                evidence: { kind: "Field experiments", cite: "Kristal et al., 2023 · 9,022 UK employers; Weisshaar, 2018 · 3,407 US applications" },
+            }),
+            study({
                 id: "writing-quality-hire-probability",
                 keywords: ["writing", "grammar", "wording", "clear"],
                 href: "/research/writing-quality-hire-probability",

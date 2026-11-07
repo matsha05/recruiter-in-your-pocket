@@ -36,13 +36,15 @@ interface AnswerArticleProps {
     painNote?: string;
     /** The lead figure, full width under the opening. */
     visualization?: ReactNode;
+    /** What the lead section is, for screen readers, when it isn't a figure. */
+    visualizationLabel?: string;
     children: ReactNode;
     sources: ResearchSource[];
     /** Hub ids, in the order a reader would ask them next. */
     nextQuestions: string[];
 }
 
-export function AnswerArticle({ path, answer, answerSource, painNote, visualization, children, sources, nextQuestions }: AnswerArticleProps) {
+export function AnswerArticle({ path, answer, answerSource, painNote, visualization, visualizationLabel = "Research visualization", children, sources, nextQuestions }: AnswerArticleProps) {
     const entry = hubEntryForHref(path);
     if (!entry) throw new Error(`${path} has no question on the Research hub (ResearchHubData.ts).`);
     const { updated } = publicPage(path);
@@ -98,7 +100,7 @@ export function AnswerArticle({ path, answer, answerSource, painNote, visualizat
                     </header>
 
                     {visualization ? (
-                        <section aria-label="Research visualization" className={styles.lead}>
+                        <section aria-label={visualizationLabel} className={styles.lead}>
                             {visualization}
                         </section>
                     ) : null}
