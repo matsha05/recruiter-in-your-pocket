@@ -3,7 +3,6 @@ import { ArticleInsight, Citation } from "@/components/research/ResearchArticle"
 import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
 import { ResearchLink } from "@/components/research/ResearchLink";
 import { ImpactFormulaDiagram } from "@/components/research/diagrams/ImpactFormulaDiagram";
-import { ResumeQualityDiagram } from "@/components/research/diagrams/ResumeQualityDiagram";
 
 const PATH = "/research/quantifying-impact";
 
@@ -20,8 +19,8 @@ export default function QuantifyingImpactPage() {
             path={PATH}
             answer={
                 <>
-                    Say what changed, how you measured it, and what you did to get there. That&rsquo;s practitioner guidance, not a tested rule: no study we know of pits a quantified bullet against a duty-style one.
-                    What research does show is that recruiters infer what you can do from what you did.
+                    Say what changed. Then how you measured it, and what you did to get there.
+                    That&rsquo;s practitioner advice, not a tested rule, though research shows recruiters infer what you can do from what you did.
                 </>
             }
             answerSource={{
@@ -69,13 +68,6 @@ export default function QuantifyingImpactPage() {
                     publisher: "Cole, Feild, Giles & Harris. Journal of Business and Psychology 24",
                     year: "2009",
                     href: "https://doi.org/10.1007/s10869-008-9086-9"
-                },
-                {
-                    id: "source-5",
-                    title: "Are Emily and Greg More Employable than Lakisha and Jamal?",
-                    publisher: "Bertrand & Mullainathan. American Economic Review 94(4); fieldwork 2001–02",
-                    year: "2004",
-                    href: "https://doi.org/10.1257/0002828042002561"
                 }
             ]}
         >
@@ -92,11 +84,6 @@ export default function QuantifyingImpactPage() {
                 <Citation id="source-4">4</Citation>
                 {" "}<strong>Our take:</strong> concrete evidence of finished work gives that guess something real to go on.
             </p>
-            <p className="research-body mb-6">
-                <strong>Substance moved callbacks in the field.</strong> In a classic audit study, resumes with more experience, skills, and honors got more callbacks than weaker ones when the name sounded white: 10.8% against 8.5%. For Black-sounding names the gain was small and not statistically significant: 6.7% against 6.2%.
-                <Citation id="source-5">5</Citation>
-            </p>
-            <ResumeQualityDiagram figureNumber={2} />
             <p className="research-body mb-6">
                 <strong>Clearer writing led to more hires.</strong> In a randomized experiment on a freelance platform, <ResearchLink to="writing-quality-hire-probability">spelling and grammar suggestions on new jobseekers&rsquo; profiles raised the hire rate from about 3.1% to 3.3%</ResearchLink>, roughly 8% more hires. Of the 480,948 people randomized, the analysis covers the 194,700 whose profiles were approved and not empty.
                 <Citation id="source-2">2</Citation>
@@ -164,8 +151,7 @@ export default function QuantifyingImpactPage() {
 
             <h2 className="research-h2">What the evidence does not prove</h2>
             <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
-                <li>Bock&apos;s X–Y–Z formula is experienced practitioner guidance, not a controlled trial.</li>
-                <li>No study cited here tests quantified bullets directly. The audit study varied overall resume strength, and the writing experiment varied clarity.</li>
+                <li>No study cited here tests quantified bullets directly.</li>
                 <li>The recruiter studies are correlational, and the writing experiment ran on an online work platform.</li>
                 <li>Neither source justifies inventing a metric or forcing a number into every bullet.</li>
             </ul>

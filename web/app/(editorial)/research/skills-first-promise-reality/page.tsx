@@ -19,7 +19,7 @@ export default function SkillsFirstPromiseRealityPage() {
             path={PATH}
             answer={
                 <>
-                    Often not in practice. One analysis estimated that, in 2023, removing degree requirements opened up new opportunity in fewer than one in 700 hires.
+                    Often not in practice. One analysis estimated that, in 2023, dropping the requirement opened up new opportunity in fewer than one in 700 hires.
                     Many employers changed the job ad and little else.
                 </>
             }
@@ -34,7 +34,7 @@ export default function SkillsFirstPromiseRealityPage() {
                 <>
                     <h2 className="research-h2">Many employers that dropped the degree didn&apos;t change who they hired</h2>
                     <p className="research-body mb-6">
-                        The report compared changes in job requirements with changes in hiring. A minority of employers hired meaningfully more workers without degrees. Many changed the job ad and little else, and some gains faded.
+                        The report compared changes in job requirements with changes in hiring. Nearly all the measured change came from 37% of the firms that dropped degree requirements. About 45% showed no meaningful hiring change, and roughly one-fifth made short-term gains that later reversed.
                         <Citation id="source-1">1</Citation>
                     </p>
                     <SkillsPromiseRealityDiagram />
@@ -59,7 +59,7 @@ export default function SkillsFirstPromiseRealityPage() {
         >
             <h2 className="research-h2">What this means for candidates</h2>
             <p className="research-body mb-6">
-                Skills-first does not remove competition or old filters. A 2025 LinkedIn report modeled how much bigger talent pools would be if employers hired on skills instead of past job titles, a median of 6.1 times bigger. That&apos;s a simulation of who could qualify, not a count of who was hired. The HBS analysis looked at actual hiring and found that changed postings have not consistently translated into changed hires.
+                Skills-first does not remove competition or old filters. A 2025 LinkedIn report modeled how much bigger talent pools would be if employers hired on skills instead of past job titles, a median of 6.1 times bigger. That&apos;s a simulation of who could qualify, not a count of who was hired. The HBS analysis counted who was actually hired.
                 <Citation id="source-2">2</Citation>
                 <Citation id="source-1">1</Citation>
             </p>
@@ -74,12 +74,6 @@ export default function SkillsFirstPromiseRealityPage() {
                     desc={<>Connect the skill to a real project, decision, result, or useful measure of scope: <ResearchLink to="quantifying-impact">what changed, how you measured it, and what you did to get there</ResearchLink>.</>}
                 />
             </div>
-
-            <h2 className="research-h2">Where skills-first is strongest</h2>
-            <p className="research-body mb-6">
-                The HBS report found that nearly all measured hiring change came from 37% of the firms that removed degree requirements. About 45% showed no meaningful hiring change, and roughly one-fifth made short-term gains that later reversed.
-                <Citation id="source-1">1</Citation>
-            </p>
 
             <h2 className="research-h2">Show where you used the skill</h2>
             <p className="research-body mb-6">

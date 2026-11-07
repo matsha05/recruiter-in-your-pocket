@@ -22,6 +22,10 @@ Matt asked for the signed-in pass he had deferred on November 5. The map is [the
 | Sign-in, code step | No line for a code that hasn't arrived | "Not there? Check spam and Promotions." (the voice guide's line) |
 | PDF | Date in the server's locale; the footer URL could wrap mid-word; the older report printed "Company stage: Not clear from the resume alone" | US English date in UTC; the URL never wraps; the filler line is gone |
 
+## Also in this change
+
+The article-openings pass (PR 92) found one more race-split figure on the site: quantifying-impact's paragraph and Figure 2 on the 2004 name-swap audit study (callbacks by white- and Black-sounding names). Matt ruled race and discrimination research off the site on November 6, so the paragraph, the figure (`ResumeQualityDiagram`) and its source are gone; the study was cited nowhere else. The ats-myths article keeps one sentence quoting EEOC guidance that a screen can't disproportionately exclude people "by race, sex, or another protected trait": a legal rule, not a finding about race, left for Matt to rule on.
+
 ## Verified
 
 Local production build of this branch, served on its own port with the Playwright config's hermetic settings: `tsc`, `lint`, `copy:check`, `test:pdf-export`, and the signed-in and workspace specs (the new `signed-in-returning.spec.ts` plus `worklist-report`, `report-answers`, `workspace-handoffs`, `first-report-wait`, `paid-decision`). Captures of the returning workspace, the report's ending and the saved report at 390 and 1440 are in the PR.

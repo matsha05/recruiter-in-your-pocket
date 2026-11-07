@@ -19,8 +19,8 @@ export default function HowRecruitersReadPage() {
             path={PATH}
             answer={
                 <>
-                    No study shows a fixed timer. The six-second figure comes from a job site&rsquo;s 2012 report on its own product, which watched 30 recruiters.
-                    In the strongest eye-tracking study since, recruiters who spent longer on a resume&rsquo;s Experience section were more likely to move it forward.
+                    No. No study shows a fixed timer.
+                    In the strongest eye-tracking study, recruiters who spent longer on a resume&rsquo;s Experience section were more likely to move it forward.
                 </>
             }
             answerSource={{

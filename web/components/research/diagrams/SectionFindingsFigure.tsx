@@ -14,6 +14,12 @@ export const SECTION_FINDINGS = [
     { name: "Skills", lines: [76, 48], result: "No comparable result", tone: "none" },
 ] as const;
 
+// The article's figure draws only the sections with a result (Nov 6, 2026): the four "No comparable result"
+// rows became one muted line under the sheet. The hub's figure still lists all six.
+const DRAWN = SECTION_FINDINGS.filter((section) => section.tone !== "none");
+const NO_RESULT = SECTION_FINDINGS.filter((section) => section.tone === "none").map((section) => section.name);
+const noResultLine = `No comparable result for ${NO_RESULT.slice(0, -1).join(", ")} or ${NO_RESULT.at(-1)}.`;
+
 export function SectionFindingsFigure({ figureNumber = 1 }: { figureNumber?: number }) {
     const { ref, seen } = useSeen<HTMLElement>();
     return (
@@ -21,7 +27,7 @@ export function SectionFindingsFigure({ figureNumber = 1 }: { figureNumber?: num
             <h2 id="section-findings-title" className={styles.title}>What the 2023 study found, section by section</h2>
 
             <div className={styles.rows} role="list" aria-label="Resume sections and what the study found for each">
-                {SECTION_FINDINGS.map((section) => (
+                {DRAWN.map((section) => (
                     <div key={section.name} className={styles.row} role="listitem" data-tone={section.tone}>
                         <div className={styles.sheet}>
                             <p className={styles.heading}>
@@ -37,6 +43,7 @@ export function SectionFindingsFigure({ figureNumber = 1 }: { figureNumber?: num
                     </div>
                 ))}
             </div>
+            <p className={styles.noResult}>{noResultLine}</p>
 
             <PenNote className={styles.note}>Time here went with moving forward. Make it the easiest section to judge.</PenNote>
 

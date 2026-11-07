@@ -20,7 +20,7 @@ export default function GapsAndPivotsPage() {
             answer={
                 <>
                     In the largest test, no. A line explaining a caregiving gap did no better than leaving it unexplained.
-                    Listing years in each job instead of dates did help: it beat even resumes with no gap by about 8%.
+                    Listing years in each job instead of dates did help, beating even resumes with no gap.
                 </>
             }
             answerSource={{
@@ -104,7 +104,7 @@ export default function GapsAndPivotsPage() {
 
             <h2 className="research-h2">Show the experience, not the calendar</h2>
             <p className="research-body mb-6">
-                The UK experiment tested two common fixes for a caregiving gap. Explaining it in a line did no better than leaving it unexplained. Listing how many years the applicant spent in each job, instead of start and end dates, raised callbacks above even resumes with no gap at all. The authors trace this to the experience standing out, not to novelty.
+                The UK experiment tested two common fixes for a caregiving gap. Explaining it in a line did no better than leaving it unexplained. Listing how many years the applicant spent in each job, instead of start and end dates, raised callbacks above even resumes with no gap at all, by about 8%. The authors trace this to the experience standing out, not to novelty.
                 <Citation id="source-1">1</Citation>
             </p>
 

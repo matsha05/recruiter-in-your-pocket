@@ -41,7 +41,7 @@ export function ReferralQuantifiedDiagram({ figureNumber = 1 }: { figureNumber?:
                     <PenNote className="mt-6">The person who vouched for them knew something the profile didn&apos;t show.</PenNote>
                 </div>
             </DiagramFrame>
-            <DiagramCaption kicker={`Fig. ${figureNumber} / Pallais & Sands`} title="Referred workers also performed better. One online labor market; other settings may differ." />
+            <DiagramCaption kicker={`Fig. ${figureNumber} / Pallais & Sands`} title="Referred workers did better work and were more likely to want to stay on." />
         </DiagramFigure>
     );
 }

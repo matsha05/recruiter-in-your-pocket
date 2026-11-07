@@ -10,15 +10,15 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 | --- | --- |
 | Files scanned | 418 |
 | Files with copy | 251 |
-| Strings | 2991 |
-| Unique strings | 2502 |
+| Strings | 2950 |
+| Unique strings | 2461 |
 | Routes with copy | 112 |
 
 ## By moment
 
 | Moment | Strings |
 | --- | --- |
-| research | 946 |
+| research | 905 |
 | account | 442 |
 | marketing | 416 |
 | report | 313 |
@@ -39,7 +39,7 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 
 | Table | Strings | Routes |
 | --- | --- | --- |
-| [research](./research.md) | 642 | `/research`, `/research/ats-myths`, `/research/automation-and-bias`, `/research/career-breaks`, `/research/gaps-and-pivots`, `/research/how-recruiters-read` and 12 more |
+| [research](./research.md) | 601 | `/research`, `/research/ats-myths`, `/research/automation-and-bias`, `/research/career-breaks`, `/research/gaps-and-pivots`, `/research/how-recruiters-read` and 12 more |
 | [workspace](./workspace.md) | 530 | `/api/export-pdf`, `/api/resume-feedback`, `/api/resume-feedback-stream`, `/api/revise-line`, `/auth`, `/extension` and 4 more |
 | [shared](./shared.md) | 418 | `/`, `/api/auth/send-code`, `/api/billing/confirm`, `/api/billing/restore`, `/api/checkout`, `/api/export-pdf` and 87 more |
 | [api](./api.md) | 282 | `/api/account/delete`, `/api/account/export`, `/api/analytics`, `/api/auth/send-code`, `/api/auth/sign-out`, `/api/auth/verify-code` and 27 more |

@@ -30,7 +30,7 @@ export function SignalClarityDiagram() {
                 </div>
                 <div className="border-t border-line bg-proof px-5 py-4 text-sm leading-6 text-muted-foreground md:px-7"><strong className="text-foreground">Keep the facts intact.</strong> Improve how you explain your experience without adding responsibilities or results you cannot support.</div>
             </DiagramFrame>
-            <DiagramCaption kicker="Fig. 1 / Proposed explanation" title="The study tested spelling and grammar suggestions. How they helped is the researchers' explanation." />
+            <DiagramCaption kicker="Fig. 1 / Proposed explanation" title="The study tested spelling and grammar suggestions. How they helped is the researchers' explanation, not something they measured." />
         </DiagramFigure>
     );
 }
