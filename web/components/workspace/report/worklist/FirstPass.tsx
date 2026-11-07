@@ -1,6 +1,9 @@
+"use client";
+
+import { useState } from "react";
 import { Paper } from "@/components/materials/Paper";
 import type { WorklistReport } from "@/lib/llm/worklist-schema";
-import { POSTING_MISSING_HOW, POSTING_MISSING_LABEL, screenerNote, screenerTitle, worklistLevelParts, worklistReadFor } from "@/lib/reports/worklist-presentation";
+import { POSTING_MISSING_HOW, POSTING_MISSING_LABEL, postingMissingShown, screenerNote, screenerTitle, worklistLevelParts, worklistReadFor } from "@/lib/reports/worklist-presentation";
 import { cn } from "@/lib/utils";
 import styles from "./Worklist.module.css";
 
@@ -8,39 +11,35 @@ import styles from "./Worklist.module.css";
  * The first pass (Matt chose direction B on November 7, 2026; docs/design/2026-11-first-read.md). Recruiters
  * describe the first seconds as a sort: which job is this for, what level, and does it fit the posting. The
  * report's score rests on those answers, so they sit under the verdict with their reasons instead of under the
- * cards. Most reports have no posting; then the row is the job and the level the resume was read for, and a way
- * to read it against a posting. A line written to screening software ends the first pass, so it comes first.
+ * cards. The questions label themselves: no "first pass" label, since "pass" already means the Job Search Pass
+ * and a recruiter passing on you (three reviewers, Nov 7). A line written to screening software comes first.
  */
 export function FirstPass({ report, onReadAgainstPosting }: { report: WorklistReport; onReadAgainstPosting?: () => void }) {
   const read = worklistReadFor(report);
-  const level = worklistLevelParts(read.level);
+  const level = worklistLevelParts(read.level, read.role);
   const screener = report.screener_text ?? [];
   const posting = report.fit.posting;
+  const [showAll, setShowAll] = useState(false);
   if (!read.role && !level && screener.length === 0) return null;
+  const shownMissing = showAll ? posting.missing : postingMissingShown(posting.missing);
+  const hiddenMissing = posting.missing.length - shownMissing.length;
 
   return (
-    <section className={styles.firstPass} aria-labelledby="first-pass-title" data-testid="first-pass">
-      <h2 id="first-pass-title" className={styles.passTitle}>The first pass</h2>
-      <p className={styles.passLead}>
-        {read.hasPosting ? "Read against the posting you added." : "With no posting, a recruiter reads your resume for the job it points at."}
-      </p>
-
+    <section className={styles.firstPass} aria-label="The job your resume was read for" data-testid="first-pass">
       {screener.length > 0 && (
         <div className={styles.stop} data-testid="screener-text">
-          <p className={styles.stopTitle}>{screener.length > 1 ? "These lines end the first pass." : "This line ends the first pass."}</p>
+          <p className={styles.stopTitle}>{screenerTitle(screener.length > 1)}</p>
           {screener.map((finding) => (
             <Paper key={finding.excerpt} kind="strip" className={styles.strip}>
               <p className={cn(styles.quote, styles.struck)}>{finding.excerpt}</p>
             </Paper>
           ))}
-          <p className={styles.stopNote}>
-            {screenerNote(screener[0].kind, screener.length > 1)} <strong>{screenerTitle(screener.length > 1)}</strong>
-          </p>
+          <p className={styles.stopNote}>{screenerNote(screener)}</p>
         </div>
       )}
 
       {(read.role || level) && (
-        <dl className={styles.sort} data-columns={read.hasPosting ? 3 : 2}>
+        <dl className={styles.sort} data-columns={(read.role ? 1 : 0) + (level ? 1 : 0) + (read.hasPosting ? 1 : 0)}>
           {read.role && (
             <div>
               <dt>Which job is this for?</dt>
@@ -58,8 +57,7 @@ export function FirstPass({ report, onReadAgainstPosting }: { report: WorklistRe
           {read.hasPosting && (
             <div>
               <dt>Your posting</dt>
-              <dd className={styles.sortAnswer}>{read.postingRole || "The job you added"}</dd>
-              {posting.summary && <dd className={styles.sortWhy}>{posting.summary}</dd>}
+              <dd className={styles.sortAnswer} data-testid="first-pass-posting-role">{read.postingRole || "The job you added"}</dd>
             </div>
           )}
         </dl>
@@ -72,7 +70,12 @@ export function FirstPass({ report, onReadAgainstPosting }: { report: WorklistRe
             {posting.missing.length > 0 && (
               <div className={styles.missing}>
                 <p className={styles.missingLabel}>{POSTING_MISSING_LABEL}</p>
-                <ul>{posting.missing.map((item) => <li key={item}>{item}</li>)}</ul>
+                <ul>{shownMissing.map((item) => <li key={item}>{item}</li>)}</ul>
+                {hiddenMissing > 0 && (
+                  <button type="button" className={cn("riyp-link focus-ring", styles.missingMore)} onClick={() => setShowAll(true)} data-testid="posting-missing-more">
+                    Show {hiddenMissing} more
+                  </button>
+                )}
                 <p className={styles.missingHow}>{POSTING_MISSING_HOW}</p>
               </div>
             )}

@@ -1,0 +1,58 @@
+# b21_customer_success_manager_with_posting, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt (180 words), posting: ../2026-11-live-judgment/resumes/b_posting_customer_success_manager.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 288eceb5; severity check off
+Outcome: report; cost $0.0123; 25.0s
+Case note: The same resume with a posting attached.
+
+## Mostly clear (score 76; model wrote 76)
+## Verdict
+A mid-market customer success manager with relevant SaaS experience, but renewal results aren't shown.
+
+## Write-up
+Your move from payroll support to managing mid-market accounts at Brightline Payroll Software makes a credible story for this Customer Success Manager role. A recruiter could move you forward, but would have questions about your renewal record and how your account book compares with the one in the posting.
+
+The 94% customer satisfaction line is a useful model: it names a measure and the period it covers. Your current role also gives a recruiter a clear account count, but several lines stop before saying what your work changed.
+
+Let's start with your current account book and renewal work. Add the commercial figures you can stand behind, then show what you do in reviews, onboarding and escalations. Your payroll background and familiarity with Gainsight and Salesforce are worth keeping prominent for this application.
+
+## Cards (7; {"line":6,"keep":1}); severity off; added []
+1. [line] Customer Success Manager, line 1
+   line: "Manage a book of 48 mid-market accounts across healthcare and manufacturing"
+   can't tell: The account count is useful, but the book's annual recurring revenue isn't shown. The posting gives both an account count and an ARR figure, so a recruiter will look for a comparison.
+   example: Manage a book of 48 mid-market accounts across healthcare and manufacturing representing [book ARR]
+   question: What ARR did your account book represent?
+2. [line] Customer Success Manager, line 2
+   line: "Run quarterly business reviews with customer finance and HR leads"
+   can't tell: A recruiter can see who attends, but not what you cover or decide in those reviews. The posting also asks for VP-level sponsors, so name them if they were among your attendees.
+   example: Run quarterly business reviews with customer finance and HR leads on [review topics] and [decisions or next steps]
+   question: What do you cover and decide in the reviews, and do VP-level sponsors attend?
+3. [line] Customer Success Manager, line 3
+   line: "Partnered with Sales on renewal strategy for at-risk accounts"
+   can't tell: Your partnership with Sales is relevant, but a recruiter can't see your part in the save plans or whether renewals followed. Retention and expansion results are central to this posting.
+   example: Partnered with Sales on renewal strategy for at-risk accounts by [your contribution], with [renewal result] against [target]
+   question: What did you contribute to the strategy, and what renewal results and targets can you share?
+4. [line] Customer Success Manager, line 4
+   line: "Built an onboarding checklist now used by the whole CS team"
+   can't tell: Team-wide use is a strong detail. A recruiter still can't tell what the checklist covers or whether it changed onboarding for customers.
+   example: Built an onboarding checklist covering [onboarding steps], now used by the whole CS team, with [what changed]
+   question: What does the checklist cover, and what changed after the team began using it?
+5. [line] Customer Success Manager, line 5
+   line: "Handle escalations with Support and Product when payroll runs fail"
+   can't tell: Payroll failures make the stakes clear, but your part in resolving them is still a blank. The posting also asks for customer input to Product, so include that work if you did it.
+   example: Handle escalations with Support and Product when payroll runs fail by [your actions], resulting in [resolution]
+   question: What do you do during these escalations, and how are they resolved?
+6. [keep] Customer Support Specialist, line 2
+   line: "Kept a 94% customer satisfaction score across 2021"
+   can't tell: Keep this as a model: it puts a concrete customer measure next to your work and tells a recruiter when you earned it.
+7. [line] Skills
+   line: "Gainsight, Salesforce, Zendesk, QBR planning, renewal forecasting"
+   can't tell: The tools match part of the posting, but the resume doesn't show whether you use product usage data or a BI tool to spot at-risk accounts. Add that work only if you've done it.
+   example: Gainsight, Salesforce, Zendesk, QBR planning, renewal forecasting; [tool] for [product usage work]
+   question: Have you used product usage data or a BI tool in your customer work, and what did you use them for?
+
+## Fit
+Roles: ["Customer Success Manager","Customer Success Manager, Mid-Market"]
+Level: mid-level, manages a book of 48 mid-market accounts
+Note: Your payroll software work and collaboration with Sales, Support and Product fit the customer-facing work in this posting. Tailor the resume around the work you can substantiate, rather than adding duties you haven't held.
+Posting: Mid-market customer success role owning a SaaS account book, renewals, expansion and customer relationships.
+Missing: ["60 to 80 mid-market accounts representing about $4M in ARR","A track record of hitting retention or expansion targets, with numbers you can talk about","Comfortable with usage data: Gainsight, Salesforce, and a BI tool such as Looker","Experience running QBRs with VP-level sponsors","log and prioritize feature requests"]

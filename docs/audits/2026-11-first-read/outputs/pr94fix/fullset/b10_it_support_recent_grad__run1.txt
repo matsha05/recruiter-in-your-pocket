@@ -1,0 +1,50 @@
+# b10_it_support_recent_grad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_it_support_recent_grad_1.txt (119 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 288eceb5; severity check off
+Outcome: report; cost $0.0099; 21.0s
+Case note: First job.
+
+## Needs more context (score 60; model wrote 60)
+## Verdict
+An IT support resume with practical help desk work, but no activity dated after 2025.
+
+## Write-up
+Your resume points toward desktop support, with a help desk internship at Chattahoochee County Schools and device setup work at Peachtree Electronics. A recruiter can see the work you did, but the latest role doesn't say how much you handled, and nothing accounts for your time after 2025. That's likely to lead to a pass for now.
+
+This is common on an early-career IT resume: the tasks are real, but the details that distinguish them are still missing. Your Active Directory line is a good model because it names both the account work and the tool. Put Experience above Education so the school help desk work is visible sooner.
+
+Let's start with the latest dates, then the school help desk tickets and laptop setup. Add what you can honestly say about your time since the internship, and use counts or examples from the work if you have them. Your A+ and IT degree already give the support experience a useful foundation.
+
+## Cards (6; {"dates":1,"structure":1,"line":3,"keep":1}); severity off; added []
+1. [dates] Dates
+   line: "The latest role ends May 2025, and nothing is dated after 2025."
+   can't tell: A recruiter can't tell what you've been doing since then. Add a dated entry if you've been studying, volunteering, caring for someone, working or taking a career break. Name it for what it was.
+   example: May 2025 - Present [what you did]
+   question: What have you done since May 2025 that you can describe accurately?
+2. [structure] Structure
+   line: "Education sits above Experience."
+   can't tell: Your school help desk and retail device work are more useful to a recruiter looking for support experience. Move Experience above Education and Certifications.
+   question: Can you move Experience above Education and Certifications?
+3. [line] IT Help Desk Intern, line 1
+   line: "Answered help desk tickets from teachers and staff"
+   can't tell: A recruiter can't tell what problems you handled or how many tickets came through. Those details would show what the school relied on you to do.
+   example: Answered help desk tickets from teachers and staff about [issues], handling [number] tickets per [period]
+   question: What issues did you handle, and how many tickets did you typically answer?
+4. [line] IT Help Desk Intern, line 2
+   line: "Imaged and set up laptops for classrooms"
+   can't tell: Laptop imaging is relevant desktop support work. How many laptops did you set up, and what did you use to image them?
+   example: Imaged and set up [number] laptops for classrooms using [imaging method]
+   question: How many laptops did you image and set up, and what method did you use?
+5. [keep] IT Help Desk Intern, line 3
+   line: "Reset passwords and accounts in Active Directory"
+   can't tell: Keep this. It gives a recruiter a concrete support task without making them guess which system you used.
+6. [line] Retail Associate, line 2
+   line: "Set up new devices for customers at the service counter"
+   can't tell: This connects your retail job to support, but setup can mean several things. Name the tasks you performed on the devices.
+   example: Set up new devices for customers at the service counter, including [setup tasks]
+   question: What setup tasks did you perform for customers?
+
+## Fit
+Roles: ["IT support specialist"]
+Level: entry level, one IT help desk internship
+Note: Your experience points most directly toward desktop support, with customer-facing device setup as a useful complement. The junior systems direction would be easier to assess with more detail about the systems work you've done.

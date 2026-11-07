@@ -1,0 +1,219 @@
+{
+  "case_id": "b23_pharmacy_tech_table",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Tables rendered to tab-separated text.",
+  "resume_file": "../2026-11-live-judgment/resumes/b_pharmacy_tech_table.txt",
+  "resume_sha256": "872695c37eba2c67784784b9af67edda0387ea5b8bbb90cd54d25ac0f2941367",
+  "resume_words": 209,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T21:31:12.304Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6052,
+        "completion_tokens": 1246,
+        "total_tokens": 7298,
+        "cached_prompt_tokens": 5154,
+        "cache_write_prompt_tokens": 895,
+        "reasoning_tokens": 622
+      },
+      "cost_usd": 0.00760945,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 14879
+    }
+  ],
+  "resume_prompt_sha256": "288eceb50a0848513f3205630fd7657627db9010f5f15a63cb442225501f834d",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A certified pharmacy technician with hospital and retail experience, backed by concrete workload and results.",
+    "write_up": [
+      "Your resume makes a strong case for pharmacy technician work! At Sutter Valley Medical Center, you name the sterile preparations, the nursing units you support, and the technicians you train. That gives a recruiter a much better picture than a list of pharmacy duties alone.",
+      "The cabinet restocking line is a great model: it names the work, the six nursing units, and the change in weekly stockout reports. Your credentials are easy to find, and your move from pharmacy clerk to inpatient technician is easy to follow.",
+      "The main edit is in the RiteCare prescription line: explain what you checked and who completed the final check. Beyond that, your resume isn't likely to be the thing holding you back; competition for a particular hospital pharmacy job still matters."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, cabinet restocking",
+        "line": "Pharmacy Technician II\tManage the automated dispensing cabinet restocking for 6 nursing units\tStockout reports down from 9 to 2 per week in 2024",
+        "cannot_tell": "Keep this as a model. A recruiter can see both the area you manage and the stockout figures without having to guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Pharmacy Technician, prescription filling",
+        "line": "Pharmacy Technician\tFilled and verified prescriptions for a store doing 350 scripts a day",
+        "cannot_tell": "The store's volume is useful, but 'verified' leaves the kind of check unclear. A recruiter needs to know your part in prescription checking and who completed the final check.",
+        "example": "Filled and verified prescriptions for a store doing 350 scripts a day, checking [what you checked], with [who completed the final check] completing the final check",
+        "question": "What did you check on prescriptions, and who completed the final check?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Certified Pharmacy Technician (CPhT)",
+        "Pharmacy Technician II"
+      ],
+      "why": "Your headline names your certification, and your recent work is in inpatient pharmacy and sterile compounding.",
+      "level": "mid-level, prepares sterile doses and trains new technicians",
+      "note": "Your recent work points toward hospital pharmacy roles, with retail experience adding prescription and insurance work. The sterile compounding certification reinforces the work you describe at Sutter Valley Medical Center.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A certified pharmacy technician with hospital and retail experience, backed by concrete workload and results.",
+    "write_up": [
+      "Your resume makes a strong case for pharmacy technician work! At Sutter Valley Medical Center, you name the sterile preparations, the nursing units you support, and the technicians you train. That gives a recruiter a much better picture than a list of pharmacy duties alone.",
+      "The cabinet restocking line is a great model: it names the work, the six nursing units, and the change in weekly stockout reports. Your credentials are easy to find, and your move from pharmacy clerk to inpatient technician is easy to follow.",
+      "The main edit is in the RiteCare prescription line: explain what you checked and who completed the final check. Beyond that, your resume isn't likely to be the thing holding you back; competition for a particular hospital pharmacy job still matters."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, cabinet restocking",
+        "line": "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024",
+        "cannot_tell": "Keep this as a model. A recruiter can see both the area you manage and the stockout figures without having to guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Pharmacy Technician, prescription filling",
+        "line": "Pharmacy Technician Filled and verified prescriptions for a store doing 350 scripts a day",
+        "cannot_tell": "The store's volume is useful, but 'verified' leaves the kind of check unclear. A recruiter needs to know your part in prescription checking and who completed the final check.",
+        "example": "Filled and verified prescriptions for a store doing 350 scripts a day, checking [what you checked], with [who completed the final check] completing the final check",
+        "question": "What did you check on prescriptions, and who completed the final check?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Certified Pharmacy Technician (CPhT)",
+        "Pharmacy Technician II"
+      ],
+      "why": "Your headline names your certification, and your recent work is in inpatient pharmacy and sterile compounding.",
+      "level": "mid-level, prepares sterile doses and trains new technicians",
+      "note": "Your recent work points toward hospital pharmacy roles, with retail experience adding prescription and insurance work. The sterile compounding certification reinforces the work you describe at Sutter Valley Medical Center.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A certified pharmacy technician with hospital and retail experience, backed by concrete workload and results.",
+    "write_up": [
+      "Your resume makes a strong case for pharmacy technician work! At Sutter Valley Medical Center, you name the sterile preparations, the nursing units you support, and the technicians you train. That gives a recruiter a much better picture than a list of pharmacy duties alone.",
+      "The cabinet restocking line is a great model: it names the work, the six nursing units, and the change in weekly stockout reports. Your credentials are easy to find, and your move from pharmacy clerk to inpatient technician is easy to follow.",
+      "The main edit is in the RiteCare prescription line: explain what you checked and who completed the final check. Beyond that, your resume isn't likely to be the thing holding you back; competition for a particular hospital pharmacy job still matters."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, cabinet restocking",
+        "line": "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024",
+        "cannot_tell": "Keep this as a model. A recruiter can see both the area you manage and the stockout figures without having to guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Pharmacy Technician, prescription filling",
+        "line": "Pharmacy Technician Filled and verified prescriptions for a store doing 350 scripts a day",
+        "cannot_tell": "The store's volume is useful, but 'verified' leaves the kind of check unclear. A recruiter needs to know your part in prescription checking and who completed the final check.",
+        "example": "Filled and verified prescriptions for a store doing 350 scripts a day, checking [what you checked], with [who completed the final check] completing the final check",
+        "question": "What did you check on prescriptions, and who completed the final check?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Certified Pharmacy Technician (CPhT)",
+        "Pharmacy Technician II"
+      ],
+      "why": "Your headline names your certification, and your recent work is in inpatient pharmacy and sterile compounding.",
+      "level": "mid-level, prepares sterile doses and trains new technicians",
+      "note": "Your recent work points toward hospital pharmacy roles, with retail experience adding prescription and insurance work. The sterile compounding certification reinforces the work you describe at Sutter Valley Medical Center.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "presentation": {
+    "score": 89,
+    "band": "Clear and specific",
+    "model_score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A certified pharmacy technician with hospital and retail experience, backed by concrete workload and results.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 128,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, cabinet restocking",
+        "line": "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Pharmacy Technician, prescription filling",
+        "line": "Pharmacy Technician Filled and verified prescriptions for a store doing 350 scripts a day",
+        "blanks": 2,
+        "question": "What did you check on prescriptions, and who completed the final check?"
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "keep": 1,
+      "line": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Certified Pharmacy Technician (CPhT)",
+        "Pharmacy Technician II"
+      ],
+      "why": "Your headline names your certification, and your recent work is in inpatient pharmacy and sterile compounding.",
+      "level": "mid-level, prepares sterile doses and trains new technicians",
+      "note": "Your recent work points toward hospital pharmacy roles, with retail experience adding prescription and insurance work. The sterile compounding certification reinforces the work you describe at Sutter Valley Medical Center.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00760945,
+  "latency_ms": 14893
+}

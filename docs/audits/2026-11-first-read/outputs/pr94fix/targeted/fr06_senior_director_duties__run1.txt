@@ -1,0 +1,62 @@
+# fr06_senior_director_duties, run 1
+Resume: resumes/fr06_senior_director_duties.txt (143 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 288eceb5; severity check off
+Outcome: report; cost $0.0109; 22.8s
+Case note: P4 (senior). Duties and a reporting line with no team size, budget or company size. Expect the remit asked for; no invented team or budget.
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+A senior operations leader’s resume names the work, but not how big it was or what changed.
+
+## Write-up
+It’s common for a senior operations resume to list responsibilities rather than the work behind them. Yours shows a move from Lakeland Appliance Repair to Senior Director, Operations at Northstar Home Services, covering field operations, dispatch and customer care. But a recruiter looking for a senior leader will want to know how many people and how much of the operation you were responsible for.
+
+The scheduling system line is your clearest model: it names something you rolled out rather than a general responsibility. The promotion at Northstar is easy to follow, but the current role doesn’t show the size of your team or budget, or what your initiatives changed.
+
+Let’s start with the current Northstar role and the field operations line. Add the team and budget figures you can stand behind, then name an improvement you led and what changed. That will give the senior title more weight in a pile.
+
+## Cards (8; {"structure":1,"line":7}); severity off; added []
+1. [structure] Northstar Home Services
+   line: "The resume does not describe Northstar Home Services or its customers."
+   can't tell: A recruiter may not know the company or the kind of service operation you lead. A short description can put the roles in context.
+   question: What services does Northstar provide, and who are its customers?
+2. [line] Senior Director, Operations, line 1
+   line: "Responsible for field operations, dispatch and customer care across the Upper Midwest"
+   can't tell: The geography and functions are named, but a recruiter can't tell how many people or how much budget sat with you. Those details matter for a senior operations role.
+   example: Responsible for field operations, dispatch and customer care across the Upper Midwest, with [number] people and an operating budget of [amount]
+   question: How many people and what operating budget, if any, were under your responsibility?
+3. [line] Senior Director, Operations, line 2
+   line: "Reported to the COO and partnered with Finance on the annual operating plan"
+   can't tell: Reporting to the COO establishes where the role sat. Your part in the annual operating plan is still a blank.
+   example: Reported to the COO and partnered with Finance on [your contribution] to the annual operating plan
+   question: What did you contribute to the annual operating plan?
+4. [line] Senior Director, Operations, line 3
+   line: "Oversaw vendor management and fleet"
+   can't tell: A recruiter can see that vendors and fleet were yours, but not what that work involved or how large the fleet was.
+   example: Oversaw vendor management and a fleet of [number] vehicles, including [what you handled]
+   question: What did you handle for vendors and fleet, and how many vehicles were involved?
+5. [line] Senior Director, Operations, line 4
+   line: "Led operational strategy and continuous improvement initiatives"
+   can't tell: The initiatives aren't named, so a recruiter can't tell what you led or what changed. Pick one that shows the work.
+   example: Led [initiative] as part of continuous improvement, resulting in [what changed]
+   question: Which initiative did you lead, and what changed because of it?
+6. [line] Senior Director, Operations, line 5
+   line: "Managed managers across multiple regions"
+   can't tell: Managing managers is important at this level, but the number of managers and their responsibilities aren't here.
+   example: Managed [number] managers across multiple regions who [what they handled]
+   question: How many managers did you manage, and what did they handle?
+7. [line] Director, Field Operations, line 3
+   line: "Improved first-time fix rate"
+   can't tell: This names a useful result, but not how much the rate improved or what you did to improve it.
+   example: Improved first-time fix rate from [rate] to [rate] by [what you did]
+   question: What were the rates before and after, and what did you do to improve them?
+8. [line] Operations Manager, line 1
+   line: "Ran daily operations for the service department"
+   can't tell: Daily operations could cover a lot of different work. A recruiter can't tell which part of the service department you ran.
+   example: Ran daily operations for the service department, including [work you handled]
+   question: What work did you handle in the service department?
+
+## Fit
+Roles: ["Senior Operations Leader","Senior Director, Operations","Director, Field Operations"]
+Level: director, manages managers across multiple regions
+Note: Your experience points toward operations leadership in field service. The progression at Northstar gives that story a clear path; the team and budget details will help show the level of responsibility.

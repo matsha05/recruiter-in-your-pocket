@@ -1,0 +1,30 @@
+# b19_non_native_english, run 1
+Resume: ../2026-11-live-judgment/resumes/b_non_native_english.txt (237 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 288eceb5; severity check off
+Outcome: report; cost $0.0059; 11.0s
+
+## Mostly clear (score 83; model wrote 83)
+## Verdict
+Accounting experience in Vietnam and Houston, with clear invoice volume and a strong record of faster closing.
+
+## Write-up
+Your resume points toward Staff Accountant and Accounts Payable Specialist jobs. A recruiter can see both your current invoice work at Bayou Industrial Supply and your broader accounting responsibilities at Minh Phat Trading Company. That combination makes your experience easy to follow.
+
+The Minh Phat closing line is a great model: it names the checklist and template you made and shows the close dropping from 12 days to 7 days. Your current role also names its invoice volume and QuickBooks, so a recruiter can picture the work.
+
+Let's strengthen the month-end line at Bayou by naming the tasks you help the controller with. For each application, lead with the work closest to the job: general ledger and financial statements for Staff Accountant, or invoices and vendor reconciliation for Accounts Payable Specialist.
+
+## Cards (2; {"line":1,"keep":1}); severity off; added []
+1. [line] Accounts Payable Clerk, line 4
+   line: "Help the controller for month end closing"
+   can't tell: A recruiter can't tell which closing tasks you help with. That matters for both accounts payable and staff accountant jobs.
+   example: Help the controller with month end closing by [month-end task].
+   question: Which month-end closing tasks do you help the controller with?
+2. [keep] Senior Accountant, line 4
+   line: "Reduce the month end closing from 12 days to 7 days by make new checklist and template"
+   can't tell: Keep this as a model. You put the work you did and the before-and-after figures together, so a recruiter doesn't have to guess what changed.
+
+## Fit
+Roles: ["Staff Accountant","Accounts Payable Specialist"]
+Level: mid-level, current accounts payable work and prior leadership of 3 junior accountants
+Note: Your US GAAP certificate and Houston bookkeeping work sit alongside your accounting experience in Vietnam. Tailor which work leads to the job you're applying for.

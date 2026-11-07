@@ -1,0 +1,30 @@
+# b03_welder, run 1
+Resume: ../2026-11-live-judgment/resumes/b_welder.txt (195 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 288eceb5; severity check off
+Outcome: report; cost $0.0064; 12.9s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A welder and fitter whose certifications, precision, and inspection record make the work easy to judge.
+
+## Write-up
+Your resume makes a strong case for Welder / Fitter work! It connects structural steel and pipe experience with the processes, certifications, and fit-up standards a recruiter needs to see.
+
+The Riverfront Tower line is the model: it names the job, the inspections, and about 900 welds. Your current work comes first, with the pipe welding and certifications easy to find.
+
+The shutdown line is the one place I'd add what you did, rather than just when you worked. Otherwise, your resume isn't likely to be what stands between you and a callback; how competitive a particular job is will matter too.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Welder / Fitter, line 3
+   line: "Passed every third-party UT and visual inspection on the Riverfront Tower job (about 900 welds)"
+   can't tell: Keep this as a model. It gives a recruiter a named project and an inspection record they can understand without guessing.
+2. [line] Pipe Welder, line 3
+   line: "Worked nights and weekends on plant shutdowns"
+   can't tell: The schedule tells a recruiter you were available for shutdowns, but not what work you did during them.
+   example: Worked nights and weekends on plant shutdowns, performing [work performed]
+   question: What work did you perform during the plant shutdowns?
+
+## Fit
+Roles: ["Welder / Fitter","Pipe Welder"]
+Level: senior, trains new hires on fit-up and tacking procedures
+Note: Your experience points toward structural welding and fit-up, with pipe welding as another relevant path. Keep the certifications prominent when applying for work that requires those processes.

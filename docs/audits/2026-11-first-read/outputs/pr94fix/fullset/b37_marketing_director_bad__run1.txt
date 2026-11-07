@@ -1,0 +1,40 @@
+# b37_marketing_director_bad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_marketing_director_bad_1.txt (167 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 288eceb5; severity check off
+Outcome: report; cost $0.0101; 21.2s
+Case note: Title above the work; key says no_recent_work, no_target_role, title_level_mismatch.
+
+## Needs more context (score 59; model wrote 59)
+## Verdict
+A marketing director title sits above hands-on marketing work, followed by unaccounted time.
+
+## Write-up
+Your resume moves from biology and data entry into marketing at Lumen Candle Co. That kind of change is common. I'm reading it for Director of Marketing, your most recent title, but the work shown is mostly posting, product descriptions and customer service. A recruiter looking for a director may pass because the leadership work isn't clear, and the resume doesn't say what you've done since January 2025.
+
+The property records line is a good model: it names the work, the system and how much you handled each day. Your marketing lines also give useful numbers, but the resume doesn't show whether you made marketing decisions or managed a team or budget. The earlier jobs point in different directions, so a target would help tie the story together.
+
+Let's start with the Lumen title and the time since that job ended. Add the marketing decisions and responsibilities that were yours, if any, and account for the time honestly. Then choose the kind of marketing job you want and give that work the most room.
+
+## Cards (4; {"line":1,"dates":1,"structure":1,"keep":1}); severity off; added []
+1. [line] Director of Marketing title
+   line: "Director of Marketing"
+   can't tell: The title suggests leadership, but the lines below it show hands-on marketing and customer service. A recruiter can't tell what decisions, team or budget responsibilities came with the role. Keep your official title, and show those responsibilities if they were yours.
+   example: Director of Marketing, Lumen Candle Co.: [marketing decisions and team or budget responsibilities]
+   question: What marketing decisions, team responsibilities or budget were yours, if any?
+2. [dates] Dates
+   line: "Nothing is dated after January 2025."
+   can't tell: A recruiter can't tell what you've been doing since the Lumen role ended. If you took care of a family member, name that; if you took a career break, you can include what you did during it. Include freelance work only if it was real.
+   example: January 2025 - Present [what you did]
+   question: What have you been doing since January 2025 that you'd like to include?
+3. [structure] Structure
+   line: "The resume lists marketing, data entry, laboratory and cafe work without naming a target job."
+   can't tell: A recruiter has to guess which direction you want to pursue. If you're aiming for marketing, name the type of role you're seeking and give the Lumen work more room.
+   question: Which kind of job are you applying for now?
+4. [keep] Data Entry Clerk, line 1
+   line: "Entered 150 property records a day into the county title system"
+   can't tell: Keep this as a model. It gives a recruiter a concrete picture of the daily workload without making them guess what the records were for.
+
+## Fit
+Roles: ["Director of Marketing"]
+Level: entry level, marketing work shown centers on Instagram posts and product descriptions
+Note: The hands-on marketing work gives you a starting point for marketing roles. If you held broader responsibilities at Lumen, adding them could change how a recruiter assesses your level.

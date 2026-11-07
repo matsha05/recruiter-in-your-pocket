@@ -99,7 +99,6 @@ export function WorklistReport({
       </section>
 
       <section id="section-fixes" className={cn(styles.page, "scroll-mt-36")} aria-labelledby="fixes-title" data-ready={ready || undefined}>
-        <p className={styles.passTitle} aria-hidden="true">The second pass</p>
         <h2 id="fixes-title" className={styles.sectionTitle}>{heading.title}</h2>
         {heading.lead && <p className={styles.sectionLead}>{heading.lead}</p>}
         {report.cards.length > 0 && (

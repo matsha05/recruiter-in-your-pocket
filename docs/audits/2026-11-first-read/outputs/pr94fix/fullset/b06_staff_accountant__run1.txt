@@ -1,0 +1,40 @@
+# b06_staff_accountant, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_staff_accountant_1.txt (98 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 288eceb5; severity check off
+Outcome: report; cost $0.0072; 15.3s
+
+## Needs more context (score 66; model wrote 66)
+## Verdict
+A staff accountant with a clear progression at Rivermark, but too little detail about the close and audit.
+
+## Write-up
+You’ve moved from Accounts Payable Clerk to Staff Accountant at Rivermark Building Supply, and your resume points clearly toward staff accounting. It’s common to list accounting duties this way, but the close and audit work sound much like other staff accountant resumes. A recruiter has to guess what you handle within them.
+
+The journal entries and account reconciliations line is your best model: it names two concrete pieces of work rather than leaving the reader with a general responsibility. Your experience sits above education, and the move into accounting is easy to follow.
+
+Let’s start with the month-end close line. Add the tasks you handle, then show what you contribute to the annual audit and what accounts payable work you take on when needed. Use details you can stand behind; you don’t need to put a number on every line.
+
+## Cards (4; {"line":3,"keep":1}); severity off; added []
+1. [line] Staff Accountant, line 1
+   line: "Responsible for month-end close tasks"
+   can't tell: A recruiter can’t tell which parts of the close are yours. That matters because the close is central to a staff accountant’s work.
+   example: Responsible for month-end close tasks, including [tasks] for [accounts]
+   question: Which close tasks and accounts are you responsible for?
+2. [keep] Staff Accountant, line 2
+   line: "Prepare journal entries and account reconciliations"
+   can't tell: Keep this as a model: it names the things you prepare, so a recruiter can see the accounting work without guessing.
+3. [line] Staff Accountant, line 3
+   line: "Assist with the annual audit"
+   can't tell: Assist could mean several different things here. What do you prepare or check for the audit?
+   example: Assist with the annual audit by [audit work]
+   question: What audit work do you handle?
+4. [line] Staff Accountant, line 5
+   line: "Process accounts payable when needed"
+   can't tell: A recruiter can see that you still handle accounts payable, but not which tasks you take on or how often.
+   example: Process accounts payable when needed, including [tasks], at [frequency]
+   question: Which accounts payable tasks do you handle, and how often?
+
+## Fit
+Roles: ["Staff Accountant","Accounts Payable Clerk"]
+Level: mid-level, current Staff Accountant role following an Accounts Payable Clerk role
+Note: Your progression at Rivermark points toward staff accounting roles. The accounts payable background also gives you related experience to draw on.

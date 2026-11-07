@@ -1,0 +1,219 @@
+{
+  "case_id": "b19_non_native_english",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/resumes/b_non_native_english.txt",
+  "resume_sha256": "b6a26fe36825d1810e73236e21445163948f02ce6be0d9328e9ccaf50cb59c16",
+  "resume_words": 237,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T21:31:01.278Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6044,
+        "completion_tokens": 909,
+        "total_tokens": 6953,
+        "cached_prompt_tokens": 5154,
+        "cache_write_prompt_tokens": 887,
+        "reasoning_tokens": 343
+      },
+      "cost_usd": 0.00591445,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 11019
+    }
+  ],
+  "resume_prompt_sha256": "288eceb50a0848513f3205630fd7657627db9010f5f15a63cb442225501f834d",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 83,
+    "lifted_by_employer": false,
+    "verdict": "Accounting experience in Vietnam and Houston, with clear invoice volume and a strong record of faster closing.",
+    "write_up": [
+      "Your resume points toward Staff Accountant and Accounts Payable Specialist jobs. A recruiter can see both your current invoice work at Bayou Industrial Supply and your broader accounting responsibilities at Minh Phat Trading Company. That combination makes your experience easy to follow.",
+      "The Minh Phat closing line is a great model: it names the checklist and template you made and shows the close dropping from 12 days to 7 days. Your current role also names its invoice volume and QuickBooks, so a recruiter can picture the work.",
+      "Let's strengthen the month-end line at Bayou by naming the tasks you help the controller with. For each application, lead with the work closest to the job: general ledger and financial statements for Staff Accountant, or invoices and vendor reconciliation for Accounts Payable Specialist."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 4",
+        "line": "- Help the controller for month end closing",
+        "cannot_tell": "A recruiter can't tell which closing tasks you help with. That matters for both accounts payable and staff accountant jobs.",
+        "example": "Help the controller with month end closing by [month-end task].",
+        "question": "Which month-end closing tasks do you help the controller with?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Accountant, line 4",
+        "line": "- Reduce the month end closing from 12 days to 7 days by make new checklist and template",
+        "cannot_tell": "Keep this as a model. You put the work you did and the before-and-after figures together, so a recruiter doesn't have to guess what changed.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Specialist"
+      ],
+      "why": "Your profile names both jobs, and your experience covers general ledger, financial statements, invoices and vendor reconciliation.",
+      "level": "mid-level, current accounts payable work and prior leadership of 3 junior accountants",
+      "note": "Your US GAAP certificate and Houston bookkeeping work sit alongside your accounting experience in Vietnam. Tailor which work leads to the job you're applying for.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 83,
+    "lifted_by_employer": false,
+    "verdict": "Accounting experience in Vietnam and Houston, with clear invoice volume and a strong record of faster closing.",
+    "write_up": [
+      "Your resume points toward Staff Accountant and Accounts Payable Specialist jobs. A recruiter can see both your current invoice work at Bayou Industrial Supply and your broader accounting responsibilities at Minh Phat Trading Company. That combination makes your experience easy to follow.",
+      "The Minh Phat closing line is a great model: it names the checklist and template you made and shows the close dropping from 12 days to 7 days. Your current role also names its invoice volume and QuickBooks, so a recruiter can picture the work.",
+      "Let's strengthen the month-end line at Bayou by naming the tasks you help the controller with. For each application, lead with the work closest to the job: general ledger and financial statements for Staff Accountant, or invoices and vendor reconciliation for Accounts Payable Specialist."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 4",
+        "line": "Help the controller for month end closing",
+        "cannot_tell": "A recruiter can't tell which closing tasks you help with. That matters for both accounts payable and staff accountant jobs.",
+        "example": "Help the controller with month end closing by [month-end task].",
+        "question": "Which month-end closing tasks do you help the controller with?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Accountant, line 4",
+        "line": "Reduce the month end closing from 12 days to 7 days by make new checklist and template",
+        "cannot_tell": "Keep this as a model. You put the work you did and the before-and-after figures together, so a recruiter doesn't have to guess what changed.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Specialist"
+      ],
+      "why": "Your profile names both jobs, and your experience covers general ledger, financial statements, invoices and vendor reconciliation.",
+      "level": "mid-level, current accounts payable work and prior leadership of 3 junior accountants",
+      "note": "Your US GAAP certificate and Houston bookkeeping work sit alongside your accounting experience in Vietnam. Tailor which work leads to the job you're applying for.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 83
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 83,
+    "lifted_by_employer": false,
+    "verdict": "Accounting experience in Vietnam and Houston, with clear invoice volume and a strong record of faster closing.",
+    "write_up": [
+      "Your resume points toward Staff Accountant and Accounts Payable Specialist jobs. A recruiter can see both your current invoice work at Bayou Industrial Supply and your broader accounting responsibilities at Minh Phat Trading Company. That combination makes your experience easy to follow.",
+      "The Minh Phat closing line is a great model: it names the checklist and template you made and shows the close dropping from 12 days to 7 days. Your current role also names its invoice volume and QuickBooks, so a recruiter can picture the work.",
+      "Let's strengthen the month-end line at Bayou by naming the tasks you help the controller with. For each application, lead with the work closest to the job: general ledger and financial statements for Staff Accountant, or invoices and vendor reconciliation for Accounts Payable Specialist."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 4",
+        "line": "Help the controller for month end closing",
+        "cannot_tell": "A recruiter can't tell which closing tasks you help with. That matters for both accounts payable and staff accountant jobs.",
+        "example": "Help the controller with month end closing by [month-end task].",
+        "question": "Which month-end closing tasks do you help the controller with?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Accountant, line 4",
+        "line": "Reduce the month end closing from 12 days to 7 days by make new checklist and template",
+        "cannot_tell": "Keep this as a model. You put the work you did and the before-and-after figures together, so a recruiter doesn't have to guess what changed.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Specialist"
+      ],
+      "why": "Your profile names both jobs, and your experience covers general ledger, financial statements, invoices and vendor reconciliation.",
+      "level": "mid-level, current accounts payable work and prior leadership of 3 junior accountants",
+      "note": "Your US GAAP certificate and Houston bookkeeping work sit alongside your accounting experience in Vietnam. Tailor which work leads to the job you're applying for.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 83
+  },
+  "presentation": {
+    "score": 83,
+    "band": "Mostly clear",
+    "model_score": 83,
+    "lifted_by_employer": false,
+    "verdict": "Accounting experience in Vietnam and Houston, with clear invoice volume and a strong record of faster closing.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 131,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 4",
+        "line": "Help the controller for month end closing",
+        "blanks": 1,
+        "question": "Which month-end closing tasks do you help the controller with?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Accountant, line 4",
+        "line": "Reduce the month end closing from 12 days to 7 days by make new checklist and template",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "line": 1,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Specialist"
+      ],
+      "why": "Your profile names both jobs, and your experience covers general ledger, financial statements, invoices and vendor reconciliation.",
+      "level": "mid-level, current accounts payable work and prior leadership of 3 junior accountants",
+      "note": "Your US GAAP certificate and Houston bookkeeping work sit alongside your accounting experience in Vietnam. Tailor which work leads to the job you're applying for.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00591445,
+  "latency_ms": 11023
+}

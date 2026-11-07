@@ -1,0 +1,277 @@
+{
+  "case_id": "b14_teacher_to_instructional_designer",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Career changer.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_teacher_to_instructional_designer_1.txt",
+  "resume_sha256": "834ed54c2de68b69a032d304a18dda36925e354522e5b1cfe475d0beca0b4e9a",
+  "resume_words": 164,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T21:30:34.549Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5905,
+        "completion_tokens": 1429,
+        "total_tokens": 7334,
+        "cached_prompt_tokens": 5154,
+        "cache_write_prompt_tokens": 748,
+        "reasoning_tokens": 626
+      },
+      "cost_usd": 0.0083407,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 17009
+    }
+  ],
+  "resume_prompt_sha256": "288eceb50a0848513f3205630fd7657627db9010f5f15a63cb442225501f834d",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 77,
+    "lifted_by_employer": false,
+    "verdict": "A mathematics teacher with clear classroom experience and an emerging digital learning design portfolio.",
+    "write_up": [
+      "You’ve taught math at Pinewood Middle School and Cedar Creek High School, and your resume also points toward digital learning design. I read it for Mathematics Teacher: a recruiter can see your classes and teaching work, though a few activities outside the classroom need more detail.",
+      "The Canvas module is your best model. It names the unit you redesigned, the format and the platform, so a recruiter can see the work without guessing. Your certificate is also clearly marked as in progress.",
+      "Start with the professional learning community, then add a little more about the review videos and math team. If you’re applying for learning design work, use your portfolio to show the module and videos you can share."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 2",
+        "line": "- Redesigned the Algebra II unit on functions into a self-paced online module in Canvas",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a concrete piece of learning material and tells them what you did to it.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 3",
+        "line": "- Lead the math department's professional learning community",
+        "cannot_tell": "A recruiter can see that you lead the group, but not what you work on together. Naming the work would show what your leadership involves.",
+        "example": "Lead the math department's professional learning community on [topics], working with [participants] on [work]",
+        "question": "Who takes part, and what topics and work does the group tackle?"
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 4",
+        "line": "- Created video walkthroughs that students use for exam review",
+        "cannot_tell": "The videos are useful to your learning design story, but a recruiter can't tell what they cover or how you made them.",
+        "example": "Created video walkthroughs on [topics] using [tool] that students use for exam review",
+        "question": "What do the walkthroughs cover, and what did you use to create them?"
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 5",
+        "line": "- Coach the school's math team",
+        "cannot_tell": "Coaching is clear, but the work behind it isn't. A recruiter can't tell what you do with the team or how many students take part.",
+        "example": "Coach the school's math team in [activities], working with [number] students",
+        "question": "What activities do you coach, and how many students are on the team?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mathematics Teacher"
+      ],
+      "why": "Your two teaching roles and your current Algebra II and AP Statistics classes point to mathematics teaching.",
+      "level": "mid-level, leads the math department's professional learning community",
+      "note": "Your Canvas module and review videos also give you material for a move into digital learning design. The instructional design certificate is still in progress, so keep that status visible.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 77,
+    "lifted_by_employer": false,
+    "verdict": "A mathematics teacher with clear classroom experience and an emerging digital learning design portfolio.",
+    "write_up": [
+      "You’ve taught math at Pinewood Middle School and Cedar Creek High School, and your resume also points toward digital learning design. I read it for Mathematics Teacher: a recruiter can see your classes and teaching work, though a few activities outside the classroom need more detail.",
+      "The Canvas module is your best model. It names the unit you redesigned, the format and the platform, so a recruiter can see the work without guessing. Your certificate is also clearly marked as in progress.",
+      "Start with the professional learning community, then add a little more about the review videos and math team. If you’re applying for learning design work, use your portfolio to show the module and videos you can share."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 2",
+        "line": "Redesigned the Algebra II unit on functions into a self-paced online module in Canvas",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a concrete piece of learning material and tells them what you did to it.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 3",
+        "line": "Lead the math department's professional learning community",
+        "cannot_tell": "A recruiter can see that you lead the group, but not what you work on together. Naming the work would show what your leadership involves.",
+        "example": "Lead the math department's professional learning community on [topics], working with [participants] on [work]",
+        "question": "Who takes part, and what topics and work does the group tackle?"
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 4",
+        "line": "Created video walkthroughs that students use for exam review",
+        "cannot_tell": "The videos are useful to your learning design story, but a recruiter can't tell what they cover or how you made them.",
+        "example": "Created video walkthroughs on [topics] using [tool] that students use for exam review",
+        "question": "What do the walkthroughs cover, and what did you use to create them?"
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 5",
+        "line": "Coach the school's math team",
+        "cannot_tell": "Coaching is clear, but the work behind it isn't. A recruiter can't tell what you do with the team or how many students take part.",
+        "example": "Coach the school's math team in [activities], working with [number] students",
+        "question": "What activities do you coach, and how many students are on the team?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mathematics Teacher"
+      ],
+      "why": "Your two teaching roles and your current Algebra II and AP Statistics classes point to mathematics teaching.",
+      "level": "mid-level, leads the math department's professional learning community",
+      "note": "Your Canvas module and review videos also give you material for a move into digital learning design. The instructional design certificate is still in progress, so keep that status visible.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 77
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 77,
+    "lifted_by_employer": false,
+    "verdict": "A mathematics teacher with clear classroom experience and an emerging digital learning design portfolio.",
+    "write_up": [
+      "You’ve taught math at Pinewood Middle School and Cedar Creek High School, and your resume also points toward digital learning design. I read it for Mathematics Teacher: a recruiter can see your classes and teaching work, though a few activities outside the classroom need more detail.",
+      "The Canvas module is your best model. It names the unit you redesigned, the format and the platform, so a recruiter can see the work without guessing. Your certificate is also clearly marked as in progress.",
+      "Start with the professional learning community, then add a little more about the review videos and math team. If you’re applying for learning design work, use your portfolio to show the module and videos you can share."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 2",
+        "line": "Redesigned the Algebra II unit on functions into a self-paced online module in Canvas",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a concrete piece of learning material and tells them what you did to it.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 3",
+        "line": "Lead the math department's professional learning community",
+        "cannot_tell": "A recruiter can see that you lead the group, but not what you work on together. Naming the work would show what your leadership involves.",
+        "example": "Lead the math department's professional learning community on [topics], working with [participants] on [work]",
+        "question": "Who takes part, and what topics and work does the group tackle?"
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 4",
+        "line": "Created video walkthroughs that students use for exam review",
+        "cannot_tell": "The videos are useful to your learning design story, but a recruiter can't tell what they cover or how you made them.",
+        "example": "Created video walkthroughs on [topics] using [tool] that students use for exam review",
+        "question": "What do the walkthroughs cover, and what did you use to create them?"
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 5",
+        "line": "Coach the school's math team",
+        "cannot_tell": "Coaching is clear, but the work behind it isn't. A recruiter can't tell what you do with the team or how many students take part.",
+        "example": "Coach the school's math team in [activities], working with [number] students",
+        "question": "What activities do you coach, and how many students are on the team?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mathematics Teacher"
+      ],
+      "why": "Your two teaching roles and your current Algebra II and AP Statistics classes point to mathematics teaching.",
+      "level": "mid-level, leads the math department's professional learning community",
+      "note": "Your Canvas module and review videos also give you material for a move into digital learning design. The instructional design certificate is still in progress, so keep that status visible.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 77
+  },
+  "presentation": {
+    "score": 77,
+    "band": "Mostly clear",
+    "model_score": 77,
+    "lifted_by_employer": false,
+    "verdict": "A mathematics teacher with clear classroom experience and an emerging digital learning design portfolio.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 119,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 2",
+        "line": "Redesigned the Algebra II unit on functions into a self-paced online module in Canvas",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 3",
+        "line": "Lead the math department's professional learning community",
+        "blanks": 3,
+        "question": "Who takes part, and what topics and work does the group tackle?"
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 4",
+        "line": "Created video walkthroughs that students use for exam review",
+        "blanks": 2,
+        "question": "What do the walkthroughs cover, and what did you use to create them?"
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 5",
+        "line": "Coach the school's math team",
+        "blanks": 2,
+        "question": "What activities do you coach, and how many students are on the team?"
+      }
+    ],
+    "card_count": 4,
+    "kinds": {
+      "keep": 1,
+      "line": 3
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Mathematics Teacher"
+      ],
+      "why": "Your two teaching roles and your current Algebra II and AP Statistics classes point to mathematics teaching.",
+      "level": "mid-level, leads the math department's professional learning community",
+      "note": "Your Canvas module and review videos also give you material for a move into digital learning design. The instructional design certificate is still in progress, so keep that status visible.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0083407,
+  "latency_ms": 17015
+}

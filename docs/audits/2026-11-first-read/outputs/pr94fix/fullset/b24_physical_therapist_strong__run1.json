@@ -1,0 +1,219 @@
+{
+  "case_id": "b24_physical_therapist_strong",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_physical_therapist_strong_1.txt",
+  "resume_sha256": "7e013454a20249375bdb6727bacd79d8babaf49afa5b0b57f3dd11c862937163",
+  "resume_words": 154,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T21:31:18.219Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5858,
+        "completion_tokens": 934,
+        "total_tokens": 6792,
+        "cached_prompt_tokens": 5154,
+        "cache_write_prompt_tokens": 701,
+        "reasoning_tokens": 360
+      },
+      "cost_usd": 0.00580695,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 11570
+    }
+  ],
+  "resume_prompt_sha256": "288eceb50a0848513f3205630fd7657627db9010f5f15a63cb442225501f834d",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 87,
+    "lifted_by_employer": false,
+    "verdict": "A senior outpatient physical therapist with a clear caseload, a rehab program, and patient function results.",
+    "write_up": [
+      "This is a strong resume! Your work at North Loop Sports Rehab shows the patients you treat, the program you built, and the therapists you mentor. A recruiter can see both your clinical work and your senior responsibilities.",
+      "The return-to-run program is the line to copy: it names what you built and how many patients completed it. Your Minnesota license, DPT, and earlier hospital work are easy to find, too.",
+      "The main refinement is to give the patient function figure a little more context. Otherwise, your resume isn't likely to be the thing standing between you and a call back. Competition for a particular clinic and a referral can also matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Physical Therapist, line 2",
+        "line": "- Built a return-to-run program that 85 patients completed in 2025",
+        "cannot_tell": "Keep this as a model. You pair your own contribution with a concrete count and timeframe, so a recruiter can see the work without guessing.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Physical Therapist, line 4",
+        "line": "- In 2025, 92% of discharged patients improved their patient-reported function scores",
+        "cannot_tell": "The result is worth keeping, but a recruiter can't tell which function measure was used or how many discharged patients were included. Those details would give the percentage context.",
+        "example": "In 2025, 92% of [number] discharged patients improved their patient-reported function scores as measured by [measure]",
+        "question": "Which measure was used, and how many discharged patients were included in the 2025 figure?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Physical Therapist",
+        "Physical Therapist"
+      ],
+      "why": "Your current senior role and earlier outpatient clinic work both center on physical therapy, with orthopedic and neurological cases.",
+      "level": "senior, mentors 2 newer therapists and sets the PT aide schedule",
+      "note": "Your experience points toward outpatient orthopedic and sports rehabilitation roles. The return-to-run program and patient caseload make that focus easy to see.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 87,
+    "lifted_by_employer": false,
+    "verdict": "A senior outpatient physical therapist with a clear caseload, a rehab program, and patient function results.",
+    "write_up": [
+      "This is a strong resume! Your work at North Loop Sports Rehab shows the patients you treat, the program you built, and the therapists you mentor. A recruiter can see both your clinical work and your senior responsibilities.",
+      "The return-to-run program is the line to copy: it names what you built and how many patients completed it. Your Minnesota license, DPT, and earlier hospital work are easy to find, too.",
+      "The main refinement is to give the patient function figure a little more context. Otherwise, your resume isn't likely to be the thing standing between you and a call back. Competition for a particular clinic and a referral can also matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Physical Therapist, line 2",
+        "line": "Built a return-to-run program that 85 patients completed in 2025",
+        "cannot_tell": "Keep this as a model. You pair your own contribution with a concrete count and timeframe, so a recruiter can see the work without guessing.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Physical Therapist, line 4",
+        "line": "In 2025, 92% of discharged patients improved their patient-reported function scores",
+        "cannot_tell": "The result is worth keeping, but a recruiter can't tell which function measure was used or how many discharged patients were included. Those details would give the percentage context.",
+        "example": "In 2025, 92% of [number] discharged patients improved their patient-reported function scores as measured by [measure]",
+        "question": "Which measure was used, and how many discharged patients were included in the 2025 figure?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Physical Therapist",
+        "Physical Therapist"
+      ],
+      "why": "Your current senior role and earlier outpatient clinic work both center on physical therapy, with orthopedic and neurological cases.",
+      "level": "senior, mentors 2 newer therapists and sets the PT aide schedule",
+      "note": "Your experience points toward outpatient orthopedic and sports rehabilitation roles. The return-to-run program and patient caseload make that focus easy to see.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 87
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 87,
+    "lifted_by_employer": false,
+    "verdict": "A senior outpatient physical therapist with a clear caseload, a rehab program, and patient function results.",
+    "write_up": [
+      "This is a strong resume! Your work at North Loop Sports Rehab shows the patients you treat, the program you built, and the therapists you mentor. A recruiter can see both your clinical work and your senior responsibilities.",
+      "The return-to-run program is the line to copy: it names what you built and how many patients completed it. Your Minnesota license, DPT, and earlier hospital work are easy to find, too.",
+      "The main refinement is to give the patient function figure a little more context. Otherwise, your resume isn't likely to be the thing standing between you and a call back. Competition for a particular clinic and a referral can also matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Physical Therapist, line 2",
+        "line": "Built a return-to-run program that 85 patients completed in 2025",
+        "cannot_tell": "Keep this as a model. You pair your own contribution with a concrete count and timeframe, so a recruiter can see the work without guessing.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Physical Therapist, line 4",
+        "line": "In 2025, 92% of discharged patients improved their patient-reported function scores",
+        "cannot_tell": "The result is worth keeping, but a recruiter can't tell which function measure was used or how many discharged patients were included. Those details would give the percentage context.",
+        "example": "In 2025, 92% of [number] discharged patients improved their patient-reported function scores as measured by [measure]",
+        "question": "Which measure was used, and how many discharged patients were included in the 2025 figure?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Physical Therapist",
+        "Physical Therapist"
+      ],
+      "why": "Your current senior role and earlier outpatient clinic work both center on physical therapy, with orthopedic and neurological cases.",
+      "level": "senior, mentors 2 newer therapists and sets the PT aide schedule",
+      "note": "Your experience points toward outpatient orthopedic and sports rehabilitation roles. The return-to-run program and patient caseload make that focus easy to see.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 87
+  },
+  "presentation": {
+    "score": 87,
+    "band": "Clear and specific",
+    "model_score": 87,
+    "lifted_by_employer": false,
+    "verdict": "A senior outpatient physical therapist with a clear caseload, a rehab program, and patient function results.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 111,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Physical Therapist, line 2",
+        "line": "Built a return-to-run program that 85 patients completed in 2025",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Physical Therapist, line 4",
+        "line": "In 2025, 92% of discharged patients improved their patient-reported function scores",
+        "blanks": 2,
+        "question": "Which measure was used, and how many discharged patients were included in the 2025 figure?"
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "keep": 1,
+      "line": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Physical Therapist",
+        "Physical Therapist"
+      ],
+      "why": "Your current senior role and earlier outpatient clinic work both center on physical therapy, with orthopedic and neurological cases.",
+      "level": "senior, mentors 2 newer therapists and sets the PT aide schedule",
+      "note": "Your experience points toward outpatient orthopedic and sports rehabilitation roles. The return-to-run program and patient caseload make that focus easy to see.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00580695,
+  "latency_ms": 11583
+}

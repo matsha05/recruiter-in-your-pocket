@@ -1,0 +1,219 @@
+{
+  "case_id": "b03_welder",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/resumes/b_welder.txt",
+  "resume_sha256": "b9732bf7b68078f8e956a420ac5c412e65809428f2714874ab4044ea5bd317f8",
+  "resume_words": 195,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T21:29:44.097Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5999,
+        "completion_tokens": 1019,
+        "total_tokens": 7018,
+        "cached_prompt_tokens": 5154,
+        "cache_write_prompt_tokens": 842,
+        "reasoning_tokens": 487
+      },
+      "cost_usd": 0.0064082,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 12751
+    }
+  ],
+  "resume_prompt_sha256": "288eceb50a0848513f3205630fd7657627db9010f5f15a63cb442225501f834d",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A welder and fitter whose certifications, precision, and inspection record make the work easy to judge.",
+    "write_up": [
+      "Your resume makes a strong case for Welder / Fitter work! It connects structural steel and pipe experience with the processes, certifications, and fit-up standards a recruiter needs to see.",
+      "The Riverfront Tower line is the model: it names the job, the inspections, and about 900 welds. Your current work comes first, with the pipe welding and certifications easy to find.",
+      "The shutdown line is the one place I'd add what you did, rather than just when you worked. Otherwise, your resume isn't likely to be what stands between you and a callback; how competitive a particular job is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Welder / Fitter, line 3",
+        "line": "- Passed every third-party UT and visual inspection on the Riverfront Tower job (about 900 welds)",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a named project and an inspection record they can understand without guessing.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Pipe Welder, line 3",
+        "line": "- Worked nights and weekends on plant shutdowns",
+        "cannot_tell": "The schedule tells a recruiter you were available for shutdowns, but not what work you did during them.",
+        "example": "Worked nights and weekends on plant shutdowns, performing [work performed]",
+        "question": "What work did you perform during the plant shutdowns?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Welder / Fitter",
+        "Pipe Welder"
+      ],
+      "why": "Your current role combines structural welding and fit-up, and your earlier role adds process piping work.",
+      "level": "senior, trains new hires on fit-up and tacking procedures",
+      "note": "Your experience points toward structural welding and fit-up, with pipe welding as another relevant path. Keep the certifications prominent when applying for work that requires those processes.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A welder and fitter whose certifications, precision, and inspection record make the work easy to judge.",
+    "write_up": [
+      "Your resume makes a strong case for Welder / Fitter work! It connects structural steel and pipe experience with the processes, certifications, and fit-up standards a recruiter needs to see.",
+      "The Riverfront Tower line is the model: it names the job, the inspections, and about 900 welds. Your current work comes first, with the pipe welding and certifications easy to find.",
+      "The shutdown line is the one place I'd add what you did, rather than just when you worked. Otherwise, your resume isn't likely to be what stands between you and a callback; how competitive a particular job is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Welder / Fitter, line 3",
+        "line": "Passed every third-party UT and visual inspection on the Riverfront Tower job (about 900 welds)",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a named project and an inspection record they can understand without guessing.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Pipe Welder, line 3",
+        "line": "Worked nights and weekends on plant shutdowns",
+        "cannot_tell": "The schedule tells a recruiter you were available for shutdowns, but not what work you did during them.",
+        "example": "Worked nights and weekends on plant shutdowns, performing [work performed]",
+        "question": "What work did you perform during the plant shutdowns?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Welder / Fitter",
+        "Pipe Welder"
+      ],
+      "why": "Your current role combines structural welding and fit-up, and your earlier role adds process piping work.",
+      "level": "senior, trains new hires on fit-up and tacking procedures",
+      "note": "Your experience points toward structural welding and fit-up, with pipe welding as another relevant path. Keep the certifications prominent when applying for work that requires those processes.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A welder and fitter whose certifications, precision, and inspection record make the work easy to judge.",
+    "write_up": [
+      "Your resume makes a strong case for Welder / Fitter work! It connects structural steel and pipe experience with the processes, certifications, and fit-up standards a recruiter needs to see.",
+      "The Riverfront Tower line is the model: it names the job, the inspections, and about 900 welds. Your current work comes first, with the pipe welding and certifications easy to find.",
+      "The shutdown line is the one place I'd add what you did, rather than just when you worked. Otherwise, your resume isn't likely to be what stands between you and a callback; how competitive a particular job is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Welder / Fitter, line 3",
+        "line": "Passed every third-party UT and visual inspection on the Riverfront Tower job (about 900 welds)",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a named project and an inspection record they can understand without guessing.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Pipe Welder, line 3",
+        "line": "Worked nights and weekends on plant shutdowns",
+        "cannot_tell": "The schedule tells a recruiter you were available for shutdowns, but not what work you did during them.",
+        "example": "Worked nights and weekends on plant shutdowns, performing [work performed]",
+        "question": "What work did you perform during the plant shutdowns?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Welder / Fitter",
+        "Pipe Welder"
+      ],
+      "why": "Your current role combines structural welding and fit-up, and your earlier role adds process piping work.",
+      "level": "senior, trains new hires on fit-up and tacking procedures",
+      "note": "Your experience points toward structural welding and fit-up, with pipe welding as another relevant path. Keep the certifications prominent when applying for work that requires those processes.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "presentation": {
+    "score": 88,
+    "band": "Clear and specific",
+    "model_score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A welder and fitter whose certifications, precision, and inspection record make the work easy to judge.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 102,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Welder / Fitter, line 3",
+        "line": "Passed every third-party UT and visual inspection on the Riverfront Tower job (about 900 welds)",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Pipe Welder, line 3",
+        "line": "Worked nights and weekends on plant shutdowns",
+        "blanks": 1,
+        "question": "What work did you perform during the plant shutdowns?"
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "keep": 1,
+      "line": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Welder / Fitter",
+        "Pipe Welder"
+      ],
+      "why": "Your current role combines structural welding and fit-up, and your earlier role adds process piping work.",
+      "level": "senior, trains new hires on fit-up and tacking procedures",
+      "note": "Your experience points toward structural welding and fit-up, with pipe welding as another relevant path. Keep the certifications prominent when applying for work that requires those processes.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0064082,
+  "latency_ms": 12909
+}

@@ -160,37 +160,55 @@ export function worklistReadFor(report: Pick<WorklistReport, "fit">) {
 
 /**
  * The level as the first pass shows it: the level itself, then the fact on the resume that sets it. The prompt
- * writes "senior, leads projects, no direct reports", so the first clause is the answer and the rest the reason.
+ * writes "senior, leads projects, no direct reports", so the first clause (to a comma or a semicolon) is the answer
+ * and the rest the reason. When the answer only repeats the job ("Data analyst" for a Data Analyst), the cell says
+ * nothing a reader can use, so it isn't shown (three reviewers, Nov 7, 2026).
  */
-export function worklistLevelParts(level: string | null) {
+export function worklistLevelParts(level: string | null, role?: string | null) {
   const text = (level || "").trim();
   if (!text) return null;
-  const comma = text.indexOf(",");
-  const head = (comma === -1 ? text : text.slice(0, comma)).trim();
-  const rest = comma === -1 ? "" : text.slice(comma + 1).trim();
+  const cut = text.search(/[,;]/u);
+  const head = (cut === -1 ? text : text.slice(0, cut)).trim();
+  const rest = cut === -1 ? "" : text.slice(cut + 1).trim();
+  const plain = (value: string) => value.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();
+  if (role && plain(head) === plain(role)) return null;
   const cap = (value: string) => value.charAt(0).toUpperCase() + value.slice(1);
   return { level: cap(head), because: rest ? `${cap(rest).replace(/[.;,]+$/u, "")}.` : null };
+}
+
+/** The posting's missing list as first shown: all of a short list; the first two of a long one (the must-haves lead). */
+export function postingMissingShown(missing: string[]) {
+  return missing.length > 3 ? missing.slice(0, 2) : missing;
 }
 
 // ---- Text written to screening software (lib/reports/screener-text.ts) ----
 
 type ScreenerKind = NonNullable<WorklistReport["screener_text"]>[number]["kind"];
 
+/** The label over lines written to screening software: the action first (three reviewers, Nov 7, 2026). */
 export function screenerTitle(many: boolean) {
-  return many ? "Take these out before you send it." : "Take this out before you send it.";
+  return many ? "Take these lines out before you send it." : "Take this line out before you send it.";
 }
 const SCREENER_WHAT: Record<ScreenerKind, string> = {
-  instruction: "This line is written to AI screening software, not to a person.",
-  score: "This is a score written for screening software to read back.",
-  posting_copy: "This is the posting's own text, pasted into your resume.",
-  keyword_repeat: "This is a keyword list repeated for a scanner.",
+  instruction: "an instruction written to AI screening software",
+  score: "a score written for screening software to read back",
+  posting_copy: "the posting's own text, pasted into your resume",
+  keyword_repeat: "a keyword list repeated for a scanner",
 };
-/** What a finding is, then why it matters; the same sentence for every kind. */
-export function screenerNote(kind: ScreenerKind, many: boolean) {
-  if (many) {
-    return "These lines are written to screening software, not to a person. They may be set in white, so you might not see them in your file. Screening software reads them as plain text, so a recruiter sees them too, and they're the lines they remember.";
+const ORDINALS = ["first", "second", "third"];
+
+/**
+ * What each finding is, in its own sentence, then why it matters, claiming only what's true: the line may be set in
+ * white, software reads it as text, and it can show up when the file is opened or copied. "Often" is the
+ * practitioners' account (Peditto, Sharghi, Altman), not a measured rate.
+ */
+export function screenerNote(findings: ReadonlyArray<{ kind: ScreenerKind }>) {
+  if (findings.length === 0) return "";
+  if (findings.length === 1) {
+    return `This is ${SCREENER_WHAT[findings[0].kind]}. It may be set in white, where you won't see it; software still reads it as text, and a recruiter can see it too. Recruiters who find a line like this often stop reading there.`;
   }
-  return `${SCREENER_WHAT[kind]} It may be set in white, so you might not see it in your file. Screening software reads it as plain text, so a recruiter sees it too, and it's the line they remember.`;
+  const what = findings.map((finding, index) => `The ${ORDINALS[index] ?? "next"} is ${SCREENER_WHAT[finding.kind]}.`).join(" ");
+  return `${what} Lines like these may be set in white, where you won't see them; software still reads them as text, and a recruiter can see them too. Recruiters who find one often stop reading there.`;
 }
 
 // ---- The re-check (two worklist reports on the same resume) ----

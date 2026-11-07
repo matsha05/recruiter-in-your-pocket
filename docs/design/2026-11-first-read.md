@@ -42,3 +42,27 @@ The record is `docs/audits/2026-11-first-read.md`. In short: nine candidate prom
 - An optional "What job is this for?" field at upload, which would set the target without a posting. It is the strongest version of the first pass. It changes the first five minutes, so it is a separate decision.
 - White text in a PDF can only be found once it is extracted. The detector reads the text, not its color, so a line written to a person in white goes unflagged; that would be fair, but it is also untested.
 - Knockout requirements first, short unlabeled stints, insider names, spelling patterns, and the score note's sentence that recruiters disagree (research items 6 to 10).
+
+## Revised after three reviewers (November 7, 2026, evening)
+
+Matt asked for three independent reads of the fixes an outside critique proposed: a recruiter, a product designer
+holding this system, and a job seeker. None disagreed with any fix, and most strengthened one. What changed:
+
+- **No labels.** "The first pass" and "The second pass" are gone: "pass" already means the Job Search Pass, a recruiter
+  passing on you, and a retry on the wait screen. The questions label themselves.
+- **Hidden text.** The action leads ("Take this line out before you send it."), each line gets its own sentence about
+  what it is, and the claim is only what's true: it may be set in white, software still reads it, a recruiter can see
+  it, and recruiters who find one often stop (the practitioners' account, not a measured rate). The verdict now names
+  it first (prompt), and the struck lines hold to two lines on a phone.
+- **A posting.** The posting cell is its title (the summary repeated back what the person pasted). The fit note is in
+  the note face and says only what the verdict and the list don't (prompt). The missing list puts the must-haves first
+  (prompt) and a long one shows two and a 44px "Show N more".
+- **Mismatch.** When a posting asks for a different track or level, the verdict says so first and the write-up opens on
+  it with no exclamation point (prompt).
+- **Level.** One of entry level, mid-level, senior, lead, manager, director or executive, then the fact that sets it
+  (prompt; 49 of 49 in the full set); the cell is hidden when it only repeats the job, and the split reads a semicolon.
+- **Width.** The block holds to the write-up's measure (45rem).
+
+The prompt changes were rerun on the targeted cases and the full set (`outputs/pr94fix/`, $0.57): cards per report
+3.51 against the shipped prompt's 3.49 and 3.59, so the cards are unchanged; the verdicts, notes, levels and lists
+read as above.

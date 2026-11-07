@@ -85,23 +85,21 @@ function renderWorklistHtml(report: ReportForPdf, worklist: WorklistForPdf) {
   // The first pass, as on the web report (Nov 7, 2026): a line written to screening software, then which job,
   // what level and the posting, each with its reason, then the posting's fit.
   const read = worklistReadFor(worklist);
-  const level = worklistLevelParts(read.level);
+  const level = worklistLevelParts(read.level, read.role);
   const screener = worklist.screener_text ?? [];
   const sortCell = (question: string, answer: string, why?: string | null) =>
     `<div><div class="sort-q">${escapeHtml(question)}</div><div class="sort-a">${escapeHtml(answer)}</div>${why ? `<div class="sort-why">${escapeHtml(why)}</div>` : ""}</div>`;
   const firstPassHtml = read.role || level || screener.length ? `
     <div class="first-pass">
-      <div class="pass-title">The first pass</div>
-      <div class="pass-lead">${read.hasPosting ? "Read against the posting you added." : "With no posting, a recruiter reads your resume for the job it points at."}</div>
       ${screener.length ? `<div class="stop">
-        <div class="stop-title">${screener.length > 1 ? "These lines end the first pass." : "This line ends the first pass."}</div>
+        <div class="stop-title">${escapeHtml(screenerTitle(screener.length > 1))}</div>
         ${screener.map((finding) => `<div class="stop-line">${escapeHtml(finding.excerpt)}</div>`).join("")}
-        <div class="stop-note">${escapeHtml(screenerNote(screener[0].kind, screener.length > 1))} <strong>${escapeHtml(screenerTitle(screener.length > 1))}</strong></div>
+        <div class="stop-note">${escapeHtml(screenerNote(screener))}</div>
       </div>` : ""}
       ${read.role || level ? `<div class="sort">
         ${read.role ? sortCell("Which job is this for?", read.role, fit.why) : ""}
         ${level ? sortCell("What level?", level.level, level.because) : ""}
-        ${read.hasPosting ? sortCell("Your posting", read.postingRole || "The job you added", fit.posting.summary) : ""}
+        ${read.hasPosting ? sortCell("Your posting", read.postingRole || "The job you added") : ""}
       </div>` : ""}
       ${read.hasPosting && (fit.note || fit.posting.missing.length) ? `<div class="posting-fit">
         ${fit.note ? `<p class="note">${escapeHtml(fit.note)}</p>` : ""}

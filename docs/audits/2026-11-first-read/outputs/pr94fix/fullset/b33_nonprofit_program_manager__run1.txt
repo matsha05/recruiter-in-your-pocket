@@ -1,0 +1,40 @@
+# b33_nonprofit_program_manager, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_nonprofit_program_manager_1.txt (146 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 288eceb5; severity check off
+Outcome: report; cost $0.0085; 18.7s
+
+## Mostly clear (score 74; model wrote 74)
+## Verdict
+A youth workforce program manager with a clear progression, but little about how many students the programs reach.
+
+## Write-up
+You moved from tutoring at City Year Baltimore to coordinating and then managing youth workforce work at Harbor Pathways. A recruiter can follow that progression and see the job you're doing now, so I'd move this forward with questions about how many students and employers the program reaches.
+
+Your strongest line names both groups you supervise: 4 program coordinators and 20 seasonal staff. That gives a recruiter a concrete picture of your management responsibilities. The summer jobs program is equally central to your story, but its reach isn't yet on the resume.
+
+Let's start with the summer jobs line, then add what you can about employer recruiting and the earlier career fair. Your grant reporting and Salesforce work already name useful parts of the job; they don't need a number just for the sake of one.
+
+## Cards (4; {"line":3,"keep":1}); severity off; added []
+1. [line] Program Manager, Youth Workforce, line 1
+   line: "Manage a summer jobs program placing high school students with local employers"
+   can't tell: The work is easy to picture, but a recruiter can't tell how many students or employers take part. Those counts would show how big the program is.
+   example: Manage a summer jobs program placing [number] high school students with [number] local employers each summer
+   question: How many students and employers take part each summer?
+2. [keep] Program Manager, Youth Workforce, line 2
+   line: "Supervise 4 program coordinators and 20 seasonal staff"
+   can't tell: Keep this as a model. It names your responsibility and the people involved without making a recruiter guess how many staff you supervise.
+3. [line] Program Manager, Youth Workforce, line 4
+   line: "Recruit and onboard employer partners"
+   can't tell: Recruiting and onboarding are distinct jobs, but a recruiter can't tell what you do to bring employers into the program or how many you work with.
+   example: Recruit and onboard [number] employer partners by [recruiting and onboarding work]
+   question: How many employer partners do you recruit and onboard, and what does that work involve?
+4. [line] Program Coordinator, line 3
+   line: "Organized an annual career fair"
+   can't tell: An annual career fair is a useful named event. Who came, and how many people attended?
+   example: Organized an annual career fair attended by [number] [attendee group]
+   question: Who attended the career fair, and how many attended?
+
+## Fit
+Roles: ["Program Manager, Youth Workforce","Program Coordinator"]
+Level: manager, supervises 4 program coordinators and 20 seasonal staff
+Note: Your experience points toward nonprofit youth workforce program management. The progression at Harbor Pathways gives you a strong story about moving from coordination into staff supervision.

@@ -1,0 +1,35 @@
+# b04_retail_store_manager, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_retail_store_manager_1.txt (179 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 288eceb5; severity check off
+Outcome: report; cost $0.0080; 16.6s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A store manager with a clear progression and results across sales, staffing, customer satisfaction and shrink.
+
+## Write-up
+Your resume is strong! It shows your progression at Carolina Home & Garden and connects store results to decisions you made, from the garden center layout to weekly schedules. A recruiter can see both how big your current job is and what changed under your management.
+
+The turnover line is a great model: it gives the before and after, then names the scheduling change. Your headline mentions two store turnarounds, but the results underneath are concentrated in the current role, so the second turnaround is less clear.
+
+Add what changed at the other store, then give the earlier department supervisor role a little more detail. Your resume isn't likely to be the reason you don't get a callback; how competitive the store manager job is will matter too.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] Headline
+   line: "Retail store manager who has turned around two underperforming stores in a 60-store regional chain."
+   can't tell: The current store has several results, but a recruiter can't tell what changed at the other store. That leaves the two-store turnaround claim without its full story.
+   example: Retail store manager who has turned around two underperforming stores in a 60-store regional chain, including [what changed at the second store].
+   question: What changed at the other store during your time there?
+2. [keep] Store Manager, line 3
+   line: "Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules"
+   can't tell: Keep this as a model. It pairs a management decision with a measure a store recruiter can understand immediately.
+3. [line] Department Supervisor, line 1
+   line: "Supervised the lumber and building materials department"
+   can't tell: The department is named, but a recruiter can't tell what you oversaw within it or what changed during your time there. One detail would give your earlier progression more substance.
+   example: Supervised the lumber and building materials department, overseeing [what you managed] and [what changed].
+   question: What did you oversee in the department, and what changed while you supervised it?
+
+## Fit
+Roles: ["Store Manager"]
+Level: manager, runs a store with 42 employees, including 4 department managers
+Note: Your progression from department supervisor to store manager points to retail store leadership. The current role gives a recruiter a clear picture of the operation you run.

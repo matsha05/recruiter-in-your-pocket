@@ -3,14 +3,14 @@
   "counts": {
     "files_scanned": 420,
     "files_with_copy": 252,
-    "strings": 2962,
-    "unique_strings": 2472
+    "strings": 2957,
+    "unique_strings": 2467
   },
   "by_moment": {
     "research": 905,
     "account": 442,
     "marketing": 416,
-    "report": 325,
+    "report": 320,
     "pricing": 218,
     "upload": 155,
     "legal": 111,
@@ -36273,61 +36273,9 @@
       "table": "workspace"
     },
     {
-      "text": "The first pass",
-      "kind": "jsx-text",
-      "line": 23,
-      "file": "web/components/workspace/report/worklist/FirstPass.tsx",
-      "routes": [
-        "/reports/[id]",
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Read against the posting you added.",
-      "kind": "jsx-text",
-      "line": 25,
-      "file": "web/components/workspace/report/worklist/FirstPass.tsx",
-      "routes": [
-        "/reports/[id]",
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "With no posting, a recruiter reads your resume for the job it points at.",
-      "kind": "jsx-text",
-      "line": 25,
-      "file": "web/components/workspace/report/worklist/FirstPass.tsx",
-      "routes": [
-        "/reports/[id]",
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "These lines end the first pass.",
-      "kind": "jsx-text",
-      "line": 30,
-      "file": "web/components/workspace/report/worklist/FirstPass.tsx",
-      "routes": [
-        "/reports/[id]",
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "This line ends the first pass.",
-      "kind": "jsx-text",
-      "line": 30,
+      "text": "The job your resume was read for",
+      "kind": "attr:aria-label",
+      "line": 28,
       "file": "web/components/workspace/report/worklist/FirstPass.tsx",
       "routes": [
         "/reports/[id]",
@@ -36340,7 +36288,7 @@
     {
       "text": "Which job is this for?",
       "kind": "jsx-text",
-      "line": 46,
+      "line": 45,
       "file": "web/components/workspace/report/worklist/FirstPass.tsx",
       "routes": [
         "/reports/[id]",
@@ -36353,7 +36301,7 @@
     {
       "text": "What level?",
       "kind": "jsx-text",
-      "line": 53,
+      "line": 52,
       "file": "web/components/workspace/report/worklist/FirstPass.tsx",
       "routes": [
         "/reports/[id]",
@@ -36366,7 +36314,7 @@
     {
       "text": "Your posting",
       "kind": "jsx-text",
-      "line": 60,
+      "line": 59,
       "file": "web/components/workspace/report/worklist/FirstPass.tsx",
       "routes": [
         "/reports/[id]",
@@ -36379,7 +36327,7 @@
     {
       "text": "Going for something else?",
       "kind": "jsx-text",
-      "line": 83,
+      "line": 86,
       "file": "web/components/workspace/report/worklist/FirstPass.tsx",
       "routes": [
         "/reports/[id]",
@@ -36392,7 +36340,7 @@
     {
       "text": "Read it against a posting",
       "kind": "jsx-text",
-      "line": 84,
+      "line": 87,
       "file": "web/components/workspace/report/worklist/FirstPass.tsx",
       "routes": [
         "/reports/[id]",
@@ -36585,22 +36533,9 @@
       "table": "workspace"
     },
     {
-      "text": "The second pass",
-      "kind": "jsx-text",
-      "line": 102,
-      "file": "web/components/workspace/report/worklist/WorklistReport.tsx",
-      "routes": [
-        "/reports/[id]",
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
       "text": "Roles to consider",
       "kind": "jsx-text",
-      "line": 133,
+      "line": 132,
       "file": "web/components/workspace/report/worklist/WorklistReport.tsx",
       "routes": [
         "/reports/[id]",
@@ -36613,7 +36548,7 @@
     {
       "text": "What the score means",
       "kind": "jsx-text",
-      "line": 145,
+      "line": 144,
       "file": "web/components/workspace/report/worklist/WorklistReport.tsx",
       "routes": [
         "/reports/[id]",
@@ -36626,7 +36561,7 @@
     {
       "text": "The band is what a recruiter would do with your resume after one pass. The number says where in the band you sit. Neither predicts interviews or offers.",
       "kind": "jsx-text",
-      "line": 149,
+      "line": 148,
       "file": "web/components/workspace/report/worklist/WorklistReport.tsx",
       "routes": [
         "/reports/[id]",
@@ -36639,7 +36574,7 @@
     {
       "text": "A recent employer recruiters know on sight moved this resume up one band. The lines under that name still need the work.",
       "kind": "jsx-text",
-      "line": 151,
+      "line": 150,
       "file": "web/components/workspace/report/worklist/WorklistReport.tsx",
       "routes": [
         "/reports/[id]",
@@ -41008,9 +40943,9 @@
       "table": "workspace"
     },
     {
-      "text": "These lines are written to screening software, not to a person. They may be set in white, so you might not see them in your file. Screening software reads them as plain text, so a recruiter sees them too, and they're the lines they remember.",
+      "text": "This is {SCREENER_WHAT[findings[0]…}. It may be set in white, where you won't see it; software still reads it as text, and a recruiter can see it too. Recruiters who find a line like this often stop reading there.",
       "kind": "return",
-      "line": 191,
+      "line": 208,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -41022,9 +40957,9 @@
       "table": "workspace"
     },
     {
-      "text": "{SCREENER_WHAT[kind]} It may be set in white, so you might not see it in your file. Screening software reads it as plain text, so a recruiter sees it too, and it's the line they remember.",
+      "text": "{what} Lines like these may be set in white, where you won't see them; software still reads them as text, and a recruiter can see them too. Recruiters who find one often stop reading there.",
       "kind": "return",
-      "line": 193,
+      "line": 211,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -41038,7 +40973,7 @@
     {
       "text": "Still nothing that needs work.",
       "kind": "assign",
-      "line": 233,
+      "line": 251,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -41052,7 +40987,7 @@
     {
       "text": "Both versions came back clean.",
       "kind": "assign",
-      "line": 234,
+      "line": 252,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -41066,7 +41001,7 @@
     {
       "text": "The same lines are on the list.",
       "kind": "assign",
-      "line": 236,
+      "line": 254,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -41080,7 +41015,7 @@
     {
       "text": "None of them came off the list this time. Let's start with the first one again.",
       "kind": "assign",
-      "line": 237,
+      "line": 255,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -41094,7 +41029,7 @@
     {
       "text": "Nothing in this version needs work now.",
       "kind": "assign",
-      "line": 240,
+      "line": 258,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -41108,7 +41043,7 @@
     {
       "text": "{count(gone.length, \"line …} off the list.",
       "kind": "assign",
-      "line": 242,
+      "line": 260,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -41122,7 +41057,7 @@
     {
       "text": "Up {delta} since last time. That's the right direction!",
       "kind": "const",
-      "line": 249,
+      "line": 267,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -41136,7 +41071,7 @@
     {
       "text": "Down {Math.abs(delta)} since last time.",
       "kind": "const",
-      "line": 249,
+      "line": 267,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",

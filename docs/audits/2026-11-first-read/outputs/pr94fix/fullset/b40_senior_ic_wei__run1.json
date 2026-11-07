@@ -1,0 +1,312 @@
+{
+  "case_id": "b40_senior_ic_wei",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Senior IC (bar persona).",
+  "resume_file": "../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/4-senior-ic-wei.txt",
+  "resume_sha256": "e95b41ee5391398ba259810d134ff4a7392766f8e7fa117ad93d5d19b8ed94a5",
+  "resume_words": 361,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T21:32:25.772Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6533,
+        "completion_tokens": 1492,
+        "total_tokens": 8025,
+        "cached_prompt_tokens": 5154,
+        "cache_write_prompt_tokens": 1376,
+        "reasoning_tokens": 539
+      },
+      "cost_usd": 0.0094407,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 17558
+    }
+  ],
+  "resume_prompt_sha256": "288eceb50a0848513f3205630fd7657627db9010f5f15a63cb442225501f834d",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 79,
+    "lifted_by_employer": false,
+    "verdict": "A staff payments engineer with substantial platform work, but a recruiter will want to know how big the remit was.",
+    "write_up": [
+      "You come through as a staff engineer who moved from cloud storage into payments infrastructure at Brightline. A recruiter could move this forward for a Staff Software Engineer role, with questions about how big the ledger team's remit is and what the redesign changed.",
+      "The fraud scoring pipeline is a strong model: it names the system, the tools, the payment events and the latency target it met. Your current role has similarly concrete work, including eliminating a class of duplicate-charge incidents, but the team lead line doesn't say how many people were involved.",
+      "Let's start with the ledger team, then add a measure of the workload behind the redesign. Your earlier reconciliation work also deserves a before-and-after measure if you have one."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 1",
+        "line": "- Technical lead for the ledger and settlement platform team",
+        "cannot_tell": "A recruiter can see what the team owns, but not how many people you lead technically. That helps them compare the remit with other staff roles.",
+        "example": "Technical lead for the ledger and settlement platform team of [number] people",
+        "question": "How many people are on the team you lead technically?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 2",
+        "line": "- Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "cannot_tell": "The architecture change is clear, but a recruiter can't tell how much work the ledger handles or what changed after the redesign.",
+        "example": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, with [workload measure]",
+        "question": "What workload measure can you share for the redesigned ledger?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 6",
+        "line": "- Partnered with product and finance on the roadmap for multi-currency settlement",
+        "cannot_tell": "The roadmap and partners are named, but your contribution to it isn't. A recruiter will want to know what you brought to that work.",
+        "example": "Partnered with product and finance on the roadmap for multi-currency settlement, contributing [your contribution]",
+        "question": "What did you contribute to the multi-currency settlement roadmap?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, line 1",
+        "line": "- Built the real-time fraud scoring pipeline (Flink, Kafka) processing payment events with p99 latency under 50ms",
+        "cannot_tell": "Keep this as a model. It pairs your ownership of the pipeline with a performance measure, so a recruiter can picture both the work and its demands.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, line 3",
+        "line": "- Reduced reconciliation break rate and manual ops effort",
+        "cannot_tell": "Both changes matter in payments, but a recruiter can't tell how much either moved.",
+        "example": "Reduced reconciliation break rate from [rate before] to [rate after] and manual ops effort by [amount]",
+        "question": "What were the changes in reconciliation break rate and manual ops effort?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Software Engineer",
+        "Senior Software Engineer"
+      ],
+      "why": "Your headline and current role both name Staff Software Engineer, and your recent work centers on payment systems and technical leadership.",
+      "level": "lead, technical lead for the ledger and settlement platform team",
+      "note": "Your strongest direction is distributed systems work in payments, with earlier object storage experience adding breadth. The ledger redesign and fraud pipeline give you concrete projects to discuss for staff engineering roles.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 79,
+    "lifted_by_employer": false,
+    "verdict": "A staff payments engineer with substantial platform work, but a recruiter will want to know how big the remit was.",
+    "write_up": [
+      "You come through as a staff engineer who moved from cloud storage into payments infrastructure at Brightline. A recruiter could move this forward for a Staff Software Engineer role, with questions about how big the ledger team's remit is and what the redesign changed.",
+      "The fraud scoring pipeline is a strong model: it names the system, the tools, the payment events and the latency target it met. Your current role has similarly concrete work, including eliminating a class of duplicate-charge incidents, but the team lead line doesn't say how many people were involved.",
+      "Let's start with the ledger team, then add a measure of the workload behind the redesign. Your earlier reconciliation work also deserves a before-and-after measure if you have one."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 1",
+        "line": "Technical lead for the ledger and settlement platform team",
+        "cannot_tell": "A recruiter can see what the team owns, but not how many people you lead technically. That helps them compare the remit with other staff roles.",
+        "example": "Technical lead for the ledger and settlement platform team of [number] people",
+        "question": "How many people are on the team you lead technically?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 2",
+        "line": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "cannot_tell": "The architecture change is clear, but a recruiter can't tell how much work the ledger handles or what changed after the redesign.",
+        "example": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, with [workload measure]",
+        "question": "What workload measure can you share for the redesigned ledger?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 6",
+        "line": "Partnered with product and finance on the roadmap for multi-currency settlement",
+        "cannot_tell": "The roadmap and partners are named, but your contribution to it isn't. A recruiter will want to know what you brought to that work.",
+        "example": "Partnered with product and finance on the roadmap for multi-currency settlement, contributing [your contribution]",
+        "question": "What did you contribute to the multi-currency settlement roadmap?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, line 1",
+        "line": "Built the real-time fraud scoring pipeline (Flink, Kafka) processing payment events with p99 latency under 50ms",
+        "cannot_tell": "Keep this as a model. It pairs your ownership of the pipeline with a performance measure, so a recruiter can picture both the work and its demands.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, line 3",
+        "line": "Reduced reconciliation break rate and manual ops effort",
+        "cannot_tell": "Both changes matter in payments, but a recruiter can't tell how much either moved.",
+        "example": "Reduced reconciliation break rate from [rate before] to [rate after] and manual ops effort by [amount]",
+        "question": "What were the changes in reconciliation break rate and manual ops effort?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Software Engineer",
+        "Senior Software Engineer"
+      ],
+      "why": "Your headline and current role both name Staff Software Engineer, and your recent work centers on payment systems and technical leadership.",
+      "level": "lead, technical lead for the ledger and settlement platform team",
+      "note": "Your strongest direction is distributed systems work in payments, with earlier object storage experience adding breadth. The ledger redesign and fraud pipeline give you concrete projects to discuss for staff engineering roles.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 79
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 79,
+    "lifted_by_employer": false,
+    "verdict": "A staff payments engineer with substantial platform work, but a recruiter will want to know how big the remit was.",
+    "write_up": [
+      "You come through as a staff engineer who moved from cloud storage into payments infrastructure at Brightline. A recruiter could move this forward for a Staff Software Engineer role, with questions about how big the ledger team's remit is and what the redesign changed.",
+      "The fraud scoring pipeline is a strong model: it names the system, the tools, the payment events and the latency target it met. Your current role has similarly concrete work, including eliminating a class of duplicate-charge incidents, but the team lead line doesn't say how many people were involved.",
+      "Let's start with the ledger team, then add a measure of the workload behind the redesign. Your earlier reconciliation work also deserves a before-and-after measure if you have one."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 1",
+        "line": "Technical lead for the ledger and settlement platform team",
+        "cannot_tell": "A recruiter can see what the team owns, but not how many people you lead technically. That helps them compare the remit with other staff roles.",
+        "example": "Technical lead for the ledger and settlement platform team of [number] people",
+        "question": "How many people are on the team you lead technically?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 2",
+        "line": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "cannot_tell": "The architecture change is clear, but a recruiter can't tell how much work the ledger handles or what changed after the redesign.",
+        "example": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, with [workload measure]",
+        "question": "What workload measure can you share for the redesigned ledger?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 6",
+        "line": "Partnered with product and finance on the roadmap for multi-currency settlement",
+        "cannot_tell": "The roadmap and partners are named, but your contribution to it isn't. A recruiter will want to know what you brought to that work.",
+        "example": "Partnered with product and finance on the roadmap for multi-currency settlement, contributing [your contribution]",
+        "question": "What did you contribute to the multi-currency settlement roadmap?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, line 1",
+        "line": "Built the real-time fraud scoring pipeline (Flink, Kafka) processing payment events with p99 latency under 50ms",
+        "cannot_tell": "Keep this as a model. It pairs your ownership of the pipeline with a performance measure, so a recruiter can picture both the work and its demands.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, line 3",
+        "line": "Reduced reconciliation break rate and manual ops effort",
+        "cannot_tell": "Both changes matter in payments, but a recruiter can't tell how much either moved.",
+        "example": "Reduced reconciliation break rate from [rate before] to [rate after] and manual ops effort by [amount]",
+        "question": "What were the changes in reconciliation break rate and manual ops effort?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Software Engineer",
+        "Senior Software Engineer"
+      ],
+      "why": "Your headline and current role both name Staff Software Engineer, and your recent work centers on payment systems and technical leadership.",
+      "level": "lead, technical lead for the ledger and settlement platform team",
+      "note": "Your strongest direction is distributed systems work in payments, with earlier object storage experience adding breadth. The ledger redesign and fraud pipeline give you concrete projects to discuss for staff engineering roles.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 79
+  },
+  "presentation": {
+    "score": 79,
+    "band": "Mostly clear",
+    "model_score": 79,
+    "lifted_by_employer": false,
+    "verdict": "A staff payments engineer with substantial platform work, but a recruiter will want to know how big the remit was.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 122,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 1",
+        "line": "Technical lead for the ledger and settlement platform team",
+        "blanks": 1,
+        "question": "How many people are on the team you lead technically?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 2",
+        "line": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "blanks": 1,
+        "question": "What workload measure can you share for the redesigned ledger?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 6",
+        "line": "Partnered with product and finance on the roadmap for multi-currency settlement",
+        "blanks": 1,
+        "question": "What did you contribute to the multi-currency settlement roadmap?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, line 1",
+        "line": "Built the real-time fraud scoring pipeline (Flink, Kafka) processing payment events with p99 latency under 50ms",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, line 3",
+        "line": "Reduced reconciliation break rate and manual ops effort",
+        "blanks": 3,
+        "question": "What were the changes in reconciliation break rate and manual ops effort?"
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "line": 4,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Staff Software Engineer",
+        "Senior Software Engineer"
+      ],
+      "why": "Your headline and current role both name Staff Software Engineer, and your recent work centers on payment systems and technical leadership.",
+      "level": "lead, technical lead for the ledger and settlement platform team",
+      "note": "Your strongest direction is distributed systems work in payments, with earlier object storage experience adding breadth. The ledger redesign and fraud pipeline give you concrete projects to discuss for staff engineering roles.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0094407,
+  "latency_ms": 17562
+}

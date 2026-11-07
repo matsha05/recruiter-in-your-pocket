@@ -1,0 +1,30 @@
+# b02_teacher, run 1
+Resume: ../2026-11-live-judgment/resumes/b_teacher.txt (202 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 288eceb5; severity check off
+Outcome: report; cost $0.0057; 11.5s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+An experienced elementary teacher whose classroom results and grade-level leadership are easy to see.
+
+## Write-up
+Your resume makes a strong case for elementary teaching: it connects your work in Title I schools with classroom growth, grade-level leadership and family programs. A recruiter can see both who you teach and what you've taken on beyond your classroom.
+
+The reading growth line is especially strong! It names the district assessment, gives the starting and ending measures, and shows the period over which growth happened. Your K-8 certification and English Language Learner endorsement are easy to find below your experience.
+
+I'd keep the classroom results and team leadership front and center, then add what you contributed to the behavior support committee. Your resume is unlikely to be what holds you back; the school's needs and how competitive the opening is will matter too.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] 4th Grade Teacher, reading growth
+   line: "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years"
+   can't tell: Keep this as a model. It gives a recruiter a concrete measure to hold onto without making them guess which assessment you mean.
+2. [line] 2nd Grade Teacher, positive behavior support committee
+   line: "Served on the school's positive behavior support committee"
+   can't tell: A recruiter can see you were on the committee, but not what you contributed to its work.
+   example: Served on the school's positive behavior support committee, contributing [committee contribution]
+   question: What did you contribute to the committee's work?
+
+## Fit
+Roles: ["4th Grade Teacher","2nd Grade Teacher"]
+Level: mid-level, classroom teacher and grade-level team lead
+Note: Your experience points toward elementary classroom roles, with additional strength in grade-level planning and English language learner instruction. Your Washington K-8 certificate and endorsement are relevant to that work.

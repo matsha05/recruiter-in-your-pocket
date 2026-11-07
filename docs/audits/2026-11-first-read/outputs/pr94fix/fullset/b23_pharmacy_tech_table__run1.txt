@@ -1,0 +1,31 @@
+# b23_pharmacy_tech_table, run 1
+Resume: ../2026-11-live-judgment/resumes/b_pharmacy_tech_table.txt (209 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 288eceb5; severity check off
+Outcome: report; cost $0.0076; 14.9s
+Case note: Tables rendered to tab-separated text.
+
+## Clear and specific (score 89; model wrote 89)
+## Verdict
+A certified pharmacy technician with hospital and retail experience, backed by concrete workload and results.
+
+## Write-up
+Your resume makes a strong case for pharmacy technician work! At Sutter Valley Medical Center, you name the sterile preparations, the nursing units you support, and the technicians you train. That gives a recruiter a much better picture than a list of pharmacy duties alone.
+
+The cabinet restocking line is a great model: it names the work, the six nursing units, and the change in weekly stockout reports. Your credentials are easy to find, and your move from pharmacy clerk to inpatient technician is easy to follow.
+
+The main edit is in the RiteCare prescription line: explain what you checked and who completed the final check. Beyond that, your resume isn't likely to be the thing holding you back; competition for a particular hospital pharmacy job still matters.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Pharmacy Technician II, cabinet restocking
+   line: "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024"
+   can't tell: Keep this as a model. A recruiter can see both the area you manage and the stockout figures without having to guess.
+2. [line] Pharmacy Technician, prescription filling
+   line: "Pharmacy Technician Filled and verified prescriptions for a store doing 350 scripts a day"
+   can't tell: The store's volume is useful, but 'verified' leaves the kind of check unclear. A recruiter needs to know your part in prescription checking and who completed the final check.
+   example: Filled and verified prescriptions for a store doing 350 scripts a day, checking [what you checked], with [who completed the final check] completing the final check
+   question: What did you check on prescriptions, and who completed the final check?
+
+## Fit
+Roles: ["Certified Pharmacy Technician (CPhT)","Pharmacy Technician II"]
+Level: mid-level, prepares sterile doses and trains new technicians
+Note: Your recent work points toward hospital pharmacy roles, with retail experience adding prescription and insurance work. The sterile compounding certification reinforces the work you describe at Sutter Valley Medical Center.

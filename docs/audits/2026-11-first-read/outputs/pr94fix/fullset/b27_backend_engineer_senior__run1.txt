@@ -1,0 +1,30 @@
+# b27_backend_engineer_senior, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_backend_engineer_senior_1.txt (190 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 288eceb5; severity check off
+Outcome: report; cost $0.0063; 12.3s
+
+## Clear and specific (score 90; model wrote 90)
+## Verdict
+A senior payments engineer whose resume connects substantial backend work to concrete results.
+
+## Write-up
+This is a strong payments resume! At Tidewater Commerce, you connect the services you built and the work you led to performance, reliability and audit results. A recruiter can see both your hands-on backend work and how you lead other engineers.
+
+The ledger line is a particularly good model: it names the service and shows how reconciliation breaks changed. The earlier billing work reinforces the same story with an invoicing API and a faster generation process.
+
+Your resume itself is unlikely to be the thing holding you back. The fit and competitiveness of the jobs you pursue will still matter. Before sending it, add what the Northwind dashboards let the billing team monitor.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Senior Software Engineer, Payments Platform, line 2
+   line: "Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10"
+   can't tell: Keep this line. It pairs the technical work with a before-and-after measure, so a recruiter can see why the service mattered.
+2. [line] Software Engineer, line 3
+   line: "Added observability with OpenTelemetry and Grafana dashboards for the billing team"
+   can't tell: The tools and the team are clear, but a recruiter can't see what the dashboards tracked. Naming that would show what the billing team could monitor.
+   example: Added observability with OpenTelemetry and Grafana dashboards for the billing team to monitor [what the dashboards tracked]
+   question: What did the dashboards let the billing team monitor?
+
+## Fit
+Roles: ["Senior Software Engineer, Payments Platform"]
+Level: senior, led a team of 5 engineers through the PCI DSS 4.0 audit
+Note: Your experience points toward senior backend work in payments and billing. It also shows technical leadership through the service migration, audit and mentoring.

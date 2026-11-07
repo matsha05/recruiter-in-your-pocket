@@ -1,0 +1,30 @@
+# b28_cybersecurity_analyst, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_cybersecurity_analyst_1.txt (154 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 288eceb5; severity check off
+Outcome: report; cost $0.0072; 14.4s
+
+## Clear and specific (score 89; model wrote 89)
+## Verdict
+A senior detection and response analyst with measurable results in a financial-services security role.
+
+## Write-up
+This is a strong security resume! At Capital Ridge Bank, you connect detection engineering and incident response to fewer false positives and faster containment. A recruiter can see both the work and why it matters.
+
+The Splunk detection-rules line is the model: it names the rules, the framework and the reduction in false-positive alerts. Your earlier work across 30 client environments and your GCIH certification round out the security operations story.
+
+The alert-enrichment line is worth one more detail about what the automation adds. Otherwise, your resume isn't likely to be the reason you don't get a call back. How competitive the job is will matter too.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Senior Security Analyst, line 1
+   line: "Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%"
+   can't tell: Keep this as your model. It gives a recruiter a concrete measure of the work and a result without making them guess what you built.
+2. [line] Senior Security Analyst, line 4
+   line: "Automated alert enrichment with Python and the Splunk SOAR platform"
+   can't tell: The tools and task are clear, but a recruiter can't see what information the automation adds to an alert or why analysts need it.
+   example: Automated alert enrichment with Python and the Splunk SOAR platform, adding [alert data] to alerts for [purpose]
+   question: What information does the automation add to alerts, and what is it used for?
+
+## Fit
+Roles: ["Senior Security Analyst, Detection and Response","Security Operations Analyst"]
+Level: senior, leads incident response and mentors 2 analysts
+Note: Your experience points toward detection engineering and incident response in financial services. The earlier managed-security role also shows work across multiple client environments.

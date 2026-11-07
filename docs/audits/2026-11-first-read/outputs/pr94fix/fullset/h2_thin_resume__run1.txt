@@ -1,0 +1,58 @@
+# h2_thin_resume, run 1
+Resume: ../2026-11-live-judgment/resumes/h2_thin_resume.txt (126 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 288eceb5; severity check off
+Outcome: report; cost $0.0102; 22.9s
+Case note: Student: one internship, coursework, a club.
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+A data analytics intern with relevant tools, but too little detail about the work behind them.
+
+## Write-up
+This is common on a first internship resume: you name the work, but leave a recruiter guessing about your part in it. At Great Lakes Credit Union, you worked on reporting, survey data and a marketing dashboard. I read your resume for Data Analytics Intern roles, but those details alone may not stand out in a pile.
+
+The survey data line is a useful starting point: it names the data and the tools you used. Your current treasurer role also shows ongoing responsibility alongside your degree. The internship lines need more of the actual work behind those labels.
+
+Let's start with the weekly reporting line, then give the dashboard and presentation the same treatment. Add what you worked on and what the team could use it for, where you know it. You don't need to invent results.
+
+## Cards (7; {"structure":1,"line":6}); severity off; added []
+1. [structure] Great Lakes Credit Union
+   line: "The resume doesn't say how large Great Lakes Credit Union is."
+   can't tell: A recruiter may not know the credit union. A short description of its membership could give your internship some context.
+   example: Great Lakes Credit Union, Ann Arbor, MI | [number] members
+   question: If you know it, how many members did the credit union serve during your internship?
+2. [line] Data Analytics Intern, line 1
+   line: "Assisted the analytics team with weekly reporting"
+   can't tell: Assisted leaves your part of the weekly reports open. A recruiter can't tell what the reports covered or what you contributed.
+   example: Assisted the analytics team with weekly reporting by [your contribution] on [report topic]
+   question: What did the weekly reports cover, and what part of them did you work on?
+3. [line] Data Analytics Intern, line 2
+   line: "Cleaned member survey data in Excel and SQL"
+   can't tell: The data and tools are named, which is a good start. What you cleaned and what the data was used for would show more of your work.
+   example: Cleaned member survey data in Excel and SQL by [cleaning steps] for [purpose]
+   question: What cleaning did you do, and what was the survey data used for?
+4. [line] Data Analytics Intern, line 3
+   line: "Built a dashboard in Tableau for the marketing team"
+   can't tell: Building the dashboard is clearly your work. What did the marketing team see in it or use it to do?
+   example: Built a dashboard in Tableau for the marketing team showing [metrics] for [purpose]
+   question: What did the dashboard show, and what was the marketing team using it for?
+5. [line] Data Analytics Intern, line 4
+   line: "Presented findings to the team at the end of the internship"
+   can't tell: A recruiter knows you presented, but not what you found. One finding would make the work concrete.
+   example: Presented findings on [topic] to the team at the end of the internship, including [finding]
+   question: What did you present, and what was one finding you shared?
+6. [line] Treasurer, Michigan Data Science Club, line 1
+   line: "Manage the club budget and reimbursements"
+   can't tell: You have responsibility for the club's money, but the amount and the expenses aren't clear. Those details would show what the role involves.
+   example: Manage the club budget of [amount] and reimbursements for [expenses]
+   question: What is the club budget, and what kinds of expenses do you reimburse?
+7. [line] Treasurer, Michigan Data Science Club, line 2
+   line: "Help organize monthly speaker events"
+   can't tell: The monthly events are concrete, but help could mean several things. Name your contribution to one event.
+   example: Help organize monthly speaker events, including [your contribution] to [event name]
+   question: What did you do to help organize a speaker event?
+
+## Fit
+Roles: ["Data Analytics Intern"]
+Level: entry level, one data analytics internship
+Note: Your coursework and tools point toward data analytics internships. The club treasurer role adds current responsibility alongside your studies.

@@ -1,0 +1,327 @@
+{
+  "case_id": "fr02b_marketing_skills_hubspot_posting",
+  "batch": "targeted",
+  "run": 1,
+  "note": "P2. The same resume against a posting that requires HubSpot. Expect the skills card to name HubSpot first.",
+  "resume_file": "resumes/fr02_marketing_coordinator_skills.txt",
+  "resume_sha256": "a56c9826825d780214c560c116e9272f32c8b774701907e99832ef6ec0b8e3fe",
+  "resume_words": 132,
+  "job_description_file": "resumes/posting_marketing_hubspot.txt",
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T21:27:26.325Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6021,
+        "completion_tokens": 1530,
+        "total_tokens": 7551,
+        "cached_prompt_tokens": 5271,
+        "cache_write_prompt_tokens": 747,
+        "reasoning_tokens": 512
+      },
+      "cost_usd": 0.0088503,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 18005
+    }
+  ],
+  "resume_prompt_sha256": "288eceb50a0848513f3205630fd7657627db9010f5f15a63cb442225501f834d",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 65,
+    "lifted_by_employer": false,
+    "verdict": "B2B marketing experience fits the track, but the resume doesn't yet show the hands-on operations work Tallgrass seeks.",
+    "write_up": [
+      "Your Marketing Coordinator work at Brightfield and earlier role at Keystone point toward B2B marketing. For Tallgrass, a recruiter can see relevant tools and campaign support, but can't tell how hands-on you've been with the systems behind them.",
+      "This is common on coordinator resumes: the work is listed, but your part in it gets left out. The monthly customer newsletter is your best model because it names the audience, deliverable and cadence. The current-role bullets still leave too many questions to stand out in a pile.",
+      "Let's start with Brightfield's newsletter and campaign reports. Add what you personally handled and which tools you used, where true. Then connect any hands-on HubSpot, Salesforce or GA4 work to the relevant jobs rather than relying on the skills list."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 1",
+        "line": "- Coordinated the monthly customer newsletter and product announcement emails",
+        "cannot_tell": "A recruiter can see what went out, but not which parts were yours. For Tallgrass, building and sending emails matters.",
+        "example": "Coordinated the monthly customer newsletter and product announcement emails, handling [your responsibilities] using [tool]",
+        "question": "What did you personally handle for these emails, and which tool did you use?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 2",
+        "line": "- Supported webinar planning with the product marketing team",
+        "cannot_tell": "Supported could mean several things. Tallgrass wants help from registration through follow-up, so name the parts you handled.",
+        "example": "Supported webinar planning with the product marketing team by handling [your responsibilities]",
+        "question": "What parts of webinar planning or follow-up did you personally handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 3",
+        "line": "- Managed the content calendar for LinkedIn and the company blog",
+        "cannot_tell": "The channels are clear, but the calendar work isn't. A recruiter can't tell what you coordinated or how you kept it on schedule.",
+        "example": "Managed the content calendar for LinkedIn and the company blog, coordinating [content responsibilities] and [scheduling responsibilities]",
+        "question": "What did you coordinate for the calendar, and how did you keep the work on schedule?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 4",
+        "line": "- Pulled weekly campaign reports for the marketing manager",
+        "cannot_tell": "Weekly reporting is relevant, but the tools and measures aren't named. Tallgrass asks for GA4 and HubSpot reporting, so this is a useful place to show any experience you have with them.",
+        "example": "Pulled weekly campaign reports for the marketing manager using [tool], reporting on [campaign measures]",
+        "question": "Which tools and campaign measures did you use for these reports?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Assistant, line 2",
+        "line": "- Helped prepare slide decks and one-pagers for the sales team",
+        "cannot_tell": "The deliverables are named, but helped doesn't say what you contributed. Give the recruiter a picture of your part in preparing them.",
+        "example": "Helped prepare slide decks and one-pagers for the sales team by handling [your contribution]",
+        "question": "What did you personally contribute to the decks and one-pagers?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Marketing Coordinator",
+        "Marketing Operations Coordinator"
+      ],
+      "why": "Your headline and current role name Marketing Coordinator, with B2B emails, webinars, content and reporting.",
+      "level": "mid-level, current coordinator role and earlier marketing assistant role",
+      "note": "Your B2B background, webinar support and listed tools connect to Tallgrass's work. Add the tasks you personally handled within those tools wherever you can substantiate them.",
+      "posting": {
+        "summary": "Tallgrass seeks a B2B marketing coordinator with hands-on marketing systems, campaign reporting and event support experience.",
+        "missing": [
+          "Hands-on HubSpot experience: workflows, lists, email and reporting",
+          "lead routing, campaign attribution and list hygiene",
+          "building simple reports"
+        ]
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 65,
+    "lifted_by_employer": false,
+    "verdict": "B2B marketing experience fits the track, but the resume doesn't yet show the hands-on operations work Tallgrass seeks.",
+    "write_up": [
+      "Your Marketing Coordinator work at Brightfield and earlier role at Keystone point toward B2B marketing. For Tallgrass, a recruiter can see relevant tools and campaign support, but can't tell how hands-on you've been with the systems behind them.",
+      "This is common on coordinator resumes: the work is listed, but your part in it gets left out. The monthly customer newsletter is your best model because it names the audience, deliverable and cadence. The current-role bullets still leave too many questions to stand out in a pile.",
+      "Let's start with Brightfield's newsletter and campaign reports. Add what you personally handled and which tools you used, where true. Then connect any hands-on HubSpot, Salesforce or GA4 work to the relevant jobs rather than relying on the skills list."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 1",
+        "line": "Coordinated the monthly customer newsletter and product announcement emails",
+        "cannot_tell": "A recruiter can see what went out, but not which parts were yours. For Tallgrass, building and sending emails matters.",
+        "example": "Coordinated the monthly customer newsletter and product announcement emails, handling [your responsibilities] using [tool]",
+        "question": "What did you personally handle for these emails, and which tool did you use?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 2",
+        "line": "Supported webinar planning with the product marketing team",
+        "cannot_tell": "Supported could mean several things. Tallgrass wants help from registration through follow-up, so name the parts you handled.",
+        "example": "Supported webinar planning with the product marketing team by handling [your responsibilities]",
+        "question": "What parts of webinar planning or follow-up did you personally handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 3",
+        "line": "Managed the content calendar for LinkedIn and the company blog",
+        "cannot_tell": "The channels are clear, but the calendar work isn't. A recruiter can't tell what you coordinated or how you kept it on schedule.",
+        "example": "Managed the content calendar for LinkedIn and the company blog, coordinating [content responsibilities] and [scheduling responsibilities]",
+        "question": "What did you coordinate for the calendar, and how did you keep the work on schedule?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 4",
+        "line": "Pulled weekly campaign reports for the marketing manager",
+        "cannot_tell": "Weekly reporting is relevant, but the tools and measures aren't named. Tallgrass asks for GA4 and HubSpot reporting, so this is a useful place to show any experience you have with them.",
+        "example": "Pulled weekly campaign reports for the marketing manager using [tool], reporting on [campaign measures]",
+        "question": "Which tools and campaign measures did you use for these reports?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Assistant, line 2",
+        "line": "Helped prepare slide decks and one-pagers for the sales team",
+        "cannot_tell": "The deliverables are named, but helped doesn't say what you contributed. Give the recruiter a picture of your part in preparing them.",
+        "example": "Helped prepare slide decks and one-pagers for the sales team by handling [your contribution]",
+        "question": "What did you personally contribute to the decks and one-pagers?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Marketing Coordinator",
+        "Marketing Operations Coordinator"
+      ],
+      "why": "Your headline and current role name Marketing Coordinator, with B2B emails, webinars, content and reporting.",
+      "level": "mid-level, current coordinator role and earlier marketing assistant role",
+      "note": "Your B2B background, webinar support and listed tools connect to Tallgrass's work. Add the tasks you personally handled within those tools wherever you can substantiate them.",
+      "posting": {
+        "summary": "Tallgrass seeks a B2B marketing coordinator with hands-on marketing systems, campaign reporting and event support experience.",
+        "missing": [
+          "Hands-on HubSpot experience: workflows, lists, email and reporting",
+          "lead routing, campaign attribution and list hygiene",
+          "building simple reports"
+        ]
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 65
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 65,
+    "lifted_by_employer": false,
+    "verdict": "B2B marketing experience fits the track, but the resume doesn't yet show the hands-on operations work Tallgrass seeks.",
+    "write_up": [
+      "Your Marketing Coordinator work at Brightfield and earlier role at Keystone point toward B2B marketing. For Tallgrass, a recruiter can see relevant tools and campaign support, but can't tell how hands-on you've been with the systems behind them.",
+      "This is common on coordinator resumes: the work is listed, but your part in it gets left out. The monthly customer newsletter is your best model because it names the audience, deliverable and cadence. The current-role bullets still leave too many questions to stand out in a pile.",
+      "Let's start with Brightfield's newsletter and campaign reports. Add what you personally handled and which tools you used, where true. Then connect any hands-on HubSpot, Salesforce or GA4 work to the relevant jobs rather than relying on the skills list."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 1",
+        "line": "Coordinated the monthly customer newsletter and product announcement emails",
+        "cannot_tell": "A recruiter can see what went out, but not which parts were yours. For Tallgrass, building and sending emails matters.",
+        "example": "Coordinated the monthly customer newsletter and product announcement emails, handling [your responsibilities] using [tool]",
+        "question": "What did you personally handle for these emails, and which tool did you use?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 2",
+        "line": "Supported webinar planning with the product marketing team",
+        "cannot_tell": "Supported could mean several things. Tallgrass wants help from registration through follow-up, so name the parts you handled.",
+        "example": "Supported webinar planning with the product marketing team by handling [your responsibilities]",
+        "question": "What parts of webinar planning or follow-up did you personally handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 3",
+        "line": "Managed the content calendar for LinkedIn and the company blog",
+        "cannot_tell": "The channels are clear, but the calendar work isn't. A recruiter can't tell what you coordinated or how you kept it on schedule.",
+        "example": "Managed the content calendar for LinkedIn and the company blog, coordinating [content responsibilities] and [scheduling responsibilities]",
+        "question": "What did you coordinate for the calendar, and how did you keep the work on schedule?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 4",
+        "line": "Pulled weekly campaign reports for the marketing manager",
+        "cannot_tell": "Weekly reporting is relevant, but the tools and measures aren't named. Tallgrass asks for GA4 and HubSpot reporting, so this is a useful place to show any experience you have with them.",
+        "example": "Pulled weekly campaign reports for the marketing manager using [tool], reporting on [campaign measures]",
+        "question": "Which tools and campaign measures did you use for these reports?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Assistant, line 2",
+        "line": "Helped prepare slide decks and one-pagers for the sales team",
+        "cannot_tell": "The deliverables are named, but helped doesn't say what you contributed. Give the recruiter a picture of your part in preparing them.",
+        "example": "Helped prepare slide decks and one-pagers for the sales team by handling [your contribution]",
+        "question": "What did you personally contribute to the decks and one-pagers?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Marketing Coordinator",
+        "Marketing Operations Coordinator"
+      ],
+      "why": "Your headline and current role name Marketing Coordinator, with B2B emails, webinars, content and reporting.",
+      "level": "mid-level, current coordinator role and earlier marketing assistant role",
+      "note": "Your B2B background, webinar support and listed tools connect to Tallgrass's work. Add the tasks you personally handled within those tools wherever you can substantiate them.",
+      "posting": {
+        "summary": "Tallgrass seeks a B2B marketing coordinator with hands-on marketing systems, campaign reporting and event support experience.",
+        "missing": [
+          "Hands-on HubSpot experience: workflows, lists, email and reporting",
+          "lead routing, campaign attribution and list hygiene",
+          "building simple reports"
+        ]
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 65
+  },
+  "presentation": {
+    "score": 65,
+    "band": "Needs more context",
+    "model_score": 65,
+    "lifted_by_employer": false,
+    "verdict": "B2B marketing experience fits the track, but the resume doesn't yet show the hands-on operations work Tallgrass seeks.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 126,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 1",
+        "line": "Coordinated the monthly customer newsletter and product announcement emails",
+        "blanks": 2,
+        "question": "What did you personally handle for these emails, and which tool did you use?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 2",
+        "line": "Supported webinar planning with the product marketing team",
+        "blanks": 1,
+        "question": "What parts of webinar planning or follow-up did you personally handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 3",
+        "line": "Managed the content calendar for LinkedIn and the company blog",
+        "blanks": 2,
+        "question": "What did you coordinate for the calendar, and how did you keep the work on schedule?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 4",
+        "line": "Pulled weekly campaign reports for the marketing manager",
+        "blanks": 2,
+        "question": "Which tools and campaign measures did you use for these reports?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Assistant, line 2",
+        "line": "Helped prepare slide decks and one-pagers for the sales team",
+        "blanks": 1,
+        "question": "What did you personally contribute to the decks and one-pagers?"
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "line": 5
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Marketing Coordinator",
+        "Marketing Operations Coordinator"
+      ],
+      "why": "Your headline and current role name Marketing Coordinator, with B2B emails, webinars, content and reporting.",
+      "level": "mid-level, current coordinator role and earlier marketing assistant role",
+      "note": "Your B2B background, webinar support and listed tools connect to Tallgrass's work. Add the tasks you personally handled within those tools wherever you can substantiate them.",
+      "posting": {
+        "summary": "Tallgrass seeks a B2B marketing coordinator with hands-on marketing systems, campaign reporting and event support experience.",
+        "missing": [
+          "Hands-on HubSpot experience: workflows, lists, email and reporting",
+          "lead routing, campaign attribution and list hygiene",
+          "building simple reports"
+        ]
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0088503,
+  "latency_ms": 18146
+}
