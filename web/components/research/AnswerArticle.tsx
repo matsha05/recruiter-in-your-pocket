@@ -5,7 +5,7 @@ import Footer from "@/components/landing/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Button } from "@/components/ui/button";
 import { PenNote } from "@/components/research/figures/FigureKit";
-import { ResearchAnswerRow } from "@/components/research/ResearchHub";
+import { ResearchAnswerRow } from "@/components/research/ResearchAnswerRow";
 import { hubEntry, hubEntryForHref, pillarForHref } from "@/components/research/ResearchHubData";
 import { publicPage } from "@/lib/seo/public-pages";
 import { SECTION_NAMES } from "@/lib/seo/site";
@@ -105,7 +105,7 @@ export function AnswerArticle({ path, answer, answerSource, painNote, visualizat
                         </section>
                     ) : null}
 
-                    <article className={`prose riyp-prose max-w-reading text-prose prose-headings:font-display prose-headings:text-foreground prose-h2:mb-5 prose-h2:mt-14 prose-h2:text-title prose-h3:mt-10 prose-h3:text-heading prose-p:text-prose prose-p:text-muted-foreground prose-li:my-1.5 prose-li:text-prose prose-li:text-muted-foreground prose-strong:font-semibold prose-strong:text-foreground ${styles.body}`}>
+                    <article className={`prose riyp-prose max-w-reading text-prose prose-headings:font-display prose-headings:text-foreground prose-h2:mb-5 prose-h2:mt-14 prose-h2:text-title prose-h3:mt-10 prose-h3:text-heading prose-p:text-prose prose-p:text-foreground prose-li:my-1.5 prose-li:text-prose prose-li:text-foreground prose-strong:font-semibold prose-strong:text-foreground ${styles.body}`}>
                         {children}
                     </article>
 
@@ -133,7 +133,7 @@ export function AnswerArticle({ path, answer, answerSource, painNote, visualizat
                         <section className={styles.section} aria-labelledby="next-questions-title">
                             <h2 id="next-questions-title" className={styles.sectionTitle}>Next questions</h2>
                             <div className={styles.next}>
-                                {next.map((article) => <ResearchAnswerRow key={article.id} article={article} size="list" heading="h3" />)}
+                                {next.map((article) => <ResearchAnswerRow key={article.id} article={article} heading="h3" />)}
                             </div>
                         </section>
                     ) : null}

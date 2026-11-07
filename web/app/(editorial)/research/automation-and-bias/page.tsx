@@ -29,7 +29,7 @@ export default function AutomationBiasPage() {
                 linkLabel: "Read the report",
             }}
             painNote="You can do everything right and still never reach a person."
-            nextQuestions={["ats-myths", "human-vs-algorithm", "hiring-discrimination-meta-analysis"]}
+            nextQuestions={["ats-myths", "human-vs-algorithm", "linkedin-visibility"]}
             visualization={
                 <>
                     <h2 className="research-h2">Four stages where tools can act</h2>
@@ -54,20 +54,6 @@ export default function AutomationBiasPage() {
                     publisher: "Greenhouse Support",
                     year: "2026",
                     href: "https://support.greenhouse.io/hc/en-us/articles/200989175-Unsuccessful-resume-parse"
-                },
-                {
-                    id: "source-3",
-                    title: "Gender, Race, and Intersectional Bias in Resume Screening via Language Model Retrieval",
-                    publisher: "Wilson & Caliskan. AAAI/ACM Conference on AI, Ethics, and Society; corrected on arXiv in 2026",
-                    year: "2024",
-                    href: "https://arxiv.org/abs/2407.20371"
-                },
-                {
-                    id: "source-4",
-                    title: "Measuring gender and racial biases in large language models: Intersectional evidence from automated resume evaluation",
-                    publisher: "An, Huang, Lin & Tai. PNAS Nexus 4(3)",
-                    year: "2025",
-                    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11937954/"
                 }
             ]}
         >
@@ -94,23 +80,9 @@ export default function AutomationBiasPage() {
                 <Citation id="source-1">1</Citation>
             </p>
 
-            <h2 className="research-h2">What newer studies found</h2>
-            <p className="research-body mb-6">
-                Newer studies test the AI models that screening tools can be built on. In a 2024 simulation, text-matching models ranked about 500 resumes against job descriptions with names swapped in. Resumes with white names were significantly preferred in 85% of tests and those with Black names in 9%. In 2026 the authors corrected their separate gender results after finding a bug in their code; the race results stand.
-                <Citation id="source-3">3</Citation>
-            </p>
-            <p className="research-body mb-6">
-                A 2025 study asked five large language models to score about 361,000 resumes with randomized names. They gave women higher scores and Black men lower ones, gaps the authors estimate could shift hiring odds by about 1 to 3 percentage points at some cutoffs.
-                <Citation id="source-4">4</Citation>
-            </p>
-            <p className="research-body mb-6">
-                The gaps have a human baseline. In US field experiments with human screeners, <ResearchLink to="hiring-discrimination-meta-analysis">white applicants got 36% more callbacks than equally qualified Black applicants</ResearchLink>, with no decline from 1989 to 2015.
-            </p>
-
             <h2 className="research-h2">Limitations</h2>
             <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
                 <li>The Upturn report is from 2018. It describes where risk can enter, not how large the effect is.</li>
-                <li>The newer studies test AI models in simulations. They aren&apos;t audits of a real employer&apos;s hiring tools.</li>
                 <li>Hiring tools have changed since then, and most vendors don&apos;t publish how theirs work.</li>
             </ul>
         </AnswerArticle>

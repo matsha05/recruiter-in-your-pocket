@@ -148,22 +148,6 @@
       "where": "web/app/(editorial)/research/gaps-and-pivots/page.tsx:156"
     },
     {
-      "text": "Is anything on the page raising avoidable doubt?",
-      "moment": "research",
-      "tics": [
-        "coined_word"
-      ],
-      "where": "web/app/(editorial)/research/hiring-discrimination-meta-analysis/page.tsx:108"
-    },
-    {
-      "text": "No resume report can tell you why you were turned down, or whether bias played a part. The report cards the lines on the page a recruiter trips on. Fixing them won&apos;t close a gap that lives in the hiring process itself.",
-      "moment": "research",
-      "tics": [
-        "coined_word"
-      ],
-      "where": "web/app/(editorial)/research/hiring-discrimination-meta-analysis/page.tsx:109"
-    },
-    {
       "text": "Say what changed, how you measured it, and what you did to get there",
       "moment": "research",
       "tics": [

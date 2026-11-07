@@ -15,9 +15,9 @@ Design intent:
 ## 1. Surface Types
 
 ### Research Hub (Index)
-- Purpose: show the strongest findings, explain the hiring system, and route readers into the underlying sources.
-- Form: one decisive opening, an evidence diagram, visual findings, myth corrections, then the library.
-- Required: every featured claim must link directly to its primary study or current platform documentation.
+- Purpose: answer the questions people ask, fast, and route readers into the underlying sources. It is a reference page, not a landing page (Nov 6, 2026).
+- Form: an opening that says what the page is, three findings drawn from their articles' own figures, then the index: search, plain topics, and one row per question with the short answer and what it rests on.
+- Required: every finding and every row names its source and sample; every featured claim links directly to its primary study or current platform documentation.
 - Not allowed: evidence-strength badges, apology labels, card grids, or a long column of undifferentiated prose.
 
 ### Research Articles (Evidence records)
@@ -140,10 +140,10 @@ Citation content and source quality follow `docs/source-quality.md`. Figure stru
 ## 7. Page Anatomy
 
 ### Research Hub
-- Human opening with a clear point of view
-- First-read system diagram
-- Three to five findings strong enough to change the product
-- Direct source and sample details beside each finding
+- An opening that says what the page is and how many questions it answers
+- Three findings, each drawn from its article's own figure data
+- Direct source and sample details beside each finding and on every index row
+- The index: search, topic jump links, one row per question
 - Corrections to common resume folklore
 - Topic library
 - Product translation

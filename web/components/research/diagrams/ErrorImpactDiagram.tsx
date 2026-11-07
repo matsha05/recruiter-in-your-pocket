@@ -6,7 +6,7 @@ import { Figure, PenNote, useSeen } from "@/components/research/figures/FigureKi
 
 // Sterkens et al. (2023), Table 4: change in a 0–10 interview-likelihood rating versus the same resume without errors.
 // The five-error loss is the figure's one highlight; the two-error loss stays in quiet ink.
-const rows = [
+export const ERROR_IMPACT = [
     { label: "Two errors", lost: 0.73, highlight: false },
     { label: "Five errors", lost: 1.85, highlight: true },
 ];
@@ -59,7 +59,7 @@ export function ErrorImpactDiagram({ figureNumber = 1 }: { figureNumber?: number
                 <div ref={ref} className="grid gap-7 px-5 py-7 md:grid-cols-[minmax(0,1fr)_minmax(0,17rem)] md:px-7">
                     <div className="grid content-start gap-6">
                         <CircledLine />
-                        {rows.map((row) => (
+                        {ERROR_IMPACT.map((row) => (
                             <div key={row.label} className="grid gap-2">
                                 <div className="flex items-baseline justify-between gap-3">
                                     <p className="text-sm font-semibold text-foreground">{row.label}</p>

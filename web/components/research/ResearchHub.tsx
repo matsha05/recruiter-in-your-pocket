@@ -2,61 +2,48 @@ import Link from "next/link";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import Footer from "@/components/landing/Footer";
 import { Button } from "@/components/ui/button";
-import { categories, featuredArticles, type ResearchArticle } from "@/components/research/ResearchHubData";
+import { HubFindings } from "@/components/research/HubFindings";
+import { ResearchIndex } from "@/components/research/ResearchIndex";
+import { indexedAnswers } from "@/components/research/ResearchHubData";
 import styles from "./ResearchHub.module.css";
 
-/** A question, its one-line answer, and the way in. Articles reuse it for their next questions. */
-export function ResearchAnswerRow({ article, size, heading }: { article: ResearchArticle; size: "lead" | "list"; heading?: "h2" | "h3" | "h4" }) {
-    const Heading = heading ?? (size === "lead" ? "h2" : "h4");
-    return (
-        <article className={size === "lead" ? styles.lead : styles.row}>
-            {/* The question is the link; its hit area stretches over the whole row. */}
-            <Heading className={styles.question}>
-                <Link href={article.href} className={styles.link}>{article.question}</Link>
-            </Heading>
-            <p className={styles.answer}>{article.answer}</p>
-            <span className={styles.read} aria-hidden="true">
-                {article.action ?? "Read"} <ArrowRight weight="bold" data-affordance />
-            </span>
-        </article>
-    );
-}
+export { ResearchAnswerRow } from "@/components/research/ResearchAnswerRow";
+
+const COUNT_WORDS: Record<number, string> = { 14: "Fourteen", 15: "Fifteen", 16: "Sixteen", 17: "Seventeen", 18: "Eighteen", 19: "Nineteen", 20: "Twenty" };
 
 /**
- * The questions people ask about getting hired, each answered in one line from
- * the research it links to. The most-asked lead; every other article follows by topic.
+ * The research hub (rebuilt Nov 6, 2026, Matt: "people would go there looking for information mostly"): a
+ * reference page. Three findings drawn from their articles' own numbers, then an index where every row is the
+ * question, the short answer and what it rests on, with search and four plain topics.
  */
 export default function ResearchHub() {
+    const count = indexedAnswers.length;
     return (
         <div className={styles.page} data-visual-anchor="research-hub">
             <div className={styles.inner}>
-                <h1 className={styles.title}>The questions you&rsquo;re asking at 1&nbsp;a.m.</h1>
+                <header className={styles.opening}>
+                    <h1 className={styles.title}>What the research says about getting hired.</h1>
+                    <p className={styles.deck}>
+                        {COUNT_WORDS[count] ?? count} questions job seekers ask, each answered from a named study or the platform&rsquo;s own documentation.
+                        Open one for what it found, how it was done and what it can&rsquo;t tell you.
+                    </p>
+                </header>
 
-                <section className={styles.leads} aria-label="The questions people ask most">
-                    {featuredArticles.map((article) => <ResearchAnswerRow key={article.id} article={article} size="lead" />)}
-                </section>
+                <ResearchIndex>
+                    <HubFindings />
+                </ResearchIndex>
 
-                <section className={styles.library} aria-labelledby="research-library-title">
-                    <h2 id="research-library-title" className={styles.libraryTitle}>Everything else we&rsquo;ve looked into.</h2>
-                    {categories.map((category) => {
-                        const rest = category.articles.filter((article) => !article.featured);
-                        if (rest.length === 0) return null;
-                        return (
-                            <section key={category.id} className={styles.group} aria-labelledby={`research-${category.id}`}>
-                                <h3 id={`research-${category.id}`} className={styles.groupTitle}>{category.title}</h3>
-                                <div>{rest.map((article) => <ResearchAnswerRow key={article.id} article={article} size="list" />)}</div>
-                                {category.id === "negotiation" ? (
-                                    <p className="mt-5 text-sm text-muted-foreground">
-                                        The guides and the offer calculator live under <Link href="/resources" className="focus-ring riyp-link-quiet">After the offer</Link>.
-                                    </p>
-                                ) : null}
-                            </section>
-                        );
-                    })}
-                </section>
+                <p className={styles.after}>
+                    Got the offer? The negotiation guides and the offer calculator are under <Link href="/resources" className="riyp-link">After the offer</Link>.
+                </p>
+                <p className={styles.method}>
+                    Every answer stays inside what its source found, and every page says what its study can&rsquo;t tell you.
+                    {" "}<Link href="/methodology#how-we-write-research" className="riyp-link-quiet focus-ring">How we write research</Link>
+                    {" "}and <Link href="/methodology" className="riyp-link-quiet focus-ring">how the report works</Link>.
+                </p>
 
                 <section className={styles.close} aria-labelledby="research-close-title">
-                    <h2 id="research-close-title" className={styles.closeTitle}>What would they think of yours?</h2>
+                    <h2 id="research-close-title" className={styles.closeTitle}>Want this kind of read on your own resume?</h2>
                     <Button asChild size="lg" className="flex-none">
                         <Link href="/workspace" data-analytics-cta="research_report">
                             Get your free report <ArrowRight weight="bold" aria-hidden="true" />

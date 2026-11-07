@@ -8,17 +8,17 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 
 | Measure | Count |
 | --- | --- |
-| Files scanned | 415 |
-| Files with copy | 250 |
-| Strings | 3005 |
-| Unique strings | 2520 |
+| Files scanned | 418 |
+| Files with copy | 251 |
+| Strings | 2986 |
+| Unique strings | 2501 |
 | Routes with copy | 112 |
 
 ## By moment
 
 | Moment | Strings |
 | --- | --- |
-| research | 965 |
+| research | 946 |
 | account | 442 |
 | marketing | 416 |
 | report | 311 |
@@ -39,9 +39,9 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 
 | Table | Strings | Routes |
 | --- | --- | --- |
-| [research](./research.md) | 654 | `/research`, `/research/ats-myths`, `/research/automation-and-bias`, `/research/career-breaks`, `/research/gaps-and-pivots`, `/research/hiring-discrimination-meta-analysis` and 13 more |
-| [workspace](./workspace.md) | 527 | `/api/export-pdf`, `/api/resume-feedback`, `/api/resume-feedback-stream`, `/api/revise-line`, `/auth`, `/extension` and 5 more |
-| [shared](./shared.md) | 423 | `/`, `/api/auth/send-code`, `/api/billing/confirm`, `/api/billing/restore`, `/api/checkout`, `/api/export-pdf` and 87 more |
+| [research](./research.md) | 642 | `/research`, `/research/ats-myths`, `/research/automation-and-bias`, `/research/career-breaks`, `/research/gaps-and-pivots`, `/research/how-recruiters-read` and 12 more |
+| [workspace](./workspace.md) | 525 | `/api/export-pdf`, `/api/resume-feedback`, `/api/resume-feedback-stream`, `/api/revise-line`, `/auth`, `/extension` and 4 more |
+| [shared](./shared.md) | 418 | `/`, `/api/auth/send-code`, `/api/billing/confirm`, `/api/billing/restore`, `/api/checkout`, `/api/export-pdf` and 87 more |
 | [api](./api.md) | 282 | `/api/account/delete`, `/api/account/export`, `/api/analytics`, `/api/auth/send-code`, `/api/auth/sign-out`, `/api/auth/verify-code` and 27 more |
 | [guides](./guides.md) | 264 | `/guides`, `/guides/offer-negotiation`, `/guides/tech-offer-negotiation`, `/guides/tools/comp-calculator`, `/resources`, `/resources/offer-negotiation` and 2 more |
 | [extension](./extension.md) | 130 | `/extension`, `extension` |

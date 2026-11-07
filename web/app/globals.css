@@ -638,11 +638,12 @@
   }
 
   .research-h2 {
-    font: var(--type-heading);
-    letter-spacing: var(--tracking-heading);
+    font: var(--type-title);
+    letter-spacing: var(--tracking-title);
     color: hsl(var(--foreground));
-    margin-top: 2rem;
+    margin-top: 2.5rem;
     margin-bottom: 0.75rem;
+    text-wrap: balance;
   }
 
   /* Research prose stays on the reading rail (max-w-reading, 52ch) even inside full-width figure sections;
