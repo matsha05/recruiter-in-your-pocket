@@ -20,7 +20,7 @@ export default function LinkedInVisibilityPage() {
             path={PATH}
             answer={
                 <>
-                    Recruiter search runs on titles, skills, and the words in your profile. LinkedIn says its Skills filter uses the skills you list plus skill evidence from your headline, titles, summary, experience descriptions and, in some cases, a shared resume.
+                    They search titles, skills and the words in your profile. LinkedIn&rsquo;s Skills filter uses the skills you list and those in your headline, titles and experience.
                     It doesn&rsquo;t publish how it ranks the results.
                 </>
             }
@@ -34,7 +34,7 @@ export default function LinkedInVisibilityPage() {
                 <>
                     <h2 className="research-h2">What affects LinkedIn visibility</h2>
                     <p className="research-body mb-6">
-                        Recruiters can search for titles and skills. Use language that accurately describes your experience so your profile can match those searches.
+                        LinkedIn Recruiter&apos;s filters include job title, skills, company, location, seniority, and years of experience.
                         <Citation id="source-1">1</Citation>
                         <Citation id="source-2">2</Citation>
                     </p>
@@ -58,13 +58,6 @@ export default function LinkedInVisibilityPage() {
                 }
             ]}
         >
-            <h2 className="research-h2">Start with the fields recruiters can actually search</h2>
-            <p className="research-body mb-6">
-                LinkedIn Recruiter includes filters for job title, skills, company, location, seniority, years of experience, and other criteria. Its Skills filter can use skills you list directly and skills inferred from profile text, including your headline, titles, summary, and experience descriptions.
-                <Citation id="source-1">1</Citation>
-                <Citation id="source-2">2</Citation>
-            </p>
-
             <h2 className="research-h2">Where skill evidence can come from</h2>
             <div className="grid sm:grid-cols-2 gap-4 not-prose">
                 <ArticleInsight
@@ -137,10 +130,6 @@ export default function LinkedInVisibilityPage() {
                 <li className="flex gap-2">
                     <span className="text-muted-foreground/50">•</span>
                     LinkedIn does not publicly disclose exact ranking weights or its complete search-scoring logic.
-                </li>
-                <li className="flex gap-2">
-                    <span className="text-muted-foreground/50">•</span>
-                    LinkedIn&apos;s documentation describes its own products. It is not independent research on hiring outcomes.
                 </li>
                 <li className="flex gap-2">
                     <span className="text-muted-foreground/50">•</span>

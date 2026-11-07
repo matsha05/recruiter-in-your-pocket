@@ -21,7 +21,7 @@ export default function ReferralAdvantagePage() {
             path={PATH}
             answer={
                 <>
-                    A lot, at every stage. Across more than 38 million applications in one recruiting-software company&rsquo;s data, 40% of referred applications reached an interview.
+                    A lot, at every stage. Across 38 million applications in one recruiting-software vendor&rsquo;s data, 40% of referred applications reached an interview.
                     Of applications sent in cold, 3% did.
                 </>
             }
@@ -143,7 +143,6 @@ export default function ReferralAdvantagePage() {
 
             <h2 className="research-h2">Limitations</h2>
             <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
-                <li>The New York Fed study covers one financial services company. The nine-firm study covers call centers, trucking, and high tech.</li>
                 <li>Ashby&apos;s figures are vendor data from companies that use its software, which the report doesn&apos;t describe. They show what happened, not what caused it: people who get referred may differ in other ways.</li>
                 <li>The field experiments ran on an online job site, not in corporate hiring.</li>
             </ul>

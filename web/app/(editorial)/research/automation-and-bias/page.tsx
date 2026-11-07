@@ -19,8 +19,8 @@ export default function AutomationBiasPage() {
             path={PATH}
             answer={
                 <>
-                    Earlier than you&rsquo;d think: which job ads you see, whether you&rsquo;re eligible, and how you reach a person.
-                    One review of hiring tools found they rarely make the final decision but often automate rejections along the way.
+                    Earlier than you&rsquo;d think. Which job ads you see, whether you&rsquo;re eligible, and how you reach a person.
+                    One review found hiring tools rarely make the final decision but often automate rejections along the way.
                 </>
             }
             answerSource={{
@@ -59,7 +59,7 @@ export default function AutomationBiasPage() {
         >
             <h2 className="research-h2">One hiring process, several decision points</h2>
             <p className="research-body mb-6">
-                The Upturn report follows four stages of hiring: sourcing (including job ads), screening, interviewing, and selection. Its authors found that tools rarely make the final hiring decision but often automate rejections along the way. Someone who never sees a job ad may never learn about the opportunity. When a person does decide, software still has a say: in one experiment, <ResearchLink to="human-vs-algorithm">an algorithm&rsquo;s recommendation swayed recruiters who said they trusted it less than a human expert</ResearchLink>.
+                The Upturn report follows four stages of hiring: sourcing (including job ads), screening, interviewing, and selection. Someone who never sees a job ad may never learn about the opportunity, and the people a search leaves out may find another route to the employer, but the first decision has already narrowed it. When a person does decide, software still has a say: in one experiment, <ResearchLink to="human-vs-algorithm">an algorithm&rsquo;s recommendation swayed recruiters who said they trusted it less than a human expert</ResearchLink>.
                 <Citation id="source-1">1</Citation>
             </p>
             <p className="research-body mb-6">
@@ -73,12 +73,6 @@ export default function AutomationBiasPage() {
             <ArticleBridge question="What can you control?">
                 Your report reads the resume you submit and flags what&apos;s missing or unclear. It can&apos;t see an employer&apos;s job ads or screening tools, and it doesn&apos;t guess at their settings.
             </ArticleBridge>
-
-            <h2 className="research-h2">When the system changes who gets seen</h2>
-            <p className="research-body mb-6">
-                A system that decides who sees a job ad or appears in a search can change who receives attention. Candidates left out may still find another route to the employer, but the initial decision can limit their opportunity.
-                <Citation id="source-1">1</Citation>
-            </p>
 
             <h2 className="research-h2">Limitations</h2>
             <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">

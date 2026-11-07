@@ -1,5 +1,5 @@
 import { pageMetadata } from "@/lib/seo/metadata";
-import { ArticleInsight, Citation } from "@/components/research/ResearchArticle";
+import { Citation } from "@/components/research/ResearchArticle";
 import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
 import { ResearchLink } from "@/components/research/ResearchLink";
 import Link from "next/link";
@@ -25,7 +25,7 @@ export default function WritingQualityHireProbabilityPage() {
             path={PATH}
             answer={
                 <>
-                    It helped in one big experiment. New freelancers whose profile text was checked by a grammar tool were hired 8% more often in their first 28 days: 3.3% against 3.1%.
+                    It helped in one big experiment. New freelancers whose profile text went through a grammar tool were hired 3.3% of the time, against 3.1%.
                     Only the writing changed, not anyone&rsquo;s experience.
                 </>
             }
@@ -39,7 +39,7 @@ export default function WritingQualityHireProbabilityPage() {
                 <>
                     <h2 className="research-h2">What changed, and what did not</h2>
                     <p className="research-body mb-6">
-                        The tool changed the writing, not anyone&apos;s experience. The researchers&apos; model offers an explanation: clearer writing can help employers recognize ability that was already there.
+                        Clearer writing helped employers recognize ability that was already there.
                         <Citation id="source-1">1</Citation>
                     </p>
                     <SignalClarityDiagram />
@@ -75,30 +75,9 @@ export default function WritingQualityHireProbabilityPage() {
                 <Citation id="source-1">1</Citation>
             </p>
 
-            <h2 className="research-h2">What the tool helped employers see</h2>
+            <h2 className="research-h2">What to do with it</h2>
             <p className="research-body mb-6">
-                The researchers think clearer writing helped employers see ability that was already there. That&apos;s their best explanation, not something they measured directly.
-                <Citation id="source-1">1</Citation>
-            </p>
-
-            <div className="grid sm:grid-cols-2 gap-4 not-prose my-8">
-                <ArticleInsight
-                    title="Relevant experience is easier to understand"
-                    desc={
-                        <>
-                            Better writing can help an employer recognize ability that the profile was obscuring.
-                            <Citation id="source-1">1</Citation>
-                            {" "}On a full resume that ability lives in Experience, <ResearchLink to="how-recruiters-read">the section where longer looks went with moving a resume forward</ResearchLink>.
-                        </>
-                    }
-                />
-                <ArticleInsight
-                    title="Clearer writing still needs accurate facts"
-                    desc="Our advice: use wording that explains your actual experience. Don't add an achievement just because it makes a sentence sound stronger."
-                />
-            </div>
-            <p className="research-body mb-6">
-                <strong>Our advice:</strong> start with the most useful detail, <ResearchLink to="quantifying-impact">what changed, how you measured it, and what you did to get there</ResearchLink>, and cut phrases that repeat the role title or leave your responsibility unclear.
+                <strong>Our advice:</strong> use wording that explains your actual experience. Start with the most useful detail, <ResearchLink to="quantifying-impact">what changed, how you measured it, and what you did to get there</ResearchLink>, and cut phrases that repeat the role title or leave your responsibility unclear. On a full resume that ability lives in Experience, <ResearchLink to="how-recruiters-read">the section where longer looks went with moving a resume forward</ResearchLink>.
             </p>
 
             <ArticleBridge question="Which line buries what you did?">

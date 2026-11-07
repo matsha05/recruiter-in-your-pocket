@@ -1,6 +1,6 @@
 {
   "note": "Strings the copy lint's pattern checks flag but the gate doesn't block yet: known debt, to be worked down. Regenerate only to remove fixed entries or to keep a flagged string on purpose, and say why in the PR (docs/promptops/shipping-gate.md, Copy).",
-  "updated": "2026-11-06",
+  "updated": "2026-11-07",
   "entries": [
     {
       "text": "The extension reloaded. Refresh the page.",
@@ -108,20 +108,12 @@
       "where": "web/app/(editorial)/methodology/page.tsx:87"
     },
     {
-      "text": "sells, so export the PDF and check that its text can be selected.",
-      "moment": "research",
-      "tics": [
-        "tricolon"
-      ],
-      "where": "web/app/(editorial)/research/ats-myths/page.tsx:121"
-    },
-    {
       "text": "which job ads you see, whether you’re eligible, and how you reach a person",
       "moment": "research",
       "tics": [
         "tricolon"
       ],
-      "where": "web/app/(editorial)/research/ats-myths/page.tsx:138"
+      "where": "web/app/(editorial)/research/ats-myths/page.tsx:110"
     },
     {
       "text": "Your report is a recruiter&apos;s read of the page, not an ATS score. It works from the text we pull from your file, so it can&apos;t tell you how a particular employer&apos;s software or filters will treat it.",
@@ -129,7 +121,15 @@
       "tics": [
         "coined_word"
       ],
-      "where": "web/app/(editorial)/research/ats-myths/page.tsx:153"
+      "where": "web/app/(editorial)/research/ats-myths/page.tsx:125"
+    },
+    {
+      "text": "sells, so export the PDF and check that its text can be selected.",
+      "moment": "research",
+      "tics": [
+        "tricolon"
+      ],
+      "where": "web/app/(editorial)/research/ats-myths/page.tsx:93"
     },
     {
       "text": "every gap, pivot, or short stint raises a question. Answer it on the page before the reader answers it for you.",
@@ -177,7 +177,7 @@
       "tics": [
         "coined_word"
       ],
-      "where": "web/app/(editorial)/research/human-vs-algorithm/page.tsx:100"
+      "where": "web/app/(editorial)/research/human-vs-algorithm/page.tsx:75"
     },
     {
       "text": "Your report reads your resume, not your LinkedIn profile. It cards each line a recruiter trips on, in the order they hit it, and asks for what&apos;s missing instead of inventing it. Fix the resume, then carry the same plain language over to your profile.",
@@ -185,7 +185,7 @@
       "tics": [
         "coined_word"
       ],
-      "where": "web/app/(editorial)/research/linkedin-visibility/page.tsx:172"
+      "where": "web/app/(editorial)/research/linkedin-visibility/page.tsx:161"
     },
     {
       "text": "Resume and hiring research: the questions job seekers ask",
@@ -233,7 +233,7 @@
       "tics": [
         "coined_word"
       ],
-      "where": "web/app/(editorial)/research/resume-length-myths/page.tsx:74"
+      "where": "web/app/(editorial)/research/resume-length-myths/page.tsx:75"
     },
     {
       "text": "says what changed, how you measured it, and what you did to get there",
@@ -241,15 +241,7 @@
       "tics": [
         "tricolon"
       ],
-      "where": "web/app/(editorial)/research/resume-length-myths/page.tsx:74"
-    },
-    {
-      "text": "This is a peer-reviewed study, but its setting is narrow and dated.",
-      "moment": "research",
-      "tics": [
-        "tricolon"
-      ],
-      "where": "web/app/(editorial)/research/resume-length-myths/page.tsx:88"
+      "where": "web/app/(editorial)/research/resume-length-myths/page.tsx:75"
     },
     {
       "text": "the cash, the bonus, and the equity separated",
@@ -289,7 +281,7 @@
       "tics": [
         "coined_word"
       ],
-      "where": "web/app/(editorial)/research/social-screening/page.tsx:111"
+      "where": "web/app/(editorial)/research/social-screening/page.tsx:83"
     },
     {
       "text": "It also can&apos;t say whether spelling matters more than content: the study kept the content the same and changed only the spelling. What it shows is that repeated errors cost points even when the experience on the page is identical. It fits what a much larger experiment found when only the wording changed:",
@@ -297,7 +289,7 @@
       "tics": [
         "coined_word"
       ],
-      "where": "web/app/(editorial)/research/spelling-errors-impact/page.tsx:82"
+      "where": "web/app/(editorial)/research/spelling-errors-impact/page.tsx:70"
     },
     {
       "text": "Your report isn&apos;t a spell-checker. It cards the lines a recruiter trips on, in the order they hit them. Run a spell-check last, after you&apos;ve worked through the cards.",
@@ -305,7 +297,7 @@
       "tics": [
         "coined_word"
       ],
-      "where": "web/app/(editorial)/research/spelling-errors-impact/page.tsx:97"
+      "where": "web/app/(editorial)/research/spelling-errors-impact/page.tsx:85"
     },
     {
       "text": "When a line hides your part or the result, it gets a card that asks for them. Filling it gives you the headline of a story you can tell, and the score weighs how easy it is to follow what you did.",
@@ -340,29 +332,12 @@
       "where": "web/app/(editorial)/research/who-you-are/page.tsx:109"
     },
     {
-      "text": "Whatever a stranger can say about you in one line. In mock structured interviews, first impressions predicted the final ratings and, later, real internship offers. That study was about interviews, not resumes, but our experience is that the first read of a resume works the same way.",
-      "moment": "research",
-      "tics": [
-        "coined_word",
-        "not_x_but_y"
-      ],
-      "where": "web/app/(editorial)/research/who-you-are/page.tsx:22"
-    },
-    {
       "text": "The first read sticks",
       "moment": "research",
       "tics": [
         "coined_word"
       ],
       "where": "web/app/(editorial)/research/who-you-are/page.tsx:79"
-    },
-    {
-      "text": "That study was about interviews, not resumes. But the resume is usually the first read, and our experience is that it works the same way. The eye-tracking evidence points the same direction:",
-      "moment": "research",
-      "tics": [
-        "coined_word"
-      ],
-      "where": "web/app/(editorial)/research/who-you-are/page.tsx:85"
     },
     {
       "text": "The jobs themselves were the evidence. How they connected was the signal. Your resume can make that connection visible, or leave the reader to work it out.",

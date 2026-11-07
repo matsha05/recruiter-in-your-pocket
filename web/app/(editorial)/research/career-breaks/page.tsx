@@ -23,8 +23,8 @@ export default function CareerBreaksPage() {
             path={PATH}
             answer={
                 <>
-                    Briefly, and only with what&rsquo;s true. In the caregiving tests, naming the reason didn&rsquo;t help: it did no better than silence in the UK, and worse than a layoff explanation in the US.
-                    So keep the dates line plain, make your experience easy to find, and save the story for the interview.
+                    Briefly, and only with what&rsquo;s true. Naming caregiving did no better than silence in the UK, and worse than a layoff in the US.
+                    Keep the line plain and save the story for the interview.
                 </>
             }
             answerSource={{
@@ -52,7 +52,9 @@ export default function CareerBreaksPage() {
                             ),
                             note: (
                                 <>
-                                    One change did raise callbacks in the UK test: <ResearchLink to="gaps-and-pivots">listing years in each job instead of dates</ResearchLink>. Applications still ask for the dates.
+                                    One change did raise callbacks in the UK test: listing years in each job instead of dates.
+                                    <Citation id="source-3">3</Citation>
+                                    {" "}Applications still ask for the dates.
                                 </>
                             ),
                         },

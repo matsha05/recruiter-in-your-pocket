@@ -19,8 +19,8 @@ export default function WhoYouArePage() {
             path={PATH}
             answer={
                 <>
-                    Whatever a stranger can say about you in one line. In mock structured interviews, first impressions predicted the final ratings and, later, real internship offers.
-                    That study was about interviews, not resumes, but our experience is that the first read of a resume works the same way.
+                    Whatever a stranger can say in one line. In mock interviews, first impressions predicted the final ratings and, later, real internship offers.
+                    That study was about interviews, not resumes.
                 </>
             }
             answerSource={{
@@ -82,7 +82,7 @@ export default function WhoYouArePage() {
                 <Citation id="source-1">1</Citation>
             </p>
             <p className="research-body mb-6">
-                That study was about interviews, not resumes. But the resume is usually the first read, and our experience is that it works the same way. The eye-tracking evidence points the same direction: <ResearchLink to="how-recruiters-read">recruiters who spent longer on Experience were more likely to move a resume forward</ResearchLink>. Once a recruiter decides who you are, everything after that gets read through it.
+                The resume is usually what a recruiter reads first, and our experience is that it works the same way. The eye-tracking evidence points the same direction: <ResearchLink to="how-recruiters-read">recruiters who spent longer on Experience were more likely to move a resume forward</ResearchLink>. Once a recruiter decides who you are, everything after that gets read through it.
             </p>
 
             <h2 className="research-h2">A clear thread beats a scattered list</h2>
@@ -145,7 +145,6 @@ export default function WhoYouArePage() {
 
             <h2 className="research-h2">Limitations</h2>
             <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
-                <li>The first-impression study measured mock interviews, not resume screening. Only the internship offers were real.</li>
                 <li>The career-order and evaluation studies come from online freelance marketplaces, not salaried hiring. We read the career-order study&apos;s published summary; the full paper is paywalled.</li>
                 <li>The fit research is qualitative and comes from elite firms. It describes what evaluators do, including where that becomes bias, not what they should do.</li>
             </ul>

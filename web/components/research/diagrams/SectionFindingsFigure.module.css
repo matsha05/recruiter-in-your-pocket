@@ -81,6 +81,14 @@
     font-weight: var(--weight-control);
 }
 
+/* The sections the study found nothing comparable for, named once under the sheet instead of drawn as empty rows. */
+.noResult {
+    max-width: var(--sheet-column, 26rem);
+    margin: 0.875rem 0 0;
+    color: hsl(var(--text-muted));
+    font: var(--type-small);
+}
+
 .note {
     margin-top: 1.75rem;
     margin-left: calc(var(--sheet-column, 26rem) + 2rem);
@@ -102,5 +110,6 @@
     .row:first-child .sheet { padding-top: 1rem; }
     .row:last-child .sheet { padding-bottom: 1rem; }
     .row[data-tone="strong"] .result { font: var(--type-small); font-weight: var(--weight-control); }
+    .noResult { max-width: none; }
     .note { margin-left: 0; }
 }

@@ -1,5 +1,5 @@
 import { pageMetadata } from "@/lib/seo/metadata";
-import { ArticleInsight, Citation } from "@/components/research/ResearchArticle";
+import { Citation } from "@/components/research/ResearchArticle";
 import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
 import { ResearchLink } from "@/components/research/ResearchLink";
 import Link from "next/link";
@@ -21,8 +21,8 @@ export default function ATSMythsPage() {
             path={PATH}
             answer={
                 <>
-                    Not with one magic score. The software pulls your text into fields, and if it can&rsquo;t, the file stays attached and someone enters the details by hand.
-                    Automatic rejection does exist, but in Greenhouse and Lever&rsquo;s documentation it runs on your answers to application questions, not on your resume&rsquo;s formatting.
+                    Not with one magic score. The software pulls your text into fields, and if it can&rsquo;t, someone enters the details by hand.
+                    Automatic rejection runs on application questions, not on your resume&rsquo;s formatting.
                 </>
             }
             answerSource={{
@@ -88,34 +88,6 @@ export default function ATSMythsPage() {
                 }
             ]}
         >
-            <h2 className="research-h2">What the parser actually does</h2>
-            <p className="research-body mb-6">
-                Current Greenhouse and Lever documentation describes parsers that extract readable information from a resume and populate candidate fields such as contact information and work history.
-                <Citation id="source-1">1</Citation>
-                <Citation id="source-2">2</Citation>
-            </p>
-
-            <div className="grid sm:grid-cols-2 gap-4 not-prose my-8">
-                <ArticleInsight
-                    title="Stored-data filters"
-                    desc={
-                        <>
-                            Recruiters can filter stored applications by fields such as status, source, education, and custom application data. That is separate from whether the resume text parsed correctly.
-                            <Citation id="source-4">4</Citation>
-                        </>
-                    }
-                />
-                <ArticleInsight
-                    title="Search and discovery"
-                    desc={
-                        <>
-                            Once information is stored, recruiters may search, filter, and review it according to the employer&apos;s workflow.
-                            <Citation id="source-4">4</Citation>
-                        </>
-                    }
-                />
-            </div>
-
             <h2 className="research-h2">What can actually break</h2>
             <p className="research-body">
                 Greenhouse lists image-based resumes, graphics, word art, complex tables, headers, footers, text boxes, and columned layouts among formatting patterns that can produce unsuccessful or partial parsing. Lever notes that image files are not parseable and recommends checking whether the document text can be highlighted. Those layouts are what <Link href={comparison("enhancv").path} className="focus-ring riyp-link">a design-first builder</Link> sells, so export the PDF and check that its text can be selected.
@@ -128,7 +100,7 @@ export default function ATSMythsPage() {
 
             <h2 className="research-h2">Parsing is not the whole selection process</h2>
             <p className="research-body mb-6">
-                ATS products can also expose search and filter tools, and employer workflows differ by configuration. Automatic rejection does exist, but in Greenhouse and Lever&apos;s documentation it runs on answers to application questions, often called knockout questions, not on resume formatting.
+                Once the details are stored, recruiters can filter applications by fields such as status, source, education, and answers to custom questions, and workflows differ by employer. Automatic rejection does exist, but in Greenhouse and Lever&apos;s documentation it runs on answers to application questions, often called knockout questions, not on resume formatting.
                 <Citation id="source-4">4</Citation>
                 <Citation id="source-5">5</Citation>
                 <Citation id="source-6">6</Citation>

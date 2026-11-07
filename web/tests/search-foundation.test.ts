@@ -173,6 +173,41 @@ try {
   }
   assert.ok(seen.size >= 25, `expected pageMetadata() on most public pages, found ${seen.size}`);
 
+  // --- Each article opens with its hub row's verdict ------------------------------
+  // The hub row and the article's opening are one object (article-standard.md, Nov 6, 2026): the opening's
+  // first sentence is the row's verdict, verbatim, followed by at most two sentences, 35 words in all.
+  // The rendered opening is checked by tests/ui/research-surface.spec.ts; this reads the `answer` prop.
+  const OPENING_WORD_LIMIT = 35;
+  const entities: Record<string, string> = { rsquo: "’", lsquo: "‘", rdquo: "”", ldquo: "“", ndash: "–", mdash: "—", amp: "&", apos: "'", quot: '"', nbsp: " " };
+  const openingText = (source: string) => {
+    const jsx = source.match(/\banswer=\{\s*<>([\s\S]*?)<\/>\s*\}/)?.[1];
+    if (!jsx) return null;
+    return jsx
+      .replace(/\{"\s*"\}/g, " ")
+      .replace(/<[^>]+>/g, "")
+      .replace(/&([a-z]+);/g, (match, name: string) => entities[name] ?? match)
+      .replace(/\s+/g, " ")
+      .trim();
+  };
+  let openingsChecked = 0;
+  for (const article of hub.filter((entry: { href: string }) => entry.href.startsWith("/research/"))) {
+    const file = pageFiles.get(article.href);
+    assert.ok(file, `${article.href} has no page.tsx`);
+    const source = readFileSync(file, "utf8");
+    if (!source.includes("<AnswerArticle")) continue;
+    const opening = openingText(source);
+    assert.ok(opening, `${article.href}: the answer prop must be a fragment of plain text (answer={<>…</>})`);
+    const { verdict } = article as { verdict?: string };
+    assert.ok(verdict, `${article.href} has no verdict on the hub`);
+    assert.ok(opening.startsWith(`${verdict} `) || opening === verdict, `${article.href}: the opening must start with the hub verdict "${verdict}", got "${opening.slice(0, 80)}"`);
+    const words = opening.split(" ").length;
+    assert.ok(words <= OPENING_WORD_LIMIT, `${article.href}: the opening is ${words} words; the limit is ${OPENING_WORD_LIMIT}`);
+    const sentencesAfterVerdict = opening.slice(verdict.length).split(/(?<=[.!?])\s+(?=\S)/).filter((sentence) => sentence.trim()).length;
+    assert.ok(sentencesAfterVerdict <= 2, `${article.href}: the opening carries ${sentencesAfterVerdict} sentences after the verdict; at most two`);
+    openingsChecked += 1;
+  }
+  assert.ok(openingsChecked >= 16, `expected every research article to open with its verdict, checked ${openingsChecked}`);
+
   // --- Links to research articles take their title from the hub -----------------
   // A related-reading entry like { title: "…", href: "/research/…" } drifts the moment the article's
   // question changes. Lists title research links with hubLink(href) instead (ResearchHubData.ts).

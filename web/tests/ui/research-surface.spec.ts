@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { hubEntryForHref } from "../../components/research/ResearchHubData";
 
 const articles = [
   "/research/ats-myths",
@@ -129,6 +130,18 @@ test.describe("research system", () => {
       }
       const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
       expect(overflow).toBeLessThanOrEqual(1);
+    }
+  });
+
+  test("every article's rendered opening starts with its hub verdict", async ({ page }) => {
+    test.setTimeout(120_000);
+    for (const route of articles.filter((candidate) => candidate.startsWith("/research/"))) {
+      const entry = hubEntryForHref(route);
+      expect(entry?.verdict, route).toBeTruthy();
+      await page.goto(route, { waitUntil: "domcontentloaded" });
+      const opening = (await page.getByTestId("article-answer").innerText()).replace(/\s+/g, " ").trim();
+      expect(opening, route).toMatch(new RegExp(`^${entry!.verdict!.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(\\s|$)`));
+      expect(opening.split(" ").length, `${route}: ${opening}`).toBeLessThanOrEqual(35);
     }
   });
 

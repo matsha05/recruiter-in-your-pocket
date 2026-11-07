@@ -20,8 +20,8 @@ export default function HumanVsAlgorithmPage() {
             path={PATH}
             answer={
                 <>
-                    More than they say. Recruiters in one experiment rated human advice as more trustworthy, yet an algorithm&rsquo;s recommendation for the less-suitable resume still pulled their evaluations toward it.
-                    The same kind of advice from a human expert didn&rsquo;t.
+                    More than they say. Recruiters rated human advice as more trustworthy, yet an algorithm&rsquo;s pick for the less-suitable resume still pulled their ratings toward it.
+                    The same advice from a human expert didn&rsquo;t.
                 </>
             }
             answerSource={{
@@ -33,7 +33,7 @@ export default function HumanVsAlgorithmPage() {
                 <>
                     <h2 className="research-h2">What people said versus what they did</h2>
                     <p className="research-body mb-6">
-                        This was not a study of trust recovering after repeated mistakes. It compared recommendations from a human expert and a fictional algorithmic decision-support system, including recommendations that favored the less-suitable resume.
+                        Recruiters reviewed two resume summaries for an HR manager role, with no recommendation or one from a human expert or a fictional algorithmic system. Some recommendations favored the less-suitable resume.
                         <Citation id="source-1">1</Citation>
                     </p>
                     <div className="grid sm:grid-cols-2 gap-4 not-prose">
@@ -60,37 +60,12 @@ export default function HumanVsAlgorithmPage() {
         >
             <h2 className="research-h2">The result was not simple algorithm aversion</h2>
             <p className="research-body mb-6">
-                Participants reviewed two resume summaries for an HR manager role. They received either no recommendation or a recommendation from a human expert or algorithmic system; some recommendations favored the less-suitable candidate. Recruiters trusted the human source more, but the inconsistent algorithm still affected their evaluations.
-                <Citation id="source-1">1</Citation>
-            </p>
-            <p className="research-body mb-6">
-                That gap matters. Stated skepticism is not the same as resistance in the moment. A tool can look less trustworthy and still change a decision, and that includes <Link href={comparison("rezi").path} className="focus-ring riyp-link">a builder&rsquo;s live score that rates your resume as you type</Link>.
+                The gap between what recruiters said and what they did matters. Stated skepticism is not the same as resistance in the moment. A tool can look less trustworthy and still change a decision, and that includes <Link href={comparison("rezi").path} className="focus-ring riyp-link">a builder&rsquo;s live score that rates your resume as you type</Link>.
                 <Citation id="source-1">1</Citation>
             </p>
             <p className="research-body mb-6">
                 A resume tool should explain its recommendations so you can check them. Trusting a tool less does not necessarily protect you from following a weak suggestion. Most hiring software offers no such explanation: one review found that <ResearchLink to="automation-and-bias">the tools rarely make the final decision but often automate rejections along the way</ResearchLink>.
             </p>
-
-            <div className="grid sm:grid-cols-2 gap-4 not-prose my-8">
-                <ArticleInsight
-                    title="Small experimental effects"
-                    desc={
-                        <>
-                            The authors reported small effects and cautioned that the task was subjective and difficult to isolate from participants&apos; own judgments.
-                            <Citation id="source-1">1</Citation>
-                        </>
-                    }
-                />
-                <ArticleInsight
-                    title="One simulated hiring task"
-                    desc={
-                        <>
-                            French panel participants judged two resume summaries for one HR manager role; this does not establish how every recruiter or production system behaves.
-                            <Citation id="source-1">1</Citation>
-                        </>
-                    }
-                />
-            </div>
 
             <h2 className="research-h2">What this means in practice</h2>
             <p className="research-body mb-6">
@@ -103,6 +78,12 @@ export default function HumanVsAlgorithmPage() {
             <ArticleBridge question="Can you check the advice you’re given?">
                 Your report&apos;s band sums up the written findings. Read those first: the band on its own can&apos;t tell you what to change. Every fix points to a line on your resume, so you can compare it with what you actually did before you take it.
             </ArticleBridge>
+
+            <h2 className="research-h2">Limitations</h2>
+            <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
+                <li>The authors reported small effects and cautioned that the task was subjective and hard to separate from participants&apos; own judgments.</li>
+                <li>One simulated task, judged by a French online panel. It doesn&apos;t establish how every recruiter or production system behaves.</li>
+            </ul>
         </AnswerArticle>
     );
 }

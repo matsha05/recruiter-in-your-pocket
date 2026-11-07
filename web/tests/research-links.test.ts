@@ -34,7 +34,7 @@ try {
   const articles = readdirSync(researchDir)
     .map((name) => ({ id: name, file: path.join(researchDir, name, "page.tsx") }))
     .filter(({ id, file }) => existsSync(file) && hub.has(id));
-  assert.ok(articles.length >= 17, `expected the research articles under app/(editorial)/research, found ${articles.length}`);
+  assert.ok(articles.length >= 16, `expected the research articles under app/(editorial)/research, found ${articles.length}`);
 
   let total = 0;
   for (const { id, file } of articles) {

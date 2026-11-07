@@ -1,5 +1,5 @@
 import { pageMetadata } from "@/lib/seo/metadata";
-import { ArticleInsight, Citation } from "@/components/research/ResearchArticle";
+import { Citation } from "@/components/research/ResearchArticle";
 import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
 import { ResearchLink } from "@/components/research/ResearchLink";
 import { SocialScreeningDiagram } from "@/components/research/diagrams/SocialScreeningDiagram";
@@ -19,7 +19,7 @@ export default function SocialScreeningPage() {
             path={PATH}
             answer={
                 <>
-                    In one experiment, posts changed how candidates were rated. Unappealing posts cut ratings the most, and having no social profile at all cost more than posts suggesting mental-health problems.
+                    In one experiment, yes. Posts changed how candidates were rated, and having no profile at all cost more than posts suggesting mental-health problems.
                     Nobody showed those ratings predict how you&rsquo;d do the job.
                 </>
             }
@@ -32,11 +32,11 @@ export default function SocialScreeningPage() {
             nextQuestions={["linkedin-visibility", "who-you-are", "referral-advantage"]}
             visualization={
                 <>
-                    <h2 className="research-h2">What a public profile can and cannot show</h2>
+                    <h2 className="research-h2">What the experiment actually showed</h2>
                     <p className="research-body mb-6">
-                        The evidence supports a real effect on judgment. It does not support treating a public feed as a reliable personality test or a proven measure of future performance.
+                        Evaluators rated candidates for an office manager job in hospitality while the researchers varied what the candidate&apos;s social media showed. On a 0–10 scale, the general pool marked down unappealing content by 1.94 points, having no profile at all by 0.88, signs of mental-health problems by 0.68, and a two-year unemployment gap by 0.29. People with hiring experience showed the same order.
                         <Citation id="source-1">1</Citation>
-                        <Citation id="source-2">2</Citation>
+                        {" "}A gap cost the least here, and <ResearchLink to="gaps-and-pivots">in the largest test of ways to handle one, explaining it did no better than leaving it unexplained</ResearchLink>.
                     </p>
                     <SocialScreeningDiagram />
                 </>
@@ -58,34 +58,6 @@ export default function SocialScreeningPage() {
                 }
             ]}
         >
-            <h2 className="research-h2">What the experiment actually showed</h2>
-            <p className="research-body mb-6">
-                Evaluators rated candidates for an office manager job in hospitality while the researchers varied what the candidate&apos;s social media showed. On a 0–10 scale, the general pool marked down unappealing content by 1.94 points, having no profile at all by 0.88, signs of mental-health problems by 0.68, and a two-year unemployment gap by 0.29. People with hiring experience showed the same order.
-                <Citation id="source-1">1</Citation>
-                {" "}A gap cost the least here, and <ResearchLink to="gaps-and-pivots">in the largest test of ways to handle one, explaining it did no better than leaving it unexplained</ResearchLink>.
-            </p>
-
-            <div className="grid sm:grid-cols-2 gap-4 not-prose my-8">
-                <ArticleInsight
-                    title="What was observed"
-                    desc={
-                        <>
-                            Public social cues changed candidate ratings in the experimental setting.
-                            <Citation id="source-1">1</Citation>
-                        </>
-                    }
-                />
-                <ArticleInsight
-                    title="What was not tested"
-                    desc={
-                        <>
-                            The study did not establish that those ratings predicted later job performance.
-                            <Citation id="source-1">1</Citation>
-                        </>
-                    }
-                />
-            </div>
-
             <h2 className="research-h2">Why social screening can be unreliable</h2>
             <p className="research-body mb-6">
                 A 2021 literature review by Eva Vosen concluded that social-media screening creates privacy, discrimination, and accuracy concerns when employers lack clear, consistent procedures.
@@ -114,8 +86,7 @@ export default function SocialScreeningPage() {
 
             <h2 className="research-h2">Limitations</h2>
             <ul className="mb-6 list-disc space-y-2 pl-6 marker:text-muted-foreground">
-                <li>The experiment is a working paper that hasn&apos;t been peer reviewed. It used one hospitality role and designed profile cues; it is not every hiring market. We read a July 2024 version.</li>
-                <li>The experiment measured candidate ratings, not later performance.</li>
+                <li>The experiment used one hospitality role and designed profile cues; it is not every hiring market. We read a July 2024 version.</li>
                 <li>Employer practice varies. This article does not establish legal guidance for any jurisdiction.</li>
             </ul>
         </AnswerArticle>
