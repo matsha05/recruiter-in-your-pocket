@@ -72,12 +72,12 @@ export function runWorklistChecks(input: WorklistChecksInput): { errors: Array<{
 
   // The validator's own checks, repeated here so a saved output replayed through the harness is held to them.
   report.cards.forEach((card, index) => {
-    if (card.kind === "line" || card.kind === "keep") {
+    if (card.kind === "line" || card.kind === "keep" || card.kind === "upgrade") {
       const resolved = resolveCardLine(card.line, input.resumeText);
       if (resolved.status === "missing") errors.push({ code: "E_EVIDENCE_NOT_VERBATIM", message: `Card ${index + 1} quotes a line that is not on the resume: "${card.line}"` });
       if (resolved.status === "ambiguous") errors.push({ code: "E_EVIDENCE_NOT_VERBATIM", message: `Card ${index + 1} quotes a line that matches more than once: "${card.line}"` });
     }
-    for (const issue of ungroundedTokensInExample(card.example, input.resumeText, card.kind === "line" ? card.line : "")) {
+    for (const issue of ungroundedTokensInExample(card.example, input.resumeText, card.kind === "line" || card.kind === "upgrade" ? card.line : "")) {
       errors.push({ code: "E_REWRITE_INVENTED_SPECIFIC", message: `Card ${index + 1} example states a ${issue.kind} the resume doesn't have outside a bracket: "${issue.token}"` });
     }
   });

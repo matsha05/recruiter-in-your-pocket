@@ -1,0 +1,30 @@
+# b05_paralegal, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_paralegal_1.txt (144 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 15dff271; severity check off
+Outcome: report; cost $0.0071; 14.4s
+
+## Mostly clear (score 80; model wrote 80)
+## Verdict
+A senior litigation paralegal with substantial production and trial work, plus a few details left to fill in.
+
+## Write-up
+Your resume points clearly to senior litigation paralegal work. At Harlan & Pike, you support partners on commercial and employment cases, manage productions, and prepare for trial. A recruiter can see the work you handle, though a few lines stop before showing how you carry it through.
+
+The Relativity production line is your best model: it names the work, the tool, and the volume you manage. Supporting two jury trials in 2025 gives the trial preparation work a useful anchor too.
+
+Start with the court deadlines line. Add what you did with deadlines after tracking them, if that was part of your role. Keep the production and trial details prominent; they're the parts that distinguish your work from a generic list of paralegal duties.
+
+## Cards (2; {"line":1,"keep":1}); severity off; added []
+1. [line] Senior Litigation Paralegal, line 5
+   line: "Track court deadlines in the firm's docketing system"
+   can't tell: A recruiter can see where you track deadlines, but not what you do with them after they're entered. That matters because deadline management can involve more than maintaining a list.
+   example: Track court deadlines in the firm's docketing system and [action taken on deadlines]
+   question: What did you do with court deadlines after entering them in the system?
+2. [keep] Senior Litigation Paralegal, line 2
+   line: "Manage document productions of up to 250,000 pages in Relativity"
+   can't tell: Keep this line as a model. It puts your responsibility, the production volume, and the software together so a recruiter can grasp the work quickly.
+
+## Fit
+Roles: ["Senior Litigation Paralegal","Paralegal"]
+Level: senior, current Senior Litigation Paralegal supporting four partners
+Note: Your experience points toward litigation teams handling document-heavy cases and trial preparation. The earlier personal injury work adds another case type to that background.

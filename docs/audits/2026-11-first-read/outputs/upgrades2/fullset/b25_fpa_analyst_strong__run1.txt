@@ -1,0 +1,39 @@
+# b25_fpa_analyst_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_fpa_analyst_strong_1.txt (138 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt da8de295; severity check off
+Outcome: report; cost $0.0092; 19.4s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A senior FP&A analyst with a substantial budget and clear forecasting and pricing results.
+
+## Write-up
+Your resume makes a strong case for senior FP&A work! At Lakeshore Foods, you connect budget ownership and forecasting to a division CFO and brand leaders, with concrete results a recruiter can remember.
+
+The forecast line is the model: it names what you built and shows the error before and after. Your Midway Brands work also shows how you saved time in reporting. The pricing line has a strong result, though your part in the 2025 review could be more explicit.
+
+Start by adding your contribution to that review, then consider whether your budget work includes decisions across teams that point toward the next level. Your resume isn't likely to be the thing holding you back; the competitiveness of the roles you pursue will matter too.
+
+## Cards (4; {"line":1,"keep":1,"upgrade":2}); severity off; added []
+1. [line] Senior Financial Analyst, FP&A, pricing line
+   line: "Model price changes for 60 products; a 2025 pricing review added $3.1M in gross margin"
+   can't tell: The margin result is strong, but a recruiter can't tell what you contributed to the 2025 review. Connect your work to the review without taking credit for more than was yours.
+   example: Model price changes for 60 products; [what you did] in a 2025 pricing review that added $3.1M in gross margin
+   question: What did you contribute to the 2025 pricing review?
+2. [keep] Senior Financial Analyst, FP&A, forecast line
+   line: "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%"
+   can't tell: Keep this as a model. You name the deliverable and give a before-and-after measure without making the reader guess.
+3. [upgrade] Senior Financial Analyst, FP&A, budget line
+   line: "Own the $240M annual operating budget for the snacks division"
+   can't tell: The budget is substantial. For a step up, a recruiter may also look for decisions you own across teams or how you set direction for the budget.
+   example: Own the $240M annual operating budget for the snacks division, including [cross-team decisions you own]
+   question: Which budget decisions, if any, do you own across teams?
+4. [upgrade] Skills
+   line: "Excel, Power BI, SQL, Anaplan, NetSuite, financial modeling"
+   can't tell: Your experience already shows financial modeling. You could cut that broad phrase and leave the tools.
+   example: Excel, Power BI, SQL, Anaplan, NetSuite
+
+## Fit
+Roles: ["Senior FP&A analyst"]
+Level: Senior analyst, owns a divisional operating budget and presents to the division CFO
+Note: Your experience points toward senior FP&A roles with budget and commercial finance responsibilities. If you're aiming for a manager role, add any team or cross-team decision responsibilities you can substantiate.

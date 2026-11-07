@@ -1,0 +1,215 @@
+{
+  "case_id": "b14_teacher_to_instructional_designer",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Career changer.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_teacher_to_instructional_designer_1.txt",
+  "resume_sha256": "834ed54c2de68b69a032d304a18dda36925e354522e5b1cfe475d0beca0b4e9a",
+  "resume_words": 164,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T20:41:27.643Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6057,
+        "completion_tokens": 922,
+        "total_tokens": 6979,
+        "cached_prompt_tokens": 5306,
+        "cache_write_prompt_tokens": 748,
+        "reasoning_tokens": 410
+      },
+      "cost_usd": 0.0058133,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 12155
+    }
+  ],
+  "resume_prompt_sha256": "da8de2955f7c8fc1b62e0178500104bae17a416005f43113f3b1bc615f3fd1f8",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A mathematics teacher with clear classroom responsibilities and a growing digital learning design portfolio.",
+    "write_up": [
+      "Your resume points first to Mathematics Teacher roles, with digital learning design as a growing part of your work. A recruiter can see what you teach and how many sections you handle, though some of your work beyond the classroom could use more detail.",
+      "The Canvas module is a strong model: it names the subject, the format you created and the tool you used. Your teaching line also gives a clear picture of your classes.",
+      "Let's start with the professional learning community. Add what the group worked on under your leadership, then consider whether your portfolio shows more of the design work behind the Canvas module."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Cedar Creek High School, line 3",
+        "line": "- Lead the math department's professional learning community",
+        "cannot_tell": "A recruiter can see that you lead the group, but not what its members work on together. One example would show what that leadership involves.",
+        "example": "Lead the math department's professional learning community in [what the group works on]",
+        "question": "What does the professional learning community work on under your leadership?"
+      },
+      {
+        "kind": "keep",
+        "where": "Cedar Creek High School, line 2",
+        "line": "- Redesigned the Algebra II unit on functions into a self-paced online module in Canvas",
+        "cannot_tell": "Keep this one. It lets a recruiter picture the material you transformed and the learning format you built.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mathematics Teacher"
+      ],
+      "why": "Your two teaching roles and your current Algebra II and AP Statistics classes point to Mathematics Teacher work.",
+      "level": "Experienced teacher who leads the math department's professional learning community",
+      "note": "Your resume is strongest for classroom teaching. The Canvas module, certificate in progress and portfolio also show a move toward digital learning design.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A mathematics teacher with clear classroom responsibilities and a growing digital learning design portfolio.",
+    "write_up": [
+      "Your resume points first to Mathematics Teacher roles, with digital learning design as a growing part of your work. A recruiter can see what you teach and how many sections you handle, though some of your work beyond the classroom could use more detail.",
+      "The Canvas module is a strong model: it names the subject, the format you created and the tool you used. Your teaching line also gives a clear picture of your classes.",
+      "Let's start with the professional learning community. Add what the group worked on under your leadership, then consider whether your portfolio shows more of the design work behind the Canvas module."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Cedar Creek High School, line 3",
+        "line": "Lead the math department's professional learning community",
+        "cannot_tell": "A recruiter can see that you lead the group, but not what its members work on together. One example would show what that leadership involves.",
+        "example": "Lead the math department's professional learning community in [what the group works on]",
+        "question": "What does the professional learning community work on under your leadership?"
+      },
+      {
+        "kind": "keep",
+        "where": "Cedar Creek High School, line 2",
+        "line": "Redesigned the Algebra II unit on functions into a self-paced online module in Canvas",
+        "cannot_tell": "Keep this one. It lets a recruiter picture the material you transformed and the learning format you built.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mathematics Teacher"
+      ],
+      "why": "Your two teaching roles and your current Algebra II and AP Statistics classes point to Mathematics Teacher work.",
+      "level": "Experienced teacher who leads the math department's professional learning community",
+      "note": "Your resume is strongest for classroom teaching. The Canvas module, certificate in progress and portfolio also show a move toward digital learning design.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 78
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A mathematics teacher with clear classroom responsibilities and a growing digital learning design portfolio.",
+    "write_up": [
+      "Your resume points first to Mathematics Teacher roles, with digital learning design as a growing part of your work. A recruiter can see what you teach and how many sections you handle, though some of your work beyond the classroom could use more detail.",
+      "The Canvas module is a strong model: it names the subject, the format you created and the tool you used. Your teaching line also gives a clear picture of your classes.",
+      "Let's start with the professional learning community. Add what the group worked on under your leadership, then consider whether your portfolio shows more of the design work behind the Canvas module."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Cedar Creek High School, line 3",
+        "line": "Lead the math department's professional learning community",
+        "cannot_tell": "A recruiter can see that you lead the group, but not what its members work on together. One example would show what that leadership involves.",
+        "example": "Lead the math department's professional learning community in [what the group works on]",
+        "question": "What does the professional learning community work on under your leadership?"
+      },
+      {
+        "kind": "keep",
+        "where": "Cedar Creek High School, line 2",
+        "line": "Redesigned the Algebra II unit on functions into a self-paced online module in Canvas",
+        "cannot_tell": "Keep this one. It lets a recruiter picture the material you transformed and the learning format you built.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mathematics Teacher"
+      ],
+      "why": "Your two teaching roles and your current Algebra II and AP Statistics classes point to Mathematics Teacher work.",
+      "level": "Experienced teacher who leads the math department's professional learning community",
+      "note": "Your resume is strongest for classroom teaching. The Canvas module, certificate in progress and portfolio also show a move toward digital learning design.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 78
+  },
+  "presentation": {
+    "score": 78,
+    "band": "Mostly clear",
+    "model_score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A mathematics teacher with clear classroom responsibilities and a growing digital learning design portfolio.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 106,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Cedar Creek High School, line 3",
+        "line": "Lead the math department's professional learning community",
+        "blanks": 1,
+        "question": "What does the professional learning community work on under your leadership?"
+      },
+      {
+        "kind": "keep",
+        "where": "Cedar Creek High School, line 2",
+        "line": "Redesigned the Algebra II unit on functions into a self-paced online module in Canvas",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "line": 1,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Mathematics Teacher"
+      ],
+      "why": "Your two teaching roles and your current Algebra II and AP Statistics classes point to Mathematics Teacher work.",
+      "level": "Experienced teacher who leads the math department's professional learning community",
+      "note": "Your resume is strongest for classroom teaching. The Canvas module, certificate in progress and portfolio also show a move toward digital learning design.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0058133,
+  "latency_ms": 12168
+}

@@ -1,0 +1,56 @@
+# fr05_nurse_no_units, run 1
+Resume: resumes/fr05_nurse_no_units.txt (140 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt da8de295; severity check off
+Outcome: report; cost $0.0096; 20.5s
+Case note: P4 (nursing). Titles without a unit; RN with no state. Expect the unit and the license state asked for; no invented ratio.
+
+## Needs more context (score 65; model wrote 65)
+## Verdict
+A hospital nurse with charge and precepting duties, but little detail about the patients and units.
+
+## Write-up
+Your resume tells a common hospital nursing story: patient care at Riverside Methodist and Mount Carmel East, with charge nurse and precepting duties in your current role. The work is real, but the recent lines mostly list duties a recruiter will see on many nursing resumes. They don't yet show the unit, patient needs or patient load that would distinguish your experience.
+
+The Epic line is a useful model because it names both what you documented and the system you used. Your RN, BLS and ACLS credentials are easy to find, and your work history is straightforward to follow.
+
+Let's start with the Riverside role. Add your unit and patient load to the first line, then show what you handle as charge nurse and what you teach new graduates. Those details will give a recruiter more to work with than a list of standard duties.
+
+## Cards (7; {"line":6,"keep":1}); severity off; added []
+1. [line] Riverside Methodist Hospital, line 1
+   line: "Provide direct patient care for adult patients across 12-hour shifts"
+   can't tell: A recruiter knows you care for adults, but not which unit you work on or how many patients you typically care for. Both matter when comparing bedside nursing experience.
+   example: Provide direct patient care for [number] adult patients in [unit] across 12-hour shifts
+   question: What unit do you work on, and how many patients do you typically care for per shift?
+2. [line] Riverside Methodist Hospital, line 2
+   line: "Administer medications and monitor patient response"
+   can't tell: Medication administration is central to nursing, but this doesn't show the patient needs you manage or how you monitor responses.
+   example: Administer medications and monitor patient response for [patient needs], including [monitoring actions]
+   question: What patient needs do you manage, and what do you monitor after giving medications?
+3. [line] Riverside Methodist Hospital, line 3
+   line: "Educate patients and families on discharge plans"
+   can't tell: Discharge teaching is important, but a recruiter can't tell what patients and families learn from you.
+   example: Educate patients and families on discharge plans, including [teaching topics]
+   question: What do you teach patients and families as part of their discharge plans?
+4. [line] Riverside Methodist Hospital, line 4
+   line: "Serve as charge nurse on weekends"
+   can't tell: This is a responsibility worth showing more fully. A recruiter can't tell who you coordinate or what decisions you make on those shifts.
+   example: Serve as charge nurse on weekends for [number] [staff roles], coordinating [responsibilities]
+   question: Who do you coordinate as charge nurse, and what are your main responsibilities?
+5. [line] Riverside Methodist Hospital, line 5
+   line: "Precept new graduate nurses"
+   can't tell: Precepting stands out, but the line doesn't show how many nurses you've supported or what you teach them.
+   example: Precept [number] new graduate nurses in [skills or responsibilities]
+   question: How many new graduate nurses have you precepted, and what did you teach them?
+6. [line] Mount Carmel East Hospital, line 1
+   line: "Cared for patients before and after surgery"
+   can't tell: A recruiter can see the surgical setting, but not the care you provided or the kinds of surgery involved.
+   example: Cared for patients before and after [types of surgery], including [care responsibilities]
+   question: What types of surgery did your patients have, and what care did you provide?
+7. [keep] Mount Carmel East Hospital, line 2
+   line: "Documented assessments and care plans in Epic"
+   can't tell: Keep this as a model for naming the work and the tool together. A recruiter doesn't have to guess what you documented or where.
+
+## Fit
+Roles: ["Registered Nurse"]
+Level: Registered Nurse with weekend charge nurse and new graduate preceptor duties
+Note: Your experience points toward hospital bedside nursing, with added charge and teaching responsibilities. Naming your current unit and patient load would help a recruiter understand which nursing roles fit your background.

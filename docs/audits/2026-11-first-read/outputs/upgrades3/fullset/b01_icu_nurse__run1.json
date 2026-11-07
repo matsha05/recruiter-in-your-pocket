@@ -1,0 +1,250 @@
+{
+  "case_id": "b01_icu_nurse",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_icu_nurse_1.txt",
+  "resume_sha256": "a52d8cb032163bcc7edaa524fe56cb06594cccf78f90a9ba023148de11fe18ef",
+  "resume_words": 153,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T22:13:37.823Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6207,
+        "completion_tokens": 1085,
+        "total_tokens": 7292,
+        "cached_prompt_tokens": 5529,
+        "cache_write_prompt_tokens": 675,
+        "reasoning_tokens": 417
+      },
+      "cost_usd": 0.0065482,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 13320
+    }
+  ],
+  "resume_prompt_sha256": "15dff271c2d212b2504350e8d09deec38785cfa3e7ee269f5f8154593e015688",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 80,
+    "lifted_by_employer": false,
+    "verdict": "An ICU nurse with clear patient-care experience and a few contributions that need more detail.",
+    "write_up": [
+      "Your resume points clearly to Staff Nurse, Medical ICU work. A recruiter can see your patient load, the therapies you manage, and your charge nurse and precepting work. It gives them enough to move forward with a couple of questions.",
+      "The direct-care line is a strong model: it places your work with critically ill patients in a 24-bed medical ICU and gives your patient load per shift. Your Arizona license and CCRN are also easy to find.",
+      "Let's start with the sepsis committee. Add what you contributed there, then make your part in telemetry rapid response calls more concrete. You don't need to force a number onto every line."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Staff Nurse, Medical ICU, line 1",
+        "line": "- Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU",
+        "cannot_tell": "Keep this as a model. It names the patients you care for and gives a recruiter a useful picture of your assignment.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 5",
+        "line": "- Member of the unit's sepsis bundle compliance committee",
+        "cannot_tell": "A recruiter can see you're on the committee, but not what you contribute to its work.",
+        "example": "Member of the unit's sepsis bundle compliance committee, contributing [your contribution]",
+        "question": "What have you contributed to the committee's work?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Telemetry, line 2",
+        "line": "- Responded to rapid response calls as part of the floor team",
+        "cannot_tell": "The floor team responded, but your part during a call isn't clear. Naming your actions would show more of your telemetry work.",
+        "example": "Responded to rapid response calls as part of the floor team by [your actions during calls]",
+        "question": "What did you do during rapid response calls?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Nurse, Medical ICU",
+        "Staff Nurse, Telemetry"
+      ],
+      "why": "Your current role is in a medical ICU, where you care for critically ill patients and manage ventilators, vasoactive drips, and continuous renal replacement therapy.",
+      "level": "mid-level, current ICU staff nurse with charge nurse and precepting duties",
+      "note": "Your experience points most directly to ICU staff nursing, with telemetry work behind it. Your charge and precepting duties also show work beyond your own patient assignment.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 80,
+    "lifted_by_employer": false,
+    "verdict": "An ICU nurse with clear patient-care experience and a few contributions that need more detail.",
+    "write_up": [
+      "Your resume points clearly to Staff Nurse, Medical ICU work. A recruiter can see your patient load, the therapies you manage, and your charge nurse and precepting work. It gives them enough to move forward with a couple of questions.",
+      "The direct-care line is a strong model: it places your work with critically ill patients in a 24-bed medical ICU and gives your patient load per shift. Your Arizona license and CCRN are also easy to find.",
+      "Let's start with the sepsis committee. Add what you contributed there, then make your part in telemetry rapid response calls more concrete. You don't need to force a number onto every line."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Staff Nurse, Medical ICU, line 1",
+        "line": "Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU",
+        "cannot_tell": "Keep this as a model. It names the patients you care for and gives a recruiter a useful picture of your assignment.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 5",
+        "line": "Member of the unit's sepsis bundle compliance committee",
+        "cannot_tell": "A recruiter can see you're on the committee, but not what you contribute to its work.",
+        "example": "Member of the unit's sepsis bundle compliance committee, contributing [your contribution]",
+        "question": "What have you contributed to the committee's work?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Telemetry, line 2",
+        "line": "Responded to rapid response calls as part of the floor team",
+        "cannot_tell": "The floor team responded, but your part during a call isn't clear. Naming your actions would show more of your telemetry work.",
+        "example": "Responded to rapid response calls as part of the floor team by [your actions during calls]",
+        "question": "What did you do during rapid response calls?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Nurse, Medical ICU",
+        "Staff Nurse, Telemetry"
+      ],
+      "why": "Your current role is in a medical ICU, where you care for critically ill patients and manage ventilators, vasoactive drips, and continuous renal replacement therapy.",
+      "level": "mid-level, current ICU staff nurse with charge nurse and precepting duties",
+      "note": "Your experience points most directly to ICU staff nursing, with telemetry work behind it. Your charge and precepting duties also show work beyond your own patient assignment.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 80
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 80,
+    "lifted_by_employer": false,
+    "verdict": "An ICU nurse with clear patient-care experience and a few contributions that need more detail.",
+    "write_up": [
+      "Your resume points clearly to Staff Nurse, Medical ICU work. A recruiter can see your patient load, the therapies you manage, and your charge nurse and precepting work. It gives them enough to move forward with a couple of questions.",
+      "The direct-care line is a strong model: it places your work with critically ill patients in a 24-bed medical ICU and gives your patient load per shift. Your Arizona license and CCRN are also easy to find.",
+      "Let's start with the sepsis committee. Add what you contributed there, then make your part in telemetry rapid response calls more concrete. You don't need to force a number onto every line."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Staff Nurse, Medical ICU, line 1",
+        "line": "Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU",
+        "cannot_tell": "Keep this as a model. It names the patients you care for and gives a recruiter a useful picture of your assignment.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 5",
+        "line": "Member of the unit's sepsis bundle compliance committee",
+        "cannot_tell": "A recruiter can see you're on the committee, but not what you contribute to its work.",
+        "example": "Member of the unit's sepsis bundle compliance committee, contributing [your contribution]",
+        "question": "What have you contributed to the committee's work?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Telemetry, line 2",
+        "line": "Responded to rapid response calls as part of the floor team",
+        "cannot_tell": "The floor team responded, but your part during a call isn't clear. Naming your actions would show more of your telemetry work.",
+        "example": "Responded to rapid response calls as part of the floor team by [your actions during calls]",
+        "question": "What did you do during rapid response calls?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Nurse, Medical ICU",
+        "Staff Nurse, Telemetry"
+      ],
+      "why": "Your current role is in a medical ICU, where you care for critically ill patients and manage ventilators, vasoactive drips, and continuous renal replacement therapy.",
+      "level": "mid-level, current ICU staff nurse with charge nurse and precepting duties",
+      "note": "Your experience points most directly to ICU staff nursing, with telemetry work behind it. Your charge and precepting duties also show work beyond your own patient assignment.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 80
+  },
+  "presentation": {
+    "score": 80,
+    "band": "Mostly clear",
+    "model_score": 80,
+    "lifted_by_employer": false,
+    "verdict": "An ICU nurse with clear patient-care experience and a few contributions that need more detail.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 109,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Staff Nurse, Medical ICU, line 1",
+        "line": "Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 5",
+        "line": "Member of the unit's sepsis bundle compliance committee",
+        "blanks": 1,
+        "question": "What have you contributed to the committee's work?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Telemetry, line 2",
+        "line": "Responded to rapid response calls as part of the floor team",
+        "blanks": 1,
+        "question": "What did you do during rapid response calls?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "keep": 1,
+      "line": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Staff Nurse, Medical ICU",
+        "Staff Nurse, Telemetry"
+      ],
+      "why": "Your current role is in a medical ICU, where you care for critically ill patients and manage ventilators, vasoactive drips, and continuous renal replacement therapy.",
+      "level": "mid-level, current ICU staff nurse with charge nurse and precepting duties",
+      "note": "Your experience points most directly to ICU staff nursing, with telemetry work behind it. Your charge and precepting duties also show work beyond your own patient assignment.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0065482,
+  "latency_ms": 13340
+}

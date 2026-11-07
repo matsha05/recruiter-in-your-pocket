@@ -1,0 +1,49 @@
+# b37_marketing_director_bad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_marketing_director_bad_1.txt (167 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 15dff271; severity check off
+Outcome: report; cost $0.0106; 21.9s
+Case note: Title above the work; key says no_recent_work, no_target_role, title_level_mismatch.
+
+## Needs more context (score 54; model wrote 54)
+## Verdict
+Your marketing director title stands above contributor-level work, with unaccounted time since your last role.
+
+## Write-up
+Your most recent role is Director of Marketing at Lumen Candle Co., after work in data entry and a biology lab. I'm reading your resume for marketing, but this is a common problem: the title points to director-level work while the bullets show posting, product descriptions and order support. A recruiter looking for a director will want to see the decisions and resources you were responsible for.
+
+The candle descriptions are your best model: a recruiter can see what you wrote and how much. The resume doesn't say what you've done since January 2025, and the earlier roles point in several directions, so your next target isn't obvious.
+
+Let's start with the Lumen role. Keep your actual title, then add the marketing decisions and any team or budget responsibility you can substantiate. Add an honest line for the time since that role and name the kind of marketing job you want next.
+
+## Cards (6; {"line":2,"dates":1,"structure":2,"keep":1}); severity off; added []
+1. [line] Director of Marketing, title
+   line: "Director of Marketing"
+   can't tell: The bullets show marketing tasks, but not the decisions or resources behind a director title. A recruiter will look for your remit, including any team or budget responsibility.
+   example: Director of Marketing | [marketing responsibilities and decisions] | [team size or budget responsibility]
+   question: What marketing decisions were yours, and did you have a team or budget responsibility?
+2. [dates] Dates
+   line: "Nothing is dated after January 2025."
+   can't tell: A recruiter can't tell what you've done since the Lumen role. An honest dated line can account for that time, whether it involved caregiving, a career break, study or work.
+   example: January 2025 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]
+   question: What have you been doing since January 2025 that you'd be comfortable naming?
+3. [structure] Structure
+   line: "The resume doesn't name a target job."
+   can't tell: Your experience includes marketing, data entry and lab work. A target title above Experience can tell a recruiter which direction you want to take.
+   question: Which marketing job are you applying for next?
+4. [structure] Lumen Candle Co.
+   line: "The resume doesn't describe Lumen Candle Co.'s size."
+   can't tell: A recruiter may not know the company. A short description of its size or market, if accurate, can put your marketing work in context.
+   question: How would you describe the company's size and market?
+5. [line] Director of Marketing, line 1
+   line: "Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers"
+   can't tell: The posting frequency and follower count are useful, but they don't say what you posted or whether people responded. That matters when this is the first marketing line a recruiter sees.
+   example: Posted [content] 3 to 5 times a week on the company Instagram, which has 2,100 followers; [engagement result]
+   question: What did you post, and what response can you document?
+6. [keep] Director of Marketing, line 2
+   line: "Wrote product descriptions for 40 candle scents on the website"
+   can't tell: Keep this as a model. It names your contribution and gives a concrete count without making a recruiter guess what the work involved.
+
+## Fit
+Roles: ["Director of Marketing"]
+Level: entry level, the marketing work shown is posting and product descriptions, with no team or budget stated
+Note: The work shown points toward hands-on marketing and content roles. If your director role included broader responsibilities, add them before applying for director jobs.

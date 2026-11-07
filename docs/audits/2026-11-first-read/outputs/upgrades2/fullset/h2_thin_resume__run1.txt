@@ -1,0 +1,55 @@
+# h2_thin_resume, run 1
+Resume: ../2026-11-live-judgment/resumes/h2_thin_resume.txt (126 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt da8de295; severity check off
+Outcome: report; cost $0.0099; 21.7s
+Case note: Student: one internship, coursework, a club.
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+A data analytics intern with relevant tools, but too little detail about the work behind them.
+
+## Write-up
+You’re an Information student with a data analytics internship at Great Lakes Credit Union and a treasurer role in the Michigan Data Science Club. This is a common early-career resume: it names useful tasks and tools, but leaves much of the work behind them unstated. A recruiter would likely finish it, then hesitate because it’s hard to distinguish your analytics work from other internship experience.
+
+The survey cleaning line is a good model: it names the data and the tools you used. Your Education section makes sense above Experience while you’re still completing your degree.
+
+Let’s start with the Great Lakes Credit Union role. Add what went into the weekly reports, what the Tableau dashboard tracked, and what you presented. Those details will give a recruiter a better picture of your work without stretching your role.
+
+## Cards (7; {"structure":1,"line":5,"keep":1}); severity off; added []
+1. [structure] Great Lakes Credit Union
+   line: "Great Lakes Credit Union is named without more context about the organization."
+   can't tell: A recruiter unfamiliar with the credit union may not know whom it serves or how large it is. A short description could put your internship in context.
+   question: What can you accurately say about whom the credit union serves or how large it is?
+2. [line] Data Analytics Intern, line 1
+   line: "Assisted the analytics team with weekly reporting"
+   can't tell: A recruiter can't tell which part of the weekly reports was yours or what the reports covered.
+   example: Assisted the analytics team with weekly reporting by [your contribution] on [report subject]
+   question: What did you contribute to the weekly reports, and what did they cover?
+3. [line] Data Analytics Intern, line 3
+   line: "Built a dashboard in Tableau for the marketing team"
+   can't tell: Building the dashboard is clear, as are the tool and audience. What's missing is what the marketing team could see in it.
+   example: Built a dashboard in Tableau for the marketing team to track [what the dashboard tracked]
+   question: What did the dashboard track for the marketing team?
+4. [line] Data Analytics Intern, line 4
+   line: "Presented findings to the team at the end of the internship"
+   can't tell: The presentation tells a recruiter you shared your work, but not what you found or what the team learned from it.
+   example: Presented findings about [topic] to the team at the end of the internship, including [finding]
+   question: What topic did you present on, and what finding did you share?
+5. [line] Treasurer, line 1
+   line: "Manage the club budget and reimbursements"
+   can't tell: A recruiter can see your responsibilities, but not how large the budget is or what the reimbursements cover.
+   example: Manage the club budget of [amount] and reimbursements for [expenses]
+   question: How large is the club budget, and what expenses do you reimburse?
+6. [line] Treasurer, line 2
+   line: "Help organize monthly speaker events"
+   can't tell: The monthly events are concrete, but 'help' leaves your part open. A recruiter can't tell what you handle.
+   example: Help organize monthly speaker events by [your contribution]
+   question: What do you handle when organizing the speaker events?
+7. [keep] Data Analytics Intern, line 2
+   line: "Cleaned member survey data in Excel and SQL"
+   can't tell: Keep this as a model for naming both the material you worked with and how you worked on it. The other internship lines can be just as direct about their subject.
+
+## Fit
+Roles: ["Data Analytics Intern"]
+Level: Entry level, with one data analytics internship
+Note: Your experience points toward early-career analytics roles. The club treasurer work adds budget responsibility, while the internship is the strongest match for analytics work.

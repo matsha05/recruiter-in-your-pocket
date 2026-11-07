@@ -1,0 +1,34 @@
+# h3_strong_resume, run 1
+Resume: ../2026-11-live-judgment/resumes/h3_strong_resume.txt (311 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 15dff271; severity check off
+Outcome: report; cost $0.0075; 14.3s
+Case note: Senior product manager whose resume is already good.
+
+## Clear and specific (score 95; model wrote 95)
+## Verdict
+A payments product leader with customer, revenue and team results attached to the work.
+
+## Write-up
+Your resume is strong: it connects payments and billing decisions to revenue, customer adoption and fewer payment failures! A recruiter can follow your move from launching products at Peakline to leading the payments platform at Northwind.
+
+The invoice disputes line is a great model. It names the customer research, the change you made and the reduction in disputes. Your current role also makes the team and customer base clear, while the earlier roles show how you got there.
+
+Your resume isn't the weak link here. Competition for the role and referrals can still matter. For a move up, add a cross-team strategic decision if you can point to one, and consider leading the current role with the payment failure result.
+
+## Cards (3; {"keep":1,"upgrade":2}); severity off; added []
+1. [keep] Product Manager, Billing, line 2
+   line: "Reduced invoice disputes 38% by redesigning the invoice detail page after 40 customer interviews"
+   can't tell: Keep this as a model: it ties a measurable improvement to a product change and shows the customer research behind it.
+2. [upgrade] Senior Product Manager, Payments Platform, line 1
+   line: "Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers"
+   can't tell: For a role one level up, a cross-team strategic decision would show how you set direction beyond owning the roadmap.
+   example: Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers, including [a cross-team strategic decision]
+   question: What cross-team strategic decision did you make for the payments platform, if any?
+3. [upgrade] Senior Product Manager, Payments Platform, line 3
+   line: "Cut payment failure rate from 4.1% to 1.6% by leading the move to network tokenization and smart retries, recovering an estimated $6.2M in annual revenue for customers"
+   can't tell: Consider moving this above the roadmap line. The before and after, the technical work and the estimated customer revenue recovery make it a memorable opening result.
+
+## Fit
+Roles: ["Senior Product Manager, Payments Platform"]
+Level: manager, hired and manages 3 product managers
+Note: Your experience points toward senior payments product roles and product management roles with people leadership. The customer and revenue figures also give you a solid basis for discussing broader product decisions.

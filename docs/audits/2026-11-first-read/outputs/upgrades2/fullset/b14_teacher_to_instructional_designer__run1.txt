@@ -1,0 +1,31 @@
+# b14_teacher_to_instructional_designer, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_teacher_to_instructional_designer_1.txt (164 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt da8de295; severity check off
+Outcome: report; cost $0.0058; 12.2s
+Case note: Career changer.
+
+## Mostly clear (score 78; model wrote 78)
+## Verdict
+A mathematics teacher with clear classroom responsibilities and a growing digital learning design portfolio.
+
+## Write-up
+Your resume points first to Mathematics Teacher roles, with digital learning design as a growing part of your work. A recruiter can see what you teach and how many sections you handle, though some of your work beyond the classroom could use more detail.
+
+The Canvas module is a strong model: it names the subject, the format you created and the tool you used. Your teaching line also gives a clear picture of your classes.
+
+Let's start with the professional learning community. Add what the group worked on under your leadership, then consider whether your portfolio shows more of the design work behind the Canvas module.
+
+## Cards (2; {"line":1,"keep":1}); severity off; added []
+1. [line] Cedar Creek High School, line 3
+   line: "Lead the math department's professional learning community"
+   can't tell: A recruiter can see that you lead the group, but not what its members work on together. One example would show what that leadership involves.
+   example: Lead the math department's professional learning community in [what the group works on]
+   question: What does the professional learning community work on under your leadership?
+2. [keep] Cedar Creek High School, line 2
+   line: "Redesigned the Algebra II unit on functions into a self-paced online module in Canvas"
+   can't tell: Keep this one. It lets a recruiter picture the material you transformed and the learning format you built.
+
+## Fit
+Roles: ["Mathematics Teacher"]
+Level: Experienced teacher who leads the math department's professional learning community
+Note: Your resume is strongest for classroom teaching. The Canvas module, certificate in progress and portfolio also show a move toward digital learning design.

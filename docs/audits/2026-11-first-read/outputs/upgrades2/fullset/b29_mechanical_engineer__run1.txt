@@ -1,0 +1,45 @@
+# b29_mechanical_engineer, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_mechanical_engineer_1.txt (143 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt da8de295; severity check off
+Outcome: report; cost $0.0077; 15.7s
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+A mechanical engineer with a promotion and named design work, but few details about what changed.
+
+## Write-up
+Your resume points to Mechanical Engineer II work in commercial furniture, with a promotion at Westhaven and responsibility for the Arlo desk platform. It's common for design resumes to list the work this way, but without more about the decisions and results, yours may not stand out in a pile.
+
+The prototype testing line is a useful model: it names the work and the BIFMA standards you tested against. Your experience comes before education, and the progression from Engineer I to Engineer II is easy to follow.
+
+Let's start with the Arlo platform. Add the design work you led and what changed, then give the supplier and analysis work the same treatment where you can.
+
+## Cards (5; {"line":4,"keep":1}); severity off; added []
+1. [line] Mechanical Engineer II, line 1
+   line: "Lead mechanical design for the Arlo height-adjustable desk platform"
+   can't tell: The named platform is a good start, but a recruiter can't tell which design decisions were yours or what changed. That's important for the lead work in your latest role.
+   example: Lead mechanical design for the Arlo height-adjustable desk platform, including [design work] and [what changed]
+   question: What design work did you lead on Arlo, and what changed as a result?
+2. [line] Mechanical Engineer II, line 3
+   line: "Work with suppliers in Mexico and Taiwan on tooling and first-article inspection"
+   can't tell: The supplier locations and work are clear, but your part in the tooling and inspections isn't. Did you review parts, resolve issues, or do something else?
+   example: Work with suppliers in Mexico and Taiwan on tooling and first-article inspection, including [your contribution] and [what changed]
+   question: What did you do with the suppliers on tooling and inspection, and what changed?
+3. [line] Mechanical Engineer II, line 4
+   line: "Run tolerance stack-ups and FEA on load-bearing components"
+   can't tell: A recruiter can see the analysis you run, but not the design problem it addresses or the decision it informs.
+   example: Run tolerance stack-ups and FEA on load-bearing components to address [design problem], informing [design decision]
+   question: What problem did your analysis address, and what design decision did it inform?
+4. [line] Mechanical Engineer II, line 5
+   line: "Support manufacturing with engineering change orders"
+   can't tell: Support can cover several different jobs. A recruiter can't tell what you contributed to the change orders or what they addressed.
+   example: Support manufacturing with engineering change orders by [your contribution] for [what changed]
+   question: What did you contribute to the change orders, and what changes did they cover?
+5. [keep] Mechanical Engineer I, line 2
+   line: "Ran prototype testing to BIFMA standards"
+   can't tell: Keep this as a model for naming both the task and the standard that shaped it. A recruiter can immediately see what kind of testing you ran.
+
+## Fit
+Roles: ["Mechanical Engineer II","Mechanical Engineer I"]
+Level: Engineer II, leads mechanical design for a desk platform
+Note: Your experience points toward mechanical product design, particularly furniture and fixtures. More detail about your design decisions would help distinguish the work you lead from the work you support.

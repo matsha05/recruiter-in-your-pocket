@@ -1,0 +1,250 @@
+{
+  "case_id": "b19_non_native_english",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/resumes/b_non_native_english.txt",
+  "resume_sha256": "b6a26fe36825d1810e73236e21445163948f02ce6be0d9328e9ccaf50cb59c16",
+  "resume_words": 237,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T20:41:54.574Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6196,
+        "completion_tokens": 1079,
+        "total_tokens": 7275,
+        "cached_prompt_tokens": 5306,
+        "cache_write_prompt_tokens": 887,
+        "reasoning_tokens": 394
+      },
+      "cost_usd": 0.00677205,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 13109
+    }
+  ],
+  "resume_prompt_sha256": "da8de2955f7c8fc1b62e0178500104bae17a416005f43113f3b1bc615f3fd1f8",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 81,
+    "lifted_by_employer": false,
+    "verdict": "An accountant with substantial ledger and closing experience, now working in accounts payable in Houston.",
+    "write_up": [
+      "Your resume points to Staff Accountant and Accounts Payable Specialist roles. A recruiter can see both the invoice work you do now at Bayou Industrial Supply and the broader accounting work you did at Minh Phat Trading Company. That combination makes your experience easy to place.",
+      "The strongest line is the one about reducing month-end closing from 12 days to 7 days. It names the change and the checklist and template you made to get there. Your Experience section leads Education, and your current role is dated clearly.",
+      "Start with the month-end closing line at Bayou: tell us which tasks you helped the controller complete. Then add what you contributed to the audit at Minh Phat. A final grammar pass will polish the resume without changing the work you describe."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 4",
+        "line": "- Help the controller for month end closing",
+        "cannot_tell": "A recruiter can't tell which closing tasks you help with. That matters for a Staff Accountant role, where the work behind the close is important.",
+        "example": "Help the controller with month-end closing by [tasks you handle]",
+        "question": "Which month-end closing tasks do you help the controller complete?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 3",
+        "line": "- Work with external auditor for year end audit, no major finding in 5 years",
+        "cannot_tell": "The audit history is useful, but a recruiter can't tell what you provided or did for the auditor.",
+        "example": "Work with external auditor for year-end audit by [work you did for the audit]; no major finding in 5 years",
+        "question": "What did you prepare or provide for the external auditor?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Accountant, line 4",
+        "line": "- Reduce the month end closing from 12 days to 7 days by make new checklist and template",
+        "cannot_tell": "Keep this as your model: it pairs a concrete improvement with the tools you created. A recruiter can see your contribution without guessing.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Specialist"
+      ],
+      "why": "Your profile names Staff Accountant, and your work includes general ledger, financial statements and month-end closing.",
+      "level": "Experienced accountant; former Senior Accountant who led a team of 3 junior accountants.",
+      "note": "Your earlier role supports a broader accounting story, while your current role gives you recent accounts payable work in Houston. Both directions are named in your profile and supported by your experience.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 81,
+    "lifted_by_employer": false,
+    "verdict": "An accountant with substantial ledger and closing experience, now working in accounts payable in Houston.",
+    "write_up": [
+      "Your resume points to Staff Accountant and Accounts Payable Specialist roles. A recruiter can see both the invoice work you do now at Bayou Industrial Supply and the broader accounting work you did at Minh Phat Trading Company. That combination makes your experience easy to place.",
+      "The strongest line is the one about reducing month-end closing from 12 days to 7 days. It names the change and the checklist and template you made to get there. Your Experience section leads Education, and your current role is dated clearly.",
+      "Start with the month-end closing line at Bayou: tell us which tasks you helped the controller complete. Then add what you contributed to the audit at Minh Phat. A final grammar pass will polish the resume without changing the work you describe."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 4",
+        "line": "Help the controller for month end closing",
+        "cannot_tell": "A recruiter can't tell which closing tasks you help with. That matters for a Staff Accountant role, where the work behind the close is important.",
+        "example": "Help the controller with month-end closing by [tasks you handle]",
+        "question": "Which month-end closing tasks do you help the controller complete?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 3",
+        "line": "Work with external auditor for year end audit, no major finding in 5 years",
+        "cannot_tell": "The audit history is useful, but a recruiter can't tell what you provided or did for the auditor.",
+        "example": "Work with external auditor for year-end audit by [work you did for the audit]; no major finding in 5 years",
+        "question": "What did you prepare or provide for the external auditor?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Accountant, line 4",
+        "line": "Reduce the month end closing from 12 days to 7 days by make new checklist and template",
+        "cannot_tell": "Keep this as your model: it pairs a concrete improvement with the tools you created. A recruiter can see your contribution without guessing.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Specialist"
+      ],
+      "why": "Your profile names Staff Accountant, and your work includes general ledger, financial statements and month-end closing.",
+      "level": "Experienced accountant; former Senior Accountant who led a team of 3 junior accountants.",
+      "note": "Your earlier role supports a broader accounting story, while your current role gives you recent accounts payable work in Houston. Both directions are named in your profile and supported by your experience.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 81
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 81,
+    "lifted_by_employer": false,
+    "verdict": "An accountant with substantial ledger and closing experience, now working in accounts payable in Houston.",
+    "write_up": [
+      "Your resume points to Staff Accountant and Accounts Payable Specialist roles. A recruiter can see both the invoice work you do now at Bayou Industrial Supply and the broader accounting work you did at Minh Phat Trading Company. That combination makes your experience easy to place.",
+      "The strongest line is the one about reducing month-end closing from 12 days to 7 days. It names the change and the checklist and template you made to get there. Your Experience section leads Education, and your current role is dated clearly.",
+      "Start with the month-end closing line at Bayou: tell us which tasks you helped the controller complete. Then add what you contributed to the audit at Minh Phat. A final grammar pass will polish the resume without changing the work you describe."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 4",
+        "line": "Help the controller for month end closing",
+        "cannot_tell": "A recruiter can't tell which closing tasks you help with. That matters for a Staff Accountant role, where the work behind the close is important.",
+        "example": "Help the controller with month-end closing by [tasks you handle]",
+        "question": "Which month-end closing tasks do you help the controller complete?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 3",
+        "line": "Work with external auditor for year end audit, no major finding in 5 years",
+        "cannot_tell": "The audit history is useful, but a recruiter can't tell what you provided or did for the auditor.",
+        "example": "Work with external auditor for year-end audit by [work you did for the audit]; no major finding in 5 years",
+        "question": "What did you prepare or provide for the external auditor?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Accountant, line 4",
+        "line": "Reduce the month end closing from 12 days to 7 days by make new checklist and template",
+        "cannot_tell": "Keep this as your model: it pairs a concrete improvement with the tools you created. A recruiter can see your contribution without guessing.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Specialist"
+      ],
+      "why": "Your profile names Staff Accountant, and your work includes general ledger, financial statements and month-end closing.",
+      "level": "Experienced accountant; former Senior Accountant who led a team of 3 junior accountants.",
+      "note": "Your earlier role supports a broader accounting story, while your current role gives you recent accounts payable work in Houston. Both directions are named in your profile and supported by your experience.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 81
+  },
+  "presentation": {
+    "score": 81,
+    "band": "Mostly clear",
+    "model_score": 81,
+    "lifted_by_employer": false,
+    "verdict": "An accountant with substantial ledger and closing experience, now working in accounts payable in Houston.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 130,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 4",
+        "line": "Help the controller for month end closing",
+        "blanks": 1,
+        "question": "Which month-end closing tasks do you help the controller complete?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 3",
+        "line": "Work with external auditor for year end audit, no major finding in 5 years",
+        "blanks": 1,
+        "question": "What did you prepare or provide for the external auditor?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Accountant, line 4",
+        "line": "Reduce the month end closing from 12 days to 7 days by make new checklist and template",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "line": 2,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Specialist"
+      ],
+      "why": "Your profile names Staff Accountant, and your work includes general ledger, financial statements and month-end closing.",
+      "level": "Experienced accountant; former Senior Accountant who led a team of 3 junior accountants.",
+      "note": "Your earlier role supports a broader accounting story, while your current role gives you recent accounts payable work in Houston. Both directions are named in your profile and supported by your experience.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00677205,
+  "latency_ms": 13117
+}

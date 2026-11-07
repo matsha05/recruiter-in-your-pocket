@@ -1,0 +1,57 @@
+# b11_recent_grad_bad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_recent_grad_bad_1.txt (151 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt da8de295; severity check off
+Outcome: report; cost $0.0192; repair ran; 36.6s
+Case note: First job, weak; count-check key says no_evidence_latest_role, no_recent_work, title_level_mismatch.
+
+Validator refused the first draft: The model response failed the worklist contract at cards.2.question: a card that needs work carries the question that fills its blanks.
+
+## Needs more context (score 53; model wrote 53)
+## Verdict
+A marketing intern's resume with a manager headline, thin campaign details, and unaccounted time since May 2024.
+
+## Write-up
+Your resume moves from campus tours and finance to dairy farm research and credit union marketing. It's common for early-career resumes to mix directions, but the marketing manager headline promises more than the internship lines show. I'm reading this for Marketing Intern roles because that's where your marketing experience sits.
+
+The dairy farm research line is your model: it names the data, the tool, and the study. Your marketing lines don't yet give a recruiter that same picture, so they won't stand out in a pile. Education also sits above your experience, and nothing accounts for time after May 2024.
+
+Let's start with the headline and the time since your last dated role, then return to the credit union newsletter. Add what you personally did for the newsletter, social accounts, and branch events, without turning support work into work you led.
+
+## Cards (7; {"line":4,"dates":1,"structure":1,"keep":1}); severity off; added []
+1. [line] Headline
+   line: "Marketing manager who has led credit union campaigns from strategy to launch."
+   can't tell: The credit union lines say you helped, posted, and supported planning, but they don't show campaigns you led from strategy to launch. That leaves a recruiter questioning the manager title.
+   example: Marketing Intern with credit union experience in [marketing work you did].
+   question: Which credit union marketing work can you describe in the headline?
+2. [dates] Dates
+   line: "Nothing is dated after May 2024."
+   can't tell: A recruiter can't tell what you've been doing since your last dated role. Add an honest account of the time: caregiving can be named as caregiving, and a career break can include a course, project, volunteering, or travel. Include freelance work only if you did it.
+   example: May 2024 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]
+   question: What have you been doing since May 2024 that you can add to your resume?
+3. [structure] Structure
+   line: "Education sits above Experience."
+   can't tell: Your work is more useful to a recruiter assessing you for another marketing role. Put Experience first so the credit union work comes before your degree.
+   question: Can you move Experience above Education?
+4. [line] Marketing Intern, line 1
+   line: "Helped with the member newsletter"
+   can't tell: Helping could mean writing, building, or sending the newsletter. A recruiter can't tell which part was yours.
+   example: Helped with the member newsletter by [your contribution] [frequency].
+   question: What did you do for the newsletter, and how often?
+5. [line] Marketing Intern, line 2
+   line: "Posted on the credit union's social media accounts"
+   can't tell: Posting is a real task, but the line doesn't say what you posted or how often. Those details show what the work involved.
+   example: Posted [content] on the credit union's social media accounts [frequency].
+   question: What did you post, and how often?
+6. [line] Marketing Intern, line 3
+   line: "Supported planning for branch events"
+   can't tell: A recruiter can't tell what you contributed to an event. Name one and the planning work you handled.
+   example: Supported planning for [branch event] by [your contribution].
+   question: Which branch event did you support, and what did you do for it?
+7. [keep] Research Assistant, line 1
+   line: "Cleaned survey data from 1,200 dairy farms in Stata for a pricing study"
+   can't tell: Keep this as a model. It gives the reader a concrete task and enough context to understand what you worked with.
+
+## Fit
+Roles: ["Marketing Intern"]
+Level: Entry level, with a marketing internship
+Note: Your credit union work points toward entry-level marketing roles. The resume doesn't yet show the campaign leadership claimed in the manager headline.

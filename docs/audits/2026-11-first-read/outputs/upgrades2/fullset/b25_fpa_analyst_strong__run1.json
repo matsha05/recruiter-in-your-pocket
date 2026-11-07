@@ -1,0 +1,278 @@
+{
+  "case_id": "b25_fpa_analyst_strong",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_fpa_analyst_strong_1.txt",
+  "resume_sha256": "e8604c5c03930c475f944d36090e8f6db4af1ffc417c634667c5450ff68f9cd2",
+  "resume_words": 138,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T20:42:23.340Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5936,
+        "completion_tokens": 1637,
+        "total_tokens": 7573,
+        "cached_prompt_tokens": 5306,
+        "cache_write_prompt_tokens": 627,
+        "reasoning_tokens": 816
+      },
+      "cost_usd": 0.00923705,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 19376
+    }
+  ],
+  "resume_prompt_sha256": "da8de2955f7c8fc1b62e0178500104bae17a416005f43113f3b1bc615f3fd1f8",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst with a substantial budget and clear forecasting and pricing results.",
+    "write_up": [
+      "Your resume makes a strong case for senior FP&A work! At Lakeshore Foods, you connect budget ownership and forecasting to a division CFO and brand leaders, with concrete results a recruiter can remember.",
+      "The forecast line is the model: it names what you built and shows the error before and after. Your Midway Brands work also shows how you saved time in reporting. The pricing line has a strong result, though your part in the 2025 review could be more explicit.",
+      "Start by adding your contribution to that review, then consider whether your budget work includes decisions across teams that point toward the next level. Your resume isn't likely to be the thing holding you back; the competitiveness of the roles you pursue will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Senior Financial Analyst, FP&A, pricing line",
+        "line": "- Model price changes for 60 products; a 2025 pricing review added $3.1M in gross margin",
+        "cannot_tell": "The margin result is strong, but a recruiter can't tell what you contributed to the 2025 review. Connect your work to the review without taking credit for more than was yours.",
+        "example": "Model price changes for 60 products; [what you did] in a 2025 pricing review that added $3.1M in gross margin",
+        "question": "What did you contribute to the 2025 pricing review?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, forecast line",
+        "line": "- Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "Keep this as a model. You name the deliverable and give a before-and-after measure without making the reader guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Financial Analyst, FP&A, budget line",
+        "line": "- Own the $240M annual operating budget for the snacks division",
+        "cannot_tell": "The budget is substantial. For a step up, a recruiter may also look for decisions you own across teams or how you set direction for the budget.",
+        "example": "Own the $240M annual operating budget for the snacks division, including [cross-team decisions you own]",
+        "question": "Which budget decisions, if any, do you own across teams?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Skills",
+        "line": "Excel, Power BI, SQL, Anaplan, NetSuite, financial modeling",
+        "cannot_tell": "Your experience already shows financial modeling. You could cut that broad phrase and leave the tools.",
+        "example": "Excel, Power BI, SQL, Anaplan, NetSuite",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior FP&A analyst"
+      ],
+      "why": "Your headline and Lakeshore Foods role both center on budgeting, forecasting and pricing for a consumer brand.",
+      "level": "Senior analyst, owns a divisional operating budget and presents to the division CFO",
+      "note": "Your experience points toward senior FP&A roles with budget and commercial finance responsibilities. If you're aiming for a manager role, add any team or cross-team decision responsibilities you can substantiate.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst with a substantial budget and clear forecasting and pricing results.",
+    "write_up": [
+      "Your resume makes a strong case for senior FP&A work! At Lakeshore Foods, you connect budget ownership and forecasting to a division CFO and brand leaders, with concrete results a recruiter can remember.",
+      "The forecast line is the model: it names what you built and shows the error before and after. Your Midway Brands work also shows how you saved time in reporting. The pricing line has a strong result, though your part in the 2025 review could be more explicit.",
+      "Start by adding your contribution to that review, then consider whether your budget work includes decisions across teams that point toward the next level. Your resume isn't likely to be the thing holding you back; the competitiveness of the roles you pursue will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Senior Financial Analyst, FP&A, pricing line",
+        "line": "Model price changes for 60 products; a 2025 pricing review added $3.1M in gross margin",
+        "cannot_tell": "The margin result is strong, but a recruiter can't tell what you contributed to the 2025 review. Connect your work to the review without taking credit for more than was yours.",
+        "example": "Model price changes for 60 products; [what you did] in a 2025 pricing review that added $3.1M in gross margin",
+        "question": "What did you contribute to the 2025 pricing review?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, forecast line",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "Keep this as a model. You name the deliverable and give a before-and-after measure without making the reader guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Financial Analyst, FP&A, budget line",
+        "line": "Own the $240M annual operating budget for the snacks division",
+        "cannot_tell": "The budget is substantial. For a step up, a recruiter may also look for decisions you own across teams or how you set direction for the budget.",
+        "example": "Own the $240M annual operating budget for the snacks division, including [cross-team decisions you own]",
+        "question": "Which budget decisions, if any, do you own across teams?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Skills",
+        "line": "Excel, Power BI, SQL, Anaplan, NetSuite, financial modeling",
+        "cannot_tell": "Your experience already shows financial modeling. You could cut that broad phrase and leave the tools.",
+        "example": "Excel, Power BI, SQL, Anaplan, NetSuite",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior FP&A analyst"
+      ],
+      "why": "Your headline and Lakeshore Foods role both center on budgeting, forecasting and pricing for a consumer brand.",
+      "level": "Senior analyst, owns a divisional operating budget and presents to the division CFO",
+      "note": "Your experience points toward senior FP&A roles with budget and commercial finance responsibilities. If you're aiming for a manager role, add any team or cross-team decision responsibilities you can substantiate.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst with a substantial budget and clear forecasting and pricing results.",
+    "write_up": [
+      "Your resume makes a strong case for senior FP&A work! At Lakeshore Foods, you connect budget ownership and forecasting to a division CFO and brand leaders, with concrete results a recruiter can remember.",
+      "The forecast line is the model: it names what you built and shows the error before and after. Your Midway Brands work also shows how you saved time in reporting. The pricing line has a strong result, though your part in the 2025 review could be more explicit.",
+      "Start by adding your contribution to that review, then consider whether your budget work includes decisions across teams that point toward the next level. Your resume isn't likely to be the thing holding you back; the competitiveness of the roles you pursue will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Senior Financial Analyst, FP&A, pricing line",
+        "line": "Model price changes for 60 products; a 2025 pricing review added $3.1M in gross margin",
+        "cannot_tell": "The margin result is strong, but a recruiter can't tell what you contributed to the 2025 review. Connect your work to the review without taking credit for more than was yours.",
+        "example": "Model price changes for 60 products; [what you did] in a 2025 pricing review that added $3.1M in gross margin",
+        "question": "What did you contribute to the 2025 pricing review?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, forecast line",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "Keep this as a model. You name the deliverable and give a before-and-after measure without making the reader guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Financial Analyst, FP&A, budget line",
+        "line": "Own the $240M annual operating budget for the snacks division",
+        "cannot_tell": "The budget is substantial. For a step up, a recruiter may also look for decisions you own across teams or how you set direction for the budget.",
+        "example": "Own the $240M annual operating budget for the snacks division, including [cross-team decisions you own]",
+        "question": "Which budget decisions, if any, do you own across teams?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Skills",
+        "line": "Excel, Power BI, SQL, Anaplan, NetSuite, financial modeling",
+        "cannot_tell": "Your experience already shows financial modeling. You could cut that broad phrase and leave the tools.",
+        "example": "Excel, Power BI, SQL, Anaplan, NetSuite",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior FP&A analyst"
+      ],
+      "why": "Your headline and Lakeshore Foods role both center on budgeting, forecasting and pricing for a consumer brand.",
+      "level": "Senior analyst, owns a divisional operating budget and presents to the division CFO",
+      "note": "Your experience points toward senior FP&A roles with budget and commercial finance responsibilities. If you're aiming for a manager role, add any team or cross-team decision responsibilities you can substantiate.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "presentation": {
+    "score": 88,
+    "band": "Clear and specific",
+    "model_score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst with a substantial budget and clear forecasting and pricing results.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 126,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Senior Financial Analyst, FP&A, pricing line",
+        "line": "Model price changes for 60 products; a 2025 pricing review added $3.1M in gross margin",
+        "blanks": 1,
+        "question": "What did you contribute to the 2025 pricing review?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, forecast line",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Financial Analyst, FP&A, budget line",
+        "line": "Own the $240M annual operating budget for the snacks division",
+        "blanks": 1,
+        "question": "Which budget decisions, if any, do you own across teams?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Skills",
+        "line": "Excel, Power BI, SQL, Anaplan, NetSuite, financial modeling",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 4,
+    "kinds": {
+      "line": 1,
+      "keep": 1,
+      "upgrade": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior FP&A analyst"
+      ],
+      "why": "Your headline and Lakeshore Foods role both center on budgeting, forecasting and pricing for a consumer brand.",
+      "level": "Senior analyst, owns a divisional operating budget and presents to the division CFO",
+      "note": "Your experience points toward senior FP&A roles with budget and commercial finance responsibilities. If you're aiming for a manager role, add any team or cross-team decision responsibilities you can substantiate.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00923705,
+  "latency_ms": 19382
+}

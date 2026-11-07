@@ -10,7 +10,7 @@ import {
   ungroundedTokensInExample,
   ungroundedTokensInStatement,
 } from "./worklist-grounding";
-import { WorklistReportSchema, type WorklistCard, type WorklistReport } from "./worklist-schema";
+import { QUOTED_KINDS, WORK_KINDS, WorklistReportSchema, type WorklistCard, type WorklistReport } from "./worklist-schema";
 
 /**
  * The worklist report's validator. Shape first (Zod), then the mechanical grounding, then the house
@@ -68,7 +68,7 @@ function proseFields(report: WorklistReport): Array<{ path: string; value: strin
     fields.push({ path: `cards[${index}].cannot_tell`, value: card.cannot_tell });
     fields.push({ path: `cards[${index}].question`, value: card.question });
     fields.push({ path: `cards[${index}].where`, value: card.where });
-    if (card.kind !== "line" && card.kind !== "keep") fields.push({ path: `cards[${index}].line`, value: card.line });
+    if (!QUOTED_KINDS.has(card.kind)) fields.push({ path: `cards[${index}].line`, value: card.line });
   });
   fields.push({ path: "fit.note", value: report.fit.note }, { path: "fit.level", value: report.fit.level }, { path: "fit.posting.summary", value: report.fit.posting.summary });
   if (report.fit.why) fields.push({ path: "fit.why", value: report.fit.why });
@@ -111,7 +111,7 @@ export function validateWorklistPayload(obj: unknown, resumeText?: string, optio
     const kept: WorklistCard[] = [];
     report.cards.forEach((card, index) => {
       const path = `cards[${index}]`;
-      if (card.kind === "line" || card.kind === "keep") {
+      if (QUOTED_KINDS.has(card.kind)) {
         const resolved = resolveCardLine(card.line, resumeText);
         if (resolved.status === "missing") {
           issues.push({ path: `${path}.line`, message: `is not on the resume as written: "${card.line}"` });
@@ -128,15 +128,15 @@ export function validateWorklistPayload(obj: unknown, resumeText?: string, optio
         }
       }
       if (card.example) {
-        for (const issue of ungroundedTokensInExample(card.example, resumeText, card.kind === "line" ? card.line : "")) {
+        for (const issue of ungroundedTokensInExample(card.example, resumeText, card.kind === "line" || card.kind === "upgrade" ? card.line : "")) {
           issues.push({ path: `${path}.example`, message: `puts a ${issue.kind} outside a bracket that the resume doesn't have: "${issue.token}"` });
         }
-        if (card.kind === "line" && inflatesOwnership(card.line, card.example)) {
+        if ((card.kind === "line" || card.kind === "upgrade") && inflatesOwnership(card.line, card.example)) {
           issues.push({ path: `${path}.example`, message: "turns a support verb on the line into an ownership verb" });
         }
       }
       // One card per line: the first card on a line stands, as the prompt orders them.
-      if (kept.some((other) => (card.kind === "line" || card.kind === "keep") && (other.kind === "line" || other.kind === "keep") && sameCardLine(other.line, card.line))) return;
+      if (kept.some((other) => QUOTED_KINDS.has(card.kind) && QUOTED_KINDS.has(other.kind) && sameCardLine(other.line, card.line))) return;
       kept.push(card);
     });
     report.cards = kept;
@@ -144,7 +144,8 @@ export function validateWorklistPayload(obj: unknown, resumeText?: string, optio
 
   // The top band is earned, not scored (Matt, Nov 6, 2026): "Ready to send" (93+) only when no card needs work;
   // a page with no card that needs work never sits below 90; the employer lift never reaches the top band.
-  const work = report.cards.filter((card) => card.kind !== "keep").length;
+  // Upgrades are optional (Matt, Nov 7, 2026): they never count as work.
+  const work = report.cards.filter((card) => WORK_KINDS.has(card.kind)).length;
   if (report.score >= READY_TO_SEND_SCORE && work > 0) {
     issues.push({ path: "score", message: `is ${report.score} (Ready to send) with ${work} card${work === 1 ? "" : "s"} that need${work === 1 ? "s" : ""} work; a page with any card that needs work scores at most ${READY_TO_SEND_SCORE - 1}` });
   }

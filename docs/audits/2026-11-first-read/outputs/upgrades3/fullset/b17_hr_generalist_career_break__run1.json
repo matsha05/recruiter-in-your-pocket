@@ -1,0 +1,309 @@
+{
+  "case_id": "b17_hr_generalist_career_break",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Returner after caregiving, break dated and named.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_hr_generalist_career_break_1.txt",
+  "resume_sha256": "59c9f2306490959a56a0d7a38268e6b5db0ff40531b47983bc495f857cae8f0b",
+  "resume_words": 145,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T22:14:48.996Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6220,
+        "completion_tokens": 1604,
+        "total_tokens": 7824,
+        "cached_prompt_tokens": 5529,
+        "cache_write_prompt_tokens": 688,
+        "reasoning_tokens": 685
+      },
+      "cost_usd": 0.00915945,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 18744
+    }
+  ],
+  "resume_prompt_sha256": "15dff271c2d212b2504350e8d09deec38785cfa3e7ee269f5f8154593e015688",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "An HR generalist with plant experience and a caregiving break, but no account of time since June 2025.",
+    "write_up": [
+      "Your resume points to HR Generalist work in manufacturing, with a move from HR Assistant to HR Generalist at Northstar Plastics. It's common for HR resumes to list core duties without showing much about how the work was handled. Here, that makes it harder to distinguish your employee relations and benefits work from someone else's.",
+      "The orientation line is a good model: it names work you ran and how often. Your resume also explains the family caregiving break through June 2025, but leaves the time after that date open. A recruiter will notice the gap alongside the time since your last HR role.",
+      "Let's start with the dates after June 2025, then add what you handled in employee relations and open enrollment at Northstar. Your plant experience, HR systems and SHRM-CP give you useful material to build on."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after June 2025.",
+        "cannot_tell": "A recruiter can't tell what you've done since the caregiving break ended. A dated entry can answer that question without treating caregiving as something to hide.",
+        "example": "June 2025 - Present  [what you did since June 2025]",
+        "question": "What have you done since June 2025, and are the caregiving dates still accurate?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 2",
+        "line": "- Handled employee relations questions and investigations with the HR manager",
+        "cannot_tell": "A recruiter knows you worked with the HR manager, but not what your part in the investigations involved. That distinction matters for another generalist role.",
+        "example": "Handled employee relations questions and investigations with the HR manager, including [your responsibilities]",
+        "question": "What did you handle in the employee relations questions and investigations?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 3",
+        "line": "- Coordinated open enrollment for medical and dental benefits",
+        "cannot_tell": "The benefits are named, but coordinating enrollment can cover several different jobs. Show which parts were yours.",
+        "example": "Coordinated open enrollment for medical and dental benefits, including [enrollment tasks]",
+        "question": "Which open enrollment tasks did you handle?"
+      },
+      {
+        "kind": "keep",
+        "where": "HR Generalist, line 4",
+        "line": "- Ran new hire orientation every two weeks",
+        "cannot_tell": "Keep this as a model. It gives you ownership of a concrete part of onboarding and shows its regular cadence.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 5",
+        "line": "- Kept personnel files and HRIS records up to date",
+        "cannot_tell": "A recruiter can't tell which records you maintained or what the updates involved. That would make your day-to-day HR systems work more concrete.",
+        "example": "Kept personnel files and HRIS records up to date by [record updates]",
+        "question": "What kinds of personnel and HRIS record updates did you handle?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "HR Generalist"
+      ],
+      "why": "Your headline and Northstar role both point to HR Generalist work in a manufacturing plant.",
+      "level": "mid-level, HR Generalist role with an HR Assistant role before it",
+      "note": "Your experience points toward generalist roles that combine employee relations, benefits and onboarding. If caregiving continued, update its dates; otherwise, name a career break and what you did, or include freelance work only if it was real.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "An HR generalist with plant experience and a caregiving break, but no account of time since June 2025.",
+    "write_up": [
+      "Your resume points to HR Generalist work in manufacturing, with a move from HR Assistant to HR Generalist at Northstar Plastics. It's common for HR resumes to list core duties without showing much about how the work was handled. Here, that makes it harder to distinguish your employee relations and benefits work from someone else's.",
+      "The orientation line is a good model: it names work you ran and how often. Your resume also explains the family caregiving break through June 2025, but leaves the time after that date open. A recruiter will notice the gap alongside the time since your last HR role.",
+      "Let's start with the dates after June 2025, then add what you handled in employee relations and open enrollment at Northstar. Your plant experience, HR systems and SHRM-CP give you useful material to build on."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after June 2025.",
+        "cannot_tell": "A recruiter can't tell what you've done since the caregiving break ended. A dated entry can answer that question without treating caregiving as something to hide.",
+        "example": "June 2025 - Present [what you did since June 2025]",
+        "question": "What have you done since June 2025, and are the caregiving dates still accurate?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 2",
+        "line": "Handled employee relations questions and investigations with the HR manager",
+        "cannot_tell": "A recruiter knows you worked with the HR manager, but not what your part in the investigations involved. That distinction matters for another generalist role.",
+        "example": "Handled employee relations questions and investigations with the HR manager, including [your responsibilities]",
+        "question": "What did you handle in the employee relations questions and investigations?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 3",
+        "line": "Coordinated open enrollment for medical and dental benefits",
+        "cannot_tell": "The benefits are named, but coordinating enrollment can cover several different jobs. Show which parts were yours.",
+        "example": "Coordinated open enrollment for medical and dental benefits, including [enrollment tasks]",
+        "question": "Which open enrollment tasks did you handle?"
+      },
+      {
+        "kind": "keep",
+        "where": "HR Generalist, line 4",
+        "line": "Ran new hire orientation every two weeks",
+        "cannot_tell": "Keep this as a model. It gives you ownership of a concrete part of onboarding and shows its regular cadence.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 5",
+        "line": "Kept personnel files and HRIS records up to date",
+        "cannot_tell": "A recruiter can't tell which records you maintained or what the updates involved. That would make your day-to-day HR systems work more concrete.",
+        "example": "Kept personnel files and HRIS records up to date by [record updates]",
+        "question": "What kinds of personnel and HRIS record updates did you handle?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "HR Generalist"
+      ],
+      "why": "Your headline and Northstar role both point to HR Generalist work in a manufacturing plant.",
+      "level": "mid-level, HR Generalist role with an HR Assistant role before it",
+      "note": "Your experience points toward generalist roles that combine employee relations, benefits and onboarding. If caregiving continued, update its dates; otherwise, name a career break and what you did, or include freelance work only if it was real.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 67
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "An HR generalist with plant experience and a caregiving break, but no account of time since June 2025.",
+    "write_up": [
+      "Your resume points to HR Generalist work in manufacturing, with a move from HR Assistant to HR Generalist at Northstar Plastics. It's common for HR resumes to list core duties without showing much about how the work was handled. Here, that makes it harder to distinguish your employee relations and benefits work from someone else's.",
+      "The orientation line is a good model: it names work you ran and how often. Your resume also explains the family caregiving break through June 2025, but leaves the time after that date open. A recruiter will notice the gap alongside the time since your last HR role.",
+      "Let's start with the dates after June 2025, then add what you handled in employee relations and open enrollment at Northstar. Your plant experience, HR systems and SHRM-CP give you useful material to build on."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after June 2025.",
+        "cannot_tell": "A recruiter can't tell what you've done since the caregiving break ended. A dated entry can answer that question without treating caregiving as something to hide.",
+        "example": "June 2025 - Present [what you did since June 2025]",
+        "question": "What have you done since June 2025, and are the caregiving dates still accurate?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 2",
+        "line": "Handled employee relations questions and investigations with the HR manager",
+        "cannot_tell": "A recruiter knows you worked with the HR manager, but not what your part in the investigations involved. That distinction matters for another generalist role.",
+        "example": "Handled employee relations questions and investigations with the HR manager, including [your responsibilities]",
+        "question": "What did you handle in the employee relations questions and investigations?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 3",
+        "line": "Coordinated open enrollment for medical and dental benefits",
+        "cannot_tell": "The benefits are named, but coordinating enrollment can cover several different jobs. Show which parts were yours.",
+        "example": "Coordinated open enrollment for medical and dental benefits, including [enrollment tasks]",
+        "question": "Which open enrollment tasks did you handle?"
+      },
+      {
+        "kind": "keep",
+        "where": "HR Generalist, line 4",
+        "line": "Ran new hire orientation every two weeks",
+        "cannot_tell": "Keep this as a model. It gives you ownership of a concrete part of onboarding and shows its regular cadence.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 5",
+        "line": "Kept personnel files and HRIS records up to date",
+        "cannot_tell": "A recruiter can't tell which records you maintained or what the updates involved. That would make your day-to-day HR systems work more concrete.",
+        "example": "Kept personnel files and HRIS records up to date by [record updates]",
+        "question": "What kinds of personnel and HRIS record updates did you handle?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "HR Generalist"
+      ],
+      "why": "Your headline and Northstar role both point to HR Generalist work in a manufacturing plant.",
+      "level": "mid-level, HR Generalist role with an HR Assistant role before it",
+      "note": "Your experience points toward generalist roles that combine employee relations, benefits and onboarding. If caregiving continued, update its dates; otherwise, name a career break and what you did, or include freelance work only if it was real.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 67
+  },
+  "presentation": {
+    "score": 67,
+    "band": "Needs more context",
+    "model_score": 67,
+    "lifted_by_employer": false,
+    "verdict": "An HR generalist with plant experience and a caregiving break, but no account of time since June 2025.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 138,
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after June 2025.",
+        "blanks": 1,
+        "question": "What have you done since June 2025, and are the caregiving dates still accurate?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 2",
+        "line": "Handled employee relations questions and investigations with the HR manager",
+        "blanks": 1,
+        "question": "What did you handle in the employee relations questions and investigations?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 3",
+        "line": "Coordinated open enrollment for medical and dental benefits",
+        "blanks": 1,
+        "question": "Which open enrollment tasks did you handle?"
+      },
+      {
+        "kind": "keep",
+        "where": "HR Generalist, line 4",
+        "line": "Ran new hire orientation every two weeks",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 5",
+        "line": "Kept personnel files and HRIS records up to date",
+        "blanks": 1,
+        "question": "What kinds of personnel and HRIS record updates did you handle?"
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "dates": 1,
+      "line": 3,
+      "keep": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "HR Generalist"
+      ],
+      "why": "Your headline and Northstar role both point to HR Generalist work in a manufacturing plant.",
+      "level": "mid-level, HR Generalist role with an HR Assistant role before it",
+      "note": "Your experience points toward generalist roles that combine employee relations, benefits and onboarding. If caregiving continued, update its dates; otherwise, name a career break and what you did, or include freelance work only if it was real.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00915945,
+  "latency_ms": 18747
+}

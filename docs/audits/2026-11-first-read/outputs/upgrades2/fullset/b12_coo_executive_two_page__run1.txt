@@ -1,0 +1,34 @@
+# b12_coo_executive_two_page, run 1
+Resume: ../2026-11-live-judgment/resumes/b_coo_executive.txt (463 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt da8de295; severity check off
+Outcome: report; cost $0.0092; 16.1s
+Case note: Executive, two pages.
+
+## Clear and specific (score 94; model wrote 94)
+## Verdict
+A healthcare COO whose resume connects multi-site growth with operational and financial results.
+
+## Write-up
+This is a strong COO resume! You show the scale of Lakeshore Dental Partners and the work behind its growth, from acquisitions to integration and clinician retention. A recruiter can see both the business you run and what changed while you ran it.
+
+The hygienist turnover line is a great model: it names the change and the compensation and career-ladder work behind it. Your progression at Midwest Physician Alliance and the earlier surgery center turnaround reinforce the operating story.
+
+Your resume isn't the weak link here. Let's bring the integration result higher within the Lakeshore role and, if you can, add the company-wide decisions behind the operating plan. The competitiveness of a COO search and a referral can still matter.
+
+## Cards (3; {"keep":1,"upgrade":2}); severity off; added []
+1. [keep] Chief Operating Officer, hygienist turnover
+   line: "Reduced hygienist turnover from 34% to 19% over two years through a redesigned compensation plan and a clinical career ladder"
+   can't tell: Keep this as a model. It gives a recruiter the starting point, the change and the two levers you used.
+2. [upgrade] Chief Operating Officer, operating plan
+   line: "Own the annual operating plan and the $410M P&L with the CFO"
+   can't tell: For a role above COO, a recruiter will also look for the company-wide priorities and decisions behind that plan. Add those if you can speak to them.
+   example: Own the annual operating plan and the $410M P&L with the CFO, including [company-wide priorities] and [decisions made]
+   question: Which company-wide priorities and decisions were yours through the operating plan?
+3. [upgrade] Chief Operating Officer, practice integration
+   line: "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook"
+   can't tell: Move this above the regional operating model line. It shows how you made integration faster while the practice count grew.
+
+## Fit
+Roles: ["Chief Operating Officer"]
+Level: Executive, COO reporting to the CEO and presenting to the board
+Note: Your experience points to healthcare services COO roles, particularly in multi-site organizations growing through acquisitions and openings. The board and advisory work adds another view of your leadership outside daily operations.

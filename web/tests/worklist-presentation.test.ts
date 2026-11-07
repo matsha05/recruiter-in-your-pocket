@@ -4,11 +4,14 @@ import path from "node:path";
 import {
   blankAnswersFromStored,
   blankLabels,
+  cardPosition,
   cardsHeading,
   compareWorklists,
   composeExample,
   exampleSegments,
   storedAnswersForCard,
+  upgradesLead,
+  workCards,
   worklistTargetRole,
 } from "../lib/reports/worklist-presentation";
 import { normalizeReportForPdf } from "../lib/reports/pdf-export";
@@ -53,6 +56,23 @@ import { MOCK_WORKLIST_REPORT } from "../lib/backend/mock-worklist-report";
   assert.equal(cardsHeading(mock).title, "Lines that need work.");
   assert.equal(cardsHeading({ cards: mock.cards.filter((card) => card.kind === "keep") }).title, "Nothing here needs work.");
   assert.equal(worklistTargetRole(mock), "Customer Operations");
+
+  // A strong resume's upgrades (Nov 7, 2026): the same list, optional, never counted as work.
+  const keep = mock.cards.filter((card) => card.kind === "keep");
+  const upgrade = { ...mock.cards.find((card) => card.kind === "line")!, kind: "upgrade" as const };
+  assert.equal(cardsHeading({ cards: [...keep, upgrade] }).title, "Nothing here needs work.", "a strong resume keeps its heading; upgrades are their own group");
+  assert.match(upgradesLead({ cards: [...keep, upgrade] }), /probably isn't what stands between you and the call/u, "with nothing to fix, the upgrades say the resume probably isn't the blocker");
+  assert.equal(upgradesLead({ cards: [...mock.cards, upgrade] }), "Optional, once the lines above are done.");
+  assert.equal(cardsHeading({ cards: [...mock.cards, upgrade] }).title, "Lines that need work.", "lines that need work keep their heading; upgrades follow them");
+  assert.equal(workCards({ cards: [...keep, upgrade] }).length, 0, "an upgrade is not a line that needs work");
+  assert.equal(cardPosition([upgrade, upgrade, upgrade, upgrade], 0), null, "upgrades carry no count");
+  const pdf = renderReportHtml(normalizeReportForPdf({ ...mock, score: 95, cards: [...keep, upgrade] })!);
+  assert.ok(pdf.includes("Ways to make it even better.") && pdf.includes("Nothing here needs work."), "the PDF prints the list, then the upgrades under their own heading");
+  assert.ok(pdf.indexOf("Nothing here needs work.") < pdf.indexOf("Ways to make it even better."), "the upgrades follow the list");
+  assert.equal((pdf.match(/<section/gu) || []).length, (pdf.match(/<\/section>/gu) || []).length, "every PDF section closes");
+  const plain = renderReportHtml(normalizeReportForPdf(mock)!);
+  assert.equal((plain.match(/<section/gu) || []).length, (plain.match(/<\/section>/gu) || []).length, "a PDF with no upgrades closes every section too");
+  assert.ok(!pdf.includes(`<span class="miss-mark">${upgrade.line}`), "an upgrade's line carries no marker in the PDF");
 }
 
 // The re-check: lines off the list, still there, and new, with the score as a change.

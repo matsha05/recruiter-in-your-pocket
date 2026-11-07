@@ -1,0 +1,499 @@
+{
+  "case_id": "b39_new_grad_daniel",
+  "batch": "breadth",
+  "run": 1,
+  "note": "New grad (bar persona).",
+  "resume_file": "../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/1-new-grad-daniel.txt",
+  "resume_sha256": "3462ee9e636e4d3adb7f5bdb87556bed636cfcf821f42734052695585a62cb5d",
+  "resume_words": 354,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T20:43:27.547Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6716,
+        "completion_tokens": 2194,
+        "total_tokens": 8910,
+        "cached_prompt_tokens": 5306,
+        "cache_write_prompt_tokens": 1407,
+        "reasoning_tokens": 591
+      },
+      "cost_usd": 0.01299705,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 25286
+    }
+  ],
+  "resume_prompt_sha256": "da8de2955f7c8fc1b62e0178500104bae17a416005f43113f3b1bc615f3fd1f8",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 65,
+    "lifted_by_employer": false,
+    "verdict": "A computer science graduate with relevant projects and an internship whose contributions need more detail.",
+    "write_up": [
+      "I read this for Software Engineer roles. You have a computer science degree, an internship at Cardinal Health, and projects that use the same web technologies. It's common for a new graduate's resume to lean on duties and team activities, but those lines won't stand out in a pile when a recruiter can't see what you built.",
+      "The Personal Finance Tracker line is a good model: it names the application, its purpose, and the tools you used. Your experience includes both the internship and the help desk role, so move Experience above Education. The objective names the job you want, but the rest of it could describe almost any graduate.",
+      "Let's start with the Cardinal Health inventory application. Name the features you developed, then use the testing and bug-fix lines to show what you worked on. Keep the project details that name what you built, and replace the soft-skills list with examples in your work."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Objective",
+        "line": "Motivated and detail-oriented Computer Science graduate seeking a Software Engineer position where I can leverage my technical skills and passion for problem solving to contribute to a dynamic team.",
+        "cannot_tell": "The job target is useful, but the rest doesn't distinguish your work from another graduate's. Lead with the inventory application and its technologies instead.",
+        "example": "Software Engineer seeking to build on experience developing features for an internal inventory management web application using React and Spring Boot",
+        "question": "Which part of your inventory application work best represents the jobs you want?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "cannot_tell": "Your help desk role and internship give a recruiter work to look at before coursework. Put Experience above Education so those roles come first.",
+        "example": "",
+        "question": "Can you move Experience above Education?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineering Intern, line 1",
+        "line": "- Responsible for developing features for an internal inventory management web application using React and Spring Boot",
+        "cannot_tell": "The application and stack are useful, but a recruiter can't tell which features you developed. That's the first thing to make concrete.",
+        "example": "Developed [features] for an internal inventory management web application using React and Spring Boot",
+        "question": "Which features did you develop for the inventory application?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineering Intern, line 2",
+        "line": "- Participated in daily stand-ups and sprint planning meetings as part of an Agile team",
+        "cannot_tell": "Meetings alone don't show what you contributed to the inventory application. Connect sprint planning to work you took on, or use the space for another feature.",
+        "example": "Participated in sprint planning for [work planned] as part of an Agile team",
+        "question": "What work did you take on through sprint planning?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineering Intern, line 3",
+        "line": "- Wrote unit tests to improve code quality and reliability",
+        "cannot_tell": "A recruiter can't tell what you tested or what the tests checked. Naming the code or behavior would make the testing work concrete.",
+        "example": "Wrote unit tests for [features or behavior tested] to check [what the tests checked]",
+        "question": "What did your unit tests cover, and what did they check?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineering Intern, line 4",
+        "line": "- Collaborated with cross-functional teams to gather requirements and deliver solutions",
+        "cannot_tell": "The teams and solutions are unnamed, so your part in the work is difficult to see. Pick one set of requirements and say what you contributed.",
+        "example": "Collaborated with [teams] to gather requirements for [solution] and contributed [your work]",
+        "question": "Which teams did you work with, and what did you contribute to a solution?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineering Intern, line 5",
+        "line": "- Fixed bugs and performed code reviews",
+        "cannot_tell": "Fixing bugs and reviewing code are relevant, but these could describe almost any engineering internship. Name a bug you fixed or the code you reviewed.",
+        "example": "Fixed [bug] and performed code reviews for [code reviewed]",
+        "question": "What bug did you fix, and what code did you review?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Assistant, line 1",
+        "line": "- Provided technical support to students and faculty for hardware and software issues",
+        "cannot_tell": "Students, faculty, hardware and software establish who you supported, but not the problems you handled. One or two examples would show the work.",
+        "example": "Provided technical support to students and faculty for [hardware or software issues]",
+        "question": "Which hardware or software issues did you handle most often?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Assistant, line 2",
+        "line": "- Resolved tickets in a timely manner and documented solutions",
+        "cannot_tell": "A recruiter can't tell what the tickets involved or how many you handled. Add those details if you can confirm them.",
+        "example": "Resolved [number] tickets for [issues] and documented solutions",
+        "question": "What kinds of tickets did you resolve, and how many did you handle?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Assistant, line 3",
+        "line": "- Assisted with setting up laptops and classroom technology",
+        "cannot_tell": "The equipment is named, but your part in setting it up is still broad. What did you do during a setup?",
+        "example": "Assisted with setting up laptops and classroom technology by [setup work]",
+        "question": "What setup work did you personally handle?"
+      },
+      {
+        "kind": "keep",
+        "where": "Personal Finance Tracker, line 1",
+        "line": "- Built a Python application to track expenses and visualize spending with matplotlib",
+        "cannot_tell": "Keep this as a model. It pairs a clear action with the application's job and the technology you used, without making the recruiter guess what you built.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Software Engineer",
+        "Software Engineering Intern"
+      ],
+      "why": "Your objective names Software Engineer, and your internship and projects show application development.",
+      "level": "Entry level, with a software engineering internship and a computer science degree",
+      "note": "Your experience points toward entry-level software engineering, particularly roles involving web applications. The Cardinal Health features and your individual contributions to the capstone are the best places to add detail.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 65,
+    "lifted_by_employer": false,
+    "verdict": "A computer science graduate with relevant projects and an internship whose contributions need more detail.",
+    "write_up": [
+      "I read this for Software Engineer roles. You have a computer science degree, an internship at Cardinal Health, and projects that use the same web technologies. It's common for a new graduate's resume to lean on duties and team activities, but those lines won't stand out in a pile when a recruiter can't see what you built.",
+      "The Personal Finance Tracker line is a good model: it names the application, its purpose, and the tools you used. Your experience includes both the internship and the help desk role, so move Experience above Education. The objective names the job you want, but the rest of it could describe almost any graduate.",
+      "Let's start with the Cardinal Health inventory application. Name the features you developed, then use the testing and bug-fix lines to show what you worked on. Keep the project details that name what you built, and replace the soft-skills list with examples in your work."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Objective",
+        "line": "Motivated and detail-oriented Computer Science graduate seeking a Software Engineer position where I can leverage my technical skills and passion for problem solving to contribute to a dynamic team.",
+        "cannot_tell": "The job target is useful, but the rest doesn't distinguish your work from another graduate's. Lead with the inventory application and its technologies instead.",
+        "example": "Software Engineer seeking to build on experience developing features for an internal inventory management web application using React and Spring Boot",
+        "question": "Which part of your inventory application work best represents the jobs you want?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "cannot_tell": "Your help desk role and internship give a recruiter work to look at before coursework. Put Experience above Education so those roles come first.",
+        "example": "",
+        "question": "Can you move Experience above Education?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineering Intern, line 1",
+        "line": "Responsible for developing features for an internal inventory management web application using React and Spring Boot",
+        "cannot_tell": "The application and stack are useful, but a recruiter can't tell which features you developed. That's the first thing to make concrete.",
+        "example": "Developed [features] for an internal inventory management web application using React and Spring Boot",
+        "question": "Which features did you develop for the inventory application?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineering Intern, line 2",
+        "line": "Participated in daily stand-ups and sprint planning meetings as part of an Agile team",
+        "cannot_tell": "Meetings alone don't show what you contributed to the inventory application. Connect sprint planning to work you took on, or use the space for another feature.",
+        "example": "Participated in sprint planning for [work planned] as part of an Agile team",
+        "question": "What work did you take on through sprint planning?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineering Intern, line 3",
+        "line": "Wrote unit tests to improve code quality and reliability",
+        "cannot_tell": "A recruiter can't tell what you tested or what the tests checked. Naming the code or behavior would make the testing work concrete.",
+        "example": "Wrote unit tests for [features or behavior tested] to check [what the tests checked]",
+        "question": "What did your unit tests cover, and what did they check?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineering Intern, line 4",
+        "line": "Collaborated with cross-functional teams to gather requirements and deliver solutions",
+        "cannot_tell": "The teams and solutions are unnamed, so your part in the work is difficult to see. Pick one set of requirements and say what you contributed.",
+        "example": "Collaborated with [teams] to gather requirements for [solution] and contributed [your work]",
+        "question": "Which teams did you work with, and what did you contribute to a solution?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineering Intern, line 5",
+        "line": "Fixed bugs and performed code reviews",
+        "cannot_tell": "Fixing bugs and reviewing code are relevant, but these could describe almost any engineering internship. Name a bug you fixed or the code you reviewed.",
+        "example": "Fixed [bug] and performed code reviews for [code reviewed]",
+        "question": "What bug did you fix, and what code did you review?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Assistant, line 1",
+        "line": "Provided technical support to students and faculty for hardware and software issues",
+        "cannot_tell": "Students, faculty, hardware and software establish who you supported, but not the problems you handled. One or two examples would show the work.",
+        "example": "Provided technical support to students and faculty for [hardware or software issues]",
+        "question": "Which hardware or software issues did you handle most often?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Assistant, line 2",
+        "line": "Resolved tickets in a timely manner and documented solutions",
+        "cannot_tell": "A recruiter can't tell what the tickets involved or how many you handled. Add those details if you can confirm them.",
+        "example": "Resolved [number] tickets for [issues] and documented solutions",
+        "question": "What kinds of tickets did you resolve, and how many did you handle?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Assistant, line 3",
+        "line": "Assisted with setting up laptops and classroom technology",
+        "cannot_tell": "The equipment is named, but your part in setting it up is still broad. What did you do during a setup?",
+        "example": "Assisted with setting up laptops and classroom technology by [setup work]",
+        "question": "What setup work did you personally handle?"
+      },
+      {
+        "kind": "keep",
+        "where": "Personal Finance Tracker, line 1",
+        "line": "Built a Python application to track expenses and visualize spending with matplotlib",
+        "cannot_tell": "Keep this as a model. It pairs a clear action with the application's job and the technology you used, without making the recruiter guess what you built.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Software Engineer",
+        "Software Engineering Intern"
+      ],
+      "why": "Your objective names Software Engineer, and your internship and projects show application development.",
+      "level": "Entry level, with a software engineering internship and a computer science degree",
+      "note": "Your experience points toward entry-level software engineering, particularly roles involving web applications. The Cardinal Health features and your individual contributions to the capstone are the best places to add detail.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 65
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 65,
+    "lifted_by_employer": false,
+    "verdict": "A computer science graduate with relevant projects and an internship whose contributions need more detail.",
+    "write_up": [
+      "I read this for Software Engineer roles. You have a computer science degree, an internship at Cardinal Health, and projects that use the same web technologies. It's common for a new graduate's resume to lean on duties and team activities, but those lines won't stand out in a pile when a recruiter can't see what you built.",
+      "The Personal Finance Tracker line is a good model: it names the application, its purpose, and the tools you used. Your experience includes both the internship and the help desk role, so move Experience above Education. The objective names the job you want, but the rest of it could describe almost any graduate.",
+      "Let's start with the Cardinal Health inventory application. Name the features you developed, then use the testing and bug-fix lines to show what you worked on. Keep the project details that name what you built, and replace the soft-skills list with examples in your work."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Objective",
+        "line": "Motivated and detail-oriented Computer Science graduate seeking a Software Engineer position where I can leverage my technical skills and passion for problem solving to contribute to a dynamic team.",
+        "cannot_tell": "The job target is useful, but the rest doesn't distinguish your work from another graduate's. Lead with the inventory application and its technologies instead.",
+        "example": "Software Engineer seeking to build on experience developing features for an internal inventory management web application using React and Spring Boot",
+        "question": "Which part of your inventory application work best represents the jobs you want?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "cannot_tell": "Your help desk role and internship give a recruiter work to look at before coursework. Put Experience above Education so those roles come first.",
+        "example": "",
+        "question": "Can you move Experience above Education?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineering Intern, line 1",
+        "line": "Responsible for developing features for an internal inventory management web application using React and Spring Boot",
+        "cannot_tell": "The application and stack are useful, but a recruiter can't tell which features you developed. That's the first thing to make concrete.",
+        "example": "Developed [features] for an internal inventory management web application using React and Spring Boot",
+        "question": "Which features did you develop for the inventory application?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineering Intern, line 2",
+        "line": "Participated in daily stand-ups and sprint planning meetings as part of an Agile team",
+        "cannot_tell": "Meetings alone don't show what you contributed to the inventory application. Connect sprint planning to work you took on, or use the space for another feature.",
+        "example": "Participated in sprint planning for [work planned] as part of an Agile team",
+        "question": "What work did you take on through sprint planning?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineering Intern, line 3",
+        "line": "Wrote unit tests to improve code quality and reliability",
+        "cannot_tell": "A recruiter can't tell what you tested or what the tests checked. Naming the code or behavior would make the testing work concrete.",
+        "example": "Wrote unit tests for [features or behavior tested] to check [what the tests checked]",
+        "question": "What did your unit tests cover, and what did they check?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineering Intern, line 4",
+        "line": "Collaborated with cross-functional teams to gather requirements and deliver solutions",
+        "cannot_tell": "The teams and solutions are unnamed, so your part in the work is difficult to see. Pick one set of requirements and say what you contributed.",
+        "example": "Collaborated with [teams] to gather requirements for [solution] and contributed [your work]",
+        "question": "Which teams did you work with, and what did you contribute to a solution?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineering Intern, line 5",
+        "line": "Fixed bugs and performed code reviews",
+        "cannot_tell": "Fixing bugs and reviewing code are relevant, but these could describe almost any engineering internship. Name a bug you fixed or the code you reviewed.",
+        "example": "Fixed [bug] and performed code reviews for [code reviewed]",
+        "question": "What bug did you fix, and what code did you review?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Assistant, line 1",
+        "line": "Provided technical support to students and faculty for hardware and software issues",
+        "cannot_tell": "Students, faculty, hardware and software establish who you supported, but not the problems you handled. One or two examples would show the work.",
+        "example": "Provided technical support to students and faculty for [hardware or software issues]",
+        "question": "Which hardware or software issues did you handle most often?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Assistant, line 2",
+        "line": "Resolved tickets in a timely manner and documented solutions",
+        "cannot_tell": "A recruiter can't tell what the tickets involved or how many you handled. Add those details if you can confirm them.",
+        "example": "Resolved [number] tickets for [issues] and documented solutions",
+        "question": "What kinds of tickets did you resolve, and how many did you handle?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Assistant, line 3",
+        "line": "Assisted with setting up laptops and classroom technology",
+        "cannot_tell": "The equipment is named, but your part in setting it up is still broad. What did you do during a setup?",
+        "example": "Assisted with setting up laptops and classroom technology by [setup work]",
+        "question": "What setup work did you personally handle?"
+      },
+      {
+        "kind": "keep",
+        "where": "Personal Finance Tracker, line 1",
+        "line": "Built a Python application to track expenses and visualize spending with matplotlib",
+        "cannot_tell": "Keep this as a model. It pairs a clear action with the application's job and the technology you used, without making the recruiter guess what you built.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Software Engineer",
+        "Software Engineering Intern"
+      ],
+      "why": "Your objective names Software Engineer, and your internship and projects show application development.",
+      "level": "Entry level, with a software engineering internship and a computer science degree",
+      "note": "Your experience points toward entry-level software engineering, particularly roles involving web applications. The Cardinal Health features and your individual contributions to the capstone are the best places to add detail.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 65
+  },
+  "presentation": {
+    "score": 65,
+    "band": "Needs more context",
+    "model_score": 65,
+    "lifted_by_employer": false,
+    "verdict": "A computer science graduate with relevant projects and an internship whose contributions need more detail.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 155,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Objective",
+        "line": "Motivated and detail-oriented Computer Science graduate seeking a Software Engineer position where I can leverage my technical skills and passion for problem solving to contribute to a dynamic team.",
+        "blanks": 0,
+        "question": "Which part of your inventory application work best represents the jobs you want?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "blanks": 0,
+        "question": "Can you move Experience above Education?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineering Intern, line 1",
+        "line": "Responsible for developing features for an internal inventory management web application using React and Spring Boot",
+        "blanks": 1,
+        "question": "Which features did you develop for the inventory application?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineering Intern, line 2",
+        "line": "Participated in daily stand-ups and sprint planning meetings as part of an Agile team",
+        "blanks": 1,
+        "question": "What work did you take on through sprint planning?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineering Intern, line 3",
+        "line": "Wrote unit tests to improve code quality and reliability",
+        "blanks": 2,
+        "question": "What did your unit tests cover, and what did they check?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineering Intern, line 4",
+        "line": "Collaborated with cross-functional teams to gather requirements and deliver solutions",
+        "blanks": 3,
+        "question": "Which teams did you work with, and what did you contribute to a solution?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineering Intern, line 5",
+        "line": "Fixed bugs and performed code reviews",
+        "blanks": 2,
+        "question": "What bug did you fix, and what code did you review?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Assistant, line 1",
+        "line": "Provided technical support to students and faculty for hardware and software issues",
+        "blanks": 1,
+        "question": "Which hardware or software issues did you handle most often?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Assistant, line 2",
+        "line": "Resolved tickets in a timely manner and documented solutions",
+        "blanks": 2,
+        "question": "What kinds of tickets did you resolve, and how many did you handle?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Assistant, line 3",
+        "line": "Assisted with setting up laptops and classroom technology",
+        "blanks": 1,
+        "question": "What setup work did you personally handle?"
+      },
+      {
+        "kind": "keep",
+        "where": "Personal Finance Tracker, line 1",
+        "line": "Built a Python application to track expenses and visualize spending with matplotlib",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 11,
+    "kinds": {
+      "line": 9,
+      "structure": 1,
+      "keep": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Software Engineer",
+        "Software Engineering Intern"
+      ],
+      "why": "Your objective names Software Engineer, and your internship and projects show application development.",
+      "level": "Entry level, with a software engineering internship and a computer science degree",
+      "note": "Your experience points toward entry-level software engineering, particularly roles involving web applications. The Cardinal Health features and your individual contributions to the capstone are the best places to add detail.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01299705,
+  "latency_ms": 25295
+}

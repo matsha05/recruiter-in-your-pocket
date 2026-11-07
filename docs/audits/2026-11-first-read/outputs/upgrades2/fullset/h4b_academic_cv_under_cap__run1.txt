@@ -1,0 +1,39 @@
+# h4b_academic_cv_under_cap, run 1
+Resume: ../2026-11-live-judgment/resumes/h4b_academic_cv_under_cap.txt (3253 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt da8de295; severity check off
+Outcome: report; cost $0.0270; 21.1s
+Case note: The same CV trimmed under the cap, to see what the model does with a CV shape.
+
+## Mostly clear (score 78; model wrote 78)
+## Verdict
+A tenured molecular biologist with substantial funding and mentoring, but repeated publication entries raise questions.
+
+## Write-up
+You come across as a tenured Associate Professor at Riverbend State, with NIH funding, mitochondrial research, teaching and mentoring. A recruiter could move this forward for another Associate Professor role, but repeated publication entries raise a question about the research record.
+
+Your MB 310 redesign is a strong model: it names the change and shows how evaluations moved over three offerings. Education comes before your appointments, though your faculty work is the stronger place to start. The publication list also repeats some titles and author lists across different years.
+
+Let's start by checking the repeated citations against your records. Then put your appointments ahead of Education and consider adding a short research highlight that names a finding, not just a topic.
+
+## Cards (4; {"structure":2,"line":1,"keep":1}); severity off; added []
+1. [structure] Structure
+   line: "Education sits above Academic Appointments."
+   can't tell: Your current faculty appointment is the quickest way to place your work. Put Academic Appointments above Education so it leads.
+   question: Can you move Academic Appointments above Education?
+2. [structure] Research Interests
+   line: "The resume lists research topics and publications but does not summarize research findings."
+   can't tell: A recruiter can see the topics you study but not what your research established. A short highlight near your research interests could make one finding easier to find.
+   question: Which finding from your mitochondrial research best shows what your work established?
+3. [line] Publications, entry 1
+   line: "1. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2026). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 107(2), 1037-1052."
+   can't tell: This title and author list also appear in entries dated 2024 and 2021, with different citation details. A recruiter can't tell whether these are distinct papers or repeated entries. Check this group and the other repeated titles against your publication records.
+   example: [correct publication citation]
+   question: What are the correct citations for these entries in your publication records?
+4. [keep] Teaching, course redesign
+   line: "Course redesign: converted MB 310 to a flipped format in 2019; student evaluations rose from 3.9 to 4.5 of 5 over the following three offerings."
+   can't tell: Keep this. It ties your teaching change to a measured comparison and gives the reader the period over which it happened.
+
+## Fit
+Roles: ["Associate Professor (with tenure)"]
+Level: Tenured faculty, PI on an NIH R01 and supervisor of doctoral students
+Note: Your experience points toward research and teaching faculty roles in molecular or cell biology. Check the publication entries before sending the resume so the record is dependable.

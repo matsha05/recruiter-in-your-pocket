@@ -1,0 +1,281 @@
+{
+  "case_id": "fr03_account_executive_quota",
+  "batch": "targeted",
+  "run": 1,
+  "note": "P3 and P4 (sales). 132% of quota with no quota, territory or other year; $1.4M with no period. Expect cards asking for the frame; nothing supplied outside a bracket.",
+  "resume_file": "resumes/fr03_account_executive_quota.txt",
+  "resume_sha256": "1af2456444c94158085073ca6a146353414d58ee471e3c70ac1e03fd7f347adf",
+  "resume_words": 128,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T20:38:18.113Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5939,
+        "completion_tokens": 1166,
+        "total_tokens": 7105,
+        "cached_prompt_tokens": 5306,
+        "cache_write_prompt_tokens": 630,
+        "reasoning_tokens": 400
+      },
+      "cost_usd": 0.0068858,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 14176
+    }
+  ],
+  "resume_prompt_sha256": "da8de2955f7c8fc1b62e0178500104bae17a416005f43113f3b1bc615f3fd1f8",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A promoted Account Executive with strong sales figures that need a little more context.",
+    "write_up": [
+      "You’ve moved from Sales Development Representative to Account Executive at Vantage Fleet Software, with quota attainment and new business at the top of your resume. A recruiter can see you sell, but needs a better way to compare those figures with other sales roles.",
+      "Your line about booking 25+ meetings per month is a good model: it names the work, the pace and who the meetings were for. Your promotion also makes the move into the Account Executive role easy to follow.",
+      "Start with the quota and new-business figures. Add the quota amount and the period and revenue measure behind the $1.4M if you can confirm them. Then give your work with solutions engineers a little more detail."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Account Executive, line 1",
+        "line": "- Achieved 132% of quota in FY2025",
+        "cannot_tell": "132% is a strong result, but a recruiter can't tell what quota it was measured against. The amount makes the achievement easier to compare.",
+        "example": "Achieved 132% of quota in FY2025 against a quota of [quota amount]",
+        "question": "What was your FY2025 quota amount?"
+      },
+      {
+        "kind": "line",
+        "where": "Account Executive, line 2",
+        "line": "- Closed $1.4M in new business",
+        "cannot_tell": "The amount is useful, but the period and revenue measure aren't stated. A recruiter can't tell whether to compare it with the FY2025 quota line.",
+        "example": "Closed $1.4M in new business in [period], measured as [revenue measure]",
+        "question": "What period does the $1.4M cover, and how was the revenue measured?"
+      },
+      {
+        "kind": "line",
+        "where": "Account Executive, line 5",
+        "line": "- Partnered with solutions engineers on demos and pilots",
+        "cannot_tell": "A recruiter can see who you worked with, but not what you contributed to the demos and pilots.",
+        "example": "Partnered with solutions engineers on demos and pilots by [your contribution]",
+        "question": "What did you do in the demos and pilots?"
+      },
+      {
+        "kind": "keep",
+        "where": "Sales Development Representative, line 1",
+        "line": "- Booked 25+ meetings per month for the account executive team",
+        "cannot_tell": "Keep this as a model. It shows a concrete sales task and its frequency without making a recruiter guess who the work served.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Account Executive",
+        "Sales Development Representative"
+      ],
+      "why": "Your headline and current role both name Account Executive, and your resume shows full-cycle sales and new business.",
+      "level": "Account Executive, promoted from Sales Development Representative",
+      "note": "Your experience points toward Account Executive roles with full-cycle sales responsibilities. Adding the context behind your sales figures will help a recruiter compare your work with the role they’re filling.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A promoted Account Executive with strong sales figures that need a little more context.",
+    "write_up": [
+      "You’ve moved from Sales Development Representative to Account Executive at Vantage Fleet Software, with quota attainment and new business at the top of your resume. A recruiter can see you sell, but needs a better way to compare those figures with other sales roles.",
+      "Your line about booking 25+ meetings per month is a good model: it names the work, the pace and who the meetings were for. Your promotion also makes the move into the Account Executive role easy to follow.",
+      "Start with the quota and new-business figures. Add the quota amount and the period and revenue measure behind the $1.4M if you can confirm them. Then give your work with solutions engineers a little more detail."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Account Executive, line 1",
+        "line": "Achieved 132% of quota in FY2025",
+        "cannot_tell": "132% is a strong result, but a recruiter can't tell what quota it was measured against. The amount makes the achievement easier to compare.",
+        "example": "Achieved 132% of quota in FY2025 against a quota of [quota amount]",
+        "question": "What was your FY2025 quota amount?"
+      },
+      {
+        "kind": "line",
+        "where": "Account Executive, line 2",
+        "line": "Closed $1.4M in new business",
+        "cannot_tell": "The amount is useful, but the period and revenue measure aren't stated. A recruiter can't tell whether to compare it with the FY2025 quota line.",
+        "example": "Closed $1.4M in new business in [period], measured as [revenue measure]",
+        "question": "What period does the $1.4M cover, and how was the revenue measured?"
+      },
+      {
+        "kind": "line",
+        "where": "Account Executive, line 5",
+        "line": "Partnered with solutions engineers on demos and pilots",
+        "cannot_tell": "A recruiter can see who you worked with, but not what you contributed to the demos and pilots.",
+        "example": "Partnered with solutions engineers on demos and pilots by [your contribution]",
+        "question": "What did you do in the demos and pilots?"
+      },
+      {
+        "kind": "keep",
+        "where": "Sales Development Representative, line 1",
+        "line": "Booked 25+ meetings per month for the account executive team",
+        "cannot_tell": "Keep this as a model. It shows a concrete sales task and its frequency without making a recruiter guess who the work served.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Account Executive",
+        "Sales Development Representative"
+      ],
+      "why": "Your headline and current role both name Account Executive, and your resume shows full-cycle sales and new business.",
+      "level": "Account Executive, promoted from Sales Development Representative",
+      "note": "Your experience points toward Account Executive roles with full-cycle sales responsibilities. Adding the context behind your sales figures will help a recruiter compare your work with the role they’re filling.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 78
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A promoted Account Executive with strong sales figures that need a little more context.",
+    "write_up": [
+      "You’ve moved from Sales Development Representative to Account Executive at Vantage Fleet Software, with quota attainment and new business at the top of your resume. A recruiter can see you sell, but needs a better way to compare those figures with other sales roles.",
+      "Your line about booking 25+ meetings per month is a good model: it names the work, the pace and who the meetings were for. Your promotion also makes the move into the Account Executive role easy to follow.",
+      "Start with the quota and new-business figures. Add the quota amount and the period and revenue measure behind the $1.4M if you can confirm them. Then give your work with solutions engineers a little more detail."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Account Executive, line 1",
+        "line": "Achieved 132% of quota in FY2025",
+        "cannot_tell": "132% is a strong result, but a recruiter can't tell what quota it was measured against. The amount makes the achievement easier to compare.",
+        "example": "Achieved 132% of quota in FY2025 against a quota of [quota amount]",
+        "question": "What was your FY2025 quota amount?"
+      },
+      {
+        "kind": "line",
+        "where": "Account Executive, line 2",
+        "line": "Closed $1.4M in new business",
+        "cannot_tell": "The amount is useful, but the period and revenue measure aren't stated. A recruiter can't tell whether to compare it with the FY2025 quota line.",
+        "example": "Closed $1.4M in new business in [period], measured as [revenue measure]",
+        "question": "What period does the $1.4M cover, and how was the revenue measured?"
+      },
+      {
+        "kind": "line",
+        "where": "Account Executive, line 5",
+        "line": "Partnered with solutions engineers on demos and pilots",
+        "cannot_tell": "A recruiter can see who you worked with, but not what you contributed to the demos and pilots.",
+        "example": "Partnered with solutions engineers on demos and pilots by [your contribution]",
+        "question": "What did you do in the demos and pilots?"
+      },
+      {
+        "kind": "keep",
+        "where": "Sales Development Representative, line 1",
+        "line": "Booked 25+ meetings per month for the account executive team",
+        "cannot_tell": "Keep this as a model. It shows a concrete sales task and its frequency without making a recruiter guess who the work served.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Account Executive",
+        "Sales Development Representative"
+      ],
+      "why": "Your headline and current role both name Account Executive, and your resume shows full-cycle sales and new business.",
+      "level": "Account Executive, promoted from Sales Development Representative",
+      "note": "Your experience points toward Account Executive roles with full-cycle sales responsibilities. Adding the context behind your sales figures will help a recruiter compare your work with the role they’re filling.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 78
+  },
+  "presentation": {
+    "score": 78,
+    "band": "Mostly clear",
+    "model_score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A promoted Account Executive with strong sales figures that need a little more context.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 118,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Account Executive, line 1",
+        "line": "Achieved 132% of quota in FY2025",
+        "blanks": 1,
+        "question": "What was your FY2025 quota amount?"
+      },
+      {
+        "kind": "line",
+        "where": "Account Executive, line 2",
+        "line": "Closed $1.4M in new business",
+        "blanks": 2,
+        "question": "What period does the $1.4M cover, and how was the revenue measured?"
+      },
+      {
+        "kind": "line",
+        "where": "Account Executive, line 5",
+        "line": "Partnered with solutions engineers on demos and pilots",
+        "blanks": 1,
+        "question": "What did you do in the demos and pilots?"
+      },
+      {
+        "kind": "keep",
+        "where": "Sales Development Representative, line 1",
+        "line": "Booked 25+ meetings per month for the account executive team",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 4,
+    "kinds": {
+      "line": 3,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Account Executive",
+        "Sales Development Representative"
+      ],
+      "why": "Your headline and current role both name Account Executive, and your resume shows full-cycle sales and new business.",
+      "level": "Account Executive, promoted from Sales Development Representative",
+      "note": "Your experience points toward Account Executive roles with full-cycle sales responsibilities. Adding the context behind your sales figures will help a recruiter compare your work with the role they’re filling.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0068858,
+  "latency_ms": 14185
+}

@@ -1,0 +1,57 @@
+# b10_it_support_recent_grad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_it_support_recent_grad_1.txt (119 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt da8de295; severity check off
+Outcome: report; cost $0.0191; repair ran; 36.6s
+Case note: First job.
+
+Validator refused the first draft: The model response failed the worklist contract at cards.1.question: a card that needs work carries the question that fills its blanks.
+
+## Needs more context (score 58; model wrote 58)
+## Verdict
+Help desk internship and retail device experience, with an unexplained gap and little detail on the work's volume.
+
+## Write-up
+Your resume points toward desktop support: you handled school help desk tickets, prepared classroom laptops and helped retail customers with devices. It's common for an early-career resume to list tasks this way, but this one doesn't say how much work you handled or what the tickets involved. With nothing dated after May 2025, a recruiter is likely to pass.
+
+Your retail line about helping customers choose laptops, printers and accessories works because it names both the people and the products. Education sits above Experience, even though you have work history to lead with.
+
+Let's start with the time after the internship, then add details to the school help desk lines. Your A.A.S. and CompTIA A+ belong on the resume; the work history needs enough detail to show how you used your skills.
+
+## Cards (7; {"dates":1,"structure":1,"line":4,"keep":1}); severity off; added []
+1. [dates] Dates
+   line: "Nothing is dated after May 2025."
+   can't tell: A recruiter can't tell what you've done since the internship ended. If you were working, studying, volunteering or taking a career break, an honest dated entry can answer that question. A referral may matter more when the time isn't explained.
+   example: May 2025 - Present [what you did and dates]
+   question: What have you done since May 2025 that you can accurately include, and when?
+2. [structure] Structure
+   line: "Education sits above Experience."
+   can't tell: Your work with school staff and retail customers is useful to a recruiter scanning for support experience. Move Experience above Education and Certifications.
+   question: Can you move Experience above Education and Certifications?
+3. [line] IT Help Desk Intern, line 1
+   line: "Answered help desk tickets from teachers and staff"
+   can't tell: A recruiter can see who you supported, but not what problems came in or how many tickets you handled. Those details matter for a help desk role.
+   example: Answered [number] help desk tickets [time period] from teachers and staff about [ticket types]
+   question: What kinds of tickets did you handle, and how many did you answer over a period you can document?
+4. [line] IT Help Desk Intern, line 2
+   line: "Imaged and set up laptops for classrooms"
+   can't tell: Preparing classroom laptops is relevant desktop work. The line doesn't say how many you set up or what the setup involved.
+   example: Imaged and set up [number] laptops for classrooms, including [setup tasks]
+   question: How many laptops did you image and set up, and what did the setup include?
+5. [line] IT Help Desk Intern, line 3
+   line: "Reset passwords and accounts in Active Directory"
+   can't tell: Active Directory makes this useful, but a recruiter can't tell what account work you handled beyond password resets or how often you did it.
+   example: Reset passwords and accounts in Active Directory for [number] [users] [time period], including [account tasks]
+   question: What account tasks did you handle, and how many users did you support over a period you can document?
+6. [keep] Retail Associate, line 1
+   line: "Helped customers choose laptops, printers, and accessories"
+   can't tell: Keep the named products and the customer-facing work. That combination gives a recruiter something concrete to connect to your device support experience.
+7. [line] Retail Associate, line 2
+   line: "Set up new devices for customers at the service counter"
+   can't tell: A recruiter can see that you set up devices for customers, but not which devices or what the setup involved.
+   example: Set up [device types] for customers at the service counter, including [setup tasks]
+   question: Which devices did you set up at the service counter, and what did the setup involve?
+
+## Fit
+Roles: ["IT support specialist"]
+Level: Entry level, with one IT help desk internship and a CompTIA A+
+Note: Your experience points toward desktop support, with customer-facing device work from retail as a useful addition. The internship gives a starting point for junior systems work, though the resume shows more help desk than systems work so far.

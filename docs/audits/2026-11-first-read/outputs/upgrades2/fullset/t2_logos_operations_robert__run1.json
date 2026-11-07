@@ -1,0 +1,308 @@
+{
+  "case_id": "t2_logos_operations_robert",
+  "batch": "tier",
+  "run": 1,
+  "note": "Blind pick v5 bp5-10: a recognisable employer; decision 5 says the lift is one rung, bounded, declared.",
+  "resume_file": "resumes/t2_logos_operations_robert.txt",
+  "resume_sha256": "dadfd0700868e9bb51ded2848f7368630310b4dedb9f164be5b3bdc9ceea6e96",
+  "resume_words": 183,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T20:40:04.343Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6035,
+        "completion_tokens": 1411,
+        "total_tokens": 7446,
+        "cached_prompt_tokens": 5306,
+        "cache_write_prompt_tokens": 726,
+        "reasoning_tokens": 489
+      },
+      "cost_usd": 0.0082308,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 17047
+    }
+  ],
+  "resume_prompt_sha256": "da8de2955f7c8fc1b62e0178500104bae17a416005f43113f3b1bc615f3fd1f8",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": false,
+    "verdict": "Strong program results at Google and Dell sit behind a current operations role that leaves too much to guess.",
+    "write_up": [
+      "You’ve moved from supply chain work at Dell to data center planning at Google and now manage a freight terminal at Brightline. It’s common to summarize a current job as a list of duties, but those duties don’t distinguish your terminal work in a pile. I read this for Operations Manager roles.",
+      "Your Google line about cutting the forecast-to-delivery cycle is the model: it names the change and the approvals you consolidated to make it happen. The current role doesn’t give a recruiter the same footing, especially on how much terminal activity or how many people you manage.",
+      "Let’s start with the daily operations line, then add the team’s size and the work behind the carrier and customer issues. Bring the same detail you used at Google to Brightline, using only figures and results you can stand behind."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 1",
+        "line": "- Responsible for daily operations of the Austin terminal",
+        "cannot_tell": "A recruiter can’t tell what daily operations cover or how much activity the terminal handles. Those details help establish the remit of your current role.",
+        "example": "Responsible for daily operations of the Austin terminal, including [work handled] and [measure of terminal activity]",
+        "question": "What do daily operations include, and how much activity does the terminal handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 2",
+        "line": "- Manage a team of coordinators and dispatchers",
+        "cannot_tell": "The team’s work and size are missing. A recruiter looking at a manager role will want to know both.",
+        "example": "Manage a team of [number] coordinators and dispatchers who [work handled]",
+        "question": "How many people do you manage, and what does the team handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 3",
+        "line": "- Work with carriers and customers to resolve issues",
+        "cannot_tell": "It’s not clear which issues come to you or what your part in resolving them looks like. One real example would give the work a shape.",
+        "example": "Work with carriers and customers to resolve [type of issue] by [your part in resolving it]",
+        "question": "What kind of issue have you resolved with carriers and customers, and what did you do?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 4",
+        "line": "- Report weekly metrics to the regional director",
+        "cannot_tell": "The metrics aren’t named, so a recruiter can’t tell what you track or how the reports are used.",
+        "example": "Report weekly [metrics] to the regional director to support [decision]",
+        "question": "Which metrics do you report, and what decisions do they support?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Program Manager, line 2",
+        "line": "- Cut the forecast-to-delivery cycle for new capacity from 14 months to 9 by consolidating three approval tracks into one",
+        "cannot_tell": "Keep this as a model. It gives a recruiter the before and after, then names the change you made to the approval process.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Operations Manager"
+      ],
+      "why": "Your current role manages the Austin terminal and a team of coordinators and dispatchers.",
+      "level": "Manager, with a current team and prior management of 6 program managers",
+      "note": "Your current work points toward terminal operations management, while Google and Dell show substantial program management work. Add the size and substance of the current role so a recruiter can compare it with the earlier work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": false,
+    "verdict": "Strong program results at Google and Dell sit behind a current operations role that leaves too much to guess.",
+    "write_up": [
+      "You’ve moved from supply chain work at Dell to data center planning at Google and now manage a freight terminal at Brightline. It’s common to summarize a current job as a list of duties, but those duties don’t distinguish your terminal work in a pile. I read this for Operations Manager roles.",
+      "Your Google line about cutting the forecast-to-delivery cycle is the model: it names the change and the approvals you consolidated to make it happen. The current role doesn’t give a recruiter the same footing, especially on how much terminal activity or how many people you manage.",
+      "Let’s start with the daily operations line, then add the team’s size and the work behind the carrier and customer issues. Bring the same detail you used at Google to Brightline, using only figures and results you can stand behind."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 1",
+        "line": "Responsible for daily operations of the Austin terminal",
+        "cannot_tell": "A recruiter can’t tell what daily operations cover or how much activity the terminal handles. Those details help establish the remit of your current role.",
+        "example": "Responsible for daily operations of the Austin terminal, including [work handled] and [measure of terminal activity]",
+        "question": "What do daily operations include, and how much activity does the terminal handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 2",
+        "line": "Manage a team of coordinators and dispatchers",
+        "cannot_tell": "The team’s work and size are missing. A recruiter looking at a manager role will want to know both.",
+        "example": "Manage a team of [number] coordinators and dispatchers who [work handled]",
+        "question": "How many people do you manage, and what does the team handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 3",
+        "line": "Work with carriers and customers to resolve issues",
+        "cannot_tell": "It’s not clear which issues come to you or what your part in resolving them looks like. One real example would give the work a shape.",
+        "example": "Work with carriers and customers to resolve [type of issue] by [your part in resolving it]",
+        "question": "What kind of issue have you resolved with carriers and customers, and what did you do?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 4",
+        "line": "Report weekly metrics to the regional director",
+        "cannot_tell": "The metrics aren’t named, so a recruiter can’t tell what you track or how the reports are used.",
+        "example": "Report weekly [metrics] to the regional director to support [decision]",
+        "question": "Which metrics do you report, and what decisions do they support?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Program Manager, line 2",
+        "line": "Cut the forecast-to-delivery cycle for new capacity from 14 months to 9 by consolidating three approval tracks into one",
+        "cannot_tell": "Keep this as a model. It gives a recruiter the before and after, then names the change you made to the approval process.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Operations Manager"
+      ],
+      "why": "Your current role manages the Austin terminal and a team of coordinators and dispatchers.",
+      "level": "Manager, with a current team and prior management of 6 program managers",
+      "note": "Your current work points toward terminal operations management, while Google and Dell show substantial program management work. Add the size and substance of the current role so a recruiter can compare it with the earlier work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 68
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": false,
+    "verdict": "Strong program results at Google and Dell sit behind a current operations role that leaves too much to guess.",
+    "write_up": [
+      "You’ve moved from supply chain work at Dell to data center planning at Google and now manage a freight terminal at Brightline. It’s common to summarize a current job as a list of duties, but those duties don’t distinguish your terminal work in a pile. I read this for Operations Manager roles.",
+      "Your Google line about cutting the forecast-to-delivery cycle is the model: it names the change and the approvals you consolidated to make it happen. The current role doesn’t give a recruiter the same footing, especially on how much terminal activity or how many people you manage.",
+      "Let’s start with the daily operations line, then add the team’s size and the work behind the carrier and customer issues. Bring the same detail you used at Google to Brightline, using only figures and results you can stand behind."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 1",
+        "line": "Responsible for daily operations of the Austin terminal",
+        "cannot_tell": "A recruiter can’t tell what daily operations cover or how much activity the terminal handles. Those details help establish the remit of your current role.",
+        "example": "Responsible for daily operations of the Austin terminal, including [work handled] and [measure of terminal activity]",
+        "question": "What do daily operations include, and how much activity does the terminal handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 2",
+        "line": "Manage a team of coordinators and dispatchers",
+        "cannot_tell": "The team’s work and size are missing. A recruiter looking at a manager role will want to know both.",
+        "example": "Manage a team of [number] coordinators and dispatchers who [work handled]",
+        "question": "How many people do you manage, and what does the team handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 3",
+        "line": "Work with carriers and customers to resolve issues",
+        "cannot_tell": "It’s not clear which issues come to you or what your part in resolving them looks like. One real example would give the work a shape.",
+        "example": "Work with carriers and customers to resolve [type of issue] by [your part in resolving it]",
+        "question": "What kind of issue have you resolved with carriers and customers, and what did you do?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 4",
+        "line": "Report weekly metrics to the regional director",
+        "cannot_tell": "The metrics aren’t named, so a recruiter can’t tell what you track or how the reports are used.",
+        "example": "Report weekly [metrics] to the regional director to support [decision]",
+        "question": "Which metrics do you report, and what decisions do they support?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Program Manager, line 2",
+        "line": "Cut the forecast-to-delivery cycle for new capacity from 14 months to 9 by consolidating three approval tracks into one",
+        "cannot_tell": "Keep this as a model. It gives a recruiter the before and after, then names the change you made to the approval process.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Operations Manager"
+      ],
+      "why": "Your current role manages the Austin terminal and a team of coordinators and dispatchers.",
+      "level": "Manager, with a current team and prior management of 6 program managers",
+      "note": "Your current work points toward terminal operations management, while Google and Dell show substantial program management work. Add the size and substance of the current role so a recruiter can compare it with the earlier work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 68
+  },
+  "presentation": {
+    "score": 68,
+    "band": "Needs more context",
+    "model_score": 68,
+    "lifted_by_employer": false,
+    "verdict": "Strong program results at Google and Dell sit behind a current operations role that leaves too much to guess.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 138,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 1",
+        "line": "Responsible for daily operations of the Austin terminal",
+        "blanks": 2,
+        "question": "What do daily operations include, and how much activity does the terminal handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 2",
+        "line": "Manage a team of coordinators and dispatchers",
+        "blanks": 2,
+        "question": "How many people do you manage, and what does the team handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 3",
+        "line": "Work with carriers and customers to resolve issues",
+        "blanks": 2,
+        "question": "What kind of issue have you resolved with carriers and customers, and what did you do?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 4",
+        "line": "Report weekly metrics to the regional director",
+        "blanks": 2,
+        "question": "Which metrics do you report, and what decisions do they support?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Program Manager, line 2",
+        "line": "Cut the forecast-to-delivery cycle for new capacity from 14 months to 9 by consolidating three approval tracks into one",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "line": 4,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Operations Manager"
+      ],
+      "why": "Your current role manages the Austin terminal and a team of coordinators and dispatchers.",
+      "level": "Manager, with a current team and prior management of 6 program managers",
+      "note": "Your current work points toward terminal operations management, while Google and Dell show substantial program management work. Add the size and substance of the current role so a recruiter can compare it with the earlier work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0082308,
+  "latency_ms": 17144
+}

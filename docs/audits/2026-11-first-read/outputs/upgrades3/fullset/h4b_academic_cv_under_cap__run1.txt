@@ -1,0 +1,37 @@
+# h4b_academic_cv_under_cap, run 1
+Resume: ../2026-11-live-judgment/resumes/h4b_academic_cv_under_cap.txt (3253 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 15dff271; severity check off
+Outcome: report; cost $0.0507; repair ran; 28.6s
+Case note: The same CV trimmed under the cap, to see what the model does with a CV shape.
+
+Validator refused the first draft: The model response failed the worklist contract at cards.0.question: a card that needs work carries the question that fills its blanks.
+
+## Mostly clear (score 79; model wrote 79)
+## Verdict
+A tenured molecular biologist with substantial funding and mentoring work, but repeated publication titles need checking.
+
+## Write-up
+Your resume points to associate professor roles in molecular biology. It shows a tenured appointment at Riverbend State, NIH funding, teaching and extensive mentoring. A recruiter would have plenty to take forward, but repeated publication titles and author lists raise a question about the citation list.
+
+The MB 310 redesign is your best model: it names the change you made and tracks student evaluations afterward. Your R01 also makes the research funding concrete. Education comes before your appointments, while teaching and mentoring sit after long publication and talk lists.
+
+Let's start by checking the repeated citations against your publication records. Then move appointments above education and consider bringing teaching and mentoring forward when they matter to the role.
+
+## Cards (3; {"structure":1,"line":1,"keep":1}); severity off; added []
+1. [structure] Structure
+   line: "Education sits above Academic Appointments."
+   can't tell: Your tenured appointment is the strongest starting point for an experienced hire. Put Academic Appointments first so a recruiter sees your current role before your degrees.
+   question: Can you move Academic Appointments above Education?
+2. [line] Publications, entry 1
+   line: "1. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2026). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 107(2), 1037-1052."
+   can't tell: Entry 21 has the same authors and title but a different year and citation details. That pattern appears elsewhere in the list too, so a recruiter may question the publication record. Check each repeated entry against the original records.
+   example: [authors]. ([year]). [article title]. [journal], [volume]([issue]), [pages].
+   question: What are the correct citation details for each repeated entry?
+3. [keep] Teaching, course redesign
+   line: "Course redesign: converted MB 310 to a flipped format in 2019; student evaluations rose from 3.9 to 4.5 of 5 over the following three offerings."
+   can't tell: Keep this as a model. It connects a named teaching change to a measured comparison without claiming the change alone caused the increase.
+
+## Fit
+Roles: ["Associate Professor (with tenure)"]
+Level: senior, tenured faculty member and principal investigator on an NIH R01
+Note: Your experience spans research, graduate mentoring, teaching and academic service. The funding and mentoring details give a search committee useful specifics beyond the publication list.

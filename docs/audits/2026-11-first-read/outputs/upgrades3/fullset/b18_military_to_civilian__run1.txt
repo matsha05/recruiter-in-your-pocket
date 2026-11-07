@@ -1,0 +1,43 @@
+# b18_military_to_civilian, run 1
+Resume: ../2026-11-live-judgment/resumes/b_military_to_civilian.txt (268 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 15dff271; severity check off
+Outcome: report; cost $0.0098; 19.0s
+
+## Clear and specific (score 89; model wrote 89)
+## Verdict
+A strong Army logistics leader with measurable results, ready to translate that work for operations supervisor roles.
+
+## Write-up
+Your Army experience makes a strong case for operations supervision: you lead maintenance, supply and fuel teams, manage equipment, and improve vehicle readiness. This resume gives a recruiter the numbers behind that work instead of leaving them to guess!
+
+The vehicle readiness line is your best model. It shows the starting point, the improvement and the changes you made to get there. Your target job is named up front, and your civilian supply chain degree and Green Belt reinforce the direction.
+
+Start by naming the logistics support you provided during the field exercises, then add what you taught the junior mechanics. Your resume isn't the main obstacle to a callback; the fit and competition for each operations role matter too.
+
+## Cards (5; {"keep":1,"line":2,"upgrade":2}); severity off; added []
+1. [keep] Platoon Sergeant, line 2
+   line: "Accountable for $14M of vehicles, tools, and equipment with zero losses on three annual inventories"
+   can't tell: Keep this as a model. It puts the assets you were accountable for next to the inventory record, so the responsibility is easy to grasp.
+2. [line] Platoon Sergeant, line 3
+   line: "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises"
+   can't tell: The battalion and exercises give this work scale, but logistics support could cover several different services. Name what you provided.
+   example: Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises, including [support provided]
+   question: What logistics support did you provide during the exercises?
+3. [line] Wheeled Vehicle Mechanic, line 2
+   line: "Trained 9 junior mechanics"
+   can't tell: A recruiter can see how many mechanics you trained, but not what you taught them. The subject would connect this work to the maintenance jobs you're targeting.
+   example: Trained 9 junior mechanics in [skills taught]
+   question: What did you train the junior mechanics to do?
+4. [upgrade] Platoon Sergeant, line 1
+   line: "Led, trained, and evaluated 38 soldiers across maintenance, supply, and fuel sections"
+   can't tell: For a role above supervisor, a recruiter will also look for how you set direction across the sections.
+   example: Led, trained, and evaluated 38 soldiers across maintenance, supply, and fuel sections; set [team direction] through [decision you made]
+   question: What direction did you set across the sections, and what decision did you make to carry it out?
+5. [upgrade] Platoon Sergeant, line 4
+   line: "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule"
+   can't tell: Move this above the field exercise line. It's your clearest example of improving an operation and deserves to be seen sooner.
+
+## Fit
+Roles: ["operations supervisor","Platoon Sergeant (E-7), Forward Support Company"]
+Level: manager, led 38 soldiers and evaluated 6 direct-report sergeants
+Note: Maintenance and logistics supervision are the clearest directions for your experience. Keep translating the Army work into the services and decisions a civilian operations team would recognize.

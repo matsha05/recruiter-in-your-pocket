@@ -1,0 +1,48 @@
+# b21_customer_success_manager_with_posting, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt (180 words), posting: ../2026-11-live-judgment/resumes/b_posting_customer_success_manager.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt da8de295; severity check off
+Outcome: report; cost $0.0108; 23.5s
+Case note: The same resume with a posting attached.
+
+## Mostly clear (score 75; model wrote 75)
+## Verdict
+A payroll software customer success manager with a defined account book, but few renewal results.
+
+## Write-up
+Your resume tells a coherent story: you moved from insurance account coordination to payroll support and then customer success at Brightline Payroll Software. A recruiter can see the accounts you manage and the work you do, but has to ask what happened at renewal. That matters for this posting, which puts retention and expansion targets at the center of the job.
+
+Your 48-account line is the model for the rest: it names the customers and how many you manage. The onboarding checklist also shows a concrete contribution used by the whole CS team. Your earlier 94% customer satisfaction score gives a result, though it doesn't answer the retention question in your current role.
+
+Let's start with the at-risk account line. Add your part in the renewal strategy and any results and targets you can substantiate. For this particular job, also make the seniority of your QBR contacts and any product usage analysis clear if you've done that work.
+
+## Cards (5; {"keep":1,"line":4}); severity off; added []
+1. [keep] Customer Success Manager, line 1
+   line: "Manage a book of 48 mid-market accounts across healthcare and manufacturing"
+   can't tell: Keep this as a model. It gives a recruiter a number and names the kinds of customers you work with.
+2. [line] Customer Success Manager, line 2
+   line: "Run quarterly business reviews with customer finance and HR leads"
+   can't tell: The work and attendees are clear, but their seniority and what the reviews cover aren't. The posting asks for QBRs with VP-level sponsors.
+   example: Run quarterly business reviews with customer finance and HR leads at [seniority level], covering [topics or decisions]
+   question: What seniority are the finance and HR leads, and what topics or decisions do the reviews cover?
+3. [line] Customer Success Manager, line 3
+   line: "Partnered with Sales on renewal strategy for at-risk accounts"
+   can't tell: A recruiter can't tell what you contributed to the strategy or how renewals turned out. This is the most important blank for a job measured on retention.
+   example: Partnered with Sales on renewal strategy for at-risk accounts by [your contribution], contributing to [renewal result] against [target]
+   question: What did you contribute, and what renewal results and targets can you substantiate?
+4. [line] Customer Success Manager, line 5
+   line: "Handle escalations with Support and Product when payroll runs fail"
+   can't tell: Payroll failures are a concrete problem, but your part in resolving them isn't clear. A recruiter will want to know what you did alongside Support and Product.
+   example: Handle escalations with Support and Product when payroll runs fail by [your actions], resulting in [resolution]
+   question: What do you do during these escalations, and how are they resolved?
+5. [line] Account Coordinator, line 2
+   line: "Answered client questions by phone and email"
+   can't tell: The channels are clear, but the questions aren't. Naming the subjects would show what clients relied on you for.
+   example: Answered client questions by phone and email about [topics]
+   question: What kinds of questions did clients ask you?
+
+## Fit
+Roles: ["Customer Success Manager","Customer Success Manager, Mid-Market"]
+Level: Experienced individual contributor managing 48 mid-market accounts
+Note: The main mismatch is that the posting asks for retention and expansion results, VP-level QBRs and BI tool experience, none of which your resume shows. Your mid-market SaaS work, QBRs, at-risk renewal collaboration and Gainsight and Salesforce skills fit several other requirements. Add the missing details where they're true, especially your renewal results and use of customer data.
+Posting: Mid-market customer success role owning a larger account book, retention and expansion targets, executive QBRs and data-informed save plans.
+Missing: ["gross retention of 92%","net retention of 110%","a BI tool such as Looker","QBRs with VP-level sponsors","product usage data","log and prioritize feature requests"]

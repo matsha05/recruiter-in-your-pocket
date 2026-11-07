@@ -7,7 +7,8 @@ import type { ReportForPdf, WorklistForPdf } from "../reports/pdf-export";
 import { criticalCountHeading, fixLabel, fixPlanHeadingForCount, missingFromResume, readCriticalMisses, TIGHTENING_HEADING } from "../reports/report-presentation";
 import { marginNoteFromFix } from "../reports/revised-line";
 import { SCORE_BANDS, WORKLIST_BANDS, reportTone, scoreBandIndex, worklistBandIndex } from "../reports/score-band";
-import { hasRoleSection, POSTING_MISSING_HOW, POSTING_MISSING_LABEL, screenerNote, screenerTitle, worklistLevelParts, worklistReadFor } from "../reports/worklist-presentation";
+import { QUOTED_KINDS, WORK_KINDS } from "../llm/worklist-schema";
+import { cardsHeading, hasRoleSection, UPGRADES_HEADING, upgradesLead, POSTING_MISSING_HOW, POSTING_MISSING_LABEL, screenerNote, screenerTitle, worklistLevelParts, worklistReadFor } from "../reports/worklist-presentation";
 import { pdfReportStyles } from "./pdf-styles";
 
 /**
@@ -56,13 +57,15 @@ function renderWorklistHtml(report: ReportForPdf, worklist: WorklistForPdf) {
   const generatedOn = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
   const bandIndex = Math.max(0, worklistBandIndex(report.score));
   const band = WORKLIST_BANDS[bandIndex];
-  const work = worklist.cards.filter((card) => card.kind !== "keep");
-  const heading = work.length === 0 ? "Nothing here needs work." : "Lines that need work.";
+  const work = worklist.cards.filter((card) => WORK_KINDS.has(card.kind));
+  const heading = cardsHeading(worklist).title;
   const cardHtml = (card: WorklistForPdf["cards"][number]) => {
     const keep = card.kind === "keep";
-    const quoted = card.kind === "line" || card.kind === "keep";
+    const quoted = QUOTED_KINDS.has(card.kind);
+    // An upgrade's line already works, so it carries no marker, like the keep line (Nov 7, 2026).
+    const upgrade = card.kind === "upgrade";
     const line = quoted
-      ? `<div class="card-line${keep ? " ink" : ""}">${keep ? escapeHtml(card.line) : `<span class="miss-mark">${escapeHtml(card.line)}</span>`}</div>`
+      ? `<div class="card-line${keep || upgrade ? " ink" : ""}">${keep || upgrade ? escapeHtml(card.line) : `<span class="miss-mark">${escapeHtml(card.line)}</span>`}</div>`
       : `<div class="card-statement">${escapeHtml(card.line)}</div>`;
     return `<div class="card${keep ? " keep" : ""}">
         <div class="card-where">${keep ? "Don't touch this one" : escapeHtml(card.where)}${keep ? '<span class="card-where-quiet">Write the others like it.</span>' : ""}</div>
@@ -141,9 +144,13 @@ function renderWorklistHtml(report: ReportForPdf, worklist: WorklistForPdf) {
   <section class="section priority-section">
     <div class="section-kicker">${work.length === 0 ? "Before you send it" : "Lines that need work"}</div>
     <div class="section-header"><h2>${escapeHtml(heading)}</h2>${work.length === 0 ? '<p class="count-lead">Send it. Then read it against the posting you\'re going for.</p>' : ""}</div>
-    ${worklist.cards.map(cardHtml).join("")}
+    ${worklist.cards.filter((card) => card.kind !== "upgrade").map(cardHtml).join("")}
     ${work.length > 0 ? '<p class="unlisted">Lines not listed are fine as written.</p>' : ""}
   </section>
+  ${worklist.cards.some((card) => card.kind === "upgrade") ? `<section class="section priority-section">
+    <div class="section-header"><h2>${escapeHtml(UPGRADES_HEADING)}</h2><p class="count-lead">${escapeHtml(upgradesLead(worklist))}</p></div>
+    ${worklist.cards.filter((card) => card.kind === "upgrade").map(cardHtml).join("")}
+  </section>` : ""}
 
   ${fitHtml}
 

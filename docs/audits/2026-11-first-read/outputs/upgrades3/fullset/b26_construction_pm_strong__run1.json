@@ -1,0 +1,282 @@
+{
+  "case_id": "b26_construction_pm_strong",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_construction_pm_strong_1.txt",
+  "resume_sha256": "548c7db64c756b5fab695853a27156e8aa67858a31cab50680d65e1ef14cc181",
+  "resume_words": 136,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T22:15:28.518Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6177,
+        "completion_tokens": 1441,
+        "total_tokens": 7618,
+        "cached_prompt_tokens": 5529,
+        "cache_write_prompt_tokens": 645,
+        "reasoning_tokens": 639
+      },
+      "cost_usd": 0.0082907,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 16895
+    }
+  ],
+  "resume_prompt_sha256": "15dff271c2d212b2504350e8d09deec38785cfa3e7ee269f5f8154593e015688",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 87,
+    "lifted_by_employer": false,
+    "verdict": "A construction project manager with clear project values and delivery results, plus one detail worth adding.",
+    "write_up": [
+      "Your resume makes a strong case for commercial construction project management: it shows the projects you run at Capitol Builders, their value, and what you've delivered! A recruiter can see both the work on your plate and the results, rather than just a list of duties.",
+      "The grocery store line is the standout: it names the build, its value, and how far ahead of schedule you delivered it. Your current project workload and trade counts give the rest of the role useful context. The main question left is what you did to keep change orders down.",
+      "Start with that change-order line, then consider bringing the grocery build higher in the Capitol Builders role. Your resume is unlikely to be the main reason a recruiter passes; the competitiveness of a particular job will also matter."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Project Manager, line 4",
+        "line": "- Kept change orders under 3% of contract value across 2024 and 2025 projects",
+        "cannot_tell": "The figure is useful, but a recruiter can't tell what you did to keep change orders down. Your part matters as much as the number.",
+        "example": "Kept change orders under 3% of contract value across 2024 and 2025 projects by [actions]",
+        "question": "What did you do to keep change orders under 3%?"
+      },
+      {
+        "kind": "keep",
+        "where": "Project Manager, line 3",
+        "line": "- Manage subcontractor bids and buyout for 20 to 30 trades per project",
+        "cannot_tell": "Keep this as a model: it names the work you manage and gives a concrete count that makes its demands clear.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Project Manager, line 1",
+        "line": "- Run 4 to 6 concurrent tenant-improvement projects worth $1M to $8M each",
+        "cannot_tell": "For a role one level up, a decision you made across projects could show how you direct work beyond individual builds.",
+        "example": "Run 4 to 6 concurrent tenant-improvement projects worth $1M to $8M each, including [a decision you made across projects]",
+        "question": "What decisions have you made across projects, if any?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Project Manager, line 2",
+        "line": "- Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024",
+        "cannot_tell": "Consider moving this above the current workload line. The finished grocery build gives a recruiter a memorable result right away.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Project Manager",
+        "Assistant Project Manager"
+      ],
+      "why": "Your headline and current role both point to construction project management, with tenant-improvement and retail work.",
+      "level": "manager, runs 4 to 6 concurrent tenant-improvement projects",
+      "note": "Your experience points toward commercial construction roles managing projects from bids through delivery. The grocery build also gives you a concrete example to discuss when pursuing ground-up retail work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 87,
+    "lifted_by_employer": false,
+    "verdict": "A construction project manager with clear project values and delivery results, plus one detail worth adding.",
+    "write_up": [
+      "Your resume makes a strong case for commercial construction project management: it shows the projects you run at Capitol Builders, their value, and what you've delivered! A recruiter can see both the work on your plate and the results, rather than just a list of duties.",
+      "The grocery store line is the standout: it names the build, its value, and how far ahead of schedule you delivered it. Your current project workload and trade counts give the rest of the role useful context. The main question left is what you did to keep change orders down.",
+      "Start with that change-order line, then consider bringing the grocery build higher in the Capitol Builders role. Your resume is unlikely to be the main reason a recruiter passes; the competitiveness of a particular job will also matter."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Project Manager, line 4",
+        "line": "Kept change orders under 3% of contract value across 2024 and 2025 projects",
+        "cannot_tell": "The figure is useful, but a recruiter can't tell what you did to keep change orders down. Your part matters as much as the number.",
+        "example": "Kept change orders under 3% of contract value across 2024 and 2025 projects by [actions]",
+        "question": "What did you do to keep change orders under 3%?"
+      },
+      {
+        "kind": "keep",
+        "where": "Project Manager, line 3",
+        "line": "Manage subcontractor bids and buyout for 20 to 30 trades per project",
+        "cannot_tell": "Keep this as a model: it names the work you manage and gives a concrete count that makes its demands clear.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Project Manager, line 1",
+        "line": "Run 4 to 6 concurrent tenant-improvement projects worth $1M to $8M each",
+        "cannot_tell": "For a role one level up, a decision you made across projects could show how you direct work beyond individual builds.",
+        "example": "Run 4 to 6 concurrent tenant-improvement projects worth $1M to $8M each, including [a decision you made across projects]",
+        "question": "What decisions have you made across projects, if any?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Project Manager, line 2",
+        "line": "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024",
+        "cannot_tell": "Consider moving this above the current workload line. The finished grocery build gives a recruiter a memorable result right away.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Project Manager",
+        "Assistant Project Manager"
+      ],
+      "why": "Your headline and current role both point to construction project management, with tenant-improvement and retail work.",
+      "level": "manager, runs 4 to 6 concurrent tenant-improvement projects",
+      "note": "Your experience points toward commercial construction roles managing projects from bids through delivery. The grocery build also gives you a concrete example to discuss when pursuing ground-up retail work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 87
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 87,
+    "lifted_by_employer": false,
+    "verdict": "A construction project manager with clear project values and delivery results, plus one detail worth adding.",
+    "write_up": [
+      "Your resume makes a strong case for commercial construction project management: it shows the projects you run at Capitol Builders, their value, and what you've delivered! A recruiter can see both the work on your plate and the results, rather than just a list of duties.",
+      "The grocery store line is the standout: it names the build, its value, and how far ahead of schedule you delivered it. Your current project workload and trade counts give the rest of the role useful context. The main question left is what you did to keep change orders down.",
+      "Start with that change-order line, then consider bringing the grocery build higher in the Capitol Builders role. Your resume is unlikely to be the main reason a recruiter passes; the competitiveness of a particular job will also matter."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Project Manager, line 4",
+        "line": "Kept change orders under 3% of contract value across 2024 and 2025 projects",
+        "cannot_tell": "The figure is useful, but a recruiter can't tell what you did to keep change orders down. Your part matters as much as the number.",
+        "example": "Kept change orders under 3% of contract value across 2024 and 2025 projects by [actions]",
+        "question": "What did you do to keep change orders under 3%?"
+      },
+      {
+        "kind": "keep",
+        "where": "Project Manager, line 3",
+        "line": "Manage subcontractor bids and buyout for 20 to 30 trades per project",
+        "cannot_tell": "Keep this as a model: it names the work you manage and gives a concrete count that makes its demands clear.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Project Manager, line 1",
+        "line": "Run 4 to 6 concurrent tenant-improvement projects worth $1M to $8M each",
+        "cannot_tell": "For a role one level up, a decision you made across projects could show how you direct work beyond individual builds.",
+        "example": "Run 4 to 6 concurrent tenant-improvement projects worth $1M to $8M each, including [a decision you made across projects]",
+        "question": "What decisions have you made across projects, if any?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Project Manager, line 2",
+        "line": "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024",
+        "cannot_tell": "Consider moving this above the current workload line. The finished grocery build gives a recruiter a memorable result right away.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Project Manager",
+        "Assistant Project Manager"
+      ],
+      "why": "Your headline and current role both point to construction project management, with tenant-improvement and retail work.",
+      "level": "manager, runs 4 to 6 concurrent tenant-improvement projects",
+      "note": "Your experience points toward commercial construction roles managing projects from bids through delivery. The grocery build also gives you a concrete example to discuss when pursuing ground-up retail work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 87
+  },
+  "presentation": {
+    "score": 87,
+    "band": "Clear and specific",
+    "model_score": 87,
+    "lifted_by_employer": false,
+    "verdict": "A construction project manager with clear project values and delivery results, plus one detail worth adding.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 134,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Project Manager, line 4",
+        "line": "Kept change orders under 3% of contract value across 2024 and 2025 projects",
+        "blanks": 1,
+        "question": "What did you do to keep change orders under 3%?"
+      },
+      {
+        "kind": "keep",
+        "where": "Project Manager, line 3",
+        "line": "Manage subcontractor bids and buyout for 20 to 30 trades per project",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Project Manager, line 1",
+        "line": "Run 4 to 6 concurrent tenant-improvement projects worth $1M to $8M each",
+        "blanks": 1,
+        "question": "What decisions have you made across projects, if any?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Project Manager, line 2",
+        "line": "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 4,
+    "kinds": {
+      "line": 1,
+      "keep": 1,
+      "upgrade": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Project Manager",
+        "Assistant Project Manager"
+      ],
+      "why": "Your headline and current role both point to construction project management, with tenant-improvement and retail work.",
+      "level": "manager, runs 4 to 6 concurrent tenant-improvement projects",
+      "note": "Your experience points toward commercial construction roles managing projects from bids through delivery. The grocery build also gives you a concrete example to discuss when pursuing ground-up retail work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0082907,
+  "latency_ms": 16898
+}

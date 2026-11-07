@@ -1,0 +1,35 @@
+# h3_strong_resume, run 1
+Resume: ../2026-11-live-judgment/resumes/h3_strong_resume.txt (311 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt da8de295; severity check off
+Outcome: report; cost $0.0081; 16.3s
+Case note: Senior product manager whose resume is already good.
+
+## Clear and specific (score 96; model wrote 96)
+## Verdict
+A senior payments product manager whose launches, platform work, and team leadership come with concrete results.
+
+## Write-up
+This is an excellent resume! Your Northwind work connects payments launches, billing changes, and product leadership to revenue, customer adoption, and reliability. A recruiter can see both what you owned and what changed.
+
+The payment failure line is a particularly strong model: it names the change you led, the before and after, and the estimated revenue recovered for customers. Your progression from associate product manager to leading a payments roadmap and managing product managers is easy to follow.
+
+Your resume is unlikely to be what holds you back. For a step up, consider adding an organization-wide decision if you made one; competition for senior product roles will still matter.
+
+## Cards (3; {"keep":1,"upgrade":2}); severity off; added []
+1. [keep] Senior Product Manager, Payments Platform, line 3
+   line: "Cut payment failure rate from 4.1% to 1.6% by leading the move to network tokenization and smart retries, recovering an estimated $6.2M in annual revenue for customers"
+   can't tell: Keep this as a model. It gives the reader a technical change and two ways to understand its value, while keeping the revenue figure qualified as an estimate.
+2. [upgrade] Senior Product Manager, Payments Platform, line 1
+   line: "Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers"
+   can't tell: For a role one level up, a recruiter will look for decisions that shaped direction beyond these teams. If you've made one, add it here.
+   example: Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers, including [organization-wide decision]
+   question: What decision did you make that shaped product direction beyond these teams?
+3. [upgrade] Skills
+   line: "Payments and card networks, usage-based billing, pricing, SQL, Amplitude, Jira, roadmap planning, stakeholder management"
+   can't tell: If you need space, trim roadmap planning and stakeholder management. Your experience already shows both, and the payments and billing skills are more distinctive.
+   example: Payments and card networks, usage-based billing, pricing, SQL, Amplitude, Jira
+
+## Fit
+Roles: ["Senior Product Manager, Payments Platform"]
+Level: Senior product manager, owns a roadmap across 4 product teams and manages 3 product managers
+Note: Your experience points strongly toward senior payments and billing product roles. For a step up, add an organization-wide decision if you've made one.

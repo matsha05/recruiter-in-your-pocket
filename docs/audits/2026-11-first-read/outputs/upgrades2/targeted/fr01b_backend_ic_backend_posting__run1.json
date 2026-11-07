@@ -1,0 +1,267 @@
+{
+  "case_id": "fr01b_backend_ic_backend_posting",
+  "batch": "targeted",
+  "run": 1,
+  "note": "P1. The same resume against a senior backend posting it fits. Expect the posting's title second and a fit note that says it fits.",
+  "resume_file": "resumes/fr01_backend_ic_senior.txt",
+  "resume_sha256": "473f0177fffa3bc053f5a4c69f6aa3d7ecdf9c22fafb2ee8360f7be0e877aa55",
+  "resume_words": 236,
+  "job_description_file": "resumes/posting_senior_backend.txt",
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T20:37:59.511Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6544,
+        "completion_tokens": 1473,
+        "total_tokens": 8017,
+        "cached_prompt_tokens": 5423,
+        "cache_write_prompt_tokens": 1118,
+        "reasoning_tokens": 638
+      },
+      "cost_usd": 0.00903665,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 18432
+    }
+  ],
+  "resume_prompt_sha256": "da8de2955f7c8fc1b62e0178500104bae17a416005f43113f3b1bc615f3fd1f8",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A senior backend engineer with payment systems work and production results a recruiter can quickly understand.",
+    "write_up": [
+      "Your resume makes a strong case for senior backend work! At Lumen Ledger, you connect payment infrastructure decisions to throughput, migration reliability and latency. Your earlier work at Harborview adds Java, Kafka and billing experience, so a recruiter can follow the path into money movement.",
+      "The balance API line is a great model: it names the change you made and gives the before and after. Experience is already ahead of Education, and your senior headline fits the work and mentoring shown underneath it.",
+      "For Cobalt Pay, lead with the payouts service, ledger migration and incident work. The resume is strong as it stands; competition for the role will also matter. If you have experience with on-call ownership, design reviews or Finance and Risk controls, add it where you did the work."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Software Engineer, Northgate Insurance, line 1",
+        "line": "- Maintained the claims intake services in Java",
+        "cannot_tell": "A recruiter can see which services you worked on, but not what maintaining them involved. One concrete change would give this older role more substance.",
+        "example": "Maintained the claims intake services in Java by [work performed]",
+        "question": "What work did you do on the claims intake services?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 3",
+        "line": "- Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
+        "cannot_tell": "Keep this as a model. It puts the technical choice next to a measure a backend recruiter can understand.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "- Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends",
+        "cannot_tell": "For a role above senior engineer, a recruiter will look for how you set technical direction beyond one project. If your work on this migration included that, name the decisions and who was involved.",
+        "example": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends, setting [technical direction] with [teams involved]",
+        "question": "What technical direction did you set for the migration, and which teams were involved?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer",
+        "Senior Backend Engineer, Money Movement"
+      ],
+      "why": "Your headline and current payments platform role point to senior backend engineering, with Go, PostgreSQL and Kafka work.",
+      "level": "Senior individual contributor, with a senior title and two engineers mentored",
+      "note": "The resume doesn't show Finance and Risk partnership on reconciliation and controls, end-to-end on-call ownership, or leading design reviews. It otherwise matches the role closely: emphasize the idempotent Go payouts service, ledger migration, Kafka work and mentoring. Add the missing responsibilities only if you did them.",
+      "posting": {
+        "summary": "Cobalt Pay seeks a senior backend engineer to build and operate reliable money movement services, lead technical work and partner on financial controls.",
+        "missing": [
+          "Own the reliability of the payouts path end to end, including on-call",
+          "Lead technical design reviews",
+          "Partner with Finance and Risk on reconciliation and controls"
+        ]
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A senior backend engineer with payment systems work and production results a recruiter can quickly understand.",
+    "write_up": [
+      "Your resume makes a strong case for senior backend work! At Lumen Ledger, you connect payment infrastructure decisions to throughput, migration reliability and latency. Your earlier work at Harborview adds Java, Kafka and billing experience, so a recruiter can follow the path into money movement.",
+      "The balance API line is a great model: it names the change you made and gives the before and after. Experience is already ahead of Education, and your senior headline fits the work and mentoring shown underneath it.",
+      "For Cobalt Pay, lead with the payouts service, ledger migration and incident work. The resume is strong as it stands; competition for the role will also matter. If you have experience with on-call ownership, design reviews or Finance and Risk controls, add it where you did the work."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Software Engineer, Northgate Insurance, line 1",
+        "line": "Maintained the claims intake services in Java",
+        "cannot_tell": "A recruiter can see which services you worked on, but not what maintaining them involved. One concrete change would give this older role more substance.",
+        "example": "Maintained the claims intake services in Java by [work performed]",
+        "question": "What work did you do on the claims intake services?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 3",
+        "line": "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
+        "cannot_tell": "Keep this as a model. It puts the technical choice next to a measure a backend recruiter can understand.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends",
+        "cannot_tell": "For a role above senior engineer, a recruiter will look for how you set technical direction beyond one project. If your work on this migration included that, name the decisions and who was involved.",
+        "example": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends, setting [technical direction] with [teams involved]",
+        "question": "What technical direction did you set for the migration, and which teams were involved?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer",
+        "Senior Backend Engineer, Money Movement"
+      ],
+      "why": "Your headline and current payments platform role point to senior backend engineering, with Go, PostgreSQL and Kafka work.",
+      "level": "Senior individual contributor, with a senior title and two engineers mentored",
+      "note": "The resume doesn't show Finance and Risk partnership on reconciliation and controls, end-to-end on-call ownership, or leading design reviews. It otherwise matches the role closely: emphasize the idempotent Go payouts service, ledger migration, Kafka work and mentoring. Add the missing responsibilities only if you did them.",
+      "posting": {
+        "summary": "Cobalt Pay seeks a senior backend engineer to build and operate reliable money movement services, lead technical work and partner on financial controls.",
+        "missing": [
+          "Own the reliability of the payouts path end to end, including on-call",
+          "Lead technical design reviews",
+          "Partner with Finance and Risk on reconciliation and controls"
+        ]
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A senior backend engineer with payment systems work and production results a recruiter can quickly understand.",
+    "write_up": [
+      "Your resume makes a strong case for senior backend work! At Lumen Ledger, you connect payment infrastructure decisions to throughput, migration reliability and latency. Your earlier work at Harborview adds Java, Kafka and billing experience, so a recruiter can follow the path into money movement.",
+      "The balance API line is a great model: it names the change you made and gives the before and after. Experience is already ahead of Education, and your senior headline fits the work and mentoring shown underneath it.",
+      "For Cobalt Pay, lead with the payouts service, ledger migration and incident work. The resume is strong as it stands; competition for the role will also matter. If you have experience with on-call ownership, design reviews or Finance and Risk controls, add it where you did the work."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Software Engineer, Northgate Insurance, line 1",
+        "line": "Maintained the claims intake services in Java",
+        "cannot_tell": "A recruiter can see which services you worked on, but not what maintaining them involved. One concrete change would give this older role more substance.",
+        "example": "Maintained the claims intake services in Java by [work performed]",
+        "question": "What work did you do on the claims intake services?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 3",
+        "line": "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
+        "cannot_tell": "Keep this as a model. It puts the technical choice next to a measure a backend recruiter can understand.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends",
+        "cannot_tell": "For a role above senior engineer, a recruiter will look for how you set technical direction beyond one project. If your work on this migration included that, name the decisions and who was involved.",
+        "example": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends, setting [technical direction] with [teams involved]",
+        "question": "What technical direction did you set for the migration, and which teams were involved?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer",
+        "Senior Backend Engineer, Money Movement"
+      ],
+      "why": "Your headline and current payments platform role point to senior backend engineering, with Go, PostgreSQL and Kafka work.",
+      "level": "Senior individual contributor, with a senior title and two engineers mentored",
+      "note": "The resume doesn't show Finance and Risk partnership on reconciliation and controls, end-to-end on-call ownership, or leading design reviews. It otherwise matches the role closely: emphasize the idempotent Go payouts service, ledger migration, Kafka work and mentoring. Add the missing responsibilities only if you did them.",
+      "posting": {
+        "summary": "Cobalt Pay seeks a senior backend engineer to build and operate reliable money movement services, lead technical work and partner on financial controls.",
+        "missing": [
+          "Own the reliability of the payouts path end to end, including on-call",
+          "Lead technical design reviews",
+          "Partner with Finance and Risk on reconciliation and controls"
+        ]
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "presentation": {
+    "score": 88,
+    "band": "Clear and specific",
+    "model_score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A senior backend engineer with payment systems work and production results a recruiter can quickly understand.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 131,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Software Engineer, Northgate Insurance, line 1",
+        "line": "Maintained the claims intake services in Java",
+        "blanks": 1,
+        "question": "What work did you do on the claims intake services?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 3",
+        "line": "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends",
+        "blanks": 2,
+        "question": "What technical direction did you set for the migration, and which teams were involved?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "line": 1,
+      "keep": 1,
+      "upgrade": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer",
+        "Senior Backend Engineer, Money Movement"
+      ],
+      "why": "Your headline and current payments platform role point to senior backend engineering, with Go, PostgreSQL and Kafka work.",
+      "level": "Senior individual contributor, with a senior title and two engineers mentored",
+      "note": "The resume doesn't show Finance and Risk partnership on reconciliation and controls, end-to-end on-call ownership, or leading design reviews. It otherwise matches the role closely: emphasize the idempotent Go payouts service, ledger migration, Kafka work and mentoring. Add the missing responsibilities only if you did them.",
+      "posting": {
+        "summary": "Cobalt Pay seeks a senior backend engineer to build and operate reliable money movement services, lead technical work and partner on financial controls.",
+        "missing": [
+          "Own the reliability of the payouts path end to end, including on-call",
+          "Lead technical design reviews",
+          "Partner with Finance and Risk on reconciliation and controls"
+        ]
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00903665,
+  "latency_ms": 18595
+}

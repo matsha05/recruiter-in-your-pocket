@@ -1,0 +1,61 @@
+# b40_senior_ic_wei, run 1
+Resume: ../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/4-senior-ic-wei.txt (361 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 15dff271; severity check off
+Outcome: report; cost $0.0121; 23.6s
+Case note: Senior IC (bar persona).
+
+## Mostly clear (score 79; model wrote 79)
+## Verdict
+A staff payments engineer with strong platform work, but little sense of the size of the work.
+
+## Write-up
+Your resume points to staff-level payments infrastructure work: you moved from object storage at Nimbus Cloud to fraud scoring, reconciliation, and leading the ledger and settlement platform at Brightline Payments. A recruiter would likely move it forward, but would have questions about how large your technical remit is and what the ledger redesign changed.
+
+The idempotency line is your model: it names the change you drove, where it was adopted, and the duplicate-charge incidents it eliminated. The progression from senior to staff is easy to follow, and the fraud pipeline adds a useful latency measure.
+
+Start with the staff role. Add the team size to the technical lead line, then give the ledger redesign a measurable result if you have one. Bring the same detail to the incident and reconciliation work, without forcing a number where you can't substantiate it.
+
+## Cards (8; {"line":7,"keep":1}); severity off; added []
+1. [line] Staff Software Engineer, line 1
+   line: "Technical lead for the ledger and settlement platform team"
+   can't tell: A recruiter can see what the team owns, but not how many people you lead technically. That helps put your staff-level remit in context.
+   example: Technical lead for the ledger and settlement platform team of [number] people
+   question: How many people were on the team while you were its technical lead?
+2. [line] Staff Software Engineer, line 2
+   line: "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB"
+   can't tell: The architecture change is substantial, but a recruiter can't tell what it changed for the ledger. A measure of capacity, reliability, or performance would show why the redesign mattered.
+   example: Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, with [measured result]
+   question: What changed for the ledger after the redesign, and how was it measured?
+3. [keep] Staff Software Engineer, line 3
+   line: "Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents"
+   can't tell: Keep this as a model. It connects your adoption work to a concrete payments problem that went away.
+4. [line] Staff Software Engineer, line 4
+   line: "Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services"
+   can't tell: Your responsibility during serious outages is clear. What changed after you introduced error budgets and SLOs isn't.
+   example: Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services, with [what changed]
+   question: What changed after you introduced the error budgets and SLOs?
+5. [line] Staff Software Engineer, line 6
+   line: "Partnered with product and finance on the roadmap for multi-currency settlement"
+   can't tell: The roadmap names an important piece of payments work, but 'partnered' leaves your contribution open. A recruiter can't tell which decisions or work were yours.
+   example: Partnered with product and finance on the roadmap for multi-currency settlement, contributing [your contribution]
+   question: What did you contribute to the multi-currency settlement roadmap?
+6. [line] Senior Software Engineer, line 3
+   line: "Reduced reconciliation break rate and manual ops effort"
+   can't tell: Both reductions matter, but the line doesn't say how much either changed or what you did to reduce them.
+   example: Reduced reconciliation break rate from [before] to [after] and manual ops effort from [before] to [after] by [your work]
+   question: What did you change, and how did the break rate and manual ops effort change?
+7. [line] Senior Software Engineer, line 4
+   line: "On-call rotation for payments core services"
+   can't tell: A recruiter can see you were on call, but not what you handled during the rotation. One concrete responsibility would add to the payments story.
+   example: On-call rotation for payments core services, handling [on-call responsibility]
+   question: What did you handle while on call for payments core services?
+8. [line] Software Engineer II, line 3
+   line: "Improved API latency and availability through caching and request coalescing"
+   can't tell: The work and the measures are named, but not how much latency or availability improved. Before-and-after figures would show the scale of the change.
+   example: Improved API latency from [before] to [after] and availability from [before] to [after] through caching and request coalescing
+   question: What were the latency and availability figures before and after the changes?
+
+## Fit
+Roles: ["Staff Software Engineer"]
+Level: lead, technical lead for the ledger and settlement platform team
+Note: Your ledger, settlement, and fraud work points toward staff engineering roles in payments infrastructure. Your earlier storage work also gives you a distributed systems story beyond payments.

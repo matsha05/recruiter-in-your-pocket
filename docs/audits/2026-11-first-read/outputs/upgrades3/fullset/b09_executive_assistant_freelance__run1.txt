@@ -1,0 +1,45 @@
+# b09_executive_assistant_freelance, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_executive_assistant_freelance_1.txt (163 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 15dff271; severity check off
+Outcome: report; cost $0.0090; 18.6s
+
+## Mostly clear (score 75; model wrote 75)
+## Verdict
+An executive assistant supporting founders and a CEO, with a few handoffs and a work gap to explain.
+
+## Write-up
+I read your resume for Freelance Executive Assistant work. A recruiter can see your move from supporting Parkway's CEO to working with founders independently. The work is recognizable, though a few handoffs leave them guessing what you handled.
+
+Your line about supporting three founders is a strong model: it names who you support, how many, and the work you handle. There's also time between the Parkway role and your freelance work that the resume doesn't account for.
+
+Let's start with that time, then add the practical details behind the investor meetings and CEO handoffs. Keep the Notion workspace and the leadership offsite: both give a recruiter something concrete to remember.
+
+## Cards (5; {"dates":1,"keep":1,"line":3}); severity off; added []
+1. [dates] Dates
+   line: "The resume doesn't account for time between June 2023 and February 2025."
+   can't tell: A recruiter can't tell what you were doing between Parkway and your freelance work. If it fits your situation, you can name caregiving, a career break and what you did during it, or real freelance work. You don't need to call it something it wasn't.
+   example: June 2023 - February 2025 [what you did during this time]
+   question: Is there something you did during that time that you'd be comfortable putting on your resume?
+2. [keep] Freelance Executive Assistant, line 1
+   line: "Support three founders at early-stage companies with calendar, travel, and inbox management"
+   can't tell: Keep this line as a model. It puts your day-to-day responsibilities alongside the people you support, without making a recruiter guess who the work is for.
+3. [line] Freelance Executive Assistant, line 3
+   line: "Coordinate investor meeting logistics across time zones"
+   can't tell: A recruiter can see the meetings, but not which logistics you handle. Naming your part would show what founders can hand over to you.
+   example: Coordinate investor meeting logistics across time zones, including [meeting tasks]
+   question: Which parts of the investor meetings do you handle?
+4. [line] Executive Assistant to the CEO, line 4
+   line: "Served as the point of contact between the CEO and department heads"
+   can't tell: This names the people you worked with, but not what passed through you. The kinds of requests or information you handled would make that responsibility more concrete.
+   example: Served as the point of contact between the CEO and department heads for [topics or requests]
+   question: What kinds of topics or requests did you handle between the CEO and department heads?
+5. [line] Administrative Assistant, line 1
+   line: "Supported the operations team with scheduling and filing"
+   can't tell: A recruiter knows the tasks but can't tell what you scheduled or filed for the operations team. Those details would distinguish this job from a general admin listing.
+   example: Supported the operations team with scheduling [what you scheduled] and filing [what you filed]
+   question: What did you schedule and file for the operations team?
+
+## Fit
+Roles: ["Freelance Executive Assistant","Executive Assistant to the CEO"]
+Level: mid-level, supports founders independently and previously supported a CEO
+Note: Your experience points toward executive assistant work with founders or senior leaders. The board materials and offsite also show work beyond daily scheduling.

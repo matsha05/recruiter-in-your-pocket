@@ -1,4 +1,4 @@
-import type { WorklistCard, WorklistReport } from "../llm/worklist-schema";
+import { QUOTED_KINDS, WORK_KINDS, type WorklistCard, type WorklistReport } from "../llm/worklist-schema";
 import { canonicalSourceIdentity } from "../llm/source-fidelity";
 import type { StoredLineAnswer, StoredLineAnswers } from "./line-answers";
 
@@ -58,9 +58,14 @@ export function cardHasBlanks(card: Pick<WorklistCard, "example">) {
   return blankLabels(card.example).length > 0;
 }
 
-/** The cards that need work: everything but the keep card. */
+/** The cards that need work: not the keep card, and not an upgrade, which is optional (Nov 7, 2026). */
 export function workCards(report: Pick<WorklistReport, "cards">) {
-  return report.cards.filter((card) => card.kind !== "keep");
+  return report.cards.filter((card) => WORK_KINDS.has(card.kind));
+}
+
+/** The optional upgrades on a resume that already works. */
+export function upgradeCards(report: Pick<WorklistReport, "cards">) {
+  return report.cards.filter((card) => card.kind === "upgrade");
 }
 
 /**
@@ -109,13 +114,26 @@ export function cardLabel(card: Pick<WorklistCard, "kind" | "where">) {
 
 /** "3 of 12": the card's place among the cards that need work, once there are enough to lose count of. */
 export function cardPosition(cards: ReadonlyArray<Pick<WorklistCard, "kind">>, index: number): string | null {
-  const work = cards.map((card, i) => ({ card, i })).filter(({ card }) => card.kind !== "keep");
-  if (work.length < 3 || cards[index]?.kind === "keep") return null;
+  const work = cards.map((card, i) => ({ card, i })).filter(({ card }) => WORK_KINDS.has(card.kind));
+  if (work.length < 3 || !WORK_KINDS.has(cards[index]?.kind)) return null;
   const position = work.findIndex(({ i }) => i === index);
   return position === -1 ? null : `${position + 1} of ${work.length}`;
 }
 
 export const KEEP_SECONDARY_LABEL = "Write the others like it.";
+/**
+ * The upgrades' own group, after the list (three reviewers, Nov 7, 2026): a strong resume keeps "Nothing here needs
+ * work.", and the upgrades sit under their own heading. With nothing to fix, the lead says Matt's point, that the
+ * resume probably isn't the blocker now; with lines still to fix, it says the upgrades come after them.
+ */
+export const UPGRADES_HEADING = "Ways to make it even better.";
+export function upgradesLead(report: Pick<WorklistReport, "cards">) {
+  return workCards(report).length === 0
+    ? "Your resume probably isn't what stands between you and the call now. Who can refer you, and which jobs you aim at, matter more. If you want it even stronger, start here."
+    : "Optional, once the lines above are done.";
+}
+/** An upgrade's way out: the fact may simply not exist, and that's an answer, not a gap. */
+export const UPGRADE_LEAVE_LABEL = "Not true for me";
 
 /** The role the header row names for a worklist report: the first fit role. */
 export function worklistTargetRole(report: Pick<WorklistReport, "fit">) {
@@ -227,7 +245,7 @@ export interface WorklistComparison {
 }
 
 function cardKey(card: WorklistCard) {
-  return card.kind === "line" || card.kind === "keep" ? canonicalSourceIdentity(card.line) : `${card.kind}:${canonicalSourceIdentity(card.line)}`;
+  return QUOTED_KINDS.has(card.kind) ? canonicalSourceIdentity(card.line) : `${card.kind}:${canonicalSourceIdentity(card.line)}`;
 }
 
 /**

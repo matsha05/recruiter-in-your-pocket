@@ -1,0 +1,478 @@
+{
+  "case_id": "b11_recent_grad_bad",
+  "batch": "breadth",
+  "run": 1,
+  "note": "First job, weak; count-check key says no_evidence_latest_role, no_recent_work, title_level_mismatch.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_recent_grad_bad_1.txt",
+  "resume_sha256": "b6050d2872696426733e52fefc3754f3902bd7b1192ea7b2f180c313e53e2468",
+  "resume_words": 151,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T20:40:58.996Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6017,
+        "completion_tokens": 1369,
+        "total_tokens": 7386,
+        "cached_prompt_tokens": 5306,
+        "cache_write_prompt_tokens": 708,
+        "reasoning_tokens": 262
+      },
+      "cost_usd": 0.0079983,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 16227
+    },
+    {
+      "kind": "repair",
+      "usage": {
+        "prompt_tokens": 7326,
+        "completion_tokens": 1678,
+        "total_tokens": 9004,
+        "cached_prompt_tokens": 5306,
+        "cache_write_prompt_tokens": 2017,
+        "reasoning_tokens": 766
+      },
+      "cost_usd": 0.01117955,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 20396
+    }
+  ],
+  "resume_prompt_sha256": "da8de2955f7c8fc1b62e0178500104bae17a416005f43113f3b1bc615f3fd1f8",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 53,
+    "lifted_by_employer": false,
+    "verdict": "A marketing intern's resume with a manager headline, thin campaign details, and unaccounted time since May 2024.",
+    "write_up": [
+      "Your resume moves from campus tours and finance to dairy farm research and credit union marketing. It's common for early-career resumes to mix directions, but the marketing manager headline promises more than the internship lines show. I'm reading this for Marketing Intern roles because that's where your marketing experience sits.",
+      "The dairy farm research line is your model: it names the data, the tool, and the study. Your marketing lines don't yet give a recruiter that same picture, so they won't stand out in a pile. Education also sits above your experience, and nothing accounts for time after May 2024.",
+      "Let's start with the headline and the time since your last dated role, then return to the credit union newsletter. Add what you personally did for the newsletter, social accounts, and branch events, without turning support work into work you led."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Marketing manager who has led credit union campaigns from strategy to launch.",
+        "cannot_tell": "The credit union lines say you helped, posted, and supported planning, but they don't show campaigns you led from strategy to launch. That leaves a recruiter questioning the manager title.",
+        "example": "Marketing [job title] with credit union experience in [marketing work you did].",
+        "question": "What marketing job are you targeting, and which credit union work can you describe in the headline?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after May 2024.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since your last dated role. Add an honest account of the time: caregiving can be named as caregiving, and a career break can include a course, project, volunteering, or travel. Include freelance work only if you did it.",
+        "example": "May 2024 - Present  [what you did: caregiving, a career break, study, travel, freelance work if real]",
+        "question": "What have you been doing since May 2024 that you can add to your resume?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "cannot_tell": "Your work is more useful to a recruiter assessing you for another marketing role. Put Experience first so the credit union work comes before your degree.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Intern, line 1",
+        "line": "- Helped with the member newsletter",
+        "cannot_tell": "Helping could mean writing, building, or sending the newsletter. A recruiter can't tell which part was yours.",
+        "example": "Helped with the member newsletter by [your contribution] for [newsletter frequency] issues.",
+        "question": "What did you do for the newsletter, and how often did it go out?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Intern, line 2",
+        "line": "- Posted on the credit union's social media accounts",
+        "cannot_tell": "Posting is a real task, but the line doesn't say what you posted or how often. Those details show what the work involved.",
+        "example": "Posted [content] on the credit union's social media accounts [frequency].",
+        "question": "What did you post, and how often?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Intern, line 3",
+        "line": "- Supported planning for branch events",
+        "cannot_tell": "A recruiter can't tell what you contributed to an event. Name one and the planning work you handled.",
+        "example": "Supported planning for [branch event] by [your contribution].",
+        "question": "Which branch event did you support, and what did you do for it?"
+      },
+      {
+        "kind": "keep",
+        "where": "Research Assistant, line 1",
+        "line": "- Cleaned survey data from 1,200 dairy farms in Stata for a pricing study",
+        "cannot_tell": "Keep this as a model. It gives the reader a concrete task and enough context to understand what you worked with.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Marketing Intern"
+      ],
+      "why": "Your most recent dated role is Marketing Intern, with newsletter, social media, and branch event work.",
+      "level": "Entry level, with a marketing internship",
+      "note": "Your credit union work points toward entry-level marketing roles. The resume doesn't yet show the campaign leadership claimed in the manager headline.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "initial_validation_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the worklist contract at cards.2.question: a card that needs work carries the question that fills its blanks.",
+    "issues": [
+      {
+        "path": "cards.2.question",
+        "message": "a card that needs work carries the question that fills its blanks"
+      }
+    ]
+  },
+  "model_output_repaired": {
+    "contract_version": "v3",
+    "score": 53,
+    "lifted_by_employer": false,
+    "verdict": "A marketing intern's resume with a manager headline, thin campaign details, and unaccounted time since May 2024.",
+    "write_up": [
+      "Your resume moves from campus tours and finance to dairy farm research and credit union marketing. It's common for early-career resumes to mix directions, but the marketing manager headline promises more than the internship lines show. I'm reading this for Marketing Intern roles because that's where your marketing experience sits.",
+      "The dairy farm research line is your model: it names the data, the tool, and the study. Your marketing lines don't yet give a recruiter that same picture, so they won't stand out in a pile. Education also sits above your experience, and nothing accounts for time after May 2024.",
+      "Let's start with the headline and the time since your last dated role, then return to the credit union newsletter. Add what you personally did for the newsletter, social accounts, and branch events, without turning support work into work you led."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Marketing manager who has led credit union campaigns from strategy to launch.",
+        "cannot_tell": "The credit union lines say you helped, posted, and supported planning, but they don't show campaigns you led from strategy to launch. That leaves a recruiter questioning the manager title.",
+        "example": "Marketing Intern with credit union experience in [marketing work you did].",
+        "question": "Which credit union marketing work can you describe in the headline?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after May 2024.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since your last dated role. Add an honest account of the time: caregiving can be named as caregiving, and a career break can include a course, project, volunteering, or travel. Include freelance work only if you did it.",
+        "example": "May 2024 - Present  [what you did: caregiving, a career break, study, travel, freelance work if real]",
+        "question": "What have you been doing since May 2024 that you can add to your resume?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "cannot_tell": "Your work is more useful to a recruiter assessing you for another marketing role. Put Experience first so the credit union work comes before your degree.",
+        "example": "",
+        "question": "Can you move Experience above Education?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Intern, line 1",
+        "line": "- Helped with the member newsletter",
+        "cannot_tell": "Helping could mean writing, building, or sending the newsletter. A recruiter can't tell which part was yours.",
+        "example": "Helped with the member newsletter by [your contribution] [frequency].",
+        "question": "What did you do for the newsletter, and how often?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Intern, line 2",
+        "line": "- Posted on the credit union's social media accounts",
+        "cannot_tell": "Posting is a real task, but the line doesn't say what you posted or how often. Those details show what the work involved.",
+        "example": "Posted [content] on the credit union's social media accounts [frequency].",
+        "question": "What did you post, and how often?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Intern, line 3",
+        "line": "- Supported planning for branch events",
+        "cannot_tell": "A recruiter can't tell what you contributed to an event. Name one and the planning work you handled.",
+        "example": "Supported planning for [branch event] by [your contribution].",
+        "question": "Which branch event did you support, and what did you do for it?"
+      },
+      {
+        "kind": "keep",
+        "where": "Research Assistant, line 1",
+        "line": "- Cleaned survey data from 1,200 dairy farms in Stata for a pricing study",
+        "cannot_tell": "Keep this as a model. It gives the reader a concrete task and enough context to understand what you worked with.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Marketing Intern"
+      ],
+      "why": "Your most recent dated role is Marketing Intern, with newsletter, social media, and branch event work.",
+      "level": "Entry level, with a marketing internship",
+      "note": "Your credit union work points toward entry-level marketing roles. The resume doesn't yet show the campaign leadership claimed in the manager headline.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "repaired": true,
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 53,
+    "lifted_by_employer": false,
+    "verdict": "A marketing intern's resume with a manager headline, thin campaign details, and unaccounted time since May 2024.",
+    "write_up": [
+      "Your resume moves from campus tours and finance to dairy farm research and credit union marketing. It's common for early-career resumes to mix directions, but the marketing manager headline promises more than the internship lines show. I'm reading this for Marketing Intern roles because that's where your marketing experience sits.",
+      "The dairy farm research line is your model: it names the data, the tool, and the study. Your marketing lines don't yet give a recruiter that same picture, so they won't stand out in a pile. Education also sits above your experience, and nothing accounts for time after May 2024.",
+      "Let's start with the headline and the time since your last dated role, then return to the credit union newsletter. Add what you personally did for the newsletter, social accounts, and branch events, without turning support work into work you led."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Marketing manager who has led credit union campaigns from strategy to launch.",
+        "cannot_tell": "The credit union lines say you helped, posted, and supported planning, but they don't show campaigns you led from strategy to launch. That leaves a recruiter questioning the manager title.",
+        "example": "Marketing Intern with credit union experience in [marketing work you did].",
+        "question": "Which credit union marketing work can you describe in the headline?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after May 2024.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since your last dated role. Add an honest account of the time: caregiving can be named as caregiving, and a career break can include a course, project, volunteering, or travel. Include freelance work only if you did it.",
+        "example": "May 2024 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]",
+        "question": "What have you been doing since May 2024 that you can add to your resume?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "cannot_tell": "Your work is more useful to a recruiter assessing you for another marketing role. Put Experience first so the credit union work comes before your degree.",
+        "example": "",
+        "question": "Can you move Experience above Education?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Intern, line 1",
+        "line": "Helped with the member newsletter",
+        "cannot_tell": "Helping could mean writing, building, or sending the newsletter. A recruiter can't tell which part was yours.",
+        "example": "Helped with the member newsletter by [your contribution] [frequency].",
+        "question": "What did you do for the newsletter, and how often?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Intern, line 2",
+        "line": "Posted on the credit union's social media accounts",
+        "cannot_tell": "Posting is a real task, but the line doesn't say what you posted or how often. Those details show what the work involved.",
+        "example": "Posted [content] on the credit union's social media accounts [frequency].",
+        "question": "What did you post, and how often?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Intern, line 3",
+        "line": "Supported planning for branch events",
+        "cannot_tell": "A recruiter can't tell what you contributed to an event. Name one and the planning work you handled.",
+        "example": "Supported planning for [branch event] by [your contribution].",
+        "question": "Which branch event did you support, and what did you do for it?"
+      },
+      {
+        "kind": "keep",
+        "where": "Research Assistant, line 1",
+        "line": "Cleaned survey data from 1,200 dairy farms in Stata for a pricing study",
+        "cannot_tell": "Keep this as a model. It gives the reader a concrete task and enough context to understand what you worked with.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Marketing Intern"
+      ],
+      "why": "Your most recent dated role is Marketing Intern, with newsletter, social media, and branch event work.",
+      "level": "Entry level, with a marketing internship",
+      "note": "Your credit union work points toward entry-level marketing roles. The resume doesn't yet show the campaign leadership claimed in the manager headline.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 53
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 53,
+    "lifted_by_employer": false,
+    "verdict": "A marketing intern's resume with a manager headline, thin campaign details, and unaccounted time since May 2024.",
+    "write_up": [
+      "Your resume moves from campus tours and finance to dairy farm research and credit union marketing. It's common for early-career resumes to mix directions, but the marketing manager headline promises more than the internship lines show. I'm reading this for Marketing Intern roles because that's where your marketing experience sits.",
+      "The dairy farm research line is your model: it names the data, the tool, and the study. Your marketing lines don't yet give a recruiter that same picture, so they won't stand out in a pile. Education also sits above your experience, and nothing accounts for time after May 2024.",
+      "Let's start with the headline and the time since your last dated role, then return to the credit union newsletter. Add what you personally did for the newsletter, social accounts, and branch events, without turning support work into work you led."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Marketing manager who has led credit union campaigns from strategy to launch.",
+        "cannot_tell": "The credit union lines say you helped, posted, and supported planning, but they don't show campaigns you led from strategy to launch. That leaves a recruiter questioning the manager title.",
+        "example": "Marketing Intern with credit union experience in [marketing work you did].",
+        "question": "Which credit union marketing work can you describe in the headline?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after May 2024.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since your last dated role. Add an honest account of the time: caregiving can be named as caregiving, and a career break can include a course, project, volunteering, or travel. Include freelance work only if you did it.",
+        "example": "May 2024 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]",
+        "question": "What have you been doing since May 2024 that you can add to your resume?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "cannot_tell": "Your work is more useful to a recruiter assessing you for another marketing role. Put Experience first so the credit union work comes before your degree.",
+        "example": "",
+        "question": "Can you move Experience above Education?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Intern, line 1",
+        "line": "Helped with the member newsletter",
+        "cannot_tell": "Helping could mean writing, building, or sending the newsletter. A recruiter can't tell which part was yours.",
+        "example": "Helped with the member newsletter by [your contribution] [frequency].",
+        "question": "What did you do for the newsletter, and how often?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Intern, line 2",
+        "line": "Posted on the credit union's social media accounts",
+        "cannot_tell": "Posting is a real task, but the line doesn't say what you posted or how often. Those details show what the work involved.",
+        "example": "Posted [content] on the credit union's social media accounts [frequency].",
+        "question": "What did you post, and how often?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Intern, line 3",
+        "line": "Supported planning for branch events",
+        "cannot_tell": "A recruiter can't tell what you contributed to an event. Name one and the planning work you handled.",
+        "example": "Supported planning for [branch event] by [your contribution].",
+        "question": "Which branch event did you support, and what did you do for it?"
+      },
+      {
+        "kind": "keep",
+        "where": "Research Assistant, line 1",
+        "line": "Cleaned survey data from 1,200 dairy farms in Stata for a pricing study",
+        "cannot_tell": "Keep this as a model. It gives the reader a concrete task and enough context to understand what you worked with.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Marketing Intern"
+      ],
+      "why": "Your most recent dated role is Marketing Intern, with newsletter, social media, and branch event work.",
+      "level": "Entry level, with a marketing internship",
+      "note": "Your credit union work points toward entry-level marketing roles. The resume doesn't yet show the campaign leadership claimed in the manager headline.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 53
+  },
+  "presentation": {
+    "score": 53,
+    "band": "Needs more context",
+    "model_score": 53,
+    "lifted_by_employer": false,
+    "verdict": "A marketing intern's resume with a manager headline, thin campaign details, and unaccounted time since May 2024.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 141,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Marketing manager who has led credit union campaigns from strategy to launch.",
+        "blanks": 1,
+        "question": "Which credit union marketing work can you describe in the headline?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after May 2024.",
+        "blanks": 1,
+        "question": "What have you been doing since May 2024 that you can add to your resume?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "blanks": 0,
+        "question": "Can you move Experience above Education?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Intern, line 1",
+        "line": "Helped with the member newsletter",
+        "blanks": 2,
+        "question": "What did you do for the newsletter, and how often?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Intern, line 2",
+        "line": "Posted on the credit union's social media accounts",
+        "blanks": 2,
+        "question": "What did you post, and how often?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Intern, line 3",
+        "line": "Supported planning for branch events",
+        "blanks": 2,
+        "question": "Which branch event did you support, and what did you do for it?"
+      },
+      {
+        "kind": "keep",
+        "where": "Research Assistant, line 1",
+        "line": "Cleaned survey data from 1,200 dairy farms in Stata for a pricing study",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 7,
+    "kinds": {
+      "line": 4,
+      "dates": 1,
+      "structure": 1,
+      "keep": 1
+    },
+    "structural_from_model": 2,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Marketing Intern"
+      ],
+      "why": "Your most recent dated role is Marketing Intern, with newsletter, social media, and branch event work.",
+      "level": "Entry level, with a marketing internship",
+      "note": "Your credit union work points toward entry-level marketing roles. The resume doesn't yet show the campaign leadership claimed in the manager headline.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01917785,
+  "latency_ms": 36629
+}

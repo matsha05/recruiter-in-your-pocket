@@ -14,7 +14,7 @@ import type { WorklistCard, WorklistReport } from "../llm/worklist-schema";
 export function worklistAsSeverityReport(report: WorklistReport) {
   return {
     first_impression: report.verdict,
-    top_fixes: report.cards.filter((card) => card.kind !== "keep").map((card) => ({
+    top_fixes: report.cards.filter((card) => card.kind !== "keep" && card.kind !== "upgrade").map((card) => ({
       fix: card.question || card.cannot_tell,
       why: card.cannot_tell,
       evidence: { excerpt: card.line, section: card.where },

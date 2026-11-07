@@ -1,0 +1,50 @@
+# b10_it_support_recent_grad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_it_support_recent_grad_1.txt (119 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 15dff271; severity check off
+Outcome: report; cost $0.0099; 20.9s
+Case note: First job.
+
+## Needs more context (score 59; model wrote 59)
+## Verdict
+An entry-level IT resume with practical help desk work, but no account of work after May 2025.
+
+## Write-up
+Your resume points toward IT support, with a help desk internship at Chattahoochee County Schools and device setup at Peachtree Electronics. It's common for an early-career resume to list tasks without much detail. Here, the school work names useful duties, but without their volume or what happened since the internship, a recruiter may pass in a busy pile.
+
+The Active Directory line is your best model: it names the task and the tool. Your A.A.S. and CompTIA A+ also belong near the top, but your work experience should come before education. The most recent dated job ended in May 2025, and your resume doesn't say what you've done since.
+
+Let's start with the school internship. Add the ticket types and laptop setup details you can confirm, then account for the time since the role using your actual dates and activities. That gives a recruiter more to work with for an IT support job.
+
+## Cards (6; {"dates":1,"structure":1,"line":3,"keep":1}); severity off; added []
+1. [dates] Dates
+   line: "The most recent dated work ended in May 2025, and the resume doesn't say what you've done since."
+   can't tell: A recruiter can't tell what you've been doing since the internship. That can prompt a pass before they get to your technical skills.
+   example: May 2025 - Present [what you did]
+   question: What have you done since May 2025, and on what dates?
+2. [structure] Structure
+   line: "Education sits above Experience."
+   can't tell: Your retail work and help desk internship give you experience to lead with. Moving Experience above Education puts the work a recruiter is looking for first.
+   question: Can you move Experience above Education while keeping your A.A.S. and CompTIA A+ easy to find?
+3. [line] IT Help Desk Intern, line 1
+   line: "Answered help desk tickets from teachers and staff"
+   can't tell: A recruiter knows who sent the tickets, but not what problems you handled or how many came through. Those details show what you'd bring to another help desk.
+   example: Answered [number] help desk tickets [frequency] from teachers and staff about [ticket types]
+   question: What kinds of tickets did you answer, and how many did you handle in a typical period?
+4. [line] IT Help Desk Intern, line 2
+   line: "Imaged and set up laptops for classrooms"
+   can't tell: Imaging and setup are relevant desktop support work. The line doesn't say how many laptops you handled or what the setup included.
+   example: Imaged and set up [number] laptops for classrooms, including [setup tasks]
+   question: How many laptops did you image and set up, and what did the setup involve?
+5. [line] Retail Associate, line 2
+   line: "Set up new devices for customers at the service counter"
+   can't tell: Device setup fits the direction you're aiming for, but a recruiter can't tell which devices you worked on or what you set up.
+   example: Set up new [device types] for customers at the service counter, including [setup tasks]
+   question: Which devices did you set up, and what did that work involve?
+6. [keep] IT Help Desk Intern, line 3
+   line: "Reset passwords and accounts in Active Directory"
+   can't tell: Keep this as a model. It pairs a concrete support task with the system you used, so a recruiter doesn't have to guess what your Active Directory experience means.
+
+## Fit
+Roles: ["IT support specialist","IT Help Desk Intern"]
+Level: entry level, help desk internship and CompTIA A+
+Note: Your school and retail work both include hands-on device support. Use the dates card to show any work, study, caregiving, or other activity since the internship, with the dates that apply.

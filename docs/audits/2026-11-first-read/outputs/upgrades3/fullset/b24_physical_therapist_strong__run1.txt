@@ -1,0 +1,35 @@
+# b24_physical_therapist_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_physical_therapist_strong_1.txt (154 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 15dff271; severity check off
+Outcome: report; cost $0.0105; 22.0s
+
+## Clear and specific (score 89; model wrote 89)
+## Verdict
+An outpatient physical therapist with a clear caseload, a rehab program, and patient-reported results.
+
+## Write-up
+Your resume makes a strong case for outpatient orthopedic work! At North Loop, you show the patients you treat, the program you built, and how discharged patients reported their function. A recruiter can move forward knowing what your clinical work looks like.
+
+The return-to-run program is a model for the rest: it names what you built and how many patients completed it. Your license and DPT are easy to find, and your hospital role adds orthopedic, neurological, and fall-prevention work.
+
+The main detail to add is the measure behind the discharged-patient result. Your resume is unlikely to be the reason someone passes on its own; the match with a clinic's patient population and how competitive the opening is will matter too.
+
+## Cards (3; {"keep":1,"line":1,"upgrade":1}); severity off; added []
+1. [keep] Senior Physical Therapist, line 2
+   line: "Built a return-to-run program that 85 patients completed in 2025"
+   can't tell: Keep this as a model. It gives the program a name and puts a count beside the patients who completed it, without claiming more than that.
+2. [line] Senior Physical Therapist, line 4
+   line: "In 2025, 92% of discharged patients improved their patient-reported function scores"
+   can't tell: This is a useful patient result, but a recruiter can't tell which function measure you used or how many discharged patients are behind the percentage. Those details give the result context.
+   example: In 2025, 92% of [number] discharged patients improved their patient-reported function scores on [measure]
+   question: Which function measure did you use, and how many discharged patients were included in the percentage?
+3. [upgrade] Senior Physical Therapist, line 3
+   line: "Mentor 2 newer therapists and set the PT aide schedule"
+   can't tell: For a clinic leadership role, a decision affecting operations would build on the mentoring and scheduling you already show.
+   example: Mentor 2 newer therapists, set the PT aide schedule, and [action you took on a clinic-wide decision]
+   question: Have you taken part in a clinic-wide decision, and what did you do?
+
+## Fit
+Roles: ["Outpatient orthopedic physical therapist","Senior Physical Therapist"]
+Level: senior, mentors 2 newer therapists and sets the PT aide schedule
+Note: Your work points toward outpatient orthopedic and sports rehabilitation roles. The fall-prevention class and neurological cases also show experience beyond sports rehab.

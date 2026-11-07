@@ -1,0 +1,38 @@
+# b26_construction_pm_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_construction_pm_strong_1.txt (136 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 15dff271; severity check off
+Outcome: report; cost $0.0083; 16.9s
+
+## Clear and specific (score 87; model wrote 87)
+## Verdict
+A construction project manager with clear project values and delivery results, plus one detail worth adding.
+
+## Write-up
+Your resume makes a strong case for commercial construction project management: it shows the projects you run at Capitol Builders, their value, and what you've delivered! A recruiter can see both the work on your plate and the results, rather than just a list of duties.
+
+The grocery store line is the standout: it names the build, its value, and how far ahead of schedule you delivered it. Your current project workload and trade counts give the rest of the role useful context. The main question left is what you did to keep change orders down.
+
+Start with that change-order line, then consider bringing the grocery build higher in the Capitol Builders role. Your resume is unlikely to be the main reason a recruiter passes; the competitiveness of a particular job will also matter.
+
+## Cards (4; {"line":1,"keep":1,"upgrade":2}); severity off; added []
+1. [line] Project Manager, line 4
+   line: "Kept change orders under 3% of contract value across 2024 and 2025 projects"
+   can't tell: The figure is useful, but a recruiter can't tell what you did to keep change orders down. Your part matters as much as the number.
+   example: Kept change orders under 3% of contract value across 2024 and 2025 projects by [actions]
+   question: What did you do to keep change orders under 3%?
+2. [keep] Project Manager, line 3
+   line: "Manage subcontractor bids and buyout for 20 to 30 trades per project"
+   can't tell: Keep this as a model: it names the work you manage and gives a concrete count that makes its demands clear.
+3. [upgrade] Project Manager, line 1
+   line: "Run 4 to 6 concurrent tenant-improvement projects worth $1M to $8M each"
+   can't tell: For a role one level up, a decision you made across projects could show how you direct work beyond individual builds.
+   example: Run 4 to 6 concurrent tenant-improvement projects worth $1M to $8M each, including [a decision you made across projects]
+   question: What decisions have you made across projects, if any?
+4. [upgrade] Project Manager, line 2
+   line: "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024"
+   can't tell: Consider moving this above the current workload line. The finished grocery build gives a recruiter a memorable result right away.
+
+## Fit
+Roles: ["Project Manager","Assistant Project Manager"]
+Level: manager, runs 4 to 6 concurrent tenant-improvement projects
+Note: Your experience points toward commercial construction roles managing projects from bids through delivery. The grocery build also gives you a concrete example to discuss when pursuing ground-up retail work.

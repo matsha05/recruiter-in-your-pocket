@@ -1,0 +1,281 @@
+{
+  "case_id": "b18_military_to_civilian",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/resumes/b_military_to_civilian.txt",
+  "resume_sha256": "c2dd1e89354ce1a86021927ffba5d85f65b3dfb021c3126f6459225f8bfd7a7e",
+  "resume_words": 268,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T20:41:52.080Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6422,
+        "completion_tokens": 1857,
+        "total_tokens": 8279,
+        "cached_prompt_tokens": 5306,
+        "cache_write_prompt_tokens": 1113,
+        "reasoning_tokens": 1011
+      },
+      "cost_usd": 0.01094455,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 22145
+    }
+  ],
+  "resume_prompt_sha256": "da8de2955f7c8fc1b62e0178500104bae17a416005f43113f3b1bc615f3fd1f8",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A strong Army logistics leader’s resume with measurable maintenance and people-management results.",
+    "write_up": [
+      "Your resume is strong because it connects Army leadership to work an operations recruiter can recognize: managing people and equipment, planning logistics, and improving vehicle readiness. I read it for operations supervisor roles, and a recruiter would have good reason to move it forward.",
+      "The vehicle readiness line is the model: it gives the starting point, the improvement, and the changes you made to get there. Your inventory and personnel lines also make the responsibility concrete. Your transition to civilian operations is named right at the top.",
+      "Let's make the field-exercise support more concrete and add what you taught the junior mechanics. Your resume isn't likely to be the main thing standing between you and a call back; the competition for a particular role matters too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Platoon Sergeant, field exercises",
+        "line": "- Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises",
+        "cannot_tell": "The battalion and exercises show how much you supported, but a recruiter can't tell what that support included. Naming the work would help connect it to an operations job.",
+        "example": "Planned and executed [type of logistics support] for a 600-soldier battalion during two month-long field exercises",
+        "question": "What logistics support did you plan and execute for the exercises?"
+      },
+      {
+        "kind": "line",
+        "where": "Wheeled Vehicle Mechanic, training",
+        "line": "- Trained 9 junior mechanics",
+        "cannot_tell": "A recruiter can see how many mechanics you trained, but not what you taught them.",
+        "example": "Trained 9 junior mechanics on [training topics]",
+        "question": "What did you train the junior mechanics to do?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Platoon Sergeant, leadership",
+        "line": "- Led, trained, and evaluated 38 soldiers across maintenance, supply, and fuel sections",
+        "cannot_tell": "This already shows substantial team leadership. For a role above supervisor, a broader decision could show how your responsibility reached beyond those sections.",
+        "example": "Led, trained, and evaluated 38 soldiers across maintenance, supply, and fuel sections; made [decision] for [organization]",
+        "question": "Did you make a decision beyond your own sections, and if so, what was it and which organization did it affect?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Platoon Sergeant, vehicle readiness",
+        "line": "- Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "cannot_tell": "This is a standout result. Move it above the field-exercise line so the maintenance improvement appears earlier in the role.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "operations supervisor",
+        "Maintenance Section Sergeant (E-6)"
+      ],
+      "why": "Your stated goal is an operations supervisor role, and your latest Army role shows leadership across maintenance, supply, and fuel.",
+      "level": "Supervisor, led 38 soldiers with 6 direct-report sergeants",
+      "note": "Your experience points toward operations and maintenance supervision, with inventory and logistics work also relevant to supply chain roles. The civilian transition is explicit, and the vehicle readiness result gives employers a concrete place to start.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A strong Army logistics leader’s resume with measurable maintenance and people-management results.",
+    "write_up": [
+      "Your resume is strong because it connects Army leadership to work an operations recruiter can recognize: managing people and equipment, planning logistics, and improving vehicle readiness. I read it for operations supervisor roles, and a recruiter would have good reason to move it forward.",
+      "The vehicle readiness line is the model: it gives the starting point, the improvement, and the changes you made to get there. Your inventory and personnel lines also make the responsibility concrete. Your transition to civilian operations is named right at the top.",
+      "Let's make the field-exercise support more concrete and add what you taught the junior mechanics. Your resume isn't likely to be the main thing standing between you and a call back; the competition for a particular role matters too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Platoon Sergeant, field exercises",
+        "line": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises",
+        "cannot_tell": "The battalion and exercises show how much you supported, but a recruiter can't tell what that support included. Naming the work would help connect it to an operations job.",
+        "example": "Planned and executed [type of logistics support] for a 600-soldier battalion during two month-long field exercises",
+        "question": "What logistics support did you plan and execute for the exercises?"
+      },
+      {
+        "kind": "line",
+        "where": "Wheeled Vehicle Mechanic, training",
+        "line": "Trained 9 junior mechanics",
+        "cannot_tell": "A recruiter can see how many mechanics you trained, but not what you taught them.",
+        "example": "Trained 9 junior mechanics on [training topics]",
+        "question": "What did you train the junior mechanics to do?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Platoon Sergeant, leadership",
+        "line": "Led, trained, and evaluated 38 soldiers across maintenance, supply, and fuel sections",
+        "cannot_tell": "This already shows substantial team leadership. For a role above supervisor, a broader decision could show how your responsibility reached beyond those sections.",
+        "example": "Led, trained, and evaluated 38 soldiers across maintenance, supply, and fuel sections; made [decision] for [organization]",
+        "question": "Did you make a decision beyond your own sections, and if so, what was it and which organization did it affect?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Platoon Sergeant, vehicle readiness",
+        "line": "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "cannot_tell": "This is a standout result. Move it above the field-exercise line so the maintenance improvement appears earlier in the role.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "operations supervisor",
+        "Maintenance Section Sergeant (E-6)"
+      ],
+      "why": "Your stated goal is an operations supervisor role, and your latest Army role shows leadership across maintenance, supply, and fuel.",
+      "level": "Supervisor, led 38 soldiers with 6 direct-report sergeants",
+      "note": "Your experience points toward operations and maintenance supervision, with inventory and logistics work also relevant to supply chain roles. The civilian transition is explicit, and the vehicle readiness result gives employers a concrete place to start.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A strong Army logistics leader’s resume with measurable maintenance and people-management results.",
+    "write_up": [
+      "Your resume is strong because it connects Army leadership to work an operations recruiter can recognize: managing people and equipment, planning logistics, and improving vehicle readiness. I read it for operations supervisor roles, and a recruiter would have good reason to move it forward.",
+      "The vehicle readiness line is the model: it gives the starting point, the improvement, and the changes you made to get there. Your inventory and personnel lines also make the responsibility concrete. Your transition to civilian operations is named right at the top.",
+      "Let's make the field-exercise support more concrete and add what you taught the junior mechanics. Your resume isn't likely to be the main thing standing between you and a call back; the competition for a particular role matters too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Platoon Sergeant, field exercises",
+        "line": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises",
+        "cannot_tell": "The battalion and exercises show how much you supported, but a recruiter can't tell what that support included. Naming the work would help connect it to an operations job.",
+        "example": "Planned and executed [type of logistics support] for a 600-soldier battalion during two month-long field exercises",
+        "question": "What logistics support did you plan and execute for the exercises?"
+      },
+      {
+        "kind": "line",
+        "where": "Wheeled Vehicle Mechanic, training",
+        "line": "Trained 9 junior mechanics",
+        "cannot_tell": "A recruiter can see how many mechanics you trained, but not what you taught them.",
+        "example": "Trained 9 junior mechanics on [training topics]",
+        "question": "What did you train the junior mechanics to do?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Platoon Sergeant, leadership",
+        "line": "Led, trained, and evaluated 38 soldiers across maintenance, supply, and fuel sections",
+        "cannot_tell": "This already shows substantial team leadership. For a role above supervisor, a broader decision could show how your responsibility reached beyond those sections.",
+        "example": "Led, trained, and evaluated 38 soldiers across maintenance, supply, and fuel sections; made [decision] for [organization]",
+        "question": "Did you make a decision beyond your own sections, and if so, what was it and which organization did it affect?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Platoon Sergeant, vehicle readiness",
+        "line": "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "cannot_tell": "This is a standout result. Move it above the field-exercise line so the maintenance improvement appears earlier in the role.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "operations supervisor",
+        "Maintenance Section Sergeant (E-6)"
+      ],
+      "why": "Your stated goal is an operations supervisor role, and your latest Army role shows leadership across maintenance, supply, and fuel.",
+      "level": "Supervisor, led 38 soldiers with 6 direct-report sergeants",
+      "note": "Your experience points toward operations and maintenance supervision, with inventory and logistics work also relevant to supply chain roles. The civilian transition is explicit, and the vehicle readiness result gives employers a concrete place to start.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "presentation": {
+    "score": 88,
+    "band": "Clear and specific",
+    "model_score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A strong Army logistics leader’s resume with measurable maintenance and people-management results.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 126,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Platoon Sergeant, field exercises",
+        "line": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises",
+        "blanks": 1,
+        "question": "What logistics support did you plan and execute for the exercises?"
+      },
+      {
+        "kind": "line",
+        "where": "Wheeled Vehicle Mechanic, training",
+        "line": "Trained 9 junior mechanics",
+        "blanks": 1,
+        "question": "What did you train the junior mechanics to do?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Platoon Sergeant, leadership",
+        "line": "Led, trained, and evaluated 38 soldiers across maintenance, supply, and fuel sections",
+        "blanks": 2,
+        "question": "Did you make a decision beyond your own sections, and if so, what was it and which organization did it affect?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Platoon Sergeant, vehicle readiness",
+        "line": "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 4,
+    "kinds": {
+      "line": 2,
+      "upgrade": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "operations supervisor",
+        "Maintenance Section Sergeant (E-6)"
+      ],
+      "why": "Your stated goal is an operations supervisor role, and your latest Army role shows leadership across maintenance, supply, and fuel.",
+      "level": "Supervisor, led 38 soldiers with 6 direct-report sergeants",
+      "note": "Your experience points toward operations and maintenance supervision, with inventory and logistics work also relevant to supply chain roles. The civilian transition is explicit, and the vehicle readiness result gives employers a concrete place to start.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01094455,
+  "latency_ms": 22149
+}

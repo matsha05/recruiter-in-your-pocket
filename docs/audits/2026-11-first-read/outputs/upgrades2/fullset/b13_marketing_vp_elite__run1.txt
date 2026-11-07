@@ -1,0 +1,41 @@
+# b13_marketing_vp_elite, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/golden/synth_marketing_manager_vp_elite_1766960221358.txt (730 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt da8de295; severity check off
+Outcome: report; cost $0.0261; repair ran; 42.8s
+Case note: Executive, strong (golden).
+
+Validator refused the first draft: The model response failed the worklist contract at cards[1].line: is not on the resume as written: "- I built an integrated multi-channel campaign strategy that grew qualified lead flow by 70% year-over-year, contributing to a 40% increase in annual recurring revenue from $120M to $168M within 3 .".
+
+## Clear and specific (score 89; model wrote 89)
+## Verdict
+A marketing executive whose resume connects global leadership to growth, with one launch detail still missing.
+
+## Write-up
+This is a strong CMO resume! At Novara, you connect leadership of a global marketing organization and budget to lead growth, revenue, acquisition costs, and brand work. Your earlier roles show a progression from marketing strategy to global leadership.
+
+The account-based marketing line at Viridian is a model: it names the program you built, its annual pipeline contribution, and the change in win rates among Fortune 500 clients. The Novara role also gives a recruiter the team and budget needed to understand the job.
+
+Let's add what changed in the product launch process, then consider whether a company-wide decision belongs in the Novara role. Your resume is unlikely to be the thing holding you back; competition for a particular CMO job will matter too.
+
+## Cards (4; {"line":1,"keep":1,"upgrade":2}); severity off; added []
+1. [line] Chief Marketing Officer, product launch
+   line: "I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years."
+   can't tell: The results are substantial, but a recruiter can't tell what you changed in the launch process. Name the change so they can see the decision behind those results.
+   example: I decided to revamp the product launch process by [process change], shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.
+   question: What did you change in the product launch process?
+2. [keep] Vice President, Global Marketing, ABM program
+   line: "I built and executed a comprehensive account-based marketing (ABM) program that increased pipeline contribution by $50M annually, lifting win rates by 15% among Fortune 500 clients."
+   can't tell: Use this as a model: it shows your part in the program and names the clients connected to the win-rate change.
+3. [upgrade] Chief Marketing Officer, organization leadership
+   line: "I led a 45-person global marketing organization managing a $25M annual budget, driving company-wide brand and demand generation strategy for a SaaS platform serving 2M+ users across 40 countries."
+   can't tell: For a move beyond marketing leadership, a recruiter would also look for your part in a company-wide decision. Add one if your work included it.
+   example: I led a 45-person global marketing organization managing a $25M annual budget; [your role in a company-wide decision] contributed to [what changed].
+   question: What company-wide decision did you contribute to, and what changed?
+4. [upgrade] Skills
+   line: "Strategic Marketing Leadership"
+   can't tell: Your leadership is already clear from the marketing organizations and budgets in Experience. You could remove this generic skill to give the more distinctive work room.
+
+## Fit
+Roles: ["Chief Marketing Officer"]
+Level: Executive, leading a 45-person global marketing organization and managing a $25M annual budget
+Note: Your experience points to CMO roles, particularly in SaaS and enterprise technology. The resume shows both brand and demand generation work alongside budget and team leadership.

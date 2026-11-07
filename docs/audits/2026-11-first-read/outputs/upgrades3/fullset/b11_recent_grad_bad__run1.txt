@@ -1,0 +1,55 @@
+# b11_recent_grad_bad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_recent_grad_bad_1.txt (151 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 15dff271; severity check off
+Outcome: report; cost $0.0104; 21.6s
+Case note: First job, weak; count-check key says no_evidence_latest_role, no_recent_work, title_level_mismatch.
+
+## Needs more context (score 55; model wrote 55)
+## Verdict
+A marketing manager headline sits over an internship, with no work dated after May 2024.
+
+## Write-up
+Your resume points toward marketing management, but the latest role shown is a Marketing Intern at Badger State Credit Union. It's common to describe an internship in broad duties, but these lines don't yet show the campaign leadership in your headline. That makes it difficult to stand out for a manager job.
+
+Your dairy farm research is the model: you name the data, the tool and the study, so a recruiter knows what you worked on. Education sits above your experience, and nothing explains the time after May 2024.
+
+Let's start with the Badger State role. Tell us what you did for the newsletter, social accounts and branch events, then use a headline that matches the work you can show. Add an honest account of your time since the internship, if you're comfortable sharing it.
+
+## Cards (7; {"line":4,"dates":1,"structure":1,"keep":1}); severity off; added []
+1. [line] Headline
+   line: "Marketing manager who has led credit union campaigns from strategy to launch."
+   can't tell: The Badger State role is an internship, and its lines don't show campaign leadership from strategy to launch. A recruiter looking for a manager will look for that work.
+   example: Marketing Intern with experience [marketing work you did] at Badger State Credit Union
+   question: What marketing work did you own or contribute to at Badger State Credit Union?
+2. [dates] Dates
+   line: "Nothing is dated after May 2024."
+   can't tell: A recruiter can't tell what you've done since the internship ended. If it fits, you can name caregiving, a career break and what you did during it, or freelance work you actually did. A referral may matter more when the time isn't explained.
+   example: May 2024 - Present [what you did]
+   question: What would you be comfortable sharing about your work or activities since May 2024?
+3. [structure] Structure
+   line: "Education sits above Experience."
+   can't tell: Your work history has more to tell a recruiter about your marketing and research than your degree alone. Put Experience above Education so that work comes first.
+   question: Can you move Experience above Education?
+4. [line] Marketing Intern, line 1
+   line: "Helped with the member newsletter"
+   can't tell: Helped leaves your part of the newsletter open. A recruiter can't tell whether you worked on its content, production or distribution.
+   example: Helped with the member newsletter by [your contribution] for [number of recipients]
+   question: What did you do for the newsletter, and how many members received it?
+5. [line] Marketing Intern, line 2
+   line: "Posted on the credit union's social media accounts"
+   can't tell: Posting is a task, but the subject and frequency aren't here. Those details would show what you handled for the credit union.
+   example: Posted [content] on the credit union's social media accounts [frequency]
+   question: What did you post, and how often?
+6. [line] Marketing Intern, line 3
+   line: "Supported planning for branch events"
+   can't tell: Supported planning doesn't tell a recruiter which event you worked on or what part was yours.
+   example: Supported planning for [event name] by [your contribution]
+   question: Which branch event did you work on, and what did you contribute?
+7. [keep] Research Assistant, line 1
+   line: "Cleaned survey data from 1,200 dairy farms in Stata for a pricing study"
+   can't tell: Keep this as a model. It gives the recruiter a concrete assignment and enough detail to understand the work without guessing.
+
+## Fit
+Roles: ["Marketing manager","Marketing Intern"]
+Level: entry level, latest role is a marketing internship
+Note: Your recent marketing work points toward internship-level roles, while your research work gives you an analytical thread. If you've done relevant work since May 2024, add it with dates.
