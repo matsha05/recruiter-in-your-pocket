@@ -1,0 +1,30 @@
+# b25_fpa_analyst_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_fpa_analyst_strong_1.txt (138 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5cba8f05; severity check off
+Outcome: report; cost $0.0070; 14.7s
+
+## Clear and specific (score 90; model wrote 90)
+## Verdict
+A senior FP&A analyst whose budgeting, forecasting, and pricing work comes with convincing numbers.
+
+## Write-up
+This is a strong FP&A resume! At Lakeshore Foods, you connect a divisional budget, a more accurate forecast, and pricing work to numbers a recruiter can understand. Your earlier Midway Brands role adds reporting and automation experience.
+
+The driver-based forecast is the model to follow: it names what you built and shows the change in forecast error. Experience also leads the resume, and the move from Financial Analyst to Senior Financial Analyst is easy to follow.
+
+Your resume doesn't need a major overhaul. Make your part in the 2025 pricing review a little more explicit, then keep the rest focused on the work and its results. How competitive an FP&A opening is will matter too.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Senior Financial Analyst, FP&A, line 2
+   line: "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%"
+   can't tell: Keep this as your model. It gives a recruiter both the forecast method and a before-and-after measure.
+2. [line] Senior Financial Analyst, FP&A, line 3
+   line: "Model price changes for 60 products; a 2025 pricing review added $3.1M in gross margin"
+   can't tell: The product modeling and the pricing review are both substantial, but a recruiter can't tell what part you played in that review. Connect your work to the review without claiming more than you did.
+   example: Model price changes for 60 products; [what you did] for a 2025 pricing review that added $3.1M in gross margin
+   question: What did you do for the 2025 pricing review?
+
+## Fit
+Roles: ["Senior Financial Analyst, FP&A","Financial Analyst"]
+Level: Senior analyst, owning a $240M annual operating budget
+Note: Your experience points to senior FP&A roles involving budgeting, forecasting, and pricing. The resume shows senior analytical ownership without claiming people management.

@@ -1,0 +1,46 @@
+# fr04_financial_analyst_frames, run 1
+Resume: resumes/fr04_financial_analyst_frames.txt (120 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 338ac33a; severity check off
+Outcome: report; cost $0.0073; 15.4s
+Case note: P3. $1.2M in savings, 18% forecast accuracy and 40% efficiency with no baseline, period or thing. Expect frame questions; the Adaptive Planning line is fine.
+
+## Mostly clear (score 83; model wrote 83)
+## Verdict
+A financial analyst with strong FP&A results, but several figures need the work behind them.
+
+## Write-up
+Your resume points clearly to financial analyst roles: you moved from branch profitability work at Carolina Regional Bank to corporate FP&A at Piedmont Building Supply. A recruiter would likely move it forward, with questions about how you found the savings and improved the forecast.
+
+The headcount model line is a strong model for the rest. It names Adaptive Planning and the three disconnected spreadsheets you replaced, so a recruiter can see what changed. Your experience leads the resume, and the dates are easy to follow.
+
+Let's start with the Piedmont savings line, then add how you improved the forecast and reporting. At the bank, name the month-end tasks you automated. You don't need a number on every line; the monthly variance report already shows who used your work and how often.
+
+## Cards (5; {"line":4,"keep":1}); severity off; added []
+1. [line] Financial Analyst, Corporate FP&A, line 1
+   line: "Identified $1.2M in savings"
+   can't tell: A recruiter can see the amount you identified, but not where the savings were or how you found them. That distinction matters when they're looking for your analytical work.
+   example: Identified $1.2M in savings in [cost area] by [analysis]
+   question: Where did you identify the savings, and what analysis led you to them?
+2. [line] Financial Analyst, Corporate FP&A, line 2
+   line: "Improved forecast accuracy by 18%"
+   can't tell: The improvement is worth showing, but a recruiter can't tell which forecast you improved or what you changed to improve it.
+   example: Improved forecast accuracy by 18% for [forecast] by [approach]
+   question: Which forecast improved, and what did you change?
+3. [keep] Financial Analyst, Corporate FP&A, line 4
+   line: "Rebuilt the headcount model in Adaptive Planning, replacing three disconnected spreadsheets"
+   can't tell: Keep this line. It gives the recruiter the tool, the deliverable, and the old process it replaced without making them guess at your part.
+4. [line] Financial Analyst, Corporate FP&A, line 5
+   line: "Increased reporting efficiency by 40%"
+   can't tell: A recruiter can't tell which reporting process became more efficient or how the 40% was measured. The figure will mean more with those details attached.
+   example: Increased reporting efficiency by 40% for [reporting process] by [method], measured by [measure]
+   question: Which reporting process did you improve, what did you do, and how did you measure the 40%?
+5. [line] Financial Analyst, Carolina Regional Bank, line 3
+   line: "Grew automation of month-end tasks"
+   can't tell: This leaves the month-end work and your part in automating it open to guesswork. Name the tasks and what you did to automate them.
+   example: Grew automation of month-end tasks for [tasks] by [what you did]
+   question: Which month-end tasks did you automate, and what did you do?
+
+## Fit
+Roles: ["Financial Analyst","Financial Analyst, Corporate FP&A"]
+Level: Financial analyst, with corporate FP&A and prior bank analyst experience
+Note: Your experience points toward financial analyst and corporate FP&A roles. The forecast, reporting, and headcount model work are useful anchors for that search.

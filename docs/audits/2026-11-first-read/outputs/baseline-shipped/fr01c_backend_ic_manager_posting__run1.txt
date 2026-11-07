@@ -1,0 +1,38 @@
+# fr01c_backend_ic_manager_posting, run 1
+Resume: resumes/fr01_backend_ic_senior.txt (236 words), posting: resumes/posting_engineering_manager.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0152; 20.7s
+Case note: P1. The same resume against an engineering manager posting. Expect the missing management work (direct reports, hiring, performance) named first; the score unchanged against fr01a within one draw.
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A strong senior backend engineer whose payments experience fits the work, but whose management experience isn't shown.
+
+## Write-up
+Your backend work is exceptionally concrete: at Lumen Ledger, you built a payouts service, migrated the ledger and improved a balance API. That makes a strong case for senior engineering roles. Cobalt Pay's manager role is a different question: your resume shows mentoring, but not the direct-report management it requires.
+
+The balance API line is a great model! It names the problem, the change you made and the improvement in p99 latency. Your on-call runbooks and incident reviews also connect to Cobalt Pay's operations work, though the resume doesn't show whether you led the team responsible for on-call.
+
+For Cobalt Pay, start with your mentoring and incident-review work. If you've managed direct reports, hired, handled performance reviews or partnered with Product on a roadmap, add those facts where they belong. Keep mentoring distinct from formal management if that's what your experience was.
+
+## Cards (3; {"keep":1,"line":2}); severity off; added []
+1. [keep] Senior Software Engineer, Payments Platform, line 3
+   line: "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache"
+   can't tell: Keep this as a model: a recruiter can see both the technical approach and the before-and-after measure.
+2. [line] Senior Software Engineer, Payments Platform, line 4
+   line: "Wrote the on-call runbooks for the payments services and ran the incident reviews for the platform group"
+   can't tell: The runbooks and reviews are relevant to Cobalt Pay. A recruiter can't tell what changed after the reviews.
+   example: Wrote the on-call runbooks for the payments services and ran the incident reviews for the platform group, leading to [change from the reviews]
+   question: What changed as a result of the incident reviews you ran?
+3. [line] Senior Software Engineer, Payments Platform, line 5
+   line: "Mentor two mid-level engineers through code review and design docs"
+   can't tell: This shows hands-on coaching, but not how the engineers grew. That distinction matters for a role that asks for a record of developing engineers into senior roles.
+   example: Mentor two mid-level engineers through code review and design docs, helping them [career development result]
+   question: What progress did the two engineers make through your mentoring?
+
+## Fit
+Roles: ["Senior Backend Engineer","Engineering Manager, Payments Platform"]
+Level: Senior individual contributor
+Note: Cobalt Pay requires direct-report management, hiring and performance management, none of which your resume shows. Your payouts, ledger, on-call and mentoring work align with the role's technical and coaching themes; make any relevant roadmap or cross-functional work explicit if you've done it.
+Posting: Lead a payments platform team responsible for payouts, the ledger, delivery and production operations.
+Missing: ["2+ years managing engineers with direct reports, including hiring and performance management","A record of growing engineers into senior roles","Own the team's roadmap and delivery with your product partner","Build relationships with Finance, Risk and Support","Experience leading teams that run production systems with on-call"]

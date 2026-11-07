@@ -1,0 +1,56 @@
+# fr02a_marketing_skills_no_posting, run 1
+Resume: resumes/fr02_marketing_coordinator_skills.txt (132 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 41bcacc0; severity check off
+Outcome: report; cost $0.0081; 17.6s
+Case note: P2. HubSpot, Salesforce and GA4 only in Skills; the bullets never name a tool. Expect one card on the skills line asking where they were used.
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+A B2B marketing coordinator whose resume names the work but leaves the contribution and results unclear.
+
+## Write-up
+You’ve moved from marketing assistant at Keystone Benefits Group to marketing coordinator at Brightfield Software, working on emails, webinars and content. This is a common resume pattern: the work is named, but your part in it and what it accomplished are often missing. That makes it tough to stand out among other marketing coordinators.
+
+The Keystone line about updating event pages and registration forms is a useful model. It names the deliverables and the people they were for. Your experience is also easy to follow, with the current role first.
+
+Let’s start with the Brightfield newsletter. Add what you handled and who received it, then do the same for the webinars and campaign reports. You don’t need a number on every line, but a few details about reach or results would give a recruiter more to go on.
+
+## Cards (7; {"line":6,"keep":1}); severity off; added []
+1. [line] Marketing Coordinator, line 1
+   line: "Coordinated the monthly customer newsletter and product announcement emails"
+   can't tell: Coordinated could mean several different jobs. A recruiter can’t tell what you handled or how many customers received the newsletter.
+   example: Coordinated the monthly customer newsletter for [number] customers and product announcement emails, handling [your contribution]
+   question: What did you handle for these emails, and how many customers received the newsletter?
+2. [line] Marketing Coordinator, line 2
+   line: "Supported webinar planning with the product marketing team"
+   can't tell: Your work with the product marketing team is clear, but your part in planning isn’t. Name the pieces you handled.
+   example: Supported webinar planning with the product marketing team by handling [your contribution]
+   question: Which parts of webinar planning did you handle?
+3. [line] Marketing Coordinator, line 3
+   line: "Managed the content calendar for LinkedIn and the company blog"
+   can't tell: The channels are named, but a recruiter can’t tell what managing the calendar involved. Did you plan topics, schedule content or handle another part?
+   example: Managed the content calendar for LinkedIn and the company blog, handling [your responsibilities]
+   question: What did you handle for the content calendar?
+4. [line] Marketing Coordinator, line 4
+   line: "Pulled weekly campaign reports for the marketing manager"
+   can't tell: The weekly reports had an audience, but it’s not clear what they tracked. Naming the measures would show what campaign work you followed.
+   example: Pulled weekly campaign reports on [measures] for the marketing manager
+   question: What did the weekly campaign reports track?
+5. [keep] Marketing Assistant, line 1
+   line: "Updated event pages and registration forms for regional broker events"
+   can't tell: Keep this as a model: it tells a recruiter what you worked on and ties it to a particular kind of event.
+6. [line] Marketing Assistant, line 2
+   line: "Helped prepare slide decks and one-pagers for the sales team"
+   can't tell: The sales team and deliverables are clear, but “helped” leaves your contribution open. Tell the recruiter which part was yours.
+   example: Helped prepare slide decks and one-pagers for the sales team by handling [your contribution]
+   question: What did you contribute to the slide decks and one-pagers?
+7. [line] Marketing Assistant, line 3
+   line: "Kept the brand asset library organized"
+   can't tell: A recruiter can’t tell what was in the library or what keeping it organized involved.
+   example: Kept the brand asset library organized by [your work] for [asset types]
+   question: What assets did you organize, and what did you do to keep the library usable?
+
+## Fit
+Roles: ["Marketing Coordinator","Marketing Assistant"]
+Level: Coordinator level, current Marketing Coordinator role
+Note: Your experience points toward B2B marketing coordinator work across email, webinars, content and reporting. The resume would be stronger with more about your contribution to each channel and the reach or results of the work.

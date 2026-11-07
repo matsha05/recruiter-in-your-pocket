@@ -1,0 +1,41 @@
+# b20_customer_success_manager, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt (180 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5cba8f05; severity check off
+Outcome: report; cost $0.0072; 14.2s
+Case note: No posting.
+
+## Mostly clear (score 78; model wrote 78)
+## Verdict
+A customer success manager with a defined account book and a few open questions about renewals and escalations.
+
+## Write-up
+Your resume tells a clear story: you moved from insurance account coordination into payroll support, then customer success at Brightline Payroll Software. A recruiter can see the customers you manage and the work you do with them, though your part in renewal strategy and escalations is less clear.
+
+The onboarding checklist is a great model: you built something the whole CS team now uses. Your account book, quarterly business reviews and 2021 satisfaction score also give a recruiter concrete things to remember.
+
+I'd expect a recruiter to move this forward for customer success roles with a couple of questions in hand. Let's start with the renewal line and show what you contributed, then give the same treatment to payroll escalations.
+
+## Cards (4; {"line":3,"keep":1}); severity off; added []
+1. [line] Customer Success Manager, renewal strategy
+   line: "Partnered with Sales on renewal strategy for at-risk accounts"
+   can't tell: A recruiter can see who you worked with, but not what you contributed to the renewal strategy or what happened with the accounts. That matters for a customer success role tied to renewals.
+   example: Partnered with Sales on renewal strategy for at-risk accounts by [what you did], resulting in [what happened]
+   question: What did you contribute to the strategy, and what happened with those accounts?
+2. [keep] Customer Success Manager, onboarding
+   line: "Built an onboarding checklist now used by the whole CS team"
+   can't tell: Keep this. It names the thing you made and who uses it, so a recruiter can see your work beyond a list of responsibilities.
+3. [line] Customer Success Manager, escalations
+   line: "Handle escalations with Support and Product when payroll runs fail"
+   can't tell: Failed payroll runs make the stakes clear. Your part alongside Support and Product is still open: what do you do for the customer while the issue is being resolved?
+   example: Handle escalations with Support and Product when payroll runs fail by [what you do for customers]
+   question: What do you do for customers when a payroll run fails?
+4. [line] Account Coordinator, client questions
+   line: "Answered client questions by phone and email"
+   can't tell: A recruiter can see how clients reached you, but not what they needed help with. A few examples of the questions would make the insurance work more tangible.
+   example: Answered small business client questions about [topics] by phone and email
+   question: What kinds of questions did those clients ask?
+
+## Fit
+Roles: ["Customer Success Manager","Customer Support Specialist","Account Coordinator"]
+Level: Customer success manager, managing a book of 48 mid-market accounts
+Note: Your experience points toward customer success roles in B2B software, particularly work involving onboarding, account reviews and renewals. Your earlier payroll support work also shows familiarity with resolving customer issues alongside other teams.

@@ -1,0 +1,35 @@
+# b36_product_designer_unrelated, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_product_designer_unrelated_1.txt (147 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 01c2028d; severity check off
+Outcome: report; cost $0.0090; 18.7s
+Case note: Current job outside the field.
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+Product design work is concrete, but its results and your recent design activity are unclear.
+
+## Write-up
+You’re a product designer with agency work at Brightpath Studio and app design work at Loop Fitness, now working as a barista. This is a common situation when a current job is outside the field you’re targeting. For Product Designer roles, the missing results and the time since your last design role may make a recruiter hesitate.
+
+The Loop Fitness design system line is your best model: it names the deliverable, tells us it was the app’s first, and includes Figma. Your current job is clearly dated, but it sits above the design work a recruiter is looking for.
+
+Let’s bring the design roles forward under a relevant experience heading while keeping the cafe role and its dates visible. Start with what you contributed to the weekly releases, then add what changed for members or the product where you can support it.
+
+## Cards (3; {"structure":1,"line":1,"keep":1}); severity off; added []
+1. [structure] Experience
+   line: "The current Barista role comes before the product design roles."
+   can't tell: A recruiter looking for a Product Designer has to get past the cafe role before reaching your design work. Grouping the design roles first would make that work quicker to find without hiding your current job.
+   question: Could you group the design roles under Relevant Experience and keep the dated Barista role under Other Experience?
+2. [line] Product Designer, Loop Fitness, line 2
+   line: "Worked with two engineers and a product manager on weekly releases"
+   can't tell: The team and release cadence are clear, but a recruiter can't tell what you contributed to those releases.
+   example: Worked with two engineers and a product manager on weekly releases, [your contribution]
+   question: What did you contribute to the weekly releases?
+3. [keep] Product Designer, Loop Fitness, line 3
+   line: "Created the app's first design system in Figma"
+   can't tell: Keep this as a model. It gives your work a clear ownership verb and identifies exactly what you created.
+
+## Fit
+Roles: ["Product Designer"]
+Level: Product designer, with a prior junior role and ownership of an app design system
+Note: Your experience points toward product design roles focused on mobile apps and design systems. The resume shows what you designed, but not what changed after the work launched.

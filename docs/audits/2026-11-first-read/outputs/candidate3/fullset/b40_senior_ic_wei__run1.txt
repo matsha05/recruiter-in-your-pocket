@@ -1,0 +1,50 @@
+# b40_senior_ic_wei, run 1
+Resume: ../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/4-senior-ic-wei.txt (361 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 01c2028d; severity check off
+Outcome: report; cost $0.0099; 18.6s
+Case note: Senior IC (bar persona).
+
+## Mostly clear (score 81; model wrote 81)
+## Verdict
+A staff engineer with strong payments architecture work, but little to show how large the platforms are.
+
+## Write-up
+Your resume tells a coherent story from object storage at Nimbus Cloud to staff-level payments infrastructure at Brightline Payments. A recruiter can see the technical leadership and the systems you built, but has to guess how large the current team and ledger platform are.
+
+The fraud scoring line is a strong model: it names the pipeline, its tools and the latency it achieved. Your current role also shows a meaningful result in the duplicate-charge work. What’s missing is a way to compare the size of your remit and Brightline itself.
+
+Let’s start with the current role: add the team’s size and a workload measure for the ledger if you can. Then give the reconciliation improvement a little more detail and name the technology used in your first Nimbus role.
+
+## Cards (6; {"structure":1,"line":4,"keep":1}); severity off; added []
+1. [structure] Brightline Payments
+   line: "Brightline Payments' size isn't stated."
+   can't tell: A recruiter can't tell how large the business is when comparing your staff role with others. A brief company description with a measure you can share would help.
+   question: What measure of Brightline Payments' size can you share?
+2. [line] Staff Software Engineer, line 1
+   line: "Technical lead for the ledger and settlement platform team"
+   can't tell: The team and platform are named, but a recruiter can't tell how many people your technical leadership covers.
+   example: Technical lead for the ledger and settlement platform team of [number] members
+   question: How many people are on the team?
+3. [line] Staff Software Engineer, line 2
+   line: "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB"
+   can't tell: The architecture change is clear. What isn't clear is how much work the ledger handles, which would help a recruiter compare it with other platforms.
+   example: Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, handling [workload measure]
+   question: What workload measure can you share for the ledger service?
+4. [keep] Senior Software Engineer, line 1
+   line: "Built the real-time fraud scoring pipeline (Flink, Kafka) processing payment events with p99 latency under 50ms"
+   can't tell: Keep this as a model. It puts the system, the technology and a concrete performance measure together.
+5. [line] Senior Software Engineer, line 3
+   line: "Reduced reconciliation break rate and manual ops effort"
+   can't tell: The two improvements are useful, but a recruiter can't tell what you changed to achieve them.
+   example: Reduced reconciliation break rate and manual ops effort by [what you changed]
+   question: What did you change to reduce the break rate and manual ops effort?
+6. [line] Software Engineer, line 1
+   line: "Developed internal tooling and APIs for storage provisioning"
+   can't tell: The work is named, but this role doesn't say which technology you used. That leaves a blank in the progression from storage tooling to the later control-plane work.
+   example: Developed internal tooling and APIs for storage provisioning using [language or tool]
+   question: Which language or tool did you use for the storage provisioning work?
+
+## Fit
+Roles: ["Staff Software Engineer","Senior Software Engineer"]
+Level: Staff level, technical lead for the ledger and settlement platform team
+Note: Your experience points toward staff software engineering roles in distributed systems and payments infrastructure. The architecture changes and technical leadership support that direction; the team and platform measures would make it easier to compare roles.

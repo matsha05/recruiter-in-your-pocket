@@ -1,0 +1,312 @@
+{
+  "case_id": "fr04_financial_analyst_frames",
+  "batch": "targeted",
+  "run": 1,
+  "note": "P3. $1.2M in savings, 18% forecast accuracy and 40% efficiency with no baseline, period or thing. Expect frame questions; the Adaptive Planning line is fine.",
+  "resume_file": "resumes/fr04_financial_analyst_frames.txt",
+  "resume_sha256": "34f14f6df182002d0555184608a9897ef1688d93d222f353e7a53fca546ddb65",
+  "resume_words": 120,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:19:44.098Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5791,
+        "completion_tokens": 1249,
+        "total_tokens": 7040,
+        "cached_prompt_tokens": 5222,
+        "cache_write_prompt_tokens": 566,
+        "reasoning_tokens": 354
+      },
+      "cost_usd": 0.0072166,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 15199
+    }
+  ],
+  "resume_prompt_sha256": "5827dcf1b71d049c0db123f36eb5d0286f3c433f3e55a732f42012b2b93288f6",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 80,
+    "lifted_by_employer": false,
+    "verdict": "An FP&A analyst with strong reported results, but a recruiter has to guess how several were achieved.",
+    "write_up": [
+      "Your resume points to Financial Analyst work in corporate FP&A, following branch profitability and reconciliation work at Carolina Regional Bank. A recruiter can see the reports and models you built, but the savings and improvements at Piedmont don't yet say how you achieved them.",
+      "The headcount model is a strong model for the rest: it names Adaptive Planning and the three disconnected spreadsheets it replaced. Your experience leads the resume, and the move from banking to corporate FP&A is easy to follow.",
+      "Let's start with the savings line at Piedmont, then add how you improved forecast accuracy and reporting efficiency. At the bank, name the month-end tasks you automated and what you did to automate them."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Financial Analyst, Corporate FP&A, line 1",
+        "line": "- Identified $1.2M in savings",
+        "cannot_tell": "A recruiter can see the amount you identified, but not where the savings were or what analysis uncovered them. That makes it tough to picture your FP&A work.",
+        "example": "Identified $1.2M in savings in [area] through [analysis]",
+        "question": "Where were the savings, and what analysis did you use to identify them?"
+      },
+      {
+        "kind": "line",
+        "where": "Financial Analyst, Corporate FP&A, line 2",
+        "line": "- Improved forecast accuracy by 18%",
+        "cannot_tell": "The improvement is compelling, but a recruiter can't tell what you changed or how accuracy was measured.",
+        "example": "Improved forecast accuracy by 18% by [what you changed], measured by [accuracy measure]",
+        "question": "What did you change in the forecast, and how was the improvement measured?"
+      },
+      {
+        "kind": "keep",
+        "where": "Financial Analyst, Corporate FP&A, line 4",
+        "line": "- Rebuilt the headcount model in Adaptive Planning, replacing three disconnected spreadsheets",
+        "cannot_tell": "Keep this as a model: it shows what you rebuilt and the old setup you replaced, so a recruiter can picture the work.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Financial Analyst, Corporate FP&A, line 5",
+        "line": "- Increased reporting efficiency by 40%",
+        "cannot_tell": "The figure catches attention, but the resume doesn't say which reporting work changed or how efficiency was measured.",
+        "example": "Increased reporting efficiency by 40% by [what you changed], measured by [efficiency measure]",
+        "question": "What did you change in reporting, and how did you measure the improvement?"
+      },
+      {
+        "kind": "line",
+        "where": "Financial Analyst, Carolina Regional Bank, line 3",
+        "line": "- Grew automation of month-end tasks",
+        "cannot_tell": "A recruiter can't tell which month-end tasks you automated or what you did to automate them.",
+        "example": "Grew automation of month-end tasks by [what you did] for [which tasks]",
+        "question": "Which month-end tasks did you automate, and what did you do to automate them?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Financial Analyst",
+        "Financial Analyst, Corporate FP&A"
+      ],
+      "why": "Your headline and both roles name Financial Analyst work, with your most recent role focused on corporate FP&A.",
+      "level": "Experienced individual contributor, with corporate FP&A and bank analyst roles",
+      "note": "Your recent work points toward corporate FP&A, especially forecasting, variance reporting and headcount modeling. The earlier bank role adds branch profitability and reconciliation work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 80,
+    "lifted_by_employer": false,
+    "verdict": "An FP&A analyst with strong reported results, but a recruiter has to guess how several were achieved.",
+    "write_up": [
+      "Your resume points to Financial Analyst work in corporate FP&A, following branch profitability and reconciliation work at Carolina Regional Bank. A recruiter can see the reports and models you built, but the savings and improvements at Piedmont don't yet say how you achieved them.",
+      "The headcount model is a strong model for the rest: it names Adaptive Planning and the three disconnected spreadsheets it replaced. Your experience leads the resume, and the move from banking to corporate FP&A is easy to follow.",
+      "Let's start with the savings line at Piedmont, then add how you improved forecast accuracy and reporting efficiency. At the bank, name the month-end tasks you automated and what you did to automate them."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Financial Analyst, Corporate FP&A, line 1",
+        "line": "Identified $1.2M in savings",
+        "cannot_tell": "A recruiter can see the amount you identified, but not where the savings were or what analysis uncovered them. That makes it tough to picture your FP&A work.",
+        "example": "Identified $1.2M in savings in [area] through [analysis]",
+        "question": "Where were the savings, and what analysis did you use to identify them?"
+      },
+      {
+        "kind": "line",
+        "where": "Financial Analyst, Corporate FP&A, line 2",
+        "line": "Improved forecast accuracy by 18%",
+        "cannot_tell": "The improvement is compelling, but a recruiter can't tell what you changed or how accuracy was measured.",
+        "example": "Improved forecast accuracy by 18% by [what you changed], measured by [accuracy measure]",
+        "question": "What did you change in the forecast, and how was the improvement measured?"
+      },
+      {
+        "kind": "keep",
+        "where": "Financial Analyst, Corporate FP&A, line 4",
+        "line": "Rebuilt the headcount model in Adaptive Planning, replacing three disconnected spreadsheets",
+        "cannot_tell": "Keep this as a model: it shows what you rebuilt and the old setup you replaced, so a recruiter can picture the work.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Financial Analyst, Corporate FP&A, line 5",
+        "line": "Increased reporting efficiency by 40%",
+        "cannot_tell": "The figure catches attention, but the resume doesn't say which reporting work changed or how efficiency was measured.",
+        "example": "Increased reporting efficiency by 40% by [what you changed], measured by [efficiency measure]",
+        "question": "What did you change in reporting, and how did you measure the improvement?"
+      },
+      {
+        "kind": "line",
+        "where": "Financial Analyst, Carolina Regional Bank, line 3",
+        "line": "Grew automation of month-end tasks",
+        "cannot_tell": "A recruiter can't tell which month-end tasks you automated or what you did to automate them.",
+        "example": "Grew automation of month-end tasks by [what you did] for [which tasks]",
+        "question": "Which month-end tasks did you automate, and what did you do to automate them?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Financial Analyst",
+        "Financial Analyst, Corporate FP&A"
+      ],
+      "why": "Your headline and both roles name Financial Analyst work, with your most recent role focused on corporate FP&A.",
+      "level": "Experienced individual contributor, with corporate FP&A and bank analyst roles",
+      "note": "Your recent work points toward corporate FP&A, especially forecasting, variance reporting and headcount modeling. The earlier bank role adds branch profitability and reconciliation work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 80
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 80,
+    "lifted_by_employer": false,
+    "verdict": "An FP&A analyst with strong reported results, but a recruiter has to guess how several were achieved.",
+    "write_up": [
+      "Your resume points to Financial Analyst work in corporate FP&A, following branch profitability and reconciliation work at Carolina Regional Bank. A recruiter can see the reports and models you built, but the savings and improvements at Piedmont don't yet say how you achieved them.",
+      "The headcount model is a strong model for the rest: it names Adaptive Planning and the three disconnected spreadsheets it replaced. Your experience leads the resume, and the move from banking to corporate FP&A is easy to follow.",
+      "Let's start with the savings line at Piedmont, then add how you improved forecast accuracy and reporting efficiency. At the bank, name the month-end tasks you automated and what you did to automate them."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Financial Analyst, Corporate FP&A, line 1",
+        "line": "Identified $1.2M in savings",
+        "cannot_tell": "A recruiter can see the amount you identified, but not where the savings were or what analysis uncovered them. That makes it tough to picture your FP&A work.",
+        "example": "Identified $1.2M in savings in [area] through [analysis]",
+        "question": "Where were the savings, and what analysis did you use to identify them?"
+      },
+      {
+        "kind": "line",
+        "where": "Financial Analyst, Corporate FP&A, line 2",
+        "line": "Improved forecast accuracy by 18%",
+        "cannot_tell": "The improvement is compelling, but a recruiter can't tell what you changed or how accuracy was measured.",
+        "example": "Improved forecast accuracy by 18% by [what you changed], measured by [accuracy measure]",
+        "question": "What did you change in the forecast, and how was the improvement measured?"
+      },
+      {
+        "kind": "keep",
+        "where": "Financial Analyst, Corporate FP&A, line 4",
+        "line": "Rebuilt the headcount model in Adaptive Planning, replacing three disconnected spreadsheets",
+        "cannot_tell": "Keep this as a model: it shows what you rebuilt and the old setup you replaced, so a recruiter can picture the work.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Financial Analyst, Corporate FP&A, line 5",
+        "line": "Increased reporting efficiency by 40%",
+        "cannot_tell": "The figure catches attention, but the resume doesn't say which reporting work changed or how efficiency was measured.",
+        "example": "Increased reporting efficiency by 40% by [what you changed], measured by [efficiency measure]",
+        "question": "What did you change in reporting, and how did you measure the improvement?"
+      },
+      {
+        "kind": "line",
+        "where": "Financial Analyst, Carolina Regional Bank, line 3",
+        "line": "Grew automation of month-end tasks",
+        "cannot_tell": "A recruiter can't tell which month-end tasks you automated or what you did to automate them.",
+        "example": "Grew automation of month-end tasks by [what you did] for [which tasks]",
+        "question": "Which month-end tasks did you automate, and what did you do to automate them?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Financial Analyst",
+        "Financial Analyst, Corporate FP&A"
+      ],
+      "why": "Your headline and both roles name Financial Analyst work, with your most recent role focused on corporate FP&A.",
+      "level": "Experienced individual contributor, with corporate FP&A and bank analyst roles",
+      "note": "Your recent work points toward corporate FP&A, especially forecasting, variance reporting and headcount modeling. The earlier bank role adds branch profitability and reconciliation work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 80
+  },
+  "presentation": {
+    "score": 80,
+    "band": "Mostly clear",
+    "model_score": 80,
+    "lifted_by_employer": false,
+    "verdict": "An FP&A analyst with strong reported results, but a recruiter has to guess how several were achieved.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 116,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Financial Analyst, Corporate FP&A, line 1",
+        "line": "Identified $1.2M in savings",
+        "blanks": 2,
+        "question": "Where were the savings, and what analysis did you use to identify them?"
+      },
+      {
+        "kind": "line",
+        "where": "Financial Analyst, Corporate FP&A, line 2",
+        "line": "Improved forecast accuracy by 18%",
+        "blanks": 2,
+        "question": "What did you change in the forecast, and how was the improvement measured?"
+      },
+      {
+        "kind": "keep",
+        "where": "Financial Analyst, Corporate FP&A, line 4",
+        "line": "Rebuilt the headcount model in Adaptive Planning, replacing three disconnected spreadsheets",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Financial Analyst, Corporate FP&A, line 5",
+        "line": "Increased reporting efficiency by 40%",
+        "blanks": 2,
+        "question": "What did you change in reporting, and how did you measure the improvement?"
+      },
+      {
+        "kind": "line",
+        "where": "Financial Analyst, Carolina Regional Bank, line 3",
+        "line": "Grew automation of month-end tasks",
+        "blanks": 2,
+        "question": "Which month-end tasks did you automate, and what did you do to automate them?"
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "line": 4,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Financial Analyst",
+        "Financial Analyst, Corporate FP&A"
+      ],
+      "why": "Your headline and both roles name Financial Analyst work, with your most recent role focused on corporate FP&A.",
+      "level": "Experienced individual contributor, with corporate FP&A and bank analyst roles",
+      "note": "Your recent work points toward corporate FP&A, especially forecasting, variance reporting and headcount modeling. The earlier bank role adds branch profitability and reconciliation work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0072166,
+  "latency_ms": 15203
+}

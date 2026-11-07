@@ -1,0 +1,40 @@
+# b08_warehouse_supervisor, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_warehouse_supervisor_1.txt (173 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 1c0fe4fe; severity check off
+Outcome: report; cost $0.0076; 15.4s
+
+## Mostly clear (score 78; model wrote 78)
+## Verdict
+A distribution supervisor with a clear progression and a few unanswered questions about the work.
+
+## Write-up
+Your resume tells a straightforward story: you moved from order picking to leading associates, then to supervising outbound operations at Sierra Freight Distribution. A recruiter can see what you do and how many people you supervise, though the resume says less about what changed during that work.
+
+The night-shift line is the model to build from. It names your responsibility, the number of associates and the work they cover. Your work history is easy to follow, and the certifications fit the warehouse setting.
+
+Let's start with labor scheduling: daily order volume is central to that job, so add the volume you can support. Then show what the new leads learned and what part you played in the scanner rollout.
+
+## Cards (4; {"keep":1,"line":3}); severity off; added []
+1. [keep] Shift Supervisor, Outbound Operations, line 1
+   line: "Supervise a night shift of 35 associates across picking, packing, and loading"
+   can't tell: Keep this one as a model. It gives a recruiter a concrete picture of the shift without making them guess who you supervise or what the team handles.
+2. [line] Shift Supervisor, Outbound Operations, line 2
+   line: "Schedule labor and assign zones based on daily order volume"
+   can't tell: A recruiter can see how you plan the shift, but not the order volume you're planning around. That's useful context for an outbound supervisor.
+   example: Schedule labor and assign zones based on daily order volume of [daily order volume]
+   question: What daily order volume do you schedule the shift around?
+3. [line] Shift Supervisor, Outbound Operations, line 5
+   line: "Train new leads on the warehouse management system"
+   can't tell: Training new leads is useful work. What do you teach them to do in the system, and how many leads have you trained?
+   example: Train [number] new leads on [what they learned] in the warehouse management system
+   question: How many new leads have you trained, and what did you teach them to do in the system?
+4. [line] Lead Associate, line 3
+   line: "Helped roll out handheld scanners on the pick floor"
+   can't tell: The scanner rollout is a concrete project, but 'helped' leaves your part open. A recruiter can't tell what you did on the pick floor.
+   example: Helped roll out handheld scanners on the pick floor by [what you did]
+   question: What did you do to help roll out the handheld scanners?
+
+## Fit
+Roles: ["Shift Supervisor, Outbound Operations","Lead Associate"]
+Level: Supervisor, manages a night shift of 35 associates
+Note: Your experience points toward distribution and outbound shift supervision. Adding the daily order volume and your part in the scanner rollout would give a recruiter more to discuss about the operation.

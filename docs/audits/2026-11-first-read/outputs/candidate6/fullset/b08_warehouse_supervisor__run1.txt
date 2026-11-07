@@ -1,0 +1,40 @@
+# b08_warehouse_supervisor, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_warehouse_supervisor_1.txt (173 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5827dcf1; severity check off
+Outcome: report; cost $0.0085; 18.5s
+
+## Mostly clear (score 78; model wrote 78)
+## Verdict
+A distribution supervisor with a clear progression and team size, but little detail on order volume or improvements.
+
+## Write-up
+Your resume shows a move from order picker to outbound shift supervisor, with the last two roles at Sierra Freight Distribution. A recruiter can see the work you oversee and would likely move this forward for another shift supervisor role, with questions about order volume and what changed under your watch.
+
+The strongest line names the 35 associates on your night shift and the work they cover: picking, packing and loading. That gives a recruiter a concrete picture of your remit. Your work history is also easy to follow, with dates for every role.
+
+Start with the labor scheduling line. If you can document the order volume you plan around or an improvement you helped make, add it there. Then give the earlier scanner rollout a little more room so your part in it is clear.
+
+## Cards (4; {"keep":1,"line":3}); severity off; added []
+1. [keep] Shift Supervisor, line 1
+   line: "Supervise a night shift of 35 associates across picking, packing, and loading"
+   can't tell: Keep this as a model. It puts your responsibility and the work your team handles together, so a recruiter doesn't have to guess what the shift does.
+2. [line] Shift Supervisor, line 2
+   line: "Schedule labor and assign zones based on daily order volume"
+   can't tell: A recruiter can see how you plan the shift, but not the order volume you're planning for. That would add useful context to the team of 35.
+   example: Schedule labor and assign zones for [order volume range] orders a day
+   question: What daily order volume do you typically schedule the shift around?
+3. [line] Lead Associate, line 2
+   line: "Covered for the supervisor during vacations"
+   can't tell: Covering for the supervisor suggests added responsibility, but a recruiter can't tell which parts of the job you took on.
+   example: Covered for the supervisor during vacations, handling [supervisor responsibilities]
+   question: Which supervisor responsibilities did you handle during those vacations?
+4. [line] Lead Associate, line 3
+   line: "Helped roll out handheld scanners on the pick floor"
+   can't tell: The scanner rollout is a concrete project, but 'helped' leaves your part in it open. What did you do on the pick floor?
+   example: Helped roll out handheld scanners on the pick floor by [your part in the rollout]
+   question: What did you do to help roll out the handheld scanners?
+
+## Fit
+Roles: ["Shift Supervisor, Outbound Operations","Lead Associate","Order Picker"]
+Level: Frontline supervisor, overseeing a night shift of 35 associates
+Note: Your experience points toward distribution center shift supervision. Adding the order volume you schedule around would give a recruiter more context for the operation you oversee.

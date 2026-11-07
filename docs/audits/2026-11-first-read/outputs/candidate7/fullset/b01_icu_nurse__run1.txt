@@ -1,0 +1,35 @@
+# b01_icu_nurse, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_icu_nurse_1.txt (153 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 1c0fe4fe; severity check off
+Outcome: report; cost $0.0065; 13.5s
+
+## Mostly clear (score 83; model wrote 83)
+## Verdict
+A medical ICU nurse whose patient care is clear, with a few responsibilities left to explain.
+
+## Write-up
+Your resume points clearly to medical ICU nursing, from telemetry at Saguaro Community Hospital to your current role at Desert Valley Medical Center. A recruiter can see the patients you care for and the treatments you manage without having to guess.
+
+The direct care line is a strong model: it names the patients, the number you care for per shift, and the unit. Your Arizona RN license, CCRN and unit specialties are easy to find, too. Your charge nurse and sepsis committee work could tell a fuller story about what you do beyond direct care.
+
+Let's start with those two lines. Add the duties you handle as charge nurse and what you've contributed to the sepsis committee, keeping both true to your role.
+
+## Cards (3; {"keep":1,"line":2}); severity off; added []
+1. [keep] Staff Nurse, Medical ICU, line 1
+   line: "Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU"
+   can't tell: Keep this as a model. It puts your own patient assignment alongside the unit's bed count, so a recruiter can distinguish the two.
+2. [line] Staff Nurse, Medical ICU, line 3
+   line: "Serve as charge nurse two shifts per month"
+   can't tell: A recruiter can see how often you serve as charge nurse, but not what you handle on those shifts. Your duties would show the responsibilities that come with the role.
+   example: Serve as charge nurse two shifts per month, handling [charge nurse duties]
+   question: What duties do you handle when you serve as charge nurse?
+3. [line] Staff Nurse, Medical ICU, line 5
+   line: "Member of the unit's sepsis bundle compliance committee"
+   can't tell: Committee membership shows your involvement, but not what you contribute. Name your part in the sepsis work.
+   example: Member of the unit's sepsis bundle compliance committee; [committee contribution]
+   question: What have you contributed to the sepsis bundle compliance committee?
+
+## Fit
+Roles: ["Staff Nurse, Medical ICU","Staff Nurse, Telemetry"]
+Level: Staff nurse with charge nurse shifts and new graduate precepting duties
+Note: Your experience points toward medical ICU staff nursing. The charge and committee lines offer room to show more of your responsibilities without changing the focus of your resume.

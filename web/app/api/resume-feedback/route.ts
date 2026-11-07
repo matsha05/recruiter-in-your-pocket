@@ -53,6 +53,7 @@ import { makeValidatedReportReceipt } from "@/lib/reports/report-receipt";
 import { finalizeAuthenticatedGeneratedReport } from "@/lib/reports/finalize-generated-report";
 import { finalizeAnonymousGeneratedReport } from "@/lib/reports/finalize-anonymous-generated-report";
 import { severityCheckReport } from "@/lib/reports/severity-check-report";
+import { withScreenerText } from "@/lib/reports/screener-text";
 import { resumePromptVersion, resumeSchemaVersion } from "@/lib/reports/report-shape";
 import { validateResumeStreamOutput } from "@/lib/llm/validateResumeStreamOutput";
 import { requireAnonymousReportRecoveryId } from "@/lib/reports/anonymous-report-recovery-requirement";
@@ -309,7 +310,8 @@ export async function POST(request: Request) {
         endpoint: "json",
         ctx: { request_id, route, user_id },
       });
-      payload = severity.payload;
+      // Lines written to screening software, found in the text as sent, before the sanitizer redacted them.
+      payload = withScreenerText(severity.payload, text, jobDescription);
       if (severity.outcome) {
         const call = severity.outcome.call_latency_ms ?? severity.outcome.latency_ms;
         recordStageTiming("severity_call", call, { endpoint: "json", outcome: severity.outcome.outcome === "error" ? "failed" : "ok", viewer: reportSignal.viewer });

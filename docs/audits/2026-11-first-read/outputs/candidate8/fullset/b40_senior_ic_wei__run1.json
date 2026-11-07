@@ -1,0 +1,312 @@
+{
+  "case_id": "b40_senior_ic_wei",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Senior IC (bar persona).",
+  "resume_file": "../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/4-senior-ic-wei.txt",
+  "resume_sha256": "e95b41ee5391398ba259810d134ff4a7392766f8e7fa117ad93d5d19b8ed94a5",
+  "resume_words": 361,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:50:05.249Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6521,
+        "completion_tokens": 1445,
+        "total_tokens": 7966,
+        "cached_prompt_tokens": 5142,
+        "cache_write_prompt_tokens": 1376,
+        "reasoning_tokens": 436
+      },
+      "cost_usd": 0.0092051,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 17794
+    }
+  ],
+  "resume_prompt_sha256": "5cba8f052feab05101dfe43138d650d9cc25bac9a46f7e3aa35d9efb9d96fad4",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 80,
+    "lifted_by_employer": false,
+    "verdict": "A staff engineer with strong payments and distributed systems work, but some key results lack context.",
+    "write_up": [
+      "Your resume tells a coherent story from object storage at Nimbus Cloud to ledger and settlement leadership at Brightline Payments. A recruiter can see the technical work, but the latest role leaves some questions about how large the team is and what the ledger redesign changed.",
+      "The fraud scoring line is your best model: it names the pipeline, the tools, the payment events and the latency it achieved. Your progression at Brightline is easy to follow, and the staff title is backed by architecture, incident leadership and mentoring.",
+      "Start with the ledger and settlement team, then give the redesign a result a recruiter can compare. Add the reconciliation measures if you have them. You don't need a number on every line; the goal is to make your biggest work as concrete as the fraud pipeline."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 1",
+        "line": "- Technical lead for the ledger and settlement platform team",
+        "cannot_tell": "A recruiter can see what team you lead technically, but not how many people are on it or what the team owns. That's useful context for a staff role.",
+        "example": "Technical lead for the ledger and settlement platform team of [number] [team members], responsible for [team responsibilities]",
+        "question": "How many people are on the team, and what does the team own?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 2",
+        "line": "- Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "cannot_tell": "The architecture change is concrete, but a recruiter can't tell what it changed for the ledger service. A measure or operational result would show why the redesign mattered.",
+        "example": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, resulting in [what changed]",
+        "question": "What changed after the redesign, and how was it measured?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, line 1",
+        "line": "- Built the real-time fraud scoring pipeline (Flink, Kafka) processing payment events with p99 latency under 50ms",
+        "cannot_tell": "Keep this as a model. It puts your ownership, the system and a performance measure together without making a recruiter guess what was built.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, line 3",
+        "line": "- Reduced reconciliation break rate and manual ops effort",
+        "cannot_tell": "A recruiter can see what improved, but not by how much or what you did to reduce it. Those details would give the reconciliation work more weight.",
+        "example": "Reduced reconciliation break rate from [before] to [after] and manual ops effort from [before] to [after] by [what you did]",
+        "question": "What did you do, and how were the break rate and manual ops effort measured before and after?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, line 3",
+        "line": "- Improved API latency and availability through caching and request coalescing",
+        "cannot_tell": "You name the techniques, but not how much latency or availability improved. If you have the measures, they would show what those changes delivered.",
+        "example": "Improved API latency from [before] to [after] and availability from [before] to [after] through caching and request coalescing",
+        "question": "What were the latency and availability measures before and after the changes?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Software Engineer",
+        "Senior Software Engineer"
+      ],
+      "why": "Your headline and current Brightline role both point to staff-level distributed systems and payments infrastructure work.",
+      "level": "Staff-level technical lead, with architecture and incident leadership",
+      "note": "Your experience points toward staff engineering roles in payments infrastructure and distributed systems. The team remit and results of the ledger redesign are the main details to add for that audience.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 80,
+    "lifted_by_employer": false,
+    "verdict": "A staff engineer with strong payments and distributed systems work, but some key results lack context.",
+    "write_up": [
+      "Your resume tells a coherent story from object storage at Nimbus Cloud to ledger and settlement leadership at Brightline Payments. A recruiter can see the technical work, but the latest role leaves some questions about how large the team is and what the ledger redesign changed.",
+      "The fraud scoring line is your best model: it names the pipeline, the tools, the payment events and the latency it achieved. Your progression at Brightline is easy to follow, and the staff title is backed by architecture, incident leadership and mentoring.",
+      "Start with the ledger and settlement team, then give the redesign a result a recruiter can compare. Add the reconciliation measures if you have them. You don't need a number on every line; the goal is to make your biggest work as concrete as the fraud pipeline."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 1",
+        "line": "Technical lead for the ledger and settlement platform team",
+        "cannot_tell": "A recruiter can see what team you lead technically, but not how many people are on it or what the team owns. That's useful context for a staff role.",
+        "example": "Technical lead for the ledger and settlement platform team of [number] [team members], responsible for [team responsibilities]",
+        "question": "How many people are on the team, and what does the team own?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 2",
+        "line": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "cannot_tell": "The architecture change is concrete, but a recruiter can't tell what it changed for the ledger service. A measure or operational result would show why the redesign mattered.",
+        "example": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, resulting in [what changed]",
+        "question": "What changed after the redesign, and how was it measured?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, line 1",
+        "line": "Built the real-time fraud scoring pipeline (Flink, Kafka) processing payment events with p99 latency under 50ms",
+        "cannot_tell": "Keep this as a model. It puts your ownership, the system and a performance measure together without making a recruiter guess what was built.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, line 3",
+        "line": "Reduced reconciliation break rate and manual ops effort",
+        "cannot_tell": "A recruiter can see what improved, but not by how much or what you did to reduce it. Those details would give the reconciliation work more weight.",
+        "example": "Reduced reconciliation break rate from [before] to [after] and manual ops effort from [before] to [after] by [what you did]",
+        "question": "What did you do, and how were the break rate and manual ops effort measured before and after?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, line 3",
+        "line": "Improved API latency and availability through caching and request coalescing",
+        "cannot_tell": "You name the techniques, but not how much latency or availability improved. If you have the measures, they would show what those changes delivered.",
+        "example": "Improved API latency from [before] to [after] and availability from [before] to [after] through caching and request coalescing",
+        "question": "What were the latency and availability measures before and after the changes?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Software Engineer",
+        "Senior Software Engineer"
+      ],
+      "why": "Your headline and current Brightline role both point to staff-level distributed systems and payments infrastructure work.",
+      "level": "Staff-level technical lead, with architecture and incident leadership",
+      "note": "Your experience points toward staff engineering roles in payments infrastructure and distributed systems. The team remit and results of the ledger redesign are the main details to add for that audience.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 80
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 80,
+    "lifted_by_employer": false,
+    "verdict": "A staff engineer with strong payments and distributed systems work, but some key results lack context.",
+    "write_up": [
+      "Your resume tells a coherent story from object storage at Nimbus Cloud to ledger and settlement leadership at Brightline Payments. A recruiter can see the technical work, but the latest role leaves some questions about how large the team is and what the ledger redesign changed.",
+      "The fraud scoring line is your best model: it names the pipeline, the tools, the payment events and the latency it achieved. Your progression at Brightline is easy to follow, and the staff title is backed by architecture, incident leadership and mentoring.",
+      "Start with the ledger and settlement team, then give the redesign a result a recruiter can compare. Add the reconciliation measures if you have them. You don't need a number on every line; the goal is to make your biggest work as concrete as the fraud pipeline."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 1",
+        "line": "Technical lead for the ledger and settlement platform team",
+        "cannot_tell": "A recruiter can see what team you lead technically, but not how many people are on it or what the team owns. That's useful context for a staff role.",
+        "example": "Technical lead for the ledger and settlement platform team of [number] [team members], responsible for [team responsibilities]",
+        "question": "How many people are on the team, and what does the team own?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 2",
+        "line": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "cannot_tell": "The architecture change is concrete, but a recruiter can't tell what it changed for the ledger service. A measure or operational result would show why the redesign mattered.",
+        "example": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, resulting in [what changed]",
+        "question": "What changed after the redesign, and how was it measured?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, line 1",
+        "line": "Built the real-time fraud scoring pipeline (Flink, Kafka) processing payment events with p99 latency under 50ms",
+        "cannot_tell": "Keep this as a model. It puts your ownership, the system and a performance measure together without making a recruiter guess what was built.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, line 3",
+        "line": "Reduced reconciliation break rate and manual ops effort",
+        "cannot_tell": "A recruiter can see what improved, but not by how much or what you did to reduce it. Those details would give the reconciliation work more weight.",
+        "example": "Reduced reconciliation break rate from [before] to [after] and manual ops effort from [before] to [after] by [what you did]",
+        "question": "What did you do, and how were the break rate and manual ops effort measured before and after?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, line 3",
+        "line": "Improved API latency and availability through caching and request coalescing",
+        "cannot_tell": "You name the techniques, but not how much latency or availability improved. If you have the measures, they would show what those changes delivered.",
+        "example": "Improved API latency from [before] to [after] and availability from [before] to [after] through caching and request coalescing",
+        "question": "What were the latency and availability measures before and after the changes?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Software Engineer",
+        "Senior Software Engineer"
+      ],
+      "why": "Your headline and current Brightline role both point to staff-level distributed systems and payments infrastructure work.",
+      "level": "Staff-level technical lead, with architecture and incident leadership",
+      "note": "Your experience points toward staff engineering roles in payments infrastructure and distributed systems. The team remit and results of the ledger redesign are the main details to add for that audience.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 80
+  },
+  "presentation": {
+    "score": 80,
+    "band": "Mostly clear",
+    "model_score": 80,
+    "lifted_by_employer": false,
+    "verdict": "A staff engineer with strong payments and distributed systems work, but some key results lack context.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 135,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 1",
+        "line": "Technical lead for the ledger and settlement platform team",
+        "blanks": 3,
+        "question": "How many people are on the team, and what does the team own?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 2",
+        "line": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "blanks": 1,
+        "question": "What changed after the redesign, and how was it measured?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, line 1",
+        "line": "Built the real-time fraud scoring pipeline (Flink, Kafka) processing payment events with p99 latency under 50ms",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, line 3",
+        "line": "Reduced reconciliation break rate and manual ops effort",
+        "blanks": 5,
+        "question": "What did you do, and how were the break rate and manual ops effort measured before and after?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, line 3",
+        "line": "Improved API latency and availability through caching and request coalescing",
+        "blanks": 4,
+        "question": "What were the latency and availability measures before and after the changes?"
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "line": 4,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Staff Software Engineer",
+        "Senior Software Engineer"
+      ],
+      "why": "Your headline and current Brightline role both point to staff-level distributed systems and payments infrastructure work.",
+      "level": "Staff-level technical lead, with architecture and incident leadership",
+      "note": "Your experience points toward staff engineering roles in payments infrastructure and distributed systems. The team remit and results of the ledger redesign are the main details to add for that audience.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0092051,
+  "latency_ms": 17799
+}

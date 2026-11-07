@@ -1,0 +1,30 @@
+# b02_teacher, run 1
+Resume: ../2026-11-live-judgment/resumes/b_teacher.txt (202 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5827dcf1; severity check off
+Outcome: report; cost $0.0073; 17.5s
+
+## Clear and specific (score 87; model wrote 87)
+## Verdict
+An elementary teacher whose classroom results and grade-level leadership are easy to see.
+
+## Write-up
+Your resume makes a strong case for elementary teaching: it connects classroom work at Lincoln Heights and Whitman with reading growth, team planning and family literacy. A recruiter can see both the students you teach and the work you do beyond your classroom.
+
+The reading growth line is especially strong. It names the district assessment, the change in average growth and the period over which it happened. Your Washington certification and English Language Learner endorsement are easy to find, too.
+
+I'd leave most of this alone and add your contribution to the behavior support committee. Your resume isn't the obvious obstacle here; a school's needs and competition for the role will also matter.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] 4th Grade Teacher, line 2
+   line: "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years"
+   can't tell: Keep this as a model. It gives a recruiter a before and after, names the assessment and keeps the time frame attached.
+2. [line] 2nd Grade Teacher, line 3
+   line: "Served on the school's positive behavior support committee"
+   can't tell: A recruiter can see which committee you joined, but not what you contributed. What did you work on with the other members?
+   example: Served on the school's positive behavior support committee, contributing [what you contributed] to [what the committee worked on]
+   question: What did you contribute to the committee, and what was it working on?
+
+## Fit
+Roles: ["4th Grade Teacher","2nd Grade Teacher"]
+Level: Experienced classroom teacher and grade-level team lead
+Note: Your experience points toward elementary classroom roles, with grade-level planning and curriculum training alongside teaching. Your English Language Learner endorsement adds to your qualifications for classrooms serving multilingual students.

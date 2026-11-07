@@ -1,0 +1,51 @@
+# b40_senior_ic_wei, run 1
+Resume: ../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/4-senior-ic-wei.txt (361 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 338ac33a; severity check off
+Outcome: report; cost $0.0111; 22.3s
+Case note: Senior IC (bar persona).
+
+## Mostly clear (score 81; model wrote 81)
+## Verdict
+A staff payments engineer with strong architecture work and results, but little sense of the team's size.
+
+## Write-up
+Your resume tells a clear story: you moved from storage systems at Nimbus Cloud to fraud, reconciliation, and ledger work at Brightline Payments. A recruiter would likely move it forward for a Staff Software Engineer role, with questions about how big the systems and team were.
+
+The fraud scoring line is a great model: it names what you built, the technology, and the latency it achieved. Your current role shows substantial technical leadership, including eliminating a class of duplicate-charge incidents, but it doesn't say how many people were on the team you led.
+
+Let's start with the team lead line, then add a measure of what the ledger redesign changed. The reconciliation and storage work would also be stronger with the improvements you can substantiate.
+
+## Cards (6; {"line":5,"keep":1}); severity off; added []
+1. [line] Staff Software Engineer, line 1
+   line: "Technical lead for the ledger and settlement platform team"
+   can't tell: A recruiter can see what team you led, but not how many people were on it or what the team owned. Those details help place the work at staff level.
+   example: Technical lead for the ledger and settlement platform team of [number of people], responsible for [team responsibilities]
+   question: How many people were on the team, and what was the team responsible for?
+2. [line] Staff Software Engineer, line 2
+   line: "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB"
+   can't tell: The architecture change is clear, but a recruiter can't tell what the redesign changed for the ledger or payments. A measure of its performance or reach would make the work more tangible.
+   example: Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, changing [measure] from [before] to [after]
+   question: What measure changed after the redesign, and what were the before and after values?
+3. [line] Staff Software Engineer, line 6
+   line: "Partnered with product and finance on the roadmap for multi-currency settlement"
+   can't tell: The roadmap names an important piece of payments work, but 'partnered' leaves your contribution open. What did you bring to the roadmap?
+   example: Partnered with product and finance on the roadmap for multi-currency settlement, contributing [your contribution]
+   question: What was your contribution to the multi-currency settlement roadmap?
+4. [keep] Senior Software Engineer, line 1
+   line: "Built the real-time fraud scoring pipeline (Flink, Kafka) processing payment events with p99 latency under 50ms"
+   can't tell: Keep this as a model. It gives the reader a concrete performance measure alongside the system you built.
+5. [line] Senior Software Engineer, line 3
+   line: "Reduced reconciliation break rate and manual ops effort"
+   can't tell: The improvements are worth showing, but a recruiter can't tell how much either changed. The reconciliation service above gives you the work; this line can show the difference it made if you have the figures.
+   example: Reduced reconciliation break rate from [previous break rate] to [new break rate] and manual ops effort from [previous effort] to [new effort]
+   question: What were the break rate and manual ops effort before and after the changes?
+6. [line] Software Engineer II, line 3
+   line: "Improved API latency and availability through caching and request coalescing"
+   can't tell: You name the techniques, but not how much latency or availability improved. Before and after measures would show what those changes achieved.
+   example: Improved API latency from [previous latency] to [new latency] and availability from [previous availability] to [new availability] through caching and request coalescing
+   question: What were the API latency and availability before and after the changes?
+
+## Fit
+Roles: ["Staff Software Engineer"]
+Level: Staff, technical lead for the ledger and settlement platform team
+Note: Your experience points toward staff-level distributed systems and payments infrastructure roles. Adding the team count and measures for the ledger redesign would help a recruiter compare your work with those roles.

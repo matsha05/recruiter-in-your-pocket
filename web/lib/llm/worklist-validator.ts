@@ -71,6 +71,7 @@ function proseFields(report: WorklistReport): Array<{ path: string; value: strin
     if (card.kind !== "line" && card.kind !== "keep") fields.push({ path: `cards[${index}].line`, value: card.line });
   });
   fields.push({ path: "fit.note", value: report.fit.note }, { path: "fit.level", value: report.fit.level }, { path: "fit.posting.summary", value: report.fit.posting.summary });
+  if (report.fit.why) fields.push({ path: "fit.why", value: report.fit.why });
   return fields;
 }
 
@@ -92,6 +93,7 @@ export function validateWorklistPayload(obj: unknown, resumeText?: string, optio
       ...parsed.data.fit,
       note: normaliseProse(parsed.data.fit.note),
       level: normaliseProse(parsed.data.fit.level),
+      ...(parsed.data.fit.why !== undefined ? { why: normaliseProse(parsed.data.fit.why) } : {}),
       posting: { ...parsed.data.fit.posting, summary: normaliseProse(parsed.data.fit.posting.summary) },
     },
   };

@@ -1,0 +1,35 @@
+# b29_mechanical_engineer, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_mechanical_engineer_1.txt (143 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 01c2028d; severity check off
+Outcome: report; cost $0.0085; 17.3s
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+A mechanical engineer with a named desk platform, but few details about what the design work delivered.
+
+## Write-up
+Your resume points to mechanical design work at Westhaven, progressing from storage products to leading design for the Arlo desk platform. It's common for engineering resumes to list activities this way, but without what the work delivered, a recruiter may finish and move on unless the pile is thin.
+
+The supplier line is your best model: it names the partners, their locations, and the tooling and inspection work. Your degree and earlier role are easy to find, and your current role makes the direction of your career clear.
+
+Let's start with the Arlo line. Add what your design work delivered, then show your part in an engineering change. Keep the concrete technical work already on your resume.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] Mechanical Engineer II, line 1
+   line: "Lead mechanical design for the Arlo height-adjustable desk platform"
+   can't tell: Leading the design of a named platform is substantial work, but a recruiter can't tell what your design work delivered.
+   example: Lead mechanical design for the Arlo height-adjustable desk platform, developing [design deliverable]
+   question: What did your design work deliver for the Arlo platform?
+2. [keep] Mechanical Engineer II, line 3
+   line: "Work with suppliers in Mexico and Taiwan on tooling and first-article inspection"
+   can't tell: Keep this as a model for naming who you worked with and the work you did together. There's enough here to picture the supplier work without guessing.
+3. [line] Mechanical Engineer II, line 5
+   line: "Support manufacturing with engineering change orders"
+   can't tell: Supporting manufacturing could cover several parts of a change order. A recruiter can't tell what changed or what part was yours.
+   example: Support manufacturing with engineering change orders for [what changed] by [your action]
+   question: What was one change order you supported, and what did you do on it?
+
+## Fit
+Roles: ["Mechanical Engineer II","Mechanical Engineer I"]
+Level: Mid-level, Mechanical Engineer II leading design for a desk platform
+Note: Your experience points to mechanical product design, particularly furniture and fixtures. The named platform, SolidWorks work, and supplier collaboration give a recruiter a good picture of the work; what it delivered is less clear.

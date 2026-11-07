@@ -1,0 +1,51 @@
+# b06_staff_accountant, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_staff_accountant_1.txt (98 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 338ac33a; severity check off
+Outcome: report; cost $0.0086; 18.1s
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+A staff accountant’s resume with a clear progression, but too little detail about the accounting work.
+
+## Write-up
+Your resume tells a straightforward story: you moved from Accounts Payable Clerk to Staff Accountant at Rivermark Building Supply. It’s common to list accounting duties this way, but the list won’t stand out in a pile. A recruiter can see the functions you cover, not how much work you handle or what your part involves.
+
+“Prepare journal entries and account reconciliations” is your best starting point because it names two concrete pieces of work. Your current role and accounting degree are easy to find, but the resume doesn’t say much about Rivermark or the scale of its accounting.
+
+Let’s start with the month-end close line, then add detail to the journal entries and reconciliations. Use counts or other measures you can support, and name the audit work and fixed assets you handle.
+
+## Cards (6; {"structure":1,"line":5}); severity off; added []
+1. [structure] Rivermark Building Supply
+   line: "The resume has no description of Rivermark Building Supply."
+   can't tell: A recruiter who doesn’t know Rivermark can’t tell much about the business or its accounting needs. A short description can give your work context.
+   question: What does Rivermark supply, and is there a measure of the business you can share?
+2. [line] Staff Accountant, line 1
+   line: "Responsible for month-end close tasks"
+   can't tell: A recruiter can’t tell which parts of the close are yours beyond the work named in the other lines. Start with a task you handle and how much of it there is.
+   example: Responsible for month-end close tasks, including [task] for [number] [accounts or entities]
+   question: Which month-end close tasks are yours, and how many accounts or entities do they cover?
+3. [line] Staff Accountant, line 2
+   line: "Prepare journal entries and account reconciliations"
+   can't tell: This names the work, but not the types of entries or accounts, or how many you handle. Those details would show a recruiter more of your day-to-day accounting.
+   example: Prepare [number] journal entries and reconcile [number] [account types] each [period]
+   question: What types of entries and accounts do you handle, and how many in a typical period?
+4. [line] Staff Accountant, line 3
+   line: "Assist with the annual audit"
+   can't tell: Assist can cover a lot of different work. The recruiter can’t tell what you provide or do for the audit.
+   example: Assist with the annual audit by [audit task] and preparing [deliverable]
+   question: What do you do for the annual audit, and what do you prepare?
+5. [line] Staff Accountant, line 4
+   line: "Maintain fixed asset schedules"
+   can't tell: The recruiter knows you maintain schedules, but not what assets they cover or how many. That context helps show the work involved.
+   example: Maintain fixed asset schedules for [number] [asset types], including [schedule task]
+   question: What assets do the schedules cover, how many are there, and what do you maintain?
+6. [line] Staff Accountant, line 5
+   line: "Process accounts payable when needed"
+   can't tell: Your earlier role shows accounts payable experience, but this line doesn’t say what you handle in the current job or how much. Keep “when needed” and add what that work involves.
+   example: Process accounts payable when needed, including [task] for [number] [invoices or vendors] per [period]
+   question: When you handle accounts payable now, what do you do and how much do you process?
+
+## Fit
+Roles: ["Staff Accountant","Accounts Payable Clerk"]
+Level: Staff accountant, currently in the role after an accounts payable clerk position
+Note: Your experience points toward staff accounting work involving close, reconciliations, audit support and fixed assets. Adding the types and volume of work would help distinguish your responsibilities from a standard duty list.

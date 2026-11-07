@@ -1,0 +1,40 @@
+# b07_account_executive, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_account_executive_1.txt (145 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 1c0fe4fe; severity check off
+Outcome: report; cost $0.0072; 14.5s
+
+## Mostly clear (score 81; model wrote 81)
+## Verdict
+A mid-market account executive with a promotion and a strong sales year, with a few questions left.
+
+## Write-up
+You moved from SDR to mid-market account executive at Crestview HR Cloud, and your resume shows both a sales result and how you bring in deals. A recruiter can follow the move and would likely take a closer look, with questions about your quota and more recent performance.
+
+The referral program line is a good model: it names the partners and the deals the program sourced. Your experience also sits above education, so the sales work comes first.
+
+Start with the 2025 sales line. Add the quota itself and a more recent result if you have one, then give the demos and security reviews a little more detail. Your SDR ranking could use the measure behind it, too.
+
+## Cards (4; {"line":3,"keep":1}); severity off; added []
+1. [line] Account Executive, Mid-Market, line 1
+   line: "Closed $1.1M in new annual recurring revenue in 2025, 108% of quota"
+   can't tell: The result is strong, but the quota itself isn't stated, and a recruiter can't see how sales have gone since 2025. Both help put that year in context.
+   example: Closed $1.1M in new annual recurring revenue in 2025, 108% of quota ([quota amount]); [year]: [sales result and quota attainment]
+   question: What was your 2025 quota, and what are your most recent sales results against quota?
+2. [keep] Account Executive, Mid-Market, line 3
+   line: "Built a referral program with two payroll partners that sourced 9 deals"
+   can't tell: Keep this as a model. It connects a program you built to the deals it sourced without claiming you closed them.
+3. [line] Account Executive, Mid-Market, line 4
+   line: "Work with solutions engineers on demos and security reviews"
+   can't tell: A recruiter can see who you work with, but not what you handle in the demos or security reviews. Your part matters in a full-cycle sales role.
+   example: Work with solutions engineers on demos and security reviews, handling [your part of the work]
+   question: What do you handle in demos and security reviews?
+4. [line] Sales Development Representative, line 3
+   line: "Top SDR in two quarters"
+   can't tell: Top SDR is worth keeping, but the measure and comparison group aren't named. A recruiter can't tell what earned the ranking.
+   example: Top SDR in two quarters, measured by [measure] among [comparison group]
+   question: What was the ranking based on, and who were you ranked against?
+
+## Fit
+Roles: ["Account Executive, Mid-Market"]
+Level: Account executive, promoted from SDR and running full-cycle sales
+Note: Your experience points toward mid-market software sales, with HR software and payroll partnerships as useful context. The quota and a more recent sales result would help a recruiter compare your performance.

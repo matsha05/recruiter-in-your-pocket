@@ -1,0 +1,31 @@
+# fr01a_backend_ic_no_posting, run 1
+Resume: resumes/fr01_backend_ic_senior.txt (236 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ab8cd5a5; severity check off
+Outcome: report; cost $0.0116; 10.6s
+Case note: P1. Senior backend IC, no direct reports, no posting. Expect the role read as Senior Backend Engineer and a level that says IC, no reports.
+
+## Clear and specific (score 90; model wrote 90)
+## Verdict
+A senior backend engineer whose payments and platform work comes with concrete technical results.
+
+## Write-up
+This is a strong senior backend resume! At Lumen Ledger, you connect the systems you built and migrated to payout volume, uptime and latency. Your earlier API and billing work reinforces that story.
+
+The balance API line is a great model: it gives the before and after and names the technical change. Your headline fits the work, and your experience leads with the most relevant role.
+
+I'd make one small pass through the earlier Northgate role to show what maintaining the claims services involved. Otherwise, your resume isn't the thing I'd expect to hold you back; how competitive a particular job is will matter too.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Senior Software Engineer, Payments Platform, line 3
+   line: "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache"
+   can't tell: Keep this as your model. It names the service, the measure and the approach without making a recruiter guess what improved.
+2. [line] Software Engineer, line 1
+   line: "Maintained the claims intake services in Java"
+   can't tell: A recruiter can see the service and language, but not what maintaining it involved. One change you made would give that work more substance.
+   example: Maintained the claims intake services in Java by [what you changed]
+   question: What did you change in the claims intake services as part of maintaining them?
+
+## Fit
+Roles: ["Senior Backend Engineer","Senior Software Engineer, Payments Platform"]
+Level: Senior, leads a ledger migration and mentors two mid-level engineers
+Note: Your recent work points particularly well to backend platform and payments roles. It shows technical leadership and mentoring without claiming people management.

@@ -1,0 +1,56 @@
+# b36_product_designer_unrelated, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_product_designer_unrelated_1.txt (147 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5cba8f05; severity check off
+Outcome: report; cost $0.0106; 22.4s
+Case note: Current job outside the field.
+
+## Needs more context (score 67; model wrote 67)
+## Verdict
+A product designer with named app projects, but little on what changed and no recent design work listed.
+
+## Write-up
+Your resume points to product design: you designed apps at Loop Fitness and client work at Brightpath Studio, then moved into a barista role. It’s common for design resumes to list the work without explaining the decisions or what changed. Here, that makes it harder to stand out for a product design job, especially with no design work listed after February 2024.
+
+The Loop Fitness design system is your best model: it names what you created, where you built it, and that it was the app’s first. Your current coffee role accounts for the time since Loop Fitness, but a recruiter will still look for signs of recent design practice.
+
+Let’s start with the Loop Fitness booking flow. Add the design decisions you made and any result you can substantiate. Then give the usability tests and releases the same treatment. If you’ve done design projects since Loop Fitness, include the real work and dates.
+
+## Cards (7; {"line":6,"keep":1}); severity off; added []
+1. [line] Barista, line 1
+   line: "Prepare drinks and serve customers in a busy cafe"
+   can't tell: A recruiter can see the job, but not what a busy shift involves. The volume of drinks or customers would give the current role more context.
+   example: Prepare drinks and serve [number] customers per [shift or other period] in a cafe
+   question: How many customers do you typically serve in a shift or another period you can substantiate?
+2. [line] Barista, line 2
+   line: "Train new baristas on espresso equipment"
+   can't tell: Training new baristas is worth keeping. What do you teach them, and how many have you trained?
+   example: Train [number] new baristas on [espresso equipment skills]
+   question: How many new baristas have you trained, and what espresso equipment skills did you teach?
+3. [line] Product Designer, Loop Fitness, line 1
+   line: "Designed the class booking flow for the iOS and Android apps"
+   can't tell: The booking flow is a concrete project, but a recruiter can't see which design decisions were yours or what changed for members.
+   example: Designed the class booking flow for the iOS and Android apps, including [design decisions], resulting in [what changed]
+   question: Which decisions did you make for the booking flow, and what changed after it launched?
+4. [line] Product Designer, Loop Fitness, line 2
+   line: "Worked with two engineers and a product manager on weekly releases"
+   can't tell: The team and release cadence are clear. Your part in those releases isn't: what did you design or deliver alongside them?
+   example: Worked with two engineers and a product manager on weekly releases, delivering [design work]
+   question: What design work did you deliver for the weekly releases?
+5. [keep] Product Designer, Loop Fitness, line 3
+   line: "Created the app's first design system in Figma"
+   can't tell: Keep this as a model. It makes your ownership and the thing you made unmistakable, without leaning on a vague description of teamwork.
+6. [line] Product Designer, Loop Fitness, line 4
+   line: "Ran usability tests with members before launches"
+   can't tell: A recruiter can see that you ran tests, but not what you tested or how you used what you learned.
+   example: Ran usability tests with members on [feature] before launches and used [finding] to [design change]
+   question: What did members test, and how did a finding change the design?
+7. [line] Junior Product Designer, Brightpath Studio, line 2
+   line: "Made prototypes for client presentations"
+   can't tell: The prototypes have a purpose, but there's no way to tell what they showed or which client project they supported.
+   example: Made prototypes of [product or feature] for client presentations on [project]
+   question: What did the prototypes show, and which project were they for?
+
+## Fit
+Roles: ["Product Designer","Junior Product Designer"]
+Level: Product designer, with a prior junior design role and ownership of an app design system
+Note: Your experience points toward product design roles involving mobile apps and design systems. Your resume doesn't show design work after February 2024, so recent projects would help establish what you've been doing in the field since then.

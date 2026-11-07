@@ -1,0 +1,51 @@
+# b35_marketing_coordinator_gap, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_marketing_coordinator_gap_1.txt (126 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 41bcacc0; severity check off
+Outcome: report; cost $0.0079; 16.4s
+Case note: Gap with nothing after it.
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+A marketing coordinator with concrete email and event work, but no account of the time since March 2024.
+
+## Write-up
+Your resume points to marketing coordinator work across email, events, copy and social media at Juniper Outdoor Co. and Fernwood Coffee Roasters. That range is useful, but the unaccounted time after your latest role gives a recruiter a question they can't answer from your resume.
+
+The email calendar is your strongest line: it names a recurring job and the 120,000-subscriber list it served. Your experience is easy to follow, though a few other lines leave a recruiter guessing about your part or what you tracked.
+
+Let's start with what you've done since March 2024, then add a little more detail to the social and reporting work at Juniper. Keep the email line as a model for the rest.
+
+## Cards (6; {"dates":1,"keep":1,"line":4}); severity off; added []
+1. [dates] Dates
+   line: "Nothing is dated after March 2024."
+   can't tell: A recruiter can't tell what you've done since the Juniper role. If you were caring for someone, studying, volunteering or taking a career break, you can name that honestly. Freelance work belongs here too if you did it.
+   example: March 2024 - Present [what you did]
+   question: What have you done since March 2024, and when did you do it?
+2. [keep] Marketing Coordinator, line 1
+   line: "Managed the weekly email calendar for a list of 120,000 subscribers"
+   can't tell: Keep this as a model. It gives your responsibility a clear frame: the calendar, its cadence and the list it served.
+3. [line] Marketing Coordinator, line 4
+   line: "Scheduled social posts across Instagram and Facebook"
+   can't tell: The platforms are clear, but a recruiter can't tell how much posting you handled.
+   example: Scheduled [number] social posts per [time period] across Instagram and Facebook
+   question: How many posts did you schedule, and how often?
+4. [line] Marketing Coordinator, line 5
+   line: "Tracked campaign results in a monthly report for the marketing director"
+   can't tell: The monthly report has a clear audience, but the results you tracked are still a blank.
+   example: Tracked [campaign measures] in a monthly report for the marketing director
+   question: Which campaign measures did you track in the report?
+5. [line] Marketing Assistant, line 1
+   line: "Helped plan in-store tasting events"
+   can't tell: A recruiter can see the events, but not which part of the planning was yours.
+   example: Helped plan in-store tasting events by [what you did]
+   question: What did you handle when planning the tasting events?
+6. [line] Marketing Assistant, line 2
+   line: "Updated the company blog and newsletter"
+   can't tell: Both channels are named, but it's not clear what you added or changed in them.
+   example: Updated the company blog and newsletter with [what you wrote or changed]
+   question: What did you write or change for the blog and newsletter?
+
+## Fit
+Roles: ["Marketing Coordinator","Marketing Assistant"]
+Level: Coordinator, with a prior marketing assistant role
+Note: Your experience points to marketing coordinator roles spanning email, events, copy and social media. The dated gap after Juniper is the main question to address alongside the work itself.

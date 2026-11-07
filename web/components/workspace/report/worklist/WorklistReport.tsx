@@ -7,13 +7,14 @@ import { isWorklistReport } from "@/lib/llm/worklist-schema";
 import { sendLineAnswers, type LineAnswersPatch, type StoredLineAnswersByFix } from "@/lib/reports/line-answers";
 import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
 import { worklistBandFor } from "@/lib/reports/score-band";
-import { cardsHeading, fitHeading, POSTING_MISSING_LABEL, UNLISTED_LINES_NOTE, workCards } from "@/lib/reports/worklist-presentation";
+import { cardsHeading, fitHeading, hasRoleSection, UNLISTED_LINES_NOTE, workCards } from "@/lib/reports/worklist-presentation";
 import { cn } from "@/lib/utils";
 import { ReportEnding } from "../ReportEnding";
 import { ResearchReceipts } from "../ResearchReceipts";
 import type { ReportData } from "../ReportTypes";
 import { ScoreBand } from "../markup/ScoreBand";
 import shared from "../markup/MarkedReport.module.css";
+import { FirstPass } from "./FirstPass";
 import { WorklistCard, type CardState } from "./WorklistCard";
 import { WorklistComparison } from "./WorklistComparison";
 import styles from "./Worklist.module.css";
@@ -27,6 +28,8 @@ export interface WorklistReportProps {
   comparisonBaseline?: ReportData | null;
   onStartRevision?: () => void;
   onStartReport?: () => void;
+  /** Keeps the resume and opens the posting field, for the first pass's "Read it against a posting". */
+  onReadAgainstPosting?: () => void;
   onUpgrade?: () => void;
   resumeText?: string;
   storedLineAnswers?: StoredLineAnswersByFix | null;
@@ -51,6 +54,7 @@ export function WorklistReport({
   comparisonBaseline = null,
   onStartRevision,
   onStartReport,
+  onReadAgainstPosting,
   onUpgrade,
   resumeText,
   storedLineAnswers = null,
@@ -77,7 +81,6 @@ export function WorklistReport({
   // Answers are kept with the report when it has a row of its own, which only a signed-in report does (W3).
   const persist = useMemo(() => (reportId && !isSample ? (patch: LineAnswersPatch) => sendLineAnswers(reportId, patch) : undefined), [isSample, reportId]);
   const previous = comparisonBaseline && isWorklistReport(comparisonBaseline) ? comparisonBaseline : null;
-  const posting = report.fit.posting;
 
   return (
     <div className={cn(styles.root, className)} data-testid="worklist-report">
@@ -89,12 +92,14 @@ export function WorklistReport({
           <ScoreBand score={report.score} bands="worklist" />
         </div>
         <h1 id="report-verdict" className={styles.verdict}>{report.verdict}</h1>
+        <FirstPass report={report} onReadAgainstPosting={isSample ? undefined : onReadAgainstPosting} />
         <div className={styles.writeUp} data-testid="worklist-write-up">
           {report.write_up.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
         </div>
       </section>
 
       <section id="section-fixes" className={cn(styles.page, "scroll-mt-36")} aria-labelledby="fixes-title" data-ready={ready || undefined}>
+        <p className={styles.passTitle} aria-hidden="true">The second pass</p>
         <h2 id="fixes-title" className={styles.sectionTitle}>{heading.title}</h2>
         {heading.lead && <p className={styles.sectionLead}>{heading.lead}</p>}
         {report.cards.length > 0 && (
@@ -117,25 +122,16 @@ export function WorklistReport({
         {work.length > 0 && <p className={styles.unlisted}>{UNLISTED_LINES_NOTE}</p>}
       </section>
 
-      {(report.fit.note || report.fit.roles.length > 0) && (
+      {/* With a posting, its fit is in the first pass. Without one, where else the experience points, after the cards. */}
+      {hasRoleSection(report) && (
         <section id="section-role" className={cn(shared.role, "scroll-mt-36")} aria-labelledby="role-title">
           <h2 id="role-title" className={shared.sectionTitle}>{fitHeading(report)}</h2>
           <div className={styles.fitGrid}>
-            <div>
-              {posting.summary && <p className={shared.bodyText}>{posting.summary}</p>}
-              {report.fit.note && <p className={cn(shared.bodyText, posting.summary && "mt-3")}>{report.fit.note}</p>}
-              {posting.missing.length > 0 && (
-                <div className={styles.missing}>
-                  <p className={shared.keepLabel}>{POSTING_MISSING_LABEL}</p>
-                  <ul>{posting.missing.map((item) => <li key={item}>{item}</li>)}</ul>
-                </div>
-              )}
-            </div>
+            {report.fit.note && <p className={shared.bodyText}>{report.fit.note}</p>}
             {report.fit.roles.length > 0 && (
               <div className={styles.fitList}>
-                <p className={shared.keepLabel}>{posting.summary ? "The role, as the posting names it" : "Roles to consider"}</p>
+                <p className={shared.keepLabel}>Roles to consider</p>
                 <ul>{report.fit.roles.slice(0, 4).map((role) => <li key={role}>{role}</li>)}</ul>
-                {report.fit.level && <p className={shared.roleMeta}>Level a recruiter would assume: {report.fit.level}</p>}
               </div>
             )}
           </div>

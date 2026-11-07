@@ -1,0 +1,30 @@
+# b26_construction_pm_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_construction_pm_strong_1.txt (136 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5cba8f05; severity check off
+Outcome: report; cost $0.0062; 12.5s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A construction project manager with project values, trade counts, and results a recruiter can take forward.
+
+## Write-up
+This is a strong construction project manager resume! At Capitol Builders, you show the value and number of projects you run alongside a grocery build delivered ahead of schedule. A recruiter can see the work and has reason to move it forward.
+
+The grocery store line is the model: it names the build, its value, and the schedule result. Your current role leads, and Experience sits above Education, so the progression from Assistant Project Manager is easy to follow.
+
+Start by adding how you kept change orders under 3% if you can describe your part. Your resume isn't likely to be what holds you back; competition for a particular role and referrals can still matter.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Project Manager, line 2
+   line: "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024"
+   can't tell: Keep this as a model. It gives a recruiter a concrete build and a schedule result in one line.
+2. [line] Project Manager, line 4
+   line: "Kept change orders under 3% of contract value across 2024 and 2025 projects"
+   can't tell: The figure is useful, but a recruiter can't tell what you did to keep change orders down. Your approach would show how you managed that part of the projects.
+   example: Kept change orders under 3% of contract value across 2024 and 2025 projects by [what you did]
+   question: What did you do to keep change orders under 3% on those projects?
+
+## Fit
+Roles: ["Project Manager"]
+Level: Project manager, running 4 to 6 concurrent projects
+Note: Your experience points to commercial construction project management, with both tenant-improvement and ground-up retail work. The project values and trade counts give recruiters a useful picture of the work you manage.

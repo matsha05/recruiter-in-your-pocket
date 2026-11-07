@@ -1,0 +1,36 @@
+# b12_coo_executive_two_page, run 1
+Resume: ../2026-11-live-judgment/resumes/b_coo_executive.txt (463 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 338ac33a; severity check off
+Outcome: report; cost $0.0077; 13.1s
+Case note: Executive, two pages.
+
+## Clear and specific (score 91; model wrote 91)
+## Verdict
+A healthcare COO whose resume connects a substantial operating remit with measurable improvements.
+
+## Write-up
+This is a strong COO resume! At Lakeshore Dental Partners, you show how the organization grew from 38 to 140 practices alongside an improvement in same-store margin. Across your healthcare roles, you pair the work you led with figures a recruiter can use to understand it.
+
+The new-practice integration line is a great model: it names the change you made and shows the time before and after. Your progression from clinic operations to COO is easy to follow, and your current team, revenue, P&L and board responsibilities are right up front.
+
+I'd tighten two earlier lines by adding what drove the shorter appointment wait and what the Epic go-live changed, if you can. Your resume is unlikely to be the thing holding you back; the fit with a particular healthcare organization and competition for the role will matter too.
+
+## Cards (3; {"keep":1,"line":2}); severity off; added []
+1. [keep] Chief Operating Officer, integration line
+   line: "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook"
+   can't tell: Keep this as a model. A recruiter can see the operating change you made and compare the time it took before and after.
+2. [line] Senior Vice President, Operations, wait time line
+   line: "Reduced patient wait time to third available appointment from 21 days to 6 across primary care"
+   can't tell: The improvement is substantial, but a recruiter can't tell what you changed to reduce the wait. That detail would show how you approached access across primary care.
+   example: Reduced patient wait time to third available appointment from 21 days to 6 across primary care by [what you changed]
+   question: What did you change to reduce the wait for an appointment?
+3. [line] Vice President, Clinic Operations, Epic line
+   line: "Led the Epic go-live across the clinics in 2013"
+   can't tell: Leading the go-live names the project, but not what changed for the clinics. Add the result you can point to.
+   example: Led the Epic go-live across the clinics in 2013, resulting in [what changed]
+   question: What changed for the clinics after the Epic go-live?
+
+## Fit
+Roles: ["Chief Operating Officer","Senior Vice President, Operations"]
+Level: Executive, leads operations for 140 practices and owns the $410M P&L with the CFO
+Note: Your experience points toward executive operations roles in multi-site healthcare, especially organizations growing through acquisitions and new openings. Your board reporting and operating model work are also prominent.

@@ -1,0 +1,28 @@
+# h5_mismatched_posting, run 1
+Resume: ../2026-11-live-judgment/resumes/h5_data_analyst.txt (166 words), posting: ../2026-11-live-judgment/resumes/h5_nursing_posting.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 41bcacc0; severity check off
+Outcome: report; cost $0.0068; 13.4s
+Case note: Data analyst against a registered nurse posting.
+
+## Clear and specific (score 90; model wrote 90)
+## Verdict
+A strong data analyst resume that doesn't show the clinical qualifications this nursing role requires.
+
+## Write-up
+This is a strong data analyst resume! Your work at Carolina Home Goods connects SQL, Power BI and merchandising decisions to concrete deliverables, while Piedmont shows your earlier insurance reporting work. A recruiter reading for an analyst role can follow both the tools and the work they produced.
+
+The weekly sales report line is a great model: it names the SQL model, the manual process it replaced and how long that process took. Your current role leads, the dates are easy to follow, and experience sits above education.
+
+For data analyst roles, your resume is unlikely to be the main thing holding you back; the job's requirements and competition will matter too. The nursing posting is a different target: your resume doesn't show an RN license or clinical care experience. If you have those qualifications, add them and the relevant clinical work; otherwise, this resume points toward analyst roles rather than this position.
+
+## Cards (1; {"keep":1}); severity off; added []
+1. [keep] Data Analyst, line 2
+   line: "Wrote the SQL model that replaced a 3-day manual weekly sales report with an automated one"
+   can't tell: Keep this as a model. It puts your own contribution next to the process that changed, so a recruiter doesn't have to guess what the SQL was for.
+
+## Fit
+Roles: ["Data Analyst","Registered Nurse, Medical-Surgical Unit (Nights)"]
+Level: Data analyst, with a prior Junior Analyst role
+Note: This nursing role requires an RN license and patient-care qualifications that your resume doesn't show. Your reporting and cross-team work fit data analyst roles, but they don't establish the clinical qualifications for this position.
+Posting: A night-shift medical-surgical RN role focused on patient care, medication administration, EHR documentation and patient education.
+Missing: ["Current unrestricted North Carolina RN license or compact state license","BLS certification required; ACLS within six months of hire","Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered","Experience with Epic or a comparable EHR","Ability to manage a patient assignment of 5 to 6 patients","Assess, plan, implement, and evaluate patient care in collaboration with physicians and the care team"]

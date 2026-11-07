@@ -1,0 +1,56 @@
+# b36_product_designer_unrelated, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_product_designer_unrelated_1.txt (147 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5827dcf1; severity check off
+Outcome: report; cost $0.0108; 23.4s
+Case note: Current job outside the field.
+
+## Needs more context (score 66; model wrote 66)
+## Verdict
+A product designer with named projects, but too little detail about the design decisions and results.
+
+## Write-up
+Your resume points to product design work at Loop Fitness and Brightpath Studio, followed by your current barista role. It’s common to list projects this way, but the design work needs more detail to stand out in a pile: a recruiter can see what you worked on, not enough about the decisions you made or what changed.
+
+The design system line is your best model. It names what you created, that it was the app’s first, and the tool you used. Your current work is accounted for, but your last listed design role ended in February 2024, so the Loop Fitness work needs to do more to show what you’d bring to a design job now.
+
+Let’s start with the class booking flow, then the weekly releases and member tests. Add decisions, findings, or results you can substantiate, and make sure your portfolio shows the work behind them.
+
+## Cards (7; {"line":6,"keep":1}); severity off; added []
+1. [line] Barista, line 1
+   line: "Prepare drinks and serve customers in a busy cafe"
+   can't tell: A recruiter can see the basic job, but not what a busy shift involves for you. A concrete detail would distinguish your work from a standard barista description.
+   example: Prepare drinks and serve [number] customers [time period] at Ferry Street Coffee
+   question: How many customers do you typically serve in a shift, if you can substantiate that number?
+2. [line] Product Designer, line 1
+   line: "Designed the class booking flow for the iOS and Android apps"
+   can't tell: The booking flow is a useful project to name, but a recruiter can’t tell which design decisions were yours or what changed after launch.
+   example: Designed the class booking flow for the iOS and Android apps, focusing on [design decision]; [what changed]
+   question: What decision did you make in the booking flow, and what changed after it launched?
+3. [line] Product Designer, line 2
+   line: "Worked with two engineers and a product manager on weekly releases"
+   can't tell: The team and release cadence are clear, but “worked with” leaves your contribution open. What design work did you bring to those releases?
+   example: Worked with two engineers and a product manager on weekly releases, contributing [design work]
+   question: What design work did you contribute to the weekly releases?
+4. [keep] Product Designer, line 3
+   line: "Created the app's first design system in Figma"
+   can't tell: Keep this as a model. It gives a recruiter a concrete deliverable and shows that you created it, without making them guess which tool you used.
+5. [line] Product Designer, line 4
+   line: "Ran usability tests with members before launches"
+   can't tell: You name the participants and when you tested, but not what you tested or learned. That’s the part that shows how you used research in the design work.
+   example: Ran usability tests with members before launches on [what was tested], finding [findings]
+   question: What did you test with members, and what did you learn?
+6. [line] Junior Product Designer, line 1
+   line: "Designed marketing sites and app screens for agency clients"
+   can't tell: A recruiter knows the types of deliverables, but not which client project to picture. Pick one site or app and say what you designed for it.
+   example: Designed [site or app screens] for [client or project]
+   question: Which client project best shows the marketing sites or app screens you designed?
+7. [line] Junior Product Designer, line 2
+   line: "Made prototypes for client presentations"
+   can't tell: The presentations are clear, but the prototypes could have been for almost anything. Name what you prototyped and which project it was for.
+   example: Made prototypes of [what you prototyped] for client presentations on [project]
+   question: What did you prototype, and for which client project?
+
+## Fit
+Roles: ["Product Designer"]
+Level: Product designer, with a prior junior design role
+Note: Your experience points toward product design roles involving app flows and design systems. Your current job is outside design, so use the Loop Fitness projects and your portfolio to show the design work you want considered.

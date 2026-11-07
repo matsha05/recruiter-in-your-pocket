@@ -1,0 +1,36 @@
+# b14_teacher_to_instructional_designer, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_teacher_to_instructional_designer_1.txt (164 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 1c0fe4fe; severity check off
+Outcome: report; cost $0.0072; 15.0s
+Case note: Career changer.
+
+## Mostly clear (score 77; model wrote 77)
+## Verdict
+A mathematics teacher with clear classroom experience and the beginnings of a digital learning portfolio.
+
+## Write-up
+Your resume tells a coherent story: you teach mathematics at Cedar Creek High School, after teaching at Pinewood Middle School, and you're building digital learning design skills. A recruiter can see the classes you teach and some of the materials you've made, though your department leadership needs a little more detail.
+
+The Canvas module is the best model here. It names the subject, the format and the platform, so a recruiter can picture what you made. Your teaching certification isn't listed, which leaves an important question for a school recruiter.
+
+Let's start by adding your certification if you hold one, then show what you lead the professional learning community to do. The certificate in progress and the Canvas work also give you a foundation for a learning design conversation, without claiming a design job you haven't listed.
+
+## Cards (3; {"structure":1,"keep":1,"line":1}); severity off; added []
+1. [structure] Teaching certification
+   line: "The resume does not list a teaching certification."
+   can't tell: A school recruiter can't tell whether you hold a teaching certification or where it's valid. If you have one, list its name, state and status. If not, don't imply that you do.
+   example: [Certification], [state], [status]
+   question: What teaching certification do you hold, where is it valid, and what is its current status?
+2. [keep] Cedar Creek High School, line 2
+   line: "Redesigned the Algebra II unit on functions into a self-paced online module in Canvas"
+   can't tell: Keep this as a model. You show the work you changed and what you turned it into, rather than simply listing a design skill.
+3. [line] Cedar Creek High School, line 3
+   line: "Lead the math department's professional learning community"
+   can't tell: A recruiter knows you lead the group, but not what you lead it to do. The work the group takes on would show more of your role beyond the classroom.
+   example: Lead the math department's professional learning community in [what the group works on]
+   question: What does the professional learning community work on under your leadership?
+
+## Fit
+Roles: ["Mathematics Teacher"]
+Level: Experienced classroom teacher who leads a professional learning community
+Note: Your resume points most directly to mathematics teaching. The Canvas module, workshop and certificate in progress also show a developing interest in digital learning design, though your listed jobs are in teaching.

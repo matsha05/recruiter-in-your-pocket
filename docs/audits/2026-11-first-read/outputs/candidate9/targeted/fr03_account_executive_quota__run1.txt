@@ -1,0 +1,41 @@
+# fr03_account_executive_quota, run 1
+Resume: resumes/fr03_account_executive_quota.txt (128 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 338ac33a; severity check off
+Outcome: report; cost $0.0070; 14.7s
+Case note: P3 and P4 (sales). 132% of quota with no quota, territory or other year; $1.4M with no period. Expect cards asking for the frame; nothing supplied outside a bracket.
+
+## Mostly clear (score 78; model wrote 78)
+## Verdict
+An Account Executive with strong sales results, though the quota and new-business figures need more context.
+
+## Write-up
+Your resume tells a clear story from Sales Associate to Sales Development Representative to Account Executive. A recruiter can see you close business and beat quota, but needs a little more context to compare those results with other sales resumes.
+
+The meetings line in your SDR role is a good model: it names the work, the audience and the pace. Your promotion and President's Club recognition also give the progression at Vantage Fleet Software weight.
+
+Let's start with the Account Executive role. Put the quota amount beside your FY2025 attainment, then give the $1.4M figure a time period and customer context. A little more about your part in demos and pilots will round out the picture.
+
+## Cards (4; {"line":3,"keep":1}); severity off; added []
+1. [line] Account Executive, line 1
+   line: "Achieved 132% of quota in FY2025"
+   can't tell: 132% is a strong result, but a recruiter can't tell what the quota was or how attainment looked in another year. Those details make the performance easier to compare.
+   example: Achieved 132% of quota in FY2025 against a quota of [quota amount]; achieved [attainment] in [year]
+   question: What was your FY2025 quota, and what was your attainment in another year, if available?
+2. [line] Account Executive, line 2
+   line: "Closed $1.4M in new business"
+   can't tell: A recruiter can't tell what period the $1.4M covers or what kind of customers you sold to. Both matter when comparing sales roles.
+   example: Closed $1.4M in new business with [customer type] over [period]
+   question: What period did the $1.4M cover, and what kind of customers did you sell to?
+3. [line] Account Executive, line 5
+   line: "Partnered with solutions engineers on demos and pilots"
+   can't tell: The partnership is clear, but your part in the demos and pilots isn't. What did you handle alongside the solutions engineers?
+   example: Partnered with solutions engineers on demos and pilots, handling [your responsibilities]
+   question: What did you handle during the demos and pilots?
+4. [keep] Sales Development Representative, line 1
+   line: "Booked 25+ meetings per month for the account executive team"
+   can't tell: Keep this as a model. It gives a recruiter a concrete activity and a frequency without making them guess what you owned.
+
+## Fit
+Roles: ["Account Executive"]
+Level: Account Executive, promoted from Sales Development Representative
+Note: Your experience points toward Account Executive roles where full-cycle selling matters. Adding the quota amount and the period behind your new-business total would give recruiters a better way to compare your results.

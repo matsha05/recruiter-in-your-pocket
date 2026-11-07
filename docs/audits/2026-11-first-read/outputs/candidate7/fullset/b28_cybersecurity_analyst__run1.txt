@@ -1,0 +1,35 @@
+# b28_cybersecurity_analyst, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_cybersecurity_analyst_1.txt (154 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 1c0fe4fe; severity check off
+Outcome: report; cost $0.0063; 12.5s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A senior security analyst whose detection and response work comes with concrete results.
+
+## Write-up
+This is a strong security resume! Your work at Capital Ridge Bank shows both the detection rules you built and the faster incident containment you led. A recruiter can see how your earlier SOC work at Northgate led to your current detection and response role.
+
+The Splunk detection line is the model: it names the rules, the framework and the reduction in false positives. Your current role leads, your certifications are easy to find, and the headline matches the work.
+
+The purple-team and automation lines could say a little more about what they tested and added. Your resume isn't likely to be the thing holding you back; competition for a role and a referral can matter too.
+
+## Cards (3; {"keep":1,"line":2}); severity off; added []
+1. [keep] Senior Security Analyst, line 1
+   line: "Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%"
+   can't tell: Keep this as the model. It puts your hands-on Splunk work and a measurable change together, so a recruiter doesn't have to guess what the rules accomplished.
+2. [line] Senior Security Analyst, line 3
+   line: "Run monthly purple-team exercises with the red team"
+   can't tell: The cadence and partners are clear, but a recruiter can't tell what the exercises test. Naming that would show more of your detection work.
+   example: Run monthly purple-team exercises with the red team to test [what the exercises test]
+   question: What do the exercises test?
+3. [line] Senior Security Analyst, line 4
+   line: "Automated alert enrichment with Python and the Splunk SOAR platform"
+   can't tell: The tools are there, but the enrichment itself is a blank. What information did the automation add to alerts?
+   example: Automated alert enrichment with Python and the Splunk SOAR platform, adding [information] to alerts
+   question: What information did the automation add to alerts?
+
+## Fit
+Roles: ["Senior Security Analyst, Detection and Response"]
+Level: Senior analyst, mentoring 2 analysts
+Note: Your resume points toward senior detection and incident response work in financial services. The GCIH and your earlier SOC experience support that direction.

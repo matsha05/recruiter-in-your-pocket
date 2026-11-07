@@ -1,0 +1,187 @@
+{
+  "case_id": "b25_fpa_analyst_strong",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_fpa_analyst_strong_1.txt",
+  "resume_sha256": "e8604c5c03930c475f944d36090e8f6db4af1ffc417c634667c5450ff68f9cd2",
+  "resume_words": 138,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:23:44.126Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5852,
+        "completion_tokens": 645,
+        "total_tokens": 6497,
+        "cached_prompt_tokens": 5222,
+        "cache_write_prompt_tokens": 627,
+        "reasoning_tokens": 227
+      },
+      "cost_usd": 0.00427285,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 8748
+    }
+  ],
+  "resume_prompt_sha256": "5827dcf1b71d049c0db123f36eb5d0286f3c433f3e55a732f42012b2b93288f6",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 94,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst with substantial budget ownership and clear forecasting and pricing results.",
+    "write_up": [
+      "Your resume makes a strong case for senior FP&A work! At Lakeshore Foods, you connect a $240M budget and pricing decisions to concrete business results. Your earlier work at Midway Brands adds plant reporting and Power BI automation.",
+      "The driver-based forecast is the model to follow: it names what you built and shows forecast error before and after. Experience leads, and your senior FP&A headline matches the work beneath it.",
+      "This resume is ready to send. It isn't likely to be the reason you don't get a call back; the competitiveness of the role will still matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "- Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "Keep this as a model. It names the forecasting approach and gives a reader a before-and-after measure for the full year.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A",
+        "Financial Analyst"
+      ],
+      "why": "Your headline and current role both center on FP&A, with budget ownership, forecasting and pricing work.",
+      "level": "Senior analyst, owns a $240M annual operating budget",
+      "note": "Your experience points toward senior FP&A roles supporting consumer brands. The resume shows individual ownership and work with senior leaders, rather than people management.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 94,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst with substantial budget ownership and clear forecasting and pricing results.",
+    "write_up": [
+      "Your resume makes a strong case for senior FP&A work! At Lakeshore Foods, you connect a $240M budget and pricing decisions to concrete business results. Your earlier work at Midway Brands adds plant reporting and Power BI automation.",
+      "The driver-based forecast is the model to follow: it names what you built and shows forecast error before and after. Experience leads, and your senior FP&A headline matches the work beneath it.",
+      "This resume is ready to send. It isn't likely to be the reason you don't get a call back; the competitiveness of the role will still matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "Keep this as a model. It names the forecasting approach and gives a reader a before-and-after measure for the full year.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A",
+        "Financial Analyst"
+      ],
+      "why": "Your headline and current role both center on FP&A, with budget ownership, forecasting and pricing work.",
+      "level": "Senior analyst, owns a $240M annual operating budget",
+      "note": "Your experience points toward senior FP&A roles supporting consumer brands. The resume shows individual ownership and work with senior leaders, rather than people management.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 94
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 94,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst with substantial budget ownership and clear forecasting and pricing results.",
+    "write_up": [
+      "Your resume makes a strong case for senior FP&A work! At Lakeshore Foods, you connect a $240M budget and pricing decisions to concrete business results. Your earlier work at Midway Brands adds plant reporting and Power BI automation.",
+      "The driver-based forecast is the model to follow: it names what you built and shows forecast error before and after. Experience leads, and your senior FP&A headline matches the work beneath it.",
+      "This resume is ready to send. It isn't likely to be the reason you don't get a call back; the competitiveness of the role will still matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "Keep this as a model. It names the forecasting approach and gives a reader a before-and-after measure for the full year.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A",
+        "Financial Analyst"
+      ],
+      "why": "Your headline and current role both center on FP&A, with budget ownership, forecasting and pricing work.",
+      "level": "Senior analyst, owns a $240M annual operating budget",
+      "note": "Your experience points toward senior FP&A roles supporting consumer brands. The resume shows individual ownership and work with senior leaders, rather than people management.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 94
+  },
+  "presentation": {
+    "score": 94,
+    "band": "Clear and specific",
+    "model_score": 94,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst with substantial budget ownership and clear forecasting and pricing results.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 97,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 1,
+    "kinds": {
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A",
+        "Financial Analyst"
+      ],
+      "why": "Your headline and current role both center on FP&A, with budget ownership, forecasting and pricing work.",
+      "level": "Senior analyst, owns a $240M annual operating budget",
+      "note": "Your experience points toward senior FP&A roles supporting consumer brands. The resume shows individual ownership and work with senior leaders, rather than people management.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00427285,
+  "latency_ms": 8752
+}

@@ -1,0 +1,30 @@
+# b24_physical_therapist_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_physical_therapist_strong_1.txt (154 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5827dcf1; severity check off
+Outcome: report; cost $0.0067; 14.1s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A senior outpatient physical therapist with a clear patient mix, mentoring work, and measurable results.
+
+## Write-up
+Your resume makes a strong case for outpatient orthopedic physical therapy! At North Loop Sports Rehab, you show the patients you treat, the program you built, and the therapists you mentor. A recruiter can quickly see both your clinical work and your senior responsibilities.
+
+The return-to-run line is a great model: it names what you built and how many patients completed it. Your Minnesota license and outpatient specialties are easy to find, too.
+
+The main detail to add is how you measured the improvement in discharged patients' function. Your resume is unlikely to be what holds you back; how competitive a role is will matter too.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Senior Physical Therapist, line 2
+   line: "Built a return-to-run program that 85 patients completed in 2025"
+   can't tell: Keep this as a model. It pairs a distinct clinical program with a count and a year, so a recruiter can see what you delivered.
+2. [line] Senior Physical Therapist, line 4
+   line: "In 2025, 92% of discharged patients improved their patient-reported function scores"
+   can't tell: The improvement is compelling, but a recruiter can't tell which measure produced those scores or how many patients were included. Both would give the percentage more meaning.
+   example: In 2025, 92% of [number] discharged patients improved their patient-reported function scores on [measure]
+   question: Which measure was used, and how many discharged patients were included in that percentage?
+
+## Fit
+Roles: ["Outpatient orthopedic physical therapist","Senior Physical Therapist"]
+Level: Senior physical therapist, mentoring 2 newer therapists
+Note: Your experience points toward outpatient orthopedic and sports rehabilitation roles. Your return-to-run program and mentoring work also show responsibilities beyond a daily caseload.

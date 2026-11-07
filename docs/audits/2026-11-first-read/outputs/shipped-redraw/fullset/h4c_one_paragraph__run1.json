@@ -1,0 +1,257 @@
+{
+  "case_id": "h4c_one_paragraph",
+  "batch": "holes",
+  "run": 1,
+  "note": "A resume pasted as one paragraph with no line breaks.",
+  "resume_file": "../2026-11-live-judgment/resumes/h4c_one_paragraph.txt",
+  "resume_sha256": "f511920a68961c81af3613491765d7123205582245e9adc00a8bf837d18c66ea",
+  "resume_words": 147,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T17:57:28.768Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5145,
+        "completion_tokens": 953,
+        "total_tokens": 6098,
+        "cached_prompt_tokens": 4685,
+        "cache_write_prompt_tokens": 457,
+        "reasoning_tokens": 346
+      },
+      "cost_usd": 0.0055735,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 11960
+    },
+    {
+      "kind": "repair",
+      "usage": {
+        "prompt_tokens": 6037,
+        "completion_tokens": 1378,
+        "total_tokens": 7415,
+        "cached_prompt_tokens": 0,
+        "cache_write_prompt_tokens": 6034,
+        "reasoning_tokens": 942
+      },
+      "cost_usd": 0.0144355,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 16407
+    }
+  ],
+  "resume_prompt_sha256": "0a19c3ee70395ec8fb0584d4bea1b93da77aeca37469b4d47211bc8568544f0c",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 82,
+    "lifted_by_employer": false,
+    "verdict": "A logistics coordinator with clear dispatch and customer service experience, plus an on-time delivery result worth explaining.",
+    "write_up": [
+      "Your resume points clearly toward operations coordination: you moved from warehouse work and customer service at Dominion Parcel to dispatch at River City Logistics. A recruiter can see the work you handle and would likely move this forward with a question about how you improved delivery performance.",
+      "The dispatch line is a strong model because it names the daily work, the drivers and the depots. Your experience comes before education, and the progression between roles is easy to follow.",
+      "Start with the on-time rate improvement and add what you did to achieve it. Then give the earlier inventory line a little more substance. The call volume and dispatch details already give a recruiter a solid picture of your work."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Operations Coordinator, dispatch line",
+        "line": "Coordinate daily dispatch for 18 drivers across two depots",
+        "cannot_tell": "Keep this as a model. It puts your responsibility and the operation you coordinate in the same line.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Operations Coordinator, on-time rate line",
+        "line": "improved on-time rate from 91% to 96% in 2024",
+        "cannot_tell": "This is a useful result, but a recruiter can't see what you did to improve the rate. That detail shows how you approached the delivery problem.",
+        "example": "improved on-time rate from 91% to 96% in 2024 by [what you did]",
+        "question": "What did you do to improve the on-time rate?"
+      },
+      {
+        "kind": "line",
+        "where": "Warehouse Clerk, inventory line",
+        "line": "kept the inventory count accurate",
+        "cannot_tell": "A recruiter can see that you worked with inventory, but not how you maintained the count.",
+        "example": "kept the inventory count accurate by [how you maintained the count]",
+        "question": "What did you do to maintain the inventory count?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Operations Coordinator",
+        "Customer Service Representative"
+      ],
+      "level": "Experienced coordinator",
+      "note": "Your experience points most strongly toward operations coordination, with customer service and warehouse work behind it. The River City Logistics role shows dispatch responsibility and an on-time delivery improvement.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "initial_validation_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the worklist contract at score: is 82 with no card that needs work; a page with nothing to fix scores at least 90.",
+    "issues": [
+      {
+        "path": "score",
+        "message": "is 82 with no card that needs work; a page with nothing to fix scores at least 90"
+      }
+    ]
+  },
+  "model_output_repaired": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A clear operations resume with dispatch responsibility, customer service experience and a measurable delivery improvement.",
+    "write_up": [
+      "Your resume tells a strong operations story! You moved from warehouse and customer service work at Dominion Parcel to coordinating dispatch at River City Logistics, with the drivers, depots and delivery rate there for a recruiter to see.",
+      "The dispatch line is a good model: it names your daily work and how big the operation is. The improvement in on-time delivery is worth highlighting too, though a recruiter will want to know what you did to achieve it.",
+      "Start by adding that detail to the delivery-rate line. Your resume isn't likely to be the reason you don't get a call back; competition for the job and a referral can matter too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Operations Coordinator, on-time rate line",
+        "line": "improved on-time rate from 91% to 96% in 2024",
+        "cannot_tell": "This is a strong result, but a recruiter can't see what you did to improve the rate. That detail would show how you approached the delivery problem.",
+        "example": "improved on-time rate from 91% to 96% in 2024 by [what you did]",
+        "question": "What did you do to improve the on-time rate?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Operations Coordinator",
+        "Customer Service Representative"
+      ],
+      "level": "Experienced coordinator",
+      "note": "Your experience points most strongly toward operations coordination, with customer service and warehouse work behind it. The River City Logistics role shows dispatch responsibility and an on-time delivery improvement.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "repaired": true,
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A clear operations resume with dispatch responsibility, customer service experience and a measurable delivery improvement.",
+    "write_up": [
+      "Your resume tells a strong operations story! You moved from warehouse and customer service work at Dominion Parcel to coordinating dispatch at River City Logistics, with the drivers, depots and delivery rate there for a recruiter to see.",
+      "The dispatch line is a good model: it names your daily work and how big the operation is. The improvement in on-time delivery is worth highlighting too, though a recruiter will want to know what you did to achieve it.",
+      "Start by adding that detail to the delivery-rate line. Your resume isn't likely to be the reason you don't get a call back; competition for the job and a referral can matter too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Operations Coordinator, on-time rate line",
+        "line": "Carlos Mendes Richmond VA carlos.mendes@example.com 555-0171 Summary Operations coordinator with six years in logistics and customer service Experience Operations Coordinator River City Logistics Richmond VA April 2021 to Present Coordinate daily dispatch for 18 drivers across two depots track on-time delivery and report weekly to the regional manager resolve delivery exceptions with customers by phone and email trained 4 new coordinators on the dispatch software improved on-time rate from 91% to 96% in 2024 Customer Service Representative Dominion Parcel Richmond VA June 2019 to March 2021 answered 60 to 80 customer calls per day handled claims for damaged or lost packages kept records in Salesforce Warehouse Clerk Dominion Parcel Richmond VA February 2018 to May 2019 scanned and sorted inbound freight kept the inventory count accurate Education Associate of Applied Science Business Administration J. Sargeant Reynolds Community College 2018 Skills Dispatch software Salesforce Excel customer service scheduling",
+        "cannot_tell": "This is a strong result, but a recruiter can't see what you did to improve the rate. That detail would show how you approached the delivery problem.",
+        "example": "improved on-time rate from 91% to 96% in 2024 by [what you did]",
+        "question": "What did you do to improve the on-time rate?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Operations Coordinator",
+        "Customer Service Representative"
+      ],
+      "level": "Experienced coordinator",
+      "note": "Your experience points most strongly toward operations coordination, with customer service and warehouse work behind it. The River City Logistics role shows dispatch responsibility and an on-time delivery improvement.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 90
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A clear operations resume with dispatch responsibility, customer service experience and a measurable delivery improvement.",
+    "write_up": [
+      "Your resume tells a strong operations story! You moved from warehouse and customer service work at Dominion Parcel to coordinating dispatch at River City Logistics, with the drivers, depots and delivery rate there for a recruiter to see.",
+      "The dispatch line is a good model: it names your daily work and how big the operation is. The improvement in on-time delivery is worth highlighting too, though a recruiter will want to know what you did to achieve it.",
+      "Start by adding that detail to the delivery-rate line. Your resume isn't likely to be the reason you don't get a call back; competition for the job and a referral can matter too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Operations Coordinator, on-time rate line",
+        "line": "Carlos Mendes Richmond VA carlos.mendes@example.com 555-0171 Summary Operations coordinator with six years in logistics and customer service Experience Operations Coordinator River City Logistics Richmond VA April 2021 to Present Coordinate daily dispatch for 18 drivers across two depots track on-time delivery and report weekly to the regional manager resolve delivery exceptions with customers by phone and email trained 4 new coordinators on the dispatch software improved on-time rate from 91% to 96% in 2024 Customer Service Representative Dominion Parcel Richmond VA June 2019 to March 2021 answered 60 to 80 customer calls per day handled claims for damaged or lost packages kept records in Salesforce Warehouse Clerk Dominion Parcel Richmond VA February 2018 to May 2019 scanned and sorted inbound freight kept the inventory count accurate Education Associate of Applied Science Business Administration J. Sargeant Reynolds Community College 2018 Skills Dispatch software Salesforce Excel customer service scheduling",
+        "cannot_tell": "This is a strong result, but a recruiter can't see what you did to improve the rate. That detail would show how you approached the delivery problem.",
+        "example": "improved on-time rate from 91% to 96% in 2024 by [what you did]",
+        "question": "What did you do to improve the on-time rate?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Operations Coordinator",
+        "Customer Service Representative"
+      ],
+      "level": "Experienced coordinator",
+      "note": "Your experience points most strongly toward operations coordination, with customer service and warehouse work behind it. The River City Logistics role shows dispatch responsibility and an on-time delivery improvement.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 90
+  },
+  "presentation": {
+    "score": 90,
+    "band": "Clear and specific",
+    "model_score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A clear operations resume with dispatch responsibility, customer service experience and a measurable delivery improvement.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 111,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Operations Coordinator, on-time rate line",
+        "line": "Carlos Mendes Richmond VA carlos.mendes@example.com 555-0171 Summary Operations coordinator with six years in logistics and customer service Experience Operations Coordinator River City Logistics Richmond VA April 2021 to Present Coordinate daily dispatch for 18 drivers across two depots track on-time delivery and report weekly to the regional manager resolve delivery exceptions with customers by phone and email trained 4 new coordinators on the dispatch software improved on-time rate from 91% to 96% in 2024 Customer Service Representative Dominion Parcel Richmond VA June 2019 to March 2021 answered 60 to 80 customer calls per day handled claims for damaged or lost packages kept records in Salesforce Warehouse Clerk Dominion Parcel Richmond VA February 2018 to May 2019 scanned and sorted inbound freight kept the inventory count accurate Education Associate of Applied Science Business Administration J. Sargeant Reynolds Community College 2018 Skills Dispatch software Salesforce Excel customer service scheduling",
+        "blanks": 1,
+        "question": "What did you do to improve the on-time rate?"
+      }
+    ],
+    "card_count": 1,
+    "kinds": {
+      "line": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Operations Coordinator",
+        "Customer Service Representative"
+      ],
+      "level": "Experienced coordinator",
+      "note": "Your experience points most strongly toward operations coordination, with customer service and warehouse work behind it. The River City Logistics role shows dispatch responsibility and an on-time delivery improvement.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.020009,
+  "latency_ms": 28443
+}

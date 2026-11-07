@@ -1,0 +1,50 @@
+# b10_it_support_recent_grad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_it_support_recent_grad_1.txt (119 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 41bcacc0; severity check off
+Outcome: report; cost $0.0116; 26.2s
+Case note: First job.
+
+## Needs more context (score 60; model wrote 60)
+## Verdict
+An entry-level support resume with relevant hands-on work, but little detail and no work listed after the internship.
+
+## Write-up
+Your resume points toward desktop support, with a school help desk internship and retail device setup behind it. This is a common early-career resume: the tasks are real, but there isn't much to show how much work you handled or what happened after the internship. That makes it harder to stand out in a pile.
+
+The Active Directory line is your best model because it names both the task and the system you used. Your education and A+ also fit the work. Put Experience above Education so a recruiter reaches the hands-on work first.
+
+Let's start with the help desk tickets and laptop setup. Add what you handled and how many, where you know. Then account honestly for the time after May 2025, whether that includes work, study, caregiving or a career break.
+
+## Cards (6; {"dates":1,"structure":2,"line":2,"keep":1}); severity off; added []
+1. [dates] Dates
+   line: "The last dated job ended in May 2025; no later work is listed."
+   can't tell: A recruiter can't tell what you've been doing since the internship. That question may interrupt an otherwise relevant entry-level story. Name caregiving, a career break, study or other work if that's what happened, and use dates that match.
+   example: May 2025 - Present [what you did during this time]
+   question: What have you been doing since May 2025, and what dates would you use for it?
+2. [structure] Structure
+   line: "Education sits above Experience."
+   can't tell: Your retail and help desk work are useful for desktop support, but a recruiter reaches them after Education and Certifications. Put Experience first, then keep your degree and A+ together below it.
+   question: Can you move Experience above Education and Certifications?
+3. [structure] IT Help Desk Intern, employer
+   line: "The resume doesn't say how many schools are in Chattahoochee County Schools."
+   can't tell: A recruiter outside the area may not know how large the school system is. If you know the count, a short description can give the internship some context.
+   example: Chattahoochee County Schools, Columbus, GA | [number of schools in the district]
+   question: How many schools were in the district while you worked there?
+4. [line] IT Help Desk Intern, line 1
+   line: "Answered help desk tickets from teachers and staff"
+   can't tell: A recruiter can see who sent the tickets, but not what problems you handled or how many tickets you answered. Those details would show the kind of support work you know.
+   example: Answered [number] help desk tickets [time period] from teachers and staff about [types of issues]
+   question: What kinds of issues did you handle, and how many tickets did you answer in a typical period?
+5. [line] IT Help Desk Intern, line 2
+   line: "Imaged and set up laptops for classrooms"
+   can't tell: The classroom laptops are a useful detail. How many did you set up, and what did the setup involve?
+   example: Imaged and set up [number] laptops for classrooms, including [setup tasks]
+   question: How many laptops did you set up, and what did you do to prepare them?
+6. [keep] IT Help Desk Intern, line 3
+   line: "Reset passwords and accounts in Active Directory"
+   can't tell: Keep this line. It pairs a concrete support task with the system you used, so a recruiter doesn't have to guess what you worked on.
+
+## Fit
+Roles: ["desktop support","IT Help Desk Intern"]
+Level: Entry level, with a help desk internship and retail device setup
+Note: Your internship and A+ point toward desktop support, with retail device setup adding customer-facing experience. The resume gives less to assess for a junior systems role.

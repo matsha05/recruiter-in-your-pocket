@@ -1,0 +1,183 @@
+{
+  "case_id": "b25_fpa_analyst_strong",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_fpa_analyst_strong_1.txt",
+  "resume_sha256": "e8604c5c03930c475f944d36090e8f6db4af1ffc417c634667c5450ff68f9cd2",
+  "resume_words": 138,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:36:21.463Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5826,
+        "completion_tokens": 703,
+        "total_tokens": 6529,
+        "cached_prompt_tokens": 5196,
+        "cache_write_prompt_tokens": 627,
+        "reasoning_tokens": 284
+      },
+      "cost_usd": 0.00456155,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 9403
+    }
+  ],
+  "resume_prompt_sha256": "1c0fe4fe961ccb0d0e49bbe71ac8427d0281ae6e9a1efa6ac35e3ee49a99ed47",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 92,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst with a substantial budget and clear forecasting and pricing results.",
+    "write_up": [
+      "This is a strong resume! Your work at Lakeshore Foods connects a $240M operating budget to forecasting and pricing decisions, with results a recruiter can understand quickly.",
+      "The forecast line is a standout: it names the approach and shows the change in error. Your earlier Power BI work also shows what you built and the time it saved. Experience is easy to find above Education, and your headline matches the work underneath.",
+      "Keep the forecast line as a model, but you don't need to force a result into every bullet. Your resume is unlikely to be the thing holding you back; how competitive a particular job is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "- Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "Keep this as a model. It gives a recruiter the before and after, along with the work you did to get there.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A"
+      ],
+      "why": "Your headline and Lakeshore Foods role center on budgeting, forecasting and pricing for consumer brands.",
+      "level": "Senior analyst, owning a division operating budget",
+      "note": "Your experience points toward senior FP&A work in budgeting, forecasting and pricing. The resume shows ownership of a division budget and presentations to senior leaders.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 92,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst with a substantial budget and clear forecasting and pricing results.",
+    "write_up": [
+      "This is a strong resume! Your work at Lakeshore Foods connects a $240M operating budget to forecasting and pricing decisions, with results a recruiter can understand quickly.",
+      "The forecast line is a standout: it names the approach and shows the change in error. Your earlier Power BI work also shows what you built and the time it saved. Experience is easy to find above Education, and your headline matches the work underneath.",
+      "Keep the forecast line as a model, but you don't need to force a result into every bullet. Your resume is unlikely to be the thing holding you back; how competitive a particular job is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "Keep this as a model. It gives a recruiter the before and after, along with the work you did to get there.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A"
+      ],
+      "why": "Your headline and Lakeshore Foods role center on budgeting, forecasting and pricing for consumer brands.",
+      "level": "Senior analyst, owning a division operating budget",
+      "note": "Your experience points toward senior FP&A work in budgeting, forecasting and pricing. The resume shows ownership of a division budget and presentations to senior leaders.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 92
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 92,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst with a substantial budget and clear forecasting and pricing results.",
+    "write_up": [
+      "This is a strong resume! Your work at Lakeshore Foods connects a $240M operating budget to forecasting and pricing decisions, with results a recruiter can understand quickly.",
+      "The forecast line is a standout: it names the approach and shows the change in error. Your earlier Power BI work also shows what you built and the time it saved. Experience is easy to find above Education, and your headline matches the work underneath.",
+      "Keep the forecast line as a model, but you don't need to force a result into every bullet. Your resume is unlikely to be the thing holding you back; how competitive a particular job is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "Keep this as a model. It gives a recruiter the before and after, along with the work you did to get there.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A"
+      ],
+      "why": "Your headline and Lakeshore Foods role center on budgeting, forecasting and pricing for consumer brands.",
+      "level": "Senior analyst, owning a division operating budget",
+      "note": "Your experience points toward senior FP&A work in budgeting, forecasting and pricing. The resume shows ownership of a division budget and presentations to senior leaders.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 92
+  },
+  "presentation": {
+    "score": 92,
+    "band": "Clear and specific",
+    "model_score": 92,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst with a substantial budget and clear forecasting and pricing results.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 110,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 1,
+    "kinds": {
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A"
+      ],
+      "why": "Your headline and Lakeshore Foods role center on budgeting, forecasting and pricing for consumer brands.",
+      "level": "Senior analyst, owning a division operating budget",
+      "note": "Your experience points toward senior FP&A work in budgeting, forecasting and pricing. The resume shows ownership of a division budget and presentations to senior leaders.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00456155,
+  "latency_ms": 9405
+}

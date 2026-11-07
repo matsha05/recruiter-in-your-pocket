@@ -1,0 +1,40 @@
+# b29_mechanical_engineer, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_mechanical_engineer_1.txt (143 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 1c0fe4fe; severity check off
+Outcome: report; cost $0.0081; 17.0s
+
+## Needs more context (score 69; model wrote 69)
+## Verdict
+A mechanical engineer leading a desk platform, with clear tasks but little indication of scale or results.
+
+## Write-up
+Your resume tells a coherent story: you moved from Mechanical Engineer I to Mechanical Engineer II at Westhaven, designing furniture components and now leading the Arlo desk platform. It's common for engineering resumes to list the work without saying how big it was or what came from it. Here, that makes it hard to stand out against other product design resumes, so a recruiter may finish and hesitate.
+
+The supplier line is your best model: it names where the suppliers are and the tooling and inspection work you do with them. Your experience also comes before education, which puts your product work where a recruiter will see it first.
+
+Let's start with the Arlo line. Add the parts of the platform you lead and a result you can substantiate. Then show what your analysis found and what you contributed to the engineering change orders.
+
+## Cards (4; {"line":3,"keep":1}); severity off; added []
+1. [line] Mechanical Engineer II, line 1
+   line: "Lead mechanical design for the Arlo height-adjustable desk platform"
+   can't tell: Leading the Arlo design is a strong start, but a recruiter can't tell how much of the platform it covers or what the work has produced.
+   example: Lead mechanical design for the Arlo height-adjustable desk platform, covering [components] and achieving [result]
+   question: Which parts of the platform do you lead, and what has the design work achieved?
+2. [keep] Mechanical Engineer II, line 3
+   line: "Work with suppliers in Mexico and Taiwan on tooling and first-article inspection"
+   can't tell: Keep this as a model. It pairs the people you work with and their locations with two concrete parts of the job.
+3. [line] Mechanical Engineer II, line 4
+   line: "Run tolerance stack-ups and FEA on load-bearing components"
+   can't tell: A recruiter can see the analyses you run, but not which components they concern or what they revealed.
+   example: Run tolerance stack-ups and FEA on load-bearing components, including [components], and identify [findings]
+   question: Which components did you analyze, and what did the analyses reveal?
+4. [line] Mechanical Engineer II, line 5
+   line: "Support manufacturing with engineering change orders"
+   can't tell: Support could mean several things here. Your part in the change orders and the changes they covered are still a blank.
+   example: Support manufacturing with engineering change orders by [your contribution] for [changes]
+   question: What did you do on the change orders, and what changes did they cover?
+
+## Fit
+Roles: ["Mechanical Engineer II"]
+Level: Mechanical Engineer II, leads design for a desk platform
+Note: Your experience points toward mechanical product design for furniture and fixtures. The next step is to show how much of the platform you own and what your design work has achieved.

@@ -1,0 +1,46 @@
+# t1_google_engineer_maya, run 1
+Resume: resumes/t1_google_engineer_maya.txt (151 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5827dcf1; severity check off
+Outcome: report; cost $0.0079; 16.8s
+Case note: Blind pick v5 bp5-04: a recognisable employer; decision 5 says the lift is one rung, bounded, declared.
+
+## Mostly clear (score 74; model wrote 74); lifted by employer
+## Verdict
+A backend engineer with strong earlier results and a current Google role that leaves the work largely unexplained.
+
+## Write-up
+You’re a software engineer who built backend services at Harborview Analytics and now works at Google. It’s common to describe a current job in broad terms, but your Google bullets don’t show the tools, scale or features behind the work. A recruiter will open your resume because Google is on it, which lifts it one band; the bullets still leave important questions.
+
+Your Harborview latency line is the model: it names the customer dashboard, the change you made and the improvement from 4.2 s to 900 ms. The ingestion and migration lines also make your backend work concrete.
+
+Let’s start with the internal tool at Google. Name a feature you worked on, the stack and how many engineering teams used the tool if you know. Then add what you contributed to requirements, reviews and mentoring.
+
+## Cards (5; {"line":4,"keep":1}); severity off; added []
+1. [line] Google, line 1
+   line: "Worked on features for an internal tool used by other engineering teams"
+   can't tell: A recruiter can’t tell which features you worked on, what stack you used or how widely the tool was used. Those details matter for a backend engineering role.
+   example: Worked on [features] for an internal tool used by [number] other engineering teams, using [tools]
+   question: Which features did you work on, what tools did you use, and how many teams used the tool?
+2. [line] Google, line 2
+   line: "Collaborated with cross-functional partners on requirements"
+   can't tell: The partners and requirements are a starting point, but a recruiter can’t tell what you contributed or what the requirements were for.
+   example: Collaborated with cross-functional partners on requirements for [project], contributing [your contribution]
+   question: What were the requirements for, and what did you contribute?
+3. [line] Google, line 3
+   line: "Participated in code reviews, design reviews and the on-call rotation"
+   can't tell: These are recognizable engineering responsibilities, but they don’t show which systems you worked on or what you handled during reviews and on-call.
+   example: Participated in code reviews, design reviews and the on-call rotation for [systems], handling [your responsibilities]
+   question: Which systems did this cover, and what did you handle in reviews and on-call?
+4. [line] Google, line 4
+   line: "Mentored a new team member"
+   can't tell: Mentoring is useful to see, but a recruiter can’t tell what you helped the new team member learn or how you worked together.
+   example: Mentored a new team member on [topics] through [activities]
+   question: What did you help the new team member learn, and how did you mentor them?
+5. [keep] Harborview Analytics, line 2
+   line: "Cut p95 query latency on the customer dashboard from 4.2 s to 900 ms by rewriting the aggregation layer"
+   can't tell: Keep this as a model. It connects a technical decision to a measured improvement without making the reader guess what you did.
+
+## Fit
+Roles: ["Software Engineer"]
+Level: Experienced individual contributor; led a migration with two other engineers
+Note: Your Harborview work points strongly toward backend engineering roles. Adding the stack and features from Google would show how that work has continued in your current role.

@@ -1,0 +1,47 @@
+# b33_nonprofit_program_manager, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_nonprofit_program_manager_1.txt (146 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5cba8f05; severity check off
+Outcome: report; cost $0.0085; 17.4s
+
+## Mostly clear (score 73; model wrote 73)
+## Verdict
+A youth workforce program manager with a clear progression and a team, but few details about the students served.
+
+## Write-up
+Your resume tells a clear story: you moved from tutoring at City Year Baltimore to coordinating and then managing youth workforce programs at Harbor Pathways. A recruiter can see the work you own, but not yet how many students or employers the program reaches.
+
+The line about supervising 4 program coordinators and 20 seasonal staff gives a recruiter a concrete picture of your management responsibility. Your current role also names grant reports and Salesforce, so the work is easy to follow. What’s missing is more about the program those staff support and what you track.
+
+Let’s start with the summer jobs line. Add the number of students placed and employers involved if you have those figures, then give the same treatment to partner recruitment and the career fair. Keep the grant reporting line: it already names a concrete deliverable and its audience.
+
+## Cards (5; {"line":5}); severity off; added []
+1. [line] Program Manager, Youth Workforce, line 1
+   line: "Manage a summer jobs program placing high school students with local employers"
+   can't tell: A recruiter can see what the program does, but not how many students it places or employers it involves. Those figures would show how much of the program you manage.
+   example: Manage a summer jobs program placing [number] high school students with [number] local employers
+   question: How many students does the program place, and with how many employers?
+2. [line] Program Manager, Youth Workforce, line 2
+   line: "Supervise 4 program coordinators and 20 seasonal staff"
+   can't tell: The team numbers are useful. A recruiter still can't tell what the coordinators and seasonal staff do under your supervision.
+   example: Supervise 4 program coordinators and 20 seasonal staff who [what the staff do]
+   question: What do the coordinators and seasonal staff do for the program?
+3. [line] Program Manager, Youth Workforce, line 4
+   line: "Recruit and onboard employer partners"
+   can't tell: Recruiting and onboarding are clear responsibilities, but a recruiter can't tell how many partners are involved or what onboarding includes.
+   example: Recruit and onboard [number] employer partners by [onboarding activities]
+   question: How many employer partners do you recruit and onboard, and what does onboarding involve?
+4. [line] Program Manager, Youth Workforce, line 5
+   line: "Track participant outcomes in Salesforce"
+   can't tell: The tool is named, but the participant outcomes aren't. Which measures you track and how they're used would show more of your work.
+   example: Track participant outcomes in Salesforce, including [outcomes tracked], for [how the data is used]
+   question: Which participant outcomes do you track, and how is the data used?
+5. [line] Program Coordinator, line 3
+   line: "Organized an annual career fair"
+   can't tell: An annual career fair is a concrete event. A recruiter can't tell how many people attended or which parts of organizing it were yours.
+   example: Organized an annual career fair for [number] [attendees], including [what you organized]
+   question: How many people attended the career fair, and which parts did you organize?
+
+## Fit
+Roles: ["Program Manager, Youth Workforce","Program Coordinator"]
+Level: Manager, supervising 4 program coordinators and 20 seasonal staff
+Note: Your experience points toward youth workforce program management, with partner recruitment and grant reporting alongside staff supervision. Adding the reach of the summer jobs program would make that experience easier to compare with other manager roles.

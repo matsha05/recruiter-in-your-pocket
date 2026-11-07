@@ -7,6 +7,7 @@ import type { ReportForPdf, WorklistForPdf } from "../reports/pdf-export";
 import { criticalCountHeading, fixLabel, fixPlanHeadingForCount, missingFromResume, readCriticalMisses, TIGHTENING_HEADING } from "../reports/report-presentation";
 import { marginNoteFromFix } from "../reports/revised-line";
 import { SCORE_BANDS, WORKLIST_BANDS, reportTone, scoreBandIndex, worklistBandIndex } from "../reports/score-band";
+import { hasRoleSection, POSTING_MISSING_HOW, POSTING_MISSING_LABEL, screenerNote, screenerTitle, worklistLevelParts, worklistReadFor } from "../reports/worklist-presentation";
 import { pdfReportStyles } from "./pdf-styles";
 
 /**
@@ -72,16 +73,41 @@ function renderWorklistHtml(report: ReportForPdf, worklist: WorklistForPdf) {
       </div>`;
   };
   const fit = worklist.fit;
-  const fitHtml = fit.note || fit.roles.length ? `
+  // Without a posting, where else the experience points, after the cards; with one, its fit is in the first pass.
+  const fitHtml = hasRoleSection(worklist) ? `
     <section class="section alignment-section">
       <div class="section-kicker">Role fit</div>
-      <h2>${fit.posting.summary ? "How your experience fits this role" : "Roles your experience points toward"}</h2>
-      ${fit.posting.summary ? `<div class="positioning-suggestion"><p>${escapeHtml(fit.posting.summary)}</p></div>` : ""}
+      <h2>Roles your experience points toward</h2>
       ${fit.note ? `<div class="positioning-suggestion"><p>${escapeHtml(fit.note)}</p></div>` : ""}
-      ${fit.roles.length ? `<div class="tag-row"><span class="tag-label">${fit.posting.summary ? "The role" : "Roles to consider"}</span>${fit.roles.map((role) => `<span class="tag">${escapeHtml(role)}</span>`).join("")}</div>` : ""}
-      ${fit.posting.missing.length ? `<div class="marked-questions"><div class="marked-questions-label accent">What the posting asks for that your resume doesn't show</div>${fit.posting.missing.map((item) => `<div class="marked-question">${escapeHtml(item)}</div>`).join("")}</div>` : ""}
-      ${fit.level ? `<div class="alignment-meta"><span class="meta-item"><strong>Level a recruiter would assume</strong> ${escapeHtml(fit.level)}</span></div>` : ""}
+      ${fit.roles.length ? `<div class="tag-row"><span class="tag-label">Roles to consider</span>${fit.roles.map((role) => `<span class="tag">${escapeHtml(role)}</span>`).join("")}</div>` : ""}
     </section>` : "";
+
+  // The first pass, as on the web report (Nov 7, 2026): a line written to screening software, then which job,
+  // what level and the posting, each with its reason, then the posting's fit.
+  const read = worklistReadFor(worklist);
+  const level = worklistLevelParts(read.level);
+  const screener = worklist.screener_text ?? [];
+  const sortCell = (question: string, answer: string, why?: string | null) =>
+    `<div><div class="sort-q">${escapeHtml(question)}</div><div class="sort-a">${escapeHtml(answer)}</div>${why ? `<div class="sort-why">${escapeHtml(why)}</div>` : ""}</div>`;
+  const firstPassHtml = read.role || level || screener.length ? `
+    <div class="first-pass">
+      <div class="pass-title">The first pass</div>
+      <div class="pass-lead">${read.hasPosting ? "Read against the posting you added." : "With no posting, a recruiter reads your resume for the job it points at."}</div>
+      ${screener.length ? `<div class="stop">
+        <div class="stop-title">${screener.length > 1 ? "These lines end the first pass." : "This line ends the first pass."}</div>
+        ${screener.map((finding) => `<div class="stop-line">${escapeHtml(finding.excerpt)}</div>`).join("")}
+        <div class="stop-note">${escapeHtml(screenerNote(screener[0].kind, screener.length > 1))} <strong>${escapeHtml(screenerTitle(screener.length > 1))}</strong></div>
+      </div>` : ""}
+      ${read.role || level ? `<div class="sort">
+        ${read.role ? sortCell("Which job is this for?", read.role, fit.why) : ""}
+        ${level ? sortCell("What level?", level.level, level.because) : ""}
+        ${read.hasPosting ? sortCell("Your posting", read.postingRole || "The job you added", fit.posting.summary) : ""}
+      </div>` : ""}
+      ${read.hasPosting && (fit.note || fit.posting.missing.length) ? `<div class="posting-fit">
+        ${fit.note ? `<p class="note">${escapeHtml(fit.note)}</p>` : ""}
+        ${fit.posting.missing.length ? `<div class="label">${escapeHtml(POSTING_MISSING_LABEL)}</div><ul>${fit.posting.missing.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul><div class="how">${escapeHtml(POSTING_MISSING_HOW)}</div>` : ""}
+      </div>` : ""}
+    </div>` : "";
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -109,6 +135,7 @@ function renderWorklistHtml(report: ReportForPdf, worklist: WorklistForPdf) {
       </div>
     </div>
     <h1>${escapeHtml(worklist.verdict)}</h1>
+    ${firstPassHtml}
     <div class="write-up">${worklist.write_up.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}</div>
     <div class="score-note">The band is what a recruiter would do with your resume after one pass; the number says where in the band you sit. Neither predicts interviews or offers.${worklist.lifted_by_employer ? " A recent employer recruiters know on sight moved this resume up one band." : ""}</div>
   </section>

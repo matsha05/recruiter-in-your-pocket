@@ -1,0 +1,61 @@
+# fr05_nurse_no_units, run 1
+Resume: resumes/fr05_nurse_no_units.txt (140 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 01c2028d; severity check off
+Outcome: report; cost $0.0091; 19.1s
+Case note: P4 (nursing). Titles without a unit; RN with no state. Expect the unit and the license state asked for; no invented ratio.
+
+## Needs more context (score 65; model wrote 65)
+## Verdict
+A hospital nurse with charge and precepting experience, but the current unit and daily work need more detail.
+
+## Write-up
+Your resume points to Registered Nurse roles, with hospital work at Riverside Methodist and Mount Carmel East. It’s common for nursing resumes to list core duties this way, but these lines won’t stand out in a pile because a recruiter can’t tell which unit you work on or what your charge and precepting work involves.
+
+The Mount Carmel East line about documenting assessments and care plans in Epic is your best model: it names both the work and the system. Your RN license is listed, but its state isn’t, and the unit or specialty for each nursing role isn’t clear.
+
+Let’s start with Riverside Methodist. Name your unit, then add the responsibilities you handle as charge nurse and what you teach new graduates. Add the Mount Carmel East unit and your licensing state, too.
+
+## Cards (8; {"line":7,"keep":1}); severity off; added []
+1. [line] Riverside Methodist Hospital, line 1
+   line: "Provide direct patient care for adult patients across 12-hour shifts"
+   can't tell: A recruiter can see that you care for adults, but not the unit or specialty. That’s one of the first things they’ll look for in a nursing role.
+   example: Provide direct patient care for adult patients on [unit or specialty] across 12-hour shifts
+   question: What unit or specialty do you work in?
+2. [line] Riverside Methodist Hospital, line 2
+   line: "Administer medications and monitor patient response"
+   can't tell: Medication administration is part of many nursing jobs. Naming the medications or responses you monitor would show more of your work with these patients.
+   example: Administer [medications] and monitor [patient responses]
+   question: Which medications do you administer, and what responses do you monitor?
+3. [line] Riverside Methodist Hospital, line 3
+   line: "Educate patients and families on discharge plans"
+   can't tell: A recruiter can’t tell what the discharge education covers. One example would show what patients and families need to know before they leave.
+   example: Educate patients and families on [discharge education topics] as part of discharge plans
+   question: What do you teach patients and families as part of their discharge plans?
+4. [line] Riverside Methodist Hospital, line 4
+   line: "Serve as charge nurse on weekends"
+   can't tell: Charge nurse is an important responsibility, but the line doesn’t say what you handle in that role. Give a recruiter one concrete responsibility.
+   example: Serve as charge nurse on weekends, handling [charge nurse responsibilities]
+   question: What responsibilities do you handle as charge nurse on weekends?
+5. [line] Riverside Methodist Hospital, line 5
+   line: "Precept new graduate nurses"
+   can't tell: Precepting belongs on your resume. What you teach or guide new graduates through would show the work behind it.
+   example: Precept new graduate nurses on [skills or responsibilities]
+   question: What skills or responsibilities do you guide new graduate nurses through?
+6. [line] Mount Carmel East Hospital, Registered Nurse, line 1
+   line: "Cared for patients before and after surgery"
+   can't tell: This names the patients you cared for, but not the unit or specialty. Add where that care took place.
+   example: Cared for patients before and after surgery on [unit or specialty]
+   question: What unit or specialty did you work in at Mount Carmel East?
+7. [keep] Mount Carmel East Hospital, Registered Nurse, line 2
+   line: "Documented assessments and care plans in Epic"
+   can't tell: Keep this as a model for naming the records you handled and the tool you used. There’s no guessing about what you documented.
+8. [line] Licenses and Certifications
+   line: "RN, BLS, ACLS"
+   can't tell: Your RN license is listed, but a recruiter can’t tell which state issued it. Your hospital locations alone don’t establish the licensing state.
+   example: RN, [licensing state]; BLS; ACLS
+   question: Which state issued your RN license?
+
+## Fit
+Roles: ["Registered Nurse"]
+Level: Experienced staff nurse, with weekend charge and new graduate precepting responsibilities
+Note: Your experience points toward hospital Registered Nurse roles caring for adults. The unit or specialty in each nursing role and the state of your RN license are the main details a recruiter needs next.

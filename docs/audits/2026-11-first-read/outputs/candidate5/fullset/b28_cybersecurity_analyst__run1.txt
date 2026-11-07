@@ -1,0 +1,34 @@
+# b28_cybersecurity_analyst, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_cybersecurity_analyst_1.txt (154 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ab8cd5a5; severity check off
+Outcome: report; cost $0.0077; 17.1s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A senior detection analyst with strong results in Splunk and incident response, plus a few details to add.
+
+## Write-up
+This is a strong security resume! At Capital Ridge Bank, you connect detection engineering and incident response to measurable changes, while your Northgate role shows work across client environments.
+
+The Splunk detection rule line is a model: it names the work, the framework and the reduction in false positives. Your current title is backed by hands-on detection work and mentoring, though a recruiter can't tell how large the bank is.
+
+Add a little context about the bank and what your alert enrichment added. Your resume shouldn't be the thing holding you back on its own; competition for each role will matter too.
+
+## Cards (3; {"structure":1,"keep":1,"line":1}); severity off; added []
+1. [structure] Capital Ridge Bank
+   line: "The resume doesn't say how large Capital Ridge Bank is."
+   can't tell: A recruiter can't tell how large the bank is or compare the remit of your senior role. You mention mentoring 2 analysts; there's no need to imply you manage them.
+   question: How large is Capital Ridge Bank, and are there team or budget figures that describe your remit?
+2. [keep] Senior Security Analyst, line 1
+   line: "Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%"
+   can't tell: Keep this as a model. It gives a recruiter both the volume of rules and the change in alerts, with the tools and framework attached.
+3. [line] Senior Security Analyst, line 4
+   line: "Automated alert enrichment with Python and the Splunk SOAR platform"
+   can't tell: The tools are clear, but a recruiter can't tell what information the automation added to alerts. That's the part that shows what you built.
+   example: Automated alert enrichment with Python and the Splunk SOAR platform, adding [information] to alerts
+   question: What information did the automation add to alerts?
+
+## Fit
+Roles: ["Senior Security Analyst, Detection and Response","Security Operations Analyst"]
+Level: Senior individual contributor, with mentoring of 2 analysts
+Note: Your experience points toward senior detection and response work in security operations. The resume shows hands-on work and mentoring, rather than formal people management.

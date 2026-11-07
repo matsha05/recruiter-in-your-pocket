@@ -1,0 +1,36 @@
+# b13_marketing_vp_elite, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/golden/synth_marketing_manager_vp_elite_1766960221358.txt (730 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 338ac33a; severity check off
+Outcome: report; cost $0.0108; 17.8s
+Case note: Executive, strong (golden).
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A marketing executive whose resume connects leadership, budgets and campaigns to substantial business results.
+
+## Write-up
+This is a strong Chief Marketing Officer resume! At Novara, you put the marketing organization's budget and reach alongside gains in leads, revenue and acquisition cost. Your earlier roles show the same connection between marketing decisions and business results.
+
+The account-based marketing line at Viridian is a great model: it names the program, the clients and the changes in pipeline and win rates. Your progression from Senior Marketing Manager to Chief Marketing Officer is easy to follow.
+
+Let's make the Novara launch line more concrete and pin down what your P&L responsibility covered. Your resume is unlikely to be the reason you don't get a call back; competition for executive roles will also matter.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] Chief Marketing Officer, line 3
+   line: "I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years."
+   can't tell: The results are substantial, but a recruiter can't tell what changed in the launch process. Naming the change would show what your decision set in motion.
+   example: I decided to revamp the product launch process by [process change], shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.
+   question: What changed in the product launch process?
+2. [keep] Vice President, Global Marketing, line 2
+   line: "I built and executed a comprehensive account-based marketing (ABM) program that increased pipeline contribution by $50M annually, lifting win rates by 15% among Fortune 500 clients."
+   can't tell: Keep this as a model. It gives a recruiter the work you owned and two distinct measures of what it achieved.
+3. [line] Skills
+   line: "Budget & P&L Management ($25M+)"
+   can't tell: Your Novara role names a $25M annual marketing budget, but it doesn't explain your P&L responsibility. A recruiter may read this as ownership of a full profit and loss statement.
+   example: Budget & P&L Management ($25M+): [P&L responsibility]
+   question: What P&L responsibility did you have, and what did the $25M+ cover?
+
+## Fit
+Roles: ["Chief Marketing Officer","Vice President, Global Marketing"]
+Level: Executive, leads a 45-person global marketing organization and manages a $25M annual budget.
+Note: Your experience points toward senior marketing leadership, particularly in SaaS and B2B technology. The P&L claim needs a little more context so a recruiter knows what you managed.

@@ -1,0 +1,30 @@
+# b26_construction_pm_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_construction_pm_strong_1.txt (136 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5827dcf1; severity check off
+Outcome: report; cost $0.0060; 13.8s
+
+## Clear and specific (score 90; model wrote 90)
+## Verdict
+A commercial construction project manager with project values, trade counts and delivery results a recruiter can use.
+
+## Write-up
+This is a strong construction project management resume! Your Capitol Builders work shows the projects you run, their value, and how they turned out. A recruiter can quickly see both tenant-improvement and retail experience.
+
+The grocery store line is a model for the rest: it names the build and shows you delivered it ahead of schedule. Your progression from Assistant Project Manager to Project Manager is easy to follow, too.
+
+Your resume is ready to send. Before you do, add how you kept change orders down if you can. How competitive a particular job is will still matter, but your resume tells the project story well.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Project Manager, line 2
+   line: "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024"
+   can't tell: Keep this as your model. It puts a dollar value and a time measure next to a project you delivered.
+2. [line] Project Manager, line 4
+   line: "Kept change orders under 3% of contract value across 2024 and 2025 projects"
+   can't tell: This is a useful result, but a recruiter can't tell what you did to keep change orders down. Name your part so they can see how you managed it.
+   example: Kept change orders under 3% of contract value across 2024 and 2025 projects by [what you did]
+   question: What did you do to keep change orders under 3% of contract value on those projects?
+
+## Fit
+Roles: ["Project Manager","Assistant Project Manager"]
+Level: Project manager, running 4 to 6 concurrent projects
+Note: Your experience points toward commercial construction project management. The grocery store build and tenant-improvement work give you clear projects to discuss.

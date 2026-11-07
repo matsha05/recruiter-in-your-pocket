@@ -1,0 +1,41 @@
+# b14_teacher_to_instructional_designer, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_teacher_to_instructional_designer_1.txt (164 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ab8cd5a5; severity check off
+Outcome: report; cost $0.0088; 18.0s
+Case note: Career changer.
+
+## Mostly clear (score 77; model wrote 77)
+## Verdict
+An experienced mathematics teacher with a concrete Canvas project and a few questions to resolve.
+
+## Write-up
+Your resume tells the story of a mathematics teacher at Cedar Creek High School and Pinewood Middle School who is also building digital learning design skills. A recruiter can see your subjects, class sizes and classroom work, so I'd expect them to move it forward for teaching roles with a few questions.
+
+The Canvas module is a strong model: it names the Algebra II unit and shows how you changed it. Your headline's nine-year count doesn't appear to match the teaching dates, though, and a recruiter looking at teaching roles will want to see your certification.
+
+Let's update the experience count and add your certification if you hold one. Then give the professional learning community line one detail about what you lead. Your certificate in progress and Canvas project also give you a starting point for a move toward learning design.
+
+## Cards (4; {"line":2,"structure":1,"keep":1}); severity off; added []
+1. [line] Headline
+   line: "Educator with nine years of classroom experience and a growing portfolio of digital learning design."
+   can't tell: The headline says nine years, while your teaching roles run from August 2015 to Present. A recruiter may notice that the count and dates don't line up.
+   example: Educator with [number] years of classroom experience and a growing portfolio of digital learning design.
+   question: What classroom experience count accurately reflects your teaching dates?
+2. [structure] Certification
+   line: "No teaching certification is listed."
+   can't tell: A recruiter looking at teaching roles can't tell whether you hold a teaching certification or which state issued it.
+   example: [Certification], [state], [status]
+   question: What teaching certification do you hold, if any, and what are its state and status?
+3. [keep] Mathematics Teacher, Cedar Creek High School, line 2
+   line: "Redesigned the Algebra II unit on functions into a self-paced online module in Canvas"
+   can't tell: Keep this as a model. It gives the recruiter a named piece of teaching work and the platform you used to deliver it.
+4. [line] Mathematics Teacher, Cedar Creek High School, line 3
+   line: "Lead the math department's professional learning community"
+   can't tell: A recruiter can see that you lead the group, but not what that involves. What work do you lead with the math department?
+   example: Lead the math department's professional learning community in [work led]
+   question: What work do you lead in the math department's professional learning community?
+
+## Fit
+Roles: ["Mathematics Teacher"]
+Level: Experienced teacher, leads a math department professional learning community
+Note: Your experience points most directly to mathematics teaching. The Canvas module and certificate in progress also show a developing interest in digital learning design.

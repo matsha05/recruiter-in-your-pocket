@@ -1,0 +1,36 @@
+# b20_customer_success_manager, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt (180 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 338ac33a; severity check off
+Outcome: report; cost $0.0073; 14.6s
+Case note: No posting.
+
+## Mostly clear (score 77; model wrote 77)
+## Verdict
+A customer success manager with a defined account book and a few unanswered questions about renewals and escalations.
+
+## Write-up
+Your resume tells a clear story from insurance coordination to payroll support and customer success at Brightline. A recruiter can see the accounts you manage and the people you work with, so this is likely to move forward with a few questions. The main missing piece is what happened after your work on renewals and payroll escalations.
+
+The onboarding checklist is a strong model: you built something the whole CS team now uses. Your experience also leads the resume, and the move from support to customer success is easy to follow.
+
+Let's start with the at-risk renewals, then add what you did when payroll runs failed. Keep the account count and the checklist prominent; they give a recruiter a concrete picture of your work.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] Customer Success Manager, line 3
+   line: "Partnered with Sales on renewal strategy for at-risk accounts"
+   can't tell: A recruiter can see who you worked with, but not what you contributed to the strategy or what happened to the accounts. That matters in a role that runs through renewal.
+   example: Partnered with Sales on renewal strategy for at-risk accounts by [contribution], resulting in [result]
+   question: What did you contribute to the renewal strategy, and what happened to those accounts?
+2. [keep] Customer Success Manager, line 4
+   line: "Built an onboarding checklist now used by the whole CS team"
+   can't tell: Keep this as a model. It names a deliverable and shows who adopted it, without making the reader guess what you built.
+3. [line] Customer Success Manager, line 5
+   line: "Handle escalations with Support and Product when payroll runs fail"
+   can't tell: The payroll problem and partners are clear. What isn't clear is what you do during an escalation or how it gets resolved.
+   example: Handle escalations with Support and Product when payroll runs fail by [actions], resulting in [result]
+   question: What do you do when a payroll run fails, and how are those escalations resolved?
+
+## Fit
+Roles: ["Customer Success Manager","Customer Support Specialist"]
+Level: Customer Success Manager managing 48 mid-market accounts; no direct reports listed
+Note: Your progression at Brightline points toward customer success roles in B2B software. Adding your contribution to renewals and the results you can substantiate would round out that story.

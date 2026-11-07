@@ -1,0 +1,55 @@
+# b11_recent_grad_bad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_recent_grad_bad_1.txt (151 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ab8cd5a5; severity check off
+Outcome: report; cost $0.0100; 20.8s
+Case note: First job, weak; count-check key says no_evidence_latest_role, no_recent_work, title_level_mismatch.
+
+## Needs more context (score 57; model wrote 57)
+## Verdict
+A marketing intern's resume with a manager headline and little detail about the credit union work.
+
+## Write-up
+Your resume points toward marketing management, with a credit union internship backed by research and finance work. It's common for an early-career resume to lean on broad duties, but the newsletter, social media and event lines don't yet show enough of your part to stand out in a pile. A recruiter would likely pass on a manager application.
+
+The dairy farm research is your best model: you name the data, the tool and the study it served. Your headline claims campaign leadership that the internship lines don't yet show, Education comes before your work, and nothing accounts for time after May 2024.
+
+Let's start with the Marketing Intern role. Put your actual contribution to the newsletter, posts and events on the resume, then bring the headline in line with that work. Add what you've done since the internship, if there's something you can honestly include.
+
+## Cards (7; {"line":4,"dates":1,"structure":1,"keep":1}); severity off; added []
+1. [line] Headline
+   line: "Marketing manager who has led credit union campaigns from strategy to launch."
+   can't tell: The credit union lines show an internship, but they don't show you leading campaigns from strategy to launch. A recruiter looking for a manager needs to see that ownership in the work below.
+   example: Marketing Intern who [what you did] for Badger State Credit Union
+   question: What marketing work did you handle at Badger State Credit Union?
+2. [dates] Dates
+   line: "Nothing is dated after May 2024."
+   can't tell: A recruiter can't tell what you've done since your last dated role. If you took care of a family member, that's a real line; a career break can also name a course, project, volunteering or travel. Include freelance work if you actually did it.
+   example: May 2024 - Present [what you did]
+   question: What have you done since May 2024 that you can include on your resume?
+3. [structure] Structure
+   line: "Education sits above Experience."
+   can't tell: Your work gives a recruiter more to go on than the degree alone. Put Experience first so the credit union and research roles get seen sooner.
+   question: Can you move Experience above Education?
+4. [line] Marketing Intern, line 1
+   line: "Helped with the member newsletter"
+   can't tell: Helped could mean writing, editing or sending the newsletter. Your part is what a recruiter needs to see.
+   example: Helped with [newsletter task] for the member newsletter on a [frequency] schedule
+   question: What part of the newsletter did you handle, and how often?
+5. [line] Marketing Intern, line 2
+   line: "Posted on the credit union's social media accounts"
+   can't tell: Posting names the task, but not what you posted or how often. Those details would show what the social media work involved.
+   example: Posted [content] on the credit union's social media accounts on a [frequency] schedule
+   question: What did you post, and how often?
+6. [line] Marketing Intern, line 3
+   line: "Supported planning for branch events"
+   can't tell: A recruiter can't tell which event you worked on or what your planning support involved. Name one event and your part in it.
+   example: Supported planning for [branch event] by [planning task]
+   question: Which branch event did you help plan, and what did you do?
+7. [keep] Research Assistant, line 1
+   line: "Cleaned survey data from 1,200 dairy farms in Stata for a pricing study"
+   can't tell: Keep this as a model. It gives the reader a concrete piece of work, how much data was involved and what it was for.
+
+## Fit
+Roles: ["Marketing manager","Marketing Intern"]
+Level: Entry level, with a marketing internship and other early-career roles
+Note: The manager headline reaches beyond the ownership shown in your internship bullets. Your experience points more directly toward marketing internship or early-career marketing work; show any campaign leadership you can substantiate in the job lines.

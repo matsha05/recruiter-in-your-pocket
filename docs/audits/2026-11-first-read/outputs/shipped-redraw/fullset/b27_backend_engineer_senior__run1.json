@@ -1,0 +1,215 @@
+{
+  "case_id": "b27_backend_engineer_senior",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_backend_engineer_senior_1.txt",
+  "resume_sha256": "92a71c8e81a037980a571ba4d2007cab76d8f9f04b6517e1ff23e45a0383be59",
+  "resume_words": 190,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:00:04.978Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5457,
+        "completion_tokens": 784,
+        "total_tokens": 6241,
+        "cached_prompt_tokens": 4685,
+        "cache_write_prompt_tokens": 769,
+        "reasoning_tokens": 264
+      },
+      "cost_usd": 0.0051185,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 9822
+    }
+  ],
+  "resume_prompt_sha256": "0a19c3ee70395ec8fb0584d4bea1b93da77aeca37469b4d47211bc8568544f0c",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments engineer whose resume connects substantial backend work to measurable results.",
+    "write_up": [
+      "Your resume is strong because it shows both the engineering work and what changed: a faster authorization service, fewer ledger breaks, and fewer integration incidents! A recruiter can see a clear path from billing at Northwind to senior payments work at Tidewater.",
+      "The ledger line is a great model: it names the service you built and gives the before and after for reconciliation breaks. Your senior headline is backed up by the migration, audit leadership, and mentoring work beneath it.",
+      "Your resume isn't likely to be the reason a recruiter passes. The fit with a particular role and the competition still matter. If you want one more improvement, tell us what the billing dashboards monitored."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "- Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10",
+        "cannot_tell": "Keep this as a model. It pairs a named technical deliverable with a concrete change, so a recruiter can understand why the work mattered.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer, line 3",
+        "line": "- Added observability with OpenTelemetry and Grafana dashboards for the billing team",
+        "cannot_tell": "The tools and the billing team are clear. What the dashboards monitored would give a recruiter a better sense of the problem they addressed.",
+        "example": "Added observability with OpenTelemetry and Grafana dashboards for the billing team to monitor [what the dashboards tracked]",
+        "question": "What did the dashboards monitor for the billing team?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Software Engineer, Payments Platform",
+        "Software Engineer"
+      ],
+      "level": "Senior engineer",
+      "note": "Your experience points toward senior backend work in payments and billing. The resume also shows technical leadership through the migration, audit, and mentoring work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments engineer whose resume connects substantial backend work to measurable results.",
+    "write_up": [
+      "Your resume is strong because it shows both the engineering work and what changed: a faster authorization service, fewer ledger breaks, and fewer integration incidents! A recruiter can see a clear path from billing at Northwind to senior payments work at Tidewater.",
+      "The ledger line is a great model: it names the service you built and gives the before and after for reconciliation breaks. Your senior headline is backed up by the migration, audit leadership, and mentoring work beneath it.",
+      "Your resume isn't likely to be the reason a recruiter passes. The fit with a particular role and the competition still matter. If you want one more improvement, tell us what the billing dashboards monitored."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10",
+        "cannot_tell": "Keep this as a model. It pairs a named technical deliverable with a concrete change, so a recruiter can understand why the work mattered.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer, line 3",
+        "line": "Added observability with OpenTelemetry and Grafana dashboards for the billing team",
+        "cannot_tell": "The tools and the billing team are clear. What the dashboards monitored would give a recruiter a better sense of the problem they addressed.",
+        "example": "Added observability with OpenTelemetry and Grafana dashboards for the billing team to monitor [what the dashboards tracked]",
+        "question": "What did the dashboards monitor for the billing team?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Software Engineer, Payments Platform",
+        "Software Engineer"
+      ],
+      "level": "Senior engineer",
+      "note": "Your experience points toward senior backend work in payments and billing. The resume also shows technical leadership through the migration, audit, and mentoring work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 90
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments engineer whose resume connects substantial backend work to measurable results.",
+    "write_up": [
+      "Your resume is strong because it shows both the engineering work and what changed: a faster authorization service, fewer ledger breaks, and fewer integration incidents! A recruiter can see a clear path from billing at Northwind to senior payments work at Tidewater.",
+      "The ledger line is a great model: it names the service you built and gives the before and after for reconciliation breaks. Your senior headline is backed up by the migration, audit leadership, and mentoring work beneath it.",
+      "Your resume isn't likely to be the reason a recruiter passes. The fit with a particular role and the competition still matter. If you want one more improvement, tell us what the billing dashboards monitored."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10",
+        "cannot_tell": "Keep this as a model. It pairs a named technical deliverable with a concrete change, so a recruiter can understand why the work mattered.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer, line 3",
+        "line": "Added observability with OpenTelemetry and Grafana dashboards for the billing team",
+        "cannot_tell": "The tools and the billing team are clear. What the dashboards monitored would give a recruiter a better sense of the problem they addressed.",
+        "example": "Added observability with OpenTelemetry and Grafana dashboards for the billing team to monitor [what the dashboards tracked]",
+        "question": "What did the dashboards monitor for the billing team?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Software Engineer, Payments Platform",
+        "Software Engineer"
+      ],
+      "level": "Senior engineer",
+      "note": "Your experience points toward senior backend work in payments and billing. The resume also shows technical leadership through the migration, audit, and mentoring work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 90
+  },
+  "presentation": {
+    "score": 90,
+    "band": "Clear and specific",
+    "model_score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments engineer whose resume connects substantial backend work to measurable results.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 115,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer, line 3",
+        "line": "Added observability with OpenTelemetry and Grafana dashboards for the billing team",
+        "blanks": 1,
+        "question": "What did the dashboards monitor for the billing team?"
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "keep": 1,
+      "line": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Software Engineer, Payments Platform",
+        "Software Engineer"
+      ],
+      "level": "Senior engineer",
+      "note": "Your experience points toward senior backend work in payments and billing. The resume also shows technical leadership through the migration, audit, and mentoring work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0051185,
+  "latency_ms": 9825
+}

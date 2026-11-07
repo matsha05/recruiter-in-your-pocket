@@ -1,0 +1,30 @@
+# b18_military_to_civilian, run 1
+Resume: ../2026-11-live-judgment/resumes/b_military_to_civilian.txt (268 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 01c2028d; severity check off
+Outcome: report; cost $0.0073; 13.6s
+
+## Clear and specific (score 89; model wrote 89)
+## Verdict
+An Army logistics leader with strong maintenance and team results that translate to supervisor roles.
+
+## Write-up
+This is a strong resume! Your Army roles show a clear path from mechanic to logistics and maintenance leader, with team, equipment and budget responsibilities a civilian recruiter can understand.
+
+The vehicle readiness line is the model: it names the change and the two parts of the process you adjusted. Your resume also puts experience before education and states the supervisor roles you're seeking.
+
+Let's make the field exercise work a little more concrete for a civilian reader. Otherwise, your resume is unlikely to be the thing holding you back; the match between a particular job's requirements and your Army experience will matter too.
+
+## Cards (2; {"line":1,"keep":1}); severity off; added []
+1. [line] Platoon Sergeant, line 3
+   line: "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises"
+   can't tell: The battalion and exercises show how big the assignment was, but a civilian recruiter can't tell what the logistics support included.
+   example: Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises, including [what support involved]
+   question: What did the logistics support include?
+2. [keep] Platoon Sergeant, line 4
+   line: "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule"
+   can't tell: Keep this as a model. It gives a recruiter a concrete operational problem, a measured improvement and the actions you took.
+
+## Fit
+Roles: ["operations supervisor","Platoon Sergeant (E-7), Forward Support Company"]
+Level: Supervisor, led 38 soldiers and evaluated 6 direct-report sergeants
+Note: Your recent work points toward operations and maintenance supervision, with supply and fuel responsibilities alongside vehicle readiness. The in-progress supply chain degree and parts budget add useful context for supply chain roles.

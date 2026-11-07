@@ -1,0 +1,30 @@
+# b26_construction_pm_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_construction_pm_strong_1.txt (136 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 338ac33a; severity check off
+Outcome: report; cost $0.0061; 12.3s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A commercial construction project manager whose project values, trade counts and schedule results are easy to see.
+
+## Write-up
+This is a strong construction project manager resume! At Capitol Builders, you show the value and number of projects you run, the trades you manage and a grocery build delivered ahead of schedule. A recruiter can see the work and its scale without guessing.
+
+The grocery store line is the model: it names the build, its value and the schedule result. Your move from Assistant Project Manager to Project Manager is easy to follow, and Experience is right where it belongs, above Education.
+
+I'd add how you kept change orders low, if you can point to your part in that work. Otherwise, your resume is unlikely to be the reason you don't get a call back; competition for the particular job matters too.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Project Manager, line 2
+   line: "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024"
+   can't tell: Keep this as a model. It pairs a recognizable project with a dollar value and a result against the schedule.
+2. [line] Project Manager, line 4
+   line: "Kept change orders under 3% of contract value across 2024 and 2025 projects"
+   can't tell: The change order figure is useful, but a recruiter can't tell what you did to keep it there. Your part in that work would make the result more persuasive.
+   example: Kept change orders under 3% of contract value across 2024 and 2025 projects by [what you did]
+   question: What did you do to keep change orders under 3% on those projects?
+
+## Fit
+Roles: ["Project Manager"]
+Level: Project manager, running concurrent projects and managing subcontractor bids and buyout
+Note: Your experience points to commercial tenant improvement and retail construction project management. The grocery store build also gives a recruiter a concrete example of your ground-up retail work.

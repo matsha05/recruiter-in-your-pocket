@@ -1,0 +1,35 @@
+# b05_paralegal, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_paralegal_1.txt (144 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0088; 18.1s
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+A litigation paralegal with substantial trial and document-production work, but an experience claim the jobs don't yet support.
+
+## Write-up
+Your resume points to senior litigation paralegal work, from personal injury cases at Summit Legal Group to commercial and employment litigation at Harlan & Pike. A recruiter can see the work, but may hesitate over the seven-year claim: the earlier role lists personal injury, not commercial or employment cases.
+
+The Relativity line is a strong model. It names the work, the tool, and how large a production can be. Your experience and education are easy to follow, and the two jury trials make your recent work concrete.
+
+Start with the headline and make the years match the experience you can show. Then add what your trial support involved beyond the binders and exhibits, if there was more to it.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] Headline
+   line: "Litigation paralegal with seven years supporting commercial and employment cases."
+   can't tell: The Harlan & Pike role names commercial and employment cases, but the earlier role names personal injury. A recruiter can't tell where the rest of the seven years in those areas comes from.
+   example: Litigation paralegal with [years] supporting commercial and employment cases.
+   question: How many years have you supported commercial and employment cases, and did that work include your time at Summit Legal Group?
+2. [keep] Senior Litigation Paralegal, line 2
+   line: "Manage document productions of up to 250,000 pages in Relativity"
+   can't tell: Keep this as a model: the ownership is clear, and the page count gives a recruiter a sense of the productions you manage.
+3. [line] Senior Litigation Paralegal, line 4
+   line: "Prepare trial binders and exhibits; supported two jury trials in 2025"
+   can't tell: The binders and exhibits are clear, but the trial support could cover more. What did you handle for those trials?
+   example: Prepare trial binders and exhibits; supported two jury trials in 2025 by [trial support work].
+   question: What did you handle for the two jury trials, beyond preparing binders and exhibits?
+
+## Fit
+Roles: ["Senior Litigation Paralegal","Paralegal"]
+Level: Senior paralegal
+Note: Your recent work points to litigation paralegal roles involving discovery, document production, and trial preparation. The headline needs to distinguish your total experience from your time supporting commercial and employment cases.

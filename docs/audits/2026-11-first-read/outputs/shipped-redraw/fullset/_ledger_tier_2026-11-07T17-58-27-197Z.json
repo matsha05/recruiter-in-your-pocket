@@ -1,0 +1,36 @@
+{
+  "batch": "tier",
+  "model": "gpt-6.1-terra",
+  "effort": "medium",
+  "today": "2026-11-07",
+  "severity_check": false,
+  "budget_usd": 1.5,
+  "spent_usd": 0.01605075,
+  "calls": 2,
+  "runs": [
+    {
+      "stem": "t2_logos_operations_robert__run1",
+      "outcome": "report",
+      "cost_usd": 0.00699975,
+      "score": 69,
+      "band": "Needs more context",
+      "cards": 5,
+      "structural_from_model": 0,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "t1_google_engineer_maya__run1",
+      "outcome": "report",
+      "cost_usd": 0.009051,
+      "score": 69,
+      "band": "Needs more context",
+      "cards": 5,
+      "structural_from_model": 0,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    }
+  ]
+}

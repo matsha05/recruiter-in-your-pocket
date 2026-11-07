@@ -1,0 +1,45 @@
+# b37_marketing_director_bad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_marketing_director_bad_1.txt (167 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 1c0fe4fe; severity check off
+Outcome: report; cost $0.0112; 23.3s
+Case note: Title above the work; key says no_recent_work, no_target_role, title_level_mismatch.
+
+## Needs more context (score 59; model wrote 59)
+## Verdict
+Hands-on marketing work under a director title, with no work dated after January 2025.
+
+## Write-up
+Your resume moves from biology and title records to marketing at Lumen Candle Co. I'm reading it for marketing because that's your most recent role. It's common for a director title to cover hands-on work at a small business, but a recruiter can't tell from these bullets what your director responsibilities included. That makes the title difficult to assess in a pile.
+
+The line about writing descriptions for 40 candle scents is a useful model: it names the work and how much you produced. Your earlier roles also give concrete counts. The other big question is what you've done since January 2025, when the Lumen role ended.
+
+Let's start with the Lumen title and add the marketing responsibilities you can account for, including any team or budget responsibility. Then explain the time since that job honestly and add a little context about the business.
+
+## Cards (5; {"line":2,"dates":1,"structure":1,"keep":1}); severity off; added []
+1. [line] Director of Marketing, title
+   line: "Director of Marketing"
+   can't tell: The title points to director-level responsibility, but the bullets show posting and product descriptions rather than the full marketing remit. A recruiter can't tell whether you directed marketing, managed a team or handled a budget.
+   example: Director of Marketing, Lumen Candle Co. | [marketing responsibilities] | [team or budget responsibility]
+   question: What marketing responsibilities did you have, and did they include a team or budget?
+2. [dates] Dates
+   line: "Nothing is dated after January 2025."
+   can't tell: A recruiter can't tell what you've done since the Lumen role ended. If you took care of a family member, name that; if you took a career break, you can mention what you did during it. Include freelance or consulting work only if it was real.
+   example: January 2025 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]
+   question: What have you done since January 2025 that you'd be comfortable including?
+3. [structure] Lumen Candle Co.
+   line: "The resume doesn't describe Lumen Candle Co. beyond its name and the work listed."
+   can't tell: A recruiter who doesn't know the company can't tell how big the business was or who its customers were. That context could help explain a director role that also included packing orders.
+   question: How would you describe the business and its customers when you worked there?
+4. [line] Director of Marketing, line 1
+   line: "Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers"
+   can't tell: The posting frequency and follower count are useful. A recruiter still can't tell what you posted or whether you tracked any change from the work.
+   example: Posted [content] 3 to 5 times a week on the company Instagram, which has 2,100 followers, with [result]
+   question: What did you post, and what results did you track, if any?
+5. [keep] Director of Marketing, line 2
+   line: "Wrote product descriptions for 40 candle scents on the website"
+   can't tell: Keep this. It gives the reader a specific deliverable and a count without making them guess what you wrote. Use that same approach for the rest of your marketing work.
+
+## Fit
+Roles: ["Director of Marketing"]
+Level: Hands-on marketing contributor; director title without team or budget details
+Note: Your recent work points toward social media and product content. The resume doesn't yet show the team, budget or broader marketing responsibilities a recruiter may look for in a director role.

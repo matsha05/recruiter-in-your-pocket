@@ -1,0 +1,308 @@
+{
+  "case_id": "b08_warehouse_supervisor",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_warehouse_supervisor_1.txt",
+  "resume_sha256": "4f23aeaad42ee6b5836bf39d21414eb87585621802a43fd069caf4dd7d77509a",
+  "resume_words": 173,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T17:58:46.605Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5409,
+        "completion_tokens": 1212,
+        "total_tokens": 6621,
+        "cached_prompt_tokens": 4685,
+        "cache_write_prompt_tokens": 721,
+        "reasoning_tokens": 359
+      },
+      "cost_usd": 0.0071985,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 14674
+    }
+  ],
+  "resume_prompt_sha256": "0a19c3ee70395ec8fb0584d4bea1b93da77aeca37469b4d47211bc8568544f0c",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 77,
+    "lifted_by_employer": false,
+    "verdict": "A distribution supervisor with a clear progression and room to show more of how the work gets done.",
+    "write_up": [
+      "You’ve moved from Order Picker to Shift Supervisor at Sierra Freight Distribution, and your resume points clearly toward outbound operations leadership. A recruiter can see the team you supervise and the work it covers, though some lines leave the decisions and your part in changes unspoken.",
+      "The night-shift line is the model: it names 35 associates and the picking, packing, and loading work they do. Your work history also makes the progression easy to follow, with certifications and Manhattan WMS experience relevant to the job.",
+      "Let’s start with labor scheduling in your current role, then show what you taught new leads and what you handled when covering for the supervisor. For the scanner rollout, keep the word 'helped' and add the part that was yours."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Shift Supervisor, line 1",
+        "line": "- Supervise a night shift of 35 associates across picking, packing, and loading",
+        "cannot_tell": "Keep this one. It puts your responsibility, team count, and the shift’s work together without making a recruiter guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 2",
+        "line": "- Schedule labor and assign zones based on daily order volume",
+        "cannot_tell": "A recruiter can see that order volume guides the schedule, but not what you weigh when assigning people. One detail about that decision would show how you run the shift.",
+        "example": "Schedule labor and assign zones based on daily order volume, taking [scheduling consideration] into account",
+        "question": "What do you consider when deciding how to assign people to zones?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 5",
+        "line": "- Train new leads on the warehouse management system",
+        "cannot_tell": "Training new leads is useful leadership work. Which parts of the warehouse management system do you teach them to use?",
+        "example": "Train new leads on the warehouse management system, covering [system functions]",
+        "question": "Which system functions do you train new leads to use?"
+      },
+      {
+        "kind": "line",
+        "where": "Lead Associate, line 2",
+        "line": "- Covered for the supervisor during vacations",
+        "cannot_tell": "Covering for the supervisor shows trust, but it doesn’t say which responsibilities you took on. Name the work you handled in that role.",
+        "example": "Covered for the supervisor during vacations, handling [supervisor responsibilities]",
+        "question": "What supervisor responsibilities did you handle during those vacations?"
+      },
+      {
+        "kind": "line",
+        "where": "Lead Associate, line 3",
+        "line": "- Helped roll out handheld scanners on the pick floor",
+        "cannot_tell": "The scanner rollout is a useful change to mention, but 'helped' leaves your part open. Say what you did while keeping your contribution at its real size.",
+        "example": "Helped roll out handheld scanners on the pick floor by [your contribution]",
+        "question": "What did you do to help roll out the handheld scanners?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Shift Supervisor, Outbound Operations",
+        "Lead Associate"
+      ],
+      "level": "Operations supervisor",
+      "note": "Your experience points toward distribution and outbound shift supervision. The progression from picking to leading associates and supervising a night shift is easy to follow.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 77,
+    "lifted_by_employer": false,
+    "verdict": "A distribution supervisor with a clear progression and room to show more of how the work gets done.",
+    "write_up": [
+      "You’ve moved from Order Picker to Shift Supervisor at Sierra Freight Distribution, and your resume points clearly toward outbound operations leadership. A recruiter can see the team you supervise and the work it covers, though some lines leave the decisions and your part in changes unspoken.",
+      "The night-shift line is the model: it names 35 associates and the picking, packing, and loading work they do. Your work history also makes the progression easy to follow, with certifications and Manhattan WMS experience relevant to the job.",
+      "Let’s start with labor scheduling in your current role, then show what you taught new leads and what you handled when covering for the supervisor. For the scanner rollout, keep the word 'helped' and add the part that was yours."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Shift Supervisor, line 1",
+        "line": "Supervise a night shift of 35 associates across picking, packing, and loading",
+        "cannot_tell": "Keep this one. It puts your responsibility, team count, and the shift’s work together without making a recruiter guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 2",
+        "line": "Schedule labor and assign zones based on daily order volume",
+        "cannot_tell": "A recruiter can see that order volume guides the schedule, but not what you weigh when assigning people. One detail about that decision would show how you run the shift.",
+        "example": "Schedule labor and assign zones based on daily order volume, taking [scheduling consideration] into account",
+        "question": "What do you consider when deciding how to assign people to zones?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 5",
+        "line": "Train new leads on the warehouse management system",
+        "cannot_tell": "Training new leads is useful leadership work. Which parts of the warehouse management system do you teach them to use?",
+        "example": "Train new leads on the warehouse management system, covering [system functions]",
+        "question": "Which system functions do you train new leads to use?"
+      },
+      {
+        "kind": "line",
+        "where": "Lead Associate, line 2",
+        "line": "Covered for the supervisor during vacations",
+        "cannot_tell": "Covering for the supervisor shows trust, but it doesn’t say which responsibilities you took on. Name the work you handled in that role.",
+        "example": "Covered for the supervisor during vacations, handling [supervisor responsibilities]",
+        "question": "What supervisor responsibilities did you handle during those vacations?"
+      },
+      {
+        "kind": "line",
+        "where": "Lead Associate, line 3",
+        "line": "Helped roll out handheld scanners on the pick floor",
+        "cannot_tell": "The scanner rollout is a useful change to mention, but 'helped' leaves your part open. Say what you did while keeping your contribution at its real size.",
+        "example": "Helped roll out handheld scanners on the pick floor by [your contribution]",
+        "question": "What did you do to help roll out the handheld scanners?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Shift Supervisor, Outbound Operations",
+        "Lead Associate"
+      ],
+      "level": "Operations supervisor",
+      "note": "Your experience points toward distribution and outbound shift supervision. The progression from picking to leading associates and supervising a night shift is easy to follow.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 77
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 77,
+    "lifted_by_employer": false,
+    "verdict": "A distribution supervisor with a clear progression and room to show more of how the work gets done.",
+    "write_up": [
+      "You’ve moved from Order Picker to Shift Supervisor at Sierra Freight Distribution, and your resume points clearly toward outbound operations leadership. A recruiter can see the team you supervise and the work it covers, though some lines leave the decisions and your part in changes unspoken.",
+      "The night-shift line is the model: it names 35 associates and the picking, packing, and loading work they do. Your work history also makes the progression easy to follow, with certifications and Manhattan WMS experience relevant to the job.",
+      "Let’s start with labor scheduling in your current role, then show what you taught new leads and what you handled when covering for the supervisor. For the scanner rollout, keep the word 'helped' and add the part that was yours."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Shift Supervisor, line 1",
+        "line": "Supervise a night shift of 35 associates across picking, packing, and loading",
+        "cannot_tell": "Keep this one. It puts your responsibility, team count, and the shift’s work together without making a recruiter guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 2",
+        "line": "Schedule labor and assign zones based on daily order volume",
+        "cannot_tell": "A recruiter can see that order volume guides the schedule, but not what you weigh when assigning people. One detail about that decision would show how you run the shift.",
+        "example": "Schedule labor and assign zones based on daily order volume, taking [scheduling consideration] into account",
+        "question": "What do you consider when deciding how to assign people to zones?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 5",
+        "line": "Train new leads on the warehouse management system",
+        "cannot_tell": "Training new leads is useful leadership work. Which parts of the warehouse management system do you teach them to use?",
+        "example": "Train new leads on the warehouse management system, covering [system functions]",
+        "question": "Which system functions do you train new leads to use?"
+      },
+      {
+        "kind": "line",
+        "where": "Lead Associate, line 2",
+        "line": "Covered for the supervisor during vacations",
+        "cannot_tell": "Covering for the supervisor shows trust, but it doesn’t say which responsibilities you took on. Name the work you handled in that role.",
+        "example": "Covered for the supervisor during vacations, handling [supervisor responsibilities]",
+        "question": "What supervisor responsibilities did you handle during those vacations?"
+      },
+      {
+        "kind": "line",
+        "where": "Lead Associate, line 3",
+        "line": "Helped roll out handheld scanners on the pick floor",
+        "cannot_tell": "The scanner rollout is a useful change to mention, but 'helped' leaves your part open. Say what you did while keeping your contribution at its real size.",
+        "example": "Helped roll out handheld scanners on the pick floor by [your contribution]",
+        "question": "What did you do to help roll out the handheld scanners?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Shift Supervisor, Outbound Operations",
+        "Lead Associate"
+      ],
+      "level": "Operations supervisor",
+      "note": "Your experience points toward distribution and outbound shift supervision. The progression from picking to leading associates and supervising a night shift is easy to follow.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 77
+  },
+  "presentation": {
+    "score": 77,
+    "band": "Mostly clear",
+    "model_score": 77,
+    "lifted_by_employer": false,
+    "verdict": "A distribution supervisor with a clear progression and room to show more of how the work gets done.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 125,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Shift Supervisor, line 1",
+        "line": "Supervise a night shift of 35 associates across picking, packing, and loading",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 2",
+        "line": "Schedule labor and assign zones based on daily order volume",
+        "blanks": 1,
+        "question": "What do you consider when deciding how to assign people to zones?"
+      },
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 5",
+        "line": "Train new leads on the warehouse management system",
+        "blanks": 1,
+        "question": "Which system functions do you train new leads to use?"
+      },
+      {
+        "kind": "line",
+        "where": "Lead Associate, line 2",
+        "line": "Covered for the supervisor during vacations",
+        "blanks": 1,
+        "question": "What supervisor responsibilities did you handle during those vacations?"
+      },
+      {
+        "kind": "line",
+        "where": "Lead Associate, line 3",
+        "line": "Helped roll out handheld scanners on the pick floor",
+        "blanks": 1,
+        "question": "What did you do to help roll out the handheld scanners?"
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "keep": 1,
+      "line": 4
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Shift Supervisor, Outbound Operations",
+        "Lead Associate"
+      ],
+      "level": "Operations supervisor",
+      "note": "Your experience points toward distribution and outbound shift supervision. The progression from picking to leading associates and supervising a night shift is easy to follow.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0071985,
+  "latency_ms": 14677
+}

@@ -1,0 +1,82 @@
+# h1_bad_resume, run 1
+Resume: ../2026-11-live-judgment/resumes/h1_bad_resume.txt (217 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ee57d907; severity check off
+Outcome: report; cost $0.0124; 28.9s
+Case note: Ten things wrong: filler objective, wrong target role, duty bullets, no results, five jobs in four years, two undated roles, typos, gap since June 2023, soft-skill skills list, references line.
+
+## Needs more context (score 38; model wrote 38)
+## Verdict
+A retail shift lead's resume aims at marketing management without showing marketing work or complete dates.
+
+## Write-up
+Your resume names Marketing Manager as your goal, but the work shown is in retail, warehousing and delivery. I'm reading it for Shift Lead because that's your most recent dated role. Resumes with task lists like these are common, but they don't stand out in a pile: a recruiter can't tell how much you handled or what set your work apart.
+
+The Buckeye Wireless line about selling phones and accessories is a useful starting point because it names what you sold and who you served. The dates need attention too: two jobs have no dates, and nothing is dated after June 2023, so a recruiter can't tell what you've done since then.
+
+Let's start with the QuickStop role. Add what opening the store involved, how you handled complaints and what you taught new hires. Then date the undated jobs and account for the time after your last dated role honestly. If marketing management is your goal, add any real marketing work you can document.
+
+## Cards (12; {"line":8,"dates":3,"structure":1}); severity off; added []
+1. [line] Objective
+   line: "Hard-working team player seeking a challenging Marketing Manager position where I can utilize my skills and grow with a dynamic company."
+   can't tell: The Marketing Manager goal isn't backed up by marketing work elsewhere on your resume. A recruiter looking for that job won't know what you've done in marketing.
+   example: Seeking a [target job title] position with experience in [relevant work].
+   question: Which job are you targeting, and what relevant work can you point to?
+2. [dates] Dates
+   line: "Nothing is dated after June 2023, and two roles have no dates."
+   can't tell: A recruiter can't tell what you've done since June 2023. The undated jobs may account for some of that time. Once you've dated them, include any other work, study, caregiving or career break honestly; a referral may matter more if there's a long unexplained gap.
+   example: June 2023 - Present [what you did and when]
+   question: What have you done since June 2023, and when did each activity or job take place?
+3. [structure] QuickStop Fuel and Food
+   line: "QuickStop Fuel and Food has no description of its size."
+   can't tell: A recruiter who doesn't know the store can't tell how large an operation you helped run. One short description could give your shift lead work some context.
+   question: How would you describe the store's size using facts you know?
+4. [line] Shift Lead, line 1
+   line: "Responsible for opening and closing the store"
+   can't tell: Opening and closing are important, but a recruiter can't tell which checks or tasks were yours.
+   example: Responsible for opening and closing the store, including [opening and closing tasks].
+   question: What did you do when opening and closing the store?
+5. [line] Shift Lead, line 2
+   line: "Handled cash register and customer complaints"
+   can't tell: A recruiter can see that you worked the register and handled complaints, but not how you dealt with a customer problem.
+   example: Handled cash register and customer complaints, including [type of complaint] by [action taken].
+   question: What kind of complaint did you handle, and what did you do about it?
+6. [line] Shift Lead, line 3
+   line: "Made sure shelves were stocked and the store was clean"
+   can't tell: This names routine store work, but not what you did to keep it on track during a shift.
+   example: Made sure shelves were stocked and the store was clean by [tasks you performed].
+   question: What tasks did you perform to keep shelves stocked and the store clean?
+7. [line] Shift Lead, line 4
+   line: "Trained new employes when needed"
+   can't tell: Training new hires is useful shift lead work. A recruiter can't tell what you taught or how many people you trained.
+   example: Trained [number] new employees on [tasks].
+   question: How many new hires did you train, and what did you teach them?
+8. [dates] Warehouse Associate
+   line: "The Warehouse Associate role has no dates."
+   can't tell: Without dates, a recruiter can't place this job alongside your other work.
+   example: [Month Year] - [Month Year] Warehouse Associate, Miami Valley Distribution
+   question: When did you start and finish the Warehouse Associate role?
+9. [line] Warehouse Associate, line 1
+   line: "Picked and packed orders"
+   can't tell: A recruiter can see the task, but not what kinds of orders you handled or how much you picked and packed.
+   example: Picked and packed [number] orders for [type of goods or customers] per [time period].
+   question: What kinds of orders did you pick and pack, and how many did you handle in a typical period?
+10. [line] Sales Associate, line 1
+   line: "Sold phones and accessories to customers"
+   can't tell: This names what you sold, which is a good start. For a sales role, a recruiter also wants a measure of the work, such as your sales against a target.
+   example: Sold phones and accessories to customers, reaching [sales result] against [target].
+   question: What sales result and target can you document from Buckeye Wireless?
+11. [dates] Delivery Driver
+   line: "The Delivery Driver role has no dates."
+   can't tell: A recruiter can't tell when this job happened or how it fits with your other roles.
+   example: [Month Year] - [Month Year] Delivery Driver, Gino's Pizza
+   question: When did you start and finish the Delivery Driver role?
+12. [line] Crew Member, line 3
+   line: "Worked well as part of a team"
+   can't tell: A recruiter can't tell what you and the team did together. A concrete example would say more than the teamwork claim.
+   example: Worked with the team to [task performed together].
+   question: What did you and your coworkers do together during a shift?
+
+## Fit
+Roles: ["Shift Lead","Marketing Manager","Sales Associate"]
+Level: Frontline shift lead, with training of new hires
+Note: Your resume names Marketing Manager as a goal, but it doesn't show marketing work or management of a marketing team. The experience shown points more directly toward retail shift lead or sales associate work.

@@ -1,0 +1,41 @@
+# b23_pharmacy_tech_table, run 1
+Resume: ../2026-11-live-judgment/resumes/b_pharmacy_tech_table.txt (209 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5827dcf1; severity check off
+Outcome: report; cost $0.0083; 17.0s
+Case note: Tables rendered to tab-separated text.
+
+## Clear and specific (score 86; model wrote 86)
+## Verdict
+A certified pharmacy technician with substantial inpatient and retail work, supported by clear measures of the job.
+
+## Write-up
+This is a strong pharmacy technician resume! Your move from retail pharmacy to inpatient sterile compounding is easy to follow, and your recent work gives a recruiter both the setting and the volume.
+
+The dispensing cabinet line is a great model: it names the work, the six nursing units and the change in stockout reports. Your California license and sterile compounding certification are also easy to find.
+
+A few earlier lines could say more about what you handled, especially prescription verification and immunization scheduling. Your resume is unlikely to be the main thing holding you back; how competitive a particular job is will matter too.
+
+## Cards (4; {"keep":1,"line":3}); severity off; added []
+1. [keep] Pharmacy Technician II, dispensing cabinets
+   line: "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024"
+   can't tell: Keep this as a model. It puts the change in stockout reports right beside the responsibility and shows how many units you covered.
+2. [line] Pharmacy Technician, prescriptions
+   line: "Pharmacy Technician Filled and verified prescriptions for a store doing 350 scripts a day"
+   can't tell: The store's volume is useful, but a recruiter can't tell what your verification involved or where the pharmacist's review came in.
+   example: Filled and verified prescriptions for a store doing 350 scripts a day, including [what you verified] under [review process]
+   question: What did you check when verifying prescriptions, and how did the pharmacist's review fit into the process?
+3. [line] Pharmacy Technician, immunization scheduling
+   line: "Pharmacy Technician Ran the immunization scheduling during the 2021 flu and COVID seasons"
+   can't tell: Running scheduling could cover several different jobs. A recruiter can't tell what you handled to keep appointments moving.
+   example: Ran the immunization scheduling during the 2021 flu and COVID seasons, handling [scheduling tasks]
+   question: What parts of immunization scheduling did you handle?
+4. [line] Pharmacy Clerk
+   line: "Pharmacy Clerk Register, inventory counts, and customer pickup"
+   can't tell: These name the areas you worked in, but not what you did with inventory or customer pickups.
+   example: Handled register, inventory counts, and customer pickup, including [inventory and pickup tasks]
+   question: What did you handle for inventory counts and customer pickups?
+
+## Fit
+Roles: ["Certified Pharmacy Technician (CPhT)","Pharmacy Technician II"]
+Level: Experienced pharmacy technician; trains new technicians in sterile compounding
+Note: Your experience points toward inpatient pharmacy technician work, with retail pharmacy work behind it. The sterile compounding certification and cleanroom work are especially relevant to roles involving IV preparation.

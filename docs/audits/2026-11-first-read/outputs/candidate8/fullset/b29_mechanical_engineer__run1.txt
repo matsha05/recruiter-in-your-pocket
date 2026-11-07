@@ -1,0 +1,40 @@
+# b29_mechanical_engineer, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_mechanical_engineer_1.txt (143 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5cba8f05; severity check off
+Outcome: report; cost $0.0072; 14.6s
+
+## Needs more context (score 67; model wrote 67)
+## Verdict
+A mechanical engineer with named product work, but few details about what the designs achieved.
+
+## Write-up
+Your resume points to mechanical engineering in commercial furniture, with a move from Mechanical Engineer I to II at Westhaven Office Systems. It’s common to list design activities this way, but without a sense of how much work was involved or what changed, the latest role may not stand out in a pile.
+
+The supplier line is your best model: it names who you work with, where they are, and the tooling and inspection work. Your promotion and current dates are easy to follow, and experience comes before education.
+
+Let’s start with the Arlo desk platform. Add the components you designed and a milestone or result you can stand behind. Then show what your analysis informed and which manufacturing issues the change orders addressed.
+
+## Cards (4; {"line":3,"keep":1}); severity off; added []
+1. [line] Mechanical Engineer II, line 1
+   line: "Lead mechanical design for the Arlo height-adjustable desk platform"
+   can't tell: You lead the design of a named product, which is a good start. A recruiter can’t tell which parts of the platform you designed or what the work achieved.
+   example: Lead mechanical design for the Arlo height-adjustable desk platform, including [components designed] and [design milestone]
+   question: Which components did you design, and what milestone or result did the platform reach?
+2. [keep] Mechanical Engineer II, line 3
+   line: "Work with suppliers in Mexico and Taiwan on tooling and first-article inspection"
+   can't tell: Keep this as a model. It gives a recruiter a concrete picture of your supplier work without relying on a generic list of duties.
+3. [line] Mechanical Engineer II, line 4
+   line: "Run tolerance stack-ups and FEA on load-bearing components"
+   can't tell: The analysis is clear, but the design question behind it isn’t. What did the stack-ups or FEA help you decide?
+   example: Run tolerance stack-ups and FEA on load-bearing components to inform [design decision]
+   question: What design decision did your stack-ups or FEA inform?
+4. [line] Mechanical Engineer II, line 5
+   line: "Support manufacturing with engineering change orders"
+   can't tell: A recruiter knows you supported manufacturing, but not which parts or issues the change orders addressed.
+   example: Support manufacturing with engineering change orders for [parts or issues addressed]
+   question: Which parts or manufacturing issues did your change orders address?
+
+## Fit
+Roles: ["Mechanical Engineer II","Mechanical Engineer I"]
+Level: Mechanical Engineer II, leading design for a desk platform
+Note: Your experience points toward product design roles involving mechanical components, suppliers, and manufacturing. The Arlo platform gives you a strong anchor for showing what your design work accomplished.

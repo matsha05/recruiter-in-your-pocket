@@ -1,0 +1,41 @@
+# b35_marketing_coordinator_gap, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_marketing_coordinator_gap_1.txt (126 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ab8cd5a5; severity check off
+Outcome: report; cost $0.0073; 15.9s
+Case note: Gap with nothing after it.
+
+## Needs more context (score 69; model wrote 69)
+## Verdict
+A marketing coordinator with concrete email and event work, but no account of time after March 2024.
+
+## Write-up
+Your resume points clearly to marketing coordinator work: email, events, product copy and social media at Juniper Outdoor Co., following a marketing assistant role at Fernwood Coffee Roasters. A recruiter can see the work, but may hesitate and move on because the timeline stops at March 2024.
+
+The weekly email calendar is your best model: it names what you managed, how often and the subscriber list it served. Your experience is easy to find above education, but a recruiter can't tell what you've done since Juniper.
+
+Start by accounting for the time after March 2024 honestly, using the dates that apply. Then add your part in the Fernwood tasting events and what you changed in the blog and newsletter. Your Juniper work already gives those earlier details a useful home.
+
+## Cards (4; {"dates":1,"keep":1,"line":2}); severity off; added []
+1. [dates] Dates
+   line: "Nothing is dated after March 2024."
+   can't tell: A recruiter can't tell what you've done since the Juniper role ended. That unanswered time can make an otherwise understandable work history harder to move forward.
+   example: March 2024 - Present [what you did]
+   question: What have you done since March 2024, and what dates can you accurately put beside it?
+2. [keep] Marketing Coordinator, line 1
+   line: "Managed the weekly email calendar for a list of 120,000 subscribers"
+   can't tell: Keep this as a model. It gives a recruiter a concrete responsibility and a sense of the audience without claiming you did more than manage the calendar.
+3. [line] Marketing Assistant, line 1
+   line: "Helped plan in-store tasting events"
+   can't tell: A recruiter can't tell which part of planning was yours. Your contribution matters more than claiming the whole event.
+   example: Helped plan in-store tasting events by [what you did]
+   question: What part of planning the tasting events did you handle?
+4. [line] Marketing Assistant, line 2
+   line: "Updated the company blog and newsletter"
+   can't tell: The blog and newsletter are useful things to name, but updated could mean several different jobs. What did you add or change?
+   example: Updated the company blog and newsletter with [what you added or changed]
+   question: What did you add or change in the blog and newsletter?
+
+## Fit
+Roles: ["Marketing Coordinator","Marketing Assistant"]
+Level: Coordinator level, with a Marketing Coordinator role following a Marketing Assistant role
+Note: Your experience points toward marketing coordinator roles with a mix of email, events and content. The main question is what you've done since the Juniper role ended.

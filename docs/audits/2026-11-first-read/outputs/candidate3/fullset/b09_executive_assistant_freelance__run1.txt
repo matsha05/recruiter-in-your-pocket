@@ -1,0 +1,45 @@
+# b09_executive_assistant_freelance, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_executive_assistant_freelance_1.txt (163 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 01c2028d; severity check off
+Outcome: report; cost $0.0086; 17.5s
+
+## Mostly clear (score 77; model wrote 77)
+## Verdict
+An executive assistant with founder and CEO experience, a clear workload and a gap to explain.
+
+## Write-up
+You moved from administrative support at Parkway Logistics to supporting its CEO, and now work independently for founders. A recruiter can see the work and who it serves, so this resume is likely to move forward with a few questions.
+
+The line about supporting three founders is a good model: it names the people you support and the work you handle for them. The stretch between leaving Parkway in June 2023 and starting freelance work in February 2025 is unaccounted for, though, and a recruiter may pause there.
+
+Let's address that stretch honestly, then add a little more about the investor meetings and the board materials you prepared. You don't need to add numbers to every line. The work itself is worth naming.
+
+## Cards (5; {"dates":1,"keep":1,"line":3}); severity off; added []
+1. [dates] Dates
+   line: "No work or other activity is listed between June 2023 and February 2025."
+   can't tell: A recruiter can't tell what you were doing between Parkway Logistics and your freelance work. If you were caring for someone, studying, volunteering or taking a career break, you can say so plainly. List freelance work only if you did it.
+   example: June 2023 - February 2025 [what you did]
+   question: What were you doing between June 2023 and February 2025 that you'd be comfortable listing?
+2. [keep] Freelance Executive Assistant, line 1
+   line: "Support three founders at early-stage companies with calendar, travel, and inbox management"
+   can't tell: Keep this as a model. A recruiter can see how many founders you support and the responsibilities you handle for them.
+3. [line] Freelance Executive Assistant, line 3
+   line: "Coordinate investor meeting logistics across time zones"
+   can't tell: Investor meetings are a useful detail, but logistics could mean several things. What do you arrange for those meetings?
+   example: Coordinate [what you arrange] for investor meetings across time zones
+   question: What do you coordinate for the investor meetings?
+4. [line] Executive Assistant to the CEO, line 2
+   line: "Prepared materials for quarterly board meetings"
+   can't tell: A recruiter can see the meeting cadence, but not what you prepared. Naming the materials would show more of your work with the board.
+   example: Prepared [which materials] for quarterly board meetings
+   question: What materials did you prepare for the quarterly board meetings?
+5. [line] Executive Assistant to the CEO, line 4
+   line: "Served as the point of contact between the CEO and department heads"
+   can't tell: This shows who you worked with, but not what you handled between them. Give the recruiter one part of that responsibility.
+   example: Served as the point of contact between the CEO and department heads for [what you handled]
+   question: What did you handle between the CEO and department heads?
+
+## Fit
+Roles: ["Freelance Executive Assistant","Executive Assistant to the CEO"]
+Level: Experienced executive assistant, supporting founders and a CEO
+Note: Your experience points toward executive assistant roles supporting senior leaders or founders. The freelance work also shows you can support multiple leaders at once.

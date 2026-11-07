@@ -1,0 +1,26 @@
+# h3_strong_resume, run 1
+Resume: ../2026-11-live-judgment/resumes/h3_strong_resume.txt (311 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 338ac33a; severity check off
+Outcome: report; cost $0.0048; 9.1s
+Case note: Senior product manager whose resume is already good.
+
+## Clear and specific (score 96; model wrote 96)
+## Verdict
+A senior payments product manager whose launches, customer results, and team leadership are easy to follow.
+
+## Write-up
+This is a great resume! Your progression from Peakline to billing and then the payments platform at Northwind is easy to follow, and you show what changed across launches, pricing, reliability, and team leadership. A recruiter has plenty to work with for a senior product role.
+
+The payment failure line is a strong model: it names the methods, the change in failure rate, and the estimated revenue recovered for customers. Your current roadmap and management lines also make the breadth of your role clear.
+
+I'd send this as it is. Your resume is unlikely to be the reason you don't get a call back; the competition for a particular role and how closely it matches your payments experience will matter too.
+
+## Cards (1; {"keep":1}); severity off; added []
+1. [keep] Senior Product Manager, Payments Platform, line 3
+   line: "Cut payment failure rate from 4.1% to 1.6% by leading the move to network tokenization and smart retries, recovering an estimated $6.2M in annual revenue for customers"
+   can't tell: Keep this as a model: it ties your leadership to a measurable change and makes clear that the customer revenue figure is an estimate.
+
+## Fit
+Roles: ["Senior Product Manager, Payments Platform"]
+Level: Senior, owns a roadmap across 4 product teams and manages 3 product managers
+Note: Your experience points strongly toward senior product roles in payments and billing. You also show people management alongside hands-on product work.

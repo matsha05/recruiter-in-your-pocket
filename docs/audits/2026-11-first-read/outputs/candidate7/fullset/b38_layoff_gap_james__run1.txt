@@ -1,0 +1,61 @@
+# b38_layoff_gap_james, run 1
+Resume: ../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/3-layoff-gap-james.txt (313 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 1c0fe4fe; severity check off
+Outcome: report; cost $0.0118; 23.4s
+Case note: Layoff gap (bar persona).
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+A senior B2B SaaS marketer with strong earlier results and a freelance role that needs more context.
+
+## Write-up
+Your resume points to senior marketing work: you led demand generation at Velocity Software and now consult for small businesses and startups. It’s common for freelance work to be described broadly, but your current role doesn’t say how much work you handled or what it changed. That may leave a recruiter hesitant, despite the stronger detail in your Velocity role.
+
+The Velocity line about increasing MQL volume by 35% year over year while reducing cost per lead gives a recruiter a result they can hold onto. Your team of 4 and $1.8M annual budget also make your management experience concrete. The reduction in force is explained, and your current consulting work accounts for the time since.
+
+Let’s start with the freelance role. Show what you contributed to the projects and, where you can, how many clients you supported or what the work changed. Then give the earlier Bridgepoint programs a little more detail.
+
+## Cards (8; {"line":7,"keep":1}); severity off; added []
+1. [line] Freelance Marketing Consultant, line 1
+   line: "Provided marketing strategy and execution support for small businesses and startups"
+   can't tell: A recruiter can’t tell what your strategy and execution support involved or how many clients you worked with. That makes it difficult to compare your current work with your earlier marketing roles.
+   example: Provided marketing strategy and execution support for [number] small businesses and startups, including [work you did]
+   question: How many clients did you support, and what strategy and execution work did you do for them?
+2. [line] Freelance Marketing Consultant, line 2
+   line: "Projects included website copy, email campaigns, and paid social setup"
+   can't tell: These are useful projects to name, but a recruiter can’t tell which parts were yours or what happened after the work was delivered.
+   example: Projects included website copy, email campaigns, and paid social setup; contributed [your work] and [what changed]
+   question: What did you contribute to these projects, and what changed after the work was delivered?
+3. [line] Senior Marketing Manager, line 4
+   line: "Launched ABM program targeting enterprise accounts"
+   can't tell: Launching the program is clear, but a recruiter can’t tell what it involved or how many enterprise accounts it targeted.
+   example: Launched ABM program targeting [number] enterprise accounts, including [program activities]
+   question: How many enterprise accounts did the program target, and what did the program involve?
+4. [keep] Senior Marketing Manager, line 5
+   line: "Increased MQL volume by 35% year over year while reducing cost per lead"
+   can't tell: Keep this as a model: it pairs a named marketing measure with a year-over-year comparison and tells a recruiter what happened to cost per lead too.
+5. [line] Marketing Manager, line 1
+   line: "Managed content marketing and email programs"
+   can't tell: A recruiter knows the channels, but not what the programs consisted of or who they reached.
+   example: Managed content marketing and email programs for [audience], including [content and campaigns]
+   question: Who were the programs for, and what content and campaigns did you manage?
+6. [line] Marketing Manager, line 2
+   line: "Grew blog traffic significantly through SEO-driven content strategy"
+   can't tell: The SEO work and traffic growth are connected, but “significantly” leaves the amount to a recruiter’s imagination.
+   example: Grew blog traffic by [amount] through SEO-driven content strategy, including [work you did]
+   question: How much did blog traffic grow, and what did you do as part of the SEO strategy?
+7. [line] Marketing Manager, line 3
+   line: "Ran webinar program generating pipeline for the sales team"
+   can't tell: The line names the program and what it generated, but not how much pipeline it brought in or what running the program involved.
+   example: Ran webinar program, including [work you did], generating [pipeline amount] for the sales team
+   question: What did you do to run the webinar program, and how much pipeline did it generate?
+8. [line] Marketing Coordinator, line 1
+   line: "Supported campaign execution, event logistics, and social media"
+   can't tell: “Supported” tells a recruiter you contributed, but not which parts of the campaigns, events, or social media work were yours.
+   example: Supported campaign execution, event logistics, and social media by [work you did]
+   question: What parts of the campaigns, events, or social media work did you handle?
+
+## Fit
+Roles: ["Marketing Manager","Senior Marketing Manager","Freelance Marketing Consultant"]
+Level: Senior manager, managed 4 marketers and a $1.8M annual marketing budget
+Note: Your Velocity work points toward senior B2B SaaS marketing roles, particularly demand generation. More detail on your current consulting work would show how you’ve applied that experience since leaving Velocity.

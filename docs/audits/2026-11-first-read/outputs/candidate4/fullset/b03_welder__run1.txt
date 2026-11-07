@@ -1,0 +1,30 @@
+# b03_welder, run 1
+Resume: ../2026-11-live-judgment/resumes/b_welder.txt (195 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ee57d907; severity check off
+Outcome: report; cost $0.0055; 10.6s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A welder and fitter whose resume makes the work, certifications, and inspection record easy to understand.
+
+## Write-up
+This is a strong welder's resume! You show structural steel work at Maumee Steel Fabricators, process piping at Great Lakes Mechanical, and the certifications that go with both. A recruiter can see the materials, methods, and standards without guessing.
+
+The Riverfront Tower inspection line is especially good: it names the job, the inspections, and about how many welds were involved. Your fit-up tolerance and the types of piping you welded also make the work concrete.
+
+Keep that detail and add what you did during plant shutdowns. Your resume is unlikely to be the reason you don't get a call back; competition for a particular job can still make a difference.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Welder / Fitter, Riverfront Tower
+   line: "Passed every third-party UT and visual inspection on the Riverfront Tower job (about 900 welds)"
+   can't tell: Keep this as a model. It gives a recruiter a named project and a result tied to your welding, rather than just a list of duties.
+2. [line] Pipe Welder, plant shutdowns
+   line: "Worked nights and weekends on plant shutdowns"
+   can't tell: The schedule tells a recruiter when you worked, but not what you did during the shutdowns. Your piping work gives useful context; naming the work done during a shutdown would make this line count.
+   example: Worked nights and weekends on plant shutdowns, performing [work performed]
+   question: What work did you perform during the plant shutdowns?
+
+## Fit
+Roles: ["Welder / Fitter","Pipe Welder"]
+Level: Experienced welder and fitter who trains new hires
+Note: Your experience points to structural steel welding and fitting, with pipe welding as another clear direction. Your certifications and inspection record give recruiters concrete reasons to consider you for that work.

@@ -1,0 +1,247 @@
+{
+  "case_id": "b14_teacher_to_instructional_designer",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Career changer.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_teacher_to_instructional_designer_1.txt",
+  "resume_sha256": "834ed54c2de68b69a032d304a18dda36925e354522e5b1cfe475d0beca0b4e9a",
+  "resume_words": 164,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:35:34.540Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5947,
+        "completion_tokens": 1198,
+        "total_tokens": 7145,
+        "cached_prompt_tokens": 5196,
+        "cache_write_prompt_tokens": 748,
+        "reasoning_tokens": 512
+      },
+      "cost_usd": 0.0071878,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 14973
+    }
+  ],
+  "resume_prompt_sha256": "1c0fe4fe961ccb0d0e49bbe71ac8427d0281ae6e9a1efa6ac35e3ee49a99ed47",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 77,
+    "lifted_by_employer": false,
+    "verdict": "A mathematics teacher with clear classroom experience and the beginnings of a digital learning portfolio.",
+    "write_up": [
+      "Your resume tells a coherent story: you teach mathematics at Cedar Creek High School, after teaching at Pinewood Middle School, and you're building digital learning design skills. A recruiter can see the classes you teach and some of the materials you've made, though your department leadership needs a little more detail.",
+      "The Canvas module is the best model here. It names the subject, the format and the platform, so a recruiter can picture what you made. Your teaching certification isn't listed, which leaves an important question for a school recruiter.",
+      "Let's start by adding your certification if you hold one, then show what you lead the professional learning community to do. The certificate in progress and the Canvas work also give you a foundation for a learning design conversation, without claiming a design job you haven't listed."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Teaching certification",
+        "line": "The resume does not list a teaching certification.",
+        "cannot_tell": "A school recruiter can't tell whether you hold a teaching certification or where it's valid. If you have one, list its name, state and status. If not, don't imply that you do.",
+        "example": "[Certification], [state], [status]",
+        "question": "What teaching certification do you hold, where is it valid, and what is its current status?"
+      },
+      {
+        "kind": "keep",
+        "where": "Cedar Creek High School, line 2",
+        "line": "- Redesigned the Algebra II unit on functions into a self-paced online module in Canvas",
+        "cannot_tell": "Keep this as a model. You show the work you changed and what you turned it into, rather than simply listing a design skill.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Cedar Creek High School, line 3",
+        "line": "- Lead the math department's professional learning community",
+        "cannot_tell": "A recruiter knows you lead the group, but not what you lead it to do. The work the group takes on would show more of your role beyond the classroom.",
+        "example": "Lead the math department's professional learning community in [what the group works on]",
+        "question": "What does the professional learning community work on under your leadership?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mathematics Teacher"
+      ],
+      "why": "Your current and previous roles are both Mathematics Teacher positions, with high school and middle school classes named.",
+      "level": "Experienced classroom teacher who leads a professional learning community",
+      "note": "Your resume points most directly to mathematics teaching. The Canvas module, workshop and certificate in progress also show a developing interest in digital learning design, though your listed jobs are in teaching.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 77,
+    "lifted_by_employer": false,
+    "verdict": "A mathematics teacher with clear classroom experience and the beginnings of a digital learning portfolio.",
+    "write_up": [
+      "Your resume tells a coherent story: you teach mathematics at Cedar Creek High School, after teaching at Pinewood Middle School, and you're building digital learning design skills. A recruiter can see the classes you teach and some of the materials you've made, though your department leadership needs a little more detail.",
+      "The Canvas module is the best model here. It names the subject, the format and the platform, so a recruiter can picture what you made. Your teaching certification isn't listed, which leaves an important question for a school recruiter.",
+      "Let's start by adding your certification if you hold one, then show what you lead the professional learning community to do. The certificate in progress and the Canvas work also give you a foundation for a learning design conversation, without claiming a design job you haven't listed."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Teaching certification",
+        "line": "The resume does not list a teaching certification.",
+        "cannot_tell": "A school recruiter can't tell whether you hold a teaching certification or where it's valid. If you have one, list its name, state and status. If not, don't imply that you do.",
+        "example": "[Certification], [state], [status]",
+        "question": "What teaching certification do you hold, where is it valid, and what is its current status?"
+      },
+      {
+        "kind": "keep",
+        "where": "Cedar Creek High School, line 2",
+        "line": "Redesigned the Algebra II unit on functions into a self-paced online module in Canvas",
+        "cannot_tell": "Keep this as a model. You show the work you changed and what you turned it into, rather than simply listing a design skill.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Cedar Creek High School, line 3",
+        "line": "Lead the math department's professional learning community",
+        "cannot_tell": "A recruiter knows you lead the group, but not what you lead it to do. The work the group takes on would show more of your role beyond the classroom.",
+        "example": "Lead the math department's professional learning community in [what the group works on]",
+        "question": "What does the professional learning community work on under your leadership?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mathematics Teacher"
+      ],
+      "why": "Your current and previous roles are both Mathematics Teacher positions, with high school and middle school classes named.",
+      "level": "Experienced classroom teacher who leads a professional learning community",
+      "note": "Your resume points most directly to mathematics teaching. The Canvas module, workshop and certificate in progress also show a developing interest in digital learning design, though your listed jobs are in teaching.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 77
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 77,
+    "lifted_by_employer": false,
+    "verdict": "A mathematics teacher with clear classroom experience and the beginnings of a digital learning portfolio.",
+    "write_up": [
+      "Your resume tells a coherent story: you teach mathematics at Cedar Creek High School, after teaching at Pinewood Middle School, and you're building digital learning design skills. A recruiter can see the classes you teach and some of the materials you've made, though your department leadership needs a little more detail.",
+      "The Canvas module is the best model here. It names the subject, the format and the platform, so a recruiter can picture what you made. Your teaching certification isn't listed, which leaves an important question for a school recruiter.",
+      "Let's start by adding your certification if you hold one, then show what you lead the professional learning community to do. The certificate in progress and the Canvas work also give you a foundation for a learning design conversation, without claiming a design job you haven't listed."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Teaching certification",
+        "line": "The resume does not list a teaching certification.",
+        "cannot_tell": "A school recruiter can't tell whether you hold a teaching certification or where it's valid. If you have one, list its name, state and status. If not, don't imply that you do.",
+        "example": "[Certification], [state], [status]",
+        "question": "What teaching certification do you hold, where is it valid, and what is its current status?"
+      },
+      {
+        "kind": "keep",
+        "where": "Cedar Creek High School, line 2",
+        "line": "Redesigned the Algebra II unit on functions into a self-paced online module in Canvas",
+        "cannot_tell": "Keep this as a model. You show the work you changed and what you turned it into, rather than simply listing a design skill.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Cedar Creek High School, line 3",
+        "line": "Lead the math department's professional learning community",
+        "cannot_tell": "A recruiter knows you lead the group, but not what you lead it to do. The work the group takes on would show more of your role beyond the classroom.",
+        "example": "Lead the math department's professional learning community in [what the group works on]",
+        "question": "What does the professional learning community work on under your leadership?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mathematics Teacher"
+      ],
+      "why": "Your current and previous roles are both Mathematics Teacher positions, with high school and middle school classes named.",
+      "level": "Experienced classroom teacher who leads a professional learning community",
+      "note": "Your resume points most directly to mathematics teaching. The Canvas module, workshop and certificate in progress also show a developing interest in digital learning design, though your listed jobs are in teaching.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 77
+  },
+  "presentation": {
+    "score": 77,
+    "band": "Mostly clear",
+    "model_score": 77,
+    "lifted_by_employer": false,
+    "verdict": "A mathematics teacher with clear classroom experience and the beginnings of a digital learning portfolio.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 137,
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Teaching certification",
+        "line": "The resume does not list a teaching certification.",
+        "blanks": 3,
+        "question": "What teaching certification do you hold, where is it valid, and what is its current status?"
+      },
+      {
+        "kind": "keep",
+        "where": "Cedar Creek High School, line 2",
+        "line": "Redesigned the Algebra II unit on functions into a self-paced online module in Canvas",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Cedar Creek High School, line 3",
+        "line": "Lead the math department's professional learning community",
+        "blanks": 1,
+        "question": "What does the professional learning community work on under your leadership?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "structure": 1,
+      "keep": 1,
+      "line": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Mathematics Teacher"
+      ],
+      "why": "Your current and previous roles are both Mathematics Teacher positions, with high school and middle school classes named.",
+      "level": "Experienced classroom teacher who leads a professional learning community",
+      "note": "Your resume points most directly to mathematics teaching. The Canvas module, workshop and certificate in progress also show a developing interest in digital learning design, though your listed jobs are in teaching.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0071878,
+  "latency_ms": 14977
+}

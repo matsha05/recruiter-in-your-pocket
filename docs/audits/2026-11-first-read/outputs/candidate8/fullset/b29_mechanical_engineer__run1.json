@@ -1,0 +1,281 @@
+{
+  "case_id": "b29_mechanical_engineer",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_mechanical_engineer_1.txt",
+  "resume_sha256": "415a2cd89f45a119a48620793f6f06d7e83938cf3176426d201256d134ab6044",
+  "resume_words": 143,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:49:10.861Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5784,
+        "completion_tokens": 1222,
+        "total_tokens": 7006,
+        "cached_prompt_tokens": 5142,
+        "cache_write_prompt_tokens": 639,
+        "reasoning_tokens": 443
+      },
+      "cost_usd": 0.00716885,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 14640
+    }
+  ],
+  "resume_prompt_sha256": "5cba8f052feab05101dfe43138d650d9cc25bac9a46f7e3aa35d9efb9d96fad4",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "A mechanical engineer with named product work, but few details about what the designs achieved.",
+    "write_up": [
+      "Your resume points to mechanical engineering in commercial furniture, with a move from Mechanical Engineer I to II at Westhaven Office Systems. It’s common to list design activities this way, but without a sense of how much work was involved or what changed, the latest role may not stand out in a pile.",
+      "The supplier line is your best model: it names who you work with, where they are, and the tooling and inspection work. Your promotion and current dates are easy to follow, and experience comes before education.",
+      "Let’s start with the Arlo desk platform. Add the components you designed and a milestone or result you can stand behind. Then show what your analysis informed and which manufacturing issues the change orders addressed."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 1",
+        "line": "- Lead mechanical design for the Arlo height-adjustable desk platform",
+        "cannot_tell": "You lead the design of a named product, which is a good start. A recruiter can’t tell which parts of the platform you designed or what the work achieved.",
+        "example": "Lead mechanical design for the Arlo height-adjustable desk platform, including [components designed] and [design milestone]",
+        "question": "Which components did you design, and what milestone or result did the platform reach?"
+      },
+      {
+        "kind": "keep",
+        "where": "Mechanical Engineer II, line 3",
+        "line": "- Work with suppliers in Mexico and Taiwan on tooling and first-article inspection",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a concrete picture of your supplier work without relying on a generic list of duties.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 4",
+        "line": "- Run tolerance stack-ups and FEA on load-bearing components",
+        "cannot_tell": "The analysis is clear, but the design question behind it isn’t. What did the stack-ups or FEA help you decide?",
+        "example": "Run tolerance stack-ups and FEA on load-bearing components to inform [design decision]",
+        "question": "What design decision did your stack-ups or FEA inform?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 5",
+        "line": "- Support manufacturing with engineering change orders",
+        "cannot_tell": "A recruiter knows you supported manufacturing, but not which parts or issues the change orders addressed.",
+        "example": "Support manufacturing with engineering change orders for [parts or issues addressed]",
+        "question": "Which parts or manufacturing issues did your change orders address?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mechanical Engineer II",
+        "Mechanical Engineer I"
+      ],
+      "why": "Your current Mechanical Engineer II role leads with product design, supplier work, and analysis for commercial furniture.",
+      "level": "Mechanical Engineer II, leading design for a desk platform",
+      "note": "Your experience points toward product design roles involving mechanical components, suppliers, and manufacturing. The Arlo platform gives you a strong anchor for showing what your design work accomplished.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "A mechanical engineer with named product work, but few details about what the designs achieved.",
+    "write_up": [
+      "Your resume points to mechanical engineering in commercial furniture, with a move from Mechanical Engineer I to II at Westhaven Office Systems. It’s common to list design activities this way, but without a sense of how much work was involved or what changed, the latest role may not stand out in a pile.",
+      "The supplier line is your best model: it names who you work with, where they are, and the tooling and inspection work. Your promotion and current dates are easy to follow, and experience comes before education.",
+      "Let’s start with the Arlo desk platform. Add the components you designed and a milestone or result you can stand behind. Then show what your analysis informed and which manufacturing issues the change orders addressed."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 1",
+        "line": "Lead mechanical design for the Arlo height-adjustable desk platform",
+        "cannot_tell": "You lead the design of a named product, which is a good start. A recruiter can’t tell which parts of the platform you designed or what the work achieved.",
+        "example": "Lead mechanical design for the Arlo height-adjustable desk platform, including [components designed] and [design milestone]",
+        "question": "Which components did you design, and what milestone or result did the platform reach?"
+      },
+      {
+        "kind": "keep",
+        "where": "Mechanical Engineer II, line 3",
+        "line": "Work with suppliers in Mexico and Taiwan on tooling and first-article inspection",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a concrete picture of your supplier work without relying on a generic list of duties.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 4",
+        "line": "Run tolerance stack-ups and FEA on load-bearing components",
+        "cannot_tell": "The analysis is clear, but the design question behind it isn’t. What did the stack-ups or FEA help you decide?",
+        "example": "Run tolerance stack-ups and FEA on load-bearing components to inform [design decision]",
+        "question": "What design decision did your stack-ups or FEA inform?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 5",
+        "line": "Support manufacturing with engineering change orders",
+        "cannot_tell": "A recruiter knows you supported manufacturing, but not which parts or issues the change orders addressed.",
+        "example": "Support manufacturing with engineering change orders for [parts or issues addressed]",
+        "question": "Which parts or manufacturing issues did your change orders address?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mechanical Engineer II",
+        "Mechanical Engineer I"
+      ],
+      "why": "Your current Mechanical Engineer II role leads with product design, supplier work, and analysis for commercial furniture.",
+      "level": "Mechanical Engineer II, leading design for a desk platform",
+      "note": "Your experience points toward product design roles involving mechanical components, suppliers, and manufacturing. The Arlo platform gives you a strong anchor for showing what your design work accomplished.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 67
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "A mechanical engineer with named product work, but few details about what the designs achieved.",
+    "write_up": [
+      "Your resume points to mechanical engineering in commercial furniture, with a move from Mechanical Engineer I to II at Westhaven Office Systems. It’s common to list design activities this way, but without a sense of how much work was involved or what changed, the latest role may not stand out in a pile.",
+      "The supplier line is your best model: it names who you work with, where they are, and the tooling and inspection work. Your promotion and current dates are easy to follow, and experience comes before education.",
+      "Let’s start with the Arlo desk platform. Add the components you designed and a milestone or result you can stand behind. Then show what your analysis informed and which manufacturing issues the change orders addressed."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 1",
+        "line": "Lead mechanical design for the Arlo height-adjustable desk platform",
+        "cannot_tell": "You lead the design of a named product, which is a good start. A recruiter can’t tell which parts of the platform you designed or what the work achieved.",
+        "example": "Lead mechanical design for the Arlo height-adjustable desk platform, including [components designed] and [design milestone]",
+        "question": "Which components did you design, and what milestone or result did the platform reach?"
+      },
+      {
+        "kind": "keep",
+        "where": "Mechanical Engineer II, line 3",
+        "line": "Work with suppliers in Mexico and Taiwan on tooling and first-article inspection",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a concrete picture of your supplier work without relying on a generic list of duties.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 4",
+        "line": "Run tolerance stack-ups and FEA on load-bearing components",
+        "cannot_tell": "The analysis is clear, but the design question behind it isn’t. What did the stack-ups or FEA help you decide?",
+        "example": "Run tolerance stack-ups and FEA on load-bearing components to inform [design decision]",
+        "question": "What design decision did your stack-ups or FEA inform?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 5",
+        "line": "Support manufacturing with engineering change orders",
+        "cannot_tell": "A recruiter knows you supported manufacturing, but not which parts or issues the change orders addressed.",
+        "example": "Support manufacturing with engineering change orders for [parts or issues addressed]",
+        "question": "Which parts or manufacturing issues did your change orders address?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mechanical Engineer II",
+        "Mechanical Engineer I"
+      ],
+      "why": "Your current Mechanical Engineer II role leads with product design, supplier work, and analysis for commercial furniture.",
+      "level": "Mechanical Engineer II, leading design for a desk platform",
+      "note": "Your experience points toward product design roles involving mechanical components, suppliers, and manufacturing. The Arlo platform gives you a strong anchor for showing what your design work accomplished.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 67
+  },
+  "presentation": {
+    "score": 67,
+    "band": "Needs more context",
+    "model_score": 67,
+    "lifted_by_employer": false,
+    "verdict": "A mechanical engineer with named product work, but few details about what the designs achieved.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 124,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 1",
+        "line": "Lead mechanical design for the Arlo height-adjustable desk platform",
+        "blanks": 2,
+        "question": "Which components did you design, and what milestone or result did the platform reach?"
+      },
+      {
+        "kind": "keep",
+        "where": "Mechanical Engineer II, line 3",
+        "line": "Work with suppliers in Mexico and Taiwan on tooling and first-article inspection",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 4",
+        "line": "Run tolerance stack-ups and FEA on load-bearing components",
+        "blanks": 1,
+        "question": "What design decision did your stack-ups or FEA inform?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 5",
+        "line": "Support manufacturing with engineering change orders",
+        "blanks": 1,
+        "question": "Which parts or manufacturing issues did your change orders address?"
+      }
+    ],
+    "card_count": 4,
+    "kinds": {
+      "line": 3,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Mechanical Engineer II",
+        "Mechanical Engineer I"
+      ],
+      "why": "Your current Mechanical Engineer II role leads with product design, supplier work, and analysis for commercial furniture.",
+      "level": "Mechanical Engineer II, leading design for a desk platform",
+      "note": "Your experience points toward product design roles involving mechanical components, suppliers, and manufacturing. The Arlo platform gives you a strong anchor for showing what your design work accomplished.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00716885,
+  "latency_ms": 14644
+}

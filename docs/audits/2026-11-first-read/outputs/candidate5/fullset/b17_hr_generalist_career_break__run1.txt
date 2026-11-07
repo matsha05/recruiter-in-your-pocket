@@ -1,0 +1,46 @@
+# b17_hr_generalist_career_break, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_hr_generalist_career_break_1.txt (145 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ab8cd5a5; severity check off
+Outcome: report; cost $0.0098; 20.3s
+Case note: Returner after caregiving, break dated and named.
+
+## Needs more context (score 66; model wrote 66)
+## Verdict
+An HR Generalist with manufacturing experience, a clearly named caregiving break, and questions about recent work.
+
+## Write-up
+You moved from HR Assistant to HR Generalist at Northstar Plastics, supporting a manufacturing plant before taking time for family caregiving. This is a common kind of resume: it names the HR duties, but leaves some of your part in them to the reader. For another generalist role, a recruiter may finish it and move on without a clearer picture of that work.
+
+The orientation line is a good model: you say you ran it and how often. The plant's 400 employees across three shifts also gives the work useful context. Your caregiving break is clearly named, but nothing accounts for the time after June 2025.
+
+Let's start with the time since the break ended, then return to your HR Generalist role. Add what you personally did in investigations and open enrollment, and name the system you used for records if you can.
+
+## Cards (5; {"dates":1,"line":3,"keep":1}); severity off; added []
+1. [dates] Dates
+   line: "Nothing is dated after June 2025."
+   can't tell: A recruiter can't tell what you've been doing since the caregiving break ended. The break itself is plainly explained; the time after it is still a question. If caregiving continued, say so. If you took a career break, you can name it and what you did, or list freelance work if it was real.
+   example: June 2025 - Present [what you did]
+   question: What have you been doing since June 2025 that you'd like to include?
+2. [line] HR Generalist, line 2
+   line: "Handled employee relations questions and investigations with the HR manager"
+   can't tell: A recruiter can see you worked with the HR manager, but not what you handled in an investigation. Your part matters for a generalist role.
+   example: Handled employee relations questions and investigations with the HR manager, including [your part in investigations]
+   question: What was your part in the investigations?
+3. [line] HR Generalist, line 3
+   line: "Coordinated open enrollment for medical and dental benefits"
+   can't tell: Open enrollment is recognizable work, but coordination can cover several different tasks. What did you personally do?
+   example: Coordinated open enrollment for medical and dental benefits, including [what you did]
+   question: What did you do to coordinate open enrollment?
+4. [keep] HR Generalist, line 4
+   line: "Ran new hire orientation every two weeks"
+   can't tell: Keep this. It gives a recruiter both your responsibility and a sense of its regular rhythm.
+5. [line] HR Generalist, line 5
+   line: "Kept personnel files and HRIS records up to date"
+   can't tell: A recruiter can see you maintained records, but not which updates you handled or which system you used. Those details would make the records work more concrete.
+   example: Kept personnel files and HRIS records up to date by [what you updated] in [system]
+   question: What kinds of updates did you handle, and which system did you use?
+
+## Fit
+Roles: ["HR Generalist","HR Assistant"]
+Level: Experienced generalist, with prior HR Assistant experience
+Note: Your experience points toward HR Generalist roles, particularly in manufacturing. The caregiving break is clear, but adding an honest account of the time after it would answer a likely first-pass question.

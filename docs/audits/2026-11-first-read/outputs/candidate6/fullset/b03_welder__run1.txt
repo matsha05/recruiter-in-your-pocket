@@ -1,0 +1,30 @@
+# b03_welder, run 1
+Resume: ../2026-11-live-judgment/resumes/b_welder.txt (195 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5827dcf1; severity check off
+Outcome: report; cost $0.0068; 15.8s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A welder and fitter whose resume makes both the work and the inspection results easy to understand.
+
+## Write-up
+This is a strong welding resume! At Maumee Steel Fabricators, you show the processes you use, the fit-up tolerance you work to, and the inspection record on a named job. Your earlier pipe work adds another clear direction. A recruiter can see what kind of welding you do without guessing.
+
+The Riverfront Tower line is the model: it names the job, the inspections, and about how many welds were involved. Your certifications are easy to find, and your experience leads the resume.
+
+The shutdown line is the one I’d work on next. Your resume is unlikely to be the thing holding you back; the jobs available and how competitive they are will also matter.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Welder / Fitter, line 3
+   line: "Passed every third-party UT and visual inspection on the Riverfront Tower job (about 900 welds)"
+   can't tell: Keep this line. It gives a recruiter a concrete project and a result they can carry away from the first pass.
+2. [line] Pipe Welder, line 3
+   line: "Worked nights and weekends on plant shutdowns"
+   can't tell: The schedule shows your availability, but it doesn't say what your work involved during a shutdown. Give a recruiter one job to picture.
+   example: Worked nights and weekends on plant shutdowns, [what you did during shutdowns] on [shutdown project]
+   question: What did you do during a particular plant shutdown, and which project was it?
+
+## Fit
+Roles: ["Welder / Fitter","Pipe Welder"]
+Level: Experienced welder and fitter who trains new hires
+Note: Your recent work points toward structural welding and fitting. Your earlier process-piping work also supports pipe welder roles.

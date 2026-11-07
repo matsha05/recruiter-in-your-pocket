@@ -1,0 +1,35 @@
+# b18_military_to_civilian, run 1
+Resume: ../2026-11-live-judgment/resumes/b_military_to_civilian.txt (268 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ab8cd5a5; severity check off
+Outcome: report; cost $0.0072; 13.6s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+An Army logistics and maintenance leader with measurable results and a clear path toward operations supervision.
+
+## Write-up
+Your resume makes a strong case for operations supervision! It connects leadership of maintenance, supply and fuel teams to equipment accountability, vehicle readiness and the development of other leaders.
+
+The vehicle readiness line is the model: it gives the starting point, the result and the changes you made to get there. Your progression from mechanic to Platoon Sergeant is easy to follow, and your current supply chain degree fits the direction you've named.
+
+Your resume isn't the problem here. For civilian roles, make the field exercise work more concrete and name what you taught the junior mechanics. The competitiveness of the job and how well your Army experience matches its requirements will matter too.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] Platoon Sergeant, line 3
+   line: "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises"
+   can't tell: The battalion and exercises are clear, but a civilian recruiter can't tell what the logistics support included. Name the work you planned and executed.
+   example: Planned and executed [type of logistics support] for a 600-soldier battalion during two month-long field exercises
+   question: What logistics support did you plan and execute for the exercises?
+2. [keep] Platoon Sergeant, line 4
+   line: "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule"
+   can't tell: Keep this as a model. It shows a recruiter exactly which measure moved and gives credit to the parts ordering and maintenance schedule work behind it.
+3. [line] Wheeled Vehicle Mechanic, line 2
+   line: "Trained 9 junior mechanics"
+   can't tell: A recruiter can see how many mechanics you trained, but not what you taught them. That detail would show what skills you passed on.
+   example: Trained 9 junior mechanics in [skills]
+   question: What did you train the junior mechanics to do?
+
+## Fit
+Roles: ["operations supervisor","Platoon Sergeant (E-7), Forward Support Company"]
+Level: Supervisor, led 38 soldiers and evaluated 6 direct-report sergeants
+Note: Your maintenance leadership and equipment accountability point toward operations supervision. For civilian applications, spell out the logistics work behind the field exercises so employers can connect it to their own operations.

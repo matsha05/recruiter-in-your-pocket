@@ -1,0 +1,41 @@
+# b17_hr_generalist_career_break, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_hr_generalist_career_break_1.txt (145 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0071; 14.1s
+Case note: Returner after caregiving, break dated and named.
+
+## Needs more context (score 66; model wrote 66)
+## Verdict
+A manufacturing HR generalist with a clearly explained caregiving break, but recent time and some HR duties need context.
+
+## Write-up
+Your resume points to HR generalist work in manufacturing, with a progression from HR Assistant to HR Generalist at Northstar Plastics. It’s common for HR resumes to list responsibilities this way, but those lists can blend together in a pile. A recruiter may hesitate over what you handled personally and what you’ve done since June 2025.
+
+The plant line is your best model: it places your HR work among 400 employees across three shifts. Your caregiving break is also clearly named and dated. Nothing accounts for the time after it ended, though, so a recruiter is left with a question about your recent activity.
+
+Let’s start by accounting for the time after June 2025 honestly. Then return to the HR Generalist role and add your part in investigations and open enrollment. Those details can show what your day-to-day HR work involved without exposing confidential information.
+
+## Cards (4; {"dates":1,"keep":1,"line":2}); severity off; added []
+1. [dates] Dates
+   line: "Nothing is dated after June 2025."
+   can't tell: Your resume explains the caregiving break through June 2025, but a recruiter can’t tell what you’ve done since. If caregiving continued, you can say so. A career break with a course, project, volunteering or travel can be named honestly too; include freelance or consulting work only if you did it.
+   example: June 2025 - Present [what you did]
+   question: What have you done since June 2025 that you’d be comfortable putting on your resume?
+2. [keep] HR Generalist, line 1
+   line: "Supported HR for a plant of 400 employees across three shifts"
+   can't tell: Keep this context. The employee count and shifts give a recruiter a concrete picture of the plant where you worked.
+3. [line] HR Generalist, line 2
+   line: "Handled employee relations questions and investigations with the HR manager"
+   can't tell: A recruiter can see that you worked with the HR manager, but not which parts of the investigations you handled. You can describe your role without sharing confidential details.
+   example: Handled employee relations questions and investigations with the HR manager, including [your responsibilities]
+   question: What parts of the questions and investigations did you handle?
+4. [line] HR Generalist, line 3
+   line: "Coordinated open enrollment for medical and dental benefits"
+   can't tell: The benefits are named, but coordinating enrollment could cover several different tasks. Show what you handled during enrollment.
+   example: Coordinated open enrollment for medical and dental benefits, including [your responsibilities]
+   question: What did you handle during open enrollment?
+
+## Fit
+Roles: ["HR Generalist","HR Assistant"]
+Level: Experienced HR generalist
+Note: Your experience points toward HR Generalist work, particularly in manufacturing. The plant setting, employee relations, benefits and onboarding work give that direction a clear foundation.

@@ -1,0 +1,56 @@
+# b15_career_changer_maria, run 1
+Resume: ../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/2-career-changer-maria.txt (315 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 338ac33a; severity check off
+Outcome: report; cost $0.0124; 25.9s
+Case note: Career changer (bar persona).
+
+## Mostly clear (score 74; model wrote 74)
+## Verdict
+A mathematics teacher moving toward data analytics, with useful projects but a generic summary and some teaching details left unexplained.
+
+## Write-up
+Your resume tells the story of a mathematics teacher at Lake Travis High School and KIPP Austin moving into data analytics. A recruiter can see the teaching work and the tools you've practiced, but the connection between your classroom analysis and the decisions it informed could be stronger.
+
+The Student Performance Dashboard is your best model: it names Excel, the measures you tracked, and the department's use for the dashboard. Your analytics projects sit below your teaching experience, so the summary has an important job to do and currently relies on general claims instead of that work.
+
+Start with the summary, then revisit the Lake Travis assessment and department data lines. Add what you found or produced where you can, and bring a key finding from the housing project into view. That will make the move toward analytics easier to follow without claiming work you didn't do.
+
+## Cards (7; {"line":6,"keep":1}); severity off; added []
+1. [line] Summary
+   line: "Dedicated educator with 8 years of experience transitioning into data analytics. Passionate about using data to tell stories and drive decisions. Strong analytical, communication, and problem-solving skills with a proven track record of success."
+   can't tell: These claims could belong to almost anyone moving into analytics. Your assessment work and dashboards give you a more convincing introduction.
+   example: Mathematics Teacher transitioning into data analytics, with experience analyzing student assessment data and building an Excel dashboard tracking AP Statistics pass rates and quiz scores
+   question: Which analytics work do you most want a recruiter to notice first?
+2. [line] Mathematics Teacher, Lake Travis High School, line 2
+   line: "Developed and implemented engaging curriculum aligned with state standards"
+   can't tell: A recruiter can't tell what you developed beyond the state standards. A named piece of curriculum would show the work behind that responsibility.
+   example: Developed and implemented [curriculum materials] aligned with state standards
+   question: What curriculum materials did you develop and implement?
+3. [line] Mathematics Teacher, Lake Travis High School, line 3
+   line: "Analyzed student assessment data to identify learning gaps and adjust instruction"
+   can't tell: The analysis has a purpose, but a recruiter can't see what you found or how you adjusted instruction. One example would connect your data work to a teaching decision.
+   example: Analyzed student assessment data to identify [learning gap] and adjust instruction by [instructional change]
+   question: What learning gap did you find, and how did you adjust instruction?
+4. [line] Mathematics Teacher, Lake Travis High School, line 4
+   line: "Served as Math Department Data Lead, compiling benchmark results for department meetings"
+   can't tell: The data lead work is relevant to your transition, but it's not clear what you produced from the benchmark results. Name the deliverable you brought to the meetings.
+   example: Served as Math Department Data Lead, compiling benchmark results into [deliverable] for department meetings
+   question: What did you produce from the benchmark results for department meetings?
+5. [line] Middle School Math Teacher, line 3
+   line: "Participated in professional learning communities"
+   can't tell: Participation doesn't show what you contributed. If the work is worth keeping, name what you worked on with the group.
+   example: Participated in professional learning communities, contributing to [work]
+   question: What did you contribute to the professional learning communities?
+6. [line] Austin Housing Affordability Analysis, line 2
+   line: "Created a Tableau dashboard showing affordability trends by zip code"
+   can't tell: The dashboard's subject and tool are clear, but a recruiter can't tell what the analysis found. A finding would give the project more weight.
+   example: Created a Tableau dashboard showing affordability trends by zip code, including [finding]
+   question: What finding from the dashboard can you substantiate?
+7. [keep] Student Performance Dashboard, line 1
+   line: "Built an Excel dashboard tracking AP Statistics pass rates and quiz scores over three years"
+   can't tell: Keep this as a model. It pairs the thing you built with the measures and time period, so a recruiter can picture the work without guessing.
+
+## Fit
+Roles: ["Mathematics Teacher"]
+Level: Career changer, with classroom teaching experience and analytics bootcamp projects
+Note: Your teaching experience is established; the analytics work shown includes classroom data and projects rather than an analytics job title. The assessment and dashboard examples are your strongest bridge into that field.

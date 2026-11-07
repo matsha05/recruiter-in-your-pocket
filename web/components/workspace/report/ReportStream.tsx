@@ -52,6 +52,7 @@ interface ReportStreamProps {
   hasPaidAccess?: boolean;
   comparisonBaseline?: ReportData | null;
   onStartRevision?: () => void;
+  onReadAgainstPosting?: () => void;
   onStartReport?: () => void;
   resumeText?: string;
   /** Why the resume may be missing: a saved report never keeps it; a reloaded one lost it. */
@@ -84,6 +85,7 @@ export function ReportStream(props: ReportStreamProps) {
         hasPaidAccess={props.hasPaidAccess}
         comparisonBaseline={props.comparisonBaseline}
         onStartRevision={props.onStartRevision}
+        onReadAgainstPosting={props.onReadAgainstPosting}
         onStartReport={props.onStartReport}
         onUpgrade={props.onUpgrade}
         resumeText={props.resumeText}

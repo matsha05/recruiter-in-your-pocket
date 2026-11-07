@@ -1,0 +1,29 @@
+# b27_backend_engineer_senior, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_backend_engineer_senior_1.txt (190 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ab8cd5a5; severity check off
+Outcome: report; cost $0.0073; 15.5s
+
+## Clear and specific (score 90; model wrote 90)
+## Verdict
+A senior payments engineer whose resume connects technical work to measurable results.
+
+## Write-up
+This is a strong resume! Your work at Tidewater Commerce and Northwind Billing tells a clear story: you build payment, ledger and billing systems, and you show what changed when you did.
+
+The ledger line is a great model. It names the service you built and shows reconciliation breaks falling from about 300 a month to under 10. A recruiter can also see your technical stack and team leadership; the size of Tidewater Commerce is the one piece of company context that's missing.
+
+You can send this as it stands. If you can add Tidewater's size accurately, that gives a recruiter another way to understand your work there. Competition for the roles you pursue will still matter.
+
+## Cards (2; {"structure":1,"keep":1}); severity off; added []
+1. [structure] Tidewater Commerce
+   line: "The size of Tidewater Commerce isn't stated."
+   can't tell: A recruiter can see the team you led through the audit, but not how big Tidewater Commerce is. That context helps them understand the setting for your senior role.
+   question: How big is Tidewater Commerce?
+2. [keep] Senior Software Engineer, Payments Platform, line 2
+   line: "Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10"
+   can't tell: Keep this as a model: it pairs a concrete technical deliverable with a before-and-after measure, without making a recruiter guess what moved.
+
+## Fit
+Roles: ["Senior backend engineer","Senior Software Engineer, Payments Platform"]
+Level: Senior engineer, led 5 engineers through an audit and mentors 3
+Note: Your experience points toward senior backend roles in payments and billing. The resume shows both hands-on engineering and leadership through the PCI DSS audit.

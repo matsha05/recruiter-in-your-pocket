@@ -1,0 +1,215 @@
+{
+  "case_id": "b18_military_to_civilian",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/resumes/b_military_to_civilian.txt",
+  "resume_sha256": "c2dd1e89354ce1a86021927ffba5d85f65b3dfb021c3126f6459225f8bfd7a7e",
+  "resume_words": 268,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T17:59:30.357Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5801,
+        "completion_tokens": 890,
+        "total_tokens": 6691,
+        "cached_prompt_tokens": 4685,
+        "cache_write_prompt_tokens": 1113,
+        "reasoning_tokens": 391
+      },
+      "cost_usd": 0.0060785,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 11064
+    }
+  ],
+  "resume_prompt_sha256": "0a19c3ee70395ec8fb0584d4bea1b93da77aeca37469b4d47211bc8568544f0c",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "Army logistics and maintenance leadership with clear results and a stated move into civilian operations.",
+    "write_up": [
+      "Your resume makes a strong case for a supply chain or operations supervisor role! Your Army work connects team leadership, equipment accountability and maintenance improvements to concrete results.",
+      "The vehicle readiness line is the model: it gives the starting and ending rates and names the changes you made. Your experience leads, and your in-progress supply chain degree supports the direction you’ve named.",
+      "Your resume shouldn’t be the reason you don’t get a call back. Competition for a role and how an employer weighs military experience also matter. One useful final addition is what you taught the junior mechanics."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Platoon Sergeant, vehicle readiness",
+        "line": "- Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "cannot_tell": "Keep this as a model. You give a recruiter both the measure and the operational decisions behind it.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Wheeled Vehicle Mechanic, line 2",
+        "line": "- Trained 9 junior mechanics",
+        "cannot_tell": "A recruiter can see how many mechanics you trained, but not what you taught them. That detail would show what the training covered.",
+        "example": "Trained 9 junior mechanics in [skills or tasks]",
+        "question": "What skills or tasks did you teach the junior mechanics?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "operations supervisor",
+        "Maintenance Section Sergeant (E-6)"
+      ],
+      "level": "Experienced supervisor",
+      "note": "Your experience points toward operations and maintenance supervision, with supply and inventory work alongside it. Your stated supply chain direction is supported by the parts budget, equipment accountability and in-progress degree.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "Army logistics and maintenance leadership with clear results and a stated move into civilian operations.",
+    "write_up": [
+      "Your resume makes a strong case for a supply chain or operations supervisor role! Your Army work connects team leadership, equipment accountability and maintenance improvements to concrete results.",
+      "The vehicle readiness line is the model: it gives the starting and ending rates and names the changes you made. Your experience leads, and your in-progress supply chain degree supports the direction you’ve named.",
+      "Your resume shouldn’t be the reason you don’t get a call back. Competition for a role and how an employer weighs military experience also matter. One useful final addition is what you taught the junior mechanics."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Platoon Sergeant, vehicle readiness",
+        "line": "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "cannot_tell": "Keep this as a model. You give a recruiter both the measure and the operational decisions behind it.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Wheeled Vehicle Mechanic, line 2",
+        "line": "Trained 9 junior mechanics",
+        "cannot_tell": "A recruiter can see how many mechanics you trained, but not what you taught them. That detail would show what the training covered.",
+        "example": "Trained 9 junior mechanics in [skills or tasks]",
+        "question": "What skills or tasks did you teach the junior mechanics?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "operations supervisor",
+        "Maintenance Section Sergeant (E-6)"
+      ],
+      "level": "Experienced supervisor",
+      "note": "Your experience points toward operations and maintenance supervision, with supply and inventory work alongside it. Your stated supply chain direction is supported by the parts budget, equipment accountability and in-progress degree.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 90
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "Army logistics and maintenance leadership with clear results and a stated move into civilian operations.",
+    "write_up": [
+      "Your resume makes a strong case for a supply chain or operations supervisor role! Your Army work connects team leadership, equipment accountability and maintenance improvements to concrete results.",
+      "The vehicle readiness line is the model: it gives the starting and ending rates and names the changes you made. Your experience leads, and your in-progress supply chain degree supports the direction you’ve named.",
+      "Your resume shouldn’t be the reason you don’t get a call back. Competition for a role and how an employer weighs military experience also matter. One useful final addition is what you taught the junior mechanics."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Platoon Sergeant, vehicle readiness",
+        "line": "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "cannot_tell": "Keep this as a model. You give a recruiter both the measure and the operational decisions behind it.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Wheeled Vehicle Mechanic, line 2",
+        "line": "Trained 9 junior mechanics",
+        "cannot_tell": "A recruiter can see how many mechanics you trained, but not what you taught them. That detail would show what the training covered.",
+        "example": "Trained 9 junior mechanics in [skills or tasks]",
+        "question": "What skills or tasks did you teach the junior mechanics?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "operations supervisor",
+        "Maintenance Section Sergeant (E-6)"
+      ],
+      "level": "Experienced supervisor",
+      "note": "Your experience points toward operations and maintenance supervision, with supply and inventory work alongside it. Your stated supply chain direction is supported by the parts budget, equipment accountability and in-progress degree.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 90
+  },
+  "presentation": {
+    "score": 90,
+    "band": "Clear and specific",
+    "model_score": 90,
+    "lifted_by_employer": false,
+    "verdict": "Army logistics and maintenance leadership with clear results and a stated move into civilian operations.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 98,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Platoon Sergeant, vehicle readiness",
+        "line": "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Wheeled Vehicle Mechanic, line 2",
+        "line": "Trained 9 junior mechanics",
+        "blanks": 1,
+        "question": "What skills or tasks did you teach the junior mechanics?"
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "keep": 1,
+      "line": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "operations supervisor",
+        "Maintenance Section Sergeant (E-6)"
+      ],
+      "level": "Experienced supervisor",
+      "note": "Your experience points toward operations and maintenance supervision, with supply and inventory work alongside it. Your stated supply chain direction is supported by the parts budget, equipment accountability and in-progress degree.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0060785,
+  "latency_ms": 11066
+}

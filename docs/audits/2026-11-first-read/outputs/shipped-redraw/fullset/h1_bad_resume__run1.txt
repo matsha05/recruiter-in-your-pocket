@@ -1,0 +1,82 @@
+# h1_bad_resume, run 1
+Resume: ../2026-11-live-judgment/resumes/h1_bad_resume.txt (217 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0126; 26.2s
+Case note: Ten things wrong: filler objective, wrong target role, duty bullets, no results, five jobs in four years, two undated roles, typos, gap since June 2023, soft-skill skills list, references line.
+
+## Needs more context (score 44; model wrote 44)
+## Verdict
+A retail and warehouse resume seeking a marketing manager job without showing marketing work.
+
+## Write-up
+Your resume shows store, warehouse, sales and delivery work, but the objective asks for a Marketing Manager position. That mismatch is likely to make a recruiter pass: the jobs don't show marketing management work.
+
+This is a common pattern: the jobs list daily duties but leave out the details that would distinguish your work from someone else's. The Buckeye Wireless line about selling phones and accessories is a useful starting point because it names what you sold and who you sold to. Your two undated jobs also make the timeline difficult to follow.
+
+Let's start with the objective and the QuickStop role. Choose a target job that fits the work you can show, then add details about opening the store, handling complaints and training. Add dates to both undated roles, account for any time not covered, and correct the typos before sending.
+
+## Cards (12; {"line":8,"dates":3,"structure":1}); severity off; added []
+1. [line] Objective
+   line: "Hard-working team player seeking a challenging Marketing Manager position where I can utilize my skills and grow with a dynamic company."
+   can't tell: The jobs below don't show marketing management work, so a recruiter has to guess why you're targeting this role. The rest of the objective could describe almost anyone.
+   example: Seeking a [job title] position, bringing experience in [relevant work]
+   question: Which job are you targeting, and which of your experience fits it?
+2. [dates] Dates
+   line: "No work is dated after June 2023."
+   can't tell: Two jobs have no dates, so they may account for some of that time. Add their dates first, then explain any remaining time honestly. Caregiving is a real line; a career break can include a course, project, volunteering or travel, and freelance work belongs there if you did it.
+   example: June 2023 - Present [what you did]
+   question: What dates did you work in the undated jobs, and what were you doing during any remaining time?
+3. [line] Shift Lead, line 1
+   line: "Responsible for opening and closing the store"
+   can't tell: Opening and closing are part of the job, but a recruiter can't tell what those shifts involved. What were you trusted to handle?
+   example: Opened and closed the store, handling [opening and closing duties]
+   question: What did you handle when opening and closing the store?
+4. [line] Shift Lead, line 2
+   line: "Handled cash register and customer complaints"
+   can't tell: This names two parts of the job, but leaves out the kinds of complaints you handled and what you did with them.
+   example: Handled the cash register and customer complaints about [complaint types], including [actions taken]
+   question: What kinds of complaints did you handle, and what did you do about them?
+5. [line] Shift Lead, line 3
+   line: "Made sure shelves were stocked and the store was clean"
+   can't tell: A recruiter can see the duty, but not what you did to keep shelves stocked. Were you checking inventory, putting out deliveries, or doing something else?
+   example: Kept shelves stocked by [stocking tasks] and the store clean
+   question: What stocking tasks did you handle?
+6. [line] Shift Lead, line 4
+   line: "Trained new employes when needed"
+   can't tell: Training is useful experience for a lead role, but a recruiter can't tell what you taught or how many people you trained.
+   example: Trained [number] new employees on [tasks taught]
+   question: How many new employees did you train, and what did you teach them?
+7. [dates] Warehouse Associate
+   line: "The Warehouse Associate role has no dates."
+   can't tell: Without dates, a recruiter can't place this job alongside your other work.
+   example: [Month Year] - [Month Year] Warehouse Associate, Miami Valley Distribution
+   question: When did you start and finish this job?
+8. [structure] Miami Valley Distribution
+   line: "Miami Valley Distribution has no description of its business."
+   can't tell: A recruiter may not know the company. A short description could show what kind of warehouse you worked in, if you can describe it accurately.
+   question: What kind of business is Miami Valley Distribution?
+9. [line] Warehouse Associate, line 1
+   line: "Picked and packed orders"
+   can't tell: This names the work, but not what was in the orders or how much you handled.
+   example: Picked and packed [order contents] for [number] orders per [period]
+   question: What did the orders contain, and how many did you typically pick and pack?
+10. [line] Warehouse Associate, line 3
+   line: "Used a forklift"
+   can't tell: The forklift is a useful detail. A recruiter can't tell what you moved or where you used it.
+   example: Used a forklift to move [materials] in [work area]
+   question: What did you move with the forklift, and where?
+11. [line] Sales Associate, line 1
+   line: "Sold phones and accessories to customers"
+   can't tell: This says what you sold, which gives us a good start. A sales figure or target, if you have one, would show how much you sold.
+   example: Sold phones and accessories to customers, achieving [sales figure or target]
+   question: What sales figure or target can you accurately add?
+12. [dates] Delivery Driver
+   line: "The Delivery Driver role has no dates."
+   can't tell: This job could fall anywhere in the timeline without a start and end date.
+   example: [Month Year] - [Month Year] Delivery Driver, Gino's Pizza
+   question: When did you start and finish this job?
+
+## Fit
+Roles: ["Shift Lead","Warehouse Associate","Sales Associate"]
+Level: Frontline and shift lead
+Note: The objective names Marketing Manager, but the resume doesn't show marketing work or marketing management. Your experience points more directly toward store, warehouse and sales roles; the missing dates and brief duties make your work in those jobs less clear.

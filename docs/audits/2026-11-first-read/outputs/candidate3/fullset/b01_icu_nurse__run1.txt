@@ -1,0 +1,30 @@
+# b01_icu_nurse, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_icu_nurse_1.txt (153 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 01c2028d; severity check off
+Outcome: report; cost $0.0056; 11.4s
+
+## Mostly clear (score 82; model wrote 82)
+## Verdict
+A medical ICU nurse with clear bedside experience and one committee role that needs context.
+
+## Write-up
+Your resume tells a clear story: you moved from telemetry at Saguaro Community Hospital to the medical ICU at Desert Valley Medical Center. A recruiter can see your patient care, critical care treatments, charge shifts and precepting work without guessing at your specialty.
+
+The direct-care line is a strong model because it puts your patient assignment and unit together. Your Arizona license and CCRN are easy to find, and your experience comes before education.
+
+I’d expect a recruiter to move this forward with a question about the sepsis committee. Start there: add what you contributed, then leave the clear bedside care lines alone.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Staff Nurse, Medical ICU, line 1
+   line: "Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU"
+   can't tell: Keep this as a model. It names the care you provide and gives a recruiter a concrete picture of your assignment.
+2. [line] Staff Nurse, Medical ICU, line 5
+   line: "Member of the unit's sepsis bundle compliance committee"
+   can't tell: Committee membership tells a recruiter where you participated, but not what you did. Your contribution is the part that belongs here.
+   example: Member of the unit's sepsis bundle compliance committee, contributing [committee work]
+   question: What did you contribute to the sepsis bundle compliance committee?
+
+## Fit
+Roles: ["Staff Nurse, Medical ICU","Staff Nurse, Telemetry"]
+Level: Staff nurse with charge and precepting responsibilities
+Note: Your experience points most directly to medical ICU staff nursing, with earlier telemetry experience. Your Arizona RN license and CCRN are visible alongside your critical care work.

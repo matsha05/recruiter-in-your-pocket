@@ -1,0 +1,30 @@
+# b24_physical_therapist_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_physical_therapist_strong_1.txt (154 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 01c2028d; severity check off
+Outcome: report; cost $0.0066; 13.4s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A senior outpatient physical therapist whose resume makes the patients, programs, and mentoring easy to see.
+
+## Write-up
+This is a strong physical therapy resume! Your work at North Loop and Lakes Regional shows the patients you treat, the programs you've led, and the people you mentor. A recruiter can quickly see your outpatient orthopedic focus and how your responsibilities have grown.
+
+The return-to-run line is a great model: it names the program you built and tells a recruiter how many patients completed it. Your Minnesota license and the specialties in both roles are easy to find, too.
+
+I'd add one piece of context to the patient-reported function line, then leave the rest largely alone. Your resume is unlikely to be what holds you back; how competitive a particular role is will matter too.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Senior Physical Therapist, line 2
+   line: "Built a return-to-run program that 85 patients completed in 2025"
+   can't tell: Keep this as your model. It makes your part in the program clear and gives the completion count a clear time frame.
+2. [line] Senior Physical Therapist, line 4
+   line: "In 2025, 92% of discharged patients improved their patient-reported function scores"
+   can't tell: A recruiter can see whose scores improved, but not what care those patients received. Adding that context connects the scores to your work without claiming the care caused the improvement.
+   example: In 2025, 92% of discharged patients improved their patient-reported function scores after [care provided]
+   question: What care did those discharged patients receive?
+
+## Fit
+Roles: ["Senior Physical Therapist","Physical Therapist"]
+Level: Senior physical therapist, mentors 2 newer therapists and sets the PT aide schedule
+Note: Your experience points toward outpatient orthopedic physical therapy, particularly sports and post-surgical rehab. The mentoring and program-building work also support a senior therapist role.

@@ -1,0 +1,59 @@
+# b30_social_worker, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_social_worker_1.txt (127 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 41bcacc0; severity check off
+Outcome: report; cost $0.0085; 18.6s
+
+## Needs more context (score 65; model wrote 65)
+## Verdict
+A licensed family services caseworker whose resume names the work but leaves the caseload and decisions unclear.
+
+## Write-up
+This is a common pattern in social work resumes: your Cuyahoga Family Partners role lists the core duties, but a recruiter has to guess how many families you work with and what your assessments and coordination involve. I read your resume for Family Services Caseworker roles; as it stands, it may not stand out in a pile.
+
+Your intake screening line is a useful model because it names the clients and the kinds of assistance they sought. Your Ohio LMSW and Master of Social Work are easy to find, and your experience comes first.
+
+Let's start with your current role. Add the caseload you can document, then show what your assessments informed and what services you coordinated. Keep the details grounded in the work you can share.
+
+## Cards (8; {"structure":1,"line":6,"keep":1}); severity off; added []
+1. [structure] Cuyahoga Family Partners
+   line: "Cuyahoga Family Partners has no description of the organization."
+   can't tell: A recruiter may not know the organization from its name. A short description could establish where your family services work takes place.
+   question: How would you describe the organization and the community it serves?
+2. [line] Family Services Caseworker, line 1
+   line: "Carry a caseload of families involved with child protective services"
+   can't tell: The families and child protective services connection are clear, but the caseload isn't. That number helps a recruiter understand the work you manage.
+   example: Carry a caseload of [number] families involved with child protective services
+   question: How many families are in your caseload?
+3. [line] Family Services Caseworker, line 2
+   line: "Complete safety and risk assessments during home visits"
+   can't tell: A recruiter can see that you assess safety and risk, but not what decisions those assessments inform.
+   example: Complete safety and risk assessments during home visits to inform [decision]
+   question: What decisions do your assessments inform?
+4. [line] Family Services Caseworker, line 3
+   line: "Coordinate services with schools, courts, and mental health providers"
+   can't tell: You name the people you work with, but not the services you coordinate. One example would show what that coordination involves.
+   example: Coordinate [service] with schools, courts, and mental health providers
+   question: What is one service you coordinate with these partners?
+5. [line] Family Services Caseworker, line 4
+   line: "Write case plans and court reports"
+   can't tell: A recruiter can see the documents you write, but not what the plans or reports address.
+   example: Write case plans and court reports addressing [issue]
+   question: What is one issue you address in the plans and reports?
+6. [line] Family Services Caseworker, line 5
+   line: "Facilitate monthly family team meetings"
+   can't tell: The monthly frequency is useful. Who takes part would show a recruiter the group you facilitate.
+   example: Facilitate monthly family team meetings with [participants]
+   question: Who takes part in the family team meetings?
+7. [keep] Intake Specialist, line 1
+   line: "Screened walk-in clients for housing, food, and utility assistance"
+   can't tell: Keep this as a model. It gives the reader a concrete picture of the requests you handled without relying on a vague phrase like client support.
+8. [line] Intake Specialist, line 2
+   line: "Connected clients to county benefit programs"
+   can't tell: A recruiter can't tell which programs you connected clients to. Naming one would make the referral work more concrete.
+   example: Connected clients to [county benefit program]
+   question: Which county benefit program did you connect clients to?
+
+## Fit
+Roles: ["Family Services Caseworker","Intake Specialist"]
+Level: Experienced caseworker, with a current family services role and an Ohio LMSW
+Note: Your experience points toward family services and child welfare casework. The current role names the main work, but a recruiter will want to know the caseload and more about the decisions and services involved.

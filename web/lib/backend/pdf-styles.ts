@@ -145,6 +145,24 @@ export function pdfReportStyles(fonts: { voice: string; voiceItalic: string; ui:
     .score-row { display: flex; align-items: flex-start; gap: 22px; margin-bottom: 14px; }
     .score { font-size: 30pt; font-weight: 800; line-height: 30pt; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
     .score-row .band { margin-top: 2px; }
+    .first-pass { margin-top: 14px; }
+    .pass-title { color: var(--accent); font-size: 9pt; font-weight: 600; line-height: 13pt; }
+    .pass-lead { color: var(--muted); font-size: 9pt; line-height: 13pt; }
+    .sort { display: flex; margin-top: 8px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); break-inside: avoid; }
+    .sort > div { flex: 1 1 0; padding: 8px 12px 8px 0; }
+    .sort > div + div { padding-left: 12px; border-left: 1px solid var(--line); }
+    .sort-q { color: var(--muted); font-size: 8.5pt; font-weight: 600; line-height: 12pt; }
+    .sort-a { font-size: 10.5pt; font-weight: 600; line-height: 15pt; margin-top: 2px; }
+    .sort-why { color: var(--accent); font-family: "Literata", Georgia, serif; font-style: italic; font-size: 10pt; line-height: 14pt; margin-top: 2px; }
+    .posting-fit { margin-top: 10px; break-inside: avoid; }
+    .posting-fit .note { color: var(--accent); font-family: "Literata", Georgia, serif; font-size: 11pt; line-height: 16pt; }
+    .posting-fit ul { margin: 6px 0 0 16px; padding: 0; font-size: 10pt; line-height: 14pt; }
+    .posting-fit .label { font-size: 9pt; font-weight: 600; line-height: 13pt; margin-top: 8px; }
+    .posting-fit .how { color: var(--muted); font-size: 9pt; line-height: 13pt; margin-top: 4px; }
+    .stop { margin-top: 10px; padding-top: 8px; border-top: 2px solid var(--red-pen); break-inside: avoid; }
+    .stop-title { color: var(--red-pen); font-size: 9.5pt; font-weight: 600; line-height: 13pt; }
+    .stop-line { margin-top: 6px; border: 1px solid var(--line); border-radius: 4px; padding: 6px 10px; font-family: "Literata", Georgia, serif; font-size: 10.5pt; line-height: 15pt; text-decoration: line-through; text-decoration-color: var(--red-pen); }
+    .stop-note { margin-top: 6px; font-size: 10pt; line-height: 14pt; }
     .write-up { margin-top: 14px; color: var(--accent); font-family: "Literata", Georgia, serif; font-size: 11.5pt; line-height: 17pt; }
     .write-up p + p { margin-top: 9px; }
     .card { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; margin-bottom: 12px; break-inside: avoid; }

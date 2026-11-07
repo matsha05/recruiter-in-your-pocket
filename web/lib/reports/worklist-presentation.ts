@@ -122,12 +122,76 @@ export function worklistTargetRole(report: Pick<WorklistReport, "fit">) {
   return report.fit.roles.find((role) => role.trim())?.trim() || null;
 }
 
+/**
+ * Whether the report keeps a fit section after the cards: only without a posting, for where else the experience
+ * points. With a posting, its fit is in the first pass (Nov 7, 2026).
+ */
+export function hasRoleSection(report: Pick<WorklistReport, "fit">) {
+  return !report.fit.posting.summary && Boolean(report.fit.note || report.fit.roles.length > 0);
+}
+
 /** Headings for the fit section, with and without a posting. */
 export function fitHeading(report: Pick<WorklistReport, "fit">) {
   return report.fit.posting.summary ? "How your experience fits this role." : "Roles your experience points toward.";
 }
 
 export const POSTING_MISSING_LABEL = "What the posting asks for that your resume doesn't show";
+/**
+ * Under the missing list (the first-read wave, Nov 7, 2026): recruiters read a resume that mirrors a posting's
+ * words as generic or worse, so the list is questions to answer, never keywords to paste.
+ */
+export const POSTING_MISSING_HOW = "If you've done it, say where. If you haven't, leave it out.";
+
+/**
+ * The job the score was judged for and the level a recruiter would put the person at (prompt FIT, Nov 7, 2026):
+ * the first thing a recruiter decides, so it sits with the score instead of under the cards. With a posting,
+ * the posting's title is the second role.
+ */
+export function worklistReadFor(report: Pick<WorklistReport, "fit">) {
+  const roles = report.fit.roles.map((role) => role.trim()).filter(Boolean);
+  const hasPosting = Boolean(report.fit.posting.summary);
+  return {
+    role: roles[0] || null,
+    level: report.fit.level.trim() || null,
+    postingRole: hasPosting ? roles[1] || null : null,
+    hasPosting,
+  };
+}
+
+/**
+ * The level as the first pass shows it: the level itself, then the fact on the resume that sets it. The prompt
+ * writes "senior, leads projects, no direct reports", so the first clause is the answer and the rest the reason.
+ */
+export function worklistLevelParts(level: string | null) {
+  const text = (level || "").trim();
+  if (!text) return null;
+  const comma = text.indexOf(",");
+  const head = (comma === -1 ? text : text.slice(0, comma)).trim();
+  const rest = comma === -1 ? "" : text.slice(comma + 1).trim();
+  const cap = (value: string) => value.charAt(0).toUpperCase() + value.slice(1);
+  return { level: cap(head), because: rest ? `${cap(rest).replace(/[.;,]+$/u, "")}.` : null };
+}
+
+// ---- Text written to screening software (lib/reports/screener-text.ts) ----
+
+type ScreenerKind = NonNullable<WorklistReport["screener_text"]>[number]["kind"];
+
+export function screenerTitle(many: boolean) {
+  return many ? "Take these out before you send it." : "Take this out before you send it.";
+}
+const SCREENER_WHAT: Record<ScreenerKind, string> = {
+  instruction: "This line is written to AI screening software, not to a person.",
+  score: "This is a score written for screening software to read back.",
+  posting_copy: "This is the posting's own text, pasted into your resume.",
+  keyword_repeat: "This is a keyword list repeated for a scanner.",
+};
+/** What a finding is, then why it matters; the same sentence for every kind. */
+export function screenerNote(kind: ScreenerKind, many: boolean) {
+  if (many) {
+    return "These lines are written to screening software, not to a person. They may be set in white, so you might not see them in your file. Screening software reads them as plain text, so a recruiter sees them too, and they're the lines they remember.";
+  }
+  return `${SCREENER_WHAT[kind]} It may be set in white, so you might not see it in your file. Screening software reads it as plain text, so a recruiter sees it too, and it's the line they remember.`;
+}
 
 // ---- The re-check (two worklist reports on the same resume) ----
 

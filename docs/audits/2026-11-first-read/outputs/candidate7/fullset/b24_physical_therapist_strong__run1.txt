@@ -1,0 +1,30 @@
+# b24_physical_therapist_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_physical_therapist_strong_1.txt (154 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 1c0fe4fe; severity check off
+Outcome: report; cost $0.0061; 12.1s
+
+## Clear and specific (score 89; model wrote 89)
+## Verdict
+A senior outpatient physical therapist with patient volume, program work and clinical results made clear.
+
+## Write-up
+Your resume is strong: it shows an outpatient orthopedic physical therapist who treats patients, builds programs and mentors newer therapists. At North Loop Sports Rehab and Lakes Regional Hospital Outpatient Clinic, you give a recruiter a concrete picture of the patients and work in each role.
+
+The return-to-run line is a great model: you built the program and say how many patients completed it. Your Minnesota license, specialties and daily patient volume are easy to find, too.
+
+The one detail I'd add is how the patient-reported function scores were measured. Your resume isn't likely to be what holds you back; the match with a clinic's patients and competition for the role matter, too.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Senior Physical Therapist, line 2
+   line: "Built a return-to-run program that 85 patients completed in 2025"
+   can't tell: Keep this as a model. It names the program and counts patients who completed it, rather than leaving a recruiter to guess who used it.
+2. [line] Senior Physical Therapist, line 4
+   line: "In 2025, 92% of discharged patients improved their patient-reported function scores"
+   can't tell: This is a useful result, but a recruiter can't tell which measure you used or how many discharged patients the percentage represents.
+   example: In 2025, 92% of [number] discharged patients improved their patient-reported function scores on [measure]
+   question: Which measure did you use, and how many discharged patients did that percentage represent?
+
+## Fit
+Roles: ["Senior Physical Therapist"]
+Level: Senior clinician, mentors 2 newer therapists
+Note: Your experience points toward outpatient orthopedic and sports rehabilitation roles. The return-to-run program and post-surgical cases are especially relevant to clinics with those patients.

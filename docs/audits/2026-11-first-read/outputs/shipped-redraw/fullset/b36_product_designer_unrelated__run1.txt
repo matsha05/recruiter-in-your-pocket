@@ -1,0 +1,46 @@
+# b36_product_designer_unrelated, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_product_designer_unrelated_1.txt (147 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0086; 17.8s
+Case note: Current job outside the field.
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+A product designer with named app work, but little detail about what the designs changed.
+
+## Write-up
+Your resume points to product design, with app work at Loop Fitness and agency work at Brightpath Studio, followed by your current barista role. It's common to list the work this way, but without more about the design decisions or what happened next, it won't stand out in a pile.
+
+The design system line is your best model: you say you created the app's first system and name Figma. Your dates account for your current work, though a recruiter will notice that your most recent product design role ended in February 2024.
+
+Let's start with the Loop Fitness releases and usability tests. Add your contribution and what you learned, where you can, then give a Brightpath prototype the same treatment. Your portfolio can show the work in more depth, but the resume needs enough detail to get a recruiter interested in looking.
+
+## Cards (5; {"line":4,"keep":1}); severity off; added []
+1. [line] Barista, line 2
+   line: "Train new baristas on espresso equipment"
+   can't tell: Training new baristas is useful work, but a recruiter can't tell how often you do it or how many people you've trained.
+   example: Train [number] new baristas per [time period] on espresso equipment
+   question: How many new baristas do you train, and over what period?
+2. [line] Product Designer, Loop Fitness, line 2
+   line: "Worked with two engineers and a product manager on weekly releases"
+   can't tell: The team and release cadence are clear, but your contribution to those releases isn't. What design work did you do alongside them?
+   example: Worked with two engineers and a product manager on weekly releases, contributing [your design work]
+   question: What design work did you contribute to the weekly releases?
+3. [keep] Product Designer, Loop Fitness, line 3
+   line: "Created the app's first design system in Figma"
+   can't tell: Keep this one. It makes your ownership and the thing you built easy to grasp in a few words.
+4. [line] Product Designer, Loop Fitness, line 4
+   line: "Ran usability tests with members before launches"
+   can't tell: Running the tests is clear. A recruiter can't tell what you tested or what you learned from members.
+   example: Ran usability tests with members before launches on [what you tested], finding [what you learned]
+   question: What did you test with members, and what did you learn?
+5. [line] Junior Product Designer, Brightpath Studio, line 2
+   line: "Made prototypes for client presentations"
+   can't tell: The presentations are named, but the prototypes could be for almost anything. One project would give a recruiter something to remember.
+   example: Made a prototype for a client presentation showing [what the prototype demonstrated]
+   question: What did one of your client presentation prototypes demonstrate?
+
+## Fit
+Roles: ["Product Designer","Junior Product Designer"]
+Level: Product designer with prior agency experience
+Note: Your experience points toward product design for web and mobile apps. The Loop Fitness work is the strongest match, although your most recent role is outside design.

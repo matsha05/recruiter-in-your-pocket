@@ -1,0 +1,35 @@
+# b02_teacher, run 1
+Resume: ../2026-11-live-judgment/resumes/b_teacher.txt (202 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5cba8f05; severity check off
+Outcome: report; cost $0.0063; 12.9s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A Washington elementary teacher whose resume shows classroom results, team leadership, and work with families.
+
+## Write-up
+Your resume is strong: it shows what you teach, who you teach, and the reading growth your class achieved. At Lincoln Heights, you also lead grade-level planning, pilot curriculum and run a homework club. A recruiter can picture your work beyond the classroom!
+
+The family literacy night line is a great model: it names your role, the event and who attended. Your Washington certification and English Language Learner endorsement are easy to find, too. The main question is what you did to support the reading growth you report.
+
+Let's add the teaching approach behind that growth and your contribution to the behavior committee. Your resume isn't likely to be what holds you back; the needs of a particular school and how competitive the job is will matter too.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] 4th Grade Teacher, line 2
+   line: "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years"
+   can't tell: The reading growth is compelling, but a recruiter can't tell what you did to help students make it. Your teaching approach would give them something to carry into a conversation with you.
+   example: Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years using [teaching approach]
+   question: What teaching approach did you use to support that reading growth?
+2. [keep] 2nd Grade Teacher, line 2
+   line: "Coordinated the school's family literacy night, attended by 140 families in 2019"
+   can't tell: Keep this as a model. It gives a recruiter a named school event, your part in it and the number of families who came.
+3. [line] 2nd Grade Teacher, line 3
+   line: "Served on the school's positive behavior support committee"
+   can't tell: A recruiter knows you were on the committee, but not what you contributed to its work.
+   example: Served on the school's positive behavior support committee by [committee contribution]
+   question: What did you contribute to the committee's work?
+
+## Fit
+Roles: ["4th Grade Teacher","2nd Grade Teacher"]
+Level: Experienced teacher and grade-level team lead for 4 teachers
+Note: Your experience points toward elementary classroom teaching, with additional grade-level leadership and curriculum training. Your English Language Learner endorsement adds to the picture of your work with students learning English.

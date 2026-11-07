@@ -1,0 +1,31 @@
+# fr01a_backend_ic_no_posting, run 1
+Resume: resumes/fr01_backend_ic_senior.txt (236 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5cba8f05; severity check off
+Outcome: report; cost $0.0057; 11.6s
+Case note: P1. Senior backend IC, no direct reports, no posting. Expect the role read as Senior Backend Engineer and a level that says IC, no reports.
+
+## Clear and specific (score 89; model wrote 89)
+## Verdict
+A senior backend engineer whose payments work shows both technical decisions and results.
+
+## Write-up
+This is a strong backend resume! Your Lumen Ledger work pairs major payments services with the engineering decisions behind them, from sharding the ledger to cutting API latency. A recruiter can see both what you built and why it mattered.
+
+The balance API line is a model: it gives the starting point, the improvement, and the approach in one sentence. Your progression from insurance to freight technology to payments is easy to follow, and your current role backs up the senior headline.
+
+I'd tighten the claims intake line so it says what you worked on, but the resume itself is unlikely to be what stands between you and a call back. How competitive a particular job is will still matter.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Senior Software Engineer, Payments Platform, line 3
+   line: "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache"
+   can't tell: Keep this as a model. You name the service, show the before and after, and explain the change that got it there.
+2. [line] Software Engineer, line 1
+   line: "Maintained the claims intake services in Java"
+   can't tell: A recruiter can see which services you owned, but not what maintaining them involved. One concrete change would show more of your work at Northgate Insurance.
+   example: Maintained the claims intake services in Java by [what you did]
+   question: What did you do to maintain or improve the claims intake services?
+
+## Fit
+Roles: ["Senior Backend Engineer","Senior Software Engineer, Payments Platform"]
+Level: Senior individual contributor, leading technical work and mentoring two mid-level engineers
+Note: Your experience points toward backend roles involving payments, APIs, and distributed services. The Lumen Ledger work gives you a particularly strong story for payments infrastructure.

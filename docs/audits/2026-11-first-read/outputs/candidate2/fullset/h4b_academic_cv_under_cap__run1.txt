@@ -1,0 +1,35 @@
+# h4b_academic_cv_under_cap, run 1
+Resume: ../2026-11-live-judgment/resumes/h4b_academic_cv_under_cap.txt (3253 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 41bcacc0; severity check off
+Outcome: report; cost $0.0248; 16.2s
+Case note: The same CV trimmed under the cap, to see what the model does with a CV shape.
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+A tenured molecular biologist with substantial funding and teaching experience, but repeated citations make the research record hard to trust.
+
+## Write-up
+Academic CVs often have long publication lists. Yours repeats several titles and author lists under different years, which makes a recruiter hesitate over a research record that otherwise points strongly toward an Associate Professor role.
+
+The MB 310 redesign is a strong model: it names the change and gives student evaluations before and after it. Your NIH funding, mentoring record and invited talks also give a reader plenty to work with. Education currently comes before your academic appointments, though your faculty work should lead.
+
+Let's start by checking the repeated publications against the journal records, then move your appointments above Education. Keep the grant, teaching and mentoring details: they show what you've built at Riverbend.
+
+## Cards (3; {"structure":1,"line":1,"keep":1}); severity off; added []
+1. [structure] Structure
+   line: "Education sits above Academic Appointments."
+   can't tell: Your current faculty position comes after your degrees. Lead with the appointments so a recruiter sees your tenured role first.
+   question: Can you move Academic Appointments above Education?
+2. [line] Publications, entry 1
+   line: "1. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2026). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 107(2), 1037-1052."
+   can't tell: This title and author list also appear under other years in your publication list. A recruiter can't tell whether these are separate papers or repeated entries, and the same pattern appears elsewhere in the list.
+   example: [authors]. ([year]). [article title]. [journal], [volume and issue], [pages].
+   question: Which journal records match the repeated titles, and which entries should remain?
+3. [keep] Teaching, course redesign
+   line: "Course redesign: converted MB 310 to a flipped format in 2019; student evaluations rose from 3.9 to 4.5 of 5 over the following three offerings."
+   can't tell: Keep this as a model. It pairs the teaching change with a before-and-after measure and says when the measure was taken.
+
+## Fit
+Roles: ["Associate Professor (with tenure)"]
+Level: Tenured faculty, Associate Professor and grant PI
+Note: Your appointments, grants, teaching and mentoring point to research-focused faculty roles in molecular and cell biology. The repeated publication entries need checking before a reader can confidently assess the research record.

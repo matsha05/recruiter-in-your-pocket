@@ -1,0 +1,55 @@
+# b16_career_changer_bad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_career_changer_bad_1.txt (140 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 01c2028d; severity check off
+Outcome: report; cost $0.0107; 22.5s
+Case note: Career changer, weak; key says missing_dates, no_evidence_latest_role, no_target_role.
+
+## Needs more context (score 63; model wrote 63)
+## Verdict
+Retail supervision, web development and billing compete for attention, while the current job needs more detail.
+
+## Write-up
+You’re a Shift Supervisor at Saguaro Market with freelance web development and medical billing experience. This mix is common, but without a target job, a recruiter has to guess which direction you want. I read it for Shift Supervisor because that’s your current role.
+
+The Cactus Grill line is your best model: it names the dining room and when you served it. Your current role is easy to follow, but it doesn’t show how many people you supervise or what your part in ordering and resets involves. The freelance work also has no dates.
+
+Let’s start with the Saguaro Market role and add what you can confirm about the team and your work there. Then date the freelance role and choose which direction to lead with for each application.
+
+## Cards (7; {"structure":2,"line":3,"dates":1,"keep":1}); severity off; added []
+1. [structure] Structure
+   line: "The resume does not name a target job."
+   can't tell: Your retail, web and billing work point in different directions. A recruiter can’t tell which job you want from the resume alone.
+   question: Which job do you want this version of your resume to target?
+2. [structure] Saguaro Market
+   line: "Saguaro Market has no description of its size."
+   can't tell: A recruiter may not know Saguaro Market. A brief description of the store’s size would give your supervisor role more context.
+   example: Saguaro Market, Tucson, AZ | [description of store size]
+   question: How would you describe the store’s size?
+3. [line] Shift Supervisor, line 1
+   line: "Supervise cashiers and stockers on evening shifts"
+   can't tell: You name the people you supervise, but not how many. That’s a useful first detail for a supervisor job.
+   example: Supervise [number] cashiers and stockers on evening shifts
+   question: How many cashiers and stockers do you supervise on an evening shift?
+4. [line] Shift Supervisor, line 3
+   line: "Help with weekly ordering and store resets"
+   can't tell: A recruiter can see the two jobs you help with, but not your part in either one.
+   example: Help with weekly ordering and store resets by [your responsibilities]
+   question: What do you do for weekly ordering and store resets?
+5. [dates] Freelance Web Developer
+   line: "The Freelance Web Developer role has no dates."
+   can't tell: A recruiter can’t tell when you built the websites or whether you still do this work. Add the dates so it can be placed alongside your other roles.
+   example: [Month Year] - [Month Year or Present] Freelance Web Developer, Self-employed
+   question: When did your freelance web development work start and end, or is it ongoing?
+6. [line] Freelance Web Developer, line 1
+   line: "Built small business websites in WordPress and Webflow"
+   can't tell: WordPress and Webflow tell a recruiter what you used. One website’s size and a feature you built would show more of the work.
+   example: Built small business websites in WordPress and Webflow, including a [number]-page website with [feature]
+   question: How many pages did one website have, and what feature did you build for it?
+7. [keep] Server, line 1
+   line: "Served a 70-seat dining room on weekend doubles"
+   can't tell: Keep this as a model: it pairs your work with a concrete detail about the setting and when you worked.
+
+## Fit
+Roles: ["Shift Supervisor","Freelance Web Developer","Medical Billing Assistant"]
+Level: Supervisor, currently supervises cashiers and stockers
+Note: Your current work points toward retail supervision, while the freelance websites and claims work support different directions. A target title and more detail about the team would make the supervisor story easier to follow.

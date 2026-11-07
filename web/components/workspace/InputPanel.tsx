@@ -39,6 +39,8 @@ interface InputPanelProps {
         score?: number | null;
     } | null;
     isRevision?: boolean;
+    /** Arrived from a report's "Read it against a posting": the resume is kept, so open the posting field and focus it. */
+    focusPosting?: boolean;
 }
 
 export default function InputPanel({
@@ -56,9 +58,11 @@ export default function InputPanel({
     onOpenLastReport,
     loadedJobContext,
     isRevision = false,
+    focusPosting = false,
 }: InputPanelProps) {
     const [fileName, setFileName] = useState<string | null>(null);
-    const [showJD, setShowJD] = useState(!!loadedJobContext);
+    const [showJD, setShowJD] = useState(!!loadedJobContext || focusPosting);
+    const postingRef = useRef<HTMLTextAreaElement>(null);
     // The panel remounts after a failed run; reopen pasted text instead of hiding it behind the upload view.
     const [showPaste, setShowPaste] = useState(() => !commandUploadName && resumeText.trim().length > 0);
     const [hasRejectedResume, setHasRejectedResume] = useState(false);
@@ -86,6 +90,14 @@ export default function InputPanel({
     useEffect(() => {
         if (loadedJobContext) setShowJD(true);
     }, [loadedJobContext]);
+
+    useEffect(() => {
+        if (!focusPosting) return;
+        setShowJD(true);
+        // After the field mounts: the resume is already here, so the posting is the one thing left to add.
+        const frame = requestAnimationFrame(() => postingRef.current?.focus({ preventScroll: false }));
+        return () => cancelAnimationFrame(frame);
+    }, [focusPosting]);
 
     useEffect(() => {
         if (showPaste) pasteInputRef.current?.focus({ preventScroll: true });
@@ -299,6 +311,7 @@ export default function InputPanel({
                                 <div id="workspace-job-context" className="ui-state-enter pb-3">
                                     <label htmlFor="workspace-job-description" className="sr-only">Job posting</label>
                                     <textarea
+                                        ref={postingRef}
                                         id="workspace-job-description"
                                         data-testid="workspace-job-description"
                                         value={jobDescription}

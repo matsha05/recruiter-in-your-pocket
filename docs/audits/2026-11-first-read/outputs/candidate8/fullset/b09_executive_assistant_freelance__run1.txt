@@ -1,0 +1,50 @@
+# b09_executive_assistant_freelance, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_executive_assistant_freelance_1.txt (163 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5cba8f05; severity check off
+Outcome: report; cost $0.0086; 18.1s
+
+## Mostly clear (score 77; model wrote 77)
+## Verdict
+An executive assistant with founder and CEO experience, plus a career gap and a few duties needing detail.
+
+## Write-up
+Your resume points to executive assistant work: you moved from supporting operations at Parkway Logistics to supporting its CEO, and now work with three founders. A recruiter can follow that progression and see the people you support, though a few lines leave the actual work too broad.
+
+The leadership offsite line is a good model: it names the event you planned and its 40 attendees. Your experience leads the resume, which makes sense here. The dates leave a stretch between Parkway Logistics and freelance work unexplained.
+
+Let's start by accounting for that stretch honestly, then add detail to the investor meeting and board materials lines. You don't need to add a number to every duty; naming what you handled will do plenty of work.
+
+## Cards (6; {"dates":1,"line":4,"keep":1}); severity off; added []
+1. [dates] Dates
+   line: "The Parkway Logistics role ends in June 2023, and freelance work starts in February 2025."
+   can't tell: A recruiter can't tell what you did between these roles. If you took a career break, you can name it and say what you did; caregiving is a real line too. Include freelance or consulting work only if it was real.
+   example: June 2023 - February 2025 [what you did]
+   question: What were you doing between the Parkway Logistics and freelance roles?
+2. [line] Freelance Executive Assistant, line 3
+   line: "Coordinate investor meeting logistics across time zones"
+   can't tell: A recruiter knows the meetings involve investors, but not which logistics you handle. Your part in getting them together is the useful detail here.
+   example: Coordinate [logistics] for investor meetings across time zones
+   question: Which parts of the investor meeting logistics do you coordinate?
+3. [line] Executive Assistant to the CEO, line 2
+   line: "Prepared materials for quarterly board meetings"
+   can't tell: Board meeting materials can cover a lot. What did you prepare for the meetings?
+   example: Prepared [materials] for quarterly board meetings
+   question: What materials did you prepare for the quarterly board meetings?
+4. [keep] Executive Assistant to the CEO, line 3
+   line: "Planned the annual leadership offsite for 40 attendees"
+   can't tell: Keep this as a model. It gives a recruiter a concrete event and the number of attendees without making them guess what you planned.
+5. [line] Executive Assistant to the CEO, line 4
+   line: "Served as the point of contact between the CEO and department heads"
+   can't tell: Being the point of contact could mean handling several kinds of requests. A recruiter can't tell what passed through you.
+   example: Served as the point of contact between the CEO and department heads for [matters handled]
+   question: What kinds of matters did you handle between the CEO and department heads?
+6. [line] Administrative Assistant, line 1
+   line: "Supported the operations team with scheduling and filing"
+   can't tell: Scheduling and filing tell a recruiter the general duties, but not what the operations team relied on you to organize.
+   example: Supported the operations team by scheduling [what you scheduled] and filing [records]
+   question: What did you schedule and file for the operations team?
+
+## Fit
+Roles: ["Freelance Executive Assistant","Executive Assistant to the CEO"]
+Level: Experienced executive assistant, supporting founders and previously a CEO
+Note: Your experience points toward executive assistant roles supporting founders or senior leaders. The offsite and board meeting work also show responsibilities beyond calendar and travel management.

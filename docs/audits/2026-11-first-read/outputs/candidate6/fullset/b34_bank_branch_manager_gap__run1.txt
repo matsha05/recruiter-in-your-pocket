@@ -1,0 +1,51 @@
+# b34_bank_branch_manager_gap, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_bank_branch_manager_gap_1.txt (129 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5827dcf1; severity check off
+Outcome: report; cost $0.0102; 21.3s
+Case note: Gap with nothing after it.
+
+## Mostly clear (score 75; model wrote 75)
+## Verdict
+A branch manager with deposit growth and team leadership, but no account of work since December 2024.
+
+## Write-up
+Your resume points to Branch Manager roles: you moved from Personal Banker to managing a Magnolia Community Bank branch, its employees and its deposits. A recruiter can see the progression and the results, but will have a question about the time since your last dated role.
+
+The deposit line is your model: it names the business measure, where it started and where it ended. Your management line also gives a recruiter a useful picture of the branch through its 11 employees.
+
+Start by accounting for the time after December 2024 honestly. Then add what you did in the audits and customer escalations, and what came from the referral coaching. Those details will give a recruiter more to carry forward alongside the deposit growth.
+
+## Cards (6; {"dates":1,"keep":1,"line":4}); severity off; added []
+1. [dates] Dates
+   line: "Nothing is dated after December 2024."
+   can't tell: A recruiter can't tell what you've done since the Branch Manager role ended. If you were caring for someone or took a career break, you can name that; include freelance work only if you did it.
+   example: December 2024 - Present [what you did]
+   question: What have you been doing since December 2024 that you'd like to account for on your resume?
+2. [keep] Branch Manager, line 2
+   line: "Grew branch deposits from $48M to $63M over five years"
+   can't tell: Keep this as a model. It gives the starting point, ending point and time frame without making a recruiter hunt for them.
+3. [line] Branch Manager, line 3
+   line: "Led weekly sales huddles and coached bankers on referrals"
+   can't tell: A recruiter can see that you coached bankers, but not what the coaching involved or whether referrals changed. That would show more of how you managed the branch.
+   example: Led weekly sales huddles and coached bankers on referrals through [coaching approach], with [referral result]
+   question: What did the coaching involve, and what happened to referrals?
+4. [line] Branch Manager, line 4
+   line: "Oversaw audits and compliance reviews for the branch"
+   can't tell: You oversaw the reviews, but a recruiter can't tell what that involved or what happened afterward. Your part in preparing for or responding to a review would make the work more concrete.
+   example: Oversaw audits and compliance reviews for the branch, including [your responsibilities] and [what happened]
+   question: What were your responsibilities during the audits and reviews, and what happened afterward?
+5. [line] Branch Manager, line 5
+   line: "Handled escalated customer complaints"
+   can't tell: The complaints reached you, but their subject and your response are missing. One example would show the decisions you handled as branch manager.
+   example: Handled escalated customer complaints about [issues] by [actions taken]
+   question: What kinds of complaints reached you, and how did you handle them?
+6. [line] Personal Banker, line 1
+   line: "Helped customers open accounts and apply for loans"
+   can't tell: A recruiter can see the customer work, but not which parts of the account openings and loan applications were yours.
+   example: Helped customers open accounts and apply for loans by [your responsibilities]
+   question: Which parts of opening accounts and applying for loans did you handle?
+
+## Fit
+Roles: ["Branch Manager","Assistant Branch Manager","Personal Banker"]
+Level: Branch manager, managed a branch of 11 employees
+Note: Your experience points toward branch management in retail banking. The deposit growth and progression at Magnolia Community Bank are useful anchors; accounting for the time since your last dated role will help complete the story.

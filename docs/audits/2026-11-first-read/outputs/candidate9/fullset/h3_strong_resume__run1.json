@@ -1,0 +1,183 @@
+{
+  "case_id": "h3_strong_resume",
+  "batch": "holes",
+  "run": 1,
+  "note": "Senior product manager whose resume is already good.",
+  "resume_file": "../2026-11-live-judgment/resumes/h3_strong_resume.txt",
+  "resume_sha256": "711aca17e0f7318c1d0d4fa3e4669aff314c355a47734d7106bb2eb6fc012418",
+  "resume_words": 311,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T19:02:30.714Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6183,
+        "completion_tokens": 611,
+        "total_tokens": 6794,
+        "cached_prompt_tokens": 5005,
+        "cache_write_prompt_tokens": 1175,
+        "reasoning_tokens": 143
+      },
+      "cost_usd": 0.004777,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 8633
+    }
+  ],
+  "resume_prompt_sha256": "338ac33ae4d6ad75616100e9ec41f04437a5b50bfe070fa140aba71496178380",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 96,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments product manager whose launches, customer results, and team leadership are easy to follow.",
+    "write_up": [
+      "This is a great resume! Your progression from Peakline to billing and then the payments platform at Northwind is easy to follow, and you show what changed across launches, pricing, reliability, and team leadership. A recruiter has plenty to work with for a senior product role.",
+      "The payment failure line is a strong model: it names the methods, the change in failure rate, and the estimated revenue recovered for customers. Your current roadmap and management lines also make the breadth of your role clear.",
+      "I'd send this as it is. Your resume is unlikely to be the reason you don't get a call back; the competition for a particular role and how closely it matches your payments experience will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Product Manager, Payments Platform, line 3",
+        "line": "- Cut payment failure rate from 4.1% to 1.6% by leading the move to network tokenization and smart retries, recovering an estimated $6.2M in annual revenue for customers",
+        "cannot_tell": "Keep this as a model: it ties your leadership to a measurable change and makes clear that the customer revenue figure is an estimate.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Product Manager, Payments Platform"
+      ],
+      "why": "Your current role owns a payments platform roadmap, and your Northwind work spans payment launches, billing, pricing, and processor integrations.",
+      "level": "Senior, owns a roadmap across 4 product teams and manages 3 product managers",
+      "note": "Your experience points strongly toward senior product roles in payments and billing. You also show people management alongside hands-on product work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 96,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments product manager whose launches, customer results, and team leadership are easy to follow.",
+    "write_up": [
+      "This is a great resume! Your progression from Peakline to billing and then the payments platform at Northwind is easy to follow, and you show what changed across launches, pricing, reliability, and team leadership. A recruiter has plenty to work with for a senior product role.",
+      "The payment failure line is a strong model: it names the methods, the change in failure rate, and the estimated revenue recovered for customers. Your current roadmap and management lines also make the breadth of your role clear.",
+      "I'd send this as it is. Your resume is unlikely to be the reason you don't get a call back; the competition for a particular role and how closely it matches your payments experience will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Product Manager, Payments Platform, line 3",
+        "line": "Cut payment failure rate from 4.1% to 1.6% by leading the move to network tokenization and smart retries, recovering an estimated $6.2M in annual revenue for customers",
+        "cannot_tell": "Keep this as a model: it ties your leadership to a measurable change and makes clear that the customer revenue figure is an estimate.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Product Manager, Payments Platform"
+      ],
+      "why": "Your current role owns a payments platform roadmap, and your Northwind work spans payment launches, billing, pricing, and processor integrations.",
+      "level": "Senior, owns a roadmap across 4 product teams and manages 3 product managers",
+      "note": "Your experience points strongly toward senior product roles in payments and billing. You also show people management alongside hands-on product work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 96
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 96,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments product manager whose launches, customer results, and team leadership are easy to follow.",
+    "write_up": [
+      "This is a great resume! Your progression from Peakline to billing and then the payments platform at Northwind is easy to follow, and you show what changed across launches, pricing, reliability, and team leadership. A recruiter has plenty to work with for a senior product role.",
+      "The payment failure line is a strong model: it names the methods, the change in failure rate, and the estimated revenue recovered for customers. Your current roadmap and management lines also make the breadth of your role clear.",
+      "I'd send this as it is. Your resume is unlikely to be the reason you don't get a call back; the competition for a particular role and how closely it matches your payments experience will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Product Manager, Payments Platform, line 3",
+        "line": "Cut payment failure rate from 4.1% to 1.6% by leading the move to network tokenization and smart retries, recovering an estimated $6.2M in annual revenue for customers",
+        "cannot_tell": "Keep this as a model: it ties your leadership to a measurable change and makes clear that the customer revenue figure is an estimate.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Product Manager, Payments Platform"
+      ],
+      "why": "Your current role owns a payments platform roadmap, and your Northwind work spans payment launches, billing, pricing, and processor integrations.",
+      "level": "Senior, owns a roadmap across 4 product teams and manages 3 product managers",
+      "note": "Your experience points strongly toward senior product roles in payments and billing. You also show people management alongside hands-on product work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 96
+  },
+  "presentation": {
+    "score": 96,
+    "band": "Clear and specific",
+    "model_score": 96,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments product manager whose launches, customer results, and team leadership are easy to follow.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 121,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Product Manager, Payments Platform, line 3",
+        "line": "Cut payment failure rate from 4.1% to 1.6% by leading the move to network tokenization and smart retries, recovering an estimated $6.2M in annual revenue for customers",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 1,
+    "kinds": {
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Product Manager, Payments Platform"
+      ],
+      "why": "Your current role owns a payments platform roadmap, and your Northwind work spans payment launches, billing, pricing, and processor integrations.",
+      "level": "Senior, owns a roadmap across 4 product teams and manages 3 product managers",
+      "note": "Your experience points strongly toward senior product roles in payments and billing. You also show people management alongside hands-on product work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.004777,
+  "latency_ms": 9120
+}

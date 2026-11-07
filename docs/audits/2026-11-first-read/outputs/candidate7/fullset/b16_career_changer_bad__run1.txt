@@ -1,0 +1,54 @@
+# b16_career_changer_bad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_career_changer_bad_1.txt (140 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 1c0fe4fe; severity check off
+Outcome: report; cost $0.0092; 19.2s
+Case note: Career changer, weak; key says missing_dates, no_evidence_latest_role, no_target_role.
+
+## Needs more context (score 63; model wrote 63)
+## Verdict
+A current shift supervisor with web and billing experience, but too little detail to stand out for supervision roles.
+
+## Write-up
+It's common for a resume to carry several kinds of work while leaving the next step unnamed. Yours moves from restaurant service and medical billing to freelance web development and shift supervision. I'm reading it for Shift Supervisor, the most recent role. A recruiter would likely finish it but move on: the store duties are clear, while the number of people you supervise and what your shifts involve are missing.
+
+The Cactus Grill line is your best model. It names the setting, the 70-seat dining room, and when you served it. Your freelance web work has no dates, so a recruiter can't tell when it happened or how it fits alongside the other roles.
+
+Let's start with Saguaro Market: add the number of cashiers and stockers you supervise, then give the closing and ordering work more detail. Date the freelance work and name the job you're targeting so a recruiter knows which parts of your background to look at first.
+
+## Cards (7; {"structure":2,"line":3,"dates":1,"keep":1}); severity off; added []
+1. [structure] Structure
+   line: "The resume doesn't name a target job."
+   can't tell: Your store, web and billing work point in different directions. A recruiter has to guess which job you want next.
+   question: Which job are you targeting with this version of your resume?
+2. [structure] Saguaro Market
+   line: "The resume doesn't describe how large Saguaro Market is."
+   can't tell: A recruiter may not know the store. A short description of its format or size, if you can confirm it, would give your supervision work context.
+   question: How would you describe the store's format or size?
+3. [line] Shift Supervisor, line 1
+   line: "Supervise cashiers and stockers on evening shifts"
+   can't tell: A recruiter can see who you supervise, but not how many people or what you handle for them. Those details matter for another shift supervisor job.
+   example: Supervise [number] cashiers and stockers on evening shifts, handling [supervisory responsibilities]
+   question: How many cashiers and stockers do you supervise, and what do you handle for them?
+4. [line] Shift Supervisor, line 2
+   line: "Count and reconcile registers at close"
+   can't tell: Closing registers is part of the job, but a recruiter can't tell how many you handle or what happens when the counts don't match.
+   example: Count and reconcile [number] registers at close, handling [reconciliation issues]
+   question: How many registers do you reconcile at close, and what issues do you handle?
+5. [line] Shift Supervisor, line 3
+   line: "Help with weekly ordering and store resets"
+   can't tell: You help with two different jobs here, but a recruiter can't tell which parts are yours.
+   example: Help with weekly ordering by [ordering task] and store resets by [reset task]
+   question: What do you do for weekly ordering and store resets?
+6. [dates] Freelance Web Developer
+   line: "The Freelance Web Developer role has no dates."
+   can't tell: A recruiter can't tell when you built the websites or whether that work is current. Add the dates that honestly match the work.
+   example: [Month Year] - [Month Year or Present] Freelance Web Developer, Self-employed, Remote
+   question: When did you start and finish the freelance work, or are you still doing it?
+7. [keep] Server, line 1
+   line: "Served a 70-seat dining room on weekend doubles"
+   can't tell: Keep this as a model. It gives a recruiter a concrete setting and a sense of when you worked without making them guess.
+
+## Fit
+Roles: ["Shift Supervisor","Freelance Web Developer","Medical Billing Assistant"]
+Level: Shift supervisor, supervising cashiers and stockers
+Note: Your current work points toward shift supervision, while the freelance websites and billing role offer other directions. Choose the target before deciding which experience to emphasize.

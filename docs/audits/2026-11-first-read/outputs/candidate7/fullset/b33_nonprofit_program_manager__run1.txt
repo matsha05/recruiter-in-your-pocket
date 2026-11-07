@@ -1,0 +1,35 @@
+# b33_nonprofit_program_manager, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_nonprofit_program_manager_1.txt (146 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 1c0fe4fe; severity check off
+Outcome: report; cost $0.0086; 18.8s
+
+## Mostly clear (score 73; model wrote 73)
+## Verdict
+A youth workforce program manager with clear responsibilities, but little about how many students the program reaches or what changed.
+
+## Write-up
+Your resume tells a clear story: you moved from tutoring at City Year Baltimore to coordinating and then managing youth workforce programs at Harbor Pathways. A recruiter could move it forward for a program manager role, with questions about how many students and employers the summer program reaches.
+
+The tutoring line is a useful model because it names the students, subjects and work. Your current role also shows the people you supervise, and Experience is already above Education. What’s missing across the program roles is more about reach and results.
+
+Let’s start with the summer jobs program and the staff you supervise. Add counts and responsibilities you can stand behind, then look for a result from the program or career fair that you can describe.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] Program Manager, Youth Workforce, line 1
+   line: "Manage a summer jobs program placing high school students with local employers"
+   can't tell: This names the program and the students it serves, but not how many students are placed or how many employers participate. Those details help a recruiter understand the program you manage.
+   example: Manage a summer jobs program placing [number] high school students with [number] local employers [time period]
+   question: How many students were placed with how many employers, and over what period?
+2. [line] Program Manager, Youth Workforce, line 2
+   line: "Supervise 4 program coordinators and 20 seasonal staff"
+   can't tell: The team counts show a substantial supervision role. What the coordinators and seasonal staff handle is still a question.
+   example: Supervise 4 program coordinators and 20 seasonal staff who [what the team handles]
+   question: What do the coordinators and seasonal staff handle under your supervision?
+3. [keep] AmeriCorps Member, line 1
+   line: "Tutored ninth graders in math and English"
+   can't tell: Keep this directness: the reader knows who you worked with and what you taught, without having to guess.
+
+## Fit
+Roles: ["Program Manager, Youth Workforce"]
+Level: Program manager, supervising 4 program coordinators and 20 seasonal staff
+Note: Your progression at Harbor Pathways points toward nonprofit youth workforce program management. Counts and results from the summer jobs program would give a recruiter more to discuss.

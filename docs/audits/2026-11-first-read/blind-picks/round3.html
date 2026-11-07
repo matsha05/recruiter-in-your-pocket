@@ -1,0 +1,202 @@
+<title>First-read blind pick, round 3</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+:root { --bg:#f4f4f1; --paper:#fff; --ink:#111513; --muted:#5a605c; --pen:#1f5a46; --blue:#2448a8; --line:#dfe0dc; --marker:#ffe14d; --sheet:#fefefc; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#111412; --paper:#1a1e1b; --ink:#eef0ec; --muted:#a9b0aa; --pen:#8fd1b3; --blue:#9fb4ff; --line:#2c322e; --marker:#6b6420; --sheet:#1f2420; color-scheme: dark; } }
+:root[data-theme="dark"] { --bg:#111412; --paper:#1a1e1b; --ink:#eef0ec; --muted:#a9b0aa; --pen:#8fd1b3; --blue:#9fb4ff; --line:#2c322e; --marker:#6b6420; --sheet:#1f2420; color-scheme: dark; }
+body { background: var(--bg); color: var(--ink); font: 15px/1.55 ui-sans-serif, system-ui, sans-serif; padding-block: 24px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+main { max-width: 1200px; margin: 0 auto; }
+h1 { font-size: 26px; line-height: 1.2; text-wrap: balance; }
+.intro { color: var(--muted); max-width: 70ch; }
+.item { background: var(--paper); border: 1px solid var(--line); border-radius: 18px; padding: 20px; margin-top: 24px; }
+.item h2 { font-size: 19px; margin: 0 0 8px; }
+details { margin: 6px 0; } summary { cursor: pointer; color: var(--pen); font-weight: 600; }
+pre { white-space: pre-wrap; background: var(--sheet); border: 1px solid var(--line); padding: 12px 14px; border-radius: 8px; font: 13px/1.5 Georgia, serif; max-height: 420px; overflow: auto; }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 12px; }
+.pair > div { min-width: 0; }
+@media (max-width: 860px) { .pair { grid-template-columns: 1fr; } }
+.side { font-weight: 800; font-size: 13px; letter-spacing: 0.04em; color: var(--muted); margin: 0 0 4px; }
+.report { border-top: 2px solid var(--ink); padding-top: 10px; }
+.score { margin: 0; } .score b { font-size: 26px; margin-right: 6px; }
+.readfor { color: var(--muted); font-size: 13px; margin: 2px 0 0; }
+.verdict { font: 19px/1.4 Georgia, serif; margin: 10px 0 6px; }
+.writeup p { color: var(--pen); font: 15px/1.6 Georgia, serif; margin: 6px 0; }
+.fit-note { background: var(--bg); padding: 8px 10px; border-radius: 8px; font-size: 14px; }
+.missing { font-size: 13px; color: var(--muted); }
+.count { font-weight: 700; margin: 14px 0 4px; }
+.cards { padding-left: 18px; margin: 0; } .cards li { margin: 0 0 14px; }
+.where { font-size: 12px; font-weight: 700; color: var(--muted); margin: 0; }
+.quoted { font: 14px/1.5 Georgia, serif; margin: 2px 0; } mark { background: var(--marker); color: inherit; }
+.statement { font: italic 14px/1.5 Georgia, serif; margin: 2px 0; }
+.note { font: italic 14px/1.5 Georgia, serif; color: var(--pen); margin: 2px 0; }
+.question { font-size: 14px; margin: 2px 0; }
+.example { font: 14px/1.5 Georgia, serif; margin: 2px 0; } .blank { color: var(--blue); border-bottom: 1.5px solid var(--blue); }
+.keep .quoted { font-weight: 600; }
+</style>
+<main>
+<h1>First-read blind pick, round 3</h1>
+<p class="intro">Each item is one synthetic resume read twice: once by the report prompt that's live today, once by the proposed one. Which is which is shuffled per item. For each, pick the side a job seeker would rather get, or say they're the same. Open the resume to check the cards against it.</p>
+<section class="item" id="item-1">
+      <h2>1. The staff software engineer, once more</h2>
+      <details><summary>The resume</summary><pre>Wei Chen
+San Francisco, CA | wei.chen@example.com | (415) 555-0133 | github.com/weichen-example
+
+Staff Software Engineer | Distributed Systems | Payments Infrastructure
+
+EXPERIENCE
+
+Staff Software Engineer, Brightline Payments, San Francisco, CA
+January 2022 - Present
+- Technical lead for the ledger and settlement platform team
+- Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB
+- Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents
+- Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services
+- Mentored senior and mid-level engineers; ran the backend engineering reading group
+- Partnered with product and finance on the roadmap for multi-currency settlement
+- Authored engineering design documents and architecture reviews adopted as team standards
+- Interviewed 100+ candidates and helped revise the backend hiring loop
+
+Senior Software Engineer, Brightline Payments, San Francisco, CA
+June 2019 - December 2021
+- Built the real-time fraud scoring pipeline (Flink, Kafka) processing payment events with p99 latency under 50ms
+- Designed and shipped the reconciliation service that matches internal ledger entries against processor settlement files
+- Reduced reconciliation break rate and manual ops effort
+- On-call rotation for payments core services
+
+Software Engineer II, Nimbus Cloud (acquired by Oracle), Seattle, WA
+August 2016 - May 2019
+- Worked on the object storage control plane in Go
+- Implemented multi-region replication and lifecycle policies
+- Improved API latency and availability through caching and request coalescing
+- Contributed to the migration of the control plane to Kubernetes
+
+Software Engineer, Nimbus Cloud, Seattle, WA
+July 2015 - August 2016
+- Developed internal tooling and APIs for storage provisioning
+- Participated in on-call and wrote runbooks
+
+SKILLS
+Go, Java, Python, Kafka, Flink, CockroachDB, Postgres, Kubernetes, AWS, gRPC, Terraform, distributed systems, event sourcing, consensus, observability (Prometheus, Grafana, OpenTelemetry), system design, technical leadership
+
+EDUCATION
+M.S. Computer Science, University of Washington, 2015
+B.S. Computer Science, Shanghai Jiao Tong University, 2013
+
+PUBLICATIONS &amp; TALKS
+&quot;Idempotency at Scale: Lessons from a Payments Platform,&quot; internal tech talk series, 2024
+Co-author, &quot;Multi-Region Replication Tradeoffs for Object Storage,&quot; Nimbus Engineering Blog, 2018
+</pre></details>
+      <div class="pair"><div><p class="side">Left</p><div class="report">
+      <p class="score"><b>80</b> Mostly clear</p>
+      <h3 class="verdict">A staff engineer with strong payments and distributed systems work, but some key results lack context.</h3>
+      <div class="writeup"><p>Your resume tells a coherent story from object storage at Nimbus Cloud to ledger and settlement leadership at Brightline Payments. A recruiter can see the technical work, but the latest role leaves some questions about how large the team is and what the ledger redesign changed.</p><p>The fraud scoring line is your best model: it names the pipeline, the tools, the payment events and the latency it achieved. Your progression at Brightline is easy to follow, and the staff title is backed by architecture, incident leadership and mentoring.</p><p>Start with the ledger and settlement team, then give the redesign a result a recruiter can compare. Add the reconciliation measures if you have them. You don&#x27;t need a number on every line; the goal is to make your biggest work as concrete as the fraud pipeline.</p></div>
+      
+      <p class="count">4 lines that need work</p>
+      <ol class="cards"><li><p class="where">Staff Software Engineer, line 1</p><p class="quoted"><mark>Technical lead for the ledger and settlement platform team</mark></p><p class="note">A recruiter can see what team you lead technically, but not how many people are on it or what the team owns. That&#x27;s useful context for a staff role.</p><p class="question">How many people are on the team, and what does the team own?</p><p class="example">Technical lead for the ledger and settlement platform team of <span class="blank">number</span> <span class="blank">team members</span>, responsible for <span class="blank">team responsibilities</span></p></li><li><p class="where">Staff Software Engineer, line 2</p><p class="quoted"><mark>Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB</mark></p><p class="note">The architecture change is concrete, but a recruiter can&#x27;t tell what it changed for the ledger service. A measure or operational result would show why the redesign mattered.</p><p class="question">What changed after the redesign, and how was it measured?</p><p class="example">Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, resulting in <span class="blank">what changed</span></p></li><li class="keep"><p class="where">Don't touch this one · Senior Software Engineer, line 1</p><p class="quoted">Built the real-time fraud scoring pipeline (Flink, Kafka) processing payment events with p99 latency under 50ms</p><p class="note">Keep this as a model. It puts your ownership, the system and a performance measure together without making a recruiter guess what was built.</p></li><li><p class="where">Senior Software Engineer, line 3</p><p class="quoted"><mark>Reduced reconciliation break rate and manual ops effort</mark></p><p class="note">A recruiter can see what improved, but not by how much or what you did to reduce it. Those details would give the reconciliation work more weight.</p><p class="question">What did you do, and how were the break rate and manual ops effort measured before and after?</p><p class="example">Reduced reconciliation break rate from <span class="blank">before</span> to <span class="blank">after</span> and manual ops effort from <span class="blank">before</span> to <span class="blank">after</span> by <span class="blank">what you did</span></p></li><li><p class="where">Software Engineer II, line 3</p><p class="quoted"><mark>Improved API latency and availability through caching and request coalescing</mark></p><p class="note">You name the techniques, but not how much latency or availability improved. If you have the measures, they would show what those changes delivered.</p><p class="question">What were the latency and availability measures before and after the changes?</p><p class="example">Improved API latency from <span class="blank">before</span> to <span class="blank">after</span> and availability from <span class="blank">before</span> to <span class="blank">after</span> through caching and request coalescing</p></li></ol>
+    </div></div><div><p class="side">Right</p><div class="report">
+      <p class="score"><b>82</b> Mostly clear</p>
+      <h3 class="verdict">A staff engineer with credible payments and distributed systems work, though some leadership results need more detail.</h3>
+      <div class="writeup"><p>You’ve progressed from object storage at Nimbus Cloud to leading ledger and settlement work at Brightline Payments. A recruiter can follow that path and would likely move your resume forward with a few questions about the size and results of your staff-level work.</p><p>The idempotency line is your best model: it connects an initiative across payment services to the duplicate-charge incidents it eliminated. The ledger redesign is technically substantial too, but a recruiter can’t yet tell what changed after the move.</p><p>Let’s start with the current Brightline role. Add the team’s size and what changed with the ledger redesign, then give the multi-currency roadmap a little more of your own contribution. The older reconciliation result is worth expanding too.</p></div>
+      
+      <p class="count">5 lines that need work</p>
+      <ol class="cards"><li><p class="where">Staff Software Engineer, line 1</p><p class="quoted"><mark>Technical lead for the ledger and settlement platform team</mark></p><p class="note">A recruiter knows which team you lead, but not how many engineers are on it or what your technical leadership covers.</p><p class="question">How many engineers are on the team, and what do you own as its technical lead?</p><p class="example">Technical lead for the ledger and settlement platform team of <span class="blank">number</span> engineers, responsible for <span class="blank">leadership responsibilities</span></p></li><li><p class="where">Staff Software Engineer, line 2</p><p class="quoted"><mark>Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB</mark></p><p class="note">The architecture change is clear, but the reason for it and what changed afterward are missing. Those details would show a recruiter why the redesign mattered to payments.</p><p class="question">What problem drove the redesign, and what measure changed after it?</p><p class="example">Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, addressing <span class="blank">problem</span> and changing <span class="blank">measure</span> from <span class="blank">before</span> to <span class="blank">after</span></p></li><li class="keep"><p class="where">Don't touch this one · Staff Software Engineer, line 3</p><p class="quoted">Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents</p><p class="note">Keep this as a model. It names both the change you drove and the payment problem it removed.</p></li><li><p class="where">Staff Software Engineer, line 4</p><p class="quoted"><mark>Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services</mark></p><p class="note">You name the response work and the reliability practices you introduced. A recruiter can’t tell what changed for those services afterward.</p><p class="question">What changed for the services after you introduced error budgets and SLOs?</p><p class="example">Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services, resulting in <span class="blank">what changed</span></p></li><li><p class="where">Staff Software Engineer, line 6</p><p class="quoted"><mark>Partnered with product and finance on the roadmap for multi-currency settlement</mark></p><p class="note">The project and partners are named, but your contribution to the roadmap is still a blank. What did you bring to the decisions?</p><p class="question">What was your contribution to the multi-currency settlement roadmap?</p><p class="example">Partnered with product and finance on the roadmap for multi-currency settlement by <span class="blank">your contribution</span></p></li><li><p class="where">Senior Software Engineer, line 3</p><p class="quoted"><mark>Reduced reconciliation break rate and manual ops effort</mark></p><p class="note">Both improvements matter in payments, but a recruiter can’t tell what you changed or how much either measure moved.</p><p class="question">What did you change, and how much did the break rate and manual ops effort decrease?</p><p class="example">Reduced reconciliation break rate from <span class="blank">before</span> to <span class="blank">after</span> and manual ops effort by <span class="blank">amount</span> through <span class="blank">what you did</span></p></li></ol>
+    </div></div></div>
+    </section><section class="item" id="item-2">
+      <h2>2. An ICU nurse</h2>
+      <details><summary>The resume</summary><pre>Maria Ellison, RN, BSN
+Phoenix, AZ | maria.ellison@example.com | 555-0175
+
+LICENSES AND CERTIFICATIONS
+Registered Nurse, Arizona (multistate compact)
+CCRN, Basic Life Support, Advanced Cardiovascular Life Support
+
+EXPERIENCE
+
+Staff Nurse, Medical ICU
+Desert Valley Medical Center, Phoenix, AZ
+May 2021 - Present
+- Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU
+- Manage ventilated patients, vasoactive drips, and continuous renal replacement therapy
+- Serve as charge nurse two shifts per month
+- Precept new graduate nurses during their ICU orientation
+- Member of the unit&#x27;s sepsis bundle compliance committee
+
+Staff Nurse, Telemetry
+Saguaro Community Hospital, Mesa, AZ
+July 2019 - April 2021
+- Cared for 4 to 5 telemetry patients per shift, including post-cardiac catheterization patients
+- Responded to rapid response calls as part of the floor team
+- Educated patients and families on discharge medications
+
+EDUCATION
+Bachelor of Science in Nursing, Grand Canyon State University, 2019
+</pre></details>
+      <div class="pair"><div><p class="side">Left</p><div class="report">
+      <p class="score"><b>80</b> Mostly clear</p>
+      <h3 class="verdict">A medical ICU nurse with clear patient care experience and room to explain charge and committee work.</h3>
+      <div class="writeup"><p>Your resume points to medical ICU nursing, with earlier telemetry experience. A recruiter can see your patient assignments, critical care treatments and Arizona license quickly. The main questions are about what you do beyond direct care, especially as charge nurse and on the sepsis committee.</p><p>The line about caring for 2 critically ill patients in a 24-bed medical ICU is a strong model: it names the patients, assignment and unit in one sentence. Both nursing roles also identify their specialties, and your license and certifications are easy to find.</p><p>Let&#x27;s start with the charge nurse line and add what you&#x27;re responsible for on those shifts. Then give the precepting and committee work a little more room, so a recruiter can see what those roles involve.</p></div>
+      
+      <p class="count">4 lines that need work</p>
+      <ol class="cards"><li class="keep"><p class="where">Don't touch this one · Staff Nurse, Medical ICU, line 1</p><p class="quoted">Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU</p><p class="note">Keep this one. It gives a recruiter a concrete picture of your assignment without making them search elsewhere.</p></li><li><p class="where">Staff Nurse, Medical ICU, line 3</p><p class="quoted"><mark>Serve as charge nurse two shifts per month</mark></p><p class="note">A recruiter can see how often you&#x27;re charge nurse, but not what you handle on those shifts. Your responsibilities matter for understanding that work.</p><p class="question">What are you responsible for when you serve as charge nurse?</p><p class="example">Serve as charge nurse two shifts per month, handling <span class="blank">charge nurse responsibilities</span></p></li><li><p class="where">Staff Nurse, Medical ICU, line 4</p><p class="quoted"><mark>Precept new graduate nurses during their ICU orientation</mark></p><p class="note">Precepting is valuable here, but a recruiter can&#x27;t tell what you teach or guide the new nurses through.</p><p class="question">What skills or tasks do you guide new graduate nurses through during orientation?</p><p class="example">Precept new graduate nurses during their ICU orientation on <span class="blank">skills or tasks</span></p></li><li><p class="where">Staff Nurse, Medical ICU, line 5</p><p class="quoted"><mark>Member of the unit&#x27;s sepsis bundle compliance committee</mark></p><p class="note">Committee membership names the topic, but not your part in the work. What did you do with the committee?</p><p class="question">What work have you done as a member of the committee?</p><p class="example">Member of the unit&#x27;s sepsis bundle compliance committee, with responsibility for <span class="blank">committee work</span></p></li><li><p class="where">Staff Nurse, Telemetry, line 2</p><p class="quoted"><mark>Responded to rapid response calls as part of the floor team</mark></p><p class="note">A recruiter can see you were part of the response, but not what you did when a call came in.</p><p class="question">What did you do as part of the floor team during rapid response calls?</p><p class="example">Responded to rapid response calls as part of the floor team by <span class="blank">your actions</span></p></li></ol>
+    </div></div><div><p class="side">Right</p><div class="report">
+      <p class="score"><b>81</b> Mostly clear</p>
+      <h3 class="verdict">An ICU nurse with a clear critical care background and a few details left to add.</h3>
+      <div class="writeup"><p>Your resume tells a clear story: you moved from telemetry at Saguaro Community Hospital to medical ICU nursing at Desert Valley Medical Center. A recruiter can see your patient load and the critical care treatments you manage, so this is likely to move forward for ICU nursing roles.</p><p>The direct-care line is a strong model: it puts your patients, shift and unit together in one sentence. Your Arizona RN license, CCRN and life support certifications are easy to find, and your experience comes before education.</p><p>Let&#x27;s make the charge nurse and sepsis committee work just as tangible. Add what you handle in each role, without claiming more than you did.</p></div>
+      
+      <p class="count">2 lines that need work</p>
+      <ol class="cards"><li class="keep"><p class="where">Don't touch this one · Staff Nurse, Medical ICU, line 1</p><p class="quoted">Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU</p><p class="note">Keep this as a model. It gives a recruiter a concrete picture of your assignment without making them guess.</p></li><li><p class="where">Staff Nurse, Medical ICU, line 3</p><p class="quoted"><mark>Serve as charge nurse two shifts per month</mark></p><p class="note">A recruiter can see how often you serve as charge nurse, but not what you handle in that role. Your responsibilities would show what that assignment involves.</p><p class="question">What do you handle during your charge nurse shifts?</p><p class="example">Serve as charge nurse two shifts per month, with responsibility for <span class="blank">charge nurse responsibilities</span></p></li><li><p class="where">Staff Nurse, Medical ICU, line 5</p><p class="quoted"><mark>Member of the unit&#x27;s sepsis bundle compliance committee</mark></p><p class="note">Membership tells a recruiter you&#x27;re involved, but not what you do on the committee. Your part in its work is the missing piece.</p><p class="question">What do you do as a member of the sepsis bundle compliance committee?</p><p class="example">Member of the unit&#x27;s sepsis bundle compliance committee, with a role in <span class="blank">your committee work</span></p></li></ol>
+    </div></div></div>
+    </section><section class="item" id="item-3">
+      <h2>3. An elementary teacher</h2>
+      <details><summary>The resume</summary><pre>Angela Morris
+Spokane, WA | angela.morris@example.com | 555-0122
+
+Elementary teacher with eight years in Title I schools, Washington state certified K-8.
+
+EXPERIENCE
+
+4th Grade Teacher
+Lincoln Heights Elementary, Spokane Public Schools, Spokane, WA
+August 2020 - Present
+- Teach all core subjects to a class of 27 students, about a third of whom are English language learners
+- Raised the class&#x27;s average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years
+- Lead the grade-level team of 4 teachers in weekly planning and data meetings
+- Piloted the district&#x27;s new math curriculum in 2023 and trained the other 4th grade teachers on it
+- Run the after-school homework club two days a week, about 20 students
+
+2nd Grade Teacher
+Whitman Elementary, Spokane, WA
+August 2018 - June 2020
+- Taught a class of 24 students
+- Coordinated the school&#x27;s family literacy night, attended by 140 families in 2019
+- Served on the school&#x27;s positive behavior support committee
+
+Student Teacher
+Garfield Elementary, Spokane, WA
+January 2018 - June 2018
+
+EDUCATION
+Master in Teaching, Whitworth University, 2018
+B.A., English, Eastern Washington University, 2016
+
+CERTIFICATIONS
+Washington Residency Teacher Certificate, Elementary Education K-8
+English Language Learner endorsement, 2021
+</pre></details>
+      <div class="pair"><div><p class="side">Left</p><div class="report">
+      <p class="score"><b>88</b> Clear and specific</p>
+      <h3 class="verdict">A Washington elementary teacher whose resume shows classroom results, team leadership, and work with families.</h3>
+      <div class="writeup"><p>Your resume is strong: it shows what you teach, who you teach, and the reading growth your class achieved. At Lincoln Heights, you also lead grade-level planning, pilot curriculum and run a homework club. A recruiter can picture your work beyond the classroom!</p><p>The family literacy night line is a great model: it names your role, the event and who attended. Your Washington certification and English Language Learner endorsement are easy to find, too. The main question is what you did to support the reading growth you report.</p><p>Let&#x27;s add the teaching approach behind that growth and your contribution to the behavior committee. Your resume isn&#x27;t likely to be what holds you back; the needs of a particular school and how competitive the job is will matter too.</p></div>
+      
+      <p class="count">2 lines that need work</p>
+      <ol class="cards"><li><p class="where">4th Grade Teacher, line 2</p><p class="quoted"><mark>Raised the class&#x27;s average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years</mark></p><p class="note">The reading growth is compelling, but a recruiter can&#x27;t tell what you did to help students make it. Your teaching approach would give them something to carry into a conversation with you.</p><p class="question">What teaching approach did you use to support that reading growth?</p><p class="example">Raised the class&#x27;s average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years using <span class="blank">teaching approach</span></p></li><li class="keep"><p class="where">Don't touch this one · 2nd Grade Teacher, line 2</p><p class="quoted">Coordinated the school&#x27;s family literacy night, attended by 140 families in 2019</p><p class="note">Keep this as a model. It gives a recruiter a named school event, your part in it and the number of families who came.</p></li><li><p class="where">2nd Grade Teacher, line 3</p><p class="quoted"><mark>Served on the school&#x27;s positive behavior support committee</mark></p><p class="note">A recruiter knows you were on the committee, but not what you contributed to its work.</p><p class="question">What did you contribute to the committee&#x27;s work?</p><p class="example">Served on the school&#x27;s positive behavior support committee by <span class="blank">committee contribution</span></p></li></ol>
+    </div></div><div><p class="side">Right</p><div class="report">
+      <p class="score"><b>87</b> Clear and specific</p>
+      <h3 class="verdict">An experienced elementary teacher whose classroom results and school leadership are easy to see.</h3>
+      <div class="writeup"><p>This is a strong teaching resume! Your work at Lincoln Heights shows classroom teaching, grade-level leadership, curriculum training and an after-school club, with enough detail to see how each fits into your job.</p><p>The reading growth line is the standout: it gives a district assessment, a starting point and a later result over three years. Your certification and English Language Learner endorsement also make your qualifications easy to find.</p><p>I’d leave most of this alone and add what you contributed to the positive behavior support committee at Whitman. Your resume is ready to send for elementary teaching roles; competition for individual openings will matter too.</p></div>
+      
+      <p class="count">1 line that needs work</p>
+      <ol class="cards"><li class="keep"><p class="where">Don't touch this one · 4th Grade Teacher, line 2</p><p class="quoted">Raised the class&#x27;s average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years</p><p class="note">Keep this as a model. It names the measure and gives a before-and-after comparison, so a recruiter can see what changed.</p></li><li><p class="where">2nd Grade Teacher, line 3</p><p class="quoted"><mark>Served on the school&#x27;s positive behavior support committee</mark></p><p class="note">A recruiter can see which committee you joined, but not what you contributed to its work. Name a decision, project or task that was yours.</p><p class="question">What did you contribute to the positive behavior support committee?</p><p class="example">Served on the school&#x27;s positive behavior support committee and <span class="blank">what you contributed</span></p></li></ol>
+    </div></div></div>
+    </section>
+</main>

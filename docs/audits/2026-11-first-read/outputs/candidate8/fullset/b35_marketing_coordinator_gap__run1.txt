@@ -1,0 +1,56 @@
+# b35_marketing_coordinator_gap, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_marketing_coordinator_gap_1.txt (126 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5cba8f05; severity check off
+Outcome: report; cost $0.0100; 21.3s
+Case note: Gap with nothing after it.
+
+## Needs more context (score 67; model wrote 67)
+## Verdict
+A marketing coordinator with clear channel experience, but no account of the time since March 2024.
+
+## Write-up
+Your resume points to marketing coordinator work across email, events, copy and social media at Juniper Outdoor Co. and Fernwood Coffee Roasters. It's common to list the channels and regular duties this way, but the work can blend into a pile when a recruiter can't tell what you handled within each campaign or event.
+
+The weekly email calendar is your best model: it names your responsibility, its frequency and the 120,000-subscriber list. Your experience is easy to follow, but nothing is dated after March 2024, so a recruiter is left wondering what you've done since.
+
+Let's start by accounting for that time honestly, then return to the Juniper trade shows and campaign reports. Add the parts you handled and the measures you tracked; leave the email line as a model for the rest.
+
+## Cards (7; {"dates":1,"keep":1,"line":5}); severity off; added []
+1. [dates] Dates
+   line: "Nothing is dated after March 2024."
+   can't tell: A recruiter can't tell what you've done since the Juniper role ended. If it fits your situation, you can name caregiving, a career break and what you did during it, or real freelance work. Don't call the time something it wasn't.
+   example: March 2024 - Present [what you did]
+   question: What would you like to share about your time since March 2024?
+2. [keep] Marketing Coordinator, line 1
+   line: "Managed the weekly email calendar for a list of 120,000 subscribers"
+   can't tell: Keep this as your model. It gives a recruiter a concrete responsibility and a sense of how regularly you handled it.
+3. [line] Marketing Coordinator, line 2
+   line: "Coordinated trade show logistics for four events a year"
+   can't tell: The four events give the work a useful frame, but logistics can cover a lot. A recruiter can't tell which parts you coordinated.
+   example: Coordinated [which logistics] for four trade shows a year
+   question: Which trade show logistics did you coordinate?
+4. [line] Marketing Coordinator, line 4
+   line: "Scheduled social posts across Instagram and Facebook"
+   can't tell: A recruiter can see the platforms, but not what you scheduled or how often. That would show more of the social work behind the calendar.
+   example: Scheduled [what content] across Instagram and Facebook [how often]
+   question: What content did you schedule, and how often?
+5. [line] Marketing Coordinator, line 5
+   line: "Tracked campaign results in a monthly report for the marketing director"
+   can't tell: The monthly report is a concrete deliverable. Which results did you track? That tells a recruiter what you were watching for.
+   example: Tracked [which campaign results] in a monthly report for the marketing director
+   question: Which campaign results did you track in the report?
+6. [line] Marketing Assistant, line 1
+   line: "Helped plan in-store tasting events"
+   can't tell: Helping plan an event can mean several things. A recruiter can't tell which part of the tastings was yours.
+   example: Helped plan in-store tasting events by [your contribution]
+   question: What did you contribute to planning the tasting events?
+7. [line] Marketing Assistant, line 2
+   line: "Updated the company blog and newsletter"
+   can't tell: Updating could mean writing, editing or publishing. Name what you did so a recruiter can see how this work relates to your later copy and email responsibilities.
+   example: Updated the company blog and newsletter by [what you did]
+   question: What did you do when updating the blog and newsletter?
+
+## Fit
+Roles: ["Marketing Coordinator","Marketing Assistant"]
+Level: Coordinator, with a prior Marketing Assistant role
+Note: Your experience points toward marketing coordinator roles with a mix of email, events and content work. Account for the time after the Juniper role and add your part in the less detailed tasks.

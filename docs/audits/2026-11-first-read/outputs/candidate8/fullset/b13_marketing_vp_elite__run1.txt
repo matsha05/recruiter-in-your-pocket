@@ -1,0 +1,31 @@
+# b13_marketing_vp_elite, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/golden/synth_marketing_manager_vp_elite_1766960221358.txt (730 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5cba8f05; severity check off
+Outcome: report; cost $0.0095; 14.7s
+Case note: Executive, strong (golden).
+
+## Clear and specific (score 90; model wrote 90)
+## Verdict
+A marketing executive with a clear record of leading teams and growing demand, revenue, and customer retention.
+
+## Write-up
+Your resume makes a strong case for Chief Marketing Officer roles! At Novara, you connect leadership of a global marketing organization and a $25M budget to gains in lead flow, revenue, and customer acquisition. Your earlier roles show a consistent path through marketing leadership.
+
+The Viridian account-based marketing line is a great model: it names the program, the $50M annual pipeline contribution, and the win-rate increase among Fortune 500 clients. Your most recent role also leads with the team and budget a recruiter needs to see.
+
+Start with the product launch line and add what changed in the process. The rest of your resume makes your case well; a referral and how competitive a particular CMO role is can still matter.
+
+## Cards (2; {"line":1,"keep":1}); severity off; added []
+1. [line] Chief Marketing Officer, product launch line
+   line: "I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years."
+   can't tell: The gains are substantial, but a recruiter can't tell what changed in the launch process or how launch success was measured.
+   example: I decided to revamp the product launch process by [changes to the process], shortening time-to-market by 30% and increasing launch success rate to 90%, measured by [success measure], resulting in a $15M incremental revenue increase over 2 years.
+   question: What changed in the launch process, and how did you measure launch success?
+2. [keep] Vice President, Global Marketing, account-based marketing line
+   line: "I built and executed a comprehensive account-based marketing (ABM) program that increased pipeline contribution by $50M annually, lifting win rates by 15% among Fortune 500 clients."
+   can't tell: Keep this as a model. It gives your role in the program and ties the results to the clients they concerned.
+
+## Fit
+Roles: ["Chief Marketing Officer","Vice President, Global Marketing"]
+Level: Executive, leading a 45-person global marketing organization
+Note: Your experience points toward senior marketing leadership in SaaS and other B2B technology businesses. The resume gives a recruiter both the team and budget you led and the business measures tied to your work.

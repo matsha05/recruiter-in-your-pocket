@@ -1,0 +1,277 @@
+{
+  "case_id": "b20_customer_success_manager",
+  "batch": "breadth",
+  "run": 1,
+  "note": "No posting.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt",
+  "resume_sha256": "fe00b25220442aa026e6aa909f700301c898f430bd2cf244eafbe182c75f316d",
+  "resume_words": 180,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:36:01.460Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5963,
+        "completion_tokens": 1231,
+        "total_tokens": 7194,
+        "cached_prompt_tokens": 5196,
+        "cache_write_prompt_tokens": 764,
+        "reasoning_tokens": 452
+      },
+      "cost_usd": 0.0073728,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 14700
+    }
+  ],
+  "resume_prompt_sha256": "1c0fe4fe961ccb0d0e49bbe71ac8427d0281ae6e9a1efa6ac35e3ee49a99ed47",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 79,
+    "lifted_by_employer": false,
+    "verdict": "A customer success manager with a defined mid-market book, but a few important actions remain unclear.",
+    "write_up": [
+      "Your resume tells a clear story from account coordination at Hollis Insurance Group to support and then customer success at Brightline Payroll Software. A recruiter can see the accounts you manage and the problems you handle, though some of your work on renewals and escalations needs more detail.",
+      "The strongest line is your book of 48 mid-market accounts across healthcare and manufacturing. It gives a recruiter both the number of accounts and the customers you serve. The move from support into customer success is easy to follow, and Experience is in the right place above Education.",
+      "Let's start with the at-risk renewal line: add the part of the strategy that was yours. Then show what you do when a payroll run fails. Those details will help a recruiter understand your work beyond the account count."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 1",
+        "line": "- Manage a book of 48 mid-market accounts across healthcare and manufacturing",
+        "cannot_tell": "Keep this as a model. It names your responsibility, the account count, the segment and the industries in one line.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "- Partnered with Sales on renewal strategy for at-risk accounts",
+        "cannot_tell": "A recruiter can see who you worked with, but not what you contributed to the renewal strategy or what happened next.",
+        "example": "Partnered with Sales on renewal strategy for at-risk accounts by [your contribution], resulting in [what happened]",
+        "question": "What did you contribute to the strategy, and what happened with those accounts?"
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 5",
+        "line": "- Handle escalations with Support and Product when payroll runs fail",
+        "cannot_tell": "Failed payroll runs are a concrete problem, but a recruiter can't tell what you do alongside Support and Product to handle them.",
+        "example": "Handle escalations with Support and Product when payroll runs fail by [your actions]",
+        "question": "What actions do you take when a payroll run fails?"
+      },
+      {
+        "kind": "line",
+        "where": "Account Coordinator, line 2",
+        "line": "- Answered client questions by phone and email",
+        "cannot_tell": "The channels are clear, but the questions aren't. Naming the subjects would show more of your work with small business clients.",
+        "example": "Answered small business client questions by phone and email about [question topics]",
+        "question": "What did clients typically ask you about?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Customer Success Manager"
+      ],
+      "why": "Your current role is Customer Success Manager, with a book of 48 mid-market accounts and work across onboarding and renewals.",
+      "level": "Experienced customer success manager, manages 48 mid-market accounts",
+      "note": "Your experience points toward customer success roles serving mid-market software customers. The resume shows the book and the customer work; your contribution to renewal decisions is the main detail to add.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 79,
+    "lifted_by_employer": false,
+    "verdict": "A customer success manager with a defined mid-market book, but a few important actions remain unclear.",
+    "write_up": [
+      "Your resume tells a clear story from account coordination at Hollis Insurance Group to support and then customer success at Brightline Payroll Software. A recruiter can see the accounts you manage and the problems you handle, though some of your work on renewals and escalations needs more detail.",
+      "The strongest line is your book of 48 mid-market accounts across healthcare and manufacturing. It gives a recruiter both the number of accounts and the customers you serve. The move from support into customer success is easy to follow, and Experience is in the right place above Education.",
+      "Let's start with the at-risk renewal line: add the part of the strategy that was yours. Then show what you do when a payroll run fails. Those details will help a recruiter understand your work beyond the account count."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 1",
+        "line": "Manage a book of 48 mid-market accounts across healthcare and manufacturing",
+        "cannot_tell": "Keep this as a model. It names your responsibility, the account count, the segment and the industries in one line.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "Partnered with Sales on renewal strategy for at-risk accounts",
+        "cannot_tell": "A recruiter can see who you worked with, but not what you contributed to the renewal strategy or what happened next.",
+        "example": "Partnered with Sales on renewal strategy for at-risk accounts by [your contribution], resulting in [what happened]",
+        "question": "What did you contribute to the strategy, and what happened with those accounts?"
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 5",
+        "line": "Handle escalations with Support and Product when payroll runs fail",
+        "cannot_tell": "Failed payroll runs are a concrete problem, but a recruiter can't tell what you do alongside Support and Product to handle them.",
+        "example": "Handle escalations with Support and Product when payroll runs fail by [your actions]",
+        "question": "What actions do you take when a payroll run fails?"
+      },
+      {
+        "kind": "line",
+        "where": "Account Coordinator, line 2",
+        "line": "Answered client questions by phone and email",
+        "cannot_tell": "The channels are clear, but the questions aren't. Naming the subjects would show more of your work with small business clients.",
+        "example": "Answered small business client questions by phone and email about [question topics]",
+        "question": "What did clients typically ask you about?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Customer Success Manager"
+      ],
+      "why": "Your current role is Customer Success Manager, with a book of 48 mid-market accounts and work across onboarding and renewals.",
+      "level": "Experienced customer success manager, manages 48 mid-market accounts",
+      "note": "Your experience points toward customer success roles serving mid-market software customers. The resume shows the book and the customer work; your contribution to renewal decisions is the main detail to add.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 79
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 79,
+    "lifted_by_employer": false,
+    "verdict": "A customer success manager with a defined mid-market book, but a few important actions remain unclear.",
+    "write_up": [
+      "Your resume tells a clear story from account coordination at Hollis Insurance Group to support and then customer success at Brightline Payroll Software. A recruiter can see the accounts you manage and the problems you handle, though some of your work on renewals and escalations needs more detail.",
+      "The strongest line is your book of 48 mid-market accounts across healthcare and manufacturing. It gives a recruiter both the number of accounts and the customers you serve. The move from support into customer success is easy to follow, and Experience is in the right place above Education.",
+      "Let's start with the at-risk renewal line: add the part of the strategy that was yours. Then show what you do when a payroll run fails. Those details will help a recruiter understand your work beyond the account count."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 1",
+        "line": "Manage a book of 48 mid-market accounts across healthcare and manufacturing",
+        "cannot_tell": "Keep this as a model. It names your responsibility, the account count, the segment and the industries in one line.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "Partnered with Sales on renewal strategy for at-risk accounts",
+        "cannot_tell": "A recruiter can see who you worked with, but not what you contributed to the renewal strategy or what happened next.",
+        "example": "Partnered with Sales on renewal strategy for at-risk accounts by [your contribution], resulting in [what happened]",
+        "question": "What did you contribute to the strategy, and what happened with those accounts?"
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 5",
+        "line": "Handle escalations with Support and Product when payroll runs fail",
+        "cannot_tell": "Failed payroll runs are a concrete problem, but a recruiter can't tell what you do alongside Support and Product to handle them.",
+        "example": "Handle escalations with Support and Product when payroll runs fail by [your actions]",
+        "question": "What actions do you take when a payroll run fails?"
+      },
+      {
+        "kind": "line",
+        "where": "Account Coordinator, line 2",
+        "line": "Answered client questions by phone and email",
+        "cannot_tell": "The channels are clear, but the questions aren't. Naming the subjects would show more of your work with small business clients.",
+        "example": "Answered small business client questions by phone and email about [question topics]",
+        "question": "What did clients typically ask you about?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Customer Success Manager"
+      ],
+      "why": "Your current role is Customer Success Manager, with a book of 48 mid-market accounts and work across onboarding and renewals.",
+      "level": "Experienced customer success manager, manages 48 mid-market accounts",
+      "note": "Your experience points toward customer success roles serving mid-market software customers. The resume shows the book and the customer work; your contribution to renewal decisions is the main detail to add.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 79
+  },
+  "presentation": {
+    "score": 79,
+    "band": "Mostly clear",
+    "model_score": 79,
+    "lifted_by_employer": false,
+    "verdict": "A customer success manager with a defined mid-market book, but a few important actions remain unclear.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 135,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 1",
+        "line": "Manage a book of 48 mid-market accounts across healthcare and manufacturing",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "Partnered with Sales on renewal strategy for at-risk accounts",
+        "blanks": 2,
+        "question": "What did you contribute to the strategy, and what happened with those accounts?"
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 5",
+        "line": "Handle escalations with Support and Product when payroll runs fail",
+        "blanks": 1,
+        "question": "What actions do you take when a payroll run fails?"
+      },
+      {
+        "kind": "line",
+        "where": "Account Coordinator, line 2",
+        "line": "Answered client questions by phone and email",
+        "blanks": 1,
+        "question": "What did clients typically ask you about?"
+      }
+    ],
+    "card_count": 4,
+    "kinds": {
+      "keep": 1,
+      "line": 3
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Customer Success Manager"
+      ],
+      "why": "Your current role is Customer Success Manager, with a book of 48 mid-market accounts and work across onboarding and renewals.",
+      "level": "Experienced customer success manager, manages 48 mid-market accounts",
+      "note": "Your experience points toward customer success roles serving mid-market software customers. The resume shows the book and the customer work; your contribution to renewal decisions is the main detail to add.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0073728,
+  "latency_ms": 14714
+}

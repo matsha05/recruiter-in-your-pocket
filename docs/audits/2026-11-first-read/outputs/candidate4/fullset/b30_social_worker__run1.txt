@@ -1,0 +1,30 @@
+# b30_social_worker, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_social_worker_1.txt (127 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ee57d907; severity check off
+Outcome: report; cost $0.0061; 12.8s
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+An Ohio LMSW with child welfare experience whose caseload and results are still unclear.
+
+## Write-up
+Your resume tells a common story: a move from intake at Lakeview Community Center to family services work with Cuyahoga Family Partners, with the duties listed but little about how many families you serve or what changed. A recruiter can see the kind of work you do, but may move on without a sense of how much you handle.
+
+The monthly family team meetings line is a useful model because it names the work and how often you do it. Your Ohio LMSW and MSW are also easy to find, and Experience is in the right place above Education.
+
+Let's start with the caseload line. Add the number of families you carry if you can, then look for places where you can describe a result of your assessments, coordination or case planning without sharing identifying details.
+
+## Cards (2; {"line":1,"keep":1}); severity off; added []
+1. [line] Family Services Caseworker, line 1
+   line: "Carry a caseload of families involved with child protective services"
+   can't tell: A recruiter can't tell how many families are in your caseload. That number helps them understand how much work you manage.
+   example: Carry a caseload of [number] families involved with child protective services
+   question: How many families do you carry in your caseload?
+2. [keep] Family Services Caseworker, line 5
+   line: "Facilitate monthly family team meetings"
+   can't tell: Keep this as a model. It tells a recruiter what you facilitate and establishes a regular cadence without making them guess.
+
+## Fit
+Roles: ["Family Services Caseworker","Intake Specialist"]
+Level: Experienced caseworker, with a current family services role and Ohio LMSW
+Note: Your experience points toward family services and child welfare casework. Your earlier intake work also shows experience connecting clients to county benefit programs.

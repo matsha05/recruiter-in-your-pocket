@@ -1,0 +1,73 @@
+# fr06_senior_director_duties, run 1
+Resume: resumes/fr06_senior_director_duties.txt (143 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ab8cd5a5; severity check off
+Outcome: report; cost $0.0106; 22.4s
+Case note: P4 (senior). Duties and a reporting line with no team size, budget or company size. Expect the remit asked for; no invented team or budget.
+
+## Needs more context (score 65; model wrote 65)
+## Verdict
+A senior operations leader with a clear career progression, but too little detail about the work and its scale.
+
+## Write-up
+It’s common for senior operations resumes to lean on responsibilities instead of showing the work behind them. Yours traces a progression from Lakeland Appliance Repair to Senior Director at Northstar Home Services, but a recruiter has to guess how large the operation is and what changed under your leadership. That makes it less likely to stand out in a pile.
+
+The annual operating plan line is the most useful starting point: it names your COO reporting relationship and your work with Finance on a concrete plan. The next step is to say what you contributed. Your current role covers the Upper Midwest, but the resume doesn’t say how many people you oversee or how big Northstar is.
+
+Let’s start with the Senior Director role. Add the size of your remit, then name an initiative you led and what changed. Bring the same detail to the scheduling system and first-time fix rate in the Director role.
+
+## Cards (10; {"line":10}); severity off; added []
+1. [line] Senior Director, Operations, line 1
+   line: "Responsible for field operations, dispatch and customer care across the Upper Midwest"
+   can't tell: The Upper Midwest gives a geographic frame, but a recruiter can't tell how many people are in your operation or how big Northstar is. Those details matter for a senior leadership role.
+   example: Responsible for field operations, dispatch and customer care across the Upper Midwest, overseeing [number] people at Northstar Home Services, a [company size] company
+   question: How many people were in your operation, and how big was Northstar?
+2. [line] Senior Director, Operations, line 2
+   line: "Reported to the COO and partnered with Finance on the annual operating plan"
+   can't tell: The COO relationship and annual plan are useful context. What you contributed to the plan is still missing.
+   example: Reported to the COO and partnered with Finance on [your contribution] to the annual operating plan
+   question: What was your contribution to the annual operating plan?
+3. [line] Senior Director, Operations, line 3
+   line: "Oversaw vendor management and fleet"
+   can't tell: A recruiter can't tell what overseeing the vendors and fleet involved. Pick a decision or piece of work that shows your part.
+   example: Oversaw vendor management and fleet, including [work or decision]
+   question: What work or decision did you handle for vendors or the fleet?
+4. [line] Senior Director, Operations, line 4
+   line: "Led operational strategy and continuous improvement initiatives"
+   can't tell: This could cover many different initiatives. Name one and say what changed so a recruiter can see the work you led.
+   example: Led [initiative] as part of operational strategy and continuous improvement, resulting in [what changed]
+   question: Which initiative did you lead, and what changed?
+5. [line] Senior Director, Operations, line 5
+   line: "Managed managers across multiple regions"
+   can't tell: Managing managers is important at your level, but the line doesn't show how many or what their teams handled.
+   example: Managed [number] managers across multiple regions, overseeing teams responsible for [work]
+   question: How many managers did you manage, and what did their teams handle?
+6. [line] Director, Field Operations, line 1
+   line: "Oversaw technicians and dispatch for the Twin Cities market"
+   can't tell: The market and teams are named, but a recruiter can't tell how large the operation was or what you handled beyond oversight.
+   example: Oversaw [number] technicians and dispatch for the Twin Cities market, including [work or decision]
+   question: How many technicians did you oversee, and what work or decision was yours?
+7. [line] Director, Field Operations, line 2
+   line: "Rolled out a new scheduling system"
+   can't tell: A new scheduling system is a concrete piece of work. The line doesn't say what you did during the rollout.
+   example: Rolled out a new scheduling system, including [your rollout work]
+   question: What did you handle during the scheduling system rollout?
+8. [line] Director, Field Operations, line 3
+   line: "Improved first-time fix rate"
+   can't tell: This names an improvement, but not how much the rate changed or what you did to improve it.
+   example: Improved first-time fix rate from [starting rate] to [ending rate] by [your work]
+   question: What were the starting and ending rates, and what did you do to improve them?
+9. [line] Operations Manager, line 1
+   line: "Ran daily operations for the service department"
+   can't tell: Running daily operations could mean several things. Name the work you handled so a recruiter can see your part in the service department.
+   example: Ran daily operations for the service department, including [work handled]
+   question: What did you handle in the service department's daily operations?
+10. [line] Operations Manager, line 2
+   line: "Hired and trained technicians"
+   can't tell: Hiring and training technicians is relevant to your progression. The line doesn't say how many technicians or what training you provided.
+   example: Hired and trained [number] technicians in [training subject]
+   question: How many technicians did you hire and train, and what did the training cover?
+
+## Fit
+Roles: ["Senior Operations Leader","Senior Director, Operations","Director, Field Operations"]
+Level: Senior leader, managing managers and reporting to the COO
+Note: Your experience points toward senior field operations leadership. The resume needs more detail about the size of the organization and what changed under your leadership to make that case.

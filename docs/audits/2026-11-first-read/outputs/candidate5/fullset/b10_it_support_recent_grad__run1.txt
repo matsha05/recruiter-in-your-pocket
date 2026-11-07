@@ -1,0 +1,45 @@
+# b10_it_support_recent_grad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_it_support_recent_grad_1.txt (119 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ab8cd5a5; severity check off
+Outcome: report; cost $0.0079; 17.0s
+Case note: First job.
+
+## Needs more context (score 63; model wrote 63)
+## Verdict
+A help desk internship and retail device work point toward desktop support, but recent work is unaccounted for.
+
+## Write-up
+Your resume points toward desktop support: you supported teachers and staff at Chattahoochee County Schools and helped customers with devices at Peachtree Electronics. This is a common early-career resume pattern: the work is real, but the internship lines leave a recruiter guessing about the tickets and laptops. That makes it harder to stand out for support jobs.
+
+The Active Directory line is your best model because it names both the task and the tool. Your work also sits below Education despite your retail experience, and no work is dated after May 2025.
+
+Let's start with the internship tickets and laptop setup. Add the issues you handled and how many laptops you set up if you know, then account for the time since your last dated work honestly.
+
+## Cards (5; {"dates":1,"structure":1,"line":2,"keep":1}); severity off; added []
+1. [dates] Dates
+   line: "No work is dated after May 2025."
+   can't tell: A recruiter can't tell what you've been doing since the internship ended. That blank can slow down an otherwise relevant desktop support application.
+   example: May 2025 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]
+   question: What have you been doing since May 2025 that you'd be comfortable adding to your resume?
+2. [structure] Structure
+   line: "Education sits above Experience."
+   can't tell: Your retail work and help desk internship are relevant to desktop support, but a recruiter reaches them after your degree and certification.
+   question: Can you move Experience above Education and Certifications?
+3. [line] IT Help Desk Intern, line 1
+   line: "Answered help desk tickets from teachers and staff"
+   can't tell: A recruiter can't tell what kinds of issues teachers and staff brought to you or how many tickets you handled. Those details show the support work you know.
+   example: Answered help desk tickets from teachers and staff about [issues], handling [number] tickets [time period]
+   question: What issues did you handle, and how many tickets did you answer in a typical period?
+4. [line] IT Help Desk Intern, line 2
+   line: "Imaged and set up laptops for classrooms"
+   can't tell: Classroom laptop setup is relevant work, but there's no indication of how many laptops you handled or what you used to image them.
+   example: Imaged and set up [number] laptops for classrooms using [tool]
+   question: How many laptops did you set up, and what did you use to image them?
+5. [keep] IT Help Desk Intern, line 3
+   line: "Reset passwords and accounts in Active Directory"
+   can't tell: Keep this line. It gives a recruiter a concrete account-support task and shows where you used Active Directory.
+
+## Fit
+Roles: ["IT Help Desk Intern"]
+Level: Entry level, with one IT help desk internship
+Note: Your internship and retail device setup point most directly toward desktop support. A junior systems role may need more detail about the administration work you've done.

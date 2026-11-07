@@ -1,0 +1,71 @@
+# b38_layoff_gap_james, run 1
+Resume: ../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/3-layoff-gap-james.txt (313 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 338ac33a; severity check off
+Outcome: report; cost $0.0136; 27.3s
+Case note: Layoff gap (bar persona).
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+A senior marketing manager with strong past numbers, but current consulting work that leaves a recruiter guessing.
+
+## Write-up
+You’ve moved from Marketing Coordinator to Senior Marketing Manager at B2B software companies, then into freelance consulting. This is a common resume pattern: the earlier leadership work has numbers, while the current work reads more like a list of services. For a marketing manager role, a recruiter may hesitate over what you’ve delivered recently and move on to a resume that makes it easier to tell.
+
+The strongest line is your Velocity Software team and budget: four marketers and a $1.8M annual budget give a recruiter a concrete picture of your responsibility. Your promotion at Bridgepoint and the explanation for leaving Velocity also make the career moves easy to follow.
+
+Let’s start with the freelance role. Pick a project you can discuss, name your part and add a result or a measure of the work if you can. Then bring that same detail to the ABM program and the Bridgepoint campaigns.
+
+## Cards (10; {"line":9,"keep":1}); severity off; added []
+1. [line] Professional Summary
+   line: "Results-driven Marketing Manager with 10+ years of experience in B2B SaaS. Expertise in demand generation, content strategy, and marketing operations. Proven ability to lead cross-functional teams and deliver measurable results. Seeking a senior marketing role."
+   can't tell: Results-driven could describe almost anyone. Your team and budget give a recruiter a much better reason to keep reading.
+   example: Senior Marketing Manager with 10+ years of experience in B2B SaaS; managed a team of 4 marketers and a $1.8M annual marketing budget.
+   question: Which of your Velocity responsibilities best represents the senior marketing work you want next?
+2. [line] Freelance Marketing Consultant, line 1
+   line: "Provided marketing strategy and execution support for small businesses and startups"
+   can't tell: A recruiter can see who you supported, but not what the strategy or execution involved. The current role needs at least one concrete project to show what you do for clients.
+   example: Provided marketing strategy and execution support for small businesses and startups, including [project] for [client type].
+   question: What’s one client project you supported, and what was your part in it?
+3. [line] Freelance Marketing Consultant, line 2
+   line: "Projects included website copy, email campaigns, and paid social setup"
+   can't tell: These are useful project types, but the line doesn't say what you personally did or how much work was involved. Pick one project and give it room.
+   example: Projects included [your contribution] to [project type] for [client type], reaching [number] [people or accounts].
+   question: Which project can you describe, including your contribution and a measure you can substantiate?
+4. [keep] Senior Marketing Manager, line 2
+   line: "Managed a team of 4 marketers and a $1.8M annual marketing budget"
+   can't tell: Keep this. It pairs two responsibilities with numbers a recruiter can compare against the role they’re filling.
+5. [line] Senior Marketing Manager, line 4
+   line: "Launched ABM program targeting enterprise accounts"
+   can't tell: Launching the program is clear. A recruiter can't tell what the program involved or how many accounts it targeted.
+   example: Launched ABM program targeting [number] enterprise accounts through [program activities].
+   question: What did the ABM program include, and how many accounts did it target?
+6. [line] Senior Marketing Manager, line 5
+   line: "Increased MQL volume by 35% year over year while reducing cost per lead"
+   can't tell: The MQL increase is substantial, but the line doesn't say what you did to achieve it or how much cost per lead fell. Those details would show how you approached the work.
+   example: Increased MQL volume by 35% year over year through [what you did] while reducing cost per lead by [amount].
+   question: What did you do to increase MQL volume, and how much did cost per lead decrease?
+7. [line] Marketing Manager, line 1
+   line: "Managed content marketing and email programs"
+   can't tell: A recruiter can't tell what those programs included or who they reached. Name a piece of the work you managed.
+   example: Managed content marketing and email programs, including [content or campaign] for [audience].
+   question: What content or email campaign did you manage, and who was it for?
+8. [line] Marketing Manager, line 2
+   line: "Grew blog traffic significantly through SEO-driven content strategy"
+   can't tell: The strategy and the change are both here, but significantly leaves the amount to guesswork. A traffic figure would make this result more useful.
+   example: Grew blog traffic by [amount] through SEO-driven content strategy.
+   question: How much did blog traffic grow during the period you can document?
+9. [line] Marketing Manager, line 3
+   line: "Ran webinar program generating pipeline for the sales team"
+   can't tell: The sales connection matters, but a recruiter can't tell how much pipeline the webinars generated or what running the program involved.
+   example: Ran webinar program for the sales team, generating [pipeline amount] through [your work].
+   question: What did you handle in the webinar program, and what pipeline amount can you substantiate?
+10. [line] Marketing Coordinator, line 1
+   line: "Supported campaign execution, event logistics, and social media"
+   can't tell: Supported covers a lot of possible work. One campaign or event and your part in it would make this earlier role more concrete.
+   example: Supported [campaign or event] by [your contribution].
+   question: Which campaign or event did you support, and what did you handle?
+
+## Fit
+Roles: ["Marketing Manager","Senior Marketing Manager","Freelance Marketing Consultant"]
+Level: Senior marketing manager, managed four marketers and a $1.8M annual budget
+Note: Your Velocity work points toward senior demand generation and marketing management roles. The freelance projects could strengthen that story if you show what you contributed and what you can substantiate.

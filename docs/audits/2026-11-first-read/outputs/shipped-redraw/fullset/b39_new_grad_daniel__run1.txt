@@ -1,0 +1,70 @@
+# b39_new_grad_daniel, run 1
+Resume: ../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/1-new-grad-daniel.txt (354 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0125; 24.6s
+Case note: New grad (bar persona).
+
+## Needs more context (score 65; model wrote 65)
+## Verdict
+A recent computer science graduate with relevant projects, but an internship that leaves too much of the work unnamed.
+
+## Write-up
+You’re a recent Ohio State computer science graduate with a Cardinal Health software engineering internship, help desk experience, and several application projects. It’s common for an early-career resume to lean on duties and team activities, but the internship needs more of the features and fixes you worked on to stand out for Software Engineer roles.
+
+The Personal Finance Tracker line is a good model: it names the application, what it does, and the tools you used. Your education leads the resume, though you also have more than a year of work experience to put first.
+
+Let’s start with the Cardinal Health role. Name an inventory feature you developed, then add what your tests checked and which bugs you fixed. Keep the project work that already shows what you built.
+
+## Cards (10; {"line":8,"structure":1,"keep":1}); severity off; added []
+1. [line] Objective
+   line: "Motivated and detail-oriented Computer Science graduate seeking a Software Engineer position where I can leverage my technical skills and passion for problem solving to contribute to a dynamic team."
+   can't tell: This names the job you want, but the qualities could belong to almost anyone. Lead with the inventory application work instead.
+   example: Computer Science graduate seeking a Software Engineer position; developed [feature] for an internal inventory management web application using React and Spring Boot
+   question: Which inventory application feature did you develop?
+2. [structure] Structure
+   line: "Education sits above Experience."
+   can't tell: Your internship and help desk work give a recruiter more to work with than the course list. Put Experience above Education so that work comes first.
+   question: Can you move Experience above Education?
+3. [line] Software Engineering Intern, line 1
+   line: "Responsible for developing features for an internal inventory management web application using React and Spring Boot"
+   can't tell: The application and tools are clear, but a recruiter can't tell which features you developed. Name one so your contribution isn't left at the application level.
+   example: Responsible for developing [feature] for an internal inventory management web application using React and Spring Boot
+   question: Which feature did you develop for the inventory application?
+4. [line] Software Engineering Intern, line 2
+   line: "Participated in daily stand-ups and sprint planning meetings as part of an Agile team"
+   can't tell: Meetings tell a recruiter how the team worked, not what you contributed to planning. Add your part or use this space for the software work.
+   example: Participated in daily stand-ups and sprint planning meetings as part of an Agile team, contributing [planning contribution]
+   question: What did you contribute during sprint planning?
+5. [line] Software Engineering Intern, line 3
+   line: "Wrote unit tests to improve code quality and reliability"
+   can't tell: A recruiter can't tell what the tests covered or how you wrote them. Those details show the testing work itself.
+   example: Wrote unit tests for [features or components] using [tool] to check [behavior]
+   question: What did you test, what did you use, and what behavior did the tests check?
+6. [line] Software Engineering Intern, line 4
+   line: "Collaborated with cross-functional teams to gather requirements and deliver solutions"
+   can't tell: The teams, requirements, and solutions are all unnamed. Give a recruiter one concrete example of the work you shared.
+   example: Collaborated with [teams] to gather requirements for [feature or problem] and deliver [solution]
+   question: Which teams did you work with, and what requirements and solution did you work on together?
+7. [line] Software Engineering Intern, line 5
+   line: "Fixed bugs and performed code reviews"
+   can't tell: Both are useful engineering tasks, but a recruiter can't tell what you fixed or reviewed. One example of each would make the work concrete.
+   example: Fixed [bugs] and performed code reviews for [code or features]
+   question: What bugs did you fix, and what code or features did you review?
+8. [line] IT Help Desk Assistant, line 1
+   line: "Provided technical support to students and faculty for hardware and software issues"
+   can't tell: A recruiter knows who you supported but not which problems you handled most often. A typical issue or ticket volume would give the work more definition.
+   example: Provided technical support to students and faculty for [hardware or software issues], handling [number] tickets per [period]
+   question: What issues did you commonly handle, and how many tickets did you handle in a typical period?
+9. [line] IT Help Desk Assistant, line 2
+   line: "Resolved tickets in a timely manner and documented solutions"
+   can't tell: Timely doesn't say which tickets you resolved or what you documented. Name a problem and the solution you recorded.
+   example: Resolved tickets for [issue] and documented [solution]
+   question: What is one issue you resolved and documented?
+10. [keep] Personal Finance Tracker, line 1
+   line: "Built a Python application to track expenses and visualize spending with matplotlib"
+   can't tell: Keep this as a model. It pairs your own action with a concrete function, so a recruiter doesn't have to guess what the application does.
+
+## Fit
+Roles: ["Software Engineer","Software Engineering Intern"]
+Level: Entry-level software engineering
+Note: Your internship and application projects point toward Software Engineer roles for recent graduates. The projects show what you built; the internship needs more detail about your individual contributions.

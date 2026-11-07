@@ -1,0 +1,30 @@
+# b08_warehouse_supervisor, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_warehouse_supervisor_1.txt (173 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 01c2028d; severity check off
+Outcome: report; cost $0.0073; 15.0s
+
+## Mostly clear (score 78; model wrote 78)
+## Verdict
+A distribution supervisor with a clear path from picking to leading a night shift.
+
+## Write-up
+Your resume tells a clear story: you moved from picking at Basin Retail Supply to supervising outbound operations at Sierra Freight Distribution. A recruiter can see the work and the people you lead, though there's less about what changed under your supervision.
+
+The night-shift line is the model: it names your team and the work they cover. Your progression is easy to follow, and your certifications belong alongside that warehouse experience.
+
+Let's start with the scanner rollout in the Lead Associate role, where your part is still a question. If you can also point to a change from your current work, add it without taking credit for more than you did.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Shift Supervisor, line 1
+   line: "Supervise a night shift of 35 associates across picking, packing, and loading"
+   can't tell: Keep this as a model. It gives a recruiter a concrete picture of the shift you supervise instead of leaving them to guess what outbound operations covers.
+2. [line] Lead Associate, line 3
+   line: "Helped roll out handheld scanners on the pick floor"
+   can't tell: The scanners and location are clear, but 'helped' leaves your part in the rollout open. A recruiter can't tell what you contributed.
+   example: Helped roll out handheld scanners on the pick floor by [your contribution]
+   question: What did you do to help roll out the scanners?
+
+## Fit
+Roles: ["Operations supervisor","Shift Supervisor, Outbound Operations"]
+Level: Supervisor, leads a night shift of 35 associates
+Note: Your experience points toward distribution and outbound operations supervision. The progression from picker to lead to shift supervisor is easy to follow.

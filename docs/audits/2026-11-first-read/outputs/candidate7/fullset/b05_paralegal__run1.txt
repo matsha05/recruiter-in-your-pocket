@@ -1,0 +1,30 @@
+# b05_paralegal, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_paralegal_1.txt (144 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 1c0fe4fe; severity check off
+Outcome: report; cost $0.0071; 14.5s
+
+## Mostly clear (score 83; model wrote 83)
+## Verdict
+A litigation paralegal with substantial document production and trial preparation work, plus one question about trial support.
+
+## Write-up
+Your resume points clearly toward litigation paralegal work. At Harlan & Pike, you support partners on commercial and employment cases; at Summit Legal Group, you worked on personal injury matters. A recruiter can see the work and would likely move forward with a question about your trial experience.
+
+The Relativity line is your best model: it names the work, the tool, and how large a production can be. Your certificate and earlier case work reinforce the story, and Experience is already in the right place above Education.
+
+Start with the trial line. You name the binders and exhibits, but there may be more to say about your part in the two jury trials. Add that detail if you can, and leave the precise production figure alone.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Senior Litigation Paralegal, line 2
+   line: "Manage document productions of up to 250,000 pages in Relativity"
+   can't tell: Keep this line. A recruiter can immediately place your responsibility and see the upper end of the productions you manage.
+2. [line] Senior Litigation Paralegal, line 4
+   line: "Prepare trial binders and exhibits; supported two jury trials in 2025"
+   can't tell: You name the trial materials, but a recruiter can't tell what your support for the two jury trials included. That distinction matters for another litigation role.
+   example: Prepare trial binders and exhibits; supported two jury trials in 2025 by [trial support work]
+   question: What did you do to support the two jury trials, and were the binders and exhibits part of that work?
+
+## Fit
+Roles: ["Litigation paralegal","Senior Litigation Paralegal"]
+Level: Senior paralegal, supporting four partners and managing document productions
+Note: Your recent work points toward commercial and employment litigation paralegal roles. Your earlier personal injury work adds another case area to that background.

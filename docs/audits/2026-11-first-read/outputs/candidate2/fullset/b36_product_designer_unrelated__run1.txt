@@ -1,0 +1,56 @@
+# b36_product_designer_unrelated, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_product_designer_unrelated_1.txt (147 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 41bcacc0; severity check off
+Outcome: report; cost $0.0109; 23.3s
+Case note: Current job outside the field.
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+A product designer with named projects, but too little detail about their contributions and recent design work.
+
+## Write-up
+Your resume points to product design, with app work at Loop Fitness and agency work at Brightpath Studio, followed by your current barista role. Moving between fields is common. Here, a recruiter can see the design projects but has to guess too often about your part in them, so the resume may not stand out in a pile.
+
+The Figma design system is your strongest line: it names what you made, the tool, and why it was new to the app. Your current job accounts for your time, though a recruiter will notice that your last listed design role ended in February 2024.
+
+Let's start with the Loop Fitness booking flow and weekly releases. Add the decisions and contributions you can describe firsthand, then give the usability tests and Brightpath prototypes the same treatment. Keep the coffee shop role, including the training work.
+
+## Cards (7; {"line":6,"keep":1}); severity off; added []
+1. [line] Barista, line 1
+   line: "Prepare drinks and serve customers in a busy cafe"
+   can't tell: A recruiter can see the work, but not how many customers you serve. A count you know firsthand would give the cafe work some context.
+   example: Prepare drinks and serve [number] customers [time period] at Ferry Street Coffee
+   question: How many customers do you typically serve in a shift?
+2. [line] Barista, line 2
+   line: "Train new baristas on espresso equipment"
+   can't tell: Training new baristas is useful work. How many people have you trained, and what do you teach them?
+   example: Train [number] new baristas on espresso equipment, including [training topic]
+   question: How many baristas have you trained, and what do you cover?
+3. [line] Product Designer, Loop Fitness, line 1
+   line: "Designed the class booking flow for the iOS and Android apps"
+   can't tell: The booking flow is a concrete project, but a recruiter can't see the design decisions behind it. That's a useful story for another product design role.
+   example: Designed the class booking flow for the iOS and Android apps, including [design decision]
+   question: What design decision did you make for the booking flow?
+4. [line] Product Designer, Loop Fitness, line 2
+   line: "Worked with two engineers and a product manager on weekly releases"
+   can't tell: The team and release schedule are clear, but your contribution to the releases isn't. Name the work that was yours.
+   example: Worked with two engineers and a product manager on weekly releases, contributing [your contribution]
+   question: What did you contribute to those releases?
+5. [keep] Product Designer, Loop Fitness, line 3
+   line: "Created the app's first design system in Figma"
+   can't tell: Keep this as a model. It gives your action a concrete deliverable and tells a recruiter which tool you used.
+6. [line] Product Designer, Loop Fitness, line 4
+   line: "Ran usability tests with members before launches"
+   can't tell: A recruiter knows you ran tests, but not how many members took part or what you learned. Those details show how you used research in the design work.
+   example: Ran usability tests with [number] members before launches and learned [what you learned]
+   question: How many members took part, and what did you learn from the tests?
+7. [line] Junior Product Designer, Brightpath Studio, line 2
+   line: "Made prototypes for client presentations"
+   can't tell: The prototypes are a real deliverable, but a recruiter can't tell what they demonstrated to clients.
+   example: Made prototypes of [what the prototypes demonstrated] for client presentations
+   question: What did the prototypes demonstrate to clients?
+
+## Fit
+Roles: ["Product Designer","Junior Product Designer"]
+Level: Product designer, with prior Product Designer and Junior Product Designer roles
+Note: Your design experience points toward product design roles, particularly work on mobile apps and design systems. The resume also shows a current barista role, so making the work at Loop Fitness concrete matters for a return to design.

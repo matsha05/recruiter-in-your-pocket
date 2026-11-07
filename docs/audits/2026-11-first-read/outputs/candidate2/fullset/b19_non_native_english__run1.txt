@@ -1,0 +1,30 @@
+# b19_non_native_english, run 1
+Resume: ../2026-11-live-judgment/resumes/b_non_native_english.txt (237 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 41bcacc0; severity check off
+Outcome: report; cost $0.0062; 13.4s
+
+## Mostly clear (score 82; model wrote 82)
+## Verdict
+A staff accountant resume with substantial accounting experience and a clear accounts payable workload.
+
+## Write-up
+Your resume points to Staff Accountant and Accounts Payable Specialist roles, with current invoice work at Bayou Industrial Supply and earlier senior accounting work in Vietnam. A recruiter can see both your day-to-day workload and the broader accounting responsibilities you held, so this is a resume they could move forward with a question or two.
+
+The strongest line is the month-end close at Minh Phat: you show the change from 12 days to 7 days and name the checklist and template you made. Your current invoice line is useful too, because it gives the monthly volume and the system you use.
+
+Let's start with the month-end work at Bayou and name the tasks you help the controller with. Then give the resume a proofreading pass, especially the verb forms, so the accounting work is easy to follow.
+
+## Cards (2; {"line":1,"keep":1}); severity off; added []
+1. [line] Accounts Payable Clerk, line 4
+   line: "Help the controller for month end closing"
+   can't tell: A recruiter can't tell which closing tasks you help with. That matters for a Staff Accountant role, where your part in the close is useful to know.
+   example: Help the controller with [month-end closing tasks]
+   question: Which month-end closing tasks do you help the controller with?
+2. [keep] Senior Accountant, line 4
+   line: "Reduce the month end closing from 12 days to 7 days by make new checklist and template"
+   can't tell: Keep this as a model: it pairs a before-and-after measure with the tools you made to change the close.
+
+## Fit
+Roles: ["Staff Accountant","Accounts Payable Specialist","Accounts Payable Clerk"]
+Level: Experienced accountant, with prior senior accountant and team-lead responsibilities
+Note: Your current invoice processing and payment work fits accounts payable roles, while your general ledger, financial statement and closing work points toward staff accounting. Your US GAAP certificate adds relevant training alongside that experience.

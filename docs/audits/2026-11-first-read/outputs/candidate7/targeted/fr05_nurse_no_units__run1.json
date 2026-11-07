@@ -1,0 +1,369 @@
+{
+  "case_id": "fr05_nurse_no_units",
+  "batch": "targeted",
+  "run": 1,
+  "note": "P4 (nursing). Titles without a unit; RN with no state. Expect the unit and the license state asked for; no invented ratio.",
+  "resume_file": "resumes/fr05_nurse_no_units.txt",
+  "resume_sha256": "46d392485f8498d11852f2d4588d800b42bd628f4fb7e61c5f3747a6fba875dc",
+  "resume_words": 140,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:33:05.765Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5828,
+        "completion_tokens": 1623,
+        "total_tokens": 7451,
+        "cached_prompt_tokens": 5196,
+        "cache_write_prompt_tokens": 629,
+        "reasoning_tokens": 468
+      },
+      "cost_usd": 0.00916405,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 19269
+    }
+  ],
+  "resume_prompt_sha256": "1c0fe4fe961ccb0d0e49bbe71ac8427d0281ae6e9a1efa6ac35e3ee49a99ed47",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 66,
+    "lifted_by_employer": false,
+    "verdict": "A hospital nurse with charge and precepting duties, but no unit named in the current role.",
+    "write_up": [
+      "Your resume points to registered nursing in hospital care, from Mount Carmel East to Riverside Methodist. It's common for nursing resumes to list core duties this way, but those duties won't stand out in a pile when a recruiter can't tell which unit you work in or what care you handle there.",
+      "The Epic line is a useful model: it names both the records you worked on and the system you used. Your weekend charge and new graduate precepting duties also deserve more room, but a recruiter can't yet tell what those jobs involve. Your RN license is listed without its state.",
+      "Let's start with the first Riverside line and name your unit or specialty. Then add the care and responsibilities that distinguish your shifts, and include the state of your RN license."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Registered Nurse, Riverside Methodist Hospital, line 1",
+        "line": "- Provide direct patient care for adult patients across 12-hour shifts",
+        "cannot_tell": "A recruiter can't tell which unit or specialty you work in, or what care you provide there. That's one of the first things they'll look for in a nursing role.",
+        "example": "Provide direct patient care for adult patients in [unit or specialty], including [care provided], across 12-hour shifts",
+        "question": "What unit or specialty do you work in, and what care do you provide there?"
+      },
+      {
+        "kind": "line",
+        "where": "Registered Nurse, Riverside Methodist Hospital, line 2",
+        "line": "- Administer medications and monitor patient response",
+        "cannot_tell": "Medication administration is a core nursing duty, but this doesn't show what you monitor or act on for your patients.",
+        "example": "Administer medications and monitor patient response, including [responses monitored] and [actions taken]",
+        "question": "What patient responses do you monitor, and what actions do you take when needed?"
+      },
+      {
+        "kind": "line",
+        "where": "Registered Nurse, Riverside Methodist Hospital, line 3",
+        "line": "- Educate patients and families on discharge plans",
+        "cannot_tell": "Discharge education matters, but a recruiter can't tell what you teach patients and families or what needs you address.",
+        "example": "Educate patients and families on discharge plans, including [education topics] and [needs addressed]",
+        "question": "What do you teach patients and families, and what discharge needs do you address?"
+      },
+      {
+        "kind": "line",
+        "where": "Registered Nurse, Riverside Methodist Hospital, line 4",
+        "line": "- Serve as charge nurse on weekends",
+        "cannot_tell": "The charge nurse responsibility stands out, but a recruiter can't tell what you handle during those shifts or how many staff you oversee.",
+        "example": "Serve as charge nurse on weekends, overseeing [number] staff and handling [charge responsibilities]",
+        "question": "What do you handle as charge nurse, and how many staff do you oversee?"
+      },
+      {
+        "kind": "line",
+        "where": "Registered Nurse, Riverside Methodist Hospital, line 5",
+        "line": "- Precept new graduate nurses",
+        "cannot_tell": "Precepting new nurses is worth showing. What do you teach or assess, and how many have you precepted?",
+        "example": "Precept [number] new graduate nurses in [skills taught] and assess [skills assessed]",
+        "question": "How many new graduate nurses have you precepted, and what skills do you teach and assess?"
+      },
+      {
+        "kind": "line",
+        "where": "Registered Nurse, Mount Carmel East Hospital, line 1",
+        "line": "- Cared for patients before and after surgery",
+        "cannot_tell": "The surgical care is clear, but the unit and your nursing duties before and after surgery aren't named.",
+        "example": "Cared for patients before and after surgery in [unit or specialty], including [nursing duties]",
+        "question": "Which unit did you work in, and what nursing care did you provide before and after surgery?"
+      },
+      {
+        "kind": "line",
+        "where": "Licenses and certifications",
+        "line": "RN, BLS, ACLS",
+        "cannot_tell": "Your RN license is listed, but its state isn't. A recruiter needs that detail when reviewing nursing qualifications.",
+        "example": "RN, [license state], BLS, ACLS",
+        "question": "Which state issued your RN license?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Registered Nurse"
+      ],
+      "why": "Your headline and both hospital nursing roles identify you as a Registered Nurse.",
+      "level": "Experienced hospital nurse, with weekend charge and new graduate precepting duties",
+      "note": "Your experience points toward hospital nursing roles. Naming the units and the state of your RN license will help a recruiter match that experience to an opening.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 66,
+    "lifted_by_employer": false,
+    "verdict": "A hospital nurse with charge and precepting duties, but no unit named in the current role.",
+    "write_up": [
+      "Your resume points to registered nursing in hospital care, from Mount Carmel East to Riverside Methodist. It's common for nursing resumes to list core duties this way, but those duties won't stand out in a pile when a recruiter can't tell which unit you work in or what care you handle there.",
+      "The Epic line is a useful model: it names both the records you worked on and the system you used. Your weekend charge and new graduate precepting duties also deserve more room, but a recruiter can't yet tell what those jobs involve. Your RN license is listed without its state.",
+      "Let's start with the first Riverside line and name your unit or specialty. Then add the care and responsibilities that distinguish your shifts, and include the state of your RN license."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Registered Nurse, Riverside Methodist Hospital, line 1",
+        "line": "Provide direct patient care for adult patients across 12-hour shifts",
+        "cannot_tell": "A recruiter can't tell which unit or specialty you work in, or what care you provide there. That's one of the first things they'll look for in a nursing role.",
+        "example": "Provide direct patient care for adult patients in [unit or specialty], including [care provided], across 12-hour shifts",
+        "question": "What unit or specialty do you work in, and what care do you provide there?"
+      },
+      {
+        "kind": "line",
+        "where": "Registered Nurse, Riverside Methodist Hospital, line 2",
+        "line": "Administer medications and monitor patient response",
+        "cannot_tell": "Medication administration is a core nursing duty, but this doesn't show what you monitor or act on for your patients.",
+        "example": "Administer medications and monitor patient response, including [responses monitored] and [actions taken]",
+        "question": "What patient responses do you monitor, and what actions do you take when needed?"
+      },
+      {
+        "kind": "line",
+        "where": "Registered Nurse, Riverside Methodist Hospital, line 3",
+        "line": "Educate patients and families on discharge plans",
+        "cannot_tell": "Discharge education matters, but a recruiter can't tell what you teach patients and families or what needs you address.",
+        "example": "Educate patients and families on discharge plans, including [education topics] and [needs addressed]",
+        "question": "What do you teach patients and families, and what discharge needs do you address?"
+      },
+      {
+        "kind": "line",
+        "where": "Registered Nurse, Riverside Methodist Hospital, line 4",
+        "line": "Serve as charge nurse on weekends",
+        "cannot_tell": "The charge nurse responsibility stands out, but a recruiter can't tell what you handle during those shifts or how many staff you oversee.",
+        "example": "Serve as charge nurse on weekends, overseeing [number] staff and handling [charge responsibilities]",
+        "question": "What do you handle as charge nurse, and how many staff do you oversee?"
+      },
+      {
+        "kind": "line",
+        "where": "Registered Nurse, Riverside Methodist Hospital, line 5",
+        "line": "Precept new graduate nurses",
+        "cannot_tell": "Precepting new nurses is worth showing. What do you teach or assess, and how many have you precepted?",
+        "example": "Precept [number] new graduate nurses in [skills taught] and assess [skills assessed]",
+        "question": "How many new graduate nurses have you precepted, and what skills do you teach and assess?"
+      },
+      {
+        "kind": "line",
+        "where": "Registered Nurse, Mount Carmel East Hospital, line 1",
+        "line": "Cared for patients before and after surgery",
+        "cannot_tell": "The surgical care is clear, but the unit and your nursing duties before and after surgery aren't named.",
+        "example": "Cared for patients before and after surgery in [unit or specialty], including [nursing duties]",
+        "question": "Which unit did you work in, and what nursing care did you provide before and after surgery?"
+      },
+      {
+        "kind": "line",
+        "where": "Licenses and certifications",
+        "line": "RN, BLS, ACLS",
+        "cannot_tell": "Your RN license is listed, but its state isn't. A recruiter needs that detail when reviewing nursing qualifications.",
+        "example": "RN, [license state], BLS, ACLS",
+        "question": "Which state issued your RN license?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Registered Nurse"
+      ],
+      "why": "Your headline and both hospital nursing roles identify you as a Registered Nurse.",
+      "level": "Experienced hospital nurse, with weekend charge and new graduate precepting duties",
+      "note": "Your experience points toward hospital nursing roles. Naming the units and the state of your RN license will help a recruiter match that experience to an opening.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 66
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 66,
+    "lifted_by_employer": false,
+    "verdict": "A hospital nurse with charge and precepting duties, but no unit named in the current role.",
+    "write_up": [
+      "Your resume points to registered nursing in hospital care, from Mount Carmel East to Riverside Methodist. It's common for nursing resumes to list core duties this way, but those duties won't stand out in a pile when a recruiter can't tell which unit you work in or what care you handle there.",
+      "The Epic line is a useful model: it names both the records you worked on and the system you used. Your weekend charge and new graduate precepting duties also deserve more room, but a recruiter can't yet tell what those jobs involve. Your RN license is listed without its state.",
+      "Let's start with the first Riverside line and name your unit or specialty. Then add the care and responsibilities that distinguish your shifts, and include the state of your RN license."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Registered Nurse, Riverside Methodist Hospital, line 1",
+        "line": "Provide direct patient care for adult patients across 12-hour shifts",
+        "cannot_tell": "A recruiter can't tell which unit or specialty you work in, or what care you provide there. That's one of the first things they'll look for in a nursing role.",
+        "example": "Provide direct patient care for adult patients in [unit or specialty], including [care provided], across 12-hour shifts",
+        "question": "What unit or specialty do you work in, and what care do you provide there?"
+      },
+      {
+        "kind": "line",
+        "where": "Registered Nurse, Riverside Methodist Hospital, line 2",
+        "line": "Administer medications and monitor patient response",
+        "cannot_tell": "Medication administration is a core nursing duty, but this doesn't show what you monitor or act on for your patients.",
+        "example": "Administer medications and monitor patient response, including [responses monitored] and [actions taken]",
+        "question": "What patient responses do you monitor, and what actions do you take when needed?"
+      },
+      {
+        "kind": "line",
+        "where": "Registered Nurse, Riverside Methodist Hospital, line 3",
+        "line": "Educate patients and families on discharge plans",
+        "cannot_tell": "Discharge education matters, but a recruiter can't tell what you teach patients and families or what needs you address.",
+        "example": "Educate patients and families on discharge plans, including [education topics] and [needs addressed]",
+        "question": "What do you teach patients and families, and what discharge needs do you address?"
+      },
+      {
+        "kind": "line",
+        "where": "Registered Nurse, Riverside Methodist Hospital, line 4",
+        "line": "Serve as charge nurse on weekends",
+        "cannot_tell": "The charge nurse responsibility stands out, but a recruiter can't tell what you handle during those shifts or how many staff you oversee.",
+        "example": "Serve as charge nurse on weekends, overseeing [number] staff and handling [charge responsibilities]",
+        "question": "What do you handle as charge nurse, and how many staff do you oversee?"
+      },
+      {
+        "kind": "line",
+        "where": "Registered Nurse, Riverside Methodist Hospital, line 5",
+        "line": "Precept new graduate nurses",
+        "cannot_tell": "Precepting new nurses is worth showing. What do you teach or assess, and how many have you precepted?",
+        "example": "Precept [number] new graduate nurses in [skills taught] and assess [skills assessed]",
+        "question": "How many new graduate nurses have you precepted, and what skills do you teach and assess?"
+      },
+      {
+        "kind": "line",
+        "where": "Registered Nurse, Mount Carmel East Hospital, line 1",
+        "line": "Cared for patients before and after surgery",
+        "cannot_tell": "The surgical care is clear, but the unit and your nursing duties before and after surgery aren't named.",
+        "example": "Cared for patients before and after surgery in [unit or specialty], including [nursing duties]",
+        "question": "Which unit did you work in, and what nursing care did you provide before and after surgery?"
+      },
+      {
+        "kind": "line",
+        "where": "Licenses and certifications",
+        "line": "RN, BLS, ACLS",
+        "cannot_tell": "Your RN license is listed, but its state isn't. A recruiter needs that detail when reviewing nursing qualifications.",
+        "example": "RN, [license state], BLS, ACLS",
+        "question": "Which state issued your RN license?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Registered Nurse"
+      ],
+      "why": "Your headline and both hospital nursing roles identify you as a Registered Nurse.",
+      "level": "Experienced hospital nurse, with weekend charge and new graduate precepting duties",
+      "note": "Your experience points toward hospital nursing roles. Naming the units and the state of your RN license will help a recruiter match that experience to an opening.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 66
+  },
+  "presentation": {
+    "score": 66,
+    "band": "Needs more context",
+    "model_score": 66,
+    "lifted_by_employer": false,
+    "verdict": "A hospital nurse with charge and precepting duties, but no unit named in the current role.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 133,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Registered Nurse, Riverside Methodist Hospital, line 1",
+        "line": "Provide direct patient care for adult patients across 12-hour shifts",
+        "blanks": 2,
+        "question": "What unit or specialty do you work in, and what care do you provide there?"
+      },
+      {
+        "kind": "line",
+        "where": "Registered Nurse, Riverside Methodist Hospital, line 2",
+        "line": "Administer medications and monitor patient response",
+        "blanks": 2,
+        "question": "What patient responses do you monitor, and what actions do you take when needed?"
+      },
+      {
+        "kind": "line",
+        "where": "Registered Nurse, Riverside Methodist Hospital, line 3",
+        "line": "Educate patients and families on discharge plans",
+        "blanks": 2,
+        "question": "What do you teach patients and families, and what discharge needs do you address?"
+      },
+      {
+        "kind": "line",
+        "where": "Registered Nurse, Riverside Methodist Hospital, line 4",
+        "line": "Serve as charge nurse on weekends",
+        "blanks": 2,
+        "question": "What do you handle as charge nurse, and how many staff do you oversee?"
+      },
+      {
+        "kind": "line",
+        "where": "Registered Nurse, Riverside Methodist Hospital, line 5",
+        "line": "Precept new graduate nurses",
+        "blanks": 3,
+        "question": "How many new graduate nurses have you precepted, and what skills do you teach and assess?"
+      },
+      {
+        "kind": "line",
+        "where": "Registered Nurse, Mount Carmel East Hospital, line 1",
+        "line": "Cared for patients before and after surgery",
+        "blanks": 2,
+        "question": "Which unit did you work in, and what nursing care did you provide before and after surgery?"
+      },
+      {
+        "kind": "line",
+        "where": "Licenses and certifications",
+        "line": "RN, BLS, ACLS",
+        "blanks": 1,
+        "question": "Which state issued your RN license?"
+      }
+    ],
+    "card_count": 7,
+    "kinds": {
+      "line": 7
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Registered Nurse"
+      ],
+      "why": "Your headline and both hospital nursing roles identify you as a Registered Nurse.",
+      "level": "Experienced hospital nurse, with weekend charge and new graduate precepting duties",
+      "note": "Your experience points toward hospital nursing roles. Naming the units and the state of your RN license will help a recruiter match that experience to an opening.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00916405,
+  "latency_ms": 19282
+}

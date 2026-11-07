@@ -1,0 +1,41 @@
+# b20_customer_success_manager, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt (180 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5827dcf1; severity check off
+Outcome: report; cost $0.0078; 17.2s
+Case note: No posting.
+
+## Mostly clear (score 78; model wrote 78)
+## Verdict
+A customer success manager with a well-defined account book and a few results still to explain.
+
+## Write-up
+Your resume tells a clear story from customer support to Customer Success Manager at Brightline Payroll Software. A recruiter can see the accounts you manage and the work you do across onboarding, reviews and renewals. The main question is what changed for those customers, especially when accounts were at risk or payroll runs failed.
+
+Your account book is the best-written line: it names 48 mid-market accounts and the industries they’re in. That gives a recruiter a concrete picture of your remit. The onboarding checklist is another useful detail because you show that the whole CS team uses it.
+
+Let’s start with the renewal strategy, then the payroll escalations. Add what you personally did and any results you can substantiate. You don’t need a number on every line, but those two moments deserve more of the story.
+
+## Cards (4; {"keep":1,"line":3}); severity off; added []
+1. [keep] Customer Success Manager, line 1
+   line: "Manage a book of 48 mid-market accounts across healthcare and manufacturing"
+   can't tell: Keep this as a model. It puts the number of accounts, customer segment and industries together without making a recruiter hunt for them.
+2. [line] Customer Success Manager, line 3
+   line: "Partnered with Sales on renewal strategy for at-risk accounts"
+   can't tell: A recruiter can see you worked with Sales, but not what you contributed to the strategy or what happened at renewal.
+   example: Partnered with Sales on renewal strategy for at-risk accounts by [your contribution], with [renewal result]
+   question: What did you contribute to the renewal strategy, and what renewal result can you share?
+3. [line] Customer Success Manager, line 5
+   line: "Handle escalations with Support and Product when payroll runs fail"
+   can't tell: Failed payroll runs are a meaningful customer issue. What did you do during an escalation, and what happened afterward?
+   example: Handle escalations with Support and Product when payroll runs fail by [your actions], resulting in [what changed]
+   question: What did you do during these escalations, and what changed as a result?
+4. [line] Account Coordinator, line 2
+   line: "Answered client questions by phone and email"
+   can't tell: A recruiter knows how clients reached you, but not what they needed help with. The subject of their questions would make the work more concrete.
+   example: Answered client questions about [topics] by phone and email
+   question: What did clients most often ask you about?
+
+## Fit
+Roles: ["Customer Success Manager","Customer Support Specialist"]
+Level: Customer Success Manager, manages 48 mid-market accounts
+Note: Your experience points toward customer success roles serving business customers, particularly where onboarding, renewals and escalations matter. Adding renewal results where you can substantiate them would strengthen that story.

@@ -1,0 +1,45 @@
+# b29_mechanical_engineer, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_mechanical_engineer_1.txt (143 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0075; 15.5s
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+A furniture product engineer with clear technical work, but little to show how the designs turned out.
+
+## Write-up
+You’ve moved from Mechanical Engineer I to Mechanical Engineer II at Westhaven Office Systems, designing furniture components and leading design for the Arlo desk platform. It’s common for engineering resumes to list the work this way, but without showing how the designs turned out, yours may not stand out in a pile.
+
+The supplier line is a useful model: it names the work, the supplier locations and the stages involved. Your progression and education are easy to follow, but the current role leaves a recruiter asking what your design and analysis work changed.
+
+Let’s start with the Arlo line. Add what you led within the design and what became of the platform, then bring the same detail to the analysis and manufacturing work.
+
+## Cards (5; {"line":4,"keep":1}); severity off; added []
+1. [line] Mechanical Engineer II, line 1
+   line: "Lead mechanical design for the Arlo height-adjustable desk platform"
+   can't tell: Leading the design of a named platform is strong. A recruiter still can’t tell which parts of the design were yours or what became of the platform.
+   example: Lead mechanical design for the Arlo height-adjustable desk platform, including [design responsibilities]; [platform result]
+   question: Which parts of the Arlo design did you lead, and what became of the platform?
+2. [line] Mechanical Engineer II, line 2
+   line: "Create 3D models and drawings in SolidWorks with GD&T"
+   can't tell: The tools and deliverables are clear, but the products or components behind the models aren’t named. That makes it difficult to connect this work to the designs you owned.
+   example: Create 3D models and drawings in SolidWorks with GD&T for [products or components]
+   question: Which products or components did you model and draw?
+3. [keep] Mechanical Engineer II, line 3
+   line: "Work with suppliers in Mexico and Taiwan on tooling and first-article inspection"
+   can't tell: Keep the concrete subjects here: suppliers, tooling and first-article inspection. That combination gives a recruiter something to hold onto without relying on a generic duty.
+4. [line] Mechanical Engineer II, line 4
+   line: "Run tolerance stack-ups and FEA on load-bearing components"
+   can't tell: A recruiter can see the analyses you run, but not which components you examined or what the findings informed.
+   example: Run tolerance stack-ups and FEA on [load-bearing components] to inform [design decision]
+   question: Which load-bearing components did you analyze, and what design decisions did the findings inform?
+5. [line] Mechanical Engineer II, line 5
+   line: "Support manufacturing with engineering change orders"
+   can't tell: Support can cover several kinds of work. The line doesn’t say what you did with the change orders or what they concerned.
+   example: Support manufacturing with engineering change orders by [your contribution] for [components or changes]
+   question: What did you do with the change orders, and what components or changes did they cover?
+
+## Fit
+Roles: ["Mechanical Engineer II","Mechanical Engineer I"]
+Level: Experienced individual contributor
+Note: Your experience points toward mechanical product design for furniture and fixtures, with supplier, analysis and manufacturing work. The move to Mechanical Engineer II is visible, though the resume leaves the results of that work open.

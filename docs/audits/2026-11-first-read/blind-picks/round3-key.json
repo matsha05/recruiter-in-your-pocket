@@ -1,0 +1,14 @@
+{
+ "1": {
+  "id": "b40_senior_ic_wei",
+  "left": "candidate"
+ },
+ "2": {
+  "id": "b01_icu_nurse",
+  "left": "candidate"
+ },
+ "3": {
+  "id": "b02_teacher",
+  "left": "candidate"
+ }
+}

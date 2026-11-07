@@ -1,0 +1,46 @@
+# b36_product_designer_unrelated, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_product_designer_unrelated_1.txt (147 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 1c0fe4fe; severity check off
+Outcome: report; cost $0.0100; 21.8s
+Case note: Current job outside the field.
+
+## Needs more context (score 67; model wrote 67)
+## Verdict
+A product designer with named projects, but little about their decisions or results.
+
+## Write-up
+You moved from product design at Brightpath Studio and Loop Fitness to a current barista role. I'm reading your resume for Product Designer jobs. It's common for design resumes to name projects without showing what changed, but that makes it tough to stand out when a recruiter is comparing designers' work.
+
+The strongest line is the first design system you created at Loop Fitness: it names both the deliverable and Figma. Your design roles are easy to follow, though the most recent one ended in February 2024. The barista role accounts for your current work, but a recruiter can't tell whether you've done design work since.
+
+Let's start with the Loop Fitness booking flow and add a decision you made or a result you can stand behind. Then show what you learned from member testing. If you've done design work more recently, add it too.
+
+## Cards (5; {"structure":1,"line":3,"keep":1}); severity off; added []
+1. [structure] Loop Fitness context
+   line: "The resume doesn't describe Loop Fitness beyond its apps."
+   can't tell: A recruiter may not know the company or who its apps served. A short description would give the booking flow and design system some context.
+   example: Loop Fitness, [what the company does] | [company size]
+   question: How would you describe Loop Fitness and its size when you worked there?
+2. [line] Product Designer, line 1
+   line: "Designed the class booking flow for the iOS and Android apps"
+   can't tell: The platforms and flow are named, but a recruiter can't tell what design problem you tackled or what changed. That's useful context for a central product project.
+   example: Designed the class booking flow for the iOS and Android apps, addressing [design problem] and [what changed]
+   question: What problem did you address in the booking flow, and what changed?
+3. [line] Product Designer, line 2
+   line: "Worked with two engineers and a product manager on weekly releases"
+   can't tell: The team and release cadence are clear, but your part in those releases isn't. What design work did you bring to the team?
+   example: Worked with two engineers and a product manager on weekly releases, contributing [design work]
+   question: What design work did you contribute to the weekly releases?
+4. [keep] Product Designer, line 3
+   line: "Created the app's first design system in Figma"
+   can't tell: Keep this as a model. It gives your work a name and tells a recruiter where you built it.
+5. [line] Product Designer, line 4
+   line: "Ran usability tests with members before launches"
+   can't tell: Running tests with members is relevant work. The missing piece is what the tests taught you and how that informed the design.
+   example: Ran usability tests with members before launches and used [finding] to inform [design decision]
+   question: What did you learn from a member test, and which design decision did it inform?
+
+## Fit
+Roles: ["Product Designer","Junior Product Designer"]
+Level: Product designer, with a prior junior role and no management shown
+Note: Your experience points toward product design roles, particularly work on mobile apps. Your current job is outside design, so recent design projects would be useful to include if you have them.

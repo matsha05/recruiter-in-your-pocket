@@ -1,0 +1,31 @@
+# b12_coo_executive_two_page, run 1
+Resume: ../2026-11-live-judgment/resumes/b_coo_executive.txt (463 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0064; 10.0s
+Case note: Executive, two pages.
+
+## Clear and specific (score 91; model wrote 91)
+## Verdict
+A healthcare operations executive whose resume connects growth and operational changes to measurable results.
+
+## Write-up
+This is a strong executive resume! At Lakeshore, you show both the growth of the dental organization and the operating work behind it. Your earlier clinic roles reinforce that story, giving a recruiter a clear reason to move you forward for healthcare operations leadership.
+
+The integration line is a great model: it names the playbook you standardized and shows the change in time. Your progression at Midwest Physician Alliance and your board reporting at Lakeshore also make your leadership level easy to place.
+
+There’s one earlier result we can make more useful by adding how you achieved it. Otherwise, your resume isn’t likely to be the thing standing between you and a callback; the competition for the role and how closely the organization’s needs match your experience will matter too.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Chief Operating Officer, integration line
+   line: "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook"
+   can't tell: Keep this as a model. You name the operational change and give a before-and-after measure without making the reader guess what you did.
+2. [line] Senior Vice President, Operations, wait time line
+   line: "Reduced patient wait time to third available appointment from 21 days to 6 across primary care"
+   can't tell: The change in wait time is substantial, but a recruiter can’t tell what you changed to get there. That detail would show how you approached access across the clinics.
+   example: Reduced patient wait time to third available appointment from 21 days to 6 across primary care by [what you changed]
+   question: What did you change to reduce the wait for an appointment across primary care?
+
+## Fit
+Roles: ["Chief Operating Officer","Senior Vice President, Operations","Vice President, Clinic Operations"]
+Level: Senior executive
+Note: Your experience points to senior healthcare operations roles, particularly in multi-site dental and physician services. The practice growth, financial responsibility, and board reporting support the chief operating officer title.

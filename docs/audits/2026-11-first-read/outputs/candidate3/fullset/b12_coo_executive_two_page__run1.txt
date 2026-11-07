@@ -1,0 +1,31 @@
+# b12_coo_executive_two_page, run 1
+Resume: ../2026-11-live-judgment/resumes/b_coo_executive.txt (463 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 01c2028d; severity check off
+Outcome: report; cost $0.0066; 10.3s
+Case note: Executive, two pages.
+
+## Clear and specific (score 92; model wrote 92)
+## Verdict
+A healthcare COO with practice growth, operating results and a clear executive remit.
+
+## Write-up
+This is a strong executive resume! You show how you grew Lakeshore Dental Partners, improved operations and managed a $410M P&L. A recruiter can see both the scale of your remit and the work behind your results.
+
+The integration line is a great model: it gives the starting point, the finish and the playbook change that got you there. Your progression through clinic operations and into the COO role is easy to follow, with board work and speaking adding context.
+
+The main line I'd strengthen is the reduction in patient wait time at Midwest Physician Alliance. Your resume is unlikely to be what holds you back; competition for a particular COO role will matter too.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Chief Operating Officer, integration line
+   line: "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook"
+   can't tell: Keep this as a model. It names a concrete operating change and shows the difference it made without making the reader guess.
+2. [line] Senior Vice President, Operations, wait time line
+   line: "Reduced patient wait time to third available appointment from 21 days to 6 across primary care"
+   can't tell: The improvement is clear, but a recruiter can't see what you changed to shorten the wait. That would show how you approached the problem.
+   example: Reduced patient wait time to third available appointment from 21 days to 6 across primary care by [what you changed]
+   question: What did you change to reduce the wait for an appointment?
+
+## Fit
+Roles: ["Chief Operating Officer","Senior Vice President, Operations"]
+Level: Executive, leads operations for 140 practices and owns the $410M P&L with the CFO
+Note: Your experience points to senior operations leadership in multi-site healthcare services. The dental practice growth, clinic operations and board reporting are particularly relevant to a COO role.

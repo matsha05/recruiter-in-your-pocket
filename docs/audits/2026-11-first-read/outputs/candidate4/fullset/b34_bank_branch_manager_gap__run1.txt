@@ -1,0 +1,43 @@
+# b34_bank_branch_manager_gap, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_bank_branch_manager_gap_1.txt (129 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ee57d907; severity check off
+Outcome: report; cost $0.0082; 16.9s
+Case note: Gap with nothing after it.
+
+## Mostly clear (score 76; model wrote 76)
+## Verdict
+A branch manager with deposit growth and a clear promotion path, but unaccounted time since December 2024.
+
+## Write-up
+Your resume tells a clear story: you progressed from Personal Banker to Branch Manager at Magnolia Community Bank, managing 11 employees and growing deposits. A recruiter can see the branch management work, though the time since December 2024 leaves a question.
+
+The line about managing a branch of 11 employees is a useful model: it names your responsibility and puts a number on the team. The deposit growth is compelling too, but a recruiter can't yet tell what you did to grow it.
+
+Start by accounting for the time after your last role, then add how you grew deposits and what you handled during audits. Those details will give a recruiter a fuller picture of your work as a Branch Manager.
+
+## Cards (4; {"dates":1,"line":3}); severity off; added []
+1. [dates] Dates
+   line: "Nothing on your resume is dated after December 2024."
+   can't tell: A recruiter can't tell what you've been doing since the Branch Manager role ended. An honest entry can name work, caregiving or a career break. For a break, include an activity such as study or volunteering if it applies.
+   example: December 2024 - Present [what you did]
+   question: What have you been doing since December 2024, and what dates apply?
+2. [line] Branch Manager, line 2
+   line: "Grew branch deposits from $48M to $63M over five years"
+   can't tell: The deposit growth is substantial, but a recruiter can't tell what you did to grow it. That distinction matters when they're assessing your work as a branch manager.
+   example: Grew branch deposits from $48M to $63M over five years by [what you did to grow deposits]
+   question: What did you do to grow branch deposits?
+3. [line] Branch Manager, line 4
+   line: "Oversaw audits and compliance reviews for the branch"
+   can't tell: A recruiter can see you oversaw the reviews, but not what that involved. Name a part of the audit or compliance work you handled.
+   example: Oversaw audits and compliance reviews for the branch, including [what you handled]
+   question: What did you handle during the branch's audits and compliance reviews?
+4. [line] Branch Manager, line 5
+   line: "Handled escalated customer complaints"
+   can't tell: This says complaints came to you, but not what kinds of issues you handled or what you did with them.
+   example: Handled escalated customer complaints about [types of issues] by [what you did]
+   question: What kinds of escalated complaints did you handle, and what did you do about them?
+
+## Fit
+Roles: ["Branch Manager"]
+Level: Branch manager, managed a branch of 11 employees
+Note: Your experience points to Branch Manager roles, with a progression through personal banking and assistant branch management. The deposit growth and team responsibility are useful anchors for that story.

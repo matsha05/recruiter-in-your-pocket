@@ -1,0 +1,250 @@
+{
+  "case_id": "b01_icu_nurse",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_icu_nurse_1.txt",
+  "resume_sha256": "a52d8cb032163bcc7edaa524fe56cb06594cccf78f90a9ba023148de11fe18ef",
+  "resume_words": 153,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T19:03:51.015Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5683,
+        "completion_tokens": 1304,
+        "total_tokens": 6987,
+        "cached_prompt_tokens": 5005,
+        "cache_write_prompt_tokens": 675,
+        "reasoning_tokens": 588
+      },
+      "cost_usd": 0.007617,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 16681
+    }
+  ],
+  "resume_prompt_sha256": "338ac33ae4d6ad75616100e9ec41f04437a5b50bfe070fa140aba71496178380",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 82,
+    "lifted_by_employer": false,
+    "verdict": "An ICU nurse with clear bedside experience, plus charge and committee work that needs a little more detail.",
+    "write_up": [
+      "Your resume tells a clear story from telemetry at Saguaro Community Hospital to the medical ICU at Desert Valley Medical Center. A recruiter can see the patients and treatments you handle, so I’d expect this resume to move forward for an ICU staff nurse role with a couple of questions.",
+      "Your line about caring for 2 critically ill patients per shift in a 24-bed medical ICU is a strong model: it names the patients, your care and the setting. Your Arizona license and CCRN are easy to find above your experience, and your education follows your nursing roles.",
+      "Let’s add a little more about what you do as charge nurse and on the sepsis committee. Those details can show how your work extends beyond your own patient assignment without taking attention away from bedside care."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Staff Nurse, Medical ICU, line 1",
+        "line": "- Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU",
+        "cannot_tell": "Keep this line. It gives a recruiter the patient assignment and the unit context together, without making them guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 3",
+        "line": "- Serve as charge nurse two shifts per month",
+        "cannot_tell": "A recruiter can see how often you take charge, but not what you're responsible for during those shifts. Your duties would show what that role involves on your unit.",
+        "example": "Serve as charge nurse two shifts per month, with responsibility for [charge nurse responsibilities]",
+        "question": "What are you responsible for when you serve as charge nurse?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 5",
+        "line": "- Member of the unit's sepsis bundle compliance committee",
+        "cannot_tell": "Committee membership tells a recruiter where you participate, but not what you do there. Name your contribution if you can.",
+        "example": "Member of the unit's sepsis bundle compliance committee, where I [what you did]",
+        "question": "What have you done as a member of the sepsis bundle compliance committee?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Nurse, Medical ICU",
+        "Staff Nurse, Telemetry"
+      ],
+      "why": "Your current role is in a medical ICU, where you care for critically ill patients and manage ventilators, vasoactive drips, and continuous renal replacement therapy.",
+      "level": "Experienced bedside nurse; serves as charge nurse two shifts per month",
+      "note": "Your experience points toward ICU staff nurse roles, with earlier telemetry work and a CCRN credential. Your charge and precepting work also show responsibilities beyond your own patient assignment.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 82,
+    "lifted_by_employer": false,
+    "verdict": "An ICU nurse with clear bedside experience, plus charge and committee work that needs a little more detail.",
+    "write_up": [
+      "Your resume tells a clear story from telemetry at Saguaro Community Hospital to the medical ICU at Desert Valley Medical Center. A recruiter can see the patients and treatments you handle, so I’d expect this resume to move forward for an ICU staff nurse role with a couple of questions.",
+      "Your line about caring for 2 critically ill patients per shift in a 24-bed medical ICU is a strong model: it names the patients, your care and the setting. Your Arizona license and CCRN are easy to find above your experience, and your education follows your nursing roles.",
+      "Let’s add a little more about what you do as charge nurse and on the sepsis committee. Those details can show how your work extends beyond your own patient assignment without taking attention away from bedside care."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Staff Nurse, Medical ICU, line 1",
+        "line": "Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU",
+        "cannot_tell": "Keep this line. It gives a recruiter the patient assignment and the unit context together, without making them guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 3",
+        "line": "Serve as charge nurse two shifts per month",
+        "cannot_tell": "A recruiter can see how often you take charge, but not what you're responsible for during those shifts. Your duties would show what that role involves on your unit.",
+        "example": "Serve as charge nurse two shifts per month, with responsibility for [charge nurse responsibilities]",
+        "question": "What are you responsible for when you serve as charge nurse?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 5",
+        "line": "Member of the unit's sepsis bundle compliance committee",
+        "cannot_tell": "Committee membership tells a recruiter where you participate, but not what you do there. Name your contribution if you can.",
+        "example": "Member of the unit's sepsis bundle compliance committee, where I [what you did]",
+        "question": "What have you done as a member of the sepsis bundle compliance committee?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Nurse, Medical ICU",
+        "Staff Nurse, Telemetry"
+      ],
+      "why": "Your current role is in a medical ICU, where you care for critically ill patients and manage ventilators, vasoactive drips, and continuous renal replacement therapy.",
+      "level": "Experienced bedside nurse; serves as charge nurse two shifts per month",
+      "note": "Your experience points toward ICU staff nurse roles, with earlier telemetry work and a CCRN credential. Your charge and precepting work also show responsibilities beyond your own patient assignment.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 82
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 82,
+    "lifted_by_employer": false,
+    "verdict": "An ICU nurse with clear bedside experience, plus charge and committee work that needs a little more detail.",
+    "write_up": [
+      "Your resume tells a clear story from telemetry at Saguaro Community Hospital to the medical ICU at Desert Valley Medical Center. A recruiter can see the patients and treatments you handle, so I’d expect this resume to move forward for an ICU staff nurse role with a couple of questions.",
+      "Your line about caring for 2 critically ill patients per shift in a 24-bed medical ICU is a strong model: it names the patients, your care and the setting. Your Arizona license and CCRN are easy to find above your experience, and your education follows your nursing roles.",
+      "Let’s add a little more about what you do as charge nurse and on the sepsis committee. Those details can show how your work extends beyond your own patient assignment without taking attention away from bedside care."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Staff Nurse, Medical ICU, line 1",
+        "line": "Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU",
+        "cannot_tell": "Keep this line. It gives a recruiter the patient assignment and the unit context together, without making them guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 3",
+        "line": "Serve as charge nurse two shifts per month",
+        "cannot_tell": "A recruiter can see how often you take charge, but not what you're responsible for during those shifts. Your duties would show what that role involves on your unit.",
+        "example": "Serve as charge nurse two shifts per month, with responsibility for [charge nurse responsibilities]",
+        "question": "What are you responsible for when you serve as charge nurse?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 5",
+        "line": "Member of the unit's sepsis bundle compliance committee",
+        "cannot_tell": "Committee membership tells a recruiter where you participate, but not what you do there. Name your contribution if you can.",
+        "example": "Member of the unit's sepsis bundle compliance committee, where I [what you did]",
+        "question": "What have you done as a member of the sepsis bundle compliance committee?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Nurse, Medical ICU",
+        "Staff Nurse, Telemetry"
+      ],
+      "why": "Your current role is in a medical ICU, where you care for critically ill patients and manage ventilators, vasoactive drips, and continuous renal replacement therapy.",
+      "level": "Experienced bedside nurse; serves as charge nurse two shifts per month",
+      "note": "Your experience points toward ICU staff nurse roles, with earlier telemetry work and a CCRN credential. Your charge and precepting work also show responsibilities beyond your own patient assignment.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 82
+  },
+  "presentation": {
+    "score": 82,
+    "band": "Mostly clear",
+    "model_score": 82,
+    "lifted_by_employer": false,
+    "verdict": "An ICU nurse with clear bedside experience, plus charge and committee work that needs a little more detail.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 135,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Staff Nurse, Medical ICU, line 1",
+        "line": "Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 3",
+        "line": "Serve as charge nurse two shifts per month",
+        "blanks": 1,
+        "question": "What are you responsible for when you serve as charge nurse?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 5",
+        "line": "Member of the unit's sepsis bundle compliance committee",
+        "blanks": 1,
+        "question": "What have you done as a member of the sepsis bundle compliance committee?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "keep": 1,
+      "line": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Staff Nurse, Medical ICU",
+        "Staff Nurse, Telemetry"
+      ],
+      "why": "Your current role is in a medical ICU, where you care for critically ill patients and manage ventilators, vasoactive drips, and continuous renal replacement therapy.",
+      "level": "Experienced bedside nurse; serves as charge nurse two shifts per month",
+      "note": "Your experience points toward ICU staff nurse roles, with earlier telemetry work and a CCRN credential. Your charge and precepting work also show responsibilities beyond your own patient assignment.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.007617,
+  "latency_ms": 16774
+}

@@ -1,0 +1,45 @@
+# b01_icu_nurse, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_icu_nurse_1.txt (153 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5cba8f05; severity check off
+Outcome: report; cost $0.0085; 17.8s
+
+## Mostly clear (score 80; model wrote 80)
+## Verdict
+A medical ICU nurse with clear patient care experience and room to explain charge and committee work.
+
+## Write-up
+Your resume points to medical ICU nursing, with earlier telemetry experience. A recruiter can see your patient assignments, critical care treatments and Arizona license quickly. The main questions are about what you do beyond direct care, especially as charge nurse and on the sepsis committee.
+
+The line about caring for 2 critically ill patients in a 24-bed medical ICU is a strong model: it names the patients, assignment and unit in one sentence. Both nursing roles also identify their specialties, and your license and certifications are easy to find.
+
+Let's start with the charge nurse line and add what you're responsible for on those shifts. Then give the precepting and committee work a little more room, so a recruiter can see what those roles involve.
+
+## Cards (5; {"keep":1,"line":4}); severity off; added []
+1. [keep] Staff Nurse, Medical ICU, line 1
+   line: "Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU"
+   can't tell: Keep this one. It gives a recruiter a concrete picture of your assignment without making them search elsewhere.
+2. [line] Staff Nurse, Medical ICU, line 3
+   line: "Serve as charge nurse two shifts per month"
+   can't tell: A recruiter can see how often you're charge nurse, but not what you handle on those shifts. Your responsibilities matter for understanding that work.
+   example: Serve as charge nurse two shifts per month, handling [charge nurse responsibilities]
+   question: What are you responsible for when you serve as charge nurse?
+3. [line] Staff Nurse, Medical ICU, line 4
+   line: "Precept new graduate nurses during their ICU orientation"
+   can't tell: Precepting is valuable here, but a recruiter can't tell what you teach or guide the new nurses through.
+   example: Precept new graduate nurses during their ICU orientation on [skills or tasks]
+   question: What skills or tasks do you guide new graduate nurses through during orientation?
+4. [line] Staff Nurse, Medical ICU, line 5
+   line: "Member of the unit's sepsis bundle compliance committee"
+   can't tell: Committee membership names the topic, but not your part in the work. What did you do with the committee?
+   example: Member of the unit's sepsis bundle compliance committee, with responsibility for [committee work]
+   question: What work have you done as a member of the committee?
+5. [line] Staff Nurse, Telemetry, line 2
+   line: "Responded to rapid response calls as part of the floor team"
+   can't tell: A recruiter can see you were part of the response, but not what you did when a call came in.
+   example: Responded to rapid response calls as part of the floor team by [your actions]
+   question: What did you do as part of the floor team during rapid response calls?
+
+## Fit
+Roles: ["Staff Nurse, Medical ICU","Staff Nurse, Telemetry"]
+Level: Staff nurse with charge nurse and precepting responsibilities
+Note: Your experience points most directly to medical ICU staff nursing. The telemetry role adds earlier cardiac patient care, while the current role shows critical care treatments and charge nurse work.

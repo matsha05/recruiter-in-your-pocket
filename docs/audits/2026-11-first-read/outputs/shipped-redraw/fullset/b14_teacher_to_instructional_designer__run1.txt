@@ -1,0 +1,31 @@
+# b14_teacher_to_instructional_designer, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_teacher_to_instructional_designer_1.txt (164 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0069; 14.4s
+Case note: Career changer.
+
+## Mostly clear (score 76; model wrote 76)
+## Verdict
+A mathematics teacher with concrete classroom experience and an emerging digital learning design portfolio.
+
+## Write-up
+Your resume tells a coherent story: you teach math at Cedar Creek High School and are building digital learning design experience alongside your classroom work. A recruiter can see the subjects and class sizes, though there’s less about what changed when you redesigned learning materials.
+
+The Canvas module is your best model: it names the original unit, the new format, and the platform you used. Your portfolio link and certificate in progress also make the move toward learning design visible.
+
+Start with the math department’s professional learning community. Add what you lead the group through, then consider whether you can describe what students did with the Canvas module or what you learned from using it.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Mathematics Teacher, Cedar Creek High School, line 2
+   line: "Redesigned the Algebra II unit on functions into a self-paced online module in Canvas"
+   can't tell: Keep this as a model. It gives a recruiter a particular piece of teaching work and shows how you changed its format.
+2. [line] Mathematics Teacher, Cedar Creek High School, line 3
+   line: "Lead the math department's professional learning community"
+   can't tell: A recruiter knows which group you lead, but not what you lead it through. The work the group takes on would show more of your role.
+   example: Lead the math department's professional learning community to [what the group works on]
+   question: What work do you lead the math department's professional learning community through?
+
+## Fit
+Roles: ["Mathematics Teacher"]
+Level: Experienced educator
+Note: Your experience points most directly to mathematics teaching, with a growing body of digital learning design work. The Canvas module, portfolio link, and certificate in progress give that direction a starting point.

@@ -1,0 +1,41 @@
+# b34_bank_branch_manager_gap, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_bank_branch_manager_gap_1.txt (129 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0085; 17.7s
+Case note: Gap with nothing after it.
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+A branch manager with deposit growth and a promotion history, but no account of work after December 2024.
+
+## Write-up
+You moved from Personal Banker to Branch Manager at Magnolia Community Bank, with deposit growth and an 11-person branch on your resume. The work points clearly toward branch management, but the time after December 2024 is unaccounted for. A recruiter may hesitate and move on with that question unanswered.
+
+The deposit line is your best model: it names what grew, the starting and ending figures, and the period. The audits and customer complaints are relevant management work too, but a recruiter can't tell much about what they involved.
+
+Start by adding an honest account of the time since the branch role, then give the audit and complaint lines one concrete detail each. Keep the deposit figures prominent; they give a recruiter something memorable to take away.
+
+## Cards (4; {"dates":1,"keep":1,"line":2}); severity off; added []
+1. [dates] Dates
+   line: "Nothing is dated after December 2024."
+   can't tell: A recruiter can't tell what you've been doing since the Branch Manager role. If you were caring for a family member, you can name that; if you took a career break, you can note a course, project, volunteering or travel. Include freelance or consulting work only if you did it.
+   example: December 2024 - Present [what you did]
+   question: What have you been doing since December 2024 that you'd be comfortable including?
+2. [keep] Branch Manager, line 2
+   line: "Grew branch deposits from $48M to $63M over five years"
+   can't tell: Keep this. It puts the change in branch deposits right beside the work you did, so there's no need to guess at the result.
+3. [line] Branch Manager, line 4
+   line: "Oversaw audits and compliance reviews for the branch"
+   can't tell: A recruiter knows you oversaw the reviews, but not what that involved or what came out of them. That detail matters for a branch management role.
+   example: Oversaw audits and compliance reviews for the branch, including [what you oversaw] and [review result]
+   question: What did you oversee during the audits and compliance reviews, and what came out of them?
+4. [line] Branch Manager, line 5
+   line: "Handled escalated customer complaints"
+   can't tell: A recruiter can't tell what kinds of complaints reached you or how you handled them. One example would show your judgment with customers.
+   example: Handled escalated customer complaints about [complaint type] by [how you handled them]
+   question: What kind of escalated complaint did you handle, and how did you handle it?
+
+## Fit
+Roles: ["Branch Manager","Assistant Branch Manager"]
+Level: Branch management
+Note: Your experience points toward branch management in retail banking, with earlier work in branch operations and personal banking. An account of the time since December 2024 would make your current situation easier to understand.

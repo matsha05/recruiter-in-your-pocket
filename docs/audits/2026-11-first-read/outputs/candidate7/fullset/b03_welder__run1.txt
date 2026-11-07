@@ -1,0 +1,30 @@
+# b03_welder, run 1
+Resume: ../2026-11-live-judgment/resumes/b_welder.txt (195 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 1c0fe4fe; severity check off
+Outcome: report; cost $0.0065; 12.9s
+
+## Clear and specific (score 85; model wrote 85)
+## Verdict
+An experienced structural and pipe welder whose inspection record makes the work stand out.
+
+## Write-up
+Your welding experience is strong because you show both the work and how it was checked! A recruiter can see your move from pipe welding at Great Lakes Mechanical to structural welding and fit-up at Maumee Steel Fabricators, with the certifications to match.
+
+The Riverfront Tower line is your best model: it names the job, the third-party inspections and about 900 welds. Your fit-up line also gives a tolerance, so a recruiter doesn't have to guess how precise the work is.
+
+I'd keep the inspection line prominent and add what you worked on during plant shutdowns. Your resume isn't likely to be the thing holding you back; the match with each job and the competition for it will matter too.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Welder / Fitter, line 3
+   line: "Passed every third-party UT and visual inspection on the Riverfront Tower job (about 900 welds)"
+   can't tell: Keep this as a model for the rest. It connects a named project to an inspection record without making a recruiter guess which kind of testing was involved.
+2. [line] Pipe Welder, line 3
+   line: "Worked nights and weekends on plant shutdowns"
+   can't tell: The schedule is clear, but this doesn't say what you handled during the shutdowns. That work could add useful detail for another pipe welding job.
+   example: Worked nights and weekends on plant shutdowns, handling [shutdown work]
+   question: What work did you handle during those shutdowns?
+
+## Fit
+Roles: ["Welder / Fitter","Pipe Welder"]
+Level: Experienced welder and fitter who trains new hires
+Note: Your experience points toward structural welding and fit-up roles, with pipe welding as another direction. Your certifications and inspection record give a recruiter concrete details for both.

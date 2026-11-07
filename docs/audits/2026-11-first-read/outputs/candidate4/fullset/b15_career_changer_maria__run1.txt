@@ -1,0 +1,54 @@
+# b15_career_changer_maria, run 1
+Resume: ../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/2-career-changer-maria.txt (315 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ee57d907; severity check off
+Outcome: report; cost $0.0138; 30.2s
+Case note: Career changer (bar persona).
+
+## Mostly clear (score 76; model wrote 76)
+## Verdict
+A mathematics teacher moving into analytics, with useful projects that arrive too late.
+
+## Write-up
+A recruiter sees a Mathematics Teacher moving into data analytics, with classroom data work and two relevant projects. I read this for an entry-level analytics move. There’s enough to move it forward for review, but the strongest analytics work comes after the teaching experience, and the capstone’s findings are still a question.
+
+The Student Performance Dashboard is a strong model: it names Excel, the measures tracked, and how the math department used the dashboard. Your summary says you want to work in analytics, but it doesn’t name a target job.
+
+Let’s name the job you’re aiming for and bring Data Projects above Professional Experience. Then add a finding from the housing analysis and make room for it by trimming the more general teaching lines.
+
+## Cards (7; {"line":4,"structure":2,"keep":1}); severity off; added []
+1. [line] Summary
+   line: "Dedicated educator with 8 years of experience transitioning into data analytics. Passionate about using data to tell stories and drive decisions. Strong analytical, communication, and problem-solving skills with a proven track record of success."
+   can't tell: These claims could belong to many applicants. Your housing analysis gives a recruiter something concrete to remember instead.
+   example: Analyzed 10 years of Austin housing and income data using Python and SQL; created a Tableau dashboard showing affordability trends by zip code
+   question: Which part of your analytics work best represents the job you want?
+2. [structure] Target job
+   line: "Your resume names data analytics as a direction but does not name a target job."
+   can't tell: A recruiter can see the career change, but has to guess which job you want within analytics. Naming it helps them judge the projects against that work.
+   question: What analytics job title are you targeting?
+3. [structure] Data Projects
+   line: "Data Projects sits below Professional Experience."
+   can't tell: Your projects are the quickest way to show Python, SQL, Tableau, and Excel in use. A recruiter has to get through the teaching roles before reaching them.
+   question: Can you move Data Projects above Professional Experience for analytics applications?
+4. [line] Mathematics Teacher, Lake Travis High School
+   line: "Developed and implemented engaging curriculum aligned with state standards"
+   can't tell: A recruiter can see you built curriculum, but not what you created. One example would make this work more distinct.
+   example: Developed and implemented [curriculum material] aligned with state standards
+   question: What curriculum material did you develop and implement?
+5. [line] Middle School Math Teacher, KIPP Austin
+   line: "Participated in professional learning communities"
+   can't tell: Participation alone doesn’t show what you contributed. If this stays, name the work you did with the group.
+   example: Participated in professional learning communities by [contribution]
+   question: What did you contribute in the professional learning communities?
+6. [line] Austin Housing Affordability Analysis
+   line: "Analyzed 10 years of Austin housing and income data using Python and SQL"
+   can't tell: The data and tools are clear, but a recruiter can’t tell what you found. A finding would show what the analysis revealed.
+   example: Analyzed 10 years of Austin housing and income data using Python and SQL to identify [finding]
+   question: What did your housing and income analysis reveal?
+7. [keep] Student Performance Dashboard
+   line: "Built an Excel dashboard tracking AP Statistics pass rates and quiz scores over three years"
+   can't tell: Keep this as a model. It names the tool, the dashboard, and the measures; the next line shows how the math department used it.
+
+## Fit
+Roles: ["Mathematics Teacher"]
+Level: Entry-level analytics, with a bootcamp capstone and a dashboard project
+Note: Your teaching experience includes assessment analysis and department reporting, while the projects show the analytics tools in use. The resume points toward an analytics transition, though it doesn’t yet name a target job title.

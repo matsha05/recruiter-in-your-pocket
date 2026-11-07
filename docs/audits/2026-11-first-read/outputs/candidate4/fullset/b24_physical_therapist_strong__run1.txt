@@ -1,0 +1,30 @@
+# b24_physical_therapist_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_physical_therapist_strong_1.txt (154 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ee57d907; severity check off
+Outcome: report; cost $0.0057; 11.2s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A senior outpatient physical therapist with a clear specialty, patient volume, and a return-to-run program.
+
+## Write-up
+This is a strong resume! Your work at North Loop and Lakes Regional tells a consistent story in outpatient rehab, with the patient mix and daily volume a recruiter needs to see. Your Minnesota license and DPT are easy to find.
+
+The return-to-run program is a great model: you say you built it and tell us how many patients completed it. Your earlier hospital role also names both the cases you treated and the fall-prevention class you led.
+
+The one line I'd revisit is the patient-reported function result. Add what your care for those patients involved without claiming more than you can support. Your resume is unlikely to be the thing holding you back; how competitive a particular opening is will matter too.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Senior Physical Therapist, line 2
+   line: "Built a return-to-run program that 85 patients completed in 2025"
+   can't tell: Keep this as a model. It puts your own contribution next to a concrete measure of the program's reach.
+2. [line] Senior Physical Therapist, line 4
+   line: "In 2025, 92% of discharged patients improved their patient-reported function scores"
+   can't tell: The improvement is clear, but a recruiter can't tell what your care for these patients involved. That context would connect the scores to your work without overstating your part.
+   example: In 2025, [your role in caring for discharged patients]; 92% of discharged patients improved their patient-reported function scores
+   question: What did your care for these discharged patients involve?
+
+## Fit
+Roles: ["Senior Physical Therapist","Physical Therapist"]
+Level: Senior clinician, mentors 2 newer therapists
+Note: Your experience points toward outpatient orthopedic physical therapy, particularly sports and post-surgical rehab. The hospital role also shows outpatient neurological work and fall-prevention teaching.

@@ -1,0 +1,53 @@
+# fr02b_marketing_skills_hubspot_posting, run 1
+Resume: resumes/fr02_marketing_coordinator_skills.txt (132 words), posting: resumes/posting_marketing_hubspot.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 41bcacc0; severity check off
+Outcome: report; cost $0.0109; 23.5s
+Case note: P2. The same resume against a posting that requires HubSpot. Expect the skills card to name HubSpot first.
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+A B2B marketing coordinator whose resume names relevant campaigns but leaves the hands-on operations work unclear.
+
+## Write-up
+Your path from Keystone Benefits Group to Brightfield Software points toward marketing coordination, and B2B email, webinars and reporting are relevant to Tallgrass. It's common for coordinator resumes to list the work this way, but yours doesn't yet show enough of your part in those campaigns to stand out for a marketing operations role.
+
+The LinkedIn and blog calendar line is a useful model: it names what you managed and where the content went. Your skills list also names HubSpot, Salesforce and Google Analytics 4, but a recruiter can't tell what you used them for in either job.
+
+Let's start with the Brightfield newsletter and reports. Add the tasks you handled and the tools you used, then show any HubSpot workflows, Salesforce work or webinar follow-up you can honestly claim. Those details matter for this posting.
+
+## Cards (6; {"line":5,"keep":1}); severity off; added []
+1. [line] Marketing Coordinator, line 1
+   line: "Coordinated the monthly customer newsletter and product announcement emails"
+   can't tell: Coordinated could mean several different jobs. A recruiter can't tell whether you built, sent or reported on these emails, or how many people received them.
+   example: Coordinated the monthly customer newsletter and product announcement emails, handling [your tasks] for [number of recipients]
+   question: Which parts of the emails did you handle, and how many recipients did they reach?
+2. [line] Marketing Coordinator, line 2
+   line: "Supported webinar planning with the product marketing team"
+   can't tell: Supported leaves your part of the webinar work open. Tallgrass asks for help from registration through follow-up, so the tasks you handled matter here.
+   example: Supported webinar planning with the product marketing team by handling [your tasks]
+   question: What did you handle for the webinars?
+3. [keep] Marketing Coordinator, line 3
+   line: "Managed the content calendar for LinkedIn and the company blog"
+   can't tell: Keep this. It gives you ownership of a named piece of work and identifies the two places it served. Use that directness in the other lines.
+4. [line] Marketing Coordinator, line 4
+   line: "Pulled weekly campaign reports for the marketing manager"
+   can't tell: The weekly reports are relevant, but a recruiter can't tell what they measured or which tool you used. That's especially important for a job asking for HubSpot and Google Analytics 4 reporting.
+   example: Pulled weekly campaign reports on [metrics] in [tool] for the marketing manager
+   question: What did the reports measure, and which tool did you use?
+5. [line] Marketing Assistant, line 2
+   line: "Helped prepare slide decks and one-pagers for the sales team"
+   can't tell: The sales materials are named, but helped doesn't say which part was yours. What did you prepare for the team?
+   example: Helped prepare slide decks and one-pagers for the sales team by [your tasks]
+   question: What did you do to prepare the slide decks and one-pagers?
+6. [line] Skills
+   line: "HubSpot, Salesforce, Google Analytics 4, Canva, WordPress, Hootsuite, Asana, Excel"
+   can't tell: All three tools are relevant to Tallgrass, but none appears in a job line. A recruiter can't tell where you used them or what you did in each.
+   example: Used HubSpot for [work handled], Salesforce for [work handled], and Google Analytics 4 for [reports built]
+   question: Where did you use these tools, and what did you do in each?
+
+## Fit
+Roles: ["Marketing Coordinator","Marketing Operations Coordinator"]
+Level: Coordinator, current Marketing Coordinator role
+Note: The main mismatch is that the resume lists the required tools without showing hands-on HubSpot workflows, Salesforce coordination or Google Analytics 4 reporting in a job. Your B2B marketing background, email campaigns, weekly reports and webinar support are relevant; add the operations work and follow-up you handled if those were part of your jobs.
+Posting: Tallgrass seeks a B2B marketing coordinator to run HubSpot campaigns, support Salesforce integration, report on performance and help with webinars and events.
+Missing: ["workflows, lists, email and reporting","lead routing, campaign attribution and list hygiene","Google Analytics 4 and HubSpot dashboards","follow-up"]

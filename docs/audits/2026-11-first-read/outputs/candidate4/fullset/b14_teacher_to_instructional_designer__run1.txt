@@ -1,0 +1,36 @@
+# b14_teacher_to_instructional_designer, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_teacher_to_instructional_designer_1.txt (164 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ee57d907; severity check off
+Outcome: report; cost $0.0061; 13.0s
+Case note: Career changer.
+
+## Mostly clear (score 78; model wrote 78)
+## Verdict
+A mathematics teacher with clear classroom work and a growing digital learning design portfolio.
+
+## Write-up
+Your resume points to mathematics teaching, with experience at Cedar Creek High School and Pinewood Middle School. A recruiter can see both the classes you teach and your move into digital learning design.
+
+The Canvas module is a strong model: it names the unit, the format and the platform you used. Your classroom line also gives a useful picture of the subjects and sections you teach. One teaching credential a recruiter may look for isn't listed.
+
+Let's add your certification and state if you hold one, then give the professional learning community a little more substance. Keep the Canvas module prominent, especially when you want your digital design work noticed.
+
+## Cards (3; {"structure":1,"keep":1,"line":1}); severity off; added []
+1. [structure] Teaching certification
+   line: "Your resume doesn't list a teaching certification."
+   can't tell: A recruiter can't tell whether you hold a teaching certification or which state issued it. That can matter early in a teaching search.
+   example: [Teaching certification], [state]
+   question: What teaching certification and state do you hold, if any?
+2. [keep] Cedar Creek High School, line 2
+   line: "Redesigned the Algebra II unit on functions into a self-paced online module in Canvas"
+   can't tell: Keep this as a model. It gives a recruiter a concrete piece of learning material and shows what you changed about it.
+3. [line] Cedar Creek High School, line 3
+   line: "Lead the math department's professional learning community"
+   can't tell: A recruiter can see that you lead the group, but not what its members work on together. One example would show what that leadership involves.
+   example: Lead the math department's professional learning community in [what the group works on]
+   question: What does the professional learning community work on together?
+
+## Fit
+Roles: ["Mathematics Teacher"]
+Level: Experienced teacher, leads the math department's professional learning community
+Note: Your experience points most directly to mathematics teaching. The Canvas module, portfolio and certificate in progress also show a developing digital learning design direction.

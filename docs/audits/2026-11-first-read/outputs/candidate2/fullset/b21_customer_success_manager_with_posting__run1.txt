@@ -1,0 +1,53 @@
+# b21_customer_success_manager_with_posting, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt (180 words), posting: ../2026-11-live-judgment/resumes/b_posting_customer_success_manager.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 41bcacc0; severity check off
+Outcome: report; cost $0.0097; 19.6s
+Case note: The same resume with a posting attached.
+
+## Mostly clear (score 77; model wrote 77)
+## Verdict
+A mid-market customer success manager with a clear account book but no measured renewal results.
+
+## Write-up
+You’ve moved from support into managing mid-market payroll customers at Brightline Payroll Software. A recruiter can follow that progression and would likely move you forward for a customer success role, with questions about renewals. For this posting, the missing retention and expansion numbers make the match less certain.
+
+The line about managing 48 mid-market accounts across healthcare and manufacturing is your model: it names the book, segment and industries without making a recruiter guess. Your quarterly reviews and work with Sales on at-risk accounts also match the job, but the resume doesn’t say whether you met retention targets or worked with VP-level sponsors.
+
+Let’s start with the renewal strategy line. Add what you contributed and any results you can substantiate, then show how you used Gainsight and Salesforce in a role. If you’ve worked with usage data or a BI tool, add that too.
+
+## Cards (6; {"keep":1,"line":5}); severity off; added []
+1. [keep] Customer Success Manager, line 1
+   line: "Manage a book of 48 mid-market accounts across healthcare and manufacturing"
+   can't tell: Keep this line as a model. It tells a recruiter which customers you manage and gives them a concrete measure of your book.
+2. [line] Customer Success Manager, line 2
+   line: "Run quarterly business reviews with customer finance and HR leads"
+   can't tell: The posting asks for reviews with VP-level sponsors. Your resume names finance and HR leads, but not their seniority or what you discuss.
+   example: Run quarterly business reviews with customer finance and HR leads, including [sponsor titles], to discuss [review topics]
+   question: What titles did the finance and HR leads hold, and what did you discuss in the reviews?
+3. [line] Customer Success Manager, line 3
+   line: "Partnered with Sales on renewal strategy for at-risk accounts"
+   can't tell: A recruiter can see you worked with Sales, but not what your part of the strategy was or what happened to the accounts. That matters especially for a job measured on retention.
+   example: Partnered with Sales on renewal strategy for at-risk accounts by [your contribution], resulting in [renewal result]
+   question: What did you contribute to the renewal strategy, and what renewal result can you document?
+4. [line] Customer Success Manager, line 4
+   line: "Built an onboarding checklist now used by the whole CS team"
+   can't tell: The team adopted your checklist, which is worth keeping. A recruiter still can’t tell what it covers or what changed after the team started using it.
+   example: Built an onboarding checklist covering [checklist contents], now used by the whole CS team to [what changed]
+   question: What does the checklist cover, and what changed after the team adopted it?
+5. [line] Customer Success Manager, line 5
+   line: "Handle escalations with Support and Product when payroll runs fail"
+   can't tell: Payroll failures are a useful example of high-stakes customer work. What do you do with Support and Product when one occurs?
+   example: Handle escalations with Support and Product when payroll runs fail by [your actions]
+   question: What actions do you take during a payroll failure escalation?
+6. [line] Skills
+   line: "Gainsight, Salesforce, Zendesk, QBR planning, renewal forecasting"
+   can't tell: Gainsight and Salesforce are relevant to this posting, but neither appears in your work history. A recruiter can’t tell how you used them with customers.
+   example: [What you did] in [tool] for [which accounts]
+   question: Where did you use Gainsight and Salesforce, and what did you do with each?
+
+## Fit
+Roles: ["Customer Success Manager","Customer Success Manager, Mid-Market"]
+Level: Customer success manager, manages 48 mid-market accounts
+Note: The resume doesn’t show retention or expansion results, usage-data work, a BI tool, or VP-level QBR sponsors, all of which this posting asks for. Your mid-market SaaS book, quarterly reviews and partnership with Sales on at-risk accounts are relevant; the posting’s book is larger at 60 to 80 accounts. Bring forward any documented renewal results and relevant tool use without claiming ownership you didn’t have.
+Posting: Mid-market customer success role owning renewals and expansion, onboarding, executive reviews and at-risk account plans.
+Missing: ["A track record of hitting retention or expansion targets, with numbers you can talk about","Identify at-risk accounts early using product usage data","a BI tool such as Looker","Experience running QBRs with VP-level sponsors","log and prioritize feature requests"]

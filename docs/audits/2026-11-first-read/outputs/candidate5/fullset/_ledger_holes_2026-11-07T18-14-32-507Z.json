@@ -1,0 +1,108 @@
+{
+  "batch": "holes",
+  "model": "gpt-6.1-terra",
+  "effort": "medium",
+  "today": "2026-11-07",
+  "severity_check": false,
+  "budget_usd": 1.5,
+  "spent_usd": 0.07980065,
+  "calls": 7,
+  "runs": [
+    {
+      "stem": "h4a_academic_cv_15_pages__run1",
+      "outcome": "request_refused",
+      "cost_usd": 0,
+      "score": null,
+      "band": null,
+      "cards": null,
+      "structural_from_model": null,
+      "severity_added": null,
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "h3_strong_resume__run1",
+      "outcome": "report",
+      "cost_usd": 0.0049889,
+      "score": 97,
+      "band": "Clear and specific",
+      "cards": 1,
+      "structural_from_model": 0,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "h4b_academic_cv_under_cap__run1",
+      "outcome": "report",
+      "cost_usd": 0.02498765,
+      "score": 75,
+      "band": "Mostly clear",
+      "cards": 3,
+      "structural_from_model": 1,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "h2_thin_resume__run1",
+      "outcome": "report",
+      "cost_usd": 0.00905765,
+      "score": 64,
+      "band": "Needs more context",
+      "cards": 7,
+      "structural_from_model": 1,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "h4c_one_paragraph__run1",
+      "outcome": "report",
+      "cost_usd": 0.0082914,
+      "score": 82,
+      "band": "Mostly clear",
+      "cards": 1,
+      "structural_from_model": 0,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "h1_bad_resume__run1",
+      "outcome": "report",
+      "cost_usd": 0.01304765,
+      "score": 43,
+      "band": "Needs more context",
+      "cards": 12,
+      "structural_from_model": 3,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "h5_mismatched_posting__run1",
+      "outcome": "report",
+      "cost_usd": 0.0084685,
+      "score": 88,
+      "band": "Clear and specific",
+      "cards": 2,
+      "structural_from_model": 0,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "h6_unverifiable_claim__run1",
+      "outcome": "report",
+      "cost_usd": 0.0109589,
+      "score": 64,
+      "band": "Needs more context",
+      "cards": 11,
+      "structural_from_model": 1,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    }
+  ]
+}

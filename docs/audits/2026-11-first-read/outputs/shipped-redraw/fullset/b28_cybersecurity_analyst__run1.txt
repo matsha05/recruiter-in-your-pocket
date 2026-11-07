@@ -1,0 +1,35 @@
+# b28_cybersecurity_analyst, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_cybersecurity_analyst_1.txt (154 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0057; 11.1s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A senior security analyst whose detection and incident response work comes with clear results.
+
+## Write-up
+This is a strong security resume! Your move from monitoring client environments at Northgate Managed Security to detection and response at Capital Ridge Bank is easy to follow, and your best results show both the work and what changed.
+
+The Splunk detection rule line is your model: it names the platform, the MITRE ATT&CK mapping and the reduction in false positives. Your current role and certifications also make your focus on detection engineering and incident response credible.
+
+Your resume is unlikely to be the reason you don't get a callback. Add a little more about the purple-team exercises and alert enrichment, then focus on finding roles that match your work. The competition for each job and a referral can also matter.
+
+## Cards (3; {"keep":1,"line":2}); severity off; added []
+1. [keep] Senior Security Analyst, line 1
+   line: "Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%"
+   can't tell: Keep this as the model. It gives a recruiter a concrete piece of detection work and a reason it mattered.
+2. [line] Senior Security Analyst, line 3
+   line: "Run monthly purple-team exercises with the red team"
+   can't tell: A recruiter knows how often you run exercises, but not what you test. Naming that would show what the exercises cover.
+   example: Run monthly purple-team exercises with the red team to test [what was tested]
+   question: What do you test in the purple-team exercises?
+3. [line] Senior Security Analyst, line 4
+   line: "Automated alert enrichment with Python and the Splunk SOAR platform"
+   can't tell: The tools and task are clear, but the information you added to alerts isn't. That detail would show what the automation does for analysts.
+   example: Automated alert enrichment with Python and the Splunk SOAR platform, adding [information] to alerts
+   question: What information does the automation add to alerts?
+
+## Fit
+Roles: ["Senior Security Analyst, Detection and Response","Security Operations Analyst"]
+Level: Senior analyst
+Note: Your experience points toward detection and response work, particularly in financial services. The earlier SOC role adds managed security experience across client environments.

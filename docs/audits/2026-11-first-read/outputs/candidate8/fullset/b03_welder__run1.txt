@@ -1,0 +1,30 @@
+# b03_welder, run 1
+Resume: ../2026-11-live-judgment/resumes/b_welder.txt (195 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5cba8f05; severity check off
+Outcome: report; cost $0.0067; 13.8s
+
+## Mostly clear (score 84; model wrote 84)
+## Verdict
+A welder and fitter with clear fabrication work, inspection results, and pipe welding credentials.
+
+## Write-up
+Your resume points clearly to Welder / Fitter work: structural steel at Maumee Steel Fabricators, with pipe welding before that at Great Lakes Mechanical. A recruiter can see the processes you use, the assemblies you fit, and the standards behind your work.
+
+The Riverfront Tower line is the model. It names the job, the inspections, and about 900 welds, so a recruiter can see what was checked. Your fit-up tolerance and certifications also give the work useful context.
+
+I’d keep the structure and most of the lines as they are. The one place to add detail is the plant shutdown work: say what you did during those shifts, not just when you worked them.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Welder / Fitter, line 3
+   line: "Passed every third-party UT and visual inspection on the Riverfront Tower job (about 900 welds)"
+   can't tell: Keep this line. It pairs a named project with the inspection result and the amount of welding involved.
+2. [line] Pipe Welder, line 3
+   line: "Worked nights and weekends on plant shutdowns"
+   can't tell: The schedule is clear, but a recruiter can't tell what you worked on during the shutdowns. That matters for jobs where shutdown experience is relevant.
+   example: Worked nights and weekends on plant shutdowns, [work performed during shutdowns]
+   question: What work did you perform during the plant shutdowns?
+
+## Fit
+Roles: ["Welder / Fitter","Pipe Welder"]
+Level: Experienced welder and fitter, trains new hires
+Note: Your current work points toward structural fabrication roles, with earlier pipe welding and 6G certification also on your resume. The inspection and fit-up details give a recruiter concrete things to discuss.

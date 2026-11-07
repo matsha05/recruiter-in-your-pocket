@@ -1,0 +1,38 @@
+# fr01b_backend_ic_backend_posting, run 1
+Resume: resumes/fr01_backend_ic_senior.txt (236 words), posting: resumes/posting_senior_backend.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5827dcf1; severity check off
+Outcome: report; cost $0.0082; 17.1s
+Case note: P1. The same resume against a senior backend posting it fits. Expect the posting's title second and a fit note that says it fits.
+
+## Clear and specific (score 89; model wrote 89)
+## Verdict
+A senior payments engineer with strong service-building and reliability work, plus a few gaps against this posting.
+
+## Write-up
+This is a strong payments resume! Your work at Lumen Ledger connects the services you built to payout volume, a zero-downtime migration, and a faster balance API. A recruiter can see why your backend experience fits money movement.
+
+The payouts service line is a model for the rest: it names what you built, the stack, and how much it handles. The recent roles are especially concrete; the older Northgate work has less detail, but it doesn't obscure your current level.
+
+For Cobalt Pay, lead with the payouts and ledger work. Add any real experience with on-call ownership, leading design reviews, or working with Finance and Risk on reconciliation and controls. Your resume isn't likely to be the reason you don't get a callback; competition for the role and how closely your experience matches its remaining requirements also matter.
+
+## Cards (3; {"keep":1,"line":2}); severity off; added []
+1. [keep] Senior Software Engineer, Payments Platform, line 1
+   line: "Designed and built the idempotent payouts service in Go and PostgreSQL that now settles about 1.8M payouts a month"
+   can't tell: Keep this as a model. The word idempotent tells a payments recruiter something important about the design, while the monthly volume shows the service is in use.
+2. [line] Software Engineer, Northgate Insurance, line 1
+   line: "Maintained the claims intake services in Java"
+   can't tell: A recruiter can see which services you worked on, but not what maintaining them involved. One change you made would give this earlier role more substance.
+   example: Maintained the claims intake services in Java by [what you changed]
+   question: What did you change in the claims intake services?
+3. [line] Software Engineer, Northgate Insurance, line 2
+   line: "Wrote integration tests for the policy rating engine"
+   can't tell: The tests and the system are named, but the scenarios they covered aren't. That detail would show what you checked.
+   example: Wrote integration tests for the policy rating engine covering [test scenarios]
+   question: Which scenarios did your integration tests cover?
+
+## Fit
+Roles: ["Senior Backend Engineer","Senior Backend Engineer, Money Movement"]
+Level: Senior, leads a ledger migration and mentors two mid-level engineers
+Note: The resume doesn't say you owned the payouts path end to end on call, led technical design reviews, or partnered with Finance and Risk on reconciliation and controls. It otherwise aligns closely with the role's Go, PostgreSQL, Kafka, payouts, ledger, migration, and mentoring requirements. Add those missing responsibilities if you can substantiate them.
+Posting: Senior backend role building and operating reliable money movement services, with technical leadership and collaboration on financial controls.
+Missing: ["Own the reliability of the payouts path end to end, including on-call","Lead technical design reviews","Partner with Finance and Risk on reconciliation and controls"]

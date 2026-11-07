@@ -1,0 +1,46 @@
+# b40_senior_ic_wei, run 1
+Resume: ../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/4-senior-ic-wei.txt (361 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5cba8f05; severity check off
+Outcome: report; cost $0.0092; 17.8s
+Case note: Senior IC (bar persona).
+
+## Mostly clear (score 80; model wrote 80)
+## Verdict
+A staff engineer with strong payments and distributed systems work, but some key results lack context.
+
+## Write-up
+Your resume tells a coherent story from object storage at Nimbus Cloud to ledger and settlement leadership at Brightline Payments. A recruiter can see the technical work, but the latest role leaves some questions about how large the team is and what the ledger redesign changed.
+
+The fraud scoring line is your best model: it names the pipeline, the tools, the payment events and the latency it achieved. Your progression at Brightline is easy to follow, and the staff title is backed by architecture, incident leadership and mentoring.
+
+Start with the ledger and settlement team, then give the redesign a result a recruiter can compare. Add the reconciliation measures if you have them. You don't need a number on every line; the goal is to make your biggest work as concrete as the fraud pipeline.
+
+## Cards (5; {"line":4,"keep":1}); severity off; added []
+1. [line] Staff Software Engineer, line 1
+   line: "Technical lead for the ledger and settlement platform team"
+   can't tell: A recruiter can see what team you lead technically, but not how many people are on it or what the team owns. That's useful context for a staff role.
+   example: Technical lead for the ledger and settlement platform team of [number] [team members], responsible for [team responsibilities]
+   question: How many people are on the team, and what does the team own?
+2. [line] Staff Software Engineer, line 2
+   line: "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB"
+   can't tell: The architecture change is concrete, but a recruiter can't tell what it changed for the ledger service. A measure or operational result would show why the redesign mattered.
+   example: Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, resulting in [what changed]
+   question: What changed after the redesign, and how was it measured?
+3. [keep] Senior Software Engineer, line 1
+   line: "Built the real-time fraud scoring pipeline (Flink, Kafka) processing payment events with p99 latency under 50ms"
+   can't tell: Keep this as a model. It puts your ownership, the system and a performance measure together without making a recruiter guess what was built.
+4. [line] Senior Software Engineer, line 3
+   line: "Reduced reconciliation break rate and manual ops effort"
+   can't tell: A recruiter can see what improved, but not by how much or what you did to reduce it. Those details would give the reconciliation work more weight.
+   example: Reduced reconciliation break rate from [before] to [after] and manual ops effort from [before] to [after] by [what you did]
+   question: What did you do, and how were the break rate and manual ops effort measured before and after?
+5. [line] Software Engineer II, line 3
+   line: "Improved API latency and availability through caching and request coalescing"
+   can't tell: You name the techniques, but not how much latency or availability improved. If you have the measures, they would show what those changes delivered.
+   example: Improved API latency from [before] to [after] and availability from [before] to [after] through caching and request coalescing
+   question: What were the latency and availability measures before and after the changes?
+
+## Fit
+Roles: ["Staff Software Engineer","Senior Software Engineer"]
+Level: Staff-level technical lead, with architecture and incident leadership
+Note: Your experience points toward staff engineering roles in payments infrastructure and distributed systems. The team remit and results of the ledger redesign are the main details to add for that audience.

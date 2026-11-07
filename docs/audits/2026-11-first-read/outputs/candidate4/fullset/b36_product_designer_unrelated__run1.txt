@@ -1,0 +1,36 @@
+# b36_product_designer_unrelated, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_product_designer_unrelated_1.txt (147 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ee57d907; severity check off
+Outcome: report; cost $0.0089; 18.7s
+Case note: Current job outside the field.
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+A product designer with concrete app work, but little about what changed and no recent design role listed.
+
+## Write-up
+You moved from Brightpath Studio to product design at Loop Fitness and now work at Ferry Street Coffee. I read this for Product Designer roles. It’s common to list the things you made without saying what happened next, but that makes it harder to stand out for design jobs where a recruiter wants to understand your decisions and their results.
+
+The Figma design system is your best model: it names what you created, where, and with which tool. Your current cafe job accounts for your time, but your last listed design role ended in February 2024. A recruiter will want to know whether you’ve done any design work since then.
+
+Let’s start with the Loop Fitness releases and usability tests. Add what you contributed and what you learned, then look for a result or design decision you can name from the booking flow. If you’ve done design work since Loop Fitness, include it with honest dates.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] Product Designer, Loop Fitness, line 2
+   line: "Worked with two engineers and a product manager on weekly releases"
+   can't tell: The team and release rhythm are clear, but a recruiter can’t tell what you contributed to those releases.
+   example: Worked with two engineers and a product manager on weekly releases, contributing [design work]
+   question: What design work did you contribute to the weekly releases?
+2. [keep] Product Designer, Loop Fitness, line 3
+   line: "Created the app's first design system in Figma"
+   can't tell: Keep this. It gives a recruiter a tangible piece of work and the tool you used, without making them guess what you made.
+3. [line] Product Designer, Loop Fitness, line 4
+   line: "Ran usability tests with members before launches"
+   can't tell: You ran the tests, but the line stops before what you learned. That’s a chance to show how member feedback informed the design.
+   example: Ran usability tests with members before launches and learned [what the tests revealed]
+   question: What did the usability tests reveal?
+
+## Fit
+Roles: ["Product Designer","Junior Product Designer"]
+Level: Product designer, with a Product Designer role after a junior role
+Note: Your experience points to product design roles involving mobile apps, design systems, and usability testing. The last listed design role ended in February 2024, so recent design work would help if you have it.

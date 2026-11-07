@@ -1,0 +1,35 @@
+# h4b_academic_cv_under_cap, run 1
+Resume: ../2026-11-live-judgment/resumes/h4b_academic_cv_under_cap.txt (3253 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5827dcf1; severity check off
+Outcome: report; cost $0.0249; 17.3s
+Case note: The same CV trimmed under the cap, to see what the model does with a CV shape.
+
+## Mostly clear (score 73; model wrote 73)
+## Verdict
+A tenured molecular biologist with substantial grants and mentoring work, but repeated citations raise questions.
+
+## Write-up
+You come across as a tenured associate professor whose work centers on mitochondrial biology, with NIH funding, teaching and extensive mentoring. A recruiter could move your resume forward, but the repeated publication entries need attention: several list the same authors and title in different years.
+
+Your MB 310 redesign is a strong model. It names the change you made and tracks student evaluations over the following three offerings. Your grant list also states your role and award amount. Education sits above your appointments, though your faculty work is now the stronger place to start.
+
+Let's move the appointments up, then check the publication list against your records. Start with the Drp1 citation and review the other repeated titles before sending. Keep the teaching and mentoring details: they show a faculty career beyond the grant list.
+
+## Cards (3; {"structure":1,"line":1,"keep":1}); severity off; added []
+1. [structure] Section order
+   line: "Education sits above Academic Appointments."
+   can't tell: Your current tenured role is more useful as the first stop for someone assessing your faculty work. Put Academic Appointments above Education so that role leads.
+   question: Can you move Academic Appointments above Education?
+2. [line] Publications, entry 1
+   line: "1. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2026). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 107(2), 1037-1052."
+   can't tell: The same authors and title also appear in entries 21 and 41 with different publication details. Other titles repeat too, so a reader can't tell which citations are distinct papers. Check them against your publication records before sending.
+   example: [Correct citation]
+   question: What are the correct citations for these entries, and which repeated entries should be removed?
+3. [keep] Teaching, course redesign
+   line: "Course redesign: converted MB 310 to a flipped format in 2019; student evaluations rose from 3.9 to 4.5 of 5 over the following three offerings."
+   can't tell: Keep this as a model: it gives the course, the teaching format and a measured change without claiming the redesign alone caused it.
+
+## Fit
+Roles: ["Associate Professor (with tenure)"]
+Level: Tenured associate professor, NIH principal investigator
+Note: Your experience points to research-focused faculty roles with teaching and mentoring responsibilities. The publication list needs a careful check because repeated titles could make a reviewer pause.

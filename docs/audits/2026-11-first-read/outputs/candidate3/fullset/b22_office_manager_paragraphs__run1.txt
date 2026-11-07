@@ -1,0 +1,30 @@
+# b22_office_manager_paragraphs, run 1
+Resume: ../2026-11-live-judgment/resumes/b_office_manager_paragraphs.txt (219 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 01c2028d; severity check off
+Outcome: report; cost $0.0064; 12.5s
+Case note: Paragraph format, no bullets.
+
+## Clear and specific (score 87; model wrote 87)
+## Verdict
+An office manager whose resume makes the work and the offices she runs easy to understand.
+
+## Write-up
+This is a strong office manager resume! Your work at Harrod and Blake shows a recruiter the size of the firm, the billing you handle, the people you supervise and the move away from paper files. The earlier dental and insurance roles show how you got there.
+
+The QuickBooks line is a particularly good model: it names both the monthly billing volume and the trust account reconciliation. Your experience comes before education, and the dates are easy to follow. The one thing slowing a first pass is that each job is packed into a paragraph.
+
+Let's give the work room to breathe by separating the main responsibilities and achievements into bullets. A recruiter has enough here to move the resume forward; how competitive a particular job is will still matter.
+
+## Cards (2; {"structure":1,"keep":1}); severity off; added []
+1. [structure] Experience
+   line: "The job descriptions are written as paragraphs rather than bullets."
+   can't tell: Your billing, supervision and software work are all there, but a recruiter has to search for them inside one long paragraph. Separate them so each part of the job is easy to find.
+   question: Which responsibilities and achievements would you put on separate lines under each role?
+2. [keep] Office Manager, bookkeeping
+   line: "Office Manager, Harrod and Blake Law Office, Louisville, KY, May 2018 to present. I run the front office for a six-attorney firm. I handle scheduling for the attorneys, manage the firm's calendar of court dates and filing deadlines, order supplies, and handle vendor contracts for the copier, phones, and cleaning. I do the bookkeeping in QuickBooks, including client billing of roughly 90 invoices a month and the monthly trust account reconciliation. I hired and supervise two receptionists and I onboarded the firm's new practice management software in 2022, which replaced paper files for all new matters."
+   can't tell: Keep this as a model. It gives the tool, the work and how much billing you handle without making a recruiter guess.
+
+## Fit
+Roles: ["Office Manager","Office Coordinator"]
+Level: Office manager, supervises two receptionists
+Note: Your experience points toward managing a small professional office, especially one with billing and deadline-sensitive work. The dental practice and insurance roles also show front-office and administrative experience.

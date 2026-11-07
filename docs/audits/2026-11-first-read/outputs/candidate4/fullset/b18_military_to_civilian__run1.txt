@@ -1,0 +1,30 @@
+# b18_military_to_civilian, run 1
+Resume: ../2026-11-live-judgment/resumes/b_military_to_civilian.txt (268 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ee57d907; severity check off
+Outcome: report; cost $0.0078; 15.5s
+
+## Clear and specific (score 89; model wrote 89)
+## Verdict
+Army logistics and maintenance leadership with measurable results that translate well to operations supervision.
+
+## Write-up
+This is a strong resume! Your Army roles show a clear progression from mechanic to platoon sergeant, with people, equipment and readiness results a civilian operations recruiter can follow.
+
+The vehicle readiness line is the model: it shows what changed and the two processes you adjusted. Your target role is clear at the top, and your experience comes before your in-progress degree.
+
+Your resume is unlikely to be what holds you back. Add how you kept vehicles mission-capable in Poland, and translate military terms where a civilian reader may not know them. The competitiveness of the jobs you target will matter too.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Platoon Sergeant, line 4
+   line: "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule"
+   can't tell: Keep this as a model. You give the before and after, then name the ordering and scheduling work behind the change.
+2. [line] Maintenance Section Sergeant, line 3
+   line: "Ran the shop during the Poland deployment, keeping 95% of vehicles mission-capable"
+   can't tell: The readiness figure is strong, but a recruiter can't tell what you did as shop leader to maintain it.
+   example: Ran the shop during the Poland deployment, keeping 95% of vehicles mission-capable by [what you did]
+   question: What did you do while running the shop to keep vehicles mission-capable?
+
+## Fit
+Roles: ["operations supervisor","Platoon Sergeant (E-7), Forward Support Company"]
+Level: Supervisor, led 38 soldiers and evaluated 6 direct-report sergeants
+Note: Your maintenance, supply and fuel leadership points toward operations supervision. Your equipment accountability and parts budget also give a recruiter concrete ways to understand the work.

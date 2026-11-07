@@ -1,0 +1,51 @@
+# b06_staff_accountant, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_staff_accountant_1.txt (98 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ee57d907; severity check off
+Outcome: report; cost $0.0086; 18.3s
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+A staff accountant with a clear progression, but routine duties leave the depth of the work unclear.
+
+## Write-up
+This is a common pattern: your resume shows a move from Accounts Payable Clerk to Staff Accountant at Rivermark Building Supply, but the recent work mostly reads as a list of duties. It won't stand out in a pile because a recruiter can't tell how much accounting work you handle or what you're responsible for within it.
+
+The journal entries and account reconciliations line is the best starting model because it names two concrete deliverables. Your experience is already above education, and the current role is clearly dated. A little context about Rivermark would also help a recruiter understand the setting.
+
+Let's start with month-end close, then add the accounts, audit work and assets you can name. You don't need a number on every line, but a few details about the work you handle will give the Staff Accountant role more weight.
+
+## Cards (6; {"structure":1,"line":5}); severity off; added []
+1. [structure] Structure
+   line: "The resume doesn't describe Rivermark Building Supply's size or customers."
+   can't tell: A recruiter can't tell how large the business is or who it serves. One short line could give your accounting work a setting.
+   question: How large is Rivermark Building Supply, and who are its customers?
+2. [line] Staff Accountant, line 1
+   line: "Responsible for month-end close tasks"
+   can't tell: Month-end close covers a lot of work, so a recruiter can't tell which tasks are yours. Start with the ones you handle yourself.
+   example: Responsible for [which tasks] during month-end close for [which accounts]
+   question: Which month-end close tasks are yours, and which accounts do they cover?
+3. [line] Staff Accountant, line 2
+   line: "Prepare journal entries and account reconciliations"
+   can't tell: This names the work, but not the transactions or accounts behind it. Those details would show a recruiter more of your accounting experience.
+   example: Prepare journal entries for [which transactions] and account reconciliations for [which accounts]
+   question: What transactions do the entries cover, and which accounts do you reconcile?
+4. [line] Staff Accountant, line 3
+   line: "Assist with the annual audit"
+   can't tell: A recruiter can't tell what your part of the audit is. The documents or information you provide would make that contribution concrete.
+   example: Assist with the annual audit by [what you provide to auditors]
+   question: What do you provide or prepare for the annual audit?
+5. [line] Staff Accountant, line 4
+   line: "Maintain fixed asset schedules"
+   can't tell: The schedules are a useful detail, but a recruiter can't tell what assets they cover or what you track.
+   example: Maintain fixed asset schedules for [which assets], including [what you track]
+   question: Which assets do the schedules cover, and what do you track on them?
+6. [line] Staff Accountant, line 5
+   line: "Process accounts payable when needed"
+   can't tell: A recruiter can see you still handle payable work, but not what that involves in your current role.
+   example: Process accounts payable when needed for [which invoices], handling [number] invoices per [time period]
+   question: Which invoices do you process in this role, and how many do you typically handle?
+
+## Fit
+Roles: ["Staff Accountant","Accounts Payable Clerk"]
+Level: Staff level, with a move from Accounts Payable Clerk to Staff Accountant
+Note: Your experience points toward Staff Accountant work, with earlier accounts payable experience at the same employer. The resume would show more of your fit if it named the accounts and transactions you handle.

@@ -1,0 +1,60 @@
+# b06_staff_accountant, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_staff_accountant_1.txt (98 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5827dcf1; severity check off
+Outcome: report; cost $0.0097; 20.7s
+
+## Needs more context (score 65; model wrote 65)
+## Verdict
+A Staff Accountant with a clear progression, but mostly routine duties in place of details about the work.
+
+## Write-up
+Your resume shows a move from Accounts Payable Clerk to Staff Accountant at Rivermark Building Supply. It’s common for accounting resumes to list close and audit duties this way, but these duties alone won’t stand out in a pile. A recruiter can see the functions you cover, not how much you handle or what your part involves.
+
+The line about matching purchase orders to receipts is the strongest model: it names the documents you worked with and what you did with them. Your dates and progression are easy to follow, and your accounting degree sits below your experience where it belongs.
+
+Let’s start with your current role and the month-end close line. Name the tasks that were yours, then add details you can stand behind about the journal entries, reconciliations and audit. You don’t need a number everywhere, but a few counts or examples would give a recruiter a better picture of your work.
+
+## Cards (8; {"line":7,"keep":1}); severity off; added []
+1. [line] Staff Accountant, line 1
+   line: "Responsible for month-end close tasks"
+   can't tell: A recruiter can’t tell which parts of the close were yours or how much you handled. This is a central part of a staff accountant’s job, so start here.
+   example: Responsible for [which month-end close tasks] for [which accounts]
+   question: Which close tasks were yours, and which accounts did they cover?
+2. [line] Staff Accountant, line 2
+   line: "Prepare journal entries and account reconciliations"
+   can't tell: This names the work, but not the accounts or how many entries and reconciliations you prepare. Those details would distinguish your role from a standard duty list.
+   example: Prepare [number] journal entries and account reconciliations for [which accounts] each [period]
+   question: Which accounts do you work on, and how many entries and reconciliations do you prepare in a typical period?
+3. [line] Staff Accountant, line 3
+   line: "Assist with the annual audit"
+   can't tell: Your part in the audit is still a blank. A recruiter can’t tell what you prepared or who you worked with.
+   example: Assist with the annual audit by [what you did] for [who you worked with]
+   question: What did you do for the annual audit, and who did you work with?
+4. [line] Staff Accountant, line 4
+   line: "Maintain fixed asset schedules"
+   can't tell: The schedules are a useful named deliverable. The line doesn’t say what assets they cover or what maintaining them involves.
+   example: Maintain fixed asset schedules for [which assets] by [what you do]
+   question: Which assets do the schedules cover, and what do you do to maintain them?
+5. [line] Staff Accountant, line 5
+   line: "Process accounts payable when needed"
+   can't tell: A recruiter can’t tell what you process or how often this comes up alongside your accounting work.
+   example: Process accounts payable when needed, handling [what you process] [how often]
+   question: What accounts payable work do you handle in this role, and how often?
+6. [line] Accounts Payable Clerk, line 1
+   line: "Entered vendor invoices"
+   can't tell: Invoice entry is clear, but the line doesn’t show how much you handled. A count, if you know it, would give a recruiter more to go on.
+   example: Entered [number] vendor invoices per [period]
+   question: How many vendor invoices did you typically enter, and over what period?
+7. [keep] Accounts Payable Clerk, line 2
+   line: "Matched purchase orders to receipts"
+   can't tell: Keep this as a model for naming the actual records involved. It tells a recruiter what you compared without making them guess.
+8. [line] Accounts Payable Clerk, line 3
+   line: "Answered vendor questions about payments"
+   can't tell: The subject of the questions is clear, but not what you did to answer them. Did you look up payment records or coordinate with someone else?
+   example: Answered vendor questions about payments by [what you did]
+   question: What did you do to answer vendors’ payment questions?
+
+## Fit
+Roles: ["Staff Accountant","Accounts Payable Clerk"]
+Level: Staff accountant, with a prior accounts payable role
+Note: Your experience points toward staff accounting work, with accounts payable as an earlier foundation. More detail about your current close and audit work would help distinguish the roles you’re ready to pursue.

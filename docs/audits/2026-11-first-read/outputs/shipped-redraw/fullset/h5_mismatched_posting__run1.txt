@@ -1,0 +1,38 @@
+# h5_mismatched_posting, run 1
+Resume: ../2026-11-live-judgment/resumes/h5_data_analyst.txt (166 words), posting: ../2026-11-live-judgment/resumes/h5_nursing_posting.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0083; 16.5s
+Case note: Data analyst against a registered nurse posting.
+
+## Clear and specific (score 85; model wrote 85)
+## Verdict
+A well-supported data analyst resume, but not a match for the registered nurse posting.
+
+## Write-up
+Your analyst work stands out because you connect the reporting tools to the decisions and manual work they changed. At Carolina Home Goods, you show both the dashboards teams use and the recommendations merchandising adopted. That makes your resume strong for analyst roles, though the nursing posting calls for a different set of qualifications.
+
+The SQL model line is a great model for the rest: it names what you built and the manual report it replaced. Your experience leads the resume, and the move from insurance reporting to sales and merchandising analysis is easy to follow.
+
+For analyst applications, add a little more about the questions behind your ad hoc work and claims summary. Your resume is unlikely to be the main obstacle for those roles, though the competition and the particular job still matter. For this nursing role, the resume doesn't show an RN license, nursing training, or patient care experience.
+
+## Cards (3; {"keep":1,"line":2}); severity off; added []
+1. [keep] Data Analyst, line 2
+   line: "Wrote the SQL model that replaced a 3-day manual weekly sales report with an automated one"
+   can't tell: Keep this as a model. It gives a recruiter the tool, the deliverable, and a concrete comparison with the old process.
+2. [line] Data Analyst, line 4
+   line: "Pull ad hoc analyses for the VP of Sales, about 10 requests a month"
+   can't tell: The frequency and audience are clear, but a recruiter can't tell what sales questions you analyze. One example would show the kind of work the VP asks you to do.
+   example: Pull ad hoc analyses on [sales topics] for the VP of Sales, about 10 requests a month
+   question: What sales topics do those requests cover?
+3. [line] Junior Analyst, line 2
+   line: "Produced the monthly claims summary for the operations director"
+   can't tell: The audience and cadence are there, but the claims summary itself is still a blank. What did the director use it to understand?
+   example: Produced the monthly claims summary for the operations director, covering [claims measures]
+   question: What claims measures did the summary cover?
+
+## Fit
+Roles: ["Data Analyst","Junior Analyst","Registered Nurse, Medical-Surgical Unit (Nights)"]
+Level: Experienced individual contributor
+Note: This resume does not show the RN license, BLS certification, nursing experience, or EHR work requested for the medical-surgical role. It points instead toward data analysis, with strong SQL and Power BI work and reporting for business teams.
+Posting: A night-shift registered nurse role providing medical-surgical patient care, medication administration, EHR documentation, and patient education.
+Missing: ["Current unrestricted North Carolina RN license or compact state license","BLS certification required; ACLS within six months of hire","Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered","Experience with Epic or a comparable EHR","Ability to manage a patient assignment of 5 to 6 patients","Assess, plan, implement, and evaluate patient care in collaboration with physicians and the care team"]

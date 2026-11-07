@@ -69,7 +69,9 @@ function viewportBottomOf(locator: ReturnType<Page["locator"]>) {
 test.describe("the report's first screen on a phone", () => {
   test.use({ viewport: PHONE, isMobile: true, hasTouch: true, contextOptions: { reducedMotion: "reduce" } });
 
-  test("the sample (the worklist report) shows the score, the rung, the verdict and the write-up without scrolling", async ({ page }) => {
+  // The first pass (Matt chose direction B, Nov 7, 2026) follows the verdict: the job the resume was read for is
+  // on the first screen, and the write-up starts after it.
+  test("the sample (the worklist report) shows the score, the rung, the verdict and the job it was read for without scrolling", async ({ page }) => {
     await openReport(page, sampleReport);
     expect(await page.evaluate(() => window.scrollY)).toBe(0);
     await expect(page.getByTestId("report-header-row")).toBeInViewport({ ratio: 1 });
@@ -77,7 +79,8 @@ test.describe("the report's first screen on a phone", () => {
     await expect(page.getByTestId("score-band")).toBeInViewport({ ratio: 1 });
     await expect(page.locator("#section-first-impression h1")).toHaveText(sampleReport.verdict);
     await expect(page.locator("#section-first-impression h1")).toBeInViewport({ ratio: 1 });
-    await expect(page.getByTestId("worklist-write-up").locator("p").first()).toBeInViewport({ ratio: 0.5 });
+    await expect(page.getByTestId("first-pass-role")).toHaveText(sampleReport.fit.roles[0]);
+    await expect(page.getByTestId("first-pass-role")).toBeInViewport({ ratio: 1 });
     await expect(page.getByTestId("worklist-card")).toHaveCount(sampleReport.cards.length);
   });
 

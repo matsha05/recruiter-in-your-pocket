@@ -1,0 +1,31 @@
+# b13_marketing_vp_elite, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/golden/synth_marketing_manager_vp_elite_1766960221358.txt (730 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 1c0fe4fe; severity check off
+Outcome: report; cost $0.0080; 11.6s
+Case note: Executive, strong (golden).
+
+## Clear and specific (score 89; model wrote 89)
+## Verdict
+A marketing executive with a clear record of leading teams and growing revenue across technology companies.
+
+## Write-up
+This is a strong executive marketing resume! From NexGen through Novara, you show the teams and budgets you led alongside changes in revenue, acquisition costs and customer retention. A recruiter can see both the work and the business results.
+
+The Viridian account-based marketing line is a model: it names the program, its annual pipeline contribution and the change in win rates among Fortune 500 clients. Your experience leads the resume, and the Chief Marketing Officer role gives a clear picture of your remit.
+
+Start with the Novara product launch line and add what changed in the process. Your resume is unlikely to be the reason you don't get a call back; competition for executive roles will also matter.
+
+## Cards (2; {"line":1,"keep":1}); severity off; added []
+1. [line] Chief Marketing Officer, product launch line
+   line: "I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years."
+   can't tell: The launch results are substantial, but a recruiter can't tell what you changed in the process to achieve them.
+   example: I decided to revamp the product launch process by [what changed], shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.
+   question: What changed in the product launch process?
+2. [keep] Vice President, Global Marketing, ABM line
+   line: "I built and executed a comprehensive account-based marketing (ABM) program that increased pipeline contribution by $50M annually, lifting win rates by 15% among Fortune 500 clients."
+   can't tell: Keep this as a model. It connects a program you built and executed to two distinct measures and names the clients involved.
+
+## Fit
+Roles: ["Chief Marketing Officer"]
+Level: Executive, leading a 45-person marketing organization and managing a $25M annual budget
+Note: Your experience points toward executive marketing leadership in technology, especially SaaS and enterprise software. The resume shows both strategic leadership and measurable business results.

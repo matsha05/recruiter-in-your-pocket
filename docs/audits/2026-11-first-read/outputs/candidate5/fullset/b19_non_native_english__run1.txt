@@ -1,0 +1,35 @@
+# b19_non_native_english, run 1
+Resume: ../2026-11-live-judgment/resumes/b_non_native_english.txt (237 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ab8cd5a5; severity check off
+Outcome: report; cost $0.0064; 12.5s
+
+## Mostly clear (score 82; model wrote 82)
+## Verdict
+A staff accountant with substantial prior accounting work and a clear current accounts payable role.
+
+## Write-up
+Your resume points toward Staff Accountant and Accounts Payable Specialist roles. At Bayou Industrial Supply, you process around 400 vendor invoices every month in QuickBooks; at Minh Phat, you handled financial statements and led junior accountants. A recruiter can see both the current work and the broader accounting background and would likely move you forward with a few questions.
+
+Your strongest line is the one about cutting month-end closing from 12 days to 7 days. It names the change and the checklist and template you made to get there. That gives the rest of your resume a useful model.
+
+Start with the month-end line at Bayou: say which tasks you helped the controller with. Then add what the junior accountants did under your lead at Minh Phat. Those details will connect your current work to the broader responsibilities you want recruiters to notice.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] Accounts Payable Clerk, line 4
+   line: "Help the controller for month end closing"
+   can't tell: A recruiter can't tell which closing tasks you helped with. That matters for Staff Accountant roles, where your part in the close is useful to see.
+   example: Help the controller with [month-end tasks] for month end closing
+   question: Which month-end closing tasks do you help the controller with?
+2. [line] Senior Accountant, line 2
+   line: "Lead team of 3 junior accountants"
+   can't tell: The team count is there, but a recruiter can't tell what the junior accountants worked on under your lead.
+   example: Lead team of 3 junior accountants who [team responsibilities]
+   question: What work did the three junior accountants handle?
+3. [keep] Senior Accountant, line 4
+   line: "Reduce the month end closing from 12 days to 7 days by make new checklist and template"
+   can't tell: Keep this as a model: it gives a recruiter a before and after, then names the things you made. Your contribution doesn't need guessing.
+
+## Fit
+Roles: ["Staff Accountant","Accounts Payable Specialist"]
+Level: Staff-level accounting, with prior Senior Accountant experience leading 3 junior accountants
+Note: Your current invoice and payment work also fits Accounts Payable Specialist roles. For Staff Accountant applications, make your current month-end work more explicit alongside your earlier financial statement responsibilities.

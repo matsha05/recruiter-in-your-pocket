@@ -1,0 +1,266 @@
+{
+  "case_id": "fr01b_backend_ic_backend_posting",
+  "batch": "targeted",
+  "run": 1,
+  "note": "P1. The same resume against a senior backend posting it fits. Expect the posting's title second and a fit note that says it fits.",
+  "resume_file": "resumes/fr01_backend_ic_senior.txt",
+  "resume_sha256": "473f0177fffa3bc053f5a4c69f6aa3d7ecdf9c22fafb2ee8360f7be0e877aa55",
+  "resume_words": 236,
+  "job_description_file": "resumes/posting_senior_backend.txt",
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:19:27.022Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6460,
+        "completion_tokens": 1304,
+        "total_tokens": 7764,
+        "cached_prompt_tokens": 5339,
+        "cache_write_prompt_tokens": 1118,
+        "reasoning_tokens": 512
+      },
+      "cost_usd": 0.00818745,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 16968
+    }
+  ],
+  "resume_prompt_sha256": "5827dcf1b71d049c0db123f36eb5d0286f3c433f3e55a732f42012b2b93288f6",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments engineer with strong service-building and reliability work, plus a few gaps against this posting.",
+    "write_up": [
+      "This is a strong payments resume! Your work at Lumen Ledger connects the services you built to payout volume, a zero-downtime migration, and a faster balance API. A recruiter can see why your backend experience fits money movement.",
+      "The payouts service line is a model for the rest: it names what you built, the stack, and how much it handles. The recent roles are especially concrete; the older Northgate work has less detail, but it doesn't obscure your current level.",
+      "For Cobalt Pay, lead with the payouts and ledger work. Add any real experience with on-call ownership, leading design reviews, or working with Finance and Risk on reconciliation and controls. Your resume isn't likely to be the reason you don't get a callback; competition for the role and how closely your experience matches its remaining requirements also matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 1",
+        "line": "- Designed and built the idempotent payouts service in Go and PostgreSQL that now settles about 1.8M payouts a month",
+        "cannot_tell": "Keep this as a model. The word idempotent tells a payments recruiter something important about the design, while the monthly volume shows the service is in use.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer, Northgate Insurance, line 1",
+        "line": "- Maintained the claims intake services in Java",
+        "cannot_tell": "A recruiter can see which services you worked on, but not what maintaining them involved. One change you made would give this earlier role more substance.",
+        "example": "Maintained the claims intake services in Java by [what you changed]",
+        "question": "What did you change in the claims intake services?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer, Northgate Insurance, line 2",
+        "line": "- Wrote integration tests for the policy rating engine",
+        "cannot_tell": "The tests and the system are named, but the scenarios they covered aren't. That detail would show what you checked.",
+        "example": "Wrote integration tests for the policy rating engine covering [test scenarios]",
+        "question": "Which scenarios did your integration tests cover?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer",
+        "Senior Backend Engineer, Money Movement"
+      ],
+      "why": "Your headline and current payments platform role both point to senior backend engineering.",
+      "level": "Senior, leads a ledger migration and mentors two mid-level engineers",
+      "note": "The resume doesn't say you owned the payouts path end to end on call, led technical design reviews, or partnered with Finance and Risk on reconciliation and controls. It otherwise aligns closely with the role's Go, PostgreSQL, Kafka, payouts, ledger, migration, and mentoring requirements. Add those missing responsibilities if you can substantiate them.",
+      "posting": {
+        "summary": "Senior backend role building and operating reliable money movement services, with technical leadership and collaboration on financial controls.",
+        "missing": [
+          "Own the reliability of the payouts path end to end, including on-call",
+          "Lead technical design reviews",
+          "Partner with Finance and Risk on reconciliation and controls"
+        ]
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments engineer with strong service-building and reliability work, plus a few gaps against this posting.",
+    "write_up": [
+      "This is a strong payments resume! Your work at Lumen Ledger connects the services you built to payout volume, a zero-downtime migration, and a faster balance API. A recruiter can see why your backend experience fits money movement.",
+      "The payouts service line is a model for the rest: it names what you built, the stack, and how much it handles. The recent roles are especially concrete; the older Northgate work has less detail, but it doesn't obscure your current level.",
+      "For Cobalt Pay, lead with the payouts and ledger work. Add any real experience with on-call ownership, leading design reviews, or working with Finance and Risk on reconciliation and controls. Your resume isn't likely to be the reason you don't get a callback; competition for the role and how closely your experience matches its remaining requirements also matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 1",
+        "line": "Designed and built the idempotent payouts service in Go and PostgreSQL that now settles about 1.8M payouts a month",
+        "cannot_tell": "Keep this as a model. The word idempotent tells a payments recruiter something important about the design, while the monthly volume shows the service is in use.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer, Northgate Insurance, line 1",
+        "line": "Maintained the claims intake services in Java",
+        "cannot_tell": "A recruiter can see which services you worked on, but not what maintaining them involved. One change you made would give this earlier role more substance.",
+        "example": "Maintained the claims intake services in Java by [what you changed]",
+        "question": "What did you change in the claims intake services?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer, Northgate Insurance, line 2",
+        "line": "Wrote integration tests for the policy rating engine",
+        "cannot_tell": "The tests and the system are named, but the scenarios they covered aren't. That detail would show what you checked.",
+        "example": "Wrote integration tests for the policy rating engine covering [test scenarios]",
+        "question": "Which scenarios did your integration tests cover?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer",
+        "Senior Backend Engineer, Money Movement"
+      ],
+      "why": "Your headline and current payments platform role both point to senior backend engineering.",
+      "level": "Senior, leads a ledger migration and mentors two mid-level engineers",
+      "note": "The resume doesn't say you owned the payouts path end to end on call, led technical design reviews, or partnered with Finance and Risk on reconciliation and controls. It otherwise aligns closely with the role's Go, PostgreSQL, Kafka, payouts, ledger, migration, and mentoring requirements. Add those missing responsibilities if you can substantiate them.",
+      "posting": {
+        "summary": "Senior backend role building and operating reliable money movement services, with technical leadership and collaboration on financial controls.",
+        "missing": [
+          "Own the reliability of the payouts path end to end, including on-call",
+          "Lead technical design reviews",
+          "Partner with Finance and Risk on reconciliation and controls"
+        ]
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments engineer with strong service-building and reliability work, plus a few gaps against this posting.",
+    "write_up": [
+      "This is a strong payments resume! Your work at Lumen Ledger connects the services you built to payout volume, a zero-downtime migration, and a faster balance API. A recruiter can see why your backend experience fits money movement.",
+      "The payouts service line is a model for the rest: it names what you built, the stack, and how much it handles. The recent roles are especially concrete; the older Northgate work has less detail, but it doesn't obscure your current level.",
+      "For Cobalt Pay, lead with the payouts and ledger work. Add any real experience with on-call ownership, leading design reviews, or working with Finance and Risk on reconciliation and controls. Your resume isn't likely to be the reason you don't get a callback; competition for the role and how closely your experience matches its remaining requirements also matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 1",
+        "line": "Designed and built the idempotent payouts service in Go and PostgreSQL that now settles about 1.8M payouts a month",
+        "cannot_tell": "Keep this as a model. The word idempotent tells a payments recruiter something important about the design, while the monthly volume shows the service is in use.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer, Northgate Insurance, line 1",
+        "line": "Maintained the claims intake services in Java",
+        "cannot_tell": "A recruiter can see which services you worked on, but not what maintaining them involved. One change you made would give this earlier role more substance.",
+        "example": "Maintained the claims intake services in Java by [what you changed]",
+        "question": "What did you change in the claims intake services?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer, Northgate Insurance, line 2",
+        "line": "Wrote integration tests for the policy rating engine",
+        "cannot_tell": "The tests and the system are named, but the scenarios they covered aren't. That detail would show what you checked.",
+        "example": "Wrote integration tests for the policy rating engine covering [test scenarios]",
+        "question": "Which scenarios did your integration tests cover?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer",
+        "Senior Backend Engineer, Money Movement"
+      ],
+      "why": "Your headline and current payments platform role both point to senior backend engineering.",
+      "level": "Senior, leads a ledger migration and mentors two mid-level engineers",
+      "note": "The resume doesn't say you owned the payouts path end to end on call, led technical design reviews, or partnered with Finance and Risk on reconciliation and controls. It otherwise aligns closely with the role's Go, PostgreSQL, Kafka, payouts, ledger, migration, and mentoring requirements. Add those missing responsibilities if you can substantiate them.",
+      "posting": {
+        "summary": "Senior backend role building and operating reliable money movement services, with technical leadership and collaboration on financial controls.",
+        "missing": [
+          "Own the reliability of the payouts path end to end, including on-call",
+          "Lead technical design reviews",
+          "Partner with Finance and Risk on reconciliation and controls"
+        ]
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "presentation": {
+    "score": 89,
+    "band": "Clear and specific",
+    "model_score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments engineer with strong service-building and reliability work, plus a few gaps against this posting.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 138,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 1",
+        "line": "Designed and built the idempotent payouts service in Go and PostgreSQL that now settles about 1.8M payouts a month",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer, Northgate Insurance, line 1",
+        "line": "Maintained the claims intake services in Java",
+        "blanks": 1,
+        "question": "What did you change in the claims intake services?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer, Northgate Insurance, line 2",
+        "line": "Wrote integration tests for the policy rating engine",
+        "blanks": 1,
+        "question": "Which scenarios did your integration tests cover?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "keep": 1,
+      "line": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer",
+        "Senior Backend Engineer, Money Movement"
+      ],
+      "why": "Your headline and current payments platform role both point to senior backend engineering.",
+      "level": "Senior, leads a ledger migration and mentors two mid-level engineers",
+      "note": "The resume doesn't say you owned the payouts path end to end on call, led technical design reviews, or partnered with Finance and Risk on reconciliation and controls. It otherwise aligns closely with the role's Go, PostgreSQL, Kafka, payouts, ledger, migration, and mentoring requirements. Add those missing responsibilities if you can substantiate them.",
+      "posting": {
+        "summary": "Senior backend role building and operating reliable money movement services, with technical leadership and collaboration on financial controls.",
+        "missing": [
+          "Own the reliability of the payouts path end to end, including on-call",
+          "Lead technical design reviews",
+          "Partner with Finance and Risk on reconciliation and controls"
+        ]
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00818745,
+  "latency_ms": 17074
+}

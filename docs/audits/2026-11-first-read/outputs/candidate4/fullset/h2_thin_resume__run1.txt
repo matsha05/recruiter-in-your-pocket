@@ -1,0 +1,56 @@
+# h2_thin_resume, run 1
+Resume: ../2026-11-live-judgment/resumes/h2_thin_resume.txt (126 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ee57d907; severity check off
+Outcome: report; cost $0.0094; 23.2s
+Case note: Student: one internship, coursework, a club.
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+An analytics intern with useful tools, but too little detail about what the work produced.
+
+## Write-up
+This is a common early-career resume: your Great Lakes Credit Union internship points toward data analytics, but several lines stop at the task. A recruiter can see the tools you used, yet has to guess what the reports, dashboard and findings were about. That makes it tough to stand out in a pile.
+
+The Tableau dashboard is your best model because it names what you built, the tool and the team it was for. It still needs the subject of the dashboard. Your coursework also comes before the internship, even though the internship is the stronger way to show what you can do.
+
+Let's start with the weekly reporting line, then give the dashboard and presentation a subject. Move coursework below the internship so a recruiter finds your work before your classes.
+
+## Cards (7; {"structure":2,"line":5}); severity off; added []
+1. [structure] Education and Experience
+   line: "Relevant coursework appears above the internship."
+   can't tell: Your internship gives a recruiter more to work with than a course list. Keep your degree visible, but move coursework below Experience.
+   question: Can you move the coursework list below your internship?
+2. [structure] Great Lakes Credit Union
+   line: "The resume doesn't describe the size of Great Lakes Credit Union."
+   can't tell: A recruiter can see that it's a credit union, but may not know how large it is. A brief description could provide context if you have a reliable figure.
+   question: Is there a reliable description of the credit union's size you can add?
+3. [line] Data Analytics Intern, line 1
+   line: "Assisted the analytics team with weekly reporting"
+   can't tell: Assisted leaves your part of the weekly reports open. A recruiter can't tell what you contributed or what the reports covered.
+   example: Assisted the analytics team with weekly reporting by [your contribution] for reports on [subject]
+   question: What did you contribute to the weekly reports, and what did they cover?
+4. [line] Data Analytics Intern, line 2
+   line: "Cleaned member survey data in Excel and SQL"
+   can't tell: The data and tools are named, which is useful. What did you prepare the survey data for?
+   example: Cleaned member survey data in Excel and SQL for [purpose]
+   question: What was the cleaned member survey data used for?
+5. [line] Data Analytics Intern, line 3
+   line: "Built a dashboard in Tableau for the marketing team"
+   can't tell: This names the tool and the team, but not what the dashboard tracked. That's the missing piece a recruiter will look for.
+   example: Built a dashboard in Tableau for the marketing team to track [measures]
+   question: What did the dashboard track?
+6. [line] Data Analytics Intern, line 4
+   line: "Presented findings to the team at the end of the internship"
+   can't tell: Presenting findings is useful experience, but the subject is missing. Name what you shared with the team.
+   example: Presented findings on [subject] to the team at the end of the internship
+   question: What were the findings about?
+7. [line] Treasurer, Michigan Data Science Club, line 2
+   line: "Help organize monthly speaker events"
+   can't tell: The events and their frequency are clear, but help could mean several different jobs. What part was yours?
+   example: Help organize monthly speaker events by [your contribution]
+   question: What do you do to help organize the speaker events?
+
+## Fit
+Roles: ["Data Analytics Intern"]
+Level: Entry level, one data analytics internship
+Note: Your internship points toward data analytics, with Excel, SQL and Tableau used in the work. The club treasurer role adds budget and event experience.

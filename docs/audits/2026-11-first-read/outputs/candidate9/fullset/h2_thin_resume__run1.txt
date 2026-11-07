@@ -1,0 +1,55 @@
+# h2_thin_resume, run 1
+Resume: ../2026-11-live-judgment/resumes/h2_thin_resume.txt (126 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 338ac33a; severity check off
+Outcome: report; cost $0.0098; 21.8s
+Case note: Student: one internship, coursework, a club.
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+A data analytics intern with useful tools, but too little detail about the work behind them.
+
+## Write-up
+This is common on an intern's resume: you name the tasks and tools, but leave out what the reports and dashboard covered. A recruiter sees a Data Analytics Intern at Great Lakes Credit Union and a Michigan Data Science Club treasurer, but may move on because they can't tell enough about the analytics work.
+
+The survey-data line is your best model: it names the data you cleaned and the tools you used. Education can stay above experience while you're working toward your degree, and the current club role shows what you're doing now.
+
+Let's start with the Great Lakes Credit Union role. Add what the weekly reports covered and what part was yours, then give the dashboard and presentation the same treatment. A short description of the credit union can also give its name context.
+
+## Cards (7; {"structure":1,"line":5,"keep":1}); severity off; added []
+1. [structure] Great Lakes Credit Union
+   line: "The resume doesn't say how large Great Lakes Credit Union is."
+   can't tell: A recruiter may not know the credit union. A short description of its size, if you can confirm it, would give the internship context.
+   question: How large is Great Lakes Credit Union, if you can confirm it?
+2. [line] Data Analytics Intern, line 1
+   line: "Assisted the analytics team with weekly reporting"
+   can't tell: Assisted leaves your part of the weekly reports open. A recruiter can't tell what you worked on or what the reports covered.
+   example: Assisted the analytics team with weekly reporting on [subject] by [your contribution]
+   question: What did the reports cover, and what did you contribute to them?
+3. [keep] Data Analytics Intern, line 2
+   line: "Cleaned member survey data in Excel and SQL"
+   can't tell: Keep this as a model: it puts the data and your action together, then names the tools. A recruiter can tell what you worked with.
+4. [line] Data Analytics Intern, line 3
+   line: "Built a dashboard in Tableau for the marketing team"
+   can't tell: The tool and audience are here, but not what the dashboard tracked. That's the piece that tells a recruiter what the marketing team could use it for.
+   example: Built a dashboard in Tableau for the marketing team tracking [measures]
+   question: What did the dashboard track for the marketing team?
+5. [line] Data Analytics Intern, line 4
+   line: "Presented findings to the team at the end of the internship"
+   can't tell: A recruiter can see that you presented, but not what you found. Naming the subject and a finding would make the presentation more concrete.
+   example: Presented findings on [subject] to the team at the end of the internship, including [finding]
+   question: What did you present findings about, and what was one finding?
+6. [line] Treasurer, line 1
+   line: "Manage the club budget and reimbursements"
+   can't tell: Managing the budget is useful experience, but a recruiter can't tell how large it is or what the reimbursements cover.
+   example: Manage the club budget of [amount] for [period] and reimbursements for [expenses]
+   question: What's the club budget for its budget period, and what expenses do you reimburse?
+7. [line] Treasurer, line 2
+   line: "Help organize monthly speaker events"
+   can't tell: The monthly events are clear, but help could mean several things. Name the part you take on.
+   example: Help organize monthly speaker events by [your contribution]
+   question: What do you do to help organize the speaker events?
+
+## Fit
+Roles: ["Data Analytics Intern"]
+Level: Entry level, one data analytics internship and a degree in progress
+Note: Your experience points toward data analytics internships. The tools are named, and adding what the reports and dashboard covered would show more of the work behind them.

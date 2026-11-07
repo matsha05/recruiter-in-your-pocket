@@ -1,0 +1,30 @@
+# b05_paralegal, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_paralegal_1.txt (144 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 41bcacc0; severity check off
+Outcome: report; cost $0.0072; 15.5s
+
+## Mostly clear (score 83; model wrote 83)
+## Verdict
+A senior litigation paralegal with substantial production and trial preparation work, plus a little room for detail.
+
+## Write-up
+Your resume tells a clear litigation story, from personal injury work at Summit Legal Group to commercial and employment cases at Harlan & Pike. A recruiter can see the work you handle and how much some of it involves.
+
+The Relativity line is a strong model: it names the responsibility, the tool and the upper end of the production volume. Your experience also leads your education, so the work a firm is hiring for is easy to find.
+
+Let's start with the jury trial line. You already name the binders and exhibits; adding what your trial support involved, if there's more to tell, would make that experience more useful to a recruiter.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Senior Litigation Paralegal, line 2
+   line: "Manage document productions of up to 250,000 pages in Relativity"
+   can't tell: Keep this as a model. The page count has a clear limit, and Relativity puts the production work in a recognizable setting.
+2. [line] Senior Litigation Paralegal, line 4
+   line: "Prepare trial binders and exhibits; supported two jury trials in 2025"
+   can't tell: You name the binders and exhibits, but a recruiter can't tell whether your trial support included anything else. That detail could show more of your part in the trials.
+   example: Prepare trial binders and exhibits; supported two jury trials in 2025 by [trial support]
+   question: What did your support for the two jury trials involve?
+
+## Fit
+Roles: ["Senior Litigation Paralegal","Paralegal"]
+Level: Senior litigation paralegal, supporting four partners
+Note: Your experience points toward litigation paralegal roles, particularly those involving discovery, document production and trial preparation. The earlier personal injury work adds another case type to your commercial and employment experience.

@@ -1,0 +1,183 @@
+{
+  "case_id": "b27_backend_engineer_senior",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_backend_engineer_senior_1.txt",
+  "resume_sha256": "92a71c8e81a037980a571ba4d2007cab76d8f9f04b6517e1ff23e45a0383be59",
+  "resume_words": 190,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:36:23.922Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5968,
+        "completion_tokens": 666,
+        "total_tokens": 6634,
+        "cached_prompt_tokens": 5196,
+        "cache_write_prompt_tokens": 769,
+        "reasoning_tokens": 246
+      },
+      "cost_usd": 0.00455405,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 8542
+    }
+  ],
+  "resume_prompt_sha256": "1c0fe4fe961ccb0d0e49bbe71ac8427d0281ae6e9a1efa6ac35e3ee49a99ed47",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 94,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments engineer whose resume connects technical work to scale and results.",
+    "write_up": [
+      "This is a strong resume! Your work at Tidewater Commerce and Northwind Billing tells a consistent story: you build payments and billing systems, and you show what changed when you did.",
+      "The ledger line is a model for the rest: it names the service and shows reconciliation breaks falling from about 300 a month to under 10. Your migration, audit, testing and invoicing work give a recruiter a similarly concrete picture of your technical and leadership work.",
+      "Your resume is unlikely to be the reason you don't get a call back. Competition for a particular role will also matter. Keep this version focused on senior backend payments roles."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "- Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10",
+        "cannot_tell": "Keep this line. It makes the problem and the improvement easy to grasp without making the reader decode the technology.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Software Engineer, Payments Platform"
+      ],
+      "why": "Your current role covers payment services, a ledger, an audit and mentoring engineers.",
+      "level": "Senior, led a team of 5 engineers through an audit and mentors 3 engineers",
+      "note": "Your experience points toward senior backend roles in payments and billing. The resume shows both technical delivery and leadership without claiming a people-management title.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 94,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments engineer whose resume connects technical work to scale and results.",
+    "write_up": [
+      "This is a strong resume! Your work at Tidewater Commerce and Northwind Billing tells a consistent story: you build payments and billing systems, and you show what changed when you did.",
+      "The ledger line is a model for the rest: it names the service and shows reconciliation breaks falling from about 300 a month to under 10. Your migration, audit, testing and invoicing work give a recruiter a similarly concrete picture of your technical and leadership work.",
+      "Your resume is unlikely to be the reason you don't get a call back. Competition for a particular role will also matter. Keep this version focused on senior backend payments roles."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10",
+        "cannot_tell": "Keep this line. It makes the problem and the improvement easy to grasp without making the reader decode the technology.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Software Engineer, Payments Platform"
+      ],
+      "why": "Your current role covers payment services, a ledger, an audit and mentoring engineers.",
+      "level": "Senior, led a team of 5 engineers through an audit and mentors 3 engineers",
+      "note": "Your experience points toward senior backend roles in payments and billing. The resume shows both technical delivery and leadership without claiming a people-management title.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 94
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 94,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments engineer whose resume connects technical work to scale and results.",
+    "write_up": [
+      "This is a strong resume! Your work at Tidewater Commerce and Northwind Billing tells a consistent story: you build payments and billing systems, and you show what changed when you did.",
+      "The ledger line is a model for the rest: it names the service and shows reconciliation breaks falling from about 300 a month to under 10. Your migration, audit, testing and invoicing work give a recruiter a similarly concrete picture of your technical and leadership work.",
+      "Your resume is unlikely to be the reason you don't get a call back. Competition for a particular role will also matter. Keep this version focused on senior backend payments roles."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10",
+        "cannot_tell": "Keep this line. It makes the problem and the improvement easy to grasp without making the reader decode the technology.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Software Engineer, Payments Platform"
+      ],
+      "why": "Your current role covers payment services, a ledger, an audit and mentoring engineers.",
+      "level": "Senior, led a team of 5 engineers through an audit and mentors 3 engineers",
+      "note": "Your experience points toward senior backend roles in payments and billing. The resume shows both technical delivery and leadership without claiming a people-management title.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 94
+  },
+  "presentation": {
+    "score": 94,
+    "band": "Clear and specific",
+    "model_score": 94,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments engineer whose resume connects technical work to scale and results.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 108,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 1,
+    "kinds": {
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Software Engineer, Payments Platform"
+      ],
+      "why": "Your current role covers payment services, a ledger, an audit and mentoring engineers.",
+      "level": "Senior, led a team of 5 engineers through an audit and mentors 3 engineers",
+      "note": "Your experience points toward senior backend roles in payments and billing. The resume shows both technical delivery and leadership without claiming a people-management title.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00455405,
+  "latency_ms": 8547
+}

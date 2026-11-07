@@ -1,0 +1,33 @@
+# h5_mismatched_posting, run 1
+Resume: ../2026-11-live-judgment/resumes/h5_data_analyst.txt (166 words), posting: ../2026-11-live-judgment/resumes/h5_nursing_posting.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ab8cd5a5; severity check off
+Outcome: report; cost $0.0085; 16.8s
+Case note: Data analyst against a registered nurse posting.
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A strong data analyst resume that doesn't show the credentials or patient care experience required for this nursing role.
+
+## Write-up
+Your resume tells a strong data analyst story: you moved from insurance reporting at Piedmont Insurance Services to sales and merchandising analysis at Carolina Home Goods. You show both the tools and the work teams used! For this nursing role, though, a recruiter would likely pass because your resume doesn't show an RN license or clinical training.
+
+The markdown line is a great model: it names what you analyzed, how much, and what the merchandising team adopted. Your claims reporting and work with several teams are relevant context, but they don't establish bedside care or EHR experience.
+
+For analyst jobs, your resume isn't likely to be the main thing standing between you and a callback; competition for the job matters too. For this posting, add your license, certifications, clinical training and patient care experience if you have them. If you don't, the nursing requirements are a substantial mismatch.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Data Analyst, line 3
+   line: "Analyzed markdown timing for 2,100 SKUs; the merchandising team adopted the recommended schedule in two categories"
+   can't tell: Keep this as a model. It connects your analysis to a decision another team made, without claiming more than the work shows.
+2. [line] Data Analyst, line 4
+   line: "Pull ad hoc analyses for the VP of Sales, about 10 requests a month"
+   can't tell: A recruiter can see who asks and how often, but not what the analyses cover. Name a subject so the work is easier to picture.
+   example: Pull ad hoc analyses for the VP of Sales on [subject], about 10 requests a month
+   question: What subjects do those requests cover?
+
+## Fit
+Roles: ["Data Analyst","Registered Nurse, Medical-Surgical Unit (Nights)"]
+Level: Analyst, with a current Data Analyst role and an earlier Junior Analyst role.
+Note: This nursing role is a substantial mismatch as written: your resume doesn't show the required RN license or BLS certification, clinical training, patient care or EHR experience. Your work with sales, merchandising, finance and insurance claims may be worth mentioning, but it doesn't replace nursing qualifications. Add any relevant credentials and clinical work only if you have them.
+Posting: A night-shift medical-surgical RN role providing patient care, administering treatments, documenting in an EHR and educating patients and families.
+Missing: ["Current unrestricted North Carolina RN license or compact state license","BLS certification required; ACLS within six months of hire","Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered","Experience with Epic or a comparable EHR","Ability to manage a patient assignment of 5 to 6 patients","Strong communication with patients, families, and the interdisciplinary team"]

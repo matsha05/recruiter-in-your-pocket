@@ -1,0 +1,28 @@
+# fr01b_backend_ic_backend_posting, run 1
+Resume: resumes/fr01_backend_ic_senior.txt (236 words), posting: resumes/posting_senior_backend.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ee57d907; severity check off
+Outcome: report; cost $0.0140; 16.0s
+Case note: P1. The same resume against a senior backend posting it fits. Expect the posting's title second and a fit note that says it fits.
+
+## Clear and specific (score 91; model wrote 91)
+## Verdict
+A senior backend engineer with substantial payments experience and specific results in reliability and scale.
+
+## Write-up
+Your resume is strong: it shows you building money-moving services and improving the systems around them. A recruiter can follow your move from insurance to freight technology to the payments platform at Lumen Ledger, with the scale and technical work made clear.
+
+The balance API line is a great model. It names the latency before and after your change and explains how you made it. Your current payments work leads, and Education follows Experience, so the most relevant work is easy to find.
+
+Your resume is ready to send. For Cobalt Pay, emphasize the payouts service, ledger migration, and incident work. If you owned the on-call path, led technical design reviews, or partnered with Finance and Risk on reconciliation and controls, add that work where it happened. The competition for the role and those specific requirements can still matter.
+
+## Cards (1; {"keep":1}); severity off; added []
+1. [keep] Senior Software Engineer, Payments Platform, line 3
+   line: "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache"
+   can't tell: Keep this as a model for the rest. A recruiter can see the service you improved and the technical choice behind the result.
+
+## Fit
+Roles: ["Senior Backend Engineer","Senior Backend Engineer, Money Movement"]
+Level: Senior, leads a ledger migration and mentors two engineers
+Note: Your resume doesn't show a Finance and Risk partnership on reconciliation and controls, or establish end-to-end on-call ownership. Otherwise, the match is strong: your payouts service, Go and PostgreSQL work, Kafka experience, ledger migration, and mentoring speak directly to the role. Leading technical design reviews is also worth naming if you did it.
+Posting: Cobalt Pay seeks a senior backend engineer to build and run reliable money movement services in Go, lead technical work, and partner on financial controls.
+Missing: ["Partner with Finance and Risk on reconciliation and controls","Own the reliability of the payouts path end to end, including on-call","Lead technical design reviews"]

@@ -1,0 +1,53 @@
+# b21_customer_success_manager_with_posting, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt (180 words), posting: ../2026-11-live-judgment/resumes/b_posting_customer_success_manager.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 338ac33a; severity check off
+Outcome: report; cost $0.0112; 22.5s
+Case note: The same resume with a posting attached.
+
+## Mostly clear (score 77; model wrote 77)
+## Verdict
+A mid-market Customer Success Manager with a defined account book, but few renewal results.
+
+## Write-up
+Your resume tells a clear story: you moved from support into customer success at Brightline Payroll Software and now manage mid-market accounts through renewal. A recruiter can see the book you handle, but has to ask what happened to those accounts, especially at renewal.
+
+The 48-account line is your best model. It names the customers and how many accounts you manage, so a recruiter can place your work quickly. The onboarding checklist is another useful detail: the whole CS team uses something you built.
+
+Let's start with the renewal strategy line, then add what you can about the reviews, onboarding and escalations. For the Brightline Analytics role, your mid-market SaaS work is relevant, but the resume doesn't yet show retention targets, VP-level sponsors or a BI tool.
+
+## Cards (6; {"keep":1,"line":5}); severity off; added []
+1. [keep] Customer Success Manager, line 1
+   line: "Manage a book of 48 mid-market accounts across healthcare and manufacturing"
+   can't tell: Keep this. It gives the account book a number and names the industries, without making a recruiter guess who you serve.
+2. [line] Customer Success Manager, line 2
+   line: "Run quarterly business reviews with customer finance and HR leads"
+   can't tell: The cadence and attendees are clear. The role you're targeting also asks for VP-level sponsors, and this line doesn't say how senior the attendees are or what the reviews cover.
+   example: Run quarterly business reviews with customer finance and HR leads, including [sponsor titles], covering [topics]
+   question: What do you cover in these reviews, and what are the attendees' titles?
+3. [line] Customer Success Manager, line 3
+   line: "Partnered with Sales on renewal strategy for at-risk accounts"
+   can't tell: A recruiter can see you worked with Sales, but not what you contributed or what happened at renewal. That matters for a job accountable for retention.
+   example: Partnered with Sales on renewal strategy for at-risk accounts by [contribution]; [renewal result]
+   question: What was your part in the renewal strategy, and what documented renewal results can you share?
+4. [line] Customer Success Manager, line 4
+   line: "Built an onboarding checklist now used by the whole CS team"
+   can't tell: Getting the whole CS team to use your checklist is worth keeping. What did it cover, and did you track any change after it was introduced?
+   example: Built an onboarding checklist covering [checklist contents], now used by the whole CS team; [what changed]
+   question: What does the checklist cover, and what changed after the team started using it?
+5. [line] Customer Success Manager, line 5
+   line: "Handle escalations with Support and Product when payroll runs fail"
+   can't tell: Failed payroll runs make the stakes clear, but a recruiter can't tell what you do with Support and Product to resolve them.
+   example: Handle escalations with Support and Product when payroll runs fail by [your actions], resulting in [resolution]
+   question: What do you do during a payroll escalation, and how is it resolved?
+6. [line] Skills
+   line: "Gainsight, Salesforce, Zendesk, QBR planning, renewal forecasting"
+   can't tell: Gainsight and Salesforce match the posting, but the resume doesn't show whether you've used them to examine customer usage. It also doesn't name a BI tool.
+   example: Gainsight, Salesforce, Zendesk, QBR planning, renewal forecasting; [usage data work and tools]
+   question: Which tools have you used to examine customer usage, and what did you look for?
+
+## Fit
+Roles: ["Customer Success Manager","Customer Success Manager, Mid-Market"]
+Level: Experienced individual contributor, managing a book of 48 mid-market accounts
+Note: The role asks for retention or expansion results, VP-level QBRs and comfort with a BI tool; your resume doesn't show those yet. Your SaaS customer success work, QBRs, at-risk renewal work and Gainsight and Salesforce skills align with the job. The posted book is 60 to 80 accounts, compared with the 48 you currently manage.
+Posting: Mid-market SaaS customer success role owning renewals and expansion, onboarding, QBRs and at-risk account plans.
+Missing: ["A track record of hitting retention or expansion targets, with numbers you can talk about","Experience running QBRs with VP-level sponsors","Comfortable with usage data: Gainsight, Salesforce, and a BI tool such as Looker"]

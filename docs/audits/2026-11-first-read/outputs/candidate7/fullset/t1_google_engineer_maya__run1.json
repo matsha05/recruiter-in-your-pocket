@@ -1,0 +1,308 @@
+{
+  "case_id": "t1_google_engineer_maya",
+  "batch": "tier",
+  "run": 1,
+  "note": "Blind pick v5 bp5-04: a recognisable employer; decision 5 says the lift is one rung, bounded, declared.",
+  "resume_file": "resumes/t1_google_engineer_maya.txt",
+  "resume_sha256": "33dda6e3127bc91e9403ec54f16eb5edb2457f302567f72abdb4e0603a91b3c0",
+  "resume_words": 151,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:34:29.248Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5834,
+        "completion_tokens": 1411,
+        "total_tokens": 7245,
+        "cached_prompt_tokens": 5196,
+        "cache_write_prompt_tokens": 635,
+        "reasoning_tokens": 500
+      },
+      "cost_usd": 0.00811155,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 17049
+    }
+  ],
+  "resume_prompt_sha256": "1c0fe4fe961ccb0d0e49bbe71ac8427d0281ae6e9a1efa6ac35e3ee49a99ed47",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 74,
+    "lifted_by_employer": true,
+    "verdict": "Strong backend results at Harborview, but the Google role leaves the work and its scale unclear.",
+    "write_up": [
+      "You’re a software engineer at Google with earlier backend work at Harborview Analytics. Your Harborview bullets show large systems and measurable changes, but your current role leaves a recruiter guessing about the features and tools you work on now.",
+      "The dashboard latency line is the model: it names the problem, the change you made and the before-and-after result. Google gets your resume opened and lifts it one band, but the bullets under that name don’t yet show work at the same level of detail.",
+      "Let’s start with the internal tool at Google. Name a feature you worked on, the stack and how many teams use it, if you can share those details. Then make the reviews, on-call work and mentoring more concrete without overstating your part."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Google, line 1",
+        "line": "- Worked on features for an internal tool used by other engineering teams",
+        "cannot_tell": "A recruiter can’t tell what the features did, which technologies you used or how widely the tool was used. Those details matter for a current software engineering role.",
+        "example": "Worked on [features] for an internal tool used by [number] engineering teams, using [tools or languages]",
+        "question": "Which features did you work on, what did you use to build them, and how many teams used the tool?"
+      },
+      {
+        "kind": "line",
+        "where": "Google, line 2",
+        "line": "- Collaborated with cross-functional partners on requirements",
+        "cannot_tell": "Requirements for what? A recruiter can’t tell what you contributed or which work the partners were planning.",
+        "example": "Collaborated with cross-functional partners on requirements for [feature or tool], contributing [your contribution]",
+        "question": "What were the requirements for, and what did you contribute?"
+      },
+      {
+        "kind": "line",
+        "where": "Google, line 3",
+        "line": "- Participated in code reviews, design reviews and the on-call rotation",
+        "cannot_tell": "These are familiar engineering responsibilities, but there’s no example of what you reviewed or handled on call.",
+        "example": "Participated in code reviews and design reviews for [work reviewed] and the on-call rotation for [system supported]",
+        "question": "What work did you review, and which system did you support on call?"
+      },
+      {
+        "kind": "line",
+        "where": "Google, line 4",
+        "line": "- Mentored a new team member",
+        "cannot_tell": "Mentoring is useful to show, but a recruiter can’t tell what you helped the new team member learn or do.",
+        "example": "Mentored a new team member on [work or skills]",
+        "question": "What did you help the new team member learn or do?"
+      },
+      {
+        "kind": "keep",
+        "where": "Harborview Analytics, line 2",
+        "line": "- Cut p95 query latency on the customer dashboard from 4.2 s to 900 ms by rewriting the aggregation layer",
+        "cannot_tell": "Keep this as a model. It connects your own technical work to a customer-facing improvement and gives a recruiter a way to understand the change.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Software Engineer"
+      ],
+      "why": "Your headline and both listed roles point to software engineering, with backend services and infrastructure work at Harborview.",
+      "level": "Experienced software engineer; led a migration with two other engineers",
+      "note": "Your experience points toward backend software engineering. The Harborview work makes that direction clear; adding the technologies and features from Google would bring your current role into the story.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 74,
+    "lifted_by_employer": true,
+    "verdict": "Strong backend results at Harborview, but the Google role leaves the work and its scale unclear.",
+    "write_up": [
+      "You’re a software engineer at Google with earlier backend work at Harborview Analytics. Your Harborview bullets show large systems and measurable changes, but your current role leaves a recruiter guessing about the features and tools you work on now.",
+      "The dashboard latency line is the model: it names the problem, the change you made and the before-and-after result. Google gets your resume opened and lifts it one band, but the bullets under that name don’t yet show work at the same level of detail.",
+      "Let’s start with the internal tool at Google. Name a feature you worked on, the stack and how many teams use it, if you can share those details. Then make the reviews, on-call work and mentoring more concrete without overstating your part."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Google, line 1",
+        "line": "Worked on features for an internal tool used by other engineering teams",
+        "cannot_tell": "A recruiter can’t tell what the features did, which technologies you used or how widely the tool was used. Those details matter for a current software engineering role.",
+        "example": "Worked on [features] for an internal tool used by [number] engineering teams, using [tools or languages]",
+        "question": "Which features did you work on, what did you use to build them, and how many teams used the tool?"
+      },
+      {
+        "kind": "line",
+        "where": "Google, line 2",
+        "line": "Collaborated with cross-functional partners on requirements",
+        "cannot_tell": "Requirements for what? A recruiter can’t tell what you contributed or which work the partners were planning.",
+        "example": "Collaborated with cross-functional partners on requirements for [feature or tool], contributing [your contribution]",
+        "question": "What were the requirements for, and what did you contribute?"
+      },
+      {
+        "kind": "line",
+        "where": "Google, line 3",
+        "line": "Participated in code reviews, design reviews and the on-call rotation",
+        "cannot_tell": "These are familiar engineering responsibilities, but there’s no example of what you reviewed or handled on call.",
+        "example": "Participated in code reviews and design reviews for [work reviewed] and the on-call rotation for [system supported]",
+        "question": "What work did you review, and which system did you support on call?"
+      },
+      {
+        "kind": "line",
+        "where": "Google, line 4",
+        "line": "Mentored a new team member",
+        "cannot_tell": "Mentoring is useful to show, but a recruiter can’t tell what you helped the new team member learn or do.",
+        "example": "Mentored a new team member on [work or skills]",
+        "question": "What did you help the new team member learn or do?"
+      },
+      {
+        "kind": "keep",
+        "where": "Harborview Analytics, line 2",
+        "line": "Cut p95 query latency on the customer dashboard from 4.2 s to 900 ms by rewriting the aggregation layer",
+        "cannot_tell": "Keep this as a model. It connects your own technical work to a customer-facing improvement and gives a recruiter a way to understand the change.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Software Engineer"
+      ],
+      "why": "Your headline and both listed roles point to software engineering, with backend services and infrastructure work at Harborview.",
+      "level": "Experienced software engineer; led a migration with two other engineers",
+      "note": "Your experience points toward backend software engineering. The Harborview work makes that direction clear; adding the technologies and features from Google would bring your current role into the story.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 74
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 74,
+    "lifted_by_employer": true,
+    "verdict": "Strong backend results at Harborview, but the Google role leaves the work and its scale unclear.",
+    "write_up": [
+      "You’re a software engineer at Google with earlier backend work at Harborview Analytics. Your Harborview bullets show large systems and measurable changes, but your current role leaves a recruiter guessing about the features and tools you work on now.",
+      "The dashboard latency line is the model: it names the problem, the change you made and the before-and-after result. Google gets your resume opened and lifts it one band, but the bullets under that name don’t yet show work at the same level of detail.",
+      "Let’s start with the internal tool at Google. Name a feature you worked on, the stack and how many teams use it, if you can share those details. Then make the reviews, on-call work and mentoring more concrete without overstating your part."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Google, line 1",
+        "line": "Worked on features for an internal tool used by other engineering teams",
+        "cannot_tell": "A recruiter can’t tell what the features did, which technologies you used or how widely the tool was used. Those details matter for a current software engineering role.",
+        "example": "Worked on [features] for an internal tool used by [number] engineering teams, using [tools or languages]",
+        "question": "Which features did you work on, what did you use to build them, and how many teams used the tool?"
+      },
+      {
+        "kind": "line",
+        "where": "Google, line 2",
+        "line": "Collaborated with cross-functional partners on requirements",
+        "cannot_tell": "Requirements for what? A recruiter can’t tell what you contributed or which work the partners were planning.",
+        "example": "Collaborated with cross-functional partners on requirements for [feature or tool], contributing [your contribution]",
+        "question": "What were the requirements for, and what did you contribute?"
+      },
+      {
+        "kind": "line",
+        "where": "Google, line 3",
+        "line": "Participated in code reviews, design reviews and the on-call rotation",
+        "cannot_tell": "These are familiar engineering responsibilities, but there’s no example of what you reviewed or handled on call.",
+        "example": "Participated in code reviews and design reviews for [work reviewed] and the on-call rotation for [system supported]",
+        "question": "What work did you review, and which system did you support on call?"
+      },
+      {
+        "kind": "line",
+        "where": "Google, line 4",
+        "line": "Mentored a new team member",
+        "cannot_tell": "Mentoring is useful to show, but a recruiter can’t tell what you helped the new team member learn or do.",
+        "example": "Mentored a new team member on [work or skills]",
+        "question": "What did you help the new team member learn or do?"
+      },
+      {
+        "kind": "keep",
+        "where": "Harborview Analytics, line 2",
+        "line": "Cut p95 query latency on the customer dashboard from 4.2 s to 900 ms by rewriting the aggregation layer",
+        "cannot_tell": "Keep this as a model. It connects your own technical work to a customer-facing improvement and gives a recruiter a way to understand the change.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Software Engineer"
+      ],
+      "why": "Your headline and both listed roles point to software engineering, with backend services and infrastructure work at Harborview.",
+      "level": "Experienced software engineer; led a migration with two other engineers",
+      "note": "Your experience points toward backend software engineering. The Harborview work makes that direction clear; adding the technologies and features from Google would bring your current role into the story.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 74
+  },
+  "presentation": {
+    "score": 74,
+    "band": "Mostly clear",
+    "model_score": 74,
+    "lifted_by_employer": true,
+    "verdict": "Strong backend results at Harborview, but the Google role leaves the work and its scale unclear.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 126,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Google, line 1",
+        "line": "Worked on features for an internal tool used by other engineering teams",
+        "blanks": 3,
+        "question": "Which features did you work on, what did you use to build them, and how many teams used the tool?"
+      },
+      {
+        "kind": "line",
+        "where": "Google, line 2",
+        "line": "Collaborated with cross-functional partners on requirements",
+        "blanks": 2,
+        "question": "What were the requirements for, and what did you contribute?"
+      },
+      {
+        "kind": "line",
+        "where": "Google, line 3",
+        "line": "Participated in code reviews, design reviews and the on-call rotation",
+        "blanks": 2,
+        "question": "What work did you review, and which system did you support on call?"
+      },
+      {
+        "kind": "line",
+        "where": "Google, line 4",
+        "line": "Mentored a new team member",
+        "blanks": 1,
+        "question": "What did you help the new team member learn or do?"
+      },
+      {
+        "kind": "keep",
+        "where": "Harborview Analytics, line 2",
+        "line": "Cut p95 query latency on the customer dashboard from 4.2 s to 900 ms by rewriting the aggregation layer",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "line": 4,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Software Engineer"
+      ],
+      "why": "Your headline and both listed roles point to software engineering, with backend services and infrastructure work at Harborview.",
+      "level": "Experienced software engineer; led a migration with two other engineers",
+      "note": "Your experience points toward backend software engineering. The Harborview work makes that direction clear; adding the technologies and features from Google would bring your current role into the story.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00811155,
+  "latency_ms": 17066
+}

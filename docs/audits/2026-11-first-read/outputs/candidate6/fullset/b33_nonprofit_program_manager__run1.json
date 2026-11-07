@@ -1,0 +1,312 @@
+{
+  "case_id": "b33_nonprofit_program_manager",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_nonprofit_program_manager_1.txt",
+  "resume_sha256": "eed001bb0dd40fc28e9488669ec9cea7f7a73eecaca46214d5f584dae2b6d5c9",
+  "resume_words": 146,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:24:15.619Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5885,
+        "completion_tokens": 1779,
+        "total_tokens": 7664,
+        "cached_prompt_tokens": 5222,
+        "cache_write_prompt_tokens": 660,
+        "reasoning_tokens": 890
+      },
+      "cost_usd": 0.0099841,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 20897
+    }
+  ],
+  "resume_prompt_sha256": "5827dcf1b71d049c0db123f36eb5d0286f3c433f3e55a732f42012b2b93288f6",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 75,
+    "lifted_by_employer": false,
+    "verdict": "A youth workforce program manager with a clear career path and unanswered questions about program reach.",
+    "write_up": [
+      "You moved from tutoring at City Year Baltimore to coordinating and then managing youth workforce programs at Harbor Pathways. A recruiter can follow that path and would likely move your resume forward with questions, particularly about how many students and employers your current program reaches.",
+      "Your tutoring line is a good model: it names the grade and both subjects, so the work is easy to understand. Your current role also shows the people you supervise, but it doesn't yet say what that team handles or what the program has achieved.",
+      "Let's start with the summer jobs program. Add the number of students served and a result you can stand behind, then give the same treatment to the employer partnerships and participant tracking."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Program Manager, line 1",
+        "line": "- Manage a summer jobs program placing high school students with local employers",
+        "cannot_tell": "A recruiter can see who the program serves, but not how many students it reaches or what the placements achieved. Those details matter for a program manager role.",
+        "example": "Manage a summer jobs program placing [number] high school students with local employers; [program result]",
+        "question": "How many students does the program serve, and what placement result can you report?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 2",
+        "line": "- Supervise 4 program coordinators and 20 seasonal staff",
+        "cannot_tell": "The team numbers are useful, but a recruiter can't tell what the coordinators and seasonal staff handle. Give their work a little room here.",
+        "example": "Supervise 4 program coordinators and 20 seasonal staff who [what the team handles]",
+        "question": "What do the coordinators and seasonal staff handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 4",
+        "line": "- Recruit and onboard employer partners",
+        "cannot_tell": "Recruiting partners is central to the summer jobs program, but a recruiter can't tell how many employers you work with.",
+        "example": "Recruit and onboard [number] employer partners for [program]",
+        "question": "How many employer partners have you recruited and onboarded, and for which program?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 5",
+        "line": "- Track participant outcomes in Salesforce",
+        "cannot_tell": "Salesforce is named, but participant outcomes could mean several things. What do you track, and how is that information used?",
+        "example": "Track [participant measures] in Salesforce for [use of the information]",
+        "question": "Which participant measures do you track, and what are they used for?"
+      },
+      {
+        "kind": "keep",
+        "where": "AmeriCorps Member, line 1",
+        "line": "- Tutored ninth graders in math and English",
+        "cannot_tell": "Keep this direct approach: the action is tied to a defined group and the work you did with them. A recruiter doesn't have to guess who was served.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Program Manager, Youth Workforce",
+        "Program Coordinator"
+      ],
+      "why": "Your current role manages a youth workforce program, after a coordinator role at the same organization.",
+      "level": "Program manager, supervising 4 program coordinators and 20 seasonal staff",
+      "note": "Your experience points toward youth workforce program management, with employer partnerships and grant reporting as part of the work. Adding program reach and results would show more of what you've managed.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 75,
+    "lifted_by_employer": false,
+    "verdict": "A youth workforce program manager with a clear career path and unanswered questions about program reach.",
+    "write_up": [
+      "You moved from tutoring at City Year Baltimore to coordinating and then managing youth workforce programs at Harbor Pathways. A recruiter can follow that path and would likely move your resume forward with questions, particularly about how many students and employers your current program reaches.",
+      "Your tutoring line is a good model: it names the grade and both subjects, so the work is easy to understand. Your current role also shows the people you supervise, but it doesn't yet say what that team handles or what the program has achieved.",
+      "Let's start with the summer jobs program. Add the number of students served and a result you can stand behind, then give the same treatment to the employer partnerships and participant tracking."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Program Manager, line 1",
+        "line": "Manage a summer jobs program placing high school students with local employers",
+        "cannot_tell": "A recruiter can see who the program serves, but not how many students it reaches or what the placements achieved. Those details matter for a program manager role.",
+        "example": "Manage a summer jobs program placing [number] high school students with local employers; [program result]",
+        "question": "How many students does the program serve, and what placement result can you report?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 2",
+        "line": "Supervise 4 program coordinators and 20 seasonal staff",
+        "cannot_tell": "The team numbers are useful, but a recruiter can't tell what the coordinators and seasonal staff handle. Give their work a little room here.",
+        "example": "Supervise 4 program coordinators and 20 seasonal staff who [what the team handles]",
+        "question": "What do the coordinators and seasonal staff handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 4",
+        "line": "Recruit and onboard employer partners",
+        "cannot_tell": "Recruiting partners is central to the summer jobs program, but a recruiter can't tell how many employers you work with.",
+        "example": "Recruit and onboard [number] employer partners for [program]",
+        "question": "How many employer partners have you recruited and onboarded, and for which program?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 5",
+        "line": "Track participant outcomes in Salesforce",
+        "cannot_tell": "Salesforce is named, but participant outcomes could mean several things. What do you track, and how is that information used?",
+        "example": "Track [participant measures] in Salesforce for [use of the information]",
+        "question": "Which participant measures do you track, and what are they used for?"
+      },
+      {
+        "kind": "keep",
+        "where": "AmeriCorps Member, line 1",
+        "line": "Tutored ninth graders in math and English",
+        "cannot_tell": "Keep this direct approach: the action is tied to a defined group and the work you did with them. A recruiter doesn't have to guess who was served.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Program Manager, Youth Workforce",
+        "Program Coordinator"
+      ],
+      "why": "Your current role manages a youth workforce program, after a coordinator role at the same organization.",
+      "level": "Program manager, supervising 4 program coordinators and 20 seasonal staff",
+      "note": "Your experience points toward youth workforce program management, with employer partnerships and grant reporting as part of the work. Adding program reach and results would show more of what you've managed.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 75
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 75,
+    "lifted_by_employer": false,
+    "verdict": "A youth workforce program manager with a clear career path and unanswered questions about program reach.",
+    "write_up": [
+      "You moved from tutoring at City Year Baltimore to coordinating and then managing youth workforce programs at Harbor Pathways. A recruiter can follow that path and would likely move your resume forward with questions, particularly about how many students and employers your current program reaches.",
+      "Your tutoring line is a good model: it names the grade and both subjects, so the work is easy to understand. Your current role also shows the people you supervise, but it doesn't yet say what that team handles or what the program has achieved.",
+      "Let's start with the summer jobs program. Add the number of students served and a result you can stand behind, then give the same treatment to the employer partnerships and participant tracking."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Program Manager, line 1",
+        "line": "Manage a summer jobs program placing high school students with local employers",
+        "cannot_tell": "A recruiter can see who the program serves, but not how many students it reaches or what the placements achieved. Those details matter for a program manager role.",
+        "example": "Manage a summer jobs program placing [number] high school students with local employers; [program result]",
+        "question": "How many students does the program serve, and what placement result can you report?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 2",
+        "line": "Supervise 4 program coordinators and 20 seasonal staff",
+        "cannot_tell": "The team numbers are useful, but a recruiter can't tell what the coordinators and seasonal staff handle. Give their work a little room here.",
+        "example": "Supervise 4 program coordinators and 20 seasonal staff who [what the team handles]",
+        "question": "What do the coordinators and seasonal staff handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 4",
+        "line": "Recruit and onboard employer partners",
+        "cannot_tell": "Recruiting partners is central to the summer jobs program, but a recruiter can't tell how many employers you work with.",
+        "example": "Recruit and onboard [number] employer partners for [program]",
+        "question": "How many employer partners have you recruited and onboarded, and for which program?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 5",
+        "line": "Track participant outcomes in Salesforce",
+        "cannot_tell": "Salesforce is named, but participant outcomes could mean several things. What do you track, and how is that information used?",
+        "example": "Track [participant measures] in Salesforce for [use of the information]",
+        "question": "Which participant measures do you track, and what are they used for?"
+      },
+      {
+        "kind": "keep",
+        "where": "AmeriCorps Member, line 1",
+        "line": "Tutored ninth graders in math and English",
+        "cannot_tell": "Keep this direct approach: the action is tied to a defined group and the work you did with them. A recruiter doesn't have to guess who was served.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Program Manager, Youth Workforce",
+        "Program Coordinator"
+      ],
+      "why": "Your current role manages a youth workforce program, after a coordinator role at the same organization.",
+      "level": "Program manager, supervising 4 program coordinators and 20 seasonal staff",
+      "note": "Your experience points toward youth workforce program management, with employer partnerships and grant reporting as part of the work. Adding program reach and results would show more of what you've managed.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 75
+  },
+  "presentation": {
+    "score": 75,
+    "band": "Mostly clear",
+    "model_score": 75,
+    "lifted_by_employer": false,
+    "verdict": "A youth workforce program manager with a clear career path and unanswered questions about program reach.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 122,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Program Manager, line 1",
+        "line": "Manage a summer jobs program placing high school students with local employers",
+        "blanks": 2,
+        "question": "How many students does the program serve, and what placement result can you report?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 2",
+        "line": "Supervise 4 program coordinators and 20 seasonal staff",
+        "blanks": 1,
+        "question": "What do the coordinators and seasonal staff handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 4",
+        "line": "Recruit and onboard employer partners",
+        "blanks": 2,
+        "question": "How many employer partners have you recruited and onboarded, and for which program?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 5",
+        "line": "Track participant outcomes in Salesforce",
+        "blanks": 2,
+        "question": "Which participant measures do you track, and what are they used for?"
+      },
+      {
+        "kind": "keep",
+        "where": "AmeriCorps Member, line 1",
+        "line": "Tutored ninth graders in math and English",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "line": 4,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Program Manager, Youth Workforce",
+        "Program Coordinator"
+      ],
+      "why": "Your current role manages a youth workforce program, after a coordinator role at the same organization.",
+      "level": "Program manager, supervising 4 program coordinators and 20 seasonal staff",
+      "note": "Your experience points toward youth workforce program management, with employer partnerships and grant reporting as part of the work. Adding program reach and results would show more of what you've managed.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0099841,
+  "latency_ms": 20904
+}

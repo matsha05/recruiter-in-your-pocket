@@ -1,0 +1,30 @@
+# b26_construction_pm_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_construction_pm_strong_1.txt (136 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 41bcacc0; severity check off
+Outcome: report; cost $0.0063; 12.9s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A construction project manager with clear project values, trade counts and delivery results.
+
+## Write-up
+This is a strong construction project management resume! You show the value of the projects you run, the trades you manage and the results you delivered at Capitol Builders. A recruiter can quickly see the commercial tenant improvement and retail work you do.
+
+The change-order line is a useful model: it gives a contract-value measure and the years it covers. Your earlier Valley Commercial Construction role adds office and retail project work and scheduling with superintendents.
+
+Start with the grocery store line and add what you did to bring it in ahead of schedule. Your resume already gives you a solid case; the match between your project experience and a particular job will matter too.
+
+## Cards (2; {"line":1,"keep":1}); severity off; added []
+1. [line] Project Manager, line 2
+   line: "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024"
+   can't tell: The project value and early finish are compelling. What did you do to keep the build ahead of schedule?
+   example: Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024 by [what you did to keep the project ahead of schedule]
+   question: What did you do that helped the grocery store build finish ahead of schedule?
+2. [keep] Project Manager, line 4
+   line: "Kept change orders under 3% of contract value across 2024 and 2025 projects"
+   can't tell: Keep this as a model. It names the measure, the threshold and the projects it covers without making a recruiter guess.
+
+## Fit
+Roles: ["Project Manager","Assistant Project Manager"]
+Level: Project manager, runs concurrent commercial projects
+Note: Your experience points toward construction project management for tenant improvements and retail builds. The project values, trade counts and delivery results make that direction easy to see.

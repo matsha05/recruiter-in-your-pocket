@@ -1,0 +1,51 @@
+# b06_staff_accountant, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_staff_accountant_1.txt (98 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 1c0fe4fe; severity check off
+Outcome: report; cost $0.0091; 19.2s
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+A staff accountant with a clear progression at Rivermark, but little detail about the work behind the duties.
+
+## Write-up
+It’s common for accounting resumes to list duties this way. Yours shows a move from Accounts Payable Clerk to Staff Accountant at Rivermark Building Supply, but most of the recent lines stop at the name of the task. A recruiter looking for a staff accountant has little to compare with other resumes.
+
+The purchase order line is your best model: it names the documents you matched, so a reader can picture the work. Your accounting degree and progression are easy to find, but the resume doesn’t say how much work you handle or what your part in the close and audit involves.
+
+Let’s start with month-end close. Name the tasks you handle, then add the types of accounts, schedules and audit materials you work with. Use volumes or results where you can confirm them.
+
+## Cards (6; {"structure":1,"line":5}); severity off; added []
+1. [structure] Rivermark Building Supply
+   line: "The resume doesn't describe Rivermark Building Supply's business or size."
+   can't tell: A recruiter who doesn't know Rivermark can't tell much about the business behind your accounting work. A short description could give the work useful context.
+   question: What does Rivermark supply, and how would you describe the business's size?
+2. [line] Staff Accountant, line 1
+   line: "Responsible for month-end close tasks"
+   can't tell: Month-end close can cover a lot of work. A recruiter can't tell which tasks were yours.
+   example: Responsible for [month-end close tasks] for [accounts or areas]
+   question: Which month-end close tasks do you handle, and for which accounts or areas?
+3. [line] Staff Accountant, line 2
+   line: "Prepare journal entries and account reconciliations"
+   can't tell: This names two useful deliverables, but not the accounts or volume you handle. Those details would distinguish your work from a standard duty list.
+   example: Prepare journal entries and account reconciliations for [account types], handling [number] entries and reconciliations [period]
+   question: Which accounts do you work on, and how many entries and reconciliations do you handle in a typical period?
+4. [line] Staff Accountant, line 3
+   line: "Assist with the annual audit"
+   can't tell: The audit matters, but a recruiter can't tell what your assistance included. The documents or requests you worked on would show your part.
+   example: Assist with the annual audit by [what you do] for [audit materials or requests]
+   question: What do you do for the annual audit, and which materials or requests do you handle?
+5. [line] Staff Accountant, line 4
+   line: "Maintain fixed asset schedules"
+   can't tell: The schedules are named, but the assets and your work on the schedules aren't. What do you update or review?
+   example: Maintain fixed asset schedules for [asset types], including [schedule work]
+   question: Which assets do the schedules cover, and what work do you do on them?
+6. [line] Staff Accountant, line 5
+   line: "Process accounts payable when needed"
+   can't tell: A recruiter can see that you still handle accounts payable, but not what you process or how often it comes up in this role.
+   example: Process accounts payable for [invoice types] when needed, handling [number] invoices [period]
+   question: Which invoices do you process, and how many do you handle in a typical period when this work comes up?
+
+## Fit
+Roles: ["Staff Accountant"]
+Level: Staff accountant, with a prior Accounts Payable Clerk role
+Note: Your experience points toward staff accounting roles, particularly those involving close and accounts payable. More detail about the accounts and audit work would help distinguish the current role from a list of standard duties.

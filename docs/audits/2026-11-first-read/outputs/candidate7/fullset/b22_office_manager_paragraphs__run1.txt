@@ -1,0 +1,31 @@
+# b22_office_manager_paragraphs, run 1
+Resume: ../2026-11-live-judgment/resumes/b_office_manager_paragraphs.txt (219 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 1c0fe4fe; severity check off
+Outcome: report; cost $0.0090; 18.6s
+Case note: Paragraph format, no bullets.
+
+## Clear and specific (score 87; model wrote 87)
+## Verdict
+An experienced office manager whose law office work comes with the numbers and responsibilities a recruiter needs.
+
+## Write-up
+Your resume is strong: it shows how you keep a six-attorney law office running, from court deadlines to billing and supervision! The earlier dentistry and insurance roles build a consistent office management story.
+
+The QuickBooks line is a model for the rest: it names the work, the tool, and roughly how many invoices you handle. Your experience comes before education, and the progression into office management is easy to follow.
+
+Let's add what onboarding the practice management software involved, then give the insurance claims report a little more detail. Your resume isn't the obvious obstacle to being considered; how competitive an office manager job is will still matter.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Office Manager, bookkeeping
+   line: "Office Manager, Harrod and Blake Law Office, Louisville, KY, May 2018 to present. I run the front office for a six-attorney firm. I handle scheduling for the attorneys, manage the firm's calendar of court dates and filing deadlines, order supplies, and handle vendor contracts for the copier, phones, and cleaning. I do the bookkeeping in QuickBooks, including client billing of roughly 90 invoices a month and the monthly trust account reconciliation. I hired and supervise two receptionists and I onboarded the firm's new practice management software in 2022, which replaced paper files for all new matters."
+   can't tell: Keep this as a model. You pair a recurring responsibility with a useful measure and name the trust account work.
+2. [line] Office Coordinator, payments and claims
+   line: "Office Coordinator, Riverside Family Dentistry, Louisville, KY, August 2014 to April 2018. Checked in patients, verified insurance, and scheduled appointments for a two-dentist practice that saw about 40 patients a day. Posted payments and worked the insurance claims aging report each week. Trained three new front desk staff over four years."
+   can't tell: The weekly report is named, but 'worked' leaves your part in it open. What did you do with the claims on the report?
+   example: Posted payments and worked the insurance claims aging report each week, including [what you did with the report].
+   question: What did you do with the claims on the weekly aging report?
+
+## Fit
+Roles: ["Office Manager","Office Coordinator"]
+Level: Experienced office manager, supervises two receptionists
+Note: Your experience points toward office management in a small professional practice. The law office role is particularly useful for jobs that involve billing, deadlines and staff supervision.

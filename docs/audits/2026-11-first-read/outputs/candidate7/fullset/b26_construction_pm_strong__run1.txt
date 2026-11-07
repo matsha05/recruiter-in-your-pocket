@@ -1,0 +1,30 @@
+# b26_construction_pm_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_construction_pm_strong_1.txt (136 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 1c0fe4fe; severity check off
+Outcome: report; cost $0.0062; 12.6s
+
+## Clear and specific (score 89; model wrote 89)
+## Verdict
+A construction project manager with project values, trade counts, and delivery results a recruiter can readily compare.
+
+## Write-up
+This is a strong construction project manager resume! Your work at Capitol Builders shows both the projects you run and the results you've delivered, from tenant improvements to a grocery store build. A recruiter can see how big the work is without guessing.
+
+The grocery store line is the model: it names the build, its value, and when you delivered it against schedule. Your move from Assistant Project Manager at Valley Commercial Construction to Project Manager at Capitol Builders is easy to follow, and your experience leads your education.
+
+Let's add how you kept change orders under 3% of contract value. Your resume already makes a strong case on its own; competition for a particular job still matters.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Project Manager, line 2
+   line: "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024"
+   can't tell: Keep this as a model. It gives a recruiter a concrete project and a result in one quick sentence.
+2. [line] Project Manager, line 4
+   line: "Kept change orders under 3% of contract value across 2024 and 2025 projects"
+   can't tell: The figure is useful, but a recruiter can't tell what you did to keep change orders down. That would show how you managed the projects.
+   example: Kept change orders under 3% of contract value across 2024 and 2025 projects by [what you did]
+   question: What did you do to keep change orders under 3% of contract value across those projects?
+
+## Fit
+Roles: ["Project Manager"]
+Level: Project manager, running 4 to 6 concurrent projects
+Note: Your experience points to commercial construction project management, particularly tenant improvements and retail builds. The project values and trade counts give a recruiter useful context for comparing roles.

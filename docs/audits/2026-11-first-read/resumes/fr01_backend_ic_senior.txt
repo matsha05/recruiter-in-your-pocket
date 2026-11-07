@@ -1,0 +1,31 @@
+PRIYA NATARAJAN
+Seattle, WA | priya.natarajan.dev@example.com | github.com/pnatarajan-example
+
+Senior Backend Engineer
+
+EXPERIENCE
+
+Senior Software Engineer, Payments Platform
+Lumen Ledger (fintech, 400 employees), Seattle, WA | March 2022 - Present
+- Designed and built the idempotent payouts service in Go and PostgreSQL that now settles about 1.8M payouts a month
+- Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends
+- Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache
+- Wrote the on-call runbooks for the payments services and ran the incident reviews for the platform group
+- Mentor two mid-level engineers through code review and design docs
+
+Software Engineer II
+Harborview Freight Tech, Tacoma, WA | June 2019 - February 2022
+- Built the carrier rate-quote API in Java and Spring Boot used by 300 shipper accounts
+- Moved nightly batch billing jobs to an event-driven pipeline on Kafka, ending the 6-hour overnight run
+- Added contract tests between the quoting and billing services, which caught 14 breaking changes before release
+
+Software Engineer
+Northgate Insurance, Bellevue, WA | July 2017 - May 2019
+- Maintained the claims intake services in Java
+- Wrote integration tests for the policy rating engine
+
+EDUCATION
+B.S. Computer Science, University of Washington, 2017
+
+SKILLS
+Go, Java, Kotlin, PostgreSQL, Kafka, Redis, AWS (ECS, RDS, SQS), Terraform, gRPC, Datadog

@@ -1,0 +1,36 @@
+# fr03_account_executive_quota, run 1
+Resume: resumes/fr03_account_executive_quota.txt (128 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0064; 13.1s
+Case note: P3 and P4 (sales). 132% of quota with no quota, territory or other year; $1.4M with no period. Expect cards asking for the frame; nothing supplied outside a bracket.
+
+## Clear and specific (score 86; model wrote 86)
+## Verdict
+An Account Executive with quota attainment, new-business sales and a clear promotion into the role.
+
+## Write-up
+This is a strong sales resume! You show a move from sales development to Account Executive at Vantage Fleet Software, then give a recruiter quota attainment and new-business revenue to hold onto.
+
+The line about booking 25+ meetings per month works especially well: it names the work, the pace and who received the meetings. Your experience leads, and the Account Executive headline matches your current job.
+
+Let's add a time period to the $1.4M and spell out your part in demos and pilots. Your resume isn't likely to be the main thing holding you back; how competitive an Account Executive job is will also matter.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] Account Executive, line 2
+   line: "Closed $1.4M in new business"
+   can't tell: Closing $1.4M is a concrete result, but a recruiter can't tell the period it covers or the kinds of customers you sold to.
+   example: Closed $1.4M in new business with [customer type] in [time period]
+   question: What period does the $1.4M cover, and what kinds of customers did you sell to?
+2. [line] Account Executive, line 5
+   line: "Partnered with solutions engineers on demos and pilots"
+   can't tell: A recruiter can see who you worked with, but not your part in the demos and pilots. What did you handle alongside the solutions engineers?
+   example: Partnered with solutions engineers on demos and pilots, handling [your contribution]
+   question: What did you handle in the demos and pilots?
+3. [keep] Sales Development Representative, line 1
+   line: "Booked 25+ meetings per month for the account executive team"
+   can't tell: Keep this as a model: it ties an action you owned to a measurable pace without making a recruiter guess what the number represents.
+
+## Fit
+Roles: ["Account Executive","Sales Development Representative"]
+Level: Experienced individual contributor
+Note: Your recent work points most directly to Account Executive roles. The sales development role shows the path into full-cycle sales, and the current role gives a recruiter concrete sales results.

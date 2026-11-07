@@ -1,0 +1,25 @@
+# b28_cybersecurity_analyst, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_cybersecurity_analyst_1.txt (154 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ee57d907; severity check off
+Outcome: report; cost $0.0050; 10.1s
+
+## Clear and specific (score 90; model wrote 90)
+## Verdict
+A senior security analyst whose detection and response work comes with concrete results.
+
+## Write-up
+Your security work stands out because you show both the technical work and what changed! A recruiter sees a move from monitoring client environments at Northgate Managed Security to detection engineering and incident response at Capital Ridge Bank.
+
+The Splunk detection rules line is a great model: it names the platform, the framework, how many rules you built, and the reduction in false-positive alerts. The incident response line also gives a recruiter a concrete measure to take away.
+
+Your resume is in good shape for senior detection and response roles. It isn't likely to be the reason you don't get a call back; how competitive a particular job is will matter too.
+
+## Cards (1; {"keep":1}); severity off; added []
+1. [keep] Senior Security Analyst, Detection and Response, line 1
+   line: "Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%"
+   can't tell: Keep this line. It connects a substantial body of detection work to a change in the alerts analysts have to handle.
+
+## Fit
+Roles: ["Senior Security Analyst, Detection and Response","Security Operations Analyst"]
+Level: Senior individual contributor, leads incident response and mentors 2 analysts
+Note: Your experience points toward senior detection and response work in financial services. The earlier managed security role adds experience across client environments.

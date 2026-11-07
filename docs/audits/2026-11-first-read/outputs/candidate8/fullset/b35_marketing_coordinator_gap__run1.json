@@ -1,0 +1,375 @@
+{
+  "case_id": "b35_marketing_coordinator_gap",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Gap with nothing after it.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_marketing_coordinator_gap_1.txt",
+  "resume_sha256": "eb744b698d829395ca7fb3ace93d0351860ad9281132916fbf232d42c03ebf78",
+  "resume_words": 126,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:49:30.295Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5729,
+        "completion_tokens": 1803,
+        "total_tokens": 7532,
+        "cached_prompt_tokens": 5142,
+        "cache_write_prompt_tokens": 584,
+        "reasoning_tokens": 697
+      },
+      "cost_usd": 0.0100051,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 21318
+    }
+  ],
+  "resume_prompt_sha256": "5cba8f052feab05101dfe43138d650d9cc25bac9a46f7e3aa35d9efb9d96fad4",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "A marketing coordinator with clear channel experience, but no account of the time since March 2024.",
+    "write_up": [
+      "Your resume points to marketing coordinator work across email, events, copy and social media at Juniper Outdoor Co. and Fernwood Coffee Roasters. It's common to list the channels and regular duties this way, but the work can blend into a pile when a recruiter can't tell what you handled within each campaign or event.",
+      "The weekly email calendar is your best model: it names your responsibility, its frequency and the 120,000-subscriber list. Your experience is easy to follow, but nothing is dated after March 2024, so a recruiter is left wondering what you've done since.",
+      "Let's start by accounting for that time honestly, then return to the Juniper trade shows and campaign reports. Add the parts you handled and the measures you tracked; leave the email line as a model for the rest."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after March 2024.",
+        "cannot_tell": "A recruiter can't tell what you've done since the Juniper role ended. If it fits your situation, you can name caregiving, a career break and what you did during it, or real freelance work. Don't call the time something it wasn't.",
+        "example": "March 2024 - Present  [what you did]",
+        "question": "What would you like to share about your time since March 2024?"
+      },
+      {
+        "kind": "keep",
+        "where": "Marketing Coordinator, line 1",
+        "line": "- Managed the weekly email calendar for a list of 120,000 subscribers",
+        "cannot_tell": "Keep this as your model. It gives a recruiter a concrete responsibility and a sense of how regularly you handled it.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 2",
+        "line": "- Coordinated trade show logistics for four events a year",
+        "cannot_tell": "The four events give the work a useful frame, but logistics can cover a lot. A recruiter can't tell which parts you coordinated.",
+        "example": "Coordinated [which logistics] for four trade shows a year",
+        "question": "Which trade show logistics did you coordinate?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 4",
+        "line": "- Scheduled social posts across Instagram and Facebook",
+        "cannot_tell": "A recruiter can see the platforms, but not what you scheduled or how often. That would show more of the social work behind the calendar.",
+        "example": "Scheduled [what content] across Instagram and Facebook [how often]",
+        "question": "What content did you schedule, and how often?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 5",
+        "line": "- Tracked campaign results in a monthly report for the marketing director",
+        "cannot_tell": "The monthly report is a concrete deliverable. Which results did you track? That tells a recruiter what you were watching for.",
+        "example": "Tracked [which campaign results] in a monthly report for the marketing director",
+        "question": "Which campaign results did you track in the report?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Assistant, line 1",
+        "line": "- Helped plan in-store tasting events",
+        "cannot_tell": "Helping plan an event can mean several things. A recruiter can't tell which part of the tastings was yours.",
+        "example": "Helped plan in-store tasting events by [your contribution]",
+        "question": "What did you contribute to planning the tasting events?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Assistant, line 2",
+        "line": "- Updated the company blog and newsletter",
+        "cannot_tell": "Updating could mean writing, editing or publishing. Name what you did so a recruiter can see how this work relates to your later copy and email responsibilities.",
+        "example": "Updated the company blog and newsletter by [what you did]",
+        "question": "What did you do when updating the blog and newsletter?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Marketing Coordinator",
+        "Marketing Assistant"
+      ],
+      "why": "Your most recent role is Marketing Coordinator, with email, events, product copy and social media work.",
+      "level": "Coordinator, with a prior Marketing Assistant role",
+      "note": "Your experience points toward marketing coordinator roles with a mix of email, events and content work. Account for the time after the Juniper role and add your part in the less detailed tasks.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "A marketing coordinator with clear channel experience, but no account of the time since March 2024.",
+    "write_up": [
+      "Your resume points to marketing coordinator work across email, events, copy and social media at Juniper Outdoor Co. and Fernwood Coffee Roasters. It's common to list the channels and regular duties this way, but the work can blend into a pile when a recruiter can't tell what you handled within each campaign or event.",
+      "The weekly email calendar is your best model: it names your responsibility, its frequency and the 120,000-subscriber list. Your experience is easy to follow, but nothing is dated after March 2024, so a recruiter is left wondering what you've done since.",
+      "Let's start by accounting for that time honestly, then return to the Juniper trade shows and campaign reports. Add the parts you handled and the measures you tracked; leave the email line as a model for the rest."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after March 2024.",
+        "cannot_tell": "A recruiter can't tell what you've done since the Juniper role ended. If it fits your situation, you can name caregiving, a career break and what you did during it, or real freelance work. Don't call the time something it wasn't.",
+        "example": "March 2024 - Present [what you did]",
+        "question": "What would you like to share about your time since March 2024?"
+      },
+      {
+        "kind": "keep",
+        "where": "Marketing Coordinator, line 1",
+        "line": "Managed the weekly email calendar for a list of 120,000 subscribers",
+        "cannot_tell": "Keep this as your model. It gives a recruiter a concrete responsibility and a sense of how regularly you handled it.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 2",
+        "line": "Coordinated trade show logistics for four events a year",
+        "cannot_tell": "The four events give the work a useful frame, but logistics can cover a lot. A recruiter can't tell which parts you coordinated.",
+        "example": "Coordinated [which logistics] for four trade shows a year",
+        "question": "Which trade show logistics did you coordinate?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 4",
+        "line": "Scheduled social posts across Instagram and Facebook",
+        "cannot_tell": "A recruiter can see the platforms, but not what you scheduled or how often. That would show more of the social work behind the calendar.",
+        "example": "Scheduled [what content] across Instagram and Facebook [how often]",
+        "question": "What content did you schedule, and how often?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 5",
+        "line": "Tracked campaign results in a monthly report for the marketing director",
+        "cannot_tell": "The monthly report is a concrete deliverable. Which results did you track? That tells a recruiter what you were watching for.",
+        "example": "Tracked [which campaign results] in a monthly report for the marketing director",
+        "question": "Which campaign results did you track in the report?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Assistant, line 1",
+        "line": "Helped plan in-store tasting events",
+        "cannot_tell": "Helping plan an event can mean several things. A recruiter can't tell which part of the tastings was yours.",
+        "example": "Helped plan in-store tasting events by [your contribution]",
+        "question": "What did you contribute to planning the tasting events?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Assistant, line 2",
+        "line": "Updated the company blog and newsletter",
+        "cannot_tell": "Updating could mean writing, editing or publishing. Name what you did so a recruiter can see how this work relates to your later copy and email responsibilities.",
+        "example": "Updated the company blog and newsletter by [what you did]",
+        "question": "What did you do when updating the blog and newsletter?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Marketing Coordinator",
+        "Marketing Assistant"
+      ],
+      "why": "Your most recent role is Marketing Coordinator, with email, events, product copy and social media work.",
+      "level": "Coordinator, with a prior Marketing Assistant role",
+      "note": "Your experience points toward marketing coordinator roles with a mix of email, events and content work. Account for the time after the Juniper role and add your part in the less detailed tasks.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 67
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "A marketing coordinator with clear channel experience, but no account of the time since March 2024.",
+    "write_up": [
+      "Your resume points to marketing coordinator work across email, events, copy and social media at Juniper Outdoor Co. and Fernwood Coffee Roasters. It's common to list the channels and regular duties this way, but the work can blend into a pile when a recruiter can't tell what you handled within each campaign or event.",
+      "The weekly email calendar is your best model: it names your responsibility, its frequency and the 120,000-subscriber list. Your experience is easy to follow, but nothing is dated after March 2024, so a recruiter is left wondering what you've done since.",
+      "Let's start by accounting for that time honestly, then return to the Juniper trade shows and campaign reports. Add the parts you handled and the measures you tracked; leave the email line as a model for the rest."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after March 2024.",
+        "cannot_tell": "A recruiter can't tell what you've done since the Juniper role ended. If it fits your situation, you can name caregiving, a career break and what you did during it, or real freelance work. Don't call the time something it wasn't.",
+        "example": "March 2024 - Present [what you did]",
+        "question": "What would you like to share about your time since March 2024?"
+      },
+      {
+        "kind": "keep",
+        "where": "Marketing Coordinator, line 1",
+        "line": "Managed the weekly email calendar for a list of 120,000 subscribers",
+        "cannot_tell": "Keep this as your model. It gives a recruiter a concrete responsibility and a sense of how regularly you handled it.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 2",
+        "line": "Coordinated trade show logistics for four events a year",
+        "cannot_tell": "The four events give the work a useful frame, but logistics can cover a lot. A recruiter can't tell which parts you coordinated.",
+        "example": "Coordinated [which logistics] for four trade shows a year",
+        "question": "Which trade show logistics did you coordinate?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 4",
+        "line": "Scheduled social posts across Instagram and Facebook",
+        "cannot_tell": "A recruiter can see the platforms, but not what you scheduled or how often. That would show more of the social work behind the calendar.",
+        "example": "Scheduled [what content] across Instagram and Facebook [how often]",
+        "question": "What content did you schedule, and how often?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 5",
+        "line": "Tracked campaign results in a monthly report for the marketing director",
+        "cannot_tell": "The monthly report is a concrete deliverable. Which results did you track? That tells a recruiter what you were watching for.",
+        "example": "Tracked [which campaign results] in a monthly report for the marketing director",
+        "question": "Which campaign results did you track in the report?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Assistant, line 1",
+        "line": "Helped plan in-store tasting events",
+        "cannot_tell": "Helping plan an event can mean several things. A recruiter can't tell which part of the tastings was yours.",
+        "example": "Helped plan in-store tasting events by [your contribution]",
+        "question": "What did you contribute to planning the tasting events?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Assistant, line 2",
+        "line": "Updated the company blog and newsletter",
+        "cannot_tell": "Updating could mean writing, editing or publishing. Name what you did so a recruiter can see how this work relates to your later copy and email responsibilities.",
+        "example": "Updated the company blog and newsletter by [what you did]",
+        "question": "What did you do when updating the blog and newsletter?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Marketing Coordinator",
+        "Marketing Assistant"
+      ],
+      "why": "Your most recent role is Marketing Coordinator, with email, events, product copy and social media work.",
+      "level": "Coordinator, with a prior Marketing Assistant role",
+      "note": "Your experience points toward marketing coordinator roles with a mix of email, events and content work. Account for the time after the Juniper role and add your part in the less detailed tasks.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 67
+  },
+  "presentation": {
+    "score": 67,
+    "band": "Needs more context",
+    "model_score": 67,
+    "lifted_by_employer": false,
+    "verdict": "A marketing coordinator with clear channel experience, but no account of the time since March 2024.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 133,
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after March 2024.",
+        "blanks": 1,
+        "question": "What would you like to share about your time since March 2024?"
+      },
+      {
+        "kind": "keep",
+        "where": "Marketing Coordinator, line 1",
+        "line": "Managed the weekly email calendar for a list of 120,000 subscribers",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 2",
+        "line": "Coordinated trade show logistics for four events a year",
+        "blanks": 1,
+        "question": "Which trade show logistics did you coordinate?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 4",
+        "line": "Scheduled social posts across Instagram and Facebook",
+        "blanks": 2,
+        "question": "What content did you schedule, and how often?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 5",
+        "line": "Tracked campaign results in a monthly report for the marketing director",
+        "blanks": 1,
+        "question": "Which campaign results did you track in the report?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Assistant, line 1",
+        "line": "Helped plan in-store tasting events",
+        "blanks": 1,
+        "question": "What did you contribute to planning the tasting events?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Assistant, line 2",
+        "line": "Updated the company blog and newsletter",
+        "blanks": 1,
+        "question": "What did you do when updating the blog and newsletter?"
+      }
+    ],
+    "card_count": 7,
+    "kinds": {
+      "dates": 1,
+      "keep": 1,
+      "line": 5
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Marketing Coordinator",
+        "Marketing Assistant"
+      ],
+      "why": "Your most recent role is Marketing Coordinator, with email, events, product copy and social media work.",
+      "level": "Coordinator, with a prior Marketing Assistant role",
+      "note": "Your experience points toward marketing coordinator roles with a mix of email, events and content work. Account for the time after the Juniper role and add your part in the less detailed tasks.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0100051,
+  "latency_ms": 21321
+}

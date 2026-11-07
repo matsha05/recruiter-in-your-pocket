@@ -1,0 +1,26 @@
+# fr01a_backend_ic_no_posting, run 1
+Resume: resumes/fr01_backend_ic_senior.txt (236 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 01c2028d; severity check off
+Outcome: report; cost $0.0051; 10.2s
+Case note: P1. Senior backend IC, no direct reports, no posting. Expect the role read as Senior Backend Engineer and a level that says IC, no reports.
+
+## Clear and specific (score 91; model wrote 91)
+## Verdict
+A senior backend engineer whose payments work connects technical decisions to scale and results.
+
+## Write-up
+This is a strong senior backend resume! Your path from insurance services to freight systems and then payments makes sense, and the Lumen Ledger work shows both technical ownership and the scale of the systems you build.
+
+The balance API line is a great model: it names the latency before and after, then explains the change that got it there. The payouts service, ledger migration and mentoring add a picture of your work without making a recruiter guess.
+
+Your resume isn't likely to be the thing holding you back. Keep the strongest Lumen Ledger work up front; for a particular role, competition and a referral may matter more than further polishing.
+
+## Cards (1; {"keep":1}); severity off; added []
+1. [keep] Senior Software Engineer, Payments Platform, line 3
+   line: "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache"
+   can't tell: Keep this as a model. It gives a recruiter a concrete technical problem and shows the decision you made to solve it.
+
+## Fit
+Roles: ["Senior Backend Engineer","Senior Software Engineer, Payments Platform"]
+Level: Senior individual contributor, mentors two mid-level engineers
+Note: Your experience points toward senior backend roles, particularly in payments and other systems where reliability matters. The resume shows system design, production operations and mentoring.

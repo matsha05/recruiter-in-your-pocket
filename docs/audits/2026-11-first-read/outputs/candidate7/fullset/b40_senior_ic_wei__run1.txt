@@ -1,0 +1,41 @@
+# b40_senior_ic_wei, run 1
+Resume: ../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/4-senior-ic-wei.txt (361 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 1c0fe4fe; severity check off
+Outcome: report; cost $0.0088; 16.5s
+Case note: Senior IC (bar persona).
+
+## Mostly clear (score 84; model wrote 84)
+## Verdict
+A staff payments engineer with substantial architecture work, though the scale of the current platform is missing.
+
+## Write-up
+You come across as a staff software engineer who has grown from cloud storage into payments infrastructure at Brightline. A recruiter has good reason to move this forward: the ledger redesign, idempotency framework and fraud pipeline show substantial distributed systems work. The main question is how big the current platform and team are.
+
+The idempotency line is a strong model: it connects adoption across payment services to the duplicate-charge incidents it eliminated. Your progression at Brightline is easy to follow, and your recent stack is right where a recruiter needs it.
+
+Let's start with the current role. Add the team count and a measure of the ledger platform's size if you can substantiate them. Then return to the reconciliation line and show what you did to reduce breaks and manual work.
+
+## Cards (4; {"line":3,"keep":1}); severity off; added []
+1. [line] Staff Software Engineer, line 1
+   line: "Technical lead for the ledger and settlement platform team"
+   can't tell: A recruiter can see what the team works on, but not how many people are on it. That context helps show the reach of your technical leadership.
+   example: Technical lead for the ledger and settlement platform team of [number] people
+   question: How many people were on the team?
+2. [line] Staff Software Engineer, line 2
+   line: "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB"
+   can't tell: The architecture and your lead role are clear. What isn't clear is how much work the ledger handles, which matters when judging a distributed system.
+   example: Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, handling [transaction volume]
+   question: What transaction volume or other measure of the ledger's size can you share?
+3. [keep] Staff Software Engineer, line 3
+   line: "Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents"
+   can't tell: Keep this as a model. It names the change you drove, where it was adopted and the problem it removed.
+4. [line] Senior Software Engineer, line 3
+   line: "Reduced reconciliation break rate and manual ops effort"
+   can't tell: These are useful improvements, but a recruiter can't tell what you did to achieve them or how much they changed. The reconciliation service above names the work, but this line doesn't connect it to the reductions.
+   example: Reduced reconciliation break rate by [amount] and manual ops effort by [amount] through [work done]
+   question: What work reduced the break rate and manual effort, and how did each change?
+
+## Fit
+Roles: ["Staff Software Engineer"]
+Level: Staff, technical lead for the ledger and settlement platform team
+Note: Your experience points toward staff engineering roles in payments and distributed systems. The ledger's scale and the size of the team would help a recruiter compare your current work with those roles.

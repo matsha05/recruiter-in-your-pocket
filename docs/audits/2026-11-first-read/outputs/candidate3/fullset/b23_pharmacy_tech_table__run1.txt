@@ -1,0 +1,26 @@
+# b23_pharmacy_tech_table, run 1
+Resume: ../2026-11-live-judgment/resumes/b_pharmacy_tech_table.txt (209 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 01c2028d; severity check off
+Outcome: report; cost $0.0084; 17.4s
+Case note: Tables rendered to tab-separated text.
+
+## Clear and specific (score 90; model wrote 90)
+## Verdict
+A pharmacy technician’s progression from retail to inpatient work, with the work and its scale easy to see.
+
+## Write-up
+Your inpatient pharmacy work is easy to picture: sterile doses, cabinet restocking for six nursing units, and training new technicians. That detail makes this a strong resume!
+
+The cabinet restocking line is the model: it names the work, the units you serve, and the change in stockout reports. Your California license and sterile compounding certification are also easy to find alongside your move from retail to hospital pharmacy.
+
+Your resume isn't the obvious thing standing between you and a callback. Keep the details that match each opening prominent; the particular job and how competitive it is will matter too.
+
+## Cards (1; {"keep":1}); severity off; added []
+1. [keep] Pharmacy Technician II, cabinet restocking
+   line: "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024"
+   can't tell: Keep this as a model. A recruiter can see both the responsibility you hold and the weekly measure alongside it.
+
+## Fit
+Roles: ["Pharmacy Technician II","Pharmacy Technician"]
+Level: Experienced pharmacy technician, with inpatient sterile compounding and technician training
+Note: Your recent work points toward inpatient pharmacy technician roles, with retail experience behind it. The California license and sterile compounding certification are stated clearly.

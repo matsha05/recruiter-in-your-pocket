@@ -1,0 +1,219 @@
+{
+  "case_id": "b02_teacher",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/resumes/b_teacher.txt",
+  "resume_sha256": "7d89b420ec093fb2b4c948a14fbcee2a65d2a90d95c146e4f916e2d0a37955ee",
+  "resume_words": 202,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:34:50.722Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6040,
+        "completion_tokens": 878,
+        "total_tokens": 6918,
+        "cached_prompt_tokens": 5196,
+        "cache_write_prompt_tokens": 841,
+        "reasoning_tokens": 324
+      },
+      "cost_usd": 0.00570405,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 11399
+    }
+  ],
+  "resume_prompt_sha256": "1c0fe4fe961ccb0d0e49bbe71ac8427d0281ae6e9a1efa6ac35e3ee49a99ed47",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "An elementary teacher whose classroom results and grade-level leadership are easy to see.",
+    "write_up": [
+      "This is a strong teaching resume! Your work at Lincoln Heights shows classroom teaching, reading growth, curriculum training and grade-level leadership, with enough detail to make the work concrete.",
+      "The reading growth line is the standout: it names the district assessment, the change and the period over which it happened. Your grades, Washington certification and English Language Learner endorsement are also easy to find.",
+      "Leave the classroom and leadership details in place. Add what you did on the positive behavior support committee, and consider naming the teaching changes behind the reading growth if you can. Your resume makes a strong case; the competitiveness of a particular job will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "4th Grade Teacher, line 2",
+        "line": "- Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years",
+        "cannot_tell": "Use this as a model for naming the measure and showing where it started and ended. A recruiter can see what changed without guessing what the figures refer to.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "2nd Grade Teacher, line 3",
+        "line": "- Served on the school's positive behavior support committee",
+        "cannot_tell": "A recruiter can see which committee you joined, but not what you did on it. Name your contribution to show what that work involved.",
+        "example": "Served on the school's positive behavior support committee and [what you did]",
+        "question": "What did you do on the positive behavior support committee?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "4th Grade Teacher",
+        "2nd Grade Teacher"
+      ],
+      "why": "Your recent roles teach elementary grades, and your Washington certificate covers Elementary Education K-8.",
+      "level": "Experienced elementary teacher, leads a grade-level team of 4 teachers",
+      "note": "Your experience points toward elementary classroom teaching, with additional grade-level leadership and curriculum training. Your English Language Learner endorsement is relevant to the students you describe teaching.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "An elementary teacher whose classroom results and grade-level leadership are easy to see.",
+    "write_up": [
+      "This is a strong teaching resume! Your work at Lincoln Heights shows classroom teaching, reading growth, curriculum training and grade-level leadership, with enough detail to make the work concrete.",
+      "The reading growth line is the standout: it names the district assessment, the change and the period over which it happened. Your grades, Washington certification and English Language Learner endorsement are also easy to find.",
+      "Leave the classroom and leadership details in place. Add what you did on the positive behavior support committee, and consider naming the teaching changes behind the reading growth if you can. Your resume makes a strong case; the competitiveness of a particular job will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "4th Grade Teacher, line 2",
+        "line": "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years",
+        "cannot_tell": "Use this as a model for naming the measure and showing where it started and ended. A recruiter can see what changed without guessing what the figures refer to.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "2nd Grade Teacher, line 3",
+        "line": "Served on the school's positive behavior support committee",
+        "cannot_tell": "A recruiter can see which committee you joined, but not what you did on it. Name your contribution to show what that work involved.",
+        "example": "Served on the school's positive behavior support committee and [what you did]",
+        "question": "What did you do on the positive behavior support committee?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "4th Grade Teacher",
+        "2nd Grade Teacher"
+      ],
+      "why": "Your recent roles teach elementary grades, and your Washington certificate covers Elementary Education K-8.",
+      "level": "Experienced elementary teacher, leads a grade-level team of 4 teachers",
+      "note": "Your experience points toward elementary classroom teaching, with additional grade-level leadership and curriculum training. Your English Language Learner endorsement is relevant to the students you describe teaching.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "An elementary teacher whose classroom results and grade-level leadership are easy to see.",
+    "write_up": [
+      "This is a strong teaching resume! Your work at Lincoln Heights shows classroom teaching, reading growth, curriculum training and grade-level leadership, with enough detail to make the work concrete.",
+      "The reading growth line is the standout: it names the district assessment, the change and the period over which it happened. Your grades, Washington certification and English Language Learner endorsement are also easy to find.",
+      "Leave the classroom and leadership details in place. Add what you did on the positive behavior support committee, and consider naming the teaching changes behind the reading growth if you can. Your resume makes a strong case; the competitiveness of a particular job will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "4th Grade Teacher, line 2",
+        "line": "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years",
+        "cannot_tell": "Use this as a model for naming the measure and showing where it started and ended. A recruiter can see what changed without guessing what the figures refer to.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "2nd Grade Teacher, line 3",
+        "line": "Served on the school's positive behavior support committee",
+        "cannot_tell": "A recruiter can see which committee you joined, but not what you did on it. Name your contribution to show what that work involved.",
+        "example": "Served on the school's positive behavior support committee and [what you did]",
+        "question": "What did you do on the positive behavior support committee?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "4th Grade Teacher",
+        "2nd Grade Teacher"
+      ],
+      "why": "Your recent roles teach elementary grades, and your Washington certificate covers Elementary Education K-8.",
+      "level": "Experienced elementary teacher, leads a grade-level team of 4 teachers",
+      "note": "Your experience points toward elementary classroom teaching, with additional grade-level leadership and curriculum training. Your English Language Learner endorsement is relevant to the students you describe teaching.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "presentation": {
+    "score": 88,
+    "band": "Clear and specific",
+    "model_score": 88,
+    "lifted_by_employer": false,
+    "verdict": "An elementary teacher whose classroom results and grade-level leadership are easy to see.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 110,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "4th Grade Teacher, line 2",
+        "line": "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "2nd Grade Teacher, line 3",
+        "line": "Served on the school's positive behavior support committee",
+        "blanks": 1,
+        "question": "What did you do on the positive behavior support committee?"
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "keep": 1,
+      "line": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "4th Grade Teacher",
+        "2nd Grade Teacher"
+      ],
+      "why": "Your recent roles teach elementary grades, and your Washington certificate covers Elementary Education K-8.",
+      "level": "Experienced elementary teacher, leads a grade-level team of 4 teachers",
+      "note": "Your experience points toward elementary classroom teaching, with additional grade-level leadership and curriculum training. Your English Language Learner endorsement is relevant to the students you describe teaching.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00570405,
+  "latency_ms": 11562
+}

@@ -1,0 +1,41 @@
+# fr03_account_executive_quota, run 1
+Resume: resumes/fr03_account_executive_quota.txt (128 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 1c0fe4fe; severity check off
+Outcome: report; cost $0.0067; 13.6s
+Case note: P3 and P4 (sales). 132% of quota with no quota, territory or other year; $1.4M with no period. Expect cards asking for the frame; nothing supplied outside a bracket.
+
+## Mostly clear (score 78; model wrote 78)
+## Verdict
+An Account Executive with strong sales results, but a recruiter needs context to compare them.
+
+## Write-up
+Your resume points clearly to Account Executive work: you moved from sales development into closing new business at Vantage Fleet Software. A recruiter can see results and would likely move it forward, with questions about the quota and the deals behind them.
+
+The line about booking 25+ meetings per month is a good model: it names the work and gives a rate a recruiter can understand. Your promotion and President's Club recognition add to the sales story. The current role's quota percentage needs a dollar baseline, while the $1.4M total needs a timeframe.
+
+Start with the FY2025 quota line, then add the period and deal details behind the new-business total. For the demos and pilots, name your part in the work without turning a partnership into sole ownership.
+
+## Cards (4; {"line":3,"keep":1}); severity off; added []
+1. [line] Account Executive, line 1
+   line: "Achieved 132% of quota in FY2025"
+   can't tell: A recruiter can see you beat quota, but not what the quota was or which territory you sold into. Those details help them compare the result.
+   example: Achieved 132% of quota in FY2025 against a quota of [quota amount] for [territory]
+   question: What was your FY2025 quota, and what territory did it cover?
+2. [line] Account Executive, line 2
+   line: "Closed $1.4M in new business"
+   can't tell: The total is substantial, but the resume doesn't say over what period you closed it or how many deals it represents.
+   example: Closed $1.4M in new business across [number] deals in [period]
+   question: Over what period did you close the $1.4M, and how many deals did it include?
+3. [line] Account Executive, line 5
+   line: "Partnered with solutions engineers on demos and pilots"
+   can't tell: A recruiter knows you worked with solutions engineers, but not what you handled in the demos and pilots.
+   example: Partnered with solutions engineers on demos and pilots, handling [your contribution]
+   question: What did you handle in the demos and pilots?
+4. [keep] Sales Development Representative, line 1
+   line: "Booked 25+ meetings per month for the account executive team"
+   can't tell: Keep this. It connects your own action to a recurring sales activity, with the 25+ qualifier intact.
+
+## Fit
+Roles: ["Account Executive"]
+Level: Account Executive, promoted from Sales Development Representative
+Note: Your experience points toward Account Executive roles in software sales. Adding the quota baseline and deal context will help recruiters compare your results with the roles they're filling.

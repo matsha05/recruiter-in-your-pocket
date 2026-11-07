@@ -1,0 +1,31 @@
+# b14_teacher_to_instructional_designer, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_teacher_to_instructional_designer_1.txt (164 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5cba8f05; severity check off
+Outcome: report; cost $0.0074; 15.7s
+Case note: Career changer.
+
+## Mostly clear (score 79; model wrote 79)
+## Verdict
+A mathematics teacher with clear classroom work and an emerging digital learning design portfolio.
+
+## Write-up
+You’re a Mathematics Teacher at Cedar Creek High School, with earlier middle school experience at Pinewood. I read this for teaching roles: your subjects, class sizes and curriculum work give a recruiter a concrete picture of your classroom.
+
+The Canvas module is a strong model for the rest of your resume. It names the unit you redesigned and the format you made for students. Your teaching experience also sits above education, so a recruiter gets to the work quickly.
+
+Start with the professional learning community line and add what you lead the group in doing. If you’re also applying for learning design roles, bring a portfolio project into the resume and explain your part in it.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Mathematics Teacher, Cedar Creek, line 2
+   line: "Redesigned the Algebra II unit on functions into a self-paced online module in Canvas"
+   can't tell: Keep this as a model. It connects a teaching need to a named deliverable and tool, without making a claim about results you haven’t stated.
+2. [line] Mathematics Teacher, Cedar Creek, line 3
+   line: "Lead the math department's professional learning community"
+   can't tell: A recruiter can see that you lead the group, but not what the group works on or what you do as its lead.
+   example: Lead the math department's professional learning community in [what the community works on], including [what you do as lead]
+   question: What does the community work on, and what do you do as its lead?
+
+## Fit
+Roles: ["Mathematics Teacher"]
+Level: Experienced teacher, leads the math department's professional learning community
+Note: Your experience points clearly toward mathematics teaching. The Canvas module and portfolio also point toward learning design, though the resume gives less detail about that work.

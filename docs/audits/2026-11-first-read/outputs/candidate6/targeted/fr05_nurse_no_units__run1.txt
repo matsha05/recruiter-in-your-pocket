@@ -1,0 +1,61 @@
+# fr05_nurse_no_units, run 1
+Resume: resumes/fr05_nurse_no_units.txt (140 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5827dcf1; severity check off
+Outcome: report; cost $0.0098; 20.8s
+Case note: P4 (nursing). Titles without a unit; RN with no state. Expect the unit and the license state asked for; no invented ratio.
+
+## Needs more context (score 65; model wrote 65)
+## Verdict
+A hospital RN with charge and precepting experience, but no unit named in either nursing role.
+
+## Write-up
+You’ve worked as a Registered Nurse at Riverside Methodist Hospital and Mount Carmel East, after a patient care technician role. This is a common nursing resume pattern: the duties are familiar, but the units and the care you provided are hard to distinguish from those of other hospital RNs. A recruiter will likely finish it, then hesitate without knowing where your experience fits.
+
+The Epic line is a useful model because it names the records you worked on and the system you used. Your weekend charge nurse and new graduate precepting work also deserve more room. The RN license is listed, but its issuing state isn’t.
+
+Let’s start with the Riverside role. Name the unit and the care you provide there, then unpack what you do as charge nurse and preceptor. Add the unit at Mount Carmel East and the state of your RN license too.
+
+## Cards (8; {"line":7,"keep":1}); severity off; added []
+1. [line] Riverside Registered Nurse, line 1
+   line: "Provide direct patient care for adult patients across 12-hour shifts"
+   can't tell: A recruiter can see that you care for adults, but not which unit you work on or what that care involves. The unit is one of the first things a nursing recruiter looks for.
+   example: Provide direct patient care for adult patients on [unit], including [care provided], across 12-hour shifts
+   question: Which unit do you work on, and what care do you provide there?
+2. [line] Riverside Registered Nurse, line 2
+   line: "Administer medications and monitor patient response"
+   can't tell: Medication administration is part of many RN jobs. The line doesn’t say which medications you commonly administer or what monitoring involves for your patients.
+   example: Administer [medication types] and monitor patient response by [monitoring activities]
+   question: Which medications do you commonly administer, and how do you monitor patients’ responses?
+3. [line] Riverside Registered Nurse, line 3
+   line: "Educate patients and families on discharge plans"
+   can't tell: A recruiter can see who you educate, but not what you cover or how you prepare them for discharge.
+   example: Educate patients and families on discharge plans, including [education topics], using [education approach]
+   question: What do you cover with patients and families, and how do you teach it?
+4. [line] Riverside Registered Nurse, line 4
+   line: "Serve as charge nurse on weekends"
+   can't tell: Charge nurse work is worth highlighting, but a recruiter can’t tell what you handle in that role.
+   example: Serve as charge nurse on weekends, handling [charge nurse responsibilities]
+   question: What are your responsibilities when you serve as charge nurse?
+5. [line] Riverside Registered Nurse, line 5
+   line: "Precept new graduate nurses"
+   can't tell: Precepting new graduates is meaningful work. A recruiter can’t tell what you teach or how you support them.
+   example: Precept new graduate nurses on [skills or tasks] through [precepting activities]
+   question: What do you teach new graduate nurses, and how do you support them?
+6. [line] Mount Carmel East Registered Nurse, line 1
+   line: "Cared for patients before and after surgery"
+   can't tell: The surgical care is clear, but the unit and the care you provided aren’t named. Those details show where this nursing experience fits.
+   example: Cared for patients before and after surgery on [unit], including [care provided]
+   question: Which unit was this, and what care did you provide before and after surgery?
+7. [keep] Mount Carmel East Registered Nurse, line 2
+   line: "Documented assessments and care plans in Epic"
+   can't tell: Keep this as a model: it gives a recruiter two concrete parts of your nursing work and names the system you used.
+8. [line] Licenses and certifications
+   line: "RN, BLS, ACLS"
+   can't tell: Your RN license is listed, but its issuing state isn’t. A recruiter needs that detail for a nursing role; your Columbus location doesn’t establish it.
+   example: RN, [licensing state]; BLS; ACLS
+   question: Which state issued your RN license?
+
+## Fit
+Roles: ["Registered Nurse"]
+Level: Experienced RN with weekend charge nurse and new graduate precepting duties
+Note: Your experience points toward hospital nursing, including care for adults and patients before and after surgery. Naming the units would help a recruiter judge which nursing roles fit.

@@ -1,0 +1,51 @@
+# b35_marketing_coordinator_gap, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_marketing_coordinator_gap_1.txt (126 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 1c0fe4fe; severity check off
+Outcome: report; cost $0.0082; 17.0s
+Case note: Gap with nothing after it.
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+A marketing coordinator with concrete email and events work, but nothing accounts for time since March 2024.
+
+## Write-up
+Your resume points to marketing coordinator work across email, events and social media at Juniper Outdoor Co., following a marketing assistant role at Fernwood Coffee Roasters. A recruiter can see the work, but the resume leaves the time after March 2024 unexplained. That may be enough for them to move on after finishing it.
+
+The weekly email calendar is your best model: it names what you managed, how often and the subscriber list. The trade show line also gives the work a useful measure. Your experience is easy to find above education.
+
+Let’s start with what you’ve done since March 2024, whether that belongs in a job entry or a brief, honest note. Then add a little more about the social posts and campaign report, and show what your part in the Fernwood tasting events involved.
+
+## Cards (6; {"dates":1,"keep":1,"line":4}); severity off; added []
+1. [dates] Dates
+   line: "Nothing is dated after March 2024."
+   can't tell: A recruiter can't tell what you've done since the Juniper Outdoor Co. role. If you took time for caregiving or a career break, you can name that; include freelance or consulting work only if it was real. A referral may matter more when the time is left unexplained.
+   example: March 2024 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]
+   question: What have you done since March 2024 that you'd be comfortable including?
+2. [keep] Marketing Coordinator, line 1
+   line: "Managed the weekly email calendar for a list of 120,000 subscribers"
+   can't tell: Keep this as a model. It gives a recruiter both your responsibility and a concrete sense of the audience behind it.
+3. [line] Marketing Coordinator, line 4
+   line: "Scheduled social posts across Instagram and Facebook"
+   can't tell: A recruiter knows the channels, but not what you scheduled or how often. That would show more of your social media work.
+   example: Scheduled [type of social posts] across Instagram and Facebook [frequency]
+   question: What kinds of posts did you schedule, and how often?
+4. [line] Marketing Coordinator, line 5
+   line: "Tracked campaign results in a monthly report for the marketing director"
+   can't tell: The monthly report and its reader are clear. Which campaign measures did you track? That tells a recruiter what went into the report.
+   example: Tracked [campaign measures] in a monthly report for the marketing director
+   question: Which campaign measures did you track in the report?
+5. [line] Marketing Assistant, line 1
+   line: "Helped plan in-store tasting events"
+   can't tell: A recruiter can't tell which part of planning was yours. Keep the shared ownership and name the work you handled.
+   example: Helped plan in-store tasting events by [planning task]
+   question: What did you do to help plan the tasting events?
+6. [line] Marketing Assistant, line 2
+   line: "Updated the company blog and newsletter"
+   can't tell: Updating could mean several things. A recruiter can't tell what you put into the blog and newsletter or how often.
+   example: Updated the company blog and newsletter with [content] [frequency]
+   question: What content did you add to the blog and newsletter, and how often?
+
+## Fit
+Roles: ["Marketing Coordinator","Marketing Assistant"]
+Level: Coordinator, with a prior marketing assistant role
+Note: Your experience points toward marketing coordinator roles involving email, events and content. Accounting for the time since your last dated role would give a recruiter a fuller picture of where you are now.

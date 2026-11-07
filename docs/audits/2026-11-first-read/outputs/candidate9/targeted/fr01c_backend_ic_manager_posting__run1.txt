@@ -1,0 +1,33 @@
+# fr01c_backend_ic_manager_posting, run 1
+Resume: resumes/fr01_backend_ic_senior.txt (236 words), posting: resumes/posting_engineering_manager.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 338ac33a; severity check off
+Outcome: report; cost $0.0161; 22.4s
+Case note: P1. The same resume against an engineering manager posting. Expect the missing management work (direct reports, hiring, performance) named first; the score unchanged against fr01a within one draw.
+
+## Clear and specific (score 89; model wrote 89)
+## Verdict
+A strong senior backend engineer with payments experience, but no direct management shown for Cobalt Pay’s role.
+
+## Write-up
+This is a strong senior backend resume! At Lumen Ledger, you connect payments work to the scale it serves and the changes you made. A recruiter can see both the systems you built and how they performed.
+
+The balance API line is a great model: it names the problem, the before and after, and the technical change. Your payouts and ledger work also match Cobalt Pay’s domain. The main distinction is that the posting asks for an engineering manager, while your resume shows technical leadership and mentorship, not direct management.
+
+For senior backend roles, your resume itself isn't likely to be the main obstacle; the competition and the job’s requirements still matter. For Cobalt Pay, add any real experience managing, hiring or growing engineers, and working with Product on a roadmap. If you haven’t done those things, keep the distinction honest.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Senior Software Engineer, Payments Platform, line 3
+   line: "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache"
+   can't tell: Keep this as a model. It gives a recruiter a concrete performance measure and shows the engineering decision behind the improvement.
+2. [line] Senior Software Engineer, Payments Platform, line 5
+   line: "Mentor two mid-level engineers through code review and design docs"
+   can't tell: A recruiter can see who you mentor and how, but not what development you’ve helped them work toward. That matters for a role focused on growing engineers.
+   example: Mentor two mid-level engineers through code review and design docs, supporting [engineer development]
+   question: What development or career growth have you helped the two engineers work toward?
+
+## Fit
+Roles: ["Senior Backend Engineer","Engineering Manager, Payments Platform"]
+Level: Senior individual contributor, with technical leadership and mentorship of two engineers
+Note: Cobalt Pay asks for direct management, hiring and performance management, which your resume doesn't show. Your payments systems, incident reviews and mentorship fit parts of the role; add any management or roadmap work you've actually done.
+Posting: Cobalt Pay seeks a manager for a payouts and ledger team, with responsibility for hiring, development, delivery and operations.
+Missing: ["2+ years managing engineers with direct reports, including hiring and performance management","A record of growing engineers into senior roles","Experience leading teams that run production systems with on-call","Own the team's roadmap and delivery with your product partner","Build relationships with Finance, Risk and Support"]

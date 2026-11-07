@@ -1,0 +1,42 @@
+# b07_account_executive, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_account_executive_1.txt (145 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 338ac33a; severity check off
+Outcome: report; cost $0.0173; repair ran; 32.3s
+
+Validator refused the first draft: The model response failed the worklist contract at cards[0].example: puts a number outside a bracket that the resume doesn't have: "2026".
+
+## Clear and specific (score 87; model wrote 87)
+## Verdict
+A mid-market HR software seller with a promotion, quota attainment, and a partner referral program.
+
+## Write-up
+This is a strong sales resume! Your move from SDR to Account Executive at Crestview HR Cloud comes with new recurring revenue, quota attainment, and a referral program you built. A recruiter can see both the progression and the work behind it.
+
+The referral program is a great model: it names the partners and the deals they sourced. The 2025 sales result is compelling too, though the quota amount and a more recent result would give a recruiter more to compare.
+
+Start by adding the quota behind the 2025 result and your most recent performance, if available. Then give the SDR results a little more context. Your resume tells a credible sales story; how competitive a particular job is will matter too.
+
+## Cards (4; {"line":3,"keep":1}); severity off; added []
+1. [line] Account Executive, Mid-Market, line 1
+   line: "Closed $1.1M in new annual recurring revenue in 2025, 108% of quota"
+   can't tell: This is a strong result, but a recruiter can't see the quota amount or whether your performance has continued more recently. Those details make the result easier to compare.
+   example: Closed $1.1M in new annual recurring revenue in 2025, 108% of a quota of [quota amount]; achieved [sales performance against quota] in [most recent period]
+   question: What was your 2025 quota, and what is your most recent sales performance against quota?
+2. [keep] Account Executive, Mid-Market, line 3
+   line: "Built a referral program with two payroll partners that sourced 9 deals"
+   can't tell: Keep this as a model. It connects something you built with the partners involved and the deals it sourced.
+3. [line] Sales Development Representative, line 1
+   line: "Booked meetings for three account executives"
+   can't tell: A recruiter can see who you booked for, but not how many meetings you booked or over what period.
+   example: Booked [number] meetings for three account executives over [period]
+   question: How many meetings did you book, and over what period?
+4. [line] Sales Development Representative, line 3
+   line: "Top SDR in two quarters"
+   can't tell: Top SDR is worth keeping, but the resume doesn't say what the ranking measured or who you were ranked against.
+   example: Top SDR in two quarters, based on [ranking measure] among [ranking group]
+   question: What determined the ranking, and which SDRs were included?
+
+## Fit
+Roles: ["Account Executive, Mid-Market","Sales Development Representative"]
+Level: Account executive, promoted from SDR and selling full-cycle
+Note: Your experience points toward mid-market account executive roles, particularly in HR software. The 2025 attainment and partner-sourced deals give you a solid story to take into that search.

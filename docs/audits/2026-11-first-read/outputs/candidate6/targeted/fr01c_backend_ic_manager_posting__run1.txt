@@ -1,0 +1,33 @@
+# fr01c_backend_ic_manager_posting, run 1
+Resume: resumes/fr01_backend_ic_senior.txt (236 words), posting: resumes/posting_engineering_manager.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5827dcf1; severity check off
+Outcome: report; cost $0.0144; 16.2s
+Case note: P1. The same resume against an engineering manager posting. Expect the missing management work (direct reports, hiring, performance) named first; the score unchanged against fr01a within one draw.
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A strong senior backend resume with payments depth, but no direct management experience shown for the Engineering Manager role.
+
+## Write-up
+Your payments work is exceptionally easy to follow: you show what you built, the scale it runs at, and the technical choices behind the results! A recruiter reading for senior backend roles can see your progression from insurance to freight to a payments platform.
+
+The balance API line is a model: it connects a specific technical change to a measurable improvement. For Cobalt Pay, though, the main question is management. Mentoring two engineers and running incident reviews are relevant, but the resume doesn't show direct reports, hiring or performance management.
+
+Your resume is strong for senior backend work and isn't the main thing holding that story back. For this manager application, bring forward any real experience with hiring, career development, roadmap planning or cross-functional partnerships. If that work isn't part of your history yet, an engineering lead or another stepping-stone role could help bridge the gap.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Senior Software Engineer, Payments Platform, line 3
+   line: "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache"
+   can't tell: Keep this as a model. It names the system, the before and after, and the change you made without asking a recruiter to guess.
+2. [line] Software Engineer, Northgate Insurance, line 1
+   line: "Maintained the claims intake services in Java"
+   can't tell: A recruiter can see the service and language, but not what maintenance involved. One change you made would make your work on claims intake more concrete.
+   example: Maintained the claims intake services in Java by [what you changed]
+   question: What did you change in the claims intake services?
+
+## Fit
+Roles: ["Senior Backend Engineer","Engineering Manager, Payments Platform"]
+Level: Senior individual contributor, mentoring two mid-level engineers with no direct reports shown
+Note: Cobalt Pay asks for 2+ years managing engineers with direct reports, including hiring and performance management; your resume doesn't show that experience. Your payouts and ledger work, incident reviews and mentoring align well with the platform and coaching parts of the role. If you've also managed people or partnered on a roadmap, add those details where you did the work.
+Posting: Lead a payments platform team responsible for payouts, the ledger, delivery and operations, while hiring and developing engineers.
+Missing: ["2+ years managing engineers with direct reports, including hiring and performance management","Own the team's roadmap and delivery with your product partner","A record of growing engineers into senior roles","Experience leading teams that run production systems with on-call","Build relationships with Finance, Risk and Support"]
