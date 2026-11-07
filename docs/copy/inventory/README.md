@@ -8,17 +8,17 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 
 | Measure | Count |
 | --- | --- |
-| Files scanned | 416 |
-| Files with copy | 250 |
-| Strings | 2905 |
-| Unique strings | 2422 |
-| Routes with copy | 111 |
+| Files scanned | 418 |
+| Files with copy | 251 |
+| Strings | 2948 |
+| Unique strings | 2463 |
+| Routes with copy | 112 |
 
 ## By moment
 
 | Moment | Strings |
 | --- | --- |
-| research | 865 |
+| research | 908 |
 | account | 442 |
 | marketing | 416 |
 | report | 311 |
@@ -39,16 +39,16 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 
 | Table | Strings | Routes |
 | --- | --- | --- |
-| [research](./research.md) | 560 | `/research`, `/research/ats-myths`, `/research/automation-and-bias`, `/research/gaps-and-pivots`, `/research/how-recruiters-read`, `/research/human-vs-algorithm` and 11 more |
+| [research](./research.md) | 604 | `/research`, `/research/ats-myths`, `/research/automation-and-bias`, `/research/career-breaks`, `/research/gaps-and-pivots`, `/research/how-recruiters-read` and 12 more |
 | [workspace](./workspace.md) | 525 | `/api/export-pdf`, `/api/resume-feedback`, `/api/resume-feedback-stream`, `/api/revise-line`, `/auth`, `/extension` and 4 more |
-| [shared](./shared.md) | 419 | `/`, `/api/auth/send-code`, `/api/billing/confirm`, `/api/billing/restore`, `/api/checkout`, `/api/export-pdf` and 86 more |
+| [shared](./shared.md) | 418 | `/`, `/api/auth/send-code`, `/api/billing/confirm`, `/api/billing/restore`, `/api/checkout`, `/api/export-pdf` and 87 more |
 | [api](./api.md) | 282 | `/api/account/delete`, `/api/account/export`, `/api/analytics`, `/api/auth/send-code`, `/api/auth/sign-out`, `/api/auth/verify-code` and 27 more |
 | [guides](./guides.md) | 264 | `/guides`, `/guides/offer-negotiation`, `/guides/tech-offer-negotiation`, `/guides/tools/comp-calculator`, `/resources`, `/resources/offer-negotiation` and 2 more |
 | [extension](./extension.md) | 130 | `/extension`, `extension` |
 | [settings](./settings.md) | 122 | `/settings/account`, `/settings/billing`, `/settings/matching`, `/settings/support-reply/[emailId]` |
 | [help](./help.md) | 87 | `/help`, `/privacy`, `/status`, `/terms` |
 | [jobs](./jobs.md) | 71 | `/jobs` |
-| [home](./home.md) | 66 | `/`, `/methodology` |
+| [home](./home.md) | 66 | `/`, `/methodology`, `/research/career-breaks` |
 | [jobs-id](./jobs-id.md) | 56 | `/jobs/[id]` |
 | [compare](./compare.md) | 55 | `/compare`, `/compare/enhancv`, `/compare/jobscan`, `/compare/kickresume`, `/compare/resume-worded`, `/compare/rezi` and 2 more |
 | [purchase](./purchase.md) | 51 | `/purchase/confirmed`, `/purchase/restore` |

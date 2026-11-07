@@ -1,0 +1,60 @@
+All checks
+Check 1 of 12
+←
+→
+Repetition
+6/10
+costing you 3+ pts
+of your overall score
+?
+
+Avoid repeating action verbs and phrases on your resume. Repetition makes it harder for your achievements to stand out, and it usually means you're showing the same skill set too often.
+
+⚑ Flag
+1
+Vary your action verbs
+You shouldn’t use the same action verb more than two times on your resume. Unique action verbs show hiring managers that you have a range of different skill sets. You’ve repeated these verbs. Click one to see alternatives:
+Managed ×5
+Spearheaded ×2
+Instead of Spearheaded, try Analyzed, Developed, Authored, Prepared, Collaborated or Liaised. See all action verbs
+Pick a line to rewrite:
+Spearheaded the transformation of the company's talent acquisition and management processes, achieving a 300% reduction in time to hire within four months through innovative strategies aimed at expanding our presence in emerging markets (Philippines, India, Africa) and sectors (AI, Startups).
+Spearheaded the creation of Google's first-ever Cloud Value Advisory, coordinating staffing efforts across multiple teams and regions to target $1B+ enterprise cloud deals.
+✦  Rewrite this line
+or let us fix everything in one click →
+Common questions
+Answered by real recruiters and hiring managers
+Why is repetition bad?
+
+Repetition often reduces your resume's impact, making it less compelling and harder for your achievements to stand out.
+
+If you've used the exact same action verbs or phrases several times over in your resume, it's usually a sign that you're showing the same skill set too often.
+
+Repetition of action verbs
+
+You shouldn't use the same action verb more than two times on your resume. For alternative action verbs, see the image on the right of the question, the alternatives below, or go to the Action Verbs section.
+
+Repetition of phrases
+
+Similarly, try to avoid reusing specific phrases multiple times on your resume.
+
+We see this mistake pretty often, where job seekers want to emphasize a certain skill and describe it in the exact same way in multiple parts of their resume (e.g. their work experience and their summary). Instead, try to vary up the language even when describing similar skills - this helps your resume's bullet points stand out.
+
+Which action verbs should I use instead?
+
+Click a repeated verb above for alternatives that fit it. For more, here are action verbs grouped by what they show a hiring manager — accomplishment, leadership, and process improvement:
+
+Is it okay to repeat a company, product or skill name?
+
+Yes. Names that can't be described another way — a company, a product, a tool like Salesforce or Python — are fine to repeat, and recruiters expect to see them. The repetition we flag is in your own wording: the verbs and phrases you chose. If a flagged phrase is actually a name, keep it and flag the finding so it stops counting against your score.
+
+What if my roles really were similar?
+
+They often are, and that is exactly when varied language matters most. Even when describing similar skills, use different verbs and phrases, and make each bullet point to a different project, metric or result. The space on your resume is limited, so two bullets that say the same thing cost you one that could show something new.
+
+What does a fix look like?
+BEFORE
+• Coordinated across engineering, operations, and vendor teams to deliver high-availability systems
+AFTER
+• Directed engineering, operations, and vendor teams to keep high-availability systems running with zero missed releases
+⚑ Something wrong with this check? Flag it

@@ -1,0 +1,30 @@
+ATS-Specific Tips
+
+Greenhouse
+
+• Use a DOCX or text-based PDF. Avoid scanned PDFs, image-based files, or important information embedded inside images.
+
+• Use the same skills, job titles, and keywords found in the job description. Greenhouse relies heavily on exact keyword matching and does not reliably recognize keyword variations, different tenses, stems, or plural forms.
+
+• Include both acronyms and full phrases for important skills and certifications. For example: Project Management Professional (PMP), Search Engine Optimization (SEO), or Customer Relationship Management (CRM).
+
+• Use standard date formats such as "Jan 2024", "01/2024", or "2024". Avoid ambiguous formats like "Spring 2024" or "Q1 2024 ".
+
+• Use standard section headings such as Professional Experience, Education, Skills, and Certifications.
+
+• For Education, spell out your degree, school name, and graduation date. (e.g., Bachelor of Science in Computer Science instead of BSCS)
+
+• Greenhouse only maps one URL into a structured profile field. If possible, manually add important links such as LinkedIn, portfolio, or GitHub profiles.
+
+• Don't keyword-stuff. Greenhouse does not rank candidates higher based on keyword repetition, and recruiter evaluations are conducted via manual scorecards rather than automated matching scores.
+
+Greenhouse does not reliably recognize plurals or variations of skills and keywords.
+Tailor your resume to exact match of skills and keywords found.
+
+Greenhouse does not recognize different tenses, abbreviations, or acronyms of skills and keywords. Tailor your resume keywords to be an exact match to what is found in the job description. If you have room in your resume, add variations of keywords to account for recruiter searches. For example, put the common acronym in parentheses and use a variation of the term elsewhere in your resume: 'Project Management Professional (PMP)' plus 'project manager'.
+
+Company name
+Or
+Job listing URL
+ We’re still expanding support for more companies. Learn more
+Get ATS Tips

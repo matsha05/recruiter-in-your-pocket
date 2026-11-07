@@ -1,0 +1,31 @@
+All checks
+✓ Passed · 5 of 6
+←
+→
+Bullets, not paragraphs
+10/10
+
+Your resume is easy to skim. We checked that your experience uses concise bullet points instead of long paragraphs or blocks of text.
+
+Common questions
+Why should you use bullets, and not paragraphs?
+
+If a recruiter was to pick up your resume right now, how easy would it be for him/her to skim it in 30 seconds and get a sense of your experiences and accomplishments? This is what we call the '30 second skim', and your resume needs to be optimized for it.
+
+Short, succinct bullet points are key to your resume's readability. Blobs of text, that is bullets or paragraphs that are three lines or longer, are likely to not be read.
+
+With the exception of an optional 'Summary' section, you should be consistently using bullet points throughout your resume.
+
+How long should each of your bullet points be?
+
+Each of your bullet points should be between 10 and 30 words long. This is a wide range but is a good rule of thumb to help you ensure that you're adding enough detail to your accomplishment but not making it overly wordy.
+
+Even if your bullet point is within that range, remember that it should not exceed two lines on your resume (visually). Lines that are 3 lines or longer are not easily skimmable and won't get properly read by recruiters.
+
+Avoid using resume templates that have narrow columns as these would make your bullets seem clunky and paragraph-like.
+
+6
+/10
+NEXT FIX
+Repetition
++3 pts

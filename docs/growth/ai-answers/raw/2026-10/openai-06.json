@@ -1,0 +1,150 @@
+{
+  "id": "resp_027d05de94025ecf016aed0a9c332c87d1a875b2cc21081b7c",
+  "object": "response",
+  "created_at": 1793919644,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "developer"
+  },
+  "completed_at": 1793919656,
+  "error": null,
+  "frequency_penalty": 0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": 1536,
+  "max_tool_calls": 1,
+  "model": "gpt-6-astra",
+  "moderation": null,
+  "output": [
+    {
+      "id": "ws_027d05de94025ecf016aed0a9dd4e887d195a62d24f224574b",
+      "type": "web_search_call",
+      "status": "completed",
+      "action": {
+        "type": "search",
+        "queries": [
+          "Ladders 2012 eye tracking study 30 recruiters six seconds resume 2018 7.4 seconds"
+        ],
+        "query": "Ladders 2012 eye tracking study 30 recruiters six seconds resume 2018 7.4 seconds"
+      }
+    },
+    {
+      "id": "msg_027d05de94025ecf016aed0aa1746c87d1985cd8c84cdc8b4e",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [
+            {
+              "type": "url_citation",
+              "end_index": 458,
+              "start_index": 342,
+              "title": "What Your Resume Is Up Against",
+              "url": "https://www.forbes.com/sites/susanadams/2012/03/26/what-your-resume-is-up-against/?utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 843,
+              "start_index": 630,
+              "title": "Ladders Updates Popular Recruiter Eye-Tracking Study With New Key Insights on How Job Seekers Can Improve Their Resumes",
+              "url": "https://www.prnewswire.com/news-releases/ladders-updates-popular-recruiter-eye-tracking-study-with-new-key-insights-on-how-job-seekers-can-improve-their-resumes-300744217.html?utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 1194,
+              "start_index": 1078,
+              "title": "What Your Resume Is Up Against",
+              "url": "https://www.forbes.com/sites/susanadams/2012/03/26/what-your-resume-is-up-against/?utm_source=openai"
+            }
+          ],
+          "logprobs": [],
+          "text": "**Sometimes for an initial skim—but “six seconds per résumé” isn’t a universal rule.**\n\nThe claim comes from a **2012 study by the job site TheLadders**, which tracked the eye movements of **30 recruiters**. It reported roughly six seconds to make an initial “fit/no fit” decision—not necessarily the total time spent evaluating a candidate. ([forbes.com](https://www.forbes.com/sites/susanadams/2012/03/26/what-your-resume-is-up-against/?utm_source=openai))\n\nA **2018 update reported 7.4 seconds**, again specifically for the initial screening. That’s evidence of a quick first pass, not a deadline that every recruiter follows. ([prnewswire.com](https://www.prnewswire.com/news-releases/ladders-updates-popular-recruiter-eye-tracking-study-with-new-key-insights-on-how-job-seekers-can-improve-their-resumes-300744217.html?utm_source=openai))\n\nThere are reasons to be cautious: the original sample was small, and the research came from a commercial career-services company. It doesn’t establish how every recruiter reviews every résumé across industries and hiring situations. ([forbes.com](https://www.forbes.com/sites/susanadams/2012/03/26/what-your-resume-is-up-against/?utm_source=openai))\n\n**My practical takeaway: make your fit easy to spot, rather than trying to make your entire résumé readable in six seconds.** I’d prioritize:\n- Clear job titles, employers, and dates.\n- Relevant qualifications near the top.\n- Short accomplishment bullets rather than dense paragraphs.\n- Enough detail to reward a closer read.\n\nThink **“easy to skim, useful to read,”** not “six seconds or you’re out.”"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "low",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1,
+  "text": {
+    "format": {
+      "type": "text"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": {
+    "type": "web_search_preview"
+  },
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 1
+    }
+  },
+  "tools": [
+    {
+      "type": "web_search",
+      "return_token_budget": "default",
+      "search_content_types": [
+        "text"
+      ],
+      "search_context_size": "low",
+      "user_location": {
+        "type": "approximate",
+        "city": null,
+        "country": "US",
+        "region": null,
+        "timezone": null
+      }
+    }
+  ],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 8697,
+    "input_tokens_details": {
+      "cache_write_tokens": 14,
+      "cached_tokens": 4309
+    },
+    "output_tokens": 350,
+    "output_tokens_details": {
+      "reasoning_tokens": 46
+    },
+    "total_tokens": 9047
+  },
+  "user": null,
+  "metadata": {}
+}

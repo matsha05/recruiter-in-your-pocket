@@ -1,0 +1,181 @@
+{
+  "id": "resp_05f801cd4a6f9512016aed0a81fbbc87d1a6f81d5a4a09795b",
+  "object": "response",
+  "created_at": 1793919618,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "developer"
+  },
+  "completed_at": 1793919639,
+  "error": null,
+  "frequency_penalty": 0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": 1536,
+  "max_tool_calls": 1,
+  "model": "gpt-6-astra",
+  "moderation": null,
+  "output": [
+    {
+      "id": "ws_05f801cd4a6f9512016aed0a83bac087d1b363d86f6344fc2b",
+      "type": "web_search_call",
+      "status": "completed",
+      "action": {
+        "type": "search",
+        "queries": [
+          "site.indeed.com hire how to review resumes screening",
+          "site.greenhouse.com resume recruiter review AI myths resumes"
+        ],
+        "query": "site.indeed.com hire how to review resumes screening"
+      }
+    },
+    {
+      "id": "rs_05f801cd4a6f9512016aed0a87a59887d1ac07feb4a451107a",
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": "gAAAAABq7QqXJPzccGZYMPE_ZXVQ8yqli4uRXSJoVR6uE59CRahXZNIAoZfOvkuHYI-UHVDmVvRyUOmAMqUOm5aElH1Fizb0Mz0IXzBUmd76d8B8j-s4SVbqQC8gn7Aagjv4QdQII0WQPgzkMMmR1kZDleWwKwomkgWWWhSIkaP9JDP8zDnLHdrjc4A50-Si6_vSp-AdjyTgu9h3rGkKo0RNHJzUeSphiNucibxwyqPcOIqdNfow9Vw5j_6EX6Lj9283tVHwMf_77Jrv_712lsmF_MIYznu72wV65D1Q00Orc0F9iBX75iBX9lJBv6WUPka-vcJiBBcHiG4jEImfPWuqSZuN9uVN9x-o-jzVXEoHYW0tkUki81xIwIrepsM20BMnz_zHOYYONVC_r62IRiJsUUQ8ng2-DBNHXwxkcHtXiA-q1dm1FXNb51v-va2tYJBVsO1OICYbG9vgVRsl3brW3syCPxm8Z4yU2Xnnlg8zYl_xolbT0SHJ2AKRLF8PclHGQ3s_KqYJN6rbZJKiQ6Ev7_RuANJxgFRTln-Ct2GgLrvhk-9Q3WRkSn1-L6WUMdgyg9oKOKcooBIQ-iW5epfgH0p3pG8__hlg4Oi92HmJBUvdmwLnCpfq906EKSlKwyh6VXRB7rLTf2qd7WvxP8Xhdr4fevTpQ5a8T1Oz8f-oolrAkFRMe09Q1-fhUkPTrPLq-ktJfzvH1jL8HCREE8rtbWHyhgnmM9UDkabQyViZHChwsmyzynuc9WkpUbnudKDCtj-U6b7ik140oYMpg1yLuc8rxUfRdjVx0miR1FCqGSeKhLc_GwMlyH6xis3xrKmtfh3R7Elv-2lXQM5y_lsx0gE8dZZTdBHrT4sfhmDBCW8Nml1SiogQm1ILT-va9j6FCBkkESlZ2mwg8TEnu9SYuZxIpjA-qIaivZWmoHuSsSyu8KZqF30bDRYn8PYDyOuKEDLkPIUHz0nRfjqxCjKzunEybJs3fRseQ_zAlxg2tQnfb1xusfnhu8HXIbF5YTTr7oStqtOu-0d9D-5VVIkpkEsdFz0YCMHrnfWlKonNIKmllT88_LooYdXGGSCRUJvTN8tL5hW8M2vi-wM_7n6m-XC0XR1ZH63fhUYCTQYdI5lUIPbmdwgoZqi3MZON_luBiqzmdwJfa7FX8vNhHOwcr4nIyw-65MoVNOsXzjnsuKMdTgMdNp2oOKNwALtwmvaWvSyeJnlosXvTduRdplq2NThgNg6TfG_6Zp3IWjKQ1YJdX9FRfr-DecB_lWsrAfzrOx6CGOzyB-dnhdJRBoYUHPPogj4PuadC-HmzUPmuzzPh6eVSgS1dZgumejPTWyuoyj1Lv76g8-KmCuppWroPh_mjmn0T9N_Fcd1TzzX8ggmUkGa4g9jHrTT5Jc-IRdTtNhEKIebTMuwB01l09_6nh4KsLz7wzQ3xZ826_M9Nm_I_YRLDRacpmoSJ_j157Nc7XugWuqKXMTEy3gMJEgFQR5xQPlPz9XVOSwg-W-Sn2Ijx6shbHKMH-V4cTintQCVb_l9cWU6UgwyW0ckH_JoKEQoTlqZR9z9ckTHpbZaP8BHmjUWIjSUmsWfxDFXMmmxWOc8SmPpeJp0WQxUmQz4ikTEmMFbWjGpSkwbNph9UGrbQlYWHnsmMrnAnyfoLVsjRHg5C0peDWhK8fkzweviTHg5FVGpayg==",
+      "summary": []
+    },
+    {
+      "id": "ws_05f801cd4a6f9512016aed0a888ae887d182da8bf2b07bcd20",
+      "type": "web_search_call",
+      "status": "searching",
+      "action": {
+        "type": "open_page",
+        "url": "https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&hl=en&utm_source=openai"
+      }
+    },
+    {
+      "id": "msg_05f801cd4a6f9512016aed0a89a60087d19a1c722e0862a800",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [
+            {
+              "type": "url_citation",
+              "end_index": 378,
+              "start_index": 277,
+              "title": "How to Read an Applicant Resume: Resume Review Tips",
+              "url": "https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&hl=en&utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 760,
+              "start_index": 665,
+              "title": "How to Read an Applicant Resume: Resume Review Tips",
+              "url": "https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 1231,
+              "start_index": 1136,
+              "title": "How to Read an Applicant Resume: Resume Review Tips",
+              "url": "https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 1921,
+              "start_index": 1826,
+              "title": "How to Read an Applicant Resume: Resume Review Tips",
+              "url": "https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 2509,
+              "start_index": 2366,
+              "title": "Talent Matching - Data Processing FAQ – Greenhouse Support",
+              "url": "https://support.greenhouse.io/hc/en-us/articles/41131616864283-Talent-Matching-Data-Processing-FAQ?utm_source=openai"
+            }
+          ],
+          "logprobs": [],
+          "text": "**Recruiters generally scan for a match first, then read for evidence.** It’s less “Let me learn your whole story” and more “Does this person look relevant enough to interview?” The exact process varies, but initial scanning followed by closer evaluation is a common approach. ([indeed.com](https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&hl=en&utm_source=openai))\n\n### 1. First pass: “Is this plausibly a fit?”\nThey look for basic alignment:\n- Relevant experience and skills.\n- Required qualifications.\n- Employment history that fits the role.\n\nAt this stage, the question is whether you meet the requirements—not whether every bullet is impressive. ([indeed.com](https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&utm_source=openai))\n\n**My advice:** Make your target role and strongest relevant experience easy to spot. Don’t make someone piece together your fit from scattered clues.\n\n### 2. Closer read: “What have they actually done?”\nIf the initial fit is there, they examine your experience, skills, and qualifications more carefully before deciding whether to move you to a screening call or interview. ([indeed.com](https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&utm_source=openai))\n\n**My advice:** Write bullets that give evidence rather than just name responsibilities. For example, a hypothetical rewrite:\n\n> **Vague:** “Responsible for customer onboarding.”  \n> **Specific:** “Redesigned onboarding for 40 enterprise accounts, reducing average setup time from 12 days to 8.”\n\nUse real numbers when available; otherwise describe scope, complexity, or a concrete outcome.\n\n### 3. Decision: “Is there enough here to justify a conversation?”\nResume review is a screening step, not the final hiring decision. The immediate outcome may simply be an invitation to a phone screen. ([indeed.com](https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US&utm_source=openai))\n\n**My advice:** Optimize for a clear, credible case—not a complete autobiography. Put the most relevant evidence first, explain unfamiliar job titles, and cut material that doesn’t help establish fit.\n\n### What about the ATS?\nSoftware may come before or alongside human review. Some systems extract titles, skills, dates, and experience; some employers enable AI-assisted matching. There isn’t one universal screening process across employers. ([support.greenhouse.io](https://support.greenhouse.io/hc/en-us/articles/41131616864283-Talent-Matching-Data-Processing-FAQ?utm_source=openai))\n\n**A useful test:** Give someone your resume for a brief glance, then ask: “What role am I suited for, and what’s the strongest evidence?” If they can’t answer, make those two things more obvious."
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "low",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1,
+  "text": {
+    "format": {
+      "type": "text"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": {
+    "type": "web_search_preview"
+  },
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 1
+    }
+  },
+  "tools": [
+    {
+      "type": "web_search",
+      "return_token_budget": "default",
+      "search_content_types": [
+        "text"
+      ],
+      "search_context_size": "low",
+      "user_location": {
+        "type": "approximate",
+        "city": null,
+        "country": "US",
+        "region": null,
+        "timezone": null
+      }
+    }
+  ],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 8769,
+    "input_tokens_details": {
+      "cache_write_tokens": 12,
+      "cached_tokens": 4309
+    },
+    "output_tokens": 574,
+    "output_tokens_details": {
+      "reasoning_tokens": 70
+    },
+    "total_tokens": 9343
+  },
+  "user": null,
+  "metadata": {}
+}

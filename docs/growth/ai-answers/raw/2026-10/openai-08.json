@@ -1,0 +1,157 @@
+{
+  "id": "resp_04cf281f2149ae0a016aed0ab976d887d1aac0ec7cc430caba",
+  "object": "response",
+  "created_at": 1793919673,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "developer"
+  },
+  "completed_at": 1793919683,
+  "error": null,
+  "frequency_penalty": 0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": 1536,
+  "max_tool_calls": 1,
+  "model": "gpt-6-astra",
+  "moderation": null,
+  "output": [
+    {
+      "id": "ws_04cf281f2149ae0a016aed0abb6aa087d18abccf8ec81eef54",
+      "type": "web_search_call",
+      "status": "completed",
+      "action": {
+        "type": "search",
+        "queries": [
+          "site.themuse.com typo resume already submitted"
+        ],
+        "query": "site.themuse.com typo resume already submitted"
+      }
+    },
+    {
+      "id": "msg_04cf281f2149ae0a016aed0abee5ac87d19f2fe97eac09200c",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [
+            {
+              "type": "url_citation",
+              "end_index": 290,
+              "start_index": 183,
+              "title": "FAQ: What Can I Do When My Resume Has a Typo? (With Tips) | Indeed.com",
+              "url": "https://www.indeed.com/career-advice/resumes-cover-letters/typo-on-resume?utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 560,
+              "start_index": 485,
+              "title": "Typo On Your Resume? Here's What to Do",
+              "url": "https://enhancv.com/blog/typo-on-resume/?utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 828,
+              "start_index": 715,
+              "title": "I Submitted My Resume with a Mistake: What Do I Do? | ResumeSpice",
+              "url": "https://resumespice.com/i-submitted-my-resume-with-a-mistake-what-do-i-do/?utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 1008,
+              "start_index": 906,
+              "title": "How To Reapply for a Job After a Rejection (With Tips) | Indeed.com",
+              "url": "https://www.indeed.com/career-advice/finding-a-job/reapply-for-a-job?utm_source=openai"
+            }
+          ],
+          "logprobs": [],
+          "text": "**Not necessarily—one typo isn’t an automatic rejection.** It depends on the mistake, the hiring manager, and the role; an editing job may put more weight on it than other positions. ([indeed.com](https://www.indeed.com/career-advice/resumes-cover-letters/typo-on-resume?utm_source=openai))\n\nIf you’ve already submitted it:\n- **Minor spelling or punctuation error:** I’d fix your master copy rather than send an apology just to flag it. Small errors don’t always warrant resubmitting. ([enhancv.com](https://enhancv.com/blog/typo-on-resume/?utm_source=openai))\n- **Wrong contact information or a typo that changes your qualifications:** Send a corrected version with a brief note so they have accurate information. ([resumespice.com](https://resumespice.com/i-submitted-my-resume-with-a-mistake-what-do-i-do/?utm_source=openai))\n- **Portal lets you replace the document:** Upload the corrected copy there. ([indeed.com](https://www.indeed.com/career-advice/finding-a-job/reapply-for-a-job?utm_source=openai))\n\nDon’t count yourself out over this. **What was the typo, and what role are you applying for?**"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "low",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1,
+  "text": {
+    "format": {
+      "type": "text"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": {
+    "type": "web_search_preview"
+  },
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 1
+    }
+  },
+  "tools": [
+    {
+      "type": "web_search",
+      "return_token_budget": "default",
+      "search_content_types": [
+        "text"
+      ],
+      "search_context_size": "low",
+      "user_location": {
+        "type": "approximate",
+        "city": null,
+        "country": "US",
+        "region": null,
+        "timezone": null
+      }
+    }
+  ],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 8655,
+    "input_tokens_details": {
+      "cache_write_tokens": 15,
+      "cached_tokens": 4309
+    },
+    "output_tokens": 261,
+    "output_tokens_details": {
+      "reasoning_tokens": 31
+    },
+    "total_tokens": 8916
+  },
+  "user": null,
+  "metadata": {}
+}

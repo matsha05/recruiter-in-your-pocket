@@ -1,0 +1,160 @@
+{
+  "id": "resp_0da3c9048fef4713016aed0a47a7e087d1a178cc553103eaea",
+  "object": "response",
+  "created_at": 1793919559,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "developer"
+  },
+  "completed_at": 1793919575,
+  "error": null,
+  "frequency_penalty": 0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": 1536,
+  "max_tool_calls": 1,
+  "model": "gpt-6-astra",
+  "moderation": null,
+  "output": [
+    {
+      "id": "ws_0da3c9048fef4713016aed0a49587487d18d07b7d004d381ed",
+      "type": "web_search_call",
+      "status": "completed",
+      "action": {
+        "type": "search",
+        "queries": [
+          "site.jobscan.co pricing Jobscan premium free scans monthly quarterly",
+          "Jobscan worth it match score ATS limitations review"
+        ],
+        "query": "site.jobscan.co pricing Jobscan premium free scans monthly quarterly"
+      }
+    },
+    {
+      "id": "ws_0da3c9048fef4713016aed0a4c9efc87d184e267635b09fd85",
+      "type": "web_search_call",
+      "status": "searching",
+      "action": {
+        "type": "open_page",
+        "url": "https://www.jobscan.co/jobscan-tutorial?utm_source=openai"
+      }
+    },
+    {
+      "id": "msg_0da3c9048fef4713016aed0a4df83487d18255fd72d5408d23",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [
+            {
+              "type": "url_citation",
+              "end_index": 523,
+              "start_index": 450,
+              "title": "Jobscan Tutorial | What Is Jobscan and How Do You Use It?",
+              "url": "https://www.jobscan.co/jobscan-tutorial?utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 1134,
+              "start_index": 1061,
+              "title": "Jobscan Tutorial | What Is Jobscan and How Do You Use It?",
+              "url": "https://www.jobscan.co/jobscan-tutorial?utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 1638,
+              "start_index": 1551,
+              "title": "Jobscan vs. Resume Worded: Which Gets You a Job Faster in 2026?",
+              "url": "https://www.jobscan.co/blog/jobscan-vs-resume-worded/?utm_source=openai"
+            }
+          ],
+          "logprobs": [],
+          "text": "**Jobscan is worth trying for free; paying is worthwhile mainly if you’re tailoring lots of applications.** I’d treat it as a résumé-checking tool—not a way to guarantee interviews.\n\n### Where it helps\nJobscan compares your résumé with a specific job description and flags missing skills, keywords, and potential ATS issues. Its strongest use is catching relevant experience you already have but haven’t described clearly in the employer’s language. ([jobscan.co](https://www.jobscan.co/jobscan-tutorial?utm_source=openai))\n\nI’d consider paying if you:\n- Are actively applying to many similar roles.\n- Want a repeatable check before submitting each application.\n- Find that its free reports uncover useful omissions—not just wording changes.\n\n### Where I’d be skeptical\n**Its match score is not the employer’s hiring verdict.** It measures résumé-to-posting alignment; even Jobscan’s documentation says measurable results don’t factor into the match rate. So I wouldn’t sacrifice clear achievement bullets or add skills you don’t have just to raise the number. ([jobscan.co](https://www.jobscan.co/jobscan-tutorial?utm_source=openai))\n\nI’d skip paid access if you only need a couple of checks, already tailor effectively, or mainly need help explaining your achievements rather than identifying keywords.\n\n### Cost and subscription catch\nCurrent pricing is about **$49.95/month or $89.95 every three months**. The quarterly offer includes a seven-day trial. Subscriptions renew automatically, and cancellation does not automatically produce a refund. ([jobscan.co](https://www.jobscan.co/blog/jobscan-vs-resume-worded/?utm_source=openai))\n\n**My recommendation:** Try the free version on two or three jobs you genuinely qualify for. Pay for a short period only if the feedback meaningfully improves your résumé or saves enough time. Don’t keep paying merely to chase a higher score.\n\nWhat kinds of roles are you applying for—and are you getting interviews already?"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "low",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1,
+  "text": {
+    "format": {
+      "type": "text"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": {
+    "type": "web_search_preview"
+  },
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 1
+    }
+  },
+  "tools": [
+    {
+      "type": "web_search",
+      "return_token_budget": "default",
+      "search_content_types": [
+        "text"
+      ],
+      "search_context_size": "low",
+      "user_location": {
+        "type": "approximate",
+        "city": null,
+        "country": "US",
+        "region": null,
+        "timezone": null
+      }
+    }
+  ],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 12966,
+    "input_tokens_details": {
+      "cache_write_tokens": 10,
+      "cached_tokens": 4309
+    },
+    "output_tokens": 458,
+    "output_tokens_details": {
+      "reasoning_tokens": 47
+    },
+    "total_tokens": 13424
+  },
+  "user": null,
+  "metadata": {}
+}

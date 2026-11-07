@@ -1,0 +1,140 @@
+{
+  "id": "resp_0802cf54f14e7e44016aed0adfaef487d186301e9ad7da21ad",
+  "object": "response",
+  "created_at": 1793919711,
+  "status": "completed",
+  "access_programs": {
+    "cyber": "standard"
+  },
+  "background": false,
+  "billing": {
+    "payer": "developer"
+  },
+  "completed_at": 1793919715,
+  "error": null,
+  "frequency_penalty": 0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": 1200,
+  "max_tool_calls": null,
+  "model": "gpt-6.1-terra",
+  "moderation": null,
+  "output": [
+    {
+      "id": "rs_0802cf54f14e7e44016aed0ae06bb087d1944323d3377f2fe7",
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": "gAAAAABq7Qrj3Vf5IUFwmj4XKA5muC2tAuEcvdPHAEYFuWNQXGn_PiKVSPuOjenIwpUUjk-kDUpD737xpvwPp8cn72m_qN8rnHAAEDsfxdbPmaeuZMToRKVTISs9emoHKmRxdYAqdH83EBoz94Q17Q3_VYueeGJGe1913rpQ1pJ0HezMKGrkllWOeXdgDe6lMwyGciQcWoX9tfMfkHLWhMkg3uTPWsB_08F9wLJnjUi6Eh1zmeYmtmnbLDniW5naoq0-7PqJIYDrtWOniHt9cx8lTgAQ7nDHebXOiaHz3nMwQzyBg9Mj3P4vgsXhwECmm8R8RFJdIUyhbZPdKtyV3B1ioukmV5sasXedou01qKE4pnHb5p0OcIuZtLKPPREjnwKQX7cWL3fz61yBSiBKDeQ-s1cdwypUbeAdnFU7IxRQw927KoH906sxXvANA8ij6X95B3ByOjqrHqgY2Ai8YCGS3dAquY7meqEcZ8oO-ZrkWIrEzJsgW4uM-iVDMEBoaw8VQFXP2PKnXVkvK1NE2lvyDDJ0dHRPqGJn0ApU5g6rjQ1AQXR-5SlMwYxFI4TwGnqimiVNRxZJd4B1CzTAAkYutSSk0Jmxs1FaI5AFkyFsCnGy9xVm2NQOYJ2lMYmqfC5ttexSEGjPeKhRXs--22LqjDC0GlAtiKTB-KX3xTweRs8YJeHQEFPjk4EsmfnWuGb2npe0BOY72AVcTJYEsLsbm5fWwfLG2I4svLEuHcv7dT-hFLb3pgsBuve3WKtEoGqt9WHhTjvpv8t2RJ3zKumNsWDRMkHqGxn4z7Ix4eX5Ch11DbF-g7ta3OHqNij2k5Uqb4LmScz8jDH-b1ZMOn59L5T26Sp6cGdhX4sgRen4x8jL5HeLl7NHf-2u-EuCjK9fnN0_fe16GfufHnXMCGWoU_kNtpHIYDg0zcTwmFSKJ1V6sIqrN4ttjrUAsDnhar307pyfdI8hCh9t_rq0hDwtkDEi43iOeHyPGOv-Fbgr5F9t6-7kE533_XiiSWxKplWShWyIxG6SZ0keB4F0V8g_VOKAvKHaB5GxQj9QIil76eaGjaVLClfph_QwIjjFXs8cAFvLL6Xh-5NhcZjG8J0Pf5JMffloAgyu7KylQM8ks_HPXjL0KdUdHQyKdgF1LtU40PArbgLuuPl-mhtrc90R4HUXaOPwY1JtshM5zMaG6fOlFxIXLfqLOSepLUJsXpHQwYNK7hWOxIXs8Asw08lJrKGX-kMc4JwzL39FhNqpQ0PVS59IBD_a3hyDN7RjnN-uARtv9OzKknUE7UwglPDn5xDmUnRIV7ogAdlIV22tnwIQIcL9w6H4vDxZLh1m4YFoDeG5sKao7atJF5YuG92-AgsxG388rnP8ogM21Y4kSJtCEny7O7y12QIpDHzHkzygpdFAY_eU0BoA4xuZIjQKin5YOGpUtKEHqxYbHccaIbsSB5UBFaf1fC0xzO2NBD9r0cg2nGzRqGGp_JTOANzvIuBK1TUcqRJd8qNdbtzfJQ1-w7je8Maz7uAsUWf1kcZl7haYh74g9_ReN_c1S2BFEkzrmzCKe6P8M5jxShZ80K3UgI-eU6MXQTgUf0nAuRCFGTNbQUTpL8rg9vgBQyymBvy9J8ms7iGOi2vuWlNan67hRvIqqD47Xnv53FdkBiwbuKgRxpRqdekJ1qh-rcovPZStLpbtgli9Pzc18GaCcGKOYxGqtQ3ZhHpX_P0ebTdIM49DRvCahDsb5C94_K5msaI1UykMm0lzFcYLCwyvRAfxKr6G0elBj_bdMlGr_tLFhRAVvFGt4cvR2UDiB_Tn79qDtOnGMdQzd4Q5uqgg3CpER2Fx-himgGd2CfTkm8lH_QPVsIfrAnt6tp-GxMoJqGBVlvhNnR2X3SLb8VS1ZA3RStwCzesrr2diuos_nQ_ftGTF2A6pwbWFYuH6oEsPhzdloJXZp8sC5t2CM3n862ytwb6smvh5B14oCRJqb0ileZxLyb4Zx_tHS6cZtFOBFAaGZ3iuqJgTnqNC5sO9H1M0Tp4-axVDBKmmci81duFIWz7H8hO4DfyeAgfMlYkOONzTA8Xg99DAvjL66hZ2SCx4diXoEjgGC_DO1AQE8IWbuSCdB_nvP44bWsT5QRj5VaoJKolY8jptILUuvFHKEJL3Lm6BYAcvAIAfzbvMnJgzcFSaz4aYIqbLqpFuxzmVTCXIhTLtoqlpmYDKpLwPH2p6C6seRDcgcnbsbppdql8GyMt8NXfQkN0zbAOv6Xg9Czi07wTv3lXoTVv_5lducqaYZgECyKxMymGzG-rDtJqD_9nWc8bhqH4uSghD2WYBvt_ITCc9Wp2ug1MnpTY2ykE3JIL2VLVQ-uuddwKw0gmGjTLEgMWSiE5qrRthIB7qNPv9pGOSpV9YXvpWZ__1-iHEs6DGRyoQUMRnZMuLolhxY1p4aBOxdhXdJ3QNOYKCcQS2va1Bv0ggcceZygcM_fKzHNXPTsBeiKy8zUm4dfrvmunGrG8mMDB_1zVtvxH4iINXZdX8BIYPf9iSGDxSZXbknfpanS7ZRTqTkH4laYI-Nwxbd1luuTj23W5kYW7SjK6HwdLDj88f4WZHP6hwYhYsx1gA7ltek0Oy-OF05K3liA8Wh_5gZqtBSvC4UzlK-xCy_QRzs5RKJIlJ84h2XxxsXGHhrDB9VuyUhnGuQv2hkl8nOM42Kx2SQFfccW0vM0S9ho8zeF3OAmq_w9EjHS2U4wmQAhz7Q7gkyPyrrEQoe0iN-MzYFVxQOlKGYx6VBCiQ1sz2o8u-MZKoYAbxfdfXEmTNKqaoHTx85u3UmLigLDyWHXMeQNWgAGoe99rxillrxFpzmvSzj5BzIFSgYtQGxt0gFTio6oU1VLkVeMBs-g2jEDeIwOOxii0mN1oP9ELlwp9xDXFQegrKRh9X2QOdlnsHEakMORNKRNMjdloP5MnNwRxtgPlgmSQSpSgXzrPJGaQ15kK39XNnCoCSbgdjCFXQ9-3LE33qI9VsznJ32hJismKiMoR9AgVGt5ysPsqAyr1E-9WcwT36M7-pVdpQbnme8-pia-zFUzEIuGez-k5bfmzH5P4NpAhaAzg6--6Bbe44aYv-gWIAAvOZ_utCknadBFSVh0BjvcUcWfRDGSpvm-bArJtg-7Y4_IK_EyB-jglmEN4mMG0wo94tooypYBfbUeVHEM4hNsCuqz-tOM_vB9t513eSmYs5N7kiS3AAqhIhq2ynlG4Tho7d7Rq6tESJF98AhcBsTvp2yLUYa5opsMOVzKfpeHWCaU7N_XoCBYWfhtZe2jizhfbTDhwRWvhCotKJCfWpRQj7-TstcO4cJGs_6r2bDgQDPYGG5OMwJNv77ahk7pi6bSRFz7_FMTwV19gIqYYBglypswKpVd6rw31qtg85InErRw826-jKDvM5t0REJ22IUfdBmb4uA-EM2V_GHaluiBH8cD4tJ7kQcrSrcLTiBXZHKA1Nzs_Bv-m-e3IDhoiP8nPwRSlQC877QZVhJBhdCgTGYBMxcua0mo0npm0sPbl3OpBSUqCQz5qB5iVYYwMJDnytcMf2GWW9x7k-nrZQ76ncxT70KZdrr_ml3KSJHmxv6UywgK2uXdkai8X0UmmpU98iwsXhyn9EGz64hj6agzWvV5QYOdVDhKCqymGP_7witrNAEgwBYAcr_brHdTxwi3xFtv_9mjRqQzgRh_U1SyZhQf9LxyLwaVkHobUD8JRM5OFH_cf5rvfsWg==",
+      "summary": []
+    },
+    {
+      "id": "msg_0802cf54f14e7e44016aed0ae2c03c87d184f5ebd6b4e64c71",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\"tools\":[\"Greenhouse\"],\"mainClaim\":\"AI resume checkers can help with editing, but their suggestions should be verified and their scores should not be treated as hiring verdicts; the answer asks which checker the user means and whether they are asking about its score or suggested edits.\",\"evidenceQuote\":\"AI for Resumes and Cover Letters – Harvard FAS | Mignone Center for Career Success\",\"evidenceIndices\":[0]}"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "medium",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1,
+  "text": {
+    "format": {
+      "type": "json_schema",
+      "description": null,
+      "name": "answer_metadata",
+      "schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tools": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "mainClaim": {
+            "type": "string"
+          },
+          "evidenceQuote": {
+            "type": "string"
+          },
+          "evidenceIndices": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "tools",
+          "mainClaim",
+          "evidenceQuote",
+          "evidenceIndices"
+        ]
+      },
+      "strict": true
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 734,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 264,
+    "output_tokens_details": {
+      "reasoning_tokens": 167
+    },
+    "total_tokens": 998
+  },
+  "user": null,
+  "metadata": {}
+}

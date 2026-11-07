@@ -1,0 +1,158 @@
+{
+  "id": "resp_0fecebe0a1397ea9016aed0ad40f3487d1bbf7b240f1d08334",
+  "object": "response",
+  "created_at": 1793919700,
+  "status": "completed",
+  "access_programs": null,
+  "background": false,
+  "billing": {
+    "payer": "developer"
+  },
+  "completed_at": 1793919711,
+  "error": null,
+  "frequency_penalty": 0,
+  "image": {
+    "context_compression": "disabled"
+  },
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": 1536,
+  "max_tool_calls": 1,
+  "model": "gpt-6-astra",
+  "moderation": null,
+  "output": [
+    {
+      "id": "ws_0fecebe0a1397ea9016aed0ad5658887d194eb31c70bbddabe",
+      "type": "web_search_call",
+      "status": "completed",
+      "action": {
+        "type": "search",
+        "queries": [
+          "site.careerservices.fas.harvard.edu AI resume review limitations",
+          "site.support.greenhouse.io resume parsing formatting"
+        ],
+        "query": "site.careerservices.fas.harvard.edu AI resume review limitations"
+      }
+    },
+    {
+      "id": "msg_0fecebe0a1397ea9016aed0ad8df1c87d1ba1fcb08ee5dcbee",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [
+            {
+              "type": "url_citation",
+              "end_index": 335,
+              "start_index": 213,
+              "title": "AI for Resumes and Cover Letters – Harvard FAS | Mignone Center for Career Success",
+              "url": "https://careerservices.fas.harvard.edu/ai-resumes-and-cover-letters/?utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 680,
+              "start_index": 558,
+              "title": "AI for Resumes and Cover Letters – Harvard FAS | Mignone Center for Career Success",
+              "url": "https://careerservices.fas.harvard.edu/ai-resumes-and-cover-letters/?utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 1150,
+              "start_index": 1022,
+              "title": "Unsuccessful resume parse – Greenhouse Support",
+              "url": "https://support.greenhouse.io/hc/en-us/articles/200989175-Unsuccessful-resume-parse?utm_source=openai"
+            },
+            {
+              "type": "url_citation",
+              "end_index": 1453,
+              "start_index": 1367,
+              "title": "Using AI In Your Job Search – Office of Career Strategy – Yale University",
+              "url": "https://ocs.yale.edu/channels/using-ai-job-search/?utm_source=openai"
+            }
+          ],
+          "logprobs": [],
+          "text": "**An AI resume checker can be useful, but treat it as an editing assistant—not a hiring verdict.** Career services at Harvard recommend using AI to improve application materials while also getting human feedback. ([careerservices.fas.harvard.edu](https://careerservices.fas.harvard.edu/ai-resumes-and-cover-letters/?utm_source=openai))\n\nIts usefulness depends on what you’re checking:\n\n- **Writing and relevance:** It can help refine wording and identify skills from a job description that your resume should address—provided you actually have those skills. ([careerservices.fas.harvard.edu](https://careerservices.fas.harvard.edu/ai-resumes-and-cover-letters/?utm_source=openai))\n- **Formatting:** Warnings about complex layouts can be legitimate. Greenhouse, an applicant tracking system (ATS), documents parsing problems with some formatting, including contact information placed in headers, footers, or text boxes. However, that doesn’t establish that any particular checker accurately simulates an employer’s system. ([support.greenhouse.io](https://support.greenhouse.io/hc/en-us/articles/200989175-Unsuccessful-resume-parse?utm_source=openai))\n- **Accuracy of your experience:** You still need to verify every suggestion and keep the resume faithful to your background. Yale recommends starting with your own work rather than relying on AI-generated material. ([ocs.yale.edu](https://ocs.yale.edu/channels/using-ai-job-search/?utm_source=openai))\n\n**My recommendation:** Use specific, actionable feedback, but don’t chase a score. Unless a checker provides credible validation, don’t interpret “85% ATS match” as an 85% chance of getting an interview.\n\nWhich checker are you using—and are you asking about its score or its suggested edits?"
+        }
+      ],
+      "phase": "final_answer",
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "24h",
+  "reasoning": {
+    "context": "all_turns",
+    "effort": "low",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": false,
+  "temperature": 1,
+  "text": {
+    "format": {
+      "type": "text"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": {
+    "type": "web_search_preview"
+  },
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 1
+    }
+  },
+  "tools": [
+    {
+      "type": "web_search",
+      "return_token_budget": "default",
+      "search_content_types": [
+        "text"
+      ],
+      "search_context_size": "low",
+      "user_location": {
+        "type": "approximate",
+        "city": null,
+        "country": "US",
+        "region": null,
+        "timezone": null
+      }
+    }
+  ],
+  "top_logprobs": 0,
+  "top_p": 0.98,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 8580,
+    "input_tokens_details": {
+      "cache_write_tokens": 11,
+      "cached_tokens": 4309
+    },
+    "output_tokens": 364,
+    "output_tokens_details": {
+      "reasoning_tokens": 48
+    },
+    "total_tokens": 8944
+  },
+  "user": null,
+  "metadata": {}
+}
