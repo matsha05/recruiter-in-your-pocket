@@ -1,0 +1,38 @@
+# fr01b_backend_ic_backend_posting, run 1
+Resume: resumes/fr01_backend_ic_senior.txt (236 words), posting: resumes/posting_senior_backend.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 15dff271; severity check off
+Outcome: report; cost $0.0161; 18.6s
+Case note: P1. The same resume against a senior backend posting it fits. Expect the posting's title second and a fit note that says it fits.
+
+## Clear and specific (score 94; model wrote 94)
+## Verdict
+A senior backend engineer with strong payouts and ledger work that closely fits the money movement role.
+
+## Write-up
+This is a strong match for the core engineering work! At Lumen Ledger, you built a Go payouts service, led a ledger migration and improved the balance API. The work comes with its scale and results, so a recruiter doesn't have to guess what you've built.
+
+The balance API line is a great model: it names the change, the before and after, and the technology behind it. Your current role also shows mentoring and incident reviews, though it doesn't say whether you lead design reviews, take on-call shifts or work with Finance and Risk.
+
+Your resume isn't the part that needs fixing for this role, though competition for the job still matters. If you have those experiences, add them in your own words; otherwise, keep the focus on the payouts and ledger work you've already shown.
+
+## Cards (3; {"keep":1,"upgrade":2}); severity off; added []
+1. [keep] Senior Software Engineer, Payments Platform, line 3
+   line: "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache"
+   can't tell: Keep this as a model. It gives the reader a concrete performance measure and shows the engineering choice you made to improve it.
+2. [upgrade] Senior Software Engineer, Payments Platform, line 2
+   line: "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends"
+   can't tell: For a role one level up, a broader technical decision around this migration could show how you set direction beyond the project.
+   example: Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends; made [broader technical decision]
+   question: What broader technical decision did you make around the ledger migration, if any?
+3. [upgrade] Senior Software Engineer, Payments Platform, line 4
+   line: "Wrote the on-call runbooks for the payments services and ran the incident reviews for the platform group"
+   can't tell: This already shows reliability work. A change that came from the reviews would add another useful detail for a money movement role.
+   example: Wrote the on-call runbooks for the payments services and ran the incident reviews for the platform group, leading to [change from incident reviews]
+   question: What changed as a result of the incident reviews, if anything?
+
+## Fit
+Roles: ["Senior Backend Engineer","Senior Backend Engineer, Money Movement"]
+Level: senior, leads a ledger migration and mentors two mid-level engineers
+Note: Your payments service, PostgreSQL and Kafka work are directly relevant to Cobalt Pay. Lead with those examples and add any further relevant work only where you can describe what you did.
+Posting: Strong alignment with the backend and payments work; some responsibilities in the posting aren't shown on your resume.
+Missing: ["Own the reliability of the payouts path end to end, including on-call","Lead technical design reviews","Partner with Finance and Risk on reconciliation and controls"]

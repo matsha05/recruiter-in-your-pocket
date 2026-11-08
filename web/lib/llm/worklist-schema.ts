@@ -10,8 +10,18 @@ import { getWorklistScoreLabel } from "../score-utils";
 
 export const WORKLIST_CONTRACT_VERSION = "v3" as const;
 
-export const CARD_KINDS = ["line", "structure", "dates", "keep"] as const;
+/**
+ * "upgrade" (Matt, Nov 7, 2026): on a strong resume, a change that makes a line that already works harder to pass
+ * over (the next level up, the best result moved first, a line that dilutes the rest cut). It quotes a resume line
+ * like "line", but it is optional: it never counts as a line that needs work, so Ready to send still holds.
+ */
+export const CARD_KINDS = ["line", "structure", "dates", "keep", "upgrade"] as const;
 export type CardKind = typeof CARD_KINDS[number];
+
+/** Kinds that quote a resume line word for word. */
+export const QUOTED_KINDS: ReadonlySet<CardKind> = new Set(["line", "keep", "upgrade"]);
+/** Kinds that count as a line that needs work: the band and the ending read these. */
+export const WORK_KINDS: ReadonlySet<CardKind> = new Set(["line", "structure", "dates"]);
 
 /** The most cards a report shows; the prompt asks for every line that needs obvious work. */
 export const MAX_CARDS = 12;
@@ -32,6 +42,11 @@ export const WorklistCardSchema = z.object({
 }).superRefine((card, context) => {
   if (card.kind === "keep") {
     if (card.question) context.addIssue({ code: "custom", path: ["question"], message: "a keep card asks nothing" });
+    return;
+  }
+  if (card.kind === "upgrade") {
+    // A move or a cut needs no example; an example with blanks needs the question that fills them.
+    if (/\[[^\]]*\]/u.test(card.example) && !card.question) context.addIssue({ code: "custom", path: ["question"], message: "an upgrade with blanks carries the question that fills them" });
     return;
   }
   if (!card.question) context.addIssue({ code: "custom", path: ["question"], message: "a card that needs work carries the question that fills its blanks" });

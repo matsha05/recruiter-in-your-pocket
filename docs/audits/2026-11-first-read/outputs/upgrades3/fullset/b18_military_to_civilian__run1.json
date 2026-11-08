@@ -1,0 +1,313 @@
+{
+  "case_id": "b18_military_to_civilian",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/resumes/b_military_to_civilian.txt",
+  "resume_sha256": "c2dd1e89354ce1a86021927ffba5d85f65b3dfb021c3126f6459225f8bfd7a7e",
+  "resume_words": 268,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T22:14:49.506Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6645,
+        "completion_tokens": 1633,
+        "total_tokens": 8278,
+        "cached_prompt_tokens": 5529,
+        "cache_write_prompt_tokens": 1113,
+        "reasoning_tokens": 699
+      },
+      "cost_usd": 0.0098357,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 19037
+    }
+  ],
+  "resume_prompt_sha256": "15dff271c2d212b2504350e8d09deec38785cfa3e7ee269f5f8154593e015688",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A strong Army logistics leader with measurable results, ready to translate that work for operations supervisor roles.",
+    "write_up": [
+      "Your Army experience makes a strong case for operations supervision: you lead maintenance, supply and fuel teams, manage equipment, and improve vehicle readiness. This resume gives a recruiter the numbers behind that work instead of leaving them to guess!",
+      "The vehicle readiness line is your best model. It shows the starting point, the improvement and the changes you made to get there. Your target job is named up front, and your civilian supply chain degree and Green Belt reinforce the direction.",
+      "Start by naming the logistics support you provided during the field exercises, then add what you taught the junior mechanics. Your resume isn't the main obstacle to a callback; the fit and competition for each operations role matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Platoon Sergeant, line 2",
+        "line": "- Accountable for $14M of vehicles, tools, and equipment with zero losses on three annual inventories",
+        "cannot_tell": "Keep this as a model. It puts the assets you were accountable for next to the inventory record, so the responsibility is easy to grasp.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Platoon Sergeant, line 3",
+        "line": "- Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises",
+        "cannot_tell": "The battalion and exercises give this work scale, but logistics support could cover several different services. Name what you provided.",
+        "example": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises, including [support provided]",
+        "question": "What logistics support did you provide during the exercises?"
+      },
+      {
+        "kind": "line",
+        "where": "Wheeled Vehicle Mechanic, line 2",
+        "line": "- Trained 9 junior mechanics",
+        "cannot_tell": "A recruiter can see how many mechanics you trained, but not what you taught them. The subject would connect this work to the maintenance jobs you're targeting.",
+        "example": "Trained 9 junior mechanics in [skills taught]",
+        "question": "What did you train the junior mechanics to do?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Platoon Sergeant, line 1",
+        "line": "- Led, trained, and evaluated 38 soldiers across maintenance, supply, and fuel sections",
+        "cannot_tell": "For a role above supervisor, a recruiter will also look for how you set direction across the sections.",
+        "example": "Led, trained, and evaluated 38 soldiers across maintenance, supply, and fuel sections; set [team direction] through [decision you made]",
+        "question": "What direction did you set across the sections, and what decision did you make to carry it out?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Platoon Sergeant, line 4",
+        "line": "- Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "cannot_tell": "Move this above the field exercise line. It's your clearest example of improving an operation and deserves to be seen sooner.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "operations supervisor",
+        "Platoon Sergeant (E-7), Forward Support Company"
+      ],
+      "why": "Your opening names an operations supervisor role, and your latest Army job shows team leadership across maintenance, supply and fuel.",
+      "level": "manager, led 38 soldiers and evaluated 6 direct-report sergeants",
+      "note": "Maintenance and logistics supervision are the clearest directions for your experience. Keep translating the Army work into the services and decisions a civilian operations team would recognize.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A strong Army logistics leader with measurable results, ready to translate that work for operations supervisor roles.",
+    "write_up": [
+      "Your Army experience makes a strong case for operations supervision: you lead maintenance, supply and fuel teams, manage equipment, and improve vehicle readiness. This resume gives a recruiter the numbers behind that work instead of leaving them to guess!",
+      "The vehicle readiness line is your best model. It shows the starting point, the improvement and the changes you made to get there. Your target job is named up front, and your civilian supply chain degree and Green Belt reinforce the direction.",
+      "Start by naming the logistics support you provided during the field exercises, then add what you taught the junior mechanics. Your resume isn't the main obstacle to a callback; the fit and competition for each operations role matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Platoon Sergeant, line 2",
+        "line": "Accountable for $14M of vehicles, tools, and equipment with zero losses on three annual inventories",
+        "cannot_tell": "Keep this as a model. It puts the assets you were accountable for next to the inventory record, so the responsibility is easy to grasp.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Platoon Sergeant, line 3",
+        "line": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises",
+        "cannot_tell": "The battalion and exercises give this work scale, but logistics support could cover several different services. Name what you provided.",
+        "example": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises, including [support provided]",
+        "question": "What logistics support did you provide during the exercises?"
+      },
+      {
+        "kind": "line",
+        "where": "Wheeled Vehicle Mechanic, line 2",
+        "line": "Trained 9 junior mechanics",
+        "cannot_tell": "A recruiter can see how many mechanics you trained, but not what you taught them. The subject would connect this work to the maintenance jobs you're targeting.",
+        "example": "Trained 9 junior mechanics in [skills taught]",
+        "question": "What did you train the junior mechanics to do?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Platoon Sergeant, line 1",
+        "line": "Led, trained, and evaluated 38 soldiers across maintenance, supply, and fuel sections",
+        "cannot_tell": "For a role above supervisor, a recruiter will also look for how you set direction across the sections.",
+        "example": "Led, trained, and evaluated 38 soldiers across maintenance, supply, and fuel sections; set [team direction] through [decision you made]",
+        "question": "What direction did you set across the sections, and what decision did you make to carry it out?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Platoon Sergeant, line 4",
+        "line": "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "cannot_tell": "Move this above the field exercise line. It's your clearest example of improving an operation and deserves to be seen sooner.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "operations supervisor",
+        "Platoon Sergeant (E-7), Forward Support Company"
+      ],
+      "why": "Your opening names an operations supervisor role, and your latest Army job shows team leadership across maintenance, supply and fuel.",
+      "level": "manager, led 38 soldiers and evaluated 6 direct-report sergeants",
+      "note": "Maintenance and logistics supervision are the clearest directions for your experience. Keep translating the Army work into the services and decisions a civilian operations team would recognize.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A strong Army logistics leader with measurable results, ready to translate that work for operations supervisor roles.",
+    "write_up": [
+      "Your Army experience makes a strong case for operations supervision: you lead maintenance, supply and fuel teams, manage equipment, and improve vehicle readiness. This resume gives a recruiter the numbers behind that work instead of leaving them to guess!",
+      "The vehicle readiness line is your best model. It shows the starting point, the improvement and the changes you made to get there. Your target job is named up front, and your civilian supply chain degree and Green Belt reinforce the direction.",
+      "Start by naming the logistics support you provided during the field exercises, then add what you taught the junior mechanics. Your resume isn't the main obstacle to a callback; the fit and competition for each operations role matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Platoon Sergeant, line 2",
+        "line": "Accountable for $14M of vehicles, tools, and equipment with zero losses on three annual inventories",
+        "cannot_tell": "Keep this as a model. It puts the assets you were accountable for next to the inventory record, so the responsibility is easy to grasp.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Platoon Sergeant, line 3",
+        "line": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises",
+        "cannot_tell": "The battalion and exercises give this work scale, but logistics support could cover several different services. Name what you provided.",
+        "example": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises, including [support provided]",
+        "question": "What logistics support did you provide during the exercises?"
+      },
+      {
+        "kind": "line",
+        "where": "Wheeled Vehicle Mechanic, line 2",
+        "line": "Trained 9 junior mechanics",
+        "cannot_tell": "A recruiter can see how many mechanics you trained, but not what you taught them. The subject would connect this work to the maintenance jobs you're targeting.",
+        "example": "Trained 9 junior mechanics in [skills taught]",
+        "question": "What did you train the junior mechanics to do?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Platoon Sergeant, line 1",
+        "line": "Led, trained, and evaluated 38 soldiers across maintenance, supply, and fuel sections",
+        "cannot_tell": "For a role above supervisor, a recruiter will also look for how you set direction across the sections.",
+        "example": "Led, trained, and evaluated 38 soldiers across maintenance, supply, and fuel sections; set [team direction] through [decision you made]",
+        "question": "What direction did you set across the sections, and what decision did you make to carry it out?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Platoon Sergeant, line 4",
+        "line": "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "cannot_tell": "Move this above the field exercise line. It's your clearest example of improving an operation and deserves to be seen sooner.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "operations supervisor",
+        "Platoon Sergeant (E-7), Forward Support Company"
+      ],
+      "why": "Your opening names an operations supervisor role, and your latest Army job shows team leadership across maintenance, supply and fuel.",
+      "level": "manager, led 38 soldiers and evaluated 6 direct-report sergeants",
+      "note": "Maintenance and logistics supervision are the clearest directions for your experience. Keep translating the Army work into the services and decisions a civilian operations team would recognize.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "presentation": {
+    "score": 89,
+    "band": "Clear and specific",
+    "model_score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A strong Army logistics leader with measurable results, ready to translate that work for operations supervisor roles.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 120,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Platoon Sergeant, line 2",
+        "line": "Accountable for $14M of vehicles, tools, and equipment with zero losses on three annual inventories",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Platoon Sergeant, line 3",
+        "line": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises",
+        "blanks": 1,
+        "question": "What logistics support did you provide during the exercises?"
+      },
+      {
+        "kind": "line",
+        "where": "Wheeled Vehicle Mechanic, line 2",
+        "line": "Trained 9 junior mechanics",
+        "blanks": 1,
+        "question": "What did you train the junior mechanics to do?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Platoon Sergeant, line 1",
+        "line": "Led, trained, and evaluated 38 soldiers across maintenance, supply, and fuel sections",
+        "blanks": 2,
+        "question": "What direction did you set across the sections, and what decision did you make to carry it out?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Platoon Sergeant, line 4",
+        "line": "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "keep": 1,
+      "line": 2,
+      "upgrade": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "operations supervisor",
+        "Platoon Sergeant (E-7), Forward Support Company"
+      ],
+      "why": "Your opening names an operations supervisor role, and your latest Army job shows team leadership across maintenance, supply and fuel.",
+      "level": "manager, led 38 soldiers and evaluated 6 direct-report sergeants",
+      "note": "Maintenance and logistics supervision are the clearest directions for your experience. Keep translating the Army work into the services and decisions a civilian operations team would recognize.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0098357,
+  "latency_ms": 19040
+}

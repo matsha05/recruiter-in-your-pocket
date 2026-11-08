@@ -1,0 +1,33 @@
+# b27_backend_engineer_senior, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_backend_engineer_senior_1.txt (190 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt da8de295; severity check off
+Outcome: report; cost $0.0090; 18.3s
+
+## Clear and specific (score 91; model wrote 91)
+## Verdict
+A senior payments engineer whose resume connects technical decisions to measurable changes.
+
+## Write-up
+This is a strong senior backend resume! Your payments work at Tidewater Commerce shows both technical leadership and changes to reconciliation, reliability, and audit readiness. The earlier billing work reinforces that story.
+
+The invoice generation line at Northwind Billing is a great model: it gives the before and after and names the database change that got it there. Your experience leads, and the progression from billing to payments is easy to follow.
+
+Your resume isn't likely to be what holds you back. Competition for a particular role will still matter. For a more senior position, add the broader technical decisions you owned if that work is part of your story.
+
+## Cards (3; {"keep":1,"upgrade":2}); severity off; added []
+1. [keep] Software Engineer, line 2
+   line: "Reduced invoice generation time from 6 hours to 25 minutes by batching database writes"
+   can't tell: Keep this as a model. It pairs a concrete engineering choice with a change a recruiter can immediately grasp.
+2. [upgrade] Senior Software Engineer, Payments Platform, line 1
+   line: "Designed and led the migration of card authorization from a monolith to a Go service handling 4,500 requests per second at p99 under 80 ms"
+   can't tell: For a role above senior engineer, a recruiter will also look for technical direction that reaches beyond one migration. Add that only if you set it.
+   example: Set [technical direction] for [systems or teams] while designing and leading the migration of card authorization from a monolith to a Go service handling 4,500 requests per second at p99 under 80 ms
+   question: Did you set a broader technical direction through this work, and which systems or teams did it cover?
+3. [upgrade] Senior Software Engineer, Payments Platform, line 2
+   line: "Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10"
+   can't tell: Consider moving this above the migration line. The before and after makes the change to reconciliation immediately apparent.
+
+## Fit
+Roles: ["Senior Software Engineer, Payments Platform","Software Engineer"]
+Level: Senior engineer, led a team of 5 engineers through an audit and mentors 3 engineers
+Note: Your experience points toward senior backend roles in payments or billing. For roles above senior engineer, the resume would benefit from any broader technical direction you can substantiate.

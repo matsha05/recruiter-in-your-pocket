@@ -1,0 +1,35 @@
+# b03_welder, run 1
+Resume: ../2026-11-live-judgment/resumes/b_welder.txt (195 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt da8de295; severity check off
+Outcome: report; cost $0.0082; 17.3s
+
+## Clear and specific (score 85; model wrote 85)
+## Verdict
+An experienced welder and fitter with precise shop work, pipe experience and a standout inspection record.
+
+## Write-up
+This is a strong welding resume! Your structural steel and pipe work comes with the processes, materials and standards a recruiter needs to see. The current Welder / Fitter role also shows both fit-up precision and inspection performance.
+
+The Riverfront Tower line is the model: it names the job, the inspections and about 900 welds. Your certifications are easy to find, and the move from helper to pipe welder to fitter is easy to follow.
+
+Let's give the shutdown line the same substance by naming the work you did there. Your resume doesn't need a major rebuild; the requirements of each job and the competition will matter too.
+
+## Cards (3; {"line":1,"keep":1,"upgrade":1}); severity off; added []
+1. [line] Pipe Welder, line 3
+   line: "Worked nights and weekends on plant shutdowns"
+   can't tell: The schedule shows your availability, but not what you did during the shutdowns. Name the work you handled so a recruiter can connect it to the pipe jobs above.
+   example: Worked nights and weekends on plant shutdowns, handling [shutdown work]
+   question: What work did you handle during the plant shutdowns?
+2. [keep] Welder / Fitter, line 3
+   line: "Passed every third-party UT and visual inspection on the Riverfront Tower job (about 900 welds)"
+   can't tell: Keep this. It gives a recruiter a named project and a clear way to understand your inspection record. Use that combination when another job has a result you can document.
+3. [upgrade] Welder / Fitter, line 4
+   line: "Train new hires on the shop's fit-up and tacking procedures"
+   can't tell: Training new hires is a useful starting point for a lead role. If you've also coordinated welding work or helped set procedures, that would show more of the responsibility a lead job asks for.
+   example: Train new hires on the shop's fit-up and tacking procedures and [additional responsibility coordinating welding work]
+   question: Have you coordinated other welders' work or helped set shop procedures, and what did you do?
+
+## Fit
+Roles: ["Welder / Fitter","Pipe Welder"]
+Level: Experienced welder / fitter who trains new hires
+Note: Your resume points to structural welding and fit-up, with process piping as another direction. The certifications and inspection record give both paths useful detail.

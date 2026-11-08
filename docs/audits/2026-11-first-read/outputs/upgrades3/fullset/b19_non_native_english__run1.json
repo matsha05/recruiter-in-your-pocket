@@ -1,0 +1,285 @@
+{
+  "case_id": "b19_non_native_english",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/resumes/b_non_native_english.txt",
+  "resume_sha256": "b6a26fe36825d1810e73236e21445163948f02ce6be0d9328e9ccaf50cb59c16",
+  "resume_words": 237,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T22:14:53.882Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6419,
+        "completion_tokens": 1135,
+        "total_tokens": 7554,
+        "cached_prompt_tokens": 5529,
+        "cache_write_prompt_tokens": 887,
+        "reasoning_tokens": 376
+      },
+      "cost_usd": 0.0070632,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 13443
+    }
+  ],
+  "resume_prompt_sha256": "15dff271c2d212b2504350e8d09deec38785cfa3e7ee269f5f8154593e015688",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 81,
+    "lifted_by_employer": false,
+    "verdict": "A staff accountant resume with clear accounting work and a few unanswered questions about your part in closing.",
+    "write_up": [
+      "You bring accounts payable work in Houston and earlier senior accounting experience in Vietnam. For a Staff Accountant role, a recruiter can follow the work and its scale, with a few questions about your part in closing and the audit.",
+      "Your strongest line is the reduction in month-end closing time: it gives the before and after and names the checklist and template you made. Your current invoice volume and the company details in Vietnam also give a recruiter useful context.",
+      "Let's start with your month-end work at Bayou Industrial Supply, then add what your team handled and your part in the audit at Minh Phat. A final language edit will help the accounting work come through without distractions."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 4",
+        "line": "- Help the controller for month end closing",
+        "cannot_tell": "A recruiter can't tell which closing tasks you handled. That matters for a Staff Accountant role, where closing work is relevant.",
+        "example": "Help the controller with [closing tasks] for month end closing",
+        "question": "Which month-end closing tasks did you help the controller with?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 2",
+        "line": "- Lead team of 3 junior accountants",
+        "cannot_tell": "The team size is clear, but a recruiter can't tell what the junior accountants handled under your direction.",
+        "example": "Lead team of 3 junior accountants who handle [accounting work]",
+        "question": "What accounting work did the three junior accountants handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 3",
+        "line": "- Work with external auditor for year end audit, no major finding in 5 years",
+        "cannot_tell": "The audit record is useful, but your part in working with the auditor is still broad. Name the tasks you handled.",
+        "example": "Work with external auditor on [audit tasks] for year end audit, no major finding in 5 years",
+        "question": "What did you prepare or handle for the external auditor?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Accountant, line 4",
+        "line": "- Reduce the month end closing from 12 days to 7 days by make new checklist and template",
+        "cannot_tell": "Keep this as the model: it connects your own work to a change a recruiter can understand.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Specialist",
+        "Accounts Payable Clerk"
+      ],
+      "why": "Your profile names Staff Accountant, and your work includes month-end closing, general ledger and financial statements.",
+      "level": "mid-level, current accounts payable work and previous leadership of 3 junior accountants",
+      "note": "Your experience points toward staff accounting and accounts payable roles. The US GAAP certificate and QuickBooks work give recruiters useful context alongside your accounting experience in Vietnam.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 81,
+    "lifted_by_employer": false,
+    "verdict": "A staff accountant resume with clear accounting work and a few unanswered questions about your part in closing.",
+    "write_up": [
+      "You bring accounts payable work in Houston and earlier senior accounting experience in Vietnam. For a Staff Accountant role, a recruiter can follow the work and its scale, with a few questions about your part in closing and the audit.",
+      "Your strongest line is the reduction in month-end closing time: it gives the before and after and names the checklist and template you made. Your current invoice volume and the company details in Vietnam also give a recruiter useful context.",
+      "Let's start with your month-end work at Bayou Industrial Supply, then add what your team handled and your part in the audit at Minh Phat. A final language edit will help the accounting work come through without distractions."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 4",
+        "line": "Help the controller for month end closing",
+        "cannot_tell": "A recruiter can't tell which closing tasks you handled. That matters for a Staff Accountant role, where closing work is relevant.",
+        "example": "Help the controller with [closing tasks] for month end closing",
+        "question": "Which month-end closing tasks did you help the controller with?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 2",
+        "line": "Lead team of 3 junior accountants",
+        "cannot_tell": "The team size is clear, but a recruiter can't tell what the junior accountants handled under your direction.",
+        "example": "Lead team of 3 junior accountants who handle [accounting work]",
+        "question": "What accounting work did the three junior accountants handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 3",
+        "line": "Work with external auditor for year end audit, no major finding in 5 years",
+        "cannot_tell": "The audit record is useful, but your part in working with the auditor is still broad. Name the tasks you handled.",
+        "example": "Work with external auditor on [audit tasks] for year end audit, no major finding in 5 years",
+        "question": "What did you prepare or handle for the external auditor?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Accountant, line 4",
+        "line": "Reduce the month end closing from 12 days to 7 days by make new checklist and template",
+        "cannot_tell": "Keep this as the model: it connects your own work to a change a recruiter can understand.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Specialist",
+        "Accounts Payable Clerk"
+      ],
+      "why": "Your profile names Staff Accountant, and your work includes month-end closing, general ledger and financial statements.",
+      "level": "mid-level, current accounts payable work and previous leadership of 3 junior accountants",
+      "note": "Your experience points toward staff accounting and accounts payable roles. The US GAAP certificate and QuickBooks work give recruiters useful context alongside your accounting experience in Vietnam.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 81
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 81,
+    "lifted_by_employer": false,
+    "verdict": "A staff accountant resume with clear accounting work and a few unanswered questions about your part in closing.",
+    "write_up": [
+      "You bring accounts payable work in Houston and earlier senior accounting experience in Vietnam. For a Staff Accountant role, a recruiter can follow the work and its scale, with a few questions about your part in closing and the audit.",
+      "Your strongest line is the reduction in month-end closing time: it gives the before and after and names the checklist and template you made. Your current invoice volume and the company details in Vietnam also give a recruiter useful context.",
+      "Let's start with your month-end work at Bayou Industrial Supply, then add what your team handled and your part in the audit at Minh Phat. A final language edit will help the accounting work come through without distractions."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 4",
+        "line": "Help the controller for month end closing",
+        "cannot_tell": "A recruiter can't tell which closing tasks you handled. That matters for a Staff Accountant role, where closing work is relevant.",
+        "example": "Help the controller with [closing tasks] for month end closing",
+        "question": "Which month-end closing tasks did you help the controller with?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 2",
+        "line": "Lead team of 3 junior accountants",
+        "cannot_tell": "The team size is clear, but a recruiter can't tell what the junior accountants handled under your direction.",
+        "example": "Lead team of 3 junior accountants who handle [accounting work]",
+        "question": "What accounting work did the three junior accountants handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 3",
+        "line": "Work with external auditor for year end audit, no major finding in 5 years",
+        "cannot_tell": "The audit record is useful, but your part in working with the auditor is still broad. Name the tasks you handled.",
+        "example": "Work with external auditor on [audit tasks] for year end audit, no major finding in 5 years",
+        "question": "What did you prepare or handle for the external auditor?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Accountant, line 4",
+        "line": "Reduce the month end closing from 12 days to 7 days by make new checklist and template",
+        "cannot_tell": "Keep this as the model: it connects your own work to a change a recruiter can understand.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Specialist",
+        "Accounts Payable Clerk"
+      ],
+      "why": "Your profile names Staff Accountant, and your work includes month-end closing, general ledger and financial statements.",
+      "level": "mid-level, current accounts payable work and previous leadership of 3 junior accountants",
+      "note": "Your experience points toward staff accounting and accounts payable roles. The US GAAP certificate and QuickBooks work give recruiters useful context alongside your accounting experience in Vietnam.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 81
+  },
+  "presentation": {
+    "score": 81,
+    "band": "Mostly clear",
+    "model_score": 81,
+    "lifted_by_employer": false,
+    "verdict": "A staff accountant resume with clear accounting work and a few unanswered questions about your part in closing.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 118,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 4",
+        "line": "Help the controller for month end closing",
+        "blanks": 1,
+        "question": "Which month-end closing tasks did you help the controller with?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 2",
+        "line": "Lead team of 3 junior accountants",
+        "blanks": 1,
+        "question": "What accounting work did the three junior accountants handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 3",
+        "line": "Work with external auditor for year end audit, no major finding in 5 years",
+        "blanks": 1,
+        "question": "What did you prepare or handle for the external auditor?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Accountant, line 4",
+        "line": "Reduce the month end closing from 12 days to 7 days by make new checklist and template",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 4,
+    "kinds": {
+      "line": 3,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Specialist",
+        "Accounts Payable Clerk"
+      ],
+      "why": "Your profile names Staff Accountant, and your work includes month-end closing, general ledger and financial statements.",
+      "level": "mid-level, current accounts payable work and previous leadership of 3 junior accountants",
+      "note": "Your experience points toward staff accounting and accounts payable roles. The US GAAP certificate and QuickBooks work give recruiters useful context alongside your accounting experience in Vietnam.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0070632,
+  "latency_ms": 13446
+}

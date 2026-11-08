@@ -1,0 +1,255 @@
+{
+  "case_id": "b27_backend_engineer_senior",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_backend_engineer_senior_1.txt",
+  "resume_sha256": "92a71c8e81a037980a571ba4d2007cab76d8f9f04b6517e1ff23e45a0383be59",
+  "resume_words": 190,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T22:15:31.591Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6301,
+        "completion_tokens": 1427,
+        "total_tokens": 7728,
+        "cached_prompt_tokens": 5529,
+        "cache_write_prompt_tokens": 769,
+        "reasoning_tokens": 642
+      },
+      "cost_usd": 0.0083757,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 16891
+    }
+  ],
+  "resume_prompt_sha256": "15dff271c2d212b2504350e8d09deec38785cfa3e7ee269f5f8154593e015688",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments engineer whose resume connects technical decisions to measurable improvements.",
+    "write_up": [
+      "This is a strong resume! Your work at Tidewater Commerce and Northwind Billing shows a senior engineer who can build payment systems, lead an audit and make services more reliable. The best results are tied to the technical work behind them.",
+      "The ledger line is a great model: it names the service you built and the drop in reconciliation breaks. The billing dashboards are the one place I'd want a little more detail about what they tracked.",
+      "Start there, then consider bringing the ledger result to the top of the Tidewater role. Your resume isn't likely to be what stands between you and a call back; how competitive the job is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Software Engineer, line 3",
+        "line": "- Added observability with OpenTelemetry and Grafana dashboards for the billing team",
+        "cannot_tell": "A recruiter can see the tools and the audience, but not what the dashboards tracked or helped the billing team spot.",
+        "example": "Added observability with OpenTelemetry and Grafana dashboards for the billing team to track [metrics]",
+        "question": "What did the dashboards track for the billing team?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, line 2",
+        "line": "- Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10",
+        "cannot_tell": "Keep this as a model: the before and after gives the ledger work a concrete reason to matter.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, line 1",
+        "line": "- Designed and led the migration of card authorization from a monolith to a Go service handling 4,500 requests per second at p99 under 80 ms",
+        "cannot_tell": "For a role above senior engineer, a broader payment architecture decision would show how your work shaped systems beyond this service.",
+        "example": "Designed and led the migration of card authorization from a monolith to a Go service handling 4,500 requests per second at p99 under 80 ms, and made [a broader payment architecture decision]",
+        "question": "Did you make a broader payment architecture decision connected to this migration, and what was it?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, line 2",
+        "line": "- Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10",
+        "cannot_tell": "Consider moving this above the migration line. Its before and after makes the result immediately visible.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Software Engineer, Payments Platform"
+      ],
+      "why": "Your headline and latest role center on backend payments, including card authorization and a ledger service.",
+      "level": "senior, leads a payments migration and a team of 5 engineers through an audit",
+      "note": "Your experience points toward senior backend roles in payments and billing. The audit and mentoring work also give you material for roles with a technical leadership component.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments engineer whose resume connects technical decisions to measurable improvements.",
+    "write_up": [
+      "This is a strong resume! Your work at Tidewater Commerce and Northwind Billing shows a senior engineer who can build payment systems, lead an audit and make services more reliable. The best results are tied to the technical work behind them.",
+      "The ledger line is a great model: it names the service you built and the drop in reconciliation breaks. The billing dashboards are the one place I'd want a little more detail about what they tracked.",
+      "Start there, then consider bringing the ledger result to the top of the Tidewater role. Your resume isn't likely to be what stands between you and a call back; how competitive the job is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Software Engineer, line 3",
+        "line": "Added observability with OpenTelemetry and Grafana dashboards for the billing team",
+        "cannot_tell": "A recruiter can see the tools and the audience, but not what the dashboards tracked or helped the billing team spot.",
+        "example": "Added observability with OpenTelemetry and Grafana dashboards for the billing team to track [metrics]",
+        "question": "What did the dashboards track for the billing team?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, line 2",
+        "line": "Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10",
+        "cannot_tell": "Keep this as a model: the before and after gives the ledger work a concrete reason to matter.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, line 1",
+        "line": "Designed and led the migration of card authorization from a monolith to a Go service handling 4,500 requests per second at p99 under 80 ms",
+        "cannot_tell": "For a role above senior engineer, a broader payment architecture decision would show how your work shaped systems beyond this service.",
+        "example": "Designed and led the migration of card authorization from a monolith to a Go service handling 4,500 requests per second at p99 under 80 ms, and made [a broader payment architecture decision]",
+        "question": "Did you make a broader payment architecture decision connected to this migration, and what was it?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Software Engineer, Payments Platform"
+      ],
+      "why": "Your headline and latest role center on backend payments, including card authorization and a ledger service.",
+      "level": "senior, leads a payments migration and a team of 5 engineers through an audit",
+      "note": "Your experience points toward senior backend roles in payments and billing. The audit and mentoring work also give you material for roles with a technical leadership component.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 90
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments engineer whose resume connects technical decisions to measurable improvements.",
+    "write_up": [
+      "This is a strong resume! Your work at Tidewater Commerce and Northwind Billing shows a senior engineer who can build payment systems, lead an audit and make services more reliable. The best results are tied to the technical work behind them.",
+      "The ledger line is a great model: it names the service you built and the drop in reconciliation breaks. The billing dashboards are the one place I'd want a little more detail about what they tracked.",
+      "Start there, then consider bringing the ledger result to the top of the Tidewater role. Your resume isn't likely to be what stands between you and a call back; how competitive the job is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Software Engineer, line 3",
+        "line": "Added observability with OpenTelemetry and Grafana dashboards for the billing team",
+        "cannot_tell": "A recruiter can see the tools and the audience, but not what the dashboards tracked or helped the billing team spot.",
+        "example": "Added observability with OpenTelemetry and Grafana dashboards for the billing team to track [metrics]",
+        "question": "What did the dashboards track for the billing team?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, line 2",
+        "line": "Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10",
+        "cannot_tell": "Keep this as a model: the before and after gives the ledger work a concrete reason to matter.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, line 1",
+        "line": "Designed and led the migration of card authorization from a monolith to a Go service handling 4,500 requests per second at p99 under 80 ms",
+        "cannot_tell": "For a role above senior engineer, a broader payment architecture decision would show how your work shaped systems beyond this service.",
+        "example": "Designed and led the migration of card authorization from a monolith to a Go service handling 4,500 requests per second at p99 under 80 ms, and made [a broader payment architecture decision]",
+        "question": "Did you make a broader payment architecture decision connected to this migration, and what was it?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Software Engineer, Payments Platform"
+      ],
+      "why": "Your headline and latest role center on backend payments, including card authorization and a ledger service.",
+      "level": "senior, leads a payments migration and a team of 5 engineers through an audit",
+      "note": "Your experience points toward senior backend roles in payments and billing. The audit and mentoring work also give you material for roles with a technical leadership component.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 90
+  },
+  "presentation": {
+    "score": 90,
+    "band": "Clear and specific",
+    "model_score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments engineer whose resume connects technical decisions to measurable improvements.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 114,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Software Engineer, line 3",
+        "line": "Added observability with OpenTelemetry and Grafana dashboards for the billing team",
+        "blanks": 1,
+        "question": "What did the dashboards track for the billing team?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, line 2",
+        "line": "Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, line 1",
+        "line": "Designed and led the migration of card authorization from a monolith to a Go service handling 4,500 requests per second at p99 under 80 ms",
+        "blanks": 1,
+        "question": "Did you make a broader payment architecture decision connected to this migration, and what was it?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "line": 1,
+      "keep": 1,
+      "upgrade": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Software Engineer, Payments Platform"
+      ],
+      "why": "Your headline and latest role center on backend payments, including card authorization and a ledger service.",
+      "level": "senior, leads a payments migration and a team of 5 engineers through an audit",
+      "note": "Your experience points toward senior backend roles in payments and billing. The audit and mentoring work also give you material for roles with a technical leadership component.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0083757,
+  "latency_ms": 16893
+}

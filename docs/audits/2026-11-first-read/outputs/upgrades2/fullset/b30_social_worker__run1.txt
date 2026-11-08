@@ -1,0 +1,54 @@
+# b30_social_worker, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_social_worker_1.txt (127 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt da8de295; severity check off
+Outcome: report; cost $0.0092; 19.3s
+
+## Needs more context (score 65; model wrote 65)
+## Verdict
+A licensed family services caseworker whose resume names the work but leaves the caseload and decisions unclear.
+
+## Write-up
+Your resume points to family services casework: you work with families involved with child protective services at Cuyahoga Family Partners, after intake work at Lakeview Community Center. This is a common pattern on social work resumes: the duties are named, but the caseload and the decisions behind them aren't. That makes it harder to stand out when a recruiter is comparing caseworkers.
+
+The monthly family team meetings line is the best model: it names an activity you facilitate and tells a recruiter how often. Your Ohio LMSW and MSW are easy to find, and your experience comes first. One short description of Cuyahoga Family Partners would also give a reader context for the setting.
+
+Let's start with your current caseload, then work through the assessments and service coordination. Add details you can share without identifying families, including how many cases you carry and what your assessments inform.
+
+## Cards (7; {"structure":1,"line":5,"keep":1}); severity off; added []
+1. [structure] Cuyahoga Family Partners
+   line: "The type of organization Cuyahoga Family Partners is isn't stated."
+   can't tell: A recruiter may not know the organization or the setting for your casework. A short description can help them place the work.
+   question: What kind of organization is Cuyahoga Family Partners?
+2. [line] Family Services Caseworker, line 1
+   line: "Carry a caseload of families involved with child protective services"
+   can't tell: The families and child protective services connection are clear, but the caseload isn't. How many families you carry is a defining detail for this work.
+   example: Carry a caseload of [number] families involved with child protective services
+   question: How many families are in your caseload?
+3. [line] Family Services Caseworker, line 2
+   line: "Complete safety and risk assessments during home visits"
+   can't tell: A recruiter can see that you assess safety and risk, but not what those assessments inform. That matters when comparing casework responsibilities.
+   example: Complete safety and risk assessments during home visits to inform [decisions]
+   question: What decisions do your safety and risk assessments inform?
+4. [line] Family Services Caseworker, line 3
+   line: "Coordinate services with schools, courts, and mental health providers"
+   can't tell: The partners are named, but the services you coordinate aren't. One example would show what that coordination involves.
+   example: Coordinate [services] with schools, courts, and mental health providers
+   question: What services do you coordinate with these partners?
+5. [line] Family Services Caseworker, line 4
+   line: "Write case plans and court reports"
+   can't tell: The two documents are clear, but a recruiter can't tell what your plans and reports address or support. Add a detail you can share without identifying a family.
+   example: Write case plans and court reports addressing [case needs or decisions]
+   question: What needs or decisions do your case plans and court reports address?
+6. [keep] Family Services Caseworker, line 5
+   line: "Facilitate monthly family team meetings"
+   can't tell: Keep this. It gives your role in the meetings and their cadence without making the reader guess. Use that same directness when you add the caseload.
+7. [line] Intake Specialist, line 2
+   line: "Connected clients to county benefit programs"
+   can't tell: A recruiter can see that you connected clients to programs, but not which programs or what you did to make the connection.
+   example: Connected clients to [county benefit programs] by [intake or referral work]
+   question: Which county benefit programs did you connect clients to, and what did you do to connect them?
+
+## Fit
+Roles: ["Family Services Caseworker","Intake Specialist"]
+Level: Caseworker, with a current caseload and an Ohio LMSW
+Note: Your experience points toward child welfare and family services casework. The intake role also shows work connecting clients to assistance, though the programs and referral work aren't yet named.

@@ -1,0 +1,278 @@
+{
+  "case_id": "fr01a_backend_ic_no_posting",
+  "batch": "targeted",
+  "run": 1,
+  "note": "P1. Senior backend IC, no direct reports, no posting. Expect the role read as Senior Backend Engineer and a level that says IC, no reports.",
+  "resume_file": "resumes/fr01_backend_ic_senior.txt",
+  "resume_sha256": "473f0177fffa3bc053f5a4c69f6aa3d7ecdf9c22fafb2ee8360f7be0e877aa55",
+  "resume_words": 236,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T20:37:59.503Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6222,
+        "completion_tokens": 1441,
+        "total_tokens": 7663,
+        "cached_prompt_tokens": 0,
+        "cache_write_prompt_tokens": 6219,
+        "reasoning_tokens": 612
+      },
+      "cost_usd": 0.01498175,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 18047
+    }
+  ],
+  "resume_prompt_sha256": "da8de2955f7c8fc1b62e0178500104bae17a416005f43113f3b1bc615f3fd1f8",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A senior backend engineer with payments work that shows both technical decisions and results.",
+    "write_up": [
+      "This is a strong senior backend resume! At Lumen Ledger, you pair substantial payments work with the technical choices behind it, from a sharded ledger to a faster balance API. A recruiter can follow your progression from insurance and freight systems into payments.",
+      "The payouts service line is a great model: it names what you built, the tools, and the volume it handles. Your experience is easy to follow, and your current role backs up the Senior Backend Engineer headline. The older claims work is the one place where a recruiter still has to guess what maintaining the service involved.",
+      "Let's add one concrete detail to the claims line, then consider leading with the balance API result. Your resume isn't likely to be the thing standing between you and a callback; competition for a particular role and a referral can still matter."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Software Engineer, Northgate Insurance, line 1",
+        "line": "- Maintained the claims intake services in Java",
+        "cannot_tell": "Maintained can cover a lot of work. A recruiter can't tell what you changed or handled in the claims services.",
+        "example": "Maintained the claims intake services in Java by [maintenance work]",
+        "question": "What work did you do to maintain the claims intake services?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 1",
+        "line": "- Designed and built the idempotent payouts service in Go and PostgreSQL that now settles about 1.8M payouts a month",
+        "cannot_tell": "Keep this as a model. It connects your own build work to a named service and the volume that service handles.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "- Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends",
+        "cannot_tell": "For a role one level above senior, a recruiter may look for decisions that reached beyond the migration itself. If you made a broader technical decision here, name it and the teams involved.",
+        "example": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends, including [technical decision] with [teams involved]",
+        "question": "What broader technical decision, if any, did you make around the ledger migration, and who was involved?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 3",
+        "line": "- Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
+        "cannot_tell": "Consider moving this above the payouts service line. The before-and-after latency makes the improvement immediately visible.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer"
+      ],
+      "why": "Your headline and current payments platform role both point to senior backend engineering.",
+      "level": "Senior engineer, leads migrations and mentors two mid-level engineers",
+      "note": "Your experience points especially well toward backend roles working on payments or other transaction systems. The ledger migration and balance API work also give you a basis for discussing larger technical decisions.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A senior backend engineer with payments work that shows both technical decisions and results.",
+    "write_up": [
+      "This is a strong senior backend resume! At Lumen Ledger, you pair substantial payments work with the technical choices behind it, from a sharded ledger to a faster balance API. A recruiter can follow your progression from insurance and freight systems into payments.",
+      "The payouts service line is a great model: it names what you built, the tools, and the volume it handles. Your experience is easy to follow, and your current role backs up the Senior Backend Engineer headline. The older claims work is the one place where a recruiter still has to guess what maintaining the service involved.",
+      "Let's add one concrete detail to the claims line, then consider leading with the balance API result. Your resume isn't likely to be the thing standing between you and a callback; competition for a particular role and a referral can still matter."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Software Engineer, Northgate Insurance, line 1",
+        "line": "Maintained the claims intake services in Java",
+        "cannot_tell": "Maintained can cover a lot of work. A recruiter can't tell what you changed or handled in the claims services.",
+        "example": "Maintained the claims intake services in Java by [maintenance work]",
+        "question": "What work did you do to maintain the claims intake services?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 1",
+        "line": "Designed and built the idempotent payouts service in Go and PostgreSQL that now settles about 1.8M payouts a month",
+        "cannot_tell": "Keep this as a model. It connects your own build work to a named service and the volume that service handles.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends",
+        "cannot_tell": "For a role one level above senior, a recruiter may look for decisions that reached beyond the migration itself. If you made a broader technical decision here, name it and the teams involved.",
+        "example": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends, including [technical decision] with [teams involved]",
+        "question": "What broader technical decision, if any, did you make around the ledger migration, and who was involved?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 3",
+        "line": "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
+        "cannot_tell": "Consider moving this above the payouts service line. The before-and-after latency makes the improvement immediately visible.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer"
+      ],
+      "why": "Your headline and current payments platform role both point to senior backend engineering.",
+      "level": "Senior engineer, leads migrations and mentors two mid-level engineers",
+      "note": "Your experience points especially well toward backend roles working on payments or other transaction systems. The ledger migration and balance API work also give you a basis for discussing larger technical decisions.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A senior backend engineer with payments work that shows both technical decisions and results.",
+    "write_up": [
+      "This is a strong senior backend resume! At Lumen Ledger, you pair substantial payments work with the technical choices behind it, from a sharded ledger to a faster balance API. A recruiter can follow your progression from insurance and freight systems into payments.",
+      "The payouts service line is a great model: it names what you built, the tools, and the volume it handles. Your experience is easy to follow, and your current role backs up the Senior Backend Engineer headline. The older claims work is the one place where a recruiter still has to guess what maintaining the service involved.",
+      "Let's add one concrete detail to the claims line, then consider leading with the balance API result. Your resume isn't likely to be the thing standing between you and a callback; competition for a particular role and a referral can still matter."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Software Engineer, Northgate Insurance, line 1",
+        "line": "Maintained the claims intake services in Java",
+        "cannot_tell": "Maintained can cover a lot of work. A recruiter can't tell what you changed or handled in the claims services.",
+        "example": "Maintained the claims intake services in Java by [maintenance work]",
+        "question": "What work did you do to maintain the claims intake services?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 1",
+        "line": "Designed and built the idempotent payouts service in Go and PostgreSQL that now settles about 1.8M payouts a month",
+        "cannot_tell": "Keep this as a model. It connects your own build work to a named service and the volume that service handles.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends",
+        "cannot_tell": "For a role one level above senior, a recruiter may look for decisions that reached beyond the migration itself. If you made a broader technical decision here, name it and the teams involved.",
+        "example": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends, including [technical decision] with [teams involved]",
+        "question": "What broader technical decision, if any, did you make around the ledger migration, and who was involved?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 3",
+        "line": "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
+        "cannot_tell": "Consider moving this above the payouts service line. The before-and-after latency makes the improvement immediately visible.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer"
+      ],
+      "why": "Your headline and current payments platform role both point to senior backend engineering.",
+      "level": "Senior engineer, leads migrations and mentors two mid-level engineers",
+      "note": "Your experience points especially well toward backend roles working on payments or other transaction systems. The ledger migration and balance API work also give you a basis for discussing larger technical decisions.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "presentation": {
+    "score": 89,
+    "band": "Clear and specific",
+    "model_score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A senior backend engineer with payments work that shows both technical decisions and results.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 142,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Software Engineer, Northgate Insurance, line 1",
+        "line": "Maintained the claims intake services in Java",
+        "blanks": 1,
+        "question": "What work did you do to maintain the claims intake services?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 1",
+        "line": "Designed and built the idempotent payouts service in Go and PostgreSQL that now settles about 1.8M payouts a month",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends",
+        "blanks": 2,
+        "question": "What broader technical decision, if any, did you make around the ledger migration, and who was involved?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 3",
+        "line": "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 4,
+    "kinds": {
+      "line": 1,
+      "keep": 1,
+      "upgrade": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer"
+      ],
+      "why": "Your headline and current payments platform role both point to senior backend engineering.",
+      "level": "Senior engineer, leads migrations and mentors two mid-level engineers",
+      "note": "Your experience points especially well toward backend roles working on payments or other transaction systems. The ledger migration and balance API work also give you a basis for discussing larger technical decisions.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01498175,
+  "latency_ms": 18480
+}

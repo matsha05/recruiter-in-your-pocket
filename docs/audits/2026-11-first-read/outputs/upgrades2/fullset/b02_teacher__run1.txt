@@ -1,0 +1,35 @@
+# b02_teacher, run 1
+Resume: ../2026-11-live-judgment/resumes/b_teacher.txt (202 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt da8de295; severity check off
+Outcome: report; cost $0.0085; 17.7s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+An elementary teacher whose classroom results and grade-level leadership are easy to see.
+
+## Write-up
+Your resume makes a strong case for elementary teaching: it connects your classroom work at Lincoln Heights with reading growth, curriculum training and grade-level leadership. A recruiter can see both the students you teach and the work you do with other teachers.
+
+The reading growth line is a standout because it gives the district assessment measure, where it started and where it reached over three years. Your certification and English Language Learner endorsement are easy to find, and your experience comes before education.
+
+Your resume is unlikely to be what holds you back. Competition for a particular teaching job will matter too. I’d add your contribution to the behavior committee, then consider showing what your grade-level team accomplished under your leadership.
+
+## Cards (3; {"keep":1,"line":1,"upgrade":1}); severity off; added []
+1. [keep] 4th Grade Teacher, reading growth
+   line: "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years"
+   can't tell: Keep this as a model. It names the assessment and gives a before-and-after measure with a timeframe, so the achievement stands on its own.
+2. [line] 2nd Grade Teacher, behavior committee
+   line: "Served on the school's positive behavior support committee"
+   can't tell: A recruiter can see that you were on the committee, but not what you contributed. Name a piece of work you helped with.
+   example: Served on the school's positive behavior support committee and [what you contributed]
+   question: What did you contribute to the committee's work?
+3. [upgrade] 4th Grade Teacher, grade-level team
+   line: "Lead the grade-level team of 4 teachers in weekly planning and data meetings"
+   can't tell: This already shows team leadership. For a role with more instructional leadership, add a decision or change you led the team toward.
+   example: Lead the grade-level team of 4 teachers in weekly planning and data meetings to [team decision or change]
+   question: What decision or change did you lead the team toward in those meetings?
+
+## Fit
+Roles: ["Elementary teacher","4th Grade Teacher"]
+Level: Experienced classroom teacher, with grade-level team leadership
+Note: Your experience points directly to elementary classroom teaching, with added strength in English language learner instruction. Your work leading planning meetings and training teachers also gives you material to use for instructional leadership roles.

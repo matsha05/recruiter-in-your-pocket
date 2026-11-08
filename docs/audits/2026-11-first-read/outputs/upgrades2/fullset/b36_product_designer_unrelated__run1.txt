@@ -1,0 +1,55 @@
+# b36_product_designer_unrelated, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_product_designer_unrelated_1.txt (147 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt da8de295; severity check off
+Outcome: report; cost $0.0115; 24.2s
+Case note: Current job outside the field.
+
+## Needs more context (score 66; model wrote 66)
+## Verdict
+A product designer with solid named projects, but little showing what those projects changed.
+
+## Write-up
+Your resume points to product design through Loop Fitness and Brightpath Studio, with current customer-facing work at Ferry Street Coffee. It's common for design resumes to name the work without showing what happened next. Here, that makes it harder to stand out for product design roles, especially since your latest listed design role ended in February 2024.
+
+The Figma design system is your best model: it names what you created, where it lived and the tool you used. Your current barista role accounts for your time, but a recruiter can't see whether you've done any design work since Loop Fitness.
+
+Let's start with the Loop Fitness booking flow and add the problem you worked on and what changed, if you can substantiate it. If you've done design projects since then, add the real ones with dates. Your portfolio can carry the visual work, while your resume gives each project a reason to be opened.
+
+## Cards (7; {"structure":1,"line":5,"keep":1}); severity off; added []
+1. [structure] Loop Fitness
+   line: "Loop Fitness has no company description."
+   can't tell: The booking flow shows what the app did, but a recruiter can't tell how big the company was. A short company description could give the design work more context.
+   question: How big was Loop Fitness while you worked there?
+2. [line] Barista, line 1
+   line: "Prepare drinks and serve customers in a busy cafe"
+   can't tell: A recruiter can see the work, but not what a busy shift means here. A customer count could show the pace if you have one you can stand behind.
+   example: Prepare drinks and serve [number] customers per [shift or other period] at a cafe
+   question: How many customers did you typically serve in a period you tracked?
+3. [line] Barista, line 2
+   line: "Train new baristas on espresso equipment"
+   can't tell: Training is useful experience, but the line doesn't show how many people you trained.
+   example: Train [number] new baristas on espresso equipment
+   question: How many new baristas have you trained?
+4. [line] Product Designer, line 1
+   line: "Designed the class booking flow for the iOS and Android apps"
+   can't tell: The booking flow is a concrete project, but a recruiter can't tell what problem you were solving or what changed for members.
+   example: Designed the class booking flow for the iOS and Android apps to address [problem], resulting in [what changed]
+   question: What problem did the booking flow address, and what changed after your design?
+5. [line] Product Designer, line 2
+   line: "Worked with two engineers and a product manager on weekly releases"
+   can't tell: The team and release rhythm are clear, but your part in those releases isn't. Name the design work you contributed.
+   example: Worked with two engineers and a product manager on weekly releases, contributing [design work]
+   question: What design work did you contribute to the weekly releases?
+6. [keep] Product Designer, line 3
+   line: "Created the app's first design system in Figma"
+   can't tell: Keep this. It makes your ownership clear and identifies a deliverable a recruiter can picture. Use that same directness for the work around it.
+7. [line] Product Designer, line 4
+   line: "Ran usability tests with members before launches"
+   can't tell: Running the tests is clear, but a recruiter can't tell what you learned or how the findings were used.
+   example: Ran usability tests with members before launches and [what you did with the findings]
+   question: What did you do with the findings from the member tests?
+
+## Fit
+Roles: ["Product Designer","Junior Product Designer"]
+Level: Product designer, with a prior junior role and ownership of a design system
+Note: Your experience points toward product design roles involving mobile apps, prototyping and design systems. Your current role is outside design, so recent dated design projects would help show what you've been working on since Loop Fitness.

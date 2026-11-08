@@ -1,0 +1,250 @@
+{
+  "case_id": "b27_backend_engineer_senior",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_backend_engineer_senior_1.txt",
+  "resume_sha256": "92a71c8e81a037980a571ba4d2007cab76d8f9f04b6517e1ff23e45a0383be59",
+  "resume_words": 190,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T20:42:29.578Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6078,
+        "completion_tokens": 1563,
+        "total_tokens": 7641,
+        "cached_prompt_tokens": 5306,
+        "cache_write_prompt_tokens": 769,
+        "reasoning_tokens": 875
+      },
+      "cost_usd": 0.00904455,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 18333
+    }
+  ],
+  "resume_prompt_sha256": "da8de2955f7c8fc1b62e0178500104bae17a416005f43113f3b1bc615f3fd1f8",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments engineer whose resume connects technical decisions to measurable changes.",
+    "write_up": [
+      "This is a strong senior backend resume! Your payments work at Tidewater Commerce shows both technical leadership and changes to reconciliation, reliability, and audit readiness. The earlier billing work reinforces that story.",
+      "The invoice generation line at Northwind Billing is a great model: it gives the before and after and names the database change that got it there. Your experience leads, and the progression from billing to payments is easy to follow.",
+      "Your resume isn't likely to be what holds you back. Competition for a particular role will still matter. For a more senior position, add the broader technical decisions you owned if that work is part of your story."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Software Engineer, line 2",
+        "line": "- Reduced invoice generation time from 6 hours to 25 minutes by batching database writes",
+        "cannot_tell": "Keep this as a model. It pairs a concrete engineering choice with a change a recruiter can immediately grasp.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 1",
+        "line": "- Designed and led the migration of card authorization from a monolith to a Go service handling 4,500 requests per second at p99 under 80 ms",
+        "cannot_tell": "For a role above senior engineer, a recruiter will also look for technical direction that reaches beyond one migration. Add that only if you set it.",
+        "example": "Set [technical direction] for [systems or teams] while designing and leading the migration of card authorization from a monolith to a Go service handling 4,500 requests per second at p99 under 80 ms",
+        "question": "Did you set a broader technical direction through this work, and which systems or teams did it cover?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "- Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10",
+        "cannot_tell": "Consider moving this above the migration line. The before and after makes the change to reconciliation immediately apparent.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Software Engineer, Payments Platform",
+        "Software Engineer"
+      ],
+      "why": "Your headline and latest role both center on backend payments and ledger systems.",
+      "level": "Senior engineer, led a team of 5 engineers through an audit and mentors 3 engineers",
+      "note": "Your experience points toward senior backend roles in payments or billing. For roles above senior engineer, the resume would benefit from any broader technical direction you can substantiate.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments engineer whose resume connects technical decisions to measurable changes.",
+    "write_up": [
+      "This is a strong senior backend resume! Your payments work at Tidewater Commerce shows both technical leadership and changes to reconciliation, reliability, and audit readiness. The earlier billing work reinforces that story.",
+      "The invoice generation line at Northwind Billing is a great model: it gives the before and after and names the database change that got it there. Your experience leads, and the progression from billing to payments is easy to follow.",
+      "Your resume isn't likely to be what holds you back. Competition for a particular role will still matter. For a more senior position, add the broader technical decisions you owned if that work is part of your story."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Software Engineer, line 2",
+        "line": "Reduced invoice generation time from 6 hours to 25 minutes by batching database writes",
+        "cannot_tell": "Keep this as a model. It pairs a concrete engineering choice with a change a recruiter can immediately grasp.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 1",
+        "line": "Designed and led the migration of card authorization from a monolith to a Go service handling 4,500 requests per second at p99 under 80 ms",
+        "cannot_tell": "For a role above senior engineer, a recruiter will also look for technical direction that reaches beyond one migration. Add that only if you set it.",
+        "example": "Set [technical direction] for [systems or teams] while designing and leading the migration of card authorization from a monolith to a Go service handling 4,500 requests per second at p99 under 80 ms",
+        "question": "Did you set a broader technical direction through this work, and which systems or teams did it cover?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10",
+        "cannot_tell": "Consider moving this above the migration line. The before and after makes the change to reconciliation immediately apparent.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Software Engineer, Payments Platform",
+        "Software Engineer"
+      ],
+      "why": "Your headline and latest role both center on backend payments and ledger systems.",
+      "level": "Senior engineer, led a team of 5 engineers through an audit and mentors 3 engineers",
+      "note": "Your experience points toward senior backend roles in payments or billing. For roles above senior engineer, the resume would benefit from any broader technical direction you can substantiate.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 91
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments engineer whose resume connects technical decisions to measurable changes.",
+    "write_up": [
+      "This is a strong senior backend resume! Your payments work at Tidewater Commerce shows both technical leadership and changes to reconciliation, reliability, and audit readiness. The earlier billing work reinforces that story.",
+      "The invoice generation line at Northwind Billing is a great model: it gives the before and after and names the database change that got it there. Your experience leads, and the progression from billing to payments is easy to follow.",
+      "Your resume isn't likely to be what holds you back. Competition for a particular role will still matter. For a more senior position, add the broader technical decisions you owned if that work is part of your story."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Software Engineer, line 2",
+        "line": "Reduced invoice generation time from 6 hours to 25 minutes by batching database writes",
+        "cannot_tell": "Keep this as a model. It pairs a concrete engineering choice with a change a recruiter can immediately grasp.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 1",
+        "line": "Designed and led the migration of card authorization from a monolith to a Go service handling 4,500 requests per second at p99 under 80 ms",
+        "cannot_tell": "For a role above senior engineer, a recruiter will also look for technical direction that reaches beyond one migration. Add that only if you set it.",
+        "example": "Set [technical direction] for [systems or teams] while designing and leading the migration of card authorization from a monolith to a Go service handling 4,500 requests per second at p99 under 80 ms",
+        "question": "Did you set a broader technical direction through this work, and which systems or teams did it cover?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10",
+        "cannot_tell": "Consider moving this above the migration line. The before and after makes the change to reconciliation immediately apparent.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Software Engineer, Payments Platform",
+        "Software Engineer"
+      ],
+      "why": "Your headline and latest role both center on backend payments and ledger systems.",
+      "level": "Senior engineer, led a team of 5 engineers through an audit and mentors 3 engineers",
+      "note": "Your experience points toward senior backend roles in payments or billing. For roles above senior engineer, the resume would benefit from any broader technical direction you can substantiate.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 91
+  },
+  "presentation": {
+    "score": 91,
+    "band": "Clear and specific",
+    "model_score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments engineer whose resume connects technical decisions to measurable changes.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 110,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Software Engineer, line 2",
+        "line": "Reduced invoice generation time from 6 hours to 25 minutes by batching database writes",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 1",
+        "line": "Designed and led the migration of card authorization from a monolith to a Go service handling 4,500 requests per second at p99 under 80 ms",
+        "blanks": 2,
+        "question": "Did you set a broader technical direction through this work, and which systems or teams did it cover?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "keep": 1,
+      "upgrade": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Software Engineer, Payments Platform",
+        "Software Engineer"
+      ],
+      "why": "Your headline and latest role both center on backend payments and ledger systems.",
+      "level": "Senior engineer, led a team of 5 engineers through an audit and mentors 3 engineers",
+      "note": "Your experience points toward senior backend roles in payments or billing. For roles above senior engineer, the resume would benefit from any broader technical direction you can substantiate.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00904455,
+  "latency_ms": 18338
+}

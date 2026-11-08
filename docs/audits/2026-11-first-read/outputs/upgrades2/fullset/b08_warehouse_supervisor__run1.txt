@@ -1,0 +1,40 @@
+# b08_warehouse_supervisor, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_warehouse_supervisor_1.txt (173 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt da8de295; severity check off
+Outcome: report; cost $0.0075; 16.1s
+
+## Mostly clear (score 77; model wrote 77)
+## Verdict
+A distribution supervisor with a clear progression and a 35-person shift, but few details on results.
+
+## Write-up
+Your resume tells a straightforward operations supervisor story: you moved from picking at Basin Retail Supply to leading outbound work at Sierra Freight Distribution. A recruiter can see the jobs and the people you've supervised, but has less to go on when comparing how the shifts performed.
+
+The strongest line names the night shift of 35 associates and the picking, packing, and loading work you supervise. It gives a recruiter both the people and the work in one place. Your progression at Sierra is also easy to follow.
+
+Let's start with labor scheduling: add the daily order volume you planned around if you can document it. Then show what you took on when covering for the supervisor and what you contributed to the scanner rollout.
+
+## Cards (4; {"line":3,"keep":1}); severity off; added []
+1. [line] Shift Supervisor, line 2
+   line: "Schedule labor and assign zones based on daily order volume"
+   can't tell: A recruiter can see how you plan the shift, but not the order volume you're planning around. That number would give them more to compare across distribution roles.
+   example: Schedule labor and assign zones based on daily order volume of [order volume]
+   question: What daily order volume did you schedule labor around?
+2. [line] Lead Associate, line 2
+   line: "Covered for the supervisor during vacations"
+   can't tell: Covering for the supervisor shows you were trusted with the shift, but it doesn't say which responsibilities you took on.
+   example: Covered for the supervisor during vacations by [responsibilities]
+   question: Which supervisor responsibilities did you take on during those vacations?
+3. [line] Lead Associate, line 3
+   line: "Helped roll out handheld scanners on the pick floor"
+   can't tell: The scanner rollout is a concrete project, but 'helped' leaves your part in it open. Name the work you contributed.
+   example: Helped roll out handheld scanners on the pick floor by [your contribution]
+   question: What did you do as part of the scanner rollout?
+4. [keep] Shift Supervisor, line 1
+   line: "Supervise a night shift of 35 associates across picking, packing, and loading"
+   can't tell: Keep this as a model. It puts your ownership, the number of associates, and their work together without making a recruiter guess.
+
+## Fit
+Roles: ["Operations supervisor","Shift Supervisor, Outbound Operations"]
+Level: Supervisor, leading a night shift of 35 associates
+Note: Your experience points toward distribution and outbound shift supervision. The progression from picker to supervisor is clear; documented shift measures would give a recruiter more to compare.

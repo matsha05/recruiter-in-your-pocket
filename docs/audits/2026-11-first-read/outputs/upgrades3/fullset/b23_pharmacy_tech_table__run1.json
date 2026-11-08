@@ -1,0 +1,310 @@
+{
+  "case_id": "b23_pharmacy_tech_table",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Tables rendered to tab-separated text.",
+  "resume_file": "../2026-11-live-judgment/resumes/b_pharmacy_tech_table.txt",
+  "resume_sha256": "872695c37eba2c67784784b9af67edda0387ea5b8bbb90cd54d25ac0f2941367",
+  "resume_words": 209,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T22:15:08.548Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6427,
+        "completion_tokens": 1999,
+        "total_tokens": 8426,
+        "cached_prompt_tokens": 5529,
+        "cache_write_prompt_tokens": 895,
+        "reasoning_tokens": 1067
+      },
+      "cost_usd": 0.0113932,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 23039
+    }
+  ],
+  "resume_prompt_sha256": "15dff271c2d212b2504350e8d09deec38785cfa3e7ee269f5f8154593e015688",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 86,
+    "lifted_by_employer": false,
+    "verdict": "An inpatient pharmacy technician with specific sterile compounding work and a measurable stockout improvement.",
+    "write_up": [
+      "Your resume tells a strong pharmacy story: you moved from the RiteCare counter into inpatient work at Sutter Valley Medical Center, with sterile compounding and dispensing cabinet responsibilities. The current role names both the work and its scale, which gives a recruiter something concrete to take away.",
+      "The cleanroom line is a great model: it names the preparations, the standards and the doses per shift. Your credentials are easy to find, too. The main structural snag is that the dates and duties sit in separate tables, so a recruiter has to move between them.",
+      "Let's put each set of duties under its role and make the prescription verification work more precise. For inpatient openings, lead with the work most relevant to the job; how competitive the opening is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience and Duties and Results",
+        "line": "Experience dates and duties are in separate tables.",
+        "cannot_tell": "The roles are identifiable, but a recruiter has to look between two sections to connect the work with each employer and date. Putting the duties under each role keeps that story together.",
+        "example": "",
+        "question": "Can you put each set of duties directly under its role and dates?"
+      },
+      {
+        "kind": "line",
+        "where": "Pharmacy Technician, prescriptions",
+        "line": "Pharmacy Technician\tFilled and verified prescriptions for a store doing 350 scripts a day",
+        "cannot_tell": "Verification can mean different checks in a pharmacy. Naming the checks you performed tells a recruiter what that part of your work involved.",
+        "example": "Filled and verified prescriptions for a store doing 350 scripts a day, including [verification checks]",
+        "question": "What checks did you perform when verifying prescriptions?"
+      },
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, cleanroom",
+        "line": "Pharmacy Technician II\tPrepare IV admixtures and chemotherapy in the cleanroom under USP 797 and 800\tAbout 120 doses per shift",
+        "cannot_tell": "Keep this as a model. It brings the setting, the technical work and the daily volume together without making a recruiter guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Pharmacy Technician II, training",
+        "line": "Pharmacy Technician II\tTrain new technicians on sterile compounding\t5 trained since 2023",
+        "cannot_tell": "For a lead role, a decision you made about training or workflow would show how your responsibilities extend beyond teaching new technicians.",
+        "example": "Train new technicians on sterile compounding, with 5 trained since 2023; training or workflow decision: [a decision you made]",
+        "question": "What decisions, if any, have you made about training or workflow?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Pharmacy Technician II, dispensing cabinets",
+        "line": "Pharmacy Technician II\tManage the automated dispensing cabinet restocking for 6 nursing units\tStockout reports down from 9 to 2 per week in 2024",
+        "cannot_tell": "For an opening focused on medication supply, consider putting this above the cleanroom line. The change in stockout reports is the most explicit before-and-after result in the role.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Pharmacy Technician II"
+      ],
+      "why": "Your current inpatient role, sterile compounding work and credentials point to Pharmacy Technician II openings.",
+      "level": "mid-level, current Pharmacy Technician II role with sterile compounding and new technician training",
+      "note": "Your experience points toward inpatient pharmacy work, especially roles involving sterile preparation and medication supply. Your earlier retail work adds prescription and insurance experience.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 86,
+    "lifted_by_employer": false,
+    "verdict": "An inpatient pharmacy technician with specific sterile compounding work and a measurable stockout improvement.",
+    "write_up": [
+      "Your resume tells a strong pharmacy story: you moved from the RiteCare counter into inpatient work at Sutter Valley Medical Center, with sterile compounding and dispensing cabinet responsibilities. The current role names both the work and its scale, which gives a recruiter something concrete to take away.",
+      "The cleanroom line is a great model: it names the preparations, the standards and the doses per shift. Your credentials are easy to find, too. The main structural snag is that the dates and duties sit in separate tables, so a recruiter has to move between them.",
+      "Let's put each set of duties under its role and make the prescription verification work more precise. For inpatient openings, lead with the work most relevant to the job; how competitive the opening is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience and Duties and Results",
+        "line": "Experience dates and duties are in separate tables.",
+        "cannot_tell": "The roles are identifiable, but a recruiter has to look between two sections to connect the work with each employer and date. Putting the duties under each role keeps that story together.",
+        "example": "",
+        "question": "Can you put each set of duties directly under its role and dates?"
+      },
+      {
+        "kind": "line",
+        "where": "Pharmacy Technician, prescriptions",
+        "line": "Pharmacy Technician Filled and verified prescriptions for a store doing 350 scripts a day",
+        "cannot_tell": "Verification can mean different checks in a pharmacy. Naming the checks you performed tells a recruiter what that part of your work involved.",
+        "example": "Filled and verified prescriptions for a store doing 350 scripts a day, including [verification checks]",
+        "question": "What checks did you perform when verifying prescriptions?"
+      },
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, cleanroom",
+        "line": "Pharmacy Technician II Prepare IV admixtures and chemotherapy in the cleanroom under USP 797 and 800 About 120 doses per shift",
+        "cannot_tell": "Keep this as a model. It brings the setting, the technical work and the daily volume together without making a recruiter guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Pharmacy Technician II, training",
+        "line": "Pharmacy Technician II Train new technicians on sterile compounding 5 trained since 2023",
+        "cannot_tell": "For a lead role, a decision you made about training or workflow would show how your responsibilities extend beyond teaching new technicians.",
+        "example": "Train new technicians on sterile compounding, with 5 trained since 2023; training or workflow decision: [a decision you made]",
+        "question": "What decisions, if any, have you made about training or workflow?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Pharmacy Technician II, dispensing cabinets",
+        "line": "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024",
+        "cannot_tell": "For an opening focused on medication supply, consider putting this above the cleanroom line. The change in stockout reports is the most explicit before-and-after result in the role.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Pharmacy Technician II"
+      ],
+      "why": "Your current inpatient role, sterile compounding work and credentials point to Pharmacy Technician II openings.",
+      "level": "mid-level, current Pharmacy Technician II role with sterile compounding and new technician training",
+      "note": "Your experience points toward inpatient pharmacy work, especially roles involving sterile preparation and medication supply. Your earlier retail work adds prescription and insurance experience.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 86
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 86,
+    "lifted_by_employer": false,
+    "verdict": "An inpatient pharmacy technician with specific sterile compounding work and a measurable stockout improvement.",
+    "write_up": [
+      "Your resume tells a strong pharmacy story: you moved from the RiteCare counter into inpatient work at Sutter Valley Medical Center, with sterile compounding and dispensing cabinet responsibilities. The current role names both the work and its scale, which gives a recruiter something concrete to take away.",
+      "The cleanroom line is a great model: it names the preparations, the standards and the doses per shift. Your credentials are easy to find, too. The main structural snag is that the dates and duties sit in separate tables, so a recruiter has to move between them.",
+      "Let's put each set of duties under its role and make the prescription verification work more precise. For inpatient openings, lead with the work most relevant to the job; how competitive the opening is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience and Duties and Results",
+        "line": "Experience dates and duties are in separate tables.",
+        "cannot_tell": "The roles are identifiable, but a recruiter has to look between two sections to connect the work with each employer and date. Putting the duties under each role keeps that story together.",
+        "example": "",
+        "question": "Can you put each set of duties directly under its role and dates?"
+      },
+      {
+        "kind": "line",
+        "where": "Pharmacy Technician, prescriptions",
+        "line": "Pharmacy Technician Filled and verified prescriptions for a store doing 350 scripts a day",
+        "cannot_tell": "Verification can mean different checks in a pharmacy. Naming the checks you performed tells a recruiter what that part of your work involved.",
+        "example": "Filled and verified prescriptions for a store doing 350 scripts a day, including [verification checks]",
+        "question": "What checks did you perform when verifying prescriptions?"
+      },
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, cleanroom",
+        "line": "Pharmacy Technician II Prepare IV admixtures and chemotherapy in the cleanroom under USP 797 and 800 About 120 doses per shift",
+        "cannot_tell": "Keep this as a model. It brings the setting, the technical work and the daily volume together without making a recruiter guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Pharmacy Technician II, training",
+        "line": "Pharmacy Technician II Train new technicians on sterile compounding 5 trained since 2023",
+        "cannot_tell": "For a lead role, a decision you made about training or workflow would show how your responsibilities extend beyond teaching new technicians.",
+        "example": "Train new technicians on sterile compounding, with 5 trained since 2023; training or workflow decision: [a decision you made]",
+        "question": "What decisions, if any, have you made about training or workflow?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Pharmacy Technician II, dispensing cabinets",
+        "line": "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024",
+        "cannot_tell": "For an opening focused on medication supply, consider putting this above the cleanroom line. The change in stockout reports is the most explicit before-and-after result in the role.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Pharmacy Technician II"
+      ],
+      "why": "Your current inpatient role, sterile compounding work and credentials point to Pharmacy Technician II openings.",
+      "level": "mid-level, current Pharmacy Technician II role with sterile compounding and new technician training",
+      "note": "Your experience points toward inpatient pharmacy work, especially roles involving sterile preparation and medication supply. Your earlier retail work adds prescription and insurance experience.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 86
+  },
+  "presentation": {
+    "score": 86,
+    "band": "Clear and specific",
+    "model_score": 86,
+    "lifted_by_employer": false,
+    "verdict": "An inpatient pharmacy technician with specific sterile compounding work and a measurable stockout improvement.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 131,
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience and Duties and Results",
+        "line": "Experience dates and duties are in separate tables.",
+        "blanks": 0,
+        "question": "Can you put each set of duties directly under its role and dates?"
+      },
+      {
+        "kind": "line",
+        "where": "Pharmacy Technician, prescriptions",
+        "line": "Pharmacy Technician Filled and verified prescriptions for a store doing 350 scripts a day",
+        "blanks": 1,
+        "question": "What checks did you perform when verifying prescriptions?"
+      },
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, cleanroom",
+        "line": "Pharmacy Technician II Prepare IV admixtures and chemotherapy in the cleanroom under USP 797 and 800 About 120 doses per shift",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Pharmacy Technician II, training",
+        "line": "Pharmacy Technician II Train new technicians on sterile compounding 5 trained since 2023",
+        "blanks": 1,
+        "question": "What decisions, if any, have you made about training or workflow?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Pharmacy Technician II, dispensing cabinets",
+        "line": "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "structure": 1,
+      "line": 1,
+      "keep": 1,
+      "upgrade": 2
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Pharmacy Technician II"
+      ],
+      "why": "Your current inpatient role, sterile compounding work and credentials point to Pharmacy Technician II openings.",
+      "level": "mid-level, current Pharmacy Technician II role with sterile compounding and new technician training",
+      "note": "Your experience points toward inpatient pharmacy work, especially roles involving sterile preparation and medication supply. Your earlier retail work adds prescription and insurance experience.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0113932,
+  "latency_ms": 23042
+}

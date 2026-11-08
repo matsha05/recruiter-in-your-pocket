@@ -1,0 +1,370 @@
+{
+  "case_id": "fr05_nurse_no_units",
+  "batch": "targeted",
+  "run": 1,
+  "note": "P4 (nursing). Titles without a unit; RN with no state. Expect the unit and the license state asked for; no invented ratio.",
+  "resume_file": "resumes/fr05_nurse_no_units.txt",
+  "resume_sha256": "46d392485f8498d11852f2d4588d800b42bd628f4fb7e61c5f3747a6fba875dc",
+  "resume_words": 140,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T20:38:21.696Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5938,
+        "completion_tokens": 1719,
+        "total_tokens": 7657,
+        "cached_prompt_tokens": 5306,
+        "cache_write_prompt_tokens": 629,
+        "reasoning_tokens": 576
+      },
+      "cost_usd": 0.00964955,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 20476
+    }
+  ],
+  "resume_prompt_sha256": "da8de2955f7c8fc1b62e0178500104bae17a416005f43113f3b1bc615f3fd1f8",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 65,
+    "lifted_by_employer": false,
+    "verdict": "A hospital nurse with charge and precepting duties, but little detail about the patients and units.",
+    "write_up": [
+      "Your resume tells a common hospital nursing story: patient care at Riverside Methodist and Mount Carmel East, with charge nurse and precepting duties in your current role. The work is real, but the recent lines mostly list duties a recruiter will see on many nursing resumes. They don't yet show the unit, patient needs or patient load that would distinguish your experience.",
+      "The Epic line is a useful model because it names both what you documented and the system you used. Your RN, BLS and ACLS credentials are easy to find, and your work history is straightforward to follow.",
+      "Let's start with the Riverside role. Add your unit and patient load to the first line, then show what you handle as charge nurse and what you teach new graduates. Those details will give a recruiter more to work with than a list of standard duties."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 1",
+        "line": "- Provide direct patient care for adult patients across 12-hour shifts",
+        "cannot_tell": "A recruiter knows you care for adults, but not which unit you work on or how many patients you typically care for. Both matter when comparing bedside nursing experience.",
+        "example": "Provide direct patient care for [number] adult patients in [unit] across 12-hour shifts",
+        "question": "What unit do you work on, and how many patients do you typically care for per shift?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 2",
+        "line": "- Administer medications and monitor patient response",
+        "cannot_tell": "Medication administration is central to nursing, but this doesn't show the patient needs you manage or how you monitor responses.",
+        "example": "Administer medications and monitor patient response for [patient needs], including [monitoring actions]",
+        "question": "What patient needs do you manage, and what do you monitor after giving medications?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 3",
+        "line": "- Educate patients and families on discharge plans",
+        "cannot_tell": "Discharge teaching is important, but a recruiter can't tell what patients and families learn from you.",
+        "example": "Educate patients and families on discharge plans, including [teaching topics]",
+        "question": "What do you teach patients and families as part of their discharge plans?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 4",
+        "line": "- Serve as charge nurse on weekends",
+        "cannot_tell": "This is a responsibility worth showing more fully. A recruiter can't tell who you coordinate or what decisions you make on those shifts.",
+        "example": "Serve as charge nurse on weekends for [number] [staff roles], coordinating [responsibilities]",
+        "question": "Who do you coordinate as charge nurse, and what are your main responsibilities?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 5",
+        "line": "- Precept new graduate nurses",
+        "cannot_tell": "Precepting stands out, but the line doesn't show how many nurses you've supported or what you teach them.",
+        "example": "Precept [number] new graduate nurses in [skills or responsibilities]",
+        "question": "How many new graduate nurses have you precepted, and what did you teach them?"
+      },
+      {
+        "kind": "line",
+        "where": "Mount Carmel East Hospital, line 1",
+        "line": "- Cared for patients before and after surgery",
+        "cannot_tell": "A recruiter can see the surgical setting, but not the care you provided or the kinds of surgery involved.",
+        "example": "Cared for patients before and after [types of surgery], including [care responsibilities]",
+        "question": "What types of surgery did your patients have, and what care did you provide?"
+      },
+      {
+        "kind": "keep",
+        "where": "Mount Carmel East Hospital, line 2",
+        "line": "- Documented assessments and care plans in Epic",
+        "cannot_tell": "Keep this as a model for naming the work and the tool together. A recruiter doesn't have to guess what you documented or where.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Registered Nurse"
+      ],
+      "why": "Your two most recent roles are Registered Nurse positions in hospitals, and your resume lists an RN license.",
+      "level": "Registered Nurse with weekend charge nurse and new graduate preceptor duties",
+      "note": "Your experience points toward hospital bedside nursing, with added charge and teaching responsibilities. Naming your current unit and patient load would help a recruiter understand which nursing roles fit your background.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 65,
+    "lifted_by_employer": false,
+    "verdict": "A hospital nurse with charge and precepting duties, but little detail about the patients and units.",
+    "write_up": [
+      "Your resume tells a common hospital nursing story: patient care at Riverside Methodist and Mount Carmel East, with charge nurse and precepting duties in your current role. The work is real, but the recent lines mostly list duties a recruiter will see on many nursing resumes. They don't yet show the unit, patient needs or patient load that would distinguish your experience.",
+      "The Epic line is a useful model because it names both what you documented and the system you used. Your RN, BLS and ACLS credentials are easy to find, and your work history is straightforward to follow.",
+      "Let's start with the Riverside role. Add your unit and patient load to the first line, then show what you handle as charge nurse and what you teach new graduates. Those details will give a recruiter more to work with than a list of standard duties."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 1",
+        "line": "Provide direct patient care for adult patients across 12-hour shifts",
+        "cannot_tell": "A recruiter knows you care for adults, but not which unit you work on or how many patients you typically care for. Both matter when comparing bedside nursing experience.",
+        "example": "Provide direct patient care for [number] adult patients in [unit] across 12-hour shifts",
+        "question": "What unit do you work on, and how many patients do you typically care for per shift?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 2",
+        "line": "Administer medications and monitor patient response",
+        "cannot_tell": "Medication administration is central to nursing, but this doesn't show the patient needs you manage or how you monitor responses.",
+        "example": "Administer medications and monitor patient response for [patient needs], including [monitoring actions]",
+        "question": "What patient needs do you manage, and what do you monitor after giving medications?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 3",
+        "line": "Educate patients and families on discharge plans",
+        "cannot_tell": "Discharge teaching is important, but a recruiter can't tell what patients and families learn from you.",
+        "example": "Educate patients and families on discharge plans, including [teaching topics]",
+        "question": "What do you teach patients and families as part of their discharge plans?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 4",
+        "line": "Serve as charge nurse on weekends",
+        "cannot_tell": "This is a responsibility worth showing more fully. A recruiter can't tell who you coordinate or what decisions you make on those shifts.",
+        "example": "Serve as charge nurse on weekends for [number] [staff roles], coordinating [responsibilities]",
+        "question": "Who do you coordinate as charge nurse, and what are your main responsibilities?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 5",
+        "line": "Precept new graduate nurses",
+        "cannot_tell": "Precepting stands out, but the line doesn't show how many nurses you've supported or what you teach them.",
+        "example": "Precept [number] new graduate nurses in [skills or responsibilities]",
+        "question": "How many new graduate nurses have you precepted, and what did you teach them?"
+      },
+      {
+        "kind": "line",
+        "where": "Mount Carmel East Hospital, line 1",
+        "line": "Cared for patients before and after surgery",
+        "cannot_tell": "A recruiter can see the surgical setting, but not the care you provided or the kinds of surgery involved.",
+        "example": "Cared for patients before and after [types of surgery], including [care responsibilities]",
+        "question": "What types of surgery did your patients have, and what care did you provide?"
+      },
+      {
+        "kind": "keep",
+        "where": "Mount Carmel East Hospital, line 2",
+        "line": "Documented assessments and care plans in Epic",
+        "cannot_tell": "Keep this as a model for naming the work and the tool together. A recruiter doesn't have to guess what you documented or where.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Registered Nurse"
+      ],
+      "why": "Your two most recent roles are Registered Nurse positions in hospitals, and your resume lists an RN license.",
+      "level": "Registered Nurse with weekend charge nurse and new graduate preceptor duties",
+      "note": "Your experience points toward hospital bedside nursing, with added charge and teaching responsibilities. Naming your current unit and patient load would help a recruiter understand which nursing roles fit your background.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 65
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 65,
+    "lifted_by_employer": false,
+    "verdict": "A hospital nurse with charge and precepting duties, but little detail about the patients and units.",
+    "write_up": [
+      "Your resume tells a common hospital nursing story: patient care at Riverside Methodist and Mount Carmel East, with charge nurse and precepting duties in your current role. The work is real, but the recent lines mostly list duties a recruiter will see on many nursing resumes. They don't yet show the unit, patient needs or patient load that would distinguish your experience.",
+      "The Epic line is a useful model because it names both what you documented and the system you used. Your RN, BLS and ACLS credentials are easy to find, and your work history is straightforward to follow.",
+      "Let's start with the Riverside role. Add your unit and patient load to the first line, then show what you handle as charge nurse and what you teach new graduates. Those details will give a recruiter more to work with than a list of standard duties."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 1",
+        "line": "Provide direct patient care for adult patients across 12-hour shifts",
+        "cannot_tell": "A recruiter knows you care for adults, but not which unit you work on or how many patients you typically care for. Both matter when comparing bedside nursing experience.",
+        "example": "Provide direct patient care for [number] adult patients in [unit] across 12-hour shifts",
+        "question": "What unit do you work on, and how many patients do you typically care for per shift?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 2",
+        "line": "Administer medications and monitor patient response",
+        "cannot_tell": "Medication administration is central to nursing, but this doesn't show the patient needs you manage or how you monitor responses.",
+        "example": "Administer medications and monitor patient response for [patient needs], including [monitoring actions]",
+        "question": "What patient needs do you manage, and what do you monitor after giving medications?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 3",
+        "line": "Educate patients and families on discharge plans",
+        "cannot_tell": "Discharge teaching is important, but a recruiter can't tell what patients and families learn from you.",
+        "example": "Educate patients and families on discharge plans, including [teaching topics]",
+        "question": "What do you teach patients and families as part of their discharge plans?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 4",
+        "line": "Serve as charge nurse on weekends",
+        "cannot_tell": "This is a responsibility worth showing more fully. A recruiter can't tell who you coordinate or what decisions you make on those shifts.",
+        "example": "Serve as charge nurse on weekends for [number] [staff roles], coordinating [responsibilities]",
+        "question": "Who do you coordinate as charge nurse, and what are your main responsibilities?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 5",
+        "line": "Precept new graduate nurses",
+        "cannot_tell": "Precepting stands out, but the line doesn't show how many nurses you've supported or what you teach them.",
+        "example": "Precept [number] new graduate nurses in [skills or responsibilities]",
+        "question": "How many new graduate nurses have you precepted, and what did you teach them?"
+      },
+      {
+        "kind": "line",
+        "where": "Mount Carmel East Hospital, line 1",
+        "line": "Cared for patients before and after surgery",
+        "cannot_tell": "A recruiter can see the surgical setting, but not the care you provided or the kinds of surgery involved.",
+        "example": "Cared for patients before and after [types of surgery], including [care responsibilities]",
+        "question": "What types of surgery did your patients have, and what care did you provide?"
+      },
+      {
+        "kind": "keep",
+        "where": "Mount Carmel East Hospital, line 2",
+        "line": "Documented assessments and care plans in Epic",
+        "cannot_tell": "Keep this as a model for naming the work and the tool together. A recruiter doesn't have to guess what you documented or where.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Registered Nurse"
+      ],
+      "why": "Your two most recent roles are Registered Nurse positions in hospitals, and your resume lists an RN license.",
+      "level": "Registered Nurse with weekend charge nurse and new graduate preceptor duties",
+      "note": "Your experience points toward hospital bedside nursing, with added charge and teaching responsibilities. Naming your current unit and patient load would help a recruiter understand which nursing roles fit your background.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 65
+  },
+  "presentation": {
+    "score": 65,
+    "band": "Needs more context",
+    "model_score": 65,
+    "lifted_by_employer": false,
+    "verdict": "A hospital nurse with charge and precepting duties, but little detail about the patients and units.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 145,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 1",
+        "line": "Provide direct patient care for adult patients across 12-hour shifts",
+        "blanks": 2,
+        "question": "What unit do you work on, and how many patients do you typically care for per shift?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 2",
+        "line": "Administer medications and monitor patient response",
+        "blanks": 2,
+        "question": "What patient needs do you manage, and what do you monitor after giving medications?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 3",
+        "line": "Educate patients and families on discharge plans",
+        "blanks": 1,
+        "question": "What do you teach patients and families as part of their discharge plans?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 4",
+        "line": "Serve as charge nurse on weekends",
+        "blanks": 3,
+        "question": "Who do you coordinate as charge nurse, and what are your main responsibilities?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 5",
+        "line": "Precept new graduate nurses",
+        "blanks": 2,
+        "question": "How many new graduate nurses have you precepted, and what did you teach them?"
+      },
+      {
+        "kind": "line",
+        "where": "Mount Carmel East Hospital, line 1",
+        "line": "Cared for patients before and after surgery",
+        "blanks": 2,
+        "question": "What types of surgery did your patients have, and what care did you provide?"
+      },
+      {
+        "kind": "keep",
+        "where": "Mount Carmel East Hospital, line 2",
+        "line": "Documented assessments and care plans in Epic",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 7,
+    "kinds": {
+      "line": 6,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Registered Nurse"
+      ],
+      "why": "Your two most recent roles are Registered Nurse positions in hospitals, and your resume lists an RN license.",
+      "level": "Registered Nurse with weekend charge nurse and new graduate preceptor duties",
+      "note": "Your experience points toward hospital bedside nursing, with added charge and teaching responsibilities. Naming your current unit and patient load would help a recruiter understand which nursing roles fit your background.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00964955,
+  "latency_ms": 20498
+}

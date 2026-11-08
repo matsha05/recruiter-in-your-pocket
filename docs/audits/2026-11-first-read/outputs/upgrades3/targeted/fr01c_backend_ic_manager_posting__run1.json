@@ -1,0 +1,270 @@
+{
+  "case_id": "fr01c_backend_ic_manager_posting",
+  "batch": "targeted",
+  "run": 1,
+  "note": "P1. The same resume against an engineering manager posting. Expect the missing management work (direct reports, hiring, performance) named first; the score unchanged against fr01a within one draw.",
+  "resume_file": "resumes/fr01_backend_ic_senior.txt",
+  "resume_sha256": "473f0177fffa3bc053f5a4c69f6aa3d7ecdf9c22fafb2ee8360f7be0e877aa55",
+  "resume_words": 236,
+  "job_description_file": "resumes/posting_engineering_manager.txt",
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T22:11:07.445Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6770,
+        "completion_tokens": 1644,
+        "total_tokens": 8414,
+        "cached_prompt_tokens": 5646,
+        "cache_write_prompt_tokens": 1121,
+        "reasoning_tokens": 856
+      },
+      "cost_usd": 0.00990655,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 20018
+    }
+  ],
+  "resume_prompt_sha256": "15dff271c2d212b2504350e8d09deec38785cfa3e7ee269f5f8154593e015688",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "Strong payments engineering work, but the Engineering Manager role asks for direct management your resume doesn't show.",
+    "write_up": [
+      "Cobalt Pay's Engineering Manager role asks for direct management experience that isn't shown on your resume. Your backend work is excellent: at Lumen Ledger, you connect technical decisions to payout volume, a zero-downtime migration and faster balance requests. A recruiter can see what you built and why it mattered.",
+      "The payouts service is a strong model for the rest: it names the service, the technologies and the volume it handles. Your resume also shows mentoring and incident reviews, though it doesn't establish that you managed engineers or owned a team roadmap.",
+      "For this application, bring your coaching and operational work forward. Add management experience only if you've done it, including direct reports and hiring. The technical fit is strong, but the management requirements are a meaningful gap as your resume stands."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 1",
+        "line": "- Designed and built the idempotent payouts service in Go and PostgreSQL that now settles about 1.8M payouts a month",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a concrete service and a way to understand how much it handles, without making them guess what you built.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "- Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends",
+        "cannot_tell": "For a role above senior engineer, the broader technical direction behind this migration could show how you shaped decisions beyond the project.",
+        "example": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends as part of [broader technical direction]",
+        "question": "What broader technical direction, if any, did the migration advance?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 3",
+        "line": "- Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
+        "cannot_tell": "The before-and-after latency figures are quick to grasp. Consider moving this above the ledger migration so the change is visible earlier.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer",
+        "Engineering Manager, Payments Platform"
+      ],
+      "why": "Your headline and current payments platform role both point to senior backend engineering.",
+      "level": "senior, leads technical projects and mentors two mid-level engineers",
+      "note": "Your payouts and ledger work matches the systems this team owns. Your runbooks and incident reviews are also worth emphasizing when you apply.",
+      "posting": {
+        "summary": "The resume fits the payments technology and operations work, but does not establish the people-management experience requested.",
+        "missing": [
+          "2+ years managing engineers with direct reports, including hiring and performance management",
+          "Own the team's roadmap and delivery with your product partner",
+          "Experience leading teams that run production systems with on-call",
+          "A record of growing engineers into senior roles"
+        ]
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "Strong payments engineering work, but the Engineering Manager role asks for direct management your resume doesn't show.",
+    "write_up": [
+      "Cobalt Pay's Engineering Manager role asks for direct management experience that isn't shown on your resume. Your backend work is excellent: at Lumen Ledger, you connect technical decisions to payout volume, a zero-downtime migration and faster balance requests. A recruiter can see what you built and why it mattered.",
+      "The payouts service is a strong model for the rest: it names the service, the technologies and the volume it handles. Your resume also shows mentoring and incident reviews, though it doesn't establish that you managed engineers or owned a team roadmap.",
+      "For this application, bring your coaching and operational work forward. Add management experience only if you've done it, including direct reports and hiring. The technical fit is strong, but the management requirements are a meaningful gap as your resume stands."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 1",
+        "line": "Designed and built the idempotent payouts service in Go and PostgreSQL that now settles about 1.8M payouts a month",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a concrete service and a way to understand how much it handles, without making them guess what you built.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends",
+        "cannot_tell": "For a role above senior engineer, the broader technical direction behind this migration could show how you shaped decisions beyond the project.",
+        "example": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends as part of [broader technical direction]",
+        "question": "What broader technical direction, if any, did the migration advance?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 3",
+        "line": "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
+        "cannot_tell": "The before-and-after latency figures are quick to grasp. Consider moving this above the ledger migration so the change is visible earlier.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer",
+        "Engineering Manager, Payments Platform"
+      ],
+      "why": "Your headline and current payments platform role both point to senior backend engineering.",
+      "level": "senior, leads technical projects and mentors two mid-level engineers",
+      "note": "Your payouts and ledger work matches the systems this team owns. Your runbooks and incident reviews are also worth emphasizing when you apply.",
+      "posting": {
+        "summary": "The resume fits the payments technology and operations work, but does not establish the people-management experience requested.",
+        "missing": [
+          "2+ years managing engineers with direct reports, including hiring and performance management",
+          "Own the team's roadmap and delivery with your product partner",
+          "Experience leading teams that run production systems with on-call",
+          "A record of growing engineers into senior roles"
+        ]
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 91
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "Strong payments engineering work, but the Engineering Manager role asks for direct management your resume doesn't show.",
+    "write_up": [
+      "Cobalt Pay's Engineering Manager role asks for direct management experience that isn't shown on your resume. Your backend work is excellent: at Lumen Ledger, you connect technical decisions to payout volume, a zero-downtime migration and faster balance requests. A recruiter can see what you built and why it mattered.",
+      "The payouts service is a strong model for the rest: it names the service, the technologies and the volume it handles. Your resume also shows mentoring and incident reviews, though it doesn't establish that you managed engineers or owned a team roadmap.",
+      "For this application, bring your coaching and operational work forward. Add management experience only if you've done it, including direct reports and hiring. The technical fit is strong, but the management requirements are a meaningful gap as your resume stands."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 1",
+        "line": "Designed and built the idempotent payouts service in Go and PostgreSQL that now settles about 1.8M payouts a month",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a concrete service and a way to understand how much it handles, without making them guess what you built.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends",
+        "cannot_tell": "For a role above senior engineer, the broader technical direction behind this migration could show how you shaped decisions beyond the project.",
+        "example": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends as part of [broader technical direction]",
+        "question": "What broader technical direction, if any, did the migration advance?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 3",
+        "line": "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
+        "cannot_tell": "The before-and-after latency figures are quick to grasp. Consider moving this above the ledger migration so the change is visible earlier.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer",
+        "Engineering Manager, Payments Platform"
+      ],
+      "why": "Your headline and current payments platform role both point to senior backend engineering.",
+      "level": "senior, leads technical projects and mentors two mid-level engineers",
+      "note": "Your payouts and ledger work matches the systems this team owns. Your runbooks and incident reviews are also worth emphasizing when you apply.",
+      "posting": {
+        "summary": "The resume fits the payments technology and operations work, but does not establish the people-management experience requested.",
+        "missing": [
+          "2+ years managing engineers with direct reports, including hiring and performance management",
+          "Own the team's roadmap and delivery with your product partner",
+          "Experience leading teams that run production systems with on-call",
+          "A record of growing engineers into senior roles"
+        ]
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 91
+  },
+  "presentation": {
+    "score": 91,
+    "band": "Clear and specific",
+    "model_score": 91,
+    "lifted_by_employer": false,
+    "verdict": "Strong payments engineering work, but the Engineering Manager role asks for direct management your resume doesn't show.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 131,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 1",
+        "line": "Designed and built the idempotent payouts service in Go and PostgreSQL that now settles about 1.8M payouts a month",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends",
+        "blanks": 1,
+        "question": "What broader technical direction, if any, did the migration advance?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 3",
+        "line": "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "keep": 1,
+      "upgrade": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer",
+        "Engineering Manager, Payments Platform"
+      ],
+      "why": "Your headline and current payments platform role both point to senior backend engineering.",
+      "level": "senior, leads technical projects and mentors two mid-level engineers",
+      "note": "Your payouts and ledger work matches the systems this team owns. Your runbooks and incident reviews are also worth emphasizing when you apply.",
+      "posting": {
+        "summary": "The resume fits the payments technology and operations work, but does not establish the people-management experience requested.",
+        "missing": [
+          "2+ years managing engineers with direct reports, including hiring and performance management",
+          "Own the team's roadmap and delivery with your product partner",
+          "Experience leading teams that run production systems with on-call",
+          "A record of growing engineers into senior roles"
+        ]
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00990655,
+  "latency_ms": 20042
+}

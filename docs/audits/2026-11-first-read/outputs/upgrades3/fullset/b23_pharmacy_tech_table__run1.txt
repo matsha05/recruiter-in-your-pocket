@@ -1,0 +1,43 @@
+# b23_pharmacy_tech_table, run 1
+Resume: ../2026-11-live-judgment/resumes/b_pharmacy_tech_table.txt (209 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 15dff271; severity check off
+Outcome: report; cost $0.0114; 23.0s
+Case note: Tables rendered to tab-separated text.
+
+## Clear and specific (score 86; model wrote 86)
+## Verdict
+An inpatient pharmacy technician with specific sterile compounding work and a measurable stockout improvement.
+
+## Write-up
+Your resume tells a strong pharmacy story: you moved from the RiteCare counter into inpatient work at Sutter Valley Medical Center, with sterile compounding and dispensing cabinet responsibilities. The current role names both the work and its scale, which gives a recruiter something concrete to take away.
+
+The cleanroom line is a great model: it names the preparations, the standards and the doses per shift. Your credentials are easy to find, too. The main structural snag is that the dates and duties sit in separate tables, so a recruiter has to move between them.
+
+Let's put each set of duties under its role and make the prescription verification work more precise. For inpatient openings, lead with the work most relevant to the job; how competitive the opening is will matter too.
+
+## Cards (5; {"structure":1,"line":1,"keep":1,"upgrade":2}); severity off; added []
+1. [structure] Experience and Duties and Results
+   line: "Experience dates and duties are in separate tables."
+   can't tell: The roles are identifiable, but a recruiter has to look between two sections to connect the work with each employer and date. Putting the duties under each role keeps that story together.
+   question: Can you put each set of duties directly under its role and dates?
+2. [line] Pharmacy Technician, prescriptions
+   line: "Pharmacy Technician Filled and verified prescriptions for a store doing 350 scripts a day"
+   can't tell: Verification can mean different checks in a pharmacy. Naming the checks you performed tells a recruiter what that part of your work involved.
+   example: Filled and verified prescriptions for a store doing 350 scripts a day, including [verification checks]
+   question: What checks did you perform when verifying prescriptions?
+3. [keep] Pharmacy Technician II, cleanroom
+   line: "Pharmacy Technician II Prepare IV admixtures and chemotherapy in the cleanroom under USP 797 and 800 About 120 doses per shift"
+   can't tell: Keep this as a model. It brings the setting, the technical work and the daily volume together without making a recruiter guess.
+4. [upgrade] Pharmacy Technician II, training
+   line: "Pharmacy Technician II Train new technicians on sterile compounding 5 trained since 2023"
+   can't tell: For a lead role, a decision you made about training or workflow would show how your responsibilities extend beyond teaching new technicians.
+   example: Train new technicians on sterile compounding, with 5 trained since 2023; training or workflow decision: [a decision you made]
+   question: What decisions, if any, have you made about training or workflow?
+5. [upgrade] Pharmacy Technician II, dispensing cabinets
+   line: "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024"
+   can't tell: For an opening focused on medication supply, consider putting this above the cleanroom line. The change in stockout reports is the most explicit before-and-after result in the role.
+
+## Fit
+Roles: ["Pharmacy Technician II"]
+Level: mid-level, current Pharmacy Technician II role with sterile compounding and new technician training
+Note: Your experience points toward inpatient pharmacy work, especially roles involving sterile preparation and medication supply. Your earlier retail work adds prescription and insurance experience.

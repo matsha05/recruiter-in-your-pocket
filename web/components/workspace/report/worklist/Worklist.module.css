@@ -66,6 +66,11 @@
     text-wrap: pretty;
 }
 
+/* The upgrades on a strong resume: their own group after the list, a full section apart (Nov 7, 2026). */
+.upgrades {
+    margin-top: 3.5rem;
+}
+
 /* ---------- The first pass (Nov 7, 2026; docs/design/2026-11-first-read.md) ----------
    What a recruiter sorts on in the first seconds: which job, what level, and the posting when there is one.
    Answers in ink, each reason in the pen as the recruiter's note. Hairlines, never boxes; the red pen only for

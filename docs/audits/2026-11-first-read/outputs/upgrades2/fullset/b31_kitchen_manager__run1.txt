@@ -1,0 +1,55 @@
+# b31_kitchen_manager, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_kitchen_manager_1.txt (120 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt da8de295; severity check off
+Outcome: report; cost $0.0089; 18.6s
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+A kitchen manager with a clear restaurant background, but too little detail about how the kitchen runs.
+
+## Write-up
+Your path from Line Cook to Sous Chef to Kitchen Manager is easy to follow. It's common for restaurant resumes to list the daily duties, as yours does, but those duties alone won't stand out in a pile. A recruiter can see the 180-seat restaurant, yet has to guess how you manage the staff, ordering and training.
+
+The line about running the kitchen for a 180-seat restaurant is your best model: it names your responsibility and gives the reader a sense of the operation. Your ServSafe Manager certification also belongs here.
+
+Let's start with the River Walk Grill role. Add the number of staff you schedule and the work behind your ordering, inspection preparation and training. Then give the Sous Chef role a little more detail about the line and seasonal menus.
+
+## Cards (7; {"keep":1,"line":6}); severity off; added []
+1. [keep] Kitchen Manager, line 1
+   line: "Run the kitchen for a 180-seat restaurant"
+   can't tell: Keep this as a model. It pairs your responsibility with a concrete fact about the restaurant, so a recruiter knows where your work happens.
+2. [line] Kitchen Manager, line 2
+   line: "Manage the kitchen staff schedule"
+   can't tell: A recruiter can't tell how many people you schedule or which shifts you cover. That matters when they're considering you for another kitchen management job.
+   example: Manage the kitchen staff schedule for [number] staff across [shifts]
+   question: How many staff do you schedule, and which shifts does the schedule cover?
+3. [line] Kitchen Manager, line 3
+   line: "Order food and supplies from vendors"
+   can't tell: Ordering is part of the job, but this doesn't say how often you order or how you decide what the kitchen needs.
+   example: Order food and supplies from vendors [ordering frequency], using [how orders are determined]
+   question: How often do you order, and how do you decide what to buy?
+4. [line] Kitchen Manager, line 4
+   line: "Keep the kitchen ready for health inspections"
+   can't tell: Inspection readiness matters, especially with your ServSafe Manager certification. What do you do to keep the kitchen ready?
+   example: Keep the kitchen ready for health inspections by [inspection preparation work]
+   question: What inspection preparation work do you handle?
+5. [line] Kitchen Manager, line 5
+   line: "Train new line cooks"
+   can't tell: A recruiter can see that you train cooks, but not what you teach them or how you train them.
+   example: Train new line cooks in [training topics] through [training process]
+   question: What do you teach new line cooks, and how do you train them?
+6. [line] Sous Chef, line 1
+   line: "Ran the line on busy weekend shifts"
+   can't tell: Running the line says what you were responsible for, but not what you coordinated during service.
+   example: Ran the line on busy weekend shifts, coordinating [work coordinated]
+   question: What did you coordinate while running the line on weekend shifts?
+7. [line] Sous Chef, line 2
+   line: "Helped plan seasonal menu changes"
+   can't tell: Your part in the menu changes is still a blank. Naming what you contributed would give a recruiter something concrete to discuss.
+   example: Helped plan seasonal menu changes by [your contribution] for [menu item or change]
+   question: What did you contribute to a seasonal menu change, and which item or change was it?
+
+## Fit
+Roles: ["Kitchen Manager","Sous Chef"]
+Level: Kitchen manager, with responsibility for the staff schedule and kitchen operations
+Note: Your experience points toward kitchen management in restaurants. The number of staff you schedule and more detail about your operating responsibilities would help a recruiter compare your work with another kitchen manager role.

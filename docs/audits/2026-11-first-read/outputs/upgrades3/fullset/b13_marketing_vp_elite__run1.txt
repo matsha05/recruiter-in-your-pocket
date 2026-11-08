@@ -1,0 +1,49 @@
+# b13_marketing_vp_elite, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/golden/synth_marketing_manager_vp_elite_1766960221358.txt (730 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 15dff271; severity check off
+Outcome: report; cost $0.0140; 24.8s
+Case note: Executive, strong (golden).
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+An executive marketing resume that connects leadership, budgets and campaigns to substantial business results.
+
+## Write-up
+This is a strong executive marketing resume! Your path from Senior Marketing Manager to Chief Marketing Officer is easy to follow, and your Novara work connects a 45-person organization and $25M budget to growth, launches and acquisition costs.
+
+The customer advocacy line at Viridian is a good model: it names the program you led and ties it to retention and upsell revenue. Experience leads the resume, and the team and budget figures make your executive remit easy to find.
+
+Tighten the few measures that aren't defined, and make the P&L claim as precise as the budget claim. Your resume isn't likely to be the thing holding you back; the competitiveness of a particular executive opening will also matter.
+
+## Cards (6; {"line":3,"keep":1,"upgrade":2}); severity off; added []
+1. [line] Director of Marketing Strategy, line 3
+   line: "I decided to establish a quarterly business review process with sales and product leadership that improved campaign alignment and delivered a 15% increase in channel sales effectiveness."
+   can't tell: The review process is clear, but a recruiter can't tell what the 15% increase in channel sales effectiveness measures. Name the measure so they know what changed.
+   example: I decided to establish a quarterly business review process with sales and product leadership that improved campaign alignment and delivered a 15% increase in channel sales effectiveness, measured by [measure].
+   question: What measure showed the 15% increase in channel sales effectiveness?
+2. [line] Senior Marketing Manager, line 5
+   line: "I partnered with sales and channel teams to develop sales enablement tools, increasing sales productivity by 15%."
+   can't tell: The partnership and tools are clear, but sales productivity can mean several things. The measure behind the 15% would show what improved.
+   example: I partnered with sales and channel teams to develop sales enablement tools, increasing sales productivity by 15%, measured by [measure].
+   question: What measure showed the 15% increase in sales productivity?
+3. [line] Skills, Budget & P&L Management
+   line: "Budget & P&L Management ($25M+)"
+   can't tell: Your Novara role names a $25M annual budget, but it doesn't explain what P&L responsibility you held. Those are different kinds of ownership at executive level.
+   example: Budget Management ($25M annual budget); P&L Management ([what you owned])
+   question: What P&L responsibility did you hold, if any?
+4. [keep] Vice President, Global Marketing, line 3
+   line: "I led the development and launch of a new customer advocacy program that increased customer retention by 12% and generated $4M in upsell revenue within 18 months."
+   can't tell: Keep this as a model. It gives the program a name, makes your leadership clear and puts a timeframe on the revenue figure.
+5. [upgrade] Chief Marketing Officer, line 1
+   line: "I led a 45-person global marketing organization managing a $25M annual budget, driving company-wide brand and demand generation strategy for a SaaS platform serving 2M+ users across 40 countries."
+   can't tell: For a move beyond the marketing function, your part in a company-wide decision would show how your leadership reaches across the business.
+   example: I led a 45-person global marketing organization managing a $25M annual budget and [your contribution to a company-wide decision].
+   question: What company-wide decision beyond marketing did you contribute to, and what was your part?
+6. [upgrade] Skills, final line
+   line: "Executive Stakeholder Engagement and Communication"
+   can't tell: You can cut this general skill if you need room. Your work with sales and product leadership already shows it in practice.
+
+## Fit
+Roles: ["Chief Marketing Officer","Vice President, Global Marketing"]
+Level: executive, leads a 45-person global marketing organization with a $25M annual budget
+Note: Your experience points toward senior marketing leadership in SaaS and other technology businesses. Keep the strongest business results and the team and budget figures prominent.

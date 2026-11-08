@@ -123,3 +123,22 @@ Folders:
 - candidates 1 to 5 keep their text reports and ledgers only.
 
 The Report Lab shows the targeted cases on candidate 9 beside the shipped prompt (`first read · …`).
+
+## Upgrades on strong resumes (November 7, 2026, evening)
+
+Matt's direction: a strong resume gets the same report as any other, with optional upgrades ("hey the resume does
+look great, lets make it even better"), always one for the next level up, and upgrades never hold a page out of
+Ready to send. The card kind is `upgrade` (`lib/llm/worklist-schema.ts`): it quotes a line like `line`, carries no
+marker, and never counts as work. The prompt writes two or three on a resume at Clear and specific or above, after
+its lines that need work.
+
+| Run | Prompt change | What it showed |
+| --- | --- | --- |
+| upgrades1 | "give it upgrade cards instead" | Upgrades on every strong resume, specific and grounded; but three strong resumes lost their one real fix and rose into Ready to send (4 of 49 against 1). "Instead" let an upgrade replace a fix |
+| upgrades2 | Upgrades come after the lines that need work and never replace one | Fixes kept; Ready to send back to 2 of 49; no upgrade below 85 |
+| upgrades3 (ships) | After three reviewers: the note says why once and the question asks once; the blank names the fact plainly; cut only filler a recruiter wouldn't search for | Same counts as upgrades2; repeated phrasing gone; skill cuts only on generic soft skills ("Executive Stakeholder Engagement and Communication"). Below 85: no upgrades, needs-work cards 4.91 against the shipped prompt's 4.60 and 4.46 |
+
+The report shows them as their own group after the list: a strong resume keeps "Nothing here needs work.", then
+"Ways to make it even better." with Matt's point as its lead ("Your resume probably isn't what stands between you and
+the call now…"), and "Not true for me" as an upgrade's way out. Not blind-picked: Matt chose the shape and read it
+rendered; the counts above are the regression check. Spend for the three runs: $1.94 (wave total $7.51).

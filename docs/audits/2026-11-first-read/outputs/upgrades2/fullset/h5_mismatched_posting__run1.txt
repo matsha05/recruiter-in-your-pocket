@@ -1,0 +1,36 @@
+# h5_mismatched_posting, run 1
+Resume: ../2026-11-live-judgment/resumes/h5_data_analyst.txt (166 words), posting: ../2026-11-live-judgment/resumes/h5_nursing_posting.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt da8de295; severity check off
+Outcome: report; cost $0.0104; 20.8s
+Case note: Data analyst against a registered nurse posting.
+
+## Clear and specific (score 90; model wrote 90)
+## Verdict
+A strong data analyst resume that does not show the clinical qualifications for the nursing role.
+
+## Write-up
+Your resume tells a strong data analyst story: you build reporting tools at Carolina Home Goods and turn sales data into decisions the merchandising team can use. The work is concrete, but it points to analytics, not the medical-surgical nursing job.
+
+The SQL model line is a great model for the rest of your resume: it names what you built and the manual report it replaced. Your current work also shows who uses your dashboards and how your markdown recommendation was adopted.
+
+For data analyst roles, your resume is unlikely to be the reason you don't get a call back; the job's requirements and competition still matter. For this nursing role, the resume doesn't show an RN license, BLS certification, clinical experience, or patient care. Add those qualifications only if you have them.
+
+## Cards (3; {"keep":1,"upgrade":2}); severity off; added []
+1. [keep] Data Analyst, line 2
+   line: "Wrote the SQL model that replaced a 3-day manual weekly sales report with an automated one"
+   can't tell: Keep this as a model. It connects your SQL work to a named report and tells a recruiter what changed.
+2. [upgrade] Data Analyst, line 3
+   line: "Analyzed markdown timing for 2,100 SKUs; the merchandising team adopted the recommended schedule in two categories"
+   can't tell: This is your strongest business decision example. Consider moving it above the dashboard line so the adopted recommendation leads the role.
+3. [upgrade] Data Analyst, line 1
+   line: "Build and maintain 14 Power BI dashboards used by the sales, merchandising, and finance teams"
+   can't tell: For a senior analyst role, a recruiter may also look for a reporting or data modeling decision that shaped work across teams. Add one if you can point to it.
+   example: Build and maintain 14 Power BI dashboards used by the sales, merchandising, and finance teams; [cross-team reporting decision] addressed [shared reporting need]
+   question: What reporting or data modeling decision did you make across these teams, and what shared need did it address?
+
+## Fit
+Roles: ["Data Analyst","Registered Nurse, Medical-Surgical Unit (Nights)"]
+Level: Analyst, with a current Data Analyst role and an earlier Junior Analyst role
+Note: The nursing role requires an RN license and BLS certification, neither of which appears on your resume. It also asks for clinical experience or strong clinical rotations, EHR experience, and patient care skills that your resume doesn't show. Your documented experience points toward data analyst roles.
+Posting: Night-shift medical-surgical nursing role providing patient care, medication administration, EHR documentation, and patient and family education.
+Missing: ["Current unrestricted North Carolina RN license or compact state license","BLS certification required; ACLS within six months of hire","Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered","Experience with Epic or a comparable EHR","Ability to manage a patient assignment of 5 to 6 patients","Strong communication with patients, families, and the interdisciplinary team"]

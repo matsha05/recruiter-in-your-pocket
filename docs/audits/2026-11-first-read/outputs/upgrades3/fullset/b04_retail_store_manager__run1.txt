@@ -1,0 +1,30 @@
+# b04_retail_store_manager, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_retail_store_manager_1.txt (179 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 15dff271; severity check off
+Outcome: report; cost $0.0079; 16.0s
+
+## Mostly clear (score 82; model wrote 82)
+## Verdict
+A store manager with strong results at one store and a second turnaround that needs backing up.
+
+## Write-up
+You've moved from Department Supervisor to Store Manager at Carolina Home & Garden, with sales, staffing and inventory results in your current role. A recruiter can see the case for another Store Manager role, but the headline's second turnaround isn't explained in the work below it.
+
+The turnover line is a great model: it connects the move to fixed weekly schedules with a drop from 68% to 41%. Your current role also makes the store's revenue and management team easy to find.
+
+Let's start with the two-store claim. Add what you did and what changed at the second store, if you can substantiate it. If not, narrow the headline to the turnaround your resume can describe.
+
+## Cards (2; {"line":1,"keep":1}); severity off; added []
+1. [line] Headline
+   line: "Retail store manager who has turned around two underperforming stores in a 60-store regional chain."
+   can't tell: Your current store has several strong results, but a recruiter can't tell what changed at the second store or what part you played. That leaves the two-store claim hanging.
+   example: Retail store manager who has turned around two underperforming stores in a 60-store regional chain, including [what you did and what changed at the second store].
+   question: What did you do at the second store, and what changed there?
+2. [keep] Store Manager, line 3
+   line: "Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules"
+   can't tell: Keep this as a model. It names a management decision and gives the recruiter a before and after without making them guess.
+
+## Fit
+Roles: ["Store Manager"]
+Level: manager, runs a store with 42 employees, including 4 department managers
+Note: Your progression at Carolina Home & Garden points toward store management. The sales and shrink figures give you concrete work to discuss alongside your management of department managers.

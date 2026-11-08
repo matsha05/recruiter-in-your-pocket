@@ -1,0 +1,48 @@
+# b21_customer_success_manager_with_posting, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt (180 words), posting: ../2026-11-live-judgment/resumes/b_posting_customer_success_manager.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 15dff271; severity check off
+Outcome: report; cost $0.0105; 21.2s
+Case note: The same resume with a posting attached.
+
+## Mostly clear (score 76; model wrote 76)
+## Verdict
+Your mid-market customer success work fits the role, but your renewal results and VP-level experience aren't shown.
+
+## Write-up
+Your resume points clearly to Customer Success Manager work: you moved from payroll support into managing mid-market accounts at Brightline Payroll Software. The Brightline Analytics role is a plausible match, though a recruiter would have questions about retention results, account revenue and executive sponsors.
+
+Your strongest model is the line about managing 48 accounts: it names the customers and the book you own. Your progression at Brightline is easy to follow, and your current role and skills put Gainsight, Salesforce and QBRs in view.
+
+Let's start with the QBR and renewal lines. Add the sponsor level and results you can substantiate, then show what the onboarding checklist covers. For this posting, make any real experience with usage data and a BI tool easy to find.
+
+## Cards (5; {"line":4,"keep":1}); severity off; added []
+1. [line] Customer Success Manager, line 2
+   line: "Run quarterly business reviews with customer finance and HR leads"
+   can't tell: The reviews are clear, but the posting asks for VP-level sponsors. A recruiter can't tell whether you've worked with them or what the reviews cover.
+   example: Run quarterly business reviews with customer finance and HR leads, covering [topics] and involving [sponsor titles]
+   question: Have you run reviews with VP-level sponsors, and what did you cover?
+2. [line] Customer Success Manager, line 3
+   line: "Partnered with Sales on renewal strategy for at-risk accounts"
+   can't tell: The partnership is relevant, but the strategy and renewal results are missing. Those numbers matter for a role accountable for retention.
+   example: Partnered with Sales on renewal strategy for at-risk accounts, including [actions] and [renewal results]
+   question: What did you contribute to the renewal strategy, and what results can you substantiate?
+3. [line] Customer Success Manager, line 4
+   line: "Built an onboarding checklist now used by the whole CS team"
+   can't tell: Team-wide use is worth keeping. The checklist itself is a blank, so a recruiter can't tell which parts of onboarding it covers.
+   example: Built an onboarding checklist covering [onboarding steps], now used by the whole CS team
+   question: What onboarding steps does your checklist cover?
+4. [line] Account Coordinator, line 2
+   line: "Answered client questions by phone and email"
+   can't tell: A recruiter can't tell what clients asked you to resolve. Naming the questions would connect this work to your later customer-facing roles.
+   example: Answered client questions about [topics] by phone and email
+   question: What kinds of questions did clients bring to you?
+5. [keep] Customer Success Manager, line 1
+   line: "Manage a book of 48 mid-market accounts across healthcare and manufacturing"
+   can't tell: Keep this as a model: it tells a recruiter exactly what you manage and names the industries you serve.
+
+## Fit
+Roles: ["Customer Success Manager","Customer Success Manager, Mid-Market"]
+Level: mid-level, manages a book of 48 mid-market accounts
+Note: Your payroll escalation work shows experience coordinating with Support and Product on customer problems. If you have examples of bringing customer requests to Product, make them visible for this application.
+Posting: The role calls for ownership of a mid-market account book, renewal and expansion results, executive QBRs, and use of customer data.
+Missing: ["Own a book of 60 to 80 mid-market accounts representing about $4M in ARR","A track record of hitting retention or expansion targets, with numbers you can talk about","Comfortable with usage data: Gainsight, Salesforce, and a BI tool such as Looker","Experience running QBRs with VP-level sponsors"]

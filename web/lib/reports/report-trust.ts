@@ -36,7 +36,7 @@ function worklistEvidenceItems(payload: AnyReport): EvidenceItem[] {
   return payload.cards.map((card) => ({
     fix: card.question || card.cannot_tell,
     confidence: "high",
-    impact_level: card.kind === "keep" ? "low" : "high",
+    impact_level: card.kind === "keep" || card.kind === "upgrade" ? "low" : "high",
     effort: "moderate",
     excerpt: card.line,
     section: card.where,

@@ -1,0 +1,247 @@
+{
+  "case_id": "b14_teacher_to_instructional_designer",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Career changer.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_teacher_to_instructional_designer_1.txt",
+  "resume_sha256": "834ed54c2de68b69a032d304a18dda36925e354522e5b1cfe475d0beca0b4e9a",
+  "resume_words": 164,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T22:14:31.684Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6280,
+        "completion_tokens": 1440,
+        "total_tokens": 7720,
+        "cached_prompt_tokens": 5529,
+        "cache_write_prompt_tokens": 748,
+        "reasoning_tokens": 751
+      },
+      "cost_usd": 0.00841445,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 17817
+    }
+  ],
+  "resume_prompt_sha256": "15dff271c2d212b2504350e8d09deec38785cfa3e7ee269f5f8154593e015688",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A mathematics teacher with digital learning work, but no clear target between teaching and design.",
+    "write_up": [
+      "You’re a Mathematics Teacher at Cedar Creek High School with earlier middle school experience and a growing digital learning portfolio. This mix is common for educators exploring design. I read your resume for a Mathematics Teacher role, but the design work leaves a recruiter guessing which direction you want next. That can keep it from standing out for either kind of job.",
+      "The Canvas module is your best model: it names the subject, the format you built and the tool you used. Your classroom teaching line also gives a recruiter a useful picture of your sections. The headline doesn’t name a target role, though, and your department leadership leaves some of the work to the imagination.",
+      "Let’s start by choosing the role you want your resume to introduce, then add what you lead in the math department’s professional learning community. If you’re pursuing learning design, bring the Canvas module and portfolio forward without presenting the certificate as complete."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Headline",
+        "line": "Your headline doesn't name a target role.",
+        "cannot_tell": "Your resume points to both classroom teaching and digital learning design. A recruiter may not know which job you want to do next.",
+        "example": "",
+        "question": "Which role are you applying for with this version of your resume?"
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 3",
+        "line": "- Lead the math department's professional learning community",
+        "cannot_tell": "Leading the community is worth showing, but a recruiter can't tell what the group works on or what you lead it through.",
+        "example": "Lead the math department's professional learning community in [activities]",
+        "question": "What activities do you lead the math department's professional learning community through?"
+      },
+      {
+        "kind": "keep",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 2",
+        "line": "- Redesigned the Algebra II unit on functions into a self-paced online module in Canvas",
+        "cannot_tell": "Keep this as a model. It connects a real piece of curriculum to the learning material you created, without asking a recruiter to guess what you redesigned.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mathematics Teacher"
+      ],
+      "why": "Your current and previous roles are both Mathematics Teacher positions, with classroom subjects and teaching responsibilities named.",
+      "level": "mid-level, classroom teaching and math department community leadership",
+      "note": "Your teaching experience points to classroom roles, while the Canvas module and portfolio show a developing learning design direction. Make a separate version of your resume for each direction you decide to pursue.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A mathematics teacher with digital learning work, but no clear target between teaching and design.",
+    "write_up": [
+      "You’re a Mathematics Teacher at Cedar Creek High School with earlier middle school experience and a growing digital learning portfolio. This mix is common for educators exploring design. I read your resume for a Mathematics Teacher role, but the design work leaves a recruiter guessing which direction you want next. That can keep it from standing out for either kind of job.",
+      "The Canvas module is your best model: it names the subject, the format you built and the tool you used. Your classroom teaching line also gives a recruiter a useful picture of your sections. The headline doesn’t name a target role, though, and your department leadership leaves some of the work to the imagination.",
+      "Let’s start by choosing the role you want your resume to introduce, then add what you lead in the math department’s professional learning community. If you’re pursuing learning design, bring the Canvas module and portfolio forward without presenting the certificate as complete."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Headline",
+        "line": "Your headline doesn't name a target role.",
+        "cannot_tell": "Your resume points to both classroom teaching and digital learning design. A recruiter may not know which job you want to do next.",
+        "example": "",
+        "question": "Which role are you applying for with this version of your resume?"
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 3",
+        "line": "Lead the math department's professional learning community",
+        "cannot_tell": "Leading the community is worth showing, but a recruiter can't tell what the group works on or what you lead it through.",
+        "example": "Lead the math department's professional learning community in [activities]",
+        "question": "What activities do you lead the math department's professional learning community through?"
+      },
+      {
+        "kind": "keep",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 2",
+        "line": "Redesigned the Algebra II unit on functions into a self-paced online module in Canvas",
+        "cannot_tell": "Keep this as a model. It connects a real piece of curriculum to the learning material you created, without asking a recruiter to guess what you redesigned.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mathematics Teacher"
+      ],
+      "why": "Your current and previous roles are both Mathematics Teacher positions, with classroom subjects and teaching responsibilities named.",
+      "level": "mid-level, classroom teaching and math department community leadership",
+      "note": "Your teaching experience points to classroom roles, while the Canvas module and portfolio show a developing learning design direction. Make a separate version of your resume for each direction you decide to pursue.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 68
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A mathematics teacher with digital learning work, but no clear target between teaching and design.",
+    "write_up": [
+      "You’re a Mathematics Teacher at Cedar Creek High School with earlier middle school experience and a growing digital learning portfolio. This mix is common for educators exploring design. I read your resume for a Mathematics Teacher role, but the design work leaves a recruiter guessing which direction you want next. That can keep it from standing out for either kind of job.",
+      "The Canvas module is your best model: it names the subject, the format you built and the tool you used. Your classroom teaching line also gives a recruiter a useful picture of your sections. The headline doesn’t name a target role, though, and your department leadership leaves some of the work to the imagination.",
+      "Let’s start by choosing the role you want your resume to introduce, then add what you lead in the math department’s professional learning community. If you’re pursuing learning design, bring the Canvas module and portfolio forward without presenting the certificate as complete."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Headline",
+        "line": "Your headline doesn't name a target role.",
+        "cannot_tell": "Your resume points to both classroom teaching and digital learning design. A recruiter may not know which job you want to do next.",
+        "example": "",
+        "question": "Which role are you applying for with this version of your resume?"
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 3",
+        "line": "Lead the math department's professional learning community",
+        "cannot_tell": "Leading the community is worth showing, but a recruiter can't tell what the group works on or what you lead it through.",
+        "example": "Lead the math department's professional learning community in [activities]",
+        "question": "What activities do you lead the math department's professional learning community through?"
+      },
+      {
+        "kind": "keep",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 2",
+        "line": "Redesigned the Algebra II unit on functions into a self-paced online module in Canvas",
+        "cannot_tell": "Keep this as a model. It connects a real piece of curriculum to the learning material you created, without asking a recruiter to guess what you redesigned.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mathematics Teacher"
+      ],
+      "why": "Your current and previous roles are both Mathematics Teacher positions, with classroom subjects and teaching responsibilities named.",
+      "level": "mid-level, classroom teaching and math department community leadership",
+      "note": "Your teaching experience points to classroom roles, while the Canvas module and portfolio show a developing learning design direction. Make a separate version of your resume for each direction you decide to pursue.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 68
+  },
+  "presentation": {
+    "score": 68,
+    "band": "Needs more context",
+    "model_score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A mathematics teacher with digital learning work, but no clear target between teaching and design.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 158,
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Headline",
+        "line": "Your headline doesn't name a target role.",
+        "blanks": 0,
+        "question": "Which role are you applying for with this version of your resume?"
+      },
+      {
+        "kind": "line",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 3",
+        "line": "Lead the math department's professional learning community",
+        "blanks": 1,
+        "question": "What activities do you lead the math department's professional learning community through?"
+      },
+      {
+        "kind": "keep",
+        "where": "Mathematics Teacher, Cedar Creek High School, line 2",
+        "line": "Redesigned the Algebra II unit on functions into a self-paced online module in Canvas",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "structure": 1,
+      "line": 1,
+      "keep": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Mathematics Teacher"
+      ],
+      "why": "Your current and previous roles are both Mathematics Teacher positions, with classroom subjects and teaching responsibilities named.",
+      "level": "mid-level, classroom teaching and math department community leadership",
+      "note": "Your teaching experience points to classroom roles, while the Canvas module and portfolio show a developing learning design direction. Make a separate version of your resume for each direction you decide to pursue.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00841445,
+  "latency_ms": 17821
+}

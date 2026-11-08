@@ -1,0 +1,35 @@
+# b01_icu_nurse, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_icu_nurse_1.txt (153 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt da8de295; severity check off
+Outcome: report; cost $0.0070; 14.6s
+
+## Mostly clear (score 80; model wrote 80)
+## Verdict
+A medical ICU nurse with clear patient care experience and a few questions about committee and rapid response work.
+
+## Write-up
+Your resume points clearly toward Staff Nurse, Medical ICU roles. A recruiter can see your patient load, the therapies you manage, and your charge and preceptor work. There are a couple of questions, but the clinical work is clear enough to move forward.
+
+The direct care line is a good model: it names the patients, the shift assignment, and the unit. Your Arizona RN license and critical care certifications are easy to find, and the move from telemetry to the medical ICU is easy to follow.
+
+Start with the sepsis committee and rapid response lines. Add what you did in each setting, then leave the patient-load and therapy details in place.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] Staff Nurse, Medical ICU, line 5
+   line: "Member of the unit's sepsis bundle compliance committee"
+   can't tell: Committee membership tells a recruiter where you participated, but not what you contributed to sepsis bundle compliance.
+   example: Member of the unit's sepsis bundle compliance committee, where I [what you did]
+   question: What did you do as a member of the sepsis bundle compliance committee?
+2. [line] Staff Nurse, Telemetry, line 2
+   line: "Responded to rapid response calls as part of the floor team"
+   can't tell: A recruiter can see that you were part of the floor team, but not what you did during a rapid response call.
+   example: Responded to rapid response calls as part of the floor team, [what you did]
+   question: What did you do as part of the floor team during rapid response calls?
+3. [keep] Staff Nurse, Medical ICU, line 1
+   line: "Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU"
+   can't tell: Keep this. It gives a recruiter a concrete picture of your assignment without making them hunt for the setting.
+
+## Fit
+Roles: ["Staff Nurse, Medical ICU","Staff Nurse, Telemetry"]
+Level: Staff nurse who also serves as charge nurse and precepts new graduates
+Note: Your experience points most directly to medical ICU staff nursing. The telemetry work adds a useful picture of your earlier patient care.

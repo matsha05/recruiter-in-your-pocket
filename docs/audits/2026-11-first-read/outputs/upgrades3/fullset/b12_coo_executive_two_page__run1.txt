@@ -1,0 +1,39 @@
+# b12_coo_executive_two_page, run 1
+Resume: ../2026-11-live-judgment/resumes/b_coo_executive.txt (463 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 15dff271; severity check off
+Outcome: report; cost $0.0105; 18.9s
+Case note: Executive, two pages.
+
+## Clear and specific (score 89; model wrote 89)
+## Verdict
+A healthcare COO whose resume connects practice growth and operating changes to measurable results.
+
+## Write-up
+This is a strong executive resume! Your progression from clinic operations at Midwest Physician Alliance to COO at Lakeshore Dental Partners is easy to follow, and you show both the scale of your work and what changed under your leadership.
+
+The integration playbook line is a great model: it names the change you made and the reduction in integration time. Your current role also gives a recruiter the practice count, workforce, revenue and board reporting they need to understand the job.
+
+Add how you reduced appointment waits, then consider whether you can show decisions beyond operations for a CEO search. Your resume is unlikely to be the reason you don't get a call; competition for executive roles and referrals can matter too.
+
+## Cards (4; {"line":1,"keep":1,"upgrade":2}); severity off; added []
+1. [line] Senior Vice President, Operations, line 3
+   line: "Reduced patient wait time to third available appointment from 21 days to 6 across primary care"
+   can't tell: The drop in wait time is substantial, but a recruiter can't tell what you changed to achieve it. That would show how you approached access across primary care.
+   example: Reduced patient wait time to third available appointment from 21 days to 6 across primary care by [action]
+   question: What did you change to reduce the wait?
+2. [keep] Chief Operating Officer, line 4
+   line: "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook"
+   can't tell: Keep this as a model. It gives the recruiter a before and after, then names the playbook you standardized.
+3. [upgrade] Chief Operating Officer, line 7
+   line: "Own the annual operating plan and the $410M P&L with the CFO"
+   can't tell: For a CEO search, a decision you made beyond operations could show how you set direction across the business, if you have one to share.
+   example: Own the annual operating plan and the $410M P&L with the CFO; made [enterprise-wide decision]
+   question: What enterprise-wide decision beyond operations did you make, if any?
+4. [upgrade] Chief Operating Officer, line 2
+   line: "Grew the practice count from 38 to 140 through 61 acquisitions and 41 de novo openings while raising same-store EBITDA margin from 17% to 23%"
+   can't tell: Consider moving this above the opening remit line. It leads with practice growth and margin improvement before the recruiter gets to the details of the current operation.
+
+## Fit
+Roles: ["Chief Operating Officer"]
+Level: executive, leads operations for 140 practices and reports to the CEO
+Note: Your resume points toward healthcare COO roles, particularly those involving practice growth and integration. Your physician-clinic background also shows experience beyond dental services.

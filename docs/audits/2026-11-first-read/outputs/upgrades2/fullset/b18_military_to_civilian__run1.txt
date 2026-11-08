@@ -1,0 +1,40 @@
+# b18_military_to_civilian, run 1
+Resume: ../2026-11-live-judgment/resumes/b_military_to_civilian.txt (268 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt da8de295; severity check off
+Outcome: report; cost $0.0109; 22.1s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A strong Army logistics leader’s resume with measurable maintenance and people-management results.
+
+## Write-up
+Your resume is strong because it connects Army leadership to work an operations recruiter can recognize: managing people and equipment, planning logistics, and improving vehicle readiness. I read it for operations supervisor roles, and a recruiter would have good reason to move it forward.
+
+The vehicle readiness line is the model: it gives the starting point, the improvement, and the changes you made to get there. Your inventory and personnel lines also make the responsibility concrete. Your transition to civilian operations is named right at the top.
+
+Let's make the field-exercise support more concrete and add what you taught the junior mechanics. Your resume isn't likely to be the main thing standing between you and a call back; the competition for a particular role matters too.
+
+## Cards (4; {"line":2,"upgrade":2}); severity off; added []
+1. [line] Platoon Sergeant, field exercises
+   line: "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises"
+   can't tell: The battalion and exercises show how much you supported, but a recruiter can't tell what that support included. Naming the work would help connect it to an operations job.
+   example: Planned and executed [type of logistics support] for a 600-soldier battalion during two month-long field exercises
+   question: What logistics support did you plan and execute for the exercises?
+2. [line] Wheeled Vehicle Mechanic, training
+   line: "Trained 9 junior mechanics"
+   can't tell: A recruiter can see how many mechanics you trained, but not what you taught them.
+   example: Trained 9 junior mechanics on [training topics]
+   question: What did you train the junior mechanics to do?
+3. [upgrade] Platoon Sergeant, leadership
+   line: "Led, trained, and evaluated 38 soldiers across maintenance, supply, and fuel sections"
+   can't tell: This already shows substantial team leadership. For a role above supervisor, a broader decision could show how your responsibility reached beyond those sections.
+   example: Led, trained, and evaluated 38 soldiers across maintenance, supply, and fuel sections; made [decision] for [organization]
+   question: Did you make a decision beyond your own sections, and if so, what was it and which organization did it affect?
+4. [upgrade] Platoon Sergeant, vehicle readiness
+   line: "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule"
+   can't tell: This is a standout result. Move it above the field-exercise line so the maintenance improvement appears earlier in the role.
+
+## Fit
+Roles: ["operations supervisor","Maintenance Section Sergeant (E-6)"]
+Level: Supervisor, led 38 soldiers with 6 direct-report sergeants
+Note: Your experience points toward operations and maintenance supervision, with inventory and logistics work also relevant to supply chain roles. The civilian transition is explicit, and the vehicle readiness result gives employers a concrete place to start.

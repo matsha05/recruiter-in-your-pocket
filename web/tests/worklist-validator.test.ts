@@ -248,5 +248,22 @@ console.log("worklist-validator tests passed");
   const clear = validateWorklistPayload(draft({ score: 90, cards: [keep] }), RESUME, { forceGrounding: true });
   assert.equal(clear.score_label, "Clear and specific", "90 to 92 with nothing to fix is still Clear and specific");
   assert.equal(validateWorklistPayload(draft({ score: 92 }), RESUME, { forceGrounding: true }).score_label, "Clear and specific", "92 with work to do is the top of Clear and specific");
+
+  // Upgrades (Matt, Nov 7, 2026) are optional: a strong page keeps Ready to send with them, and they quote the resume.
+  const upgrade = {
+    kind: "upgrade",
+    where: "Research Assistant, line 2",
+    line: "Wrote 15 literature summaries on farm subsidies",
+    cannot_tell: "For an analyst role a level up, a recruiter looks for what the summaries fed.",
+    example: "Wrote 15 literature summaries on farm subsidies for [the study or decision they fed]",
+    question: "What did the summaries feed?",
+  };
+  const withUpgrades = validateWorklistPayload(draft({ score: 95, cards: [keep, upgrade, { ...upgrade, where: "Skills", line: "Excel, Stata, Canva, survey design, public speaking", cannot_tell: "Cut public speaking: every analyst lists it.", example: "Excel, Stata, Canva, survey design", question: "" }] }), RESUME, { forceGrounding: true });
+  assert.equal(withUpgrades.score_label, "Ready to send", "upgrades never hold a page out of the top band");
+  assert.equal(withUpgrades.cards.filter((card) => card.kind === "upgrade").length, 2);
+  assert.throws(() => validateWorklistPayload(draft({ score: 95, cards: [keep, { ...upgrade, line: "Wrote 40 grant proposals" }] }), RESUME, { forceGrounding: true }), /not on the resume/u, "an upgrade quotes a line on the resume");
+  assert.throws(() => validateWorklistPayload(draft({ score: 95, cards: [keep, { ...upgrade, example: "Wrote 15 literature summaries on farm subsidies for the USDA" }] }), RESUME, { forceGrounding: true }), /outside a bracket/u, "an upgrade's example invents nothing outside a bracket");
+  assert.throws(() => validateWorklistPayload(draft({ score: 95, cards: [keep, { ...upgrade, question: "" }] }), RESUME, { forceGrounding: true }), /blanks/u, "an upgrade with blanks asks the question that fills them");
+  assert.throws(() => validateWorklistPayload(draft({ score: 85, cards: [keep, upgrade] }), RESUME, { forceGrounding: true }), /at least 90/u, "a page whose only cards are keep and upgrades has nothing to fix, so it scores at least 90");
 }
 console.log("worklist band rules passed");

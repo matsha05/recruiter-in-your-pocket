@@ -1,0 +1,35 @@
+# b19_non_native_english, run 1
+Resume: ../2026-11-live-judgment/resumes/b_non_native_english.txt (237 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt da8de295; severity check off
+Outcome: report; cost $0.0068; 13.1s
+
+## Mostly clear (score 81; model wrote 81)
+## Verdict
+An accountant with substantial ledger and closing experience, now working in accounts payable in Houston.
+
+## Write-up
+Your resume points to Staff Accountant and Accounts Payable Specialist roles. A recruiter can see both the invoice work you do now at Bayou Industrial Supply and the broader accounting work you did at Minh Phat Trading Company. That combination makes your experience easy to place.
+
+The strongest line is the one about reducing month-end closing from 12 days to 7 days. It names the change and the checklist and template you made to get there. Your Experience section leads Education, and your current role is dated clearly.
+
+Start with the month-end closing line at Bayou: tell us which tasks you helped the controller complete. Then add what you contributed to the audit at Minh Phat. A final grammar pass will polish the resume without changing the work you describe.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] Accounts Payable Clerk, line 4
+   line: "Help the controller for month end closing"
+   can't tell: A recruiter can't tell which closing tasks you help with. That matters for a Staff Accountant role, where the work behind the close is important.
+   example: Help the controller with month-end closing by [tasks you handle]
+   question: Which month-end closing tasks do you help the controller complete?
+2. [line] Senior Accountant, line 3
+   line: "Work with external auditor for year end audit, no major finding in 5 years"
+   can't tell: The audit history is useful, but a recruiter can't tell what you provided or did for the auditor.
+   example: Work with external auditor for year-end audit by [work you did for the audit]; no major finding in 5 years
+   question: What did you prepare or provide for the external auditor?
+3. [keep] Senior Accountant, line 4
+   line: "Reduce the month end closing from 12 days to 7 days by make new checklist and template"
+   can't tell: Keep this as your model: it pairs a concrete improvement with the tools you created. A recruiter can see your contribution without guessing.
+
+## Fit
+Roles: ["Staff Accountant","Accounts Payable Specialist"]
+Level: Experienced accountant; former Senior Accountant who led a team of 3 junior accountants.
+Note: Your earlier role supports a broader accounting story, while your current role gives you recent accounts payable work in Houston. Both directions are named in your profile and supported by your experience.

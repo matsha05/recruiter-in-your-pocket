@@ -1,0 +1,281 @@
+{
+  "case_id": "b08_warehouse_supervisor",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_warehouse_supervisor_1.txt",
+  "resume_sha256": "4f23aeaad42ee6b5836bf39d21414eb87585621802a43fd069caf4dd7d77509a",
+  "resume_words": 173,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T20:40:42.923Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6030,
+        "completion_tokens": 1264,
+        "total_tokens": 7294,
+        "cached_prompt_tokens": 5306,
+        "cache_write_prompt_tokens": 721,
+        "reasoning_tokens": 512
+      },
+      "cost_usd": 0.00748955,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 16051
+    }
+  ],
+  "resume_prompt_sha256": "da8de2955f7c8fc1b62e0178500104bae17a416005f43113f3b1bc615f3fd1f8",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 77,
+    "lifted_by_employer": false,
+    "verdict": "A distribution supervisor with a clear progression and a 35-person shift, but few details on results.",
+    "write_up": [
+      "Your resume tells a straightforward operations supervisor story: you moved from picking at Basin Retail Supply to leading outbound work at Sierra Freight Distribution. A recruiter can see the jobs and the people you've supervised, but has less to go on when comparing how the shifts performed.",
+      "The strongest line names the night shift of 35 associates and the picking, packing, and loading work you supervise. It gives a recruiter both the people and the work in one place. Your progression at Sierra is also easy to follow.",
+      "Let's start with labor scheduling: add the daily order volume you planned around if you can document it. Then show what you took on when covering for the supervisor and what you contributed to the scanner rollout."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 2",
+        "line": "- Schedule labor and assign zones based on daily order volume",
+        "cannot_tell": "A recruiter can see how you plan the shift, but not the order volume you're planning around. That number would give them more to compare across distribution roles.",
+        "example": "Schedule labor and assign zones based on daily order volume of [order volume]",
+        "question": "What daily order volume did you schedule labor around?"
+      },
+      {
+        "kind": "line",
+        "where": "Lead Associate, line 2",
+        "line": "- Covered for the supervisor during vacations",
+        "cannot_tell": "Covering for the supervisor shows you were trusted with the shift, but it doesn't say which responsibilities you took on.",
+        "example": "Covered for the supervisor during vacations by [responsibilities]",
+        "question": "Which supervisor responsibilities did you take on during those vacations?"
+      },
+      {
+        "kind": "line",
+        "where": "Lead Associate, line 3",
+        "line": "- Helped roll out handheld scanners on the pick floor",
+        "cannot_tell": "The scanner rollout is a concrete project, but 'helped' leaves your part in it open. Name the work you contributed.",
+        "example": "Helped roll out handheld scanners on the pick floor by [your contribution]",
+        "question": "What did you do as part of the scanner rollout?"
+      },
+      {
+        "kind": "keep",
+        "where": "Shift Supervisor, line 1",
+        "line": "- Supervise a night shift of 35 associates across picking, packing, and loading",
+        "cannot_tell": "Keep this as a model. It puts your ownership, the number of associates, and their work together without making a recruiter guess.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Operations supervisor",
+        "Shift Supervisor, Outbound Operations"
+      ],
+      "why": "Your headline names operations supervision, and your current role shows you supervising outbound associates.",
+      "level": "Supervisor, leading a night shift of 35 associates",
+      "note": "Your experience points toward distribution and outbound shift supervision. The progression from picker to supervisor is clear; documented shift measures would give a recruiter more to compare.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 77,
+    "lifted_by_employer": false,
+    "verdict": "A distribution supervisor with a clear progression and a 35-person shift, but few details on results.",
+    "write_up": [
+      "Your resume tells a straightforward operations supervisor story: you moved from picking at Basin Retail Supply to leading outbound work at Sierra Freight Distribution. A recruiter can see the jobs and the people you've supervised, but has less to go on when comparing how the shifts performed.",
+      "The strongest line names the night shift of 35 associates and the picking, packing, and loading work you supervise. It gives a recruiter both the people and the work in one place. Your progression at Sierra is also easy to follow.",
+      "Let's start with labor scheduling: add the daily order volume you planned around if you can document it. Then show what you took on when covering for the supervisor and what you contributed to the scanner rollout."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 2",
+        "line": "Schedule labor and assign zones based on daily order volume",
+        "cannot_tell": "A recruiter can see how you plan the shift, but not the order volume you're planning around. That number would give them more to compare across distribution roles.",
+        "example": "Schedule labor and assign zones based on daily order volume of [order volume]",
+        "question": "What daily order volume did you schedule labor around?"
+      },
+      {
+        "kind": "line",
+        "where": "Lead Associate, line 2",
+        "line": "Covered for the supervisor during vacations",
+        "cannot_tell": "Covering for the supervisor shows you were trusted with the shift, but it doesn't say which responsibilities you took on.",
+        "example": "Covered for the supervisor during vacations by [responsibilities]",
+        "question": "Which supervisor responsibilities did you take on during those vacations?"
+      },
+      {
+        "kind": "line",
+        "where": "Lead Associate, line 3",
+        "line": "Helped roll out handheld scanners on the pick floor",
+        "cannot_tell": "The scanner rollout is a concrete project, but 'helped' leaves your part in it open. Name the work you contributed.",
+        "example": "Helped roll out handheld scanners on the pick floor by [your contribution]",
+        "question": "What did you do as part of the scanner rollout?"
+      },
+      {
+        "kind": "keep",
+        "where": "Shift Supervisor, line 1",
+        "line": "Supervise a night shift of 35 associates across picking, packing, and loading",
+        "cannot_tell": "Keep this as a model. It puts your ownership, the number of associates, and their work together without making a recruiter guess.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Operations supervisor",
+        "Shift Supervisor, Outbound Operations"
+      ],
+      "why": "Your headline names operations supervision, and your current role shows you supervising outbound associates.",
+      "level": "Supervisor, leading a night shift of 35 associates",
+      "note": "Your experience points toward distribution and outbound shift supervision. The progression from picker to supervisor is clear; documented shift measures would give a recruiter more to compare.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 77
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 77,
+    "lifted_by_employer": false,
+    "verdict": "A distribution supervisor with a clear progression and a 35-person shift, but few details on results.",
+    "write_up": [
+      "Your resume tells a straightforward operations supervisor story: you moved from picking at Basin Retail Supply to leading outbound work at Sierra Freight Distribution. A recruiter can see the jobs and the people you've supervised, but has less to go on when comparing how the shifts performed.",
+      "The strongest line names the night shift of 35 associates and the picking, packing, and loading work you supervise. It gives a recruiter both the people and the work in one place. Your progression at Sierra is also easy to follow.",
+      "Let's start with labor scheduling: add the daily order volume you planned around if you can document it. Then show what you took on when covering for the supervisor and what you contributed to the scanner rollout."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 2",
+        "line": "Schedule labor and assign zones based on daily order volume",
+        "cannot_tell": "A recruiter can see how you plan the shift, but not the order volume you're planning around. That number would give them more to compare across distribution roles.",
+        "example": "Schedule labor and assign zones based on daily order volume of [order volume]",
+        "question": "What daily order volume did you schedule labor around?"
+      },
+      {
+        "kind": "line",
+        "where": "Lead Associate, line 2",
+        "line": "Covered for the supervisor during vacations",
+        "cannot_tell": "Covering for the supervisor shows you were trusted with the shift, but it doesn't say which responsibilities you took on.",
+        "example": "Covered for the supervisor during vacations by [responsibilities]",
+        "question": "Which supervisor responsibilities did you take on during those vacations?"
+      },
+      {
+        "kind": "line",
+        "where": "Lead Associate, line 3",
+        "line": "Helped roll out handheld scanners on the pick floor",
+        "cannot_tell": "The scanner rollout is a concrete project, but 'helped' leaves your part in it open. Name the work you contributed.",
+        "example": "Helped roll out handheld scanners on the pick floor by [your contribution]",
+        "question": "What did you do as part of the scanner rollout?"
+      },
+      {
+        "kind": "keep",
+        "where": "Shift Supervisor, line 1",
+        "line": "Supervise a night shift of 35 associates across picking, packing, and loading",
+        "cannot_tell": "Keep this as a model. It puts your ownership, the number of associates, and their work together without making a recruiter guess.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Operations supervisor",
+        "Shift Supervisor, Outbound Operations"
+      ],
+      "why": "Your headline names operations supervision, and your current role shows you supervising outbound associates.",
+      "level": "Supervisor, leading a night shift of 35 associates",
+      "note": "Your experience points toward distribution and outbound shift supervision. The progression from picker to supervisor is clear; documented shift measures would give a recruiter more to compare.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 77
+  },
+  "presentation": {
+    "score": 77,
+    "band": "Mostly clear",
+    "model_score": 77,
+    "lifted_by_employer": false,
+    "verdict": "A distribution supervisor with a clear progression and a 35-person shift, but few details on results.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 125,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Shift Supervisor, line 2",
+        "line": "Schedule labor and assign zones based on daily order volume",
+        "blanks": 1,
+        "question": "What daily order volume did you schedule labor around?"
+      },
+      {
+        "kind": "line",
+        "where": "Lead Associate, line 2",
+        "line": "Covered for the supervisor during vacations",
+        "blanks": 1,
+        "question": "Which supervisor responsibilities did you take on during those vacations?"
+      },
+      {
+        "kind": "line",
+        "where": "Lead Associate, line 3",
+        "line": "Helped roll out handheld scanners on the pick floor",
+        "blanks": 1,
+        "question": "What did you do as part of the scanner rollout?"
+      },
+      {
+        "kind": "keep",
+        "where": "Shift Supervisor, line 1",
+        "line": "Supervise a night shift of 35 associates across picking, packing, and loading",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 4,
+    "kinds": {
+      "line": 3,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Operations supervisor",
+        "Shift Supervisor, Outbound Operations"
+      ],
+      "why": "Your headline names operations supervision, and your current role shows you supervising outbound associates.",
+      "level": "Supervisor, leading a night shift of 35 associates",
+      "note": "Your experience points toward distribution and outbound shift supervision. The progression from picker to supervisor is clear; documented shift measures would give a recruiter more to compare.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00748955,
+  "latency_ms": 16069
+}

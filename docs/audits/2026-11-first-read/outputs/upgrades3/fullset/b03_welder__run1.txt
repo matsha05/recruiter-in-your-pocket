@@ -1,0 +1,38 @@
+# b03_welder, run 1
+Resume: ../2026-11-live-judgment/resumes/b_welder.txt (195 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 15dff271; severity check off
+Outcome: report; cost $0.0078; 15.6s
+
+## Clear and specific (score 87; model wrote 87)
+## Verdict
+A welder and fitter with clear inspection results, fit-up tolerances, and relevant certifications.
+
+## Write-up
+This is a strong welding resume! Your work at Maumee Steel Fabricators and Great Lakes Mechanical gives a recruiter a clear picture of both structural steel and process piping, backed by the certifications for each.
+
+The Riverfront Tower line is the standout: it names the job, the inspections, and about 900 welds. Your fit-up tolerance and the materials and facilities in the Pipe Welder role give a recruiter useful details beyond a list of processes.
+
+Your resume is unlikely to be the main thing standing between you and a call back; the jobs you target and the competition matter too. Let's add what you did during shutdowns, then consider whether you can show any responsibility for directing others' work.
+
+## Cards (4; {"line":1,"keep":1,"upgrade":2}); severity off; added []
+1. [line] Pipe Welder, line 3
+   line: "Worked nights and weekends on plant shutdowns"
+   can't tell: The schedule tells a recruiter you were available for shutdowns, but not what you did during them. That work could tell them more about your pipe experience.
+   example: Worked nights and weekends on plant shutdowns, performing [work performed]
+   question: What work did you do during the plant shutdowns?
+2. [keep] Welder / Fitter, line 2
+   line: "Read shop drawings and fit up assemblies to within 1/16 inch before welding"
+   can't tell: Keep this as a model: it pairs the task with a precise tolerance. A recruiter can see what standard you worked to.
+3. [upgrade] Welder / Fitter, line 4
+   line: "Train new hires on the shop's fit-up and tacking procedures"
+   can't tell: For a lead role, a recruiter would also look for responsibility for directing the team's work. Add it here if that was part of your job.
+   example: Train new hires on the shop's fit-up and tacking procedures and [responsibility for directing the team's work]
+   question: What responsibility, if any, did you have for directing the team's work?
+4. [upgrade] Welder / Fitter, line 3
+   line: "Passed every third-party UT and visual inspection on the Riverfront Tower job (about 900 welds)"
+   can't tell: Move this above the first line in the Maumee Steel Fabricators role. It gives a recruiter your strongest inspection result before the general description of your welding work.
+
+## Fit
+Roles: ["Welder / Fitter","Pipe Welder"]
+Level: senior, experienced welder who trains new hires
+Note: Your experience points toward structural welding and fitting, with process piping as another credible direction. Keep the relevant certifications prominent when tailoring your resume to either kind of work.

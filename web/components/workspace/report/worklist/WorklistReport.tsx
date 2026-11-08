@@ -7,7 +7,7 @@ import { isWorklistReport } from "@/lib/llm/worklist-schema";
 import { sendLineAnswers, type LineAnswersPatch, type StoredLineAnswersByFix } from "@/lib/reports/line-answers";
 import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
 import { worklistBandFor } from "@/lib/reports/score-band";
-import { cardsHeading, fitHeading, hasRoleSection, UNLISTED_LINES_NOTE, workCards } from "@/lib/reports/worklist-presentation";
+import { cardsHeading, fitHeading, hasRoleSection, UNLISTED_LINES_NOTE, UPGRADES_HEADING, upgradesLead, workCards } from "@/lib/reports/worklist-presentation";
 import { cn } from "@/lib/utils";
 import { ReportEnding } from "../ReportEnding";
 import { ResearchReceipts } from "../ResearchReceipts";
@@ -65,6 +65,10 @@ export function WorklistReport({
   const band = worklistBandFor(report.score);
   const heading = cardsHeading(report);
   const work = workCards(report);
+  // Upgrades are their own group after the list (Nov 7, 2026); each card keeps its place in report.cards for its answers.
+  const indexed = report.cards.map((card, index) => ({ card, index }));
+  const mainCards = indexed.filter(({ card }) => card.kind !== "upgrade");
+  const upgrades = indexed.filter(({ card }) => card.kind === "upgrade");
   const ready = work.length === 0;
   const isExhausted = !isSample && freeUsesRemaining <= 0 && !hasPaidAccess;
   const reportId = buildPdfExportRequest(report)?.report_id;
@@ -101,9 +105,9 @@ export function WorklistReport({
       <section id="section-fixes" className={cn(styles.page, "scroll-mt-36")} aria-labelledby="fixes-title" data-ready={ready || undefined}>
         <h2 id="fixes-title" className={styles.sectionTitle}>{heading.title}</h2>
         {heading.lead && <p className={styles.sectionLead}>{heading.lead}</p>}
-        {report.cards.length > 0 && (
+        {mainCards.length > 0 && (
           <ol className={styles.cards}>
-            {report.cards.map((card, index) => (
+            {mainCards.map(({ card, index }) => (
               <WorklistCard
                 key={`${card.kind}-${card.line}-${index}`}
                 card={card}
@@ -120,6 +124,28 @@ export function WorklistReport({
         )}
         {work.length > 0 && <p className={styles.unlisted}>{UNLISTED_LINES_NOTE}</p>}
       </section>
+
+      {upgrades.length > 0 && (
+        <section id="section-upgrades" className={cn(styles.page, styles.upgrades, "scroll-mt-36")} aria-labelledby="upgrades-title" data-testid="worklist-upgrades">
+          <h2 id="upgrades-title" className={styles.sectionTitle}>{UPGRADES_HEADING}</h2>
+          <p className={styles.sectionLead}>{upgradesLead(report)}</p>
+          <ol className={styles.cards}>
+            {upgrades.map(({ card, index }) => (
+              <WorklistCard
+                key={`${card.kind}-${card.line}-${index}`}
+                card={card}
+                index={index}
+                cards={report.cards}
+                resumeText={resumeText}
+                isSample={isSample}
+                initial={storedLineAnswers?.[String(index)]}
+                onPersist={persist}
+                onStateChange={onStateChange}
+              />
+            ))}
+          </ol>
+        </section>
+      )}
 
       {/* With a posting, its fit is in the first pass. Without one, where else the experience points, after the cards. */}
       {hasRoleSection(report) && (

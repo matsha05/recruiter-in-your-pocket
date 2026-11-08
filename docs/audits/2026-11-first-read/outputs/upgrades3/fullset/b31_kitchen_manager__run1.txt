@@ -1,0 +1,57 @@
+# b31_kitchen_manager, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_kitchen_manager_1.txt (120 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 15dff271; severity check off
+Outcome: report; cost $0.0092; 19.2s
+
+## Needs more context (score 67; model wrote 67)
+## Verdict
+A kitchen manager with a clear restaurant career, but too few details about running the kitchen.
+
+## Write-up
+You've moved from Line Cook to Sous Chef to Kitchen Manager, with ServSafe Manager certification. It's common for restaurant resumes to list the regular duties this way, but these lines won't stand out in a pile: a recruiter can see what the jobs cover, not yet how you ran the kitchen.
+
+The strongest line gives the River Walk Grill kitchen a 180-seat setting. That's a useful model because it gives a recruiter something concrete to hold onto. The resume doesn't yet say how many kitchen staff you manage or what your day-to-day control of the kitchen includes.
+
+Let's start with the River Walk Grill role. Add the team size and the parts of kitchen operations you run, then give the scheduling, ordering, inspection and training work a few details only you could provide.
+
+## Cards (7; {"line":7}); severity off; added []
+1. [line] Kitchen Manager, line 1
+   line: "Run the kitchen for a 180-seat restaurant"
+   can't tell: The restaurant's seating is useful context, but a recruiter can't tell how many kitchen staff you manage or which kitchen responsibilities are yours. Those details matter for another Kitchen Manager role.
+   example: Run the kitchen for a 180-seat restaurant with [number] kitchen staff, overseeing [kitchen responsibilities]
+   question: How many kitchen staff do you manage, and which parts of kitchen operations do you oversee?
+2. [line] Kitchen Manager, line 2
+   line: "Manage the kitchen staff schedule"
+   can't tell: Scheduling is part of the job, but this doesn't show how often you build the schedule or what you have to account for.
+   example: Manage the kitchen staff schedule [frequency], accounting for [staffing considerations]
+   question: How often do you build the schedule, and what staffing needs do you account for?
+3. [line] Kitchen Manager, line 3
+   line: "Order food and supplies from vendors"
+   can't tell: A recruiter can't tell how much purchasing you handle or what guides your orders. That matters when hiring someone to keep a kitchen supplied.
+   example: Order food and supplies from vendors, handling [ordering volume] and accounting for [ordering considerations]
+   question: How much do you order, and what do you account for when placing orders?
+4. [line] Kitchen Manager, line 4
+   line: "Keep the kitchen ready for health inspections"
+   can't tell: Inspection readiness matters, but the daily work behind it isn't named. If you have an inspection result you can share, that could add to the story too.
+   example: Keep the kitchen ready for health inspections by [inspection preparation], with [inspection result]
+   question: What do you do to prepare the kitchen, and is there an inspection result you can document?
+5. [line] Kitchen Manager, line 5
+   line: "Train new line cooks"
+   can't tell: Training new cooks is valuable, but a recruiter can't tell what you teach or how many cooks you've trained.
+   example: Train [number] new line cooks in [training topics]
+   question: How many new line cooks have you trained, and what did you teach them?
+6. [line] Sous Chef, line 1
+   line: "Ran the line on busy weekend shifts"
+   can't tell: Running the line is concrete work, but 'busy' doesn't tell a recruiter how much service you handled.
+   example: Ran the line on weekend shifts serving [number] guests per [shift or service]
+   question: How many guests did you typically serve during those weekend shifts?
+7. [line] Sous Chef, line 2
+   line: "Helped plan seasonal menu changes"
+   can't tell: Your part in planning isn't clear, and no dish or menu change is named. Keep 'helped' and show what you contributed.
+   example: Helped plan seasonal menu changes by [contribution], including [menu change]
+   question: What did you contribute to the planning, and which menu change can you name?
+
+## Fit
+Roles: ["Kitchen Manager","Sous Chef"]
+Level: manager, runs the kitchen and manages the kitchen staff schedule
+Note: Your experience points toward restaurant kitchen management, with earlier line and menu-planning work behind it. The ServSafe Manager certification belongs alongside that story.

@@ -1,0 +1,32 @@
+# b28_cybersecurity_analyst, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_cybersecurity_analyst_1.txt (154 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 15dff271; severity check off
+Outcome: report; cost $0.0154; repair ran; 28.8s
+
+Validator refused the first draft: The model response failed the worklist contract at score: is 88 with no card that needs work; a page with nothing to fix scores at least 90.
+
+## Clear and specific (score 91; model wrote 91)
+## Verdict
+A senior security analyst with detection and response work backed by measurable results.
+
+## Write-up
+This is a strong security resume: you show the detection rules you built and the reduction in false-positive alerts! A recruiter has a clear reason to move you forward for senior detection and response work.
+
+The Splunk detection line is the model: it connects 140+ rules to a 35% reduction in false-positive alerts. Your current bank role leads, and the earlier SOC work shows the path into it.
+
+For a lead role, add any decisions you made about the night rotation's priorities. Your resume is unlikely to be what holds you back; competition for a particular job and referrals can matter too.
+
+## Cards (2; {"keep":1,"upgrade":1}); severity off; added []
+1. [keep] Senior Security Analyst, line 1
+   line: "Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%"
+   can't tell: Keep this as your model. It names the platform, the framework, how much you built and what changed.
+2. [upgrade] Senior Security Analyst, line 5
+   line: "Mentor 2 analysts on the night rotation"
+   can't tell: For a lead role, a recruiter will also look for decisions about the team's direction.
+   example: Mentor 2 analysts on the night rotation and set [priorities you chose for the night rotation]
+   question: What priorities, if any, have you set for the night rotation?
+
+## Fit
+Roles: ["Senior Security Analyst, Detection and Response","Security Operations Analyst"]
+Level: senior, leads incident response and mentors 2 analysts
+Note: Your experience points toward senior detection engineering and incident response roles in security operations. The earlier managed security work also shows experience across client environments.

@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { useSeen } from "@/hooks/use-seen";
 import { useTransientFeedback } from "@/hooks/use-transient-feedback";
 import { Analytics } from "@/lib/analytics";
-import type { WorklistCard as Card } from "@/lib/llm/worklist-schema";
+import { QUOTED_KINDS, type WorklistCard as Card } from "@/lib/llm/worklist-schema";
 import type { LineAnswersPatch, StoredLineAnswers } from "@/lib/reports/line-answers";
 import {
   blankAnswersFromStored,
@@ -20,6 +20,7 @@ import {
   exampleSegments,
   KEEP_SECONDARY_LABEL,
   storedAnswersForCard,
+  UPGRADE_LEAVE_LABEL,
   type BlankAnswers,
 } from "@/lib/reports/worklist-presentation";
 import { cn } from "@/lib/utils";
@@ -112,7 +113,7 @@ export function WorklistCard({ card, index, cards, resumeText, isSample = false,
   const baseId = useId();
   const { ref: lineRef, seen } = useSeen<HTMLQuoteElement>(0.6);
 
-  const quoted = card.kind === "line" || card.kind === "keep";
+  const quoted = QUOTED_KINDS.has(card.kind);
   const around = quoted ? neighbours(resumeText, card.line) : {};
   const composed = useMemo(() => (left ? null : composeExample(card.example, answers)), [answers, card.example, left]);
   const state: CardState = left ? "left" : composed && labels.length > 0 ? "filled" : "open";
@@ -184,7 +185,7 @@ export function WorklistCard({ card, index, cards, resumeText, isSample = false,
           <Paper kind="strip" className={styles.strip}>
             {around.above && <p className={cn(clip.ghost, clip.ghostTop)} aria-hidden="true">{around.above}</p>}
             <blockquote ref={lineRef} className={styles.quote}>
-              {card.kind === "keep"
+              {card.kind !== "line"
                 ? card.line
                 : <span className={cn(styles.mark, seen && styles.markOn)}>{card.line}</span>}
             </blockquote>
@@ -250,7 +251,9 @@ export function WorklistCard({ card, index, cards, resumeText, isSample = false,
           {asks && (
             left ? (
               <p className={styles.note} data-testid="worklist-left">
-                Left blank, and that&apos;s fine. Not every line needs every detail. Let&apos;s make sure the rest of your resume gives a recruiter something to grab onto.{" "}
+                {card.kind === "upgrade"
+                  ? "Left as it is. It's optional, and the line already works."
+                  : "Left blank, and that's fine. Not every line needs every detail. Let's make sure the rest of your resume gives a recruiter something to grab onto."}{" "}
                 <Button type="button" variant="quiet" size="sm" className={styles.quiet} onClick={() => setLeft(false)}>Fill it in after all</Button>
               </p>
             ) : (
@@ -267,7 +270,7 @@ export function WorklistCard({ card, index, cards, resumeText, isSample = false,
                     </Button>
                   )}
                   {!answeredAny && (
-                    <Button type="button" variant="quiet" size="sm" className={styles.quiet} onClick={() => setLeft(true)}>I don&apos;t know yet</Button>
+                    <Button type="button" variant="quiet" size="sm" className={styles.quiet} onClick={() => setLeft(true)}>{card.kind === "upgrade" ? UPGRADE_LEAVE_LABEL : "I don't know yet"}</Button>
                   )}
                 </div>
                 {composed && <p className={styles.note}>Every fact in it is from your resume or your answers.</p>}

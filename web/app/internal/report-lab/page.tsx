@@ -49,6 +49,7 @@ function loadWorklistFixtures(root: string): LabFixture[] {
       });
     }
   }
+  fixtures.push(...loadStrongFixtures(root));
   fixtures.push(...loadFirstReadFixtures(root));
   fixtures.push({ id: "worklist-mock", label: "worklist · the mock (Alex Rivera) · 66", report: structuredClone(MOCK_WORKLIST_REPORT) as unknown as LabFixture["report"], resumeText: "Alex Rivera\nCustomer Operations\nExperience\nBuilt customer workflows in HubSpot for 120 customers.\nDocumented the workflow and trained the support team on customer onboarding.\nRan weekly onboarding reviews with account managers and kept the checklist current." });
   return fixtures;
@@ -89,6 +90,30 @@ function loadFirstReadFixtures(root: string): LabFixture[] {
   const findings = (hidden?.report as { screener_text?: unknown } | undefined)?.screener_text;
   if (mismatch && findings) {
     fixtures.push({ ...mismatch, id: "first-read-posting-and-hidden-text", label: "first read · a posting and hidden text (layout only)", report: { ...mismatch.report, screener_text: findings } as LabFixture["report"] });
+  }
+  return fixtures;
+}
+
+// Strong resumes (Nov 7, 2026): the same report with optional upgrades, beside the shipped prompt's (`-shipped`).
+const UPGRADES_PASS = "upgrades3";
+const STRONG_CASES = ["h3_strong_resume", "b25_fpa_analyst_strong", "b27_backend_engineer_senior", "b02_teacher", "b24_physical_therapist_strong", "b04_retail_store_manager"];
+function loadStrongFixtures(root: string): LabFixture[] {
+  const runDir = path.join(root, "..", "docs/audits/2026-11-worklist-run");
+  const outDir = path.join(root, "..", "docs/audits/2026-11-first-read/outputs");
+  const manifest = JSON.parse(fs.readFileSync(path.join(runDir, "manifest.json"), "utf8")) as { cases: Array<{ id: string; resume: string }> };
+  const fixtures: LabFixture[] = [];
+  for (const id of STRONG_CASES) {
+    const item = manifest.cases.find((entry) => entry.id === id);
+    if (!item) continue;
+    const resumePath = path.resolve(runDir, item.resume);
+    const resumeText = fs.existsSync(resumePath) ? fs.readFileSync(resumePath, "utf8") : undefined;
+    for (const pass of [{ dir: `${UPGRADES_PASS}/fullset`, suffix: "", label: "" }, { dir: "shipped-redraw/fullset", suffix: "-shipped", label: " · shipped prompt" }]) {
+      const file = path.join(outDir, pass.dir, `${id}__run1.json`);
+      if (!fs.existsSync(file)) continue;
+      const record = JSON.parse(fs.readFileSync(file, "utf8"));
+      if (!record.shipped_report) continue;
+      fixtures.push({ id: `strong-${id}${pass.suffix}`, label: `strong · ${id.replace(/^[a-z]\d+_/u, "").replace(/_/gu, " ")} · ${record.shipped_report.score}${pass.label}`, report: record.shipped_report, resumeText });
+    }
   }
   return fixtures;
 }

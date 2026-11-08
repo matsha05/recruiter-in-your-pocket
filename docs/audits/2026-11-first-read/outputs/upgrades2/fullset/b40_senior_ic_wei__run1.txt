@@ -1,0 +1,56 @@
+# b40_senior_ic_wei, run 1
+Resume: ../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/4-senior-ic-wei.txt (361 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt da8de295; severity check off
+Outcome: report; cost $0.0122; 23.6s
+Case note: Senior IC (bar persona).
+
+## Mostly clear (score 80; model wrote 80)
+## Verdict
+A staff engineer with strong payments architecture work, but a recruiter still has questions about its scale.
+
+## Write-up
+Your resume points squarely to Staff Software Engineer work in payments infrastructure, from fraud scoring and reconciliation to leading the ledger and settlement platform team. A recruiter can see the technical decisions you made, but often can't tell how large the work was or what changed after it shipped.
+
+The idempotency line is the model: it names the framework, where you drove adoption, and the duplicate-charge incidents it eliminated. Your progression at Brightline is easy to follow, too. What’s missing near the top is a comparable measure of the team or platform you lead.
+
+Let's start with the staff role. Add the team’s size and the ledger redesign’s result if you can substantiate them, then fill in your part of the settlement roadmap. Earlier on, the reconciliation and API lines would be stronger with their before-and-after measures.
+
+## Cards (7; {"line":6,"keep":1}); severity off; added []
+1. [line] Staff Software Engineer, line 1
+   line: "Technical lead for the ledger and settlement platform team"
+   can't tell: A recruiter can see which team you lead, but not how large it is. That matters when comparing staff-level leadership roles.
+   example: Technical lead for the ledger and settlement platform team, with [number and roles of team members]
+   question: How many people are on the team, and what are their roles?
+2. [line] Staff Software Engineer, line 2
+   line: "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB"
+   can't tell: The architecture change is concrete, but a recruiter can't tell what the redesign changed for the ledger service. A measure of the result would make this substantial work easier to compare.
+   example: Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, resulting in [measured change]
+   question: What changed for the ledger service after the redesign, and how was it measured?
+3. [keep] Staff Software Engineer, line 3
+   line: "Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents"
+   can't tell: Keep this as a model. You connect your adoption work to a specific problem it eliminated, without making the recruiter guess why the framework mattered.
+4. [line] Staff Software Engineer, line 6
+   line: "Partnered with product and finance on the roadmap for multi-currency settlement"
+   can't tell: The partners and roadmap are named, but your contribution to the roadmap isn't. Did you shape a technical decision, set priorities, or do something else?
+   example: Partnered with product and finance on the roadmap for multi-currency settlement, contributing [your contribution]
+   question: What did you contribute to the multi-currency settlement roadmap?
+5. [line] Senior Software Engineer, line 3
+   line: "Reduced reconciliation break rate and manual ops effort"
+   can't tell: Both reductions matter, but the line doesn't say how much either changed. The before-and-after figures would show what the reconciliation work accomplished.
+   example: Reduced reconciliation break rate from [before] to [after] and manual ops effort from [before] to [after]
+   question: What were the break rate and manual ops effort before and after the reduction?
+6. [line] Software Engineer II, line 3
+   line: "Improved API latency and availability through caching and request coalescing"
+   can't tell: You name the techniques, but not how much latency or availability improved. Those measures would give the API work more weight.
+   example: Improved API latency from [before] to [after] and availability from [before] to [after] through caching and request coalescing
+   question: How did API latency and availability change after this work?
+7. [line] Software Engineer II, line 4
+   line: "Contributed to the migration of the control plane to Kubernetes"
+   can't tell: The migration is clear, but your part in it isn't. Name the piece you contributed without claiming the whole move.
+   example: Contributed to the migration of the control plane to Kubernetes by [your contribution]
+   question: What part of the Kubernetes migration did you work on?
+
+## Fit
+Roles: ["Staff Software Engineer","Senior Software Engineer"]
+Level: Staff engineer, technical lead for the ledger and settlement platform team
+Note: Your experience points to staff-level distributed systems and payments infrastructure roles. The architecture decisions and cross-functional work are there; adding the team’s size and measurable results would help a recruiter compare your current role with others.

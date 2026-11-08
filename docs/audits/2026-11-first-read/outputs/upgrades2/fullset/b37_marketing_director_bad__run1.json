@@ -1,0 +1,310 @@
+{
+  "case_id": "b37_marketing_director_bad",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Title above the work; key says no_recent_work, no_target_role, title_level_mismatch.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_marketing_director_bad_1.txt",
+  "resume_sha256": "f0624d59dceceb9ee73afca05ff983f8205d3da2ebe4712711eb2596bd129439",
+  "resume_words": 167,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T20:43:16.381Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6046,
+        "completion_tokens": 1745,
+        "total_tokens": 7791,
+        "cached_prompt_tokens": 5306,
+        "cache_write_prompt_tokens": 737,
+        "reasoning_tokens": 779
+      },
+      "cost_usd": 0.00991455,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 20562
+    }
+  ],
+  "resume_prompt_sha256": "da8de2955f7c8fc1b62e0178500104bae17a416005f43113f3b1bc615f3fd1f8",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 62,
+    "lifted_by_employer": false,
+    "verdict": "Your marketing title is senior, but the work shown reads as hands-on content and customer service.",
+    "write_up": [
+      "It's common for a resume to collect several kinds of work along the way. Yours moves from laboratory and title work to marketing at Lumen Candle Co. I'm reading it for Director of Marketing, your latest title, but the marketing duties don't yet show the decisions or remit a recruiter would look for at that level.",
+      "The candle descriptions are your best model: a recruiter can see what you wrote, where it appeared, and how many scents it covered. Nothing is dated after January 2025, though, and the mix of roles leaves your next target open to interpretation.",
+      "Let's start with the Lumen title and the time since it ended. Then make the Instagram work more concrete and name the job you want next. If you owned broader marketing decisions, put those on your resume too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Director of Marketing, title",
+        "line": "Director of Marketing",
+        "cannot_tell": "The title suggests a senior marketing remit, but the bullets show hands-on content, order packing and customer emails. A recruiter can't tell what marketing decisions you owned or whether you managed a team or budget.",
+        "example": "Director of Marketing: [marketing decisions and responsibilities], with [team size or budget]",
+        "question": "What marketing decisions did you own, and did you manage a team or budget?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after January 2025.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since the Lumen role ended. If you took care of a family member, you can name that; if you took a career break, you can mention what you did during it. Include freelance work only if it was real.",
+        "example": "January 2025 - Present  [what you did since]",
+        "question": "What have you done since January 2025 that you'd be comfortable putting on your resume?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Your resume doesn't name a target job, and your roles span marketing, data entry, lab work and customer service.",
+        "cannot_tell": "A recruiter has to guess which direction you want to pursue. Naming the job you want and putting the most relevant work first will give the rest of your experience a clearer home.",
+        "example": "",
+        "question": "Which job do you want this resume to be considered for?"
+      },
+      {
+        "kind": "line",
+        "where": "Director of Marketing, line 1",
+        "line": "- Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers",
+        "cannot_tell": "The posting frequency and follower count are useful, but a recruiter can't tell what you posted or whether you tracked engagement or growth.",
+        "example": "Posted [content] 3 to 5 times a week on the company Instagram, which has 2,100 followers; tracked [engagement or growth measure]",
+        "question": "What did you post, and what engagement or growth did you track, if any?"
+      },
+      {
+        "kind": "keep",
+        "where": "Director of Marketing, line 2",
+        "line": "- Wrote product descriptions for 40 candle scents on the website",
+        "cannot_tell": "Keep this as a model. It names your contribution and the product without making a recruiter guess what you handled.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Director of Marketing"
+      ],
+      "why": "Your most recent role is Director of Marketing, with Instagram and website product-description work.",
+      "level": "Hands-on marketing work; the latest title is director, but the bullets don't show a team, budget or broader remit.",
+      "note": "Your recent work points toward marketing content and customer-facing work. For a director role, a recruiter would need to see the decisions and responsibilities behind the title.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 62,
+    "lifted_by_employer": false,
+    "verdict": "Your marketing title is senior, but the work shown reads as hands-on content and customer service.",
+    "write_up": [
+      "It's common for a resume to collect several kinds of work along the way. Yours moves from laboratory and title work to marketing at Lumen Candle Co. I'm reading it for Director of Marketing, your latest title, but the marketing duties don't yet show the decisions or remit a recruiter would look for at that level.",
+      "The candle descriptions are your best model: a recruiter can see what you wrote, where it appeared, and how many scents it covered. Nothing is dated after January 2025, though, and the mix of roles leaves your next target open to interpretation.",
+      "Let's start with the Lumen title and the time since it ended. Then make the Instagram work more concrete and name the job you want next. If you owned broader marketing decisions, put those on your resume too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Director of Marketing, title",
+        "line": "Director of Marketing",
+        "cannot_tell": "The title suggests a senior marketing remit, but the bullets show hands-on content, order packing and customer emails. A recruiter can't tell what marketing decisions you owned or whether you managed a team or budget.",
+        "example": "Director of Marketing: [marketing decisions and responsibilities], with [team size or budget]",
+        "question": "What marketing decisions did you own, and did you manage a team or budget?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after January 2025.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since the Lumen role ended. If you took care of a family member, you can name that; if you took a career break, you can mention what you did during it. Include freelance work only if it was real.",
+        "example": "January 2025 - Present [what you did since]",
+        "question": "What have you done since January 2025 that you'd be comfortable putting on your resume?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Your resume doesn't name a target job, and your roles span marketing, data entry, lab work and customer service.",
+        "cannot_tell": "A recruiter has to guess which direction you want to pursue. Naming the job you want and putting the most relevant work first will give the rest of your experience a clearer home.",
+        "example": "",
+        "question": "Which job do you want this resume to be considered for?"
+      },
+      {
+        "kind": "line",
+        "where": "Director of Marketing, line 1",
+        "line": "Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers",
+        "cannot_tell": "The posting frequency and follower count are useful, but a recruiter can't tell what you posted or whether you tracked engagement or growth.",
+        "example": "Posted [content] 3 to 5 times a week on the company Instagram, which has 2,100 followers; tracked [engagement or growth measure]",
+        "question": "What did you post, and what engagement or growth did you track, if any?"
+      },
+      {
+        "kind": "keep",
+        "where": "Director of Marketing, line 2",
+        "line": "Wrote product descriptions for 40 candle scents on the website",
+        "cannot_tell": "Keep this as a model. It names your contribution and the product without making a recruiter guess what you handled.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Director of Marketing"
+      ],
+      "why": "Your most recent role is Director of Marketing, with Instagram and website product-description work.",
+      "level": "Hands-on marketing work; the latest title is director, but the bullets don't show a team, budget or broader remit.",
+      "note": "Your recent work points toward marketing content and customer-facing work. For a director role, a recruiter would need to see the decisions and responsibilities behind the title.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 62
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 62,
+    "lifted_by_employer": false,
+    "verdict": "Your marketing title is senior, but the work shown reads as hands-on content and customer service.",
+    "write_up": [
+      "It's common for a resume to collect several kinds of work along the way. Yours moves from laboratory and title work to marketing at Lumen Candle Co. I'm reading it for Director of Marketing, your latest title, but the marketing duties don't yet show the decisions or remit a recruiter would look for at that level.",
+      "The candle descriptions are your best model: a recruiter can see what you wrote, where it appeared, and how many scents it covered. Nothing is dated after January 2025, though, and the mix of roles leaves your next target open to interpretation.",
+      "Let's start with the Lumen title and the time since it ended. Then make the Instagram work more concrete and name the job you want next. If you owned broader marketing decisions, put those on your resume too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Director of Marketing, title",
+        "line": "Director of Marketing",
+        "cannot_tell": "The title suggests a senior marketing remit, but the bullets show hands-on content, order packing and customer emails. A recruiter can't tell what marketing decisions you owned or whether you managed a team or budget.",
+        "example": "Director of Marketing: [marketing decisions and responsibilities], with [team size or budget]",
+        "question": "What marketing decisions did you own, and did you manage a team or budget?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after January 2025.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since the Lumen role ended. If you took care of a family member, you can name that; if you took a career break, you can mention what you did during it. Include freelance work only if it was real.",
+        "example": "January 2025 - Present [what you did since]",
+        "question": "What have you done since January 2025 that you'd be comfortable putting on your resume?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Your resume doesn't name a target job, and your roles span marketing, data entry, lab work and customer service.",
+        "cannot_tell": "A recruiter has to guess which direction you want to pursue. Naming the job you want and putting the most relevant work first will give the rest of your experience a clearer home.",
+        "example": "",
+        "question": "Which job do you want this resume to be considered for?"
+      },
+      {
+        "kind": "line",
+        "where": "Director of Marketing, line 1",
+        "line": "Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers",
+        "cannot_tell": "The posting frequency and follower count are useful, but a recruiter can't tell what you posted or whether you tracked engagement or growth.",
+        "example": "Posted [content] 3 to 5 times a week on the company Instagram, which has 2,100 followers; tracked [engagement or growth measure]",
+        "question": "What did you post, and what engagement or growth did you track, if any?"
+      },
+      {
+        "kind": "keep",
+        "where": "Director of Marketing, line 2",
+        "line": "Wrote product descriptions for 40 candle scents on the website",
+        "cannot_tell": "Keep this as a model. It names your contribution and the product without making a recruiter guess what you handled.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Director of Marketing"
+      ],
+      "why": "Your most recent role is Director of Marketing, with Instagram and website product-description work.",
+      "level": "Hands-on marketing work; the latest title is director, but the bullets don't show a team, budget or broader remit.",
+      "note": "Your recent work points toward marketing content and customer-facing work. For a director role, a recruiter would need to see the decisions and responsibilities behind the title.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 62
+  },
+  "presentation": {
+    "score": 62,
+    "band": "Needs more context",
+    "model_score": 62,
+    "lifted_by_employer": false,
+    "verdict": "Your marketing title is senior, but the work shown reads as hands-on content and customer service.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 136,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Director of Marketing, title",
+        "line": "Director of Marketing",
+        "blanks": 2,
+        "question": "What marketing decisions did you own, and did you manage a team or budget?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after January 2025.",
+        "blanks": 1,
+        "question": "What have you done since January 2025 that you'd be comfortable putting on your resume?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Your resume doesn't name a target job, and your roles span marketing, data entry, lab work and customer service.",
+        "blanks": 0,
+        "question": "Which job do you want this resume to be considered for?"
+      },
+      {
+        "kind": "line",
+        "where": "Director of Marketing, line 1",
+        "line": "Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers",
+        "blanks": 2,
+        "question": "What did you post, and what engagement or growth did you track, if any?"
+      },
+      {
+        "kind": "keep",
+        "where": "Director of Marketing, line 2",
+        "line": "Wrote product descriptions for 40 candle scents on the website",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "line": 2,
+      "dates": 1,
+      "structure": 1,
+      "keep": 1
+    },
+    "structural_from_model": 2,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Director of Marketing"
+      ],
+      "why": "Your most recent role is Director of Marketing, with Instagram and website product-description work.",
+      "level": "Hands-on marketing work; the latest title is director, but the bullets don't show a team, budget or broader remit.",
+      "note": "Your recent work points toward marketing content and customer-facing work. For a director role, a recruiter would need to see the decisions and responsibilities behind the title.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00991455,
+  "latency_ms": 20582
+}

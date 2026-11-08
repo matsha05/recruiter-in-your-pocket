@@ -1,0 +1,373 @@
+{
+  "case_id": "b33_nonprofit_program_manager",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_nonprofit_program_manager_1.txt",
+  "resume_sha256": "eed001bb0dd40fc28e9488669ec9cea7f7a73eecaca46214d5f584dae2b6d5c9",
+  "resume_words": 146,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T20:42:58.422Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5969,
+        "completion_tokens": 1494,
+        "total_tokens": 7463,
+        "cached_prompt_tokens": 5306,
+        "cache_write_prompt_tokens": 660,
+        "reasoning_tokens": 352
+      },
+      "cost_usd": 0.0085633,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 17949
+    }
+  ],
+  "resume_prompt_sha256": "da8de2955f7c8fc1b62e0178500104bae17a416005f43113f3b1bc615f3fd1f8",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "A youth workforce program manager with a clear progression, but too little about the programs and their results.",
+    "write_up": [
+      "You’ve grown from Program Coordinator to Program Manager at Harbor Pathways, working on youth job readiness and summer placements. It’s common for a resume to list the work this way, but without the reach or results of the programs, it won’t stand out in a pile for program manager jobs.",
+      "Your supervision line is the strongest model: it names both groups you manage and how many people are in each. Your headline matches the work, and the move from coordinator to manager is easy to follow. What’s missing is the same concrete detail about the students, employer partnerships and grant reporting.",
+      "Let’s start with the summer jobs program. Add how many students it serves and what you can substantiate about placements, then give the employer partnerships and reporting the same treatment."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Program Manager, line 1",
+        "line": "- Manage a summer jobs program placing high school students with local employers",
+        "cannot_tell": "A recruiter can see the program you manage, but not how many students it serves or what happened with their placements. That makes it difficult to compare the program with other youth workforce work.",
+        "example": "Manage a summer jobs program placing [number] high school students with local employers, with [placement result]",
+        "question": "How many students does the program serve, and what placement result can you document?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 2",
+        "line": "- Supervise 4 program coordinators and 20 seasonal staff",
+        "cannot_tell": "The team numbers are useful, but a recruiter can't tell what the coordinators and seasonal staff handle under your supervision.",
+        "example": "Supervise 4 program coordinators and 20 seasonal staff who [team responsibilities]",
+        "question": "What do the coordinators and seasonal staff handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 3",
+        "line": "- Write grant reports for city and foundation funders",
+        "cannot_tell": "The funders are named by type, but the reports could cover many things. What did you report on, and how often?",
+        "example": "Write grant reports for city and foundation funders covering [report contents] [reporting frequency]",
+        "question": "What do the reports cover, and how often do you write them?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 4",
+        "line": "- Recruit and onboard employer partners",
+        "cannot_tell": "Recruiting and onboarding are clear responsibilities, but a recruiter can't tell how many partners you work with or what onboarding involves.",
+        "example": "Recruit and onboard [number] employer partners by [onboarding activities]",
+        "question": "How many employer partners have you recruited and onboarded, and what does onboarding involve?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 5",
+        "line": "- Track participant outcomes in Salesforce",
+        "cannot_tell": "Salesforce tells a recruiter where you track the information, but not which participant results you follow or how they're used.",
+        "example": "Track [participant measures] in Salesforce for [use of data]",
+        "question": "Which participant measures do you track, and how is that information used?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Coordinator, line 1",
+        "line": "- Coordinated job readiness workshops for students",
+        "cannot_tell": "The workshops fit the path into your current role, but a recruiter can't tell what you coordinated or how many students attended.",
+        "example": "Coordinated job readiness workshops for [number] students, including [coordination responsibilities]",
+        "question": "What did you coordinate for the workshops, and how many students attended?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Coordinator, line 3",
+        "line": "- Organized an annual career fair",
+        "cannot_tell": "An annual career fair is a concrete event. Adding who attended and what you organized would show more of the work behind it.",
+        "example": "Organized an annual career fair for [attendees], including [organizing responsibilities]",
+        "question": "Who attended the fair, and what parts did you organize?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Program Manager, Youth Workforce",
+        "Program Coordinator"
+      ],
+      "why": "Your headline and your current Harbor Pathways role both focus on managing youth workforce programs.",
+      "level": "Manager, supervising 4 program coordinators and 20 seasonal staff",
+      "note": "Your experience points toward youth workforce program management, with earlier coordination work at the same organization. Details about program participation and results would make your management work easier to assess.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "A youth workforce program manager with a clear progression, but too little about the programs and their results.",
+    "write_up": [
+      "You’ve grown from Program Coordinator to Program Manager at Harbor Pathways, working on youth job readiness and summer placements. It’s common for a resume to list the work this way, but without the reach or results of the programs, it won’t stand out in a pile for program manager jobs.",
+      "Your supervision line is the strongest model: it names both groups you manage and how many people are in each. Your headline matches the work, and the move from coordinator to manager is easy to follow. What’s missing is the same concrete detail about the students, employer partnerships and grant reporting.",
+      "Let’s start with the summer jobs program. Add how many students it serves and what you can substantiate about placements, then give the employer partnerships and reporting the same treatment."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Program Manager, line 1",
+        "line": "Manage a summer jobs program placing high school students with local employers",
+        "cannot_tell": "A recruiter can see the program you manage, but not how many students it serves or what happened with their placements. That makes it difficult to compare the program with other youth workforce work.",
+        "example": "Manage a summer jobs program placing [number] high school students with local employers, with [placement result]",
+        "question": "How many students does the program serve, and what placement result can you document?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 2",
+        "line": "Supervise 4 program coordinators and 20 seasonal staff",
+        "cannot_tell": "The team numbers are useful, but a recruiter can't tell what the coordinators and seasonal staff handle under your supervision.",
+        "example": "Supervise 4 program coordinators and 20 seasonal staff who [team responsibilities]",
+        "question": "What do the coordinators and seasonal staff handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 3",
+        "line": "Write grant reports for city and foundation funders",
+        "cannot_tell": "The funders are named by type, but the reports could cover many things. What did you report on, and how often?",
+        "example": "Write grant reports for city and foundation funders covering [report contents] [reporting frequency]",
+        "question": "What do the reports cover, and how often do you write them?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 4",
+        "line": "Recruit and onboard employer partners",
+        "cannot_tell": "Recruiting and onboarding are clear responsibilities, but a recruiter can't tell how many partners you work with or what onboarding involves.",
+        "example": "Recruit and onboard [number] employer partners by [onboarding activities]",
+        "question": "How many employer partners have you recruited and onboarded, and what does onboarding involve?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 5",
+        "line": "Track participant outcomes in Salesforce",
+        "cannot_tell": "Salesforce tells a recruiter where you track the information, but not which participant results you follow or how they're used.",
+        "example": "Track [participant measures] in Salesforce for [use of data]",
+        "question": "Which participant measures do you track, and how is that information used?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Coordinator, line 1",
+        "line": "Coordinated job readiness workshops for students",
+        "cannot_tell": "The workshops fit the path into your current role, but a recruiter can't tell what you coordinated or how many students attended.",
+        "example": "Coordinated job readiness workshops for [number] students, including [coordination responsibilities]",
+        "question": "What did you coordinate for the workshops, and how many students attended?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Coordinator, line 3",
+        "line": "Organized an annual career fair",
+        "cannot_tell": "An annual career fair is a concrete event. Adding who attended and what you organized would show more of the work behind it.",
+        "example": "Organized an annual career fair for [attendees], including [organizing responsibilities]",
+        "question": "Who attended the fair, and what parts did you organize?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Program Manager, Youth Workforce",
+        "Program Coordinator"
+      ],
+      "why": "Your headline and your current Harbor Pathways role both focus on managing youth workforce programs.",
+      "level": "Manager, supervising 4 program coordinators and 20 seasonal staff",
+      "note": "Your experience points toward youth workforce program management, with earlier coordination work at the same organization. Details about program participation and results would make your management work easier to assess.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 67
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "A youth workforce program manager with a clear progression, but too little about the programs and their results.",
+    "write_up": [
+      "You’ve grown from Program Coordinator to Program Manager at Harbor Pathways, working on youth job readiness and summer placements. It’s common for a resume to list the work this way, but without the reach or results of the programs, it won’t stand out in a pile for program manager jobs.",
+      "Your supervision line is the strongest model: it names both groups you manage and how many people are in each. Your headline matches the work, and the move from coordinator to manager is easy to follow. What’s missing is the same concrete detail about the students, employer partnerships and grant reporting.",
+      "Let’s start with the summer jobs program. Add how many students it serves and what you can substantiate about placements, then give the employer partnerships and reporting the same treatment."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Program Manager, line 1",
+        "line": "Manage a summer jobs program placing high school students with local employers",
+        "cannot_tell": "A recruiter can see the program you manage, but not how many students it serves or what happened with their placements. That makes it difficult to compare the program with other youth workforce work.",
+        "example": "Manage a summer jobs program placing [number] high school students with local employers, with [placement result]",
+        "question": "How many students does the program serve, and what placement result can you document?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 2",
+        "line": "Supervise 4 program coordinators and 20 seasonal staff",
+        "cannot_tell": "The team numbers are useful, but a recruiter can't tell what the coordinators and seasonal staff handle under your supervision.",
+        "example": "Supervise 4 program coordinators and 20 seasonal staff who [team responsibilities]",
+        "question": "What do the coordinators and seasonal staff handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 3",
+        "line": "Write grant reports for city and foundation funders",
+        "cannot_tell": "The funders are named by type, but the reports could cover many things. What did you report on, and how often?",
+        "example": "Write grant reports for city and foundation funders covering [report contents] [reporting frequency]",
+        "question": "What do the reports cover, and how often do you write them?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 4",
+        "line": "Recruit and onboard employer partners",
+        "cannot_tell": "Recruiting and onboarding are clear responsibilities, but a recruiter can't tell how many partners you work with or what onboarding involves.",
+        "example": "Recruit and onboard [number] employer partners by [onboarding activities]",
+        "question": "How many employer partners have you recruited and onboarded, and what does onboarding involve?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 5",
+        "line": "Track participant outcomes in Salesforce",
+        "cannot_tell": "Salesforce tells a recruiter where you track the information, but not which participant results you follow or how they're used.",
+        "example": "Track [participant measures] in Salesforce for [use of data]",
+        "question": "Which participant measures do you track, and how is that information used?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Coordinator, line 1",
+        "line": "Coordinated job readiness workshops for students",
+        "cannot_tell": "The workshops fit the path into your current role, but a recruiter can't tell what you coordinated or how many students attended.",
+        "example": "Coordinated job readiness workshops for [number] students, including [coordination responsibilities]",
+        "question": "What did you coordinate for the workshops, and how many students attended?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Coordinator, line 3",
+        "line": "Organized an annual career fair",
+        "cannot_tell": "An annual career fair is a concrete event. Adding who attended and what you organized would show more of the work behind it.",
+        "example": "Organized an annual career fair for [attendees], including [organizing responsibilities]",
+        "question": "Who attended the fair, and what parts did you organize?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Program Manager, Youth Workforce",
+        "Program Coordinator"
+      ],
+      "why": "Your headline and your current Harbor Pathways role both focus on managing youth workforce programs.",
+      "level": "Manager, supervising 4 program coordinators and 20 seasonal staff",
+      "note": "Your experience points toward youth workforce program management, with earlier coordination work at the same organization. Details about program participation and results would make your management work easier to assess.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 67
+  },
+  "presentation": {
+    "score": 67,
+    "band": "Needs more context",
+    "model_score": 67,
+    "lifted_by_employer": false,
+    "verdict": "A youth workforce program manager with a clear progression, but too little about the programs and their results.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 131,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Program Manager, line 1",
+        "line": "Manage a summer jobs program placing high school students with local employers",
+        "blanks": 2,
+        "question": "How many students does the program serve, and what placement result can you document?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 2",
+        "line": "Supervise 4 program coordinators and 20 seasonal staff",
+        "blanks": 1,
+        "question": "What do the coordinators and seasonal staff handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 3",
+        "line": "Write grant reports for city and foundation funders",
+        "blanks": 2,
+        "question": "What do the reports cover, and how often do you write them?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 4",
+        "line": "Recruit and onboard employer partners",
+        "blanks": 2,
+        "question": "How many employer partners have you recruited and onboarded, and what does onboarding involve?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, line 5",
+        "line": "Track participant outcomes in Salesforce",
+        "blanks": 2,
+        "question": "Which participant measures do you track, and how is that information used?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Coordinator, line 1",
+        "line": "Coordinated job readiness workshops for students",
+        "blanks": 2,
+        "question": "What did you coordinate for the workshops, and how many students attended?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Coordinator, line 3",
+        "line": "Organized an annual career fair",
+        "blanks": 2,
+        "question": "Who attended the fair, and what parts did you organize?"
+      }
+    ],
+    "card_count": 7,
+    "kinds": {
+      "line": 7
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Program Manager, Youth Workforce",
+        "Program Coordinator"
+      ],
+      "why": "Your headline and your current Harbor Pathways role both focus on managing youth workforce programs.",
+      "level": "Manager, supervising 4 program coordinators and 20 seasonal staff",
+      "note": "Your experience points toward youth workforce program management, with earlier coordination work at the same organization. Details about program participation and results would make your management work easier to assess.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0085633,
+  "latency_ms": 17957
+}

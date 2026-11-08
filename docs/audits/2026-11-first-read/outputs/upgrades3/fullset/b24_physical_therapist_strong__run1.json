@@ -1,0 +1,251 @@
+{
+  "case_id": "b24_physical_therapist_strong",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_physical_therapist_strong_1.txt",
+  "resume_sha256": "7e013454a20249375bdb6727bacd79d8babaf49afa5b0b57f3dd11c862937163",
+  "resume_words": 154,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T22:15:10.497Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6233,
+        "completion_tokens": 1862,
+        "total_tokens": 8095,
+        "cached_prompt_tokens": 5529,
+        "cache_write_prompt_tokens": 701,
+        "reasoning_tokens": 1146
+      },
+      "cost_usd": 0.0104657,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 21991
+    }
+  ],
+  "resume_prompt_sha256": "15dff271c2d212b2504350e8d09deec38785cfa3e7ee269f5f8154593e015688",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "An outpatient physical therapist with a clear caseload, a rehab program, and patient-reported results.",
+    "write_up": [
+      "Your resume makes a strong case for outpatient orthopedic work! At North Loop, you show the patients you treat, the program you built, and how discharged patients reported their function. A recruiter can move forward knowing what your clinical work looks like.",
+      "The return-to-run program is a model for the rest: it names what you built and how many patients completed it. Your license and DPT are easy to find, and your hospital role adds orthopedic, neurological, and fall-prevention work.",
+      "The main detail to add is the measure behind the discharged-patient result. Your resume is unlikely to be the reason someone passes on its own; the match with a clinic's patient population and how competitive the opening is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Physical Therapist, line 2",
+        "line": "- Built a return-to-run program that 85 patients completed in 2025",
+        "cannot_tell": "Keep this as a model. It gives the program a name and puts a count beside the patients who completed it, without claiming more than that.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Physical Therapist, line 4",
+        "line": "- In 2025, 92% of discharged patients improved their patient-reported function scores",
+        "cannot_tell": "This is a useful patient result, but a recruiter can't tell which function measure you used or how many discharged patients are behind the percentage. Those details give the result context.",
+        "example": "In 2025, 92% of [number] discharged patients improved their patient-reported function scores on [measure]",
+        "question": "Which function measure did you use, and how many discharged patients were included in the percentage?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Physical Therapist, line 3",
+        "line": "- Mentor 2 newer therapists and set the PT aide schedule",
+        "cannot_tell": "For a clinic leadership role, a decision affecting operations would build on the mentoring and scheduling you already show.",
+        "example": "Mentor 2 newer therapists, set the PT aide schedule, and [action you took on a clinic-wide decision]",
+        "question": "Have you taken part in a clinic-wide decision, and what did you do?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Outpatient orthopedic physical therapist",
+        "Senior Physical Therapist"
+      ],
+      "why": "Your headline and current role center on outpatient sports and post-surgical rehabilitation.",
+      "level": "senior, mentors 2 newer therapists and sets the PT aide schedule",
+      "note": "Your work points toward outpatient orthopedic and sports rehabilitation roles. The fall-prevention class and neurological cases also show experience beyond sports rehab.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "An outpatient physical therapist with a clear caseload, a rehab program, and patient-reported results.",
+    "write_up": [
+      "Your resume makes a strong case for outpatient orthopedic work! At North Loop, you show the patients you treat, the program you built, and how discharged patients reported their function. A recruiter can move forward knowing what your clinical work looks like.",
+      "The return-to-run program is a model for the rest: it names what you built and how many patients completed it. Your license and DPT are easy to find, and your hospital role adds orthopedic, neurological, and fall-prevention work.",
+      "The main detail to add is the measure behind the discharged-patient result. Your resume is unlikely to be the reason someone passes on its own; the match with a clinic's patient population and how competitive the opening is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Physical Therapist, line 2",
+        "line": "Built a return-to-run program that 85 patients completed in 2025",
+        "cannot_tell": "Keep this as a model. It gives the program a name and puts a count beside the patients who completed it, without claiming more than that.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Physical Therapist, line 4",
+        "line": "In 2025, 92% of discharged patients improved their patient-reported function scores",
+        "cannot_tell": "This is a useful patient result, but a recruiter can't tell which function measure you used or how many discharged patients are behind the percentage. Those details give the result context.",
+        "example": "In 2025, 92% of [number] discharged patients improved their patient-reported function scores on [measure]",
+        "question": "Which function measure did you use, and how many discharged patients were included in the percentage?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Physical Therapist, line 3",
+        "line": "Mentor 2 newer therapists and set the PT aide schedule",
+        "cannot_tell": "For a clinic leadership role, a decision affecting operations would build on the mentoring and scheduling you already show.",
+        "example": "Mentor 2 newer therapists, set the PT aide schedule, and [action you took on a clinic-wide decision]",
+        "question": "Have you taken part in a clinic-wide decision, and what did you do?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Outpatient orthopedic physical therapist",
+        "Senior Physical Therapist"
+      ],
+      "why": "Your headline and current role center on outpatient sports and post-surgical rehabilitation.",
+      "level": "senior, mentors 2 newer therapists and sets the PT aide schedule",
+      "note": "Your work points toward outpatient orthopedic and sports rehabilitation roles. The fall-prevention class and neurological cases also show experience beyond sports rehab.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "An outpatient physical therapist with a clear caseload, a rehab program, and patient-reported results.",
+    "write_up": [
+      "Your resume makes a strong case for outpatient orthopedic work! At North Loop, you show the patients you treat, the program you built, and how discharged patients reported their function. A recruiter can move forward knowing what your clinical work looks like.",
+      "The return-to-run program is a model for the rest: it names what you built and how many patients completed it. Your license and DPT are easy to find, and your hospital role adds orthopedic, neurological, and fall-prevention work.",
+      "The main detail to add is the measure behind the discharged-patient result. Your resume is unlikely to be the reason someone passes on its own; the match with a clinic's patient population and how competitive the opening is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Physical Therapist, line 2",
+        "line": "Built a return-to-run program that 85 patients completed in 2025",
+        "cannot_tell": "Keep this as a model. It gives the program a name and puts a count beside the patients who completed it, without claiming more than that.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Physical Therapist, line 4",
+        "line": "In 2025, 92% of discharged patients improved their patient-reported function scores",
+        "cannot_tell": "This is a useful patient result, but a recruiter can't tell which function measure you used or how many discharged patients are behind the percentage. Those details give the result context.",
+        "example": "In 2025, 92% of [number] discharged patients improved their patient-reported function scores on [measure]",
+        "question": "Which function measure did you use, and how many discharged patients were included in the percentage?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Physical Therapist, line 3",
+        "line": "Mentor 2 newer therapists and set the PT aide schedule",
+        "cannot_tell": "For a clinic leadership role, a decision affecting operations would build on the mentoring and scheduling you already show.",
+        "example": "Mentor 2 newer therapists, set the PT aide schedule, and [action you took on a clinic-wide decision]",
+        "question": "Have you taken part in a clinic-wide decision, and what did you do?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Outpatient orthopedic physical therapist",
+        "Senior Physical Therapist"
+      ],
+      "why": "Your headline and current role center on outpatient sports and post-surgical rehabilitation.",
+      "level": "senior, mentors 2 newer therapists and sets the PT aide schedule",
+      "note": "Your work points toward outpatient orthopedic and sports rehabilitation roles. The fall-prevention class and neurological cases also show experience beyond sports rehab.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "presentation": {
+    "score": 89,
+    "band": "Clear and specific",
+    "model_score": 89,
+    "lifted_by_employer": false,
+    "verdict": "An outpatient physical therapist with a clear caseload, a rehab program, and patient-reported results.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 121,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Physical Therapist, line 2",
+        "line": "Built a return-to-run program that 85 patients completed in 2025",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Physical Therapist, line 4",
+        "line": "In 2025, 92% of discharged patients improved their patient-reported function scores",
+        "blanks": 2,
+        "question": "Which function measure did you use, and how many discharged patients were included in the percentage?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Physical Therapist, line 3",
+        "line": "Mentor 2 newer therapists and set the PT aide schedule",
+        "blanks": 1,
+        "question": "Have you taken part in a clinic-wide decision, and what did you do?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "keep": 1,
+      "line": 1,
+      "upgrade": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Outpatient orthopedic physical therapist",
+        "Senior Physical Therapist"
+      ],
+      "why": "Your headline and current role center on outpatient sports and post-surgical rehabilitation.",
+      "level": "senior, mentors 2 newer therapists and sets the PT aide schedule",
+      "note": "Your work points toward outpatient orthopedic and sports rehabilitation roles. The fall-prevention class and neurological cases also show experience beyond sports rehab.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0104657,
+  "latency_ms": 21994
+}

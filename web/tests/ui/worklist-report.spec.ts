@@ -168,6 +168,22 @@ test("a line written to screening software comes first, with what to do about it
   expect(firstRow!.y).toBeGreaterThan(stopBox!.y);
 });
 
+// Upgrades on a strong resume (Nov 7, 2026): the list keeps "Nothing here needs work.", and the optional upgrades
+// follow it as their own group, saying the resume probably isn't the blocker, with "Not true for me" as the way out.
+test("a strong resume keeps its heading, and its upgrades follow as their own optional group", async ({ page }) => {
+  const keep = mock.cards.find((card) => card.kind === "keep")!;
+  const line = mock.cards[lineCard];
+  await runReport(page, { signedIn: false, data: { score: 93, cards: [keep, { ...line, kind: "upgrade", cannot_tell: "For a lead role, a recruiter reads for the reviews you ran.", question: "What did the reviews change?" }] } });
+  await expect(page.locator("#fixes-title")).toHaveText("Nothing here needs work.");
+  const upgrades = page.getByTestId("worklist-upgrades");
+  await expect(upgrades.locator("h2")).toHaveText("Ways to make it even better.");
+  await expect(upgrades).toContainText("probably isn't what stands between you and the call");
+  await expect(upgrades.getByTestId("worklist-card")).toHaveCount(1);
+  await expect(page.locator("#section-fixes").getByTestId("worklist-card")).toHaveCount(1);
+  await expect(upgrades.getByRole("button", { name: "Not true for me" })).toBeVisible();
+  await expect(upgrades).not.toContainText("I don't know yet");
+});
+
 test.describe("on a phone", () => {
   test.use({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, contextOptions: { reducedMotion: "reduce" } });
 
