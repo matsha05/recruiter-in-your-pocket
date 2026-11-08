@@ -1,0 +1,247 @@
+{
+  "case_id": "h4b_academic_cv_under_cap",
+  "batch": "holes",
+  "run": 1,
+  "note": "The same CV trimmed under the cap, to see what the model does with a CV shape.",
+  "resume_file": "../2026-11-live-judgment/resumes/h4b_academic_cv_under_cap.txt",
+  "resume_sha256": "adbd165f7ee34423e0602d7b81bde357a22a10bfde76e8434e30216c10430503",
+  "resume_words": 3253,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T17:57:20.554Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 19542,
+        "completion_tokens": 1356,
+        "total_tokens": 20898,
+        "cached_prompt_tokens": 4685,
+        "cache_write_prompt_tokens": 14854,
+        "reasoning_tokens": 642
+      },
+      "cost_usd": 0.02558475,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 16284
+    }
+  ],
+  "resume_prompt_sha256": "0a19c3ee70395ec8fb0584d4bea1b93da77aeca37469b4d47211bc8568544f0c",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A tenured molecular biologist with substantial funding and mentoring, but publication entries need checking.",
+    "write_up": [
+      "You’re a tenured Associate Professor at Riverbend State with NIH funding, a long publication list and substantial teaching and mentoring work. A recruiter could see a faculty research career worth a closer look, but repeated publication titles and author lists raise questions about the records.",
+      "The MB 310 redesign is your best model: it names the change and shows how evaluations moved afterward without claiming the redesign alone caused it. Education comes before your appointments; putting the appointments first would make your current role quicker to find.",
+      "Let’s start by checking the repeated citations against the journal records, then adjust the section order. Keep the funding, teaching and mentoring details: together they show the breadth of your faculty work."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Academic Appointments.",
+        "cannot_tell": "Your current tenured role is below your degrees. Academic CVs can put education first, but leading with appointments makes your current work easier to find on a quick pass.",
+        "example": "",
+        "question": "Would putting Academic Appointments first suit the faculty roles you’re targeting?"
+      },
+      {
+        "kind": "line",
+        "where": "Publications, entry 1",
+        "line": "1. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2026). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 107(2), 1037-1052.",
+        "cannot_tell": "The same title, authors and journal appear in entries dated 2024, 2021 and 2018, with different volumes and pages. A reader can’t tell whether these are separate publications or citation errors. Other titles and author lists repeat too.",
+        "example": "[Authors]. ([year]). [Article title]. [Journal], [volume]([issue]), [pages].",
+        "question": "What do the journal records show for these repeated entries?"
+      },
+      {
+        "kind": "keep",
+        "where": "Teaching, course redesign",
+        "line": "Course redesign: converted MB 310 to a flipped format in 2019; student evaluations rose from 3.9 to 4.5 of 5 over the following three offerings.",
+        "cannot_tell": "Keep this. It pairs your own action with a measured change and gives the reader the period over which it occurred.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Associate Professor (with tenure)",
+        "Assistant Professor"
+      ],
+      "level": "Tenured faculty",
+      "note": "Your experience points toward research-focused molecular biology faculty roles, with teaching, mentoring and service alongside grant-funded research. The repeated publication entries need checking before the list can be relied on.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A tenured molecular biologist with substantial funding and mentoring, but publication entries need checking.",
+    "write_up": [
+      "You’re a tenured Associate Professor at Riverbend State with NIH funding, a long publication list and substantial teaching and mentoring work. A recruiter could see a faculty research career worth a closer look, but repeated publication titles and author lists raise questions about the records.",
+      "The MB 310 redesign is your best model: it names the change and shows how evaluations moved afterward without claiming the redesign alone caused it. Education comes before your appointments; putting the appointments first would make your current role quicker to find.",
+      "Let’s start by checking the repeated citations against the journal records, then adjust the section order. Keep the funding, teaching and mentoring details: together they show the breadth of your faculty work."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Academic Appointments.",
+        "cannot_tell": "Your current tenured role is below your degrees. Academic CVs can put education first, but leading with appointments makes your current work easier to find on a quick pass.",
+        "example": "",
+        "question": "Would putting Academic Appointments first suit the faculty roles you’re targeting?"
+      },
+      {
+        "kind": "line",
+        "where": "Publications, entry 1",
+        "line": "1. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2026). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 107(2), 1037-1052.",
+        "cannot_tell": "The same title, authors and journal appear in entries dated 2024, 2021 and 2018, with different volumes and pages. A reader can’t tell whether these are separate publications or citation errors. Other titles and author lists repeat too.",
+        "example": "[Authors]. ([year]). [Article title]. [Journal], [volume]([issue]), [pages].",
+        "question": "What do the journal records show for these repeated entries?"
+      },
+      {
+        "kind": "keep",
+        "where": "Teaching, course redesign",
+        "line": "Course redesign: converted MB 310 to a flipped format in 2019; student evaluations rose from 3.9 to 4.5 of 5 over the following three offerings.",
+        "cannot_tell": "Keep this. It pairs your own action with a measured change and gives the reader the period over which it occurred.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Associate Professor (with tenure)",
+        "Assistant Professor"
+      ],
+      "level": "Tenured faculty",
+      "note": "Your experience points toward research-focused molecular biology faculty roles, with teaching, mentoring and service alongside grant-funded research. The repeated publication entries need checking before the list can be relied on.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 78
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A tenured molecular biologist with substantial funding and mentoring, but publication entries need checking.",
+    "write_up": [
+      "You’re a tenured Associate Professor at Riverbend State with NIH funding, a long publication list and substantial teaching and mentoring work. A recruiter could see a faculty research career worth a closer look, but repeated publication titles and author lists raise questions about the records.",
+      "The MB 310 redesign is your best model: it names the change and shows how evaluations moved afterward without claiming the redesign alone caused it. Education comes before your appointments; putting the appointments first would make your current role quicker to find.",
+      "Let’s start by checking the repeated citations against the journal records, then adjust the section order. Keep the funding, teaching and mentoring details: together they show the breadth of your faculty work."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Academic Appointments.",
+        "cannot_tell": "Your current tenured role is below your degrees. Academic CVs can put education first, but leading with appointments makes your current work easier to find on a quick pass.",
+        "example": "",
+        "question": "Would putting Academic Appointments first suit the faculty roles you’re targeting?"
+      },
+      {
+        "kind": "line",
+        "where": "Publications, entry 1",
+        "line": "1. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2026). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 107(2), 1037-1052.",
+        "cannot_tell": "The same title, authors and journal appear in entries dated 2024, 2021 and 2018, with different volumes and pages. A reader can’t tell whether these are separate publications or citation errors. Other titles and author lists repeat too.",
+        "example": "[Authors]. ([year]). [Article title]. [Journal], [volume]([issue]), [pages].",
+        "question": "What do the journal records show for these repeated entries?"
+      },
+      {
+        "kind": "keep",
+        "where": "Teaching, course redesign",
+        "line": "Course redesign: converted MB 310 to a flipped format in 2019; student evaluations rose from 3.9 to 4.5 of 5 over the following three offerings.",
+        "cannot_tell": "Keep this. It pairs your own action with a measured change and gives the reader the period over which it occurred.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Associate Professor (with tenure)",
+        "Assistant Professor"
+      ],
+      "level": "Tenured faculty",
+      "note": "Your experience points toward research-focused molecular biology faculty roles, with teaching, mentoring and service alongside grant-funded research. The repeated publication entries need checking before the list can be relied on.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 78
+  },
+  "presentation": {
+    "score": 78,
+    "band": "Mostly clear",
+    "model_score": 78,
+    "lifted_by_employer": false,
+    "verdict": "A tenured molecular biologist with substantial funding and mentoring, but publication entries need checking.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 119,
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Academic Appointments.",
+        "blanks": 0,
+        "question": "Would putting Academic Appointments first suit the faculty roles you’re targeting?"
+      },
+      {
+        "kind": "line",
+        "where": "Publications, entry 1",
+        "line": "1. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2026). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 107(2), 1037-1052.",
+        "blanks": 7,
+        "question": "What do the journal records show for these repeated entries?"
+      },
+      {
+        "kind": "keep",
+        "where": "Teaching, course redesign",
+        "line": "Course redesign: converted MB 310 to a flipped format in 2019; student evaluations rose from 3.9 to 4.5 of 5 over the following three offerings.",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "structure": 1,
+      "line": 1,
+      "keep": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Associate Professor (with tenure)",
+        "Assistant Professor"
+      ],
+      "level": "Tenured faculty",
+      "note": "Your experience points toward research-focused molecular biology faculty roles, with teaching, mentoring and service alongside grant-funded research. The repeated publication entries need checking before the list can be relied on.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.02558475,
+  "latency_ms": 16327
+}

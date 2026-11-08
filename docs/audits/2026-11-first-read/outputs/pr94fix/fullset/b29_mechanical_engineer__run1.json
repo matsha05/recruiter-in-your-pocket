@@ -1,0 +1,312 @@
+{
+  "case_id": "b29_mechanical_engineer",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_mechanical_engineer_1.txt",
+  "resume_sha256": "415a2cd89f45a119a48620793f6f06d7e83938cf3176426d201256d134ab6044",
+  "resume_words": 143,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T21:31:38.473Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5796,
+        "completion_tokens": 1376,
+        "total_tokens": 7172,
+        "cached_prompt_tokens": 5154,
+        "cache_write_prompt_tokens": 639,
+        "reasoning_tokens": 461
+      },
+      "cost_usd": 0.00793945,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 16272
+    }
+  ],
+  "resume_prompt_sha256": "288eceb50a0848513f3205630fd7657627db9010f5f15a63cb442225501f834d",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A furniture product engineer whose tools and projects are clear, but whose design decisions and results are mostly missing.",
+    "write_up": [
+      "It’s common for engineering resumes to list methods and responsibilities without saying what they changed. Yours shows a move from Mechanical Engineer I to Mechanical Engineer II at Westhaven, with work on the Arlo desk platform. A recruiter can see your tools, but may hesitate over what your design work delivered or how big the projects were.",
+      "The BIFMA prototype testing line is a useful model: it names both the work and the standard you tested against. Your experience is also easy to follow, with Education below it.",
+      "Let’s start with the Arlo platform and add a design decision or result you can stand behind. Then show your part in supplier work and engineering changes. Those details will help your resume stand out from a list of engineering duties."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 1",
+        "line": "- Lead mechanical design for the Arlo height-adjustable desk platform",
+        "cannot_tell": "Leading the Arlo design is substantial work, but a recruiter can’t see which decisions were yours or what the platform work delivered.",
+        "example": "Lead mechanical design for the Arlo height-adjustable desk platform, including [design decisions] and [what the work delivered]",
+        "question": "Which design decisions did you lead on Arlo, and what did the work deliver?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 3",
+        "line": "- Work with suppliers in Mexico and Taiwan on tooling and first-article inspection",
+        "cannot_tell": "The suppliers and stages are named, but your part in the tooling and inspections is still unclear. A recruiter will want to know what you handled.",
+        "example": "Work with suppliers in Mexico and Taiwan on tooling and first-article inspection, including [your contribution]",
+        "question": "What did you handle with the suppliers on tooling and first-article inspection?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 4",
+        "line": "- Run tolerance stack-ups and FEA on load-bearing components",
+        "cannot_tell": "The analysis methods are clear. What they found or informed would show a recruiter how you used them in a design.",
+        "example": "Run tolerance stack-ups and FEA on load-bearing components to inform [design decision]",
+        "question": "What design decision did your tolerance or FEA work inform?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 5",
+        "line": "- Support manufacturing with engineering change orders",
+        "cannot_tell": "Support can cover a lot. A recruiter can’t tell what you did on the change orders or what prompted them.",
+        "example": "Support manufacturing with engineering change orders by [your contribution] for [reason for the changes]",
+        "question": "What did you do on the engineering change orders, and what prompted the changes?"
+      },
+      {
+        "kind": "keep",
+        "where": "Mechanical Engineer I, line 2",
+        "line": "- Ran prototype testing to BIFMA standards",
+        "cannot_tell": "Keep this as a model: it pairs a concrete engineering task with the standard you used, without making a recruiter guess at the method.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mechanical Engineer II",
+        "Mechanical Engineer I"
+      ],
+      "why": "Your current Mechanical Engineer II role leads product design for a height-adjustable desk platform and names the engineering methods you use.",
+      "level": "mid-level, current Mechanical Engineer II role",
+      "note": "Your experience points toward mechanical product design, particularly furniture and sheet-metal work. The promotion at Westhaven gives a recruiter a clear progression to follow.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A furniture product engineer whose tools and projects are clear, but whose design decisions and results are mostly missing.",
+    "write_up": [
+      "It’s common for engineering resumes to list methods and responsibilities without saying what they changed. Yours shows a move from Mechanical Engineer I to Mechanical Engineer II at Westhaven, with work on the Arlo desk platform. A recruiter can see your tools, but may hesitate over what your design work delivered or how big the projects were.",
+      "The BIFMA prototype testing line is a useful model: it names both the work and the standard you tested against. Your experience is also easy to follow, with Education below it.",
+      "Let’s start with the Arlo platform and add a design decision or result you can stand behind. Then show your part in supplier work and engineering changes. Those details will help your resume stand out from a list of engineering duties."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 1",
+        "line": "Lead mechanical design for the Arlo height-adjustable desk platform",
+        "cannot_tell": "Leading the Arlo design is substantial work, but a recruiter can’t see which decisions were yours or what the platform work delivered.",
+        "example": "Lead mechanical design for the Arlo height-adjustable desk platform, including [design decisions] and [what the work delivered]",
+        "question": "Which design decisions did you lead on Arlo, and what did the work deliver?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 3",
+        "line": "Work with suppliers in Mexico and Taiwan on tooling and first-article inspection",
+        "cannot_tell": "The suppliers and stages are named, but your part in the tooling and inspections is still unclear. A recruiter will want to know what you handled.",
+        "example": "Work with suppliers in Mexico and Taiwan on tooling and first-article inspection, including [your contribution]",
+        "question": "What did you handle with the suppliers on tooling and first-article inspection?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 4",
+        "line": "Run tolerance stack-ups and FEA on load-bearing components",
+        "cannot_tell": "The analysis methods are clear. What they found or informed would show a recruiter how you used them in a design.",
+        "example": "Run tolerance stack-ups and FEA on load-bearing components to inform [design decision]",
+        "question": "What design decision did your tolerance or FEA work inform?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 5",
+        "line": "Support manufacturing with engineering change orders",
+        "cannot_tell": "Support can cover a lot. A recruiter can’t tell what you did on the change orders or what prompted them.",
+        "example": "Support manufacturing with engineering change orders by [your contribution] for [reason for the changes]",
+        "question": "What did you do on the engineering change orders, and what prompted the changes?"
+      },
+      {
+        "kind": "keep",
+        "where": "Mechanical Engineer I, line 2",
+        "line": "Ran prototype testing to BIFMA standards",
+        "cannot_tell": "Keep this as a model: it pairs a concrete engineering task with the standard you used, without making a recruiter guess at the method.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mechanical Engineer II",
+        "Mechanical Engineer I"
+      ],
+      "why": "Your current Mechanical Engineer II role leads product design for a height-adjustable desk platform and names the engineering methods you use.",
+      "level": "mid-level, current Mechanical Engineer II role",
+      "note": "Your experience points toward mechanical product design, particularly furniture and sheet-metal work. The promotion at Westhaven gives a recruiter a clear progression to follow.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 68
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A furniture product engineer whose tools and projects are clear, but whose design decisions and results are mostly missing.",
+    "write_up": [
+      "It’s common for engineering resumes to list methods and responsibilities without saying what they changed. Yours shows a move from Mechanical Engineer I to Mechanical Engineer II at Westhaven, with work on the Arlo desk platform. A recruiter can see your tools, but may hesitate over what your design work delivered or how big the projects were.",
+      "The BIFMA prototype testing line is a useful model: it names both the work and the standard you tested against. Your experience is also easy to follow, with Education below it.",
+      "Let’s start with the Arlo platform and add a design decision or result you can stand behind. Then show your part in supplier work and engineering changes. Those details will help your resume stand out from a list of engineering duties."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 1",
+        "line": "Lead mechanical design for the Arlo height-adjustable desk platform",
+        "cannot_tell": "Leading the Arlo design is substantial work, but a recruiter can’t see which decisions were yours or what the platform work delivered.",
+        "example": "Lead mechanical design for the Arlo height-adjustable desk platform, including [design decisions] and [what the work delivered]",
+        "question": "Which design decisions did you lead on Arlo, and what did the work deliver?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 3",
+        "line": "Work with suppliers in Mexico and Taiwan on tooling and first-article inspection",
+        "cannot_tell": "The suppliers and stages are named, but your part in the tooling and inspections is still unclear. A recruiter will want to know what you handled.",
+        "example": "Work with suppliers in Mexico and Taiwan on tooling and first-article inspection, including [your contribution]",
+        "question": "What did you handle with the suppliers on tooling and first-article inspection?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 4",
+        "line": "Run tolerance stack-ups and FEA on load-bearing components",
+        "cannot_tell": "The analysis methods are clear. What they found or informed would show a recruiter how you used them in a design.",
+        "example": "Run tolerance stack-ups and FEA on load-bearing components to inform [design decision]",
+        "question": "What design decision did your tolerance or FEA work inform?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 5",
+        "line": "Support manufacturing with engineering change orders",
+        "cannot_tell": "Support can cover a lot. A recruiter can’t tell what you did on the change orders or what prompted them.",
+        "example": "Support manufacturing with engineering change orders by [your contribution] for [reason for the changes]",
+        "question": "What did you do on the engineering change orders, and what prompted the changes?"
+      },
+      {
+        "kind": "keep",
+        "where": "Mechanical Engineer I, line 2",
+        "line": "Ran prototype testing to BIFMA standards",
+        "cannot_tell": "Keep this as a model: it pairs a concrete engineering task with the standard you used, without making a recruiter guess at the method.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mechanical Engineer II",
+        "Mechanical Engineer I"
+      ],
+      "why": "Your current Mechanical Engineer II role leads product design for a height-adjustable desk platform and names the engineering methods you use.",
+      "level": "mid-level, current Mechanical Engineer II role",
+      "note": "Your experience points toward mechanical product design, particularly furniture and sheet-metal work. The promotion at Westhaven gives a recruiter a clear progression to follow.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 68
+  },
+  "presentation": {
+    "score": 68,
+    "band": "Needs more context",
+    "model_score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A furniture product engineer whose tools and projects are clear, but whose design decisions and results are mostly missing.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 129,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 1",
+        "line": "Lead mechanical design for the Arlo height-adjustable desk platform",
+        "blanks": 2,
+        "question": "Which design decisions did you lead on Arlo, and what did the work deliver?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 3",
+        "line": "Work with suppliers in Mexico and Taiwan on tooling and first-article inspection",
+        "blanks": 1,
+        "question": "What did you handle with the suppliers on tooling and first-article inspection?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 4",
+        "line": "Run tolerance stack-ups and FEA on load-bearing components",
+        "blanks": 1,
+        "question": "What design decision did your tolerance or FEA work inform?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 5",
+        "line": "Support manufacturing with engineering change orders",
+        "blanks": 2,
+        "question": "What did you do on the engineering change orders, and what prompted the changes?"
+      },
+      {
+        "kind": "keep",
+        "where": "Mechanical Engineer I, line 2",
+        "line": "Ran prototype testing to BIFMA standards",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "line": 4,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Mechanical Engineer II",
+        "Mechanical Engineer I"
+      ],
+      "why": "Your current Mechanical Engineer II role leads product design for a height-adjustable desk platform and names the engineering methods you use.",
+      "level": "mid-level, current Mechanical Engineer II role",
+      "note": "Your experience points toward mechanical product design, particularly furniture and sheet-metal work. The promotion at Westhaven gives a recruiter a clear progression to follow.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00793945,
+  "latency_ms": 16285
+}

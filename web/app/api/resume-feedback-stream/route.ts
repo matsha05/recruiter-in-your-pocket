@@ -60,6 +60,7 @@ import { severityCheckReport } from "@/lib/reports/severity-check-report";
 import { askFirstOffered, isAskFirstEnabled } from "@/lib/reports/ask-first";
 import { reserveRebuild } from "@/lib/reports/ask-first-rebuild";
 import { resumePromptVersion, resumeSchemaVersion } from "@/lib/reports/report-shape";
+import { withScreenerText } from "@/lib/reports/screener-text";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 // Worst case: main call 90 s, one incomplete retry, a repair call, the severity check and persistence.
@@ -490,7 +491,7 @@ export async function POST(request: Request) {
                 // screen may show these now. Informational, like a stage: only "complete" is the report.
                 sendPreview(validated.payload);
                 // Further Critical Misses, when RIYP_SEVERITY_CHECK is on. Any failure keeps the report as validated.
-                const { payload, outcome: severity } = await severityCheckReport({
+                const { payload: checkedPayload, outcome: severity } = await severityCheckReport({
                     payload: validated.payload,
                     mode,
                     resumeText: canonicalResumeText,
@@ -500,6 +501,9 @@ export async function POST(request: Request) {
                     ctx: { request_id, route, user_id },
                     onStage: sendStage,
                 });
+                // Lines written to screening software, found in the text as the person sent it (before the
+                // sanitizer redacts them), so the report can tell them first. Kept with the report and its PDF.
+                const payload = withScreenerText(checkedPayload, text, jobDescription);
                 if (severity) {
                     const call = severity.call_latency_ms ?? severity.latency_ms;
                     stages.record("severity_call", call, severity.outcome === "error" ? "failed" : "ok");

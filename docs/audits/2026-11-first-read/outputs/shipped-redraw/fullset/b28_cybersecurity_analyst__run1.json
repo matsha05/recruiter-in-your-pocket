@@ -1,0 +1,246 @@
+{
+  "case_id": "b28_cybersecurity_analyst",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_cybersecurity_analyst_1.txt",
+  "resume_sha256": "3af143d6457f920bcfc404cff6c5ed95c9a5719c1320855f0e0d464650526db6",
+  "resume_words": 154,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:00:07.385Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5372,
+        "completion_tokens": 914,
+        "total_tokens": 6286,
+        "cached_prompt_tokens": 4685,
+        "cache_write_prompt_tokens": 684,
+        "reasoning_tokens": 288
+      },
+      "cost_usd": 0.00566225,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 11110
+    }
+  ],
+  "resume_prompt_sha256": "0a19c3ee70395ec8fb0584d4bea1b93da77aeca37469b4d47211bc8568544f0c",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A senior security analyst whose detection and incident response work comes with clear results.",
+    "write_up": [
+      "This is a strong security resume! Your move from monitoring client environments at Northgate Managed Security to detection and response at Capital Ridge Bank is easy to follow, and your best results show both the work and what changed.",
+      "The Splunk detection rule line is your model: it names the platform, the MITRE ATT&CK mapping and the reduction in false positives. Your current role and certifications also make your focus on detection engineering and incident response credible.",
+      "Your resume is unlikely to be the reason you don't get a callback. Add a little more about the purple-team exercises and alert enrichment, then focus on finding roles that match your work. The competition for each job and a referral can also matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Security Analyst, line 1",
+        "line": "- Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%",
+        "cannot_tell": "Keep this as the model. It gives a recruiter a concrete piece of detection work and a reason it mattered.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Security Analyst, line 3",
+        "line": "- Run monthly purple-team exercises with the red team",
+        "cannot_tell": "A recruiter knows how often you run exercises, but not what you test. Naming that would show what the exercises cover.",
+        "example": "Run monthly purple-team exercises with the red team to test [what was tested]",
+        "question": "What do you test in the purple-team exercises?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Security Analyst, line 4",
+        "line": "- Automated alert enrichment with Python and the Splunk SOAR platform",
+        "cannot_tell": "The tools and task are clear, but the information you added to alerts isn't. That detail would show what the automation does for analysts.",
+        "example": "Automated alert enrichment with Python and the Splunk SOAR platform, adding [information] to alerts",
+        "question": "What information does the automation add to alerts?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Security Analyst, Detection and Response",
+        "Security Operations Analyst"
+      ],
+      "level": "Senior analyst",
+      "note": "Your experience points toward detection and response work, particularly in financial services. The earlier SOC role adds managed security experience across client environments.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A senior security analyst whose detection and incident response work comes with clear results.",
+    "write_up": [
+      "This is a strong security resume! Your move from monitoring client environments at Northgate Managed Security to detection and response at Capital Ridge Bank is easy to follow, and your best results show both the work and what changed.",
+      "The Splunk detection rule line is your model: it names the platform, the MITRE ATT&CK mapping and the reduction in false positives. Your current role and certifications also make your focus on detection engineering and incident response credible.",
+      "Your resume is unlikely to be the reason you don't get a callback. Add a little more about the purple-team exercises and alert enrichment, then focus on finding roles that match your work. The competition for each job and a referral can also matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Security Analyst, line 1",
+        "line": "Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%",
+        "cannot_tell": "Keep this as the model. It gives a recruiter a concrete piece of detection work and a reason it mattered.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Security Analyst, line 3",
+        "line": "Run monthly purple-team exercises with the red team",
+        "cannot_tell": "A recruiter knows how often you run exercises, but not what you test. Naming that would show what the exercises cover.",
+        "example": "Run monthly purple-team exercises with the red team to test [what was tested]",
+        "question": "What do you test in the purple-team exercises?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Security Analyst, line 4",
+        "line": "Automated alert enrichment with Python and the Splunk SOAR platform",
+        "cannot_tell": "The tools and task are clear, but the information you added to alerts isn't. That detail would show what the automation does for analysts.",
+        "example": "Automated alert enrichment with Python and the Splunk SOAR platform, adding [information] to alerts",
+        "question": "What information does the automation add to alerts?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Security Analyst, Detection and Response",
+        "Security Operations Analyst"
+      ],
+      "level": "Senior analyst",
+      "note": "Your experience points toward detection and response work, particularly in financial services. The earlier SOC role adds managed security experience across client environments.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A senior security analyst whose detection and incident response work comes with clear results.",
+    "write_up": [
+      "This is a strong security resume! Your move from monitoring client environments at Northgate Managed Security to detection and response at Capital Ridge Bank is easy to follow, and your best results show both the work and what changed.",
+      "The Splunk detection rule line is your model: it names the platform, the MITRE ATT&CK mapping and the reduction in false positives. Your current role and certifications also make your focus on detection engineering and incident response credible.",
+      "Your resume is unlikely to be the reason you don't get a callback. Add a little more about the purple-team exercises and alert enrichment, then focus on finding roles that match your work. The competition for each job and a referral can also matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Security Analyst, line 1",
+        "line": "Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%",
+        "cannot_tell": "Keep this as the model. It gives a recruiter a concrete piece of detection work and a reason it mattered.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Security Analyst, line 3",
+        "line": "Run monthly purple-team exercises with the red team",
+        "cannot_tell": "A recruiter knows how often you run exercises, but not what you test. Naming that would show what the exercises cover.",
+        "example": "Run monthly purple-team exercises with the red team to test [what was tested]",
+        "question": "What do you test in the purple-team exercises?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Security Analyst, line 4",
+        "line": "Automated alert enrichment with Python and the Splunk SOAR platform",
+        "cannot_tell": "The tools and task are clear, but the information you added to alerts isn't. That detail would show what the automation does for analysts.",
+        "example": "Automated alert enrichment with Python and the Splunk SOAR platform, adding [information] to alerts",
+        "question": "What information does the automation add to alerts?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Security Analyst, Detection and Response",
+        "Security Operations Analyst"
+      ],
+      "level": "Senior analyst",
+      "note": "Your experience points toward detection and response work, particularly in financial services. The earlier SOC role adds managed security experience across client environments.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "presentation": {
+    "score": 88,
+    "band": "Clear and specific",
+    "model_score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A senior security analyst whose detection and incident response work comes with clear results.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 121,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Security Analyst, line 1",
+        "line": "Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Security Analyst, line 3",
+        "line": "Run monthly purple-team exercises with the red team",
+        "blanks": 1,
+        "question": "What do you test in the purple-team exercises?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Security Analyst, line 4",
+        "line": "Automated alert enrichment with Python and the Splunk SOAR platform",
+        "blanks": 1,
+        "question": "What information does the automation add to alerts?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "keep": 1,
+      "line": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Security Analyst, Detection and Response",
+        "Security Operations Analyst"
+      ],
+      "level": "Senior analyst",
+      "note": "Your experience points toward detection and response work, particularly in financial services. The earlier SOC role adds managed security experience across client environments.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00566225,
+  "latency_ms": 11112
+}

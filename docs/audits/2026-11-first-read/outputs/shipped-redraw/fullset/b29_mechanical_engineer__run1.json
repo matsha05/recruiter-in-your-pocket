@@ -1,0 +1,308 @@
+{
+  "case_id": "b29_mechanical_engineer",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_mechanical_engineer_1.txt",
+  "resume_sha256": "415a2cd89f45a119a48620793f6f06d7e83938cf3176426d201256d134ab6044",
+  "resume_words": 143,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:00:07.909Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5327,
+        "completion_tokens": 1292,
+        "total_tokens": 6619,
+        "cached_prompt_tokens": 4685,
+        "cache_write_prompt_tokens": 639,
+        "reasoning_tokens": 390
+      },
+      "cost_usd": 0.007496,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 15501
+    }
+  ],
+  "resume_prompt_sha256": "0a19c3ee70395ec8fb0584d4bea1b93da77aeca37469b4d47211bc8568544f0c",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A furniture product engineer with clear technical work, but little to show how the designs turned out.",
+    "write_up": [
+      "You’ve moved from Mechanical Engineer I to Mechanical Engineer II at Westhaven Office Systems, designing furniture components and leading design for the Arlo desk platform. It’s common for engineering resumes to list the work this way, but without showing how the designs turned out, yours may not stand out in a pile.",
+      "The supplier line is a useful model: it names the work, the supplier locations and the stages involved. Your progression and education are easy to follow, but the current role leaves a recruiter asking what your design and analysis work changed.",
+      "Let’s start with the Arlo line. Add what you led within the design and what became of the platform, then bring the same detail to the analysis and manufacturing work."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 1",
+        "line": "- Lead mechanical design for the Arlo height-adjustable desk platform",
+        "cannot_tell": "Leading the design of a named platform is strong. A recruiter still can’t tell which parts of the design were yours or what became of the platform.",
+        "example": "Lead mechanical design for the Arlo height-adjustable desk platform, including [design responsibilities]; [platform result]",
+        "question": "Which parts of the Arlo design did you lead, and what became of the platform?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 2",
+        "line": "- Create 3D models and drawings in SolidWorks with GD&T",
+        "cannot_tell": "The tools and deliverables are clear, but the products or components behind the models aren’t named. That makes it difficult to connect this work to the designs you owned.",
+        "example": "Create 3D models and drawings in SolidWorks with GD&T for [products or components]",
+        "question": "Which products or components did you model and draw?"
+      },
+      {
+        "kind": "keep",
+        "where": "Mechanical Engineer II, line 3",
+        "line": "- Work with suppliers in Mexico and Taiwan on tooling and first-article inspection",
+        "cannot_tell": "Keep the concrete subjects here: suppliers, tooling and first-article inspection. That combination gives a recruiter something to hold onto without relying on a generic duty.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 4",
+        "line": "- Run tolerance stack-ups and FEA on load-bearing components",
+        "cannot_tell": "A recruiter can see the analyses you run, but not which components you examined or what the findings informed.",
+        "example": "Run tolerance stack-ups and FEA on [load-bearing components] to inform [design decision]",
+        "question": "Which load-bearing components did you analyze, and what design decisions did the findings inform?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 5",
+        "line": "- Support manufacturing with engineering change orders",
+        "cannot_tell": "Support can cover several kinds of work. The line doesn’t say what you did with the change orders or what they concerned.",
+        "example": "Support manufacturing with engineering change orders by [your contribution] for [components or changes]",
+        "question": "What did you do with the change orders, and what components or changes did they cover?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mechanical Engineer II",
+        "Mechanical Engineer I"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "Your experience points toward mechanical product design for furniture and fixtures, with supplier, analysis and manufacturing work. The move to Mechanical Engineer II is visible, though the resume leaves the results of that work open.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A furniture product engineer with clear technical work, but little to show how the designs turned out.",
+    "write_up": [
+      "You’ve moved from Mechanical Engineer I to Mechanical Engineer II at Westhaven Office Systems, designing furniture components and leading design for the Arlo desk platform. It’s common for engineering resumes to list the work this way, but without showing how the designs turned out, yours may not stand out in a pile.",
+      "The supplier line is a useful model: it names the work, the supplier locations and the stages involved. Your progression and education are easy to follow, but the current role leaves a recruiter asking what your design and analysis work changed.",
+      "Let’s start with the Arlo line. Add what you led within the design and what became of the platform, then bring the same detail to the analysis and manufacturing work."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 1",
+        "line": "Lead mechanical design for the Arlo height-adjustable desk platform",
+        "cannot_tell": "Leading the design of a named platform is strong. A recruiter still can’t tell which parts of the design were yours or what became of the platform.",
+        "example": "Lead mechanical design for the Arlo height-adjustable desk platform, including [design responsibilities]; [platform result]",
+        "question": "Which parts of the Arlo design did you lead, and what became of the platform?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 2",
+        "line": "Create 3D models and drawings in SolidWorks with GD&T",
+        "cannot_tell": "The tools and deliverables are clear, but the products or components behind the models aren’t named. That makes it difficult to connect this work to the designs you owned.",
+        "example": "Create 3D models and drawings in SolidWorks with GD&T for [products or components]",
+        "question": "Which products or components did you model and draw?"
+      },
+      {
+        "kind": "keep",
+        "where": "Mechanical Engineer II, line 3",
+        "line": "Work with suppliers in Mexico and Taiwan on tooling and first-article inspection",
+        "cannot_tell": "Keep the concrete subjects here: suppliers, tooling and first-article inspection. That combination gives a recruiter something to hold onto without relying on a generic duty.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 4",
+        "line": "Run tolerance stack-ups and FEA on load-bearing components",
+        "cannot_tell": "A recruiter can see the analyses you run, but not which components you examined or what the findings informed.",
+        "example": "Run tolerance stack-ups and FEA on [load-bearing components] to inform [design decision]",
+        "question": "Which load-bearing components did you analyze, and what design decisions did the findings inform?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 5",
+        "line": "Support manufacturing with engineering change orders",
+        "cannot_tell": "Support can cover several kinds of work. The line doesn’t say what you did with the change orders or what they concerned.",
+        "example": "Support manufacturing with engineering change orders by [your contribution] for [components or changes]",
+        "question": "What did you do with the change orders, and what components or changes did they cover?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mechanical Engineer II",
+        "Mechanical Engineer I"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "Your experience points toward mechanical product design for furniture and fixtures, with supplier, analysis and manufacturing work. The move to Mechanical Engineer II is visible, though the resume leaves the results of that work open.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 68
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A furniture product engineer with clear technical work, but little to show how the designs turned out.",
+    "write_up": [
+      "You’ve moved from Mechanical Engineer I to Mechanical Engineer II at Westhaven Office Systems, designing furniture components and leading design for the Arlo desk platform. It’s common for engineering resumes to list the work this way, but without showing how the designs turned out, yours may not stand out in a pile.",
+      "The supplier line is a useful model: it names the work, the supplier locations and the stages involved. Your progression and education are easy to follow, but the current role leaves a recruiter asking what your design and analysis work changed.",
+      "Let’s start with the Arlo line. Add what you led within the design and what became of the platform, then bring the same detail to the analysis and manufacturing work."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 1",
+        "line": "Lead mechanical design for the Arlo height-adjustable desk platform",
+        "cannot_tell": "Leading the design of a named platform is strong. A recruiter still can’t tell which parts of the design were yours or what became of the platform.",
+        "example": "Lead mechanical design for the Arlo height-adjustable desk platform, including [design responsibilities]; [platform result]",
+        "question": "Which parts of the Arlo design did you lead, and what became of the platform?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 2",
+        "line": "Create 3D models and drawings in SolidWorks with GD&T",
+        "cannot_tell": "The tools and deliverables are clear, but the products or components behind the models aren’t named. That makes it difficult to connect this work to the designs you owned.",
+        "example": "Create 3D models and drawings in SolidWorks with GD&T for [products or components]",
+        "question": "Which products or components did you model and draw?"
+      },
+      {
+        "kind": "keep",
+        "where": "Mechanical Engineer II, line 3",
+        "line": "Work with suppliers in Mexico and Taiwan on tooling and first-article inspection",
+        "cannot_tell": "Keep the concrete subjects here: suppliers, tooling and first-article inspection. That combination gives a recruiter something to hold onto without relying on a generic duty.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 4",
+        "line": "Run tolerance stack-ups and FEA on load-bearing components",
+        "cannot_tell": "A recruiter can see the analyses you run, but not which components you examined or what the findings informed.",
+        "example": "Run tolerance stack-ups and FEA on [load-bearing components] to inform [design decision]",
+        "question": "Which load-bearing components did you analyze, and what design decisions did the findings inform?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 5",
+        "line": "Support manufacturing with engineering change orders",
+        "cannot_tell": "Support can cover several kinds of work. The line doesn’t say what you did with the change orders or what they concerned.",
+        "example": "Support manufacturing with engineering change orders by [your contribution] for [components or changes]",
+        "question": "What did you do with the change orders, and what components or changes did they cover?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Mechanical Engineer II",
+        "Mechanical Engineer I"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "Your experience points toward mechanical product design for furniture and fixtures, with supplier, analysis and manufacturing work. The move to Mechanical Engineer II is visible, though the resume leaves the results of that work open.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 68
+  },
+  "presentation": {
+    "score": 68,
+    "band": "Needs more context",
+    "model_score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A furniture product engineer with clear technical work, but little to show how the designs turned out.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 123,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 1",
+        "line": "Lead mechanical design for the Arlo height-adjustable desk platform",
+        "blanks": 2,
+        "question": "Which parts of the Arlo design did you lead, and what became of the platform?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 2",
+        "line": "Create 3D models and drawings in SolidWorks with GD&T",
+        "blanks": 1,
+        "question": "Which products or components did you model and draw?"
+      },
+      {
+        "kind": "keep",
+        "where": "Mechanical Engineer II, line 3",
+        "line": "Work with suppliers in Mexico and Taiwan on tooling and first-article inspection",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 4",
+        "line": "Run tolerance stack-ups and FEA on load-bearing components",
+        "blanks": 2,
+        "question": "Which load-bearing components did you analyze, and what design decisions did the findings inform?"
+      },
+      {
+        "kind": "line",
+        "where": "Mechanical Engineer II, line 5",
+        "line": "Support manufacturing with engineering change orders",
+        "blanks": 2,
+        "question": "What did you do with the change orders, and what components or changes did they cover?"
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "line": 4,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Mechanical Engineer II",
+        "Mechanical Engineer I"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "Your experience points toward mechanical product design for furniture and fixtures, with supplier, analysis and manufacturing work. The move to Mechanical Engineer II is visible, though the resume leaves the results of that work open.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.007496,
+  "latency_ms": 15508
+}

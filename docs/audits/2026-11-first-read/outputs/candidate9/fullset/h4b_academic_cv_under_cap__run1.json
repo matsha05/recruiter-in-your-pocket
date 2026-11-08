@@ -1,0 +1,247 @@
+{
+  "case_id": "h4b_academic_cv_under_cap",
+  "batch": "holes",
+  "run": 1,
+  "note": "The same CV trimmed under the cap, to see what the model does with a CV shape.",
+  "resume_file": "../2026-11-live-judgment/resumes/h4b_academic_cv_under_cap.txt",
+  "resume_sha256": "adbd165f7ee34423e0602d7b81bde357a22a10bfde76e8434e30216c10430503",
+  "resume_words": 3253,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T19:02:31.304Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 19862,
+        "completion_tokens": 1042,
+        "total_tokens": 20904,
+        "cached_prompt_tokens": 5005,
+        "cache_write_prompt_tokens": 14854,
+        "reasoning_tokens": 319
+      },
+      "cost_usd": 0.02403075,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 13764
+    }
+  ],
+  "resume_prompt_sha256": "338ac33ae4d6ad75616100e9ec41f04437a5b50bfe070fa140aba71496178380",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 76,
+    "lifted_by_employer": false,
+    "verdict": "A tenured molecular biologist with funded research and strong mentoring, but publication entries need checking.",
+    "write_up": [
+      "You come across as a tenured molecular biologist at Riverbend State University, with NIH-funded research, teaching, and graduate mentoring. I'd move your resume forward for an Associate Professor role, with a question about repeated publication entries.",
+      "The MB 310 redesign is a strong model: it names the change you made and reports the evaluations that followed. Your appointments sit below Education, and several publication entries repeat the same authors, title, and journal across different years. That repetition makes a recruiter pause over the publication list.",
+      "Let's start by checking those citations against your publication records and correcting any errors. Then consider moving Academic Appointments above Education so your current role leads. Keep the grant and mentoring details: they show the work behind the title."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Academic Appointments.",
+        "cannot_tell": "Your current tenured appointment comes after your degrees. Academic CVs often lead with education, but putting appointments first would bring your current role forward.",
+        "example": "",
+        "question": "Would you move Academic Appointments above Education for the roles you're pursuing?"
+      },
+      {
+        "kind": "line",
+        "where": "Publications, entry 1",
+        "line": "1. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2026). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 107(2), 1037-1052.",
+        "cannot_tell": "The same authors, title, and journal appear again in entries dated 2024, 2021, and 2018. A recruiter can't tell whether these are distinct publications or repeated entries, and the same pattern appears elsewhere in the list.",
+        "example": "[correct publication citation]",
+        "question": "What do your publication records show for these entries and the other repeated titles?"
+      },
+      {
+        "kind": "keep",
+        "where": "Teaching, course redesign",
+        "line": "Course redesign: converted MB 310 to a flipped format in 2019; student evaluations rose from 3.9 to 4.5 of 5 over the following three offerings.",
+        "cannot_tell": "Keep this. It pairs a concrete teaching decision with a measured change, without claiming the redesign alone caused it.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Associate Professor (with tenure)"
+      ],
+      "why": "Your current tenured appointment, research grants, publications, teaching, and mentoring all point to an Associate Professor role.",
+      "level": "Tenured associate professor, PI on an NIH R01 and supervisor of doctoral students",
+      "note": "Your experience points toward research-focused faculty roles in molecular and cell biology. The publication list needs a careful check before you send it.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 76,
+    "lifted_by_employer": false,
+    "verdict": "A tenured molecular biologist with funded research and strong mentoring, but publication entries need checking.",
+    "write_up": [
+      "You come across as a tenured molecular biologist at Riverbend State University, with NIH-funded research, teaching, and graduate mentoring. I'd move your resume forward for an Associate Professor role, with a question about repeated publication entries.",
+      "The MB 310 redesign is a strong model: it names the change you made and reports the evaluations that followed. Your appointments sit below Education, and several publication entries repeat the same authors, title, and journal across different years. That repetition makes a recruiter pause over the publication list.",
+      "Let's start by checking those citations against your publication records and correcting any errors. Then consider moving Academic Appointments above Education so your current role leads. Keep the grant and mentoring details: they show the work behind the title."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Academic Appointments.",
+        "cannot_tell": "Your current tenured appointment comes after your degrees. Academic CVs often lead with education, but putting appointments first would bring your current role forward.",
+        "example": "",
+        "question": "Would you move Academic Appointments above Education for the roles you're pursuing?"
+      },
+      {
+        "kind": "line",
+        "where": "Publications, entry 1",
+        "line": "1. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2026). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 107(2), 1037-1052.",
+        "cannot_tell": "The same authors, title, and journal appear again in entries dated 2024, 2021, and 2018. A recruiter can't tell whether these are distinct publications or repeated entries, and the same pattern appears elsewhere in the list.",
+        "example": "[correct publication citation]",
+        "question": "What do your publication records show for these entries and the other repeated titles?"
+      },
+      {
+        "kind": "keep",
+        "where": "Teaching, course redesign",
+        "line": "Course redesign: converted MB 310 to a flipped format in 2019; student evaluations rose from 3.9 to 4.5 of 5 over the following three offerings.",
+        "cannot_tell": "Keep this. It pairs a concrete teaching decision with a measured change, without claiming the redesign alone caused it.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Associate Professor (with tenure)"
+      ],
+      "why": "Your current tenured appointment, research grants, publications, teaching, and mentoring all point to an Associate Professor role.",
+      "level": "Tenured associate professor, PI on an NIH R01 and supervisor of doctoral students",
+      "note": "Your experience points toward research-focused faculty roles in molecular and cell biology. The publication list needs a careful check before you send it.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 76
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 76,
+    "lifted_by_employer": false,
+    "verdict": "A tenured molecular biologist with funded research and strong mentoring, but publication entries need checking.",
+    "write_up": [
+      "You come across as a tenured molecular biologist at Riverbend State University, with NIH-funded research, teaching, and graduate mentoring. I'd move your resume forward for an Associate Professor role, with a question about repeated publication entries.",
+      "The MB 310 redesign is a strong model: it names the change you made and reports the evaluations that followed. Your appointments sit below Education, and several publication entries repeat the same authors, title, and journal across different years. That repetition makes a recruiter pause over the publication list.",
+      "Let's start by checking those citations against your publication records and correcting any errors. Then consider moving Academic Appointments above Education so your current role leads. Keep the grant and mentoring details: they show the work behind the title."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Academic Appointments.",
+        "cannot_tell": "Your current tenured appointment comes after your degrees. Academic CVs often lead with education, but putting appointments first would bring your current role forward.",
+        "example": "",
+        "question": "Would you move Academic Appointments above Education for the roles you're pursuing?"
+      },
+      {
+        "kind": "line",
+        "where": "Publications, entry 1",
+        "line": "1. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2026). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 107(2), 1037-1052.",
+        "cannot_tell": "The same authors, title, and journal appear again in entries dated 2024, 2021, and 2018. A recruiter can't tell whether these are distinct publications or repeated entries, and the same pattern appears elsewhere in the list.",
+        "example": "[correct publication citation]",
+        "question": "What do your publication records show for these entries and the other repeated titles?"
+      },
+      {
+        "kind": "keep",
+        "where": "Teaching, course redesign",
+        "line": "Course redesign: converted MB 310 to a flipped format in 2019; student evaluations rose from 3.9 to 4.5 of 5 over the following three offerings.",
+        "cannot_tell": "Keep this. It pairs a concrete teaching decision with a measured change, without claiming the redesign alone caused it.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Associate Professor (with tenure)"
+      ],
+      "why": "Your current tenured appointment, research grants, publications, teaching, and mentoring all point to an Associate Professor role.",
+      "level": "Tenured associate professor, PI on an NIH R01 and supervisor of doctoral students",
+      "note": "Your experience points toward research-focused faculty roles in molecular and cell biology. The publication list needs a careful check before you send it.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 76
+  },
+  "presentation": {
+    "score": 76,
+    "band": "Mostly clear",
+    "model_score": 76,
+    "lifted_by_employer": false,
+    "verdict": "A tenured molecular biologist with funded research and strong mentoring, but publication entries need checking.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 124,
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Academic Appointments.",
+        "blanks": 0,
+        "question": "Would you move Academic Appointments above Education for the roles you're pursuing?"
+      },
+      {
+        "kind": "line",
+        "where": "Publications, entry 1",
+        "line": "1. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2026). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 107(2), 1037-1052.",
+        "blanks": 1,
+        "question": "What do your publication records show for these entries and the other repeated titles?"
+      },
+      {
+        "kind": "keep",
+        "where": "Teaching, course redesign",
+        "line": "Course redesign: converted MB 310 to a flipped format in 2019; student evaluations rose from 3.9 to 4.5 of 5 over the following three offerings.",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "structure": 1,
+      "line": 1,
+      "keep": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Associate Professor (with tenure)"
+      ],
+      "why": "Your current tenured appointment, research grants, publications, teaching, and mentoring all point to an Associate Professor role.",
+      "level": "Tenured associate professor, PI on an NIH R01 and supervisor of doctoral students",
+      "note": "Your experience points toward research-focused faculty roles in molecular and cell biology. The publication list needs a careful check before you send it.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.02403075,
+  "latency_ms": 13898
+}

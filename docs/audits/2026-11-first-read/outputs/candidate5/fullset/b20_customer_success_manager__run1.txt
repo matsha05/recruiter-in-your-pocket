@@ -1,0 +1,36 @@
+# b20_customer_success_manager, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt (180 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ab8cd5a5; severity check off
+Outcome: report; cost $0.0074; 15.6s
+Case note: No posting.
+
+## Mostly clear (score 78; model wrote 78)
+## Verdict
+A customer success manager with a defined account book and a few details still needed on renewal work.
+
+## Write-up
+Your resume tells a straightforward story: you moved from insurance account coordination into payroll support and then customer success at Brightline. A recruiter can see the customers you manage and the problems you work on, so I'd expect this to move forward for a customer success role with a question or two.
+
+The line about your 48 mid-market accounts is a strong model: it gives the book and the industries without making a recruiter guess. The onboarding checklist and your 2021 customer satisfaction score also give the work substance.
+
+Start with the renewal strategy line. Tell us what part you handled with Sales, then add the kinds of questions you answered in the Hollis role. You don't need a number on every line when the work itself is clear.
+
+## Cards (3; {"keep":1,"line":2}); severity off; added []
+1. [keep] Customer Success Manager, line 1
+   line: "Manage a book of 48 mid-market accounts across healthcare and manufacturing"
+   can't tell: Keep this line. It puts a count, customer segment and industries next to your ownership of the book.
+2. [line] Customer Success Manager, line 3
+   line: "Partnered with Sales on renewal strategy for at-risk accounts"
+   can't tell: A recruiter can see who you worked with, but not your part in the renewal strategy. That matters for a role that carries accounts through renewal.
+   example: Partnered with Sales on renewal strategy for at-risk accounts by [what you did]
+   question: What did you do with Sales on the renewal strategy?
+3. [line] Account Coordinator, line 2
+   line: "Answered client questions by phone and email"
+   can't tell: This says how clients reached you, but not what they needed help with. The subject of their questions would show more of your insurance work.
+   example: Answered small business clients' questions about [topics] by phone and email
+   question: What kinds of questions did those clients ask?
+
+## Fit
+Roles: ["Customer Success Manager","Customer Support Specialist","Account Coordinator"]
+Level: Customer success manager, managing 48 mid-market accounts
+Note: Your experience points toward customer success roles serving business customers, particularly in software. Your renewal work is relevant, though the resume doesn't yet say what you contributed to the strategy.

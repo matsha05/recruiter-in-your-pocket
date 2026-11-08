@@ -1,0 +1,247 @@
+{
+  "case_id": "h5_mismatched_posting",
+  "batch": "holes",
+  "run": 1,
+  "note": "Data analyst against a registered nurse posting.",
+  "resume_file": "../2026-11-live-judgment/resumes/h5_data_analyst.txt",
+  "resume_sha256": "7bbdd7afb1b8ee26ca438829f18fe67486123dfaa7fc822193ebc907d0875abf",
+  "resume_words": 166,
+  "job_description_file": "../2026-11-live-judgment/resumes/h5_nursing_posting.txt",
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T19:02:45.218Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6019,
+        "completion_tokens": 1156,
+        "total_tokens": 7175,
+        "cached_prompt_tokens": 5122,
+        "cache_write_prompt_tokens": 894,
+        "reasoning_tokens": 444
+      },
+      "cost_usd": 0.0071566,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 13701
+    }
+  ],
+  "resume_prompt_sha256": "338ac33ae4d6ad75616100e9ec41f04437a5b50bfe070fa140aba71496178380",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A strong data analyst resume, but it doesn't show the nursing qualifications this posting requires.",
+    "write_up": [
+      "This is a strong analyst resume! Your work at Carolina Home Goods connects SQL, dashboards, and merchandising recommendations to the teams using them. A recruiter can see both what you built and where it went.",
+      "The SQL model is a great model for the rest: it names what you wrote and the manual report it replaced. Your experience comes before education, and the move from insurance reporting to sales and merchandising analytics is easy to follow.",
+      "I'd read this for Data Analyst jobs, where the competition and a referral can still matter; your resume itself is unlikely to be the reason you're passed over. For this nursing posting, though, it doesn't show an RN license, clinical care, or EHR experience. Add those qualifications only if you have them."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Data Analyst, line 4",
+        "line": "- Pull ad hoc analyses for the VP of Sales, about 10 requests a month",
+        "cannot_tell": "The request volume and audience are clear, but a recruiter can't tell what the analyses covered. One example would show the kinds of sales questions you handle.",
+        "example": "Pull ad hoc analyses on [analysis topic] for the VP of Sales, about 10 requests a month",
+        "question": "What is one sales topic you analyze for the VP?"
+      },
+      {
+        "kind": "keep",
+        "where": "Data Analyst, line 2",
+        "line": "- Wrote the SQL model that replaced a 3-day manual weekly sales report with an automated one",
+        "cannot_tell": "Keep this as a model: it gives the tool a job and shows the old process it replaced.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Data Analyst",
+        "Registered Nurse, Medical-Surgical Unit (Nights)"
+      ],
+      "why": "Your current Data Analyst role centers on SQL, Power BI, sales reporting, and merchandising analysis.",
+      "level": "Experienced analyst, with a current Data Analyst role and an earlier Junior Analyst role",
+      "note": "The nursing role is a mismatch as written: your resume doesn't show an RN license, patient care, or EHR experience. Your reporting work shows you work with several teams, but it doesn't establish the clinical qualifications or patient communication this job asks for.",
+      "posting": {
+        "summary": "Night-shift medical-surgical nursing role providing patient care, medication administration, EHR documentation, and patient and family education.",
+        "missing": [
+          "Current unrestricted North Carolina RN license or compact state license",
+          "BLS certification required; ACLS within six months of hire",
+          "Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered",
+          "Experience with Epic or a comparable EHR",
+          "Ability to manage a patient assignment of 5 to 6 patients",
+          "Administer medications and treatments per orders and unit protocol"
+        ]
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A strong data analyst resume, but it doesn't show the nursing qualifications this posting requires.",
+    "write_up": [
+      "This is a strong analyst resume! Your work at Carolina Home Goods connects SQL, dashboards, and merchandising recommendations to the teams using them. A recruiter can see both what you built and where it went.",
+      "The SQL model is a great model for the rest: it names what you wrote and the manual report it replaced. Your experience comes before education, and the move from insurance reporting to sales and merchandising analytics is easy to follow.",
+      "I'd read this for Data Analyst jobs, where the competition and a referral can still matter; your resume itself is unlikely to be the reason you're passed over. For this nursing posting, though, it doesn't show an RN license, clinical care, or EHR experience. Add those qualifications only if you have them."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Data Analyst, line 4",
+        "line": "Pull ad hoc analyses for the VP of Sales, about 10 requests a month",
+        "cannot_tell": "The request volume and audience are clear, but a recruiter can't tell what the analyses covered. One example would show the kinds of sales questions you handle.",
+        "example": "Pull ad hoc analyses on [analysis topic] for the VP of Sales, about 10 requests a month",
+        "question": "What is one sales topic you analyze for the VP?"
+      },
+      {
+        "kind": "keep",
+        "where": "Data Analyst, line 2",
+        "line": "Wrote the SQL model that replaced a 3-day manual weekly sales report with an automated one",
+        "cannot_tell": "Keep this as a model: it gives the tool a job and shows the old process it replaced.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Data Analyst",
+        "Registered Nurse, Medical-Surgical Unit (Nights)"
+      ],
+      "why": "Your current Data Analyst role centers on SQL, Power BI, sales reporting, and merchandising analysis.",
+      "level": "Experienced analyst, with a current Data Analyst role and an earlier Junior Analyst role",
+      "note": "The nursing role is a mismatch as written: your resume doesn't show an RN license, patient care, or EHR experience. Your reporting work shows you work with several teams, but it doesn't establish the clinical qualifications or patient communication this job asks for.",
+      "posting": {
+        "summary": "Night-shift medical-surgical nursing role providing patient care, medication administration, EHR documentation, and patient and family education.",
+        "missing": [
+          "Current unrestricted North Carolina RN license or compact state license",
+          "BLS certification required; ACLS within six months of hire",
+          "Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered",
+          "Experience with Epic or a comparable EHR",
+          "Ability to manage a patient assignment of 5 to 6 patients",
+          "Administer medications and treatments per orders and unit protocol"
+        ]
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A strong data analyst resume, but it doesn't show the nursing qualifications this posting requires.",
+    "write_up": [
+      "This is a strong analyst resume! Your work at Carolina Home Goods connects SQL, dashboards, and merchandising recommendations to the teams using them. A recruiter can see both what you built and where it went.",
+      "The SQL model is a great model for the rest: it names what you wrote and the manual report it replaced. Your experience comes before education, and the move from insurance reporting to sales and merchandising analytics is easy to follow.",
+      "I'd read this for Data Analyst jobs, where the competition and a referral can still matter; your resume itself is unlikely to be the reason you're passed over. For this nursing posting, though, it doesn't show an RN license, clinical care, or EHR experience. Add those qualifications only if you have them."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Data Analyst, line 4",
+        "line": "Pull ad hoc analyses for the VP of Sales, about 10 requests a month",
+        "cannot_tell": "The request volume and audience are clear, but a recruiter can't tell what the analyses covered. One example would show the kinds of sales questions you handle.",
+        "example": "Pull ad hoc analyses on [analysis topic] for the VP of Sales, about 10 requests a month",
+        "question": "What is one sales topic you analyze for the VP?"
+      },
+      {
+        "kind": "keep",
+        "where": "Data Analyst, line 2",
+        "line": "Wrote the SQL model that replaced a 3-day manual weekly sales report with an automated one",
+        "cannot_tell": "Keep this as a model: it gives the tool a job and shows the old process it replaced.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Data Analyst",
+        "Registered Nurse, Medical-Surgical Unit (Nights)"
+      ],
+      "why": "Your current Data Analyst role centers on SQL, Power BI, sales reporting, and merchandising analysis.",
+      "level": "Experienced analyst, with a current Data Analyst role and an earlier Junior Analyst role",
+      "note": "The nursing role is a mismatch as written: your resume doesn't show an RN license, patient care, or EHR experience. Your reporting work shows you work with several teams, but it doesn't establish the clinical qualifications or patient communication this job asks for.",
+      "posting": {
+        "summary": "Night-shift medical-surgical nursing role providing patient care, medication administration, EHR documentation, and patient and family education.",
+        "missing": [
+          "Current unrestricted North Carolina RN license or compact state license",
+          "BLS certification required; ACLS within six months of hire",
+          "Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered",
+          "Experience with Epic or a comparable EHR",
+          "Ability to manage a patient assignment of 5 to 6 patients",
+          "Administer medications and treatments per orders and unit protocol"
+        ]
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "presentation": {
+    "score": 88,
+    "band": "Clear and specific",
+    "model_score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A strong data analyst resume, but it doesn't show the nursing qualifications this posting requires.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 128,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Data Analyst, line 4",
+        "line": "Pull ad hoc analyses for the VP of Sales, about 10 requests a month",
+        "blanks": 1,
+        "question": "What is one sales topic you analyze for the VP?"
+      },
+      {
+        "kind": "keep",
+        "where": "Data Analyst, line 2",
+        "line": "Wrote the SQL model that replaced a 3-day manual weekly sales report with an automated one",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "line": 1,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Data Analyst",
+        "Registered Nurse, Medical-Surgical Unit (Nights)"
+      ],
+      "why": "Your current Data Analyst role centers on SQL, Power BI, sales reporting, and merchandising analysis.",
+      "level": "Experienced analyst, with a current Data Analyst role and an earlier Junior Analyst role",
+      "note": "The nursing role is a mismatch as written: your resume doesn't show an RN license, patient care, or EHR experience. Your reporting work shows you work with several teams, but it doesn't establish the clinical qualifications or patient communication this job asks for.",
+      "posting": {
+        "summary": "Night-shift medical-surgical nursing role providing patient care, medication administration, EHR documentation, and patient and family education.",
+        "missing": [
+          "Current unrestricted North Carolina RN license or compact state license",
+          "BLS certification required; ACLS within six months of hire",
+          "Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered",
+          "Experience with Epic or a comparable EHR",
+          "Ability to manage a patient assignment of 5 to 6 patients",
+          "Administer medications and treatments per orders and unit protocol"
+        ]
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0071566,
+  "latency_ms": 13745
+}

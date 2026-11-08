@@ -1,0 +1,25 @@
+# b27_backend_engineer_senior, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_backend_engineer_senior_1.txt (190 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 01c2028d; severity check off
+Outcome: report; cost $0.0040; 7.1s
+
+## Clear and specific (score 95; model wrote 95)
+## Verdict
+A senior payments engineer whose resume connects substantial technical work to measurable results.
+
+## Write-up
+This is a great resume! Your work moves from billing at Northwind to payments infrastructure at Tidewater, with the technical decisions and results attached. A recruiter can see both what you built and the demands those systems handle.
+
+The authorization migration is a model for the rest: it names the system, the move to Go, the traffic and the latency. The ledger, audit and contract testing lines also show distinct contributions without making a recruiter guess at their importance.
+
+Your resume is ready to send and isn't likely to be what stands between you and a call back. How competitive a particular senior backend role is will still matter.
+
+## Cards (1; {"keep":1}); severity off; added []
+1. [keep] Senior Software Engineer, Payments Platform, line 1
+   line: "Designed and led the migration of card authorization from a monolith to a Go service handling 4,500 requests per second at p99 under 80 ms"
+   can't tell: Keep this as a model. It puts your ownership, the system you changed and its performance in one line.
+
+## Fit
+Roles: ["Senior Software Engineer, Payments Platform","Software Engineer"]
+Level: Senior engineer, led a team of 5 engineers and mentors 3 engineers
+Note: Your experience points toward senior backend work in payments and billing. The resume shows service design, operational work and technical leadership.

@@ -1,0 +1,47 @@
+@font-face { font-family: "Schibsted Grotesk"; src: url("file:///Users/matsha05/Desktop/dev/recruiter-in-your-pocket/.claude/worktrees/simplify-surfaces/web/public/fonts/schibsted-grotesk/SchibstedGrotesk-Variable.woff2") format("woff2"); font-weight: 400 900; }
+@font-face { font-family: "Literata"; src: url("file:///Users/matsha05/Desktop/dev/recruiter-in-your-pocket/.claude/worktrees/simplify-surfaces/web/public/fonts/literata/Literata-Variable.woff2") format("woff2"); font-weight: 200 900; }
+@font-face { font-family: "Literata"; font-style: italic; src: url("file:///Users/matsha05/Desktop/dev/recruiter-in-your-pocket/.claude/worktrees/simplify-surfaces/web/public/fonts/literata/Literata-Italic-Variable.woff2") format("woff2"); font-weight: 200 900; }
+
+:root {
+  --ground: #f4f4f1; --paper: #ffffff; --inset: #e9eae6; --ink: #111513; --muted: #5a605c;
+  --pen: #1f5a46; --pen-tint: #e6f0eb; --blue: #2448a8; --red: #b42318; --marker: #ffe14d;
+  --line: #dfe0dc; --sheet: #fefefc; --doc: #1b1b1b; --ghost: #6f6f6c;
+  --sans: "Schibsted Grotesk", system-ui, sans-serif; --serif: "Literata", Georgia, serif; --doc-face: Georgia, serif;
+}
+* { box-sizing: border-box; margin: 0; }
+body { background: var(--ground); color: var(--ink); font: 400 16px/25px var(--sans); -webkit-font-smoothing: antialiased; }
+.sketch-label { font: 600 12px/16px var(--sans); color: var(--muted); letter-spacing: 0.02em; padding: 18px max(16px, 3vw) 6px; }
+.frame { background: var(--paper); max-width: 1180px; margin: 0 auto 28px; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+.frame-title { font: 600 13px/18px var(--sans); color: var(--muted); padding: 10px 24px; border-bottom: 1px solid var(--line); background: #fbfbf9; }
+.head { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 14px 24px; border-bottom: 1px solid var(--line); }
+.head .who { font: 600 14px/20px var(--sans); }
+.head .meta { font: 400 13px/18px var(--sans); color: var(--muted); }
+.report { max-width: 66rem; margin: 0 auto; padding: 22px 24px 28px; }
+.top { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 20px; align-items: start; }
+.score { font: 800 44px/1 var(--sans); letter-spacing: -0.03em; }
+.band { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; max-width: 30rem; }
+.band span { font: 400 11px/14px var(--sans); color: var(--muted); padding-top: 6px; border-top: 2px solid var(--line); }
+.band span.on { color: var(--ink); font-weight: 600; border-top-color: var(--ink); }
+.band-note { grid-column: 2; font: 400 12px/17px var(--sans); color: var(--muted); }
+.verdict { font: 400 22px/30px var(--serif); max-width: 34ch; margin-top: 20px; text-wrap: pretty; }
+.writeup { color: var(--pen); font: 400 18px/30px var(--serif); max-width: 62ch; margin-top: 16px; display: grid; gap: 14px; }
+.section-title { font: 700 20px/26px var(--sans); margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--line); }
+.section-lead { font: 400 14px/20px var(--sans); color: var(--muted); margin-top: 4px; }
+.strip { background: var(--sheet); box-shadow: 0 0 0 0.5px rgba(17,21,19,0.2), 0 1px 2px rgba(17,21,19,0.06); padding: 14px 36px; font: 400 16px/24px var(--doc-face); color: var(--doc); border-radius: 2px; }
+.strip mark { background: linear-gradient(transparent 12%, var(--marker) 12%, var(--marker) 88%, transparent 88%); color: inherit; padding: 0 2px; }
+.label { font: 600 13px/18px var(--sans); }
+.small { font: 400 14px/21px var(--sans); }
+.muted { color: var(--muted); }
+.pen-note { font: italic 400 16px/25px var(--serif); color: var(--pen); }
+.link { color: var(--ink); text-decoration: underline; text-decoration-color: var(--pen); text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; background: var(--ink); color: #fff; font: 600 14px/20px var(--sans); padding: 9px 16px; border-radius: 999px; }
+.btn.quiet { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px #808983; }
+.card-stub { display: grid; grid-template-columns: 9rem minmax(0,1fr); gap: 20px; margin-top: 18px; }
+@media (max-width: 700px) {
+  .head, .report { padding-left: 16px; padding-right: 16px; }
+  .band span { font-size: 0; } .band span.on { font-size: 11px; }
+  .verdict { font-size: 22px; line-height: 30px; }
+  .card-stub { grid-template-columns: 1fr; gap: 8px; }
+  .strip { padding: 12px 18px; }
+  .frame { border-radius: 0; border-left: 0; border-right: 0; }
+}

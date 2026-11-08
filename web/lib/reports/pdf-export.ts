@@ -16,6 +16,8 @@ export type WorklistForPdf = {
     filled?: string;
   }>;
   fit: WorklistReport["fit"];
+  /** Lines written to screening software, printed before anything else, as on the web report. */
+  screener_text?: WorklistReport["screener_text"];
 };
 
 export type ReportForPdf = {
@@ -240,6 +242,7 @@ export function normalizeReportForPdf(report: unknown, lineAnswers?: unknown): R
           return filled ? { ...card, filled } : { ...card };
         }),
         fit: report.fit,
+        ...(report.screener_text?.length ? { screener_text: report.screener_text } : {}),
       },
     };
   }

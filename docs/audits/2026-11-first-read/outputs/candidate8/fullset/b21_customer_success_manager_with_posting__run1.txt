@@ -1,0 +1,48 @@
+# b21_customer_success_manager_with_posting, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt (180 words), posting: ../2026-11-live-judgment/resumes/b_posting_customer_success_manager.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5cba8f05; severity check off
+Outcome: report; cost $0.0094; 18.7s
+Case note: The same resume with a posting attached.
+
+## Mostly clear (score 77; model wrote 77)
+## Verdict
+A mid-market customer success manager with a clear account book but few renewal results.
+
+## Write-up
+Your resume points clearly to customer success: you moved from payroll support into managing mid-market accounts at Brightline Payroll Software. A recruiter can see the customers and work you handle, but has to ask what happened at renewal, which matters for the role you're targeting.
+
+The onboarding checklist is a strong model: you built a named tool and show that the whole CS team uses it. Your progression at Brightline is easy to follow, and your current account book and quarterly reviews line up with the posting. The posting asks for a larger book and retention targets that your resume doesn't show.
+
+Start with the current role's renewal line. Add your part in the at-risk strategy and any results you can substantiate, then show where you used the tools in your skills list. For this job, also make the seniority of your QBR attendees clear if you can.
+
+## Cards (5; {"line":4,"keep":1}); severity off; added []
+1. [line] Customer Success Manager, line 2
+   line: "Run quarterly business reviews with customer finance and HR leads"
+   can't tell: The posting asks for QBRs with VP-level sponsors. A recruiter can see who you meet by function, but not their seniority or what you review together.
+   example: Run quarterly business reviews with customer finance and HR leads, including [attendee titles], covering [review topics]
+   question: What were the attendees' titles, and what did you review with them?
+2. [line] Customer Success Manager, line 3
+   line: "Partnered with Sales on renewal strategy for at-risk accounts"
+   can't tell: A recruiter can't tell what you contributed to the strategy or what happened with those renewals. That's especially important for a job accountable for retention.
+   example: Partnered with Sales on renewal strategy for at-risk accounts by [your contribution], with [renewal result]
+   question: What did you contribute to the strategy, and what renewal results can you substantiate?
+3. [keep] Customer Success Manager, line 4
+   line: "Built an onboarding checklist now used by the whole CS team"
+   can't tell: Keep this as a model. It names something you made and tells a recruiter who uses it.
+4. [line] Customer Success Manager, line 5
+   line: "Handle escalations with Support and Product when payroll runs fail"
+   can't tell: The payroll problem and teams involved are clear, but handling an escalation can mean several things. Your part in resolving it is still a question.
+   example: Handle escalations with Support and Product when payroll runs fail by [your actions], resulting in [what changed]
+   question: What do you do during these escalations, and what happens as a result?
+5. [line] Skills
+   line: "Gainsight, Salesforce, Zendesk, QBR planning, renewal forecasting"
+   can't tell: Gainsight and Salesforce are relevant to the posting, but your jobs don't show where you used them. Renewal forecasting is listed here without a corresponding example in your work.
+   example: [What you did] in [tool] for [which accounts or work]
+   question: Where did you use Gainsight and Salesforce, and what renewal forecasting did you do?
+
+## Fit
+Roles: ["Customer Success Manager","Customer Success Manager, Mid-Market"]
+Level: Customer success manager, managing a book of 48 mid-market accounts
+Note: Your resume doesn't show retention or expansion results, VP-level QBR attendees, or BI tool use, all of which the posting asks for. Your current mid-market book, payroll software experience, QBRs and partnership with Sales on at-risk accounts are relevant. The posting's book is larger, so emphasize any comparable work you can substantiate without stretching your ownership.
+Posting: Mid-market customer success role owning a book, renewals and expansion, onboarding, executive QBRs, and at-risk account plans.
+Missing: ["A track record of hitting retention or expansion targets, with numbers you can talk about","a BI tool such as Looker","Experience running QBRs with VP-level sponsors","log and prioritize feature requests"]

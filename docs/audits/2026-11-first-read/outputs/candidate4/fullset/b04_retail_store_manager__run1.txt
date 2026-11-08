@@ -1,0 +1,35 @@
+# b04_retail_store_manager, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_retail_store_manager_1.txt (179 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ee57d907; severity check off
+Outcome: report; cost $0.0070; 14.3s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A store manager with a clear progression and measurable gains in sales, retention, and inventory.
+
+## Write-up
+This is a strong retail management resume! You show your progression at Carolina Home & Garden and connect store results to the changes you made. A recruiter can see both the business you run and how you manage it.
+
+The turnover line is a great model: it names the change in staffing results and the scheduling decision behind it. Experience is in the right place above Education, and the store and team figures make your current role easy to understand.
+
+The main polish is to back up the two-store turnaround claim and add context to the customer satisfaction ranking. Your resume isn't likely to be what holds you back; competition for a particular role will also matter.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] Headline
+   line: "Retail store manager who has turned around two underperforming stores in a 60-store regional chain."
+   can't tell: Your current role shows several gains, but a recruiter can't see the work behind the other turnaround. Put that work under the relevant role so the headline has support.
+   example: Turned around [store] by [what you changed], resulting in [what changed]
+   question: Which other store did you turn around, and what did you change there?
+2. [keep] Store Manager, line 3
+   line: "Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules"
+   can't tell: Keep this as a model. It gives a recruiter the before and after, then names the management decision that produced it.
+3. [line] Store Manager, line 4
+   line: "Ranked 3rd of 60 stores on the 2025 customer satisfaction survey"
+   can't tell: The ranking is strong, but a recruiter can't tell what you did for customers that helped the store earn it.
+   example: Ranked 3rd of 60 stores on the 2025 customer satisfaction survey; [your work on customer satisfaction]
+   question: What did you do for customers that contributed to the ranking?
+
+## Fit
+Roles: ["Store Manager","Assistant Store Manager"]
+Level: Store manager, leads 42 employees including 4 department managers
+Note: Your experience points toward store management roles with responsibility for sales, staffing, and inventory. The progression from department supervisor to store manager is easy to follow.

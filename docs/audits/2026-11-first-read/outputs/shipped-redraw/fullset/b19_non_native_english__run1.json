@@ -1,0 +1,250 @@
+{
+  "case_id": "b19_non_native_english",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/resumes/b_non_native_english.txt",
+  "resume_sha256": "b6a26fe36825d1810e73236e21445163948f02ce6be0d9328e9ccaf50cb59c16",
+  "resume_words": 237,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T17:59:40.352Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5575,
+        "completion_tokens": 1032,
+        "total_tokens": 6607,
+        "cached_prompt_tokens": 4685,
+        "cache_write_prompt_tokens": 887,
+        "reasoning_tokens": 404
+      },
+      "cost_usd": 0.006506,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 12642
+    }
+  ],
+  "resume_prompt_sha256": "0a19c3ee70395ec8fb0584d4bea1b93da77aeca37469b4d47211bc8568544f0c",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 82,
+    "lifted_by_employer": false,
+    "verdict": "An experienced accountant with clear invoice and closing work, plus a few unanswered questions about her responsibilities.",
+    "write_up": [
+      "Your resume tells a clear accounting story, from Senior Accountant in Vietnam to bookkeeping and accounts payable in Houston. A recruiter can see both the volume of invoices you handle and the broader accounting work you've done, making this a likely move-forward for the roles you name.",
+      "The strongest line is your month-end closing improvement: it names the checklist and template you made and shows the change from 12 days to 7. Your experience also sits above education, and your US GAAP certificate adds useful context for your move to US accounting work.",
+      "Let's make the month-end work at Bayou Industrial Supply more concrete, then add what the junior accountants handled on your team. Those details will round out an already solid account of your work."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 4",
+        "line": "- Help the controller for month end closing",
+        "cannot_tell": "A recruiter can't tell which closing tasks were yours. Your earlier closing improvement shows why those details matter.",
+        "example": "Help the controller with month end closing by [tasks]",
+        "question": "Which month-end closing tasks do you handle for the controller?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 2",
+        "line": "- Lead team of 3 junior accountants",
+        "cannot_tell": "You give the team count, but not what the junior accountants handled. Naming their work will show what you led.",
+        "example": "Lead team of 3 junior accountants who [work handled]",
+        "question": "What work did the 3 junior accountants handle under your leadership?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Accountant, line 4",
+        "line": "- Reduce the month end closing from 12 days to 7 days by make new checklist and template",
+        "cannot_tell": "Keep this as a model. It connects your own work to a before-and-after measure without making a recruiter guess.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Specialist",
+        "Senior Accountant"
+      ],
+      "level": "Experienced accounting professional",
+      "note": "Your recent Houston work points toward accounts payable and staff accounting, while your Vietnam role adds general ledger, financial statement and team leadership experience. The US GAAP certificate and QuickBooks experience are relevant to the roles you name.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 82,
+    "lifted_by_employer": false,
+    "verdict": "An experienced accountant with clear invoice and closing work, plus a few unanswered questions about her responsibilities.",
+    "write_up": [
+      "Your resume tells a clear accounting story, from Senior Accountant in Vietnam to bookkeeping and accounts payable in Houston. A recruiter can see both the volume of invoices you handle and the broader accounting work you've done, making this a likely move-forward for the roles you name.",
+      "The strongest line is your month-end closing improvement: it names the checklist and template you made and shows the change from 12 days to 7. Your experience also sits above education, and your US GAAP certificate adds useful context for your move to US accounting work.",
+      "Let's make the month-end work at Bayou Industrial Supply more concrete, then add what the junior accountants handled on your team. Those details will round out an already solid account of your work."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 4",
+        "line": "Help the controller for month end closing",
+        "cannot_tell": "A recruiter can't tell which closing tasks were yours. Your earlier closing improvement shows why those details matter.",
+        "example": "Help the controller with month end closing by [tasks]",
+        "question": "Which month-end closing tasks do you handle for the controller?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 2",
+        "line": "Lead team of 3 junior accountants",
+        "cannot_tell": "You give the team count, but not what the junior accountants handled. Naming their work will show what you led.",
+        "example": "Lead team of 3 junior accountants who [work handled]",
+        "question": "What work did the 3 junior accountants handle under your leadership?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Accountant, line 4",
+        "line": "Reduce the month end closing from 12 days to 7 days by make new checklist and template",
+        "cannot_tell": "Keep this as a model. It connects your own work to a before-and-after measure without making a recruiter guess.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Specialist",
+        "Senior Accountant"
+      ],
+      "level": "Experienced accounting professional",
+      "note": "Your recent Houston work points toward accounts payable and staff accounting, while your Vietnam role adds general ledger, financial statement and team leadership experience. The US GAAP certificate and QuickBooks experience are relevant to the roles you name.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 82
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 82,
+    "lifted_by_employer": false,
+    "verdict": "An experienced accountant with clear invoice and closing work, plus a few unanswered questions about her responsibilities.",
+    "write_up": [
+      "Your resume tells a clear accounting story, from Senior Accountant in Vietnam to bookkeeping and accounts payable in Houston. A recruiter can see both the volume of invoices you handle and the broader accounting work you've done, making this a likely move-forward for the roles you name.",
+      "The strongest line is your month-end closing improvement: it names the checklist and template you made and shows the change from 12 days to 7. Your experience also sits above education, and your US GAAP certificate adds useful context for your move to US accounting work.",
+      "Let's make the month-end work at Bayou Industrial Supply more concrete, then add what the junior accountants handled on your team. Those details will round out an already solid account of your work."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 4",
+        "line": "Help the controller for month end closing",
+        "cannot_tell": "A recruiter can't tell which closing tasks were yours. Your earlier closing improvement shows why those details matter.",
+        "example": "Help the controller with month end closing by [tasks]",
+        "question": "Which month-end closing tasks do you handle for the controller?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 2",
+        "line": "Lead team of 3 junior accountants",
+        "cannot_tell": "You give the team count, but not what the junior accountants handled. Naming their work will show what you led.",
+        "example": "Lead team of 3 junior accountants who [work handled]",
+        "question": "What work did the 3 junior accountants handle under your leadership?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Accountant, line 4",
+        "line": "Reduce the month end closing from 12 days to 7 days by make new checklist and template",
+        "cannot_tell": "Keep this as a model. It connects your own work to a before-and-after measure without making a recruiter guess.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Specialist",
+        "Senior Accountant"
+      ],
+      "level": "Experienced accounting professional",
+      "note": "Your recent Houston work points toward accounts payable and staff accounting, while your Vietnam role adds general ledger, financial statement and team leadership experience. The US GAAP certificate and QuickBooks experience are relevant to the roles you name.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 82
+  },
+  "presentation": {
+    "score": 82,
+    "band": "Mostly clear",
+    "model_score": 82,
+    "lifted_by_employer": false,
+    "verdict": "An experienced accountant with clear invoice and closing work, plus a few unanswered questions about her responsibilities.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 126,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 4",
+        "line": "Help the controller for month end closing",
+        "blanks": 1,
+        "question": "Which month-end closing tasks do you handle for the controller?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 2",
+        "line": "Lead team of 3 junior accountants",
+        "blanks": 1,
+        "question": "What work did the 3 junior accountants handle under your leadership?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Accountant, line 4",
+        "line": "Reduce the month end closing from 12 days to 7 days by make new checklist and template",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "line": 2,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Specialist",
+        "Senior Accountant"
+      ],
+      "level": "Experienced accounting professional",
+      "note": "Your recent Houston work points toward accounts payable and staff accounting, while your Vietnam role adds general ledger, financial statement and team leadership experience. The US GAAP certificate and QuickBooks experience are relevant to the roles you name.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.006506,
+  "latency_ms": 12644
+}

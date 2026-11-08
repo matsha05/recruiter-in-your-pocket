@@ -1,0 +1,30 @@
+# b18_military_to_civilian, run 1
+Resume: ../2026-11-live-judgment/resumes/b_military_to_civilian.txt (268 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 338ac33a; severity check off
+Outcome: report; cost $0.0063; 11.5s
+
+## Clear and specific (score 90; model wrote 90)
+## Verdict
+An Army logistics and maintenance leader whose results translate well to operations supervision.
+
+## Write-up
+Your resume makes a strong case for operations supervision! It follows your progression from mechanic to Platoon Sergeant and shows the people, equipment, and budgets you managed, along with what changed under your leadership.
+
+The vehicle readiness line is the model: it gives the starting and ending rates and names the changes you made to get there. Your supply chain degree is clearly marked as in progress, and your recent Army work is easy to follow.
+
+Add a little detail about what logistics support included during the field exercises, then let the rest of this resume do its work. Your resume isn't likely to be the thing holding you back on its own; the job's requirements and how competitive it is will matter too.
+
+## Cards (2; {"line":1,"keep":1}); severity off; added []
+1. [line] Platoon Sergeant, line 3
+   line: "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises"
+   can't tell: The battalion and exercises give a recruiter a sense of how big the job was. What did the logistics support include? That detail can help a civilian recruiter connect the work to an operations role.
+   example: Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises, including [support provided]
+   question: What support did you plan and execute for those exercises?
+2. [keep] Platoon Sergeant, line 4
+   line: "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule"
+   can't tell: Keep this line as a model. It ties a measurable change to two concrete parts of your job, so a recruiter can see both the result and your part in it.
+
+## Fit
+Roles: ["operations supervisor","Platoon Sergeant (E-7), Forward Support Company"]
+Level: Supervisor, led 38 soldiers with 6 direct-report sergeants
+Note: Your maintenance, inventory, and team leadership work points toward operations supervision. Naming the support provided during field exercises would make that work more accessible to civilian recruiters.

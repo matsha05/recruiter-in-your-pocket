@@ -1,0 +1,56 @@
+# b32_logistics_dispatcher, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_logistics_dispatcher_1.txt (105 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 288eceb5; severity check off
+Outcome: report; cost $0.0088; 18.6s
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+A dispatcher with a clear career progression, but too little detail about the dispatch work.
+
+## Write-up
+You moved from warehouse work into dispatch at Crossroads Regional Freight, where you're now a Dispatcher. This is a common resume pattern: the jobs are easy to follow, but the current duties could describe many dispatchers. Without a sense of how much you handle or what the work involves, a recruiter may move on.
+
+Your line about tracking loads and updating customers is the best model: it names both the work and who depends on it. Your experience is in the right order, with the current role first. That line still needs more context about the loads you handle.
+
+Let's start with the current Dispatcher role. Add the number of drivers or loads you handle if you can confirm it, then show what you do when a driver has an issue and how you work with the safety team. Those details will give a recruiter a better picture of your day.
+
+## Cards (7; {"structure":1,"line":6}); severity off; added []
+1. [structure] Crossroads Regional Freight
+   line: "The resume doesn't say how large Crossroads Regional Freight is."
+   can't tell: A recruiter may not know the company. A short description of its operation, if you can confirm it, would give your dispatch work context.
+   question: What can you confirm about the company's fleet or operation?
+2. [line] Dispatcher, line 1
+   line: "Responsible for dispatching drivers"
+   can't tell: A recruiter can't tell how many drivers you dispatch or how often. That's a useful measure for a dispatcher role.
+   example: Responsible for dispatching [number] drivers [frequency]
+   question: How many drivers do you dispatch, and how often?
+3. [line] Dispatcher, line 2
+   line: "Track loads and update customers on delivery status"
+   can't tell: This names two parts of the job, but not how many loads you track or how often you update customers.
+   example: Track [number] loads [frequency] and update customers on delivery status [frequency]
+   question: How many loads do you track, and how often do you update customers?
+4. [line] Dispatcher, line 3
+   line: "Handle driver issues on the road"
+   can't tell: Driver issues can cover a lot. A recruiter can't tell which ones you handle or what you do about them.
+   example: Handle [driver issues] on the road by [what you do]
+   question: What kinds of driver issues do you handle, and what do you do?
+5. [line] Dispatcher, line 4
+   line: "Use TMS software daily"
+   can't tell: You've named McLeod TMS in Skills. What a recruiter still can't see is what you use TMS software to do each day.
+   example: Use TMS software daily to [tasks]
+   question: Which daily tasks do you use TMS software for?
+6. [line] Dispatcher, line 5
+   line: "Work with the safety team on driver hours"
+   can't tell: The safety team and driver hours give this a useful starting point. Your part in that work is still unclear.
+   example: Work with the safety team on driver hours by [what you do]
+   question: What do you do with the safety team on driver hours?
+7. [line] Dispatch Assistant, line 2
+   line: "Helped dispatchers with paperwork"
+   can't tell: The paperwork could mean several things. Naming the documents and your part in handling them will show what you learned in the assistant role.
+   example: Helped dispatchers with [documents] by [what you did]
+   question: Which documents did you help with, and what did you do with them?
+
+## Fit
+Roles: ["Dispatcher","Dispatch Assistant"]
+Level: mid-level, current Dispatcher role after a Dispatch Assistant role
+Note: Your experience points toward regional trucking dispatch. The move from assistant to dispatcher is worth keeping easy to see.

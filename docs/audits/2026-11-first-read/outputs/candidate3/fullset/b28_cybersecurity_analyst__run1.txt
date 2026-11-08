@@ -1,0 +1,30 @@
+# b28_cybersecurity_analyst, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_cybersecurity_analyst_1.txt (154 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 01c2028d; severity check off
+Outcome: report; cost $0.0079; 16.4s
+
+## Clear and specific (score 87; model wrote 87)
+## Verdict
+A senior security analyst with detection and incident response work tied to measurable improvements.
+
+## Write-up
+Your detection work stands out: you connect the rules you built at Capital Ridge Bank to fewer false-positive alerts! Alongside incident response and your earlier SOC work, it gives a recruiter a clear picture of where you fit.
+
+The Splunk rules line is a great model because it names the work, the framework and what changed. Your experience leads, and the move from client environments to bank detection and response is easy to follow.
+
+Add a little context about the bank and your responsibilities, then leave the strong work alone. Your resume is unlikely to be the reason you don't get a callback; competition for a particular role still matters.
+
+## Cards (2; {"line":1,"keep":1}); severity off; added []
+1. [line] Senior Security Analyst, Detection and Response
+   line: "Senior Security Analyst, Detection and Response"
+   can't tell: A recruiter can't tell how large Capital Ridge Bank is or whether your senior role includes team or budget responsibility. That context helps distinguish your remit, even if you're an individual contributor.
+   example: Senior Security Analyst, Detection and Response, Capital Ridge Bank, [bank size]; [team or budget responsibility]
+   question: How large is Capital Ridge Bank, and what team or budget are you responsible for, if any?
+2. [keep] Senior Security Analyst, Detection and Response, line 1
+   line: "Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%"
+   can't tell: Keep this as your model. It gives a recruiter the tools, the scale of the work and the change it produced without making them guess.
+
+## Fit
+Roles: ["Senior Security Analyst, Detection and Response","Security Operations Analyst"]
+Level: Senior individual contributor, mentors 2 analysts
+Note: Your recent work points toward senior detection and response roles in financial services. Your earlier managed security work also shows experience across client environments.

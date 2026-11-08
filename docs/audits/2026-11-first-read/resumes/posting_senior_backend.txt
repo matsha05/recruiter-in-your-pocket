@@ -1,0 +1,18 @@
+Senior Backend Engineer, Money Movement
+Cobalt Pay (payments infrastructure, Series D), Seattle or Remote (US)
+
+About the role
+You'll own services that move money: payouts, refunds and the ledger behind them. You'll design for correctness first, run what you build, and raise the bar for reliability across the team.
+
+What you'll do
+- Design and build high-throughput, idempotent payment services in Go
+- Own the reliability of the payouts path end to end, including on-call
+- Lead technical design reviews and mentor engineers on the team
+- Partner with Finance and Risk on reconciliation and controls
+
+What we're looking for
+- 5+ years building backend systems, ideally in payments or financial services
+- Strong Go or Java, and deep experience with PostgreSQL
+- Experience with event-driven systems such as Kafka
+- A record of leading migrations or reliability work on production systems
+- Bonus: experience with ledgers, double-entry accounting or settlement

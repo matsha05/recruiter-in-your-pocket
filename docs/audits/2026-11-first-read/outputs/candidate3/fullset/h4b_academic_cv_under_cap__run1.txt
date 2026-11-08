@@ -1,0 +1,35 @@
+# h4b_academic_cv_under_cap, run 1
+Resume: ../2026-11-live-judgment/resumes/h4b_academic_cv_under_cap.txt (3253 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 01c2028d; severity check off
+Outcome: report; cost $0.0247; 14.5s
+Case note: The same CV trimmed under the cap, to see what the model does with a CV shape.
+
+## Mostly clear (score 79; model wrote 79)
+## Verdict
+A tenured molecular biology professor with strong funding and mentoring, but publication entries that need checking.
+
+## Write-up
+Your resume points to an Associate Professor role: you've progressed from postdoctoral work to tenure at Riverbend State, with NIH funding, teaching and mentoring alongside your research. A recruiter could move it forward, but repeated publication entries raise a question about the record that matters in a faculty search.
+
+Your MB 310 redesign is a great model: it names the change and the evaluations that followed. Your grants also show your role and award amounts. Education sits above your appointments; putting the appointments first would bring your current work forward.
+
+Let's start by checking the publication list against the original records. Some entries have the same authors, title and journal in different years. Then move your appointments up and leave the MB 310 line as it is.
+
+## Cards (3; {"structure":1,"line":1,"keep":1}); severity off; added []
+1. [structure] Structure
+   line: "Education sits above Academic Appointments."
+   can't tell: Your current tenured appointment comes after your degrees. Putting Academic Appointments first lets a recruiter see your current role sooner.
+   question: Can you move Academic Appointments above Education?
+2. [line] Publications, entry 1
+   line: "1. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2026). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 107(2), 1037-1052."
+   can't tell: This has the same authors, title and journal as entries dated 2024, 2021 and 2018. A recruiter can't tell from the list whether these are distinct publications or repeated entries. Check the original records before sending it.
+   example: Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. ([publication year]). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, [volume and issue], [pages or article number].
+   question: What are the original citation details for these entries?
+3. [keep] Teaching, course redesign
+   line: "Course redesign: converted MB 310 to a flipped format in 2019; student evaluations rose from 3.9 to 4.5 of 5 over the following three offerings."
+   can't tell: Keep this. It pairs your own course change with the evaluation figures and their timeframe, without claiming more than the figures show.
+
+## Fit
+Roles: ["Associate Professor (with tenure)"]
+Level: Senior faculty, tenured Associate Professor and grant PI
+Note: Your experience points to molecular and cell biology faculty roles combining funded research, teaching and mentoring. The publication list needs a careful check because several entries repeat the same authors, titles and journals across different years.

@@ -1,0 +1,219 @@
+{
+  "case_id": "b25_fpa_analyst_strong",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_fpa_analyst_strong_1.txt",
+  "resume_sha256": "e8604c5c03930c475f944d36090e8f6db4af1ffc417c634667c5450ff68f9cd2",
+  "resume_words": 138,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:48:56.165Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5772,
+        "completion_tokens": 1183,
+        "total_tokens": 6955,
+        "cached_prompt_tokens": 5142,
+        "cache_write_prompt_tokens": 627,
+        "reasoning_tokens": 584
+      },
+      "cost_usd": 0.00695885,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 14691
+    }
+  ],
+  "resume_prompt_sha256": "5cba8f052feab05101dfe43138d650d9cc25bac9a46f7e3aa35d9efb9d96fad4",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst whose budgeting, forecasting, and pricing work comes with convincing numbers.",
+    "write_up": [
+      "This is a strong FP&A resume! At Lakeshore Foods, you connect a divisional budget, a more accurate forecast, and pricing work to numbers a recruiter can understand. Your earlier Midway Brands role adds reporting and automation experience.",
+      "The driver-based forecast is the model to follow: it names what you built and shows the change in forecast error. Experience also leads the resume, and the move from Financial Analyst to Senior Financial Analyst is easy to follow.",
+      "Your resume doesn't need a major overhaul. Make your part in the 2025 pricing review a little more explicit, then keep the rest focused on the work and its results. How competitive an FP&A opening is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "- Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "Keep this as your model. It gives a recruiter both the forecast method and a before-and-after measure.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Financial Analyst, FP&A, line 3",
+        "line": "- Model price changes for 60 products; a 2025 pricing review added $3.1M in gross margin",
+        "cannot_tell": "The product modeling and the pricing review are both substantial, but a recruiter can't tell what part you played in that review. Connect your work to the review without claiming more than you did.",
+        "example": "Model price changes for 60 products; [what you did] for a 2025 pricing review that added $3.1M in gross margin",
+        "question": "What did you do for the 2025 pricing review?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A",
+        "Financial Analyst"
+      ],
+      "why": "Your current title and your work on the operating budget, forecast, and pricing all point to senior FP&A roles.",
+      "level": "Senior analyst, owning a $240M annual operating budget",
+      "note": "Your experience points to senior FP&A roles involving budgeting, forecasting, and pricing. The resume shows senior analytical ownership without claiming people management.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst whose budgeting, forecasting, and pricing work comes with convincing numbers.",
+    "write_up": [
+      "This is a strong FP&A resume! At Lakeshore Foods, you connect a divisional budget, a more accurate forecast, and pricing work to numbers a recruiter can understand. Your earlier Midway Brands role adds reporting and automation experience.",
+      "The driver-based forecast is the model to follow: it names what you built and shows the change in forecast error. Experience also leads the resume, and the move from Financial Analyst to Senior Financial Analyst is easy to follow.",
+      "Your resume doesn't need a major overhaul. Make your part in the 2025 pricing review a little more explicit, then keep the rest focused on the work and its results. How competitive an FP&A opening is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "Keep this as your model. It gives a recruiter both the forecast method and a before-and-after measure.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Financial Analyst, FP&A, line 3",
+        "line": "Model price changes for 60 products; a 2025 pricing review added $3.1M in gross margin",
+        "cannot_tell": "The product modeling and the pricing review are both substantial, but a recruiter can't tell what part you played in that review. Connect your work to the review without claiming more than you did.",
+        "example": "Model price changes for 60 products; [what you did] for a 2025 pricing review that added $3.1M in gross margin",
+        "question": "What did you do for the 2025 pricing review?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A",
+        "Financial Analyst"
+      ],
+      "why": "Your current title and your work on the operating budget, forecast, and pricing all point to senior FP&A roles.",
+      "level": "Senior analyst, owning a $240M annual operating budget",
+      "note": "Your experience points to senior FP&A roles involving budgeting, forecasting, and pricing. The resume shows senior analytical ownership without claiming people management.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 90
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst whose budgeting, forecasting, and pricing work comes with convincing numbers.",
+    "write_up": [
+      "This is a strong FP&A resume! At Lakeshore Foods, you connect a divisional budget, a more accurate forecast, and pricing work to numbers a recruiter can understand. Your earlier Midway Brands role adds reporting and automation experience.",
+      "The driver-based forecast is the model to follow: it names what you built and shows the change in forecast error. Experience also leads the resume, and the move from Financial Analyst to Senior Financial Analyst is easy to follow.",
+      "Your resume doesn't need a major overhaul. Make your part in the 2025 pricing review a little more explicit, then keep the rest focused on the work and its results. How competitive an FP&A opening is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "Keep this as your model. It gives a recruiter both the forecast method and a before-and-after measure.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Financial Analyst, FP&A, line 3",
+        "line": "Model price changes for 60 products; a 2025 pricing review added $3.1M in gross margin",
+        "cannot_tell": "The product modeling and the pricing review are both substantial, but a recruiter can't tell what part you played in that review. Connect your work to the review without claiming more than you did.",
+        "example": "Model price changes for 60 products; [what you did] for a 2025 pricing review that added $3.1M in gross margin",
+        "question": "What did you do for the 2025 pricing review?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A",
+        "Financial Analyst"
+      ],
+      "why": "Your current title and your work on the operating budget, forecast, and pricing all point to senior FP&A roles.",
+      "level": "Senior analyst, owning a $240M annual operating budget",
+      "note": "Your experience points to senior FP&A roles involving budgeting, forecasting, and pricing. The resume shows senior analytical ownership without claiming people management.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 90
+  },
+  "presentation": {
+    "score": 90,
+    "band": "Clear and specific",
+    "model_score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst whose budgeting, forecasting, and pricing work comes with convincing numbers.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 115,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Financial Analyst, FP&A, line 3",
+        "line": "Model price changes for 60 products; a 2025 pricing review added $3.1M in gross margin",
+        "blanks": 1,
+        "question": "What did you do for the 2025 pricing review?"
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "keep": 1,
+      "line": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A",
+        "Financial Analyst"
+      ],
+      "why": "Your current title and your work on the operating budget, forecast, and pricing all point to senior FP&A roles.",
+      "level": "Senior analyst, owning a $240M annual operating budget",
+      "note": "Your experience points to senior FP&A roles involving budgeting, forecasting, and pricing. The resume shows senior analytical ownership without claiming people management.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00695885,
+  "latency_ms": 14694
+}

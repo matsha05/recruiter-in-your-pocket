@@ -1,0 +1,183 @@
+{
+  "case_id": "b27_backend_engineer_senior",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_backend_engineer_senior_1.txt",
+  "resume_sha256": "92a71c8e81a037980a571ba4d2007cab76d8f9f04b6517e1ff23e45a0383be59",
+  "resume_words": 190,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:23:48.997Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5994,
+        "completion_tokens": 746,
+        "total_tokens": 6740,
+        "cached_prompt_tokens": 5222,
+        "cache_write_prompt_tokens": 769,
+        "reasoning_tokens": 318
+      },
+      "cost_usd": 0.00495535,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 10715
+    }
+  ],
+  "resume_prompt_sha256": "5827dcf1b71d049c0db123f36eb5d0286f3c433f3e55a732f42012b2b93288f6",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 92,
+    "lifted_by_employer": false,
+    "verdict": "Senior payments engineer with clear technical results and experience leading engineers through an audit.",
+    "write_up": [
+      "Your resume makes a strong case for senior backend payments work. At Tidewater, you connect service design, reliability and audit leadership to concrete results, while the Northwind role shows the billing work that came before it.",
+      "The ledger line is a great model: it names what you built and shows the drop in reconciliation breaks. Your experience also leads the education and skills sections, so a recruiter gets to the work first.",
+      "I'd keep this focused on payments and ledger roles. Your resume is unlikely to be what stands between you and a callback; how competitive a particular job is will still matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "- Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10",
+        "cannot_tell": "Keep this as a model: it puts the service you built next to a before-and-after measure, so the result is easy to grasp.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Software Engineer, Payments Platform"
+      ],
+      "why": "Your headline and Tidewater role focus on backend payment and ledger systems, with Go services and measurable reliability work.",
+      "level": "Senior engineer, led a team of 5 engineers through the PCI DSS 4.0 audit",
+      "note": "Your experience points toward senior backend roles in payments and billing. The service migration, ledger and audit work give you several strong examples to discuss.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 92,
+    "lifted_by_employer": false,
+    "verdict": "Senior payments engineer with clear technical results and experience leading engineers through an audit.",
+    "write_up": [
+      "Your resume makes a strong case for senior backend payments work. At Tidewater, you connect service design, reliability and audit leadership to concrete results, while the Northwind role shows the billing work that came before it.",
+      "The ledger line is a great model: it names what you built and shows the drop in reconciliation breaks. Your experience also leads the education and skills sections, so a recruiter gets to the work first.",
+      "I'd keep this focused on payments and ledger roles. Your resume is unlikely to be what stands between you and a callback; how competitive a particular job is will still matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10",
+        "cannot_tell": "Keep this as a model: it puts the service you built next to a before-and-after measure, so the result is easy to grasp.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Software Engineer, Payments Platform"
+      ],
+      "why": "Your headline and Tidewater role focus on backend payment and ledger systems, with Go services and measurable reliability work.",
+      "level": "Senior engineer, led a team of 5 engineers through the PCI DSS 4.0 audit",
+      "note": "Your experience points toward senior backend roles in payments and billing. The service migration, ledger and audit work give you several strong examples to discuss.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 92
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 92,
+    "lifted_by_employer": false,
+    "verdict": "Senior payments engineer with clear technical results and experience leading engineers through an audit.",
+    "write_up": [
+      "Your resume makes a strong case for senior backend payments work. At Tidewater, you connect service design, reliability and audit leadership to concrete results, while the Northwind role shows the billing work that came before it.",
+      "The ledger line is a great model: it names what you built and shows the drop in reconciliation breaks. Your experience also leads the education and skills sections, so a recruiter gets to the work first.",
+      "I'd keep this focused on payments and ledger roles. Your resume is unlikely to be what stands between you and a callback; how competitive a particular job is will still matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10",
+        "cannot_tell": "Keep this as a model: it puts the service you built next to a before-and-after measure, so the result is easy to grasp.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Software Engineer, Payments Platform"
+      ],
+      "why": "Your headline and Tidewater role focus on backend payment and ledger systems, with Go services and measurable reliability work.",
+      "level": "Senior engineer, led a team of 5 engineers through the PCI DSS 4.0 audit",
+      "note": "Your experience points toward senior backend roles in payments and billing. The service migration, ledger and audit work give you several strong examples to discuss.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 92
+  },
+  "presentation": {
+    "score": 92,
+    "band": "Clear and specific",
+    "model_score": 92,
+    "lifted_by_employer": false,
+    "verdict": "Senior payments engineer with clear technical results and experience leading engineers through an audit.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 103,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 1,
+    "kinds": {
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Software Engineer, Payments Platform"
+      ],
+      "why": "Your headline and Tidewater role focus on backend payment and ledger systems, with Go services and measurable reliability work.",
+      "level": "Senior engineer, led a team of 5 engineers through the PCI DSS 4.0 audit",
+      "note": "Your experience points toward senior backend roles in payments and billing. The service migration, ledger and audit work give you several strong examples to discuss.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00495535,
+  "latency_ms": 10723
+}

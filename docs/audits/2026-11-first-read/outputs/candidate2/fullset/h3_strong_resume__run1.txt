@@ -1,0 +1,41 @@
+# h3_strong_resume, run 1
+Resume: ../2026-11-live-judgment/resumes/h3_strong_resume.txt (311 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 41bcacc0; severity check off
+Outcome: report; cost $0.0079; 15.4s
+Case note: Senior product manager whose resume is already good.
+
+## Clear and specific (score 89; model wrote 89)
+## Verdict
+A senior payments product manager with a track record of launches, revenue growth, and measurable improvements.
+
+## Write-up
+Your resume makes a strong case for senior payments product roles! At Northwind, you connect product decisions to customer adoption, revenue, and faster launches, while showing the teams behind the work.
+
+The payment failure line is a standout: it names the change you led, the before and after, and the estimated revenue recovered for customers. Your experience leads the resume, and the progression from associate product manager to senior product manager is easy to follow.
+
+This resume is unlikely to be the thing holding you back. Let's add who you report to and the timing behind two figures; after that, the competitiveness of the roles you pursue and referrals can matter too.
+
+## Cards (4; {"line":3,"keep":1}); severity off; added []
+1. [line] Senior Product Manager, Payments Platform, line 1
+   line: "Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers"
+   can't tell: The teams and customers are right there. A recruiter looking at a senior role may also want to know who you report to.
+   example: Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers, reporting to [who you report to]
+   question: Who do you report to?
+2. [line] Senior Product Manager, Payments Platform, line 2
+   line: "Led the launch of Northwind Pay, which grew from $0 to $48M ARR in 26 months and reached 31% attach rate on new accounts"
+   can't tell: The ARR growth has a time frame, but it's not clear which period the new-account attach rate covers.
+   example: Led the launch of Northwind Pay, which grew from $0 to $48M ARR in 26 months and reached 31% attach rate on new accounts over [period]
+   question: What period does the 31% attach rate cover?
+3. [keep] Senior Product Manager, Payments Platform, line 3
+   line: "Cut payment failure rate from 4.1% to 1.6% by leading the move to network tokenization and smart retries, recovering an estimated $6.2M in annual revenue for customers"
+   can't tell: Keep this as a model. It connects the technical work to a business result and labels the revenue figure as an estimate.
+4. [line] Product Manager, Billing, line 2
+   line: "Reduced invoice disputes 38% by redesigning the invoice detail page after 40 customer interviews"
+   can't tell: The interviews and redesign make the work concrete. The period over which disputes fell is the remaining question.
+   example: Reduced invoice disputes 38% over [period] by redesigning the invoice detail page after 40 customer interviews
+   question: Over what period did invoice disputes fall 38%?
+
+## Fit
+Roles: ["Senior Product Manager, Payments Platform","Product Manager, Billing"]
+Level: Senior product manager, owns a platform roadmap and manages 3 product managers
+Note: Your experience points toward senior product roles in payments and billing. The Northwind work shows both product leadership and measurable customer and business results.

@@ -1,0 +1,41 @@
+# b13_marketing_vp_elite, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/golden/synth_marketing_manager_vp_elite_1766960221358.txt (730 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 01c2028d; severity check off
+Outcome: report; cost $0.0121; 20.8s
+Case note: Executive, strong (golden).
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A marketing executive whose budgets, teams, and business results make the work easy to grasp.
+
+## Write-up
+You've built a strong CMO resume! Your path from NexGen Solutions to Novara Technologies shows marketing leadership with the team, budget, and business results attached. A recruiter can see both what you owned and why the work mattered.
+
+The customer advocacy line at Viridian is a good model: it names the program you led and ties it to retention and upsell revenue. Your current role also gives a recruiter a useful picture of the organization and the SaaS platform it serves.
+
+Let's add a little more about what changed in the launch process and acquisition work at Novara. Those details would strengthen an already strong resume. As it stands, your resume is unlikely to be the reason you don't get a callback; the competitiveness of the role matters too.
+
+## Cards (4; {"line":3,"keep":1}); severity off; added []
+1. [line] Chief Marketing Officer, line 3
+   line: "I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years."
+   can't tell: The results are substantial, but a recruiter can't see what changed in the launch process. Naming that change would show how you got there.
+   example: I decided to revamp the product launch process by [process change], shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.
+   question: What did you change in the product launch process?
+2. [line] Chief Marketing Officer, line 4
+   line: "I led a cross-functional team of 12 marketing, analytics, and creative professionals to optimize customer acquisition cost (CAC), reducing it by 22% and improving lifetime value (LTV) metrics across key segments."
+   can't tell: The team and the reduction are clear. What did the team change to bring acquisition costs down?
+   example: I led a cross-functional team of 12 marketing, analytics, and creative professionals to optimize customer acquisition cost (CAC) through [acquisition changes], reducing it by 22% and improving lifetime value (LTV) metrics across key segments.
+   question: What did the team change to reduce customer acquisition cost?
+3. [line] Chief Marketing Officer, line 6
+   line: "I partnered closely with sales and product leadership to align go-to-market strategies that expanded market share by 18% in highly competitive verticals such as fintech and healthcare."
+   can't tell: A recruiter can see who you partnered with and what grew, but not what changed in the go-to-market strategies.
+   example: I partnered closely with sales and product leadership to align go-to-market strategies through [go-to-market changes], expanding market share by 18% in highly competitive verticals such as fintech and healthcare.
+   question: What did you and the sales and product leaders change in the go-to-market strategies?
+4. [keep] Vice President, Global Marketing, line 3
+   line: "I led the development and launch of a new customer advocacy program that increased customer retention by 12% and generated $4M in upsell revenue within 18 months."
+   can't tell: Keep this as a model. It gives the recruiter a named piece of work, your part in it, and two business measures without making them guess.
+
+## Fit
+Roles: ["Chief Marketing Officer","Vice President, Global Marketing"]
+Level: Executive, leads a 45-person global marketing organization and manages a $25M annual budget
+Note: Your experience points toward senior marketing leadership in SaaS and enterprise technology. The resume shows responsibility for brand, demand generation, and cross-functional go-to-market work.

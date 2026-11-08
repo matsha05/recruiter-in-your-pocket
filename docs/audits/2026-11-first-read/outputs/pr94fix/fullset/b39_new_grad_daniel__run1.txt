@@ -1,0 +1,75 @@
+# b39_new_grad_daniel, run 1
+Resume: ../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/1-new-grad-daniel.txt (354 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 288eceb5; severity check off
+Outcome: report; cost $0.0126; 24.6s
+Case note: New grad (bar persona).
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+A new computer science graduate with relevant software projects, but an internship that leaves too much work unnamed.
+
+## Write-up
+This is a common early-career resume: your Cardinal Health internship and campus projects point toward Software Engineer roles, but the internship often lists activities instead of the work behind them. A recruiter can see the technologies you used, yet has to guess which features and fixes were yours. That makes it less likely to stand out in a pile.
+
+The Personal Finance Tracker line is a good model: it names the application, what it does, and the tools you used. Your education is recent and relevant, but your experience belongs above it now that you also have help desk work and an internship.
+
+Let's start with the first Cardinal Health line. Name a feature you developed, then make the tests, fixes, and requirements work just as concrete. Keep the project lines that already tell a recruiter what you built.
+
+## Cards (11; {"line":9,"structure":1,"keep":1}); severity off; added []
+1. [line] Objective
+   line: "Motivated and detail-oriented Computer Science graduate seeking a Software Engineer position where I can leverage my technical skills and passion for problem solving to contribute to a dynamic team."
+   can't tell: This names the job you want, but the broad claims don't distinguish you from other graduates. Lead with the software work you already have instead.
+   example: Computer Science graduate seeking a Software Engineer position, with experience developing [feature] for an internal inventory management web application using React and Spring Boot.
+   question: Which inventory feature best represents the work you want to do as a Software Engineer?
+2. [structure] Section order
+   line: "Education sits above Experience."
+   can't tell: Your degree matters, but the Cardinal Health internship is the first thing a software recruiter will want to find. Put Experience above Education so that work leads.
+   question: Can you move Experience above Education?
+3. [line] Software Engineering Intern, line 1
+   line: "Responsible for developing features for an internal inventory management web application using React and Spring Boot"
+   can't tell: React and Spring Boot give this useful context, but a recruiter can't tell what the features did. Name one you developed and who used it.
+   example: Developed [feature] for [users] in an internal inventory management web application using React and Spring Boot.
+   question: Which feature did you develop, and who used it?
+4. [line] Software Engineering Intern, line 2
+   line: "Participated in daily stand-ups and sprint planning meetings as part of an Agile team"
+   can't tell: These meetings are part of the routine, but they don't show what you contributed. Use this space for a concrete contribution or cut the line.
+   example: Participated in daily stand-ups and sprint planning meetings as part of an Agile team, contributing [contribution].
+   question: What did you contribute during stand-ups or sprint planning?
+5. [line] Software Engineering Intern, line 3
+   line: "Wrote unit tests to improve code quality and reliability"
+   can't tell: The tests matter, but the line doesn't say what they covered. Naming the code or behavior you tested would give the work substance.
+   example: Wrote unit tests for [code or behavior tested] to improve code quality and reliability.
+   question: What code or behavior did your unit tests cover?
+6. [line] Software Engineering Intern, line 4
+   line: "Collaborated with cross-functional teams to gather requirements and deliver solutions"
+   can't tell: A recruiter can't tell which requirements you gathered or what solution you helped deliver. Pick one example and name your part.
+   example: Collaborated with [teams] to gather requirements for [solution] and deliver [your contribution].
+   question: Which teams did you work with, and what did you contribute to a solution?
+7. [line] Software Engineering Intern, line 5
+   line: "Fixed bugs and performed code reviews"
+   can't tell: Both are useful engineering work, but neither says what you worked on. Name a bug you fixed or the code you reviewed.
+   example: Fixed [bug] and performed code reviews for [code reviewed].
+   question: What bug did you fix, and what code did you review?
+8. [line] IT Help Desk Assistant, line 1
+   line: "Provided technical support to students and faculty for hardware and software issues"
+   can't tell: The people you supported are clear, but the issues are broad. A concrete problem would show what that support involved.
+   example: Provided technical support to students and faculty for [hardware or software issues].
+   question: What kinds of hardware or software issues did you handle?
+9. [line] IT Help Desk Assistant, line 2
+   line: "Resolved tickets in a timely manner and documented solutions"
+   can't tell: A recruiter can't tell how many tickets you handled or what they covered. Add a count and time period if you know them, along with the kinds of issues.
+   example: Resolved [number] tickets [per time period] for [issues] and documented solutions.
+   question: How many tickets did you handle in a typical period, and what issues did they cover?
+10. [line] IT Help Desk Assistant, line 3
+   line: "Assisted with setting up laptops and classroom technology"
+   can't tell: The equipment is named, but your part in setting it up isn't. Say what you assisted with so a recruiter can picture the work.
+   example: Assisted with [setup task] for laptops and classroom technology.
+   question: What setup tasks did you assist with?
+11. [keep] Personal Finance Tracker, line 1
+   line: "Built a Python application to track expenses and visualize spending with matplotlib"
+   can't tell: Keep this one. It connects what you built to the job it does without leaning on a vague claim.
+
+## Fit
+Roles: ["Software Engineer","Software Engineering Intern"]
+Level: entry level, recent graduate with a software engineering internship
+Note: Your internship and projects point toward entry-level software development, particularly web application work. The help desk role also shows experience supporting people with technical problems.

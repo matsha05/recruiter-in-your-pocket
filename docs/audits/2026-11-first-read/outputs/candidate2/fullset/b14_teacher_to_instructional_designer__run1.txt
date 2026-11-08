@@ -1,0 +1,36 @@
+# b14_teacher_to_instructional_designer, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_teacher_to_instructional_designer_1.txt (164 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 41bcacc0; severity check off
+Outcome: report; cost $0.0073; 15.7s
+Case note: Career changer.
+
+## Mostly clear (score 77; model wrote 77)
+## Verdict
+A mathematics teacher with a clear classroom record and a growing digital learning portfolio.
+
+## Write-up
+Your resume points to mathematics teaching, with classroom work at Cedar Creek High School and Pinewood Middle School. It also shows a move into digital learning through the Canvas module and your certificate in progress. A recruiter can follow the teaching work without having to guess what subjects you cover.
+
+The opening Cedar Creek line is your model: it names both courses and gives the number of sections and students. One teaching detail is missing, though: your resume doesn't list the grades you teach at Cedar Creek or a teaching certification.
+
+Let's add those details first, then give the professional learning community line a little more substance. Your Canvas module already gives the digital learning work a concrete place in your teaching story.
+
+## Cards (3; {"structure":1,"keep":1,"line":1}); severity off; added []
+1. [structure] Teaching details
+   line: "The resume doesn't list the grades taught at Cedar Creek or a teaching certification."
+   can't tell: A recruiter can see the courses and school level, but not the grades you teach or whether you hold a teaching certification. Those details matter for teaching roles.
+   example: Teach Algebra II and AP Statistics to five sections of 28 to 32 students in [grade levels]; [teaching certification and state]
+   question: Which grades do you teach, and what teaching certification and state do you hold, if any?
+2. [keep] Cedar Creek, line 1
+   line: "Teach Algebra II and AP Statistics to five sections of 28 to 32 students"
+   can't tell: Keep this line as a model. It pairs the subjects with the classroom numbers, so a recruiter can picture your teaching load.
+3. [line] Cedar Creek, line 3
+   line: "Lead the math department's professional learning community"
+   can't tell: A recruiter can see that you lead the group, but not what the group works on. Naming its work would show what your leadership looks like.
+   example: Lead the math department's professional learning community in [work the group does], producing [deliverable]
+   question: What does the group work on, and what has it produced?
+
+## Fit
+Roles: ["Mathematics Teacher"]
+Level: Experienced teacher, leads the math department's professional learning community
+Note: Your experience points most directly to mathematics teaching. The Canvas module and certificate in progress also show digital learning design work.

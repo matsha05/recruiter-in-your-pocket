@@ -1,0 +1,246 @@
+{
+  "case_id": "b03_welder",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/resumes/b_welder.txt",
+  "resume_sha256": "b9732bf7b68078f8e956a420ac5c412e65809428f2714874ab4044ea5bd317f8",
+  "resume_words": 195,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T19:03:51.058Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5850,
+        "completion_tokens": 1086,
+        "total_tokens": 6936,
+        "cached_prompt_tokens": 5005,
+        "cache_write_prompt_tokens": 842,
+        "reasoning_tokens": 430
+      },
+      "cost_usd": 0.00673575,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 14102
+    }
+  ],
+  "resume_prompt_sha256": "338ac33ae4d6ad75616100e9ec41f04437a5b50bfe070fa140aba71496178380",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "An experienced welder and fitter with inspection results and certifications that make the work easy to understand.",
+    "write_up": [
+      "This is a strong welding resume! Your work moves from shop preparation at Great Lakes Mechanical to pipe welding and structural fitting, with the processes, materials and inspection results a recruiter needs to see.",
+      "The Riverfront Tower line is the standout: it names the job, the inspections and about 900 welds. Your certifications are easy to find below your experience, and the progression into training new hires comes through.",
+      "You don't need a major overhaul. Add how many people you train and what you did during plant shutdowns, if you can. The requirements and competition for each job will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Welder / Fitter, Riverfront Tower line",
+        "line": "- Passed every third-party UT and visual inspection on the Riverfront Tower job (about 900 welds)",
+        "cannot_tell": "Keep this as your model. It puts your inspection record alongside the job and the number of welds, so a recruiter can see what passed and where.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Welder / Fitter, training line",
+        "line": "- Train new hires on the shop's fit-up and tacking procedures",
+        "cannot_tell": "This shows that you train new hires, but not how many or how often. That would show how much of your work involves training.",
+        "example": "Train [number] new hires on the shop's fit-up and tacking procedures [how often]",
+        "question": "How many new hires do you train, and how often?"
+      },
+      {
+        "kind": "line",
+        "where": "Pipe Welder, shutdown line",
+        "line": "- Worked nights and weekends on plant shutdowns",
+        "cannot_tell": "The schedule is clear, but a recruiter can't tell what work you did during the shutdowns. Name the work you performed there.",
+        "example": "Worked nights and weekends on plant shutdowns, [work performed]",
+        "question": "What work did you perform during the plant shutdowns?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Welder / Fitter"
+      ],
+      "why": "Your current Welder / Fitter role covers structural welding, fit-up, inspections and training.",
+      "level": "Experienced welder and fitter who trains new hires",
+      "note": "Your structural steel work and AWS certification point toward welding and fitting roles. Your earlier process piping work and ASME 6G certification also give a recruiter a reason to consider you for pipe welding.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "An experienced welder and fitter with inspection results and certifications that make the work easy to understand.",
+    "write_up": [
+      "This is a strong welding resume! Your work moves from shop preparation at Great Lakes Mechanical to pipe welding and structural fitting, with the processes, materials and inspection results a recruiter needs to see.",
+      "The Riverfront Tower line is the standout: it names the job, the inspections and about 900 welds. Your certifications are easy to find below your experience, and the progression into training new hires comes through.",
+      "You don't need a major overhaul. Add how many people you train and what you did during plant shutdowns, if you can. The requirements and competition for each job will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Welder / Fitter, Riverfront Tower line",
+        "line": "Passed every third-party UT and visual inspection on the Riverfront Tower job (about 900 welds)",
+        "cannot_tell": "Keep this as your model. It puts your inspection record alongside the job and the number of welds, so a recruiter can see what passed and where.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Welder / Fitter, training line",
+        "line": "Train new hires on the shop's fit-up and tacking procedures",
+        "cannot_tell": "This shows that you train new hires, but not how many or how often. That would show how much of your work involves training.",
+        "example": "Train [number] new hires on the shop's fit-up and tacking procedures [how often]",
+        "question": "How many new hires do you train, and how often?"
+      },
+      {
+        "kind": "line",
+        "where": "Pipe Welder, shutdown line",
+        "line": "Worked nights and weekends on plant shutdowns",
+        "cannot_tell": "The schedule is clear, but a recruiter can't tell what work you did during the shutdowns. Name the work you performed there.",
+        "example": "Worked nights and weekends on plant shutdowns, [work performed]",
+        "question": "What work did you perform during the plant shutdowns?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Welder / Fitter"
+      ],
+      "why": "Your current Welder / Fitter role covers structural welding, fit-up, inspections and training.",
+      "level": "Experienced welder and fitter who trains new hires",
+      "note": "Your structural steel work and AWS certification point toward welding and fitting roles. Your earlier process piping work and ASME 6G certification also give a recruiter a reason to consider you for pipe welding.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "An experienced welder and fitter with inspection results and certifications that make the work easy to understand.",
+    "write_up": [
+      "This is a strong welding resume! Your work moves from shop preparation at Great Lakes Mechanical to pipe welding and structural fitting, with the processes, materials and inspection results a recruiter needs to see.",
+      "The Riverfront Tower line is the standout: it names the job, the inspections and about 900 welds. Your certifications are easy to find below your experience, and the progression into training new hires comes through.",
+      "You don't need a major overhaul. Add how many people you train and what you did during plant shutdowns, if you can. The requirements and competition for each job will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Welder / Fitter, Riverfront Tower line",
+        "line": "Passed every third-party UT and visual inspection on the Riverfront Tower job (about 900 welds)",
+        "cannot_tell": "Keep this as your model. It puts your inspection record alongside the job and the number of welds, so a recruiter can see what passed and where.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Welder / Fitter, training line",
+        "line": "Train new hires on the shop's fit-up and tacking procedures",
+        "cannot_tell": "This shows that you train new hires, but not how many or how often. That would show how much of your work involves training.",
+        "example": "Train [number] new hires on the shop's fit-up and tacking procedures [how often]",
+        "question": "How many new hires do you train, and how often?"
+      },
+      {
+        "kind": "line",
+        "where": "Pipe Welder, shutdown line",
+        "line": "Worked nights and weekends on plant shutdowns",
+        "cannot_tell": "The schedule is clear, but a recruiter can't tell what work you did during the shutdowns. Name the work you performed there.",
+        "example": "Worked nights and weekends on plant shutdowns, [work performed]",
+        "question": "What work did you perform during the plant shutdowns?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Welder / Fitter"
+      ],
+      "why": "Your current Welder / Fitter role covers structural welding, fit-up, inspections and training.",
+      "level": "Experienced welder and fitter who trains new hires",
+      "note": "Your structural steel work and AWS certification point toward welding and fitting roles. Your earlier process piping work and ASME 6G certification also give a recruiter a reason to consider you for pipe welding.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "presentation": {
+    "score": 88,
+    "band": "Clear and specific",
+    "model_score": 88,
+    "lifted_by_employer": false,
+    "verdict": "An experienced welder and fitter with inspection results and certifications that make the work easy to understand.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 101,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Welder / Fitter, Riverfront Tower line",
+        "line": "Passed every third-party UT and visual inspection on the Riverfront Tower job (about 900 welds)",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Welder / Fitter, training line",
+        "line": "Train new hires on the shop's fit-up and tacking procedures",
+        "blanks": 2,
+        "question": "How many new hires do you train, and how often?"
+      },
+      {
+        "kind": "line",
+        "where": "Pipe Welder, shutdown line",
+        "line": "Worked nights and weekends on plant shutdowns",
+        "blanks": 1,
+        "question": "What work did you perform during the plant shutdowns?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "keep": 1,
+      "line": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Welder / Fitter"
+      ],
+      "why": "Your current Welder / Fitter role covers structural welding, fit-up, inspections and training.",
+      "level": "Experienced welder and fitter who trains new hires",
+      "note": "Your structural steel work and AWS certification point toward welding and fitting roles. Your earlier process piping work and ASME 6G certification also give a recruiter a reason to consider you for pipe welding.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00673575,
+  "latency_ms": 14655
+}

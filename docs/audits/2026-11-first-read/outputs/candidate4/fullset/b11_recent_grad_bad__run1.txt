@@ -1,0 +1,55 @@
+# b11_recent_grad_bad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_recent_grad_bad_1.txt (151 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ee57d907; severity check off
+Outcome: report; cost $0.0090; 18.6s
+Case note: First job, weak; count-check key says no_evidence_latest_role, no_recent_work, title_level_mismatch.
+
+## Needs more context (score 52; model wrote 52)
+## Verdict
+A marketing intern's resume with a manager's headline and no work shown after May 2024.
+
+## Write-up
+This is a common early-career resume: you have a marketing internship at Badger State Credit Union alongside research and finance work, but the headline claims management experience the jobs don't show. A recruiter reading for marketing internships or entry-level roles would likely pass because the credit union lines don't say enough about your part in the work.
+
+The dairy farm research line is your best model: it names the data, the tool and the study. Your education sits above your experience, and nothing on the resume accounts for time after May 2024. Both make the path from graduation to your next role less clear.
+
+Let's start with the headline, then the newsletter line. Bring your experience above education, and add what you've done since May 2024 if there's something you'd like a recruiter to know.
+
+## Cards (7; {"line":4,"dates":1,"structure":1,"keep":1}); severity off; added []
+1. [line] Headline
+   line: "Marketing manager who has led credit union campaigns from strategy to launch."
+   can't tell: The credit union role is an internship, and its lines don't show campaigns you led. A recruiter may question the manager title before reaching your experience.
+   example: Marketing Intern with experience in [credit union marketing work]
+   question: Which credit union marketing work do you want to lead with?
+2. [dates] Dates
+   line: "Nothing is dated after May 2024."
+   can't tell: A recruiter can't tell what you've done since the internship ended. If you've worked, studied, volunteered or taken time for caregiving, you can name it plainly. A career break can also say what you did during it.
+   example: May 2024 - Present [what you did]
+   question: What would you like to share about your time since May 2024?
+3. [structure] Structure
+   line: "Education sits above Experience."
+   can't tell: Your internships and research work give a recruiter more to go on than your degree alone. Put Experience first so that work gets seen sooner.
+   question: Can you move Experience above Education?
+4. [line] Marketing Intern, line 1
+   line: "Helped with the member newsletter"
+   can't tell: Helped leaves your part in the newsletter open. A recruiter can't tell whether you wrote, assembled or sent anything.
+   example: Helped with the member newsletter by [what you did]
+   question: What part of the member newsletter did you handle?
+5. [line] Marketing Intern, line 2
+   line: "Posted on the credit union's social media accounts"
+   can't tell: Posting names the task, but not what you posted or how often. Those details would show what the credit union trusted you to put in front of members.
+   example: Posted [what you posted] on the credit union's social media accounts at [frequency]
+   question: What did you post, and how often?
+6. [line] Marketing Intern, line 3
+   line: "Supported planning for branch events"
+   can't tell: A recruiter can't tell what your part in planning was or which events you worked on. One event would make the work concrete.
+   example: Supported planning for [branch event] by [what you did]
+   question: Which branch event did you help plan, and what did you do?
+7. [keep] Research Assistant, line 1
+   line: "Cleaned survey data from 1,200 dairy farms in Stata for a pricing study"
+   can't tell: Keep this as a model. It gives the reader a concrete subject and your own action without making them guess what the research involved.
+
+## Fit
+Roles: ["Marketing Intern","Research Assistant"]
+Level: Entry level, with a marketing internship and research assistant experience
+Note: I read this for marketing internships and entry-level marketing work because that's what the most recent role shows. The research role also shows data work in Stata, but the manager headline goes beyond the work described.

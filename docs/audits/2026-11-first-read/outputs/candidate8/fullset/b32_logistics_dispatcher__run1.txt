@@ -1,0 +1,56 @@
+# b32_logistics_dispatcher, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_logistics_dispatcher_1.txt (105 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5cba8f05; severity check off
+Outcome: report; cost $0.0099; 21.0s
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+A regional trucking dispatcher whose daily work is clear, but whose workload and decisions are still hard to gauge.
+
+## Write-up
+It's common for dispatch resumes to list daily duties this way. Yours shows a move from warehouse work to dispatching at Crossroads Regional Freight, but a recruiter can't tell how many drivers or loads you handle or what you do when something goes wrong. That makes it hard to stand out in a pile.
+
+The line about tracking loads and updating customers is your best starting point: it names the work and who receives the updates. Your progression at Crossroads is easy to follow, too. The resume doesn't say how large the operation is, which would give a recruiter useful context.
+
+Let's start with the current Dispatcher role. Add the driver and load counts you can confirm, then explain a road issue you handled and your part in working with the safety team. Keep the earlier roles brief, but give the paperwork line a little more detail.
+
+## Cards (7; {"structure":1,"line":6}); severity off; added []
+1. [structure] Crossroads Regional Freight
+   line: "Crossroads Regional Freight's size is not stated."
+   can't tell: A recruiter can see that you work in regional trucking, but not how large the operation is. A short description of the company could give your dispatch work context.
+   question: Can you confirm the company's fleet size or another measure of its operation?
+2. [line] Dispatcher, line 1
+   line: "Responsible for dispatching drivers"
+   can't tell: Dispatching drivers is the heart of the job, but a recruiter can't tell how many you handle or how often you dispatch them.
+   example: Dispatch [number] drivers [how often] for [types of loads or routes]
+   question: How many drivers do you dispatch, how often, and for what loads or routes?
+3. [line] Dispatcher, line 2
+   line: "Track loads and update customers on delivery status"
+   can't tell: This names useful work and the customers you update. How many loads are you tracking, and how often do those updates go out?
+   example: Track [number] loads [how often] and update customers on delivery status [how often]
+   question: How many loads do you track, and how often do you update customers?
+4. [line] Dispatcher, line 3
+   line: "Handle driver issues on the road"
+   can't tell: A recruiter can't tell what kinds of issues come to you or what you do about them. One real example would show the decisions you make.
+   example: Handle [type of driver issue] on the road by [what you did]
+   question: What is one driver issue you handled, and what did you do?
+5. [line] Dispatcher, line 4
+   line: "Use TMS software daily"
+   can't tell: Daily use is useful to know, but it doesn't say what you do in the system. McLeod TMS is in your skills list; this line doesn't say which software you use here.
+   example: Use [TMS software] daily to [what you do]
+   question: Which TMS do you use in this role, and what do you use it to do?
+6. [line] Dispatcher, line 5
+   line: "Work with the safety team on driver hours"
+   can't tell: Working with safety on driver hours is relevant, but your part isn't clear. A recruiter will want to know what information you check or pass along.
+   example: Work with the safety team on driver hours by [what you do]
+   question: What do you do with the safety team when working on driver hours?
+7. [line] Dispatch Assistant, line 2
+   line: "Helped dispatchers with paperwork"
+   can't tell: The paperwork could cover several parts of dispatch. Name what it was and how you helped without making the job sound bigger than it was.
+   example: Helped dispatchers with [type of paperwork] by [what you did]
+   question: What paperwork did you help with, and what was your part?
+
+## Fit
+Roles: ["Dispatcher","Dispatch Assistant"]
+Level: Experienced dispatcher, with a prior Dispatch Assistant role
+Note: Your experience points toward trucking dispatch roles. Adding the number of drivers and loads you handle would help a recruiter compare your work with a particular opening.

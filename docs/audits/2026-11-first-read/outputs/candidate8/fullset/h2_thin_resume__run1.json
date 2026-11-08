@@ -1,0 +1,340 @@
+{
+  "case_id": "h2_thin_resume",
+  "batch": "holes",
+  "run": 1,
+  "note": "Student: one internship, coursework, a club.",
+  "resume_file": "../2026-11-live-judgment/resumes/h2_thin_resume.txt",
+  "resume_sha256": "0ae65e2abcb50e7eb496c0bf279b40a3bbd6630aca8031421ae82863b8d35ed5",
+  "resume_words": 126,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:46:11.964Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5711,
+        "completion_tokens": 1864,
+        "total_tokens": 7575,
+        "cached_prompt_tokens": 5142,
+        "cache_write_prompt_tokens": 566,
+        "reasoning_tokens": 956
+      },
+      "cost_usd": 0.0102876,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 23347
+    }
+  ],
+  "resume_prompt_sha256": "5cba8f052feab05101dfe43138d650d9cc25bac9a46f7e3aa35d9efb9d96fad4",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 64,
+    "lifted_by_employer": false,
+    "verdict": "A data analytics intern with relevant tools, but too little detail about what the internship produced.",
+    "write_up": [
+      "This is a common early-career resume: your Great Lakes Credit Union internship lists the work, but often stops before saying what you contributed or produced. A recruiter can see the direction toward data analytics, yet may move on to a resume that makes the work easier to compare.",
+      "The survey-data line is your best model. It names the data and the tools you used, so a recruiter can picture the work. Your education belongs up top while you're still working toward your degree.",
+      "Let's start with the internship's weekly reporting line, then add what the Tableau dashboard showed and what you presented. Your club work can add another useful detail about your contribution to the events."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Great Lakes Credit Union",
+        "line": "Great Lakes Credit Union has no description beyond its name and location.",
+        "cannot_tell": "A recruiter unfamiliar with the credit union can't tell whom it serves. A short description can give the internship useful context.",
+        "example": "Great Lakes Credit Union, Ann Arbor, MI | [who the credit union serves]",
+        "question": "Whom does the credit union serve?"
+      },
+      {
+        "kind": "line",
+        "where": "Data Analytics Intern, line 1",
+        "line": "- Assisted the analytics team with weekly reporting",
+        "cannot_tell": "Assisted could mean several things here. A recruiter can't tell which part of the weekly reports was yours.",
+        "example": "Assisted the analytics team with weekly reporting by [your contribution]",
+        "question": "What did you contribute to the weekly reports?"
+      },
+      {
+        "kind": "keep",
+        "where": "Data Analytics Intern, line 2",
+        "line": "- Cleaned member survey data in Excel and SQL",
+        "cannot_tell": "Keep this as a model: it puts your action, the data and the tools together without making a recruiter guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Data Analytics Intern, line 3",
+        "line": "- Built a dashboard in Tableau for the marketing team",
+        "cannot_tell": "You built the dashboard and named its audience. What's missing is what it showed the marketing team.",
+        "example": "Built a dashboard in Tableau for the marketing team showing [what the dashboard showed]",
+        "question": "What did the dashboard show?"
+      },
+      {
+        "kind": "line",
+        "where": "Data Analytics Intern, line 4",
+        "line": "- Presented findings to the team at the end of the internship",
+        "cannot_tell": "A recruiter can't tell what you found or what the team learned from your presentation.",
+        "example": "Presented [findings] to the team at the end of the internship",
+        "question": "What findings did you present?"
+      },
+      {
+        "kind": "line",
+        "where": "Treasurer, Michigan Data Science Club, line 2",
+        "line": "- Help organize monthly speaker events",
+        "cannot_tell": "The monthly events are easy to picture, but your part in organizing them isn't yet clear.",
+        "example": "Help organize monthly speaker events by [your contribution]",
+        "question": "What do you do to help organize the speaker events?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Data Analytics Intern"
+      ],
+      "why": "Your internship is in data analytics, and it names survey data, SQL, Excel and a Tableau dashboard.",
+      "level": "Entry level, one data analytics internship and a degree in progress",
+      "note": "Your experience points toward data analytics internships and entry-level work. More detail about the reports, dashboard and findings would show what you contributed.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 64,
+    "lifted_by_employer": false,
+    "verdict": "A data analytics intern with relevant tools, but too little detail about what the internship produced.",
+    "write_up": [
+      "This is a common early-career resume: your Great Lakes Credit Union internship lists the work, but often stops before saying what you contributed or produced. A recruiter can see the direction toward data analytics, yet may move on to a resume that makes the work easier to compare.",
+      "The survey-data line is your best model. It names the data and the tools you used, so a recruiter can picture the work. Your education belongs up top while you're still working toward your degree.",
+      "Let's start with the internship's weekly reporting line, then add what the Tableau dashboard showed and what you presented. Your club work can add another useful detail about your contribution to the events."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Great Lakes Credit Union",
+        "line": "Great Lakes Credit Union has no description beyond its name and location.",
+        "cannot_tell": "A recruiter unfamiliar with the credit union can't tell whom it serves. A short description can give the internship useful context.",
+        "example": "Great Lakes Credit Union, Ann Arbor, MI | [who the credit union serves]",
+        "question": "Whom does the credit union serve?"
+      },
+      {
+        "kind": "line",
+        "where": "Data Analytics Intern, line 1",
+        "line": "Assisted the analytics team with weekly reporting",
+        "cannot_tell": "Assisted could mean several things here. A recruiter can't tell which part of the weekly reports was yours.",
+        "example": "Assisted the analytics team with weekly reporting by [your contribution]",
+        "question": "What did you contribute to the weekly reports?"
+      },
+      {
+        "kind": "keep",
+        "where": "Data Analytics Intern, line 2",
+        "line": "Cleaned member survey data in Excel and SQL",
+        "cannot_tell": "Keep this as a model: it puts your action, the data and the tools together without making a recruiter guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Data Analytics Intern, line 3",
+        "line": "Built a dashboard in Tableau for the marketing team",
+        "cannot_tell": "You built the dashboard and named its audience. What's missing is what it showed the marketing team.",
+        "example": "Built a dashboard in Tableau for the marketing team showing [what the dashboard showed]",
+        "question": "What did the dashboard show?"
+      },
+      {
+        "kind": "line",
+        "where": "Data Analytics Intern, line 4",
+        "line": "Presented findings to the team at the end of the internship",
+        "cannot_tell": "A recruiter can't tell what you found or what the team learned from your presentation.",
+        "example": "Presented [findings] to the team at the end of the internship",
+        "question": "What findings did you present?"
+      },
+      {
+        "kind": "line",
+        "where": "Treasurer, Michigan Data Science Club, line 2",
+        "line": "Help organize monthly speaker events",
+        "cannot_tell": "The monthly events are easy to picture, but your part in organizing them isn't yet clear.",
+        "example": "Help organize monthly speaker events by [your contribution]",
+        "question": "What do you do to help organize the speaker events?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Data Analytics Intern"
+      ],
+      "why": "Your internship is in data analytics, and it names survey data, SQL, Excel and a Tableau dashboard.",
+      "level": "Entry level, one data analytics internship and a degree in progress",
+      "note": "Your experience points toward data analytics internships and entry-level work. More detail about the reports, dashboard and findings would show what you contributed.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 64
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 64,
+    "lifted_by_employer": false,
+    "verdict": "A data analytics intern with relevant tools, but too little detail about what the internship produced.",
+    "write_up": [
+      "This is a common early-career resume: your Great Lakes Credit Union internship lists the work, but often stops before saying what you contributed or produced. A recruiter can see the direction toward data analytics, yet may move on to a resume that makes the work easier to compare.",
+      "The survey-data line is your best model. It names the data and the tools you used, so a recruiter can picture the work. Your education belongs up top while you're still working toward your degree.",
+      "Let's start with the internship's weekly reporting line, then add what the Tableau dashboard showed and what you presented. Your club work can add another useful detail about your contribution to the events."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Great Lakes Credit Union",
+        "line": "Great Lakes Credit Union has no description beyond its name and location.",
+        "cannot_tell": "A recruiter unfamiliar with the credit union can't tell whom it serves. A short description can give the internship useful context.",
+        "example": "Great Lakes Credit Union, Ann Arbor, MI | [who the credit union serves]",
+        "question": "Whom does the credit union serve?"
+      },
+      {
+        "kind": "line",
+        "where": "Data Analytics Intern, line 1",
+        "line": "Assisted the analytics team with weekly reporting",
+        "cannot_tell": "Assisted could mean several things here. A recruiter can't tell which part of the weekly reports was yours.",
+        "example": "Assisted the analytics team with weekly reporting by [your contribution]",
+        "question": "What did you contribute to the weekly reports?"
+      },
+      {
+        "kind": "keep",
+        "where": "Data Analytics Intern, line 2",
+        "line": "Cleaned member survey data in Excel and SQL",
+        "cannot_tell": "Keep this as a model: it puts your action, the data and the tools together without making a recruiter guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Data Analytics Intern, line 3",
+        "line": "Built a dashboard in Tableau for the marketing team",
+        "cannot_tell": "You built the dashboard and named its audience. What's missing is what it showed the marketing team.",
+        "example": "Built a dashboard in Tableau for the marketing team showing [what the dashboard showed]",
+        "question": "What did the dashboard show?"
+      },
+      {
+        "kind": "line",
+        "where": "Data Analytics Intern, line 4",
+        "line": "Presented findings to the team at the end of the internship",
+        "cannot_tell": "A recruiter can't tell what you found or what the team learned from your presentation.",
+        "example": "Presented [findings] to the team at the end of the internship",
+        "question": "What findings did you present?"
+      },
+      {
+        "kind": "line",
+        "where": "Treasurer, Michigan Data Science Club, line 2",
+        "line": "Help organize monthly speaker events",
+        "cannot_tell": "The monthly events are easy to picture, but your part in organizing them isn't yet clear.",
+        "example": "Help organize monthly speaker events by [your contribution]",
+        "question": "What do you do to help organize the speaker events?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Data Analytics Intern"
+      ],
+      "why": "Your internship is in data analytics, and it names survey data, SQL, Excel and a Tableau dashboard.",
+      "level": "Entry level, one data analytics internship and a degree in progress",
+      "note": "Your experience points toward data analytics internships and entry-level work. More detail about the reports, dashboard and findings would show what you contributed.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 64
+  },
+  "presentation": {
+    "score": 64,
+    "band": "Needs more context",
+    "model_score": 64,
+    "lifted_by_employer": false,
+    "verdict": "A data analytics intern with relevant tools, but too little detail about what the internship produced.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 116,
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Great Lakes Credit Union",
+        "line": "Great Lakes Credit Union has no description beyond its name and location.",
+        "blanks": 1,
+        "question": "Whom does the credit union serve?"
+      },
+      {
+        "kind": "line",
+        "where": "Data Analytics Intern, line 1",
+        "line": "Assisted the analytics team with weekly reporting",
+        "blanks": 1,
+        "question": "What did you contribute to the weekly reports?"
+      },
+      {
+        "kind": "keep",
+        "where": "Data Analytics Intern, line 2",
+        "line": "Cleaned member survey data in Excel and SQL",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Data Analytics Intern, line 3",
+        "line": "Built a dashboard in Tableau for the marketing team",
+        "blanks": 1,
+        "question": "What did the dashboard show?"
+      },
+      {
+        "kind": "line",
+        "where": "Data Analytics Intern, line 4",
+        "line": "Presented findings to the team at the end of the internship",
+        "blanks": 1,
+        "question": "What findings did you present?"
+      },
+      {
+        "kind": "line",
+        "where": "Treasurer, Michigan Data Science Club, line 2",
+        "line": "Help organize monthly speaker events",
+        "blanks": 1,
+        "question": "What do you do to help organize the speaker events?"
+      }
+    ],
+    "card_count": 6,
+    "kinds": {
+      "structure": 1,
+      "line": 4,
+      "keep": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Data Analytics Intern"
+      ],
+      "why": "Your internship is in data analytics, and it names survey data, SQL, Excel and a Tableau dashboard.",
+      "level": "Entry level, one data analytics internship and a degree in progress",
+      "note": "Your experience points toward data analytics internships and entry-level work. More detail about the reports, dashboard and findings would show what you contributed.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0102876,
+  "latency_ms": 23457
+}

@@ -1,0 +1,30 @@
+# b18_military_to_civilian, run 1
+Resume: ../2026-11-live-judgment/resumes/b_military_to_civilian.txt (268 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0061; 11.1s
+
+## Clear and specific (score 90; model wrote 90)
+## Verdict
+Army logistics and maintenance leadership with clear results and a stated move into civilian operations.
+
+## Write-up
+Your resume makes a strong case for a supply chain or operations supervisor role! Your Army work connects team leadership, equipment accountability and maintenance improvements to concrete results.
+
+The vehicle readiness line is the model: it gives the starting and ending rates and names the changes you made. Your experience leads, and your in-progress supply chain degree supports the direction you’ve named.
+
+Your resume shouldn’t be the reason you don’t get a call back. Competition for a role and how an employer weighs military experience also matter. One useful final addition is what you taught the junior mechanics.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Platoon Sergeant, vehicle readiness
+   line: "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule"
+   can't tell: Keep this as a model. You give a recruiter both the measure and the operational decisions behind it.
+2. [line] Wheeled Vehicle Mechanic, line 2
+   line: "Trained 9 junior mechanics"
+   can't tell: A recruiter can see how many mechanics you trained, but not what you taught them. That detail would show what the training covered.
+   example: Trained 9 junior mechanics in [skills or tasks]
+   question: What skills or tasks did you teach the junior mechanics?
+
+## Fit
+Roles: ["operations supervisor","Maintenance Section Sergeant (E-6)"]
+Level: Experienced supervisor
+Note: Your experience points toward operations and maintenance supervision, with supply and inventory work alongside it. Your stated supply chain direction is supported by the parts budget, equipment accountability and in-progress degree.

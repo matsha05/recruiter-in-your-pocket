@@ -1,0 +1,30 @@
+# b25_fpa_analyst_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_fpa_analyst_strong_1.txt (138 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 288eceb5; severity check off
+Outcome: report; cost $0.0064; 12.8s
+
+## Clear and specific (score 89; model wrote 89)
+## Verdict
+Senior FP&A work with a substantial budget and clear forecasting and pricing results.
+
+## Write-up
+This is a strong FP&A resume! At Lakeshore Foods, you connect budget ownership, forecasting and pricing work to the business decisions they support. The move from plant reporting at Midway Brands to divisional FP&A tells a clear story.
+
+The forecast line is the model to follow: it names what you built and shows how forecast error changed. Your current role also makes the budget and the people you present to clear, so a recruiter doesn't have to guess how the work fits into the division.
+
+I'd make one small pass at the pricing line to show your part in the review. Your resume isn't likely to be the thing standing between you and a call back; the competition for a particular role will matter too.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Senior Financial Analyst, FP&A, line 2
+   line: "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%"
+   can't tell: Keep this as your model. It pairs a concrete deliverable with a before-and-after measure, without making the reader hunt for either.
+2. [line] Senior Financial Analyst, FP&A, line 3
+   line: "Model price changes for 60 products; a 2025 pricing review added $3.1M in gross margin"
+   can't tell: The pricing work and margin result are both substantial, but your part in the review isn't explicit. Connect your work to the review if you can.
+   example: Model price changes for 60 products; [your action] during the 2025 pricing review, which added $3.1M in gross margin
+   question: What did you do during the 2025 pricing review?
+
+## Fit
+Roles: ["Senior Financial Analyst, FP&A"]
+Level: senior, owns a $240M annual operating budget
+Note: Your experience points toward senior FP&A roles supporting business planning and pricing decisions. The Power BI automation at Midway Brands adds a useful example of reporting improvement.

@@ -1,0 +1,40 @@
+# b30_social_worker, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_social_worker_1.txt (127 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5827dcf1; severity check off
+Outcome: report; cost $0.0074; 15.9s
+
+## Needs more context (score 67; model wrote 67)
+## Verdict
+An Ohio social worker with relevant family services experience, but little detail about the caseload or services.
+
+## Write-up
+Your resume points to family services casework, from intake at Lakeview Community Center to child welfare work at Cuyahoga Family Partners. It’s common for resumes in this field to list core duties this way, but yours doesn’t yet show how many families you handle or enough about the services you coordinate. A recruiter is likely to finish it, then hesitate unless the pile is thin.
+
+Your intake line about screening walk-in clients is a good model: it names the people you worked with and the kinds of assistance they needed. Your Ohio LMSW and social work degree are easy to find, and the dates make your path easy to follow.
+
+Let’s start with the caseload line in your current role. Add the number of families if you can, then show what coordinating services involved. Those details will help your current work stand apart from a standard caseworker job description.
+
+## Cards (4; {"line":3,"keep":1}); severity off; added []
+1. [line] Family Services Caseworker, line 1
+   line: "Carry a caseload of families involved with child protective services"
+   can't tell: A recruiter can see who you work with, but not how many families are on your caseload or what your work with them involves.
+   example: Carry a caseload of [number] families involved with child protective services, providing [what you do for families]
+   question: How many families are on your caseload, and what do you do for them?
+2. [line] Family Services Caseworker, line 3
+   line: "Coordinate services with schools, courts, and mental health providers"
+   can't tell: The partners are clear, but the services and your part in arranging them aren't. One example would show what coordination means in your work.
+   example: Coordinate [services] with schools, courts, and mental health providers for [who receives services]
+   question: Which services do you coordinate, and for whom?
+3. [keep] Intake Specialist, line 1
+   line: "Screened walk-in clients for housing, food, and utility assistance"
+   can't tell: Keep this as a model. It pairs a clear action with the needs you addressed, without relying on a generic description of intake.
+4. [line] Intake Specialist, line 2
+   line: "Connected clients to county benefit programs"
+   can't tell: A recruiter can't tell which programs you connected clients to or what needs they addressed. Naming them would distinguish this from a general referral duty.
+   example: Connected clients to [county benefit programs] for [client needs]
+   question: Which county benefit programs did you connect clients to, and what needs did they address?
+
+## Fit
+Roles: ["Family Services Caseworker","Intake Specialist"]
+Level: Experienced caseworker with a current family services role and an Ohio LMSW
+Note: Your experience points most directly to family services and child welfare casework. The intake role also shows work connecting clients to basic assistance.

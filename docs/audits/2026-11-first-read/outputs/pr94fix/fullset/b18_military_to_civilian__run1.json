@@ -1,0 +1,187 @@
+{
+  "case_id": "b18_military_to_civilian",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/resumes/b_military_to_civilian.txt",
+  "resume_sha256": "c2dd1e89354ce1a86021927ffba5d85f65b3dfb021c3126f6459225f8bfd7a7e",
+  "resume_words": 268,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T21:30:54.829Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6270,
+        "completion_tokens": 779,
+        "total_tokens": 7049,
+        "cached_prompt_tokens": 5154,
+        "cache_write_prompt_tokens": 1113,
+        "reasoning_tokens": 318
+      },
+      "cost_usd": 0.00554695,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 9713
+    }
+  ],
+  "resume_prompt_sha256": "288eceb50a0848513f3205630fd7657627db9010f5f15a63cb442225501f834d",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A logistics and maintenance leader with a strong record of supervising people, equipment, and vehicle readiness.",
+    "write_up": [
+      "Your resume makes a strong case for an operations supervisor role! Your Army progression from mechanic to Platoon Sergeant shows both hands-on maintenance work and leadership across maintenance, supply, and fuel.",
+      "The vehicle readiness line is the model: it shows a substantial improvement and names the changes you made to parts ordering and scheduling. The rest of the resume backs up your leadership with team counts, equipment accountability, and a parts budget.",
+      "Your resume is unlikely to be what holds you back. For civilian applications, consider explaining military terms in familiar operations language, and keep the readiness result prominent. How closely a job matches your experience and how competitive it is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Platoon Sergeant, line 4",
+        "line": "- Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "cannot_tell": "Keep this as a model. The before-and-after figures give a recruiter something concrete to remember, and you take ownership of the work behind them.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "operations supervisor",
+        "Platoon Sergeant (E-7), Forward Support Company"
+      ],
+      "why": "You're seeking an operations supervisor role, and your latest job combines team leadership with maintenance, supply, and fuel work.",
+      "level": "manager, led 38 soldiers and evaluated 6 direct-report sergeants",
+      "note": "Your maintenance leadership and inventory accountability also point toward roles overseeing equipment and supply operations. Your in-progress supply chain degree adds to that direction.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A logistics and maintenance leader with a strong record of supervising people, equipment, and vehicle readiness.",
+    "write_up": [
+      "Your resume makes a strong case for an operations supervisor role! Your Army progression from mechanic to Platoon Sergeant shows both hands-on maintenance work and leadership across maintenance, supply, and fuel.",
+      "The vehicle readiness line is the model: it shows a substantial improvement and names the changes you made to parts ordering and scheduling. The rest of the resume backs up your leadership with team counts, equipment accountability, and a parts budget.",
+      "Your resume is unlikely to be what holds you back. For civilian applications, consider explaining military terms in familiar operations language, and keep the readiness result prominent. How closely a job matches your experience and how competitive it is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Platoon Sergeant, line 4",
+        "line": "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "cannot_tell": "Keep this as a model. The before-and-after figures give a recruiter something concrete to remember, and you take ownership of the work behind them.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "operations supervisor",
+        "Platoon Sergeant (E-7), Forward Support Company"
+      ],
+      "why": "You're seeking an operations supervisor role, and your latest job combines team leadership with maintenance, supply, and fuel work.",
+      "level": "manager, led 38 soldiers and evaluated 6 direct-report sergeants",
+      "note": "Your maintenance leadership and inventory accountability also point toward roles overseeing equipment and supply operations. Your in-progress supply chain degree adds to that direction.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 91
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A logistics and maintenance leader with a strong record of supervising people, equipment, and vehicle readiness.",
+    "write_up": [
+      "Your resume makes a strong case for an operations supervisor role! Your Army progression from mechanic to Platoon Sergeant shows both hands-on maintenance work and leadership across maintenance, supply, and fuel.",
+      "The vehicle readiness line is the model: it shows a substantial improvement and names the changes you made to parts ordering and scheduling. The rest of the resume backs up your leadership with team counts, equipment accountability, and a parts budget.",
+      "Your resume is unlikely to be what holds you back. For civilian applications, consider explaining military terms in familiar operations language, and keep the readiness result prominent. How closely a job matches your experience and how competitive it is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Platoon Sergeant, line 4",
+        "line": "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "cannot_tell": "Keep this as a model. The before-and-after figures give a recruiter something concrete to remember, and you take ownership of the work behind them.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "operations supervisor",
+        "Platoon Sergeant (E-7), Forward Support Company"
+      ],
+      "why": "You're seeking an operations supervisor role, and your latest job combines team leadership with maintenance, supply, and fuel work.",
+      "level": "manager, led 38 soldiers and evaluated 6 direct-report sergeants",
+      "note": "Your maintenance leadership and inventory accountability also point toward roles overseeing equipment and supply operations. Your in-progress supply chain degree adds to that direction.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 91
+  },
+  "presentation": {
+    "score": 91,
+    "band": "Clear and specific",
+    "model_score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A logistics and maintenance leader with a strong record of supervising people, equipment, and vehicle readiness.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 114,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Platoon Sergeant, line 4",
+        "line": "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 1,
+    "kinds": {
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "operations supervisor",
+        "Platoon Sergeant (E-7), Forward Support Company"
+      ],
+      "why": "You're seeking an operations supervisor role, and your latest job combines team leadership with maintenance, supply, and fuel work.",
+      "level": "manager, led 38 soldiers and evaluated 6 direct-report sergeants",
+      "note": "Your maintenance leadership and inventory accountability also point toward roles overseeing equipment and supply operations. Your in-progress supply chain degree adds to that direction.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00554695,
+  "latency_ms": 9717
+}

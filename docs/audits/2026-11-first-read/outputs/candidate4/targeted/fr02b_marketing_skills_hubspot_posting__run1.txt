@@ -1,0 +1,57 @@
+# fr02b_marketing_skills_hubspot_posting, run 1
+Resume: resumes/fr02_marketing_coordinator_skills.txt (132 words), posting: resumes/posting_marketing_hubspot.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ee57d907; severity check off
+Outcome: report; cost $0.0117; 24.3s
+Case note: P2. The same resume against a posting that requires HubSpot. Expect the skills card to name HubSpot first.
+
+## Needs more context (score 65; model wrote 65)
+## Verdict
+A B2B marketing coordinator with relevant campaign work, but too little detail about their part and tools.
+
+## Write-up
+This is a common marketing resume: you show a move from assistant work at Keystone Benefits Group to coordinating emails, webinars and content at Brightfield Software, but your part in several activities is still hard to pin down. A recruiter for coordinator roles can see the direction, yet may move on when other resumes show more of the work behind the tasks.
+
+Your line about updating event pages and registration forms for regional broker events is a good model: it names both the deliverables and who the events served. Your experience comes before education, which puts the strongest material in the right place.
+
+Let's start with the Brightfield newsletter and webinar lines, then connect your listed tools to work you actually did. For Tallgrass, the B2B background and event work fit, but the resume doesn't yet show the hands-on HubSpot and reporting work the role asks for.
+
+## Cards (7; {"structure":1,"line":5,"keep":1}); severity off; added []
+1. [structure] Brightfield Software
+   line: "Brightfield Software has no company description."
+   can't tell: Your summary says you work in B2B software and services, but a recruiter may not know Brightfield or who it serves. A short description could give the marketing work more context.
+   question: How would you describe Brightfield's customers or company size?
+2. [line] Marketing Coordinator, line 1
+   line: "Coordinated the monthly customer newsletter and product announcement emails"
+   can't tell: A recruiter can see the emails you worked on, but not which parts were yours. That matters for a role centered on building and sending campaigns.
+   example: Coordinated the monthly customer newsletter and product announcement emails by [what you did]
+   question: What parts of the newsletter and announcement emails did you handle?
+3. [line] Marketing Coordinator, line 2
+   line: "Supported webinar planning with the product marketing team"
+   can't tell: Supported leaves your part of the webinar planning open. Tallgrass asks for event work from registration through follow-up, so any of that work you did is worth naming.
+   example: Supported webinar planning with the product marketing team by [what you did]
+   question: What did you handle while planning the webinars?
+4. [line] Marketing Coordinator, line 4
+   line: "Pulled weekly campaign reports for the marketing manager"
+   can't tell: The weekly reports are relevant, but a recruiter can't tell what campaign measures you reported. Naming them would show what you worked with.
+   example: Pulled weekly campaign reports on [metrics] for the marketing manager
+   question: Which campaign measures did your weekly reports cover?
+5. [keep] Marketing Assistant, line 1
+   line: "Updated event pages and registration forms for regional broker events"
+   can't tell: Keep this as a model. It gives a recruiter concrete materials and an audience without needing to guess what the event work involved.
+6. [line] Marketing Assistant, line 2
+   line: "Helped prepare slide decks and one-pagers for the sales team"
+   can't tell: The materials and audience are clear, but helped doesn't say which part you prepared. Your contribution is the useful detail here.
+   example: Helped prepare slide decks and one-pagers for the sales team by [what you did]
+   question: What did you contribute to the decks and one-pagers?
+7. [line] Skills
+   line: "HubSpot, Salesforce, Google Analytics 4, Canva, WordPress, Hootsuite, Asana, Excel"
+   can't tell: HubSpot, Salesforce and Google Analytics 4 match the posting, but none appears in a job. A recruiter can't tell where you used them or what you did with them.
+   example: Used [tool] to [what you did] for [which work]
+   question: Where did you use HubSpot, Salesforce or Google Analytics 4, and what did you do in each?
+
+## Fit
+Roles: ["Marketing Coordinator","Marketing Operations Coordinator"]
+Level: Coordinator, with a current Marketing Coordinator role and prior Marketing Assistant role
+Note: The main mismatch is that Tallgrass requires hands-on HubSpot work, and your resume lists the tool without showing how you used it. Your B2B background, campaign reporting and webinar and event work are relevant; add your actual tool use and any registration or follow-up work if you did it.
+Posting: B2B marketing operations role focused on HubSpot campaigns, Salesforce coordination, performance reporting, and webinar and event support.
+Missing: ["Hands-on HubSpot experience: workflows, lists, email and reporting","lead routing, campaign attribution and list hygiene","Google Analytics 4 and HubSpot dashboards","follow-up"]

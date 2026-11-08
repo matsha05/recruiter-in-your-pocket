@@ -1,0 +1,30 @@
+# b23_pharmacy_tech_table, run 1
+Resume: ../2026-11-live-judgment/resumes/b_pharmacy_tech_table.txt (209 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 338ac33a; severity check off
+Outcome: report; cost $0.0068; 13.2s
+Case note: Tables rendered to tab-separated text.
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A certified pharmacy technician whose hospital and retail work is backed by concrete duties and numbers.
+
+## Write-up
+This is a strong pharmacy technician resume. Your inpatient work covers sterile compounding, cabinet restocking and training, with enough detail for a recruiter to see what your shifts involve.
+
+The cabinet restocking line is the model: it names the six nursing units and puts the stockout reports alongside the work. Your certifications and license are easy to find. The main structural snag is that duties sit apart from the employers and dates, so a recruiter has to match them up.
+
+Let's put each set of duties under its corresponding role, starting with Sutter Valley Medical Center. Your resume makes a strong case on its own; competition for a particular hospital job and a referral can still matter.
+
+## Cards (2; {"structure":1,"keep":1}); severity off; added []
+1. [structure] Experience and Duties and Results
+   line: "Duties and results are listed separately from the roles and dates."
+   can't tell: A recruiter has to move between two sections to match the work to an employer and dates. The role labels help, but putting the work directly under each job would make the progression easier to follow.
+   question: Can you put each duty and result under its corresponding role and employer?
+2. [keep] Pharmacy Technician II, cabinet restocking
+   line: "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024"
+   can't tell: Keep this as a model. It pairs a named responsibility with a count and a change in the reports, without making a recruiter guess what you managed.
+
+## Fit
+Roles: ["Certified Pharmacy Technician (CPhT)","Pharmacy Technician II"]
+Level: Experienced technician, with sterile compounding and new-technician training
+Note: Your current work points toward inpatient pharmacy technician roles, particularly those involving sterile compounding. Your earlier retail work also gives you a basis for retail pharmacy roles.

@@ -1,0 +1,35 @@
+# b28_cybersecurity_analyst, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_cybersecurity_analyst_1.txt (154 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 41bcacc0; severity check off
+Outcome: report; cost $0.0067; 13.6s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A senior security analyst with substantial detection and incident response work, backed by measurable results.
+
+## Write-up
+Your resume makes a strong case for detection and response! At Capital Ridge Bank, you build detections and lead incident response; before that, you monitored client environments at Northgate Managed Security. The work is specific enough that a recruiter can see where you fit.
+
+The containment line is a great model: it names the cases you lead and shows the median time falling from 9 hours to 3. Your current role leads the resume, and the certifications support the work you've described.
+
+Let's add the period behind the false-positive reduction and explain what the alert automation changed. Beyond those details, your resume isn't likely to be the thing holding you back; the fit and competitiveness of each job will matter too.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] Senior Security Analyst, line 1
+   line: "Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%"
+   can't tell: The reduction is meaningful, but a recruiter can't tell over what period it happened.
+   example: Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35% over [period]
+   question: Over what period did false-positive alerts fall by 35%?
+2. [keep] Senior Security Analyst, line 2
+   line: "Lead incident response for phishing and credential-theft cases; median time to contain fell from 9 hours to 3"
+   can't tell: Keep this as a model. It pairs your responsibility with a before-and-after measure without making a claim about what caused the change.
+3. [line] Senior Security Analyst, line 4
+   line: "Automated alert enrichment with Python and the Splunk SOAR platform"
+   can't tell: A recruiter can see the tools, but not what the automation changed in the alert workflow.
+   example: Automated alert enrichment with Python and the Splunk SOAR platform, [what changed in the alert workflow]
+   question: What changed in the alert workflow after you automated enrichment?
+
+## Fit
+Roles: ["Senior Security Analyst, Detection and Response","Security Operations Analyst"]
+Level: Senior analyst, leads incident response and mentors 2 analysts
+Note: Your experience points toward senior detection and response work, particularly in financial services. Splunk, Python and incident response are all tied to named work in your current role.

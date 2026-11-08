@@ -1,0 +1,33 @@
+# fr01c_backend_ic_manager_posting, run 1
+Resume: resumes/fr01_backend_ic_senior.txt (236 words), posting: resumes/posting_engineering_manager.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 288eceb5; severity check off
+Outcome: report; cost $0.0144; 16.8s
+Case note: P1. The same resume against an engineering manager posting. Expect the missing management work (direct reports, hiring, performance) named first; the score unchanged against fr01a within one draw.
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+Strong senior backend experience, but the Engineering Manager role asks for direct management the resume doesn't show.
+
+## Write-up
+Cobalt Pay wants an engineering manager with direct reports, hiring and performance management experience. Your resume points instead to a senior backend engineer: you build payments services at Lumen Ledger, after backend roles in freight and insurance. That engineering track is the one I scored it for.
+
+Your backend resume is strong! The balance API line pairs the latency reduction with the technical change behind it, and the payouts and ledger work show what you can handle at Lumen Ledger. A recruiter has a clear picture of your engineering work and your mentoring.
+
+For senior backend jobs, the resume itself is unlikely to be the reason you're passed over; the role and competition still matter. For Cobalt Pay, bring your mentoring and incident work forward, and add direct management experience only if you've actually done it.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Senior Software Engineer, Payments Platform, line 3
+   line: "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache"
+   can't tell: Keep this as a model. It names the service, shows the before and after, and tells a recruiter how you made the change.
+2. [line] Senior Software Engineer, Payments Platform, line 4
+   line: "Wrote the on-call runbooks for the payments services and ran the incident reviews for the platform group"
+   can't tell: This names useful operations work, but it doesn't say what came out of the incident reviews. That detail could strengthen your case for a role concerned with reliability.
+   example: Wrote the on-call runbooks for the payments services and ran the incident reviews for the platform group, with [change from the reviews]
+   question: What changed after the incident reviews you ran?
+
+## Fit
+Roles: ["Senior Backend Engineer","Engineering Manager, Payments Platform"]
+Level: senior, leads a ledger migration and mentors two engineers
+Note: Your payments work and incident reviews are relevant to Cobalt Pay's platform. Emphasize the mentoring and operational work, and add any management responsibilities you can substantiate.
+Posting: Lead the payouts and ledger team, manage engineers, own delivery with Product and keep the platform reliable.
+Missing: ["2+ years managing engineers with direct reports, including hiring and performance management","Experience leading teams that run production systems with on-call","A record of growing engineers into senior roles","Own the team's roadmap and delivery with your product partner","Build relationships with Finance, Risk and Support"]

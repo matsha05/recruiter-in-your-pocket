@@ -78,6 +78,8 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     const resumePickerRef = useRef<WorkspaceResumePickerHandle>(null);
     const [commandUploadName, setCommandUploadName] = useState<string | null>(null);
     const [comparisonBaseline, setComparisonBaseline] = useState<ReportData | null>(null);
+    // A report's "Read it against a posting" kept the resume: open the posting field when the input returns.
+    const [postingRequested, setPostingRequested] = useState(false);
     // Ask-first (Nov 5, 2026): a page the server read as not ready shows its questions before the report;
     // the report is then written again from the resume with the answers in it, and the first stays put
     // until the second arrives. `rebuiltAnswers` is how many answers the shown report was written from.
@@ -264,6 +266,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         setSkipSample(true);
         setResumeText("");
         setJobDescription("");
+        setPostingRequested(false);
         setReport(null);
         setJustUnlocked(false);
         setComparisonBaseline(null);
@@ -374,6 +377,17 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     useEffect(() => {
         setHasRecoverableReport(recoveryDismissed && !user && readAnonymousReportRecoveryMarker() !== null);
     }, [recoveryDismissed, user, report]);
+
+    // The first pass's "Read it against a posting" (Nov 7, 2026): a new read of the same resume with a posting.
+    // The resume stays in the field and the posting field opens with the cursor in it; nothing else carries over.
+    const handleReadAgainstPosting = useCallback(() => {
+        if (!report) return;
+        const kept = resumeText;
+        resetWorkspaceInput();
+        setResumeText(kept);
+        setPostingRequested(true);
+        replace("/workspace", { scroll: false });
+    }, [report, resumeText, resetWorkspaceInput, replace]);
 
     const handleStartRevision = useCallback(() => {
         if (!report) return;
@@ -612,6 +626,8 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
                             onRetryAnalysis={handleRetryAnalysis}
                             comparisonBaseline={savedRevision.active ? savedRevision.baseline : comparisonBaseline}
                             onStartRevision={handleStartRevision}
+                            onReadAgainstPosting={handleReadAgainstPosting}
+                            focusPosting={postingRequested}
                             readDurationMs={readDurationMs}
                             askFirst={askFirst}
                             onAskFirstWrite={handleAskFirstWrite}

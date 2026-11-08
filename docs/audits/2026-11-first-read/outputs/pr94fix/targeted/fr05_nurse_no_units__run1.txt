@@ -1,0 +1,58 @@
+# fr05_nurse_no_units, run 1
+Resume: resumes/fr05_nurse_no_units.txt (140 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 288eceb5; severity check off
+Outcome: report; cost $0.0097; 20.3s
+Case note: P4 (nursing). Titles without a unit; RN with no state. Expect the unit and the license state asked for; no invented ratio.
+
+## Needs more context (score 65; model wrote 65)
+## Verdict
+An experienced registered nurse whose recent hospital work needs more detail about patients and responsibilities.
+
+## Write-up
+Your resume tells the story of a registered nurse at Riverside Methodist Hospital, after nursing and patient care technician work at Mount Carmel East. It's common for nursing resumes to list core duties this way, but these lines won't stand out in a pile because a recruiter can't tell what kind of unit you work on or how many patients you care for.
+
+Your Epic line is the best model: it names the assessments and care plans you documented and the system you used. Your experience comes before education, which works well. The six-year description at the top may need updating against your nursing dates.
+
+Let's start with the Riverside patient care line, then add what you handle as charge nurse and preceptor. Use details you can confirm, especially your unit, patient load and responsibilities on those weekend shifts.
+
+## Cards (7; {"line":7}); severity off; added []
+1. [line] Summary
+   line: "Registered Nurse with six years of hospital experience."
+   can't tell: The six-year description may be out of date alongside your nursing dates. An accurate summary helps a recruiter place your experience.
+   example: Registered Nurse with [number] years of hospital experience.
+   question: How many years of hospital experience can you accurately claim now?
+2. [line] Riverside Registered Nurse, line 1
+   line: "Provide direct patient care for adult patients across 12-hour shifts"
+   can't tell: A recruiter knows you care for adults, but not the unit or your patient load. Those details help place your bedside experience.
+   example: Provide direct patient care for [number] adult patients per 12-hour shift on [unit]
+   question: What unit do you work on, and how many patients do you typically care for per shift?
+3. [line] Riverside Registered Nurse, line 2
+   line: "Administer medications and monitor patient response"
+   can't tell: Medication administration is a core nursing duty. The line doesn't say which medications you administer or what responses you monitor.
+   example: Administer [medications] and monitor patient response for [responses monitored]
+   question: Which medications do you administer, and what patient responses do you monitor?
+4. [line] Riverside Registered Nurse, line 3
+   line: "Educate patients and families on discharge plans"
+   can't tell: A recruiter can't tell what your discharge teaching covers. Naming the information you provide would show your part in preparing patients to leave.
+   example: Educate patients and families on [discharge topics] as part of discharge plans
+   question: What do you teach patients and families as part of discharge planning?
+5. [line] Riverside Registered Nurse, line 4
+   line: "Serve as charge nurse on weekends"
+   can't tell: The charge nurse duty stands out, but a recruiter can't tell what you handle or how many nurses are on the shift.
+   example: Serve as charge nurse on weekends with [number] nurses on the shift, handling [responsibilities]
+   question: What are your charge nurse responsibilities, and how many nurses are on the shift?
+6. [line] Riverside Registered Nurse, line 5
+   line: "Precept new graduate nurses"
+   can't tell: Precepting shows that you work with new nurses, but the line doesn't say what you teach or how many you've precepted.
+   example: Precept [number] new graduate nurses in [skills or tasks]
+   question: How many new graduate nurses have you precepted, and what skills or tasks did you teach them?
+7. [line] Mount Carmel East Registered Nurse, line 1
+   line: "Cared for patients before and after surgery"
+   can't tell: A recruiter can't tell what kind of surgical patients you cared for or what your care included.
+   example: Cared for patients before and after [types of surgery], including [care provided]
+   question: What types of surgery did your patients have, and what care did you provide before and after?
+
+## Fit
+Roles: ["Registered Nurse"]
+Level: mid-level, current hospital nurse with charge nurse and preceptor duties
+Note: Your experience points toward hospital nursing roles. Naming your unit and patient load will help recruiters match that experience to an opening.

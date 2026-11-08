@@ -1,0 +1,257 @@
+<title>First-read blind pick, round 2</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+:root { --bg:#f4f4f1; --paper:#fff; --ink:#111513; --muted:#5a605c; --pen:#1f5a46; --blue:#2448a8; --line:#dfe0dc; --marker:#ffe14d; --sheet:#fefefc; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#111412; --paper:#1a1e1b; --ink:#eef0ec; --muted:#a9b0aa; --pen:#8fd1b3; --blue:#9fb4ff; --line:#2c322e; --marker:#6b6420; --sheet:#1f2420; color-scheme: dark; } }
+:root[data-theme="dark"] { --bg:#111412; --paper:#1a1e1b; --ink:#eef0ec; --muted:#a9b0aa; --pen:#8fd1b3; --blue:#9fb4ff; --line:#2c322e; --marker:#6b6420; --sheet:#1f2420; color-scheme: dark; }
+body { background: var(--bg); color: var(--ink); font: 15px/1.55 ui-sans-serif, system-ui, sans-serif; padding-block: 24px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+main { max-width: 1200px; margin: 0 auto; }
+h1 { font-size: 26px; line-height: 1.2; text-wrap: balance; }
+.intro { color: var(--muted); max-width: 70ch; }
+.item { background: var(--paper); border: 1px solid var(--line); border-radius: 18px; padding: 20px; margin-top: 24px; }
+.item h2 { font-size: 19px; margin: 0 0 8px; }
+details { margin: 6px 0; } summary { cursor: pointer; color: var(--pen); font-weight: 600; }
+pre { white-space: pre-wrap; background: var(--sheet); border: 1px solid var(--line); padding: 12px 14px; border-radius: 8px; font: 13px/1.5 Georgia, serif; max-height: 420px; overflow: auto; }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 12px; }
+.pair > div { min-width: 0; }
+@media (max-width: 860px) { .pair { grid-template-columns: 1fr; } }
+.side { font-weight: 800; font-size: 13px; letter-spacing: 0.04em; color: var(--muted); margin: 0 0 4px; }
+.report { border-top: 2px solid var(--ink); padding-top: 10px; }
+.score { margin: 0; } .score b { font-size: 26px; margin-right: 6px; }
+.readfor { color: var(--muted); font-size: 13px; margin: 2px 0 0; }
+.verdict { font: 19px/1.4 Georgia, serif; margin: 10px 0 6px; }
+.writeup p { color: var(--pen); font: 15px/1.6 Georgia, serif; margin: 6px 0; }
+.fit-note { background: var(--bg); padding: 8px 10px; border-radius: 8px; font-size: 14px; }
+.missing { font-size: 13px; color: var(--muted); }
+.count { font-weight: 700; margin: 14px 0 4px; }
+.cards { padding-left: 18px; margin: 0; } .cards li { margin: 0 0 14px; }
+.where { font-size: 12px; font-weight: 700; color: var(--muted); margin: 0; }
+.quoted { font: 14px/1.5 Georgia, serif; margin: 2px 0; } mark { background: var(--marker); color: inherit; }
+.statement { font: italic 14px/1.5 Georgia, serif; margin: 2px 0; }
+.note { font: italic 14px/1.5 Georgia, serif; color: var(--pen); margin: 2px 0; }
+.question { font-size: 14px; margin: 2px 0; }
+.example { font: 14px/1.5 Georgia, serif; margin: 2px 0; } .blank { color: var(--blue); border-bottom: 1.5px solid var(--blue); }
+.keep .quoted { font-weight: 600; }
+</style>
+<main>
+<h1>First-read blind pick, round 2</h1>
+<p class="intro">Each item is one synthetic resume read twice: once by the report prompt that's live today, once by the proposed one. Which is which is shuffled per item. For each, pick the side a job seeker would rather get, or say they're the same. Open the resume to check the cards against it.</p>
+<section class="item" id="item-1">
+      <h2>1. A staff software engineer</h2>
+      <details><summary>The resume</summary><pre>Wei Chen
+San Francisco, CA | wei.chen@example.com | (415) 555-0133 | github.com/weichen-example
+
+Staff Software Engineer | Distributed Systems | Payments Infrastructure
+
+EXPERIENCE
+
+Staff Software Engineer, Brightline Payments, San Francisco, CA
+January 2022 - Present
+- Technical lead for the ledger and settlement platform team
+- Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB
+- Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents
+- Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services
+- Mentored senior and mid-level engineers; ran the backend engineering reading group
+- Partnered with product and finance on the roadmap for multi-currency settlement
+- Authored engineering design documents and architecture reviews adopted as team standards
+- Interviewed 100+ candidates and helped revise the backend hiring loop
+
+Senior Software Engineer, Brightline Payments, San Francisco, CA
+June 2019 - December 2021
+- Built the real-time fraud scoring pipeline (Flink, Kafka) processing payment events with p99 latency under 50ms
+- Designed and shipped the reconciliation service that matches internal ledger entries against processor settlement files
+- Reduced reconciliation break rate and manual ops effort
+- On-call rotation for payments core services
+
+Software Engineer II, Nimbus Cloud (acquired by Oracle), Seattle, WA
+August 2016 - May 2019
+- Worked on the object storage control plane in Go
+- Implemented multi-region replication and lifecycle policies
+- Improved API latency and availability through caching and request coalescing
+- Contributed to the migration of the control plane to Kubernetes
+
+Software Engineer, Nimbus Cloud, Seattle, WA
+July 2015 - August 2016
+- Developed internal tooling and APIs for storage provisioning
+- Participated in on-call and wrote runbooks
+
+SKILLS
+Go, Java, Python, Kafka, Flink, CockroachDB, Postgres, Kubernetes, AWS, gRPC, Terraform, distributed systems, event sourcing, consensus, observability (Prometheus, Grafana, OpenTelemetry), system design, technical leadership
+
+EDUCATION
+M.S. Computer Science, University of Washington, 2015
+B.S. Computer Science, Shanghai Jiao Tong University, 2013
+
+PUBLICATIONS &amp; TALKS
+&quot;Idempotency at Scale: Lessons from a Payments Platform,&quot; internal tech talk series, 2024
+Co-author, &quot;Multi-Region Replication Tradeoffs for Object Storage,&quot; Nimbus Engineering Blog, 2018
+</pre></details>
+      <div class="pair"><div><p class="side">Left</p><div class="report">
+      <p class="score"><b>82</b> Mostly clear</p>
+      <h3 class="verdict">A staff engineer with credible payments and distributed systems work, though some leadership results need more detail.</h3>
+      <div class="writeup"><p>You’ve progressed from object storage at Nimbus Cloud to leading ledger and settlement work at Brightline Payments. A recruiter can follow that path and would likely move your resume forward with a few questions about the size and results of your staff-level work.</p><p>The idempotency line is your best model: it connects an initiative across payment services to the duplicate-charge incidents it eliminated. The ledger redesign is technically substantial too, but a recruiter can’t yet tell what changed after the move.</p><p>Let’s start with the current Brightline role. Add the team’s size and what changed with the ledger redesign, then give the multi-currency roadmap a little more of your own contribution. The older reconciliation result is worth expanding too.</p></div>
+      
+      <p class="count">5 lines that need work</p>
+      <ol class="cards"><li><p class="where">Staff Software Engineer, line 1</p><p class="quoted"><mark>Technical lead for the ledger and settlement platform team</mark></p><p class="note">A recruiter knows which team you lead, but not how many engineers are on it or what your technical leadership covers.</p><p class="question">How many engineers are on the team, and what do you own as its technical lead?</p><p class="example">Technical lead for the ledger and settlement platform team of <span class="blank">number</span> engineers, responsible for <span class="blank">leadership responsibilities</span></p></li><li><p class="where">Staff Software Engineer, line 2</p><p class="quoted"><mark>Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB</mark></p><p class="note">The architecture change is clear, but the reason for it and what changed afterward are missing. Those details would show a recruiter why the redesign mattered to payments.</p><p class="question">What problem drove the redesign, and what measure changed after it?</p><p class="example">Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, addressing <span class="blank">problem</span> and changing <span class="blank">measure</span> from <span class="blank">before</span> to <span class="blank">after</span></p></li><li class="keep"><p class="where">Don't touch this one · Staff Software Engineer, line 3</p><p class="quoted">Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents</p><p class="note">Keep this as a model. It names both the change you drove and the payment problem it removed.</p></li><li><p class="where">Staff Software Engineer, line 4</p><p class="quoted"><mark>Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services</mark></p><p class="note">You name the response work and the reliability practices you introduced. A recruiter can’t tell what changed for those services afterward.</p><p class="question">What changed for the services after you introduced error budgets and SLOs?</p><p class="example">Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services, resulting in <span class="blank">what changed</span></p></li><li><p class="where">Staff Software Engineer, line 6</p><p class="quoted"><mark>Partnered with product and finance on the roadmap for multi-currency settlement</mark></p><p class="note">The project and partners are named, but your contribution to the roadmap is still a blank. What did you bring to the decisions?</p><p class="question">What was your contribution to the multi-currency settlement roadmap?</p><p class="example">Partnered with product and finance on the roadmap for multi-currency settlement by <span class="blank">your contribution</span></p></li><li><p class="where">Senior Software Engineer, line 3</p><p class="quoted"><mark>Reduced reconciliation break rate and manual ops effort</mark></p><p class="note">Both improvements matter in payments, but a recruiter can’t tell what you changed or how much either measure moved.</p><p class="question">What did you change, and how much did the break rate and manual ops effort decrease?</p><p class="example">Reduced reconciliation break rate from <span class="blank">before</span> to <span class="blank">after</span> and manual ops effort by <span class="blank">amount</span> through <span class="blank">what you did</span></p></li></ol>
+    </div></div><div><p class="side">Right</p><div class="report">
+      <p class="score"><b>84</b> Mostly clear</p>
+      <h3 class="verdict">A staff payments engineer with substantial architecture work, though the scale of the current platform is missing.</h3>
+      <div class="writeup"><p>You come across as a staff software engineer who has grown from cloud storage into payments infrastructure at Brightline. A recruiter has good reason to move this forward: the ledger redesign, idempotency framework and fraud pipeline show substantial distributed systems work. The main question is how big the current platform and team are.</p><p>The idempotency line is a strong model: it connects adoption across payment services to the duplicate-charge incidents it eliminated. Your progression at Brightline is easy to follow, and your recent stack is right where a recruiter needs it.</p><p>Let&#x27;s start with the current role. Add the team count and a measure of the ledger platform&#x27;s size if you can substantiate them. Then return to the reconciliation line and show what you did to reduce breaks and manual work.</p></div>
+      
+      <p class="count">3 lines that need work</p>
+      <ol class="cards"><li><p class="where">Staff Software Engineer, line 1</p><p class="quoted"><mark>Technical lead for the ledger and settlement platform team</mark></p><p class="note">A recruiter can see what the team works on, but not how many people are on it. That context helps show the reach of your technical leadership.</p><p class="question">How many people were on the team?</p><p class="example">Technical lead for the ledger and settlement platform team of <span class="blank">number</span> people</p></li><li><p class="where">Staff Software Engineer, line 2</p><p class="quoted"><mark>Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB</mark></p><p class="note">The architecture and your lead role are clear. What isn&#x27;t clear is how much work the ledger handles, which matters when judging a distributed system.</p><p class="question">What transaction volume or other measure of the ledger&#x27;s size can you share?</p><p class="example">Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, handling <span class="blank">transaction volume</span></p></li><li class="keep"><p class="where">Don't touch this one · Staff Software Engineer, line 3</p><p class="quoted">Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents</p><p class="note">Keep this as a model. It names the change you drove, where it was adopted and the problem it removed.</p></li><li><p class="where">Senior Software Engineer, line 3</p><p class="quoted"><mark>Reduced reconciliation break rate and manual ops effort</mark></p><p class="note">These are useful improvements, but a recruiter can&#x27;t tell what you did to achieve them or how much they changed. The reconciliation service above names the work, but this line doesn&#x27;t connect it to the reductions.</p><p class="question">What work reduced the break rate and manual effort, and how did each change?</p><p class="example">Reduced reconciliation break rate by <span class="blank">amount</span> and manual ops effort by <span class="blank">amount</span> through <span class="blank">work done</span></p></li></ol>
+    </div></div></div>
+    </section><section class="item" id="item-2">
+      <h2>2. A retail store manager</h2>
+      <details><summary>The resume</summary><pre>Marcus Bell
+Charlotte, NC | marcus.bell@example.com | 555-0193
+
+Retail store manager who has turned around two underperforming stores in a 60-store regional chain.
+
+EXPERIENCE
+
+Store Manager
+Carolina Home &amp; Garden, Charlotte, NC
+March 2022 - Present
+- Run a $9.4M store with 42 employees, including 4 department managers
+- Grew same-store sales 11% in 2024 and 7% in 2025 after resetting the garden center layout
+- Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules
+- Ranked 3rd of 60 stores on the 2025 customer satisfaction survey
+- Reduced inventory shrink from 2.1% to 1.3% of sales with weekly cycle counts
+
+Assistant Store Manager
+Carolina Home &amp; Garden, Gastonia, NC
+June 2018 - February 2022
+- Managed daily operations for a $6M store with 30 employees
+- Led the store&#x27;s holiday hiring of 15 seasonal associates each year
+- Trained department leads on ordering and replenishment
+
+Department Supervisor
+Carolina Home &amp; Garden, Gastonia, NC
+May 2015 - May 2018
+- Supervised the lumber and building materials department
+
+EDUCATION
+B.S., Business Administration, UNC Charlotte, 2015
+</pre></details>
+      <div class="pair"><div><p class="side">Left</p><div class="report">
+      <p class="score"><b>84</b> Mostly clear</p>
+      <h3 class="verdict">A strong store manager resume with clear results, but the claimed second turnaround needs backing.</h3>
+      <div class="writeup"><p>Your resume shows a progression from Department Supervisor to Store Manager at Carolina Home &amp; Garden, with sales, staffing and inventory results in Charlotte. This is excellent retail management work! The one catch is that your headline promises two store turnarounds, while the work under it only shows results for the current store.</p><p>The turnover line is a great model: it names the scheduling change and shows how staff turnover moved. Experience also leads education, so a recruiter gets to your store management work quickly.</p><p>Start with the headline. Add what changed at the other store if you can, and connect it to your role there. Leave the current store&#x27;s results front and center.</p></div>
+      
+      <p class="count">1 lines that need work</p>
+      <ol class="cards"><li><p class="where">Headline</p><p class="quoted"><mark>Retail store manager who has turned around two underperforming stores in a 60-store regional chain.</mark></p><p class="note">Your current store has several results, but a recruiter can&#x27;t see what changed at the second store. That leaves part of your opening claim unbacked.</p><p class="question">What changed at the second store, and what was your part in that change?</p><p class="example">Retail store manager who has turned around two underperforming stores in a 60-store regional chain, with <span class="blank">what changed at the second store</span>.</p></li><li class="keep"><p class="where">Don't touch this one · Store Manager, line 3</p><p class="quoted">Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules</p><p class="note">Keep this as a model. It gives a recruiter the starting point, the ending point and the decision you made.</p></li></ol>
+    </div></div><div><p class="side">Right</p><div class="report">
+      <p class="score"><b>84</b> Mostly clear</p>
+      <h3 class="verdict">A store manager with strong results, but the claimed second turnaround needs a supporting detail.</h3>
+      <div class="writeup"><p>You&#x27;ve grown from Department Supervisor to Store Manager at Carolina Home &amp; Garden, and your recent work shows sales growth, lower turnover and less shrink. A recruiter could move this forward for a store manager role, with one question about the two turnarounds in your summary.</p><p>The fixed-schedule line is a great model: it shows the change you made and the drop in annual staff turnover. Your current store&#x27;s results are well covered, but the Assistant Store Manager role doesn&#x27;t yet show the other turnaround your summary claims.</p><p>Let&#x27;s start with that claim. If the Gastonia store was the other turnaround, add what changed there and your part in it. If not, name the store where it happened and the result you can stand behind.</p></div>
+      
+      <p class="count">1 lines that need work</p>
+      <ol class="cards"><li><p class="where">Summary</p><p class="quoted"><mark>Retail store manager who has turned around two underperforming stores in a 60-store regional chain.</mark></p><p class="note">Your Charlotte results give a recruiter plenty to work with, but the resume doesn&#x27;t show what changed at the other store. That leaves the two-store claim open to question.</p><p class="question">Which was the other store you turned around, and what changed there?</p><p class="example">Retail store manager who has turned around two underperforming stores in a 60-store regional chain, including <span class="blank">store</span> where <span class="blank">what changed</span>.</p></li><li class="keep"><p class="where">Don't touch this one · Store Manager, line 3</p><p class="quoted">Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules</p><p class="note">Keep this as a model. It names the management decision and gives the before and after, so a recruiter can see what changed.</p></li></ol>
+    </div></div></div>
+    </section><section class="item" id="item-3">
+      <h2>3. A senior director whose lines are duties</h2>
+      <details><summary>The resume</summary><pre>DANIEL WHITFIELD
+Minneapolis, MN | daniel.whitfield.ops@example.com | linkedin.com/in/daniel-whitfield-example
+
+Senior Operations Leader
+
+EXPERIENCE
+
+Senior Director, Operations
+Northstar Home Services, Minneapolis, MN | February 2021 - Present
+- Responsible for field operations, dispatch and customer care across the Upper Midwest
+- Reported to the COO and partnered with Finance on the annual operating plan
+- Oversaw vendor management and fleet
+- Led operational strategy and continuous improvement initiatives
+- Managed managers across multiple regions
+
+Director, Field Operations
+Northstar Home Services, Minneapolis, MN | June 2017 - January 2021
+- Oversaw technicians and dispatch for the Twin Cities market
+- Rolled out a new scheduling system
+- Improved first-time fix rate
+
+Operations Manager
+Lakeland Appliance Repair, St. Paul, MN | March 2012 - May 2017
+- Ran daily operations for the service department
+- Hired and trained technicians
+
+EDUCATION
+B.S. Business Administration, University of Minnesota, 2011
+</pre></details>
+      <div class="pair"><div><p class="side">Left</p><div class="report">
+      <p class="score"><b>63</b> Needs more context</p>
+      <h3 class="verdict">A senior operations leader&#x27;s progression is clear, but the work behind the titles is mostly left unexplained.</h3>
+      <div class="writeup"><p>You&#x27;ve moved from Operations Manager at Lakeland Appliance Repair to Senior Director, Operations at Northstar Home Services. It&#x27;s common for senior resumes to lean on responsibilities, but yours leaves a recruiter guessing how large the operation was and what changed under your leadership. That makes it difficult to distinguish your work from other senior operations resumes.</p><p>The line about reporting to the COO and partnering with Finance on the annual operating plan is your best starting model: it names the people and the plan, even though your contribution to it is still missing. Your progression and dates are easy to follow, and Experience is in the right place.</p><p>Let&#x27;s start with the Senior Director role. Add the reach of the operation, then pick the initiatives and management work you can describe with a result. The earlier scheduling system and first-time fix rate give you useful places to add more detail, too.</p></div>
+      
+      <p class="count">10 lines that need work</p>
+      <ol class="cards"><li><p class="where">Northstar Home Services</p><p class="statement">Northstar Home Services has no company description or company size.</p><p class="note">A recruiter may not know Northstar or how large its operation is. A short description can give your leadership work useful context.</p><p class="question">How would you describe Northstar&#x27;s business and its size?</p></li><li><p class="where">Senior Director, Operations, line 1</p><p class="quoted"><mark>Responsible for field operations, dispatch and customer care across the Upper Midwest</mark></p><p class="note">The functions and region are named, but a recruiter can&#x27;t tell how large the operation was or what you did with it. Those details matter for a senior leadership role.</p><p class="question">How many people were in those functions, and what did you direct?</p><p class="example">Responsible for field operations, dispatch and customer care across the Upper Midwest, including <span class="blank">number</span> <span class="blank">employees</span> and <span class="blank">what you directed</span></p></li><li><p class="where">Senior Director, Operations, line 2</p><p class="quoted"><mark>Reported to the COO and partnered with Finance on the annual operating plan</mark></p><p class="note">The reporting relationship and plan are clear. What you contributed to the plan is still a question.</p><p class="question">What did you contribute to the annual operating plan?</p><p class="example">Reported to the COO and partnered with Finance on the annual operating plan by <span class="blank">your contribution</span></p></li><li><p class="where">Senior Director, Operations, line 3</p><p class="quoted"><mark>Oversaw vendor management and fleet</mark></p><p class="note">A recruiter can&#x27;t tell what overseeing vendors and fleet involved or how large either was.</p><p class="question">What did you handle for vendors and fleet, and how many vehicles were involved?</p><p class="example">Oversaw vendor management and fleet, including <span class="blank">vendor responsibilities</span> and <span class="blank">fleet responsibilities</span> for <span class="blank">number</span> <span class="blank">vehicles</span></p></li><li><p class="where">Senior Director, Operations, line 4</p><p class="quoted"><mark>Led operational strategy and continuous improvement initiatives</mark></p><p class="note">These could describe many operations roles. Name an initiative and what changed so a recruiter can see the work you led.</p><p class="question">Which initiative did you lead, and what changed?</p><p class="example">Led operational strategy and continuous improvement initiatives focused on <span class="blank">problem</span>, resulting in <span class="blank">what changed</span></p></li><li><p class="where">Senior Director, Operations, line 5</p><p class="quoted"><mark>Managed managers across multiple regions</mark></p><p class="note">A recruiter can&#x27;t tell how many managers reported to you or what their teams handled.</p><p class="question">How many managers did you manage, and what did their teams handle?</p><p class="example">Managed <span class="blank">number</span> managers across multiple regions whose teams handled <span class="blank">work</span></p></li><li><p class="where">Director, Field Operations, line 1</p><p class="quoted"><mark>Oversaw technicians and dispatch for the Twin Cities market</mark></p><p class="note">The market and teams are clear, but a recruiter can&#x27;t tell how many technicians or dispatch staff you oversaw.</p><p class="question">How many technicians and dispatch staff did you oversee?</p><p class="example">Oversaw <span class="blank">number</span> technicians and <span class="blank">number</span> dispatch staff for the Twin Cities market</p></li><li><p class="where">Director, Field Operations, line 2</p><p class="quoted"><mark>Rolled out a new scheduling system</mark></p><p class="note">A recruiter can see what you rolled out, but not who used it or what changed after the rollout.</p><p class="question">Who used the scheduling system, and what changed after the rollout?</p><p class="example">Rolled out a new scheduling system for <span class="blank">users</span>, resulting in <span class="blank">what changed</span></p></li><li><p class="where">Director, Field Operations, line 3</p><p class="quoted"><mark>Improved first-time fix rate</mark></p><p class="note">This names a meaningful service measure. The starting and ending rates would show how much it improved, and the action would show your part.</p><p class="question">How did you improve the first-time fix rate, and what were the starting and ending rates?</p><p class="example">Improved first-time fix rate from <span class="blank">starting rate</span> to <span class="blank">ending rate</span> by <span class="blank">action</span></p></li><li><p class="where">Operations Manager, line 1</p><p class="quoted"><mark>Ran daily operations for the service department</mark></p><p class="note">Daily operations can cover a lot. A recruiter can&#x27;t tell which parts of the service department you handled.</p><p class="question">Which responsibilities did you handle in the service department?</p><p class="example">Ran daily operations for the service department, including <span class="blank">responsibilities</span></p></li></ol>
+    </div></div><div><p class="side">Right</p><div class="report">
+      <p class="score"><b>64</b> Needs more context</p>
+      <h3 class="verdict">A senior operations leader with a clear career path, but too little detail to compare the work with other leaders.</h3>
+      <div class="writeup"><p>It&#x27;s common for senior operations resumes to lean on responsibilities like these. Yours traces a path from Operations Manager at Lakeland Appliance Repair to Senior Director at Northstar Home Services, but a recruiter can&#x27;t tell how large the operation is or what changed under your leadership. That makes it tough to stand out for a senior operations job.</p><p>The line about partnering with Finance on the annual operating plan is your best starting model: it names the work, a partner and your reporting relationship. Experience is in the right place above Education, and your current role is dated. The missing piece is what you contributed and how much you were responsible for.</p><p>Let&#x27;s start with the Senior Director role. Add the team and budget figures you can confirm, then name an initiative you led and what changed. Bring that same detail to the scheduling system and first-time fix rate in the earlier Northstar role.</p></div>
+      
+      <p class="count">11 lines that need work</p>
+      <ol class="cards"><li><p class="where">Northstar Home Services</p><p class="statement">The resume doesn&#x27;t say what services Northstar Home Services provides.</p><p class="note">A recruiter unfamiliar with Northstar has to guess what kind of field operation you run. A short description of the business can give your roles context.</p><p class="question">What services does Northstar Home Services provide, and how large is the business?</p></li><li><p class="where">Senior Director, Operations, line 1</p><p class="quoted"><mark>Responsible for field operations, dispatch and customer care across the Upper Midwest</mark></p><p class="note">The functions and region are clear, but a recruiter can&#x27;t tell how large the operation is. Team and budget figures would make your remit comparable to other senior operations roles.</p><p class="question">How many staff and how much budget were you responsible for across these functions?</p><p class="example">Responsible for field operations, dispatch and customer care across the Upper Midwest, covering <span class="blank">number of staff</span> and <span class="blank">budget</span></p></li><li><p class="where">Senior Director, Operations, line 2</p><p class="quoted"><mark>Reported to the COO and partnered with Finance on the annual operating plan</mark></p><p class="note">This names the plan and who you worked with, but not your contribution to it. Did you build part of the plan or make operating decisions from it?</p><p class="question">What did you contribute to the annual operating plan?</p><p class="example">Reported to the COO and partnered with Finance on the annual operating plan, contributing <span class="blank">your contribution</span></p></li><li><p class="where">Senior Director, Operations, line 3</p><p class="quoted"><mark>Oversaw vendor management and fleet</mark></p><p class="note">A recruiter can&#x27;t tell what you handled with vendors or the fleet. Name the work and how much of it you oversaw.</p><p class="question">What vendor and fleet work did you oversee, and how many vehicles were involved?</p><p class="example">Oversaw vendor management and fleet, including <span class="blank">vendor work</span> and <span class="blank">fleet work</span> for <span class="blank">number of vehicles</span></p></li><li><p class="where">Senior Director, Operations, line 4</p><p class="quoted"><mark>Led operational strategy and continuous improvement initiatives</mark></p><p class="note">There&#x27;s no initiative here for a recruiter to picture. Name one you led and what changed.</p><p class="question">Which initiative did you lead, and what changed?</p><p class="example">Led <span class="blank">initiative</span> as part of operational strategy and continuous improvement, with <span class="blank">result</span></p></li><li><p class="where">Senior Director, Operations, line 5</p><p class="quoted"><mark>Managed managers across multiple regions</mark></p><p class="note">Managing managers is relevant senior leadership work, but the number and their responsibilities aren&#x27;t clear. Those details show how the operation was organized.</p><p class="question">How many managers did you manage, and what did they oversee?</p><p class="example">Managed <span class="blank">number</span> managers across multiple regions who oversaw <span class="blank">their responsibilities</span></p></li><li><p class="where">Director, Field Operations, line 1</p><p class="quoted"><mark>Oversaw technicians and dispatch for the Twin Cities market</mark></p><p class="note">The market and functions are named, but a recruiter can&#x27;t tell how large the team was or what your oversight involved.</p><p class="question">How many technicians and dispatch staff did you oversee, and what did that involve?</p><p class="example">Oversaw <span class="blank">number</span> technicians and <span class="blank">number</span> dispatch staff for the Twin Cities market, including <span class="blank">oversight responsibilities</span></p></li><li><p class="where">Director, Field Operations, line 2</p><p class="quoted"><mark>Rolled out a new scheduling system</mark></p><p class="note">This names a useful piece of work, but not what the rollout involved or who used the system.</p><p class="question">Who used the scheduling system, and what did you do to roll it out?</p><p class="example">Rolled out a new scheduling system for <span class="blank">users</span>, including <span class="blank">rollout work</span></p></li><li><p class="where">Director, Field Operations, line 3</p><p class="quoted"><mark>Improved first-time fix rate</mark></p><p class="note">This names a result that matters in field service. A recruiter can&#x27;t tell what you changed or how much the rate improved.</p><p class="question">What did you do to improve the rate, and what were the starting and ending rates?</p><p class="example">Improved first-time fix rate from <span class="blank">starting rate</span> to <span class="blank">ending rate</span> by <span class="blank">your work</span></p></li><li><p class="where">Operations Manager, line 1</p><p class="quoted"><mark>Ran daily operations for the service department</mark></p><p class="note">Daily operations could cover many different jobs. A named responsibility would show what you handled in the service department.</p><p class="question">What were your main responsibilities in the service department?</p><p class="example">Ran daily operations for the service department, including <span class="blank">responsibility</span></p></li><li><p class="where">Operations Manager, line 2</p><p class="quoted"><mark>Hired and trained technicians</mark></p><p class="note">Hiring and training are clear, but a recruiter can&#x27;t tell how many technicians were involved or what the training covered.</p><p class="question">How many technicians did you hire and train, and what did the training cover?</p><p class="example">Hired and trained <span class="blank">number</span> technicians on <span class="blank">training topics</span></p></li></ol>
+    </div></div></div>
+    </section><section class="item" id="item-4">
+      <h2>4. A marketing coordinator against a posting that requires HubSpot</h2>
+      <details><summary>The resume</summary><pre>JORDAN ELLIS
+Columbus, OH | jordan.ellis.mktg@example.com | (614) 555-0142
+
+Marketing Coordinator with three years in B2B marketing for software and services companies.
+
+EXPERIENCE
+
+Marketing Coordinator
+Brightfield Software, Columbus, OH | January 2024 - Present
+- Coordinated the monthly customer newsletter and product announcement emails
+- Supported webinar planning with the product marketing team
+- Managed the content calendar for LinkedIn and the company blog
+- Pulled weekly campaign reports for the marketing manager
+
+Marketing Assistant
+Keystone Benefits Group, Dublin, OH | June 2022 - December 2023
+- Updated event pages and registration forms for regional broker events
+- Helped prepare slide decks and one-pagers for the sales team
+- Kept the brand asset library organized
+
+EDUCATION
+B.A. Communications, Ohio University, 2022
+
+SKILLS
+HubSpot, Salesforce, Google Analytics 4, Canva, WordPress, Hootsuite, Asana, Excel
+</pre></details><details><summary>The posting</summary><pre>Marketing Operations Coordinator
+Tallgrass Health Software, Columbus, OH (hybrid)
+
+What you&#x27;ll do
+- Build and send email campaigns and nurture programs in HubSpot
+- Keep Salesforce and HubSpot in sync: lead routing, campaign attribution and list hygiene
+- Report on campaign performance in Google Analytics 4 and HubSpot dashboards
+- Support webinars and events from registration through follow-up
+
+What we&#x27;re looking for
+- 2+ years in marketing for a B2B company
+- Hands-on HubSpot experience: workflows, lists, email and reporting (required)
+- Working knowledge of Salesforce
+- Comfortable with Google Analytics 4 and building simple reports
+- Organized, with a record of running campaigns on deadline
+</pre></details>
+      <div class="pair"><div><p class="side">Left</p><div class="report">
+      <p class="score"><b>66</b> Needs more context</p>
+      <h3 class="verdict">A B2B marketing coordinator whose campaign duties need more detail for a marketing operations role.</h3>
+      <div class="writeup"><p>You’ve moved from event and sales support at Keystone Benefits Group into newsletters, webinars and campaign reporting at Brightfield Software. It’s common for coordinator resumes to list work this way, but yours may blend into a pile because a recruiter can’t tell which parts of the campaigns were yours or what the work produced.</p><p>The Keystone line about updating event pages and registration forms is a useful model: it names the materials and the events they served. For the Tallgrass role, your B2B background and webinar work fit, but HubSpot, Salesforce and Google Analytics 4 appear only in your skills list, so a recruiter can’t tell how you used them.</p><p>Let’s start with the Brightfield newsletter line, then fill in your part of the webinars and reports. Add the tools to the jobs where you used them, including any HubSpot workflows or reporting you can substantiate. As it stands, a recruiter may hesitate on the required hands-on HubSpot work.</p></div>
+      <p class="fit-note">The main mismatch for Tallgrass is that the resume lists HubSpot but doesn’t show the required hands-on workflows, lists, email or reporting work. Your B2B background, campaign emails, webinar support and reporting are relevant; add the tools and steps you used in those jobs if you can substantiate them.</p><ul class='missing'><li>Hands-on HubSpot experience: workflows, lists, email and reporting (required)</li><li>Keep Salesforce and HubSpot in sync: lead routing, campaign attribution and list hygiene</li><li>Report on campaign performance in Google Analytics 4 and HubSpot dashboards</li><li>Support webinars and events from registration through follow-up</li><li>a record of running campaigns on deadline</li></ul>
+      <p class="count">7 lines that need work</p>
+      <ol class="cards"><li><p class="where">Marketing Coordinator, line 1</p><p class="quoted"><mark>Coordinated the monthly customer newsletter and product announcement emails</mark></p><p class="note">A recruiter knows which emails you coordinated, but not which parts were yours or who received them. That matters for a job that asks you to build and send campaigns.</p><p class="question">What parts of those emails did you handle, who received them, and what result can you share?</p><p class="example">Coordinated the monthly customer newsletter and product announcement emails by <span class="blank">what you did</span> for <span class="blank">audience</span>, with <span class="blank">result</span></p></li><li><p class="where">Marketing Coordinator, line 2</p><p class="quoted"><mark>Supported webinar planning with the product marketing team</mark></p><p class="note">Supported can cover a lot. Tallgrass wants help from registration through follow-up, so your part of the webinar work matters here.</p><p class="question">What did you handle for a webinar, including any registration or follow-up work?</p><p class="example">Supported webinar planning with the product marketing team by <span class="blank">what you did</span> for <span class="blank">webinar</span></p></li><li><p class="where">Marketing Coordinator, line 3</p><p class="quoted"><mark>Managed the content calendar for LinkedIn and the company blog</mark></p><p class="note">The channels are clear, but a recruiter can’t tell what managing the calendar involved or how much content it covered.</p><p class="question">What did you do to manage the calendar, and how often was content published?</p><p class="example">Managed the content calendar for LinkedIn and the company blog, <span class="blank">what you did</span> for <span class="blank">content cadence</span></p></li><li><p class="where">Marketing Coordinator, line 4</p><p class="quoted"><mark>Pulled weekly campaign reports for the marketing manager</mark></p><p class="note">The weekly reports are relevant, but their contents and use aren’t clear. The Tallgrass role asks for campaign performance reporting.</p><p class="question">What did the reports track, and what were they used for?</p><p class="example">Pulled weekly campaign reports for the marketing manager covering <span class="blank">metrics</span>, used for <span class="blank">purpose</span></p></li><li class="keep"><p class="where">Don't touch this one · Marketing Assistant, line 1</p><p class="quoted">Updated event pages and registration forms for regional broker events</p><p class="note">Keep this as a model: it pairs your action with the materials you worked on and the people the events served.</p></li><li><p class="where">Marketing Assistant, line 2</p><p class="quoted"><mark>Helped prepare slide decks and one-pagers for the sales team</mark></p><p class="note">A recruiter can see the deliverables, but not your part in preparing them. Did you write, edit, design or assemble the materials?</p><p class="question">What did you contribute to the decks and one-pagers, and what were they used for?</p><p class="example">Helped prepare slide decks and one-pagers for the sales team by <span class="blank">what you did</span> for <span class="blank">purpose</span></p></li><li><p class="where">Marketing Assistant, line 3</p><p class="quoted"><mark>Kept the brand asset library organized</mark></p><p class="note">The library is named, but the work inside it isn’t. A recruiter can’t tell what you maintained or who relied on it.</p><p class="question">What did you do to maintain the library, and who used it?</p><p class="example">Kept the brand asset library organized by <span class="blank">what you did</span> for <span class="blank">users</span></p></li><li><p class="where">Skills</p><p class="quoted"><mark>HubSpot, Salesforce, Google Analytics 4, Canva, WordPress, Hootsuite, Asana, Excel</mark></p><p class="note">These tools match the posting, but none appears in a job bullet. The list alone doesn’t show the required hands-on HubSpot work or how you used Salesforce and Google Analytics 4.</p><p class="question">Where did you use HubSpot, Salesforce and Google Analytics 4, and what did you do in each?</p><p class="example"><span class="blank">what you did</span> in <span class="blank">tool</span> for <span class="blank">campaign or report</span></p></li></ol>
+    </div></div><div><p class="side">Right</p><div class="report">
+      <p class="score"><b>67</b> Needs more context</p>
+      <h3 class="verdict">A B2B marketing coordinator with relevant campaign work, but too little detail about the tools and responsibilities.</h3>
+      <div class="writeup"><p>You’ve moved from marketing assistance at Keystone Benefits Group to coordinating emails, content and reports at Brightfield Software. That’s a relevant path for Tallgrass, but it’s common for a coordinator resume to list tasks without showing enough of the work behind them. A recruiter may hesitate over what you can do in HubSpot and move on to a resume that makes it clearer.</p><p>The line about updating event pages and registration forms for regional broker events is a useful model: it names the materials and what they were for. Your experience is easy to follow, and Education sits in the right place below it. The tool list is relevant to the posting, but it doesn’t show how you’ve used those tools.</p><p>Let’s start with the Brightfield email line. Add the parts you coordinated and the tools you used, then do the same for reporting and webinars. If you’ve worked on HubSpot workflows, lists or reporting, show that work in Experience rather than relying on the skills list.</p></div>
+      <p class="fit-note">The main mismatch is that Tallgrass requires hands-on HubSpot workflows, lists, email and reporting, while your resume lists HubSpot without showing how you used it. Your B2B marketing, email, webinar and event work align with the role; connect that work to the requested tools and operations tasks where true.</p><ul class='missing'><li>Hands-on HubSpot experience: workflows, lists, email and reporting (required)</li><li>lead routing, campaign attribution and list hygiene</li><li>Comfortable with Google Analytics 4 and building simple reports</li></ul>
+      <p class="count">6 lines that need work</p>
+      <ol class="cards"><li><p class="where">Marketing Coordinator, line 1</p><p class="quoted"><mark>Coordinated the monthly customer newsletter and product announcement emails</mark></p><p class="note">A recruiter can see the emails you coordinated, but not which parts were yours or whether you worked in an email platform. That matters for a job building and sending campaigns in HubSpot.</p><p class="question">Which parts of the newsletter and announcement emails did you coordinate, and what platform did you use?</p><p class="example">Coordinated the monthly customer newsletter and product announcement emails, including <span class="blank">responsibilities</span>, using <span class="blank">platform</span></p></li><li><p class="where">Marketing Coordinator, line 2</p><p class="quoted"><mark>Supported webinar planning with the product marketing team</mark></p><p class="note">Supported could mean several different jobs. Tallgrass wants help from registration through follow-up, so name the planning work that was yours.</p><p class="question">What did you handle in planning a webinar, and what was it about?</p><p class="example">Supported webinar planning with the product marketing team by <span class="blank">planning responsibilities</span> for <span class="blank">webinar topic</span></p></li><li><p class="where">Marketing Coordinator, line 3</p><p class="quoted"><mark>Managed the content calendar for LinkedIn and the company blog</mark></p><p class="note">The channels are clear, but a recruiter can’t tell what managing the calendar involved or how often content went out.</p><p class="question">What did you handle on the calendar, and how often was content published?</p><p class="example">Managed the content calendar for LinkedIn and the company blog, including <span class="blank">calendar responsibilities</span>, for <span class="blank">publishing cadence</span></p></li><li><p class="where">Marketing Coordinator, line 4</p><p class="quoted"><mark>Pulled weekly campaign reports for the marketing manager</mark></p><p class="note">Weekly reporting is relevant, but the reports and tools aren’t connected here. A recruiter can’t tell what you tracked or whether you used the platforms Tallgrass asks for.</p><p class="question">Which tools did you use for the reports, and what campaign measures did you track?</p><p class="example">Pulled weekly campaign reports for the marketing manager using <span class="blank">tools</span>, tracking <span class="blank">campaign measures</span></p></li><li class="keep"><p class="where">Don't touch this one · Marketing Assistant, line 1</p><p class="quoted">Updated event pages and registration forms for regional broker events</p><p class="note">Keep this as a model. It gives a recruiter two concrete deliverables and ties them to the events they supported.</p></li><li><p class="where">Marketing Assistant, line 3</p><p class="quoted"><mark>Kept the brand asset library organized</mark></p><p class="note">A recruiter can’t tell what maintaining the library involved or who used it. Give the work a little more definition.</p><p class="question">What did you do to maintain the library, and who used it?</p><p class="example">Kept the brand asset library organized by <span class="blank">library responsibilities</span> for <span class="blank">users</span></p></li><li><p class="where">Skills</p><p class="quoted"><mark>HubSpot, Salesforce, Google Analytics 4, Canva, WordPress, Hootsuite, Asana, Excel</mark></p><p class="note">These tools match the posting, but a list alone doesn’t show your hands-on experience. Connect HubSpot, Salesforce and Google Analytics 4 to work you’ve done.</p><p class="question">What have you done in HubSpot, Salesforce and Google Analytics 4 that you can also connect to a role?</p><p class="example">HubSpot: <span class="blank">work performed</span>; Salesforce: <span class="blank">work performed</span>; Google Analytics 4: <span class="blank">work performed</span></p></li></ol>
+    </div></div></div>
+    </section>
+</main>

@@ -1,0 +1,45 @@
+# b10_it_support_recent_grad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_it_support_recent_grad_1.txt (119 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 1c0fe4fe; severity check off
+Outcome: report; cost $0.0089; 18.7s
+Case note: First job.
+
+## Needs more context (score 60; model wrote 60)
+## Verdict
+A help desk intern with relevant training, but no recent work or activity clearly dated since 2025.
+
+## Write-up
+Your resume points toward IT support, with a help desk internship at Chattahoochee County Schools and earlier customer-facing device work at Peachtree Electronics. It's common for an early-career resume to list tasks without much detail, but these lines won't stand out in a pile when a recruiter can't tell how much support you handled.
+
+The Active Directory line is your best model: it names both the account work and the system you used. Your latest job ended in May 2025, and your certification is dated 2025 without a month. Education also sits above your work experience, even though you have experience to lead with.
+
+Let's start with the school help desk tickets and laptop setup. Add the kinds of issues and the amount of work you can confirm, then account honestly for your time since the internship. Your A.A.S. and CompTIA A+ are worth keeping prominent.
+
+## Cards (5; {"dates":1,"structure":1,"line":2,"keep":1}); severity off; added []
+1. [dates] Dates
+   line: "Your most recent job ended May 2025; your certification is dated 2025 without a month."
+   can't tell: A recruiter can't tell what you've been doing since the internship. If you've taken a course, worked, volunteered, cared for family, or taken a career break, you can name that honestly. Freelance work belongs here only if you did it.
+   example: May 2025 - Present [what you did]
+   question: What have you done since May 2025 that you can include with dates?
+2. [structure] Structure
+   line: "Education sits above Experience."
+   can't tell: Your school help desk work is the strongest match for your target and arrives after Education and Certifications. Put Experience first so a recruiter sees the work sooner.
+   question: Can you move Experience above Education while keeping your degree and certification easy to find?
+3. [line] IT Help Desk Intern, line 1
+   line: "Answered help desk tickets from teachers and staff"
+   can't tell: A recruiter knows who sent the tickets, but not what issues you handled or how many came through. That matters for a help desk role.
+   example: Answered [number] help desk tickets per [period] from teachers and staff about [types of issues]
+   question: What issues did the tickets cover, and how many did you handle in a typical period?
+4. [line] IT Help Desk Intern, line 2
+   line: "Imaged and set up laptops for classrooms"
+   can't tell: This is relevant desktop work, but the number of laptops and the imaging tool aren't named. Those details would show what the setup involved.
+   example: Imaged and set up [number] laptops for classrooms using [imaging tool]
+   question: How many laptops did you image and set up, and what tool did you use?
+5. [keep] IT Help Desk Intern, line 3
+   line: "Reset passwords and accounts in Active Directory"
+   can't tell: Keep this as a model: it pairs a concrete support task with the platform where you did it.
+
+## Fit
+Roles: ["IT support specialist","IT Help Desk Intern"]
+Level: Entry level, with one IT help desk internship
+Note: Your experience points most directly toward desktop and help desk support. The Active Directory work is relevant to junior systems roles, though the resume shows less systems work than desktop support.

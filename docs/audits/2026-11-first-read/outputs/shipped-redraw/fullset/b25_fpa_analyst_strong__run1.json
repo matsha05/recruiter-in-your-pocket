@@ -1,0 +1,183 @@
+{
+  "case_id": "b25_fpa_analyst_strong",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_fpa_analyst_strong_1.txt",
+  "resume_sha256": "e8604c5c03930c475f944d36090e8f6db4af1ffc417c634667c5450ff68f9cd2",
+  "resume_words": 138,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T17:59:59.816Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5315,
+        "completion_tokens": 623,
+        "total_tokens": 5938,
+        "cached_prompt_tokens": 4685,
+        "cache_write_prompt_tokens": 627,
+        "reasoning_tokens": 212
+      },
+      "cost_usd": 0.004136,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 8091
+    }
+  ],
+  "resume_prompt_sha256": "0a19c3ee70395ec8fb0584d4bea1b93da77aeca37469b4d47211bc8568544f0c",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst whose budgeting, forecasting, and pricing work comes with concrete results.",
+    "write_up": [
+      "This is a strong senior FP&A resume! Your work at Lakeshore Foods and Midway Brands shows a progression from plant reporting and automation to divisional budgeting, forecasting, and pricing. A recruiter can see both what you handle and what changed.",
+      "The driver-based forecast is the standout: it names what you built and shows forecast error falling from 7% to 2.5%. Your experience leads, and the senior headline matches the work beneath it.",
+      "Your resume isn't the thing you need to fix to pursue senior FP&A roles. Competition for a particular job and a referral can also matter. Keep the forecast line as a model when you add future work."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "- Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "Keep this as a model. It pairs the forecasting method with a before-and-after measure, so a recruiter can see why the work mattered.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A",
+        "Financial Analyst"
+      ],
+      "level": "Senior individual contributor",
+      "note": "Your experience points toward senior FP&A work in budgeting, forecasting, and pricing. The divisional budget and presentations to the CFO show work with senior finance leaders.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst whose budgeting, forecasting, and pricing work comes with concrete results.",
+    "write_up": [
+      "This is a strong senior FP&A resume! Your work at Lakeshore Foods and Midway Brands shows a progression from plant reporting and automation to divisional budgeting, forecasting, and pricing. A recruiter can see both what you handle and what changed.",
+      "The driver-based forecast is the standout: it names what you built and shows forecast error falling from 7% to 2.5%. Your experience leads, and the senior headline matches the work beneath it.",
+      "Your resume isn't the thing you need to fix to pursue senior FP&A roles. Competition for a particular job and a referral can also matter. Keep the forecast line as a model when you add future work."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "Keep this as a model. It pairs the forecasting method with a before-and-after measure, so a recruiter can see why the work mattered.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A",
+        "Financial Analyst"
+      ],
+      "level": "Senior individual contributor",
+      "note": "Your experience points toward senior FP&A work in budgeting, forecasting, and pricing. The divisional budget and presentations to the CFO show work with senior finance leaders.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 91
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst whose budgeting, forecasting, and pricing work comes with concrete results.",
+    "write_up": [
+      "This is a strong senior FP&A resume! Your work at Lakeshore Foods and Midway Brands shows a progression from plant reporting and automation to divisional budgeting, forecasting, and pricing. A recruiter can see both what you handle and what changed.",
+      "The driver-based forecast is the standout: it names what you built and shows forecast error falling from 7% to 2.5%. Your experience leads, and the senior headline matches the work beneath it.",
+      "Your resume isn't the thing you need to fix to pursue senior FP&A roles. Competition for a particular job and a referral can also matter. Keep the forecast line as a model when you add future work."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "Keep this as a model. It pairs the forecasting method with a before-and-after measure, so a recruiter can see why the work mattered.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A",
+        "Financial Analyst"
+      ],
+      "level": "Senior individual contributor",
+      "note": "Your experience points toward senior FP&A work in budgeting, forecasting, and pricing. The divisional budget and presentations to the CFO show work with senior finance leaders.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 91
+  },
+  "presentation": {
+    "score": 91,
+    "band": "Clear and specific",
+    "model_score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst whose budgeting, forecasting, and pricing work comes with concrete results.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 109,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 1,
+    "kinds": {
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A",
+        "Financial Analyst"
+      ],
+      "level": "Senior individual contributor",
+      "note": "Your experience points toward senior FP&A work in budgeting, forecasting, and pricing. The divisional budget and presentations to the CFO show work with senior finance leaders.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.004136,
+  "latency_ms": 8092
+}

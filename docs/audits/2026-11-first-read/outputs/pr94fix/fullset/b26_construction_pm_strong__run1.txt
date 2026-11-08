@@ -1,0 +1,30 @@
+# b26_construction_pm_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_construction_pm_strong_1.txt (136 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 288eceb5; severity check off
+Outcome: report; cost $0.0063; 12.7s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A construction project manager whose project values, schedules and change orders are easy to follow.
+
+## Write-up
+This is a strong construction project management resume! Your work at Capitol Builders connects project values and trade counts to results on schedule and change orders. A recruiter can quickly see the commercial work you manage.
+
+The $14M grocery store line is the model: it names the build and says how it finished against schedule. Your move from assistant project manager to project manager is easy to follow, and your education sits in the right place below your experience.
+
+Add a little more about how you kept change orders down, then leave the rest of this structure alone. Your resume isn't likely to be what holds you back; competition for a particular job will also matter.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Project Manager, line 2
+   line: "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024"
+   can't tell: Keep this as a model. It gives the reader a recognizable project, its value and a finish against schedule in one line.
+2. [line] Project Manager, line 4
+   line: "Kept change orders under 3% of contract value across 2024 and 2025 projects"
+   can't tell: The change-order figure is strong. A recruiter can't tell what you did to keep it there.
+   example: Kept change orders under 3% of contract value across 2024 and 2025 projects through [your work on change orders]
+   question: What did you do to keep change orders under 3% on those projects?
+
+## Fit
+Roles: ["Project Manager"]
+Level: manager, runs 4 to 6 concurrent tenant-improvement projects
+Note: Your experience points toward commercial construction project management, including tenant improvements and retail builds. The project values and trade counts give a recruiter a useful picture of the work you handle.

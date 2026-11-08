@@ -1,0 +1,277 @@
+{
+  "case_id": "t1_google_engineer_maya",
+  "batch": "tier",
+  "run": 1,
+  "note": "Blind pick v5 bp5-04: a recognisable employer; decision 5 says the lift is one rung, bounded, declared.",
+  "resume_file": "resumes/t1_google_engineer_maya.txt",
+  "resume_sha256": "33dda6e3127bc91e9403ec54f16eb5edb2457f302567f72abdb4e0603a91b3c0",
+  "resume_words": 151,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T21:29:19.427Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5792,
+        "completion_tokens": 1631,
+        "total_tokens": 7423,
+        "cached_prompt_tokens": 5154,
+        "cache_write_prompt_tokens": 635,
+        "reasoning_tokens": 841
+      },
+      "cost_usd": 0.00920945,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 19585
+    }
+  ],
+  "resume_prompt_sha256": "288eceb50a0848513f3205630fd7657627db9010f5f15a63cb442225501f834d",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": true,
+    "verdict": "A backend engineer with strong earlier results and a Google role that leaves the recent work vague.",
+    "write_up": [
+      "You’re a backend software engineer at Google, with earlier infrastructure work at Harborview Analytics. It’s common to describe a current job in broad terms, but those lines won’t stand out in a pile: a recruiter can’t tell which features or technical problems were yours. Google will get your resume read, but the bullets under it don’t yet say enough about what you did there.",
+      "The Harborview line about cutting dashboard query latency is your model: it names the change, the technical work behind it, and the before and after. Your experience is easy to follow, and it sits above education where a recruiter expects it.",
+      "Let’s start with the internal tool at Google. Name the features you worked on and what changed, then give the requirements and review work enough detail to show your part."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Google, line 1",
+        "line": "- Worked on features for an internal tool used by other engineering teams",
+        "cannot_tell": "A recruiter can’t tell which features you worked on or what they changed for the engineering teams using the tool.",
+        "example": "Worked on [features] for an internal tool used by other engineering teams, resulting in [what changed]",
+        "question": "Which features did you work on, and what changed for the teams using them?"
+      },
+      {
+        "kind": "line",
+        "where": "Google, line 2",
+        "line": "- Collaborated with cross-functional partners on requirements",
+        "cannot_tell": "The partners and the requirements could belong to almost any project. What were you defining together?",
+        "example": "Collaborated with [partners] on requirements for [tool or feature]",
+        "question": "Which partners did you work with, and what were the requirements for?"
+      },
+      {
+        "kind": "line",
+        "where": "Google, line 3",
+        "line": "- Participated in code reviews, design reviews and the on-call rotation",
+        "cannot_tell": "These are familiar engineering activities, but a recruiter can’t tell what software you reviewed or supported on call.",
+        "example": "Participated in code reviews, design reviews and the on-call rotation for [service or tool]",
+        "question": "What software did you review and support on call?"
+      },
+      {
+        "kind": "keep",
+        "where": "Harborview Analytics, line 2",
+        "line": "- Cut p95 query latency on the customer dashboard from 4.2 s to 900 ms by rewriting the aggregation layer",
+        "cannot_tell": "Keep this as a model. It connects a concrete engineering decision to a measurement a recruiter can understand.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Software Engineer"
+      ],
+      "why": "Your headline and both jobs point to backend engineering, including ingestion, query performance and service migrations.",
+      "level": "mid-level, builds backend services and led a migration with two other engineers",
+      "note": "Your Harborview work gives a recruiter a strong picture of your infrastructure experience. Bring the Google work up to the same level of detail so your most recent work carries its weight.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": true,
+    "verdict": "A backend engineer with strong earlier results and a Google role that leaves the recent work vague.",
+    "write_up": [
+      "You’re a backend software engineer at Google, with earlier infrastructure work at Harborview Analytics. It’s common to describe a current job in broad terms, but those lines won’t stand out in a pile: a recruiter can’t tell which features or technical problems were yours. Google will get your resume read, but the bullets under it don’t yet say enough about what you did there.",
+      "The Harborview line about cutting dashboard query latency is your model: it names the change, the technical work behind it, and the before and after. Your experience is easy to follow, and it sits above education where a recruiter expects it.",
+      "Let’s start with the internal tool at Google. Name the features you worked on and what changed, then give the requirements and review work enough detail to show your part."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Google, line 1",
+        "line": "Worked on features for an internal tool used by other engineering teams",
+        "cannot_tell": "A recruiter can’t tell which features you worked on or what they changed for the engineering teams using the tool.",
+        "example": "Worked on [features] for an internal tool used by other engineering teams, resulting in [what changed]",
+        "question": "Which features did you work on, and what changed for the teams using them?"
+      },
+      {
+        "kind": "line",
+        "where": "Google, line 2",
+        "line": "Collaborated with cross-functional partners on requirements",
+        "cannot_tell": "The partners and the requirements could belong to almost any project. What were you defining together?",
+        "example": "Collaborated with [partners] on requirements for [tool or feature]",
+        "question": "Which partners did you work with, and what were the requirements for?"
+      },
+      {
+        "kind": "line",
+        "where": "Google, line 3",
+        "line": "Participated in code reviews, design reviews and the on-call rotation",
+        "cannot_tell": "These are familiar engineering activities, but a recruiter can’t tell what software you reviewed or supported on call.",
+        "example": "Participated in code reviews, design reviews and the on-call rotation for [service or tool]",
+        "question": "What software did you review and support on call?"
+      },
+      {
+        "kind": "keep",
+        "where": "Harborview Analytics, line 2",
+        "line": "Cut p95 query latency on the customer dashboard from 4.2 s to 900 ms by rewriting the aggregation layer",
+        "cannot_tell": "Keep this as a model. It connects a concrete engineering decision to a measurement a recruiter can understand.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Software Engineer"
+      ],
+      "why": "Your headline and both jobs point to backend engineering, including ingestion, query performance and service migrations.",
+      "level": "mid-level, builds backend services and led a migration with two other engineers",
+      "note": "Your Harborview work gives a recruiter a strong picture of your infrastructure experience. Bring the Google work up to the same level of detail so your most recent work carries its weight.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 68
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": true,
+    "verdict": "A backend engineer with strong earlier results and a Google role that leaves the recent work vague.",
+    "write_up": [
+      "You’re a backend software engineer at Google, with earlier infrastructure work at Harborview Analytics. It’s common to describe a current job in broad terms, but those lines won’t stand out in a pile: a recruiter can’t tell which features or technical problems were yours. Google will get your resume read, but the bullets under it don’t yet say enough about what you did there.",
+      "The Harborview line about cutting dashboard query latency is your model: it names the change, the technical work behind it, and the before and after. Your experience is easy to follow, and it sits above education where a recruiter expects it.",
+      "Let’s start with the internal tool at Google. Name the features you worked on and what changed, then give the requirements and review work enough detail to show your part."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Google, line 1",
+        "line": "Worked on features for an internal tool used by other engineering teams",
+        "cannot_tell": "A recruiter can’t tell which features you worked on or what they changed for the engineering teams using the tool.",
+        "example": "Worked on [features] for an internal tool used by other engineering teams, resulting in [what changed]",
+        "question": "Which features did you work on, and what changed for the teams using them?"
+      },
+      {
+        "kind": "line",
+        "where": "Google, line 2",
+        "line": "Collaborated with cross-functional partners on requirements",
+        "cannot_tell": "The partners and the requirements could belong to almost any project. What were you defining together?",
+        "example": "Collaborated with [partners] on requirements for [tool or feature]",
+        "question": "Which partners did you work with, and what were the requirements for?"
+      },
+      {
+        "kind": "line",
+        "where": "Google, line 3",
+        "line": "Participated in code reviews, design reviews and the on-call rotation",
+        "cannot_tell": "These are familiar engineering activities, but a recruiter can’t tell what software you reviewed or supported on call.",
+        "example": "Participated in code reviews, design reviews and the on-call rotation for [service or tool]",
+        "question": "What software did you review and support on call?"
+      },
+      {
+        "kind": "keep",
+        "where": "Harborview Analytics, line 2",
+        "line": "Cut p95 query latency on the customer dashboard from 4.2 s to 900 ms by rewriting the aggregation layer",
+        "cannot_tell": "Keep this as a model. It connects a concrete engineering decision to a measurement a recruiter can understand.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Software Engineer"
+      ],
+      "why": "Your headline and both jobs point to backend engineering, including ingestion, query performance and service migrations.",
+      "level": "mid-level, builds backend services and led a migration with two other engineers",
+      "note": "Your Harborview work gives a recruiter a strong picture of your infrastructure experience. Bring the Google work up to the same level of detail so your most recent work carries its weight.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 68
+  },
+  "presentation": {
+    "score": 68,
+    "band": "Needs more context",
+    "model_score": 68,
+    "lifted_by_employer": true,
+    "verdict": "A backend engineer with strong earlier results and a Google role that leaves the recent work vague.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 135,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Google, line 1",
+        "line": "Worked on features for an internal tool used by other engineering teams",
+        "blanks": 2,
+        "question": "Which features did you work on, and what changed for the teams using them?"
+      },
+      {
+        "kind": "line",
+        "where": "Google, line 2",
+        "line": "Collaborated with cross-functional partners on requirements",
+        "blanks": 2,
+        "question": "Which partners did you work with, and what were the requirements for?"
+      },
+      {
+        "kind": "line",
+        "where": "Google, line 3",
+        "line": "Participated in code reviews, design reviews and the on-call rotation",
+        "blanks": 1,
+        "question": "What software did you review and support on call?"
+      },
+      {
+        "kind": "keep",
+        "where": "Harborview Analytics, line 2",
+        "line": "Cut p95 query latency on the customer dashboard from 4.2 s to 900 ms by rewriting the aggregation layer",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 4,
+    "kinds": {
+      "line": 3,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Software Engineer"
+      ],
+      "why": "Your headline and both jobs point to backend engineering, including ingestion, query performance and service migrations.",
+      "level": "mid-level, builds backend services and led a migration with two other engineers",
+      "note": "Your Harborview work gives a recruiter a strong picture of your infrastructure experience. Bring the Google work up to the same level of detail so your most recent work carries its weight.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00920945,
+  "latency_ms": 19614
+}

@@ -1,0 +1,35 @@
+# b02_teacher, run 1
+Resume: ../2026-11-live-judgment/resumes/b_teacher.txt (202 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ee57d907; severity check off
+Outcome: report; cost $0.0062; 12.5s
+
+## Clear and specific (score 87; model wrote 87)
+## Verdict
+A certified elementary teacher whose classroom, team leadership, and family work are easy to see.
+
+## Write-up
+Your resume makes a strong case for elementary teaching! At Lincoln Heights and Whitman, you show classroom teaching alongside curriculum, team planning, and family work. The class sizes, student needs, and reading growth give a recruiter something concrete to carry forward.
+
+The grade-level team line is a great model: it names the people you lead, what you meet to do, and how often. Your Washington certificate and English Language Learner endorsement are easy to find, and Experience is where it belongs, above Education.
+
+Start by adding the teaching approach behind the reading growth, then give the behavior committee one concrete action. Your resume is already doing its job; how competitive a particular teaching opening is will matter too.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] 4th Grade Teacher, line 2
+   line: "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years"
+   can't tell: The reading growth is clear, but a recruiter can't tell what you did to help produce it. Your teaching approach would make this result more useful.
+   example: Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years through [teaching approach]
+   question: What teaching approach did you use to help raise reading growth?
+2. [keep] 4th Grade Teacher, line 3
+   line: "Lead the grade-level team of 4 teachers in weekly planning and data meetings"
+   can't tell: Keep this as a model. It shows your leadership without making a reader guess who was involved or what the team worked on.
+3. [line] 2nd Grade Teacher, line 3
+   line: "Served on the school's positive behavior support committee"
+   can't tell: Committee membership doesn't show what you contributed. Name one piece of work you took part in.
+   example: Served on the school's positive behavior support committee and [what you did]
+   question: What did you do as a member of the committee?
+
+## Fit
+Roles: ["4th Grade Teacher","2nd Grade Teacher"]
+Level: Experienced elementary teacher, leading a grade-level team of 4 teachers
+Note: Your experience points toward elementary classroom teaching, with grade-level leadership and work with English language learners. Your Washington K-8 certificate and endorsement support that direction.

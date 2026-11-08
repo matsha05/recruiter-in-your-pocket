@@ -1,0 +1,51 @@
+# fr04_financial_analyst_frames, run 1
+Resume: resumes/fr04_financial_analyst_frames.txt (120 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 8653a31c; severity check off
+Outcome: report; cost $0.0077; 15.8s
+Case note: P3. $1.2M in savings, 18% forecast accuracy and 40% efficiency with no baseline, period or thing. Expect frame questions; the Adaptive Planning line is fine.
+
+## Mostly clear (score 76; model wrote 76)
+## Verdict
+An FP&A analyst with useful finance work and strong figures that need more context.
+
+## Write-up
+Your resume points to Financial Analyst roles, with FP&A work at Piedmont Building Supply after branch finance work at Carolina Regional Bank. A recruiter can follow the progression, but several of your biggest figures stand alone. The work behind them matters when someone is assessing your forecasting and analysis.
+
+The headcount model line is a strong model for the rest: it names Adaptive Planning and shows what the rebuild replaced. Your experience is easy to find above education, and the monthly variance report and branch profitability packages make your finance work concrete.
+
+Let's start with the savings and forecast lines at Piedmont. Add how you found the savings and what you did to improve the forecast, then give the figures enough context to mean something. After that, connect the tools in your skills list to work where you used them.
+
+## Cards (6; {"line":5,"keep":1}); severity off; added []
+1. [line] Piedmont Building Supply, line 1
+   line: "Identified $1.2M in savings"
+   can't tell: A recruiter can't tell where you found the savings or how you identified them. The figure is substantial, but the finance work behind it is missing.
+   example: Identified $1.2M in savings in [area] by [method] over [period]
+   question: Where and how did you identify the savings, and over what period?
+2. [line] Piedmont Building Supply, line 2
+   line: "Improved forecast accuracy by 18%"
+   can't tell: Which forecast improved, and what did you change? The percentage also needs a starting point and a period so a recruiter can understand the improvement.
+   example: Improved [forecast type] accuracy by 18% from [baseline] over [period] by [method]
+   question: Which forecast was this, what was the starting accuracy and period, and what did you change?
+3. [keep] Piedmont Building Supply, line 4
+   line: "Rebuilt the headcount model in Adaptive Planning, replacing three disconnected spreadsheets"
+   can't tell: Keep this as a model. It pairs a concrete deliverable with the tool and the old process it replaced, so a recruiter can picture your work.
+4. [line] Piedmont Building Supply, line 5
+   line: "Increased reporting efficiency by 40%"
+   can't tell: A recruiter can't tell which reporting work changed or how efficiency was measured. The 40% needs a measure and a starting point.
+   example: Increased [reporting process] efficiency by 40%, measured by [measure] from [baseline] over [period], by [method]
+   question: Which reporting process did you change, how did you measure the improvement, and what were the starting point and period?
+5. [line] Carolina Regional Bank, line 3
+   line: "Grew automation of month-end tasks"
+   can't tell: This doesn't say which tasks you automated or what you used to automate them. Naming one would show a recruiter what you changed in the close process.
+   example: Grew automation of month-end tasks by [work performed] on [tasks] using [tool]
+   question: Which month-end tasks did you work on automating, and what did you do and use?
+6. [line] Skills
+   line: "Excel (advanced), Adaptive Planning, SQL, Power BI, NetSuite"
+   can't tell: Adaptive Planning appears in your headcount model work, but Excel, SQL and Power BI don't appear in a role. A recruiter can't tell what you used those tools to do.
+   example: Used [tool] to [work performed] at [employer]
+   question: Where did you use Excel, SQL or Power BI, and what work did you do with each?
+
+## Fit
+Roles: ["Financial Analyst"]
+Level: Financial analyst, with current corporate FP&A experience
+Note: Your experience points to financial analyst roles with forecasting, reporting and modeling work. The bank role also shows branch profitability and monthly reconciliation work.

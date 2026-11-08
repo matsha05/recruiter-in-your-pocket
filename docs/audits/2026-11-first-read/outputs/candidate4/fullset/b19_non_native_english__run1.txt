@@ -1,0 +1,35 @@
+# b19_non_native_english, run 1
+Resume: ../2026-11-live-judgment/resumes/b_non_native_english.txt (237 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ee57d907; severity check off
+Outcome: report; cost $0.0071; 14.3s
+
+## Clear and specific (score 86; model wrote 86)
+## Verdict
+An experienced accountant with clear invoice volume and a strong record of improving month-end close.
+
+## Write-up
+You make a strong case for staff accountant and accounts payable work! Your resume connects current Houston invoice processing with earlier general ledger, financial statement and team leadership work in Vietnam. A recruiter can see both the volume you handle now and the accounting work you did before.
+
+The strongest line is the Minh Phat month-end close: you show the change from 12 days to 7 and name the checklist and template you made. Your experience leads the resume, and your US GAAP certificate adds useful context for the jobs you want.
+
+Let's make your part in the current month-end close just as concrete, then show what your junior accountants handled. Your resume is already a strong part of your application; how competitive a particular opening is will matter too.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] Accounts Payable Clerk, line 4
+   line: "Help the controller for month end closing"
+   can't tell: A recruiter can't tell which closing tasks you handle. That matters for a staff accountant role, where your current close work can connect to your earlier accounting experience.
+   example: Help the controller with month end closing by [what you did]
+   question: What do you do to help the controller close the month?
+2. [line] Senior Accountant, line 2
+   line: "Lead team of 3 junior accountants"
+   can't tell: The team count is clear, but a recruiter can't tell what the junior accountants handled under your leadership.
+   example: Lead team of 3 junior accountants who [what the team handled]
+   question: What work did the junior accountants handle?
+3. [keep] Senior Accountant, line 4
+   line: "Reduce the month end closing from 12 days to 7 days by make new checklist and template"
+   can't tell: Keep this as your model. It gives a recruiter a before and after, then shows the work you used to get there.
+
+## Fit
+Roles: ["Staff Accountant","Accounts Payable Specialist","Accounts Payable Clerk"]
+Level: Experienced accountant, previously led 3 junior accountants
+Note: Your current invoice processing and earlier general ledger and financial statement work point toward both roles named in your profile. Your US GAAP certificate adds to that accounting background.

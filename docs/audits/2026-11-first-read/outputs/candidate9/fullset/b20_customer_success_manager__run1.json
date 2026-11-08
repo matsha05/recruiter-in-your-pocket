@@ -1,0 +1,250 @@
+{
+  "case_id": "b20_customer_success_manager",
+  "batch": "breadth",
+  "run": 1,
+  "note": "No posting.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt",
+  "resume_sha256": "fe00b25220442aa026e6aa909f700301c898f430bd2cf244eafbe182c75f316d",
+  "resume_words": 180,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T19:05:10.450Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5772,
+        "completion_tokens": 1219,
+        "total_tokens": 6991,
+        "cached_prompt_tokens": 5005,
+        "cache_write_prompt_tokens": 764,
+        "reasoning_tokens": 517
+      },
+      "cost_usd": 0.00730325,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 14564
+    }
+  ],
+  "resume_prompt_sha256": "338ac33ae4d6ad75616100e9ec41f04437a5b50bfe070fa140aba71496178380",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 77,
+    "lifted_by_employer": false,
+    "verdict": "A customer success manager with a defined account book and a few unanswered questions about renewals and escalations.",
+    "write_up": [
+      "Your resume tells a clear story from insurance coordination to payroll support and customer success at Brightline. A recruiter can see the accounts you manage and the people you work with, so this is likely to move forward with a few questions. The main missing piece is what happened after your work on renewals and payroll escalations.",
+      "The onboarding checklist is a strong model: you built something the whole CS team now uses. Your experience also leads the resume, and the move from support to customer success is easy to follow.",
+      "Let's start with the at-risk renewals, then add what you did when payroll runs failed. Keep the account count and the checklist prominent; they give a recruiter a concrete picture of your work."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "- Partnered with Sales on renewal strategy for at-risk accounts",
+        "cannot_tell": "A recruiter can see who you worked with, but not what you contributed to the strategy or what happened to the accounts. That matters in a role that runs through renewal.",
+        "example": "Partnered with Sales on renewal strategy for at-risk accounts by [contribution], resulting in [result]",
+        "question": "What did you contribute to the renewal strategy, and what happened to those accounts?"
+      },
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 4",
+        "line": "- Built an onboarding checklist now used by the whole CS team",
+        "cannot_tell": "Keep this as a model. It names a deliverable and shows who adopted it, without making the reader guess what you built.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 5",
+        "line": "- Handle escalations with Support and Product when payroll runs fail",
+        "cannot_tell": "The payroll problem and partners are clear. What isn't clear is what you do during an escalation or how it gets resolved.",
+        "example": "Handle escalations with Support and Product when payroll runs fail by [actions], resulting in [result]",
+        "question": "What do you do when a payroll run fails, and how are those escalations resolved?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Customer Success Manager",
+        "Customer Support Specialist"
+      ],
+      "why": "Your headline and current role both point to customer success, with a book of 48 mid-market accounts.",
+      "level": "Customer Success Manager managing 48 mid-market accounts; no direct reports listed",
+      "note": "Your progression at Brightline points toward customer success roles in B2B software. Adding your contribution to renewals and the results you can substantiate would round out that story.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 77,
+    "lifted_by_employer": false,
+    "verdict": "A customer success manager with a defined account book and a few unanswered questions about renewals and escalations.",
+    "write_up": [
+      "Your resume tells a clear story from insurance coordination to payroll support and customer success at Brightline. A recruiter can see the accounts you manage and the people you work with, so this is likely to move forward with a few questions. The main missing piece is what happened after your work on renewals and payroll escalations.",
+      "The onboarding checklist is a strong model: you built something the whole CS team now uses. Your experience also leads the resume, and the move from support to customer success is easy to follow.",
+      "Let's start with the at-risk renewals, then add what you did when payroll runs failed. Keep the account count and the checklist prominent; they give a recruiter a concrete picture of your work."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "Partnered with Sales on renewal strategy for at-risk accounts",
+        "cannot_tell": "A recruiter can see who you worked with, but not what you contributed to the strategy or what happened to the accounts. That matters in a role that runs through renewal.",
+        "example": "Partnered with Sales on renewal strategy for at-risk accounts by [contribution], resulting in [result]",
+        "question": "What did you contribute to the renewal strategy, and what happened to those accounts?"
+      },
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 4",
+        "line": "Built an onboarding checklist now used by the whole CS team",
+        "cannot_tell": "Keep this as a model. It names a deliverable and shows who adopted it, without making the reader guess what you built.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 5",
+        "line": "Handle escalations with Support and Product when payroll runs fail",
+        "cannot_tell": "The payroll problem and partners are clear. What isn't clear is what you do during an escalation or how it gets resolved.",
+        "example": "Handle escalations with Support and Product when payroll runs fail by [actions], resulting in [result]",
+        "question": "What do you do when a payroll run fails, and how are those escalations resolved?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Customer Success Manager",
+        "Customer Support Specialist"
+      ],
+      "why": "Your headline and current role both point to customer success, with a book of 48 mid-market accounts.",
+      "level": "Customer Success Manager managing 48 mid-market accounts; no direct reports listed",
+      "note": "Your progression at Brightline points toward customer success roles in B2B software. Adding your contribution to renewals and the results you can substantiate would round out that story.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 77
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 77,
+    "lifted_by_employer": false,
+    "verdict": "A customer success manager with a defined account book and a few unanswered questions about renewals and escalations.",
+    "write_up": [
+      "Your resume tells a clear story from insurance coordination to payroll support and customer success at Brightline. A recruiter can see the accounts you manage and the people you work with, so this is likely to move forward with a few questions. The main missing piece is what happened after your work on renewals and payroll escalations.",
+      "The onboarding checklist is a strong model: you built something the whole CS team now uses. Your experience also leads the resume, and the move from support to customer success is easy to follow.",
+      "Let's start with the at-risk renewals, then add what you did when payroll runs failed. Keep the account count and the checklist prominent; they give a recruiter a concrete picture of your work."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "Partnered with Sales on renewal strategy for at-risk accounts",
+        "cannot_tell": "A recruiter can see who you worked with, but not what you contributed to the strategy or what happened to the accounts. That matters in a role that runs through renewal.",
+        "example": "Partnered with Sales on renewal strategy for at-risk accounts by [contribution], resulting in [result]",
+        "question": "What did you contribute to the renewal strategy, and what happened to those accounts?"
+      },
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 4",
+        "line": "Built an onboarding checklist now used by the whole CS team",
+        "cannot_tell": "Keep this as a model. It names a deliverable and shows who adopted it, without making the reader guess what you built.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 5",
+        "line": "Handle escalations with Support and Product when payroll runs fail",
+        "cannot_tell": "The payroll problem and partners are clear. What isn't clear is what you do during an escalation or how it gets resolved.",
+        "example": "Handle escalations with Support and Product when payroll runs fail by [actions], resulting in [result]",
+        "question": "What do you do when a payroll run fails, and how are those escalations resolved?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Customer Success Manager",
+        "Customer Support Specialist"
+      ],
+      "why": "Your headline and current role both point to customer success, with a book of 48 mid-market accounts.",
+      "level": "Customer Success Manager managing 48 mid-market accounts; no direct reports listed",
+      "note": "Your progression at Brightline points toward customer success roles in B2B software. Adding your contribution to renewals and the results you can substantiate would round out that story.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 77
+  },
+  "presentation": {
+    "score": 77,
+    "band": "Mostly clear",
+    "model_score": 77,
+    "lifted_by_employer": false,
+    "verdict": "A customer success manager with a defined account book and a few unanswered questions about renewals and escalations.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 124,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 3",
+        "line": "Partnered with Sales on renewal strategy for at-risk accounts",
+        "blanks": 2,
+        "question": "What did you contribute to the renewal strategy, and what happened to those accounts?"
+      },
+      {
+        "kind": "keep",
+        "where": "Customer Success Manager, line 4",
+        "line": "Built an onboarding checklist now used by the whole CS team",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Customer Success Manager, line 5",
+        "line": "Handle escalations with Support and Product when payroll runs fail",
+        "blanks": 2,
+        "question": "What do you do when a payroll run fails, and how are those escalations resolved?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "line": 2,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Customer Success Manager",
+        "Customer Support Specialist"
+      ],
+      "why": "Your headline and current role both point to customer success, with a book of 48 mid-market accounts.",
+      "level": "Customer Success Manager managing 48 mid-market accounts; no direct reports listed",
+      "note": "Your progression at Brightline points toward customer success roles in B2B software. Adding your contribution to renewals and the results you can substantiate would round out that story.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00730325,
+  "latency_ms": 14568
+}

@@ -1,0 +1,235 @@
+{
+  "case_id": "fr01b_backend_ic_backend_posting",
+  "batch": "targeted",
+  "run": 1,
+  "note": "P1. The same resume against a senior backend posting it fits. Expect the posting's title second and a fit note that says it fits.",
+  "resume_file": "resumes/fr01_backend_ic_senior.txt",
+  "resume_sha256": "473f0177fffa3bc053f5a4c69f6aa3d7ecdf9c22fafb2ee8360f7be0e877aa55",
+  "resume_words": 236,
+  "job_description_file": "resumes/posting_senior_backend.txt",
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:45:10.697Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6380,
+        "completion_tokens": 1226,
+        "total_tokens": 7606,
+        "cached_prompt_tokens": 5259,
+        "cache_write_prompt_tokens": 1118,
+        "reasoning_tokens": 512
+      },
+      "cost_usd": 0.00779345,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 15516
+    }
+  ],
+  "resume_prompt_sha256": "5cba8f052feab05101dfe43138d650d9cc25bac9a46f7e3aa35d9efb9d96fad4",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments engineer whose resume connects production changes to measurable results.",
+    "write_up": [
+      "This is a strong senior backend resume! At Lumen Ledger, you show payments work from service design through ledger migration and production reliability, with numbers that make the work concrete. A recruiter can see why you fit a money movement role.",
+      "The balance API line is a great model: it names the change, the technical approach, and the latency before and after. Your mentoring and incident reviews also show how you contribute beyond building services.",
+      "For Cobalt Pay, bring your on-call responsibilities into the Lumen Ledger role if you held them. Add any work with Finance and Risk on reconciliation and controls, or technical design reviews you led, if those were part of your job. The resume itself is unlikely to be the main obstacle; the match on those responsibilities and competition for the role also matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 3",
+        "line": "- Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
+        "cannot_tell": "Keep this as a model. The before-and-after numbers sit right alongside the change you made, so a recruiter doesn't have to guess what improved.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, Payments Platform, line 4",
+        "line": "- Wrote the on-call runbooks for the payments services and ran the incident reviews for the platform group",
+        "cannot_tell": "Your runbooks and reviews are relevant, but a recruiter can't tell whether you also served on-call. Cobalt Pay asks for ownership of payouts reliability, including on-call.",
+        "example": "Wrote the on-call runbooks for the payments services and ran the incident reviews for the platform group; [what you did on-call]",
+        "question": "Did you serve on-call for these services, and what were your responsibilities?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer",
+        "Senior Backend Engineer, Money Movement"
+      ],
+      "why": "Your headline and Lumen Ledger role show senior backend work on payouts, a ledger, and payments reliability.",
+      "level": "Senior engineer, leads migrations and mentors two engineers",
+      "note": "The resume doesn't show partnership with Finance and Risk on reconciliation and controls, or say whether you led technical design reviews or served on-call. It otherwise fits the role well: your payouts service uses Go and PostgreSQL, and your ledger migration and Kafka work match the job closely. Emphasize those details and add the missing responsibilities only if you did them.",
+      "posting": {
+        "summary": "Senior backend role owning money movement services, production reliability, technical leadership, and partnership on financial controls.",
+        "missing": [
+          "Partner with Finance and Risk on reconciliation and controls",
+          "Lead technical design reviews",
+          "Own the reliability of the payouts path end to end, including on-call"
+        ]
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments engineer whose resume connects production changes to measurable results.",
+    "write_up": [
+      "This is a strong senior backend resume! At Lumen Ledger, you show payments work from service design through ledger migration and production reliability, with numbers that make the work concrete. A recruiter can see why you fit a money movement role.",
+      "The balance API line is a great model: it names the change, the technical approach, and the latency before and after. Your mentoring and incident reviews also show how you contribute beyond building services.",
+      "For Cobalt Pay, bring your on-call responsibilities into the Lumen Ledger role if you held them. Add any work with Finance and Risk on reconciliation and controls, or technical design reviews you led, if those were part of your job. The resume itself is unlikely to be the main obstacle; the match on those responsibilities and competition for the role also matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 3",
+        "line": "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
+        "cannot_tell": "Keep this as a model. The before-and-after numbers sit right alongside the change you made, so a recruiter doesn't have to guess what improved.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, Payments Platform, line 4",
+        "line": "Wrote the on-call runbooks for the payments services and ran the incident reviews for the platform group",
+        "cannot_tell": "Your runbooks and reviews are relevant, but a recruiter can't tell whether you also served on-call. Cobalt Pay asks for ownership of payouts reliability, including on-call.",
+        "example": "Wrote the on-call runbooks for the payments services and ran the incident reviews for the platform group; [what you did on-call]",
+        "question": "Did you serve on-call for these services, and what were your responsibilities?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer",
+        "Senior Backend Engineer, Money Movement"
+      ],
+      "why": "Your headline and Lumen Ledger role show senior backend work on payouts, a ledger, and payments reliability.",
+      "level": "Senior engineer, leads migrations and mentors two engineers",
+      "note": "The resume doesn't show partnership with Finance and Risk on reconciliation and controls, or say whether you led technical design reviews or served on-call. It otherwise fits the role well: your payouts service uses Go and PostgreSQL, and your ledger migration and Kafka work match the job closely. Emphasize those details and add the missing responsibilities only if you did them.",
+      "posting": {
+        "summary": "Senior backend role owning money movement services, production reliability, technical leadership, and partnership on financial controls.",
+        "missing": [
+          "Partner with Finance and Risk on reconciliation and controls",
+          "Lead technical design reviews",
+          "Own the reliability of the payouts path end to end, including on-call"
+        ]
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments engineer whose resume connects production changes to measurable results.",
+    "write_up": [
+      "This is a strong senior backend resume! At Lumen Ledger, you show payments work from service design through ledger migration and production reliability, with numbers that make the work concrete. A recruiter can see why you fit a money movement role.",
+      "The balance API line is a great model: it names the change, the technical approach, and the latency before and after. Your mentoring and incident reviews also show how you contribute beyond building services.",
+      "For Cobalt Pay, bring your on-call responsibilities into the Lumen Ledger role if you held them. Add any work with Finance and Risk on reconciliation and controls, or technical design reviews you led, if those were part of your job. The resume itself is unlikely to be the main obstacle; the match on those responsibilities and competition for the role also matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 3",
+        "line": "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
+        "cannot_tell": "Keep this as a model. The before-and-after numbers sit right alongside the change you made, so a recruiter doesn't have to guess what improved.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, Payments Platform, line 4",
+        "line": "Wrote the on-call runbooks for the payments services and ran the incident reviews for the platform group",
+        "cannot_tell": "Your runbooks and reviews are relevant, but a recruiter can't tell whether you also served on-call. Cobalt Pay asks for ownership of payouts reliability, including on-call.",
+        "example": "Wrote the on-call runbooks for the payments services and ran the incident reviews for the platform group; [what you did on-call]",
+        "question": "Did you serve on-call for these services, and what were your responsibilities?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer",
+        "Senior Backend Engineer, Money Movement"
+      ],
+      "why": "Your headline and Lumen Ledger role show senior backend work on payouts, a ledger, and payments reliability.",
+      "level": "Senior engineer, leads migrations and mentors two engineers",
+      "note": "The resume doesn't show partnership with Finance and Risk on reconciliation and controls, or say whether you led technical design reviews or served on-call. It otherwise fits the role well: your payouts service uses Go and PostgreSQL, and your ledger migration and Kafka work match the job closely. Emphasize those details and add the missing responsibilities only if you did them.",
+      "posting": {
+        "summary": "Senior backend role owning money movement services, production reliability, technical leadership, and partnership on financial controls.",
+        "missing": [
+          "Partner with Finance and Risk on reconciliation and controls",
+          "Lead technical design reviews",
+          "Own the reliability of the payouts path end to end, including on-call"
+        ]
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "presentation": {
+    "score": 89,
+    "band": "Clear and specific",
+    "model_score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A senior payments engineer whose resume connects production changes to measurable results.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 137,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 3",
+        "line": "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, Payments Platform, line 4",
+        "line": "Wrote the on-call runbooks for the payments services and ran the incident reviews for the platform group",
+        "blanks": 1,
+        "question": "Did you serve on-call for these services, and what were your responsibilities?"
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "keep": 1,
+      "line": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer",
+        "Senior Backend Engineer, Money Movement"
+      ],
+      "why": "Your headline and Lumen Ledger role show senior backend work on payouts, a ledger, and payments reliability.",
+      "level": "Senior engineer, leads migrations and mentors two engineers",
+      "note": "The resume doesn't show partnership with Finance and Risk on reconciliation and controls, or say whether you led technical design reviews or served on-call. It otherwise fits the role well: your payouts service uses Go and PostgreSQL, and your ledger migration and Kafka work match the job closely. Emphasize those details and add the missing responsibilities only if you did them.",
+      "posting": {
+        "summary": "Senior backend role owning money movement services, production reliability, technical leadership, and partnership on financial controls.",
+        "missing": [
+          "Partner with Finance and Risk on reconciliation and controls",
+          "Lead technical design reviews",
+          "Own the reliability of the payouts path end to end, including on-call"
+        ]
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00779345,
+  "latency_ms": 15611
+}

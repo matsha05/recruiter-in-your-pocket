@@ -1,0 +1,35 @@
+# h4b_academic_cv_under_cap, run 1
+Resume: ../2026-11-live-judgment/resumes/h4b_academic_cv_under_cap.txt (3253 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5cba8f05; severity check off
+Outcome: report; cost $0.0242; 14.5s
+Case note: The same CV trimmed under the cap, to see what the model does with a CV shape.
+
+## Mostly clear (score 76; model wrote 76)
+## Verdict
+A tenured molecular biology professor with substantial funding and mentoring work, but repeated publication titles raise questions.
+
+## Write-up
+Your resume tells the story of a tenured associate professor at Riverbend State, with NIH funding, mitochondrial research, teaching and extensive mentoring. A recruiter for an associate professor role would have plenty to consider, but repeated publication entries raise questions about the bibliography.
+
+The MB 310 redesign is an excellent model: it names the change you made and gives the evaluation scores across the following three offerings. Your appointments are easy to follow, though Education comes before them.
+
+Let's start by checking the publication records, especially entries with the same authors and titles in different years. Then move Academic Appointments above Education so your current role leads. Your grants, teaching and mentoring already give a reader a substantial picture of your work.
+
+## Cards (3; {"structure":1,"line":1,"keep":1}); severity off; added []
+1. [structure] Structure
+   line: "Education sits above Academic Appointments."
+   can't tell: Your current tenured role comes after your degrees. Put Academic Appointments first so a recruiter sees your faculty work sooner.
+   question: Can you move Academic Appointments above Education?
+2. [line] Publications, entry 1
+   line: "1. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2026). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 107(2), 1037-1052."
+   can't tell: This title, author list and journal also appear under other years in your bibliography. A recruiter can't tell whether these are distinct publications or repeated entries, which matters in a faculty search.
+   example: [correct publication citation]
+   question: What do the publication records show for these entries, and are they distinct papers?
+3. [keep] Teaching, course redesign
+   line: "Course redesign: converted MB 310 to a flipped format in 2019; student evaluations rose from 3.9 to 4.5 of 5 over the following three offerings."
+   can't tell: Keep this as a model. It gives the reader a before-and-after measure without claiming the format alone caused the increase.
+
+## Fit
+Roles: ["Associate Professor (with tenure)"]
+Level: Tenured associate professor, PI on NIH grants and supervisor of doctoral students
+Note: Your experience points toward research-focused faculty roles in molecular or cell biology. Check the repeated publication entries before sending the resume, since the bibliography is central to that work.

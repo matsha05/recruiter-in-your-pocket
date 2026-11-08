@@ -1,0 +1,246 @@
+{
+  "case_id": "b04_retail_store_manager",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_retail_store_manager_1.txt",
+  "resume_sha256": "44e7ec6fe998a1b320b02b5bb24f3945f6d89a3e2777dca5e1be857f4727486b",
+  "resume_words": 179,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T21:29:44.098Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5932,
+        "completion_tokens": 1353,
+        "total_tokens": 7285,
+        "cached_prompt_tokens": 5154,
+        "cache_write_prompt_tokens": 775,
+        "reasoning_tokens": 655
+      },
+      "cost_usd": 0.00799445,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 16443
+    }
+  ],
+  "resume_prompt_sha256": "288eceb50a0848513f3205630fd7657627db9010f5f15a63cb442225501f834d",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A store manager with a clear progression and results across sales, staffing, customer satisfaction and shrink.",
+    "write_up": [
+      "Your resume is strong! It shows your progression at Carolina Home & Garden and connects store results to decisions you made, from the garden center layout to weekly schedules. A recruiter can see both how big your current job is and what changed under your management.",
+      "The turnover line is a great model: it gives the before and after, then names the scheduling change. Your headline mentions two store turnarounds, but the results underneath are concentrated in the current role, so the second turnaround is less clear.",
+      "Add what changed at the other store, then give the earlier department supervisor role a little more detail. Your resume isn't likely to be the reason you don't get a callback; how competitive the store manager job is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain.",
+        "cannot_tell": "The current store has several results, but a recruiter can't tell what changed at the other store. That leaves the two-store turnaround claim without its full story.",
+        "example": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain, including [what changed at the second store].",
+        "question": "What changed at the other store during your time there?"
+      },
+      {
+        "kind": "keep",
+        "where": "Store Manager, line 3",
+        "line": "- Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules",
+        "cannot_tell": "Keep this as a model. It pairs a management decision with a measure a store recruiter can understand immediately.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Department Supervisor, line 1",
+        "line": "- Supervised the lumber and building materials department",
+        "cannot_tell": "The department is named, but a recruiter can't tell what you oversaw within it or what changed during your time there. One detail would give your earlier progression more substance.",
+        "example": "Supervised the lumber and building materials department, overseeing [what you managed] and [what changed].",
+        "question": "What did you oversee in the department, and what changed while you supervised it?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Store Manager"
+      ],
+      "why": "Your headline and current role both point to store management, with sales, staffing and inventory results.",
+      "level": "manager, runs a store with 42 employees, including 4 department managers",
+      "note": "Your progression from department supervisor to store manager points to retail store leadership. The current role gives a recruiter a clear picture of the operation you run.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A store manager with a clear progression and results across sales, staffing, customer satisfaction and shrink.",
+    "write_up": [
+      "Your resume is strong! It shows your progression at Carolina Home & Garden and connects store results to decisions you made, from the garden center layout to weekly schedules. A recruiter can see both how big your current job is and what changed under your management.",
+      "The turnover line is a great model: it gives the before and after, then names the scheduling change. Your headline mentions two store turnarounds, but the results underneath are concentrated in the current role, so the second turnaround is less clear.",
+      "Add what changed at the other store, then give the earlier department supervisor role a little more detail. Your resume isn't likely to be the reason you don't get a callback; how competitive the store manager job is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain.",
+        "cannot_tell": "The current store has several results, but a recruiter can't tell what changed at the other store. That leaves the two-store turnaround claim without its full story.",
+        "example": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain, including [what changed at the second store].",
+        "question": "What changed at the other store during your time there?"
+      },
+      {
+        "kind": "keep",
+        "where": "Store Manager, line 3",
+        "line": "Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules",
+        "cannot_tell": "Keep this as a model. It pairs a management decision with a measure a store recruiter can understand immediately.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Department Supervisor, line 1",
+        "line": "Supervised the lumber and building materials department",
+        "cannot_tell": "The department is named, but a recruiter can't tell what you oversaw within it or what changed during your time there. One detail would give your earlier progression more substance.",
+        "example": "Supervised the lumber and building materials department, overseeing [what you managed] and [what changed].",
+        "question": "What did you oversee in the department, and what changed while you supervised it?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Store Manager"
+      ],
+      "why": "Your headline and current role both point to store management, with sales, staffing and inventory results.",
+      "level": "manager, runs a store with 42 employees, including 4 department managers",
+      "note": "Your progression from department supervisor to store manager points to retail store leadership. The current role gives a recruiter a clear picture of the operation you run.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A store manager with a clear progression and results across sales, staffing, customer satisfaction and shrink.",
+    "write_up": [
+      "Your resume is strong! It shows your progression at Carolina Home & Garden and connects store results to decisions you made, from the garden center layout to weekly schedules. A recruiter can see both how big your current job is and what changed under your management.",
+      "The turnover line is a great model: it gives the before and after, then names the scheduling change. Your headline mentions two store turnarounds, but the results underneath are concentrated in the current role, so the second turnaround is less clear.",
+      "Add what changed at the other store, then give the earlier department supervisor role a little more detail. Your resume isn't likely to be the reason you don't get a callback; how competitive the store manager job is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain.",
+        "cannot_tell": "The current store has several results, but a recruiter can't tell what changed at the other store. That leaves the two-store turnaround claim without its full story.",
+        "example": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain, including [what changed at the second store].",
+        "question": "What changed at the other store during your time there?"
+      },
+      {
+        "kind": "keep",
+        "where": "Store Manager, line 3",
+        "line": "Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules",
+        "cannot_tell": "Keep this as a model. It pairs a management decision with a measure a store recruiter can understand immediately.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Department Supervisor, line 1",
+        "line": "Supervised the lumber and building materials department",
+        "cannot_tell": "The department is named, but a recruiter can't tell what you oversaw within it or what changed during your time there. One detail would give your earlier progression more substance.",
+        "example": "Supervised the lumber and building materials department, overseeing [what you managed] and [what changed].",
+        "question": "What did you oversee in the department, and what changed while you supervised it?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Store Manager"
+      ],
+      "why": "Your headline and current role both point to store management, with sales, staffing and inventory results.",
+      "level": "manager, runs a store with 42 employees, including 4 department managers",
+      "note": "Your progression from department supervisor to store manager points to retail store leadership. The current role gives a recruiter a clear picture of the operation you run.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "presentation": {
+    "score": 88,
+    "band": "Clear and specific",
+    "model_score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A store manager with a clear progression and results across sales, staffing, customer satisfaction and shrink.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 128,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Retail store manager who has turned around two underperforming stores in a 60-store regional chain.",
+        "blanks": 1,
+        "question": "What changed at the other store during your time there?"
+      },
+      {
+        "kind": "keep",
+        "where": "Store Manager, line 3",
+        "line": "Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Department Supervisor, line 1",
+        "line": "Supervised the lumber and building materials department",
+        "blanks": 2,
+        "question": "What did you oversee in the department, and what changed while you supervised it?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "line": 2,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Store Manager"
+      ],
+      "why": "Your headline and current role both point to store management, with sales, staffing and inventory results.",
+      "level": "manager, runs a store with 42 employees, including 4 department managers",
+      "note": "Your progression from department supervisor to store manager points to retail store leadership. The current role gives a recruiter a clear picture of the operation you run.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00799445,
+  "latency_ms": 16600
+}

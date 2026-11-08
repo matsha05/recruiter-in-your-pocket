@@ -1,0 +1,40 @@
+# b37_marketing_director_bad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_marketing_director_bad_1.txt (167 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5827dcf1; severity check off
+Outcome: report; cost $0.0110; 25.3s
+Case note: Title above the work; key says no_recent_work, no_target_role, title_level_mismatch.
+
+## Needs more context (score 59; model wrote 59)
+## Verdict
+A marketing director title sits above hands-on work, with no account of the time since the role ended.
+
+## Write-up
+This is a common mix: your latest title is Director of Marketing, but the work described at Lumen Candle Co. is mostly hands-on posting, product writing and order support. Before that, you worked in title data entry, a biology lab and a cafe. I read this for Director of Marketing; a recruiter looking for that level would likely pass because the resume doesn't show what you directed.
+
+The line about writing descriptions for 40 candle scents is your model: it names the work and how much you wrote. The resume also stops at January 2025, leaving a recruiter to wonder what you've been doing since. There's no separate target job to connect the different roles.
+
+Let's start with the Lumen role. Add any marketing responsibilities, team or budget you can accurately claim, then name the job you're seeking. Account for the time since Lumen honestly, whether that includes work, study, caregiving or a career break.
+
+## Cards (4; {"line":1,"dates":1,"structure":1,"keep":1}); severity off; added []
+1. [line] Director of Marketing title
+   line: "Director of Marketing"
+   can't tell: The title suggests a director's remit, but the lines beneath it don't show a team, budget or broader marketing responsibilities. A recruiter can't tell what you directed.
+   example: Director of Marketing | [marketing responsibilities] | [team size] | [budget]
+   question: What marketing work did you direct, and did you oversee a team or budget?
+2. [dates] Dates
+   line: "Nothing is dated after January 2025."
+   can't tell: A recruiter can't tell what you've been doing since Lumen. Add what applies honestly: work, caregiving or a career break with what you did during it are all worth naming.
+   example: January 2025 - Present [what you did]
+   question: What have you been doing since January 2025 that you'd like a recruiter to know about?
+3. [structure] Structure
+   line: "The resume doesn't name a target job outside the roles you've held."
+   can't tell: Marketing, title data entry and lab work point in different directions. A target job would tell a recruiter which experience to look at first without changing your actual titles.
+   question: Which job are you applying for now?
+4. [keep] Director of Marketing, line 2
+   line: "Wrote product descriptions for 40 candle scents on the website"
+   can't tell: Keep this as a model. It gives the reader a concrete deliverable and a count without inflating your part in the work.
+
+## Fit
+Roles: ["Director of Marketing"]
+Level: Hands-on marketing experience; director title without a stated team or budget
+Note: The latest role points toward marketing, but its listed work doesn't yet establish a director-level remit. Name any broader responsibilities you held, or use a target job that matches the work you want to do.

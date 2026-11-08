@@ -1,0 +1,54 @@
+# h2_thin_resume, run 1
+Resume: ../2026-11-live-judgment/resumes/h2_thin_resume.txt (126 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 01c2028d; severity check off
+Outcome: report; cost $0.0108; 23.3s
+Case note: Student: one internship, coursework, a club.
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+A data analytics intern with useful tools, but too little detail about what the internship produced.
+
+## Write-up
+You’re an Information student with a data analytics internship at Great Lakes Credit Union and a treasurer role in the Michigan Data Science Club. It’s common for an internship resume to list tasks this way, but these bullets don’t yet distinguish your work in a pile. A recruiter has to guess what the reports and dashboard were used for.
+
+The survey-data line is your best model: it names the data and the tools you used. Your education can stay at the top while you’re in school, but move coursework below the internship so your hands-on work comes first.
+
+Let’s start with the weekly reporting line. Add your part in the reporting, then show what the dashboard tracked and which findings you presented. Keep the ownership honest: you assisted with the reports and built the dashboard.
+
+## Cards (7; {"structure":2,"line":4,"keep":1}); severity off; added []
+1. [structure] Education
+   line: "Coursework sits above Experience."
+   can't tell: A recruiter has to get past the course list before reaching your internship. Your hands-on analytics work deserves that space first.
+   question: Can you move the coursework below your internship while keeping your education at the top?
+2. [structure] Great Lakes Credit Union
+   line: "The resume doesn't say how large Great Lakes Credit Union is."
+   can't tell: A recruiter may not know the credit union. One accurate detail about its membership or service area can give the internship context.
+   question: What accurate information about the credit union's membership or service area can you include?
+3. [line] Data Analytics Intern, line 1
+   line: "Assisted the analytics team with weekly reporting"
+   can't tell: Assisted leaves your part in the weekly reports open. A recruiter can't tell what you contributed or what the reports covered.
+   example: Assisted the analytics team with weekly reporting by [your contribution] on [report subject]
+   question: What did you contribute to the weekly reports, and what did they cover?
+4. [keep] Data Analytics Intern, line 2
+   line: "Cleaned member survey data in Excel and SQL"
+   can't tell: Keep this as a model: a recruiter can see both the material you worked on and the tools you used. Bring that same level of detail to the reports and presentation.
+5. [line] Data Analytics Intern, line 3
+   line: "Built a dashboard in Tableau for the marketing team"
+   can't tell: The tool and audience are clear, but a recruiter can't tell how big the dashboard was or what it tracked.
+   example: Built a dashboard in Tableau for the marketing team tracking [number] [metrics]
+   question: What did the dashboard track, and how many metrics did it include?
+6. [line] Data Analytics Intern, line 4
+   line: "Presented findings to the team at the end of the internship"
+   can't tell: A recruiter can see that you presented, but not what the team learned. Name a finding you can accurately share.
+   example: Presented findings on [finding] to the team at the end of the internship
+   question: Which finding did you present to the team?
+7. [line] Treasurer, line 2
+   line: "Help organize monthly speaker events"
+   can't tell: Helping organize the events could mean several things. Your part in getting speakers or events ready isn't clear.
+   example: Help organize monthly speaker events by [your contribution]
+   question: What do you do to help organize the speaker events?
+
+## Fit
+Roles: ["Data Analytics Intern"]
+Level: Entry level, with one data analytics internship
+Note: Your internship points toward data analytics work using Excel, SQL and Tableau. The resume needs more detail about the reports, dashboard and findings to show what you produced.

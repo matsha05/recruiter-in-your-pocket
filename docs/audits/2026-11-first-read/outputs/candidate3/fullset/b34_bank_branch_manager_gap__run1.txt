@@ -1,0 +1,33 @@
+# b34_bank_branch_manager_gap, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_bank_branch_manager_gap_1.txt (129 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 01c2028d; severity check off
+Outcome: report; cost $0.0065; 13.0s
+Case note: Gap with nothing after it.
+
+## Mostly clear (score 74; model wrote 74)
+## Verdict
+A branch manager with deposit growth and a clear progression, but unaccounted time since December 2024.
+
+## Write-up
+Your resume tells a clear retail banking story: you moved from Personal Banker to Branch Manager at Magnolia Community Bank, managing 11 employees and growing branch deposits. I read it for Branch Manager roles. A recruiter can see the work, though the time since your last role ended raises a question.
+
+The deposit line is your strongest: it names what grew, from $48M to $63M, and over what period. Adding how you contributed to that growth would make it more useful. Your experience is easy to follow, but nothing accounts for the time after December 2024.
+
+Let's start with that time, then add the work behind the deposit growth. Keep the progression at Magnolia and the branch team count prominent: both help a recruiter understand your management background.
+
+## Cards (2; {"dates":1,"line":1}); severity off; added []
+1. [dates] Dates
+   line: "Nothing is dated after December 2024."
+   can't tell: A recruiter can't tell what you've been doing since the Branch Manager role ended. If you were caring for someone, taking a career break, studying, volunteering or doing paid work, you can name that honestly.
+   example: December 2024 - Present [what you did since December 2024]
+   question: What would you like to include about your time since the branch role ended?
+2. [line] Branch Manager, line 2
+   line: "Grew branch deposits from $48M to $63M over five years"
+   can't tell: The deposit growth is substantial, but a recruiter can't tell what you did to grow it. That detail would show how you approached the work.
+   example: Grew branch deposits from $48M to $63M over five years by [what you did]
+   question: What did you do to help grow branch deposits?
+
+## Fit
+Roles: ["Branch Manager","Assistant Branch Manager"]
+Level: Branch manager, managed a branch of 11 employees
+Note: Your experience points to branch management in retail banking. The progression at Magnolia and the deposit growth give a recruiter a clear picture of your background.

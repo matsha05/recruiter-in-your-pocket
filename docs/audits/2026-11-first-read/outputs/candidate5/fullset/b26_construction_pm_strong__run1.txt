@@ -1,0 +1,35 @@
+# b26_construction_pm_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_construction_pm_strong_1.txt (136 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ab8cd5a5; severity check off
+Outcome: report; cost $0.0058; 11.9s
+
+## Clear and specific (score 86; model wrote 86)
+## Verdict
+A construction project manager whose resume shows project values, trade counts, and delivery results.
+
+## Write-up
+This is a strong construction project manager resume! Your work at Capitol Builders gives a recruiter the project values, concurrent workload, and trade counts needed to understand what you manage.
+
+The line about running 4 to 6 tenant-improvement projects is a good model: it names the work and puts a dollar range on each project. Your progression from Assistant Project Manager to Project Manager is easy to follow, too.
+
+Your resume is unlikely to be what holds you back. Let's strengthen the grocery store and change-order lines by adding what you did to achieve those results. The competition for a particular job will also matter.
+
+## Cards (3; {"keep":1,"line":2}); severity off; added []
+1. [keep] Project Manager, line 1
+   line: "Run 4 to 6 concurrent tenant-improvement projects worth $1M to $8M each"
+   can't tell: Keep this as a model. It tells a recruiter what kind of projects you run and how many you handle at once.
+2. [line] Project Manager, line 2
+   line: "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024"
+   can't tell: Finishing ahead of schedule is worth showing. What did you do on the grocery store build to make that happen?
+   example: Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024 by [what you did]
+   question: What did you do that helped deliver the grocery store build ahead of schedule?
+3. [line] Project Manager, line 4
+   line: "Kept change orders under 3% of contract value across 2024 and 2025 projects"
+   can't tell: The change-order figure gives a recruiter something concrete. The missing piece is how you kept it there.
+   example: Kept change orders under 3% of contract value across 2024 and 2025 projects by [what you did]
+   question: What did you do to keep change orders under 3% of contract value?
+
+## Fit
+Roles: ["Project Manager","Assistant Project Manager"]
+Level: Project manager, running 4 to 6 concurrent projects
+Note: Your experience points toward commercial construction project management, particularly tenant improvements and retail builds. Your earlier office and retail project work adds to that story.

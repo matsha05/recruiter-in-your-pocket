@@ -1,0 +1,40 @@
+# b01_icu_nurse, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_icu_nurse_1.txt (153 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5827dcf1; severity check off
+Outcome: report; cost $0.0066; 15.1s
+
+## Mostly clear (score 80; model wrote 80)
+## Verdict
+An ICU nurse with a clear clinical background and a few leadership details still to add.
+
+## Write-up
+Your resume points clearly to medical ICU nursing: you moved from telemetry at Saguaro Community Hospital to the medical ICU at Desert Valley Medical Center. A recruiter can see your patient load, clinical skills and Arizona license without guessing.
+
+The line about caring for 2 critically ill patients per shift in a 24-bed medical ICU is a strong model. It puts your work and setting together. Your CCRN and ICU experience also sit where a recruiter can find them quickly.
+
+Let's start with your charge nurse and sepsis committee work. Adding what you handled in those roles would show more of your contribution beyond direct patient care. Then give the telemetry rapid response line the same treatment.
+
+## Cards (4; {"keep":1,"line":3}); severity off; added []
+1. [keep] Staff Nurse, Medical ICU, line 1
+   line: "Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU"
+   can't tell: Keep this as a model. You name the patients, the unit and the number in your care, all in one line.
+2. [line] Staff Nurse, Medical ICU, line 3
+   line: "Serve as charge nurse two shifts per month"
+   can't tell: A recruiter can see how often you serve as charge nurse, but not what you handle during those shifts.
+   example: Serve as charge nurse two shifts per month, [what you coordinate]
+   question: What do you coordinate or handle when you're charge nurse?
+3. [line] Staff Nurse, Medical ICU, line 5
+   line: "Member of the unit's sepsis bundle compliance committee"
+   can't tell: The committee's focus is clear, but membership alone doesn't say what you contributed to its work.
+   example: [what you did] as a member of the unit's sepsis bundle compliance committee
+   question: What did you contribute to the sepsis bundle compliance committee?
+4. [line] Staff Nurse, Telemetry, line 2
+   line: "Responded to rapid response calls as part of the floor team"
+   can't tell: A recruiter can see that you joined the floor team's rapid responses, but not what you did when you got there.
+   example: Responded to rapid response calls as part of the floor team, [what you did during calls]
+   question: What did you do during rapid response calls?
+
+## Fit
+Roles: ["Staff Nurse, Medical ICU","Staff Nurse, Telemetry"]
+Level: Staff nurse with charge nurse and precepting responsibilities
+Note: Your experience points most directly to medical ICU nursing. Your telemetry background adds experience with post-cardiac catheterization patients.

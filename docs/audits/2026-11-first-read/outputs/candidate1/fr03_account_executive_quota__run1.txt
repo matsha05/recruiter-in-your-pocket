@@ -1,0 +1,51 @@
+# fr03_account_executive_quota, run 1
+Resume: resumes/fr03_account_executive_quota.txt (128 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 8653a31c; severity check off
+Outcome: report; cost $0.0096; 20.4s
+Case note: P3 and P4 (sales). 132% of quota with no quota, territory or other year; $1.4M with no period. Expect cards asking for the frame; nothing supplied outside a bracket.
+
+## Mostly clear (score 75; model wrote 75)
+## Verdict
+An Account Executive with strong sales figures that need more context to show their full value.
+
+## Write-up
+You moved from sales development into an Account Executive role at Vantage Fleet Software, with quota attainment and new business on your resume. A recruiter can see the sales work and would move forward with questions about the quota, territory and timing behind the figures.
+
+The sales development line about booking 25+ meetings per month is a good model: it names the work, who it served and the pace. Your promotion and President's Club recognition also show progress, and Experience is already in the right place above Education.
+
+Let's start with the Account Executive numbers. Add the quota and the period for the $1.4M, without assuming they cover the same work. Then show your contribution to demos and pilots and where you used the sales tools.
+
+## Cards (6; {"line":5,"keep":1}); severity off; added []
+1. [line] Account Executive, line 1
+   line: "Achieved 132% of quota in FY2025"
+   can't tell: The percentage is strong, but the quota amount and territory aren't here. A recruiter will also want to know whether you met quota in another year.
+   example: Achieved 132% of quota in FY2025 against a quota of [quota amount] in [territory], with [quota attainment in other years]
+   question: What was your FY2025 quota and territory, and what was your attainment in other years?
+2. [line] Account Executive, line 2
+   line: "Closed $1.4M in new business"
+   can't tell: A recruiter can see what you closed, but not over what period or what the dollar figure measures. Those details make the number meaningful alongside your quota.
+   example: Closed $1.4M in new business over [time period], measured by [revenue measure]
+   question: What period did the $1.4M cover, and what revenue measure does it represent?
+3. [line] Account Executive, line 5
+   line: "Partnered with solutions engineers on demos and pilots"
+   can't tell: The partnership is clear, but your part in the demos and pilots isn't. What did you handle alongside the engineers?
+   example: Partnered with solutions engineers on demos and pilots, contributing [your contribution]
+   question: What did you handle in the demos and pilots?
+4. [keep] Sales Development Representative, line 1
+   line: "Booked 25+ meetings per month for the account executive team"
+   can't tell: Keep this as a model. It gives a recruiter a concrete deliverable and a frequency without making them guess what you owned.
+5. [line] Sales Associate, line 1
+   line: "Top seller in the store for three quarters"
+   can't tell: Being the store's top seller is worth keeping. The measure behind that ranking and when those quarters fell would make the achievement more useful.
+   example: Top seller in the store for three quarters during [time period], measured by [sales measure]
+   question: When were the three quarters, and how was the top seller ranking measured?
+6. [line] Skills
+   line: "Salesforce, Outreach, Gong, LinkedIn Sales Navigator"
+   can't tell: These tools appear only in the skills list, so a recruiter can't see how you used them in your sales work. Put the ones you used into the relevant role.
+   example: Used [tools used] for [sales work] as [role]
+   question: Where did you use Salesforce, Outreach and Gong, and what did you use them for?
+
+## Fit
+Roles: ["Account Executive","Sales Development Representative"]
+Level: Account Executive, promoted from Sales Development Representative
+Note: Your recent work points to Account Executive roles, particularly full-cycle sales. The quota and new-business figures are useful, but their context will help recruiters compare them with the jobs they're filling.

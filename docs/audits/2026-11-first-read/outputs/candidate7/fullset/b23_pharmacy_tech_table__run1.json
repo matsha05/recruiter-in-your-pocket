@@ -1,0 +1,251 @@
+{
+  "case_id": "b23_pharmacy_tech_table",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Tables rendered to tab-separated text.",
+  "resume_file": "../2026-11-live-judgment/resumes/b_pharmacy_tech_table.txt",
+  "resume_sha256": "872695c37eba2c67784784b9af67edda0387ea5b8bbb90cd54d25ac0f2941367",
+  "resume_words": 209,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:36:09.035Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6094,
+        "completion_tokens": 1034,
+        "total_tokens": 7128,
+        "cached_prompt_tokens": 5196,
+        "cache_write_prompt_tokens": 895,
+        "reasoning_tokens": 339
+      },
+      "cost_usd": 0.00655155,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 12994
+    }
+  ],
+  "resume_prompt_sha256": "1c0fe4fe961ccb0d0e49bbe71ac8427d0281ae6e9a1efa6ac35e3ee49a99ed47",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "An inpatient pharmacy technician with sterile compounding, training, and measurable cabinet-restocking work.",
+    "write_up": [
+      "Your resume makes a strong case for inpatient pharmacy work: you name the doses, nursing units, and technicians you trained! A recruiter can see both your day-to-day work and where you improved stock availability.",
+      "The cabinet-restocking line is a great model because it names the job, the six units, and the change in weekly stockout reports. Your California license and sterile compounding certification are easy to find. The separate duties section does make a recruiter match each line back to its job.",
+      "Put the duties directly under their roles, then explain what you meant by verifying prescriptions in the retail job. Your resume isn't likely to be the thing holding you back on its own; how competitive a particular opening is will also matter."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience and Duties and Results",
+        "line": "Duties and results are in a separate section from the roles and dates.",
+        "cannot_tell": "The role labels show which duties go with each title, but a recruiter has to move between sections to connect the work with its employer and dates.",
+        "example": "",
+        "question": "Can you move each duty directly under its matching role?"
+      },
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, cabinet restocking",
+        "line": "Pharmacy Technician II\tManage the automated dispensing cabinet restocking for 6 nursing units\tStockout reports down from 9 to 2 per week in 2024",
+        "cannot_tell": "Keep this as your model: it gives a recruiter a concrete responsibility and a before-and-after measure without making them guess what was tracked.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Pharmacy Technician, prescriptions",
+        "line": "Pharmacy Technician\tFilled and verified prescriptions for a store doing 350 scripts a day",
+        "cannot_tell": "A recruiter may wonder what verification involved and who performed the final check. The store's daily volume is useful context, but it doesn't answer that question.",
+        "example": "Filled and verified prescriptions for a store doing 350 scripts a day, with [what verification involved] and [who performed the final check]",
+        "question": "What did your verification involve, and who performed the final check?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Pharmacy Technician II",
+        "Pharmacy Technician"
+      ],
+      "why": "Your current role combines inpatient sterile compounding, cabinet restocking, and training for new technicians.",
+      "level": "Experienced technician, with technician training responsibilities",
+      "note": "Your experience points toward inpatient pharmacy technician work, with retail pharmacy as another option. The California license, CPhT, and sterile compounding certification are all listed.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "An inpatient pharmacy technician with sterile compounding, training, and measurable cabinet-restocking work.",
+    "write_up": [
+      "Your resume makes a strong case for inpatient pharmacy work: you name the doses, nursing units, and technicians you trained! A recruiter can see both your day-to-day work and where you improved stock availability.",
+      "The cabinet-restocking line is a great model because it names the job, the six units, and the change in weekly stockout reports. Your California license and sterile compounding certification are easy to find. The separate duties section does make a recruiter match each line back to its job.",
+      "Put the duties directly under their roles, then explain what you meant by verifying prescriptions in the retail job. Your resume isn't likely to be the thing holding you back on its own; how competitive a particular opening is will also matter."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience and Duties and Results",
+        "line": "Duties and results are in a separate section from the roles and dates.",
+        "cannot_tell": "The role labels show which duties go with each title, but a recruiter has to move between sections to connect the work with its employer and dates.",
+        "example": "",
+        "question": "Can you move each duty directly under its matching role?"
+      },
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, cabinet restocking",
+        "line": "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024",
+        "cannot_tell": "Keep this as your model: it gives a recruiter a concrete responsibility and a before-and-after measure without making them guess what was tracked.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Pharmacy Technician, prescriptions",
+        "line": "Pharmacy Technician Filled and verified prescriptions for a store doing 350 scripts a day",
+        "cannot_tell": "A recruiter may wonder what verification involved and who performed the final check. The store's daily volume is useful context, but it doesn't answer that question.",
+        "example": "Filled and verified prescriptions for a store doing 350 scripts a day, with [what verification involved] and [who performed the final check]",
+        "question": "What did your verification involve, and who performed the final check?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Pharmacy Technician II",
+        "Pharmacy Technician"
+      ],
+      "why": "Your current role combines inpatient sterile compounding, cabinet restocking, and training for new technicians.",
+      "level": "Experienced technician, with technician training responsibilities",
+      "note": "Your experience points toward inpatient pharmacy technician work, with retail pharmacy as another option. The California license, CPhT, and sterile compounding certification are all listed.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "An inpatient pharmacy technician with sterile compounding, training, and measurable cabinet-restocking work.",
+    "write_up": [
+      "Your resume makes a strong case for inpatient pharmacy work: you name the doses, nursing units, and technicians you trained! A recruiter can see both your day-to-day work and where you improved stock availability.",
+      "The cabinet-restocking line is a great model because it names the job, the six units, and the change in weekly stockout reports. Your California license and sterile compounding certification are easy to find. The separate duties section does make a recruiter match each line back to its job.",
+      "Put the duties directly under their roles, then explain what you meant by verifying prescriptions in the retail job. Your resume isn't likely to be the thing holding you back on its own; how competitive a particular opening is will also matter."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience and Duties and Results",
+        "line": "Duties and results are in a separate section from the roles and dates.",
+        "cannot_tell": "The role labels show which duties go with each title, but a recruiter has to move between sections to connect the work with its employer and dates.",
+        "example": "",
+        "question": "Can you move each duty directly under its matching role?"
+      },
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, cabinet restocking",
+        "line": "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024",
+        "cannot_tell": "Keep this as your model: it gives a recruiter a concrete responsibility and a before-and-after measure without making them guess what was tracked.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Pharmacy Technician, prescriptions",
+        "line": "Pharmacy Technician Filled and verified prescriptions for a store doing 350 scripts a day",
+        "cannot_tell": "A recruiter may wonder what verification involved and who performed the final check. The store's daily volume is useful context, but it doesn't answer that question.",
+        "example": "Filled and verified prescriptions for a store doing 350 scripts a day, with [what verification involved] and [who performed the final check]",
+        "question": "What did your verification involve, and who performed the final check?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Pharmacy Technician II",
+        "Pharmacy Technician"
+      ],
+      "why": "Your current role combines inpatient sterile compounding, cabinet restocking, and training for new technicians.",
+      "level": "Experienced technician, with technician training responsibilities",
+      "note": "Your experience points toward inpatient pharmacy technician work, with retail pharmacy as another option. The California license, CPhT, and sterile compounding certification are all listed.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "presentation": {
+    "score": 88,
+    "band": "Clear and specific",
+    "model_score": 88,
+    "lifted_by_employer": false,
+    "verdict": "An inpatient pharmacy technician with sterile compounding, training, and measurable cabinet-restocking work.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 124,
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience and Duties and Results",
+        "line": "Duties and results are in a separate section from the roles and dates.",
+        "blanks": 0,
+        "question": "Can you move each duty directly under its matching role?"
+      },
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, cabinet restocking",
+        "line": "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Pharmacy Technician, prescriptions",
+        "line": "Pharmacy Technician Filled and verified prescriptions for a store doing 350 scripts a day",
+        "blanks": 2,
+        "question": "What did your verification involve, and who performed the final check?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "structure": 1,
+      "keep": 1,
+      "line": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Pharmacy Technician II",
+        "Pharmacy Technician"
+      ],
+      "why": "Your current role combines inpatient sterile compounding, cabinet restocking, and training for new technicians.",
+      "level": "Experienced technician, with technician training responsibilities",
+      "note": "Your experience points toward inpatient pharmacy technician work, with retail pharmacy as another option. The California license, CPhT, and sterile compounding certification are all listed.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00655155,
+  "latency_ms": 12998
+}

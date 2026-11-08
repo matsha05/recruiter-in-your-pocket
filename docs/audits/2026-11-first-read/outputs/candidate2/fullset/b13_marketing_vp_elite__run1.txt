@@ -1,0 +1,71 @@
+# b13_marketing_vp_elite, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/golden/synth_marketing_manager_vp_elite_1766960221358.txt (730 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 41bcacc0; severity check off
+Outcome: report; cost $0.0186; 35.6s
+Case note: Executive, strong (golden).
+
+## Mostly clear (score 82; model wrote 82)
+## Verdict
+A marketing executive with substantial results, though several figures need a timeframe or starting point.
+
+## Write-up
+Your resume tells a clear story from marketing manager to Chief Marketing Officer, with global teams, budgets and growth work along the way. A recruiter can see the level you operate at, but several percentages in your recent roles need a timeframe or starting point to make them comparable.
+
+The Viridian customer advocacy line is a good model: it names the program you led, the retention change, the upsell revenue and the period. At Novara, the team, budget and platform are all there; adding who you reported to would complete the picture of your executive role.
+
+Start with the Novara launch and acquisition figures, then work down through the Viridian results. You don't need to add numbers everywhere. Give the numbers you already have enough context to stand on their own.
+
+## Cards (10; {"line":9,"keep":1}); severity off; added []
+1. [line] Chief Marketing Officer, line 1
+   line: "I led a 45-person global marketing organization managing a $25M annual budget, driving company-wide brand and demand generation strategy for a SaaS platform serving 2M+ users across 40 countries."
+   can't tell: The team, budget and platform are easy to grasp. For a CMO role, a recruiter will also want to know who you reported to.
+   example: I led a 45-person global marketing organization managing a $25M annual budget, reporting to [who you reported to] and driving company-wide brand and demand generation strategy for a SaaS platform serving 2M+ users across 40 countries.
+   question: Who did you report to at Novara?
+2. [line] Chief Marketing Officer, line 3
+   line: "I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years."
+   can't tell: The revenue figure has a period, but it's not clear how long it took to shorten time-to-market by 30%. That matters when a recruiter compares launch work.
+   example: I decided to revamp the product launch process, shortening time-to-market by 30% over [period] and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.
+   question: Over what period did time-to-market fall by 30%?
+3. [line] Chief Marketing Officer, line 4
+   line: "I led a cross-functional team of 12 marketing, analytics, and creative professionals to optimize customer acquisition cost (CAC), reducing it by 22% and improving lifetime value (LTV) metrics across key segments."
+   can't tell: The team and the CAC reduction are clear, but the period for that reduction isn't. Add it so a recruiter can judge the change.
+   example: I led a cross-functional team of 12 marketing, analytics, and creative professionals to optimize customer acquisition cost (CAC), reducing it by 22% over [period] and improving lifetime value (LTV) metrics across key segments.
+   question: Over what period did CAC fall by 22%?
+4. [line] Chief Marketing Officer, line 5
+   line: "I directed brand repositioning initiatives, including a comprehensive website overhaul and global PR campaigns, improving brand awareness scores by 35% and driving a 25% increase in enterprise client engagement."
+   can't tell: The website and PR work are named, but the 35% change in brand awareness has no period attached.
+   example: I directed brand repositioning initiatives, including a comprehensive website overhaul and global PR campaigns, improving brand awareness scores by 35% over [period] and driving a 25% increase in enterprise client engagement.
+   question: Over what period did brand awareness scores increase by 35%?
+5. [line] Chief Marketing Officer, line 6
+   line: "I partnered closely with sales and product leadership to align go-to-market strategies that expanded market share by 18% in highly competitive verticals such as fintech and healthcare."
+   can't tell: A recruiter can see the partnership and the verticals, but not the starting market share behind the 18% increase.
+   example: I partnered closely with sales and product leadership to align go-to-market strategies that expanded market share by 18% from [starting market share] in highly competitive verticals such as fintech and healthcare.
+   question: What was the starting market share for the 18% increase?
+6. [line] Vice President, Global Marketing, line 2
+   line: "I built and executed a comprehensive account-based marketing (ABM) program that increased pipeline contribution by $50M annually, lifting win rates by 15% among Fortune 500 clients."
+   can't tell: The annual pipeline contribution is framed well. The win-rate increase needs a starting rate so a recruiter can understand the change.
+   example: I built and executed a comprehensive account-based marketing (ABM) program that increased pipeline contribution by $50M annually, lifting win rates by 15% from [starting win rate] among Fortune 500 clients.
+   question: What was the starting win rate among those Fortune 500 clients?
+7. [keep] Vice President, Global Marketing, line 3
+   line: "I led the development and launch of a new customer advocacy program that increased customer retention by 12% and generated $4M in upsell revenue within 18 months."
+   can't tell: Keep this as a model. You connect the program you led to two business measures and give them a period.
+8. [line] Vice President, Global Marketing, line 4
+   line: "I decided to implement advanced marketing automation and analytics tools, improving campaign ROI by 30% and shortening sales cycles by 20%."
+   can't tell: Both changes are useful to a marketing recruiter, but there's no period for the campaign ROI improvement.
+   example: I decided to implement advanced marketing automation and analytics tools, improving campaign ROI by 30% over [period] and shortening sales cycles by 20%.
+   question: Over what period did campaign ROI improve by 30%?
+9. [line] Vice President, Global Marketing, line 5
+   line: "I coached and developed high-performing managers, cultivating a leadership pipeline that reduced turnover by 25% and increased overall team productivity."
+   can't tell: The management work is relevant, but the turnover reduction needs a period.
+   example: I coached and developed high-performing managers, cultivating a leadership pipeline that reduced turnover by 25% over [period] and increased overall team productivity.
+   question: Over what period did turnover fall by 25%?
+10. [line] Vice President, Global Marketing, line 6
+   line: "I drove collaboration with product management to refine messaging and positioning, resulting in a 10% increase in sales-qualified leads (SQLs) and stronger competitive differentiation."
+   can't tell: The sales-qualified lead increase has no period attached, so a recruiter can't compare it with other lead-generation work.
+   example: I drove collaboration with product management to refine messaging and positioning, resulting in a 10% increase in sales-qualified leads (SQLs) over [period] and stronger competitive differentiation.
+   question: Over what period did sales-qualified leads increase by 10%?
+
+## Fit
+Roles: ["Chief Marketing Officer","Vice President, Global Marketing"]
+Level: Executive, leads a 45-person global marketing organization and a $25M annual budget
+Note: Your experience points toward senior marketing leadership in software and technology. The Novara role shows company-wide brand and demand generation work; adding your reporting line would round out the executive picture.

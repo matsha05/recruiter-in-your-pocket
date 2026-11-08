@@ -1,0 +1,35 @@
+# b23_pharmacy_tech_table, run 1
+Resume: ../2026-11-live-judgment/resumes/b_pharmacy_tech_table.txt (209 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 41bcacc0; severity check off
+Outcome: report; cost $0.0072; 13.9s
+Case note: Tables rendered to tab-separated text.
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+An inpatient pharmacy technician whose sterile compounding work and dispensing cabinet results are easy to understand.
+
+## Write-up
+Your resume makes a strong case for Pharmacy Technician II work! It follows your move from retail pharmacy to inpatient sterile compounding, with the daily workload and results attached.
+
+The dispensing cabinet line is a model: it names the six nursing units and shows stockout reports falling from 9 to 2 per week in 2024. Your California license and sterile compounding certification are also easy to find. The separate duties table does make a recruiter look back to connect the work with each employer.
+
+Put the duties under their respective jobs, then make clear what prescription verification meant in the RiteCare role. Your resume isn't the main thing to fix before applying; the requirements and competition for each opening will still matter.
+
+## Cards (3; {"structure":1,"keep":1,"line":1}); severity off; added []
+1. [structure] Experience and Duties and Results
+   line: "Duties and results sit in a separate table below the jobs."
+   can't tell: A recruiter has to look back and forth to connect your work to each employer and date. Putting the lines under their jobs keeps the inpatient and retail work together.
+   question: Can you move each duty under its matching role?
+2. [keep] Pharmacy Technician II, dispensing cabinets
+   line: "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024"
+   can't tell: Keep this as a model. It pairs the work and the units you served with a before-and-after weekly count.
+3. [line] Pharmacy Technician, prescriptions
+   line: "Pharmacy Technician Filled and verified prescriptions for a store doing 350 scripts a day"
+   can't tell: A recruiter can't tell what your prescription verification involved or who handled the final review. That distinction matters in a pharmacy role.
+   example: Filled and verified prescriptions for a store doing 350 scripts a day, including [what you verified] and [who performed final review]
+   question: What did you check, and who performed the final prescription review?
+
+## Fit
+Roles: ["Pharmacy Technician II","Pharmacy Technician"]
+Level: Experienced technician, trains new technicians
+Note: Your current role points most directly to inpatient pharmacy technician work, particularly sterile compounding and dispensing cabinet restocking. Your earlier retail work also supports pharmacy technician roles in that setting.

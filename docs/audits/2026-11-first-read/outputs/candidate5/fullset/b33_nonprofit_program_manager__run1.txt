@@ -1,0 +1,42 @@
+# b33_nonprofit_program_manager, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_nonprofit_program_manager_1.txt (146 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ab8cd5a5; severity check off
+Outcome: report; cost $0.0099; 22.4s
+
+## Needs more context (score 69; model wrote 69)
+## Verdict
+A youth workforce program manager whose resume shows the work but leaves the program's reach unclear.
+
+## Write-up
+Your resume tells a common story: you moved from tutoring at City Year Baltimore to coordinating and then managing youth workforce programs at Harbor Pathways. A recruiter can follow that path, but the current role reads mostly as a list of duties. Without a clearer picture of the summer program's reach, it may not stand out in a pile.
+
+The tutoring line is a useful model because it names both the students and the subjects. Your current role also shows that you supervise coordinators and seasonal staff, but it doesn't say what their work covers or how many students the summer program places.
+
+Let's start with the summer jobs line, then add what the team handles and what you track in Salesforce. Those details can show a recruiter more of the program you manage without stretching your role.
+
+## Cards (4; {"line":4}); severity off; added []
+1. [line] Program Manager, Youth Workforce, line 1
+   line: "Manage a summer jobs program placing high school students with local employers"
+   can't tell: The program is easy to picture, but a recruiter can't tell how many students it places. That's a useful measure of the work you manage.
+   example: Manage a summer jobs program placing [number] high school students with local employers over [time period]
+   question: How many students does the program place, and over what period?
+2. [line] Program Manager, Youth Workforce, line 2
+   line: "Supervise 4 program coordinators and 20 seasonal staff"
+   can't tell: The team numbers are here, but a recruiter can't tell what the coordinators and seasonal staff handle.
+   example: Supervise 4 program coordinators and 20 seasonal staff who [what the team handles]
+   question: What does the team handle?
+3. [line] Program Manager, Youth Workforce, line 4
+   line: "Recruit and onboard employer partners"
+   can't tell: A recruiter can see that you bring employers into the program, but not how many partners you've recruited and onboarded.
+   example: Recruit and onboard [number] employer partners over [time period]
+   question: How many employer partners have you recruited and onboarded, and over what period?
+4. [line] Program Manager, Youth Workforce, line 5
+   line: "Track participant outcomes in Salesforce"
+   can't tell: Salesforce is named, but the participant outcomes aren't. What you track would show a recruiter what the program follows after students participate.
+   example: Track [participant outcomes] in Salesforce
+   question: Which participant outcomes do you track in Salesforce?
+
+## Fit
+Roles: ["Program Manager, Youth Workforce","Program Coordinator"]
+Level: Manager, supervises 4 program coordinators and 20 seasonal staff
+Note: Your experience points toward youth workforce program management, with supervision, employer partnerships and grant reporting. Adding the reach of the summer program would help distinguish the work you've managed.

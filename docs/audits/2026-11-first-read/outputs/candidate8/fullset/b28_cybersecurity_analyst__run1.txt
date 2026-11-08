@@ -1,0 +1,35 @@
+# b28_cybersecurity_analyst, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_cybersecurity_analyst_1.txt (154 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5cba8f05; severity check off
+Outcome: report; cost $0.0068; 13.8s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A senior security analyst with strong detection and incident response results in financial services.
+
+## Write-up
+This is a strong security resume! Your move from monitoring client environments at Northgate Managed Security to detection and response at Capital Ridge Bank is easy to follow. The recent work shows both what you built and what changed, which gives a recruiter more than a list of security tools.
+
+The Splunk detection-rules line is the model: it names the work, the framework and the reduction in false positives. Your incident response line is strong too, with a clear change in containment time. Experience is easy to find, and your certifications reinforce the work.
+
+Let's add a little more about the purple-team exercises and alert enrichment, if you can. Your resume isn't likely to be the thing holding you back on its own; the match with a particular role and how competitive it is will matter too.
+
+## Cards (3; {"keep":1,"line":2}); severity off; added []
+1. [keep] Senior Security Analyst, line 1
+   line: "Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%"
+   can't tell: Keep this as a model. You connect a substantial body of detection work to a concrete improvement without making a recruiter guess what you used.
+2. [line] Senior Security Analyst, line 3
+   line: "Run monthly purple-team exercises with the red team"
+   can't tell: A recruiter can see how often you run the exercises, but not what they test or what comes out of them.
+   example: Run monthly purple-team exercises with the red team to test [what the exercises test], resulting in [what changed]
+   question: What do the exercises test, and what has changed as a result?
+3. [line] Senior Security Analyst, line 4
+   line: "Automated alert enrichment with Python and the Splunk SOAR platform"
+   can't tell: The tools and the work are clear. What isn't clear is which alerts you enriched or what the automation changed for the team.
+   example: Automated alert enrichment for [which alerts] with Python and the Splunk SOAR platform, resulting in [what changed]
+   question: Which alerts did you enrich, and what changed after you automated the work?
+
+## Fit
+Roles: ["Senior Security Analyst, Detection and Response","Security Operations Analyst"]
+Level: Senior analyst, leads incident response and mentors 2 analysts
+Note: Your experience points toward senior detection and response work, particularly in financial services. The earlier managed security role also shows experience across client environments.

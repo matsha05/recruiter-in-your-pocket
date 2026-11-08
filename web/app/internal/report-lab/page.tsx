@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ReportLab, { type LabFixture } from "@/components/internal/report-lab/ReportLab";
 import { MOCK_WORKLIST_REPORT } from "@/lib/backend/mock-worklist-report";
+import { withScreenerText } from "@/lib/reports/screener-text";
 
 export const dynamic = "force-dynamic";
 
@@ -48,7 +49,47 @@ function loadWorklistFixtures(root: string): LabFixture[] {
       });
     }
   }
+  fixtures.push(...loadFirstReadFixtures(root));
   fixtures.push({ id: "worklist-mock", label: "worklist · the mock (Alex Rivera) · 66", report: structuredClone(MOCK_WORKLIST_REPORT) as unknown as LabFixture["report"], resumeText: "Alex Rivera\nCustomer Operations\nExperience\nBuilt customer workflows in HubSpot for 120 customers.\nDocumented the workflow and trained the support team on customer onboarding.\nRan weekly onboarding reviews with account managers and kept the checklist current." });
+  return fixtures;
+}
+
+// The first pass (Nov 7, 2026; docs/audits/2026-11-first-read.md): the proposed prompt's reports on the wave's own
+// synthetic resumes, each beside the shipped prompt's (`-shipped`), with the screening-text check applied as the
+// routes apply it, so the first pass shows every state: no posting, a posting that fits, one that doesn't, hidden text.
+const FIRST_READ_PASS = "pr94fix";
+function loadFirstReadFixtures(root: string): LabFixture[] {
+  const dir = path.join(root, "..", "docs/audits/2026-11-first-read");
+  const manifest = JSON.parse(fs.readFileSync(path.join(dir, "manifest.json"), "utf8")) as { cases: Array<{ id: string; resume: string; job_description?: string }> };
+  const passes = [
+    { dir: `outputs/${FIRST_READ_PASS}/targeted`, idSuffix: "", labelSuffix: "" },
+    { dir: "outputs/baseline-shipped", idSuffix: "-shipped", labelSuffix: " · shipped prompt" },
+  ];
+  const fixtures: LabFixture[] = [];
+  for (const item of manifest.cases) {
+    const resumeText = fs.readFileSync(path.join(dir, item.resume), "utf8");
+    const posting = item.job_description ? fs.readFileSync(path.join(dir, item.job_description), "utf8") : null;
+    for (const pass of passes) {
+      const file = path.join(dir, pass.dir, `${item.id}__run1.json`);
+      if (!fs.existsSync(file)) continue;
+      const record = JSON.parse(fs.readFileSync(file, "utf8"));
+      if (!record.shipped_report) continue;
+      fixtures.push({
+        id: `first-read-${item.id}${pass.idSuffix}`,
+        label: `first read · ${item.id.replace(/^fr\d+[a-z]?_/u, "").replace(/_/gu, " ")} · ${record.shipped_report.score}${pass.labelSuffix}`,
+        report: withScreenerText(record.shipped_report, resumeText, posting),
+        resumeText,
+      });
+    }
+  }
+  // The longest first pass (a reviewer's ask, Nov 7): a posting that doesn't fit and hidden text together. Layout only:
+  // the mismatch report with the hidden-text resume's findings attached.
+  const mismatch = fixtures.find((item) => item.id === "first-read-fr01c_backend_ic_manager_posting");
+  const hidden = fixtures.find((item) => item.id === "first-read-fr07_hidden_text");
+  const findings = (hidden?.report as { screener_text?: unknown } | undefined)?.screener_text;
+  if (mismatch && findings) {
+    fixtures.push({ ...mismatch, id: "first-read-posting-and-hidden-text", label: "first read · a posting and hidden text (layout only)", report: { ...mismatch.report, screener_text: findings } as LabFixture["report"] });
+  }
   return fixtures;
 }
 

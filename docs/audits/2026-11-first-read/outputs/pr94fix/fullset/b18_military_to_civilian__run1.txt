@@ -1,0 +1,25 @@
+# b18_military_to_civilian, run 1
+Resume: ../2026-11-live-judgment/resumes/b_military_to_civilian.txt (268 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 288eceb5; severity check off
+Outcome: report; cost $0.0055; 9.7s
+
+## Clear and specific (score 91; model wrote 91)
+## Verdict
+A logistics and maintenance leader with a strong record of supervising people, equipment, and vehicle readiness.
+
+## Write-up
+Your resume makes a strong case for an operations supervisor role! Your Army progression from mechanic to Platoon Sergeant shows both hands-on maintenance work and leadership across maintenance, supply, and fuel.
+
+The vehicle readiness line is the model: it shows a substantial improvement and names the changes you made to parts ordering and scheduling. The rest of the resume backs up your leadership with team counts, equipment accountability, and a parts budget.
+
+Your resume is unlikely to be what holds you back. For civilian applications, consider explaining military terms in familiar operations language, and keep the readiness result prominent. How closely a job matches your experience and how competitive it is will matter too.
+
+## Cards (1; {"keep":1}); severity off; added []
+1. [keep] Platoon Sergeant, line 4
+   line: "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule"
+   can't tell: Keep this as a model. The before-and-after figures give a recruiter something concrete to remember, and you take ownership of the work behind them.
+
+## Fit
+Roles: ["operations supervisor","Platoon Sergeant (E-7), Forward Support Company"]
+Level: manager, led 38 soldiers and evaluated 6 direct-report sergeants
+Note: Your maintenance leadership and inventory accountability also point toward roles overseeing equipment and supply operations. Your in-progress supply chain degree adds to that direction.

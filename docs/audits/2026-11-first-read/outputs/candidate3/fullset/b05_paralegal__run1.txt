@@ -1,0 +1,25 @@
+# b05_paralegal, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_paralegal_1.txt (144 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 01c2028d; severity check off
+Outcome: report; cost $0.0056; 11.0s
+
+## Clear and specific (score 90; model wrote 90)
+## Verdict
+A senior litigation paralegal whose case work, trial support, and document production are easy to follow.
+
+## Write-up
+You've made your litigation work easy to follow. At Harlan & Pike, you show the partners and cases you support, the documents you prepare, and the trials you've worked on. Your resume isn't the main obstacle here; competition for each role will matter too.
+
+The Relativity line is a strong model: it connects a named tool to document productions and gives their upper limit. Your experience leads, and your paralegal certificate is easy to find below it.
+
+For each application, bring the most relevant litigation work to the front of your resume. You don't need to add a number to every line when the work itself is already named.
+
+## Cards (1; {"keep":1}); severity off; added []
+1. [keep] Senior Litigation Paralegal, line 2
+   line: "Manage document productions of up to 250,000 pages in Relativity"
+   can't tell: Keep this as a model. A recruiter can see what you manage, how large a production can be, and where you do the work.
+
+## Fit
+Roles: ["Senior Litigation Paralegal","Paralegal"]
+Level: Senior paralegal, supporting four partners and managing document productions
+Note: Your experience points toward litigation paralegal roles, particularly those involving commercial and employment cases. You also show trial support and earlier personal injury work.

@@ -1,0 +1,50 @@
+# b32_logistics_dispatcher, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_logistics_dispatcher_1.txt (105 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 01c2028d; severity check off
+Outcome: report; cost $0.0094; 20.0s
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+A dispatcher’s career progression is clear, but the recent work lacks the detail needed to stand out.
+
+## Write-up
+You’ve moved from warehouse work to Dispatch Assistant and then Dispatcher at Crossroads Regional Freight. This is common in dispatch resumes: the duties are there, but a recruiter can’t tell how many drivers you dispatch or how you handle the problems that come up. That makes it unlikely to stand out in a pile.
+
+Your strongest line says you track loads and update customers on delivery status. It names two things you do, so a recruiter can picture the work. Your job dates and progression are easy to follow, too.
+
+Let’s start with the current Dispatcher role. Add the number of drivers you dispatch if you know it, then show what you do with road issues, the TMS, and driver hours.
+
+## Cards (6; {"line":5,"keep":1}); severity off; added []
+1. [line] Dispatcher, line 1
+   line: "Responsible for dispatching drivers"
+   can't tell: A recruiter knows you dispatch drivers, but not how many or what coordinating them involves. That’s the core of this job, so it’s a good place to start.
+   example: Responsible for dispatching [number] drivers and coordinating [what you coordinate]
+   question: How many drivers do you dispatch, and what do you coordinate for them?
+2. [keep] Dispatcher, line 2
+   line: "Track loads and update customers on delivery status"
+   can't tell: Keep this as a model: it connects the loads you track with the updates you give customers. Use that same plain description of your part in the other lines.
+3. [line] Dispatcher, line 3
+   line: "Handle driver issues on the road"
+   can't tell: Driver issues can mean many things. A recruiter can’t tell what kinds you handle or what you do when one comes up.
+   example: Handle driver issues on the road, including [type of issue], by [what you do]
+   question: What’s one type of issue you handle, and what do you do about it?
+4. [line] Dispatcher, line 4
+   line: "Use TMS software daily"
+   can't tell: Daily use tells a recruiter the software is part of your work, but not what you do in it.
+   example: Use TMS software daily to [what you do]
+   question: What do you use the TMS to do?
+5. [line] Dispatcher, line 5
+   line: "Work with the safety team on driver hours"
+   can't tell: The safety team and driver hours are named, but your part in that work isn’t. What do you contribute?
+   example: Work with the safety team on driver hours by [your part]
+   question: What do you do with the safety team on driver hours?
+6. [line] Dispatch Assistant, line 2
+   line: "Helped dispatchers with paperwork"
+   can't tell: A recruiter can’t tell which paperwork you helped with or what you did to support the dispatchers.
+   example: Helped dispatchers with [type of paperwork] by [your part]
+   question: What paperwork did you help with, and what was your part?
+
+## Fit
+Roles: ["Dispatcher","Dispatch Assistant"]
+Level: Dispatcher, with a current Dispatcher role and prior Dispatch Assistant experience
+Note: Your experience points toward trucking dispatch roles, with a clear move from assistant to dispatcher. Adding how many drivers you dispatch and the work you do in the TMS would give a recruiter a better picture of the current job.

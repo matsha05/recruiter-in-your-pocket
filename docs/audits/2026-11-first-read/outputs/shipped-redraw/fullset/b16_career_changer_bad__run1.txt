@@ -1,0 +1,50 @@
+# b16_career_changer_bad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_career_changer_bad_1.txt (140 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0094; 19.2s
+Case note: Career changer, weak; key says missing_dates, no_evidence_latest_role, no_target_role.
+
+## Needs more context (score 60; model wrote 60)
+## Verdict
+A current supervisor with web development and billing experience, but no clear target or measure of the latest work.
+
+## Write-up
+It’s common for a resume to show several kinds of work without naming a target. Yours moves from medical billing to freelance web development and shift supervision. Without a job target or more detail about the current role, a recruiter has to guess which experience matters most, and the resume may not stand out in a pile.
+
+The medical billing line about entering claims for a 4-physician practice works well because it names both the task and the practice. The freelance role has no dates, so a recruiter can’t tell when that work took place.
+
+Let’s start with the Saguaro Market role: add the number of people you supervise and your part in ordering and resets. Then date the freelance work and choose a target that brings the most relevant experience forward.
+
+## Cards (6; {"structure":1,"dates":1,"line":3,"keep":1}); severity off; added []
+1. [structure] Structure
+   line: "The resume does not name a target job."
+   can't tell: Supervision, web development and medical billing point in different directions. A recruiter can’t tell which role you want next.
+   question: Which job are you applying for with this version of your resume?
+2. [dates] Freelance Web Developer
+   line: "The Freelance Web Developer role has no dates."
+   can't tell: A recruiter can’t tell when you built the websites or whether you’re still doing that work.
+   example: [Month Year] - [Month Year or Present] Freelance Web Developer, Self-employed, Remote
+   question: When did you start and finish the freelance work, or are you still doing it?
+3. [line] Shift Supervisor, line 1
+   line: "Supervise cashiers and stockers on evening shifts"
+   can't tell: This establishes that you supervise both groups, but not how many people or what you oversee during a shift.
+   example: Supervise [number] cashiers and stockers on evening shifts, including [supervision duties]
+   question: How many cashiers and stockers do you supervise, and what do you oversee on a shift?
+4. [line] Shift Supervisor, line 2
+   line: "Count and reconcile registers at close"
+   can't tell: A recruiter can see the closing task, but not how many registers you handle or what reconciliation involves.
+   example: Count and reconcile [number] registers at close and [reconciliation task]
+   question: How many registers do you reconcile at close, and what does that work involve?
+5. [line] Shift Supervisor, line 3
+   line: "Help with weekly ordering and store resets"
+   can't tell: Helping could mean several different things here. Your part in the orders and resets is still a blank.
+   example: Help with weekly ordering by [ordering tasks] and store resets by [reset tasks]
+   question: What do you do for weekly orders and store resets?
+6. [keep] Medical Billing Assistant, line 1
+   line: "Entered insurance claims for a 4-physician practice"
+   can't tell: Keep this as a model: it gives the reader a concrete setting for the claims work without making them guess how large the practice was.
+
+## Fit
+Roles: ["Shift Supervisor","Freelance Web Developer","Medical Billing Assistant"]
+Level: Frontline supervisor and individual contributor
+Note: The current role points toward shift supervision, while the freelance and billing roles offer separate directions. A version tailored to one of those paths would make the next move easier to understand.

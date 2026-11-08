@@ -1,0 +1,35 @@
+# b23_pharmacy_tech_table, run 1
+Resume: ../2026-11-live-judgment/resumes/b_pharmacy_tech_table.txt (209 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 1c0fe4fe; severity check off
+Outcome: report; cost $0.0066; 13.0s
+Case note: Tables rendered to tab-separated text.
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+An inpatient pharmacy technician with sterile compounding, training, and measurable cabinet-restocking work.
+
+## Write-up
+Your resume makes a strong case for inpatient pharmacy work: you name the doses, nursing units, and technicians you trained! A recruiter can see both your day-to-day work and where you improved stock availability.
+
+The cabinet-restocking line is a great model because it names the job, the six units, and the change in weekly stockout reports. Your California license and sterile compounding certification are easy to find. The separate duties section does make a recruiter match each line back to its job.
+
+Put the duties directly under their roles, then explain what you meant by verifying prescriptions in the retail job. Your resume isn't likely to be the thing holding you back on its own; how competitive a particular opening is will also matter.
+
+## Cards (3; {"structure":1,"keep":1,"line":1}); severity off; added []
+1. [structure] Experience and Duties and Results
+   line: "Duties and results are in a separate section from the roles and dates."
+   can't tell: The role labels show which duties go with each title, but a recruiter has to move between sections to connect the work with its employer and dates.
+   question: Can you move each duty directly under its matching role?
+2. [keep] Pharmacy Technician II, cabinet restocking
+   line: "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024"
+   can't tell: Keep this as your model: it gives a recruiter a concrete responsibility and a before-and-after measure without making them guess what was tracked.
+3. [line] Pharmacy Technician, prescriptions
+   line: "Pharmacy Technician Filled and verified prescriptions for a store doing 350 scripts a day"
+   can't tell: A recruiter may wonder what verification involved and who performed the final check. The store's daily volume is useful context, but it doesn't answer that question.
+   example: Filled and verified prescriptions for a store doing 350 scripts a day, with [what verification involved] and [who performed the final check]
+   question: What did your verification involve, and who performed the final check?
+
+## Fit
+Roles: ["Pharmacy Technician II","Pharmacy Technician"]
+Level: Experienced technician, with technician training responsibilities
+Note: Your experience points toward inpatient pharmacy technician work, with retail pharmacy as another option. The California license, CPhT, and sterile compounding certification are all listed.

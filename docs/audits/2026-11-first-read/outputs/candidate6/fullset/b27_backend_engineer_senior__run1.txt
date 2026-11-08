@@ -1,0 +1,25 @@
+# b27_backend_engineer_senior, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_backend_engineer_senior_1.txt (190 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5827dcf1; severity check off
+Outcome: report; cost $0.0050; 10.7s
+
+## Clear and specific (score 92; model wrote 92)
+## Verdict
+Senior payments engineer with clear technical results and experience leading engineers through an audit.
+
+## Write-up
+Your resume makes a strong case for senior backend payments work. At Tidewater, you connect service design, reliability and audit leadership to concrete results, while the Northwind role shows the billing work that came before it.
+
+The ledger line is a great model: it names what you built and shows the drop in reconciliation breaks. Your experience also leads the education and skills sections, so a recruiter gets to the work first.
+
+I'd keep this focused on payments and ledger roles. Your resume is unlikely to be what stands between you and a callback; how competitive a particular job is will still matter.
+
+## Cards (1; {"keep":1}); severity off; added []
+1. [keep] Senior Software Engineer, Payments Platform, line 2
+   line: "Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10"
+   can't tell: Keep this as a model: it puts the service you built next to a before-and-after measure, so the result is easy to grasp.
+
+## Fit
+Roles: ["Senior Software Engineer, Payments Platform"]
+Level: Senior engineer, led a team of 5 engineers through the PCI DSS 4.0 audit
+Note: Your experience points toward senior backend roles in payments and billing. The service migration, ledger and audit work give you several strong examples to discuss.

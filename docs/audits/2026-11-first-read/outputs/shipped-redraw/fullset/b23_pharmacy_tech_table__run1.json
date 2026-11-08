@@ -1,0 +1,215 @@
+{
+  "case_id": "b23_pharmacy_tech_table",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Tables rendered to tab-separated text.",
+  "resume_file": "../2026-11-live-judgment/resumes/b_pharmacy_tech_table.txt",
+  "resume_sha256": "872695c37eba2c67784784b9af67edda0387ea5b8bbb90cd54d25ac0f2941367",
+  "resume_words": 209,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T17:59:52.997Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5583,
+        "completion_tokens": 1204,
+        "total_tokens": 6787,
+        "cached_prompt_tokens": 4685,
+        "cache_write_prompt_tokens": 895,
+        "reasoning_tokens": 690
+      },
+      "cost_usd": 0.007376,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 14384
+    }
+  ],
+  "resume_prompt_sha256": "0a19c3ee70395ec8fb0584d4bea1b93da77aeca37469b4d47211bc8568544f0c",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A pharmacy technician with strong inpatient and retail experience, backed by concrete workload and results.",
+    "write_up": [
+      "Your resume makes a strong case for pharmacy technician work! At Sutter Valley Medical Center, you show sterile compounding, cabinet restocking and training alongside the volume you handle. Your earlier RiteCare work adds retail pharmacy experience.",
+      "The cabinet restocking line is a great model: it names the work, the nursing units and the change in stockout reports. Your role history and duties are in separate tables, though, so a recruiter has to match them up.",
+      "Put each duty under its corresponding role so the work and employer are together. Your resume doesn't need a major overhaul; how competitive a particular job is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience and Duties and Results",
+        "line": "The role history and duties are in separate tables.",
+        "cannot_tell": "A recruiter has to move between the tables to connect your work with each employer and date. Putting the duties under each role keeps that history together.",
+        "example": "",
+        "question": "Can you place each duty under its matching role and employer?"
+      },
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, cabinet restocking",
+        "line": "Manage the automated dispensing cabinet restocking for 6 nursing units\tStockout reports down from 9 to 2 per week in 2024",
+        "cannot_tell": "Keep this as a model. It pairs a clear responsibility with a measure a pharmacy manager can recognize, without making the reader guess how many units you cover.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Pharmacy Technician II",
+        "Pharmacy Technician"
+      ],
+      "level": "Experienced pharmacy technician",
+      "note": "Your current work points toward inpatient pharmacy technician roles, especially those involving sterile compounding and dispensing cabinet restocking. Your RiteCare experience also supports retail pharmacy technician roles.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A pharmacy technician with strong inpatient and retail experience, backed by concrete workload and results.",
+    "write_up": [
+      "Your resume makes a strong case for pharmacy technician work! At Sutter Valley Medical Center, you show sterile compounding, cabinet restocking and training alongside the volume you handle. Your earlier RiteCare work adds retail pharmacy experience.",
+      "The cabinet restocking line is a great model: it names the work, the nursing units and the change in stockout reports. Your role history and duties are in separate tables, though, so a recruiter has to match them up.",
+      "Put each duty under its corresponding role so the work and employer are together. Your resume doesn't need a major overhaul; how competitive a particular job is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience and Duties and Results",
+        "line": "The role history and duties are in separate tables.",
+        "cannot_tell": "A recruiter has to move between the tables to connect your work with each employer and date. Putting the duties under each role keeps that history together.",
+        "example": "",
+        "question": "Can you place each duty under its matching role and employer?"
+      },
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, cabinet restocking",
+        "line": "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024",
+        "cannot_tell": "Keep this as a model. It pairs a clear responsibility with a measure a pharmacy manager can recognize, without making the reader guess how many units you cover.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Pharmacy Technician II",
+        "Pharmacy Technician"
+      ],
+      "level": "Experienced pharmacy technician",
+      "note": "Your current work points toward inpatient pharmacy technician roles, especially those involving sterile compounding and dispensing cabinet restocking. Your RiteCare experience also supports retail pharmacy technician roles.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A pharmacy technician with strong inpatient and retail experience, backed by concrete workload and results.",
+    "write_up": [
+      "Your resume makes a strong case for pharmacy technician work! At Sutter Valley Medical Center, you show sterile compounding, cabinet restocking and training alongside the volume you handle. Your earlier RiteCare work adds retail pharmacy experience.",
+      "The cabinet restocking line is a great model: it names the work, the nursing units and the change in stockout reports. Your role history and duties are in separate tables, though, so a recruiter has to match them up.",
+      "Put each duty under its corresponding role so the work and employer are together. Your resume doesn't need a major overhaul; how competitive a particular job is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience and Duties and Results",
+        "line": "The role history and duties are in separate tables.",
+        "cannot_tell": "A recruiter has to move between the tables to connect your work with each employer and date. Putting the duties under each role keeps that history together.",
+        "example": "",
+        "question": "Can you place each duty under its matching role and employer?"
+      },
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, cabinet restocking",
+        "line": "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024",
+        "cannot_tell": "Keep this as a model. It pairs a clear responsibility with a measure a pharmacy manager can recognize, without making the reader guess how many units you cover.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Pharmacy Technician II",
+        "Pharmacy Technician"
+      ],
+      "level": "Experienced pharmacy technician",
+      "note": "Your current work points toward inpatient pharmacy technician roles, especially those involving sterile compounding and dispensing cabinet restocking. Your RiteCare experience also supports retail pharmacy technician roles.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "presentation": {
+    "score": 88,
+    "band": "Clear and specific",
+    "model_score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A pharmacy technician with strong inpatient and retail experience, backed by concrete workload and results.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 105,
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience and Duties and Results",
+        "line": "The role history and duties are in separate tables.",
+        "blanks": 0,
+        "question": "Can you place each duty under its matching role and employer?"
+      },
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, cabinet restocking",
+        "line": "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "structure": 1,
+      "keep": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Pharmacy Technician II",
+        "Pharmacy Technician"
+      ],
+      "level": "Experienced pharmacy technician",
+      "note": "Your current work points toward inpatient pharmacy technician roles, especially those involving sterile compounding and dispensing cabinet restocking. Your RiteCare experience also supports retail pharmacy technician roles.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.007376,
+  "latency_ms": 14386
+}

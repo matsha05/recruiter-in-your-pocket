@@ -1,0 +1,40 @@
+# b37_marketing_director_bad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_marketing_director_bad_1.txt (167 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ab8cd5a5; severity check off
+Outcome: report; cost $0.0094; 21.7s
+Case note: Title above the work; key says no_recent_work, no_target_role, title_level_mismatch.
+
+## Needs more context (score 59; model wrote 59)
+## Verdict
+A marketing director title, but mostly hands-on tasks and no account of work since January 2025.
+
+## Write-up
+You've worked in marketing at Lumen Candle Co., property records at Hill Country Title, and a biology lab. It's common for a resume to cover different kinds of work, but this one doesn't say which direction you want next. I read it for marketing because that's your most recent role. A recruiter may pass because the director title suggests leadership that the listed work doesn't yet show.
+
+The property-records line is a good model: it names the system and how much work you handled each day. The marketing role also gives useful numbers for Instagram and product descriptions. But nothing accounts for the time after January 2025, and a recruiter can't tell whether your director role included decisions, a team or a budget.
+
+Let's start with the Director of Marketing title and add the marketing responsibilities you can substantiate. Then account for the time since that role honestly and name the kind of job you want, so the rest of your resume has a clear direction.
+
+## Cards (4; {"line":1,"dates":1,"structure":1,"keep":1}); severity off; added []
+1. [line] Director of Marketing, title
+   line: "Director of Marketing"
+   can't tell: The title points to a director-level remit, but the bullets show posting, product descriptions and customer orders. A recruiter can't tell what marketing decisions you owned or whether you managed a team or budget. Keep your actual title and add those details if they were part of the job.
+   example: Director of Marketing, [marketing decisions owned]
+   question: What marketing decisions did you own, and what team or budget, if any, did you manage?
+2. [dates] Dates
+   line: "Nothing is dated after January 2025."
+   can't tell: A recruiter can't tell what you've been doing since the Lumen Candle Co. role ended. If you took care of a family member, you can name that; if you took a career break, you can say what you did during it. Include freelance work only if you did it.
+   example: January 2025 - Present [what you did]
+   question: What have you been doing since January 2025 that you can put on your resume?
+3. [structure] Structure
+   line: "The resume doesn't name the job you're seeking."
+   can't tell: Your recent work points toward marketing, while your earlier roles point in several other directions. A short headline naming your target would give a recruiter a way to connect them.
+   question: What kind of job do you want your next resume to target?
+4. [keep] Data Entry Clerk, line 1
+   line: "Entered 150 property records a day into the county title system"
+   can't tell: Keep this as a model. It pairs a concrete daily workload with the system you used, so a recruiter can picture the job without guessing.
+
+## Fit
+Roles: ["Director of Marketing"]
+Level: Hands-on marketing work; director title without a stated team or budget
+Note: Your recent experience points toward marketing content and social media work. For director roles, the resume needs to show any leadership responsibilities you held, without changing the title you actually had.

@@ -1,0 +1,18 @@
+{
+ "1": {
+  "id": "fr03_account_executive_quota",
+  "left": "shipped"
+ },
+ "2": {
+  "id": "fr05_nurse_no_units",
+  "left": "candidate"
+ },
+ "3": {
+  "id": "b40_senior_ic_wei",
+  "left": "shipped"
+ },
+ "4": {
+  "id": "b04_retail_store_manager",
+  "left": "candidate"
+ }
+}

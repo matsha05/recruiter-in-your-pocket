@@ -1,0 +1,46 @@
+# b34_bank_branch_manager_gap, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_bank_branch_manager_gap_1.txt (129 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 41bcacc0; severity check off
+Outcome: report; cost $0.0083; 17.4s
+Case note: Gap with nothing after it.
+
+## Needs more context (score 69; model wrote 69)
+## Verdict
+A branch manager with deposit growth and a clear progression, but no account of work since December 2024.
+
+## Write-up
+You progressed from Personal Banker to Branch Manager at Magnolia Community Bank, with deposit growth and an 11-person branch on your resume. I read this for another Branch Manager role. It’s common to leave time after a job unexplained, but your dated work stops at December 2024. A recruiter may hesitate without knowing what came next.
+
+The deposit growth line is your best model: it gives a starting figure, an ending figure and a period. The rest names real branch work, from coaching bankers to overseeing audits, but leaves a recruiter with questions about what you did within it.
+
+Start with what you’ve done since December 2024, then look at the Branch Manager lines about coaching, audits and complaints. Add the details you can stand behind; the deposit and staff figures already give those details a useful frame.
+
+## Cards (5; {"dates":1,"keep":1,"line":3}); severity off; added []
+1. [dates] Dates
+   line: "Nothing is dated after December 2024."
+   can't tell: A recruiter can’t tell what you’ve done since the Branch Manager role. If you took care of a family member, you can name that; a career break can include a course, project, volunteering or travel. Include freelance work only if you did it.
+   example: December 2024 - Present [what you did]
+   question: What have you done since December 2024 that you’d be comfortable including?
+2. [keep] Branch Manager, line 2
+   line: "Grew branch deposits from $48M to $63M over five years"
+   can't tell: Keep this as a model. It lets a recruiter see the starting point, the change and the time it took without guessing.
+3. [line] Branch Manager, line 3
+   line: "Led weekly sales huddles and coached bankers on referrals"
+   can't tell: The weekly huddles are clear, but a recruiter can’t tell what your coaching focused on or what changed. That would give the sales work more substance.
+   example: Led weekly sales huddles and coached bankers on referrals, focusing on [coaching focus] and [what changed]
+   question: What did you coach bankers to do differently, and what changed?
+4. [line] Branch Manager, line 4
+   line: "Oversaw audits and compliance reviews for the branch"
+   can't tell: A recruiter knows you oversaw the reviews, but not what that involved. Your part in preparing for them or following up would make the responsibility concrete.
+   example: Oversaw audits and compliance reviews for the branch, including [your responsibilities]
+   question: What were you responsible for during the audits and compliance reviews?
+5. [line] Branch Manager, line 5
+   line: "Handled escalated customer complaints"
+   can't tell: A recruiter can’t tell what kinds of issues reached you or how you handled them. One example would show what customers and staff relied on you to resolve.
+   example: Handled escalated customer complaints about [issues] by [actions]
+   question: What kinds of complaints reached you, and what did you do to address them?
+
+## Fit
+Roles: ["Branch Manager"]
+Level: Branch manager, managed a branch of 11 employees
+Note: Your experience points toward branch management in retail banking, supported by progression through banker and assistant manager roles. Your deposit growth and staff responsibility are useful anchors; the time after December 2024 remains unaccounted for on your resume.

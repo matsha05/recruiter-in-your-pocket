@@ -1,0 +1,35 @@
+# b19_non_native_english, run 1
+Resume: ../2026-11-live-judgment/resumes/b_non_native_english.txt (237 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5827dcf1; severity check off
+Outcome: report; cost $0.0067; 13.0s
+
+## Mostly clear (score 82; model wrote 82)
+## Verdict
+An accounts payable professional with a clear invoice workload and earlier senior accounting results.
+
+## Write-up
+Your resume points toward Accounts Payable Specialist work: you process vendor invoices at Bayou Industrial Supply, after bookkeeping in Houston and senior accounting in Vietnam. A recruiter can see both the current workload and the broader accounting experience, so I'd expect this resume to move forward with a few questions.
+
+The strongest line is the month-end close improvement at Minh Phat Trading Company. It gives the starting and ending times and names the checklist and template you made. Your current invoice line also gives a recruiter a useful picture of your work with QuickBooks and purchase orders.
+
+Let's start with your month-end work at Bayou: name what you helped the controller do. Then add your part in the external audit at Minh Phat. A final grammar pass will help the accounting work come through cleanly.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] Accounts Payable Clerk, line 4
+   line: "Help the controller for month end closing"
+   can't tell: A recruiter can't tell which closing tasks were yours. That matters for both accounts payable and the Staff Accountant role you name.
+   example: Help the controller with month end closing by [what you did]
+   question: What closing tasks did you help the controller with?
+2. [line] Senior Accountant, line 3
+   line: "Work with external auditor for year end audit, no major finding in 5 years"
+   can't tell: The audit had no major finding in 5 years, but your part in it isn't clear. What did you prepare or handle for the external auditor?
+   example: Work with external auditor on [what you prepared or handled] for year end audit, with no major finding in 5 years
+   question: What did you prepare or handle for the external auditor?
+3. [keep] Senior Accountant, line 4
+   line: "Reduce the month end closing from 12 days to 7 days by make new checklist and template"
+   can't tell: Keep this as a model: it pairs a change in closing time with the two things you made to achieve it.
+
+## Fit
+Roles: ["Accounts Payable Specialist","Staff Accountant"]
+Level: Experienced individual contributor, with earlier responsibility for 3 junior accountants
+Note: Your current work points directly to accounts payable roles. Your general ledger, financial statements and month-end work also give you a basis for Staff Accountant roles; naming your current closing tasks would strengthen that story.

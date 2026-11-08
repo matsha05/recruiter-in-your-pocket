@@ -1,0 +1,55 @@
+# fr02a_marketing_skills_no_posting, run 1
+Resume: resumes/fr02_marketing_coordinator_skills.txt (132 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 01c2028d; severity check off
+Outcome: report; cost $0.0159; 20.2s
+Case note: P2. HubSpot, Salesforce and GA4 only in Skills; the bullets never name a tool. Expect one card on the skills line asking where they were used.
+
+## Needs more context (score 66; model wrote 66)
+## Verdict
+A B2B marketing coordinator with clear responsibilities but too little detail about her part in the work.
+
+## Write-up
+Your resume points to Marketing Coordinator work, from broker events at Keystone Benefits Group to newsletters, webinars and campaign reports at Brightfield Software. This is a common pattern: the deliverables are named, but your part in producing them often isn't. A recruiter can follow the jobs, yet may move on because other marketing resumes make that contribution easier to see.
+
+The content calendar line is the best model: it names what you managed and the two channels involved. Your experience is in the right place above education, and the Marketing Coordinator headline matches your recent work.
+
+Let's start with the Brightfield newsletter and webinar lines. Add what you handled, then give the campaign reports the same treatment. You don't need a number on every line, but an audience count or campaign measure you can substantiate would give the work more context.
+
+## Cards (7; {"structure":1,"line":5,"keep":1}); severity off; added []
+1. [structure] Brightfield Software
+   line: "The resume does not say what Brightfield Software's products do or who uses them."
+   can't tell: A short description of the business would give a recruiter context for the audiences you marketed to.
+   question: What does Brightfield Software make, and who are its customers?
+2. [line] Marketing Coordinator, newsletter line
+   line: "Coordinated the monthly customer newsletter and product announcement emails"
+   can't tell: A recruiter knows the newsletter went out monthly, but not which parts you handled or who received the emails.
+   example: Coordinated the monthly customer newsletter and product announcement emails, handling [your contribution] for [audience]
+   question: What did you handle for the newsletter and announcements, and who received them?
+3. [line] Marketing Coordinator, webinar line
+   line: "Supported webinar planning with the product marketing team"
+   can't tell: Supported could cover several different jobs. What part of the webinar planning was yours?
+   example: Supported webinar planning with the product marketing team by [your contribution]
+   question: What did you do to support the webinar planning?
+4. [keep] Marketing Coordinator, content calendar line
+   line: "Managed the content calendar for LinkedIn and the company blog"
+   can't tell: Keep this as a model for naming both the responsibility and where the work appeared. A recruiter doesn't have to guess which channels you managed.
+5. [line] Marketing Coordinator, reports line
+   line: "Pulled weekly campaign reports for the marketing manager"
+   can't tell: The schedule and recipient are clear, but a recruiter can't tell what the reports covered.
+   example: Pulled weekly campaign reports for the marketing manager covering [campaign measures]
+   question: What campaign measures did your reports cover?
+6. [line] Marketing Assistant, sales materials line
+   line: "Helped prepare slide decks and one-pagers for the sales team"
+   can't tell: The materials and audience are clear, but helped doesn't say which part of preparing them was yours.
+   example: Helped prepare slide decks and one-pagers for the sales team by [your contribution]
+   question: What did you contribute to the slide decks and one-pagers?
+7. [line] Marketing Assistant, brand assets line
+   line: "Kept the brand asset library organized"
+   can't tell: A recruiter can't tell what you did to maintain the library or who used it.
+   example: Kept the brand asset library organized by [your work] for [users]
+   question: How did you maintain the library, and who used it?
+
+## Fit
+Roles: ["Marketing Coordinator","Marketing Assistant"]
+Level: Coordinator, with Marketing Assistant and Marketing Coordinator roles
+Note: Your experience points to B2B marketing coordination across email, events, content and reporting. The next step is to show your contribution to those deliverables in more detail.

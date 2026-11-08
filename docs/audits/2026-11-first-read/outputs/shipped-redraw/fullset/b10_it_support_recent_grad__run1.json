@@ -1,0 +1,309 @@
+{
+  "case_id": "b10_it_support_recent_grad",
+  "batch": "breadth",
+  "run": 1,
+  "note": "First job.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_it_support_recent_grad_1.txt",
+  "resume_sha256": "6aac1aade9d7a63c473e324e9d4010a6421ea06868ff0b898b625a8534cf26dc",
+  "resume_words": 119,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T17:59:00.452Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5268,
+        "completion_tokens": 1782,
+        "total_tokens": 7050,
+        "cached_prompt_tokens": 4685,
+        "cache_write_prompt_tokens": 580,
+        "reasoning_tokens": 869
+      },
+      "cost_usd": 0.00987225,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 20694
+    }
+  ],
+  "resume_prompt_sha256": "0a19c3ee70395ec8fb0584d4bea1b93da77aeca37469b4d47211bc8568544f0c",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 58,
+    "lifted_by_employer": false,
+    "verdict": "An early-career IT resume with relevant tasks, but little detail and no work dated after May 2025.",
+    "write_up": [
+      "This is a common early-career resume: your school help desk internship and retail device work point toward desktop support. The internship lists relevant tasks, but not how much you handled or what happened. With no work dated after May 2025, a recruiter is likely to pass rather than guess.",
+      "The Peachtree Electronics line about helping customers choose laptops, printers, and accessories works because it names the customers and products. Your degree and CompTIA A+ are useful here, but Education sits above your work experience.",
+      "Let's start with the Chattahoochee County Schools tickets. Add the issues you handled and the volume if you know it, then do the same for the laptop setup and account work. Show what you've done since the internship if there's something you can accurately add."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "No work is dated after May 2025.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since the internship. Your CompTIA A+ is dated 2025, but it has no month, so its place in that timeline isn't clear.",
+        "example": "May 2025 - Present  [what you did]",
+        "question": "What have you done since May 2025 that you can accurately put on your resume?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "cannot_tell": "Your work history includes more than a year of experience. Put Experience first so a recruiter sees the help desk internship and customer device work before your education.",
+        "example": "",
+        "question": "Can you move Experience above Education?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 1",
+        "line": "- Answered help desk tickets from teachers and staff",
+        "cannot_tell": "The teachers and staff are clear, but the tickets could cover many kinds of problems. What did you handle, and how many tickets came your way?",
+        "example": "Answered help desk tickets from teachers and staff about [issues], handling [number] tickets [frequency]",
+        "question": "What issues did the tickets cover, and how many did you handle in a typical period?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 2",
+        "line": "- Imaged and set up laptops for classrooms",
+        "cannot_tell": "Classroom laptops are a concrete piece of work. The number and the imaging process would show a recruiter how much setup you handled.",
+        "example": "Imaged and set up [number] laptops for classrooms using [tools or process]",
+        "question": "How many laptops did you image and set up, and what tools or process did you use?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 3",
+        "line": "- Reset passwords and accounts in Active Directory",
+        "cannot_tell": "Active Directory names the system, but a recruiter can't tell how often you handled these requests or who they were for.",
+        "example": "Reset passwords and accounts in Active Directory for [users], handling [number] requests [frequency]",
+        "question": "Whose passwords and accounts did you reset, and how many requests did you handle in a typical period?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "desktop support",
+        "junior systems role"
+      ],
+      "level": "Early career",
+      "note": "Your internship, CompTIA A+, and customer device setup point toward desktop support. The resume shows less about systems work beyond Active Directory, so add any relevant work or projects you can accurately describe.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 58,
+    "lifted_by_employer": false,
+    "verdict": "An early-career IT resume with relevant tasks, but little detail and no work dated after May 2025.",
+    "write_up": [
+      "This is a common early-career resume: your school help desk internship and retail device work point toward desktop support. The internship lists relevant tasks, but not how much you handled or what happened. With no work dated after May 2025, a recruiter is likely to pass rather than guess.",
+      "The Peachtree Electronics line about helping customers choose laptops, printers, and accessories works because it names the customers and products. Your degree and CompTIA A+ are useful here, but Education sits above your work experience.",
+      "Let's start with the Chattahoochee County Schools tickets. Add the issues you handled and the volume if you know it, then do the same for the laptop setup and account work. Show what you've done since the internship if there's something you can accurately add."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "No work is dated after May 2025.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since the internship. Your CompTIA A+ is dated 2025, but it has no month, so its place in that timeline isn't clear.",
+        "example": "May 2025 - Present [what you did]",
+        "question": "What have you done since May 2025 that you can accurately put on your resume?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "cannot_tell": "Your work history includes more than a year of experience. Put Experience first so a recruiter sees the help desk internship and customer device work before your education.",
+        "example": "",
+        "question": "Can you move Experience above Education?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 1",
+        "line": "Answered help desk tickets from teachers and staff",
+        "cannot_tell": "The teachers and staff are clear, but the tickets could cover many kinds of problems. What did you handle, and how many tickets came your way?",
+        "example": "Answered help desk tickets from teachers and staff about [issues], handling [number] tickets [frequency]",
+        "question": "What issues did the tickets cover, and how many did you handle in a typical period?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 2",
+        "line": "Imaged and set up laptops for classrooms",
+        "cannot_tell": "Classroom laptops are a concrete piece of work. The number and the imaging process would show a recruiter how much setup you handled.",
+        "example": "Imaged and set up [number] laptops for classrooms using [tools or process]",
+        "question": "How many laptops did you image and set up, and what tools or process did you use?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 3",
+        "line": "Reset passwords and accounts in Active Directory",
+        "cannot_tell": "Active Directory names the system, but a recruiter can't tell how often you handled these requests or who they were for.",
+        "example": "Reset passwords and accounts in Active Directory for [users], handling [number] requests [frequency]",
+        "question": "Whose passwords and accounts did you reset, and how many requests did you handle in a typical period?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "desktop support",
+        "junior systems role"
+      ],
+      "level": "Early career",
+      "note": "Your internship, CompTIA A+, and customer device setup point toward desktop support. The resume shows less about systems work beyond Active Directory, so add any relevant work or projects you can accurately describe.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 58
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 58,
+    "lifted_by_employer": false,
+    "verdict": "An early-career IT resume with relevant tasks, but little detail and no work dated after May 2025.",
+    "write_up": [
+      "This is a common early-career resume: your school help desk internship and retail device work point toward desktop support. The internship lists relevant tasks, but not how much you handled or what happened. With no work dated after May 2025, a recruiter is likely to pass rather than guess.",
+      "The Peachtree Electronics line about helping customers choose laptops, printers, and accessories works because it names the customers and products. Your degree and CompTIA A+ are useful here, but Education sits above your work experience.",
+      "Let's start with the Chattahoochee County Schools tickets. Add the issues you handled and the volume if you know it, then do the same for the laptop setup and account work. Show what you've done since the internship if there's something you can accurately add."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "No work is dated after May 2025.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since the internship. Your CompTIA A+ is dated 2025, but it has no month, so its place in that timeline isn't clear.",
+        "example": "May 2025 - Present [what you did]",
+        "question": "What have you done since May 2025 that you can accurately put on your resume?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "cannot_tell": "Your work history includes more than a year of experience. Put Experience first so a recruiter sees the help desk internship and customer device work before your education.",
+        "example": "",
+        "question": "Can you move Experience above Education?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 1",
+        "line": "Answered help desk tickets from teachers and staff",
+        "cannot_tell": "The teachers and staff are clear, but the tickets could cover many kinds of problems. What did you handle, and how many tickets came your way?",
+        "example": "Answered help desk tickets from teachers and staff about [issues], handling [number] tickets [frequency]",
+        "question": "What issues did the tickets cover, and how many did you handle in a typical period?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 2",
+        "line": "Imaged and set up laptops for classrooms",
+        "cannot_tell": "Classroom laptops are a concrete piece of work. The number and the imaging process would show a recruiter how much setup you handled.",
+        "example": "Imaged and set up [number] laptops for classrooms using [tools or process]",
+        "question": "How many laptops did you image and set up, and what tools or process did you use?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 3",
+        "line": "Reset passwords and accounts in Active Directory",
+        "cannot_tell": "Active Directory names the system, but a recruiter can't tell how often you handled these requests or who they were for.",
+        "example": "Reset passwords and accounts in Active Directory for [users], handling [number] requests [frequency]",
+        "question": "Whose passwords and accounts did you reset, and how many requests did you handle in a typical period?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "desktop support",
+        "junior systems role"
+      ],
+      "level": "Early career",
+      "note": "Your internship, CompTIA A+, and customer device setup point toward desktop support. The resume shows less about systems work beyond Active Directory, so add any relevant work or projects you can accurately describe.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 58
+  },
+  "presentation": {
+    "score": 58,
+    "band": "Needs more context",
+    "model_score": 58,
+    "lifted_by_employer": false,
+    "verdict": "An early-career IT resume with relevant tasks, but little detail and no work dated after May 2025.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 129,
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "No work is dated after May 2025.",
+        "blanks": 1,
+        "question": "What have you done since May 2025 that you can accurately put on your resume?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "blanks": 0,
+        "question": "Can you move Experience above Education?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 1",
+        "line": "Answered help desk tickets from teachers and staff",
+        "blanks": 3,
+        "question": "What issues did the tickets cover, and how many did you handle in a typical period?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 2",
+        "line": "Imaged and set up laptops for classrooms",
+        "blanks": 2,
+        "question": "How many laptops did you image and set up, and what tools or process did you use?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 3",
+        "line": "Reset passwords and accounts in Active Directory",
+        "blanks": 3,
+        "question": "Whose passwords and accounts did you reset, and how many requests did you handle in a typical period?"
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "dates": 1,
+      "structure": 1,
+      "line": 3
+    },
+    "structural_from_model": 2,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "desktop support",
+        "junior systems role"
+      ],
+      "level": "Early career",
+      "note": "Your internship, CompTIA A+, and customer device setup point toward desktop support. The resume shows less about systems work beyond Active Directory, so add any relevant work or projects you can accurately describe.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00987225,
+  "latency_ms": 20696
+}

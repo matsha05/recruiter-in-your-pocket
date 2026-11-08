@@ -1,0 +1,219 @@
+{
+  "case_id": "b18_military_to_civilian",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/resumes/b_military_to_civilian.txt",
+  "resume_sha256": "c2dd1e89354ce1a86021927ffba5d85f65b3dfb021c3126f6459225f8bfd7a7e",
+  "resume_words": 268,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:35:49.519Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6312,
+        "completion_tokens": 966,
+        "total_tokens": 7278,
+        "cached_prompt_tokens": 5196,
+        "cache_write_prompt_tokens": 1113,
+        "reasoning_tokens": 367
+      },
+      "cost_usd": 0.00648405,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 11934
+    }
+  ],
+  "resume_prompt_sha256": "1c0fe4fe961ccb0d0e49bbe71ac8427d0281ae6e9a1efa6ac35e3ee49a99ed47",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "Army logistics and maintenance leadership with team, equipment, and readiness results that translate to supervisor roles.",
+    "write_up": [
+      "This is a strong transition resume! Your Army experience points clearly toward operations supervision, and you give a recruiter the numbers behind your leadership, equipment accountability, and maintenance work.",
+      "The vehicle readiness line is the model: it shows the change and the ordering and scheduling work behind it. Your progression from mechanic to platoon sergeant is easy to follow, and your supply chain degree is clearly marked as in progress.",
+      "Start by naming what the battalion's field logistics support included. Otherwise, your resume isn't the weak link here; the competition and how closely your experience matches a particular civilian job will still matter."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Platoon Sergeant, line 3",
+        "line": "- Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises",
+        "cannot_tell": "A recruiter can see who you supported and for how long, but not what that support covered. Naming it would connect this work more directly to civilian operations jobs.",
+        "example": "Planned and executed [type of logistics support] for a 600-soldier battalion during two month-long field exercises",
+        "question": "What logistics support did you plan and execute for the battalion?"
+      },
+      {
+        "kind": "keep",
+        "where": "Platoon Sergeant, line 4",
+        "line": "- Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "cannot_tell": "Keep this as a model. It names the measure, the time frame, and the two changes you made, so a recruiter can see your work rather than just your responsibility.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "operations supervisor",
+        "Platoon Sergeant (E-7), Forward Support Company"
+      ],
+      "why": "Your stated goal is an operations supervisor role, and your latest Army role combines team leadership, equipment accountability, and logistics planning.",
+      "level": "Supervisor, led 38 soldiers and had 6 direct-report sergeants",
+      "note": "Your experience points toward operations or maintenance supervision. Naming the kinds of field logistics support you handled would help connect your Army work to civilian job requirements.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "Army logistics and maintenance leadership with team, equipment, and readiness results that translate to supervisor roles.",
+    "write_up": [
+      "This is a strong transition resume! Your Army experience points clearly toward operations supervision, and you give a recruiter the numbers behind your leadership, equipment accountability, and maintenance work.",
+      "The vehicle readiness line is the model: it shows the change and the ordering and scheduling work behind it. Your progression from mechanic to platoon sergeant is easy to follow, and your supply chain degree is clearly marked as in progress.",
+      "Start by naming what the battalion's field logistics support included. Otherwise, your resume isn't the weak link here; the competition and how closely your experience matches a particular civilian job will still matter."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Platoon Sergeant, line 3",
+        "line": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises",
+        "cannot_tell": "A recruiter can see who you supported and for how long, but not what that support covered. Naming it would connect this work more directly to civilian operations jobs.",
+        "example": "Planned and executed [type of logistics support] for a 600-soldier battalion during two month-long field exercises",
+        "question": "What logistics support did you plan and execute for the battalion?"
+      },
+      {
+        "kind": "keep",
+        "where": "Platoon Sergeant, line 4",
+        "line": "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "cannot_tell": "Keep this as a model. It names the measure, the time frame, and the two changes you made, so a recruiter can see your work rather than just your responsibility.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "operations supervisor",
+        "Platoon Sergeant (E-7), Forward Support Company"
+      ],
+      "why": "Your stated goal is an operations supervisor role, and your latest Army role combines team leadership, equipment accountability, and logistics planning.",
+      "level": "Supervisor, led 38 soldiers and had 6 direct-report sergeants",
+      "note": "Your experience points toward operations or maintenance supervision. Naming the kinds of field logistics support you handled would help connect your Army work to civilian job requirements.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "Army logistics and maintenance leadership with team, equipment, and readiness results that translate to supervisor roles.",
+    "write_up": [
+      "This is a strong transition resume! Your Army experience points clearly toward operations supervision, and you give a recruiter the numbers behind your leadership, equipment accountability, and maintenance work.",
+      "The vehicle readiness line is the model: it shows the change and the ordering and scheduling work behind it. Your progression from mechanic to platoon sergeant is easy to follow, and your supply chain degree is clearly marked as in progress.",
+      "Start by naming what the battalion's field logistics support included. Otherwise, your resume isn't the weak link here; the competition and how closely your experience matches a particular civilian job will still matter."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Platoon Sergeant, line 3",
+        "line": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises",
+        "cannot_tell": "A recruiter can see who you supported and for how long, but not what that support covered. Naming it would connect this work more directly to civilian operations jobs.",
+        "example": "Planned and executed [type of logistics support] for a 600-soldier battalion during two month-long field exercises",
+        "question": "What logistics support did you plan and execute for the battalion?"
+      },
+      {
+        "kind": "keep",
+        "where": "Platoon Sergeant, line 4",
+        "line": "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "cannot_tell": "Keep this as a model. It names the measure, the time frame, and the two changes you made, so a recruiter can see your work rather than just your responsibility.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "operations supervisor",
+        "Platoon Sergeant (E-7), Forward Support Company"
+      ],
+      "why": "Your stated goal is an operations supervisor role, and your latest Army role combines team leadership, equipment accountability, and logistics planning.",
+      "level": "Supervisor, led 38 soldiers and had 6 direct-report sergeants",
+      "note": "Your experience points toward operations or maintenance supervision. Naming the kinds of field logistics support you handled would help connect your Army work to civilian job requirements.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "presentation": {
+    "score": 89,
+    "band": "Clear and specific",
+    "model_score": 89,
+    "lifted_by_employer": false,
+    "verdict": "Army logistics and maintenance leadership with team, equipment, and readiness results that translate to supervisor roles.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 103,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Platoon Sergeant, line 3",
+        "line": "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises",
+        "blanks": 1,
+        "question": "What logistics support did you plan and execute for the battalion?"
+      },
+      {
+        "kind": "keep",
+        "where": "Platoon Sergeant, line 4",
+        "line": "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "line": 1,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "operations supervisor",
+        "Platoon Sergeant (E-7), Forward Support Company"
+      ],
+      "why": "Your stated goal is an operations supervisor role, and your latest Army role combines team leadership, equipment accountability, and logistics planning.",
+      "level": "Supervisor, led 38 soldiers and had 6 direct-report sergeants",
+      "note": "Your experience points toward operations or maintenance supervision. Naming the kinds of field logistics support you handled would help connect your Army work to civilian job requirements.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00648405,
+  "latency_ms": 11938
+}

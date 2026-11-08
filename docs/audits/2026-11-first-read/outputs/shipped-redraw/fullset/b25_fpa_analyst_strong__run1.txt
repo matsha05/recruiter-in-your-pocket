@@ -1,0 +1,25 @@
+# b25_fpa_analyst_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_fpa_analyst_strong_1.txt (138 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0041; 8.1s
+
+## Clear and specific (score 91; model wrote 91)
+## Verdict
+A senior FP&A analyst whose budgeting, forecasting, and pricing work comes with concrete results.
+
+## Write-up
+This is a strong senior FP&A resume! Your work at Lakeshore Foods and Midway Brands shows a progression from plant reporting and automation to divisional budgeting, forecasting, and pricing. A recruiter can see both what you handle and what changed.
+
+The driver-based forecast is the standout: it names what you built and shows forecast error falling from 7% to 2.5%. Your experience leads, and the senior headline matches the work beneath it.
+
+Your resume isn't the thing you need to fix to pursue senior FP&A roles. Competition for a particular job and a referral can also matter. Keep the forecast line as a model when you add future work.
+
+## Cards (1; {"keep":1}); severity off; added []
+1. [keep] Senior Financial Analyst, FP&A, line 2
+   line: "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%"
+   can't tell: Keep this as a model. It pairs the forecasting method with a before-and-after measure, so a recruiter can see why the work mattered.
+
+## Fit
+Roles: ["Senior Financial Analyst, FP&A","Financial Analyst"]
+Level: Senior individual contributor
+Note: Your experience points toward senior FP&A work in budgeting, forecasting, and pricing. The divisional budget and presentations to the CFO show work with senior finance leaders.

@@ -1,0 +1,35 @@
+# b18_military_to_civilian, run 1
+Resume: ../2026-11-live-judgment/resumes/b_military_to_civilian.txt (268 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5827dcf1; severity check off
+Outcome: report; cost $0.0083; 16.0s
+
+## Clear and specific (score 89; model wrote 89)
+## Verdict
+Army logistics and maintenance leadership with a clear record of results and a direct path to operations supervision.
+
+## Write-up
+Your resume makes a strong case for operations supervision! It connects Army leadership to the work civilian employers need to see: managing people and equipment, planning logistics, and improving vehicle readiness.
+
+The vehicle readiness line is the model: it names the change from 18% to 6% and explains what you did to get there. Your target role is clear at the top, and your experience leads before your degree in progress.
+
+Your resume isn't likely to be the reason you don't get a call back. Competition for the role and how well an employer understands the military setting can still matter. Let's add what the field exercise support included and what you taught the junior mechanics.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] Platoon Sergeant, line 3
+   line: "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises"
+   can't tell: The battalion and exercises give the work context, but a recruiter can't tell what the logistics support included. Naming the services or supplies you planned would show more of the job.
+   example: Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises, including [what the support covered]
+   question: What supplies or services did your logistics support cover during the exercises?
+2. [keep] Platoon Sergeant, line 4
+   line: "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule"
+   can't tell: Keep this line. It gives a recruiter a before and after, a timeframe, and two concrete changes they can connect to the result.
+3. [line] Wheeled Vehicle Mechanic, line 2
+   line: "Trained 9 junior mechanics"
+   can't tell: A recruiter can see how many mechanics you trained, but not what you taught them. The training subject would show what those mechanics learned from you.
+   example: Trained 9 junior mechanics in [training subject]
+   question: What did you train the junior mechanics to do?
+
+## Fit
+Roles: ["operations supervisor","Platoon Sergeant (E-7), Forward Support Company"]
+Level: Supervisor, with 6 direct-report sergeants and responsibility across maintenance, supply, and fuel sections
+Note: Your experience points toward operations and maintenance supervision, with supply work also part of your recent role. Naming what the field exercise support covered can help civilian employers connect that work to their operations.

@@ -1,0 +1,30 @@
+# b05_paralegal, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_paralegal_1.txt (144 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 288eceb5; severity check off
+Outcome: report; cost $0.0071; 14.4s
+
+## Mostly clear (score 82; model wrote 82)
+## Verdict
+A senior litigation paralegal with substantial document production and trial support experience.
+
+## Write-up
+You come across as a litigation paralegal who moved from personal injury work at Summit Legal Group to commercial and employment cases at Harlan & Pike. A recruiter can see both the work you handle and how much of it there is, which makes this resume easy to move forward.
+
+The Relativity line is a strong model: it names the work, the tool and the production volume, including the important ‘up to’ qualifier. Your experience leads, and the certificate and legal tools are easy to find.
+
+The main place to add detail is your support for the two jury trials. Tell us what you did for those trials without taking credit for the attorneys’ work.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Senior Litigation Paralegal, line 2
+   line: "Manage document productions of up to 250,000 pages in Relativity"
+   can't tell: Keep this as a model. It gives a recruiter a concrete sense of the productions you manage without overstating their volume.
+2. [line] Senior Litigation Paralegal, line 4
+   line: "Prepare trial binders and exhibits; supported two jury trials in 2025"
+   can't tell: The two jury trials are worth highlighting, but a recruiter can't tell what your support for them included.
+   example: Prepare trial binders and exhibits; supported two jury trials in 2025 by [trial support tasks]
+   question: What did your support for the two jury trials include?
+
+## Fit
+Roles: ["Senior Litigation Paralegal","Paralegal"]
+Level: senior, manages document productions of up to 250,000 pages
+Note: Your experience points toward litigation paralegal roles, particularly those involving discovery and trial preparation. The earlier personal injury work adds another case type to your background.

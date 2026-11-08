@@ -1,0 +1,36 @@
+# b13_marketing_vp_elite, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/golden/synth_marketing_manager_vp_elite_1766960221358.txt (730 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ee57d907; severity check off
+Outcome: report; cost $0.0097; 15.3s
+Case note: Executive, strong (golden).
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A marketing executive whose resume connects team leadership and campaign work to business results.
+
+## Write-up
+Your resume makes a strong case for Chief Marketing Officer roles! At Novara, you show the team and budget you lead, the scale of the SaaS business, and how your marketing work connects to growth. Your earlier roles build on that story.
+
+The customer advocacy program at Viridian is a great model: you name what you launched and connect it to retention and upsell revenue. Experience leads the resume, and the progression through your marketing roles is easy to follow.
+
+Let's make two Novara results more concrete by naming what changed in the launch process and how the team reduced acquisition cost. Your resume isn't likely to be the thing holding you back; competition for executive roles will matter too.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] Chief Marketing Officer, line 3
+   line: "I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years."
+   can't tell: The results are substantial, but a recruiter can't see what changed in the launch process. That detail would show how you approached the work.
+   example: I decided to revamp the product launch process by [change], shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.
+   question: What did you change in the product launch process?
+2. [line] Chief Marketing Officer, line 4
+   line: "I led a cross-functional team of 12 marketing, analytics, and creative professionals to optimize customer acquisition cost (CAC), reducing it by 22% and improving lifetime value (LTV) metrics across key segments."
+   can't tell: The team and the reduction are there, but a recruiter can't tell what the team did to lower customer acquisition cost.
+   example: I led a cross-functional team of 12 marketing, analytics, and creative professionals to optimize customer acquisition cost (CAC) through [action], reducing it by 22% and improving lifetime value (LTV) metrics across key segments.
+   question: What did the team do to reduce customer acquisition cost?
+3. [keep] Vice President, Global Marketing, line 3
+   line: "I led the development and launch of a new customer advocacy program that increased customer retention by 12% and generated $4M in upsell revenue within 18 months."
+   can't tell: Keep this as a model. It pairs a named program with two business measures and gives the upsell result a time frame.
+
+## Fit
+Roles: ["Chief Marketing Officer","Vice President, Global Marketing"]
+Level: Executive, leads a 45-person marketing organization and manages a $25M annual budget
+Note: Your experience points to executive marketing leadership, particularly for SaaS and B2B technology businesses. The resume shows both global team leadership and work across demand generation, brand, and product launches.

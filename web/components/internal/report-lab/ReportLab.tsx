@@ -83,6 +83,7 @@ export default function ReportLab({ fixtures, initialId, initialAs }: { fixtures
             isSample={variant === "sample"}
             onStartReport={() => undefined}
             onStartRevision={() => undefined}
+            onReadAgainstPosting={() => undefined}
           />
         </ReportLayout>
       )}

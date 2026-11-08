@@ -1,0 +1,83 @@
+# h1_bad_resume, run 1
+Resume: ../2026-11-live-judgment/resumes/h1_bad_resume.txt (217 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 41bcacc0; severity check off
+Outcome: report; cost $0.0131; 27.3s
+Case note: Ten things wrong: filler objective, wrong target role, duty bullets, no results, five jobs in four years, two undated roles, typos, gap since June 2023, soft-skill skills list, references line.
+
+## Needs more context (score 46; model wrote 46)
+## Verdict
+A Shift Lead resume with a Marketing Manager objective and too little detail about the work.
+
+## Write-up
+Your resume points to a Marketing Manager job, but the work shown is in store operations, warehouse work, sales and delivery. It's common to list duties this way, but these descriptions won't stand out in a pile because a recruiter can't tell what set your work apart. I read it for Shift Lead roles, which your most recent dated job supports.
+
+The Buckeye Wireless line about selling phones and accessories is the strongest starting point: it names what you sold and who you served. It could still use a sales measure if you have one. The latest dated job ends in June 2023, and two jobs have no dates, so a recruiter can't tell when those happened or what you've done since.
+
+Let's start with the QuickStop role. Replace the objective with a target that matches the work you want, add dates to the undated jobs, and show what opening the store and training new employees involved. If you have marketing work or projects, add them rather than relying on the objective to make that case.
+
+## Cards (12; {"line":8,"dates":3,"structure":1}); severity off; added []
+1. [line] Objective
+   line: "Hard-working team player seeking a challenging Marketing Manager position where I can utilize my skills and grow with a dynamic company."
+   can't tell: The objective names Marketing Manager, but the jobs don't show marketing work or management. A recruiter looking for a marketing manager won't see how you got there.
+   example: Seeking a [target role] position using [relevant work or skill].
+   question: What job are you targeting, and which work or skill on your resume is most relevant to it?
+2. [dates] Dates
+   line: "The latest dated role ends June 2023, and two roles have no dates."
+   can't tell: A recruiter can't tell whether the undated jobs account for any time after June 2023. Add their dates first, then account honestly for any remaining time with work, caregiving or a career break and what you did during it.
+   example: June 2023 - Present [what you did: work, caregiving, a career break, study, travel, freelance work if real]
+   question: What have you done since June 2023, and when did the undated jobs take place?
+3. [dates] Warehouse Associate
+   line: "The Warehouse Associate role has no dates."
+   can't tell: Without dates, a recruiter can't place the Miami Valley Distribution job alongside your other work.
+   example: [Month Year] - [Month Year] Warehouse Associate, Miami Valley Distribution
+   question: When did you start and finish at Miami Valley Distribution?
+4. [dates] Delivery Driver
+   line: "The Delivery Driver role has no dates."
+   can't tell: The Gino's Pizza job may account for time between other roles, but the resume doesn't say when you worked there.
+   example: [Month Year] - [Month Year] Delivery Driver, Gino's Pizza
+   question: When did you start and finish at Gino's Pizza?
+5. [structure] Experience
+   line: "The resume does not describe the employers or their operations."
+   can't tell: A recruiter may not know these local employers. One short description of the QuickStop operation could help establish the setting for your Shift Lead work.
+   example: QuickStop Fuel and Food: [description of the operation] serving [customers served].
+   question: How would you describe the QuickStop operation and the customers it served?
+6. [line] Shift Lead, line 1
+   line: "Responsible for opening and closing the store"
+   can't tell: Opening and closing are important, but a recruiter can't tell which tasks were yours. Start with what you checked or handled at each end of a shift.
+   example: Opened and closed the store, handling [opening and closing tasks].
+   question: What did you handle when opening and closing the store?
+7. [line] Shift Lead, line 2
+   line: "Handled cash register and customer complaints"
+   can't tell: This names the register and complaints, but not how you handled a customer problem. One example can show the judgment you used as a shift lead.
+   example: Handled cash register and customer complaints, including [type of complaint] by [action taken].
+   question: What kind of customer complaint did you handle, and what did you do?
+8. [line] Shift Lead, line 3
+   line: "Made sure shelves were stocked and the store was clean"
+   can't tell: A recruiter can't tell what you did to keep shelves stocked or the store clean, or whether you directed anyone else.
+   example: Kept shelves stocked and the store clean by [tasks performed].
+   question: What stocking and cleaning tasks did you handle on a shift?
+9. [line] Shift Lead, line 4
+   line: "Trained new employes when needed"
+   can't tell: Training new employees is useful shift lead work. What did you teach them, and how many did you train?
+   example: Trained [number] new employees on [tasks taught].
+   question: How many new employees did you train, and what did you teach them?
+10. [line] Warehouse Associate, line 1
+   line: "Picked and packed orders"
+   can't tell: A recruiter can see the task but not what kinds of orders you handled or how much work came through.
+   example: Picked and packed [type of orders], handling [number] orders per [period].
+   question: What kinds of orders did you pick and pack, and how many did you typically handle per shift or other period?
+11. [line] Warehouse Associate, line 2
+   line: "Loaded and unloaded trucks"
+   can't tell: This doesn't say what you loaded or unloaded. Naming the goods would give the warehouse work more substance.
+   example: Loaded and unloaded trucks carrying [type of goods].
+   question: What kinds of goods did you load and unload?
+12. [line] Warehouse Associate, line 4
+   line: "Followed all saftey procedures"
+   can't tell: Following procedures matters, but this doesn't tell a recruiter which ones applied to your warehouse work.
+   example: Followed [safety procedures] while [warehouse task].
+   question: Which safety procedures did you follow, and during what work?
+
+## Fit
+Roles: ["Shift Lead","Marketing Manager"]
+Level: Shift lead, with training responsibility shown
+Note: Your most recent dated role points toward shift lead work in a store. The Marketing Manager objective isn't backed up by marketing work on the resume; add any relevant work or projects if you have them.

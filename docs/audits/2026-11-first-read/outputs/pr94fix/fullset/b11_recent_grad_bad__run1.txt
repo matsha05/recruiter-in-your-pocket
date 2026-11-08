@@ -1,0 +1,55 @@
+# b11_recent_grad_bad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_recent_grad_bad_1.txt (151 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 288eceb5; severity check off
+Outcome: report; cost $0.0085; 17.3s
+Case note: First job, weak; count-check key says no_evidence_latest_role, no_recent_work, title_level_mismatch.
+
+## Needs more context (score 57; model wrote 57)
+## Verdict
+A marketing intern’s resume has a manager headline and leaves the credit union work mostly unexplained.
+
+## Write-up
+You’ve worked in credit union marketing, university research and finance. It’s common for an intern’s resume to lean on broad duties, but the newsletter, social accounts and events need more detail to stand out in a marketing pile. I read this for Marketing Intern roles because that’s what your most recent work supports.
+
+The dairy farm research line is your model: it names the data, Stata and the pricing study, so a recruiter can picture the work. Your headline claims manager-level campaign leadership that the jobs don’t yet show. Education also sits above your experience, and nothing accounts for the time after May 2024.
+
+Let’s start with the Badger State Credit Union role. Replace the manager headline with a description your work backs up, then add your part in the newsletter, social posts and events. Move Experience above Education and account for the time since your last role honestly.
+
+## Cards (7; {"line":4,"dates":1,"structure":1,"keep":1}); severity off; added []
+1. [line] Headline
+   line: "Marketing manager who has led credit union campaigns from strategy to launch."
+   can't tell: The jobs below show a Marketing Intern role, but they don’t show campaign leadership or a manager role. A recruiter will notice that mismatch before reaching your work.
+   example: Marketing Intern with experience in [marketing work]
+   question: Which marketing work from your internship can you name in the headline?
+2. [dates] Dates
+   line: "Nothing is dated after May 2024."
+   can't tell: A recruiter can’t see what you’ve done since your last dated role. If you took care of a family member, pursued a course or project, or did paid work, you can name that honestly. A referral may matter more when the time remains unexplained.
+   example: May 2024 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]
+   question: What have you done since May 2024 that you can accurately include?
+3. [structure] Structure
+   line: "Education sits above Experience."
+   can't tell: Your work is the stronger introduction now. Put Experience first so a recruiter reaches the credit union and research jobs sooner.
+   question: Can you move Experience above Education?
+4. [line] Marketing Intern, line 1
+   line: "Helped with the member newsletter"
+   can't tell: Helped could mean writing, editing or something else. Your part and the newsletter’s reach would show what you contributed.
+   example: Helped with the member newsletter by [newsletter task] for [number] members
+   question: What did you do for the newsletter, and how many members received it?
+5. [line] Marketing Intern, line 2
+   line: "Posted on the credit union's social media accounts"
+   can't tell: A recruiter can see that you posted, but not what you posted or how often. Those details make the social media work more concrete.
+   example: Posted [content] on the credit union's social media accounts [frequency]
+   question: What did you post, and how often?
+6. [line] Marketing Intern, line 3
+   line: "Supported planning for branch events"
+   can't tell: The events are real work, but your part in planning them is still a blank. Name an event and the task you supported.
+   example: Supported planning for [branch event] by [planning task]
+   question: Which branch event did you support, and what did you do for it?
+7. [keep] Research Assistant, line 1
+   line: "Cleaned survey data from 1,200 dairy farms in Stata for a pricing study"
+   can't tell: Keep this as a model. It puts your action, the material you worked with and its purpose together without making a recruiter guess.
+
+## Fit
+Roles: ["Marketing Intern"]
+Level: entry level, marketing internship
+Note: Your credit union work points toward entry-level marketing roles, while the research job adds data experience. Your headline should match the work you can describe in the jobs below it.

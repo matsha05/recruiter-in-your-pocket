@@ -1,0 +1,211 @@
+{
+  "case_id": "fr01c_backend_ic_manager_posting",
+  "batch": "targeted",
+  "run": 1,
+  "note": "P1. The same resume against an engineering manager posting. Expect the missing management work (direct reports, hiring, performance) named first; the score unchanged against fr01a within one draw.",
+  "resume_file": "resumes/fr01_backend_ic_senior.txt",
+  "resume_sha256": "473f0177fffa3bc053f5a4c69f6aa3d7ecdf9c22fafb2ee8360f7be0e877aa55",
+  "resume_words": 236,
+  "job_description_file": "resumes/posting_engineering_manager.txt",
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:32:46.580Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6437,
+        "completion_tokens": 959,
+        "total_tokens": 7396,
+        "cached_prompt_tokens": 5313,
+        "cache_write_prompt_tokens": 1121,
+        "reasoning_tokens": 370
+      },
+      "cost_usd": 0.0064649,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 12615
+    }
+  ],
+  "resume_prompt_sha256": "1c0fe4fe961ccb0d0e49bbe71ac8427d0281ae6e9a1efa6ac35e3ee49a99ed47",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A strong senior backend resume with payments experience, but no direct management history shown for this role.",
+    "write_up": [
+      "Your payments work is strong: you built a payouts service handling about 1.8M payouts a month, led a ledger migration and cut API latency. That's a compelling senior backend story! For Cobalt Pay's manager role, though, a recruiter will look for direct reports, hiring and performance management, which your resume doesn't show.",
+      "The balance API line is a great model: it names the change you made and shows latency before and after. Your mentoring, runbooks and incident reviews also matter for this posting, but they don't establish that you've managed a team or owned its roadmap.",
+      "For senior backend roles, your resume isn't the obvious thing standing between you and a callback; the competition for each job matters too. For Cobalt Pay, lead with the payments and operational work, and add any direct management, hiring or product partnership experience only if you've done it."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 3",
+        "line": "- Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
+        "cannot_tell": "Keep this one. It gives the recruiter a concrete technical decision and a way to see what it changed.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer",
+        "Engineering Manager, Payments Platform"
+      ],
+      "why": "Your headline and recent work building payouts, ledger and API services point to senior backend engineering.",
+      "level": "Senior individual contributor, leading technical work and mentoring two engineers",
+      "note": "Cobalt Pay asks for direct engineering management, hiring and performance management, none of which your resume shows. Your payments platform work, incident reviews and mentoring align with parts of the role; emphasize those, and add any people-management or roadmap experience if it's real.",
+      "posting": {
+        "summary": "Lead a payments platform team responsible for payouts and the ledger, including people management, roadmap delivery and operations.",
+        "missing": [
+          "2+ years managing engineers with direct reports, including hiring and performance management",
+          "Experience leading teams that run production systems with on-call",
+          "A record of growing engineers into senior roles",
+          "Own the team's roadmap and delivery with your product partner",
+          "Build relationships with Finance, Risk and Support"
+        ]
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A strong senior backend resume with payments experience, but no direct management history shown for this role.",
+    "write_up": [
+      "Your payments work is strong: you built a payouts service handling about 1.8M payouts a month, led a ledger migration and cut API latency. That's a compelling senior backend story! For Cobalt Pay's manager role, though, a recruiter will look for direct reports, hiring and performance management, which your resume doesn't show.",
+      "The balance API line is a great model: it names the change you made and shows latency before and after. Your mentoring, runbooks and incident reviews also matter for this posting, but they don't establish that you've managed a team or owned its roadmap.",
+      "For senior backend roles, your resume isn't the obvious thing standing between you and a callback; the competition for each job matters too. For Cobalt Pay, lead with the payments and operational work, and add any direct management, hiring or product partnership experience only if you've done it."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 3",
+        "line": "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
+        "cannot_tell": "Keep this one. It gives the recruiter a concrete technical decision and a way to see what it changed.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer",
+        "Engineering Manager, Payments Platform"
+      ],
+      "why": "Your headline and recent work building payouts, ledger and API services point to senior backend engineering.",
+      "level": "Senior individual contributor, leading technical work and mentoring two engineers",
+      "note": "Cobalt Pay asks for direct engineering management, hiring and performance management, none of which your resume shows. Your payments platform work, incident reviews and mentoring align with parts of the role; emphasize those, and add any people-management or roadmap experience if it's real.",
+      "posting": {
+        "summary": "Lead a payments platform team responsible for payouts and the ledger, including people management, roadmap delivery and operations.",
+        "missing": [
+          "2+ years managing engineers with direct reports, including hiring and performance management",
+          "Experience leading teams that run production systems with on-call",
+          "A record of growing engineers into senior roles",
+          "Own the team's roadmap and delivery with your product partner",
+          "Build relationships with Finance, Risk and Support"
+        ]
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 91
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A strong senior backend resume with payments experience, but no direct management history shown for this role.",
+    "write_up": [
+      "Your payments work is strong: you built a payouts service handling about 1.8M payouts a month, led a ledger migration and cut API latency. That's a compelling senior backend story! For Cobalt Pay's manager role, though, a recruiter will look for direct reports, hiring and performance management, which your resume doesn't show.",
+      "The balance API line is a great model: it names the change you made and shows latency before and after. Your mentoring, runbooks and incident reviews also matter for this posting, but they don't establish that you've managed a team or owned its roadmap.",
+      "For senior backend roles, your resume isn't the obvious thing standing between you and a callback; the competition for each job matters too. For Cobalt Pay, lead with the payments and operational work, and add any direct management, hiring or product partnership experience only if you've done it."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 3",
+        "line": "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
+        "cannot_tell": "Keep this one. It gives the recruiter a concrete technical decision and a way to see what it changed.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer",
+        "Engineering Manager, Payments Platform"
+      ],
+      "why": "Your headline and recent work building payouts, ledger and API services point to senior backend engineering.",
+      "level": "Senior individual contributor, leading technical work and mentoring two engineers",
+      "note": "Cobalt Pay asks for direct engineering management, hiring and performance management, none of which your resume shows. Your payments platform work, incident reviews and mentoring align with parts of the role; emphasize those, and add any people-management or roadmap experience if it's real.",
+      "posting": {
+        "summary": "Lead a payments platform team responsible for payouts and the ledger, including people management, roadmap delivery and operations.",
+        "missing": [
+          "2+ years managing engineers with direct reports, including hiring and performance management",
+          "Experience leading teams that run production systems with on-call",
+          "A record of growing engineers into senior roles",
+          "Own the team's roadmap and delivery with your product partner",
+          "Build relationships with Finance, Risk and Support"
+        ]
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 91
+  },
+  "presentation": {
+    "score": 91,
+    "band": "Clear and specific",
+    "model_score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A strong senior backend resume with payments experience, but no direct management history shown for this role.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 144,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 3",
+        "line": "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 1,
+    "kinds": {
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer",
+        "Engineering Manager, Payments Platform"
+      ],
+      "why": "Your headline and recent work building payouts, ledger and API services point to senior backend engineering.",
+      "level": "Senior individual contributor, leading technical work and mentoring two engineers",
+      "note": "Cobalt Pay asks for direct engineering management, hiring and performance management, none of which your resume shows. Your payments platform work, incident reviews and mentoring align with parts of the role; emphasize those, and add any people-management or roadmap experience if it's real.",
+      "posting": {
+        "summary": "Lead a payments platform team responsible for payouts and the ledger, including people management, roadmap delivery and operations.",
+        "missing": [
+          "2+ years managing engineers with direct reports, including hiring and performance management",
+          "Experience leading teams that run production systems with on-call",
+          "A record of growing engineers into senior roles",
+          "Own the team's roadmap and delivery with your product partner",
+          "Build relationships with Finance, Risk and Support"
+        ]
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0064649,
+  "latency_ms": 12721
+}

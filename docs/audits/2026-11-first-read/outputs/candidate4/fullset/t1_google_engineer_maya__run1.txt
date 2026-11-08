@@ -1,0 +1,46 @@
+# t1_google_engineer_maya, run 1
+Resume: resumes/t1_google_engineer_maya.txt (151 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ee57d907; severity check off
+Outcome: report; cost $0.0086; 18.9s
+Case note: Blind pick v5 bp5-04: a recognisable employer; decision 5 says the lift is one rung, bounded, declared.
+
+## Mostly clear (score 73; model wrote 73); lifted by employer
+## Verdict
+A backend engineer with strong Harborview results, but a Google role that leaves too much to guess.
+
+## Write-up
+It's common for a current job to be described in broad terms while an earlier one gets the specifics. Your Google role and backend work at Harborview Analytics point toward Software Engineer jobs, but a recruiter can't tell what you've built at Google. The Google name gets your resume read and gives it a lift; the bullets still need to tell your part of the story.
+
+Your Harborview dashboard line is the model: it names the latency before and after and the aggregation work that changed it. That gives a recruiter something concrete to remember.
+
+Let's start with the Google internal tool. Name a feature you worked on, the tools you used, and how many teams used it if you can confirm that. Then give the requirements, on-call work, and mentoring the same treatment.
+
+## Cards (5; {"line":4,"keep":1}); severity off; added []
+1. [line] Google, line 1
+   line: "Worked on features for an internal tool used by other engineering teams"
+   can't tell: A recruiter can't tell what the features did, what you used to build them, or how many teams used the tool. Those details matter for a software engineering role.
+   example: Worked on [features] for an internal tool used by [number] other engineering teams, using [tools]
+   question: Which features did you work on, what tools did you use, and how many teams used the tool?
+2. [line] Google, line 2
+   line: "Collaborated with cross-functional partners on requirements"
+   can't tell: The requirements could be for almost anything. A recruiter can't tell what you contributed or what the work was for.
+   example: Collaborated with cross-functional partners on requirements for [feature or project], contributing [your work]
+   question: What were the requirements for, and what did you contribute?
+3. [line] Google, line 3
+   line: "Participated in code reviews, design reviews and the on-call rotation"
+   can't tell: Reviews and on-call work are useful context, but the systems involved are still a blank. Naming what you supported would make the rotation more concrete.
+   example: Participated in code reviews, design reviews and the on-call rotation for [system]
+   question: Which system did you support in the on-call rotation?
+4. [line] Google, line 4
+   line: "Mentored a new team member"
+   can't tell: A recruiter can see that you mentored someone, but not what you helped them learn or work on.
+   example: Mentored a new team member on [work or skills]
+   question: What did you help the new team member learn or work on?
+5. [keep] Harborview Analytics, line 2
+   line: "Cut p95 query latency on the customer dashboard from 4.2 s to 900 ms by rewriting the aggregation layer"
+   can't tell: Keep this as a model. It connects a technical change to a named product and a measurable improvement without making the recruiter guess.
+
+## Fit
+Roles: ["Software Engineer"]
+Level: Software engineer; current role includes on-call work and mentoring
+Note: Your experience points toward backend Software Engineer roles. The Harborview bullets show substantial systems work, while the Google role needs more detail about the software and your contribution.

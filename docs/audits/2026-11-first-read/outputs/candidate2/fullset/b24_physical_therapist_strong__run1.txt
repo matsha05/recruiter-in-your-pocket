@@ -1,0 +1,30 @@
+# b24_physical_therapist_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_physical_therapist_strong_1.txt (154 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 41bcacc0; severity check off
+Outcome: report; cost $0.0062; 12.3s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+An outpatient orthopedic physical therapist whose resume makes the caseload, programs and patient progress easy to understand.
+
+## Write-up
+Your resume makes a strong case for outpatient orthopedic work! At North Loop Sports Rehab, you show both the patients you treat and the programs and mentoring you contribute beyond treatment.
+
+The return-to-run line is a great model: it names a program you built and tells a recruiter how many patients completed it in 2025. Your Minnesota license and outpatient specialties are easy to find, too.
+
+I'd make one small addition to the patient function result: name the measure used. Otherwise, your resume is doing its job for outpatient roles; competition for an individual opening will still matter.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Senior Physical Therapist, line 1
+   line: "Treat 12 to 14 patients a day, mostly ACL, rotator cuff, and ankle cases"
+   can't tell: Keep this as a model. It gives a recruiter both your daily caseload and the kinds of cases you see.
+2. [line] Senior Physical Therapist, line 4
+   line: "In 2025, 92% of discharged patients improved their patient-reported function scores"
+   can't tell: The result has a time frame and a clear patient group. A recruiter can't tell which function measure sits behind the scores.
+   example: In 2025, 92% of discharged patients improved their patient-reported function scores, measured with [measure or measures]
+   question: Which patient-reported function measure or measures were used for the 2025 figure?
+
+## Fit
+Roles: ["Outpatient orthopedic physical therapist","Senior Physical Therapist"]
+Level: Senior clinician, mentoring 2 newer therapists
+Note: Your experience points to outpatient orthopedic physical therapy, including sports and post-surgical rehab. The resume also shows neurological cases and a fall-prevention class in the hospital outpatient clinic.

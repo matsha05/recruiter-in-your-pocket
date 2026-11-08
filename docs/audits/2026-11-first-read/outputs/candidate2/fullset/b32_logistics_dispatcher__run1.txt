@@ -1,0 +1,57 @@
+# b32_logistics_dispatcher, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_logistics_dispatcher_1.txt (105 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 41bcacc0; severity check off
+Outcome: report; cost $0.0085; 18.0s
+
+## Needs more context (score 65; model wrote 65)
+## Verdict
+A dispatcher with steady trucking experience, but few details about the work behind the daily duties.
+
+## Write-up
+You’ve moved from warehouse work to dispatch assistant and then dispatcher at Crossroads Regional Freight. It’s common for a dispatch resume to list daily duties this way, but these lines won’t stand out in a pile: a recruiter can see the job, not how much you handle or what you do when a driver runs into trouble.
+
+The line about tracking loads and updating customers is your best model. It names both the work and who gets the information. Your roles and dates are easy to follow, though a recruiter unfamiliar with Crossroads has little context for the employer.
+
+Let’s start with the dispatcher role. Add the number of drivers you dispatch, then give a real example of an issue you handled and what you did. The TMS and safety lines can carry more of your work, too.
+
+## Cards (7; {"structure":1,"line":6}); severity off; added []
+1. [structure] Crossroads Regional Freight
+   line: "The resume doesn't say how big Crossroads Regional Freight is."
+   can't tell: A recruiter unfamiliar with Crossroads can't tell how big the operation is. A short description could give your dispatch work useful context.
+   example: Crossroads Regional Freight, Indianapolis, IN | [employer size]
+   question: How big is Crossroads Regional Freight?
+2. [line] Dispatcher, line 1
+   line: "Responsible for dispatching drivers"
+   can't tell: This names your main job, but not how many drivers you dispatch or what coordinating them involves.
+   example: Dispatch [number] drivers and coordinate [what you coordinate]
+   question: How many drivers do you dispatch, and what do you coordinate for them?
+3. [line] Dispatcher, line 2
+   line: "Track loads and update customers on delivery status"
+   can't tell: The work and the audience are clear. How many loads you track would give a recruiter a better sense of the job.
+   example: Track [number] loads per [time period] and update customers on delivery status
+   question: How many loads do you typically track, and over what period?
+4. [line] Dispatcher, line 3
+   line: "Handle driver issues on the road"
+   can't tell: A recruiter can't tell what kinds of issues come up or what you do to address them.
+   example: Handle [type of driver issue] on the road by [what you do]
+   question: What is one kind of issue you handle for drivers, and what do you do about it?
+5. [line] Dispatcher, line 4
+   line: "Use TMS software daily"
+   can't tell: The skills list names McLeod TMS, but this line doesn't say which system you use here or what you do in it.
+   example: Use [TMS software] daily to [what you do in the system]
+   question: Which TMS do you use in this role, and what do you do in it?
+6. [line] Dispatcher, line 5
+   line: "Work with the safety team on driver hours"
+   can't tell: The safety team and driver hours are named, but your part in the work is still a blank.
+   example: Work with the safety team on driver hours by [your part of the work]
+   question: What do you do with the safety team on driver hours?
+7. [line] Dispatch Assistant, line 2
+   line: "Helped dispatchers with paperwork"
+   can't tell: Paperwork could mean several things. The type of document and your part in handling it would show what you supported.
+   example: Helped dispatchers with [type of paperwork] by [your part of the work]
+   question: What paperwork did you help with, and what did you do with it?
+
+## Fit
+Roles: ["Dispatcher","Dispatch Assistant"]
+Level: Experienced dispatcher, currently in a Dispatcher role
+Note: Your experience points toward dispatcher roles in trucking. The move from dispatch assistant to dispatcher is easy to follow, but the current role needs more detail about the drivers and loads you handle.

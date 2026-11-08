@@ -1,0 +1,36 @@
+# b14_teacher_to_instructional_designer, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_teacher_to_instructional_designer_1.txt (164 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5827dcf1; severity check off
+Outcome: report; cost $0.0077; 16.8s
+Case note: Career changer.
+
+## Mostly clear (score 78; model wrote 78)
+## Verdict
+A mathematics teacher with clear classroom responsibilities and a growing digital learning portfolio.
+
+## Write-up
+Your resume points first to Mathematics Teacher roles, with digital learning design growing alongside your classroom work. A recruiter can see the subjects you teach and how many students are in each section, so I'd expect this to move forward with a couple of questions.
+
+The Canvas module is a strong model: it names the unit you redesigned and what you made. Your teaching certification isn't listed, though, and a recruiter will look for it when considering you for classroom roles.
+
+Let's add your certification if you hold one, then give the professional learning community line a little more substance. Your portfolio and certificate in progress also give you a starting point if you want to pursue learning design.
+
+## Cards (3; {"structure":1,"keep":1,"line":1}); severity off; added []
+1. [structure] Teaching certification
+   line: "Teaching certification isn't listed."
+   can't tell: A recruiter can't tell whether you hold a teaching certification or which state issued it. That's a key detail for classroom roles.
+   example: [Teaching certification], [state], [status]
+   question: What teaching certification do you hold, if any, and which state issued it?
+2. [keep] Mathematics Teacher, Cedar Creek, line 2
+   line: "Redesigned the Algebra II unit on functions into a self-paced online module in Canvas"
+   can't tell: Keep this as a model. It connects a classroom topic to a concrete piece of digital learning and names the platform.
+3. [line] Mathematics Teacher, Cedar Creek, line 3
+   line: "Lead the math department's professional learning community"
+   can't tell: A recruiter can see that you lead the group, but not what you do with it. What does the community work on?
+   example: Lead the math department's professional learning community through [activities] focused on [topic]
+   question: What activities do you lead, and what does the group work on?
+
+## Fit
+Roles: ["Mathematics Teacher"]
+Level: Experienced classroom teacher who leads a math department professional learning community
+Note: Your resume points most directly to classroom mathematics teaching. The Canvas module, portfolio, workshop and certificate in progress also show a developing digital learning design direction.

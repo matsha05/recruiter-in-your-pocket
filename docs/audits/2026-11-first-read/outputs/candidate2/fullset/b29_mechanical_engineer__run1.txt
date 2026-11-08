@@ -1,0 +1,40 @@
+# b29_mechanical_engineer, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_mechanical_engineer_1.txt (143 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 41bcacc0; severity check off
+Outcome: report; cost $0.0074; 15.1s
+
+## Needs more context (score 67; model wrote 67)
+## Verdict
+A mechanical engineer with a named desk platform and solid tools, but little indication of what the work achieved.
+
+## Write-up
+Your resume points to mechanical design in commercial furniture, from storage components to leading design for Westhaven's Arlo desk platform. It's common for engineering resumes to list the work this way, but without the scale of the projects or what changed, yours may not stand out in a pile.
+
+The SolidWorks line is a useful model: it names the drawings and models you create, the tool, and the GD&T you apply. Your progression from Mechanical Engineer I to II is easy to follow, too.
+
+Let's start with the Arlo platform. Add what your design work covered and what it achieved, then show your part in the supplier work and engineering changes. You don't need a number on every line, but a few concrete results would give a recruiter more to go on.
+
+## Cards (4; {"line":3,"keep":1}); severity off; added []
+1. [line] Mechanical Engineer II, line 1
+   line: "Lead mechanical design for the Arlo height-adjustable desk platform"
+   can't tell: The platform and your lead role are clear. A recruiter can't yet tell which parts of the design you own or what the work achieved.
+   example: Lead mechanical design for the Arlo height-adjustable desk platform, including [design work] and [result]
+   question: What design work did you lead on Arlo, and what came of it?
+2. [keep] Mechanical Engineer II, line 2
+   line: "Create 3D models and drawings in SolidWorks with GD&T"
+   can't tell: Keep this as a model for the other lines: it puts tangible deliverables alongside the methods you use to make them.
+3. [line] Mechanical Engineer II, line 3
+   line: "Work with suppliers in Mexico and Taiwan on tooling and first-article inspection"
+   can't tell: The suppliers and the work are named, but your part in tooling and inspection is still open. Did you review designs, examine parts, or do something else?
+   example: Work with suppliers in Mexico and Taiwan on tooling and first-article inspection, [your contribution]
+   question: What do you do with the suppliers on tooling and first-article inspection?
+4. [line] Mechanical Engineer II, line 5
+   line: "Support manufacturing with engineering change orders"
+   can't tell: Support can mean several things here. A recruiter can't tell what you contribute to the change orders or what they address.
+   example: Support manufacturing with engineering change orders by [your contribution] for [what changed]
+   question: What was your part in an engineering change order, and what did the change address?
+
+## Fit
+Roles: ["Mechanical Engineer II","Mechanical Engineer I"]
+Level: Experienced engineer, leads mechanical design for a desk platform
+Note: Your experience points toward mechanical product design, particularly furniture and sheet-metal components. The resume shows design and supplier work, but doesn't yet show much about the scale or results of that work.

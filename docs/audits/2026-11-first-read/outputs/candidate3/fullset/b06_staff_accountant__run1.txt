@@ -1,0 +1,52 @@
+# b06_staff_accountant, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_staff_accountant_1.txt (98 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 01c2028d; severity check off
+Outcome: report; cost $0.0093; 19.8s
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+A Staff Accountant with a clear progression, but too little detail about the work to stand out.
+
+## Write-up
+Your resume shows a move from Accounts Payable Clerk to Staff Accountant at Rivermark Building Supply. This is a common way to describe accounting work, but a list of recurring duties won't stand out in a pile. A recruiter can't tell how much of the close you handle or what you work on within each task.
+
+The journal entries and account reconciliations line is the best model here because it names two concrete pieces of work. Your experience is easy to follow and sits above education. A little context on Rivermark's size would also help a recruiter place the work.
+
+Let's start with the Staff Accountant role and the month-end close line. Add the tasks that are yours, then give the reconciliations, audit and fixed asset schedules the same treatment. Use quantities where you know them, but don't force a number into every line.
+
+## Cards (6; {"structure":1,"line":5}); severity off; added []
+1. [structure] Structure
+   line: "Rivermark Building Supply's size isn't stated."
+   can't tell: A recruiter may not know Rivermark, so it's hard to place the accounting work in the business. A short company description can give it context.
+   example: Rivermark Building Supply, Sacramento, CA | [company size]
+   question: How big is Rivermark, using a measure you can share?
+2. [line] Staff Accountant, line 1
+   line: "Responsible for month-end close tasks"
+   can't tell: This doesn't say which close tasks are yours. That's one of the first things a recruiter will look for in a Staff Accountant role.
+   example: Responsible for month-end close tasks, including [close tasks]
+   question: Which month-end close tasks are you responsible for?
+3. [line] Staff Accountant, line 2
+   line: "Prepare journal entries and account reconciliations"
+   can't tell: These are useful accounting tasks, but the accounts and volume are still a blank. That makes it difficult to picture the work you handle.
+   example: Prepare journal entries and account reconciliations for [accounts], including [volume] per [period]
+   question: Which accounts do you work on, and how many entries or reconciliations do you prepare in a typical period?
+4. [line] Staff Accountant, line 3
+   line: "Assist with the annual audit"
+   can't tell: A recruiter can't tell what your part of the audit involves. The materials or tasks you handle would make your contribution clear.
+   example: Assist with the annual audit by [audit work]
+   question: What audit work do you handle?
+5. [line] Staff Accountant, line 4
+   line: "Maintain fixed asset schedules"
+   can't tell: The schedules are named, but the assets and your maintenance work aren't. Those details would show what this responsibility includes.
+   example: Maintain fixed asset schedules for [assets], including [schedule work]
+   question: Which assets are on the schedules, and what work do you do to maintain them?
+6. [line] Staff Accountant, line 5
+   line: "Process accounts payable when needed"
+   can't tell: It's not clear which accounts payable work you still handle in the Staff Accountant role. Keep the occasional nature of the work and name your part.
+   example: Process accounts payable when needed by [accounts payable work]
+   question: What accounts payable work do you handle when needed?
+
+## Fit
+Roles: ["Staff Accountant","Accounts Payable Clerk"]
+Level: Staff Accountant, with prior Accounts Payable Clerk experience
+Note: Your experience points toward staff accounting and accounts payable roles. The move within Rivermark is easy to follow; more detail on your close and reconciliation work would help distinguish the Staff Accountant role.

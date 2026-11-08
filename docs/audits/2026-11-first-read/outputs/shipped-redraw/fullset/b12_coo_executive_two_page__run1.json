@@ -1,0 +1,219 @@
+{
+  "case_id": "b12_coo_executive_two_page",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Executive, two pages.",
+  "resume_file": "../2026-11-live-judgment/resumes/b_coo_executive.txt",
+  "resume_sha256": "213474e9b27355f8a085204e3dac05f65782d74d43b9b531cb2afd6a3afe1b79",
+  "resume_words": 463,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T17:59:03.639Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6397,
+        "completion_tokens": 805,
+        "total_tokens": 7202,
+        "cached_prompt_tokens": 4685,
+        "cache_write_prompt_tokens": 1709,
+        "reasoning_tokens": 233
+      },
+      "cost_usd": 0.0063985,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 10031
+    }
+  ],
+  "resume_prompt_sha256": "0a19c3ee70395ec8fb0584d4bea1b93da77aeca37469b4d47211bc8568544f0c",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare operations executive whose resume connects growth and operational changes to measurable results.",
+    "write_up": [
+      "This is a strong executive resume! At Lakeshore, you show both the growth of the dental organization and the operating work behind it. Your earlier clinic roles reinforce that story, giving a recruiter a clear reason to move you forward for healthcare operations leadership.",
+      "The integration line is a great model: it names the playbook you standardized and shows the change in time. Your progression at Midwest Physician Alliance and your board reporting at Lakeshore also make your leadership level easy to place.",
+      "There’s one earlier result we can make more useful by adding how you achieved it. Otherwise, your resume isn’t likely to be the thing standing between you and a callback; the competition for the role and how closely the organization’s needs match your experience will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, integration line",
+        "line": "- Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "cannot_tell": "Keep this as a model. You name the operational change and give a before-and-after measure without making the reader guess what you did.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Vice President, Operations, wait time line",
+        "line": "- Reduced patient wait time to third available appointment from 21 days to 6 across primary care",
+        "cannot_tell": "The change in wait time is substantial, but a recruiter can’t tell what you changed to get there. That detail would show how you approached access across the clinics.",
+        "example": "Reduced patient wait time to third available appointment from 21 days to 6 across primary care by [what you changed]",
+        "question": "What did you change to reduce the wait for an appointment across primary care?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Operating Officer",
+        "Senior Vice President, Operations",
+        "Vice President, Clinic Operations"
+      ],
+      "level": "Senior executive",
+      "note": "Your experience points to senior healthcare operations roles, particularly in multi-site dental and physician services. The practice growth, financial responsibility, and board reporting support the chief operating officer title.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare operations executive whose resume connects growth and operational changes to measurable results.",
+    "write_up": [
+      "This is a strong executive resume! At Lakeshore, you show both the growth of the dental organization and the operating work behind it. Your earlier clinic roles reinforce that story, giving a recruiter a clear reason to move you forward for healthcare operations leadership.",
+      "The integration line is a great model: it names the playbook you standardized and shows the change in time. Your progression at Midwest Physician Alliance and your board reporting at Lakeshore also make your leadership level easy to place.",
+      "There’s one earlier result we can make more useful by adding how you achieved it. Otherwise, your resume isn’t likely to be the thing standing between you and a callback; the competition for the role and how closely the organization’s needs match your experience will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, integration line",
+        "line": "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "cannot_tell": "Keep this as a model. You name the operational change and give a before-and-after measure without making the reader guess what you did.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Vice President, Operations, wait time line",
+        "line": "Reduced patient wait time to third available appointment from 21 days to 6 across primary care",
+        "cannot_tell": "The change in wait time is substantial, but a recruiter can’t tell what you changed to get there. That detail would show how you approached access across the clinics.",
+        "example": "Reduced patient wait time to third available appointment from 21 days to 6 across primary care by [what you changed]",
+        "question": "What did you change to reduce the wait for an appointment across primary care?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Operating Officer",
+        "Senior Vice President, Operations",
+        "Vice President, Clinic Operations"
+      ],
+      "level": "Senior executive",
+      "note": "Your experience points to senior healthcare operations roles, particularly in multi-site dental and physician services. The practice growth, financial responsibility, and board reporting support the chief operating officer title.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 91
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare operations executive whose resume connects growth and operational changes to measurable results.",
+    "write_up": [
+      "This is a strong executive resume! At Lakeshore, you show both the growth of the dental organization and the operating work behind it. Your earlier clinic roles reinforce that story, giving a recruiter a clear reason to move you forward for healthcare operations leadership.",
+      "The integration line is a great model: it names the playbook you standardized and shows the change in time. Your progression at Midwest Physician Alliance and your board reporting at Lakeshore also make your leadership level easy to place.",
+      "There’s one earlier result we can make more useful by adding how you achieved it. Otherwise, your resume isn’t likely to be the thing standing between you and a callback; the competition for the role and how closely the organization’s needs match your experience will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, integration line",
+        "line": "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "cannot_tell": "Keep this as a model. You name the operational change and give a before-and-after measure without making the reader guess what you did.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Vice President, Operations, wait time line",
+        "line": "Reduced patient wait time to third available appointment from 21 days to 6 across primary care",
+        "cannot_tell": "The change in wait time is substantial, but a recruiter can’t tell what you changed to get there. That detail would show how you approached access across the clinics.",
+        "example": "Reduced patient wait time to third available appointment from 21 days to 6 across primary care by [what you changed]",
+        "question": "What did you change to reduce the wait for an appointment across primary care?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Operating Officer",
+        "Senior Vice President, Operations",
+        "Vice President, Clinic Operations"
+      ],
+      "level": "Senior executive",
+      "note": "Your experience points to senior healthcare operations roles, particularly in multi-site dental and physician services. The practice growth, financial responsibility, and board reporting support the chief operating officer title.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 91
+  },
+  "presentation": {
+    "score": 91,
+    "band": "Clear and specific",
+    "model_score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare operations executive whose resume connects growth and operational changes to measurable results.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 130,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, integration line",
+        "line": "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Vice President, Operations, wait time line",
+        "line": "Reduced patient wait time to third available appointment from 21 days to 6 across primary care",
+        "blanks": 1,
+        "question": "What did you change to reduce the wait for an appointment across primary care?"
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "keep": 1,
+      "line": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Chief Operating Officer",
+        "Senior Vice President, Operations",
+        "Vice President, Clinic Operations"
+      ],
+      "level": "Senior executive",
+      "note": "Your experience points to senior healthcare operations roles, particularly in multi-site dental and physician services. The practice growth, financial responsibility, and board reporting support the chief operating officer title.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0063985,
+  "latency_ms": 10033
+}

@@ -40,7 +40,8 @@ export const MOCK_WORKLIST_REPORT = {
   ],
   fit: {
     roles: ["Customer Operations"],
-    level: "mid-level operations",
+    why: "Your headline and both roles are customer operations work.",
+    level: "mid-level, runs onboarding reviews, no direct reports",
     note: "The page points at customer operations and onboarding roles, where the workflow, the training and the reviews are exactly what a hiring manager looks for. Size the work and it holds up against a specialist or lead posting.",
     posting: { summary: "", missing: [] },
   },

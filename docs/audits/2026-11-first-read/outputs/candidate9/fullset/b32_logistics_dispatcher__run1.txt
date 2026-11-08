@@ -1,0 +1,56 @@
+# b32_logistics_dispatcher, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_logistics_dispatcher_1.txt (105 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 338ac33a; severity check off
+Outcome: report; cost $0.0104; 22.5s
+
+## Needs more context (score 65; model wrote 65)
+## Verdict
+A dispatcher with a clear progression, but too little detail about the work to stand out.
+
+## Write-up
+You moved from warehouse work to dispatch assistant and then dispatcher at Crossroads Regional Freight. It's common for dispatch resumes to list daily duties this way, but without details about the drivers, loads or problems you handle, a recruiter may finish yours and move on.
+
+The load-tracking line is your best model: it names the work and the customers who depend on it. Your progression and current dates are easy to follow, and McLeod TMS is named in your skills. The missing piece is how much you handle and what your part looks like day to day.
+
+Let's start with your current Dispatcher role. Add the number of drivers you dispatch if you can, then give one example of a road issue you handled and explain your work with the safety team.
+
+## Cards (7; {"structure":1,"line":6}); severity off; added []
+1. [structure] Crossroads Regional Freight
+   line: "The resume doesn't state how large Crossroads Regional Freight is."
+   can't tell: A recruiter may not know the company. A short description of its operation, including its fleet size if you know it, can give your work context.
+   question: How large is the company's fleet, and how would you describe its operation?
+2. [line] Dispatcher, line 1
+   line: "Responsible for dispatching drivers"
+   can't tell: This names the core job, but not how many drivers you dispatch or what loads you handle. That's a defining measure for this role.
+   example: Responsible for dispatching [number] drivers [frequency] for [type of loads]
+   question: How many drivers do you dispatch, how often, and what kinds of loads do they carry?
+3. [line] Dispatcher, line 2
+   line: "Track loads and update customers on delivery status"
+   can't tell: A recruiter can see the work and who gets the updates, but not how many loads you track or how often you update customers.
+   example: Track [number] loads [frequency] and update customers on delivery status [frequency of updates]
+   question: How many loads do you track, and how often do customers get updates?
+4. [line] Dispatcher, line 3
+   line: "Handle driver issues on the road"
+   can't tell: Driver issues could mean several things. One example would show what you're called on to handle and what you do about it.
+   example: Handle driver issues on the road, including [example of an issue], by [what you did]
+   question: What's one road issue you handled, and what did you do?
+5. [line] Dispatcher, line 4
+   line: "Use TMS software daily"
+   can't tell: McLeod TMS is already in your skills, but this line doesn't say what you use TMS software to do.
+   example: Use TMS software daily to [tasks]
+   question: What dispatch tasks do you use the TMS software for?
+6. [line] Dispatcher, line 5
+   line: "Work with the safety team on driver hours"
+   can't tell: The safety team and driver hours are useful details. Your part in that work is still a question.
+   example: Work with the safety team on driver hours by [your part]
+   question: What do you do with the safety team when working on driver hours?
+7. [line] Dispatch Assistant, line 2
+   line: "Helped dispatchers with paperwork"
+   can't tell: Paperwork could cover many different tasks. Naming the documents and your part would show what you helped dispatchers get done.
+   example: Helped dispatchers with [type of paperwork] by [your part]
+   question: What paperwork did you help with, and what did you do?
+
+## Fit
+Roles: ["Dispatcher"]
+Level: Dispatcher, with prior dispatch assistant experience
+Note: Your experience points toward regional trucking dispatch roles. The move from assistant to dispatcher is clear; the number of drivers and loads you handle would help distinguish the work.

@@ -1,0 +1,215 @@
+{
+  "case_id": "b26_construction_pm_strong",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_construction_pm_strong_1.txt",
+  "resume_sha256": "548c7db64c756b5fab695853a27156e8aa67858a31cab50680d65e1ef14cc181",
+  "resume_words": 136,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:36:22.036Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5844,
+        "completion_tokens": 1034,
+        "total_tokens": 6878,
+        "cached_prompt_tokens": 5196,
+        "cache_write_prompt_tokens": 645,
+        "reasoning_tokens": 469
+      },
+      "cost_usd": 0.00623905,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 12588
+    }
+  ],
+  "resume_prompt_sha256": "1c0fe4fe961ccb0d0e49bbe71ac8427d0281ae6e9a1efa6ac35e3ee49a99ed47",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A construction project manager with project values, trade counts, and delivery results a recruiter can readily compare.",
+    "write_up": [
+      "This is a strong construction project manager resume! Your work at Capitol Builders shows both the projects you run and the results you've delivered, from tenant improvements to a grocery store build. A recruiter can see how big the work is without guessing.",
+      "The grocery store line is the model: it names the build, its value, and when you delivered it against schedule. Your move from Assistant Project Manager at Valley Commercial Construction to Project Manager at Capitol Builders is easy to follow, and your experience leads your education.",
+      "Let's add how you kept change orders under 3% of contract value. Your resume already makes a strong case on its own; competition for a particular job still matters."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Project Manager, line 2",
+        "line": "- Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a concrete project and a result in one quick sentence.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Project Manager, line 4",
+        "line": "- Kept change orders under 3% of contract value across 2024 and 2025 projects",
+        "cannot_tell": "The figure is useful, but a recruiter can't tell what you did to keep change orders down. That would show how you managed the projects.",
+        "example": "Kept change orders under 3% of contract value across 2024 and 2025 projects by [what you did]",
+        "question": "What did you do to keep change orders under 3% of contract value across those projects?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Project Manager"
+      ],
+      "why": "Your headline and current Project Manager role both point to commercial construction, with tenant improvements and a grocery store build.",
+      "level": "Project manager, running 4 to 6 concurrent projects",
+      "note": "Your experience points to commercial construction project management, particularly tenant improvements and retail builds. The project values and trade counts give a recruiter useful context for comparing roles.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A construction project manager with project values, trade counts, and delivery results a recruiter can readily compare.",
+    "write_up": [
+      "This is a strong construction project manager resume! Your work at Capitol Builders shows both the projects you run and the results you've delivered, from tenant improvements to a grocery store build. A recruiter can see how big the work is without guessing.",
+      "The grocery store line is the model: it names the build, its value, and when you delivered it against schedule. Your move from Assistant Project Manager at Valley Commercial Construction to Project Manager at Capitol Builders is easy to follow, and your experience leads your education.",
+      "Let's add how you kept change orders under 3% of contract value. Your resume already makes a strong case on its own; competition for a particular job still matters."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Project Manager, line 2",
+        "line": "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a concrete project and a result in one quick sentence.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Project Manager, line 4",
+        "line": "Kept change orders under 3% of contract value across 2024 and 2025 projects",
+        "cannot_tell": "The figure is useful, but a recruiter can't tell what you did to keep change orders down. That would show how you managed the projects.",
+        "example": "Kept change orders under 3% of contract value across 2024 and 2025 projects by [what you did]",
+        "question": "What did you do to keep change orders under 3% of contract value across those projects?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Project Manager"
+      ],
+      "why": "Your headline and current Project Manager role both point to commercial construction, with tenant improvements and a grocery store build.",
+      "level": "Project manager, running 4 to 6 concurrent projects",
+      "note": "Your experience points to commercial construction project management, particularly tenant improvements and retail builds. The project values and trade counts give a recruiter useful context for comparing roles.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A construction project manager with project values, trade counts, and delivery results a recruiter can readily compare.",
+    "write_up": [
+      "This is a strong construction project manager resume! Your work at Capitol Builders shows both the projects you run and the results you've delivered, from tenant improvements to a grocery store build. A recruiter can see how big the work is without guessing.",
+      "The grocery store line is the model: it names the build, its value, and when you delivered it against schedule. Your move from Assistant Project Manager at Valley Commercial Construction to Project Manager at Capitol Builders is easy to follow, and your experience leads your education.",
+      "Let's add how you kept change orders under 3% of contract value. Your resume already makes a strong case on its own; competition for a particular job still matters."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Project Manager, line 2",
+        "line": "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a concrete project and a result in one quick sentence.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Project Manager, line 4",
+        "line": "Kept change orders under 3% of contract value across 2024 and 2025 projects",
+        "cannot_tell": "The figure is useful, but a recruiter can't tell what you did to keep change orders down. That would show how you managed the projects.",
+        "example": "Kept change orders under 3% of contract value across 2024 and 2025 projects by [what you did]",
+        "question": "What did you do to keep change orders under 3% of contract value across those projects?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Project Manager"
+      ],
+      "why": "Your headline and current Project Manager role both point to commercial construction, with tenant improvements and a grocery store build.",
+      "level": "Project manager, running 4 to 6 concurrent projects",
+      "note": "Your experience points to commercial construction project management, particularly tenant improvements and retail builds. The project values and trade counts give a recruiter useful context for comparing roles.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "presentation": {
+    "score": 89,
+    "band": "Clear and specific",
+    "model_score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A construction project manager with project values, trade counts, and delivery results a recruiter can readily compare.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 118,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Project Manager, line 2",
+        "line": "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Project Manager, line 4",
+        "line": "Kept change orders under 3% of contract value across 2024 and 2025 projects",
+        "blanks": 1,
+        "question": "What did you do to keep change orders under 3% of contract value across those projects?"
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "keep": 1,
+      "line": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Project Manager"
+      ],
+      "why": "Your headline and current Project Manager role both point to commercial construction, with tenant improvements and a grocery store build.",
+      "level": "Project manager, running 4 to 6 concurrent projects",
+      "note": "Your experience points to commercial construction project management, particularly tenant improvements and retail builds. The project values and trade counts give a recruiter useful context for comparing roles.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00623905,
+  "latency_ms": 12590
+}

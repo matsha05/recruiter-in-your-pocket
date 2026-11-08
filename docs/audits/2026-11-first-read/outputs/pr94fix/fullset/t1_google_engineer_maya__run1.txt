@@ -1,0 +1,41 @@
+# t1_google_engineer_maya, run 1
+Resume: resumes/t1_google_engineer_maya.txt (151 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 288eceb5; severity check off
+Outcome: report; cost $0.0092; 19.6s
+Case note: Blind pick v5 bp5-04: a recognisable employer; decision 5 says the lift is one rung, bounded, declared.
+
+## Needs more context (score 68; model wrote 68); lifted by employer
+## Verdict
+A backend engineer with strong earlier results and a Google role that leaves the recent work vague.
+
+## Write-up
+You’re a backend software engineer at Google, with earlier infrastructure work at Harborview Analytics. It’s common to describe a current job in broad terms, but those lines won’t stand out in a pile: a recruiter can’t tell which features or technical problems were yours. Google will get your resume read, but the bullets under it don’t yet say enough about what you did there.
+
+The Harborview line about cutting dashboard query latency is your model: it names the change, the technical work behind it, and the before and after. Your experience is easy to follow, and it sits above education where a recruiter expects it.
+
+Let’s start with the internal tool at Google. Name the features you worked on and what changed, then give the requirements and review work enough detail to show your part.
+
+## Cards (4; {"line":3,"keep":1}); severity off; added []
+1. [line] Google, line 1
+   line: "Worked on features for an internal tool used by other engineering teams"
+   can't tell: A recruiter can’t tell which features you worked on or what they changed for the engineering teams using the tool.
+   example: Worked on [features] for an internal tool used by other engineering teams, resulting in [what changed]
+   question: Which features did you work on, and what changed for the teams using them?
+2. [line] Google, line 2
+   line: "Collaborated with cross-functional partners on requirements"
+   can't tell: The partners and the requirements could belong to almost any project. What were you defining together?
+   example: Collaborated with [partners] on requirements for [tool or feature]
+   question: Which partners did you work with, and what were the requirements for?
+3. [line] Google, line 3
+   line: "Participated in code reviews, design reviews and the on-call rotation"
+   can't tell: These are familiar engineering activities, but a recruiter can’t tell what software you reviewed or supported on call.
+   example: Participated in code reviews, design reviews and the on-call rotation for [service or tool]
+   question: What software did you review and support on call?
+4. [keep] Harborview Analytics, line 2
+   line: "Cut p95 query latency on the customer dashboard from 4.2 s to 900 ms by rewriting the aggregation layer"
+   can't tell: Keep this as a model. It connects a concrete engineering decision to a measurement a recruiter can understand.
+
+## Fit
+Roles: ["Software Engineer"]
+Level: mid-level, builds backend services and led a migration with two other engineers
+Note: Your Harborview work gives a recruiter a strong picture of your infrastructure experience. Bring the Google work up to the same level of detail so your most recent work carries its weight.

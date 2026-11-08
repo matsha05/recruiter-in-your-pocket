@@ -1,0 +1,33 @@
+# h5_mismatched_posting, run 1
+Resume: ../2026-11-live-judgment/resumes/h5_data_analyst.txt (166 words), posting: ../2026-11-live-judgment/resumes/h5_nursing_posting.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 288eceb5; severity check off
+Outcome: report; cost $0.0071; 13.7s
+Case note: Data analyst against a registered nurse posting.
+
+## Clear and specific (score 87; model wrote 87)
+## Verdict
+The nursing job is a different track from your well-documented data analyst experience.
+
+## Write-up
+The medical-surgical nursing role asks for a different professional background from the one on your resume. I read your resume for Data Analyst roles: it tells a strong story of sales, merchandising, and insurance reporting, with named tools and work that teams use.
+
+The markdown line is especially good: it names the analysis, the 2,100 SKUs, and the merchandising team's adoption of your recommendation. Your SQL model and Power BI dashboards give a recruiter more concrete work to discuss.
+
+For analyst applications, add a little more about the questions behind your ad hoc work. For this nursing role, add your license, certifications, and clinical experience if you have them; they aren't shown on your resume.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Data Analyst, line 3
+   line: "Analyzed markdown timing for 2,100 SKUs; the merchandising team adopted the recommended schedule in two categories"
+   can't tell: Keep this as a model. It pairs a defined set of products with the decision the merchandising team made, so a recruiter can see where your analysis went.
+2. [line] Data Analyst, line 4
+   line: "Pull ad hoc analyses for the VP of Sales, about 10 requests a month"
+   can't tell: The frequency and audience are useful, but a recruiter can't tell what sales questions you tackle or what the analyses inform.
+   example: Pull ad hoc analyses on [topics] for the VP of Sales, about 10 requests a month, to inform [decisions]
+   question: What topics do these analyses cover, and what decisions do they inform?
+
+## Fit
+Roles: ["Data Analyst","Registered Nurse, Medical-Surgical Unit (Nights)"]
+Level: mid-level, current Data Analyst role and prior Junior Analyst role
+Note: Your reporting work shows collaboration with sales, merchandising, and finance teams. If you have nursing qualifications or clinical work that isn't on this resume, put them in a version tailored to the hospital role.
+Posting: The posting is for a night-shift medical-surgical registered nurse; your resume describes data analysis rather than nursing.
+Missing: ["Current unrestricted North Carolina RN license or compact state license","BLS certification required; ACLS within six months of hire","Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered","Experience with Epic or a comparable EHR","Ability to manage a patient assignment of 5 to 6 patients","Strong communication with patients, families, and the interdisciplinary team"]

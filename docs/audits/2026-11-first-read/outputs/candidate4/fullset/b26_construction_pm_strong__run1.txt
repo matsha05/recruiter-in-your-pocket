@@ -1,0 +1,35 @@
+# b26_construction_pm_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_construction_pm_strong_1.txt (136 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ee57d907; severity check off
+Outcome: report; cost $0.0074; 14.9s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A construction project manager whose resume makes the projects, contract values and delivery results easy to see.
+
+## Write-up
+Your construction work is easy to picture! At Capitol Builders, you show the value and number of projects you run, the trades you manage and what you delivered. The earlier Valley Commercial Construction role adds office and retail work without getting in the way of your current role.
+
+The subcontractor bids and buyout line is a great model: it names your responsibility and the number of trades per project. Your grocery store and change order results are also worth keeping prominent, though a recruiter can't yet tell what you did to achieve them.
+
+Let's add that detail to those two results. Your resume isn't likely to be the reason you don't get a call back; how competitive a particular job is still matters.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] Project Manager, line 2
+   line: "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024"
+   can't tell: Finishing ahead of schedule is a strong result. A recruiter can't tell what you did to get the grocery store there.
+   example: Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024 by [what you did to keep the build ahead of schedule]
+   question: What did you do that helped the grocery store build finish ahead of schedule?
+2. [keep] Project Manager, line 3
+   line: "Manage subcontractor bids and buyout for 20 to 30 trades per project"
+   can't tell: Keep this as a model. It pairs a concrete part of your job with the number of trades involved, so there's no guessing about the work.
+3. [line] Project Manager, line 4
+   line: "Kept change orders under 3% of contract value across 2024 and 2025 projects"
+   can't tell: The percentage gives a recruiter something concrete, but it doesn't say how you kept change orders low.
+   example: Kept change orders under 3% of contract value across 2024 and 2025 projects by [what you did to manage change orders]
+   question: What did you do to keep change orders under 3% of contract value?
+
+## Fit
+Roles: ["Project Manager","Assistant Project Manager"]
+Level: Project manager, running concurrent projects and managing subcontractor bids and buyout
+Note: Your experience points toward construction project management in commercial tenant improvements and retail. The resume shows both current project delivery and earlier work with superintendents on office and retail projects.

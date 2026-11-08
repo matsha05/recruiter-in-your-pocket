@@ -1,0 +1,35 @@
+# b23_pharmacy_tech_table, run 1
+Resume: ../2026-11-live-judgment/resumes/b_pharmacy_tech_table.txt (209 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5cba8f05; severity check off
+Outcome: report; cost $0.0085; 18.3s
+Case note: Tables rendered to tab-separated text.
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A certified pharmacy technician with inpatient and retail experience, backed by clear measures of the work.
+
+## Write-up
+Your resume makes a strong case for pharmacy technician work: it connects inpatient sterile compounding, cabinet restocking, and retail pharmacy experience to the volume you handled. A recruiter can see both your California license and what you do in the inpatient pharmacy.
+
+The cabinet restocking line is a great model! It names the six nursing units and shows the change in weekly stockout reports. Your duties sit in a separate table from the jobs, though, so a recruiter has to look back and forth to match the work to each employer.
+
+Let's put the duties under their respective roles and give the earlier clerk work a little more detail. Your resume is already strong; how competitive a particular job is will matter too.
+
+## Cards (3; {"structure":1,"keep":1,"line":1}); severity off; added []
+1. [structure] Experience and Duties and Results
+   line: "Duties and Results sits separately from the Experience table."
+   can't tell: The role names connect the duties to your jobs, but a recruiter has to move between two tables to see the employer and dates alongside the work. Putting the duties under each role keeps them together.
+   question: Can you move each duty under its matching role in Experience?
+2. [keep] Pharmacy Technician II, cabinet restocking
+   line: "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024"
+   can't tell: Keep this as a model. You name the responsibility, where it reaches, and the change in reports without making a reader guess what the numbers refer to.
+3. [line] Pharmacy Clerk
+   line: "Pharmacy Clerk Register, inventory counts, and customer pickup"
+   can't tell: These are the areas you worked in, but a recruiter can't tell what you handled for customer pickup or inventory. A little more detail would make the earlier role more useful.
+   example: Handled [register work], completed inventory counts, and [customer pickup work]
+   question: What did you handle at the register and for customer pickup?
+
+## Fit
+Roles: ["Certified Pharmacy Technician (CPhT)","Pharmacy Technician II"]
+Level: Experienced pharmacy technician, with a Technician II role and five technicians trained since 2023
+Note: Your experience points to inpatient pharmacy technician roles, especially those involving sterile compounding and dispensing cabinets. Your retail work also shows prescription and insurance experience.

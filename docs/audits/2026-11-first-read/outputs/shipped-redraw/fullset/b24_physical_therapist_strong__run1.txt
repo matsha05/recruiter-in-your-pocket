@@ -1,0 +1,30 @@
+# b24_physical_therapist_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_physical_therapist_strong_1.txt (154 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0052; 10.7s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+An outpatient physical therapist with a clear orthopedic focus, a return-to-run program and measurable patient work.
+
+## Write-up
+This is a strong outpatient PT resume! Your work at North Loop Sports Rehab connects your sports and post-surgical focus to a daily patient load, a return-to-run program and mentoring. Your earlier hospital clinic work adds orthopedic and neurological experience.
+
+The return-to-run line is a great model: you named what you built and how many patients completed it. Your license and current role are easy to find. The patient-reported function result is promising, though a recruiter may wonder which patients and measure it covers.
+
+Let's make that result more precise if you have the details. Your resume already gives a recruiter plenty to work with; competition and a clinic's particular patient needs will also matter.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Senior Physical Therapist, line 2
+   line: "Built a return-to-run program that 85 patients completed in 2025"
+   can't tell: Keep this line. It pairs your ownership of the program with a concrete completion count and year, without making a claim the count can't support.
+2. [line] Senior Physical Therapist, line 4
+   line: "In 2025, 92% of discharged patients improved their patient-reported function scores"
+   can't tell: A recruiter can't tell whether this covers your patients or a broader group, or which measure was used. Both matter when interpreting the result.
+   example: In 2025, 92% of [which discharged patients] improved their patient-reported function scores on [measure]
+   question: Which discharged patients are included, and what measure was used?
+
+## Fit
+Roles: ["Senior Physical Therapist","Physical Therapist"]
+Level: Senior outpatient physical therapist
+Note: Your experience points toward outpatient orthopedic and sports rehabilitation, with earlier neurological and fall-prevention work. The mentoring and aide scheduling add senior-level responsibilities.

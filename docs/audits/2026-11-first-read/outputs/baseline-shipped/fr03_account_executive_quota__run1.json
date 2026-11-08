@@ -1,0 +1,246 @@
+{
+  "case_id": "fr03_account_executive_quota",
+  "batch": "targeted",
+  "run": 1,
+  "note": "P3 and P4 (sales). 132% of quota with no quota, territory or other year; $1.4M with no period. Expect cards asking for the frame; nothing supplied outside a bracket.",
+  "resume_file": "resumes/fr03_account_executive_quota.txt",
+  "resume_sha256": "1af2456444c94158085073ca6a146353414d58ee471e3c70ac1e03fd7f347adf",
+  "resume_words": 128,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T17:41:35.801Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5318,
+        "completion_tokens": 1070,
+        "total_tokens": 6388,
+        "cached_prompt_tokens": 4685,
+        "cache_write_prompt_tokens": 630,
+        "reasoning_tokens": 448
+      },
+      "cost_usd": 0.00637475,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 13088
+    }
+  ],
+  "resume_prompt_sha256": "0a19c3ee70395ec8fb0584d4bea1b93da77aeca37469b4d47211bc8568544f0c",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 86,
+    "lifted_by_employer": false,
+    "verdict": "An Account Executive with quota attainment, new-business sales and a clear promotion into the role.",
+    "write_up": [
+      "This is a strong sales resume! You show a move from sales development to Account Executive at Vantage Fleet Software, then give a recruiter quota attainment and new-business revenue to hold onto.",
+      "The line about booking 25+ meetings per month works especially well: it names the work, the pace and who received the meetings. Your experience leads, and the Account Executive headline matches your current job.",
+      "Let's add a time period to the $1.4M and spell out your part in demos and pilots. Your resume isn't likely to be the main thing holding you back; how competitive an Account Executive job is will also matter."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Account Executive, line 2",
+        "line": "- Closed $1.4M in new business",
+        "cannot_tell": "Closing $1.4M is a concrete result, but a recruiter can't tell the period it covers or the kinds of customers you sold to.",
+        "example": "Closed $1.4M in new business with [customer type] in [time period]",
+        "question": "What period does the $1.4M cover, and what kinds of customers did you sell to?"
+      },
+      {
+        "kind": "line",
+        "where": "Account Executive, line 5",
+        "line": "- Partnered with solutions engineers on demos and pilots",
+        "cannot_tell": "A recruiter can see who you worked with, but not your part in the demos and pilots. What did you handle alongside the solutions engineers?",
+        "example": "Partnered with solutions engineers on demos and pilots, handling [your contribution]",
+        "question": "What did you handle in the demos and pilots?"
+      },
+      {
+        "kind": "keep",
+        "where": "Sales Development Representative, line 1",
+        "line": "- Booked 25+ meetings per month for the account executive team",
+        "cannot_tell": "Keep this as a model: it ties an action you owned to a measurable pace without making a recruiter guess what the number represents.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Account Executive",
+        "Sales Development Representative"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "Your recent work points most directly to Account Executive roles. The sales development role shows the path into full-cycle sales, and the current role gives a recruiter concrete sales results.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 86,
+    "lifted_by_employer": false,
+    "verdict": "An Account Executive with quota attainment, new-business sales and a clear promotion into the role.",
+    "write_up": [
+      "This is a strong sales resume! You show a move from sales development to Account Executive at Vantage Fleet Software, then give a recruiter quota attainment and new-business revenue to hold onto.",
+      "The line about booking 25+ meetings per month works especially well: it names the work, the pace and who received the meetings. Your experience leads, and the Account Executive headline matches your current job.",
+      "Let's add a time period to the $1.4M and spell out your part in demos and pilots. Your resume isn't likely to be the main thing holding you back; how competitive an Account Executive job is will also matter."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Account Executive, line 2",
+        "line": "Closed $1.4M in new business",
+        "cannot_tell": "Closing $1.4M is a concrete result, but a recruiter can't tell the period it covers or the kinds of customers you sold to.",
+        "example": "Closed $1.4M in new business with [customer type] in [time period]",
+        "question": "What period does the $1.4M cover, and what kinds of customers did you sell to?"
+      },
+      {
+        "kind": "line",
+        "where": "Account Executive, line 5",
+        "line": "Partnered with solutions engineers on demos and pilots",
+        "cannot_tell": "A recruiter can see who you worked with, but not your part in the demos and pilots. What did you handle alongside the solutions engineers?",
+        "example": "Partnered with solutions engineers on demos and pilots, handling [your contribution]",
+        "question": "What did you handle in the demos and pilots?"
+      },
+      {
+        "kind": "keep",
+        "where": "Sales Development Representative, line 1",
+        "line": "Booked 25+ meetings per month for the account executive team",
+        "cannot_tell": "Keep this as a model: it ties an action you owned to a measurable pace without making a recruiter guess what the number represents.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Account Executive",
+        "Sales Development Representative"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "Your recent work points most directly to Account Executive roles. The sales development role shows the path into full-cycle sales, and the current role gives a recruiter concrete sales results.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 86
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 86,
+    "lifted_by_employer": false,
+    "verdict": "An Account Executive with quota attainment, new-business sales and a clear promotion into the role.",
+    "write_up": [
+      "This is a strong sales resume! You show a move from sales development to Account Executive at Vantage Fleet Software, then give a recruiter quota attainment and new-business revenue to hold onto.",
+      "The line about booking 25+ meetings per month works especially well: it names the work, the pace and who received the meetings. Your experience leads, and the Account Executive headline matches your current job.",
+      "Let's add a time period to the $1.4M and spell out your part in demos and pilots. Your resume isn't likely to be the main thing holding you back; how competitive an Account Executive job is will also matter."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Account Executive, line 2",
+        "line": "Closed $1.4M in new business",
+        "cannot_tell": "Closing $1.4M is a concrete result, but a recruiter can't tell the period it covers or the kinds of customers you sold to.",
+        "example": "Closed $1.4M in new business with [customer type] in [time period]",
+        "question": "What period does the $1.4M cover, and what kinds of customers did you sell to?"
+      },
+      {
+        "kind": "line",
+        "where": "Account Executive, line 5",
+        "line": "Partnered with solutions engineers on demos and pilots",
+        "cannot_tell": "A recruiter can see who you worked with, but not your part in the demos and pilots. What did you handle alongside the solutions engineers?",
+        "example": "Partnered with solutions engineers on demos and pilots, handling [your contribution]",
+        "question": "What did you handle in the demos and pilots?"
+      },
+      {
+        "kind": "keep",
+        "where": "Sales Development Representative, line 1",
+        "line": "Booked 25+ meetings per month for the account executive team",
+        "cannot_tell": "Keep this as a model: it ties an action you owned to a measurable pace without making a recruiter guess what the number represents.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Account Executive",
+        "Sales Development Representative"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "Your recent work points most directly to Account Executive roles. The sales development role shows the path into full-cycle sales, and the current role gives a recruiter concrete sales results.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 86
+  },
+  "presentation": {
+    "score": 86,
+    "band": "Clear and specific",
+    "model_score": 86,
+    "lifted_by_employer": false,
+    "verdict": "An Account Executive with quota attainment, new-business sales and a clear promotion into the role.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 105,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Account Executive, line 2",
+        "line": "Closed $1.4M in new business",
+        "blanks": 2,
+        "question": "What period does the $1.4M cover, and what kinds of customers did you sell to?"
+      },
+      {
+        "kind": "line",
+        "where": "Account Executive, line 5",
+        "line": "Partnered with solutions engineers on demos and pilots",
+        "blanks": 1,
+        "question": "What did you handle in the demos and pilots?"
+      },
+      {
+        "kind": "keep",
+        "where": "Sales Development Representative, line 1",
+        "line": "Booked 25+ meetings per month for the account executive team",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "line": 2,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Account Executive",
+        "Sales Development Representative"
+      ],
+      "level": "Experienced individual contributor",
+      "note": "Your recent work points most directly to Account Executive roles. The sales development role shows the path into full-cycle sales, and the current role gives a recruiter concrete sales results.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00637475,
+  "latency_ms": 13094
+}

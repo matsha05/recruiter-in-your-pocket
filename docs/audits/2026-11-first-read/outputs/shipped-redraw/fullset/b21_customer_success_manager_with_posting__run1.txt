@@ -1,0 +1,43 @@
+# b21_customer_success_manager_with_posting, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt (180 words), posting: ../2026-11-live-judgment/resumes/b_posting_customer_success_manager.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0095; 18.9s
+Case note: The same resume with a posting attached.
+
+## Mostly clear (score 77; model wrote 77)
+## Verdict
+A mid-market customer success manager with a defined account book but no stated renewal results.
+
+## Write-up
+Your resume tells a coherent story: you moved from customer support into managing mid-market payroll software accounts at Brightline Payroll Software. A recruiter can see the work and would likely move it forward, but would have questions about renewal results, especially for this posting.
+
+Your strongest line is the one naming your 48 accounts and their industries. It gives the customer success role a concrete shape right away. The posting asks for a larger book and retention targets; your resume doesn't say what revenue your book represents or how it performed against targets.
+
+Let's start with the renewal strategy line, then add what you can about your QBR sponsors and onboarding checklist. Your Gainsight and Salesforce experience belongs in the conversation too, but the resume doesn't show whether you used usage data or a BI tool.
+
+## Cards (4; {"keep":1,"line":3}); severity off; added []
+1. [keep] Customer Success Manager, line 1
+   line: "Manage a book of 48 mid-market accounts across healthcare and manufacturing"
+   can't tell: Keep this as a model. It names the work, the customers and the number of accounts without making a recruiter guess.
+2. [line] Customer Success Manager, line 2
+   line: "Run quarterly business reviews with customer finance and HR leads"
+   can't tell: The meeting and participants are clear, but the posting asks for VP-level sponsors. The resume doesn't say whether these leads were at that level or what decisions came out of the reviews.
+   example: Run quarterly business reviews with customer finance and HR leads at [sponsor level], covering [topics] and [decisions]
+   question: What level were the sponsors, and what topics and decisions did the reviews cover?
+3. [line] Customer Success Manager, line 3
+   line: "Partnered with Sales on renewal strategy for at-risk accounts"
+   can't tell: A recruiter can see that you worked with Sales, but not what part of the strategy was yours or what happened to the renewals. Those details matter for a role accountable for retention.
+   example: Partnered with Sales on renewal strategy for at-risk accounts, contributing [your work]; [renewal result]
+   question: What did you contribute to the renewal strategy, and what renewal results can you share?
+4. [line] Customer Success Manager, line 4
+   line: "Built an onboarding checklist now used by the whole CS team"
+   can't tell: Team-wide use makes this worth keeping. Add what the checklist covers and what changed after the team started using it.
+   example: Built an onboarding checklist covering [checklist contents], now used by the whole CS team; [result]
+   question: What does the checklist cover, and what changed after the team adopted it?
+
+## Fit
+Roles: ["Customer Success Manager","Customer Success Manager, Mid-Market"]
+Level: Experienced individual contributor
+Note: The main mismatch is that the posting asks for measured retention and expansion results, while your resume doesn't state them; its target book is also larger than the 48 accounts you manage. Your mid-market SaaS work, QBRs, onboarding and Sales partnership align well. Add any real experience with usage data, VP-level sponsors, feature requests and a BI tool if you have it.
+Posting: Mid-market SaaS customer success role owning renewals, expansion, onboarding and executive reviews, with retention targets and data-driven account management.
+Missing: ["A track record of hitting retention or expansion targets, with numbers you can talk about","a BI tool such as Looker","Experience running QBRs with VP-level sponsors","Identify at-risk accounts early using product usage data","log and prioritize feature requests"]

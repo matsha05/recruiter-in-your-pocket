@@ -1,0 +1,48 @@
+# h2_thin_resume, run 1
+Resume: ../2026-11-live-judgment/resumes/h2_thin_resume.txt (126 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 1c0fe4fe; severity check off
+Outcome: report; cost $0.0073; 16.3s
+Case note: Student: one internship, coursework, a club.
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+A data analytics intern with useful tools, but too little detail about what the work produced.
+
+## Write-up
+You're an Information student with a data analytics internship at Great Lakes Credit Union and a treasurer role in the Michigan Data Science Club. It's common for an internship resume to list tasks this way, but these lines won't stand out in a pile: a recruiter can see your tools, not enough of what you did with them.
+
+The Tableau dashboard is the best model here because it names the deliverable, the tool and the team it was for. Education first makes sense while you're still completing your degree.
+
+Let's start with the Great Lakes Credit Union role. Add what the weekly reports tracked and what part of them was yours, then tell us what the dashboard showed and what you found in the survey data.
+
+## Cards (5; {"line":5}); severity off; added []
+1. [line] Data Analytics Intern, line 1
+   line: "Assisted the analytics team with weekly reporting"
+   can't tell: A recruiter can't tell what was in the reports or what part of them you handled. Weekly reporting could cover a lot of different work.
+   example: Assisted the analytics team with weekly reporting on [what the reports tracked] by [what you did]
+   question: What did the reports track, and what part of preparing them was yours?
+2. [line] Data Analytics Intern, line 2
+   line: "Cleaned member survey data in Excel and SQL"
+   can't tell: Excel and SQL show the tools you used, and member surveys give the work a subject. What's missing is what you did to the data and what it was used for.
+   example: Cleaned member survey data in Excel and SQL by [what you did] for [what the data was used for]
+   question: What did you do to clean the survey data, and what was it used for?
+3. [line] Data Analytics Intern, line 3
+   line: "Built a dashboard in Tableau for the marketing team"
+   can't tell: This names the dashboard and its audience, but not what it showed. That detail would tell a recruiter more about the analysis you built.
+   example: Built a dashboard in Tableau for the marketing team to track [what the dashboard showed]
+   question: What did the dashboard show the marketing team?
+4. [line] Data Analytics Intern, line 4
+   line: "Presented findings to the team at the end of the internship"
+   can't tell: Presenting findings is useful work, but a recruiter can't tell what you found or which analysis you presented.
+   example: Presented findings on [analysis topic] to the team at the end of the internship, including [finding]
+   question: Which analysis did you present, and what was one finding?
+5. [line] Treasurer, Michigan Data Science Club, line 2
+   line: "Help organize monthly speaker events"
+   can't tell: The monthly events are concrete, but 'help' leaves your part open. Did you contact speakers, coordinate logistics or do something else?
+   example: Help organize monthly speaker events by [what you do]
+   question: What do you handle when organizing the speaker events?
+
+## Fit
+Roles: ["Data Analytics Intern"]
+Level: Entry level, one data analytics internship and a degree in progress
+Note: Your experience points toward data analytics internships. The strongest next step for this resume is to show what your analyses and dashboard covered.

@@ -1,0 +1,35 @@
+# b05_paralegal, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_paralegal_1.txt (144 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5827dcf1; severity check off
+Outcome: report; cost $0.0095; 21.8s
+
+## Mostly clear (score 79; model wrote 79)
+## Verdict
+A senior litigation paralegal with substantial document production and trial support work, with a few responsibilities left unexplained.
+
+## Write-up
+Your resume points to senior litigation paralegal work: commercial and employment cases at Harlan & Pike, following personal injury work at Summit Legal Group. A recruiter can see the documents you handle and the attorneys you support, though the trial and docketing work leave a couple of questions.
+
+The Relativity line is a strong model: it names the work, the tool and the page count without overstating it. Your experience leads, and the certificate and education are easy to find.
+
+Start with the two jury trials, then add a little more about how you handle deadlines. You don't need a number on every line; the named documents and filings already tell a recruiter what much of your work involves.
+
+## Cards (3; {"keep":1,"line":2}); severity off; added []
+1. [keep] Senior Litigation Paralegal, line 2
+   line: "Manage document productions of up to 250,000 pages in Relativity"
+   can't tell: Keep this as a model. A recruiter can see both what you manage and how large a production can be, with the tool right there.
+2. [line] Senior Litigation Paralegal, line 4
+   line: "Prepare trial binders and exhibits; supported two jury trials in 2025"
+   can't tell: The two jury trials are worth keeping, but a recruiter can't tell what your support for those trials involved. The binders and exhibits name useful work; add any trial support you provided beyond them.
+   example: Prepare trial binders and exhibits; supported two jury trials in 2025 by [trial support tasks]
+   question: What did your support for the two jury trials involve, including any work beyond preparing binders and exhibits?
+3. [line] Senior Litigation Paralegal, line 5
+   line: "Track court deadlines in the firm's docketing system"
+   can't tell: A recruiter can see that you track deadlines, but not how many cases you track or what you do with the information. Those details would show more of your day-to-day responsibility.
+   example: Track court deadlines in the firm's docketing system for [number] cases and [what you do with deadline information]
+   question: How many cases do you track, and what do you do with the deadline information?
+
+## Fit
+Roles: ["Senior Litigation Paralegal","Paralegal"]
+Level: Senior paralegal, supporting four partners and managing document productions
+Note: Your recent work points toward litigation paralegal roles, particularly those involving commercial and employment cases. Your earlier personal injury work adds another area of litigation experience.

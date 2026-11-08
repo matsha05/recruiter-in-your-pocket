@@ -1,0 +1,35 @@
+# b02_teacher, run 1
+Resume: ../2026-11-live-judgment/resumes/b_teacher.txt (202 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 01c2028d; severity check off
+Outcome: report; cost $0.0079; 15.8s
+
+## Clear and specific (score 86; model wrote 86)
+## Verdict
+An experienced elementary teacher whose classroom results and grade-level leadership are easy to see.
+
+## Write-up
+Your resume makes your teaching work concrete! A recruiter can follow you from 2nd grade at Whitman to 4th grade at Lincoln Heights, with class sizes, reading growth and team leadership alongside the work.
+
+The grade-level team line is a useful model: it names the four teachers and the weekly planning and data meetings. Your Washington certification and English Language Learner endorsement are easy to find, too.
+
+Let's add the teaching practices behind the reading growth, then say what you contributed to the behavior support committee. Your resume does its job; how competitive a teaching opening is matters too.
+
+## Cards (3; {"keep":1,"line":2}); severity off; added []
+1. [keep] 4th Grade Teacher, line 3
+   line: "Lead the grade-level team of 4 teachers in weekly planning and data meetings"
+   can't tell: Keep this as a model. It tells a recruiter who you lead and what the team meets to do.
+2. [line] 4th Grade Teacher, line 2
+   line: "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years"
+   can't tell: The reading growth is substantial, but a recruiter can't tell what you did in the classroom to raise it.
+   example: Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years through [teaching practices]
+   question: What teaching practices did you use to raise reading growth?
+3. [line] 2nd Grade Teacher, line 3
+   line: "Served on the school's positive behavior support committee"
+   can't tell: Serving on the committee tells a recruiter where you participated, but not what you contributed to its work.
+   example: Served on the school's positive behavior support committee and [what you contributed]
+   question: What did you contribute to the committee?
+
+## Fit
+Roles: ["4th Grade Teacher","2nd Grade Teacher"]
+Level: Experienced classroom teacher, leads a grade-level team of 4 teachers
+Note: Your experience points to elementary classroom teaching, with team leadership and an English Language Learner endorsement. Your Washington certificate covers Elementary Education K-8.

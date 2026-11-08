@@ -1,0 +1,31 @@
+# fr01a_backend_ic_no_posting, run 1
+Resume: resumes/fr01_backend_ic_senior.txt (236 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 8653a31c; severity check off
+Outcome: report; cost $0.0127; 15.5s
+Case note: P1. Senior backend IC, no direct reports, no posting. Expect the role read as Senior Backend Engineer and a level that says IC, no reports.
+
+## Clear and specific (score 90; model wrote 90)
+## Verdict
+A senior backend engineer with substantial payments work and results a recruiter can follow.
+
+## Write-up
+Your resume is strong! At Lumen Ledger, you show the systems you built, the technology behind them, and how they perform. The earlier freight and insurance roles add a clear backend engineering path.
+
+The balance API line is a great model: it names the change you made and puts the latency before and after it side by side. Your senior headline fits the work, and Experience leads Education where it should.
+
+I'd leave the payments work alone and add a little more about what maintaining claims intake involved at Northgate. Your resume isn't likely to be the thing standing between you and a callback; the competitiveness of the roles you choose matters too.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Senior Software Engineer, Payments Platform, line 3
+   line: "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache"
+   can't tell: Keep this as a model. It connects a technical decision to a measured improvement without making the reader guess what was measured.
+2. [line] Software Engineer, Northgate Insurance, line 1
+   line: "Maintained the claims intake services in Java"
+   can't tell: The service and language are named, but maintenance can mean several different kinds of work. What did you change or fix in claims intake?
+   example: Maintained the claims intake services in Java by [maintenance work]
+   question: What maintenance work did you do on the claims intake services?
+
+## Fit
+Roles: ["Senior Backend Engineer","Senior Software Engineer, Payments Platform"]
+Level: Senior individual contributor, leads migrations and mentors two engineers
+Note: Your experience points to senior backend engineering, particularly on payments and other transaction-heavy systems. The payouts service, ledger migration, and API work show both technical ownership and the scale of the systems you worked on.

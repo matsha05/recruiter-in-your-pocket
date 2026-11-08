@@ -1,0 +1,25 @@
+# b05_paralegal, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_paralegal_1.txt (144 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5cba8f05; severity check off
+Outcome: report; cost $0.0059; 12.2s
+
+## Clear and specific (score 90; model wrote 90)
+## Verdict
+A senior litigation paralegal whose resume makes the casework and production size easy to grasp.
+
+## Write-up
+Your resume tells a strong litigation story: you moved from personal injury work at Summit Legal Group to commercial and employment cases at Harlan & Pike. The work is specific, from discovery drafting to trial preparation, and a recruiter doesn't have to guess what you handle.
+
+The Relativity line is a standout: it names the work, the tool and the largest production size you've handled. Your current role also shows the attorneys you support and your jury trial experience. Experience sits above education, and the dates are easy to follow.
+
+Your resume is in good shape to send for senior litigation paralegal roles. It's unlikely to be the weak point; the cases a firm handles and how competitive the opening is will matter too.
+
+## Cards (1; {"keep":1}); severity off; added []
+1. [keep] Senior Litigation Paralegal, line 2
+   line: "Manage document productions of up to 250,000 pages in Relativity"
+   can't tell: Keep this as a model. It puts your responsibility, the platform and the production size together without overstating the count.
+
+## Fit
+Roles: ["Senior Litigation Paralegal","Paralegal"]
+Level: Senior paralegal, supporting four partners and managing document productions
+Note: Your experience points toward litigation teams handling commercial and employment cases. Your earlier personal injury work adds another area of case experience.

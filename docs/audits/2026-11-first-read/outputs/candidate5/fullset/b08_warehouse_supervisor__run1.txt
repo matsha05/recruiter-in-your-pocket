@@ -1,0 +1,45 @@
+# b08_warehouse_supervisor, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_warehouse_supervisor_1.txt (173 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ab8cd5a5; severity check off
+Outcome: report; cost $0.0091; 18.7s
+
+## Mostly clear (score 73; model wrote 73)
+## Verdict
+A distribution supervisor with a clear path from picker to leading an outbound shift, but few results attached.
+
+## Write-up
+Your resume shows a clear progression from order picker to Shift Supervisor at Sierra Freight Distribution. A recruiter can see the people and work you supervise, so this is likely to move forward for another operations supervisor role, with questions about what your work changed.
+
+The night-shift line is your best model: it names the 35 associates and the work they cover. Your certifications and warehouse equipment experience also give the distribution story a solid foundation.
+
+Let's start with the current role. Add the daily order volume behind your labor decisions and what new leads learn from you. Then show your part in the scanner rollout so that earlier work doesn't get lost behind 'helped.'
+
+## Cards (5; {"keep":1,"line":4}); severity off; added []
+1. [keep] Shift Supervisor, line 1
+   line: "Supervise a night shift of 35 associates across picking, packing, and loading"
+   can't tell: Keep this as a model. It tells a recruiter who you supervise and what the shift handles, without making them guess.
+2. [line] Shift Supervisor, line 2
+   line: "Schedule labor and assign zones based on daily order volume"
+   can't tell: A recruiter can see the decision you make, but not the order volume behind it. That would help them compare your shift with the operation they're hiring for.
+   example: Schedule labor and assign zones based on daily order volume of [number] orders
+   question: What daily order volume do you schedule labor around?
+3. [line] Shift Supervisor, line 5
+   line: "Train new leads on the warehouse management system"
+   can't tell: Training new leads is useful supervisory work. What you teach them to do in the system would show a recruiter what the training covers.
+   example: Train new leads on the warehouse management system, including [tasks taught]
+   question: What tasks do you teach new leads to do in the warehouse management system?
+4. [line] Lead Associate, line 2
+   line: "Covered for the supervisor during vacations"
+   can't tell: Covering for the supervisor suggests trust, but a recruiter can't tell which responsibilities you took on in that role.
+   example: Covered for the supervisor during vacations, handling [responsibilities]
+   question: Which supervisor responsibilities did you handle during vacations?
+5. [line] Lead Associate, line 3
+   line: "Helped roll out handheld scanners on the pick floor"
+   can't tell: 'Helped' leaves your part in the scanner rollout open. Name what you did while keeping the credit at the right level.
+   example: Helped roll out handheld scanners on the pick floor by [your contribution]
+   question: What did you do to help roll out the handheld scanners?
+
+## Fit
+Roles: ["Shift Supervisor, Outbound Operations","Lead Associate"]
+Level: Supervisor, leading a night shift of 35 associates
+Note: Your experience points toward outbound and distribution supervision. Adding what changed under your supervision would make that case stronger.

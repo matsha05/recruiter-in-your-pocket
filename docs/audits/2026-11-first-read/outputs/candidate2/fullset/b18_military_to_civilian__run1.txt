@@ -1,0 +1,30 @@
+# b18_military_to_civilian, run 1
+Resume: ../2026-11-live-judgment/resumes/b_military_to_civilian.txt (268 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 41bcacc0; severity check off
+Outcome: report; cost $0.0063; 11.6s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A logistics and maintenance leader whose Army work shows the people, equipment, and results behind it.
+
+## Write-up
+Your resume makes a strong case for an operations supervisor role! It follows your progression from mechanic to Platoon Sergeant and shows the people, equipment, and logistics you led. The numbers give a civilian recruiter something concrete to compare.
+
+The vehicle readiness line is the model: it shows the rate before and after, the time it took, and the changes you made. Your experience comes before education, and your supervisor goal is easy to find at the top.
+
+Add what you taught the junior mechanics, then consider explaining military terms such as mission-capable for civilian readers. Your resume isn't likely to be the thing holding you back; the competitiveness of the jobs you choose will matter too.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Platoon Sergeant, line 4
+   line: "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule"
+   can't tell: Keep this as a model. A recruiter can see both the maintenance problem and the decisions you made to address it.
+2. [line] Wheeled Vehicle Mechanic, line 2
+   line: "Trained 9 junior mechanics"
+   can't tell: A recruiter can see how many mechanics you trained, but not what you taught them. The subject would show what you passed on to the team.
+   example: Trained 9 junior mechanics in [training topics]
+   question: What did you teach the junior mechanics?
+
+## Fit
+Roles: ["operations supervisor","Platoon Sergeant (E-7), Forward Support Company","Maintenance Section Sergeant (E-6)"]
+Level: Supervisor, led 38 soldiers and evaluated 6 direct-report sergeants
+Note: Your experience points toward operations, logistics, and maintenance supervision. The team leadership and equipment accountability give civilian employers concrete work to consider.

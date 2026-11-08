@@ -1,0 +1,108 @@
+{
+  "batch": "holes",
+  "model": "gpt-6.1-terra",
+  "effort": "medium",
+  "today": "2026-11-07",
+  "severity_check": false,
+  "budget_usd": 1.5,
+  "spent_usd": 0.0943501,
+  "calls": 8,
+  "runs": [
+    {
+      "stem": "h4a_academic_cv_15_pages__run1",
+      "outcome": "request_refused",
+      "cost_usd": 0,
+      "score": null,
+      "band": null,
+      "cards": null,
+      "structural_from_model": null,
+      "severity_added": null,
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "h3_strong_resume__run1",
+      "outcome": "report",
+      "cost_usd": 0.00793375,
+      "score": 89,
+      "band": "Clear and specific",
+      "cards": 4,
+      "structural_from_model": 0,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "h4b_academic_cv_under_cap__run1",
+      "outcome": "report",
+      "cost_usd": 0.0247675,
+      "score": 68,
+      "band": "Needs more context",
+      "cards": 3,
+      "structural_from_model": 1,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "h2_thin_resume__run1",
+      "outcome": "report",
+      "cost_usd": 0.0101225,
+      "score": 64,
+      "band": "Needs more context",
+      "cards": 8,
+      "structural_from_model": 2,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "h1_bad_resume__run1",
+      "outcome": "report",
+      "cost_usd": 0.0130575,
+      "score": 46,
+      "band": "Needs more context",
+      "cards": 12,
+      "structural_from_model": 4,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "h5_mismatched_posting__run1",
+      "outcome": "report",
+      "cost_usd": 0.00679835,
+      "score": 90,
+      "band": "Clear and specific",
+      "cards": 1,
+      "structural_from_model": 0,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "h4c_one_paragraph__run1",
+      "outcome": "report",
+      "cost_usd": 0.02001675,
+      "score": 90,
+      "band": "Clear and specific",
+      "cards": 1,
+      "structural_from_model": 0,
+      "severity_added": [],
+      "repaired": true,
+      "refusal": "The model response failed the worklist contract at score: is 82 with no card that needs work; a page with nothing to fix scores at least 90."
+    },
+    {
+      "stem": "h6_unverifiable_claim__run1",
+      "outcome": "report",
+      "cost_usd": 0.01165375,
+      "score": 64,
+      "band": "Needs more context",
+      "cards": 11,
+      "structural_from_model": 1,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    }
+  ]
+}

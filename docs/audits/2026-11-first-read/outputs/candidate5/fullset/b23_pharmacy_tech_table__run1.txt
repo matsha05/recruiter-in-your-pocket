@@ -1,0 +1,31 @@
+# b23_pharmacy_tech_table, run 1
+Resume: ../2026-11-live-judgment/resumes/b_pharmacy_tech_table.txt (209 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ab8cd5a5; severity check off
+Outcome: report; cost $0.0068; 14.3s
+Case note: Tables rendered to tab-separated text.
+
+## Clear and specific (score 87; model wrote 87)
+## Verdict
+An inpatient pharmacy technician with sterile compounding, retail experience, and a California license.
+
+## Write-up
+This is a strong pharmacy technician resume! Your Sutter Valley work shows sterile compounding, cabinet restocking, and technician training, with numbers that let a recruiter picture the work.
+
+The cabinet restocking line is a model: it names the six nursing units and shows how stockout reports changed. Your California license and sterile compounding certification also make your qualifications easy to find.
+
+Start with the RiteCare prescription line and explain what you checked when you verified prescriptions. For pharmacy technician roles, your resume is unlikely to be the thing holding you back on its own; the competition and fit with a particular pharmacy matter too.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Pharmacy Technician II, cabinet restocking
+   line: "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024"
+   can't tell: Keep this as your model. It puts your responsibility and the change in stockout reports together without making a recruiter guess which part of the pharmacy you worked with.
+2. [line] Pharmacy Technician, prescription filling
+   line: "Pharmacy Technician Filled and verified prescriptions for a store doing 350 scripts a day"
+   can't tell: A recruiter can see the store's volume, but not what you checked when you verified prescriptions. Naming that check would distinguish your work from the pharmacist's final review.
+   example: Filled prescriptions and verified [what you checked] for a store doing 350 scripts a day
+   question: What did you check when you verified prescriptions?
+
+## Fit
+Roles: ["Pharmacy Technician II","Pharmacy Technician"]
+Level: Experienced technician, Pharmacy Technician II with sterile compounding and training duties
+Note: Your experience points toward inpatient pharmacy technician work, particularly sterile compounding, as well as retail pharmacy roles. Your California license and CPhT are easy to find.

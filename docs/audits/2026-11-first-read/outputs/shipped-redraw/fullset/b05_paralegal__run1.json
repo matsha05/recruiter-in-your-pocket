@@ -1,0 +1,246 @@
+{
+  "case_id": "b05_paralegal",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_paralegal_1.txt",
+  "resume_sha256": "1860914f19aa0734b31d49c2046f7d394bc16dd5acb16f4c1fd6ee102a7f8568",
+  "resume_words": 144,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T17:58:42.367Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5365,
+        "completion_tokens": 1537,
+        "total_tokens": 6902,
+        "cached_prompt_tokens": 4685,
+        "cache_write_prompt_tokens": 677,
+        "reasoning_tokens": 854
+      },
+      "cost_usd": 0.0087685,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 18082
+    }
+  ],
+  "resume_prompt_sha256": "0a19c3ee70395ec8fb0584d4bea1b93da77aeca37469b4d47211bc8568544f0c",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A litigation paralegal with substantial trial and document-production work, but an experience claim the jobs don't yet support.",
+    "write_up": [
+      "Your resume points to senior litigation paralegal work, from personal injury cases at Summit Legal Group to commercial and employment litigation at Harlan & Pike. A recruiter can see the work, but may hesitate over the seven-year claim: the earlier role lists personal injury, not commercial or employment cases.",
+      "The Relativity line is a strong model. It names the work, the tool, and how large a production can be. Your experience and education are easy to follow, and the two jury trials make your recent work concrete.",
+      "Start with the headline and make the years match the experience you can show. Then add what your trial support involved beyond the binders and exhibits, if there was more to it."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Litigation paralegal with seven years supporting commercial and employment cases.",
+        "cannot_tell": "The Harlan & Pike role names commercial and employment cases, but the earlier role names personal injury. A recruiter can't tell where the rest of the seven years in those areas comes from.",
+        "example": "Litigation paralegal with [years] supporting commercial and employment cases.",
+        "question": "How many years have you supported commercial and employment cases, and did that work include your time at Summit Legal Group?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Litigation Paralegal, line 2",
+        "line": "- Manage document productions of up to 250,000 pages in Relativity",
+        "cannot_tell": "Keep this as a model: the ownership is clear, and the page count gives a recruiter a sense of the productions you manage.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Litigation Paralegal, line 4",
+        "line": "- Prepare trial binders and exhibits; supported two jury trials in 2025",
+        "cannot_tell": "The binders and exhibits are clear, but the trial support could cover more. What did you handle for those trials?",
+        "example": "Prepare trial binders and exhibits; supported two jury trials in 2025 by [trial support work].",
+        "question": "What did you handle for the two jury trials, beyond preparing binders and exhibits?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Litigation Paralegal",
+        "Paralegal"
+      ],
+      "level": "Senior paralegal",
+      "note": "Your recent work points to litigation paralegal roles involving discovery, document production, and trial preparation. The headline needs to distinguish your total experience from your time supporting commercial and employment cases.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A litigation paralegal with substantial trial and document-production work, but an experience claim the jobs don't yet support.",
+    "write_up": [
+      "Your resume points to senior litigation paralegal work, from personal injury cases at Summit Legal Group to commercial and employment litigation at Harlan & Pike. A recruiter can see the work, but may hesitate over the seven-year claim: the earlier role lists personal injury, not commercial or employment cases.",
+      "The Relativity line is a strong model. It names the work, the tool, and how large a production can be. Your experience and education are easy to follow, and the two jury trials make your recent work concrete.",
+      "Start with the headline and make the years match the experience you can show. Then add what your trial support involved beyond the binders and exhibits, if there was more to it."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Litigation paralegal with seven years supporting commercial and employment cases.",
+        "cannot_tell": "The Harlan & Pike role names commercial and employment cases, but the earlier role names personal injury. A recruiter can't tell where the rest of the seven years in those areas comes from.",
+        "example": "Litigation paralegal with [years] supporting commercial and employment cases.",
+        "question": "How many years have you supported commercial and employment cases, and did that work include your time at Summit Legal Group?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Litigation Paralegal, line 2",
+        "line": "Manage document productions of up to 250,000 pages in Relativity",
+        "cannot_tell": "Keep this as a model: the ownership is clear, and the page count gives a recruiter a sense of the productions you manage.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Litigation Paralegal, line 4",
+        "line": "Prepare trial binders and exhibits; supported two jury trials in 2025",
+        "cannot_tell": "The binders and exhibits are clear, but the trial support could cover more. What did you handle for those trials?",
+        "example": "Prepare trial binders and exhibits; supported two jury trials in 2025 by [trial support work].",
+        "question": "What did you handle for the two jury trials, beyond preparing binders and exhibits?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Litigation Paralegal",
+        "Paralegal"
+      ],
+      "level": "Senior paralegal",
+      "note": "Your recent work points to litigation paralegal roles involving discovery, document production, and trial preparation. The headline needs to distinguish your total experience from your time supporting commercial and employment cases.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 68
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A litigation paralegal with substantial trial and document-production work, but an experience claim the jobs don't yet support.",
+    "write_up": [
+      "Your resume points to senior litigation paralegal work, from personal injury cases at Summit Legal Group to commercial and employment litigation at Harlan & Pike. A recruiter can see the work, but may hesitate over the seven-year claim: the earlier role lists personal injury, not commercial or employment cases.",
+      "The Relativity line is a strong model. It names the work, the tool, and how large a production can be. Your experience and education are easy to follow, and the two jury trials make your recent work concrete.",
+      "Start with the headline and make the years match the experience you can show. Then add what your trial support involved beyond the binders and exhibits, if there was more to it."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Litigation paralegal with seven years supporting commercial and employment cases.",
+        "cannot_tell": "The Harlan & Pike role names commercial and employment cases, but the earlier role names personal injury. A recruiter can't tell where the rest of the seven years in those areas comes from.",
+        "example": "Litigation paralegal with [years] supporting commercial and employment cases.",
+        "question": "How many years have you supported commercial and employment cases, and did that work include your time at Summit Legal Group?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Litigation Paralegal, line 2",
+        "line": "Manage document productions of up to 250,000 pages in Relativity",
+        "cannot_tell": "Keep this as a model: the ownership is clear, and the page count gives a recruiter a sense of the productions you manage.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Litigation Paralegal, line 4",
+        "line": "Prepare trial binders and exhibits; supported two jury trials in 2025",
+        "cannot_tell": "The binders and exhibits are clear, but the trial support could cover more. What did you handle for those trials?",
+        "example": "Prepare trial binders and exhibits; supported two jury trials in 2025 by [trial support work].",
+        "question": "What did you handle for the two jury trials, beyond preparing binders and exhibits?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Litigation Paralegal",
+        "Paralegal"
+      ],
+      "level": "Senior paralegal",
+      "note": "Your recent work points to litigation paralegal roles involving discovery, document production, and trial preparation. The headline needs to distinguish your total experience from your time supporting commercial and employment cases.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 68
+  },
+  "presentation": {
+    "score": 68,
+    "band": "Needs more context",
+    "model_score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A litigation paralegal with substantial trial and document-production work, but an experience claim the jobs don't yet support.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 119,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Litigation paralegal with seven years supporting commercial and employment cases.",
+        "blanks": 1,
+        "question": "How many years have you supported commercial and employment cases, and did that work include your time at Summit Legal Group?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Litigation Paralegal, line 2",
+        "line": "Manage document productions of up to 250,000 pages in Relativity",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Litigation Paralegal, line 4",
+        "line": "Prepare trial binders and exhibits; supported two jury trials in 2025",
+        "blanks": 1,
+        "question": "What did you handle for the two jury trials, beyond preparing binders and exhibits?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "line": 2,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Litigation Paralegal",
+        "Paralegal"
+      ],
+      "level": "Senior paralegal",
+      "note": "Your recent work points to litigation paralegal roles involving discovery, document production, and trial preparation. The headline needs to distinguish your total experience from your time supporting commercial and employment cases.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0087685,
+  "latency_ms": 18084
+}

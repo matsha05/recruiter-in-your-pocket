@@ -22,7 +22,7 @@ import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
 import { reconcileReport } from "@/lib/reports/report-integrity";
 import { candidateNameOf, formatReadTime, targetRoleOf } from "@/lib/reports/report-opening";
 import { isWorklistReport } from "@/lib/llm/worklist-schema";
-import { worklistTargetRole } from "@/lib/reports/worklist-presentation";
+import { hasRoleSection, worklistTargetRole } from "@/lib/reports/worklist-presentation";
 
 // Re-export specific props if needed, but mainly we ingest ReportData
 interface ReportPanelProps {
@@ -49,6 +49,7 @@ interface ReportPanelProps {
     onRetryAnalysis?: () => void;
     comparisonBaseline?: ReportData | null;
     onStartRevision?: () => void;
+    onReadAgainstPosting?: () => void;
     /** A report opened from My reports. Saved reports never keep the resume. */
     isSavedReport?: boolean;
     /** The reader's answers kept with a saved report (W3). */
@@ -85,6 +86,7 @@ export default function ReportPanel({
     onRetryAnalysis,
     comparisonBaseline = null,
     onStartRevision,
+    onReadAgainstPosting,
     isSavedReport = false,
     storedLineAnswers = null,
     readDurationMs = null,
@@ -195,7 +197,7 @@ export default function ReportPanel({
             {showReport && !isLoading && displayReport && (
                 <ReportLayout
                     mobileReading
-                    toc={<ReportTOC activeId={tocActiveId} hasKeep={hasKeepSection} hasRole={worklist ? Boolean(displayReport.fit?.note || displayReport.fit?.roles?.length) : Boolean(displayReport.job_alignment)} worklist={worklist} />}
+                    toc={<ReportTOC activeId={tocActiveId} hasKeep={hasKeepSection} hasRole={worklist ? isWorklistReport(displayReport) && hasRoleSection(displayReport) : Boolean(displayReport.job_alignment)} worklist={worklist} />}
                     head={
                         /* Whose resume, the role it reads toward, and how long the read took (W1, Nov 2, 2026). */
                         <>
@@ -329,6 +331,7 @@ export default function ReportPanel({
                                 hasPaidAccess={hasPaidAccess}
                                 comparisonBaseline={comparisonBaseline}
                                 onStartRevision={onStartRevision}
+                                onReadAgainstPosting={onReadAgainstPosting}
                                 onStartReport={onNewReport}
                                 resumeText={resumeText}
                                 resumeSource={isSample ? "sample" : isSavedReport ? "saved" : "recovered"}

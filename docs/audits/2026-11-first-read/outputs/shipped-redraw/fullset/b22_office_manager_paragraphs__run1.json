@@ -1,0 +1,227 @@
+{
+  "case_id": "b22_office_manager_paragraphs",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Paragraph format, no bullets.",
+  "resume_file": "../2026-11-live-judgment/resumes/b_office_manager_paragraphs.txt",
+  "resume_sha256": "ce33ce5aa6c528ef520a2ccc32684ac815b6084cea9e23d0a3885d92201fff58",
+  "resume_words": 219,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T17:59:45.185Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5444,
+        "completion_tokens": 1232,
+        "total_tokens": 6676,
+        "cached_prompt_tokens": 4685,
+        "cache_write_prompt_tokens": 756,
+        "reasoning_tokens": 579
+      },
+      "cost_usd": 0.00734225,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 14627
+    }
+  ],
+  "resume_prompt_sha256": "0a19c3ee70395ec8fb0584d4bea1b93da77aeca37469b4d47211bc8568544f0c",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 83,
+    "lifted_by_employer": false,
+    "verdict": "An office manager with law office, dental practice, and insurance experience, backed by concrete daily responsibilities.",
+    "write_up": [
+      "Your resume points clearly to office management, from supporting claims adjusters to running the front office at Harrod and Blake Law Office. A recruiter can see the work you handle and how much of it there is, though the long paragraphs make those details easy to miss.",
+      "The QuickBooks line is a strong model: it names client billing, roughly 90 invoices a month, and the monthly trust account reconciliation. The move from paper files to practice management software is another useful detail. Your experience is in the right place above education.",
+      "Let’s break each role into shorter bullets, starting with the law office. Give the software change and your supervision of receptionists their own lines, then add what your vendor contract work involves."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience",
+        "line": "The responsibilities for each role appear in a single paragraph.",
+        "cannot_tell": "Your billing, staff supervision, and software work are packed together. A recruiter scanning quickly could miss them.",
+        "example": "",
+        "question": "Which responsibilities would you put in separate bullets under each role?"
+      },
+      {
+        "kind": "line",
+        "where": "Office Manager, vendor contracts",
+        "line": "I handle scheduling for the attorneys, manage the firm's calendar of court dates and filing deadlines, order supplies, and handle vendor contracts for the copier, phones, and cleaning.",
+        "cannot_tell": "The vendors are named, but a recruiter can't tell what handling their contracts involves. That matters for an office manager who may be responsible for vendor relationships.",
+        "example": "I handle vendor contracts for the copier, phones, and cleaning, including [contract responsibilities].",
+        "question": "What do you do with the copier, phone, and cleaning contracts?"
+      },
+      {
+        "kind": "keep",
+        "where": "Office Manager, bookkeeping",
+        "line": "I do the bookkeeping in QuickBooks, including client billing of roughly 90 invoices a month and the monthly trust account reconciliation.",
+        "cannot_tell": "Keep this as a model. It pairs a named tool with the work you do in it and gives a recruiter a useful measure of the billing.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Office Manager",
+        "Office Coordinator",
+        "Administrative Assistant"
+      ],
+      "level": "Experienced office manager",
+      "note": "Your experience points most directly to office management in a professional office. The dental and insurance roles also show front-desk and administrative work in other settings.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 83,
+    "lifted_by_employer": false,
+    "verdict": "An office manager with law office, dental practice, and insurance experience, backed by concrete daily responsibilities.",
+    "write_up": [
+      "Your resume points clearly to office management, from supporting claims adjusters to running the front office at Harrod and Blake Law Office. A recruiter can see the work you handle and how much of it there is, though the long paragraphs make those details easy to miss.",
+      "The QuickBooks line is a strong model: it names client billing, roughly 90 invoices a month, and the monthly trust account reconciliation. The move from paper files to practice management software is another useful detail. Your experience is in the right place above education.",
+      "Let’s break each role into shorter bullets, starting with the law office. Give the software change and your supervision of receptionists their own lines, then add what your vendor contract work involves."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience",
+        "line": "The responsibilities for each role appear in a single paragraph.",
+        "cannot_tell": "Your billing, staff supervision, and software work are packed together. A recruiter scanning quickly could miss them.",
+        "example": "",
+        "question": "Which responsibilities would you put in separate bullets under each role?"
+      },
+      {
+        "kind": "line",
+        "where": "Office Manager, vendor contracts",
+        "line": "Office Manager, Harrod and Blake Law Office, Louisville, KY, May 2018 to present. I run the front office for a six-attorney firm. I handle scheduling for the attorneys, manage the firm's calendar of court dates and filing deadlines, order supplies, and handle vendor contracts for the copier, phones, and cleaning. I do the bookkeeping in QuickBooks, including client billing of roughly 90 invoices a month and the monthly trust account reconciliation. I hired and supervise two receptionists and I onboarded the firm's new practice management software in 2022, which replaced paper files for all new matters.",
+        "cannot_tell": "The vendors are named, but a recruiter can't tell what handling their contracts involves. That matters for an office manager who may be responsible for vendor relationships.",
+        "example": "I handle vendor contracts for the copier, phones, and cleaning, including [contract responsibilities].",
+        "question": "What do you do with the copier, phone, and cleaning contracts?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Office Manager",
+        "Office Coordinator",
+        "Administrative Assistant"
+      ],
+      "level": "Experienced office manager",
+      "note": "Your experience points most directly to office management in a professional office. The dental and insurance roles also show front-desk and administrative work in other settings.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 83
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 83,
+    "lifted_by_employer": false,
+    "verdict": "An office manager with law office, dental practice, and insurance experience, backed by concrete daily responsibilities.",
+    "write_up": [
+      "Your resume points clearly to office management, from supporting claims adjusters to running the front office at Harrod and Blake Law Office. A recruiter can see the work you handle and how much of it there is, though the long paragraphs make those details easy to miss.",
+      "The QuickBooks line is a strong model: it names client billing, roughly 90 invoices a month, and the monthly trust account reconciliation. The move from paper files to practice management software is another useful detail. Your experience is in the right place above education.",
+      "Let’s break each role into shorter bullets, starting with the law office. Give the software change and your supervision of receptionists their own lines, then add what your vendor contract work involves."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience",
+        "line": "The responsibilities for each role appear in a single paragraph.",
+        "cannot_tell": "Your billing, staff supervision, and software work are packed together. A recruiter scanning quickly could miss them.",
+        "example": "",
+        "question": "Which responsibilities would you put in separate bullets under each role?"
+      },
+      {
+        "kind": "line",
+        "where": "Office Manager, vendor contracts",
+        "line": "Office Manager, Harrod and Blake Law Office, Louisville, KY, May 2018 to present. I run the front office for a six-attorney firm. I handle scheduling for the attorneys, manage the firm's calendar of court dates and filing deadlines, order supplies, and handle vendor contracts for the copier, phones, and cleaning. I do the bookkeeping in QuickBooks, including client billing of roughly 90 invoices a month and the monthly trust account reconciliation. I hired and supervise two receptionists and I onboarded the firm's new practice management software in 2022, which replaced paper files for all new matters.",
+        "cannot_tell": "The vendors are named, but a recruiter can't tell what handling their contracts involves. That matters for an office manager who may be responsible for vendor relationships.",
+        "example": "I handle vendor contracts for the copier, phones, and cleaning, including [contract responsibilities].",
+        "question": "What do you do with the copier, phone, and cleaning contracts?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Office Manager",
+        "Office Coordinator",
+        "Administrative Assistant"
+      ],
+      "level": "Experienced office manager",
+      "note": "Your experience points most directly to office management in a professional office. The dental and insurance roles also show front-desk and administrative work in other settings.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 83
+  },
+  "presentation": {
+    "score": 83,
+    "band": "Mostly clear",
+    "model_score": 83,
+    "lifted_by_employer": false,
+    "verdict": "An office manager with law office, dental practice, and insurance experience, backed by concrete daily responsibilities.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 123,
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience",
+        "line": "The responsibilities for each role appear in a single paragraph.",
+        "blanks": 0,
+        "question": "Which responsibilities would you put in separate bullets under each role?"
+      },
+      {
+        "kind": "line",
+        "where": "Office Manager, vendor contracts",
+        "line": "Office Manager, Harrod and Blake Law Office, Louisville, KY, May 2018 to present. I run the front office for a six-attorney firm. I handle scheduling for the attorneys, manage the firm's calendar of court dates and filing deadlines, order supplies, and handle vendor contracts for the copier, phones, and cleaning. I do the bookkeeping in QuickBooks, including client billing of roughly 90 invoices a month and the monthly trust account reconciliation. I hired and supervise two receptionists and I onboarded the firm's new practice management software in 2022, which replaced paper files for all new matters.",
+        "blanks": 1,
+        "question": "What do you do with the copier, phone, and cleaning contracts?"
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "structure": 1,
+      "line": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Office Manager",
+        "Office Coordinator",
+        "Administrative Assistant"
+      ],
+      "level": "Experienced office manager",
+      "note": "Your experience points most directly to office management in a professional office. The dental and insurance roles also show front-desk and administrative work in other settings.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00734225,
+  "latency_ms": 14630
+}

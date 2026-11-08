@@ -1,0 +1,30 @@
+# b03_welder, run 1
+Resume: ../2026-11-live-judgment/resumes/b_welder.txt (195 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 01c2028d; severity check off
+Outcome: report; cost $0.0061; 11.8s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+An experienced welder whose certifications, fit-up work and inspection record make a strong case.
+
+## Write-up
+Your resume makes a strong case for welding work! At Maumee Steel Fabricators, you show the materials, processes and tolerances behind your work; at Great Lakes Mechanical, you add process piping and shutdown experience.
+
+The Riverfront Tower inspection line is the model: it names the job, the inspection methods and about 900 welds. Your certifications are easy to find, and your experience comes before education.
+
+Let's add what you did during plant shutdowns, then leave the strong technical lines alone. Your resume is unlikely to be the thing holding you back; the jobs available and how competitive they are still matter.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Welder / Fitter, line 3
+   line: "Passed every third-party UT and visual inspection on the Riverfront Tower job (about 900 welds)"
+   can't tell: Keep this as a model. It gives a recruiter a named project and a concrete inspection record rather than asking them to assume your work passed.
+2. [line] Pipe Welder, line 3
+   line: "Worked nights and weekends on plant shutdowns"
+   can't tell: The schedule is clear, but a recruiter can't tell what work you handled during the shutdowns.
+   example: Worked nights and weekends on plant shutdowns, handling [shutdown work]
+   question: What work did you handle during the plant shutdowns?
+
+## Fit
+Roles: ["Welder","Pipe Welder"]
+Level: Experienced welder, trains new hires
+Note: Your work points toward structural welding and fit-up, with earlier process piping experience. The listed structural and 6G certifications support both directions.

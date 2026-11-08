@@ -1,0 +1,34 @@
+# b24_physical_therapist_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_physical_therapist_strong_1.txt (154 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ab8cd5a5; severity check off
+Outcome: report; cost $0.0080; 17.3s
+
+## Clear and specific (score 87; model wrote 87)
+## Verdict
+A senior outpatient physical therapist with a clear patient caseload and a return-to-run program.
+
+## Write-up
+Your resume makes a strong case for senior outpatient orthopedic work! It connects your patient caseload with a program you built, mentoring, and patient-reported function scores.
+
+The return-to-run line is a model: it names what you built and how many patients completed it. Your Minnesota license and both clinical settings are also easy to find. A recruiter still can't tell how large North Loop Sports Rehab is or whose patients are included in the 92% figure.
+
+Add those two details if you can. Your resume is unlikely to be the reason you don't get a call back; competition for a particular role still matters.
+
+## Cards (3; {"structure":1,"keep":1,"line":1}); severity off; added []
+1. [structure] Senior Physical Therapist
+   line: "The North Loop Sports Rehab role doesn't say how large the employer is."
+   can't tell: A recruiter can't tell how large the practice is. That gives context for your senior role and the therapists you mentor.
+   question: How large is North Loop Sports Rehab?
+2. [keep] Senior Physical Therapist, line 2
+   line: "Built a return-to-run program that 85 patients completed in 2025"
+   can't tell: Keep this as a model. It pairs a program you built with a concrete count and timeframe, without claiming more than it says.
+3. [line] Senior Physical Therapist, line 4
+   line: "In 2025, 92% of discharged patients improved their patient-reported function scores"
+   can't tell: The improvement is worth keeping, but a recruiter can't tell whose discharged patients are counted. That matters when connecting the figure to your work.
+   example: In 2025, 92% of [which discharged patients] improved their patient-reported function scores
+   question: Whose discharged patients are included in the 92% figure?
+
+## Fit
+Roles: ["Senior Physical Therapist","Physical Therapist"]
+Level: Senior clinician, mentors 2 newer therapists
+Note: Your experience points toward senior outpatient orthopedic physical therapy. The return-to-run program and fall-prevention class also show work beyond individual treatment.

@@ -1,0 +1,215 @@
+{
+  "case_id": "b25_fpa_analyst_strong",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_fpa_analyst_strong_1.txt",
+  "resume_sha256": "e8604c5c03930c475f944d36090e8f6db4af1ffc417c634667c5450ff68f9cd2",
+  "resume_words": 138,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T21:31:25.627Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5784,
+        "completion_tokens": 1071,
+        "total_tokens": 6855,
+        "cached_prompt_tokens": 5154,
+        "cache_write_prompt_tokens": 627,
+        "reasoning_tokens": 486
+      },
+      "cost_usd": 0.00639945,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 12829
+    }
+  ],
+  "resume_prompt_sha256": "288eceb50a0848513f3205630fd7657627db9010f5f15a63cb442225501f834d",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "Senior FP&A work with a substantial budget and clear forecasting and pricing results.",
+    "write_up": [
+      "This is a strong FP&A resume! At Lakeshore Foods, you connect budget ownership, forecasting and pricing work to the business decisions they support. The move from plant reporting at Midway Brands to divisional FP&A tells a clear story.",
+      "The forecast line is the model to follow: it names what you built and shows how forecast error changed. Your current role also makes the budget and the people you present to clear, so a recruiter doesn't have to guess how the work fits into the division.",
+      "I'd make one small pass at the pricing line to show your part in the review. Your resume isn't likely to be the thing standing between you and a call back; the competition for a particular role will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "- Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "Keep this as your model. It pairs a concrete deliverable with a before-and-after measure, without making the reader hunt for either.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Financial Analyst, FP&A, line 3",
+        "line": "- Model price changes for 60 products; a 2025 pricing review added $3.1M in gross margin",
+        "cannot_tell": "The pricing work and margin result are both substantial, but your part in the review isn't explicit. Connect your work to the review if you can.",
+        "example": "Model price changes for 60 products; [your action] during the 2025 pricing review, which added $3.1M in gross margin",
+        "question": "What did you do during the 2025 pricing review?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A"
+      ],
+      "why": "Your headline and current role focus on budgeting, forecasting and pricing for consumer brands.",
+      "level": "senior, owns a $240M annual operating budget",
+      "note": "Your experience points toward senior FP&A roles supporting business planning and pricing decisions. The Power BI automation at Midway Brands adds a useful example of reporting improvement.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "Senior FP&A work with a substantial budget and clear forecasting and pricing results.",
+    "write_up": [
+      "This is a strong FP&A resume! At Lakeshore Foods, you connect budget ownership, forecasting and pricing work to the business decisions they support. The move from plant reporting at Midway Brands to divisional FP&A tells a clear story.",
+      "The forecast line is the model to follow: it names what you built and shows how forecast error changed. Your current role also makes the budget and the people you present to clear, so a recruiter doesn't have to guess how the work fits into the division.",
+      "I'd make one small pass at the pricing line to show your part in the review. Your resume isn't likely to be the thing standing between you and a call back; the competition for a particular role will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "Keep this as your model. It pairs a concrete deliverable with a before-and-after measure, without making the reader hunt for either.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Financial Analyst, FP&A, line 3",
+        "line": "Model price changes for 60 products; a 2025 pricing review added $3.1M in gross margin",
+        "cannot_tell": "The pricing work and margin result are both substantial, but your part in the review isn't explicit. Connect your work to the review if you can.",
+        "example": "Model price changes for 60 products; [your action] during the 2025 pricing review, which added $3.1M in gross margin",
+        "question": "What did you do during the 2025 pricing review?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A"
+      ],
+      "why": "Your headline and current role focus on budgeting, forecasting and pricing for consumer brands.",
+      "level": "senior, owns a $240M annual operating budget",
+      "note": "Your experience points toward senior FP&A roles supporting business planning and pricing decisions. The Power BI automation at Midway Brands adds a useful example of reporting improvement.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "Senior FP&A work with a substantial budget and clear forecasting and pricing results.",
+    "write_up": [
+      "This is a strong FP&A resume! At Lakeshore Foods, you connect budget ownership, forecasting and pricing work to the business decisions they support. The move from plant reporting at Midway Brands to divisional FP&A tells a clear story.",
+      "The forecast line is the model to follow: it names what you built and shows how forecast error changed. Your current role also makes the budget and the people you present to clear, so a recruiter doesn't have to guess how the work fits into the division.",
+      "I'd make one small pass at the pricing line to show your part in the review. Your resume isn't likely to be the thing standing between you and a call back; the competition for a particular role will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "Keep this as your model. It pairs a concrete deliverable with a before-and-after measure, without making the reader hunt for either.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Financial Analyst, FP&A, line 3",
+        "line": "Model price changes for 60 products; a 2025 pricing review added $3.1M in gross margin",
+        "cannot_tell": "The pricing work and margin result are both substantial, but your part in the review isn't explicit. Connect your work to the review if you can.",
+        "example": "Model price changes for 60 products; [your action] during the 2025 pricing review, which added $3.1M in gross margin",
+        "question": "What did you do during the 2025 pricing review?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A"
+      ],
+      "why": "Your headline and current role focus on budgeting, forecasting and pricing for consumer brands.",
+      "level": "senior, owns a $240M annual operating budget",
+      "note": "Your experience points toward senior FP&A roles supporting business planning and pricing decisions. The Power BI automation at Midway Brands adds a useful example of reporting improvement.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "presentation": {
+    "score": 89,
+    "band": "Clear and specific",
+    "model_score": 89,
+    "lifted_by_employer": false,
+    "verdict": "Senior FP&A work with a substantial budget and clear forecasting and pricing results.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 125,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Financial Analyst, FP&A, line 3",
+        "line": "Model price changes for 60 products; a 2025 pricing review added $3.1M in gross margin",
+        "blanks": 1,
+        "question": "What did you do during the 2025 pricing review?"
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "keep": 1,
+      "line": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A"
+      ],
+      "why": "Your headline and current role focus on budgeting, forecasting and pricing for consumer brands.",
+      "level": "senior, owns a $240M annual operating budget",
+      "note": "Your experience points toward senior FP&A roles supporting business planning and pricing decisions. The Power BI automation at Midway Brands adds a useful example of reporting improvement.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00639945,
+  "latency_ms": 12844
+}

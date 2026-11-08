@@ -1,0 +1,53 @@
+# fr02a_marketing_skills_no_posting, run 1
+Resume: resumes/fr02_marketing_coordinator_skills.txt (132 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ee57d907; severity check off
+Outcome: report; cost $0.0154; 19.4s
+Case note: P2. HubSpot, Salesforce and GA4 only in Skills; the bullets never name a tool. Expect one card on the skills line asking where they were used.
+
+## Needs more context (score 65; model wrote 65)
+## Verdict
+A B2B marketing coordinator whose resume names the work but often leaves their contribution unclear.
+
+## Write-up
+Your resume points to Marketing Coordinator roles, with B2B work at Brightfield Software and earlier marketing support at Keystone Benefits Group. It's common to list activities this way, but the Brightfield bullets don't yet show enough of your part or what the campaigns reached to stand out in a pile.
+
+The Keystone line about updating event pages and registration forms for regional broker events is your best model. It names the materials and the people they were for. Your experience is easy to follow and sits above Education.
+
+Let's start with Brightfield's newsletter, then work through the webinar, calendar and reports. Add the parts you handled and the campaign details you can confirm; you don't need to invent results.
+
+## Cards (6; {"line":6}); severity off; added []
+1. [line] Marketing Coordinator, line 1
+   line: "Coordinated the monthly customer newsletter and product announcement emails"
+   can't tell: Coordinated could cover several different jobs. A recruiter can't tell which parts of the newsletter were yours or how many people received it.
+   example: Coordinated the monthly customer newsletter for [number] recipients, including [what you did]
+   question: What parts of the newsletter did you handle, and how many recipients did it have?
+2. [line] Marketing Coordinator, line 2
+   line: "Supported webinar planning with the product marketing team"
+   can't tell: The team and project are named, but your part in planning is still a blank. What did you take care of?
+   example: Supported webinar planning with the product marketing team by [what you did]
+   question: What did you handle when planning the webinars?
+3. [line] Marketing Coordinator, line 3
+   line: "Managed the content calendar for LinkedIn and the company blog"
+   can't tell: A recruiter can see the channels, but not what managing the calendar involved. The work might include several different steps.
+   example: Managed the content calendar for LinkedIn and the company blog, including [what you managed]
+   question: What did you handle on the content calendar?
+4. [line] Marketing Coordinator, line 4
+   line: "Pulled weekly campaign reports for the marketing manager"
+   can't tell: The cadence and audience are clear, but the reports could cover many kinds of campaign activity. Name what you tracked.
+   example: Pulled weekly campaign reports covering [metrics] for the marketing manager
+   question: What metrics did the weekly campaign reports cover?
+5. [line] Marketing Assistant, line 2
+   line: "Helped prepare slide decks and one-pagers for the sales team"
+   can't tell: The deliverables and sales team are clear, but helped doesn't say which part you prepared.
+   example: Helped prepare slide decks and one-pagers for the sales team by [what you did]
+   question: What did you contribute to the slide decks and one-pagers?
+6. [line] Marketing Assistant, line 3
+   line: "Kept the brand asset library organized"
+   can't tell: A recruiter can't tell what organizing the library involved. One detail about the work would make your contribution more concrete.
+   example: Kept the brand asset library organized by [what you did]
+   question: What did you do to keep the brand asset library organized?
+
+## Fit
+Roles: ["Marketing Coordinator","Marketing Assistant"]
+Level: Coordinator, with a current coordinator role and an earlier assistant role
+Note: Your experience points toward B2B marketing coordinator work across email, webinars, content and reporting. The next step is to show more of your contribution within those activities.

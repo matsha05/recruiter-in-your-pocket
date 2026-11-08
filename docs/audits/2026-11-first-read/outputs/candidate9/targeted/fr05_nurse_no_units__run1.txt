@@ -1,0 +1,56 @@
+# fr05_nurse_no_units, run 1
+Resume: resumes/fr05_nurse_no_units.txt (140 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 338ac33a; severity check off
+Outcome: report; cost $0.0090; 18.8s
+Case note: P4 (nursing). Titles without a unit; RN with no state. Expect the unit and the license state asked for; no invented ratio.
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+A hospital nurse with charge and precepting duties, but too little detail about the patients and units.
+
+## Write-up
+Your resume shows hospital nursing at Riverside Methodist and Mount Carmel East, with charge and precepting duties in your current role. It's common for nursing resumes to list care this way, but these duties could fit many hospital jobs. A recruiter looking for a registered nurse would likely hesitate because the units, patient needs and patient load aren't clear.
+
+Your Epic line is a useful model: it names both the documentation you handled and the system you used. Your experience, nursing degree and RN, BLS and ACLS credentials are easy to find.
+
+Let's start with the Riverside role. Add the unit and patient load to the direct care line, then show what your weekend charge and precepting work involved. Those details can distinguish your nursing work without stretching what you did.
+
+## Cards (7; {"line":6,"keep":1}); severity off; added []
+1. [line] Riverside Registered Nurse, line 1
+   line: "Provide direct patient care for adult patients across 12-hour shifts"
+   can't tell: A recruiter can't tell which unit you work on or how many patients you typically care for. Both matter when comparing hospital nursing roles.
+   example: Provide direct patient care for [number] adult patients across 12-hour shifts on [unit]
+   question: Which unit do you work on, and how many patients do you typically care for on a shift?
+2. [line] Riverside Registered Nurse, line 2
+   line: "Administer medications and monitor patient response"
+   can't tell: Medication administration is central to nursing, but this doesn't show the kinds of medications or responses you monitor.
+   example: Administer [medication types] and monitor patient response for [responses monitored]
+   question: Which medications do you commonly administer, and what responses do you monitor?
+3. [line] Riverside Registered Nurse, line 3
+   line: "Educate patients and families on discharge plans"
+   can't tell: The discharge teaching is clear, but a recruiter can't tell what you prepare patients and families to manage.
+   example: Educate patients and families on discharge plans, including [teaching topics]
+   question: What do you typically teach patients and families before discharge?
+4. [line] Riverside Registered Nurse, line 4
+   line: "Serve as charge nurse on weekends"
+   can't tell: Charge duty is worth showing, but the line leaves your responsibilities and the number of nurses you coordinate unstated.
+   example: Serve as charge nurse on weekends, coordinating [number] nurses and [charge responsibilities]
+   question: How many nurses do you coordinate as charge nurse, and what are your main responsibilities?
+5. [line] Riverside Registered Nurse, line 5
+   line: "Precept new graduate nurses"
+   can't tell: Precepting shows you help new nurses learn, but a recruiter can't tell what you teach or how many nurses you've precepted.
+   example: Precept [number] new graduate nurses on [skills or duties]
+   question: How many new graduate nurses have you precepted, and what did you teach them?
+6. [line] Mount Carmel East Registered Nurse, line 1
+   line: "Cared for patients before and after surgery"
+   can't tell: This names the point in a patient's care, but not the nursing care you provided or the surgeries involved.
+   example: Cared for patients before and after [surgery types], providing [nursing care]
+   question: What kinds of surgeries did your patients have, and what care did you provide?
+7. [keep] Mount Carmel East Registered Nurse, line 2
+   line: "Documented assessments and care plans in Epic"
+   can't tell: Keep this. It gives a recruiter a concrete part of your nursing work and names the system you used. Bring that same level of detail to the care and teaching lines.
+
+## Fit
+Roles: ["Registered Nurse"]
+Level: Registered nurse with weekend charge and new graduate precepting duties
+Note: Your experience points toward hospital registered nurse roles. Naming your current unit and patient load would help a recruiter compare your work with a particular opening.

@@ -1,0 +1,30 @@
+# b23_pharmacy_tech_table, run 1
+Resume: ../2026-11-live-judgment/resumes/b_pharmacy_tech_table.txt (209 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0074; 14.4s
+Case note: Tables rendered to tab-separated text.
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A pharmacy technician with strong inpatient and retail experience, backed by concrete workload and results.
+
+## Write-up
+Your resume makes a strong case for pharmacy technician work! At Sutter Valley Medical Center, you show sterile compounding, cabinet restocking and training alongside the volume you handle. Your earlier RiteCare work adds retail pharmacy experience.
+
+The cabinet restocking line is a great model: it names the work, the nursing units and the change in stockout reports. Your role history and duties are in separate tables, though, so a recruiter has to match them up.
+
+Put each duty under its corresponding role so the work and employer are together. Your resume doesn't need a major overhaul; how competitive a particular job is will matter too.
+
+## Cards (2; {"structure":1,"keep":1}); severity off; added []
+1. [structure] Experience and Duties and Results
+   line: "The role history and duties are in separate tables."
+   can't tell: A recruiter has to move between the tables to connect your work with each employer and date. Putting the duties under each role keeps that history together.
+   question: Can you place each duty under its matching role and employer?
+2. [keep] Pharmacy Technician II, cabinet restocking
+   line: "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024"
+   can't tell: Keep this as a model. It pairs a clear responsibility with a measure a pharmacy manager can recognize, without making the reader guess how many units you cover.
+
+## Fit
+Roles: ["Pharmacy Technician II","Pharmacy Technician"]
+Level: Experienced pharmacy technician
+Note: Your current work points toward inpatient pharmacy technician roles, especially those involving sterile compounding and dispensing cabinet restocking. Your RiteCare experience also supports retail pharmacy technician roles.

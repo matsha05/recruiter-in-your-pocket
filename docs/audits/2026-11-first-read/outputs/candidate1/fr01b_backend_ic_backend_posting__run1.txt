@@ -1,0 +1,33 @@
+# fr01b_backend_ic_backend_posting, run 1
+Resume: resumes/fr01_backend_ic_senior.txt (236 words), posting: resumes/posting_senior_backend.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 8653a31c; severity check off
+Outcome: report; cost $0.0080; 15.6s
+Case note: P1. The same resume against a senior backend posting it fits. Expect the posting's title second and a fit note that says it fits.
+
+## Clear and specific (score 89; model wrote 89)
+## Verdict
+A senior backend engineer with substantial payments work, backed by clear measures of scale and reliability.
+
+## Write-up
+Your resume makes a strong case for senior backend work in payments! At Lumen Ledger, you show how you built payouts, migrated a ledger and made the balance API faster. A recruiter can see both the technical choices and what changed.
+
+The payouts service line is a great model: it names the service, the Go and PostgreSQL stack, and about 1.8M payouts a month. Your earlier freight work reinforces the story with an API and an event-driven billing pipeline.
+
+For Cobalt Pay, lead with the payouts and ledger work. Add your own on-call responsibilities and any work with Finance and Risk if you can substantiate them. Your resume already gives a recruiter a strong reason to consider you; competition for the role still matters.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Senior Software Engineer, Payments Platform, line 1
+   line: "Designed and built the idempotent payouts service in Go and PostgreSQL that now settles about 1.8M payouts a month"
+   can't tell: Keep this as a model. It makes your ownership and the service's job unmistakable, then gives the reader a concrete sense of its volume.
+2. [line] Senior Software Engineer, Payments Platform, line 4
+   line: "Wrote the on-call runbooks for the payments services and ran the incident reviews for the platform group"
+   can't tell: The runbooks and incident reviews are clear, but a recruiter can't tell whether you also took on-call shifts or owned any part of the live response. That matters for a role responsible for payouts reliability.
+   example: Wrote the on-call runbooks for the payments services and ran the incident reviews for the platform group; [on-call responsibilities]
+   question: What were your own on-call responsibilities, if any?
+
+## Fit
+Roles: ["Senior Backend Engineer","Senior Backend Engineer, Money Movement"]
+Level: Senior, leads a ledger migration and mentors two engineers
+Note: Your resume doesn't show end-to-end on-call ownership, leading technical design reviews, or work with Finance and Risk on reconciliation and controls. Your Go payouts service, ledger migration and Kafka work fit the core of this role; emphasize those alongside your mentoring and design-doc work.
+Posting: Senior backend role building and running reliable money movement services, with technical leadership and cross-functional work on controls.
+Missing: ["Own the reliability of the payouts path end to end, including on-call","Lead technical design reviews","Partner with Finance and Risk on reconciliation and controls"]

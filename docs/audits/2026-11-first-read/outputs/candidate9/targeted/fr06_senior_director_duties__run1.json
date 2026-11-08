@@ -1,0 +1,498 @@
+{
+  "case_id": "fr06_senior_director_duties",
+  "batch": "targeted",
+  "run": 1,
+  "note": "P4 (senior). Duties and a reporting line with no team size, budget or company size. Expect the remit asked for; no invented team or budget.",
+  "resume_file": "resumes/fr06_senior_director_duties.txt",
+  "resume_sha256": "684578d84a894aad532a6ff327def34ebbdb5f9a6b504f71ee8676432a7e2851",
+  "resume_words": 143,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T19:01:44.930Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5646,
+        "completion_tokens": 2103,
+        "total_tokens": 7749,
+        "cached_prompt_tokens": 5005,
+        "cache_write_prompt_tokens": 638,
+        "reasoning_tokens": 512
+      },
+      "cost_usd": 0.01156575,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 24364
+    }
+  ],
+  "resume_prompt_sha256": "338ac33ae4d6ad75616100e9ec41f04437a5b50bfe070fa140aba71496178380",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 64,
+    "lifted_by_employer": false,
+    "verdict": "A senior operations leader with a clear career path, but too little detail about the work and its results.",
+    "write_up": [
+      "Your resume shows a move from Operations Manager at Lakeland Appliance Repair to Senior Director, Operations at Northstar Home Services. It's common for senior resumes to list responsibilities this way, but yours doesn't yet show how big the operation is or what changed under your leadership. A recruiter hiring for a senior operations role would likely hesitate and move on.",
+      "The line about reporting to the COO and partnering with Finance on the annual operating plan is the strongest: it names the people and the work. Your progression and dates are easy to follow, but the current role doesn't give a team count, budget or result a recruiter can compare.",
+      "Let's start with the Senior Director role. Add the number of people and the budget you're responsible for, then name an initiative you led and what changed. Use the earlier roles to show what the scheduling rollout and first-time fix improvement involved."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Company context",
+        "line": "Northstar Home Services has no description of the business.",
+        "cannot_tell": "A recruiter may not know what Northstar Home Services does or how large the business is. One short description can put your regional work in context.",
+        "example": "",
+        "question": "What services does Northstar provide, and how large is the company?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Director, Operations, line 1",
+        "line": "- Responsible for field operations, dispatch and customer care across the Upper Midwest",
+        "cannot_tell": "The geography and functions are clear, but a recruiter can't tell how many people or how much budget you're responsible for. Those figures matter when comparing senior operations roles.",
+        "example": "Responsible for field operations, dispatch and customer care across the Upper Midwest, with [number] people and an operating budget of [amount]",
+        "question": "How many people and what operating budget are you responsible for?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Director, Operations, line 2",
+        "line": "- Reported to the COO and partnered with Finance on the annual operating plan",
+        "cannot_tell": "The reporting relationship and Finance partnership are useful. What you contributed to the annual operating plan is still open.",
+        "example": "Reported to the COO and partnered with Finance on the annual operating plan, contributing [your work on the plan]",
+        "question": "What did you contribute to the annual operating plan?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Director, Operations, line 3",
+        "line": "- Oversaw vendor management and fleet",
+        "cannot_tell": "A recruiter can't tell what overseeing vendors and fleet involved or how much of each you handled.",
+        "example": "Oversaw vendor management and fleet, including [your work] for [number] vendors and [number] vehicles",
+        "question": "What did you oversee for vendors and fleet, and how many vendors and vehicles were involved?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Director, Operations, line 4",
+        "line": "- Led operational strategy and continuous improvement initiatives",
+        "cannot_tell": "This could describe many operations jobs. Name an initiative and what changed so a recruiter can see your leadership at work.",
+        "example": "Led [initiative] as part of operational strategy and continuous improvement, resulting in [what changed]",
+        "question": "Which initiative did you lead, and what changed?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Director, Operations, line 5",
+        "line": "- Managed managers across multiple regions",
+        "cannot_tell": "Managing managers is an important part of a senior role, but the line doesn't say how many or what their teams handled.",
+        "example": "Managed [number] managers across multiple regions whose teams handled [team responsibilities]",
+        "question": "How many managers did you manage, and what did their teams handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Director, Field Operations, line 1",
+        "line": "- Oversaw technicians and dispatch for the Twin Cities market",
+        "cannot_tell": "The market and teams are named, but a recruiter can't tell how many technicians and dispatch staff you oversaw.",
+        "example": "Oversaw [number] technicians and [number] dispatch staff for the Twin Cities market",
+        "question": "How many technicians and dispatch staff did you oversee?"
+      },
+      {
+        "kind": "line",
+        "where": "Director, Field Operations, line 2",
+        "line": "- Rolled out a new scheduling system",
+        "cannot_tell": "A new scheduling system is a concrete project. The line doesn't say what you did during the rollout or who used it.",
+        "example": "Rolled out a new scheduling system for [users], including [your work on the rollout]",
+        "question": "What did you do to roll out the system, and who used it?"
+      },
+      {
+        "kind": "line",
+        "where": "Director, Field Operations, line 3",
+        "line": "- Improved first-time fix rate",
+        "cannot_tell": "Improving first-time fixes is relevant to field operations, but the line doesn't say by how much or what you did to improve it.",
+        "example": "Improved first-time fix rate from [rate] to [rate] by [your work]",
+        "question": "What did you do to improve the first-time fix rate, and what were the rates before and after?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 1",
+        "line": "- Ran daily operations for the service department",
+        "cannot_tell": "A recruiter can't tell which parts of the service department's daily work were yours.",
+        "example": "Ran daily operations for the service department, including [your responsibilities]",
+        "question": "What did you handle in the service department's daily operations?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 2",
+        "line": "- Hired and trained technicians",
+        "cannot_tell": "Hiring and training technicians is useful experience. How many you hired and what the training covered would give it more weight.",
+        "example": "Hired and trained [number] technicians on [training topics]",
+        "question": "How many technicians did you hire, and what did you train them on?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Operations Leader",
+        "Senior Director, Operations"
+      ],
+      "why": "Your headline and current Senior Director role point to senior operations leadership across field operations, dispatch and customer care.",
+      "level": "Senior leader, manages managers across multiple regions",
+      "note": "Your progression points toward senior field and service operations roles. The current role needs team and budget figures, plus examples of changes you led, to show how large the job is.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 64,
+    "lifted_by_employer": false,
+    "verdict": "A senior operations leader with a clear career path, but too little detail about the work and its results.",
+    "write_up": [
+      "Your resume shows a move from Operations Manager at Lakeland Appliance Repair to Senior Director, Operations at Northstar Home Services. It's common for senior resumes to list responsibilities this way, but yours doesn't yet show how big the operation is or what changed under your leadership. A recruiter hiring for a senior operations role would likely hesitate and move on.",
+      "The line about reporting to the COO and partnering with Finance on the annual operating plan is the strongest: it names the people and the work. Your progression and dates are easy to follow, but the current role doesn't give a team count, budget or result a recruiter can compare.",
+      "Let's start with the Senior Director role. Add the number of people and the budget you're responsible for, then name an initiative you led and what changed. Use the earlier roles to show what the scheduling rollout and first-time fix improvement involved."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Company context",
+        "line": "Northstar Home Services has no description of the business.",
+        "cannot_tell": "A recruiter may not know what Northstar Home Services does or how large the business is. One short description can put your regional work in context.",
+        "example": "",
+        "question": "What services does Northstar provide, and how large is the company?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Director, Operations, line 1",
+        "line": "Responsible for field operations, dispatch and customer care across the Upper Midwest",
+        "cannot_tell": "The geography and functions are clear, but a recruiter can't tell how many people or how much budget you're responsible for. Those figures matter when comparing senior operations roles.",
+        "example": "Responsible for field operations, dispatch and customer care across the Upper Midwest, with [number] people and an operating budget of [amount]",
+        "question": "How many people and what operating budget are you responsible for?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Director, Operations, line 2",
+        "line": "Reported to the COO and partnered with Finance on the annual operating plan",
+        "cannot_tell": "The reporting relationship and Finance partnership are useful. What you contributed to the annual operating plan is still open.",
+        "example": "Reported to the COO and partnered with Finance on the annual operating plan, contributing [your work on the plan]",
+        "question": "What did you contribute to the annual operating plan?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Director, Operations, line 3",
+        "line": "Oversaw vendor management and fleet",
+        "cannot_tell": "A recruiter can't tell what overseeing vendors and fleet involved or how much of each you handled.",
+        "example": "Oversaw vendor management and fleet, including [your work] for [number] vendors and [number] vehicles",
+        "question": "What did you oversee for vendors and fleet, and how many vendors and vehicles were involved?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Director, Operations, line 4",
+        "line": "Led operational strategy and continuous improvement initiatives",
+        "cannot_tell": "This could describe many operations jobs. Name an initiative and what changed so a recruiter can see your leadership at work.",
+        "example": "Led [initiative] as part of operational strategy and continuous improvement, resulting in [what changed]",
+        "question": "Which initiative did you lead, and what changed?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Director, Operations, line 5",
+        "line": "Managed managers across multiple regions",
+        "cannot_tell": "Managing managers is an important part of a senior role, but the line doesn't say how many or what their teams handled.",
+        "example": "Managed [number] managers across multiple regions whose teams handled [team responsibilities]",
+        "question": "How many managers did you manage, and what did their teams handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Director, Field Operations, line 1",
+        "line": "Oversaw technicians and dispatch for the Twin Cities market",
+        "cannot_tell": "The market and teams are named, but a recruiter can't tell how many technicians and dispatch staff you oversaw.",
+        "example": "Oversaw [number] technicians and [number] dispatch staff for the Twin Cities market",
+        "question": "How many technicians and dispatch staff did you oversee?"
+      },
+      {
+        "kind": "line",
+        "where": "Director, Field Operations, line 2",
+        "line": "Rolled out a new scheduling system",
+        "cannot_tell": "A new scheduling system is a concrete project. The line doesn't say what you did during the rollout or who used it.",
+        "example": "Rolled out a new scheduling system for [users], including [your work on the rollout]",
+        "question": "What did you do to roll out the system, and who used it?"
+      },
+      {
+        "kind": "line",
+        "where": "Director, Field Operations, line 3",
+        "line": "Improved first-time fix rate",
+        "cannot_tell": "Improving first-time fixes is relevant to field operations, but the line doesn't say by how much or what you did to improve it.",
+        "example": "Improved first-time fix rate from [rate] to [rate] by [your work]",
+        "question": "What did you do to improve the first-time fix rate, and what were the rates before and after?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 1",
+        "line": "Ran daily operations for the service department",
+        "cannot_tell": "A recruiter can't tell which parts of the service department's daily work were yours.",
+        "example": "Ran daily operations for the service department, including [your responsibilities]",
+        "question": "What did you handle in the service department's daily operations?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 2",
+        "line": "Hired and trained technicians",
+        "cannot_tell": "Hiring and training technicians is useful experience. How many you hired and what the training covered would give it more weight.",
+        "example": "Hired and trained [number] technicians on [training topics]",
+        "question": "How many technicians did you hire, and what did you train them on?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Operations Leader",
+        "Senior Director, Operations"
+      ],
+      "why": "Your headline and current Senior Director role point to senior operations leadership across field operations, dispatch and customer care.",
+      "level": "Senior leader, manages managers across multiple regions",
+      "note": "Your progression points toward senior field and service operations roles. The current role needs team and budget figures, plus examples of changes you led, to show how large the job is.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 64
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 64,
+    "lifted_by_employer": false,
+    "verdict": "A senior operations leader with a clear career path, but too little detail about the work and its results.",
+    "write_up": [
+      "Your resume shows a move from Operations Manager at Lakeland Appliance Repair to Senior Director, Operations at Northstar Home Services. It's common for senior resumes to list responsibilities this way, but yours doesn't yet show how big the operation is or what changed under your leadership. A recruiter hiring for a senior operations role would likely hesitate and move on.",
+      "The line about reporting to the COO and partnering with Finance on the annual operating plan is the strongest: it names the people and the work. Your progression and dates are easy to follow, but the current role doesn't give a team count, budget or result a recruiter can compare.",
+      "Let's start with the Senior Director role. Add the number of people and the budget you're responsible for, then name an initiative you led and what changed. Use the earlier roles to show what the scheduling rollout and first-time fix improvement involved."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Company context",
+        "line": "Northstar Home Services has no description of the business.",
+        "cannot_tell": "A recruiter may not know what Northstar Home Services does or how large the business is. One short description can put your regional work in context.",
+        "example": "",
+        "question": "What services does Northstar provide, and how large is the company?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Director, Operations, line 1",
+        "line": "Responsible for field operations, dispatch and customer care across the Upper Midwest",
+        "cannot_tell": "The geography and functions are clear, but a recruiter can't tell how many people or how much budget you're responsible for. Those figures matter when comparing senior operations roles.",
+        "example": "Responsible for field operations, dispatch and customer care across the Upper Midwest, with [number] people and an operating budget of [amount]",
+        "question": "How many people and what operating budget are you responsible for?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Director, Operations, line 2",
+        "line": "Reported to the COO and partnered with Finance on the annual operating plan",
+        "cannot_tell": "The reporting relationship and Finance partnership are useful. What you contributed to the annual operating plan is still open.",
+        "example": "Reported to the COO and partnered with Finance on the annual operating plan, contributing [your work on the plan]",
+        "question": "What did you contribute to the annual operating plan?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Director, Operations, line 3",
+        "line": "Oversaw vendor management and fleet",
+        "cannot_tell": "A recruiter can't tell what overseeing vendors and fleet involved or how much of each you handled.",
+        "example": "Oversaw vendor management and fleet, including [your work] for [number] vendors and [number] vehicles",
+        "question": "What did you oversee for vendors and fleet, and how many vendors and vehicles were involved?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Director, Operations, line 4",
+        "line": "Led operational strategy and continuous improvement initiatives",
+        "cannot_tell": "This could describe many operations jobs. Name an initiative and what changed so a recruiter can see your leadership at work.",
+        "example": "Led [initiative] as part of operational strategy and continuous improvement, resulting in [what changed]",
+        "question": "Which initiative did you lead, and what changed?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Director, Operations, line 5",
+        "line": "Managed managers across multiple regions",
+        "cannot_tell": "Managing managers is an important part of a senior role, but the line doesn't say how many or what their teams handled.",
+        "example": "Managed [number] managers across multiple regions whose teams handled [team responsibilities]",
+        "question": "How many managers did you manage, and what did their teams handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Director, Field Operations, line 1",
+        "line": "Oversaw technicians and dispatch for the Twin Cities market",
+        "cannot_tell": "The market and teams are named, but a recruiter can't tell how many technicians and dispatch staff you oversaw.",
+        "example": "Oversaw [number] technicians and [number] dispatch staff for the Twin Cities market",
+        "question": "How many technicians and dispatch staff did you oversee?"
+      },
+      {
+        "kind": "line",
+        "where": "Director, Field Operations, line 2",
+        "line": "Rolled out a new scheduling system",
+        "cannot_tell": "A new scheduling system is a concrete project. The line doesn't say what you did during the rollout or who used it.",
+        "example": "Rolled out a new scheduling system for [users], including [your work on the rollout]",
+        "question": "What did you do to roll out the system, and who used it?"
+      },
+      {
+        "kind": "line",
+        "where": "Director, Field Operations, line 3",
+        "line": "Improved first-time fix rate",
+        "cannot_tell": "Improving first-time fixes is relevant to field operations, but the line doesn't say by how much or what you did to improve it.",
+        "example": "Improved first-time fix rate from [rate] to [rate] by [your work]",
+        "question": "What did you do to improve the first-time fix rate, and what were the rates before and after?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 1",
+        "line": "Ran daily operations for the service department",
+        "cannot_tell": "A recruiter can't tell which parts of the service department's daily work were yours.",
+        "example": "Ran daily operations for the service department, including [your responsibilities]",
+        "question": "What did you handle in the service department's daily operations?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 2",
+        "line": "Hired and trained technicians",
+        "cannot_tell": "Hiring and training technicians is useful experience. How many you hired and what the training covered would give it more weight.",
+        "example": "Hired and trained [number] technicians on [training topics]",
+        "question": "How many technicians did you hire, and what did you train them on?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Operations Leader",
+        "Senior Director, Operations"
+      ],
+      "why": "Your headline and current Senior Director role point to senior operations leadership across field operations, dispatch and customer care.",
+      "level": "Senior leader, manages managers across multiple regions",
+      "note": "Your progression points toward senior field and service operations roles. The current role needs team and budget figures, plus examples of changes you led, to show how large the job is.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 64
+  },
+  "presentation": {
+    "score": 64,
+    "band": "Needs more context",
+    "model_score": 64,
+    "lifted_by_employer": false,
+    "verdict": "A senior operations leader with a clear career path, but too little detail about the work and its results.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 152,
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Company context",
+        "line": "Northstar Home Services has no description of the business.",
+        "blanks": 0,
+        "question": "What services does Northstar provide, and how large is the company?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Director, Operations, line 1",
+        "line": "Responsible for field operations, dispatch and customer care across the Upper Midwest",
+        "blanks": 2,
+        "question": "How many people and what operating budget are you responsible for?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Director, Operations, line 2",
+        "line": "Reported to the COO and partnered with Finance on the annual operating plan",
+        "blanks": 1,
+        "question": "What did you contribute to the annual operating plan?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Director, Operations, line 3",
+        "line": "Oversaw vendor management and fleet",
+        "blanks": 3,
+        "question": "What did you oversee for vendors and fleet, and how many vendors and vehicles were involved?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Director, Operations, line 4",
+        "line": "Led operational strategy and continuous improvement initiatives",
+        "blanks": 2,
+        "question": "Which initiative did you lead, and what changed?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Director, Operations, line 5",
+        "line": "Managed managers across multiple regions",
+        "blanks": 2,
+        "question": "How many managers did you manage, and what did their teams handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Director, Field Operations, line 1",
+        "line": "Oversaw technicians and dispatch for the Twin Cities market",
+        "blanks": 2,
+        "question": "How many technicians and dispatch staff did you oversee?"
+      },
+      {
+        "kind": "line",
+        "where": "Director, Field Operations, line 2",
+        "line": "Rolled out a new scheduling system",
+        "blanks": 2,
+        "question": "What did you do to roll out the system, and who used it?"
+      },
+      {
+        "kind": "line",
+        "where": "Director, Field Operations, line 3",
+        "line": "Improved first-time fix rate",
+        "blanks": 3,
+        "question": "What did you do to improve the first-time fix rate, and what were the rates before and after?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 1",
+        "line": "Ran daily operations for the service department",
+        "blanks": 1,
+        "question": "What did you handle in the service department's daily operations?"
+      },
+      {
+        "kind": "line",
+        "where": "Operations Manager, line 2",
+        "line": "Hired and trained technicians",
+        "blanks": 2,
+        "question": "How many technicians did you hire, and what did you train them on?"
+      }
+    ],
+    "card_count": 11,
+    "kinds": {
+      "structure": 1,
+      "line": 10
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Operations Leader",
+        "Senior Director, Operations"
+      ],
+      "why": "Your headline and current Senior Director role point to senior operations leadership across field operations, dispatch and customer care.",
+      "level": "Senior leader, manages managers across multiple regions",
+      "note": "Your progression points toward senior field and service operations roles. The current role needs team and budget figures, plus examples of changes you led, to show how large the job is.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01156575,
+  "latency_ms": 24402
+}

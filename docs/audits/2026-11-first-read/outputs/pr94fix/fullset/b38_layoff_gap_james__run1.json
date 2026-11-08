@@ -1,0 +1,405 @@
+{
+  "case_id": "b38_layoff_gap_james",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Layoff gap (bar persona).",
+  "resume_file": "../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/3-layoff-gap-james.txt",
+  "resume_sha256": "9ff2c78d35a73e7b304020c79e4a236c0f62eb85a82de37c83724da8a6ce928d",
+  "resume_words": 313,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T21:32:13.471Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6370,
+        "completion_tokens": 2231,
+        "total_tokens": 8601,
+        "cached_prompt_tokens": 5154,
+        "cache_write_prompt_tokens": 1213,
+        "reasoning_tokens": 860
+      },
+      "cost_usd": 0.01293195,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 25669
+    }
+  ],
+  "resume_prompt_sha256": "288eceb50a0848513f3205630fd7657627db9010f5f15a63cb442225501f834d",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A senior marketing manager with strong prior results, but freelance work that leaves too much to guess.",
+    "write_up": [
+      "It's common for freelance work to be described as a list of services, but your current role doesn't yet say how much work you did or what changed. Your earlier roles at Velocity Software and Bridgepoint Analytics point toward marketing management, and that's the job I read your resume for. A recruiter may finish the resume but hesitate over what you've been doing most recently.",
+      "The MQL line at Velocity is your best model: it gives a year-over-year increase and says cost per lead went down too. Your team of 4 marketers and $1.8M annual budget also make your management remit easy to understand. The summary could put that concrete work ahead of the generic claims.",
+      "Let's start with the freelance role. Add one or two projects, your part in each, and any results you can substantiate. Then give the ABM program and Bridgepoint work a little more detail so the earlier results don't have to carry the whole story."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Professional Summary",
+        "line": "Proven ability to lead cross-functional teams and deliver measurable results.",
+        "cannot_tell": "A recruiter has to wait until Velocity to see what you led and measured. Your team, budget, and MQL result are stronger than this claim.",
+        "example": "Managed a team of 4 marketers and a $1.8M annual marketing budget; increased MQL volume by 35% year over year while reducing cost per lead",
+        "question": "Which of your Velocity results best represents the work you want to do next?"
+      },
+      {
+        "kind": "line",
+        "where": "Freelance Marketing Consultant, line 1",
+        "line": "- Provided marketing strategy and execution support for small businesses and startups",
+        "cannot_tell": "Support can cover a lot of ground. A recruiter can't tell what part of the strategy or execution was yours, or how many clients you worked with.",
+        "example": "Provided marketing strategy and execution support for [number] small businesses and startups, including [your contribution]",
+        "question": "How many clients did you support, and what strategy or execution work did you personally contribute?"
+      },
+      {
+        "kind": "line",
+        "where": "Freelance Marketing Consultant, line 2",
+        "line": "- Projects included website copy, email campaigns, and paid social setup",
+        "cannot_tell": "These are useful project types, but the line doesn't say what you contributed to any one of them. Pick a project and show your part.",
+        "example": "Projects included website copy, email campaigns, and paid social setup; contributed [your contribution] to [project]",
+        "question": "Which project can you describe, and what did you contribute to it?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Marketing Manager, ABM program",
+        "line": "- Launched ABM program targeting enterprise accounts",
+        "cannot_tell": "A recruiter can see the program and its audience, but not what the launch involved or what you were trying to achieve.",
+        "example": "Launched ABM program targeting enterprise accounts, using [approach] to pursue [program goal]",
+        "question": "What did the ABM launch involve, and what was its goal?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Marketing Manager, MQL volume",
+        "line": "- Increased MQL volume by 35% year over year while reducing cost per lead",
+        "cannot_tell": "Keep this line. It puts two marketing measures together, so a recruiter can see both the growth and the cost direction without guessing.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Manager, blog traffic",
+        "line": "- Grew blog traffic significantly through SEO-driven content strategy",
+        "cannot_tell": "The strategy is named, but 'significantly' leaves the growth open to interpretation. Add the change if you tracked it, along with the content work behind it.",
+        "example": "Grew blog traffic by [measured change] through SEO-driven content strategy, including [content work]",
+        "question": "What content work did you do, and how much did blog traffic grow if you tracked it?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Manager, webinar program",
+        "line": "- Ran webinar program generating pipeline for the sales team",
+        "cannot_tell": "The pipeline makes this worth keeping, but a recruiter can't tell what running the program involved or how much pipeline it generated.",
+        "example": "Ran webinar program generating [pipeline amount] for the sales team, including [your work]",
+        "question": "What did you handle for the webinars, and how much pipeline did they generate if you tracked it?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 1",
+        "line": "- Supported campaign execution, event logistics, and social media",
+        "cannot_tell": "The three areas are named, but 'supported' doesn't show what you did in any of them. One concrete task or event would give your earlier work a foothold.",
+        "example": "Supported campaign execution, event logistics, and social media, including [your contribution] for [campaign or event]",
+        "question": "What did you contribute to a campaign or event in this role?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Marketing Manager",
+        "Senior Marketing Manager"
+      ],
+      "why": "Your summary names marketing management, and your Velocity role shows demand generation, a team, and a marketing budget.",
+      "level": "manager, managed a team of 4 marketers and a $1.8M annual marketing budget",
+      "note": "Your experience points toward marketing management roles with demand generation and marketing operations responsibilities. The freelance projects can show how you've kept those skills in use since Velocity.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A senior marketing manager with strong prior results, but freelance work that leaves too much to guess.",
+    "write_up": [
+      "It's common for freelance work to be described as a list of services, but your current role doesn't yet say how much work you did or what changed. Your earlier roles at Velocity Software and Bridgepoint Analytics point toward marketing management, and that's the job I read your resume for. A recruiter may finish the resume but hesitate over what you've been doing most recently.",
+      "The MQL line at Velocity is your best model: it gives a year-over-year increase and says cost per lead went down too. Your team of 4 marketers and $1.8M annual budget also make your management remit easy to understand. The summary could put that concrete work ahead of the generic claims.",
+      "Let's start with the freelance role. Add one or two projects, your part in each, and any results you can substantiate. Then give the ABM program and Bridgepoint work a little more detail so the earlier results don't have to carry the whole story."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Professional Summary",
+        "line": "Results-driven Marketing Manager with 10+ years of experience in B2B SaaS. Expertise in demand generation, content strategy, and marketing operations. Proven ability to lead cross-functional teams and deliver measurable results. Seeking a senior marketing role.",
+        "cannot_tell": "A recruiter has to wait until Velocity to see what you led and measured. Your team, budget, and MQL result are stronger than this claim.",
+        "example": "Managed a team of 4 marketers and a $1.8M annual marketing budget; increased MQL volume by 35% year over year while reducing cost per lead",
+        "question": "Which of your Velocity results best represents the work you want to do next?"
+      },
+      {
+        "kind": "line",
+        "where": "Freelance Marketing Consultant, line 1",
+        "line": "Provided marketing strategy and execution support for small businesses and startups",
+        "cannot_tell": "Support can cover a lot of ground. A recruiter can't tell what part of the strategy or execution was yours, or how many clients you worked with.",
+        "example": "Provided marketing strategy and execution support for [number] small businesses and startups, including [your contribution]",
+        "question": "How many clients did you support, and what strategy or execution work did you personally contribute?"
+      },
+      {
+        "kind": "line",
+        "where": "Freelance Marketing Consultant, line 2",
+        "line": "Projects included website copy, email campaigns, and paid social setup",
+        "cannot_tell": "These are useful project types, but the line doesn't say what you contributed to any one of them. Pick a project and show your part.",
+        "example": "Projects included website copy, email campaigns, and paid social setup; contributed [your contribution] to [project]",
+        "question": "Which project can you describe, and what did you contribute to it?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Marketing Manager, ABM program",
+        "line": "Launched ABM program targeting enterprise accounts",
+        "cannot_tell": "A recruiter can see the program and its audience, but not what the launch involved or what you were trying to achieve.",
+        "example": "Launched ABM program targeting enterprise accounts, using [approach] to pursue [program goal]",
+        "question": "What did the ABM launch involve, and what was its goal?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Marketing Manager, MQL volume",
+        "line": "Increased MQL volume by 35% year over year while reducing cost per lead",
+        "cannot_tell": "Keep this line. It puts two marketing measures together, so a recruiter can see both the growth and the cost direction without guessing.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Manager, blog traffic",
+        "line": "Grew blog traffic significantly through SEO-driven content strategy",
+        "cannot_tell": "The strategy is named, but 'significantly' leaves the growth open to interpretation. Add the change if you tracked it, along with the content work behind it.",
+        "example": "Grew blog traffic by [measured change] through SEO-driven content strategy, including [content work]",
+        "question": "What content work did you do, and how much did blog traffic grow if you tracked it?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Manager, webinar program",
+        "line": "Ran webinar program generating pipeline for the sales team",
+        "cannot_tell": "The pipeline makes this worth keeping, but a recruiter can't tell what running the program involved or how much pipeline it generated.",
+        "example": "Ran webinar program generating [pipeline amount] for the sales team, including [your work]",
+        "question": "What did you handle for the webinars, and how much pipeline did they generate if you tracked it?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 1",
+        "line": "Supported campaign execution, event logistics, and social media",
+        "cannot_tell": "The three areas are named, but 'supported' doesn't show what you did in any of them. One concrete task or event would give your earlier work a foothold.",
+        "example": "Supported campaign execution, event logistics, and social media, including [your contribution] for [campaign or event]",
+        "question": "What did you contribute to a campaign or event in this role?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Marketing Manager",
+        "Senior Marketing Manager"
+      ],
+      "why": "Your summary names marketing management, and your Velocity role shows demand generation, a team, and a marketing budget.",
+      "level": "manager, managed a team of 4 marketers and a $1.8M annual marketing budget",
+      "note": "Your experience points toward marketing management roles with demand generation and marketing operations responsibilities. The freelance projects can show how you've kept those skills in use since Velocity.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 68
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A senior marketing manager with strong prior results, but freelance work that leaves too much to guess.",
+    "write_up": [
+      "It's common for freelance work to be described as a list of services, but your current role doesn't yet say how much work you did or what changed. Your earlier roles at Velocity Software and Bridgepoint Analytics point toward marketing management, and that's the job I read your resume for. A recruiter may finish the resume but hesitate over what you've been doing most recently.",
+      "The MQL line at Velocity is your best model: it gives a year-over-year increase and says cost per lead went down too. Your team of 4 marketers and $1.8M annual budget also make your management remit easy to understand. The summary could put that concrete work ahead of the generic claims.",
+      "Let's start with the freelance role. Add one or two projects, your part in each, and any results you can substantiate. Then give the ABM program and Bridgepoint work a little more detail so the earlier results don't have to carry the whole story."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Professional Summary",
+        "line": "Results-driven Marketing Manager with 10+ years of experience in B2B SaaS. Expertise in demand generation, content strategy, and marketing operations. Proven ability to lead cross-functional teams and deliver measurable results. Seeking a senior marketing role.",
+        "cannot_tell": "A recruiter has to wait until Velocity to see what you led and measured. Your team, budget, and MQL result are stronger than this claim.",
+        "example": "Managed a team of 4 marketers and a $1.8M annual marketing budget; increased MQL volume by 35% year over year while reducing cost per lead",
+        "question": "Which of your Velocity results best represents the work you want to do next?"
+      },
+      {
+        "kind": "line",
+        "where": "Freelance Marketing Consultant, line 1",
+        "line": "Provided marketing strategy and execution support for small businesses and startups",
+        "cannot_tell": "Support can cover a lot of ground. A recruiter can't tell what part of the strategy or execution was yours, or how many clients you worked with.",
+        "example": "Provided marketing strategy and execution support for [number] small businesses and startups, including [your contribution]",
+        "question": "How many clients did you support, and what strategy or execution work did you personally contribute?"
+      },
+      {
+        "kind": "line",
+        "where": "Freelance Marketing Consultant, line 2",
+        "line": "Projects included website copy, email campaigns, and paid social setup",
+        "cannot_tell": "These are useful project types, but the line doesn't say what you contributed to any one of them. Pick a project and show your part.",
+        "example": "Projects included website copy, email campaigns, and paid social setup; contributed [your contribution] to [project]",
+        "question": "Which project can you describe, and what did you contribute to it?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Marketing Manager, ABM program",
+        "line": "Launched ABM program targeting enterprise accounts",
+        "cannot_tell": "A recruiter can see the program and its audience, but not what the launch involved or what you were trying to achieve.",
+        "example": "Launched ABM program targeting enterprise accounts, using [approach] to pursue [program goal]",
+        "question": "What did the ABM launch involve, and what was its goal?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Marketing Manager, MQL volume",
+        "line": "Increased MQL volume by 35% year over year while reducing cost per lead",
+        "cannot_tell": "Keep this line. It puts two marketing measures together, so a recruiter can see both the growth and the cost direction without guessing.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Manager, blog traffic",
+        "line": "Grew blog traffic significantly through SEO-driven content strategy",
+        "cannot_tell": "The strategy is named, but 'significantly' leaves the growth open to interpretation. Add the change if you tracked it, along with the content work behind it.",
+        "example": "Grew blog traffic by [measured change] through SEO-driven content strategy, including [content work]",
+        "question": "What content work did you do, and how much did blog traffic grow if you tracked it?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Manager, webinar program",
+        "line": "Ran webinar program generating pipeline for the sales team",
+        "cannot_tell": "The pipeline makes this worth keeping, but a recruiter can't tell what running the program involved or how much pipeline it generated.",
+        "example": "Ran webinar program generating [pipeline amount] for the sales team, including [your work]",
+        "question": "What did you handle for the webinars, and how much pipeline did they generate if you tracked it?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 1",
+        "line": "Supported campaign execution, event logistics, and social media",
+        "cannot_tell": "The three areas are named, but 'supported' doesn't show what you did in any of them. One concrete task or event would give your earlier work a foothold.",
+        "example": "Supported campaign execution, event logistics, and social media, including [your contribution] for [campaign or event]",
+        "question": "What did you contribute to a campaign or event in this role?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Marketing Manager",
+        "Senior Marketing Manager"
+      ],
+      "why": "Your summary names marketing management, and your Velocity role shows demand generation, a team, and a marketing budget.",
+      "level": "manager, managed a team of 4 marketers and a $1.8M annual marketing budget",
+      "note": "Your experience points toward marketing management roles with demand generation and marketing operations responsibilities. The freelance projects can show how you've kept those skills in use since Velocity.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 68
+  },
+  "presentation": {
+    "score": 68,
+    "band": "Needs more context",
+    "model_score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A senior marketing manager with strong prior results, but freelance work that leaves too much to guess.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 160,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Professional Summary",
+        "line": "Results-driven Marketing Manager with 10+ years of experience in B2B SaaS. Expertise in demand generation, content strategy, and marketing operations. Proven ability to lead cross-functional teams and deliver measurable results. Seeking a senior marketing role.",
+        "blanks": 0,
+        "question": "Which of your Velocity results best represents the work you want to do next?"
+      },
+      {
+        "kind": "line",
+        "where": "Freelance Marketing Consultant, line 1",
+        "line": "Provided marketing strategy and execution support for small businesses and startups",
+        "blanks": 2,
+        "question": "How many clients did you support, and what strategy or execution work did you personally contribute?"
+      },
+      {
+        "kind": "line",
+        "where": "Freelance Marketing Consultant, line 2",
+        "line": "Projects included website copy, email campaigns, and paid social setup",
+        "blanks": 2,
+        "question": "Which project can you describe, and what did you contribute to it?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Marketing Manager, ABM program",
+        "line": "Launched ABM program targeting enterprise accounts",
+        "blanks": 2,
+        "question": "What did the ABM launch involve, and what was its goal?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Marketing Manager, MQL volume",
+        "line": "Increased MQL volume by 35% year over year while reducing cost per lead",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Manager, blog traffic",
+        "line": "Grew blog traffic significantly through SEO-driven content strategy",
+        "blanks": 2,
+        "question": "What content work did you do, and how much did blog traffic grow if you tracked it?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Manager, webinar program",
+        "line": "Ran webinar program generating pipeline for the sales team",
+        "blanks": 2,
+        "question": "What did you handle for the webinars, and how much pipeline did they generate if you tracked it?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 1",
+        "line": "Supported campaign execution, event logistics, and social media",
+        "blanks": 2,
+        "question": "What did you contribute to a campaign or event in this role?"
+      }
+    ],
+    "card_count": 8,
+    "kinds": {
+      "line": 7,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Marketing Manager",
+        "Senior Marketing Manager"
+      ],
+      "why": "Your summary names marketing management, and your Velocity role shows demand generation, a team, and a marketing budget.",
+      "level": "manager, managed a team of 4 marketers and a $1.8M annual marketing budget",
+      "note": "Your experience points toward marketing management roles with demand generation and marketing operations responsibilities. The freelance projects can show how you've kept those skills in use since Velocity.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.01293195,
+  "latency_ms": 25704
+}

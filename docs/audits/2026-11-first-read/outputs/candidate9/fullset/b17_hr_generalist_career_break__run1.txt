@@ -1,0 +1,43 @@
+# b17_hr_generalist_career_break, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_hr_generalist_career_break_1.txt (145 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 338ac33a; severity check off
+Outcome: report; cost $0.0165; repair ran; 30.9s
+Case note: Returner after caregiving, break dated and named.
+
+Validator refused the first draft: The model response failed the worklist contract at write_up[1]: uses the retired phrase "the open question is".
+
+## Needs more context (score 67; model wrote 67)
+## Verdict
+An HR generalist with plant experience and a caregiving break, but recent time and some responsibilities need context.
+
+## Write-up
+It's common for HR resumes to list broad duties, and yours tells a consistent story: you moved from HR Assistant to HR Generalist at Northstar Plastics, working on employee relations, benefits and onboarding. I read it for HR Generalist roles. A recruiter can follow that path, but may move on because some duties don't show your part in the work and nothing is dated after your caregiving break.
+
+The orientation line is a good model: it names what you ran and how often. Your caregiving break is also clearly named and dated, so a recruiter doesn't have to guess what happened during it. A recruiter still can't tell what you've been doing since June 2025.
+
+Let's start with the dates after your break, then add detail to the Northstar investigations and records lines. Your plant experience and SHRM-CP give a recruiter a reason to look; those additions can make the next conversation more straightforward.
+
+## Cards (4; {"dates":1,"line":2,"keep":1}); severity off; added []
+1. [dates] Dates
+   line: "Nothing is dated after June 2025."
+   can't tell: A recruiter can't tell what you've been doing since your caregiving break ended. If you've continued caregiving, studied, volunteered or done real paid work, you can name it honestly with its dates. A referral may also matter more when recent time is unexplained.
+   example: June 2025 - Present [what you did]
+   question: What have you been doing since June 2025, and what dates apply?
+2. [line] HR Generalist, line 2
+   line: "Handled employee relations questions and investigations with the HR manager"
+   can't tell: A recruiter knows you worked with the HR manager, but not what you handled in the investigations. Your part matters for another generalist role.
+   example: Handled employee relations questions and investigations with the HR manager, including [your work on investigations]
+   question: What did you handle during those investigations?
+3. [keep] HR Generalist, line 4
+   line: "Ran new hire orientation every two weeks"
+   can't tell: Keep this as a model. The verb gives you ownership, and the schedule shows how regularly you did the work.
+4. [line] HR Generalist, line 5
+   line: "Kept personnel files and HRIS records up to date"
+   can't tell: This names the records but leaves a recruiter guessing what maintaining them involved. One concrete task would show more of your day-to-day work.
+   example: Kept personnel files and HRIS records up to date by [recordkeeping tasks]
+   question: What tasks did you handle to keep those records current?
+
+## Fit
+Roles: ["HR Generalist"]
+Level: Experienced individual contributor, with investigations handled alongside the HR manager
+Note: Your experience points toward HR Generalist roles, particularly in manufacturing. The resume shows the plant and shift context; explaining your recent activity and adding your part in investigations would strengthen that story.

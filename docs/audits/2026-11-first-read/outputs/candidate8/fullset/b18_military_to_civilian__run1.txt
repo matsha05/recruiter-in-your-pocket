@@ -1,0 +1,30 @@
+# b18_military_to_civilian, run 1
+Resume: ../2026-11-live-judgment/resumes/b_military_to_civilian.txt (268 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5cba8f05; severity check off
+Outcome: report; cost $0.0062; 11.3s
+
+## Clear and specific (score 89; model wrote 89)
+## Verdict
+An Army logistics and maintenance leader whose team, equipment, and results make a strong case for operations supervision.
+
+## Write-up
+Your resume makes a strong case for operations supervision! Your Army roles show the people and equipment you led, the logistics you planned, and the maintenance results you achieved.
+
+The vehicle readiness line is the model: it gives the starting point, the improvement, and the changes you made. Experience comes before Education, and your supply chain degree is clearly marked as in progress.
+
+Let's make the field exercise line more concrete by naming the support you provided. For civilian applications, explain military terms where needed without losing the scale of the work. Your resume is unlikely to be the thing holding you back; the competitiveness of each job will matter too.
+
+## Cards (2; {"line":1,"keep":1}); severity off; added []
+1. [line] Platoon Sergeant, line 3
+   line: "Planned and executed logistics support for a 600-soldier battalion during two month-long field exercises"
+   can't tell: The battalion and exercise details show how much work was involved, but a recruiter can't tell what the logistics support included.
+   example: Planned and executed [type of logistics support] for a 600-soldier battalion during two month-long field exercises
+   question: What logistics support did you plan and execute for those exercises?
+2. [keep] Platoon Sergeant, line 4
+   line: "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule"
+   can't tell: Keep this as a model. The before-and-after figures give the improvement weight, and the ordering and scheduling changes show what was yours to do.
+
+## Fit
+Roles: ["operations supervisor"]
+Level: Supervisor, led 38 soldiers and evaluated 6 direct-report sergeants
+Note: Your maintenance and logistics leadership translates well to operations supervisor roles. Naming the practical support you delivered during exercises can help civilian recruiters connect that work to their needs.

@@ -1,0 +1,66 @@
+# b40_senior_ic_wei, run 1
+Resume: ../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/4-senior-ic-wei.txt (361 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5827dcf1; severity check off
+Outcome: report; cost $0.0125; 25.4s
+Case note: Senior IC (bar persona).
+
+## Mostly clear (score 80; model wrote 80)
+## Verdict
+A staff engineer with substantial payments infrastructure work and a few important details still missing.
+
+## Write-up
+Your resume tells a coherent story from object storage at Nimbus Cloud to ledger and settlement work at Brightline Payments. A recruiter can see the technical leadership and the systems you've built, though the current role leaves questions about the team and platform behind that work.
+
+The fraud scoring pipeline is a strong model: it names the system, the tools and its latency. Your current role also connects the idempotency framework to fewer duplicate-charge incidents. Experience leads, and the progression to Staff Software Engineer is easy to follow.
+
+Start with the current role: add the team remit and a measure of the ledger platform if you can substantiate them. Then fill in your part of the settlement roadmap and the earlier work where the system is named but your contribution isn't.
+
+## Cards (9; {"line":8,"keep":1}); severity off; added []
+1. [line] Staff Software Engineer, line 1
+   line: "Technical lead for the ledger and settlement platform team"
+   can't tell: A recruiter can see what team you lead, but not how many people are on it or what your technical remit covers. Those details help place a staff-level role.
+   example: Technical lead for the ledger and settlement platform team of [number] [team roles], responsible for [technical remit]
+   question: How many people are on the team, what are their roles, and what are you responsible for as technical lead?
+2. [line] Staff Software Engineer, line 2
+   line: "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB"
+   can't tell: The architecture and your leadership are clear. What isn't clear is how much the ledger handles, which would give a recruiter a way to understand the system's scale.
+   example: Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, supporting [platform scale]
+   question: What measure of the ledger's scale can you share?
+3. [line] Staff Software Engineer, line 6
+   line: "Partnered with product and finance on the roadmap for multi-currency settlement"
+   can't tell: The roadmap is a concrete piece of work, but your part in it is still a blank. A recruiter will want to know what you contributed.
+   example: Partnered with product and finance on [contribution] to the roadmap for multi-currency settlement
+   question: What did you contribute to the multi-currency settlement roadmap?
+4. [keep] Senior Software Engineer, line 1
+   line: "Built the real-time fraud scoring pipeline (Flink, Kafka) processing payment events with p99 latency under 50ms"
+   can't tell: Keep this as a model. It puts your action, the system and a useful performance measure together without making a recruiter guess what you built.
+5. [line] Senior Software Engineer, line 3
+   line: "Reduced reconciliation break rate and manual ops effort"
+   can't tell: Those are valuable changes, but the line doesn't say what you did to reduce them or by how much.
+   example: Reduced reconciliation break rate by [amount] and manual ops effort by [amount] through [work]
+   question: What work reduced the break rate and manual effort, and how much did each change?
+6. [line] Senior Software Engineer, line 4
+   line: "On-call rotation for payments core services"
+   can't tell: The services are named, but a recruiter can't tell what you handled on call.
+   example: On-call rotation for payments core services, handling [incident types] and [on-call responsibilities]
+   question: What kinds of incidents and responsibilities did you handle on that rotation?
+7. [line] Software Engineer II, line 1
+   line: "Worked on the object storage control plane in Go"
+   can't tell: The system and language are clear, but 'worked on' leaves your contribution open. Name a component or feature you worked on.
+   example: Worked on [component or feature] of the object storage control plane in Go
+   question: Which component or feature of the control plane did you work on?
+8. [line] Software Engineer II, line 4
+   line: "Contributed to the migration of the control plane to Kubernetes"
+   can't tell: The migration is concrete, but your part in it isn't named. Keep the contribution at its real size and say what it was.
+   example: Contributed [work] to the migration of the control plane to Kubernetes
+   question: What work did you contribute to the Kubernetes migration?
+9. [line] Software Engineer, line 2
+   line: "Participated in on-call and wrote runbooks"
+   can't tell: A recruiter can't tell what the runbooks covered or what you handled on call.
+   example: Participated in on-call for [services] and wrote runbooks for [operational tasks]
+   question: Which services were you on call for, and what did the runbooks cover?
+
+## Fit
+Roles: ["Staff Software Engineer","Senior Software Engineer"]
+Level: Staff-level technical lead, with team leadership and mentoring shown
+Note: Your experience points toward staff software engineering roles in distributed systems and payments infrastructure. The ledger redesign, idempotency work and earlier storage work give a recruiter concrete systems to discuss; team and platform measures would help place the current role.

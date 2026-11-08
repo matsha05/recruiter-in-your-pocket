@@ -1,0 +1,40 @@
+# b08_warehouse_supervisor, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_warehouse_supervisor_1.txt (173 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 338ac33a; severity check off
+Outcome: report; cost $0.0061; 12.2s
+
+## Mostly clear (score 76; model wrote 76)
+## Verdict
+A distribution supervisor with a clear path from picking to leading a 35-person night shift.
+
+## Write-up
+Your resume tells a clear story: you moved from Order Picker at Basin Retail Supply to Shift Supervisor at Sierra Freight Distribution. A recruiter can see what you manage now, though the resume says less about what changed through your work.
+
+The night shift line is your best model. It names the team and the work across picking, packing, and loading. Your work history also shows a steady progression, and your OSHA training and warehouse systems skills fit the supervisor role.
+
+Start with labor scheduling in your current role. Add the order volume you planned for and, if you can document it, what your scheduling changed. Then give the training and scanner rollout the same level of detail.
+
+## Cards (4; {"keep":1,"line":3}); severity off; added []
+1. [keep] Shift Supervisor, line 1
+   line: "Supervise a night shift of 35 associates across picking, packing, and loading"
+   can't tell: Keep this as a model. A recruiter can picture both the people you supervise and the work they cover.
+2. [line] Shift Supervisor, line 2
+   line: "Schedule labor and assign zones based on daily order volume"
+   can't tell: You name the scheduling decision, but not the order volume you plan around or what your decisions changed. Either would give a recruiter more to compare with another outbound operation.
+   example: Schedule labor and assign zones based on daily order volume of [order volume], contributing to [what changed]
+   question: What daily order volume did you plan around, and what changed through your scheduling?
+3. [line] Shift Supervisor, line 5
+   line: "Train new leads on the warehouse management system"
+   can't tell: A recruiter can see that you train leads, but not what you teach them or how many you've trained. That would show more of your part in preparing them for the job.
+   example: Train [number] new leads on [warehouse management system tasks]
+   question: How many new leads have you trained, and what system tasks did you teach them?
+4. [line] Lead Associate, line 3
+   line: "Helped roll out handheld scanners on the pick floor"
+   can't tell: You helped with the scanner rollout, but a recruiter can't tell which part was yours. Name your contribution without taking credit for the whole rollout.
+   example: Helped roll out handheld scanners on the pick floor by [your contribution]
+   question: What did you do to help roll out the handheld scanners?
+
+## Fit
+Roles: ["Shift Supervisor, Outbound Operations","Lead Associate"]
+Level: Supervisor, responsible for a night shift of 35 associates
+Note: Your experience points toward distribution center supervision, particularly outbound operations. The next improvement is to show what your scheduling, training, or other work changed.

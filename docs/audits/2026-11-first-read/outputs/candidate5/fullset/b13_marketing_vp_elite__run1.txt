@@ -1,0 +1,36 @@
+# b13_marketing_vp_elite, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/golden/synth_marketing_manager_vp_elite_1766960221358.txt (730 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ab8cd5a5; severity check off
+Outcome: report; cost $0.0124; 21.7s
+Case note: Executive, strong (golden).
+
+## Clear and specific (score 89; model wrote 89)
+## Verdict
+A marketing executive whose resume connects leadership, budgets, and campaigns to substantial business results.
+
+## Write-up
+This is a strong executive resume! Your path from marketing management to Chief Marketing Officer is easy to follow, and your Novara work connects marketing decisions to lead flow, revenue, and acquisition costs. A recruiter can see both the business you serve and the organization you lead.
+
+The opening Novara line is a good model: it puts your team, budget, strategy, and the platform's reach together. The campaign line that follows is also strong because it distinguishes lead growth from your contribution to recurring revenue growth.
+
+Let's make two results even more useful by naming what changed in the launch process and acquisition work. Beyond those details, your resume isn't likely to be the thing holding you back. The competitiveness of a role and a referral can also matter.
+
+## Cards (3; {"keep":1,"line":2}); severity off; added []
+1. [keep] Chief Marketing Officer, line 1
+   line: "I led a 45-person global marketing organization managing a $25M annual budget, driving company-wide brand and demand generation strategy for a SaaS platform serving 2M+ users across 40 countries."
+   can't tell: Keep this as a model for executive responsibility. It tells a recruiter what you led and gives them numbers to compare with the role they're filling.
+2. [line] Chief Marketing Officer, line 3
+   line: "I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years."
+   can't tell: The launch results are substantial, but a recruiter can't tell what changed in the process. One concrete change would show what your decision set in motion.
+   example: I decided to revamp the product launch process by [process change], shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.
+   question: What changed in the product launch process after your decision?
+3. [line] Chief Marketing Officer, line 4
+   line: "I led a cross-functional team of 12 marketing, analytics, and creative professionals to optimize customer acquisition cost (CAC), reducing it by 22% and improving lifetime value (LTV) metrics across key segments."
+   can't tell: The team and CAC reduction are clear, but the acquisition change behind the reduction isn't named. What did the team change?
+   example: I led a cross-functional team of 12 marketing, analytics, and creative professionals to optimize customer acquisition cost (CAC) by [acquisition change], reducing it by 22% and improving lifetime value (LTV) metrics across key segments.
+   question: What acquisition change did the team make to reduce CAC?
+
+## Fit
+Roles: ["Chief Marketing Officer","Vice President, Global Marketing"]
+Level: Executive, leading a 45-person global marketing organization and managing a $25M annual budget
+Note: Your experience points toward senior marketing leadership in SaaS and other technology businesses. Your resume shows both brand and demand generation work alongside revenue and acquisition measures.

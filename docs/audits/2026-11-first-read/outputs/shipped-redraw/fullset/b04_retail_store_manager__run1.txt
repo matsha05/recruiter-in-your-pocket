@@ -1,0 +1,30 @@
+# b04_retail_store_manager, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_retail_store_manager_1.txt (179 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0073; 15.1s
+
+## Mostly clear (score 84; model wrote 84)
+## Verdict
+A strong store manager resume with clear results, but the claimed second turnaround needs backing.
+
+## Write-up
+Your resume shows a progression from Department Supervisor to Store Manager at Carolina Home & Garden, with sales, staffing and inventory results in Charlotte. This is excellent retail management work! The one catch is that your headline promises two store turnarounds, while the work under it only shows results for the current store.
+
+The turnover line is a great model: it names the scheduling change and shows how staff turnover moved. Experience also leads education, so a recruiter gets to your store management work quickly.
+
+Start with the headline. Add what changed at the other store if you can, and connect it to your role there. Leave the current store's results front and center.
+
+## Cards (2; {"line":1,"keep":1}); severity off; added []
+1. [line] Headline
+   line: "Retail store manager who has turned around two underperforming stores in a 60-store regional chain."
+   can't tell: Your current store has several results, but a recruiter can't see what changed at the second store. That leaves part of your opening claim unbacked.
+   example: Retail store manager who has turned around two underperforming stores in a 60-store regional chain, with [what changed at the second store].
+   question: What changed at the second store, and what was your part in that change?
+2. [keep] Store Manager, line 3
+   line: "Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules"
+   can't tell: Keep this as a model. It gives a recruiter the starting point, the ending point and the decision you made.
+
+## Fit
+Roles: ["Store Manager","Assistant Store Manager"]
+Level: Store management
+Note: Your experience points to retail store management, with responsibility for employees, sales and inventory. The progression at Carolina Home & Garden is easy to follow.

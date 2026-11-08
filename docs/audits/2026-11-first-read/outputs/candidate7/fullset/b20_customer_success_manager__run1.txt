@@ -1,0 +1,41 @@
+# b20_customer_success_manager, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt (180 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 1c0fe4fe; severity check off
+Outcome: report; cost $0.0074; 14.7s
+Case note: No posting.
+
+## Mostly clear (score 79; model wrote 79)
+## Verdict
+A customer success manager with a defined mid-market book, but a few important actions remain unclear.
+
+## Write-up
+Your resume tells a clear story from account coordination at Hollis Insurance Group to support and then customer success at Brightline Payroll Software. A recruiter can see the accounts you manage and the problems you handle, though some of your work on renewals and escalations needs more detail.
+
+The strongest line is your book of 48 mid-market accounts across healthcare and manufacturing. It gives a recruiter both the number of accounts and the customers you serve. The move from support into customer success is easy to follow, and Experience is in the right place above Education.
+
+Let's start with the at-risk renewal line: add the part of the strategy that was yours. Then show what you do when a payroll run fails. Those details will help a recruiter understand your work beyond the account count.
+
+## Cards (4; {"keep":1,"line":3}); severity off; added []
+1. [keep] Customer Success Manager, line 1
+   line: "Manage a book of 48 mid-market accounts across healthcare and manufacturing"
+   can't tell: Keep this as a model. It names your responsibility, the account count, the segment and the industries in one line.
+2. [line] Customer Success Manager, line 3
+   line: "Partnered with Sales on renewal strategy for at-risk accounts"
+   can't tell: A recruiter can see who you worked with, but not what you contributed to the renewal strategy or what happened next.
+   example: Partnered with Sales on renewal strategy for at-risk accounts by [your contribution], resulting in [what happened]
+   question: What did you contribute to the strategy, and what happened with those accounts?
+3. [line] Customer Success Manager, line 5
+   line: "Handle escalations with Support and Product when payroll runs fail"
+   can't tell: Failed payroll runs are a concrete problem, but a recruiter can't tell what you do alongside Support and Product to handle them.
+   example: Handle escalations with Support and Product when payroll runs fail by [your actions]
+   question: What actions do you take when a payroll run fails?
+4. [line] Account Coordinator, line 2
+   line: "Answered client questions by phone and email"
+   can't tell: The channels are clear, but the questions aren't. Naming the subjects would show more of your work with small business clients.
+   example: Answered small business client questions by phone and email about [question topics]
+   question: What did clients typically ask you about?
+
+## Fit
+Roles: ["Customer Success Manager"]
+Level: Experienced customer success manager, manages 48 mid-market accounts
+Note: Your experience points toward customer success roles serving mid-market software customers. The resume shows the book and the customer work; your contribution to renewal decisions is the main detail to add.

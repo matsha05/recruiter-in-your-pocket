@@ -1,0 +1,35 @@
+# h4b_academic_cv_under_cap, run 1
+Resume: ../2026-11-live-judgment/resumes/h4b_academic_cv_under_cap.txt (3253 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 288eceb5; severity check off
+Outcome: report; cost $0.0242; 13.7s
+Case note: The same CV trimmed under the cap, to see what the model does with a CV shape.
+
+## Mostly clear (score 78; model wrote 78)
+## Verdict
+A tenured molecular biologist with strong grants and mentoring, but repeated publication titles need checking.
+
+## Write-up
+Your resume tells the story of a tenured Associate Professor at Riverbend State, with NIH funding, mitochondrial research, teaching and mentoring. A recruiter could move it forward for another faculty role, but repeated publication titles and author lists across different years raise questions about the bibliography.
+
+The MB 310 redesign is your best model: it names the change and shows how evaluations moved over the following three offerings. Your appointments are easy to follow, though Education comes before the faculty work.
+
+Let's start by checking the publication list against your records, including entries with the same title and authors. Then move Academic Appointments above Education so your current faculty role leads.
+
+## Cards (3; {"structure":1,"line":1,"keep":1}); severity off; added []
+1. [structure] Section order
+   line: "Education sits above Academic Appointments."
+   can't tell: A recruiter has to get past your degrees before seeing your tenured appointment. Your faculty work is the stronger place to start.
+   question: Can you move Academic Appointments above Education?
+2. [line] Publications, entry 1
+   line: "1. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2026). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 107(2), 1037-1052."
+   can't tell: This title and author list also appear in entries dated 2024, 2021 and 2018. A recruiter can't tell whether these are distinct papers or repeated entries, so check the full bibliography against your publication records.
+   example: [authors]. ([year]). [title]. [journal], [volume and issue], [pages or article number].
+   question: What do your publication records show for these entries?
+3. [keep] Teaching, course redesign
+   line: "Course redesign: converted MB 310 to a flipped format in 2019; student evaluations rose from 3.9 to 4.5 of 5 over the following three offerings."
+   can't tell: Keep this line. It gives the reader a named course, your change and a measured comparison over a stated period.
+
+## Fit
+Roles: ["Associate Professor (with tenure)"]
+Level: senior, tenured faculty member and PI on NIH grants
+Note: Your research, graduate mentoring and teaching give a faculty search committee several parts of your work to consider. Keep the full academic CV format while checking the publication records.

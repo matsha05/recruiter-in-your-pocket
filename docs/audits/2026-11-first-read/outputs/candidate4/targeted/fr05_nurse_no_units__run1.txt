@@ -1,0 +1,57 @@
+# fr05_nurse_no_units, run 1
+Resume: resumes/fr05_nurse_no_units.txt (140 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ee57d907; severity check off
+Outcome: report; cost $0.0081; 16.7s
+Case note: P4 (nursing). Titles without a unit; RN with no state. Expect the unit and the license state asked for; no invented ratio.
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+A hospital nurse with charge and precepting duties, but the units and care details are missing.
+
+## Write-up
+It's common for nursing resumes to list everyday duties without naming the unit or the care behind them. Yours shows hospital nursing at Riverside Methodist and Mount Carmel East, but a recruiter hiring for a particular specialty may finish it and move on because those details aren't there.
+
+The Mount Carmel line about documenting assessments and care plans in Epic gives a recruiter something concrete: the records you handled and the system you used. Your RN license is listed, but its state isn't.
+
+Let's start with the Riverside role. Name your unit in the first line, then show what you handle as charge nurse and what you teach new graduates. Add the state of your RN license, and give the earlier surgical care line its unit too.
+
+## Cards (7; {"structure":1,"line":6}); severity off; added []
+1. [structure] Licenses and Certifications
+   line: "The RN license has no state listed."
+   can't tell: A recruiter can see that you're an RN, but not which state issued your license. That matters when checking your fit for a nursing role.
+   question: Which state issued your RN license?
+2. [line] Riverside Methodist Hospital, line 1
+   line: "Provide direct patient care for adult patients across 12-hour shifts"
+   can't tell: Adult patients and shift length don't tell a recruiter which unit or specialty you work in. That's the first detail a nursing recruiter needs here.
+   example: Provide direct patient care for adult patients in [unit or specialty] across 12-hour shifts
+   question: Which unit or specialty do you work in at Riverside?
+3. [line] Riverside Methodist Hospital, line 2
+   line: "Administer medications and monitor patient response"
+   can't tell: A recruiter can't tell what kinds of medications or patient needs you handle. One detail tied to your unit would make the care more concrete.
+   example: Administer medications for [patient needs] and monitor patient response
+   question: What patient needs do the medications you administer address?
+4. [line] Riverside Methodist Hospital, line 3
+   line: "Educate patients and families on discharge plans"
+   can't tell: Discharge education is important, but the plans could cover many different needs. What do you help patients and families prepare to do?
+   example: Educate patients and families on discharge plans, including [education topic]
+   question: What do you teach patients and families as part of discharge planning?
+5. [line] Riverside Methodist Hospital, line 4
+   line: "Serve as charge nurse on weekends"
+   can't tell: Charge nurse is a meaningful responsibility, but a recruiter can't tell what you coordinate on weekends. Name the work that comes with it.
+   example: Serve as charge nurse on weekends, coordinating [charge nurse responsibilities]
+   question: What do you coordinate as charge nurse on weekends?
+6. [line] Riverside Methodist Hospital, line 5
+   line: "Precept new graduate nurses"
+   can't tell: A recruiter can see that you precept new nurses, but not what you teach or guide them through. That detail would show more of your role.
+   example: Precept new graduate nurses on [skills or tasks]
+   question: What skills or tasks do you guide new graduate nurses through?
+7. [line] Mount Carmel East Hospital, Registered Nurse, line 1
+   line: "Cared for patients before and after surgery"
+   can't tell: The surgical care is named, but the unit or specialty isn't. A recruiter can't tell where this experience fits.
+   example: Cared for patients before and after surgery in [unit or specialty]
+   question: Which unit or specialty did you work in at Mount Carmel East?
+
+## Fit
+Roles: ["Registered Nurse"]
+Level: Experienced RN, with charge nurse and precepting duties
+Note: Your experience points toward hospital Registered Nurse roles. Naming the units and the state of your RN license would help a recruiter match you to a specialty.

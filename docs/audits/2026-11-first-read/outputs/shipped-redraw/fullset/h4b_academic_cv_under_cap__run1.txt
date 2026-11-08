@@ -1,0 +1,35 @@
+# h4b_academic_cv_under_cap, run 1
+Resume: ../2026-11-live-judgment/resumes/h4b_academic_cv_under_cap.txt (3253 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0256; 16.3s
+Case note: The same CV trimmed under the cap, to see what the model does with a CV shape.
+
+## Mostly clear (score 78; model wrote 78)
+## Verdict
+A tenured molecular biologist with substantial funding and mentoring, but publication entries need checking.
+
+## Write-up
+You’re a tenured Associate Professor at Riverbend State with NIH funding, a long publication list and substantial teaching and mentoring work. A recruiter could see a faculty research career worth a closer look, but repeated publication titles and author lists raise questions about the records.
+
+The MB 310 redesign is your best model: it names the change and shows how evaluations moved afterward without claiming the redesign alone caused it. Education comes before your appointments; putting the appointments first would make your current role quicker to find.
+
+Let’s start by checking the repeated citations against the journal records, then adjust the section order. Keep the funding, teaching and mentoring details: together they show the breadth of your faculty work.
+
+## Cards (3; {"structure":1,"line":1,"keep":1}); severity off; added []
+1. [structure] Structure
+   line: "Education sits above Academic Appointments."
+   can't tell: Your current tenured role is below your degrees. Academic CVs can put education first, but leading with appointments makes your current work easier to find on a quick pass.
+   question: Would putting Academic Appointments first suit the faculty roles you’re targeting?
+2. [line] Publications, entry 1
+   line: "1. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2026). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 107(2), 1037-1052."
+   can't tell: The same title, authors and journal appear in entries dated 2024, 2021 and 2018, with different volumes and pages. A reader can’t tell whether these are separate publications or citation errors. Other titles and author lists repeat too.
+   example: [Authors]. ([year]). [Article title]. [Journal], [volume]([issue]), [pages].
+   question: What do the journal records show for these repeated entries?
+3. [keep] Teaching, course redesign
+   line: "Course redesign: converted MB 310 to a flipped format in 2019; student evaluations rose from 3.9 to 4.5 of 5 over the following three offerings."
+   can't tell: Keep this. It pairs your own action with a measured change and gives the reader the period over which it occurred.
+
+## Fit
+Roles: ["Associate Professor (with tenure)","Assistant Professor"]
+Level: Tenured faculty
+Note: Your experience points toward research-focused molecular biology faculty roles, with teaching, mentoring and service alongside grant-funded research. The repeated publication entries need checking before the list can be relied on.

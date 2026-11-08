@@ -44,6 +44,8 @@ type ResumeModeSectionProps = {
   onRetryAnalysis: () => void;
   comparisonBaseline?: ReportData | null;
   onStartRevision: () => void;
+  onReadAgainstPosting?: () => void;
+  focusPosting?: boolean;
   /** How long this visit's report took to arrive; null when it was restored or sampled. */
   readDurationMs?: number | null;
   /** Ask-first: the questions to show before this report, until the person writes or skips. */
@@ -90,6 +92,8 @@ export default function ResumeModeSection({
   onRetryAnalysis,
   comparisonBaseline = null,
   onStartRevision,
+  onReadAgainstPosting,
+  focusPosting = false,
   readDurationMs = null,
   askFirst = null,
   onAskFirstWrite,
@@ -149,6 +153,7 @@ export default function ResumeModeSection({
           onOpenLastReport={onOpenLastReport}
           loadedJobContext={loadedJobContext}
           isRevision={Boolean(comparisonBaseline)}
+          focusPosting={focusPosting}
         />
       </div>
     );
@@ -179,6 +184,7 @@ export default function ResumeModeSection({
       onRetryAnalysis={onRetryAnalysis}
       comparisonBaseline={comparisonBaseline}
       onStartRevision={onStartRevision}
+      onReadAgainstPosting={onReadAgainstPosting}
       readDurationMs={readDurationMs}
       rebuiltAnswers={rebuiltAnswers}
       isSignedIn={Boolean(user)}

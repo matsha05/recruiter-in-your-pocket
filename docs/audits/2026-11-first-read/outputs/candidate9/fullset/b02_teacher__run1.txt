@@ -1,0 +1,30 @@
+# b02_teacher, run 1
+Resume: ../2026-11-live-judgment/resumes/b_teacher.txt (202 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 338ac33a; severity check off
+Outcome: report; cost $0.0063; 14.5s
+
+## Clear and specific (score 91; model wrote 91)
+## Verdict
+An experienced elementary teacher with classroom results, team leadership, and a clear teaching focus.
+
+## Write-up
+This is a strong teaching resume! Your Lincoln Heights work shows what you teach, whom you teach, and how your students’ reading growth changed. The grade-level leadership and curriculum pilot add to that story without pulling attention away from the classroom.
+
+The reading-growth line is the standout: it gives a district assessment, a starting point, and a result over three years. Your Washington certificate and English Language Learner endorsement are easy to find after your experience.
+
+I’d leave the recent role largely alone and add what you did on the positive behavior support committee at Whitman. Your resume makes a strong case for consideration; the school’s needs and competition for the role matter too.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] 4th Grade Teacher, line 2
+   line: "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years"
+   can't tell: Keep this as a model. It gives a recruiter a concrete measure of your students’ progress rather than leaving them to guess.
+2. [line] 2nd Grade Teacher, line 3
+   line: "Served on the school's positive behavior support committee"
+   can't tell: A recruiter can see which committee you joined, but not what you did on it. Your contribution could say more about your work with the school.
+   example: Served on the school's positive behavior support committee and [what you did]
+   question: What did you do on the positive behavior support committee?
+
+## Fit
+Roles: ["4th Grade Teacher"]
+Level: Experienced teacher and grade-level lead, leading a team of 4 teachers.
+Note: Your experience points toward elementary classroom teaching, with added strengths in reading growth and supporting English language learners. Your team leadership and curriculum pilot also show work beyond your own classroom.

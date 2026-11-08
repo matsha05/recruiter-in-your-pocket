@@ -1,0 +1,46 @@
+# b40_senior_ic_wei, run 1
+Resume: ../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/4-senior-ic-wei.txt (361 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 41bcacc0; severity check off
+Outcome: report; cost $0.0101; 19.4s
+Case note: Senior IC (bar persona).
+
+## Mostly clear (score 79; model wrote 79)
+## Verdict
+A staff engineer with strong payments architecture work, but little sense of how large the platform is.
+
+## Write-up
+Your resume points to staff engineering in payments and distributed systems, from object storage at Nimbus Cloud to the ledger and settlement platform at Brightline Payments. A recruiter can see the technical work and leadership, but has to guess how large the platform and team are.
+
+The idempotency line is a strong model: it names the change and the duplicate-charge incidents it eliminated. Your career progression is easy to follow, and the ledger redesign gives a recruiter a useful view of the architecture.
+
+Let's start with the current role. Add the team and platform details you can substantiate, then explain your part in the multi-currency roadmap. In the earlier Brightline role, show how much the reconciliation work changed where you have the figures.
+
+## Cards (5; {"line":4,"keep":1}); severity off; added []
+1. [line] Staff Software Engineer, line 1
+   line: "Technical lead for the ledger and settlement platform team"
+   can't tell: A recruiter can see your technical lead role, but not how large the team or Brightline Payments is, or who you reported to. Those details help place the role at staff level.
+   example: Technical lead for the ledger and settlement platform team of [number] people at Brightline Payments, a company of [number] employees, reporting to [role]
+   question: How many people were on the team and at Brightline Payments, and who did you report to?
+2. [line] Staff Software Engineer, line 2
+   line: "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB"
+   can't tell: The architecture change is clear, but a recruiter can't tell how much payment activity the ledger handled. That helps distinguish the scale of the system you led.
+   example: Led the redesign of the core ledger service handling [payment volume] from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB
+   question: What payment volume did the ledger service handle?
+3. [keep] Staff Software Engineer, line 3
+   line: "Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents"
+   can't tell: Keep this as a model. You connect your leadership of the framework to a concrete payment problem it removed.
+4. [line] Staff Software Engineer, line 6
+   line: "Partnered with product and finance on the roadmap for multi-currency settlement"
+   can't tell: The roadmap is named, but your contribution to it isn't. A recruiter can't tell which decisions or work were yours.
+   example: Partnered with product and finance on the roadmap for multi-currency settlement, contributing [your contribution]
+   question: What did you contribute to the multi-currency settlement roadmap?
+5. [line] Senior Software Engineer, line 3
+   line: "Reduced reconciliation break rate and manual ops effort"
+   can't tell: You say both measures fell, but not by how much. The changes would show what the reconciliation work achieved.
+   example: Reduced reconciliation break rate from [rate] to [rate] and manual ops effort by [amount]
+   question: How did the reconciliation break rate and manual ops effort change?
+
+## Fit
+Roles: ["Staff Software Engineer","Senior Software Engineer"]
+Level: Staff-level individual contributor, technical lead for a platform team
+Note: Your experience points toward staff software engineering in payments infrastructure and distributed systems. The current role shows architecture and technical leadership; team and platform figures would help a recruiter understand its reach.

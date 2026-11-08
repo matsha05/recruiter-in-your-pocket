@@ -1,0 +1,55 @@
+# b11_recent_grad_bad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_recent_grad_bad_1.txt (151 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 338ac33a; severity check off
+Outcome: report; cost $0.0100; 20.7s
+Case note: First job, weak; count-check key says no_evidence_latest_role, no_recent_work, title_level_mismatch.
+
+## Needs more context (score 53; model wrote 53)
+## Verdict
+A marketing intern's resume with a manager's headline and no account of recent work.
+
+## Write-up
+It’s common for an internship resume to list duties without saying what you did within them. Yours points toward marketing through the Badger State Credit Union role, but the manager headline goes beyond what those lines show. A recruiter reading for a Marketing Intern role would have to guess at your contributions and would likely move on.
+
+The dairy farm research line is your model: it names the data, the tool and the study, so the work is easy to grasp. Education sits above your experience, and nothing accounts for your time after May 2024.
+
+Let’s start with the newsletter line, then give the social posts and branch events the same treatment. Put Experience above Education, use a headline that fits your work, and add an honest account of what you’ve done since the internship.
+
+## Cards (7; {"line":4,"dates":1,"structure":1,"keep":1}); severity off; added []
+1. [line] Headline
+   line: "Marketing manager who has led credit union campaigns from strategy to launch."
+   can't tell: Your credit union role is listed as an internship, and its lines don't show you leading campaigns. A recruiter may question the manager title before reaching your work.
+   example: Marketing Intern with experience in the member newsletter, social media and branch events, seeking [target role]
+   question: What role are you targeting?
+2. [dates] Dates
+   line: "Nothing on your resume is dated after May 2024."
+   can't tell: A recruiter can't tell what you've done since the internship ended. If you cared for a family member, took a career break, studied or did real freelance work, you can name that honestly.
+   example: May 2024 - Present [what you did]
+   question: What have you done since May 2024 that you can include?
+3. [structure] Structure
+   line: "Education sits above Experience."
+   can't tell: Your research and internship work give a recruiter more to look at than the degree alone. Put that work first.
+   question: Can you move Experience above Education?
+4. [line] Marketing Intern, line 1
+   line: "Helped with the member newsletter"
+   can't tell: Helped could mean writing, editing or sending it. A recruiter can't tell which part was yours.
+   example: Helped with the member newsletter by [your contribution] for [audience]
+   question: What did you contribute to the newsletter, and who received it?
+5. [line] Marketing Intern, line 2
+   line: "Posted on the credit union's social media accounts"
+   can't tell: Posting is a task, but the content and frequency are missing. Those details would show what you handled for the credit union.
+   example: Posted [content] on the credit union's social media accounts [frequency]
+   question: What did you post, and how often?
+6. [line] Marketing Intern, line 3
+   line: "Supported planning for branch events"
+   can't tell: A recruiter can't tell what your part in planning was or what kind of event you worked on. Name one event and your contribution.
+   example: Supported planning for [branch event] by [your contribution]
+   question: Which branch event did you work on, and what did you do for it?
+7. [keep] Research Assistant, line 1
+   line: "Cleaned survey data from 1,200 dairy farms in Stata for a pricing study"
+   can't tell: Keep this as a model. It pairs your action with the subject, scale and purpose of the work without making the reader guess.
+
+## Fit
+Roles: ["Marketing Intern"]
+Level: Entry level, with a marketing internship
+Note: Your credit union work points toward entry-level marketing roles. The research and finance internships add analytical work, but the resume doesn't yet show the campaign leadership claimed in the headline.

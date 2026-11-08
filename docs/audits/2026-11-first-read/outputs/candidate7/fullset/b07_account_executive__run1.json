@@ -1,0 +1,277 @@
+{
+  "case_id": "b07_account_executive",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_account_executive_1.txt",
+  "resume_sha256": "f964f76d12cdd6ba10596473b309c0f44b18de7112f27369c32227cd287f6e94",
+  "resume_words": 145,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:35:04.210Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5880,
+        "completion_tokens": 1210,
+        "total_tokens": 7090,
+        "cached_prompt_tokens": 5196,
+        "cache_write_prompt_tokens": 681,
+        "reasoning_tokens": 394
+      },
+      "cost_usd": 0.00716405,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 14445
+    }
+  ],
+  "resume_prompt_sha256": "1c0fe4fe961ccb0d0e49bbe71ac8427d0281ae6e9a1efa6ac35e3ee49a99ed47",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 81,
+    "lifted_by_employer": false,
+    "verdict": "A mid-market account executive with a promotion and a strong sales year, with a few questions left.",
+    "write_up": [
+      "You moved from SDR to mid-market account executive at Crestview HR Cloud, and your resume shows both a sales result and how you bring in deals. A recruiter can follow the move and would likely take a closer look, with questions about your quota and more recent performance.",
+      "The referral program line is a good model: it names the partners and the deals the program sourced. Your experience also sits above education, so the sales work comes first.",
+      "Start with the 2025 sales line. Add the quota itself and a more recent result if you have one, then give the demos and security reviews a little more detail. Your SDR ranking could use the measure behind it, too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Account Executive, Mid-Market, line 1",
+        "line": "- Closed $1.1M in new annual recurring revenue in 2025, 108% of quota",
+        "cannot_tell": "The result is strong, but the quota itself isn't stated, and a recruiter can't see how sales have gone since 2025. Both help put that year in context.",
+        "example": "Closed $1.1M in new annual recurring revenue in 2025, 108% of quota ([quota amount]); [year]: [sales result and quota attainment]",
+        "question": "What was your 2025 quota, and what are your most recent sales results against quota?"
+      },
+      {
+        "kind": "keep",
+        "where": "Account Executive, Mid-Market, line 3",
+        "line": "- Built a referral program with two payroll partners that sourced 9 deals",
+        "cannot_tell": "Keep this as a model. It connects a program you built to the deals it sourced without claiming you closed them.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Account Executive, Mid-Market, line 4",
+        "line": "- Work with solutions engineers on demos and security reviews",
+        "cannot_tell": "A recruiter can see who you work with, but not what you handle in the demos or security reviews. Your part matters in a full-cycle sales role.",
+        "example": "Work with solutions engineers on demos and security reviews, handling [your part of the work]",
+        "question": "What do you handle in demos and security reviews?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 3",
+        "line": "- Top SDR in two quarters",
+        "cannot_tell": "Top SDR is worth keeping, but the measure and comparison group aren't named. A recruiter can't tell what earned the ranking.",
+        "example": "Top SDR in two quarters, measured by [measure] among [comparison group]",
+        "question": "What was the ranking based on, and who were you ranked against?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Account Executive, Mid-Market"
+      ],
+      "why": "Your headline and current Crestview HR Cloud role both point to full-cycle mid-market sales.",
+      "level": "Account executive, promoted from SDR and running full-cycle sales",
+      "note": "Your experience points toward mid-market software sales, with HR software and payroll partnerships as useful context. The quota and a more recent sales result would help a recruiter compare your performance.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 81,
+    "lifted_by_employer": false,
+    "verdict": "A mid-market account executive with a promotion and a strong sales year, with a few questions left.",
+    "write_up": [
+      "You moved from SDR to mid-market account executive at Crestview HR Cloud, and your resume shows both a sales result and how you bring in deals. A recruiter can follow the move and would likely take a closer look, with questions about your quota and more recent performance.",
+      "The referral program line is a good model: it names the partners and the deals the program sourced. Your experience also sits above education, so the sales work comes first.",
+      "Start with the 2025 sales line. Add the quota itself and a more recent result if you have one, then give the demos and security reviews a little more detail. Your SDR ranking could use the measure behind it, too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Account Executive, Mid-Market, line 1",
+        "line": "Closed $1.1M in new annual recurring revenue in 2025, 108% of quota",
+        "cannot_tell": "The result is strong, but the quota itself isn't stated, and a recruiter can't see how sales have gone since 2025. Both help put that year in context.",
+        "example": "Closed $1.1M in new annual recurring revenue in 2025, 108% of quota ([quota amount]); [year]: [sales result and quota attainment]",
+        "question": "What was your 2025 quota, and what are your most recent sales results against quota?"
+      },
+      {
+        "kind": "keep",
+        "where": "Account Executive, Mid-Market, line 3",
+        "line": "Built a referral program with two payroll partners that sourced 9 deals",
+        "cannot_tell": "Keep this as a model. It connects a program you built to the deals it sourced without claiming you closed them.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Account Executive, Mid-Market, line 4",
+        "line": "Work with solutions engineers on demos and security reviews",
+        "cannot_tell": "A recruiter can see who you work with, but not what you handle in the demos or security reviews. Your part matters in a full-cycle sales role.",
+        "example": "Work with solutions engineers on demos and security reviews, handling [your part of the work]",
+        "question": "What do you handle in demos and security reviews?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 3",
+        "line": "Top SDR in two quarters",
+        "cannot_tell": "Top SDR is worth keeping, but the measure and comparison group aren't named. A recruiter can't tell what earned the ranking.",
+        "example": "Top SDR in two quarters, measured by [measure] among [comparison group]",
+        "question": "What was the ranking based on, and who were you ranked against?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Account Executive, Mid-Market"
+      ],
+      "why": "Your headline and current Crestview HR Cloud role both point to full-cycle mid-market sales.",
+      "level": "Account executive, promoted from SDR and running full-cycle sales",
+      "note": "Your experience points toward mid-market software sales, with HR software and payroll partnerships as useful context. The quota and a more recent sales result would help a recruiter compare your performance.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 81
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 81,
+    "lifted_by_employer": false,
+    "verdict": "A mid-market account executive with a promotion and a strong sales year, with a few questions left.",
+    "write_up": [
+      "You moved from SDR to mid-market account executive at Crestview HR Cloud, and your resume shows both a sales result and how you bring in deals. A recruiter can follow the move and would likely take a closer look, with questions about your quota and more recent performance.",
+      "The referral program line is a good model: it names the partners and the deals the program sourced. Your experience also sits above education, so the sales work comes first.",
+      "Start with the 2025 sales line. Add the quota itself and a more recent result if you have one, then give the demos and security reviews a little more detail. Your SDR ranking could use the measure behind it, too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Account Executive, Mid-Market, line 1",
+        "line": "Closed $1.1M in new annual recurring revenue in 2025, 108% of quota",
+        "cannot_tell": "The result is strong, but the quota itself isn't stated, and a recruiter can't see how sales have gone since 2025. Both help put that year in context.",
+        "example": "Closed $1.1M in new annual recurring revenue in 2025, 108% of quota ([quota amount]); [year]: [sales result and quota attainment]",
+        "question": "What was your 2025 quota, and what are your most recent sales results against quota?"
+      },
+      {
+        "kind": "keep",
+        "where": "Account Executive, Mid-Market, line 3",
+        "line": "Built a referral program with two payroll partners that sourced 9 deals",
+        "cannot_tell": "Keep this as a model. It connects a program you built to the deals it sourced without claiming you closed them.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Account Executive, Mid-Market, line 4",
+        "line": "Work with solutions engineers on demos and security reviews",
+        "cannot_tell": "A recruiter can see who you work with, but not what you handle in the demos or security reviews. Your part matters in a full-cycle sales role.",
+        "example": "Work with solutions engineers on demos and security reviews, handling [your part of the work]",
+        "question": "What do you handle in demos and security reviews?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 3",
+        "line": "Top SDR in two quarters",
+        "cannot_tell": "Top SDR is worth keeping, but the measure and comparison group aren't named. A recruiter can't tell what earned the ranking.",
+        "example": "Top SDR in two quarters, measured by [measure] among [comparison group]",
+        "question": "What was the ranking based on, and who were you ranked against?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Account Executive, Mid-Market"
+      ],
+      "why": "Your headline and current Crestview HR Cloud role both point to full-cycle mid-market sales.",
+      "level": "Account executive, promoted from SDR and running full-cycle sales",
+      "note": "Your experience points toward mid-market software sales, with HR software and payroll partnerships as useful context. The quota and a more recent sales result would help a recruiter compare your performance.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 81
+  },
+  "presentation": {
+    "score": 81,
+    "band": "Mostly clear",
+    "model_score": 81,
+    "lifted_by_employer": false,
+    "verdict": "A mid-market account executive with a promotion and a strong sales year, with a few questions left.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 118,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Account Executive, Mid-Market, line 1",
+        "line": "Closed $1.1M in new annual recurring revenue in 2025, 108% of quota",
+        "blanks": 3,
+        "question": "What was your 2025 quota, and what are your most recent sales results against quota?"
+      },
+      {
+        "kind": "keep",
+        "where": "Account Executive, Mid-Market, line 3",
+        "line": "Built a referral program with two payroll partners that sourced 9 deals",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Account Executive, Mid-Market, line 4",
+        "line": "Work with solutions engineers on demos and security reviews",
+        "blanks": 1,
+        "question": "What do you handle in demos and security reviews?"
+      },
+      {
+        "kind": "line",
+        "where": "Sales Development Representative, line 3",
+        "line": "Top SDR in two quarters",
+        "blanks": 2,
+        "question": "What was the ranking based on, and who were you ranked against?"
+      }
+    ],
+    "card_count": 4,
+    "kinds": {
+      "line": 3,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Account Executive, Mid-Market"
+      ],
+      "why": "Your headline and current Crestview HR Cloud role both point to full-cycle mid-market sales.",
+      "level": "Account executive, promoted from SDR and running full-cycle sales",
+      "note": "Your experience points toward mid-market software sales, with HR software and payroll partnerships as useful context. The quota and a more recent sales result would help a recruiter compare your performance.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00716405,
+  "latency_ms": 14462
+}

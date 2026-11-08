@@ -1,0 +1,30 @@
+# b02_teacher, run 1
+Resume: ../2026-11-live-judgment/resumes/b_teacher.txt (202 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 41bcacc0; severity check off
+Outcome: report; cost $0.0055; 11.5s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+An elementary teacher's resume with classroom results, team leadership, and Washington certification clearly shown.
+
+## Write-up
+This is a strong teaching resume! At Lincoln Heights, you show your classroom, grade-level leadership, curriculum work, and reading growth. A recruiter can see both what you teach and how you contribute beyond your own class.
+
+The reading assessment line is the model: it gives the starting point, the later result, and the period. Your Washington K-8 certification and English Language Learner endorsement are easy to find, and your teaching experience leads the resume.
+
+The one line I'd revisit is the positive behavior support committee at Whitman. Add your contribution there, then leave the rest largely alone. Your resume is unlikely to be the thing holding you back; the competition for a particular teaching job will matter too.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] 4th Grade Teacher, line 2
+   line: "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years"
+   can't tell: Keep this line. It names the assessment and shows the change without making a recruiter guess what the figures measure.
+2. [line] 2nd Grade Teacher, line 3
+   line: "Served on the school's positive behavior support committee"
+   can't tell: A recruiter can see you were on the committee, but not what you contributed to its work.
+   example: Served on the school's positive behavior support committee, contributing [what you contributed]
+   question: What did you contribute to the committee's work?
+
+## Fit
+Roles: ["4th Grade Teacher","2nd Grade Teacher"]
+Level: Experienced teacher, leads a grade-level team of 4 teachers
+Note: Your experience points to elementary classroom teaching, with grade-level team leadership and curriculum training. Your Washington K-8 certificate and English Language Learner endorsement fit that work.

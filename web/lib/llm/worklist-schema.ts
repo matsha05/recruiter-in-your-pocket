@@ -41,6 +41,12 @@ export type WorklistCard = z.infer<typeof WorklistCardSchema>;
 
 export const WorklistFitSchema = z.object({
   roles: z.array(text(80)).max(4),
+  /**
+   * Why a recruiter would read the resume as the first role (Nov 7, 2026), the reason under "Which job is this
+   * for?". Optional with no default: a report saved before it existed must parse to the same object, or its
+   * stored signature no longer matches.
+   */
+  why: optionalText(240).optional(),
   level: optionalText(120),
   note: optionalText(800),
   posting: z.object({
@@ -59,6 +65,12 @@ export const WorklistReportSchema = z.object({
   write_up: z.array(text(1800)).min(1).max(MAX_WRITE_UP_PARAGRAPHS),
   cards: z.array(WorklistCardSchema).max(MAX_CARDS),
   fit: WorklistFitSchema,
+  // Lines written to screening software, found in the text as submitted (lib/reports/screener-text.ts); set by
+  // the route after validation, never by the model, and absent on an ordinary resume.
+  screener_text: z.array(z.object({
+    kind: z.enum(["instruction", "score", "posting_copy", "keyword_repeat"]),
+    excerpt: text(200),
+  })).max(3).optional(),
   // Kept by the shared persistence layer (ensureLayoutAndContentFields); never set by the model.
   layout_score: z.number().nullable().optional(),
   layout_band: z.string().optional(),
@@ -106,6 +118,7 @@ export const WORKLIST_REPORT_JSON_SCHEMA = {
       type: "object",
       properties: {
         roles: { type: "array", minItems: 0, maxItems: 4, items: nonEmptyString },
+        why: stringValue,
         level: stringValue,
         note: stringValue,
         posting: {
@@ -118,7 +131,7 @@ export const WORKLIST_REPORT_JSON_SCHEMA = {
           additionalProperties: false,
         },
       },
-      required: ["roles", "level", "note", "posting"],
+      required: ["roles", "why", "level", "note", "posting"],
       additionalProperties: false,
     },
   },

@@ -1,0 +1,281 @@
+{
+  "case_id": "b19_non_native_english",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/resumes/b_non_native_english.txt",
+  "resume_sha256": "b6a26fe36825d1810e73236e21445163948f02ce6be0d9328e9ccaf50cb59c16",
+  "resume_words": 237,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:48:36.267Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6032,
+        "completion_tokens": 1223,
+        "total_tokens": 7255,
+        "cached_prompt_tokens": 5142,
+        "cache_write_prompt_tokens": 887,
+        "reasoning_tokens": 435
+      },
+      "cost_usd": 0.00748385,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 14722
+    }
+  ],
+  "resume_prompt_sha256": "5cba8f052feab05101dfe43138d650d9cc25bac9a46f7e3aa35d9efb9d96fad4",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 82,
+    "lifted_by_employer": false,
+    "verdict": "An experienced accountant with strong close and invoice work, plus a few contributions that need more detail.",
+    "write_up": [
+      "Your resume tells a useful accounting story: senior accounting work at Minh Phat Trading Company, followed by bookkeeping and accounts payable work in Houston. I read it for Staff Accountant roles. A recruiter can see both your financial statement work and your current invoice volume, so there's enough here to move forward with a few questions.",
+      "The strongest line is your month-end close at Minh Phat: it names the checklist and template and shows the close going from 12 days to 7. Your experience comes before education, and your profile names the jobs you want.",
+      "Let's start with your current month-end work. Say what you helped the controller do, then add what your team handled at Minh Phat. Those details will connect your current accounts payable work to the broader accounting responsibilities you want."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 4",
+        "line": "- Help the controller for month end closing",
+        "cannot_tell": "A recruiter can't tell which parts of the close you handle. That matters for the Staff Accountant roles you're seeking.",
+        "example": "Help the controller for month end closing by [tasks you handled]",
+        "question": "What do you do for the controller during month-end closing?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 2",
+        "line": "- Lead team of 3 junior accountants",
+        "cannot_tell": "The team count is useful, but it doesn't say what the junior accountants handled. Naming their work will show what you led.",
+        "example": "Lead team of 3 junior accountants who [what the team handles]",
+        "question": "What work did the three junior accountants handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 3",
+        "line": "- Work with external auditor for year end audit, no major finding in 5 years",
+        "cannot_tell": "The audit finding is worth keeping, but a recruiter can't tell what you did with the external auditor.",
+        "example": "Work with external auditor for year end audit by [what you did]; no major finding in 5 years",
+        "question": "What did you do to support the external auditor during the year-end audit?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Accountant, line 4",
+        "line": "- Reduce the month end closing from 12 days to 7 days by make new checklist and template",
+        "cannot_tell": "Keep this as a model: it gives a recruiter a concrete before and after, and names the tools you made to get there.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Specialist"
+      ],
+      "why": "Your profile names Staff Accountant, and your work includes financial statements, month-end closing and current accounts payable processing.",
+      "level": "Experienced accountant; led a team of 3 junior accountants",
+      "note": "Your Minh Phat role points toward broader staff accounting work, while your current role also fits accounts payable positions. Adding your specific month-end tasks would make the connection between the two stronger.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 82,
+    "lifted_by_employer": false,
+    "verdict": "An experienced accountant with strong close and invoice work, plus a few contributions that need more detail.",
+    "write_up": [
+      "Your resume tells a useful accounting story: senior accounting work at Minh Phat Trading Company, followed by bookkeeping and accounts payable work in Houston. I read it for Staff Accountant roles. A recruiter can see both your financial statement work and your current invoice volume, so there's enough here to move forward with a few questions.",
+      "The strongest line is your month-end close at Minh Phat: it names the checklist and template and shows the close going from 12 days to 7. Your experience comes before education, and your profile names the jobs you want.",
+      "Let's start with your current month-end work. Say what you helped the controller do, then add what your team handled at Minh Phat. Those details will connect your current accounts payable work to the broader accounting responsibilities you want."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 4",
+        "line": "Help the controller for month end closing",
+        "cannot_tell": "A recruiter can't tell which parts of the close you handle. That matters for the Staff Accountant roles you're seeking.",
+        "example": "Help the controller for month end closing by [tasks you handled]",
+        "question": "What do you do for the controller during month-end closing?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 2",
+        "line": "Lead team of 3 junior accountants",
+        "cannot_tell": "The team count is useful, but it doesn't say what the junior accountants handled. Naming their work will show what you led.",
+        "example": "Lead team of 3 junior accountants who [what the team handles]",
+        "question": "What work did the three junior accountants handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 3",
+        "line": "Work with external auditor for year end audit, no major finding in 5 years",
+        "cannot_tell": "The audit finding is worth keeping, but a recruiter can't tell what you did with the external auditor.",
+        "example": "Work with external auditor for year end audit by [what you did]; no major finding in 5 years",
+        "question": "What did you do to support the external auditor during the year-end audit?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Accountant, line 4",
+        "line": "Reduce the month end closing from 12 days to 7 days by make new checklist and template",
+        "cannot_tell": "Keep this as a model: it gives a recruiter a concrete before and after, and names the tools you made to get there.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Specialist"
+      ],
+      "why": "Your profile names Staff Accountant, and your work includes financial statements, month-end closing and current accounts payable processing.",
+      "level": "Experienced accountant; led a team of 3 junior accountants",
+      "note": "Your Minh Phat role points toward broader staff accounting work, while your current role also fits accounts payable positions. Adding your specific month-end tasks would make the connection between the two stronger.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 82
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 82,
+    "lifted_by_employer": false,
+    "verdict": "An experienced accountant with strong close and invoice work, plus a few contributions that need more detail.",
+    "write_up": [
+      "Your resume tells a useful accounting story: senior accounting work at Minh Phat Trading Company, followed by bookkeeping and accounts payable work in Houston. I read it for Staff Accountant roles. A recruiter can see both your financial statement work and your current invoice volume, so there's enough here to move forward with a few questions.",
+      "The strongest line is your month-end close at Minh Phat: it names the checklist and template and shows the close going from 12 days to 7. Your experience comes before education, and your profile names the jobs you want.",
+      "Let's start with your current month-end work. Say what you helped the controller do, then add what your team handled at Minh Phat. Those details will connect your current accounts payable work to the broader accounting responsibilities you want."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 4",
+        "line": "Help the controller for month end closing",
+        "cannot_tell": "A recruiter can't tell which parts of the close you handle. That matters for the Staff Accountant roles you're seeking.",
+        "example": "Help the controller for month end closing by [tasks you handled]",
+        "question": "What do you do for the controller during month-end closing?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 2",
+        "line": "Lead team of 3 junior accountants",
+        "cannot_tell": "The team count is useful, but it doesn't say what the junior accountants handled. Naming their work will show what you led.",
+        "example": "Lead team of 3 junior accountants who [what the team handles]",
+        "question": "What work did the three junior accountants handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 3",
+        "line": "Work with external auditor for year end audit, no major finding in 5 years",
+        "cannot_tell": "The audit finding is worth keeping, but a recruiter can't tell what you did with the external auditor.",
+        "example": "Work with external auditor for year end audit by [what you did]; no major finding in 5 years",
+        "question": "What did you do to support the external auditor during the year-end audit?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Accountant, line 4",
+        "line": "Reduce the month end closing from 12 days to 7 days by make new checklist and template",
+        "cannot_tell": "Keep this as a model: it gives a recruiter a concrete before and after, and names the tools you made to get there.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Specialist"
+      ],
+      "why": "Your profile names Staff Accountant, and your work includes financial statements, month-end closing and current accounts payable processing.",
+      "level": "Experienced accountant; led a team of 3 junior accountants",
+      "note": "Your Minh Phat role points toward broader staff accounting work, while your current role also fits accounts payable positions. Adding your specific month-end tasks would make the connection between the two stronger.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 82
+  },
+  "presentation": {
+    "score": 82,
+    "band": "Mostly clear",
+    "model_score": 82,
+    "lifted_by_employer": false,
+    "verdict": "An experienced accountant with strong close and invoice work, plus a few contributions that need more detail.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 134,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 4",
+        "line": "Help the controller for month end closing",
+        "blanks": 1,
+        "question": "What do you do for the controller during month-end closing?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 2",
+        "line": "Lead team of 3 junior accountants",
+        "blanks": 1,
+        "question": "What work did the three junior accountants handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 3",
+        "line": "Work with external auditor for year end audit, no major finding in 5 years",
+        "blanks": 1,
+        "question": "What did you do to support the external auditor during the year-end audit?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Accountant, line 4",
+        "line": "Reduce the month end closing from 12 days to 7 days by make new checklist and template",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 4,
+    "kinds": {
+      "line": 3,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Specialist"
+      ],
+      "why": "Your profile names Staff Accountant, and your work includes financial statements, month-end closing and current accounts payable processing.",
+      "level": "Experienced accountant; led a team of 3 junior accountants",
+      "note": "Your Minh Phat role points toward broader staff accounting work, while your current role also fits accounts payable positions. Adding your specific month-end tasks would make the connection between the two stronger.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00748385,
+  "latency_ms": 14726
+}

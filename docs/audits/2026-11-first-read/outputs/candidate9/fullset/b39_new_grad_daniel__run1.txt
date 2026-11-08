@@ -1,0 +1,70 @@
+# b39_new_grad_daniel, run 1
+Resume: ../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/1-new-grad-daniel.txt (354 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 338ac33a; severity check off
+Outcome: report; cost $0.0128; 25.4s
+Case note: New grad (bar persona).
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+A Computer Science graduate with relevant projects and an internship whose contributions are still too vague.
+
+## Write-up
+This is a common early-career resume: you have a Cardinal Health software internship, help desk work, and projects that point toward Software Engineer roles. But the internship mostly lists activities rather than the features and fixes you worked on, so a recruiter is likely to move on without knowing what you can bring to the job.
+
+The Personal Finance Tracker line is a good model: it names the application, what it does, and the tools you used. Your help desk role also gives you substantial experience, so put Experience above Education. Your May 2026 graduation accounts for time after the internship.
+
+Let's start with the Cardinal Health role. Name the inventory features, tests, and bugs you worked on, using details you can stand behind. Then trim the generic objective and give the help desk work a little more detail.
+
+## Cards (10; {"line":8,"structure":1,"keep":1}); severity off; added []
+1. [line] Objective
+   line: "Motivated and detail-oriented Computer Science graduate seeking a Software Engineer position where I can leverage my technical skills and passion for problem solving to contribute to a dynamic team."
+   can't tell: This names the job you want, but the rest could describe almost any graduate. Your internship and projects give you more useful things to lead with.
+   example: Computer Science graduate seeking a Software Engineer position, with experience developing features using React and Spring Boot.
+   question: Which part of your software work do you most want a recruiter to notice first?
+2. [structure] Structure
+   line: "Education sits above Experience."
+   can't tell: Your help desk role and software internship give a recruiter work to look at. Put Experience above Education so that work comes first.
+   question: Can you move Experience above Education?
+3. [line] Software Engineering Intern, line 1
+   line: "Responsible for developing features for an internal inventory management web application using React and Spring Boot"
+   can't tell: The application and tools are clear, but the features aren't. This is the first place a recruiter will look for your software work.
+   example: Responsible for developing [features] for an internal inventory management web application using React and Spring Boot.
+   question: Which features did you develop for the inventory application?
+4. [line] Software Engineering Intern, line 2
+   line: "Participated in daily stand-ups and sprint planning meetings as part of an Agile team"
+   can't tell: Meetings don't show what you contributed to the team's work. If you keep this line, name what you brought to those discussions.
+   example: Participated in daily stand-ups and sprint planning meetings as part of an Agile team, contributing [what you contributed].
+   question: What did you contribute during stand-ups or sprint planning?
+5. [line] Software Engineering Intern, line 3
+   line: "Wrote unit tests to improve code quality and reliability"
+   can't tell: A recruiter can't tell what the tests covered or what you used to write them. Those details would show more of your engineering work.
+   example: Wrote unit tests for [functionality] using [tool] to improve code quality and reliability.
+   question: What did your unit tests cover, and what did you use to write them?
+6. [line] Software Engineering Intern, line 4
+   line: "Collaborated with cross-functional teams to gather requirements and deliver solutions"
+   can't tell: The teams and solutions are still a mystery. Name a piece of work and your part in gathering its requirements.
+   example: Collaborated with cross-functional teams to gather requirements for [work] and deliver [solution].
+   question: What work did you gather requirements for, and what solution did you help deliver?
+7. [line] Software Engineering Intern, line 5
+   line: "Fixed bugs and performed code reviews"
+   can't tell: Both are useful software work, but a recruiter can't tell what kinds of bugs you fixed or code you reviewed.
+   example: Fixed [bugs] and performed code reviews for [code reviewed].
+   question: What bugs did you fix, and what code did you review?
+8. [line] IT Help Desk Assistant, line 2
+   line: "Resolved tickets in a timely manner and documented solutions"
+   can't tell: The help desk role names hardware and software support, but this doesn't show how many tickets you handled or how you documented solutions.
+   example: Resolved [number] tickets [frequency] and documented solutions in [tool].
+   question: How many tickets did you resolve, how often, and where did you document the solutions?
+9. [line] IT Help Desk Assistant, line 3
+   line: "Assisted with setting up laptops and classroom technology"
+   can't tell: Assisted could mean several things here. Your part in setting up the equipment is the detail a recruiter needs.
+   example: Assisted with setting up laptops and classroom technology by [your tasks].
+   question: What did you do when setting up the laptops and classroom technology?
+10. [keep] Personal Finance Tracker, line 1
+   line: "Built a Python application to track expenses and visualize spending with matplotlib"
+   can't tell: Keep this as a model. It gives the reader a concrete piece of software and enough detail to understand its purpose without guessing.
+
+## Fit
+Roles: ["Software Engineer"]
+Level: Entry level, with a software engineering internship and a May 2026 degree
+Note: Your internship and full-stack projects point toward entry-level software engineering roles. The strongest next step is to make your individual contributions at Cardinal Health more concrete.

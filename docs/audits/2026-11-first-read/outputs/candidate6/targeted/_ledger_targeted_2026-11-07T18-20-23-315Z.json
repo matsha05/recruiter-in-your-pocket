@@ -1,0 +1,132 @@
+{
+  "batch": "targeted",
+  "model": "gpt-6.1-terra",
+  "effort": "medium",
+  "today": "2026-11-07",
+  "severity_check": false,
+  "budget_usd": 1,
+  "spent_usd": 0.0990955,
+  "calls": 10,
+  "runs": [
+    {
+      "stem": "fr01a_backend_ic_no_posting__run1",
+      "outcome": "report",
+      "cost_usd": 0.01176675,
+      "score": 90,
+      "band": "Clear and specific",
+      "cards": 2,
+      "structural_from_model": 0,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "fr01c_backend_ic_manager_posting__run1",
+      "outcome": "report",
+      "cost_usd": 0.014428,
+      "score": 88,
+      "band": "Clear and specific",
+      "cards": 2,
+      "structural_from_model": 0,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "fr01b_backend_ic_backend_posting__run1",
+      "outcome": "report",
+      "cost_usd": 0.00818745,
+      "score": 89,
+      "band": "Clear and specific",
+      "cards": 3,
+      "structural_from_model": 0,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "fr02a_marketing_skills_no_posting__run1",
+      "outcome": "report",
+      "cost_usd": 0.00905535,
+      "score": 66,
+      "band": "Needs more context",
+      "cards": 7,
+      "structural_from_model": 0,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "fr03_account_executive_quota__run1",
+      "outcome": "report",
+      "cost_usd": 0.0070566,
+      "score": 80,
+      "band": "Mostly clear",
+      "cards": 4,
+      "structural_from_model": 0,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "fr04_financial_analyst_frames__run1",
+      "outcome": "report",
+      "cost_usd": 0.0072166,
+      "score": 80,
+      "band": "Mostly clear",
+      "cards": 5,
+      "structural_from_model": 0,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "fr02b_marketing_skills_hubspot_posting__run1",
+      "outcome": "report",
+      "cost_usd": 0.0121887,
+      "score": 65,
+      "band": "Needs more context",
+      "cards": 8,
+      "structural_from_model": 1,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "fr05_nurse_no_units__run1",
+      "outcome": "report",
+      "cost_usd": 0.00982535,
+      "score": 65,
+      "band": "Needs more context",
+      "cards": 8,
+      "structural_from_model": 0,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "fr07_hidden_text__run1",
+      "outcome": "report",
+      "cost_usd": 0.0070941,
+      "score": 79,
+      "band": "Mostly clear",
+      "cards": 4,
+      "structural_from_model": 1,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "fr06_senior_director_duties__run1",
+      "outcome": "report",
+      "cost_usd": 0.0122766,
+      "score": 65,
+      "band": "Needs more context",
+      "cards": 11,
+      "structural_from_model": 1,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    }
+  ]
+}

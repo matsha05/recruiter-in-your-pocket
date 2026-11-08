@@ -1,0 +1,51 @@
+# b38_layoff_gap_james, run 1
+Resume: ../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/3-layoff-gap-james.txt (313 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0107; 20.9s
+Case note: Layoff gap (bar persona).
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+A senior SaaS marketer with strong prior results and freelance work that needs more detail.
+
+## Write-up
+You’ve moved from Marketing Coordinator at Bridgepoint Analytics to Senior Marketing Manager at Velocity Software and now freelance consulting. It’s common for consulting work to appear as a short list of services, but yours doesn’t yet show what you did for individual clients or what changed. That makes the most recent work less likely to stand out in a pile.
+
+Your Velocity line about increasing MQL volume gives a recruiter a concrete result to remember, and the team and budget lines establish your management experience. Your senior marketing goal fits that history. The current freelance projects need the same kind of substance.
+
+Let’s start with the freelance role: name your contribution to one project and add a client count or result if you have one. Then replace the broad summary claim with a result from Velocity and put a number behind the Bridgepoint blog growth if it’s available.
+
+## Cards (6; {"line":5,"keep":1}); severity off; added []
+1. [line] Professional summary
+   line: "Results-driven Marketing Manager with 10+ years of experience in B2B SaaS. Expertise in demand generation, content strategy, and marketing operations. Proven ability to lead cross-functional teams and deliver measurable results. Seeking a senior marketing role."
+   can't tell: This claim could belong to many marketers. Your Velocity work gives you a more memorable way to show what you delivered.
+   example: Increased MQL volume by 35% year over year through [work performed], and managed a team of 4 marketers and a $1.8M annual marketing budget.
+   question: What work helped increase MQL volume at Velocity?
+2. [line] Freelance Marketing Consultant, line 1
+   line: "Provided marketing strategy and execution support for small businesses and startups"
+   can't tell: A recruiter can’t tell how many clients you supported or what the strategy work involved. That matters because this is your current role.
+   example: Provided marketing strategy and execution support for [number] small businesses and startups, including [strategy work].
+   question: How many clients have you supported, and what strategy work did you do for them?
+3. [line] Freelance Marketing Consultant, line 2
+   line: "Projects included website copy, email campaigns, and paid social setup"
+   can't tell: The projects are named, but your part in each one is still open to interpretation. Pick one and show what you did and what happened.
+   example: Projects included website copy, email campaigns, and paid social setup; [work performed] for [client type] resulted in [result].
+   question: On one of these projects, what did you do and what result can you share?
+4. [keep] Senior Marketing Manager, line 5
+   line: "Increased MQL volume by 35% year over year while reducing cost per lead"
+   can't tell: Keep this line. It pairs a precise year-over-year measure with a second movement in cost, so a recruiter can see what improved.
+5. [line] Marketing Manager, line 2
+   line: "Grew blog traffic significantly through SEO-driven content strategy"
+   can't tell: You name the strategy, but “significantly” leaves the traffic growth to the reader’s imagination. A figure would show how much the blog grew.
+   example: Grew blog traffic by [amount] through SEO-driven content strategy.
+   question: How much did blog traffic grow during this work?
+6. [line] Marketing Manager, line 3
+   line: "Ran webinar program generating pipeline for the sales team"
+   can't tell: The webinar program generated pipeline, but a recruiter can’t tell how much. That number would give the program weight alongside your Velocity results.
+   example: Ran a webinar program generating [pipeline amount] for the sales team.
+   question: How much pipeline did the webinar program generate?
+
+## Fit
+Roles: ["Senior Marketing Manager","Marketing Manager","Freelance Marketing Consultant"]
+Level: Senior marketing manager
+Note: Your Velocity role shows senior marketing management through demand generation, a team, a budget and MQL growth. The freelance role points in the same direction, but needs more detail about your client work.

@@ -1,0 +1,433 @@
+{
+  "case_id": "fr05_nurse_no_units",
+  "batch": "targeted",
+  "run": 1,
+  "note": "P4 (nursing). Titles without a unit; RN with no state. Expect the unit and the license state asked for; no invented ratio.",
+  "resume_file": "resumes/fr05_nurse_no_units.txt",
+  "resume_sha256": "46d392485f8498d11852f2d4588d800b42bd628f4fb7e61c5f3747a6fba875dc",
+  "resume_words": 140,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:45:31.891Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5774,
+        "completion_tokens": 1613,
+        "total_tokens": 7387,
+        "cached_prompt_tokens": 5142,
+        "cache_write_prompt_tokens": 629,
+        "reasoning_tokens": 335
+      },
+      "cost_usd": 0.00911135,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 19005
+    }
+  ],
+  "resume_prompt_sha256": "5cba8f052feab05101dfe43138d650d9cc25bac9a46f7e3aa35d9efb9d96fad4",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 64,
+    "lifted_by_employer": false,
+    "verdict": "An experienced hospital nurse whose current unit and clinical responsibilities are too hard to distinguish.",
+    "write_up": [
+      "It's common for nursing resumes to list core duties without naming the unit or the patients those duties involve. Yours follows that pattern across Riverside Methodist and Mount Carmel East, so a recruiter may finish it but move on without knowing where your clinical experience fits.",
+      "The Epic line is a useful model: it names the records you worked on and the system you used. Your current role shows charge nurse and preceptor work, too, but the unit isn't named, and your RN license doesn't include its state.",
+      "Let's start with Riverside Methodist: name the unit and the patients you care for, then explain your charge and preceptor responsibilities. Add the units for your earlier roles and your license state so a recruiter doesn't have to guess."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Licenses and certifications",
+        "line": "The RN license state isn't listed.",
+        "cannot_tell": "A recruiter can't tell which state issued your RN license. That matters when they're checking the requirements for a nursing role.",
+        "example": "RN, [license state], BLS, ACLS",
+        "question": "Which state issued your RN license?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 1",
+        "line": "- Provide direct patient care for adult patients across 12-hour shifts",
+        "cannot_tell": "The shift length is here, but the unit and patient needs aren't. Those are the first things a nursing recruiter will look for.",
+        "example": "Provide direct patient care for adult patients with [patient needs] on the [unit] across 12-hour shifts",
+        "question": "What unit do you work on, and what patient needs do you care for there?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 2",
+        "line": "- Administer medications and monitor patient response",
+        "cannot_tell": "Medication administration is part of the job, but a recruiter can't tell what monitoring your patients typically need.",
+        "example": "Administer medications and monitor [patient response] for adult patients with [patient needs]",
+        "question": "What patient responses do you monitor, and for which patient needs?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 3",
+        "line": "- Educate patients and families on discharge plans",
+        "cannot_tell": "Discharge teaching is important work. What do patients and families need to learn before they leave?",
+        "example": "Educate patients and families on [discharge teaching topics] in discharge plans",
+        "question": "What topics do you cover with patients and families before discharge?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 4",
+        "line": "- Serve as charge nurse on weekends",
+        "cannot_tell": "Charge nurse work stands out, but the line doesn't say what you're responsible for during those shifts.",
+        "example": "Serve as charge nurse on weekends, responsible for [charge nurse responsibilities]",
+        "question": "What are your responsibilities as charge nurse on weekends?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 5",
+        "line": "- Precept new graduate nurses",
+        "cannot_tell": "A recruiter can see that you teach new nurses, but not what you guide them through or how many you've precepted.",
+        "example": "Precept [number] new graduate nurses in [clinical skills or responsibilities]",
+        "question": "How many new graduate nurses have you precepted, and what did you guide them through?"
+      },
+      {
+        "kind": "line",
+        "where": "Mount Carmel East Hospital, Registered Nurse, line 1",
+        "line": "- Cared for patients before and after surgery",
+        "cannot_tell": "Before and after surgery gives a useful starting point, but the unit and care you provided aren't named.",
+        "example": "Cared for patients before and after surgery on the [unit], including [care provided]",
+        "question": "Which unit did you work on, and what care did you provide before and after surgery?"
+      },
+      {
+        "kind": "keep",
+        "where": "Mount Carmel East Hospital, Registered Nurse, line 2",
+        "line": "- Documented assessments and care plans in Epic",
+        "cannot_tell": "Keep this as a model. It names two things you documented and the system you used, without making a claim bigger than the work.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Mount Carmel East Hospital, Patient Care Technician",
+        "line": "- Took vital signs, assisted with mobility and hygiene",
+        "cannot_tell": "The tasks are clear, but the unit isn't named. That would show where you gained this patient care experience.",
+        "example": "Took vital signs, assisted with mobility and hygiene on the [unit]",
+        "question": "Which unit did you work on as a patient care technician?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Registered Nurse"
+      ],
+      "why": "Your headline and both hospital nursing roles point to Registered Nurse work.",
+      "level": "Experienced hospital RN, with charge nurse and preceptor duties",
+      "note": "Your experience points to hospital nursing roles. Naming your units, patient needs and license state will help recruiters judge where it fits.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 64,
+    "lifted_by_employer": false,
+    "verdict": "An experienced hospital nurse whose current unit and clinical responsibilities are too hard to distinguish.",
+    "write_up": [
+      "It's common for nursing resumes to list core duties without naming the unit or the patients those duties involve. Yours follows that pattern across Riverside Methodist and Mount Carmel East, so a recruiter may finish it but move on without knowing where your clinical experience fits.",
+      "The Epic line is a useful model: it names the records you worked on and the system you used. Your current role shows charge nurse and preceptor work, too, but the unit isn't named, and your RN license doesn't include its state.",
+      "Let's start with Riverside Methodist: name the unit and the patients you care for, then explain your charge and preceptor responsibilities. Add the units for your earlier roles and your license state so a recruiter doesn't have to guess."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Licenses and certifications",
+        "line": "The RN license state isn't listed.",
+        "cannot_tell": "A recruiter can't tell which state issued your RN license. That matters when they're checking the requirements for a nursing role.",
+        "example": "RN, [license state], BLS, ACLS",
+        "question": "Which state issued your RN license?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 1",
+        "line": "Provide direct patient care for adult patients across 12-hour shifts",
+        "cannot_tell": "The shift length is here, but the unit and patient needs aren't. Those are the first things a nursing recruiter will look for.",
+        "example": "Provide direct patient care for adult patients with [patient needs] on the [unit] across 12-hour shifts",
+        "question": "What unit do you work on, and what patient needs do you care for there?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 2",
+        "line": "Administer medications and monitor patient response",
+        "cannot_tell": "Medication administration is part of the job, but a recruiter can't tell what monitoring your patients typically need.",
+        "example": "Administer medications and monitor [patient response] for adult patients with [patient needs]",
+        "question": "What patient responses do you monitor, and for which patient needs?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 3",
+        "line": "Educate patients and families on discharge plans",
+        "cannot_tell": "Discharge teaching is important work. What do patients and families need to learn before they leave?",
+        "example": "Educate patients and families on [discharge teaching topics] in discharge plans",
+        "question": "What topics do you cover with patients and families before discharge?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 4",
+        "line": "Serve as charge nurse on weekends",
+        "cannot_tell": "Charge nurse work stands out, but the line doesn't say what you're responsible for during those shifts.",
+        "example": "Serve as charge nurse on weekends, responsible for [charge nurse responsibilities]",
+        "question": "What are your responsibilities as charge nurse on weekends?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 5",
+        "line": "Precept new graduate nurses",
+        "cannot_tell": "A recruiter can see that you teach new nurses, but not what you guide them through or how many you've precepted.",
+        "example": "Precept [number] new graduate nurses in [clinical skills or responsibilities]",
+        "question": "How many new graduate nurses have you precepted, and what did you guide them through?"
+      },
+      {
+        "kind": "line",
+        "where": "Mount Carmel East Hospital, Registered Nurse, line 1",
+        "line": "Cared for patients before and after surgery",
+        "cannot_tell": "Before and after surgery gives a useful starting point, but the unit and care you provided aren't named.",
+        "example": "Cared for patients before and after surgery on the [unit], including [care provided]",
+        "question": "Which unit did you work on, and what care did you provide before and after surgery?"
+      },
+      {
+        "kind": "keep",
+        "where": "Mount Carmel East Hospital, Registered Nurse, line 2",
+        "line": "Documented assessments and care plans in Epic",
+        "cannot_tell": "Keep this as a model. It names two things you documented and the system you used, without making a claim bigger than the work.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Mount Carmel East Hospital, Patient Care Technician",
+        "line": "Took vital signs, assisted with mobility and hygiene",
+        "cannot_tell": "The tasks are clear, but the unit isn't named. That would show where you gained this patient care experience.",
+        "example": "Took vital signs, assisted with mobility and hygiene on the [unit]",
+        "question": "Which unit did you work on as a patient care technician?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Registered Nurse"
+      ],
+      "why": "Your headline and both hospital nursing roles point to Registered Nurse work.",
+      "level": "Experienced hospital RN, with charge nurse and preceptor duties",
+      "note": "Your experience points to hospital nursing roles. Naming your units, patient needs and license state will help recruiters judge where it fits.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 64
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 64,
+    "lifted_by_employer": false,
+    "verdict": "An experienced hospital nurse whose current unit and clinical responsibilities are too hard to distinguish.",
+    "write_up": [
+      "It's common for nursing resumes to list core duties without naming the unit or the patients those duties involve. Yours follows that pattern across Riverside Methodist and Mount Carmel East, so a recruiter may finish it but move on without knowing where your clinical experience fits.",
+      "The Epic line is a useful model: it names the records you worked on and the system you used. Your current role shows charge nurse and preceptor work, too, but the unit isn't named, and your RN license doesn't include its state.",
+      "Let's start with Riverside Methodist: name the unit and the patients you care for, then explain your charge and preceptor responsibilities. Add the units for your earlier roles and your license state so a recruiter doesn't have to guess."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Licenses and certifications",
+        "line": "The RN license state isn't listed.",
+        "cannot_tell": "A recruiter can't tell which state issued your RN license. That matters when they're checking the requirements for a nursing role.",
+        "example": "RN, [license state], BLS, ACLS",
+        "question": "Which state issued your RN license?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 1",
+        "line": "Provide direct patient care for adult patients across 12-hour shifts",
+        "cannot_tell": "The shift length is here, but the unit and patient needs aren't. Those are the first things a nursing recruiter will look for.",
+        "example": "Provide direct patient care for adult patients with [patient needs] on the [unit] across 12-hour shifts",
+        "question": "What unit do you work on, and what patient needs do you care for there?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 2",
+        "line": "Administer medications and monitor patient response",
+        "cannot_tell": "Medication administration is part of the job, but a recruiter can't tell what monitoring your patients typically need.",
+        "example": "Administer medications and monitor [patient response] for adult patients with [patient needs]",
+        "question": "What patient responses do you monitor, and for which patient needs?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 3",
+        "line": "Educate patients and families on discharge plans",
+        "cannot_tell": "Discharge teaching is important work. What do patients and families need to learn before they leave?",
+        "example": "Educate patients and families on [discharge teaching topics] in discharge plans",
+        "question": "What topics do you cover with patients and families before discharge?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 4",
+        "line": "Serve as charge nurse on weekends",
+        "cannot_tell": "Charge nurse work stands out, but the line doesn't say what you're responsible for during those shifts.",
+        "example": "Serve as charge nurse on weekends, responsible for [charge nurse responsibilities]",
+        "question": "What are your responsibilities as charge nurse on weekends?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 5",
+        "line": "Precept new graduate nurses",
+        "cannot_tell": "A recruiter can see that you teach new nurses, but not what you guide them through or how many you've precepted.",
+        "example": "Precept [number] new graduate nurses in [clinical skills or responsibilities]",
+        "question": "How many new graduate nurses have you precepted, and what did you guide them through?"
+      },
+      {
+        "kind": "line",
+        "where": "Mount Carmel East Hospital, Registered Nurse, line 1",
+        "line": "Cared for patients before and after surgery",
+        "cannot_tell": "Before and after surgery gives a useful starting point, but the unit and care you provided aren't named.",
+        "example": "Cared for patients before and after surgery on the [unit], including [care provided]",
+        "question": "Which unit did you work on, and what care did you provide before and after surgery?"
+      },
+      {
+        "kind": "keep",
+        "where": "Mount Carmel East Hospital, Registered Nurse, line 2",
+        "line": "Documented assessments and care plans in Epic",
+        "cannot_tell": "Keep this as a model. It names two things you documented and the system you used, without making a claim bigger than the work.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Mount Carmel East Hospital, Patient Care Technician",
+        "line": "Took vital signs, assisted with mobility and hygiene",
+        "cannot_tell": "The tasks are clear, but the unit isn't named. That would show where you gained this patient care experience.",
+        "example": "Took vital signs, assisted with mobility and hygiene on the [unit]",
+        "question": "Which unit did you work on as a patient care technician?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Registered Nurse"
+      ],
+      "why": "Your headline and both hospital nursing roles point to Registered Nurse work.",
+      "level": "Experienced hospital RN, with charge nurse and preceptor duties",
+      "note": "Your experience points to hospital nursing roles. Naming your units, patient needs and license state will help recruiters judge where it fits.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 64
+  },
+  "presentation": {
+    "score": 64,
+    "band": "Needs more context",
+    "model_score": 64,
+    "lifted_by_employer": false,
+    "verdict": "An experienced hospital nurse whose current unit and clinical responsibilities are too hard to distinguish.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 127,
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Licenses and certifications",
+        "line": "The RN license state isn't listed.",
+        "blanks": 1,
+        "question": "Which state issued your RN license?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 1",
+        "line": "Provide direct patient care for adult patients across 12-hour shifts",
+        "blanks": 2,
+        "question": "What unit do you work on, and what patient needs do you care for there?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 2",
+        "line": "Administer medications and monitor patient response",
+        "blanks": 2,
+        "question": "What patient responses do you monitor, and for which patient needs?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 3",
+        "line": "Educate patients and families on discharge plans",
+        "blanks": 1,
+        "question": "What topics do you cover with patients and families before discharge?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 4",
+        "line": "Serve as charge nurse on weekends",
+        "blanks": 1,
+        "question": "What are your responsibilities as charge nurse on weekends?"
+      },
+      {
+        "kind": "line",
+        "where": "Riverside Methodist Hospital, line 5",
+        "line": "Precept new graduate nurses",
+        "blanks": 2,
+        "question": "How many new graduate nurses have you precepted, and what did you guide them through?"
+      },
+      {
+        "kind": "line",
+        "where": "Mount Carmel East Hospital, Registered Nurse, line 1",
+        "line": "Cared for patients before and after surgery",
+        "blanks": 2,
+        "question": "Which unit did you work on, and what care did you provide before and after surgery?"
+      },
+      {
+        "kind": "keep",
+        "where": "Mount Carmel East Hospital, Registered Nurse, line 2",
+        "line": "Documented assessments and care plans in Epic",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Mount Carmel East Hospital, Patient Care Technician",
+        "line": "Took vital signs, assisted with mobility and hygiene",
+        "blanks": 1,
+        "question": "Which unit did you work on as a patient care technician?"
+      }
+    ],
+    "card_count": 9,
+    "kinds": {
+      "structure": 1,
+      "line": 7,
+      "keep": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Registered Nurse"
+      ],
+      "why": "Your headline and both hospital nursing roles point to Registered Nurse work.",
+      "level": "Experienced hospital RN, with charge nurse and preceptor duties",
+      "note": "Your experience points to hospital nursing roles. Naming your units, patient needs and license state will help recruiters judge where it fits.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00911135,
+  "latency_ms": 19021
+}

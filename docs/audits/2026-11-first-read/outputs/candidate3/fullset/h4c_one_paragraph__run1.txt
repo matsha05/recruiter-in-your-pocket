@@ -1,0 +1,30 @@
+# h4c_one_paragraph, run 1
+Resume: ../2026-11-live-judgment/resumes/h4c_one_paragraph.txt (147 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 01c2028d; severity check off
+Outcome: report; cost $0.0237; repair ran; 35.7s
+Case note: A resume pasted as one paragraph with no line breaks.
+
+Validator refused the first draft: The model response failed the worklist contract at score: is 82 with no card that needs work; a page with nothing to fix scores at least 90.
+
+## Clear and specific (score 90; model wrote 90)
+## Verdict
+A strong operations coordinator resume with a measurable delivery improvement and a clear progression through logistics.
+
+## Write-up
+This is a strong operations resume! It connects your dispatch work at River City Logistics with earlier customer service and warehouse roles at Dominion Parcel. A recruiter can follow your progression and see the operation you handle.
+
+The dispatch line is a good model: it names the daily work, 18 drivers and two depots. The on-time delivery result is also worth keeping, though it leaves a question about what you did to improve it.
+
+Add that action to the delivery result if you can. Your resume is unlikely to be the reason you don't get a call back; competition for the job matters too.
+
+## Cards (1; {"line":1}); severity off; added []
+1. [line] Operations Coordinator, on-time delivery
+   line: "Carlos Mendes Richmond VA carlos.mendes@example.com 555-0171 Summary Operations coordinator with six years in logistics and customer service Experience Operations Coordinator River City Logistics Richmond VA April 2021 to Present Coordinate daily dispatch for 18 drivers across two depots track on-time delivery and report weekly to the regional manager resolve delivery exceptions with customers by phone and email trained 4 new coordinators on the dispatch software improved on-time rate from 91% to 96% in 2024 Customer Service Representative Dominion Parcel Richmond VA June 2019 to March 2021 answered 60 to 80 customer calls per day handled claims for damaged or lost packages kept records in Salesforce Warehouse Clerk Dominion Parcel Richmond VA February 2018 to May 2019 scanned and sorted inbound freight kept the inventory count accurate Education Associate of Applied Science Business Administration J. Sargeant Reynolds Community College 2018 Skills Dispatch software Salesforce Excel customer service scheduling"
+   can't tell: You show what changed, but not what you did to improve the on-time rate. Add the action behind the result so a recruiter can see your part in it.
+   example: improved on-time rate from 91% to 96% in 2024 by [what you did]
+   question: What did you do to improve the on-time rate?
+
+## Fit
+Roles: ["Operations Coordinator","Customer Service Representative","Warehouse Clerk"]
+Level: Coordinator, handles daily dispatch and trained 4 new coordinators
+Note: Your experience points toward logistics and dispatch coordination, with customer service and warehouse work behind it. Your current role combines daily operations, delivery exceptions and training.

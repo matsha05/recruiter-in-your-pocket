@@ -1,0 +1,47 @@
+# h2_thin_resume, run 1
+Resume: ../2026-11-live-judgment/resumes/h2_thin_resume.txt (126 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0088; 18.8s
+Case note: Student: one internship, coursework, a club.
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+A data analytics intern with useful tools, but too little detail about the reporting and dashboard work.
+
+## Write-up
+This is common on student resumes: your Great Lakes Credit Union internship lists the work, but often stops before saying what was in it. You also manage the Michigan Data Science Club budget. The analytics work points toward another data role, but it won't stand out in a pile until a recruiter can see more of what you contributed.
+
+The member survey line is your best model: it names the data you cleaned and the tools you used. Your expected graduation date also makes it clear you're still in school, so leading with education makes sense.
+
+Let's start with the weekly reporting at Great Lakes, then give the dashboard and presentation a subject. Add only details you can substantiate, including what the reports were used for if you know.
+
+## Cards (5; {"structure":1,"line":4}); severity off; added []
+1. [structure] Great Lakes Credit Union
+   line: "Great Lakes Credit Union is named without additional context about the organization."
+   can't tell: A recruiter unfamiliar with the credit union may not know how large an organization your analytics team served. If you know a public member count or service area, a short description could add context.
+   question: Is there a public member count or service area you can use to describe the credit union?
+2. [line] Data Analytics Intern, line 1
+   line: "Assisted the analytics team with weekly reporting"
+   can't tell: Assisted could mean several different jobs. A recruiter can't tell what the reports covered or which part you handled.
+   example: Assisted the analytics team with weekly reporting on [subject] by [your contribution]
+   question: What did the weekly reports cover, and what part did you handle?
+3. [line] Data Analytics Intern, line 3
+   line: "Built a dashboard in Tableau for the marketing team"
+   can't tell: The tool and audience are clear, but the dashboard's subject isn't. What did the marketing team use it to track?
+   example: Built a dashboard in Tableau for the marketing team to track [measures]
+   question: What did the dashboard track for the marketing team?
+4. [line] Data Analytics Intern, line 4
+   line: "Presented findings to the team at the end of the internship"
+   can't tell: A recruiter can't tell what you studied or what you found. Naming the subject and a finding would make the presentation more concrete.
+   example: Presented findings on [subject] to the team at the end of the internship, including [finding]
+   question: What did you present, and what was one finding?
+5. [line] Treasurer, line 2
+   line: "Help organize monthly speaker events"
+   can't tell: The monthly events are clear, but your part in organizing them isn't. Say what you handle so the work is yours rather than the club's as a whole.
+   example: Help organize monthly speaker events by [your contribution]
+   question: What do you handle for the monthly speaker events?
+
+## Fit
+Roles: ["Data Analytics Intern"]
+Level: Student and intern
+Note: Your internship points toward data analytics work, with Excel, SQL and Tableau used on the job. More detail about the reports and dashboard would show what you can bring to another internship.

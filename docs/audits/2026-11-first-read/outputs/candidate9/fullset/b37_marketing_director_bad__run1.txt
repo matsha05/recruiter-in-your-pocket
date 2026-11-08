@@ -1,0 +1,40 @@
+# b37_marketing_director_bad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_marketing_director_bad_1.txt (167 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 338ac33a; severity check off
+Outcome: report; cost $0.0105; 24.3s
+Case note: Title above the work; key says no_recent_work, no_target_role, title_level_mismatch.
+
+## Needs more context (score 60; model wrote 60)
+## Verdict
+Your marketing work is concrete, but the director title, career direction and recent dates leave a recruiter with questions.
+
+## Write-up
+It’s common for a resume to bring together different kinds of work. Yours moves from lab and title records work to marketing at Lumen Candle Co. I read it for Director of Marketing, your most recent title, but the bullets show hands-on marketing and order support rather than what you directed. That distinction matters when a recruiter is filling a director role.
+
+Your line about writing descriptions for 40 candle scents is a useful model: it names the deliverable and how much you wrote. The roles are dated and easy to follow, but nothing explains the time after January 2025, and there’s no target job named to connect your varied experience.
+
+Let’s start with the Lumen role. Show the marketing decisions and any team or budget that came with your title, if those were part of the job. Then account honestly for the time since that role and name the kind of marketing job you want next.
+
+## Cards (4; {"line":1,"dates":1,"structure":1,"keep":1}); severity off; added []
+1. [line] Director of Marketing
+   line: "Director of Marketing"
+   can't tell: Your title says director, but the bullets don’t show what you directed or whether you managed a team or budget. A recruiter looking for a director needs to understand the remit.
+   example: Director of Marketing, Lumen Candle Co. | [marketing responsibilities and remit]
+   question: What marketing decisions did you own, and did you manage a team or budget?
+2. [dates] Dates
+   line: "Nothing is dated after January 2025."
+   can't tell: A recruiter can’t tell what you’ve been doing since the Lumen role. If you took care of a family member, you can name that; if you took a career break, you can say what you did during it. Include freelance work only if it was real.
+   example: January 2025 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]
+   question: What have you been doing since January 2025 that you’d be comfortable adding?
+3. [structure] Structure
+   line: "No target job is named above your experience."
+   can't tell: Your jobs span marketing, title records, lab work and coffee service. Without a target, a recruiter has to guess which direction you want to take.
+   question: Which marketing job are you aiming for next?
+4. [keep] Director of Marketing, line 2
+   line: "Wrote product descriptions for 40 candle scents on the website"
+   can't tell: Keep this. It gives the reader a concrete piece of your marketing work to picture, rather than relying on the title alone.
+
+## Fit
+Roles: ["Director of Marketing"]
+Level: Director title; the listed work is hands-on, with no team or budget stated.
+Note: Your recent work also points toward hands-on marketing roles involving social media and product content. For director roles, add the decisions and management responsibilities behind the title if they were part of your job.

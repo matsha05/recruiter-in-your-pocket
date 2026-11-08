@@ -1,0 +1,18 @@
+Engineering Manager, Payments Platform
+Cobalt Pay (payments infrastructure, Series D), Seattle or Remote (US)
+
+About the role
+You'll lead a team of 6 to 8 backend engineers who own payouts and the ledger. You'll hire, grow and coach the team, set its roadmap with Product, and keep the payouts path reliable.
+
+What you'll do
+- Manage, hire and develop a team of 6 to 8 engineers, including performance reviews and career growth
+- Own the team's roadmap and delivery with your product partner
+- Run the team's operations: on-call health, incident reviews and planning
+- Build relationships with Finance, Risk and Support
+
+What we're looking for
+- 2+ years managing engineers with direct reports, including hiring and performance management
+- 5+ years of backend engineering before moving into management
+- Experience leading teams that run production systems with on-call
+- A record of growing engineers into senior roles
+- Bonus: payments or financial services experience

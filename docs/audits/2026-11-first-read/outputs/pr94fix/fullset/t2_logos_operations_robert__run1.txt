@@ -1,0 +1,46 @@
+# t2_logos_operations_robert, run 1
+Resume: resumes/t2_logos_operations_robert.txt (183 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 288eceb5; severity check off
+Outcome: report; cost $0.0075; 15.8s
+Case note: Blind pick v5 bp5-10: a recognisable employer; decision 5 says the lift is one rung, bounded, declared.
+
+## Needs more context (score 67; model wrote 67)
+## Verdict
+An operations manager with strong earlier results, but too little detail about the current terminal role.
+
+## Write-up
+Your resume points toward operations management: you now run terminal operations at Brightline Freight Partners, after program roles at Google and Dell Technologies. It’s common for a current role to be described as duties, but these lines won’t stand out in a pile because a recruiter can’t tell how much the terminal handles or what your work has changed.
+
+The Google line about cutting the forecast-to-delivery cycle is your model: it names the work, the change, and how you achieved it. Your earlier roles give a recruiter a concrete picture of your work; the current one doesn’t yet give them the same picture.
+
+Let’s start with the Brightline role. Add what the terminal handles and the size of your team, then name the issues you resolve and the metrics you report. Use numbers and results you can support, rather than trying to force one into every line.
+
+## Cards (5; {"line":4,"keep":1}); severity off; added []
+1. [line] Operations Manager, line 1
+   line: "Responsible for daily operations of the Austin terminal"
+   can't tell: A recruiter can’t tell what daily operations include or how much the terminal handles. That makes it hard to picture the job you manage now.
+   example: Responsible for daily operations of the Austin terminal, including [operations] and [volume handled]
+   question: Which terminal operations are yours, and what volume does the terminal handle?
+2. [line] Operations Manager, line 2
+   line: "Manage a team of coordinators and dispatchers"
+   can't tell: Managing coordinators and dispatchers is useful to know, but a recruiter can’t tell how many people you manage or what their work covers.
+   example: Manage a team of [number] coordinators and dispatchers handling [work handled]
+   question: How many people are on your team, and what do they handle?
+3. [line] Operations Manager, line 3
+   line: "Work with carriers and customers to resolve issues"
+   can't tell: Carriers and customers could bring you all kinds of issues. Naming the ones you work on would show a recruiter what you actually do.
+   example: Work with carriers and customers to resolve [issue types]
+   question: What kinds of issues do you resolve with carriers and customers?
+4. [line] Operations Manager, line 4
+   line: "Report weekly metrics to the regional director"
+   can't tell: The reporting rhythm and audience are clear, but the metrics and their use aren’t. A recruiter can’t tell what you track for the terminal.
+   example: Report [metrics] weekly to the regional director for [purpose]
+   question: Which metrics do you report, and what are they used for?
+5. [keep] Senior Program Manager, line 2
+   line: "Cut the forecast-to-delivery cycle for new capacity from 14 months to 9 by consolidating three approval tracks into one"
+   can't tell: Keep this as a model. It gives a recruiter a before and after, then shows the decision you made to get there.
+
+## Fit
+Roles: ["Operations Manager","Senior Program Manager"]
+Level: manager, manages coordinators and dispatchers
+Note: Your current work points toward operations management, while your Google and Dell Technologies roles also support program management. Bring the terminal work up to the same level of detail as those earlier roles.

@@ -1,0 +1,47 @@
+# b10_it_support_recent_grad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_it_support_recent_grad_1.txt (119 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0099; 20.7s
+Case note: First job.
+
+## Needs more context (score 58; model wrote 58)
+## Verdict
+An early-career IT resume with relevant tasks, but little detail and no work dated after May 2025.
+
+## Write-up
+This is a common early-career resume: your school help desk internship and retail device work point toward desktop support. The internship lists relevant tasks, but not how much you handled or what happened. With no work dated after May 2025, a recruiter is likely to pass rather than guess.
+
+The Peachtree Electronics line about helping customers choose laptops, printers, and accessories works because it names the customers and products. Your degree and CompTIA A+ are useful here, but Education sits above your work experience.
+
+Let's start with the Chattahoochee County Schools tickets. Add the issues you handled and the volume if you know it, then do the same for the laptop setup and account work. Show what you've done since the internship if there's something you can accurately add.
+
+## Cards (5; {"dates":1,"structure":1,"line":3}); severity off; added []
+1. [dates] Dates
+   line: "No work is dated after May 2025."
+   can't tell: A recruiter can't tell what you've been doing since the internship. Your CompTIA A+ is dated 2025, but it has no month, so its place in that timeline isn't clear.
+   example: May 2025 - Present [what you did]
+   question: What have you done since May 2025 that you can accurately put on your resume?
+2. [structure] Structure
+   line: "Education sits above Experience."
+   can't tell: Your work history includes more than a year of experience. Put Experience first so a recruiter sees the help desk internship and customer device work before your education.
+   question: Can you move Experience above Education?
+3. [line] IT Help Desk Intern, line 1
+   line: "Answered help desk tickets from teachers and staff"
+   can't tell: The teachers and staff are clear, but the tickets could cover many kinds of problems. What did you handle, and how many tickets came your way?
+   example: Answered help desk tickets from teachers and staff about [issues], handling [number] tickets [frequency]
+   question: What issues did the tickets cover, and how many did you handle in a typical period?
+4. [line] IT Help Desk Intern, line 2
+   line: "Imaged and set up laptops for classrooms"
+   can't tell: Classroom laptops are a concrete piece of work. The number and the imaging process would show a recruiter how much setup you handled.
+   example: Imaged and set up [number] laptops for classrooms using [tools or process]
+   question: How many laptops did you image and set up, and what tools or process did you use?
+5. [line] IT Help Desk Intern, line 3
+   line: "Reset passwords and accounts in Active Directory"
+   can't tell: Active Directory names the system, but a recruiter can't tell how often you handled these requests or who they were for.
+   example: Reset passwords and accounts in Active Directory for [users], handling [number] requests [frequency]
+   question: Whose passwords and accounts did you reset, and how many requests did you handle in a typical period?
+
+## Fit
+Roles: ["desktop support","junior systems role"]
+Level: Early career
+Note: Your internship, CompTIA A+, and customer device setup point toward desktop support. The resume shows less about systems work beyond Active Directory, so add any relevant work or projects you can accurately describe.

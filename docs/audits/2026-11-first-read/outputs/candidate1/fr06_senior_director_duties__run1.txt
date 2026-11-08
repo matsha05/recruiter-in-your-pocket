@@ -1,0 +1,73 @@
+# fr06_senior_director_duties, run 1
+Resume: resumes/fr06_senior_director_duties.txt (143 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 8653a31c; severity check off
+Outcome: report; cost $0.0110; 23.7s
+Case note: P4 (senior). Duties and a reporting line with no team size, budget or company size. Expect the remit asked for; no invented team or budget.
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+An operations leader with a clear progression, but little detail about the size or results of the work.
+
+## Write-up
+Your resume follows a clear path from Operations Manager to Senior Director at Northstar Home Services. It's common for senior operations resumes to list broad responsibilities this way, but they can blend together in a pile. A recruiter needs to know how large your operation was and what changed under your leadership.
+
+The annual operating plan line is your best model: it names the COO, Finance and a particular piece of work. Your experience also leads your education, which makes your progression easy to follow. The next step is showing your own contribution to that plan and the size of Northstar's operation.
+
+Let's start with your current role. Add the number of managers or another measure you can stand behind, then name an initiative you led and what changed. Do the same for the scheduling system and first-time fix rate in your previous role.
+
+## Cards (10; {"structure":1,"line":9}); severity off; added []
+1. [structure] Senior Director, Operations
+   line: "The resume doesn't say how large Northstar Home Services is."
+   can't tell: The Upper Midwest tells a recruiter where you worked, but not how large the company or its operation is. A brief company description can give your leadership responsibilities a frame.
+   example: Northstar Home Services: [company description] with [number] [employees or locations]
+   question: How would you describe Northstar's business and its size?
+2. [line] Senior Director, Operations, line 1
+   line: "Responsible for field operations, dispatch and customer care across the Upper Midwest"
+   can't tell: A recruiter can see the functions and region, but not how large the operation was or what you did with it. At your level, that distinction matters.
+   example: Responsible for field operations, dispatch and customer care across the Upper Midwest, covering [size of operation] and [key responsibility]
+   question: How large was the operation, and what was a key responsibility you held across those functions?
+3. [line] Senior Director, Operations, line 2
+   line: "Reported to the COO and partnered with Finance on the annual operating plan"
+   can't tell: The reporting relationship and annual plan are useful details. What was your contribution to the plan?
+   example: Reported to the COO and partnered with Finance on the annual operating plan, contributing [your contribution]
+   question: What did you contribute to the annual operating plan?
+4. [line] Senior Director, Operations, line 3
+   line: "Oversaw vendor management and fleet"
+   can't tell: A recruiter can't tell what your oversight involved or how large the fleet or vendor network was.
+   example: Oversaw vendor management and fleet, including [responsibilities] across [size of fleet or vendor network]
+   question: What did you oversee, and how large was the fleet or vendor network?
+5. [line] Senior Director, Operations, line 4
+   line: "Led operational strategy and continuous improvement initiatives"
+   can't tell: This could describe many operations leadership jobs. Name an initiative and what changed so a recruiter can see your work.
+   example: Led [initiative] as part of operational strategy and continuous improvement, resulting in [what changed]
+   question: Which initiative did you lead, and what changed?
+6. [line] Senior Director, Operations, line 5
+   line: "Managed managers across multiple regions"
+   can't tell: Managing managers is important at this level, but the line doesn't say how many or what their teams handled.
+   example: Managed [number] managers across multiple regions, responsible for [team responsibilities]
+   question: How many managers did you manage, and what did their teams handle?
+7. [line] Director, Field Operations, line 1
+   line: "Oversaw technicians and dispatch for the Twin Cities market"
+   can't tell: The market and functions are named, but a recruiter can't tell how large the operation was.
+   example: Oversaw [number] technicians and dispatch for the Twin Cities market, including [key responsibility]
+   question: How many technicians did you oversee, and what did your oversight involve?
+8. [line] Director, Field Operations, line 2
+   line: "Rolled out a new scheduling system"
+   can't tell: The rollout is yours, but a recruiter can't tell what it covered or what changed after it.
+   example: Rolled out a new scheduling system for [users or locations], resulting in [what changed]
+   question: Who used the system, and what changed after the rollout?
+9. [line] Director, Field Operations, line 3
+   line: "Improved first-time fix rate"
+   can't tell: This names a meaningful service measure, but not where it started, where it ended or what you did to improve it.
+   example: Improved first-time fix rate from [starting rate] to [ending rate] over [period] by [your action]
+   question: What were the starting and ending rates, over what period, and what did you do?
+10. [line] Operations Manager, line 1
+   line: "Ran daily operations for the service department"
+   can't tell: A recruiter can't tell which parts of the service department you ran or how large it was.
+   example: Ran daily operations for the service department, including [responsibilities] for [size of operation]
+   question: What did you handle day to day, and how large was the service operation?
+
+## Fit
+Roles: ["Senior Operations Leader","Senior Director, Operations","Director, Field Operations"]
+Level: Senior leadership, manages managers and reports to the COO
+Note: Your experience points toward operations leadership in field service, dispatch and customer care. The progression is clear, but the resume needs the size of your remit and results to show how senior roles compare.

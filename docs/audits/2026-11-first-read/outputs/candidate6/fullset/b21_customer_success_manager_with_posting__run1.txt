@@ -1,0 +1,43 @@
+# b21_customer_success_manager_with_posting, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt (180 words), posting: ../2026-11-live-judgment/resumes/b_posting_customer_success_manager.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5827dcf1; severity check off
+Outcome: report; cost $0.0099; 20.3s
+Case note: The same resume with a posting attached.
+
+## Mostly clear (score 77; model wrote 77)
+## Verdict
+A customer success manager with a clear mid-market book, but no retention results for this posting.
+
+## Write-up
+You’ve moved from insurance account coordination into payroll support and then customer success at Brightline Payroll Software. A recruiter can see the customers you manage and the work you do with them. For this posting, the main question is whether you’ve met retention or expansion targets, since your resume doesn’t give those results.
+
+Your book-of-business line is the model: it names the account count, segment and industries in one sentence. Your 94% customer satisfaction score also gives the support role a measurable result. The posting asks for usage-data work, VP-level QBRs and feature-request prioritization, none of which your resume describes.
+
+Let’s start with the renewal strategy line and add your part and any results you can substantiate. Then show where you used Gainsight and Salesforce, and add relevant sponsor-level or product feedback work if you’ve done it.
+
+## Cards (4; {"keep":1,"line":3}); severity off; added []
+1. [keep] Customer Success Manager, line 1
+   line: "Manage a book of 48 mid-market accounts across healthcare and manufacturing"
+   can't tell: Keep this as a model. It gives a recruiter a concrete picture of the customers in your care without making them hunt for context.
+2. [line] Customer Success Manager, line 3
+   line: "Partnered with Sales on renewal strategy for at-risk accounts"
+   can't tell: A recruiter can’t tell what you contributed to the renewal strategy or what happened with those accounts. That matters for a job accountable for retention.
+   example: Partnered with Sales on renewal strategy for at-risk accounts by [what you did], resulting in [renewal result]
+   question: What did you do with Sales on at-risk renewals, and what results can you substantiate?
+3. [line] Account Coordinator, line 2
+   line: "Answered client questions by phone and email"
+   can't tell: The channels are clear, but a recruiter can’t tell what clients needed help with or how you handled their questions.
+   example: Answered small business client questions about [topics] by phone and email, and [what you did]
+   question: What kinds of questions did clients ask, and what did you do to help?
+4. [line] Skills
+   line: "Gainsight, Salesforce, Zendesk, QBR planning, renewal forecasting"
+   can't tell: The posting asks for Gainsight and Salesforce, but the jobs don’t show where you used either tool. Put that work under the relevant role if you can.
+   example: Used [tool] to [what you did] for [accounts or workflows]
+   question: Where did you use Gainsight and Salesforce, and what did you do with each?
+
+## Fit
+Roles: ["Customer Success Manager","Customer Success Manager, Mid-Market"]
+Level: Experienced individual contributor, managing a book of 48 mid-market accounts
+Note: The posting asks for retention and expansion results, product usage analysis, a BI tool, VP-level QBRs and feature-request prioritization; your resume doesn’t show those. Your mid-market book, QBRs and work with Sales on at-risk renewals are relevant. The posting’s book is 60 to 80 accounts, while yours is 48, and your resume doesn’t state its revenue.
+Posting: Mid-market customer success role owning renewals, expansion and onboarding for a SaaS account book, with retention targets and usage-data work.
+Missing: ["A track record of hitting retention or expansion targets, with numbers you can talk about","using product usage data","a BI tool such as Looker","Experience running QBRs with VP-level sponsors","log and prioritize feature requests"]

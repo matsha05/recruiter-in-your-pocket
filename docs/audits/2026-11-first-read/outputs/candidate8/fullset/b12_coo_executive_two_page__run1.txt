@@ -1,0 +1,31 @@
+# b12_coo_executive_two_page, run 1
+Resume: ../2026-11-live-judgment/resumes/b_coo_executive.txt (463 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5cba8f05; severity check off
+Outcome: report; cost $0.0071; 12.6s
+Case note: Executive, two pages.
+
+## Clear and specific (score 91; model wrote 91)
+## Verdict
+A healthcare COO whose resume connects a substantial operating remit to measurable results.
+
+## Write-up
+This is a strong COO resume! At Lakeshore Dental Partners, you show the reach of your role and what changed across practice growth, integration and retention. Your earlier work at Midwest Physician Alliance and Prairie Health System backs up that progression.
+
+The integration line is a model: it gives the old and new timelines and names the playbook you standardized. Your experience leads, with board work, education and speaking following it, so a recruiter can find the operating story first.
+
+Start with the patient wait time line and add how you brought it down if you can. You don't need to rebuild this resume; it isn't likely to be the thing holding you back. The competitiveness of a particular COO job will matter too.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Chief Operating Officer, integration line
+   line: "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook"
+   can't tell: Keep this as a model. It gives a recruiter a before-and-after measure and the operational change behind it.
+2. [line] Senior Vice President, Operations, patient wait time line
+   line: "Reduced patient wait time to third available appointment from 21 days to 6 across primary care"
+   can't tell: The reduction is substantial, but a recruiter can't tell what you changed to achieve it. That detail would show how you approached access across primary care.
+   example: Reduced patient wait time to third available appointment from 21 days to 6 across primary care by [what you changed]
+   question: What did you change to reduce the wait time?
+
+## Fit
+Roles: ["Chief Operating Officer"]
+Level: Executive, leads operations for 140 practices and owns a $410M P&L with the CFO
+Note: Your experience points toward COO roles in multi-site healthcare services. The practice growth, operating model and board reporting make that direction easy to see.

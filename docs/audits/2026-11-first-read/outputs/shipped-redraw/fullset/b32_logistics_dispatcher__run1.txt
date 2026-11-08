@@ -1,0 +1,56 @@
+# b32_logistics_dispatcher, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_logistics_dispatcher_1.txt (105 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 0a19c3ee; severity check off
+Outcome: report; cost $0.0092; 19.4s
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+A dispatcher’s progression is clear, but the daily work needs more detail to stand out.
+
+## Write-up
+You’ve moved from warehouse work to Dispatch Assistant and then Dispatcher at Crossroads Regional Freight. That’s a clear direction, but a recruiter will likely move on because the current role lists duties without showing how much dispatch work you handle or what you do when problems arise.
+
+Your line about tracking loads and updating customers is the best model: it names both the work and who receives the updates. Your experience is easy to follow, and the progression at Crossroads is worth keeping visible.
+
+This is a common pattern on dispatch resumes, but duties alone won’t stand out in a pile. Let’s start with the current Dispatcher role and add the number of drivers or loads you handle, then give a concrete example of the road issues you deal with.
+
+## Cards (7; {"structure":1,"line":6}); severity off; added []
+1. [structure] Crossroads Regional Freight
+   line: "Crossroads Regional Freight has no fleet size listed."
+   can't tell: A recruiter can see that you work in regional trucking, but not how large the operation is. One brief company detail could give the dispatch work useful context.
+   question: If you know it, how many trucks are in the Crossroads fleet?
+2. [line] Dispatcher, line 1
+   line: "Responsible for dispatching drivers"
+   can't tell: Dispatching drivers is the core of your job, but a recruiter can’t tell how many drivers you handle or how often you assign loads.
+   example: Responsible for dispatching [number] drivers [frequency]
+   question: How many drivers do you dispatch, and how often do you assign loads?
+3. [line] Dispatcher, line 2
+   line: "Track loads and update customers on delivery status"
+   can't tell: This names the work and the customers you update. The missing piece is how many loads you track and how often customers hear from you.
+   example: Track [number] loads [frequency] and update customers on delivery status [frequency]
+   question: How many loads do you track, and how often do you update customers?
+4. [line] Dispatcher, line 3
+   line: "Handle driver issues on the road"
+   can't tell: A recruiter can’t tell what kind of issues come up or what you do to handle them. One real example would show how you support drivers.
+   example: Handle driver issues on the road, including [issue], by [action]
+   question: What’s one issue you handled for a driver, and what did you do?
+5. [line] Dispatcher, line 4
+   line: "Use TMS software daily"
+   can't tell: Your skills section names McLeod TMS, but this line doesn’t say what you use it to do. Connect the software to your dispatch work.
+   example: Use McLeod TMS daily to [dispatch task]
+   question: Which dispatch tasks do you use McLeod TMS for?
+6. [line] Dispatcher, line 5
+   line: "Work with the safety team on driver hours"
+   can't tell: Working with the safety team could mean several things. A recruiter can’t tell what you do with driver hours or what you share with the team.
+   example: Work with the safety team on driver hours by [action]
+   question: What do you do with driver hours when you work with the safety team?
+7. [line] Dispatch Assistant, line 2
+   line: "Helped dispatchers with paperwork"
+   can't tell: Helped leaves your part open. Naming the paperwork and what you did with it would show how you supported the dispatchers.
+   example: Helped dispatchers with [paperwork] by [action]
+   question: What paperwork did you help with, and what did you do with it?
+
+## Fit
+Roles: ["Dispatcher","Dispatch Assistant"]
+Level: Experienced dispatcher
+Note: Your experience points toward dispatch roles in regional trucking, with a progression from Dispatch Assistant to Dispatcher. Adding the number of drivers or loads you handle and examples of road issues would make that experience easier to assess.

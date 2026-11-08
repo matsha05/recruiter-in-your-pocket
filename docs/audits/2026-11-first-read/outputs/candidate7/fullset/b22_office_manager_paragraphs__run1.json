@@ -1,0 +1,227 @@
+{
+  "case_id": "b22_office_manager_paragraphs",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Paragraph format, no bullets.",
+  "resume_file": "../2026-11-live-judgment/resumes/b_office_manager_paragraphs.txt",
+  "resume_sha256": "ce33ce5aa6c528ef520a2ccc32684ac815b6084cea9e23d0a3885d92201fff58",
+  "resume_words": 219,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:36:02.894Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5955,
+        "completion_tokens": 1558,
+        "total_tokens": 7513,
+        "cached_prompt_tokens": 5196,
+        "cache_write_prompt_tokens": 756,
+        "reasoning_tokens": 851
+      },
+      "cost_usd": 0.0089978,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 18558
+    }
+  ],
+  "resume_prompt_sha256": "1c0fe4fe961ccb0d0e49bbe71ac8427d0281ae6e9a1efa6ac35e3ee49a99ed47",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 87,
+    "lifted_by_employer": false,
+    "verdict": "An experienced office manager whose law office work comes with the numbers and responsibilities a recruiter needs.",
+    "write_up": [
+      "Your resume is strong: it shows how you keep a six-attorney law office running, from court deadlines to billing and supervision! The earlier dentistry and insurance roles build a consistent office management story.",
+      "The QuickBooks line is a model for the rest: it names the work, the tool, and roughly how many invoices you handle. Your experience comes before education, and the progression into office management is easy to follow.",
+      "Let's add what onboarding the practice management software involved, then give the insurance claims report a little more detail. Your resume isn't the obvious obstacle to being considered; how competitive an office manager job is will still matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Office Manager, bookkeeping",
+        "line": "I do the bookkeeping in QuickBooks, including client billing of roughly 90 invoices a month and the monthly trust account reconciliation.",
+        "cannot_tell": "Keep this as a model. You pair a recurring responsibility with a useful measure and name the trust account work.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Office Manager, software and supervision",
+        "line": "I hired and supervise two receptionists and I onboarded the firm's new practice management software in 2022, which replaced paper files for all new matters.",
+        "cannot_tell": "Replacing paper files for all new matters is a substantial change. A recruiter can't tell which software you onboarded or what that work involved.",
+        "example": "I hired and supervise two receptionists and I onboarded [software name] as the firm's new practice management software in 2022 by [what onboarding involved], replacing paper files for all new matters.",
+        "question": "Which software did you onboard, and what did you do to get it in use?"
+      },
+      {
+        "kind": "line",
+        "where": "Office Coordinator, payments and claims",
+        "line": "Posted payments and worked the insurance claims aging report each week.",
+        "cannot_tell": "The weekly report is named, but 'worked' leaves your part in it open. What did you do with the claims on the report?",
+        "example": "Posted payments and worked the insurance claims aging report each week, including [what you did with the report].",
+        "question": "What did you do with the claims on the weekly aging report?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Office Manager",
+        "Office Coordinator"
+      ],
+      "why": "Your current Office Manager role covers scheduling, bookkeeping, vendors, software and supervision at a law office.",
+      "level": "Experienced office manager, supervises two receptionists",
+      "note": "Your experience points toward office management in a small professional practice. The law office role is particularly useful for jobs that involve billing, deadlines and staff supervision.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 87,
+    "lifted_by_employer": false,
+    "verdict": "An experienced office manager whose law office work comes with the numbers and responsibilities a recruiter needs.",
+    "write_up": [
+      "Your resume is strong: it shows how you keep a six-attorney law office running, from court deadlines to billing and supervision! The earlier dentistry and insurance roles build a consistent office management story.",
+      "The QuickBooks line is a model for the rest: it names the work, the tool, and roughly how many invoices you handle. Your experience comes before education, and the progression into office management is easy to follow.",
+      "Let's add what onboarding the practice management software involved, then give the insurance claims report a little more detail. Your resume isn't the obvious obstacle to being considered; how competitive an office manager job is will still matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Office Manager, bookkeeping",
+        "line": "Office Manager, Harrod and Blake Law Office, Louisville, KY, May 2018 to present. I run the front office for a six-attorney firm. I handle scheduling for the attorneys, manage the firm's calendar of court dates and filing deadlines, order supplies, and handle vendor contracts for the copier, phones, and cleaning. I do the bookkeeping in QuickBooks, including client billing of roughly 90 invoices a month and the monthly trust account reconciliation. I hired and supervise two receptionists and I onboarded the firm's new practice management software in 2022, which replaced paper files for all new matters.",
+        "cannot_tell": "Keep this as a model. You pair a recurring responsibility with a useful measure and name the trust account work.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Office Coordinator, payments and claims",
+        "line": "Office Coordinator, Riverside Family Dentistry, Louisville, KY, August 2014 to April 2018. Checked in patients, verified insurance, and scheduled appointments for a two-dentist practice that saw about 40 patients a day. Posted payments and worked the insurance claims aging report each week. Trained three new front desk staff over four years.",
+        "cannot_tell": "The weekly report is named, but 'worked' leaves your part in it open. What did you do with the claims on the report?",
+        "example": "Posted payments and worked the insurance claims aging report each week, including [what you did with the report].",
+        "question": "What did you do with the claims on the weekly aging report?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Office Manager",
+        "Office Coordinator"
+      ],
+      "why": "Your current Office Manager role covers scheduling, bookkeeping, vendors, software and supervision at a law office.",
+      "level": "Experienced office manager, supervises two receptionists",
+      "note": "Your experience points toward office management in a small professional practice. The law office role is particularly useful for jobs that involve billing, deadlines and staff supervision.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 87
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 87,
+    "lifted_by_employer": false,
+    "verdict": "An experienced office manager whose law office work comes with the numbers and responsibilities a recruiter needs.",
+    "write_up": [
+      "Your resume is strong: it shows how you keep a six-attorney law office running, from court deadlines to billing and supervision! The earlier dentistry and insurance roles build a consistent office management story.",
+      "The QuickBooks line is a model for the rest: it names the work, the tool, and roughly how many invoices you handle. Your experience comes before education, and the progression into office management is easy to follow.",
+      "Let's add what onboarding the practice management software involved, then give the insurance claims report a little more detail. Your resume isn't the obvious obstacle to being considered; how competitive an office manager job is will still matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Office Manager, bookkeeping",
+        "line": "Office Manager, Harrod and Blake Law Office, Louisville, KY, May 2018 to present. I run the front office for a six-attorney firm. I handle scheduling for the attorneys, manage the firm's calendar of court dates and filing deadlines, order supplies, and handle vendor contracts for the copier, phones, and cleaning. I do the bookkeeping in QuickBooks, including client billing of roughly 90 invoices a month and the monthly trust account reconciliation. I hired and supervise two receptionists and I onboarded the firm's new practice management software in 2022, which replaced paper files for all new matters.",
+        "cannot_tell": "Keep this as a model. You pair a recurring responsibility with a useful measure and name the trust account work.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Office Coordinator, payments and claims",
+        "line": "Office Coordinator, Riverside Family Dentistry, Louisville, KY, August 2014 to April 2018. Checked in patients, verified insurance, and scheduled appointments for a two-dentist practice that saw about 40 patients a day. Posted payments and worked the insurance claims aging report each week. Trained three new front desk staff over four years.",
+        "cannot_tell": "The weekly report is named, but 'worked' leaves your part in it open. What did you do with the claims on the report?",
+        "example": "Posted payments and worked the insurance claims aging report each week, including [what you did with the report].",
+        "question": "What did you do with the claims on the weekly aging report?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Office Manager",
+        "Office Coordinator"
+      ],
+      "why": "Your current Office Manager role covers scheduling, bookkeeping, vendors, software and supervision at a law office.",
+      "level": "Experienced office manager, supervises two receptionists",
+      "note": "Your experience points toward office management in a small professional practice. The law office role is particularly useful for jobs that involve billing, deadlines and staff supervision.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 87
+  },
+  "presentation": {
+    "score": 87,
+    "band": "Clear and specific",
+    "model_score": 87,
+    "lifted_by_employer": false,
+    "verdict": "An experienced office manager whose law office work comes with the numbers and responsibilities a recruiter needs.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 108,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Office Manager, bookkeeping",
+        "line": "Office Manager, Harrod and Blake Law Office, Louisville, KY, May 2018 to present. I run the front office for a six-attorney firm. I handle scheduling for the attorneys, manage the firm's calendar of court dates and filing deadlines, order supplies, and handle vendor contracts for the copier, phones, and cleaning. I do the bookkeeping in QuickBooks, including client billing of roughly 90 invoices a month and the monthly trust account reconciliation. I hired and supervise two receptionists and I onboarded the firm's new practice management software in 2022, which replaced paper files for all new matters.",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Office Coordinator, payments and claims",
+        "line": "Office Coordinator, Riverside Family Dentistry, Louisville, KY, August 2014 to April 2018. Checked in patients, verified insurance, and scheduled appointments for a two-dentist practice that saw about 40 patients a day. Posted payments and worked the insurance claims aging report each week. Trained three new front desk staff over four years.",
+        "blanks": 1,
+        "question": "What did you do with the claims on the weekly aging report?"
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "keep": 1,
+      "line": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Office Manager",
+        "Office Coordinator"
+      ],
+      "why": "Your current Office Manager role covers scheduling, bookkeeping, vendors, software and supervision at a law office.",
+      "level": "Experienced office manager, supervises two receptionists",
+      "note": "Your experience points toward office management in a small professional practice. The law office role is particularly useful for jobs that involve billing, deadlines and staff supervision.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0089978,
+  "latency_ms": 18567
+}

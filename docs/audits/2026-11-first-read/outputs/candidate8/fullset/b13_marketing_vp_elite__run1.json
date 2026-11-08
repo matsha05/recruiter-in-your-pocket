@@ -1,0 +1,219 @@
+{
+  "case_id": "b13_marketing_vp_elite",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Executive, strong (golden).",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/golden/synth_marketing_manager_vp_elite_1766960221358.txt",
+  "resume_sha256": "a5f6a1bba91362463218b3e6ea358e8bc5b470add84f7b5eee7d69f1078c2bf0",
+  "resume_words": 730,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:48:06.105Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7534,
+        "completion_tokens": 1244,
+        "total_tokens": 8778,
+        "cached_prompt_tokens": 5142,
+        "cache_write_prompt_tokens": 2389,
+        "reasoning_tokens": 576
+      },
+      "cost_usd": 0.00946635,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 14744
+    }
+  ],
+  "resume_prompt_sha256": "5cba8f052feab05101dfe43138d650d9cc25bac9a46f7e3aa35d9efb9d96fad4",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A marketing executive with a clear record of leading teams and growing demand, revenue, and customer retention.",
+    "write_up": [
+      "Your resume makes a strong case for Chief Marketing Officer roles! At Novara, you connect leadership of a global marketing organization and a $25M budget to gains in lead flow, revenue, and customer acquisition. Your earlier roles show a consistent path through marketing leadership.",
+      "The Viridian account-based marketing line is a great model: it names the program, the $50M annual pipeline contribution, and the win-rate increase among Fortune 500 clients. Your most recent role also leads with the team and budget a recruiter needs to see.",
+      "Start with the product launch line and add what changed in the process. The rest of your resume makes your case well; a referral and how competitive a particular CMO role is can still matter."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Chief Marketing Officer, product launch line",
+        "line": "- I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.",
+        "cannot_tell": "The gains are substantial, but a recruiter can't tell what changed in the launch process or how launch success was measured.",
+        "example": "I decided to revamp the product launch process by [changes to the process], shortening time-to-market by 30% and increasing launch success rate to 90%, measured by [success measure], resulting in a $15M incremental revenue increase over 2 years.",
+        "question": "What changed in the launch process, and how did you measure launch success?"
+      },
+      {
+        "kind": "keep",
+        "where": "Vice President, Global Marketing, account-based marketing line",
+        "line": "- I built and executed a comprehensive account-based marketing (ABM) program that increased pipeline contribution by $50M annually, lifting win rates by 15% among Fortune 500 clients.",
+        "cannot_tell": "Keep this as a model. It gives your role in the program and ties the results to the clients they concerned.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Marketing Officer",
+        "Vice President, Global Marketing"
+      ],
+      "why": "Your current Chief Marketing Officer role shows leadership of global marketing, a $25M annual budget, and company-wide brand and demand generation strategy.",
+      "level": "Executive, leading a 45-person global marketing organization",
+      "note": "Your experience points toward senior marketing leadership in SaaS and other B2B technology businesses. The resume gives a recruiter both the team and budget you led and the business measures tied to your work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A marketing executive with a clear record of leading teams and growing demand, revenue, and customer retention.",
+    "write_up": [
+      "Your resume makes a strong case for Chief Marketing Officer roles! At Novara, you connect leadership of a global marketing organization and a $25M budget to gains in lead flow, revenue, and customer acquisition. Your earlier roles show a consistent path through marketing leadership.",
+      "The Viridian account-based marketing line is a great model: it names the program, the $50M annual pipeline contribution, and the win-rate increase among Fortune 500 clients. Your most recent role also leads with the team and budget a recruiter needs to see.",
+      "Start with the product launch line and add what changed in the process. The rest of your resume makes your case well; a referral and how competitive a particular CMO role is can still matter."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Chief Marketing Officer, product launch line",
+        "line": "I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.",
+        "cannot_tell": "The gains are substantial, but a recruiter can't tell what changed in the launch process or how launch success was measured.",
+        "example": "I decided to revamp the product launch process by [changes to the process], shortening time-to-market by 30% and increasing launch success rate to 90%, measured by [success measure], resulting in a $15M incremental revenue increase over 2 years.",
+        "question": "What changed in the launch process, and how did you measure launch success?"
+      },
+      {
+        "kind": "keep",
+        "where": "Vice President, Global Marketing, account-based marketing line",
+        "line": "I built and executed a comprehensive account-based marketing (ABM) program that increased pipeline contribution by $50M annually, lifting win rates by 15% among Fortune 500 clients.",
+        "cannot_tell": "Keep this as a model. It gives your role in the program and ties the results to the clients they concerned.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Marketing Officer",
+        "Vice President, Global Marketing"
+      ],
+      "why": "Your current Chief Marketing Officer role shows leadership of global marketing, a $25M annual budget, and company-wide brand and demand generation strategy.",
+      "level": "Executive, leading a 45-person global marketing organization",
+      "note": "Your experience points toward senior marketing leadership in SaaS and other B2B technology businesses. The resume gives a recruiter both the team and budget you led and the business measures tied to your work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 90
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A marketing executive with a clear record of leading teams and growing demand, revenue, and customer retention.",
+    "write_up": [
+      "Your resume makes a strong case for Chief Marketing Officer roles! At Novara, you connect leadership of a global marketing organization and a $25M budget to gains in lead flow, revenue, and customer acquisition. Your earlier roles show a consistent path through marketing leadership.",
+      "The Viridian account-based marketing line is a great model: it names the program, the $50M annual pipeline contribution, and the win-rate increase among Fortune 500 clients. Your most recent role also leads with the team and budget a recruiter needs to see.",
+      "Start with the product launch line and add what changed in the process. The rest of your resume makes your case well; a referral and how competitive a particular CMO role is can still matter."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Chief Marketing Officer, product launch line",
+        "line": "I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.",
+        "cannot_tell": "The gains are substantial, but a recruiter can't tell what changed in the launch process or how launch success was measured.",
+        "example": "I decided to revamp the product launch process by [changes to the process], shortening time-to-market by 30% and increasing launch success rate to 90%, measured by [success measure], resulting in a $15M incremental revenue increase over 2 years.",
+        "question": "What changed in the launch process, and how did you measure launch success?"
+      },
+      {
+        "kind": "keep",
+        "where": "Vice President, Global Marketing, account-based marketing line",
+        "line": "I built and executed a comprehensive account-based marketing (ABM) program that increased pipeline contribution by $50M annually, lifting win rates by 15% among Fortune 500 clients.",
+        "cannot_tell": "Keep this as a model. It gives your role in the program and ties the results to the clients they concerned.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Marketing Officer",
+        "Vice President, Global Marketing"
+      ],
+      "why": "Your current Chief Marketing Officer role shows leadership of global marketing, a $25M annual budget, and company-wide brand and demand generation strategy.",
+      "level": "Executive, leading a 45-person global marketing organization",
+      "note": "Your experience points toward senior marketing leadership in SaaS and other B2B technology businesses. The resume gives a recruiter both the team and budget you led and the business measures tied to your work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 90
+  },
+  "presentation": {
+    "score": 90,
+    "band": "Clear and specific",
+    "model_score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A marketing executive with a clear record of leading teams and growing demand, revenue, and customer retention.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 121,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Chief Marketing Officer, product launch line",
+        "line": "I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.",
+        "blanks": 2,
+        "question": "What changed in the launch process, and how did you measure launch success?"
+      },
+      {
+        "kind": "keep",
+        "where": "Vice President, Global Marketing, account-based marketing line",
+        "line": "I built and executed a comprehensive account-based marketing (ABM) program that increased pipeline contribution by $50M annually, lifting win rates by 15% among Fortune 500 clients.",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "line": 1,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Chief Marketing Officer",
+        "Vice President, Global Marketing"
+      ],
+      "why": "Your current Chief Marketing Officer role shows leadership of global marketing, a $25M annual budget, and company-wide brand and demand generation strategy.",
+      "level": "Executive, leading a 45-person global marketing organization",
+      "note": "Your experience points toward senior marketing leadership in SaaS and other B2B technology businesses. The resume gives a recruiter both the team and budget you led and the business measures tied to your work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00946635,
+  "latency_ms": 14749
+}

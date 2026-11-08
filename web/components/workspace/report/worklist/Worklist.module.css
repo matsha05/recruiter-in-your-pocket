@@ -66,6 +66,164 @@
     text-wrap: pretty;
 }
 
+/* ---------- The first pass (Nov 7, 2026; docs/design/2026-11-first-read.md) ----------
+   What a recruiter sorts on in the first seconds: which job, what level, and the posting when there is one.
+   Answers in ink, each reason in the pen as the recruiter's note. Hairlines, never boxes; the red pen only for
+   a line written to screening software. No label over it: the questions label themselves (reviewers, Nov 7). The
+   block holds to the write-up's measure, so the verdict, the row and the write-up share a right edge. */
+
+.firstPass {
+    max-width: 45rem; /* the write-up's measure at the lead size (62ch of Literata at 18px) */
+    margin-top: 1.5rem;
+}
+
+.sort {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 0.875rem;
+    border-block: 1px solid hsl(var(--line));
+}
+
+.sort[data-columns="1"] {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.sort[data-columns="3"] {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.sort > div {
+    display: grid;
+    align-content: start;
+    gap: 0.25rem;
+    padding-block: 0.875rem;
+    padding-right: 1.25rem;
+}
+
+.sort > div + div {
+    padding-left: 1.25rem;
+    border-left: 1px solid hsl(var(--line));
+}
+
+.sort dt {
+    color: hsl(var(--muted-foreground));
+    font: var(--type-label);
+}
+
+.sortAnswer {
+    color: hsl(var(--text-strong));
+    font: var(--type-body);
+    font-weight: var(--weight-label);
+    text-wrap: pretty;
+}
+
+.sortWhy {
+    max-width: 40ch;
+    color: hsl(var(--pen));
+    font: var(--type-note);
+    text-wrap: pretty;
+}
+
+.passAside {
+    margin-top: 0.75rem;
+    color: hsl(var(--muted-foreground));
+    font: var(--type-small);
+}
+
+.passAside button {
+    font: inherit;
+}
+
+/* With a posting: the fit, mismatch first, and what the posting asks for that the resume doesn't show. */
+.postingFit {
+    display: grid;
+    gap: 0.25rem;
+    margin-top: 1rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid hsl(var(--line)); /* the posting's fit ends the first pass before the write-up begins */
+}
+
+/* The fit note is a finding, not a second write-up: the note face, as the reasons in the row are. */
+.postingNote {
+    color: hsl(var(--pen));
+    font: var(--type-note);
+    text-wrap: pretty;
+}
+
+/* "Show 4 more": a real control, 44px tall, that opens the rest of the list. */
+.missingMore {
+    display: inline-flex;
+    align-items: center;
+    justify-self: start;
+    min-height: 2.75rem;
+    font: var(--type-small);
+}
+
+.missingLabel {
+    color: hsl(var(--text-strong));
+    font: var(--type-label);
+}
+
+.missingHow {
+    color: hsl(var(--muted-foreground));
+    font: var(--type-small);
+}
+
+/* A line written to screening software: the red pen's rule above it, the line struck through on its strip. */
+.stop {
+    display: grid;
+    gap: 0.625rem;
+    margin-top: 0.875rem;
+    padding-top: 0.875rem;
+    border-top: 2px solid hsl(var(--red-pen));
+}
+
+.stopTitle {
+    color: hsl(var(--red-pen));
+    font: var(--type-label);
+    font-size: var(--type-small-size);
+}
+
+.struck {
+    text-decoration: line-through;
+    text-decoration-color: hsl(var(--red-pen));
+    text-decoration-thickness: 2px;
+}
+
+.stopNote {
+    color: hsl(var(--text-strong));
+    font: var(--type-body);
+    text-wrap: pretty;
+}
+
+/* On a phone a struck line shows two lines, enough to find it in the file. */
+@media (max-width: 640px) {
+    .stop .quote {
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+    }
+}
+
+@media (max-width: 640px) {
+    .sort,
+    .sort[data-columns="3"],
+    .sort[data-columns="1"] {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .sort > div,
+    .sort > div + div {
+        padding-inline: 0;
+        border-left: 0;
+    }
+
+    .sort > div + div {
+        border-top: 1px solid hsl(var(--line));
+    }
+}
+
 .lifted {
     max-width: 62ch;
     color: hsl(var(--muted-foreground));

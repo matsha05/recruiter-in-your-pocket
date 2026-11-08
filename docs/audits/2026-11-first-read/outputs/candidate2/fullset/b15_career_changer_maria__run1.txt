@@ -1,0 +1,55 @@
+# b15_career_changer_maria, run 1
+Resume: ../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/2-career-changer-maria.txt (315 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 41bcacc0; severity check off
+Outcome: report; cost $0.0111; 21.8s
+Case note: Career changer (bar persona).
+
+## Mostly clear (score 70; model wrote 70)
+## Verdict
+An experienced math teacher moving toward data analytics, with useful projects that should be easier to find.
+
+## Write-up
+You're a mathematics teacher at Lake Travis High School moving toward data analytics, with bootcamp and school dashboard work behind that transition. I read your resume for that direction: the projects show relevant tools and deliverables, but they sit below the teaching work a recruiter sees first.
+
+The Student Performance Dashboard is a strong model. You name Excel, the measures you tracked, and the period covered; the next line explains how the math department used it. Your teaching work also gives a recruiter a clear picture of the students and subjects you taught.
+
+Let's bring Data Projects above Professional Experience and replace the generic summary with the work you want recruiters to remember. Then add a concrete example of how your assessment analysis shaped instruction and what your housing dashboard showed.
+
+## Cards (7; {"line":5,"structure":1,"keep":1}); severity off; added []
+1. [line] Summary
+   line: "Dedicated educator with 8 years of experience transitioning into data analytics. Passionate about using data to tell stories and drive decisions. Strong analytical, communication, and problem-solving skills with a proven track record of success."
+   can't tell: These claims could belong to almost anyone changing fields. Your housing analysis gives a recruiter something more useful to remember.
+   example: Educator transitioning into data analytics, with experience analyzing Austin housing and income data using Python and SQL.
+   question: Which project or analysis best represents the data work you want to do next?
+2. [structure] Structure
+   line: "Data Projects sits below Professional Experience."
+   can't tell: A recruiter looking for analytics work has to get through the teaching roles before reaching your Python, SQL, Tableau, and Excel projects. Moving the projects above your teaching experience puts that work in view sooner.
+   question: Would you move Data Projects above Professional Experience for analytics applications?
+3. [line] Mathematics Teacher, line 2
+   line: "Developed and implemented engaging curriculum aligned with state standards"
+   can't tell: A recruiter can't tell what you built or taught beyond the state standards. One named unit would make the curriculum work concrete.
+   example: Developed and implemented [unit or curriculum] aligned with state standards.
+   question: What unit or curriculum did you develop and implement?
+4. [line] Mathematics Teacher, line 3
+   line: "Analyzed student assessment data to identify learning gaps and adjust instruction"
+   can't tell: The connection between assessment data and instruction is relevant to your transition, but the adjustment is still a blank. What did you change after looking at the data?
+   example: Analyzed student assessment data to identify [learning gap] and adjust instruction by [instructional change].
+   question: What learning gap did you identify, and how did you adjust instruction?
+5. [line] Mathematics Teacher, line 4
+   line: "Served as Math Department Data Lead, compiling benchmark results for department meetings"
+   can't tell: The Data Lead work belongs near the center of your analytics story. A recruiter can see that you compiled results, but not what you produced for the meetings.
+   example: Served as Math Department Data Lead, compiling benchmark results into [deliverable] for department meetings.
+   question: What did you produce from the benchmark results for those meetings?
+6. [line] Austin Housing Affordability Analysis, line 2
+   line: "Created a Tableau dashboard showing affordability trends by zip code"
+   can't tell: The dashboard and the zip-code breakdown are clear. Naming one finding would show what someone could learn from it.
+   example: Created a Tableau dashboard showing affordability trends by zip code, including [finding].
+   question: What finding did the dashboard show?
+7. [keep] Student Performance Dashboard, line 1
+   line: "Built an Excel dashboard tracking AP Statistics pass rates and quiz scores over three years"
+   can't tell: Keep this as a model: it names the thing you built, the tool, and exactly what the dashboard tracked. The following line adds how the department used it.
+
+## Fit
+Roles: ["Mathematics Teacher","Middle School Math Teacher"]
+Level: Entry-level data analytics, with bootcamp projects; experienced mathematics teacher
+Note: Your paid roles are in teaching, while your projects and training point toward a move into data analytics. The resume names Mathematics Teacher as your latest role, and the projects show Python, SQL, Tableau, and Excel work relevant to that transition.

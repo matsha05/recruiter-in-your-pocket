@@ -1,0 +1,273 @@
+{
+  "case_id": "h4c_one_paragraph",
+  "batch": "holes",
+  "run": 1,
+  "note": "A resume pasted as one paragraph with no line breaks.",
+  "resume_file": "../2026-11-live-judgment/resumes/h4c_one_paragraph.txt",
+  "resume_sha256": "f511920a68961c81af3613491765d7123205582245e9adc00a8bf837d18c66ea",
+  "resume_words": 147,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:33:54.280Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5656,
+        "completion_tokens": 1032,
+        "total_tokens": 6688,
+        "cached_prompt_tokens": 5196,
+        "cache_write_prompt_tokens": 457,
+        "reasoning_tokens": 396
+      },
+      "cost_usd": 0.00599405,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 12592
+    },
+    {
+      "kind": "repair",
+      "usage": {
+        "prompt_tokens": 6576,
+        "completion_tokens": 1652,
+        "total_tokens": 8228,
+        "cached_prompt_tokens": 0,
+        "cache_write_prompt_tokens": 6573,
+        "reasoning_tokens": 1021
+      },
+      "cost_usd": 0.01647925,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 19462
+    }
+  ],
+  "resume_prompt_sha256": "1c0fe4fe961ccb0d0e49bbe71ac8427d0281ae6e9a1efa6ac35e3ee49a99ed47",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 82,
+    "lifted_by_employer": false,
+    "verdict": "An operations coordinator with a clear dispatch remit and a delivery improvement that needs one more detail.",
+    "write_up": [
+      "Your resume points clearly toward operations coordination: you moved from freight and customer service at Dominion Parcel to dispatch at River City Logistics. A recruiter can see the work you handle and how much of it there is, so this is a resume they'd likely move forward with a question or two.",
+      "The dispatch line is your model. It names 18 drivers and two depots, so a recruiter can picture the operation you're coordinating. Your experience also leads before your education, and the job dates are easy to follow.",
+      "Start with the on-time delivery improvement: add what you did to move the rate. Then give the inventory line the same treatment, so a recruiter can see how you kept the count accurate."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Operations Coordinator, dispatch",
+        "line": "Coordinate daily dispatch for 18 drivers across two depots",
+        "cannot_tell": "Keep this as a model. It puts your daily responsibility next to the drivers and depots involved, without making a recruiter guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Operations Coordinator, on-time rate",
+        "line": "improved on-time rate from 91% to 96% in 2024",
+        "cannot_tell": "The improvement is clear, but a recruiter can't tell what you did to achieve it. That matters for an operations role where solving delivery problems is central.",
+        "example": "improved on-time rate from 91% to 96% in 2024 by [what you did]",
+        "question": "What did you do to improve the on-time rate?"
+      },
+      {
+        "kind": "line",
+        "where": "Warehouse Clerk, inventory",
+        "line": "kept the inventory count accurate",
+        "cannot_tell": "A recruiter can see that you worked on inventory, but not how you checked or corrected the count.",
+        "example": "kept the inventory count accurate by [how you checked and corrected counts]",
+        "question": "How did you check and correct inventory counts?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Operations Coordinator"
+      ],
+      "why": "Your current role is Operations Coordinator, with daily dispatch, delivery reporting and customer exception work.",
+      "level": "Experienced coordinator, responsible for dispatch across two depots",
+      "note": "Your experience points toward logistics and dispatch coordination. Your customer service and warehouse roles add useful context for the delivery problems you handle now.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "initial_validation_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the worklist contract at score: is 82 with no card that needs work; a page with nothing to fix scores at least 90.",
+    "issues": [
+      {
+        "path": "score",
+        "message": "is 82 with no card that needs work; a page with nothing to fix scores at least 90"
+      }
+    ]
+  },
+  "model_output_repaired": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A strong operations coordinator resume with a clear dispatch remit and a measurable delivery improvement.",
+    "write_up": [
+      "This is a strong operations resume! Your move from warehouse and customer service work at Dominion Parcel to dispatch at River City Logistics makes sense, and you give a recruiter both the size of the dispatch operation and a measurable improvement in delivery times.",
+      "The dispatch line is a good model for the rest: it names 18 drivers and two depots alongside your daily responsibility. Your experience also comes before your education, and the job dates are easy to follow.",
+      "Start by adding what you did to improve the on-time rate, then give the inventory count line a little more detail. Your resume is unlikely to be what holds you back on its own, though competition for a role still matters."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Operations Coordinator, dispatch",
+        "line": "Coordinate daily dispatch for 18 drivers across two depots",
+        "cannot_tell": "Keep this as a model. It puts your daily responsibility next to the drivers and depots involved, without making a recruiter guess.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Operations Coordinator, on-time rate",
+        "line": "improved on-time rate from 91% to 96% in 2024",
+        "cannot_tell": "The improvement is clear, but a recruiter can't tell what you did to achieve it. That's useful context for another dispatch job.",
+        "example": "improved on-time rate from 91% to 96% in 2024 by [what you did]",
+        "question": "What did you do to improve the on-time rate?"
+      },
+      {
+        "kind": "line",
+        "where": "Warehouse Clerk, inventory",
+        "line": "kept the inventory count accurate",
+        "cannot_tell": "A recruiter can see that you worked on inventory, but not how you checked or corrected the count.",
+        "example": "kept the inventory count accurate by [how you checked and corrected counts]",
+        "question": "How did you check and correct inventory counts?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Operations Coordinator"
+      ],
+      "why": "Your current role is Operations Coordinator, with daily dispatch, delivery reporting and customer exception work.",
+      "level": "Experienced coordinator, responsible for dispatch across two depots",
+      "note": "Your experience points toward logistics and dispatch coordination. Your customer service and warehouse roles add context for the delivery problems you handle now.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "repaired": true,
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A strong operations coordinator resume with a clear dispatch remit and a measurable delivery improvement.",
+    "write_up": [
+      "This is a strong operations resume! Your move from warehouse and customer service work at Dominion Parcel to dispatch at River City Logistics makes sense, and you give a recruiter both the size of the dispatch operation and a measurable improvement in delivery times.",
+      "The dispatch line is a good model for the rest: it names 18 drivers and two depots alongside your daily responsibility. Your experience also comes before your education, and the job dates are easy to follow.",
+      "Start by adding what you did to improve the on-time rate, then give the inventory count line a little more detail. Your resume is unlikely to be what holds you back on its own, though competition for a role still matters."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Operations Coordinator, dispatch",
+        "line": "Carlos Mendes Richmond VA carlos.mendes@example.com 555-0171 Summary Operations coordinator with six years in logistics and customer service Experience Operations Coordinator River City Logistics Richmond VA April 2021 to Present Coordinate daily dispatch for 18 drivers across two depots track on-time delivery and report weekly to the regional manager resolve delivery exceptions with customers by phone and email trained 4 new coordinators on the dispatch software improved on-time rate from 91% to 96% in 2024 Customer Service Representative Dominion Parcel Richmond VA June 2019 to March 2021 answered 60 to 80 customer calls per day handled claims for damaged or lost packages kept records in Salesforce Warehouse Clerk Dominion Parcel Richmond VA February 2018 to May 2019 scanned and sorted inbound freight kept the inventory count accurate Education Associate of Applied Science Business Administration J. Sargeant Reynolds Community College 2018 Skills Dispatch software Salesforce Excel customer service scheduling",
+        "cannot_tell": "Keep this as a model. It puts your daily responsibility next to the drivers and depots involved, without making a recruiter guess.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Operations Coordinator"
+      ],
+      "why": "Your current role is Operations Coordinator, with daily dispatch, delivery reporting and customer exception work.",
+      "level": "Experienced coordinator, responsible for dispatch across two depots",
+      "note": "Your experience points toward logistics and dispatch coordination. Your customer service and warehouse roles add context for the delivery problems you handle now.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 90
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A strong operations coordinator resume with a clear dispatch remit and a measurable delivery improvement.",
+    "write_up": [
+      "This is a strong operations resume! Your move from warehouse and customer service work at Dominion Parcel to dispatch at River City Logistics makes sense, and you give a recruiter both the size of the dispatch operation and a measurable improvement in delivery times.",
+      "The dispatch line is a good model for the rest: it names 18 drivers and two depots alongside your daily responsibility. Your experience also comes before your education, and the job dates are easy to follow.",
+      "Start by adding what you did to improve the on-time rate, then give the inventory count line a little more detail. Your resume is unlikely to be what holds you back on its own, though competition for a role still matters."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Operations Coordinator, dispatch",
+        "line": "Carlos Mendes Richmond VA carlos.mendes@example.com 555-0171 Summary Operations coordinator with six years in logistics and customer service Experience Operations Coordinator River City Logistics Richmond VA April 2021 to Present Coordinate daily dispatch for 18 drivers across two depots track on-time delivery and report weekly to the regional manager resolve delivery exceptions with customers by phone and email trained 4 new coordinators on the dispatch software improved on-time rate from 91% to 96% in 2024 Customer Service Representative Dominion Parcel Richmond VA June 2019 to March 2021 answered 60 to 80 customer calls per day handled claims for damaged or lost packages kept records in Salesforce Warehouse Clerk Dominion Parcel Richmond VA February 2018 to May 2019 scanned and sorted inbound freight kept the inventory count accurate Education Associate of Applied Science Business Administration J. Sargeant Reynolds Community College 2018 Skills Dispatch software Salesforce Excel customer service scheduling",
+        "cannot_tell": "Keep this as a model. It puts your daily responsibility next to the drivers and depots involved, without making a recruiter guess.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Operations Coordinator"
+      ],
+      "why": "Your current role is Operations Coordinator, with daily dispatch, delivery reporting and customer exception work.",
+      "level": "Experienced coordinator, responsible for dispatch across two depots",
+      "note": "Your experience points toward logistics and dispatch coordination. Your customer service and warehouse roles add context for the delivery problems you handle now.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 90
+  },
+  "presentation": {
+    "score": 90,
+    "band": "Clear and specific",
+    "model_score": 90,
+    "lifted_by_employer": false,
+    "verdict": "A strong operations coordinator resume with a clear dispatch remit and a measurable delivery improvement.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 121,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Operations Coordinator, dispatch",
+        "line": "Carlos Mendes Richmond VA carlos.mendes@example.com 555-0171 Summary Operations coordinator with six years in logistics and customer service Experience Operations Coordinator River City Logistics Richmond VA April 2021 to Present Coordinate daily dispatch for 18 drivers across two depots track on-time delivery and report weekly to the regional manager resolve delivery exceptions with customers by phone and email trained 4 new coordinators on the dispatch software improved on-time rate from 91% to 96% in 2024 Customer Service Representative Dominion Parcel Richmond VA June 2019 to March 2021 answered 60 to 80 customer calls per day handled claims for damaged or lost packages kept records in Salesforce Warehouse Clerk Dominion Parcel Richmond VA February 2018 to May 2019 scanned and sorted inbound freight kept the inventory count accurate Education Associate of Applied Science Business Administration J. Sargeant Reynolds Community College 2018 Skills Dispatch software Salesforce Excel customer service scheduling",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 1,
+    "kinds": {
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Operations Coordinator"
+      ],
+      "why": "Your current role is Operations Coordinator, with daily dispatch, delivery reporting and customer exception work.",
+      "level": "Experienced coordinator, responsible for dispatch across two depots",
+      "note": "Your experience points toward logistics and dispatch coordination. Your customer service and warehouse roles add context for the delivery problems you handle now.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0224733,
+  "latency_ms": 32076
+}

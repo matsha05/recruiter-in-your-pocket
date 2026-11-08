@@ -1,0 +1,51 @@
+# b30_social_worker, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_social_worker_1.txt (127 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 338ac33a; severity check off
+Outcome: report; cost $0.0100; 21.4s
+
+## Needs more context (score 66; model wrote 66)
+## Verdict
+A licensed family services caseworker whose resume names the work but leaves the caseload and results unclear.
+
+## Write-up
+It's common for a social work resume to list the duties of each role. Yours shows a move from intake at Lakeview Community Center to family services at Cuyahoga Family Partners, but the recent lines mostly describe what the job involves. A recruiter can see the kind of work you do, yet may move on without knowing how many families you serve or what your work changed.
+
+The monthly family team meetings line is a useful model: it names an activity and tells us how often you do it. Your Ohio LMSW and Master of Social Work are easy to find, and Experience is in the right place above Education.
+
+Let's start with the Family Services Caseworker role. Add your caseload count, then give a concrete example of a decision, service connection or report you worked on. Keep client details confidential, and only add results you can support.
+
+## Cards (6; {"structure":1,"line":5}); severity off; added []
+1. [structure] Family Services Caseworker
+   line: "The resume doesn't say what kind of organization Cuyahoga Family Partners is."
+   can't tell: A recruiter may not know the organization from its name. A short description can establish the setting for your work with families.
+   question: How would you describe the organization and the people it serves?
+2. [line] Family Services Caseworker, line 1
+   line: "Carry a caseload of families involved with child protective services"
+   can't tell: The families and setting are clear, but your caseload count isn't. That's a useful measure for comparing caseworker roles.
+   example: Carry a caseload of [number] families involved with child protective services, [what you do for those families]
+   question: How many families are on your caseload, and what work do you do with them?
+3. [line] Family Services Caseworker, line 2
+   line: "Complete safety and risk assessments during home visits"
+   can't tell: A recruiter can see that you assess safety and risk, but not what decisions those assessments inform.
+   example: Complete safety and risk assessments during home visits to inform [decision]
+   question: What decisions do your home visit assessments inform?
+4. [line] Family Services Caseworker, line 3
+   line: "Coordinate services with schools, courts, and mental health providers"
+   can't tell: The partners are named, but the services and family needs aren't. One example would show what your coordination involves.
+   example: Coordinate [services] with schools, courts, and mental health providers for [family need]
+   question: What services have you coordinated, and what family needs did they address?
+5. [line] Family Services Caseworker, line 4
+   line: "Write case plans and court reports"
+   can't tell: Both documents matter in this work, but a recruiter can't tell what you put in them or what decisions they support.
+   example: Write case plans and court reports that include [information] and support [decision]
+   question: What information do you include in these documents, and what decisions does it support?
+6. [line] Intake Specialist, line 2
+   line: "Connected clients to county benefit programs"
+   can't tell: This says you made connections, but not which programs or how you helped clients access them.
+   example: Connected clients to [county benefit programs] by [what you did]
+   question: Which county benefit programs did you connect clients to, and how did you help them access those programs?
+
+## Fit
+Roles: ["Family Services Caseworker","Intake Specialist"]
+Level: Experienced caseworker, with a current family services role and an Ohio LMSW
+Note: Your experience points most directly toward family services and child welfare work. The intake role also shows experience connecting walk-in clients with assistance.

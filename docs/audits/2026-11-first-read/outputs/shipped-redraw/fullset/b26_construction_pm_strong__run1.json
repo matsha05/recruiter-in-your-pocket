@@ -1,0 +1,246 @@
+{
+  "case_id": "b26_construction_pm_strong",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_construction_pm_strong_1.txt",
+  "resume_sha256": "548c7db64c756b5fab695853a27156e8aa67858a31cab50680d65e1ef14cc181",
+  "resume_words": 136,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:00:00.301Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 5333,
+        "completion_tokens": 1008,
+        "total_tokens": 6341,
+        "cached_prompt_tokens": 4685,
+        "cache_write_prompt_tokens": 645,
+        "reasoning_tokens": 375
+      },
+      "cost_usd": 0.0060835,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 12147
+    }
+  ],
+  "resume_prompt_sha256": "0a19c3ee70395ec8fb0584d4bea1b93da77aeca37469b4d47211bc8568544f0c",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A construction project manager whose resume shows the projects, their value, and results a recruiter can readily understand.",
+    "write_up": [
+      "This is a strong construction project management resume! Your work at Capitol Builders shows both the value of your projects and what you delivered, including a grocery store finished ahead of schedule.",
+      "The subcontractor buyout line is a useful model: it names the work and tells a recruiter how many trades you manage per project. Your move from Assistant Project Manager to Project Manager is easy to follow, and your experience leads your education.",
+      "Let's add how you achieved the grocery store schedule and kept change orders down. Your resume already tells a compelling story; competition for each job will also matter."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Project Manager, line 2",
+        "line": "- Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024",
+        "cannot_tell": "Finishing early is a real result. What did you do to get the grocery store there?",
+        "example": "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024 by [work you did]",
+        "question": "What did you do to help finish the grocery store ahead of schedule?"
+      },
+      {
+        "kind": "keep",
+        "where": "Project Manager, line 3",
+        "line": "- Manage subcontractor bids and buyout for 20 to 30 trades per project",
+        "cannot_tell": "Keep this as a model. It pairs a clear responsibility with the number of trades involved, so a recruiter can picture the job.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Project Manager, line 4",
+        "line": "- Kept change orders under 3% of contract value across 2024 and 2025 projects",
+        "cannot_tell": "The figure gives a recruiter something concrete to remember. The missing piece is what you did to keep change orders under that level.",
+        "example": "Kept change orders under 3% of contract value across 2024 and 2025 projects by [work you did]",
+        "question": "What did you do to keep change orders under 3%?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Project Manager",
+        "Assistant Project Manager"
+      ],
+      "level": "Experienced project manager",
+      "note": "Your experience points to commercial construction project management, particularly tenant improvements and retail builds. The project values, trade coordination, and schedule result make that direction clear.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A construction project manager whose resume shows the projects, their value, and results a recruiter can readily understand.",
+    "write_up": [
+      "This is a strong construction project management resume! Your work at Capitol Builders shows both the value of your projects and what you delivered, including a grocery store finished ahead of schedule.",
+      "The subcontractor buyout line is a useful model: it names the work and tells a recruiter how many trades you manage per project. Your move from Assistant Project Manager to Project Manager is easy to follow, and your experience leads your education.",
+      "Let's add how you achieved the grocery store schedule and kept change orders down. Your resume already tells a compelling story; competition for each job will also matter."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Project Manager, line 2",
+        "line": "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024",
+        "cannot_tell": "Finishing early is a real result. What did you do to get the grocery store there?",
+        "example": "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024 by [work you did]",
+        "question": "What did you do to help finish the grocery store ahead of schedule?"
+      },
+      {
+        "kind": "keep",
+        "where": "Project Manager, line 3",
+        "line": "Manage subcontractor bids and buyout for 20 to 30 trades per project",
+        "cannot_tell": "Keep this as a model. It pairs a clear responsibility with the number of trades involved, so a recruiter can picture the job.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Project Manager, line 4",
+        "line": "Kept change orders under 3% of contract value across 2024 and 2025 projects",
+        "cannot_tell": "The figure gives a recruiter something concrete to remember. The missing piece is what you did to keep change orders under that level.",
+        "example": "Kept change orders under 3% of contract value across 2024 and 2025 projects by [work you did]",
+        "question": "What did you do to keep change orders under 3%?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Project Manager",
+        "Assistant Project Manager"
+      ],
+      "level": "Experienced project manager",
+      "note": "Your experience points to commercial construction project management, particularly tenant improvements and retail builds. The project values, trade coordination, and schedule result make that direction clear.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A construction project manager whose resume shows the projects, their value, and results a recruiter can readily understand.",
+    "write_up": [
+      "This is a strong construction project management resume! Your work at Capitol Builders shows both the value of your projects and what you delivered, including a grocery store finished ahead of schedule.",
+      "The subcontractor buyout line is a useful model: it names the work and tells a recruiter how many trades you manage per project. Your move from Assistant Project Manager to Project Manager is easy to follow, and your experience leads your education.",
+      "Let's add how you achieved the grocery store schedule and kept change orders down. Your resume already tells a compelling story; competition for each job will also matter."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Project Manager, line 2",
+        "line": "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024",
+        "cannot_tell": "Finishing early is a real result. What did you do to get the grocery store there?",
+        "example": "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024 by [work you did]",
+        "question": "What did you do to help finish the grocery store ahead of schedule?"
+      },
+      {
+        "kind": "keep",
+        "where": "Project Manager, line 3",
+        "line": "Manage subcontractor bids and buyout for 20 to 30 trades per project",
+        "cannot_tell": "Keep this as a model. It pairs a clear responsibility with the number of trades involved, so a recruiter can picture the job.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Project Manager, line 4",
+        "line": "Kept change orders under 3% of contract value across 2024 and 2025 projects",
+        "cannot_tell": "The figure gives a recruiter something concrete to remember. The missing piece is what you did to keep change orders under that level.",
+        "example": "Kept change orders under 3% of contract value across 2024 and 2025 projects by [work you did]",
+        "question": "What did you do to keep change orders under 3%?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Project Manager",
+        "Assistant Project Manager"
+      ],
+      "level": "Experienced project manager",
+      "note": "Your experience points to commercial construction project management, particularly tenant improvements and retail builds. The project values, trade coordination, and schedule result make that direction clear.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "presentation": {
+    "score": 88,
+    "band": "Clear and specific",
+    "model_score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A construction project manager whose resume shows the projects, their value, and results a recruiter can readily understand.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 102,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Project Manager, line 2",
+        "line": "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024",
+        "blanks": 1,
+        "question": "What did you do to help finish the grocery store ahead of schedule?"
+      },
+      {
+        "kind": "keep",
+        "where": "Project Manager, line 3",
+        "line": "Manage subcontractor bids and buyout for 20 to 30 trades per project",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Project Manager, line 4",
+        "line": "Kept change orders under 3% of contract value across 2024 and 2025 projects",
+        "blanks": 1,
+        "question": "What did you do to keep change orders under 3%?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "line": 2,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Project Manager",
+        "Assistant Project Manager"
+      ],
+      "level": "Experienced project manager",
+      "note": "Your experience points to commercial construction project management, particularly tenant improvements and retail builds. The project values, trade coordination, and schedule result make that direction clear.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0060835,
+  "latency_ms": 12149
+}

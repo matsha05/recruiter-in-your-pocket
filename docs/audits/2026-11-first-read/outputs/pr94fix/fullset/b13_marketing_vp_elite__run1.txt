@@ -1,0 +1,31 @@
+# b13_marketing_vp_elite, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/golden/synth_marketing_manager_vp_elite_1766960221358.txt (730 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 288eceb5; severity check off
+Outcome: report; cost $0.0124; 21.5s
+Case note: Executive, strong (golden).
+
+## Clear and specific (score 90; model wrote 90)
+## Verdict
+A marketing executive with a clear progression and company-level results attached to her work.
+
+## Write-up
+This is a strong executive resume! Your progression from Senior Marketing Manager to Chief Marketing Officer comes with the teams, budgets and business results that make those roles credible. A recruiter can see both the work you led and what changed.
+
+The campaign strategy line is a great model: it links qualified lead growth to recurring revenue while keeping your contribution in proportion. Your current role also puts the 45-person organization and $25M budget up front, so a recruiter doesn't have to hunt for them.
+
+Let's add what changed in the product launch process, then keep the rest focused on your strongest work. Your resume is unlikely to be what holds you back on its own; the competition for a particular executive role will matter too.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Chief Marketing Officer, line 2
+   line: "I built an integrated multi-channel campaign strategy that grew qualified lead flow by 70% year-over-year, contributing to a 40% increase in annual recurring revenue from $120M to $168M within 3 years."
+   can't tell: Keep this as a model. You name the strategy, show the lead growth and distinguish your contribution to revenue from a claim that marketing did it alone.
+2. [line] Chief Marketing Officer, line 3
+   line: "I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years."
+   can't tell: The launch results are substantial, but a recruiter can't see what you changed in the process. A concrete change would show how you approached the work.
+   example: I decided to revamp the product launch process by [process changes], shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.
+   question: What did you change in the product launch process?
+
+## Fit
+Roles: ["Chief Marketing Officer","Vice President, Global Marketing"]
+Level: executive, leads a 45-person global marketing organization and manages a $25M annual budget
+Note: Your experience points toward executive marketing leadership in SaaS and enterprise technology. The earlier demand generation and product marketing work supports the broader strategy in your current role.

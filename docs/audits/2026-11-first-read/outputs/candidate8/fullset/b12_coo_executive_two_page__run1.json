@@ -1,0 +1,215 @@
+{
+  "case_id": "b12_coo_executive_two_page",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Executive, two pages.",
+  "resume_file": "../2026-11-live-judgment/resumes/b_coo_executive.txt",
+  "resume_sha256": "213474e9b27355f8a085204e3dac05f65782d74d43b9b531cb2afd6a3afe1b79",
+  "resume_words": 463,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:47:58.403Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6854,
+        "completion_tokens": 950,
+        "total_tokens": 7804,
+        "cached_prompt_tokens": 5142,
+        "cache_write_prompt_tokens": 1709,
+        "reasoning_tokens": 371
+      },
+      "cost_usd": 0.00714635,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 12495
+    }
+  ],
+  "resume_prompt_sha256": "5cba8f052feab05101dfe43138d650d9cc25bac9a46f7e3aa35d9efb9d96fad4",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare COO whose resume connects a substantial operating remit to measurable results.",
+    "write_up": [
+      "This is a strong COO resume! At Lakeshore Dental Partners, you show the reach of your role and what changed across practice growth, integration and retention. Your earlier work at Midwest Physician Alliance and Prairie Health System backs up that progression.",
+      "The integration line is a model: it gives the old and new timelines and names the playbook you standardized. Your experience leads, with board work, education and speaking following it, so a recruiter can find the operating story first.",
+      "Start with the patient wait time line and add how you brought it down if you can. You don't need to rebuild this resume; it isn't likely to be the thing holding you back. The competitiveness of a particular COO job will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, integration line",
+        "line": "- Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a before-and-after measure and the operational change behind it.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Vice President, Operations, patient wait time line",
+        "line": "- Reduced patient wait time to third available appointment from 21 days to 6 across primary care",
+        "cannot_tell": "The reduction is substantial, but a recruiter can't tell what you changed to achieve it. That detail would show how you approached access across primary care.",
+        "example": "Reduced patient wait time to third available appointment from 21 days to 6 across primary care by [what you changed]",
+        "question": "What did you change to reduce the wait time?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Operating Officer"
+      ],
+      "why": "Your headline and current role both name you as a Chief Operating Officer, and your work covers multi-site healthcare operations and a P&L.",
+      "level": "Executive, leads operations for 140 practices and owns a $410M P&L with the CFO",
+      "note": "Your experience points toward COO roles in multi-site healthcare services. The practice growth, operating model and board reporting make that direction easy to see.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare COO whose resume connects a substantial operating remit to measurable results.",
+    "write_up": [
+      "This is a strong COO resume! At Lakeshore Dental Partners, you show the reach of your role and what changed across practice growth, integration and retention. Your earlier work at Midwest Physician Alliance and Prairie Health System backs up that progression.",
+      "The integration line is a model: it gives the old and new timelines and names the playbook you standardized. Your experience leads, with board work, education and speaking following it, so a recruiter can find the operating story first.",
+      "Start with the patient wait time line and add how you brought it down if you can. You don't need to rebuild this resume; it isn't likely to be the thing holding you back. The competitiveness of a particular COO job will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, integration line",
+        "line": "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a before-and-after measure and the operational change behind it.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Vice President, Operations, patient wait time line",
+        "line": "Reduced patient wait time to third available appointment from 21 days to 6 across primary care",
+        "cannot_tell": "The reduction is substantial, but a recruiter can't tell what you changed to achieve it. That detail would show how you approached access across primary care.",
+        "example": "Reduced patient wait time to third available appointment from 21 days to 6 across primary care by [what you changed]",
+        "question": "What did you change to reduce the wait time?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Operating Officer"
+      ],
+      "why": "Your headline and current role both name you as a Chief Operating Officer, and your work covers multi-site healthcare operations and a P&L.",
+      "level": "Executive, leads operations for 140 practices and owns a $410M P&L with the CFO",
+      "note": "Your experience points toward COO roles in multi-site healthcare services. The practice growth, operating model and board reporting make that direction easy to see.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 91
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare COO whose resume connects a substantial operating remit to measurable results.",
+    "write_up": [
+      "This is a strong COO resume! At Lakeshore Dental Partners, you show the reach of your role and what changed across practice growth, integration and retention. Your earlier work at Midwest Physician Alliance and Prairie Health System backs up that progression.",
+      "The integration line is a model: it gives the old and new timelines and names the playbook you standardized. Your experience leads, with board work, education and speaking following it, so a recruiter can find the operating story first.",
+      "Start with the patient wait time line and add how you brought it down if you can. You don't need to rebuild this resume; it isn't likely to be the thing holding you back. The competitiveness of a particular COO job will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, integration line",
+        "line": "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a before-and-after measure and the operational change behind it.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Vice President, Operations, patient wait time line",
+        "line": "Reduced patient wait time to third available appointment from 21 days to 6 across primary care",
+        "cannot_tell": "The reduction is substantial, but a recruiter can't tell what you changed to achieve it. That detail would show how you approached access across primary care.",
+        "example": "Reduced patient wait time to third available appointment from 21 days to 6 across primary care by [what you changed]",
+        "question": "What did you change to reduce the wait time?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Operating Officer"
+      ],
+      "why": "Your headline and current role both name you as a Chief Operating Officer, and your work covers multi-site healthcare operations and a P&L.",
+      "level": "Executive, leads operations for 140 practices and owns a $410M P&L with the CFO",
+      "note": "Your experience points toward COO roles in multi-site healthcare services. The practice growth, operating model and board reporting make that direction easy to see.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 91
+  },
+  "presentation": {
+    "score": 91,
+    "band": "Clear and specific",
+    "model_score": 91,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare COO whose resume connects a substantial operating remit to measurable results.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 124,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, integration line",
+        "line": "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Vice President, Operations, patient wait time line",
+        "line": "Reduced patient wait time to third available appointment from 21 days to 6 across primary care",
+        "blanks": 1,
+        "question": "What did you change to reduce the wait time?"
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "keep": 1,
+      "line": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Chief Operating Officer"
+      ],
+      "why": "Your headline and current role both name you as a Chief Operating Officer, and your work covers multi-site healthcare operations and a P&L.",
+      "level": "Executive, leads operations for 140 practices and owns a $410M P&L with the CFO",
+      "note": "Your experience points toward COO roles in multi-site healthcare services. The practice growth, operating model and board reporting make that direction easy to see.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00714635,
+  "latency_ms": 12551
+}

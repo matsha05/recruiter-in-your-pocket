@@ -1,0 +1,247 @@
+<title>First-read blind pick</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+:root { --bg:#f4f4f1; --paper:#fff; --ink:#111513; --muted:#5a605c; --pen:#1f5a46; --blue:#2448a8; --line:#dfe0dc; --marker:#ffe14d; --sheet:#fefefc; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#111412; --paper:#1a1e1b; --ink:#eef0ec; --muted:#a9b0aa; --pen:#8fd1b3; --blue:#9fb4ff; --line:#2c322e; --marker:#6b6420; --sheet:#1f2420; color-scheme: dark; } }
+:root[data-theme="dark"] { --bg:#111412; --paper:#1a1e1b; --ink:#eef0ec; --muted:#a9b0aa; --pen:#8fd1b3; --blue:#9fb4ff; --line:#2c322e; --marker:#6b6420; --sheet:#1f2420; color-scheme: dark; }
+body { background: var(--bg); color: var(--ink); font: 15px/1.55 ui-sans-serif, system-ui, sans-serif; padding-block: 24px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+main { max-width: 1200px; margin: 0 auto; }
+h1 { font-size: 26px; line-height: 1.2; text-wrap: balance; }
+.intro { color: var(--muted); max-width: 70ch; }
+.item { background: var(--paper); border: 1px solid var(--line); border-radius: 18px; padding: 20px; margin-top: 24px; }
+.item h2 { font-size: 19px; margin: 0 0 8px; }
+details { margin: 6px 0; } summary { cursor: pointer; color: var(--pen); font-weight: 600; }
+pre { white-space: pre-wrap; background: var(--sheet); border: 1px solid var(--line); padding: 12px 14px; border-radius: 8px; font: 13px/1.5 Georgia, serif; max-height: 420px; overflow: auto; }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 12px; }
+.pair > div { min-width: 0; }
+@media (max-width: 860px) { .pair { grid-template-columns: 1fr; } }
+.side { font-weight: 800; font-size: 13px; letter-spacing: 0.04em; color: var(--muted); margin: 0 0 4px; }
+.report { border-top: 2px solid var(--ink); padding-top: 10px; }
+.score { margin: 0; } .score b { font-size: 26px; margin-right: 6px; }
+.readfor { color: var(--muted); font-size: 13px; margin: 2px 0 0; }
+.verdict { font: 19px/1.4 Georgia, serif; margin: 10px 0 6px; }
+.writeup p { color: var(--pen); font: 15px/1.6 Georgia, serif; margin: 6px 0; }
+.fit-note { background: var(--bg); padding: 8px 10px; border-radius: 8px; font-size: 14px; }
+.missing { font-size: 13px; color: var(--muted); }
+.count { font-weight: 700; margin: 14px 0 4px; }
+.cards { padding-left: 18px; margin: 0; } .cards li { margin: 0 0 14px; }
+.where { font-size: 12px; font-weight: 700; color: var(--muted); margin: 0; }
+.quoted { font: 14px/1.5 Georgia, serif; margin: 2px 0; } mark { background: var(--marker); color: inherit; }
+.statement { font: italic 14px/1.5 Georgia, serif; margin: 2px 0; }
+.note { font: italic 14px/1.5 Georgia, serif; color: var(--pen); margin: 2px 0; }
+.question { font-size: 14px; margin: 2px 0; }
+.example { font: 14px/1.5 Georgia, serif; margin: 2px 0; } .blank { color: var(--blue); border-bottom: 1.5px solid var(--blue); }
+.keep .quoted { font-weight: 600; }
+</style>
+<main>
+<h1>First-read blind pick</h1>
+<p class="intro">Each item is one synthetic resume read twice: once by the report prompt that's live today, once by the proposed one. Which is which is shuffled per item. For each, pick the side a job seeker would rather get, or say they're the same. Open the resume to check the cards against it.</p>
+<section class="item" id="item-1">
+      <h2>1. An account executive at 132% of quota</h2>
+      <details><summary>The resume</summary><pre>MARCUS DELGADO
+Austin, TX | marcus.delgado.sales@example.com | linkedin.com/in/marcus-delgado-example
+
+Account Executive
+
+EXPERIENCE
+
+Account Executive
+Vantage Fleet Software, Austin, TX | April 2023 - Present
+- Achieved 132% of quota in FY2025
+- Closed $1.4M in new business
+- President&#x27;s Club 2025
+- Ran full-cycle sales from discovery to close using MEDDICC
+- Partnered with solutions engineers on demos and pilots
+
+Sales Development Representative
+Vantage Fleet Software, Austin, TX | August 2021 - March 2023
+- Booked 25+ meetings per month for the account executive team
+- Promoted to Account Executive after 18 months
+
+Sales Associate
+Hill Country Outfitters, Austin, TX | May 2019 - July 2021
+- Top seller in the store for three quarters
+
+EDUCATION
+B.B.A. Marketing, Texas State University, 2019
+
+SKILLS
+Salesforce, Outreach, Gong, LinkedIn Sales Navigator
+</pre></details>
+      <div class="pair"><div><p class="side">Left</p><div class="report">
+      <p class="score"><b>86</b> Clear and specific</p>
+      <h3 class="verdict">An Account Executive with quota attainment, new-business sales and a clear promotion into the role.</h3>
+      <div class="writeup"><p>This is a strong sales resume! You show a move from sales development to Account Executive at Vantage Fleet Software, then give a recruiter quota attainment and new-business revenue to hold onto.</p><p>The line about booking 25+ meetings per month works especially well: it names the work, the pace and who received the meetings. Your experience leads, and the Account Executive headline matches your current job.</p><p>Let&#x27;s add a time period to the $1.4M and spell out your part in demos and pilots. Your resume isn&#x27;t likely to be the main thing holding you back; how competitive an Account Executive job is will also matter.</p></div>
+      
+      <p class="count">2 lines that need work</p>
+      <ol class="cards"><li><p class="where">Account Executive, line 2</p><p class="quoted"><mark>Closed $1.4M in new business</mark></p><p class="note">Closing $1.4M is a concrete result, but a recruiter can&#x27;t tell the period it covers or the kinds of customers you sold to.</p><p class="question">What period does the $1.4M cover, and what kinds of customers did you sell to?</p><p class="example">Closed $1.4M in new business with <span class="blank">customer type</span> in <span class="blank">time period</span></p></li><li><p class="where">Account Executive, line 5</p><p class="quoted"><mark>Partnered with solutions engineers on demos and pilots</mark></p><p class="note">A recruiter can see who you worked with, but not your part in the demos and pilots. What did you handle alongside the solutions engineers?</p><p class="question">What did you handle in the demos and pilots?</p><p class="example">Partnered with solutions engineers on demos and pilots, handling <span class="blank">your contribution</span></p></li><li class="keep"><p class="where">Don't touch this one · Sales Development Representative, line 1</p><p class="quoted">Booked 25+ meetings per month for the account executive team</p><p class="note">Keep this as a model: it ties an action you owned to a measurable pace without making a recruiter guess what the number represents.</p></li></ol>
+    </div></div><div><p class="side">Right</p><div class="report">
+      <p class="score"><b>80</b> Mostly clear</p>
+      <h3 class="verdict">An Account Executive with strong sales numbers, but too little context to compare them.</h3>
+      <div class="writeup"><p>Your resume tells a straightforward sales story: you moved from retail into sales development at Vantage Fleet Software, then into an Account Executive role. A recruiter can see you close business and would likely move forward with questions about the target and deals behind your numbers.</p><p>The line about booking 25+ meetings per month is a good model: it names the work, the audience and the pace. Your promotion and President&#x27;s Club recognition also show progression. What remains unclear is how to compare your Account Executive results with the target and market you worked.</p><p>Let&#x27;s start with the quota line. Add the target and territory if you can, then give the $1.4M figure a time period and deal count. A little more about your part in demos and pilots will round out the story.</p></div>
+      
+      <p class="count">3 lines that need work</p>
+      <ol class="cards"><li><p class="where">Account Executive, line 1</p><p class="quoted"><mark>Achieved 132% of quota in FY2025</mark></p><p class="note">A recruiter can see you beat quota, but not what the target was or which territory you covered. Another year&#x27;s attainment would also show whether that performance held.</p><p class="question">What was your FY2025 quota and territory, and what attainment can you share for another year?</p><p class="example">Achieved 132% of quota in FY2025 against a <span class="blank">quota</span> target for <span class="blank">territory</span>; achieved <span class="blank">attainment</span> in <span class="blank">year</span></p></li><li><p class="where">Account Executive, line 2</p><p class="quoted"><mark>Closed $1.4M in new business</mark></p><p class="note">That&#x27;s a substantial figure, but the resume doesn&#x27;t say over what period you closed it or how many deals it represents.</p><p class="question">What period did the $1.4M cover, and how many deals made it up?</p><p class="example">Closed $1.4M in new business in <span class="blank">period</span> across <span class="blank">number</span> deals</p></li><li><p class="where">Account Executive, line 5</p><p class="quoted"><mark>Partnered with solutions engineers on demos and pilots</mark></p><p class="note">A recruiter can see who you worked with, but not what you contributed to the demos and pilots. Your part matters when they&#x27;re judging how you run a sale.</p><p class="question">What did you contribute to the demos and pilots, and which customers were they for?</p><p class="example">Partnered with solutions engineers on demos and pilots for <span class="blank">customers</span>, contributing <span class="blank">your work</span></p></li><li class="keep"><p class="where">Don't touch this one · Sales Development Representative, line 1</p><p class="quoted">Booked 25+ meetings per month for the account executive team</p><p class="note">Keep this as a model. It gives a recruiter a concrete piece of sales development work and a figure they can hold onto.</p></li></ol>
+    </div></div></div>
+    </section><section class="item" id="item-2">
+      <h2>2. A hospital nurse whose roles never name a unit</h2>
+      <details><summary>The resume</summary><pre>AMARA OKAFOR, RN
+Columbus, OH | amara.okafor.rn@example.com | (614) 555-0199
+
+Registered Nurse with six years of hospital experience.
+
+EXPERIENCE
+
+Registered Nurse
+Riverside Methodist Hospital, Columbus, OH | August 2021 - Present
+- Provide direct patient care for adult patients across 12-hour shifts
+- Administer medications and monitor patient response
+- Educate patients and families on discharge plans
+- Serve as charge nurse on weekends
+- Precept new graduate nurses
+
+Registered Nurse
+Mount Carmel East Hospital, Columbus, OH | June 2019 - July 2021
+- Cared for patients before and after surgery
+- Documented assessments and care plans in Epic
+
+Patient Care Technician
+Mount Carmel East Hospital, Columbus, OH | May 2017 - May 2019
+- Took vital signs, assisted with mobility and hygiene
+
+EDUCATION
+Bachelor of Science in Nursing, The Ohio State University, 2019
+
+LICENSES AND CERTIFICATIONS
+RN, BLS, ACLS
+</pre></details>
+      <div class="pair"><div><p class="side">Left</p><div class="report">
+      <p class="score"><b>65</b> Needs more context</p>
+      <h3 class="verdict">A hospital RN with charge and precepting experience, but no unit named in either nursing role.</h3>
+      <div class="writeup"><p>You’ve worked as a Registered Nurse at Riverside Methodist Hospital and Mount Carmel East, after a patient care technician role. This is a common nursing resume pattern: the duties are familiar, but the units and the care you provided are hard to distinguish from those of other hospital RNs. A recruiter will likely finish it, then hesitate without knowing where your experience fits.</p><p>The Epic line is a useful model because it names the records you worked on and the system you used. Your weekend charge nurse and new graduate precepting work also deserve more room. The RN license is listed, but its issuing state isn’t.</p><p>Let’s start with the Riverside role. Name the unit and the care you provide there, then unpack what you do as charge nurse and preceptor. Add the unit at Mount Carmel East and the state of your RN license too.</p></div>
+      
+      <p class="count">7 lines that need work</p>
+      <ol class="cards"><li><p class="where">Riverside Registered Nurse, line 1</p><p class="quoted"><mark>Provide direct patient care for adult patients across 12-hour shifts</mark></p><p class="note">A recruiter can see that you care for adults, but not which unit you work on or what that care involves. The unit is one of the first things a nursing recruiter looks for.</p><p class="question">Which unit do you work on, and what care do you provide there?</p><p class="example">Provide direct patient care for adult patients on <span class="blank">unit</span>, including <span class="blank">care provided</span>, across 12-hour shifts</p></li><li><p class="where">Riverside Registered Nurse, line 2</p><p class="quoted"><mark>Administer medications and monitor patient response</mark></p><p class="note">Medication administration is part of many RN jobs. The line doesn’t say which medications you commonly administer or what monitoring involves for your patients.</p><p class="question">Which medications do you commonly administer, and how do you monitor patients’ responses?</p><p class="example">Administer <span class="blank">medication types</span> and monitor patient response by <span class="blank">monitoring activities</span></p></li><li><p class="where">Riverside Registered Nurse, line 3</p><p class="quoted"><mark>Educate patients and families on discharge plans</mark></p><p class="note">A recruiter can see who you educate, but not what you cover or how you prepare them for discharge.</p><p class="question">What do you cover with patients and families, and how do you teach it?</p><p class="example">Educate patients and families on discharge plans, including <span class="blank">education topics</span>, using <span class="blank">education approach</span></p></li><li><p class="where">Riverside Registered Nurse, line 4</p><p class="quoted"><mark>Serve as charge nurse on weekends</mark></p><p class="note">Charge nurse work is worth highlighting, but a recruiter can’t tell what you handle in that role.</p><p class="question">What are your responsibilities when you serve as charge nurse?</p><p class="example">Serve as charge nurse on weekends, handling <span class="blank">charge nurse responsibilities</span></p></li><li><p class="where">Riverside Registered Nurse, line 5</p><p class="quoted"><mark>Precept new graduate nurses</mark></p><p class="note">Precepting new graduates is meaningful work. A recruiter can’t tell what you teach or how you support them.</p><p class="question">What do you teach new graduate nurses, and how do you support them?</p><p class="example">Precept new graduate nurses on <span class="blank">skills or tasks</span> through <span class="blank">precepting activities</span></p></li><li><p class="where">Mount Carmel East Registered Nurse, line 1</p><p class="quoted"><mark>Cared for patients before and after surgery</mark></p><p class="note">The surgical care is clear, but the unit and the care you provided aren’t named. Those details show where this nursing experience fits.</p><p class="question">Which unit was this, and what care did you provide before and after surgery?</p><p class="example">Cared for patients before and after surgery on <span class="blank">unit</span>, including <span class="blank">care provided</span></p></li><li class="keep"><p class="where">Don't touch this one · Mount Carmel East Registered Nurse, line 2</p><p class="quoted">Documented assessments and care plans in Epic</p><p class="note">Keep this as a model: it gives a recruiter two concrete parts of your nursing work and names the system you used.</p></li><li><p class="where">Licenses and certifications</p><p class="quoted"><mark>RN, BLS, ACLS</mark></p><p class="note">Your RN license is listed, but its issuing state isn’t. A recruiter needs that detail for a nursing role; your Columbus location doesn’t establish it.</p><p class="question">Which state issued your RN license?</p><p class="example">RN, <span class="blank">licensing state</span>; BLS; ACLS</p></li></ol>
+    </div></div><div><p class="side">Right</p><div class="report">
+      <p class="score"><b>65</b> Needs more context</p>
+      <h3 class="verdict">A hospital nurse with charge and precepting experience, but too little detail about the patients and work.</h3>
+      <div class="writeup"><p>Your resume shows a move from patient care technician to registered nurse at Mount Carmel East, then to Riverside Methodist, where you also serve as charge nurse and precept new graduates. It&#x27;s common for nursing resumes to lean on core duties, but these lines could describe many hospital nurses. A recruiter can&#x27;t yet tell what kind of unit you work on or how much responsibility you carry.</p><p>The Epic line is a useful model: it names the records you worked on and the system you used. Your experience comes before education, and your RN, BLS and ACLS are easy to find.</p><p>Let&#x27;s start with the Riverside Methodist role. Add the unit and patient load to your first line, then show what charge nursing and precepting involve. Those details will give a recruiter a better picture of your work than a longer list of routine duties.</p></div>
+      
+      <p class="count">6 lines that need work</p>
+      <ol class="cards"><li><p class="where">Riverside Methodist, line 1</p><p class="quoted"><mark>Provide direct patient care for adult patients across 12-hour shifts</mark></p><p class="note">A recruiter knows you care for adults, but not the unit or how many patients you typically handle. Those details matter when matching hospital nursing experience to a role.</p><p class="question">What unit do you work on, and how many patients do you typically care for per shift?</p><p class="example">Provide direct patient care for adult patients on <span class="blank">unit</span> across 12-hour shifts, caring for <span class="blank">number</span> patients per shift</p></li><li><p class="where">Riverside Methodist, line 2</p><p class="quoted"><mark>Administer medications and monitor patient response</mark></p><p class="note">Medication administration is central nursing work, but a recruiter can&#x27;t tell which medications or assessments are part of your practice.</p><p class="question">Which medications do you administer, and how do you assess patients&#x27; responses?</p><p class="example">Administer <span class="blank">medications</span> and monitor patient response through <span class="blank">assessments</span></p></li><li><p class="where">Riverside Methodist, line 3</p><p class="quoted"><mark>Educate patients and families on discharge plans</mark></p><p class="note">Discharge education is named, but the topics and patient needs aren&#x27;t. A detail about either would show what you cover with families.</p><p class="question">What discharge topics do you cover, and what needs do your patients have?</p><p class="example">Educate patients and families on discharge plans, including <span class="blank">discharge topics</span> for <span class="blank">patient needs</span></p></li><li><p class="where">Riverside Methodist, line 4</p><p class="quoted"><mark>Serve as charge nurse on weekends</mark></p><p class="note">Charge nurse is an important responsibility. A recruiter can&#x27;t tell what you handle in that role or who you support.</p><p class="question">What do you handle as charge nurse, and which unit or team do you cover?</p><p class="example">Serve as charge nurse on weekends, handling <span class="blank">charge nurse responsibilities</span> for <span class="blank">unit or team</span></p></li><li><p class="where">Riverside Methodist, line 5</p><p class="quoted"><mark>Precept new graduate nurses</mark></p><p class="note">Precepting shows you&#x27;re trusted to support new nurses. The line doesn&#x27;t say how many you&#x27;ve precepted or what you taught them.</p><p class="question">How many new graduate nurses have you precepted, and what skills did you teach them?</p><p class="example">Precept <span class="blank">number</span> new graduate nurses on <span class="blank">skills</span></p></li><li><p class="where">Mount Carmel East, Registered Nurse, line 1</p><p class="quoted"><mark>Cared for patients before and after surgery</mark></p><p class="note">A recruiter can see the surgical setting, but not the care you provided or the kinds of surgery involved.</p><p class="question">What care did you provide before and after surgery, and what kinds of surgery did your patients undergo?</p><p class="example">Cared for patients before and after surgery, providing <span class="blank">care provided</span> for patients undergoing <span class="blank">types of surgery</span></p></li><li class="keep"><p class="where">Don't touch this one · Mount Carmel East, Registered Nurse, line 2</p><p class="quoted">Documented assessments and care plans in Epic</p><p class="note">Keep the combination of a concrete nursing task and the system you used. That gives a recruiter something recognizable to carry into the next role.</p></li></ol>
+    </div></div></div>
+    </section><section class="item" id="item-3">
+      <h2>3. A staff software engineer</h2>
+      <details><summary>The resume</summary><pre>Wei Chen
+San Francisco, CA | wei.chen@example.com | (415) 555-0133 | github.com/weichen-example
+
+Staff Software Engineer | Distributed Systems | Payments Infrastructure
+
+EXPERIENCE
+
+Staff Software Engineer, Brightline Payments, San Francisco, CA
+January 2022 - Present
+- Technical lead for the ledger and settlement platform team
+- Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB
+- Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents
+- Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services
+- Mentored senior and mid-level engineers; ran the backend engineering reading group
+- Partnered with product and finance on the roadmap for multi-currency settlement
+- Authored engineering design documents and architecture reviews adopted as team standards
+- Interviewed 100+ candidates and helped revise the backend hiring loop
+
+Senior Software Engineer, Brightline Payments, San Francisco, CA
+June 2019 - December 2021
+- Built the real-time fraud scoring pipeline (Flink, Kafka) processing payment events with p99 latency under 50ms
+- Designed and shipped the reconciliation service that matches internal ledger entries against processor settlement files
+- Reduced reconciliation break rate and manual ops effort
+- On-call rotation for payments core services
+
+Software Engineer II, Nimbus Cloud (acquired by Oracle), Seattle, WA
+August 2016 - May 2019
+- Worked on the object storage control plane in Go
+- Implemented multi-region replication and lifecycle policies
+- Improved API latency and availability through caching and request coalescing
+- Contributed to the migration of the control plane to Kubernetes
+
+Software Engineer, Nimbus Cloud, Seattle, WA
+July 2015 - August 2016
+- Developed internal tooling and APIs for storage provisioning
+- Participated in on-call and wrote runbooks
+
+SKILLS
+Go, Java, Python, Kafka, Flink, CockroachDB, Postgres, Kubernetes, AWS, gRPC, Terraform, distributed systems, event sourcing, consensus, observability (Prometheus, Grafana, OpenTelemetry), system design, technical leadership
+
+EDUCATION
+M.S. Computer Science, University of Washington, 2015
+B.S. Computer Science, Shanghai Jiao Tong University, 2013
+
+PUBLICATIONS &amp; TALKS
+&quot;Idempotency at Scale: Lessons from a Payments Platform,&quot; internal tech talk series, 2024
+Co-author, &quot;Multi-Region Replication Tradeoffs for Object Storage,&quot; Nimbus Engineering Blog, 2018
+</pre></details>
+      <div class="pair"><div><p class="side">Left</p><div class="report">
+      <p class="score"><b>82</b> Mostly clear</p>
+      <h3 class="verdict">A staff engineer with credible payments and distributed systems work, though some leadership results need more detail.</h3>
+      <div class="writeup"><p>You’ve progressed from object storage at Nimbus Cloud to leading ledger and settlement work at Brightline Payments. A recruiter can follow that path and would likely move your resume forward with a few questions about the size and results of your staff-level work.</p><p>The idempotency line is your best model: it connects an initiative across payment services to the duplicate-charge incidents it eliminated. The ledger redesign is technically substantial too, but a recruiter can’t yet tell what changed after the move.</p><p>Let’s start with the current Brightline role. Add the team’s size and what changed with the ledger redesign, then give the multi-currency roadmap a little more of your own contribution. The older reconciliation result is worth expanding too.</p></div>
+      
+      <p class="count">5 lines that need work</p>
+      <ol class="cards"><li><p class="where">Staff Software Engineer, line 1</p><p class="quoted"><mark>Technical lead for the ledger and settlement platform team</mark></p><p class="note">A recruiter knows which team you lead, but not how many engineers are on it or what your technical leadership covers.</p><p class="question">How many engineers are on the team, and what do you own as its technical lead?</p><p class="example">Technical lead for the ledger and settlement platform team of <span class="blank">number</span> engineers, responsible for <span class="blank">leadership responsibilities</span></p></li><li><p class="where">Staff Software Engineer, line 2</p><p class="quoted"><mark>Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB</mark></p><p class="note">The architecture change is clear, but the reason for it and what changed afterward are missing. Those details would show a recruiter why the redesign mattered to payments.</p><p class="question">What problem drove the redesign, and what measure changed after it?</p><p class="example">Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, addressing <span class="blank">problem</span> and changing <span class="blank">measure</span> from <span class="blank">before</span> to <span class="blank">after</span></p></li><li class="keep"><p class="where">Don't touch this one · Staff Software Engineer, line 3</p><p class="quoted">Drove adoption of a new idempotency framework across payment services, eliminating a class of duplicate-charge incidents</p><p class="note">Keep this as a model. It names both the change you drove and the payment problem it removed.</p></li><li><p class="where">Staff Software Engineer, line 4</p><p class="quoted"><mark>Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services</mark></p><p class="note">You name the response work and the reliability practices you introduced. A recruiter can’t tell what changed for those services afterward.</p><p class="question">What changed for the services after you introduced error budgets and SLOs?</p><p class="example">Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services, resulting in <span class="blank">what changed</span></p></li><li><p class="where">Staff Software Engineer, line 6</p><p class="quoted"><mark>Partnered with product and finance on the roadmap for multi-currency settlement</mark></p><p class="note">The project and partners are named, but your contribution to the roadmap is still a blank. What did you bring to the decisions?</p><p class="question">What was your contribution to the multi-currency settlement roadmap?</p><p class="example">Partnered with product and finance on the roadmap for multi-currency settlement by <span class="blank">your contribution</span></p></li><li><p class="where">Senior Software Engineer, line 3</p><p class="quoted"><mark>Reduced reconciliation break rate and manual ops effort</mark></p><p class="note">Both improvements matter in payments, but a recruiter can’t tell what you changed or how much either measure moved.</p><p class="question">What did you change, and how much did the break rate and manual ops effort decrease?</p><p class="example">Reduced reconciliation break rate from <span class="blank">before</span> to <span class="blank">after</span> and manual ops effort by <span class="blank">amount</span> through <span class="blank">what you did</span></p></li></ol>
+    </div></div><div><p class="side">Right</p><div class="report">
+      <p class="score"><b>80</b> Mostly clear</p>
+      <h3 class="verdict">A staff engineer with substantial payments infrastructure work and a few important details still missing.</h3>
+      <div class="writeup"><p>Your resume tells a coherent story from object storage at Nimbus Cloud to ledger and settlement work at Brightline Payments. A recruiter can see the technical leadership and the systems you&#x27;ve built, though the current role leaves questions about the team and platform behind that work.</p><p>The fraud scoring pipeline is a strong model: it names the system, the tools and its latency. Your current role also connects the idempotency framework to fewer duplicate-charge incidents. Experience leads, and the progression to Staff Software Engineer is easy to follow.</p><p>Start with the current role: add the team remit and a measure of the ledger platform if you can substantiate them. Then fill in your part of the settlement roadmap and the earlier work where the system is named but your contribution isn&#x27;t.</p></div>
+      
+      <p class="count">8 lines that need work</p>
+      <ol class="cards"><li><p class="where">Staff Software Engineer, line 1</p><p class="quoted"><mark>Technical lead for the ledger and settlement platform team</mark></p><p class="note">A recruiter can see what team you lead, but not how many people are on it or what your technical remit covers. Those details help place a staff-level role.</p><p class="question">How many people are on the team, what are their roles, and what are you responsible for as technical lead?</p><p class="example">Technical lead for the ledger and settlement platform team of <span class="blank">number</span> <span class="blank">team roles</span>, responsible for <span class="blank">technical remit</span></p></li><li><p class="where">Staff Software Engineer, line 2</p><p class="quoted"><mark>Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB</mark></p><p class="note">The architecture and your leadership are clear. What isn&#x27;t clear is how much the ledger handles, which would give a recruiter a way to understand the system&#x27;s scale.</p><p class="question">What measure of the ledger&#x27;s scale can you share?</p><p class="example">Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, supporting <span class="blank">platform scale</span></p></li><li><p class="where">Staff Software Engineer, line 6</p><p class="quoted"><mark>Partnered with product and finance on the roadmap for multi-currency settlement</mark></p><p class="note">The roadmap is a concrete piece of work, but your part in it is still a blank. A recruiter will want to know what you contributed.</p><p class="question">What did you contribute to the multi-currency settlement roadmap?</p><p class="example">Partnered with product and finance on <span class="blank">contribution</span> to the roadmap for multi-currency settlement</p></li><li class="keep"><p class="where">Don't touch this one · Senior Software Engineer, line 1</p><p class="quoted">Built the real-time fraud scoring pipeline (Flink, Kafka) processing payment events with p99 latency under 50ms</p><p class="note">Keep this as a model. It puts your action, the system and a useful performance measure together without making a recruiter guess what you built.</p></li><li><p class="where">Senior Software Engineer, line 3</p><p class="quoted"><mark>Reduced reconciliation break rate and manual ops effort</mark></p><p class="note">Those are valuable changes, but the line doesn&#x27;t say what you did to reduce them or by how much.</p><p class="question">What work reduced the break rate and manual effort, and how much did each change?</p><p class="example">Reduced reconciliation break rate by <span class="blank">amount</span> and manual ops effort by <span class="blank">amount</span> through <span class="blank">work</span></p></li><li><p class="where">Senior Software Engineer, line 4</p><p class="quoted"><mark>On-call rotation for payments core services</mark></p><p class="note">The services are named, but a recruiter can&#x27;t tell what you handled on call.</p><p class="question">What kinds of incidents and responsibilities did you handle on that rotation?</p><p class="example">On-call rotation for payments core services, handling <span class="blank">incident types</span> and <span class="blank">on-call responsibilities</span></p></li><li><p class="where">Software Engineer II, line 1</p><p class="quoted"><mark>Worked on the object storage control plane in Go</mark></p><p class="note">The system and language are clear, but &#x27;worked on&#x27; leaves your contribution open. Name a component or feature you worked on.</p><p class="question">Which component or feature of the control plane did you work on?</p><p class="example">Worked on <span class="blank">component or feature</span> of the object storage control plane in Go</p></li><li><p class="where">Software Engineer II, line 4</p><p class="quoted"><mark>Contributed to the migration of the control plane to Kubernetes</mark></p><p class="note">The migration is concrete, but your part in it isn&#x27;t named. Keep the contribution at its real size and say what it was.</p><p class="question">What work did you contribute to the Kubernetes migration?</p><p class="example">Contributed <span class="blank">work</span> to the migration of the control plane to Kubernetes</p></li><li><p class="where">Software Engineer, line 2</p><p class="quoted"><mark>Participated in on-call and wrote runbooks</mark></p><p class="note">A recruiter can&#x27;t tell what the runbooks covered or what you handled on call.</p><p class="question">Which services were you on call for, and what did the runbooks cover?</p><p class="example">Participated in on-call for <span class="blank">services</span> and wrote runbooks for <span class="blank">operational tasks</span></p></li></ol>
+    </div></div></div>
+    </section><section class="item" id="item-4">
+      <h2>4. A retail store manager</h2>
+      <details><summary>The resume</summary><pre>Marcus Bell
+Charlotte, NC | marcus.bell@example.com | 555-0193
+
+Retail store manager who has turned around two underperforming stores in a 60-store regional chain.
+
+EXPERIENCE
+
+Store Manager
+Carolina Home &amp; Garden, Charlotte, NC
+March 2022 - Present
+- Run a $9.4M store with 42 employees, including 4 department managers
+- Grew same-store sales 11% in 2024 and 7% in 2025 after resetting the garden center layout
+- Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules
+- Ranked 3rd of 60 stores on the 2025 customer satisfaction survey
+- Reduced inventory shrink from 2.1% to 1.3% of sales with weekly cycle counts
+
+Assistant Store Manager
+Carolina Home &amp; Garden, Gastonia, NC
+June 2018 - February 2022
+- Managed daily operations for a $6M store with 30 employees
+- Led the store&#x27;s holiday hiring of 15 seasonal associates each year
+- Trained department leads on ordering and replenishment
+
+Department Supervisor
+Carolina Home &amp; Garden, Gastonia, NC
+May 2015 - May 2018
+- Supervised the lumber and building materials department
+
+EDUCATION
+B.S., Business Administration, UNC Charlotte, 2015
+</pre></details>
+      <div class="pair"><div><p class="side">Left</p><div class="report">
+      <p class="score"><b>88</b> Clear and specific</p>
+      <h3 class="verdict">A store manager with strong sales, staffing and inventory results, though the second turnaround needs context.</h3>
+      <div class="writeup"><p>This is a strong store manager resume! Your progression at Carolina Home &amp; Garden leads to a $9.4M store, and your recent work shows what changed in sales, turnover and shrink.</p><p>The turnover line is a model: it gives the before and after and names the scheduling change behind it. Your headline claims two store turnarounds, though the results shown are concentrated in the current role, so a recruiter may wonder what happened at the other store.</p><p>Start by adding the work behind that second turnaround, then give the earlier supervisor role a little more substance. For store manager jobs, your resume isn&#x27;t likely to be the main thing holding you back; how competitive each opening is matters too.</p></div>
+      
+      <p class="count">2 lines that need work</p>
+      <ol class="cards"><li><p class="where">Headline</p><p class="quoted"><mark>Retail store manager who has turned around two underperforming stores in a 60-store regional chain.</mark></p><p class="note">Your current role has strong results, but a recruiter can&#x27;t see what changed at the other store. That leaves the two-store turnaround claim hanging.</p><p class="question">Which two stores did you turn around, and what changed at each one?</p><p class="example">Retail store manager who has turned around two underperforming stores in a 60-store regional chain, with <span class="blank">what changed at each store</span>.</p></li><li class="keep"><p class="where">Don't touch this one · Store Manager, turnover line</p><p class="quoted">Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules</p><p class="note">Keep this as a model. It ties a store problem to a decision you made and shows the change in a way a recruiter can compare.</p></li><li><p class="where">Department Supervisor, line 1</p><p class="quoted"><mark>Supervised the lumber and building materials department</mark></p><p class="note">The department is named, but this is the only line for the role. A recruiter can&#x27;t tell what you managed day to day or what changed during your time there.</p><p class="question">What did you manage in the department, and what changed while you were there?</p><p class="example">Supervised the lumber and building materials department, managing <span class="blank">department responsibilities</span> and <span class="blank">what changed</span>.</p></li></ol>
+    </div></div><div><p class="side">Right</p><div class="report">
+      <p class="score"><b>84</b> Mostly clear</p>
+      <h3 class="verdict">A strong store manager resume with clear results, but the claimed second turnaround needs backing.</h3>
+      <div class="writeup"><p>Your resume shows a progression from Department Supervisor to Store Manager at Carolina Home &amp; Garden, with sales, staffing and inventory results in Charlotte. This is excellent retail management work! The one catch is that your headline promises two store turnarounds, while the work under it only shows results for the current store.</p><p>The turnover line is a great model: it names the scheduling change and shows how staff turnover moved. Experience also leads education, so a recruiter gets to your store management work quickly.</p><p>Start with the headline. Add what changed at the other store if you can, and connect it to your role there. Leave the current store&#x27;s results front and center.</p></div>
+      
+      <p class="count">1 lines that need work</p>
+      <ol class="cards"><li><p class="where">Headline</p><p class="quoted"><mark>Retail store manager who has turned around two underperforming stores in a 60-store regional chain.</mark></p><p class="note">Your current store has several results, but a recruiter can&#x27;t see what changed at the second store. That leaves part of your opening claim unbacked.</p><p class="question">What changed at the second store, and what was your part in that change?</p><p class="example">Retail store manager who has turned around two underperforming stores in a 60-store regional chain, with <span class="blank">what changed at the second store</span>.</p></li><li class="keep"><p class="where">Don't touch this one · Store Manager, line 3</p><p class="quoted">Cut annual staff turnover from 68% to 41% by moving to fixed weekly schedules</p><p class="note">Keep this as a model. It gives a recruiter the starting point, the ending point and the decision you made.</p></li></ol>
+    </div></div></div>
+    </section>
+</main>

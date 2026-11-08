@@ -1,0 +1,50 @@
+# b10_it_support_recent_grad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_it_support_recent_grad_1.txt (119 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5827dcf1; severity check off
+Outcome: report; cost $0.0111; 25.0s
+Case note: First job.
+
+## Needs more context (score 62; model wrote 62)
+## Verdict
+An early-career IT support resume with relevant hands-on work, but little detail and unaccounted time since May 2025.
+
+## Write-up
+Your resume points toward desktop support: you worked on school help desk tickets and classroom laptops after helping electronics customers. It's common for early-career resumes to list the tasks without much detail, but that makes it tough to stand out in a pile. A recruiter may finish this one and move on with questions about the work and the time since your internship.
+
+The Active Directory line is your best model because it names both the task and the tool. Your A.A.S. and CompTIA A+ are relevant, but your education sits above your work experience, and nothing accounts for the time after May 2025.
+
+Let's start with the Chattahoochee County Schools internship. Add the kinds of issues you handled and how many laptops you set up, if you can confirm those details. Then account for the time since the internship honestly and move Experience above Education.
+
+## Cards (6; {"dates":1,"structure":1,"line":3,"keep":1}); severity off; added []
+1. [dates] Dates
+   line: "Nothing is dated after May 2025."
+   can't tell: A recruiter can't tell what you've done since the internship. A short, honest entry can account for that time: caregiving can be named as such, and a career break can include a course, project, volunteering or travel. Include freelance work only if you did it.
+   example: May 2025 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]
+   question: What have you done since May 2025 that you can include on your resume?
+2. [structure] Structure
+   line: "Education sits above Experience."
+   can't tell: Your work with customers and school staff is more useful to a recruiter scanning for support experience. Put Experience above Education so that work comes first.
+   question: Can you move Experience above Education?
+3. [line] IT Help Desk Intern, line 1
+   line: "Answered help desk tickets from teachers and staff"
+   can't tell: A recruiter can't tell what teachers and staff needed help with or how many tickets you handled. Those details would show the kind of support you provided.
+   example: Answered [number] help desk tickets per [period] from teachers and staff about [types of issues]
+   question: What kinds of issues did the tickets cover, and how many did you handle in a typical period?
+4. [line] IT Help Desk Intern, line 2
+   line: "Imaged and set up laptops for classrooms"
+   can't tell: Setting up classroom laptops is relevant desktop support work. The line doesn't say how many laptops you worked on or what you used to image them.
+   example: Imaged and set up [number] laptops for classrooms using [imaging tool]
+   question: How many laptops did you image and set up, and what did you use to image them?
+5. [keep] IT Help Desk Intern, line 3
+   line: "Reset passwords and accounts in Active Directory"
+   can't tell: Keep this as a model: it gives a recruiter a concrete support task and names the system you used. Bring that same detail to the ticket and laptop lines.
+6. [line] Retail Associate, line 2
+   line: "Set up new devices for customers at the service counter"
+   can't tell: A recruiter can see you worked directly with customers, but not what setting up their devices involved. The steps you handled could connect this work to desktop support.
+   example: Set up new devices for customers at the service counter, including [setup tasks]
+   question: What setup tasks did you handle for customers?
+
+## Fit
+Roles: ["IT support specialist","IT Help Desk Intern"]
+Level: Entry level, with an IT Help Desk Intern role and CompTIA A+
+Note: Your school help desk work and customer-facing device setup point toward desktop support. The resume shows less about systems work, so a junior systems role would depend on the requirements and any additional experience you can show.

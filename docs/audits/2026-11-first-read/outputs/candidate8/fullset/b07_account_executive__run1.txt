@@ -1,0 +1,40 @@
+# b07_account_executive, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_account_executive_1.txt (145 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 5cba8f05; severity check off
+Outcome: report; cost $0.0075; 15.2s
+
+## Mostly clear (score 82; model wrote 82)
+## Verdict
+A mid-market account executive with a clear sales result and a few earlier achievements that need context.
+
+## Write-up
+Your resume tells a coherent story: you moved from SDR to mid-market account executive at Crestview HR Cloud and now sell HR software. A recruiter can see both the promotion and a substantial sales result, though a few lines leave your contribution or the measure behind an achievement unclear.
+
+The strongest line is the $1.1M in new annual recurring revenue at 108% of quota. It gives a recruiter both the amount closed and a benchmark. Your experience also comes before education, and the progression at Crestview is easy to follow.
+
+Let's add what you do alongside solutions engineers, then put a measure behind the SDR achievements where you can. If you have a current sales result you can share, adding it alongside 2025 would make the account executive story more current.
+
+## Cards (4; {"keep":1,"line":3}); severity off; added []
+1. [keep] Account Executive, Mid-Market, line 1
+   line: "Closed $1.1M in new annual recurring revenue in 2025, 108% of quota"
+   can't tell: Keep this as a model: it names what you closed, the period, and how it compared with quota.
+2. [line] Account Executive, Mid-Market, line 4
+   line: "Work with solutions engineers on demos and security reviews"
+   can't tell: A recruiter can see who you work with, but not your part in the demos or security reviews. What do you handle?
+   example: Work with solutions engineers on demos and security reviews, handling [your contribution]
+   question: What do you handle during demos and security reviews?
+3. [line] Sales Development Representative, line 1
+   line: "Booked meetings for three account executives"
+   can't tell: The three account executives give this work context, but the number of meetings is missing. That's a useful measure for an SDR.
+   example: Booked [number] meetings for three account executives over [period]
+   question: How many meetings did you book, and over what period?
+4. [line] Sales Development Representative, line 3
+   line: "Top SDR in two quarters"
+   can't tell: Top SDR sounds like a win, but a recruiter can't tell what it was measured on or who you were compared with.
+   example: Top SDR in two quarters for [measure] among [comparison group]
+   question: What measure earned you the top SDR ranking, and which group were you compared with?
+
+## Fit
+Roles: ["Account Executive, Mid-Market","Sales Development Representative"]
+Level: Mid-market account executive, promoted from SDR
+Note: Your closed revenue, quota attainment, and full-cycle sales work point toward account executive roles. The SDR work adds useful context for how you progressed.

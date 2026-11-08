@@ -1,0 +1,31 @@
+# b12_coo_executive_two_page, run 1
+Resume: ../2026-11-live-judgment/resumes/b_coo_executive.txt (463 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt ee57d907; severity check off
+Outcome: report; cost $0.0062; 10.2s
+Case note: Executive, two pages.
+
+## Clear and specific (score 91; model wrote 91)
+## Verdict
+A healthcare COO whose resume connects growth, operating decisions and results across multi-site organizations.
+
+## Write-up
+This is a strong COO resume! At Lakeshore Dental Partners, you show the scale of the business alongside growth, integration and staff retention. Your earlier clinic roles show a steady path into that work.
+
+The integration line is a great model: it names the playbook you standardized and the change from 7 months to 10 weeks. Your reporting relationship, P&L and board presentations also make your current role easy to place.
+
+I'd leave most of this alone. Add what you changed to shorten appointment waits at Midwest Physician Alliance, then send it. Your resume isn't likely to be the reason you don't get a call back; the competitiveness of the role and a referral can still matter.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Chief Operating Officer, integration line
+   line: "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook"
+   can't tell: Keep this as a model. It puts the operational change and the before-and-after measure together, so a recruiter can see what you did.
+2. [line] Senior Vice President, Operations, appointment line
+   line: "Reduced patient wait time to third available appointment from 21 days to 6 across primary care"
+   can't tell: The improvement is substantial, but a recruiter can't tell what you changed to shorten the wait.
+   example: Reduced patient wait time to third available appointment from 21 days to 6 across primary care by [what you changed]
+   question: What did you change to reduce the wait for an appointment?
+
+## Fit
+Roles: ["Chief Operating Officer"]
+Level: Executive, leads operations for 140 practices and owns the $410M P&L with the CFO
+Note: Your experience points to COO roles in multi-site healthcare services, particularly organizations growing through acquisitions and new openings. The resume also shows board reporting and experience with a private equity backed organization.

@@ -1,0 +1,219 @@
+{
+  "case_id": "fr01a_backend_ic_no_posting",
+  "batch": "targeted",
+  "run": 1,
+  "note": "P1. Senior backend IC, no direct reports, no posting. Expect the role read as Senior Backend Engineer and a level that says IC, no reports.",
+  "resume_file": "resumes/fr01_backend_ic_senior.txt",
+  "resume_sha256": "473f0177fffa3bc053f5a4c69f6aa3d7ecdf9c22fafb2ee8360f7be0e877aa55",
+  "resume_words": 236,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-07T18:45:10.692Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6058,
+        "completion_tokens": 854,
+        "total_tokens": 6912,
+        "cached_prompt_tokens": 5142,
+        "cache_write_prompt_tokens": 913,
+        "reasoning_tokens": 302
+      },
+      "cost_usd": 0.00567135,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 11603
+    }
+  ],
+  "resume_prompt_sha256": "5cba8f052feab05101dfe43138d650d9cc25bac9a46f7e3aa35d9efb9d96fad4",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A senior backend engineer whose payments work shows both technical decisions and results.",
+    "write_up": [
+      "This is a strong backend resume! Your Lumen Ledger work pairs major payments services with the engineering decisions behind them, from sharding the ledger to cutting API latency. A recruiter can see both what you built and why it mattered.",
+      "The balance API line is a model: it gives the starting point, the improvement, and the approach in one sentence. Your progression from insurance to freight technology to payments is easy to follow, and your current role backs up the senior headline.",
+      "I'd tighten the claims intake line so it says what you worked on, but the resume itself is unlikely to be what stands between you and a call back. How competitive a particular job is will still matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 3",
+        "line": "- Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
+        "cannot_tell": "Keep this as a model. You name the service, show the before and after, and explain the change that got it there.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer, line 1",
+        "line": "- Maintained the claims intake services in Java",
+        "cannot_tell": "A recruiter can see which services you owned, but not what maintaining them involved. One concrete change would show more of your work at Northgate Insurance.",
+        "example": "Maintained the claims intake services in Java by [what you did]",
+        "question": "What did you do to maintain or improve the claims intake services?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer",
+        "Senior Software Engineer, Payments Platform"
+      ],
+      "why": "Your headline and your recent payments platform work both point to senior backend engineering.",
+      "level": "Senior individual contributor, leading technical work and mentoring two mid-level engineers",
+      "note": "Your experience points toward backend roles involving payments, APIs, and distributed services. The Lumen Ledger work gives you a particularly strong story for payments infrastructure.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A senior backend engineer whose payments work shows both technical decisions and results.",
+    "write_up": [
+      "This is a strong backend resume! Your Lumen Ledger work pairs major payments services with the engineering decisions behind them, from sharding the ledger to cutting API latency. A recruiter can see both what you built and why it mattered.",
+      "The balance API line is a model: it gives the starting point, the improvement, and the approach in one sentence. Your progression from insurance to freight technology to payments is easy to follow, and your current role backs up the senior headline.",
+      "I'd tighten the claims intake line so it says what you worked on, but the resume itself is unlikely to be what stands between you and a call back. How competitive a particular job is will still matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 3",
+        "line": "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
+        "cannot_tell": "Keep this as a model. You name the service, show the before and after, and explain the change that got it there.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer, line 1",
+        "line": "Maintained the claims intake services in Java",
+        "cannot_tell": "A recruiter can see which services you owned, but not what maintaining them involved. One concrete change would show more of your work at Northgate Insurance.",
+        "example": "Maintained the claims intake services in Java by [what you did]",
+        "question": "What did you do to maintain or improve the claims intake services?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer",
+        "Senior Software Engineer, Payments Platform"
+      ],
+      "why": "Your headline and your recent payments platform work both point to senior backend engineering.",
+      "level": "Senior individual contributor, leading technical work and mentoring two mid-level engineers",
+      "note": "Your experience points toward backend roles involving payments, APIs, and distributed services. The Lumen Ledger work gives you a particularly strong story for payments infrastructure.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A senior backend engineer whose payments work shows both technical decisions and results.",
+    "write_up": [
+      "This is a strong backend resume! Your Lumen Ledger work pairs major payments services with the engineering decisions behind them, from sharding the ledger to cutting API latency. A recruiter can see both what you built and why it mattered.",
+      "The balance API line is a model: it gives the starting point, the improvement, and the approach in one sentence. Your progression from insurance to freight technology to payments is easy to follow, and your current role backs up the senior headline.",
+      "I'd tighten the claims intake line so it says what you worked on, but the resume itself is unlikely to be what stands between you and a call back. How competitive a particular job is will still matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 3",
+        "line": "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
+        "cannot_tell": "Keep this as a model. You name the service, show the before and after, and explain the change that got it there.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer, line 1",
+        "line": "Maintained the claims intake services in Java",
+        "cannot_tell": "A recruiter can see which services you owned, but not what maintaining them involved. One concrete change would show more of your work at Northgate Insurance.",
+        "example": "Maintained the claims intake services in Java by [what you did]",
+        "question": "What did you do to maintain or improve the claims intake services?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer",
+        "Senior Software Engineer, Payments Platform"
+      ],
+      "why": "Your headline and your recent payments platform work both point to senior backend engineering.",
+      "level": "Senior individual contributor, leading technical work and mentoring two mid-level engineers",
+      "note": "Your experience points toward backend roles involving payments, APIs, and distributed services. The Lumen Ledger work gives you a particularly strong story for payments infrastructure.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "presentation": {
+    "score": 89,
+    "band": "Clear and specific",
+    "model_score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A senior backend engineer whose payments work shows both technical decisions and results.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 120,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 3",
+        "line": "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer, line 1",
+        "line": "Maintained the claims intake services in Java",
+        "blanks": 1,
+        "question": "What did you do to maintain or improve the claims intake services?"
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "keep": 1,
+      "line": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer",
+        "Senior Software Engineer, Payments Platform"
+      ],
+      "why": "Your headline and your recent payments platform work both point to senior backend engineering.",
+      "level": "Senior individual contributor, leading technical work and mentoring two mid-level engineers",
+      "note": "Your experience points toward backend roles involving payments, APIs, and distributed services. The Lumen Ledger work gives you a particularly strong story for payments infrastructure.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00567135,
+  "latency_ms": 11629
+}
