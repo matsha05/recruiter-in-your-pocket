@@ -1,29 +1,21 @@
 name: CI
 
+# Runs only when started by hand (Actions tab, "Run workflow").
+#
+# The checks themselves live in scripts/local-ci.cjs and normally run on a
+# developer machine with `npm run local-ci`, which marks the commit on GitHub
+# with a "local-ci" status. On November 4, 2026 GitHub stopped starting this
+# repository's jobs ("recent account payments have failed or your spending
+# limit needs to be increased"). A full run on every push billed about 29
+# minutes against the free plan's 2,000 a month, so this stays manual and the
+# minutes go to the scheduled jobs in this folder.
 on:
-  push:
-    branches: [main, master]
-  pull_request:
-    branches: [main, master]
+  workflow_dispatch:
 
 jobs:
-  web:
+  ci:
     runs-on: ubuntu-latest
-    env:
-      # Browser suites deliberately rebuild the app, so keep the same static-generation
-      # environment available to every web step rather than only the first build.
-      SENTRY_AUTH_TOKEN: ""
-      SESSION_SECRET: "ci-web-session-secret"
-      STRIPE_SECRET_KEY: "sk_test_ci_dummy"
-      NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
-      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
-      NEXT_PUBLIC_ENABLE_ANALYTICS: "false"
-      NEXT_PUBLIC_ENABLE_BILLING_UNLOCK: "false"
-      NEXT_PUBLIC_ENABLE_PUBLIC_SHARE_LINKS: "false"
-      NEXT_PUBLIC_ENABLE_GUEST_REPORT_SAVE: "false"
-    defaults:
-      run:
-        working-directory: web
+    timeout-minutes: 75
 
     steps:
       - name: Checkout
@@ -36,195 +28,13 @@ jobs:
         with:
           node-version: 24
           cache: npm
-          cache-dependency-path: web/package-lock.json
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Production dependency audit
-        run: npm audit --omit=dev --audit-level=high
-
-      - name: Install Chromium for browser checks
-        run: npx playwright install --with-deps chromium
-
-      - name: Install extension dependencies for popup checks
-        run: npm ci --prefix ../extension
-
-      - name: Lint
-        run: npm run lint
-
-      - name: Typecheck
-        run: npx tsc --noEmit
-
-      - name: Design system contract
-        run: npm run qa:design-system
-
-      - name: Build
-        run: npm run build
-
-      - name: Security tests
-        run: npm run test:security
-
-      - name: Release integrity tests
-        run: npm run test:release-integrity
-
-      - name: Source fidelity tests
-        run: npm run test:source-fidelity
-
-      - name: Streaming completion tests
-        run: npm run test:stream-contract
-
-      - name: Launch UI smoke tests
-        run: npm run test:launch-smoke
-
-      - name: Red-team journeys
-        run: npm run test:redteam-journeys
-
-      - name: Feedback acceptance UI
-        run: npx playwright test tests/ui/homepage-seo.spec.ts tests/ui/homepage-responsive.spec.ts tests/ui/mobile-landing.spec.ts tests/ui/mobile-resume-experience.spec.ts tests/ui/site-mobile-navigation.spec.ts tests/ui/legal-mobile-layout.spec.ts tests/ui/pocket-instrument.spec.ts tests/ui/landing-resilience.spec.ts tests/ui/landing-navigation.spec.ts tests/ui/free-status-lifecycle.spec.ts tests/ui/report-navigation.spec.ts tests/ui/pricing-mobile.spec.ts tests/ui/research-surface.spec.ts tests/ui/editorial-surfaces.spec.ts tests/ui/search-foundation.spec.ts tests/ui/status-states.spec.ts tests/ui/workspace-job-context.spec.ts tests/ui/jobs-pagination.spec.ts tests/ui/auth-code-retry.spec.ts tests/ui/auth-provider-lifecycle.spec.ts tests/ui/workspace-handoffs.spec.ts tests/ui/checkout-revision-return.spec.ts tests/ui/page-weight.spec.ts tests/ui/toaster-launcher.spec.ts tests/ui/public-header-account.spec.ts tests/ui/revised-line-polish.spec.ts --workers=1
-
-      - name: Sample report content
-        run: npm run test:sample-report
-
-      - name: Research figure contracts
-        run: npm run test:research-figures
-
-      - name: Search foundation contracts
-        run: npm run test:search-foundation
-
-      - name: Compensation model contracts
-        run: npm run test:compensation-model
-
-      - name: Saved report revision contracts
-        run: npm run test:saved-report-revision
-
-      - name: Extension popup regression
-        run: npm run test:ui --prefix ../extension
-
-      - name: Saved job pagination contracts
-        run: npm run test:saved-jobs-pagination
-
-      - name: Gauntlet operator UI
-        run: npx playwright test tests/ui/gauntlet.spec.ts --project=chromium --workers=1
-
-      - name: Paid decision UI
-        run: npx playwright test tests/ui/paid-decision.spec.ts --workers=1
-        env:
-          NEXT_PUBLIC_ENABLE_BILLING_UNLOCK: "true"
-
-      - name: Accessibility baseline
-        run: npm run test:accessibility
-
-      - name: Consent and analytics browser contracts
-        run: npm run test:consent-ui -- --workers=1
-
-      - name: Motion and interaction contracts
-        run: npx playwright test tests/ui/product-motion.spec.ts --workers=1
-
-      - name: Critical matching coverage
-        run: npm run test:critical-coverage
-
-      - name: Eval dry run
-        run: npm run eval:dry-run
-
-  launch_program:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v7
-        with:
-          node-version: 24
-          cache: npm
           cache-dependency-path: |
             package-lock.json
             web/package-lock.json
             extension/package-lock.json
 
-      - name: Install root dependencies
-        run: npm ci
-
-      - name: Production dependency audit
-        run: npm audit --omit=dev --audit-level=high
-
-      - name: Release evidence contracts
-        run: npm run test:release-evidence && node tests/next_server_marker.test.js
-
-      - name: Verify clean database migration replay
-        run: npm run migrate:replay-check
-
-      - name: Install extension dependencies
-        run: npm ci --prefix extension
-
-      - name: Launch gate
-        run: npm run launch:gate
+      - name: Local CI
+        run: npm run local-ci
         env:
-          USE_MOCK_OPENAI: "1"
-          NEXT_PUBLIC_APP_URL: "http://localhost:3000"
-          SESSION_SECRET: "test-session-secret"
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
-          # Synthetic server credential: the launch gate checks that the
-          # server-only Supabase path is configured, while hermetic endpoint
-          # tests strip this value before starting their isolated app server.
-          SUPABASE_SECRET_KEY: "sb_secret_ci_dummy"
-          NEXT_PUBLIC_MIXPANEL_TOKEN: "test-token"
-          NEXT_PUBLIC_ENABLE_ANALYTICS: "false"
-          NEXT_PUBLIC_ENABLE_ERROR_REPLAY: "false"
-          NEXT_PUBLIC_ENABLE_PUBLIC_SHARE_LINKS: "false"
-          NEXT_PUBLIC_ENABLE_GUEST_REPORT_SAVE: "false"
-          NEXT_PUBLIC_ENABLE_EXTENSION_SYNC: "false"
-          NEXT_PUBLIC_ENABLE_BILLING_UNLOCK: "true"
-          NEXT_PUBLIC_ENABLE_LIFETIME_PLAN: "false"
-          RIYP_ALLOW_PAID_EVALS: "false"
-          RIYP_MAX_DAILY_GENERATIONS: "250"
-          RIYP_DISABLE_GENERATION: "false"
-          RIYP_DISABLE_NEW_PURCHASES: "false"
-          # Synthetic launch-ready support values exercise the gate in CI.
-          # Hosted verification flags remain separately controlled in Vercel.
-          RIYP_SUPPORT_INBOX_VERIFIED: "true"
-          RIYP_SUPPORT_FORWARDING_ENABLED: "true"
-          RIYP_SUPPORT_FORWARD_TO: "operator@example.com"
-          RIYP_SUPPORT_FORWARD_FROM: "noreply@example.com"
-          RIYP_SUPPORT_OPERATOR_EMAILS: "operator@example.com"
-          RIYP_SECONDARY_ALERT_VERIFIED: "true"
-          RESEND_API_KEY: "re_test_ci_dummy"
-          RESEND_WEBHOOK_SECRET: "whsec_ci_support_dummy"
-          STRIPE_SECRET_KEY: "sk_test_ci_dummy"
-          STRIPE_WEBHOOK_SECRET: "whsec_ci_dummy"
-          STRIPE_PRICE_ID_30D: "price_ci_job_search_pass"
-          STRIPE_PRODUCT_ID_30D: "prod_ci_job_search_pass"
-          UPSTASH_REDIS_REST_URL: "https://example.upstash.io"
-          UPSTASH_REDIS_REST_TOKEN: "ci-dummy-token"
-
-  extension:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: extension
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v7
-        with:
-          node-version: 24
-          cache: npm
-          cache-dependency-path: extension/package-lock.json
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Production dependency audit
-        run: npm audit --omit=dev --audit-level=high
-
-      - name: Saved job regressions
-        run: npm test
-
-      - name: Build
-        run: npm run build
