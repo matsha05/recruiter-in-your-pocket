@@ -2,7 +2,6 @@ import { pageMetadata } from "@/lib/seo/metadata";
 import { Citation } from "@/components/research/ResearchArticle";
 import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
 import { ResearchLink } from "@/components/research/ResearchLink";
-import { SocialScreeningDiagram } from "@/components/research/diagrams/SocialScreeningDiagram";
 
 const PATH = "/research/social-screening";
 
@@ -38,7 +37,6 @@ export default function SocialScreeningPage() {
                         <Citation id="source-1">1</Citation>
                         {" "}A gap cost the least here, and <ResearchLink to="gaps-and-pivots">in the largest test of ways to handle one, explaining it did no better than leaving it unexplained</ResearchLink>.
                     </p>
-                    <SocialScreeningDiagram />
                 </>
             }
             sources={[

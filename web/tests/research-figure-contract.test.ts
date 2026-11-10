@@ -21,9 +21,7 @@ runtimeModule._load = function loadFigureAliases(request, parent, isMain) {
 
 try {
   const { ErrorImpactDiagram } = require("../components/research/diagrams/ErrorImpactDiagram");
-  const { InferenceLadderDiagram } = require("../components/research/diagrams/InferenceLadderDiagram");
   const ratingFigure = renderToStaticMarkup(createElement(ErrorImpactDiagram, { figureNumber: 1 }));
-  const perceptionFigure = renderToStaticMarkup(createElement(InferenceLadderDiagram, { figureNumber: 2 }));
   // Sterkens et al. (2023), Table 4 (1A), reports -0.730 and -1.850
   // on the 0–10 invitation-rating scale described in Methods 2.3.
   assert.match(ratingFigure, /0–10 interview rating/);
@@ -35,19 +33,18 @@ try {
   assert.doesNotMatch(ratingFigure, /81\.5|92\.7|100%|percentage points|<progress/,
     "an experimental rating difference must not become an invented baseline or callback rate");
 
-  assert.match(perceptionFigure, /Interpersonal skills/);
-  assert.match(perceptionFigure, /Conscientiousness/);
-  assert.match(perceptionFigure, /Mental abilities/);
-  assert.match(perceptionFigure, /impressions, not measured job performance/);
-  assert.doesNotMatch(`${ratingFigure} ${perceptionFigure}`, /one mistake|single signal|stricter screen|threshold tightens/i,
-    "neither figure should invent a one-typo decision chain");
-  assert.notEqual(ratingFigure, perceptionFigure, "the article separates measured ratings from applicant perceptions");
+  assert.doesNotMatch(ratingFigure, /one mistake|single signal|stricter screen|threshold tightens/i,
+    "the figure should not invent a one-typo decision chain");
+  // Five circled misspellings: the example line matches the five-error case the figure highlights.
+  for (const typo of ["onbaording", "managd", "calender", "recieved", "excellance"]) assert.match(ratingFigure, new RegExp(`>${typo}<`));
 
   const article = readFileSync(path.join(process.cwd(), "app/(editorial)/research/spelling-errors-impact/page.tsx"), "utf8");
   assert.match(article, /Five errors: −1\.85 on a 0–10 interview rating/);
   assert.match(article, /hypothetical interview rating/);
   assert.doesNotMatch(article, /18\.5|81\.5|percentage-point/,
     "article and figure must use the same original rating units");
+  // The perception finding stays in the text (its table was cut Nov 10, 2026: labels with no sizes).
+  assert.match(article, /interpersonal skills, conscientiousness, and mental ability/);
   assert.match(article, /https:\/\/journals\.plos\.org\/plosone\/article\?id=10\.1371\/journal\.pone\.0283280/);
   console.log("Research figure evidence contracts passed");
 } finally {
