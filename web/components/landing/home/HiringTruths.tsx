@@ -1,11 +1,12 @@
 import rhythm from "@/components/materials/Rhythm.module.css";
 import styles from "./HiringTruths.module.css";
 
-/** What a recruiter looks for, each paired with what the report actually does about it. */
+/** What a recruiter looks for, each paired with what the report actually does about it. Titled "What we fix" since
+ *  Nov 10, 2026, so it doesn't echo the research hub's "What we look for.", which states the recruiters' beliefs. */
 export function HiringTruths() {
     return (
         <section id="what-we-look-for" className={rhythm.section} aria-labelledby="truths-title">
-            <h2 id="truths-title" className={`${rhythm.title} ${styles.title}`}>What we look for, line by line.</h2>
+            <h2 id="truths-title" className={`${rhythm.title} ${styles.title}`}>What we fix, line by line.</h2>
             <dl className={styles.list}>
                 <div className={styles.row}>
                     <dt className={styles.quote}><s>&ldquo;Results-driven professional&rdquo;</s> is on every resume.</dt>

@@ -1,13 +1,13 @@
 {
   "generated_by": "web/scripts/copy-inventory.cjs",
   "counts": {
-    "files_scanned": 427,
-    "files_with_copy": 258,
-    "strings": 3003,
-    "unique_strings": 2496
+    "files_scanned": 428,
+    "files_with_copy": 259,
+    "strings": 3029,
+    "unique_strings": 2521
   },
   "by_moment": {
-    "research": 946,
+    "research": 972,
     "account": 442,
     "marketing": 418,
     "report": 323,
@@ -3419,6 +3419,314 @@
       "table": "methodology"
     },
     {
+      "text": "How do I ask for a referral?",
+      "kind": "key:title",
+      "line": 12,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Most job help comes through acquaintances, but one close contact counts for more. Who to ask for a referral, and what to send, from two large network studies.",
+      "kind": "key:description",
+      "line": 13,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Ask widely, and lean on people who know your work. Across 6 million Facebook users, most job help came through acquaintances, because people have so many. One close tie was worth more.",
+      "kind": "jsx-text",
+      "line": 23,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "From a peer-reviewed study of 6 million Facebook users (Gee, Jones & Burke, Journal of Labor Economics, 2017).",
+      "kind": "jsx-text",
+      "line": 27,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Social Networks and Labor Markets: How Strong Ties Relate to Job Finding on Facebook's Social Network",
+      "kind": "key:title",
+      "line": 35,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "A causal test of the strength of weak ties",
+      "kind": "key:title",
+      "line": 42,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Who to ask",
+      "kind": "jsx-text",
+      "line": 49,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Two large studies of real networks agree on the shape. Most people get job help from someone they know less well, simply because they know so many more of them. But one close contact counts for more than one acquaintance.",
+      "kind": "jsx-text",
+      "line": 51,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "So ask more than your closest friends, and put the most care into the people who’ve seen your work.",
+      "kind": "jsx-text",
+      "line": 54,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Start with people who've seen your work.",
+      "kind": "key:lead",
+      "line": 60,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Former managers, teammates and clients can say what you did. In field experiments,",
+      "kind": "jsx-text",
+      "line": 61,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Then go one step out.",
+      "kind": "key:lead",
+      "line": 64,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Someone you share a few connections with, like a former teammate’s new colleague, is the kind of tie that went with the most job moves in LinkedIn’s experiments. Ask the person you know well to introduce you.",
+      "kind": "jsx-text",
+      "line": 65,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Send everything in one message.",
+      "kind": "key:lead",
+      "line": 68,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "The job link, your resume, and two or three sentences they can paste into the referral form: how you know each other, and what you’d bring to this role.",
+      "kind": "jsx-text",
+      "line": 69,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Make no easy to say.",
+      "kind": "key:lead",
+      "line": 72,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "They’re putting their name next to yours. “No worries if it’s not a fit” keeps the relationship either way.",
+      "kind": "jsx-text",
+      "line": 73,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "What a referral does on the recruiter’s side",
+      "kind": "jsx-text",
+      "line": 78,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Our take:",
+      "kind": "jsx-text",
+      "line": 80,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "this is recruiter experience, not a finding from the studies below. Every application a recruiter opens shows whether someone referred you, and when a role has hundreds of applicants, that gets your resume read. It doesn’t make the decision for you. Once it’s open,",
+      "kind": "jsx-text",
+      "line": 80,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": ", the same as everyone else’s.",
+      "kind": "jsx-text",
+      "line": 80,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Is it ready for a real read?",
+      "kind": "attr:question",
+      "line": 83,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "The write-up in your report says what a recruiter takes from your resume first. Check it before someone vouches for you. The report can’t tell you who to ask; it reads the resume they’ll open.",
+      "kind": "jsx-text",
+      "line": 84,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "The evidence",
+      "kind": "jsx-text",
+      "line": 87,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Whether anyone made a formal referral, or how they asked. Working alongside a friend is a stand-in for help, not a record of it.",
+      "kind": "key:limit",
+      "line": 98,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Referrals specifically. It measures moving to a new job, on one platform, not who referred whom.",
+      "kind": "key:limit",
+      "line": 108,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Neither study tested how to word a referral request. The four moves above are our advice.",
+      "kind": "jsx-text",
+      "line": 115,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Both studies use one platform’s data, so they describe its users, not every job seeker.",
+      "kind": "jsx-text",
+      "line": 116,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
       "text": "Software helps us sort. For roles with a big pile, an employer may set knockout questions that reject anyone who answers a certain way, or turn on a tool that ranks people by how well they match. When a role draws a thousand applicants, some of us just search the pile for the words the job needs.",
       "kind": "jsx-text",
       "line": 16,
@@ -3475,7 +3783,7 @@
     },
     {
       "text": "See how yours reads to the person after the software.",
-      "kind": "key:title",
+      "kind": "key:heading",
       "line": 55,
       "file": "web/app/(editorial)/research/ats/page.tsx",
       "routes": [
@@ -5653,7 +5961,7 @@
     },
     {
       "text": "Check what your bullets say changed.",
-      "kind": "key:title",
+      "kind": "key:heading",
       "line": 69,
       "file": "web/app/(editorial)/research/impact/page.tsx",
       "routes": [
@@ -6203,7 +6511,7 @@
     },
     {
       "text": "Ready to make your counter?",
-      "kind": "key:title",
+      "kind": "key:heading",
       "line": 45,
       "file": "web/app/(editorial)/research/offer/page.tsx",
       "routes": [
@@ -6809,7 +7117,7 @@
     {
       "text": "Using Machine Learning with Eye-Tracking Data to Predict if a Recruiter Will Approve a Resume",
       "kind": "key:title",
-      "line": 31,
+      "line": 32,
       "file": "web/app/(editorial)/research/read/page.tsx",
       "routes": [
         "/research/read"
@@ -6820,7 +7128,7 @@
     {
       "text": "Costly mistakes: Why and when spelling errors in resumes jeopardise interview chances",
       "kind": "key:title",
-      "line": 41,
+      "line": 43,
       "file": "web/app/(editorial)/research/read/page.tsx",
       "routes": [
         "/research/read"
@@ -6830,8 +7138,8 @@
     },
     {
       "text": "See what a recruiter reads first on yours.",
-      "kind": "key:title",
-      "line": 47,
+      "kind": "key:heading",
+      "line": 49,
       "file": "web/app/(editorial)/research/read/page.tsx",
       "routes": [
         "/research/read"
@@ -6842,7 +7150,7 @@
     {
       "text": "Get your free report",
       "kind": "key:label",
-      "line": 47,
+      "line": 49,
       "file": "web/app/(editorial)/research/read/page.tsx",
       "routes": [
         "/research/read"
@@ -7203,7 +7511,7 @@
       "table": "research"
     },
     {
-      "text": "Former managers, teammates, and clients can say what you did. That&apos;s the kind of referral that changes a decision.",
+      "text": "Former managers, teammates, and clients can say what you did. That&apos;s the kind of referral that changes a decision. Who else to ask, and what to send them, has its own answer:",
       "kind": "jsx-text",
       "line": 131,
       "file": "web/app/(editorial)/research/referral-advantage/page.tsx",
@@ -7247,31 +7555,9 @@
       "table": "research"
     },
     {
-      "text": "Write the blurb for them.",
-      "kind": "jsx-text",
-      "line": 137,
-      "file": "web/app/(editorial)/research/referral-advantage/page.tsx",
-      "routes": [
-        "/research/referral-advantage"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
-      "text": "Send the job link, your resume, and a few sentences they can paste in, like: “We worked on the finance-system migration together. She led the data cleanup that shortened our month-end close.” Stick to things they saw firsthand, and make it easy for them to say no.",
-      "kind": "jsx-text",
-      "line": 137,
-      "file": "web/app/(editorial)/research/referral-advantage/page.tsx",
-      "routes": [
-        "/research/referral-advantage"
-      ],
-      "moment": "research",
-      "table": "research"
-    },
-    {
       "text": "Is it ready for a real read?",
       "kind": "attr:question",
-      "line": 140,
+      "line": 137,
       "file": "web/app/(editorial)/research/referral-advantage/page.tsx",
       "routes": [
         "/research/referral-advantage"
@@ -7282,7 +7568,7 @@
     {
       "text": "A referral buys you a real read. The write-up sums up what your resume says first, so check it before someone puts their name next to yours. Your referrer can vouch for you, but they can&apos;t fix your resume. The cards are the lines a recruiter trips on; work through them in order.",
       "kind": "jsx-text",
-      "line": 141,
+      "line": 138,
       "file": "web/app/(editorial)/research/referral-advantage/page.tsx",
       "routes": [
         "/research/referral-advantage"
@@ -7293,7 +7579,7 @@
     {
       "text": "Ashby&apos;s figures are vendor data from companies that use its software, which the report doesn&apos;t describe. They show what happened, not what caused it: people who get referred may differ in other ways.",
       "kind": "jsx-text",
-      "line": 146,
+      "line": 143,
       "file": "web/app/(editorial)/research/referral-advantage/page.tsx",
       "routes": [
         "/research/referral-advantage"
@@ -7304,7 +7590,7 @@
     {
       "text": "The field experiments ran on an online job site, not in corporate hiring.",
       "kind": "jsx-text",
-      "line": 147,
+      "line": 144,
       "file": "web/app/(editorial)/research/referral-advantage/page.tsx",
       "routes": [
         "/research/referral-advantage"
@@ -7348,7 +7634,7 @@
     {
       "text": "Are referred candidates more likely to get hired?",
       "kind": "key:title",
-      "line": 41,
+      "line": 42,
       "file": "web/app/(editorial)/research/referrals/page.tsx",
       "routes": [
         "/research/referrals"
@@ -7357,9 +7643,9 @@
       "table": "research"
     },
     {
-      "text": "A referral gets you read. Make sure what they read holds up.",
-      "kind": "key:title",
-      "line": 47,
+      "text": "Ready to ask? Who to ask, and what to send.",
+      "kind": "key:heading",
+      "line": 48,
       "file": "web/app/(editorial)/research/referrals/page.tsx",
       "routes": [
         "/research/referrals"
@@ -7368,9 +7654,9 @@
       "table": "research"
     },
     {
-      "text": "Get your free report",
+      "text": "How to ask for a referral",
       "kind": "key:label",
-      "line": 47,
+      "line": 48,
       "file": "web/app/(editorial)/research/referrals/page.tsx",
       "routes": [
         "/research/referrals"
@@ -9327,7 +9613,7 @@
     },
     {
       "text": "See the one line a recruiter would say about yours.",
-      "kind": "key:title",
+      "kind": "key:heading",
       "line": 49,
       "file": "web/app/(editorial)/research/story/page.tsx",
       "routes": [
@@ -14131,6 +14417,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -14429,6 +14716,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -14518,6 +14806,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -14607,6 +14896,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -14696,6 +14986,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -14785,6 +15076,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -14874,6 +15166,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -14963,6 +15256,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -15052,6 +15346,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -15141,6 +15436,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -15230,6 +15526,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -15319,6 +15616,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -15408,6 +15706,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -15497,6 +15796,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -15586,6 +15886,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -21765,6 +22066,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -23177,6 +23479,7 @@
         "/purchase/confirmed",
         "/purchase/restore",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -23239,6 +23542,7 @@
         "/purchase/confirmed",
         "/purchase/restore",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -23301,6 +23605,7 @@
         "/purchase/confirmed",
         "/purchase/restore",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -23402,9 +23707,9 @@
       "table": "home"
     },
     {
-      "text": "What we look for, line by line.",
+      "text": "What we fix, line by line.",
       "kind": "jsx-text",
-      "line": 8,
+      "line": 9,
       "file": "web/components/landing/home/HiringTruths.tsx",
       "routes": [
         "/"
@@ -23415,7 +23720,7 @@
     {
       "text": "“Results-driven professional”",
       "kind": "jsx-text",
-      "line": 11,
+      "line": 12,
       "file": "web/components/landing/home/HiringTruths.tsx",
       "routes": [
         "/"
@@ -23426,7 +23731,7 @@
     {
       "text": "is on every resume.",
       "kind": "jsx-text",
-      "line": 11,
+      "line": 12,
       "file": "web/components/landing/home/HiringTruths.tsx",
       "routes": [
         "/"
@@ -23437,7 +23742,7 @@
     {
       "text": "Show the result instead.",
       "kind": "jsx-text",
-      "line": 12,
+      "line": 13,
       "file": "web/components/landing/home/HiringTruths.tsx",
       "routes": [
         "/"
@@ -23448,7 +23753,7 @@
     {
       "text": "We point to the line that already has one, and ask for the detail you left out.",
       "kind": "jsx-text",
-      "line": 12,
+      "line": 13,
       "file": "web/components/landing/home/HiringTruths.tsx",
       "routes": [
         "/"
@@ -23459,7 +23764,7 @@
     {
       "text": "Your best example stops right before the good part.",
       "kind": "jsx-text",
-      "line": 15,
+      "line": 16,
       "file": "web/components/landing/home/HiringTruths.tsx",
       "routes": [
         "/"
@@ -23470,7 +23775,7 @@
     {
       "text": "We show you where.",
       "kind": "jsx-text",
-      "line": 16,
+      "line": 17,
       "file": "web/components/landing/home/HiringTruths.tsx",
       "routes": [
         "/"
@@ -23481,7 +23786,7 @@
     {
       "text": "The lines a recruiter would stop on, in the order they’d read them.",
       "kind": "jsx-text",
-      "line": 16,
+      "line": 17,
       "file": "web/components/landing/home/HiringTruths.tsx",
       "routes": [
         "/"
@@ -23492,7 +23797,7 @@
     {
       "text": "Nobody can score you against an ATS or tell you your interview odds.",
       "kind": "jsx-text",
-      "line": 19,
+      "line": 20,
       "file": "web/components/landing/home/HiringTruths.tsx",
       "routes": [
         "/"
@@ -23503,7 +23808,7 @@
     {
       "text": "So we don’t pretend to.",
       "kind": "jsx-text",
-      "line": 20,
+      "line": 21,
       "file": "web/components/landing/home/HiringTruths.tsx",
       "routes": [
         "/"
@@ -23514,7 +23819,7 @@
     {
       "text": "We tell you which lines are clear, and rewrite yours only from your facts.",
       "kind": "jsx-text",
-      "line": 20,
+      "line": 21,
       "file": "web/components/landing/home/HiringTruths.tsx",
       "routes": [
         "/"
@@ -23963,6 +24268,7 @@
         "/purchase/confirmed",
         "/purchase/restore",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -24251,6 +24557,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -24338,6 +24645,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -24431,6 +24739,7 @@
         "/purchase/confirmed",
         "/purchase/restore",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -24505,6 +24814,7 @@
         "/purchase/confirmed",
         "/purchase/restore",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -24579,6 +24889,7 @@
         "/purchase/confirmed",
         "/purchase/restore",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -24653,6 +24964,7 @@
         "/purchase/confirmed",
         "/purchase/restore",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -24727,6 +25039,7 @@
         "/purchase/confirmed",
         "/purchase/restore",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -24801,6 +25114,7 @@
         "/purchase/confirmed",
         "/purchase/restore",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -24875,6 +25189,7 @@
         "/purchase/confirmed",
         "/purchase/restore",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -24949,6 +25264,7 @@
         "/purchase/confirmed",
         "/purchase/restore",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -25023,6 +25339,7 @@
         "/purchase/confirmed",
         "/purchase/restore",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -25097,6 +25414,7 @@
         "/purchase/confirmed",
         "/purchase/restore",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -25171,6 +25489,7 @@
         "/purchase/confirmed",
         "/purchase/restore",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -25245,6 +25564,7 @@
         "/purchase/confirmed",
         "/purchase/restore",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -25319,6 +25639,7 @@
         "/purchase/confirmed",
         "/purchase/restore",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -25393,6 +25714,7 @@
         "/purchase/confirmed",
         "/purchase/restore",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -25467,6 +25789,7 @@
         "/purchase/confirmed",
         "/purchase/restore",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -25541,6 +25864,7 @@
         "/purchase/confirmed",
         "/purchase/restore",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -25615,6 +25939,7 @@
         "/purchase/confirmed",
         "/purchase/restore",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -25689,6 +26014,7 @@
         "/purchase/confirmed",
         "/purchase/restore",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -25763,6 +26089,7 @@
         "/purchase/confirmed",
         "/purchase/restore",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -25837,6 +26164,7 @@
         "/purchase/confirmed",
         "/purchase/restore",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -27744,6 +28072,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -27833,6 +28162,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -27922,6 +28252,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -28004,6 +28335,7 @@
         "/purchase/confirmed",
         "/purchase/restore",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -28073,6 +28405,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -28912,6 +29245,7 @@
         "/compare/teal",
         "/compare/topresume",
         "/llms.txt",
+        "/research/asking-for-a-referral",
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/career-breaks",
@@ -28948,6 +29282,7 @@
         "/compare/teal",
         "/compare/topresume",
         "/llms.txt",
+        "/research/asking-for-a-referral",
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/career-breaks",
@@ -28984,6 +29319,7 @@
         "/compare/teal",
         "/compare/topresume",
         "/llms.txt",
+        "/research/asking-for-a-referral",
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/career-breaks",
@@ -29020,6 +29356,7 @@
         "/compare/teal",
         "/compare/topresume",
         "/llms.txt",
+        "/research/asking-for-a-referral",
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/career-breaks",
@@ -29056,6 +29393,7 @@
         "/compare/teal",
         "/compare/topresume",
         "/llms.txt",
+        "/research/asking-for-a-referral",
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/career-breaks",
@@ -29092,6 +29430,7 @@
         "/compare/teal",
         "/compare/topresume",
         "/llms.txt",
+        "/research/asking-for-a-referral",
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/career-breaks",
@@ -29128,6 +29467,7 @@
         "/compare/teal",
         "/compare/topresume",
         "/llms.txt",
+        "/research/asking-for-a-referral",
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/career-breaks",
@@ -29164,6 +29504,7 @@
         "/compare/teal",
         "/compare/topresume",
         "/llms.txt",
+        "/research/asking-for-a-referral",
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/career-breaks",
@@ -29200,6 +29541,7 @@
         "/compare/teal",
         "/compare/topresume",
         "/llms.txt",
+        "/research/asking-for-a-referral",
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/career-breaks",
@@ -29236,6 +29578,7 @@
         "/compare/teal",
         "/compare/topresume",
         "/llms.txt",
+        "/research/asking-for-a-referral",
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/career-breaks",
@@ -29272,6 +29615,7 @@
         "/compare/teal",
         "/compare/topresume",
         "/llms.txt",
+        "/research/asking-for-a-referral",
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/career-breaks",
@@ -29308,6 +29652,7 @@
         "/compare/teal",
         "/compare/topresume",
         "/llms.txt",
+        "/research/asking-for-a-referral",
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/career-breaks",
@@ -29344,6 +29689,7 @@
         "/compare/teal",
         "/compare/topresume",
         "/llms.txt",
+        "/research/asking-for-a-referral",
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/career-breaks",
@@ -29380,6 +29726,7 @@
         "/compare/teal",
         "/compare/topresume",
         "/llms.txt",
+        "/research/asking-for-a-referral",
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/career-breaks",
@@ -29416,6 +29763,7 @@
         "/compare/teal",
         "/compare/topresume",
         "/llms.txt",
+        "/research/asking-for-a-referral",
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/career-breaks",
@@ -29452,6 +29800,7 @@
         "/compare/teal",
         "/compare/topresume",
         "/llms.txt",
+        "/research/asking-for-a-referral",
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/career-breaks",
@@ -29488,6 +29837,7 @@
         "/compare/teal",
         "/compare/topresume",
         "/llms.txt",
+        "/research/asking-for-a-referral",
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/career-breaks",
@@ -29656,7 +30006,7 @@
     {
       "text": "What we look for",
       "kind": "jsx-text",
-      "line": 65,
+      "line": 68,
       "file": "web/components/research/PillarPage.tsx",
       "routes": [
         "/research/ats",
@@ -29672,7 +30022,7 @@
     {
       "text": "Why we believe it",
       "kind": "jsx-text",
-      "line": 77,
+      "line": 80,
       "file": "web/components/research/PillarPage.tsx",
       "routes": [
         "/research/ats",
@@ -29688,7 +30038,7 @@
     {
       "text": "What the evidence says",
       "kind": "jsx-text",
-      "line": 84,
+      "line": 85,
       "file": "web/components/research/PillarPage.tsx",
       "routes": [
         "/research/ats",
@@ -29704,7 +30054,7 @@
     {
       "text": "(opens in a new tab)",
       "kind": "jsx-text",
-      "line": 93,
+      "line": 95,
       "file": "web/components/research/PillarPage.tsx",
       "routes": [
         "/research/ats",
@@ -29720,7 +30070,7 @@
     {
       "text": "More on this",
       "kind": "jsx-text",
-      "line": 102,
+      "line": 104,
       "file": "web/components/research/PillarPage.tsx",
       "routes": [
         "/research/ats",
@@ -29736,7 +30086,7 @@
     {
       "text": "Our experience is our judgment, and we label it that way. Every study above is linked, and each article says what its study can’t tell you.",
       "kind": "jsx-text",
-      "line": 118,
+      "line": 124,
       "file": "web/components/research/PillarPage.tsx",
       "routes": [
         "/research/ats",
@@ -29752,7 +30102,7 @@
     {
       "text": "How we write research",
       "kind": "jsx-text",
-      "line": 119,
+      "line": 125,
       "file": "web/components/research/PillarPage.tsx",
       "routes": [
         "/research/ats",
@@ -29768,7 +30118,7 @@
     {
       "text": "Usual line:",
       "kind": "jsx-text",
-      "line": 132,
+      "line": 138,
       "file": "web/components/research/PillarPage.tsx",
       "routes": [
         "/research/ats",
@@ -29784,7 +30134,7 @@
     {
       "text": "Stronger line:",
       "kind": "jsx-text",
-      "line": 133,
+      "line": 139,
       "file": "web/components/research/PillarPage.tsx",
       "routes": [
         "/research/ats",
@@ -29800,7 +30150,7 @@
     {
       "text": "Example lines, not from a real resume.",
       "kind": "jsx-text",
-      "line": 134,
+      "line": 140,
       "file": "web/components/research/PillarPage.tsx",
       "routes": [
         "/research/ats",
@@ -29819,6 +30169,7 @@
       "line": 80,
       "file": "web/components/research/ResearchArticle.tsx",
       "routes": [
+        "/research/asking-for-a-referral",
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/career-breaks",
@@ -29845,6 +30196,7 @@
       "line": 81,
       "file": "web/components/research/ResearchArticle.tsx",
       "routes": [
+        "/research/asking-for-a-referral",
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/career-breaks",
@@ -29871,6 +30223,7 @@
       "line": 123,
       "file": "web/components/research/ResearchArticle.tsx",
       "routes": [
+        "/research/asking-for-a-referral",
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/career-breaks",
@@ -29897,6 +30250,7 @@
       "line": 136,
       "file": "web/components/research/ResearchArticle.tsx",
       "routes": [
+        "/research/asking-for-a-referral",
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/career-breaks",
@@ -29923,6 +30277,7 @@
       "line": 140,
       "file": "web/components/research/ResearchArticle.tsx",
       "routes": [
+        "/research/asking-for-a-referral",
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/career-breaks",
@@ -29949,6 +30304,7 @@
       "line": 166,
       "file": "web/components/research/ResearchArticle.tsx",
       "routes": [
+        "/research/asking-for-a-referral",
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/career-breaks",
@@ -29975,6 +30331,7 @@
       "line": 179,
       "file": "web/components/research/ResearchArticle.tsx",
       "routes": [
+        "/research/asking-for-a-referral",
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/career-breaks",
@@ -30001,6 +30358,7 @@
       "line": 207,
       "file": "web/components/research/ResearchArticle.tsx",
       "routes": [
+        "/research/asking-for-a-referral",
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/career-breaks",
@@ -30027,6 +30385,7 @@
       "line": 230,
       "file": "web/components/research/ResearchArticle.tsx",
       "routes": [
+        "/research/asking-for-a-referral",
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/career-breaks",
@@ -30053,6 +30412,7 @@
       "line": 289,
       "file": "web/components/research/ResearchArticle.tsx",
       "routes": [
+        "/research/asking-for-a-referral",
         "/research/ats-myths",
         "/research/automation-and-bias",
         "/research/career-breaks",
@@ -30720,6 +31080,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -30807,6 +31168,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -30894,6 +31256,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -30981,6 +31344,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -31068,6 +31432,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -31155,6 +31520,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -31242,6 +31608,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -31329,6 +31696,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -31416,6 +31784,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -31516,6 +31885,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -31606,6 +31976,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -31695,6 +32066,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -31812,6 +32184,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -37737,6 +38110,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -37832,6 +38206,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -37927,6 +38302,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -38022,6 +38398,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -38117,6 +38494,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -39997,6 +40375,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -40072,6 +40451,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -40147,6 +40527,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -40222,6 +40603,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -40297,6 +40679,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -40372,6 +40755,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -40447,6 +40831,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -40522,6 +40907,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -40597,6 +40983,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -40672,6 +41059,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -40747,6 +41135,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -40822,6 +41211,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -40897,6 +41287,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -40972,6 +41363,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -42752,6 +43144,7 @@
         "/methodology",
         "/privacy",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",
@@ -42819,6 +43212,7 @@
         "/reports",
         "/reports/[id]",
         "/research",
+        "/research/asking-for-a-referral",
         "/research/ats",
         "/research/ats-myths",
         "/research/automation-and-bias",

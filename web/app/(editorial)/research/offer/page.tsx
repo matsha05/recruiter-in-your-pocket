@@ -42,7 +42,7 @@ export default function OfferPillarPage() {
                     },
                 },
             ]}
-            handoff={{ title: "Ready to make your counter?", href: "/resources/offer-negotiation", label: "Read the negotiation guide" }}
+            handoff={{ heading: "Ready to make your counter?", href: "/resources/offer-negotiation", label: "Read the negotiation guide" }}
         />
     );
 }

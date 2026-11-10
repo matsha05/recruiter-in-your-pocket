@@ -11,6 +11,7 @@ const articles = [
   "/research/linkedin-visibility",
   "/research/quantifying-impact",
   "/research/referral-advantage",
+  "/research/asking-for-a-referral",
   "/research/resume-length-myths",
   "/research/salary-history-bans",
   "/research/skills-first-promise-reality",

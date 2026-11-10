@@ -26,8 +26,10 @@ export function comparisonSlug(pathname: string): string | null {
 const CTA_PAGES = (pathname: string) =>
   pathname === "/" || pathname === "/research" || researchArticleSlug(pathname) !== null || pathname === "/compare" || comparisonSlug(pathname) !== null;
 const CTA_DESTINATIONS = new Set(["/workspace", "/sample-report"]);
-// A belief page hands off to a guide where the report doesn't fit (The offer, Nov 10, 2026), so that click counts too.
-const GUIDE_DESTINATION = (pathname: string, destination: string) => researchArticleSlug(pathname) !== null && destination.startsWith("/resources/");
+// A belief page hands off to a guide or an article where the report doesn't fit (The offer, Referrals; Nov 10, 2026),
+// so that click counts too.
+const GUIDE_DESTINATION = (pathname: string, destination: string) =>
+  researchArticleSlug(pathname) !== null && (destination.startsWith("/resources/") || researchArticleSlug(destination) !== null);
 
 /** Pages that show a report: the workspace, a saved report, and the sample. */
 const REPORT_PAGES = (pathname: string) => pathname === "/workspace" || pathname === "/sample-report" || /^\/reports\/[^/]+\/?$/.test(pathname);

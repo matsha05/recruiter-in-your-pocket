@@ -216,6 +216,15 @@ export const categories: ResearchCategory[] = [
                 finding: "40% of referred applications reached an interview. Of applications sent in cold, 3% did.",
                 evidence: { kind: "Vendor data", cite: "Ashby customers, 2021 to 2024 · 38 million applications" },
             }),
+            study({
+                id: "asking-for-a-referral",
+                keywords: ["referral", "ask", "network", "networking", "weak ties", "contacts", "introduction", "message"],
+                href: "/research/asking-for-a-referral",
+                question: "How do I ask for a referral?",
+                verdict: "Ask widely, and lean on people who know your work.",
+                finding: "Across 6 million Facebook users, most job help came through acquaintances, because people have so many. One close tie was worth more.",
+                evidence: { kind: "Peer-reviewed studies", cite: "Gee, Jones & Burke, 2017 · 6 million Facebook users; Rajkumar et al., 2022 · 20 million LinkedIn members" },
+            }),
         ],
     },
     {

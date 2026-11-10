@@ -46,7 +46,7 @@ export default function ReadPillarPage() {
                     },
                 },
             ]}
-            handoff={{ title: "See what a recruiter reads first on yours.", href: "/workspace", label: "Get your free report" }}
+            handoff={{ heading: "See what a recruiter reads first on yours.", href: "/workspace", label: "Get your free report" }}
         />
     );
 }

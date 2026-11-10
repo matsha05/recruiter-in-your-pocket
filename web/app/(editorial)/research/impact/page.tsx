@@ -66,7 +66,7 @@ export default function ImpactPillarPage() {
                     },
                 },
             ]}
-            handoff={{ title: "Check what your bullets say changed.", href: "/workspace", label: "Get your free report" }}
+            handoff={{ heading: "Check what your bullets say changed.", href: "/workspace", label: "Get your free report" }}
         />
     );
 }

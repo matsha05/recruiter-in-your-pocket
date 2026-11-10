@@ -38,17 +38,17 @@ Routes: `/`, `/methodology`, `/research/career-breaks`. Strings: 66 (60 unique).
 | 28 | marketing | `web/components/landing/home/FounderNote.tsx:18` | const | I’ve passed on more people than I can count. A few seconds a resume, fifteen years, at companies you’ve heard of and small ones around the world. The reasons were almost always the same, and nobody told you. I wrote them down. |
 | 29 | marketing | `web/components/landing/home/FounderNote.tsx:30` | attr:alt | A line drawing of the recruiter who wrote the review criteria: a cap, round glasses, and a smile. |
 | 30 | marketing | `web/components/landing/home/FounderNote.tsx:34` | jsx-text | How the report works |
-| 31 | marketing | `web/components/landing/home/HiringTruths.tsx:8` | jsx-text | What we look for, line by line. |
-| 32 | marketing | `web/components/landing/home/HiringTruths.tsx:11` | jsx-text | “Results-driven professional” |
-| 33 | marketing | `web/components/landing/home/HiringTruths.tsx:11` | jsx-text | is on every resume. |
-| 34 | marketing | `web/components/landing/home/HiringTruths.tsx:12` | jsx-text | Show the result instead. |
-| 35 | marketing | `web/components/landing/home/HiringTruths.tsx:12` | jsx-text | We point to the line that already has one, and ask for the detail you left out. |
-| 36 | marketing | `web/components/landing/home/HiringTruths.tsx:15` | jsx-text | Your best example stops right before the good part. |
-| 37 | marketing | `web/components/landing/home/HiringTruths.tsx:16` | jsx-text | We show you where. |
-| 38 | marketing | `web/components/landing/home/HiringTruths.tsx:16` | jsx-text | The lines a recruiter would stop on, in the order they’d read them. |
-| 39 | marketing | `web/components/landing/home/HiringTruths.tsx:19` | jsx-text | Nobody can score you against an ATS or tell you your interview odds. |
-| 40 | marketing | `web/components/landing/home/HiringTruths.tsx:20` | jsx-text | So we don’t pretend to. |
-| 41 | marketing | `web/components/landing/home/HiringTruths.tsx:20` | jsx-text | We tell you which lines are clear, and rewrite yours only from your facts. |
+| 31 | marketing | `web/components/landing/home/HiringTruths.tsx:9` | jsx-text | What we fix, line by line. |
+| 32 | marketing | `web/components/landing/home/HiringTruths.tsx:12` | jsx-text | “Results-driven professional” |
+| 33 | marketing | `web/components/landing/home/HiringTruths.tsx:12` | jsx-text | is on every resume. |
+| 34 | marketing | `web/components/landing/home/HiringTruths.tsx:13` | jsx-text | Show the result instead. |
+| 35 | marketing | `web/components/landing/home/HiringTruths.tsx:13` | jsx-text | We point to the line that already has one, and ask for the detail you left out. |
+| 36 | marketing | `web/components/landing/home/HiringTruths.tsx:16` | jsx-text | Your best example stops right before the good part. |
+| 37 | marketing | `web/components/landing/home/HiringTruths.tsx:17` | jsx-text | We show you where. |
+| 38 | marketing | `web/components/landing/home/HiringTruths.tsx:17` | jsx-text | The lines a recruiter would stop on, in the order they’d read them. |
+| 39 | marketing | `web/components/landing/home/HiringTruths.tsx:20` | jsx-text | Nobody can score you against an ATS or tell you your interview odds. |
+| 40 | marketing | `web/components/landing/home/HiringTruths.tsx:21` | jsx-text | So we don’t pretend to. |
+| 41 | marketing | `web/components/landing/home/HiringTruths.tsx:21` | jsx-text | We tell you which lines are clear, and rewrite yours only from your facts. |
 | 42 | marketing | `web/components/landing/home/NoteSection.tsx:19` | jsx-text | Here’s the note Jordan never saw. |
 | 43 | marketing | `web/components/landing/home/NoteSection.tsx:27` | jsx-text | See Jordan’s full report |
 | 44 | marketing | `web/components/landing/home/PileHero.tsx:42` | jsx-text | job you wanted. |

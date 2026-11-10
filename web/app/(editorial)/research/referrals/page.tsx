@@ -45,7 +45,7 @@ export default function ReferralsPillarPage() {
                     },
                 },
             ]}
-            handoff={{ title: "A referral gets you read. Make sure what they read holds up.", href: "/workspace", label: "Get your free report" }}
+            handoff={{ heading: "Ready to ask? Who to ask, and what to send.", href: "/research/asking-for-a-referral", label: "How to ask for a referral" }}
         />
     );
 }

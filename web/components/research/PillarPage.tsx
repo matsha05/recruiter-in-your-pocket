@@ -37,7 +37,7 @@ type PillarPageProps = {
     figure?: ReactNode;
     evidence: PillarEvidence[];
     /** The one way forward that fits this belief: the report for the parts of a resume it reads, a guide otherwise. */
-    handoff: { title: string; href: string; label: string };
+    handoff: { heading: string; href: string; label: string };
 };
 
 /** Search title (the question people type) and description for a belief's page. */
@@ -112,7 +112,7 @@ export function PillarPage({ id, why, figure, evidence, handoff }: PillarPagePro
                     </section>
 
                     <section className={styles.close} aria-labelledby="pillar-close-title">
-                        <h2 id="pillar-close-title" className={styles.closeTitle}>{handoff.title}</h2>
+                        <h2 id="pillar-close-title" className={styles.closeTitle}>{handoff.heading}</h2>
                         <Button asChild size="lg" className="flex-none">
                             <Link href={handoff.href} data-analytics-cta={`research_pillar_${pillar.id}`}>
                                 {handoff.label} <ArrowRight weight="bold" aria-hidden="true" />
