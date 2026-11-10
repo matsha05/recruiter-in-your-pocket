@@ -32,6 +32,7 @@ export type StoredLineAnswersByFix = Record<string, StoredLineAnswers>;
 
 export interface LineAnswersPatch {
   fix_index: number;
+  /** Empty with a null line and literal source explicitly clears this card. */
   answers: StoredLineAnswer[];
   line: string | null;
   source: LineSource;
@@ -64,7 +65,12 @@ export function parseLineAnswersPatch(value: unknown): LineAnswersPatch | null {
   const body = value as Record<string, unknown>;
   const fixIndex = body.fix_index;
   if (typeof fixIndex !== "number" || !Number.isInteger(fixIndex) || fixIndex < 0 || fixIndex >= LINE_ANSWER_LIMITS.fixes) return null;
-  if (!Array.isArray(body.answers) || body.answers.length === 0 || body.answers.length > LINE_ANSWER_LIMITS.answers) return null;
+  if (!Array.isArray(body.answers) || body.answers.length > LINE_ANSWER_LIMITS.answers) return null;
+  if (body.answers.length === 0) {
+    return body.line === null && body.source === "literal"
+      ? { fix_index: fixIndex, answers: [], line: null, source: "literal" }
+      : null;
+  }
   const answers = body.answers.map(parseAnswer);
   if (answers.some((answer) => answer === null)) return null;
   const line = body.line === null ? null : clean(body.line, LINE_ANSWER_LIMITS.line);
@@ -81,7 +87,7 @@ export function parseStoredLineAnswers(value: unknown): StoredLineAnswersByFix |
     if (!/^(?:[0-9]|1[01])$/u.test(key) || !entry || typeof entry !== "object") continue;
     const record = entry as Record<string, unknown>;
     const parsed = parseLineAnswersPatch({ fix_index: Number(key), answers: record.answers, line: record.line ?? null, source: record.source });
-    if (!parsed) continue;
+    if (!parsed || parsed.answers.length === 0) continue;
     const updatedAt = typeof record.updated_at === "string" ? record.updated_at : new Date(0).toISOString();
     out[key] = { answers: parsed.answers, line: parsed.line, source: parsed.source, updated_at: updatedAt };
   }
@@ -90,6 +96,10 @@ export function parseStoredLineAnswers(value: unknown): StoredLineAnswersByFix |
 
 export function mergeLineAnswers(existing: unknown, patch: LineAnswersPatch, now = new Date()): StoredLineAnswersByFix {
   const current = parseStoredLineAnswers(existing) || {};
+  if (patch.answers.length === 0) {
+    delete current[String(patch.fix_index)];
+    return current;
+  }
   return {
     ...current,
     [String(patch.fix_index)]: { answers: patch.answers, line: patch.line, source: patch.source, updated_at: now.toISOString() },

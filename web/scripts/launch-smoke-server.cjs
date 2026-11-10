@@ -1,9 +1,11 @@
 const { existsSync } = require("fs");
 const { spawn, spawnSync } = require("child_process");
 const path = require("path");
+const { localTestPort } = require("./local-test-port.cjs");
 
 const cwd = process.cwd();
 const env = { ...process.env };
+const port = localTestPort(env.RIYP_LOCAL_TEST_PORT);
 const buildIdPath = path.join(cwd, ".next", "BUILD_ID");
 
 if (!existsSync(buildIdPath) || env.FORCE_NEXT_BUILD === "1" || env.FORCE_NEXT_BUILD === "true") {
@@ -30,7 +32,7 @@ if (!existsSync(buildIdPath) || env.FORCE_NEXT_BUILD === "1" || env.FORCE_NEXT_B
 }
 
 const nextBin = path.join(cwd, "node_modules", "next", "dist", "bin", "next");
-const child = spawn(process.execPath, [nextBin, "start", "-p", "3100", "-H", "127.0.0.1"], {
+const child = spawn(process.execPath, [nextBin, "start", "-p", String(port), "-H", "127.0.0.1"], {
   cwd,
   env,
   stdio: "inherit",

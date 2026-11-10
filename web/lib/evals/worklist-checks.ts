@@ -51,7 +51,16 @@ export function worklistMetrics(report: WorklistReport): WorklistMetrics {
   };
 }
 
-export function runWorklistChecks(input: WorklistChecksInput): { errors: Array<{ code: ErrorCode; message: string }>; warnings: Array<{ code: WarningCode; message: string }> } {
+export function runWorklistChecks(input: WorklistChecksInput) {
+  return checkWorklistContentAndScore(input);
+}
+
+/** Source/copy checks only; callers must not count uncalibrated reports as score-evaluated fixtures. */
+export function runUncalibratedWorklistChecks(input: Omit<WorklistChecksInput, "fixture" | "baseline">) {
+  return checkWorklistContentAndScore(input);
+}
+
+function checkWorklistContentAndScore(input: Omit<WorklistChecksInput, "fixture"> & { fixture?: Fixture }): { errors: Array<{ code: ErrorCode; message: string }>; warnings: Array<{ code: WarningCode; message: string }> } {
   const errors: Array<{ code: ErrorCode; message: string }> = [];
   const warnings: Array<{ code: WarningCode; message: string }> = [];
   const add = (result: CheckResult) => {
@@ -68,7 +77,9 @@ export function runWorklistChecks(input: WorklistChecksInput): { errors: Array<{
   const report = input.output;
   if (/\[?SOURCE_\d{3}\]?/i.test(JSON.stringify(report))) errors.push({ code: "E_SOURCE_TAG_LEAK", message: "Output exposes an internal SOURCE catalog tag" });
 
-  for (const result of checkScoreRange(report.score, input.fixture.expected_score, input.baseline)) add(result);
+  if (input.fixture) {
+    for (const result of checkScoreRange(report.score, input.fixture.expected_score, input.baseline)) add(result);
+  }
 
   // The validator's own checks, repeated here so a saved output replayed through the harness is held to them.
   report.cards.forEach((card, index) => {

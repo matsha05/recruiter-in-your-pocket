@@ -1,0 +1,2032 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "c52ceb78df61e37d3dc5eabef090bed9b1a109c0",
+  "source": "docs/audits/2026-11-first-read/outputs/upgrades3",
+  "model": "gpt-6.1-terra",
+  "reasoningEffort": "medium",
+  "resumePromptSha256": "15dff271c2d212b2504350e8d09deec38785cfa3e7ee269f5f8154593e015688",
+  "resumeIdeasPromptSha256": "6d90925e63aae15476712f92af5ffbdf4e684feec413711e14d6dba7201b6fc7",
+  "sourceRunSha256": "9db5042467c2e33ba4eb221f1b3a25ee73e589b3797c76da7481d539e10df585",
+  "validationSourceSha256": "f9ff575ab9d1762ab383c7f516def712038a3e2e4c1a8dc57a731219a2aa3e92",
+  "summary": {
+    "total": 28,
+    "passed": 24,
+    "warned": 4,
+    "failed": 0
+  },
+  "uncalibrated": 31,
+  "requestRefused": 1,
+  "repaired": 4,
+  "newProviderCalls": 0,
+  "sources": [
+    {
+      "file": "docs/audits/2026-11-first-read/manifest.json",
+      "sha256": "9cec12bda411c48fb76bb2a582fcca59b6342b46f6859f0fd1e167f46ef2b94a"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/_ledger_breadth_2026-11-07T22-17-11-536Z.json",
+      "sha256": "dca6f0ec8f64ac146fb406304be89ff2f92089e81705d8e8fecc7813e1155f96"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/_ledger_holes_2026-11-07T22-13-15-809Z.json",
+      "sha256": "2ea914a9797fb18d1f77df0dbc91c66c291fc6a1fbd8b85c669d8a9e39009999"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/_ledger_tier_2026-11-07T22-13-37-313Z.json",
+      "sha256": "70c97b3074cd50fad8fc6c52953807aea305ac0d879c7c9bc16834ab9a720138"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b01_icu_nurse__run1.json",
+      "sha256": "56dffe47e7c92bea967631c8be8fd04673c7a601a66dd7237babcdde689d7323"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b02_teacher__run1.json",
+      "sha256": "634334f975382dddaf7f6f0d4aa494a3f8bdf4328cb5b7db66bb6a89fe76e287"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b03_welder__run1.json",
+      "sha256": "b54300c48246580af36e3f849bc46dcacd6a24a4f06ae1b196a7615ef80abfde"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b04_retail_store_manager__run1.json",
+      "sha256": "e01c83e167721b713ae3822975b4033ec996219c536d9579df083429f4779c40"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b05_paralegal__run1.json",
+      "sha256": "943582592f28566e29c9110494214a3219f31fa2c8cd96a204926835d27b31c7"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b06_staff_accountant__run1.json",
+      "sha256": "db0516cf15ec96a5d4cd707c9ef3f1bd19eaa5d95dcc52ce9421ac210a686f89"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b07_account_executive__run1.json",
+      "sha256": "8a8cae16021a512862558bb1299462cdd5ae54cd1d11a151caddcf6410a8ff4c"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b08_warehouse_supervisor__run1.json",
+      "sha256": "733cc480aa00aa993ea4393381d7c00b337dbe1331a791ac81b1d4f5bd9473fa"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b09_executive_assistant_freelance__run1.json",
+      "sha256": "290a80a9a69f90705d7a01998a33bd02ede6ce80715f75315625b0e8dc72c3ab"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b10_it_support_recent_grad__run1.json",
+      "sha256": "088842216efeb645ea47218de2b40b40d3aa7d01dc8e115a5c90ede90a393c0d"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b11_recent_grad_bad__run1.json",
+      "sha256": "9dee870e58673ff05b1b9fe0238f2454e196032a9c8b4a34115769f4d54e6fb3"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b12_coo_executive_two_page__run1.json",
+      "sha256": "64ea33934ca62827d1c8a8922badb8fbc02daa5f4ed826379193bb7e4e799e76"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b13_marketing_vp_elite__run1.json",
+      "sha256": "de4f01cd2112e5663ffbcd793122caca83e0d01dfd6202024f55d3b3bc7262ed"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b14_teacher_to_instructional_designer__run1.json",
+      "sha256": "66a98e6c5a0e9d786babd4535d8b3dba1d6006bbe47b74f82e431812b408be04"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b15_career_changer_maria__run1.json",
+      "sha256": "f8455416b39cccd6f9586c71fb1ba47544ecbf0c4806b76ce04ea0f91dc070aa"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b16_career_changer_bad__run1.json",
+      "sha256": "6b35f75950581c2b3846a9c1c72c04e2ac1a7588ef9e5c0aac0dbff9ba83c27f"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b17_hr_generalist_career_break__run1.json",
+      "sha256": "8e8356b6861862543f5788c2734b749ba4e0beded0714587aa855af210b15678"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b18_military_to_civilian__run1.json",
+      "sha256": "79781a4a51462897a091c534802ce7220a54236d80b8c07b7a8a4c60d75ad899"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b19_non_native_english__run1.json",
+      "sha256": "72c82943f765725de0d8cae8ac86055e360c2a1653b7e1ac5e00c6dada63aa08"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b20_customer_success_manager__run1.json",
+      "sha256": "8557ca7728da808e9691e57aa0a0a6283dc4a1ad388f5e446baba84fc4eb7175"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b21_customer_success_manager_with_posting__run1.json",
+      "sha256": "8405a4a6bd3083e4e5f1b105cbbf658a35b3190d3c8e3ebf1ffcc0174d97daee"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b22_office_manager_paragraphs__run1.json",
+      "sha256": "a7cf6de4dd952112517fa34fd144a51e8d69a1f6d8074511c26e9bebba682cb6"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b23_pharmacy_tech_table__run1.json",
+      "sha256": "60ac73e5c860282a5b8f1ed3c8a77549bca830df7d7af67587b472db1640e310"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b24_physical_therapist_strong__run1.json",
+      "sha256": "168ef947646afbd72d377748276268a8801a984cf47ddffbaf0dc0a47b8c6d4d"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b25_fpa_analyst_strong__run1.json",
+      "sha256": "2c0e8ad9807dc82b526bacd5944872076e13a4628571cf735a21945c0a08a7eb"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b26_construction_pm_strong__run1.json",
+      "sha256": "1c96e163bf1093112951b3c913ca1b4dd91e8d52db66a5ccde7c0807460689a7"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b27_backend_engineer_senior__run1.json",
+      "sha256": "822d30199a52465c22bd30ed0590a1713f36811696a38cce2a98b681ea98085a"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b28_cybersecurity_analyst__run1.json",
+      "sha256": "fb0d46f0034d427823b03d45986cfb96ff85ffcf9bb59081f1c0042d651fb57d"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b29_mechanical_engineer__run1.json",
+      "sha256": "cb09ceb4305695e8a7475c267d612f2317fd66af66f7d2e35ca662ab5e5808f8"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b30_social_worker__run1.json",
+      "sha256": "8804873cfd75a5aca692031dec0ba7d084b59d7870daec2eee54d18281fffd16"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b31_kitchen_manager__run1.json",
+      "sha256": "55edf3fdfc2bdcc25c5b030f2e2550ff93d86b0e7ea6fbff7f8f21d33e190960"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b32_logistics_dispatcher__run1.json",
+      "sha256": "0b9d7169bc1524116589589d44e74147130460e0c24f285dd5d915984db9fb8a"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b33_nonprofit_program_manager__run1.json",
+      "sha256": "899007a4f2f21fcf1502585a923fc71f927477ba7add8eead52d909fc30a642e"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b34_bank_branch_manager_gap__run1.json",
+      "sha256": "53ef995a48e1b72a9749733685be980a5212a9142ce98e87716fef8011cb7b1e"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b35_marketing_coordinator_gap__run1.json",
+      "sha256": "14ba98a21cc775461575a93296a59c1882f1e52478e6867b39eb9692e1b817b5"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b36_product_designer_unrelated__run1.json",
+      "sha256": "cf3e6f17cca55803f268dc31b267f386bc0e3ab6171b891ef450a541f43a1133"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b37_marketing_director_bad__run1.json",
+      "sha256": "38f7f73c4918bb6bf6558a81d8a12f1ccc28768249d5ab30b5cab9f9cea8af62"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b38_layoff_gap_james__run1.json",
+      "sha256": "1b44dd864f0ebf79edaa460185360a4b51304e52f02eb6f60546f091ced7f883"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b39_new_grad_daniel__run1.json",
+      "sha256": "06c266ed8f3a153f69258ff6107fba77a9bdab571b93341f3dd35ff092221bc0"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b40_senior_ic_wei__run1.json",
+      "sha256": "89d067d36567395e8e9bd1f599ec26bd383aa0e1ed5f5d297263f3dac8bf31bc"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/h1_bad_resume__run1.json",
+      "sha256": "1425de9b76cbc959e3b732ace91faa602c7fe8696f9cb39e2b29f958296a21b1"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/h2_thin_resume__run1.json",
+      "sha256": "6c049c1e01bb02a9aae34a8073bc5c85800af50bdf0bed2305280b07990c1e28"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/h3_strong_resume__run1.json",
+      "sha256": "3e9bbfe86f4452ccceff7538f938877e97e475470051e72e8241a6c6936dfec9"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/h4a_academic_cv_15_pages__run1.json",
+      "sha256": "822bec7ac7ccf17f2922ccca3736eb3efcf65d5445f1cad4b933f8e9b7f04a29"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/h4b_academic_cv_under_cap__run1.json",
+      "sha256": "28d787c7d98e570b187607e0337a826bb148f6bdf21951968616afaebb1753b5"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/h4c_one_paragraph__run1.json",
+      "sha256": "2e73d14102d2479d8668578b1616be8bee226ce1e5c2e46fe9913364aab4cc09"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/h5_mismatched_posting__run1.json",
+      "sha256": "b98932e7655e213ac7ecb4c7c7fc1cbde07d538709867253739b3e86f9b9e6d4"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/h6_unverifiable_claim__run1.json",
+      "sha256": "d8627a43873e848c1d0cf121b44677acc56a39f46cb5499dff0f170b24750cf5"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/t1_google_engineer_maya__run1.json",
+      "sha256": "82590672587bebe7c16594c938f54a1aec863e4eb4b6332c2611bf9a91efe8d2"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/t2_logos_operations_robert__run1.json",
+      "sha256": "190a5d732a10b4f04e2df769bdf45d0a910a56b058a82f824d79c9c24dccf401"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/targeted/_ledger_targeted_2026-11-07T22-12-24-478Z.json",
+      "sha256": "d5d6b1066c03b65761a173df429faa7b68a9c99670cf6959d8c7382210386f1f"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/targeted/fr01a_backend_ic_no_posting__run1.json",
+      "sha256": "683bc8301b6cb60d426c4337a974ad06380b2aeda309436ee5a3c3192328d891"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/targeted/fr01b_backend_ic_backend_posting__run1.json",
+      "sha256": "3d06a0ee848f270b579fa23fcbf6c65d98ab50980fa60cec2c57f3b6c114248a"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/targeted/fr01c_backend_ic_manager_posting__run1.json",
+      "sha256": "25492775b15e11310af4d8d7c017f15c52a7446262076452b5ae29eaf71f53ce"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/targeted/fr02a_marketing_skills_no_posting__run1.json",
+      "sha256": "f35b6d2bb5797d1664df0fdb400ebb8548647b04de007f8fafb019a014bcdbe2"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/targeted/fr02b_marketing_skills_hubspot_posting__run1.json",
+      "sha256": "863c2bd66e2470dcb3e44be5104f6631735211af7835f9718ffcee137869ff2f"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/targeted/fr03_account_executive_quota__run1.json",
+      "sha256": "1aa4595c79c9209bb5a2f483fa79cbb6c22e96f81396f5f2b663bf1a7b8f3f37"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/targeted/fr04_financial_analyst_frames__run1.json",
+      "sha256": "270de0798915e92208726b617637198ff0ad0ef8d9a73b27f176303f39711642"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/targeted/fr05_nurse_no_units__run1.json",
+      "sha256": "566ec1e1d59f831992419800184aa2e0d9523d555f8df0d200822596b13db38f"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/targeted/fr06_senior_director_duties__run1.json",
+      "sha256": "249596a7ec798001bb7ab2e57c1887e9fbe309d8b7153e4267663b676f976176"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/outputs/upgrades3/targeted/fr07_hidden_text__run1.json",
+      "sha256": "79afd5c9395b4d8aa25c8c64de8e3883acfb4737a8b91b421745eda778e1a8a5"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/resumes/fr01_backend_ic_senior.txt",
+      "sha256": "473f0177fffa3bc053f5a4c69f6aa3d7ecdf9c22fafb2ee8360f7be0e877aa55"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/resumes/fr02_marketing_coordinator_skills.txt",
+      "sha256": "a56c9826825d780214c560c116e9272f32c8b774701907e99832ef6ec0b8e3fe"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/resumes/fr03_account_executive_quota.txt",
+      "sha256": "1af2456444c94158085073ca6a146353414d58ee471e3c70ac1e03fd7f347adf"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/resumes/fr04_financial_analyst_frames.txt",
+      "sha256": "34f14f6df182002d0555184608a9897ef1688d93d222f353e7a53fca546ddb65"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/resumes/fr05_nurse_no_units.txt",
+      "sha256": "46d392485f8498d11852f2d4588d800b42bd628f4fb7e61c5f3747a6fba875dc"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/resumes/fr06_senior_director_duties.txt",
+      "sha256": "684578d84a894aad532a6ff327def34ebbdb5f9a6b504f71ee8676432a7e2851"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/resumes/fr07_hidden_text.txt",
+      "sha256": "d30003d33cb9995df652c3950f436508a23053a8f9d7ebf206a7a14caa162afd"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/resumes/posting_engineering_manager.txt",
+      "sha256": "ba9e87de86a1de380c9662b1493dcb8f643dc5bf1558b6ee17529992853c6662"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/resumes/posting_marketing_hubspot.txt",
+      "sha256": "578087583002beab9f80f2b12be305816e621ea1e2f5508af390eb7051a263a8"
+    },
+    {
+      "file": "docs/audits/2026-11-first-read/resumes/posting_senior_backend.txt",
+      "sha256": "585f8c073eec4ce270692463e2a17db6fa76f07f814604db3c17e0c104199d9e"
+    },
+    {
+      "file": "docs/audits/2026-11-live-judgment/resumes/b_coo_executive.txt",
+      "sha256": "213474e9b27355f8a085204e3dac05f65782d74d43b9b531cb2afd6a3afe1b79"
+    },
+    {
+      "file": "docs/audits/2026-11-live-judgment/resumes/b_military_to_civilian.txt",
+      "sha256": "c2dd1e89354ce1a86021927ffba5d85f65b3dfb021c3126f6459225f8bfd7a7e"
+    },
+    {
+      "file": "docs/audits/2026-11-live-judgment/resumes/b_non_native_english.txt",
+      "sha256": "b6a26fe36825d1810e73236e21445163948f02ce6be0d9328e9ccaf50cb59c16"
+    },
+    {
+      "file": "docs/audits/2026-11-live-judgment/resumes/b_office_manager_paragraphs.txt",
+      "sha256": "ce33ce5aa6c528ef520a2ccc32684ac815b6084cea9e23d0a3885d92201fff58"
+    },
+    {
+      "file": "docs/audits/2026-11-live-judgment/resumes/b_pharmacy_tech_table.txt",
+      "sha256": "872695c37eba2c67784784b9af67edda0387ea5b8bbb90cd54d25ac0f2941367"
+    },
+    {
+      "file": "docs/audits/2026-11-live-judgment/resumes/b_posting_customer_success_manager.txt",
+      "sha256": "32b2527fcbda0fc1b01a384371f337f5b3018b56e2180df5c376a4ccf38fde5e"
+    },
+    {
+      "file": "docs/audits/2026-11-live-judgment/resumes/b_teacher.txt",
+      "sha256": "7d89b420ec093fb2b4c948a14fbcee2a65d2a90d95c146e4f916e2d0a37955ee"
+    },
+    {
+      "file": "docs/audits/2026-11-live-judgment/resumes/b_welder.txt",
+      "sha256": "b9732bf7b68078f8e956a420ac5c412e65809428f2714874ab4044ea5bd317f8"
+    },
+    {
+      "file": "docs/audits/2026-11-live-judgment/resumes/h1_bad_resume.txt",
+      "sha256": "1eaa5e429b7924630129a05ca0abf276d687ce664ed89726eb783fa17e025fb8"
+    },
+    {
+      "file": "docs/audits/2026-11-live-judgment/resumes/h2_thin_resume.txt",
+      "sha256": "0ae65e2abcb50e7eb496c0bf279b40a3bbd6630aca8031421ae82863b8d35ed5"
+    },
+    {
+      "file": "docs/audits/2026-11-live-judgment/resumes/h3_strong_resume.txt",
+      "sha256": "711aca17e0f7318c1d0d4fa3e4669aff314c355a47734d7106bb2eb6fc012418"
+    },
+    {
+      "file": "docs/audits/2026-11-live-judgment/resumes/h4a_academic_cv_15_pages.txt",
+      "sha256": "c83739ba906703c58a5cdee1d8c3cdec6742bb3b849cbeada487fa110f314c48"
+    },
+    {
+      "file": "docs/audits/2026-11-live-judgment/resumes/h4b_academic_cv_under_cap.txt",
+      "sha256": "adbd165f7ee34423e0602d7b81bde357a22a10bfde76e8434e30216c10430503"
+    },
+    {
+      "file": "docs/audits/2026-11-live-judgment/resumes/h4c_one_paragraph.txt",
+      "sha256": "f511920a68961c81af3613491765d7123205582245e9adc00a8bf837d18c66ea"
+    },
+    {
+      "file": "docs/audits/2026-11-live-judgment/resumes/h5_data_analyst.txt",
+      "sha256": "7bbdd7afb1b8ee26ca438829f18fe67486123dfaa7fc822193ebc907d0875abf"
+    },
+    {
+      "file": "docs/audits/2026-11-live-judgment/resumes/h5_nursing_posting.txt",
+      "sha256": "eab01bed7e4ceb7463919ea2021f1f85f5af2041b758d8b6bfe5d74b662c92a7"
+    },
+    {
+      "file": "docs/audits/2026-11-live-judgment/resumes/h6_unverifiable_claim.txt",
+      "sha256": "f523ae9848d421f047135b3ca8cc16bd9eae87eabea7b39571b1276abb1d4378"
+    },
+    {
+      "file": "docs/audits/2026-11-worklist-run/manifest.json",
+      "sha256": "fed13c27d05d7b8aae01dd4d234223ff30d1a698737b51c6849207175cc13168"
+    },
+    {
+      "file": "docs/audits/2026-11-worklist-run/resumes/t1_google_engineer_maya.txt",
+      "sha256": "33dda6e3127bc91e9403ec54f16eb5edb2457f302567f72abdb4e0603a91b3c0"
+    },
+    {
+      "file": "docs/audits/2026-11-worklist-run/resumes/t2_logos_operations_robert.txt",
+      "sha256": "dadfd0700868e9bb51ded2848f7368630310b4dedb9f164be5b3bdc9ceea6e96"
+    },
+    {
+      "file": "docs/design/2026-11-bar/resumes/1-new-grad-daniel.txt",
+      "sha256": "3462ee9e636e4d3adb7f5bdb87556bed636cfcf821f42734052695585a62cb5d"
+    },
+    {
+      "file": "docs/design/2026-11-bar/resumes/2-career-changer-maria.txt",
+      "sha256": "cf6e68aeefb5409ae44ad20d35b5dfe5a27f0f29de2d56c226d1b8891078a1b0"
+    },
+    {
+      "file": "docs/design/2026-11-bar/resumes/3-layoff-gap-james.txt",
+      "sha256": "9ff2c78d35a73e7b304020c79e4a236c0f62eb85a82de37c83724da8a6ce928d"
+    },
+    {
+      "file": "docs/design/2026-11-bar/resumes/4-senior-ic-wei.txt",
+      "sha256": "e95b41ee5391398ba259810d134ff4a7392766f8e7fa117ad93d5d19b8ed94a5"
+    },
+    {
+      "file": "tests/fixtures/calibration.json",
+      "sha256": "c231ccdfdc430b4ebb263ecf4e1ef4b83cfe63b1454d6526bf1f2691e5c3edfc"
+    },
+    {
+      "file": "tests/resumes/03_teacher.txt",
+      "sha256": "886dcc68435a300b8b07ba5dc7cacf35f7ae4df5e002483fb7199c129546a6f1"
+    },
+    {
+      "file": "tests/resumes/04_pastor_ministry.txt",
+      "sha256": "f00e4956424286a125324b95cf19afd4cf9d13f90a7c661fa7d6f003524ff3c2"
+    },
+    {
+      "file": "tests/resumes/08_entry_level_retail.txt",
+      "sha256": "5d500ef404c85b684c8b33f79becc7c07cfecad1634960291d43a1abeb99df8d"
+    },
+    {
+      "file": "tests/resumes/blindpick/synth_bp_account_executive_1.txt",
+      "sha256": "f964f76d12cdd6ba10596473b309c0f44b18de7112f27369c32227cd287f6e94"
+    },
+    {
+      "file": "tests/resumes/blindpick/synth_bp_backend_engineer_senior_1.txt",
+      "sha256": "92a71c8e81a037980a571ba4d2007cab76d8f9f04b6517e1ff23e45a0383be59"
+    },
+    {
+      "file": "tests/resumes/blindpick/synth_bp_bank_branch_manager_gap_1.txt",
+      "sha256": "1420c9932b5d35b979aa4d895b875e2ef456676f1017e3f83c5ee350ae9ca189"
+    },
+    {
+      "file": "tests/resumes/blindpick/synth_bp_civil_engineer_1.txt",
+      "sha256": "1e678d0b68733656eede280f9114c4959a5b3b9995a5b75c4643dda068647d1a"
+    },
+    {
+      "file": "tests/resumes/blindpick/synth_bp_content_writer_freelance_1.txt",
+      "sha256": "661b5a93f9f46fd82072a85cbdb717b81bd8bf4f200a94308ca422211a70d1b0"
+    },
+    {
+      "file": "tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt",
+      "sha256": "fe00b25220442aa026e6aa909f700301c898f430bd2cf244eafbe182c75f316d"
+    },
+    {
+      "file": "tests/resumes/blindpick/synth_bp_cybersecurity_analyst_1.txt",
+      "sha256": "3af143d6457f920bcfc404cff6c5ed95c9a5719c1320855f0e0d464650526db6"
+    },
+    {
+      "file": "tests/resumes/blindpick/synth_bp_data_analyst_1.txt",
+      "sha256": "fbe4a18fe5ca3757ffffc019d3b63424176841dd6e7f3cb8a7e4bd6fddb96e1a"
+    },
+    {
+      "file": "tests/resumes/blindpick/synth_bp_dental_hygienist_1.txt",
+      "sha256": "8120b475cad89f9516970622fa9ec9d5ac27ec6a36cb5ff081da0f4d5398be95"
+    },
+    {
+      "file": "tests/resumes/blindpick/synth_bp_event_planner_relocation_1.txt",
+      "sha256": "6606fad9c561e081633a2dda053db03140235f834c6aad21c4d162d8d2f27b9b"
+    },
+    {
+      "file": "tests/resumes/blindpick/synth_bp_executive_assistant_freelance_1.txt",
+      "sha256": "e2e2776e0968eb25004b7dc286763468c2274764a27e8f532dc243a3233d07c3"
+    },
+    {
+      "file": "tests/resumes/blindpick/synth_bp_graphic_designer_unrelated_1.txt",
+      "sha256": "af6fd55d13fcce5606bd7b70d9afd97ca846acfaa6490a78e0f67f027ab8cbb1"
+    },
+    {
+      "file": "tests/resumes/blindpick/synth_bp_hr_generalist_career_break_1.txt",
+      "sha256": "59c9f2306490959a56a0d7a38268e6b5db0ff40531b47983bc495f857cae8f0b"
+    },
+    {
+      "file": "tests/resumes/blindpick/synth_bp_icu_nurse_1.txt",
+      "sha256": "a52d8cb032163bcc7edaa524fe56cb06594cccf78f90a9ba023148de11fe18ef"
+    },
+    {
+      "file": "tests/resumes/blindpick/synth_bp_it_support_recent_grad_1.txt",
+      "sha256": "6aac1aade9d7a63c473e324e9d4010a6421ea06868ff0b898b625a8534cf26dc"
+    },
+    {
+      "file": "tests/resumes/blindpick/synth_bp_kitchen_manager_1.txt",
+      "sha256": "836be21294a27aec82bd92fc8dd36b03ccee25fd7f25cdf838a86a793237696a"
+    },
+    {
+      "file": "tests/resumes/blindpick/synth_bp_logistics_dispatcher_1.txt",
+      "sha256": "1ae1cc83222ef2e6ac1cdf904b53aa1b78b489a7cc233802856897605942428d"
+    },
+    {
+      "file": "tests/resumes/blindpick/synth_bp_marketing_coordinator_gap_1.txt",
+      "sha256": "eb744b698d829395ca7fb3ace93d0351860ad9281132916fbf232d42c03ebf78"
+    },
+    {
+      "file": "tests/resumes/blindpick/synth_bp_mechanical_engineer_1.txt",
+      "sha256": "415a2cd89f45a119a48620793f6f06d7e83938cf3176426d201256d134ab6044"
+    },
+    {
+      "file": "tests/resumes/blindpick/synth_bp_nonprofit_program_manager_1.txt",
+      "sha256": "eed001bb0dd40fc28e9488669ec9cea7f7a73eecaca46214d5f584dae2b6d5c9"
+    },
+    {
+      "file": "tests/resumes/blindpick/synth_bp_paralegal_1.txt",
+      "sha256": "1860914f19aa0734b31d49c2046f7d394bc16dd5acb16f4c1fd6ee102a7f8568"
+    },
+    {
+      "file": "tests/resumes/blindpick/synth_bp_product_designer_unrelated_1.txt",
+      "sha256": "1bdb9ae79f9dbe3ee5291318e6f8912d3364acecf7899188406d07eba1db153f"
+    },
+    {
+      "file": "tests/resumes/blindpick/synth_bp_retail_store_manager_1.txt",
+      "sha256": "44e7ec6fe998a1b320b02b5bb24f3945f6d89a3e2777dca5e1be857f4727486b"
+    },
+    {
+      "file": "tests/resumes/blindpick/synth_bp_social_worker_1.txt",
+      "sha256": "220fc861657d503d71b84a4240b5f5bc70c869aa0f1b595da07293db985b982f"
+    },
+    {
+      "file": "tests/resumes/blindpick/synth_bp_staff_accountant_1.txt",
+      "sha256": "5ffd1542f9efd3cfd81adbb3bf5a41f679b5c13e4c013d509922f301a1d5ca53"
+    },
+    {
+      "file": "tests/resumes/blindpick/synth_bp_supply_chain_analyst_1.txt",
+      "sha256": "70a0bb18c5e28bf807a97a9decd9a8c23f81cedd2dd607f9e927d4b32b610ab9"
+    },
+    {
+      "file": "tests/resumes/blindpick/synth_bp_teacher_to_instructional_designer_1.txt",
+      "sha256": "834ed54c2de68b69a032d304a18dda36925e354522e5b1cfe475d0beca0b4e9a"
+    },
+    {
+      "file": "tests/resumes/blindpick/synth_bp_technical_recruiter_1.txt",
+      "sha256": "f294d781ee3c6ca458b1d4913b3b783e7487add587cd7d1284003087140ccf75"
+    },
+    {
+      "file": "tests/resumes/blindpick/synth_bp_ux_researcher_gap_1.txt",
+      "sha256": "288c8bcedc5e3585fa06feafc1655334c3c8fe844e108659185202fed220b282"
+    },
+    {
+      "file": "tests/resumes/blindpick/synth_bp_warehouse_supervisor_1.txt",
+      "sha256": "4f23aeaad42ee6b5836bf39d21414eb87585621802a43fd069caf4dd7d77509a"
+    },
+    {
+      "file": "tests/resumes/countcheck/synth_cc_admin_generalist_bad_1.txt",
+      "sha256": "5542d087957328df1b86a236222d84f3a07b4f042937a856f66c7179f554c993"
+    },
+    {
+      "file": "tests/resumes/countcheck/synth_cc_career_changer_bad_1.txt",
+      "sha256": "12d7e0e5cf8c013f2914db6c8489b5ecd2eb00d0ec3fc732e6316d80a89deffc"
+    },
+    {
+      "file": "tests/resumes/countcheck/synth_cc_construction_pm_strong_1.txt",
+      "sha256": "548c7db64c756b5fab695853a27156e8aa67858a31cab50680d65e1ef14cc181"
+    },
+    {
+      "file": "tests/resumes/countcheck/synth_cc_fpa_analyst_strong_1.txt",
+      "sha256": "e8604c5c03930c475f944d36090e8f6db4af1ffc417c634667c5450ff68f9cd2"
+    },
+    {
+      "file": "tests/resumes/countcheck/synth_cc_marketing_director_bad_1.txt",
+      "sha256": "f0624d59dceceb9ee73afca05ff983f8205d3da2ebe4712711eb2596bd129439"
+    },
+    {
+      "file": "tests/resumes/countcheck/synth_cc_operations_manager_bad_1.txt",
+      "sha256": "f0f6e56747aa2c1756b79d240aed4f88d1301069d8580ceb677852307b13420b"
+    },
+    {
+      "file": "tests/resumes/countcheck/synth_cc_physical_therapist_strong_1.txt",
+      "sha256": "7e013454a20249375bdb6727bacd79d8babaf49afa5b0b57f3dd11c862937163"
+    },
+    {
+      "file": "tests/resumes/countcheck/synth_cc_product_manager_strong_1.txt",
+      "sha256": "c952c59f4fc734a223e2f6025343e9a7f8d6873e3a33ab9e6b7b138cb3f1d180"
+    },
+    {
+      "file": "tests/resumes/countcheck/synth_cc_project_coordinator_bad_1.txt",
+      "sha256": "4f845de2b55c16eb77b00e2b192e8fca67a7977da6b926e01bf96a957b852b63"
+    },
+    {
+      "file": "tests/resumes/countcheck/synth_cc_recent_grad_bad_1.txt",
+      "sha256": "b6050d2872696426733e52fefc3754f3902bd7b1192ea7b2f180c313e53e2468"
+    },
+    {
+      "file": "tests/resumes/countcheck/synth_cc_sales_rep_bad_1.txt",
+      "sha256": "47f2ff1dc32133a69b066100e4c4bcdbaae1ec2751d110103484694cf16f7799"
+    },
+    {
+      "file": "tests/resumes/countcheck/synth_cc_staff_accountant_bad_1.txt",
+      "sha256": "1c4a7e07f48332fe02417ab9946d90677a37617ac7c091d003e78b26858af0a6"
+    },
+    {
+      "file": "tests/resumes/golden/anchor_elite_ml_staff_1.txt",
+      "sha256": "210b1c14666b1df87a6eade18ac712507fcc8c89b3debb7c6fee76f71d33d6d1"
+    },
+    {
+      "file": "tests/resumes/golden/anchor_elite_pm_ai_1.txt",
+      "sha256": "d6b242609126438c65f4b575cc853ec9bd420a59d1b0f52e7cd37f4b7a29ff92"
+    },
+    {
+      "file": "tests/resumes/golden/anchor_elite_vp_talent_1.txt",
+      "sha256": "7214ea9aa2becb29a6f49ae999438c457df2b9549b12c0ce0ca7dd5af7bce814"
+    },
+    {
+      "file": "tests/resumes/golden/devops_senior_high_bar_1.txt",
+      "sha256": "3696d43bb5f424b60ed1b72505aef920f2689b6f33418c55c604bd8f14fd7ad5"
+    },
+    {
+      "file": "tests/resumes/golden/finance_not_ready_sam_helmuth_1.txt",
+      "sha256": "bb26738e803b64b7f42647a889fd9619a9943c12398478dc9c77e2f4ae89eb62"
+    },
+    {
+      "file": "tests/resumes/golden/law_inhouse_thin_signal_1.txt",
+      "sha256": "e540e95b9496e94c2445235f6e3a0f8c485a16011afe2d1ef6149d6d1a602ec3"
+    },
+    {
+      "file": "tests/resumes/golden/recruiter_palantir_strong_foundation_1.txt",
+      "sha256": "c56a52c24f8dcce873bdb41606b8fde6a1438691761b8faa71ae3cc09a517e17"
+    },
+    {
+      "file": "tests/resumes/golden/synth_data_scientist_senior_elite_1766960238522.txt",
+      "sha256": "49f38178878184f4dfe5aed0d35d4ee0520d9bc2bee4bdcf72f035908bacf648"
+    },
+    {
+      "file": "tests/resumes/golden/synth_finance_analyst_senior_weak_1766960287359.txt",
+      "sha256": "093f72199c92dcb24bd9c63d6dee7f6cd306ee494dfc0d791e195d13be9f6817"
+    },
+    {
+      "file": "tests/resumes/golden/synth_hr_manager_director_foundation_1766960245321.txt",
+      "sha256": "430c7fe23a2b6ecf0000329b0786253c31d8ca23a71fdc74ab1f301f2b320b5c"
+    },
+    {
+      "file": "tests/resumes/golden/synth_marketing_manager_vp_elite_1766960221358.txt",
+      "sha256": "a5f6a1bba91362463218b3e6ea358e8bc5b470add84f7b5eee7d69f1078c2bf0"
+    },
+    {
+      "file": "tests/resumes/golden/synth_operations_manager_entry_weak_1766960246467.txt",
+      "sha256": "eb1dd8ebee72b084bd5f7f90bcc431b9f882c02408ab79ad33c3b62d8ee03a86"
+    },
+    {
+      "file": "tests/resumes/golden/synth_product_manager_entry_elite_1766960255028.txt",
+      "sha256": "850a02b32bf5425eafbe3d7c7d1eb003d7eb039debee54c470ba0e406c1205a1"
+    },
+    {
+      "file": "tests/resumes/golden/synth_project_manager_vp_strong_1766957014608.txt",
+      "sha256": "8c194ebd43e24d69df1294477731ad9556c0c460cdad4b60b9cd46e33266430a"
+    },
+    {
+      "file": "tests/resumes/golden/synth_sales_executive_mid_foundation_1766960226693.txt",
+      "sha256": "516f07a0fad8255e071e9b24a3c96f4133560f97d75b2bdf235537bb10710231"
+    },
+    {
+      "file": "tests/resumes/golden/synth_software_engineer_mid_strong_1766960342929.txt",
+      "sha256": "f982ebe1395b510461a41d714f2db929a3678b7c94a04354344e5398e575ca0d"
+    },
+    {
+      "file": "tests/resumes/golden/synth_ux_designer_director_strong_1766960238902.txt",
+      "sha256": "f1b6bcd85dc9f75c88c8a1b07f21ce5870eed813511ef46218832813ede3dada"
+    },
+    {
+      "file": "tests/resumes/smoke/finance_controller_strong_foundation_suzanne_allman_1.txt",
+      "sha256": "1d815132755397da1269ae3a4e126877689c732a76ffc6522277e0b22e0fc888"
+    },
+    {
+      "file": "tests/resumes/smoke/sales_strong_foundation_mark_sherrod_1.txt",
+      "sha256": "d35ed54bc4c6a06da32e27594a1e7800b9116e435fd3a5080c112f4d371cbcc1"
+    },
+    {
+      "file": "tests/resumes/smoke/talent_leader_high_bar_matt_shaw_current_1.txt",
+      "sha256": "b82c30976c86c45adfaf902e7e1ad83307f39b36a36ae79fe3c16123e6a98d6f"
+    },
+    {
+      "file": "web/prompts/resume_ideas_v1.txt",
+      "sha256": "5137fbb3254b009891f1ef15aee94e4120ec50bef96728038a37256c46f965e7"
+    },
+    {
+      "file": "web/prompts/resume_v3.txt",
+      "sha256": "cbec171ebd995859fda934f74adc7d92edf163b8e9fcede56b72d1d480415142"
+    }
+  ],
+  "validators": [
+    {
+      "file": "web/components/workspace/report/ReportTypes.ts",
+      "sha256": "a78f83c244f7d1b1e43b3f7246176a52a842c64ab14eec39f40183df614540f2"
+    },
+    {
+      "file": "web/lib/backend/errors.ts",
+      "sha256": "a46f5326baf31f9bc8a074423a7bf763021a6dc3d378e12bfabfd1e287e903ec"
+    },
+    {
+      "file": "web/lib/backend/validation.ts",
+      "sha256": "ba4ca1f442fdbb8840b4d2f48a60a2a415b294bdfa2864506490585295104e91"
+    },
+    {
+      "file": "web/lib/evals/checks.ts",
+      "sha256": "b5f6558ee4fdfed680f157312fec65d552cac36a830fcb2ae23c2a3f449690f2"
+    },
+    {
+      "file": "web/lib/evals/contract-checks.ts",
+      "sha256": "039e23ce20c3ba06df9c3368bca3c00be4dd177c36a81c13e890609f166757fa"
+    },
+    {
+      "file": "web/lib/evals/evidence-checks.ts",
+      "sha256": "00ddc1fac77af86b3ba7a663fe479203e7c2d7566b97144665e00d6e53dc232b"
+    },
+    {
+      "file": "web/lib/evals/integrity-checks.ts",
+      "sha256": "4e5a7293bb65570b3f83a43223b1a73ae6c6c33abd50e1ab8cc4fc25ff332136"
+    },
+    {
+      "file": "web/lib/evals/types.ts",
+      "sha256": "a7893f51821658172691d46594602b2dd993f9c6622b70d26de1fd6c4f49804d"
+    },
+    {
+      "file": "web/lib/evals/worklist-checks.ts",
+      "sha256": "8a2df36cadbcdcad15e63cff59bd35a5a99dc207504d5e49662c67727c6d6f61"
+    },
+    {
+      "file": "web/lib/evals/worklist-readiness-replay.ts",
+      "sha256": "b00be5c5db0711a8141d04c1b0acc536ab80fca21aca479a414a6f957090b91e"
+    },
+    {
+      "file": "web/lib/llm/cost.ts",
+      "sha256": "e55a44654de347c1dfd63141f78788d2985aa55829b432372dd50e93b793a7c1"
+    },
+    {
+      "file": "web/lib/llm/evidence-canonicalizer.ts",
+      "sha256": "6a449ea8e20e595a32fae32ed6e17291a20e86b874b2516fb5e3048ad8a537c6"
+    },
+    {
+      "file": "web/lib/llm/grounding.ts",
+      "sha256": "cc6bfa6d21bf11d24fc6cad0b93d27ceea9ab16bc36baf905d0a5c90306852f7"
+    },
+    {
+      "file": "web/lib/llm/model-config.ts",
+      "sha256": "3bd0204d0ecc3057b843d6c04bfab71543f6bc0e184871d7e3d32a174d807324"
+    },
+    {
+      "file": "web/lib/llm/narrative-fact-support.ts",
+      "sha256": "c57b78e6dba8ce9b21381ba2c94b93173a6944836eff81e61dc23268271621c7"
+    },
+    {
+      "file": "web/lib/llm/narrative-meaning.ts",
+      "sha256": "329a131ade7a90684c1c0faa56a9b908b76b7d4d8b556ae4818efd9039a81a86"
+    },
+    {
+      "file": "web/lib/llm/narrative-token-policy.ts",
+      "sha256": "43d967d24c7d304c4b8ab17686d393f8826d86c4ac02bbeb2cd63b095d388146"
+    },
+    {
+      "file": "web/lib/llm/optional-report-metadata.ts",
+      "sha256": "ce4c0f67fae58685f0f50df3c258d8325e0656029b6d0642caa9bc2ee0caa17e"
+    },
+    {
+      "file": "web/lib/llm/report-narrative-exceptions.ts",
+      "sha256": "3b6e0225254cd840a169030152a4c48297825baef865c43dc872a353258bd3cf"
+    },
+    {
+      "file": "web/lib/llm/report-placeholder-policy.ts",
+      "sha256": "91cf012b235caaf7885dc6d9b1ddb57a57872a2fdf6e15d0e02b70c11db869a3"
+    },
+    {
+      "file": "web/lib/llm/report-polarity-policy.ts",
+      "sha256": "09d0bca1c245c4fff07b183a57cb559c7dfcb9782817eed47eb08b3dcf55134c"
+    },
+    {
+      "file": "web/lib/llm/report-sentences.ts",
+      "sha256": "176ca1af0902acf04184729cafe7ff03f841a943d72fc6b90a7cdd986c02ddea"
+    },
+    {
+      "file": "web/lib/llm/report-source-locators.ts",
+      "sha256": "c7b2cdefb69ea1c893b8044867147057d046c8e036aa5d3901dbbf4f78edeb70"
+    },
+    {
+      "file": "web/lib/llm/reportRepair.ts",
+      "sha256": "4abf9c66785b43414a3d85a86e41a961f4db1734d889ae2c515c938d0e5df63b"
+    },
+    {
+      "file": "web/lib/llm/requirement-evidence.ts",
+      "sha256": "0ae1c4adf37ad29f6850476b047a784beb160179ef457240f6ed0a5dc0cf75d0"
+    },
+    {
+      "file": "web/lib/llm/resume-score-calibration.ts",
+      "sha256": "7b1e2d56f5da9263c058510a6a0e171e1502edc7811bd9b6375e764cfc66a9e5"
+    },
+    {
+      "file": "web/lib/llm/rewrite-screen.ts",
+      "sha256": "cc338c80d99f0855bb046652ec66685fc88c0fc168c1cd84a75530e82a4dd3ac"
+    },
+    {
+      "file": "web/lib/llm/semantic-missing-policy.ts",
+      "sha256": "8900dcde16aefd4d3dbad14fe4680237f9d8cde80fb8c9f3d3f0d2e2e3a65e0f"
+    },
+    {
+      "file": "web/lib/llm/source-evidence-segmentation.ts",
+      "sha256": "911fd88f2b8ae404bc6c59ab12d8e95e8cbf2dd0b035926d2028a85e60cd6c01"
+    },
+    {
+      "file": "web/lib/llm/source-fidelity.ts",
+      "sha256": "2b4384ae8751b50316433d270bb3309b93a4589309f67fa49421019210bca164"
+    },
+    {
+      "file": "web/lib/llm/source-industry-signals.ts",
+      "sha256": "d6c09ce93b084dc92ceb3d44fd4516a801b3cda29aab1565decd1588e7992eac"
+    },
+    {
+      "file": "web/lib/llm/source-memo.ts",
+      "sha256": "8e600baf38f3cc141a4290392f30359f802a967da5a86f5f9c44204684b00e25"
+    },
+    {
+      "file": "web/lib/llm/source-relationship-fidelity.ts",
+      "sha256": "6759644d6543fcd4a829ef3fe7eb03094af012b04f068c5371c5cc3f82ac8fcb"
+    },
+    {
+      "file": "web/lib/llm/source-sections.ts",
+      "sha256": "b31cd6493e76281440a64da5be7f17cce78643dfe484bce3f4f56fd83eb11047"
+    },
+    {
+      "file": "web/lib/llm/source-semantic-patterns.ts",
+      "sha256": "d664328ee79b5e2191f3fe066baffd5ed21f8fe08d7c9a3dfa42212c25a846ce"
+    },
+    {
+      "file": "web/lib/llm/worklist-grounding.ts",
+      "sha256": "c086a55bbbea06f78ebf24950de5db8ad0031d15b95aabd90afa32b390a88a77"
+    },
+    {
+      "file": "web/lib/llm/worklist-schema.ts",
+      "sha256": "85da74023909576de3a01e8757d942b19b14d24d1258b76bcc8f64a864267ad5"
+    },
+    {
+      "file": "web/lib/llm/worklist-validator.ts",
+      "sha256": "ec8fd9c7d356101f659c43a2ce2edd24ba1bb8199fad04c6f8976bcc90be161d"
+    },
+    {
+      "file": "web/lib/observability/logger.ts",
+      "sha256": "eae7f65bcbaf5d49a7565ee1432ba2c47889df798e46f75ed6ce3356e8705471"
+    },
+    {
+      "file": "web/lib/observability/outcomes.ts",
+      "sha256": "3fdf5db923d0c32bbca52e3d4b764b2f0291896c23b8add8466f3a1bf5638467"
+    },
+    {
+      "file": "web/lib/observability/pii.ts",
+      "sha256": "fe5c8722a2c8e83b36e25e128eba5df488dcfe1cf6a58b5bc3adb83787a15fe9"
+    },
+    {
+      "file": "web/lib/reports/observation-tokens.ts",
+      "sha256": "ccc4830af9d5f5942f9e92ec5c652e28aae8dd422196336e99b799a30ca90878"
+    },
+    {
+      "file": "web/lib/reports/report-integrity.ts",
+      "sha256": "d06a32109c2e5f47121177bd6ccd003dca9e42ba0001d78680fa76b7f9e5b471"
+    },
+    {
+      "file": "web/lib/reports/report-presentation.ts",
+      "sha256": "a20b13cd1ea07891ea99d60451bb30b9cef9a4b7d98bae9a3a6ec4b05052240b"
+    },
+    {
+      "file": "web/lib/reports/score-band.ts",
+      "sha256": "2708c721580daa93087f6c11c2114267fc2906ed031870f6aa8379b0caf40ffa"
+    },
+    {
+      "file": "web/lib/resume-input.ts",
+      "sha256": "f1e6be56a99bb57add8ab85c5206068029d48d46cc4a77470ab8f757b09969ba"
+    },
+    {
+      "file": "web/lib/score-utils.ts",
+      "sha256": "6fe639c4a3740fd646022c5134deab9ed42488bc1527c786fdec5f1fe80a836b"
+    },
+    {
+      "file": "web/lib/security/effectiveJobDescription.ts",
+      "sha256": "82b4c910ada2703b6b6e3edda79516e080c9210f9e42370b3f191c62b772df8e"
+    },
+    {
+      "file": "web/lib/security/inputSanitization.ts",
+      "sha256": "8fd8f46aaa8006c6ebe22226c355980584e29fab6db339e79aeb5881152650f0"
+    },
+    {
+      "file": "web/lib/validation/resume-report-schema.ts",
+      "sha256": "93f991a601decffed1080446747822d85ae5f5d2991a4270437c543dec6c3a2b"
+    },
+    {
+      "file": "web/lib/validation/schemas.ts",
+      "sha256": "3b9aefd38c708ff24cfb11b2a06f6782806f4ca11b20b78f5e4dc70990be15bc"
+    },
+    {
+      "file": "web/package-lock.json",
+      "sha256": "0e3036628083417327ee7212563d9268d7518f49c39550af98381849946ea86b"
+    }
+  ],
+  "results": [
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b01_icu_nurse__run1.json",
+      "sourceSha256": "56dffe47e7c92bea967631c8be8fd04673c7a601a66dd7237babcdde689d7323",
+      "caseId": "b01_icu_nurse",
+      "resumePath": "tests/resumes/blindpick/synth_bp_icu_nurse_1.txt",
+      "resumeSha256": "a52d8cb032163bcc7edaa524fe56cb06594cccf78f90a9ba023148de11fe18ef",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "PASS",
+      "fixtureId": "synth_bp_icu_nurse_1",
+      "tier": "bulk",
+      "expectedScore": {
+        "min": 62,
+        "max": 80
+      },
+      "score": 80,
+      "firstRefusal": null,
+      "repaired": false,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b02_teacher__run1.json",
+      "sourceSha256": "634334f975382dddaf7f6f0d4aa494a3f8bdf4328cb5b7db66bb6a89fe76e287",
+      "caseId": "b02_teacher",
+      "resumePath": "docs/audits/2026-11-live-judgment/resumes/b_teacher.txt",
+      "resumeSha256": "7d89b420ec093fb2b4c948a14fbcee2a65d2a90d95c146e4f916e2d0a37955ee",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "UNCALIBRATED",
+      "fixtureId": null,
+      "firstRefusal": null,
+      "repaired": false,
+      "score": 86,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b03_welder__run1.json",
+      "sourceSha256": "b54300c48246580af36e3f849bc46dcacd6a24a4f06ae1b196a7615ef80abfde",
+      "caseId": "b03_welder",
+      "resumePath": "docs/audits/2026-11-live-judgment/resumes/b_welder.txt",
+      "resumeSha256": "b9732bf7b68078f8e956a420ac5c412e65809428f2714874ab4044ea5bd317f8",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "UNCALIBRATED",
+      "fixtureId": null,
+      "firstRefusal": null,
+      "repaired": false,
+      "score": 87,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b04_retail_store_manager__run1.json",
+      "sourceSha256": "e01c83e167721b713ae3822975b4033ec996219c536d9579df083429f4779c40",
+      "caseId": "b04_retail_store_manager",
+      "resumePath": "tests/resumes/blindpick/synth_bp_retail_store_manager_1.txt",
+      "resumeSha256": "44e7ec6fe998a1b320b02b5bb24f3945f6d89a3e2777dca5e1be857f4727486b",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "PASS",
+      "fixtureId": "synth_bp_retail_store_manager_1",
+      "tier": "bulk",
+      "expectedScore": {
+        "min": 78,
+        "max": 92
+      },
+      "score": 82,
+      "firstRefusal": null,
+      "repaired": false,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b05_paralegal__run1.json",
+      "sourceSha256": "943582592f28566e29c9110494214a3219f31fa2c8cd96a204926835d27b31c7",
+      "caseId": "b05_paralegal",
+      "resumePath": "tests/resumes/blindpick/synth_bp_paralegal_1.txt",
+      "resumeSha256": "1860914f19aa0734b31d49c2046f7d394bc16dd5acb16f4c1fd6ee102a7f8568",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "PASS",
+      "fixtureId": "synth_bp_paralegal_1",
+      "tier": "bulk",
+      "expectedScore": {
+        "min": 64,
+        "max": 82
+      },
+      "score": 80,
+      "firstRefusal": null,
+      "repaired": false,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b06_staff_accountant__run1.json",
+      "sourceSha256": "db0516cf15ec96a5d4cd707c9ef3f1bd19eaa5d95dcc52ce9421ac210a686f89",
+      "caseId": "b06_staff_accountant",
+      "resumePath": "tests/resumes/blindpick/synth_bp_staff_accountant_1.txt",
+      "resumeSha256": "5ffd1542f9efd3cfd81adbb3bf5a41f679b5c13e4c013d509922f301a1d5ca53",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "PASS",
+      "fixtureId": "synth_bp_staff_accountant_1",
+      "tier": "bulk",
+      "expectedScore": {
+        "min": 52,
+        "max": 70
+      },
+      "score": 64,
+      "firstRefusal": null,
+      "repaired": false,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b07_account_executive__run1.json",
+      "sourceSha256": "8a8cae16021a512862558bb1299462cdd5ae54cd1d11a151caddcf6410a8ff4c",
+      "caseId": "b07_account_executive",
+      "resumePath": "tests/resumes/blindpick/synth_bp_account_executive_1.txt",
+      "resumeSha256": "f964f76d12cdd6ba10596473b309c0f44b18de7112f27369c32227cd287f6e94",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "PASS",
+      "fixtureId": "synth_bp_account_executive_1",
+      "tier": "bulk",
+      "expectedScore": {
+        "min": 70,
+        "max": 86
+      },
+      "score": 80,
+      "firstRefusal": null,
+      "repaired": false,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b08_warehouse_supervisor__run1.json",
+      "sourceSha256": "733cc480aa00aa993ea4393381d7c00b337dbe1331a791ac81b1d4f5bd9473fa",
+      "caseId": "b08_warehouse_supervisor",
+      "resumePath": "tests/resumes/blindpick/synth_bp_warehouse_supervisor_1.txt",
+      "resumeSha256": "4f23aeaad42ee6b5836bf39d21414eb87585621802a43fd069caf4dd7d77509a",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "WARN",
+      "fixtureId": "synth_bp_warehouse_supervisor_1",
+      "tier": "bulk",
+      "expectedScore": {
+        "min": 56,
+        "max": 75
+      },
+      "score": 77,
+      "firstRefusal": null,
+      "repaired": false,
+      "errors": [],
+      "warnings": [
+        {
+          "code": "W_MECHANICAL_COPY",
+          "message": "cards.1.cannot_tell repeats the clause \"for the supervisor\""
+        }
+      ]
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b09_executive_assistant_freelance__run1.json",
+      "sourceSha256": "290a80a9a69f90705d7a01998a33bd02ede6ce80715f75315625b0e8dc72c3ab",
+      "caseId": "b09_executive_assistant_freelance",
+      "resumePath": "tests/resumes/blindpick/synth_bp_executive_assistant_freelance_1.txt",
+      "resumeSha256": "e2e2776e0968eb25004b7dc286763468c2274764a27e8f532dc243a3233d07c3",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "PASS",
+      "fixtureId": "synth_bp_executive_assistant_freelance_1",
+      "tier": "bulk",
+      "expectedScore": {
+        "min": 58,
+        "max": 76
+      },
+      "score": 75,
+      "firstRefusal": null,
+      "repaired": false,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b10_it_support_recent_grad__run1.json",
+      "sourceSha256": "088842216efeb645ea47218de2b40b40d3aa7d01dc8e115a5c90ede90a393c0d",
+      "caseId": "b10_it_support_recent_grad",
+      "resumePath": "tests/resumes/blindpick/synth_bp_it_support_recent_grad_1.txt",
+      "resumeSha256": "6aac1aade9d7a63c473e324e9d4010a6421ea06868ff0b898b625a8534cf26dc",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "PASS",
+      "fixtureId": "synth_bp_it_support_recent_grad_1",
+      "tier": "bulk",
+      "expectedScore": {
+        "min": 52,
+        "max": 70
+      },
+      "score": 59,
+      "firstRefusal": null,
+      "repaired": false,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b11_recent_grad_bad__run1.json",
+      "sourceSha256": "9dee870e58673ff05b1b9fe0238f2454e196032a9c8b4a34115769f4d54e6fb3",
+      "caseId": "b11_recent_grad_bad",
+      "resumePath": "tests/resumes/countcheck/synth_cc_recent_grad_bad_1.txt",
+      "resumeSha256": "b6050d2872696426733e52fefc3754f3902bd7b1192ea7b2f180c313e53e2468",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "PASS",
+      "fixtureId": "synth_cc_recent_grad_bad_1",
+      "tier": "bulk",
+      "expectedScore": {
+        "min": 45,
+        "max": 85
+      },
+      "score": 55,
+      "firstRefusal": null,
+      "repaired": false,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b12_coo_executive_two_page__run1.json",
+      "sourceSha256": "64ea33934ca62827d1c8a8922badb8fbc02daa5f4ed826379193bb7e4e799e76",
+      "caseId": "b12_coo_executive_two_page",
+      "resumePath": "docs/audits/2026-11-live-judgment/resumes/b_coo_executive.txt",
+      "resumeSha256": "213474e9b27355f8a085204e3dac05f65782d74d43b9b531cb2afd6a3afe1b79",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "UNCALIBRATED",
+      "fixtureId": null,
+      "firstRefusal": null,
+      "repaired": false,
+      "score": 89,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b13_marketing_vp_elite__run1.json",
+      "sourceSha256": "de4f01cd2112e5663ffbcd793122caca83e0d01dfd6202024f55d3b3bc7262ed",
+      "caseId": "b13_marketing_vp_elite",
+      "resumePath": "tests/resumes/golden/synth_marketing_manager_vp_elite_1766960221358.txt",
+      "resumeSha256": "a5f6a1bba91362463218b3e6ea358e8bc5b470add84f7b5eee7d69f1078c2bf0",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "PASS",
+      "fixtureId": "synth_marketing_manager_vp_elite_1",
+      "tier": "golden",
+      "expectedScore": {
+        "min": 85,
+        "max": 95
+      },
+      "score": 88,
+      "firstRefusal": null,
+      "repaired": false,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b14_teacher_to_instructional_designer__run1.json",
+      "sourceSha256": "66a98e6c5a0e9d786babd4535d8b3dba1d6006bbe47b74f82e431812b408be04",
+      "caseId": "b14_teacher_to_instructional_designer",
+      "resumePath": "tests/resumes/blindpick/synth_bp_teacher_to_instructional_designer_1.txt",
+      "resumeSha256": "834ed54c2de68b69a032d304a18dda36925e354522e5b1cfe475d0beca0b4e9a",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "PASS",
+      "fixtureId": "synth_bp_teacher_to_instructional_designer_1",
+      "tier": "bulk",
+      "expectedScore": {
+        "min": 60,
+        "max": 78
+      },
+      "score": 68,
+      "firstRefusal": null,
+      "repaired": false,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b15_career_changer_maria__run1.json",
+      "sourceSha256": "f8455416b39cccd6f9586c71fb1ba47544ecbf0c4806b76ce04ea0f91dc070aa",
+      "caseId": "b15_career_changer_maria",
+      "resumePath": "docs/design/2026-11-bar/resumes/2-career-changer-maria.txt",
+      "resumeSha256": "cf6e68aeefb5409ae44ad20d35b5dfe5a27f0f29de2d56c226d1b8891078a1b0",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "UNCALIBRATED",
+      "fixtureId": null,
+      "firstRefusal": null,
+      "repaired": false,
+      "score": 72,
+      "errors": [],
+      "warnings": [
+        {
+          "code": "W_SPECIFICITY_LOW",
+          "message": "Card 1 example has no blank to fill"
+        }
+      ]
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b16_career_changer_bad__run1.json",
+      "sourceSha256": "6b35f75950581c2b3846a9c1c72c04e2ac1a7588ef9e5c0aac0dbff9ba83c27f",
+      "caseId": "b16_career_changer_bad",
+      "resumePath": "tests/resumes/countcheck/synth_cc_career_changer_bad_1.txt",
+      "resumeSha256": "12d7e0e5cf8c013f2914db6c8489b5ecd2eb00d0ec3fc732e6316d80a89deffc",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "PASS",
+      "fixtureId": "synth_cc_career_changer_bad_1",
+      "tier": "bulk",
+      "expectedScore": {
+        "min": 45,
+        "max": 85
+      },
+      "score": 59,
+      "firstRefusal": null,
+      "repaired": false,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b17_hr_generalist_career_break__run1.json",
+      "sourceSha256": "8e8356b6861862543f5788c2734b749ba4e0beded0714587aa855af210b15678",
+      "caseId": "b17_hr_generalist_career_break",
+      "resumePath": "tests/resumes/blindpick/synth_bp_hr_generalist_career_break_1.txt",
+      "resumeSha256": "59c9f2306490959a56a0d7a38268e6b5db0ff40531b47983bc495f857cae8f0b",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "WARN",
+      "fixtureId": "synth_bp_hr_generalist_career_break_1",
+      "tier": "bulk",
+      "expectedScore": {
+        "min": 56,
+        "max": 74
+      },
+      "score": 67,
+      "firstRefusal": null,
+      "repaired": false,
+      "errors": [],
+      "warnings": [
+        {
+          "code": "W_MECHANICAL_COPY",
+          "message": "write_up.0 repeats the clause \"to hr generalist\""
+        }
+      ]
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b18_military_to_civilian__run1.json",
+      "sourceSha256": "79781a4a51462897a091c534802ce7220a54236d80b8c07b7a8a4c60d75ad899",
+      "caseId": "b18_military_to_civilian",
+      "resumePath": "docs/audits/2026-11-live-judgment/resumes/b_military_to_civilian.txt",
+      "resumeSha256": "c2dd1e89354ce1a86021927ffba5d85f65b3dfb021c3126f6459225f8bfd7a7e",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "UNCALIBRATED",
+      "fixtureId": null,
+      "firstRefusal": null,
+      "repaired": false,
+      "score": 89,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b19_non_native_english__run1.json",
+      "sourceSha256": "72c82943f765725de0d8cae8ac86055e360c2a1653b7e1ac5e00c6dada63aa08",
+      "caseId": "b19_non_native_english",
+      "resumePath": "docs/audits/2026-11-live-judgment/resumes/b_non_native_english.txt",
+      "resumeSha256": "b6a26fe36825d1810e73236e21445163948f02ce6be0d9328e9ccaf50cb59c16",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "UNCALIBRATED",
+      "fixtureId": null,
+      "firstRefusal": null,
+      "repaired": false,
+      "score": 81,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b20_customer_success_manager__run1.json",
+      "sourceSha256": "8557ca7728da808e9691e57aa0a0a6283dc4a1ad388f5e446baba84fc4eb7175",
+      "caseId": "b20_customer_success_manager",
+      "resumePath": "tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt",
+      "resumeSha256": "fe00b25220442aa026e6aa909f700301c898f430bd2cf244eafbe182c75f316d",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "PASS",
+      "fixtureId": "synth_bp_customer_success_manager_1",
+      "tier": "bulk",
+      "expectedScore": {
+        "min": 62,
+        "max": 80
+      },
+      "score": 78,
+      "firstRefusal": null,
+      "repaired": false,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b21_customer_success_manager_with_posting__run1.json",
+      "sourceSha256": "8405a4a6bd3083e4e5f1b105cbbf658a35b3190d3c8e3ebf1ffcc0174d97daee",
+      "caseId": "b21_customer_success_manager_with_posting",
+      "resumePath": "tests/resumes/blindpick/synth_bp_customer_success_manager_1.txt",
+      "resumeSha256": "fe00b25220442aa026e6aa909f700301c898f430bd2cf244eafbe182c75f316d",
+      "jobPath": "docs/audits/2026-11-live-judgment/resumes/b_posting_customer_success_manager.txt",
+      "jobSha256": "32b2527fcbda0fc1b01a384371f337f5b3018b56e2180df5c376a4ccf38fde5e",
+      "status": "UNCALIBRATED",
+      "fixtureId": null,
+      "firstRefusal": null,
+      "repaired": false,
+      "score": 76,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b22_office_manager_paragraphs__run1.json",
+      "sourceSha256": "a7cf6de4dd952112517fa34fd144a51e8d69a1f6d8074511c26e9bebba682cb6",
+      "caseId": "b22_office_manager_paragraphs",
+      "resumePath": "docs/audits/2026-11-live-judgment/resumes/b_office_manager_paragraphs.txt",
+      "resumeSha256": "ce33ce5aa6c528ef520a2ccc32684ac815b6084cea9e23d0a3885d92201fff58",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "UNCALIBRATED",
+      "fixtureId": null,
+      "firstRefusal": null,
+      "repaired": false,
+      "score": 82,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b23_pharmacy_tech_table__run1.json",
+      "sourceSha256": "60ac73e5c860282a5b8f1ed3c8a77549bca830df7d7af67587b472db1640e310",
+      "caseId": "b23_pharmacy_tech_table",
+      "resumePath": "docs/audits/2026-11-live-judgment/resumes/b_pharmacy_tech_table.txt",
+      "resumeSha256": "872695c37eba2c67784784b9af67edda0387ea5b8bbb90cd54d25ac0f2941367",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "UNCALIBRATED",
+      "fixtureId": null,
+      "firstRefusal": null,
+      "repaired": false,
+      "score": 86,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b24_physical_therapist_strong__run1.json",
+      "sourceSha256": "168ef947646afbd72d377748276268a8801a984cf47ddffbaf0dc0a47b8c6d4d",
+      "caseId": "b24_physical_therapist_strong",
+      "resumePath": "tests/resumes/countcheck/synth_cc_physical_therapist_strong_1.txt",
+      "resumeSha256": "7e013454a20249375bdb6727bacd79d8babaf49afa5b0b57f3dd11c862937163",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "PASS",
+      "fixtureId": "synth_cc_physical_therapist_strong_1",
+      "tier": "bulk",
+      "expectedScore": {
+        "min": 75,
+        "max": 95
+      },
+      "score": 89,
+      "firstRefusal": null,
+      "repaired": false,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b25_fpa_analyst_strong__run1.json",
+      "sourceSha256": "2c0e8ad9807dc82b526bacd5944872076e13a4628571cf735a21945c0a08a7eb",
+      "caseId": "b25_fpa_analyst_strong",
+      "resumePath": "tests/resumes/countcheck/synth_cc_fpa_analyst_strong_1.txt",
+      "resumeSha256": "e8604c5c03930c475f944d36090e8f6db4af1ffc417c634667c5450ff68f9cd2",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "PASS",
+      "fixtureId": "synth_cc_fpa_analyst_strong_1",
+      "tier": "bulk",
+      "expectedScore": {
+        "min": 75,
+        "max": 95
+      },
+      "score": 94,
+      "firstRefusal": null,
+      "repaired": false,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b26_construction_pm_strong__run1.json",
+      "sourceSha256": "1c96e163bf1093112951b3c913ca1b4dd91e8d52db66a5ccde7c0807460689a7",
+      "caseId": "b26_construction_pm_strong",
+      "resumePath": "tests/resumes/countcheck/synth_cc_construction_pm_strong_1.txt",
+      "resumeSha256": "548c7db64c756b5fab695853a27156e8aa67858a31cab50680d65e1ef14cc181",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "PASS",
+      "fixtureId": "synth_cc_construction_pm_strong_1",
+      "tier": "bulk",
+      "expectedScore": {
+        "min": 75,
+        "max": 95
+      },
+      "score": 87,
+      "firstRefusal": null,
+      "repaired": false,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b27_backend_engineer_senior__run1.json",
+      "sourceSha256": "822d30199a52465c22bd30ed0590a1713f36811696a38cce2a98b681ea98085a",
+      "caseId": "b27_backend_engineer_senior",
+      "resumePath": "tests/resumes/blindpick/synth_bp_backend_engineer_senior_1.txt",
+      "resumeSha256": "92a71c8e81a037980a571ba4d2007cab76d8f9f04b6517e1ff23e45a0383be59",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "PASS",
+      "fixtureId": "synth_bp_backend_engineer_senior_1",
+      "tier": "bulk",
+      "expectedScore": {
+        "min": 84,
+        "max": 96
+      },
+      "score": 90,
+      "firstRefusal": null,
+      "repaired": false,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b28_cybersecurity_analyst__run1.json",
+      "sourceSha256": "fb0d46f0034d427823b03d45986cfb96ff85ffcf9bb59081f1c0042d651fb57d",
+      "caseId": "b28_cybersecurity_analyst",
+      "resumePath": "tests/resumes/blindpick/synth_bp_cybersecurity_analyst_1.txt",
+      "resumeSha256": "3af143d6457f920bcfc404cff6c5ed95c9a5719c1320855f0e0d464650526db6",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "PASS",
+      "fixtureId": "synth_bp_cybersecurity_analyst_1",
+      "tier": "bulk",
+      "expectedScore": {
+        "min": 80,
+        "max": 94
+      },
+      "score": 91,
+      "firstRefusal": "The model response failed the worklist contract at score: is 88 with no card that needs work; a page with nothing to fix scores at least 90.",
+      "repaired": true,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b29_mechanical_engineer__run1.json",
+      "sourceSha256": "cb09ceb4305695e8a7475c267d612f2317fd66af66f7d2e35ca662ab5e5808f8",
+      "caseId": "b29_mechanical_engineer",
+      "resumePath": "tests/resumes/blindpick/synth_bp_mechanical_engineer_1.txt",
+      "resumeSha256": "415a2cd89f45a119a48620793f6f06d7e83938cf3176426d201256d134ab6044",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "PASS",
+      "fixtureId": "synth_bp_mechanical_engineer_1",
+      "tier": "bulk",
+      "expectedScore": {
+        "min": 60,
+        "max": 78
+      },
+      "score": 68,
+      "firstRefusal": null,
+      "repaired": false,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b30_social_worker__run1.json",
+      "sourceSha256": "8804873cfd75a5aca692031dec0ba7d084b59d7870daec2eee54d18281fffd16",
+      "caseId": "b30_social_worker",
+      "resumePath": "tests/resumes/blindpick/synth_bp_social_worker_1.txt",
+      "resumeSha256": "220fc861657d503d71b84a4240b5f5bc70c869aa0f1b595da07293db985b982f",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "PASS",
+      "fixtureId": "synth_bp_social_worker_1",
+      "tier": "bulk",
+      "expectedScore": {
+        "min": 58,
+        "max": 76
+      },
+      "score": 65,
+      "firstRefusal": null,
+      "repaired": false,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b31_kitchen_manager__run1.json",
+      "sourceSha256": "55edf3fdfc2bdcc25c5b030f2e2550ff93d86b0e7ea6fbff7f8f21d33e190960",
+      "caseId": "b31_kitchen_manager",
+      "resumePath": "tests/resumes/blindpick/synth_bp_kitchen_manager_1.txt",
+      "resumeSha256": "836be21294a27aec82bd92fc8dd36b03ccee25fd7f25cdf838a86a793237696a",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "PASS",
+      "fixtureId": "synth_bp_kitchen_manager_1",
+      "tier": "bulk",
+      "expectedScore": {
+        "min": 52,
+        "max": 70
+      },
+      "score": 67,
+      "firstRefusal": null,
+      "repaired": false,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b32_logistics_dispatcher__run1.json",
+      "sourceSha256": "0b9d7169bc1524116589589d44e74147130460e0c24f285dd5d915984db9fb8a",
+      "caseId": "b32_logistics_dispatcher",
+      "resumePath": "tests/resumes/blindpick/synth_bp_logistics_dispatcher_1.txt",
+      "resumeSha256": "1ae1cc83222ef2e6ac1cdf904b53aa1b78b489a7cc233802856897605942428d",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "PASS",
+      "fixtureId": "synth_bp_logistics_dispatcher_1",
+      "tier": "bulk",
+      "expectedScore": {
+        "min": 50,
+        "max": 68
+      },
+      "score": 63,
+      "firstRefusal": null,
+      "repaired": false,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b33_nonprofit_program_manager__run1.json",
+      "sourceSha256": "899007a4f2f21fcf1502585a923fc71f927477ba7add8eead52d909fc30a642e",
+      "caseId": "b33_nonprofit_program_manager",
+      "resumePath": "tests/resumes/blindpick/synth_bp_nonprofit_program_manager_1.txt",
+      "resumeSha256": "eed001bb0dd40fc28e9488669ec9cea7f7a73eecaca46214d5f584dae2b6d5c9",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "PASS",
+      "fixtureId": "synth_bp_nonprofit_program_manager_1",
+      "tier": "bulk",
+      "expectedScore": {
+        "min": 58,
+        "max": 76
+      },
+      "score": 72,
+      "firstRefusal": null,
+      "repaired": false,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b34_bank_branch_manager_gap__run1.json",
+      "sourceSha256": "53ef995a48e1b72a9749733685be980a5212a9142ce98e87716fef8011cb7b1e",
+      "caseId": "b34_bank_branch_manager_gap",
+      "resumePath": "tests/resumes/blindpick/synth_bp_bank_branch_manager_gap_1.txt",
+      "resumeSha256": "1420c9932b5d35b979aa4d895b875e2ef456676f1017e3f83c5ee350ae9ca189",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "PASS",
+      "fixtureId": "synth_bp_bank_branch_manager_gap_1",
+      "tier": "bulk",
+      "expectedScore": {
+        "min": 62,
+        "max": 80
+      },
+      "score": 77,
+      "firstRefusal": null,
+      "repaired": false,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b35_marketing_coordinator_gap__run1.json",
+      "sourceSha256": "14ba98a21cc775461575a93296a59c1882f1e52478e6867b39eb9692e1b817b5",
+      "caseId": "b35_marketing_coordinator_gap",
+      "resumePath": "tests/resumes/blindpick/synth_bp_marketing_coordinator_gap_1.txt",
+      "resumeSha256": "eb744b698d829395ca7fb3ace93d0351860ad9281132916fbf232d42c03ebf78",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "WARN",
+      "fixtureId": "synth_bp_marketing_coordinator_gap_1",
+      "tier": "bulk",
+      "expectedScore": {
+        "min": 55,
+        "max": 72
+      },
+      "score": 68,
+      "firstRefusal": null,
+      "repaired": false,
+      "errors": [],
+      "warnings": [
+        {
+          "code": "W_MECHANICAL_COPY",
+          "message": "cards.0.cannot_tell repeats the clause \"if you took\""
+        }
+      ]
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b36_product_designer_unrelated__run1.json",
+      "sourceSha256": "cf3e6f17cca55803f268dc31b267f386bc0e3ab6171b891ef450a541f43a1133",
+      "caseId": "b36_product_designer_unrelated",
+      "resumePath": "tests/resumes/blindpick/synth_bp_product_designer_unrelated_1.txt",
+      "resumeSha256": "1bdb9ae79f9dbe3ee5291318e6f8912d3364acecf7899188406d07eba1db153f",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "WARN",
+      "fixtureId": "synth_bp_product_designer_unrelated_1",
+      "tier": "bulk",
+      "expectedScore": {
+        "min": 58,
+        "max": 78
+      },
+      "score": 67,
+      "firstRefusal": null,
+      "repaired": false,
+      "errors": [],
+      "warnings": [
+        {
+          "code": "W_MECHANICAL_COPY",
+          "message": "cards.3.question repeats the clause \"what did you\""
+        }
+      ]
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b37_marketing_director_bad__run1.json",
+      "sourceSha256": "38f7f73c4918bb6bf6558a81d8a12f1ccc28768249d5ab30b5cab9f9cea8af62",
+      "caseId": "b37_marketing_director_bad",
+      "resumePath": "tests/resumes/countcheck/synth_cc_marketing_director_bad_1.txt",
+      "resumeSha256": "f0624d59dceceb9ee73afca05ff983f8205d3da2ebe4712711eb2596bd129439",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "PASS",
+      "fixtureId": "synth_cc_marketing_director_bad_1",
+      "tier": "bulk",
+      "expectedScore": {
+        "min": 45,
+        "max": 85
+      },
+      "score": 54,
+      "firstRefusal": null,
+      "repaired": false,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b38_layoff_gap_james__run1.json",
+      "sourceSha256": "1b44dd864f0ebf79edaa460185360a4b51304e52f02eb6f60546f091ced7f883",
+      "caseId": "b38_layoff_gap_james",
+      "resumePath": "docs/design/2026-11-bar/resumes/3-layoff-gap-james.txt",
+      "resumeSha256": "9ff2c78d35a73e7b304020c79e4a236c0f62eb85a82de37c83724da8a6ce928d",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "UNCALIBRATED",
+      "fixtureId": null,
+      "firstRefusal": null,
+      "repaired": false,
+      "score": 68,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b39_new_grad_daniel__run1.json",
+      "sourceSha256": "06c266ed8f3a153f69258ff6107fba77a9bdab571b93341f3dd35ff092221bc0",
+      "caseId": "b39_new_grad_daniel",
+      "resumePath": "docs/design/2026-11-bar/resumes/1-new-grad-daniel.txt",
+      "resumeSha256": "3462ee9e636e4d3adb7f5bdb87556bed636cfcf821f42734052695585a62cb5d",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "UNCALIBRATED",
+      "fixtureId": null,
+      "firstRefusal": "The model response failed the worklist contract at cards.1.question: a card that needs work carries the question that fills its blanks.",
+      "repaired": true,
+      "score": 64,
+      "errors": [],
+      "warnings": [
+        {
+          "code": "W_SPECIFICITY_LOW",
+          "message": "Card 1 example has no blank to fill"
+        }
+      ]
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/b40_senior_ic_wei__run1.json",
+      "sourceSha256": "89d067d36567395e8e9bd1f599ec26bd383aa0e1ed5f5d297263f3dac8bf31bc",
+      "caseId": "b40_senior_ic_wei",
+      "resumePath": "docs/design/2026-11-bar/resumes/4-senior-ic-wei.txt",
+      "resumeSha256": "e95b41ee5391398ba259810d134ff4a7392766f8e7fa117ad93d5d19b8ed94a5",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "UNCALIBRATED",
+      "fixtureId": null,
+      "firstRefusal": null,
+      "repaired": false,
+      "score": 79,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/h1_bad_resume__run1.json",
+      "sourceSha256": "1425de9b76cbc959e3b732ace91faa602c7fe8696f9cb39e2b29f958296a21b1",
+      "caseId": "h1_bad_resume",
+      "resumePath": "docs/audits/2026-11-live-judgment/resumes/h1_bad_resume.txt",
+      "resumeSha256": "1eaa5e429b7924630129a05ca0abf276d687ce664ed89726eb783fa17e025fb8",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "UNCALIBRATED",
+      "fixtureId": null,
+      "firstRefusal": null,
+      "repaired": false,
+      "score": 43,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/h2_thin_resume__run1.json",
+      "sourceSha256": "6c049c1e01bb02a9aae34a8073bc5c85800af50bdf0bed2305280b07990c1e28",
+      "caseId": "h2_thin_resume",
+      "resumePath": "docs/audits/2026-11-live-judgment/resumes/h2_thin_resume.txt",
+      "resumeSha256": "0ae65e2abcb50e7eb496c0bf279b40a3bbd6630aca8031421ae82863b8d35ed5",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "UNCALIBRATED",
+      "fixtureId": null,
+      "firstRefusal": null,
+      "repaired": false,
+      "score": 64,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/h3_strong_resume__run1.json",
+      "sourceSha256": "3e9bbfe86f4452ccceff7538f938877e97e475470051e72e8241a6c6936dfec9",
+      "caseId": "h3_strong_resume",
+      "resumePath": "docs/audits/2026-11-live-judgment/resumes/h3_strong_resume.txt",
+      "resumeSha256": "711aca17e0f7318c1d0d4fa3e4669aff314c355a47734d7106bb2eb6fc012418",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "UNCALIBRATED",
+      "fixtureId": null,
+      "firstRefusal": null,
+      "repaired": false,
+      "score": 95,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/h4a_academic_cv_15_pages__run1.json",
+      "sourceSha256": "822bec7ac7ccf17f2922ccca3736eb3efcf65d5445f1cad4b933f8e9b7f04a29",
+      "caseId": "h4a_academic_cv_15_pages",
+      "resumePath": "docs/audits/2026-11-live-judgment/resumes/h4a_academic_cv_15_pages.txt",
+      "resumeSha256": "c83739ba906703c58a5cdee1d8c3cdec6742bb3b849cbeada487fa110f314c48",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "REQUEST_REFUSED",
+      "fixtureId": null,
+      "firstRefusal": null,
+      "repaired": false,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/h4b_academic_cv_under_cap__run1.json",
+      "sourceSha256": "28d787c7d98e570b187607e0337a826bb148f6bdf21951968616afaebb1753b5",
+      "caseId": "h4b_academic_cv_under_cap",
+      "resumePath": "docs/audits/2026-11-live-judgment/resumes/h4b_academic_cv_under_cap.txt",
+      "resumeSha256": "adbd165f7ee34423e0602d7b81bde357a22a10bfde76e8434e30216c10430503",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "UNCALIBRATED",
+      "fixtureId": null,
+      "firstRefusal": "The model response failed the worklist contract at cards.0.question: a card that needs work carries the question that fills its blanks.",
+      "repaired": true,
+      "score": 79,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/h4c_one_paragraph__run1.json",
+      "sourceSha256": "2e73d14102d2479d8668578b1616be8bee226ce1e5c2e46fe9913364aab4cc09",
+      "caseId": "h4c_one_paragraph",
+      "resumePath": "docs/audits/2026-11-live-judgment/resumes/h4c_one_paragraph.txt",
+      "resumeSha256": "f511920a68961c81af3613491765d7123205582245e9adc00a8bf837d18c66ea",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "UNCALIBRATED",
+      "fixtureId": null,
+      "firstRefusal": null,
+      "repaired": false,
+      "score": 86,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/h5_mismatched_posting__run1.json",
+      "sourceSha256": "b98932e7655e213ac7ecb4c7c7fc1cbde07d538709867253739b3e86f9b9e6d4",
+      "caseId": "h5_mismatched_posting",
+      "resumePath": "docs/audits/2026-11-live-judgment/resumes/h5_data_analyst.txt",
+      "resumeSha256": "7bbdd7afb1b8ee26ca438829f18fe67486123dfaa7fc822193ebc907d0875abf",
+      "jobPath": "docs/audits/2026-11-live-judgment/resumes/h5_nursing_posting.txt",
+      "jobSha256": "eab01bed7e4ceb7463919ea2021f1f85f5af2041b758d8b6bfe5d74b662c92a7",
+      "status": "UNCALIBRATED",
+      "fixtureId": null,
+      "firstRefusal": null,
+      "repaired": false,
+      "score": 88,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/h6_unverifiable_claim__run1.json",
+      "sourceSha256": "d8627a43873e848c1d0cf121b44677acc56a39f46cb5499dff0f170b24750cf5",
+      "caseId": "h6_unverifiable_claim",
+      "resumePath": "docs/audits/2026-11-live-judgment/resumes/h6_unverifiable_claim.txt",
+      "resumeSha256": "f523ae9848d421f047135b3ca8cc16bd9eae87eabea7b39571b1276abb1d4378",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "UNCALIBRATED",
+      "fixtureId": null,
+      "firstRefusal": null,
+      "repaired": false,
+      "score": 65,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/t1_google_engineer_maya__run1.json",
+      "sourceSha256": "82590672587bebe7c16594c938f54a1aec863e4eb4b6332c2611bf9a91efe8d2",
+      "caseId": "t1_google_engineer_maya",
+      "resumePath": "docs/audits/2026-11-worklist-run/resumes/t1_google_engineer_maya.txt",
+      "resumeSha256": "33dda6e3127bc91e9403ec54f16eb5edb2457f302567f72abdb4e0603a91b3c0",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "UNCALIBRATED",
+      "fixtureId": null,
+      "firstRefusal": null,
+      "repaired": false,
+      "score": 69,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/fullset/t2_logos_operations_robert__run1.json",
+      "sourceSha256": "190a5d732a10b4f04e2df769bdf45d0a910a56b058a82f824d79c9c24dccf401",
+      "caseId": "t2_logos_operations_robert",
+      "resumePath": "docs/audits/2026-11-worklist-run/resumes/t2_logos_operations_robert.txt",
+      "resumeSha256": "dadfd0700868e9bb51ded2848f7368630310b4dedb9f164be5b3bdc9ceea6e96",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "UNCALIBRATED",
+      "fixtureId": null,
+      "firstRefusal": null,
+      "repaired": false,
+      "score": 68,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/targeted/fr01a_backend_ic_no_posting__run1.json",
+      "sourceSha256": "683bc8301b6cb60d426c4337a974ad06380b2aeda309436ee5a3c3192328d891",
+      "caseId": "fr01a_backend_ic_no_posting",
+      "resumePath": "docs/audits/2026-11-first-read/resumes/fr01_backend_ic_senior.txt",
+      "resumeSha256": "473f0177fffa3bc053f5a4c69f6aa3d7ecdf9c22fafb2ee8360f7be0e877aa55",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "UNCALIBRATED",
+      "fixtureId": null,
+      "firstRefusal": null,
+      "repaired": false,
+      "score": 90,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/targeted/fr01b_backend_ic_backend_posting__run1.json",
+      "sourceSha256": "3d06a0ee848f270b579fa23fcbf6c65d98ab50980fa60cec2c57f3b6c114248a",
+      "caseId": "fr01b_backend_ic_backend_posting",
+      "resumePath": "docs/audits/2026-11-first-read/resumes/fr01_backend_ic_senior.txt",
+      "resumeSha256": "473f0177fffa3bc053f5a4c69f6aa3d7ecdf9c22fafb2ee8360f7be0e877aa55",
+      "jobPath": "docs/audits/2026-11-first-read/resumes/posting_senior_backend.txt",
+      "jobSha256": "585f8c073eec4ce270692463e2a17db6fa76f07f814604db3c17e0c104199d9e",
+      "status": "UNCALIBRATED",
+      "fixtureId": null,
+      "firstRefusal": null,
+      "repaired": false,
+      "score": 94,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/targeted/fr01c_backend_ic_manager_posting__run1.json",
+      "sourceSha256": "25492775b15e11310af4d8d7c017f15c52a7446262076452b5ae29eaf71f53ce",
+      "caseId": "fr01c_backend_ic_manager_posting",
+      "resumePath": "docs/audits/2026-11-first-read/resumes/fr01_backend_ic_senior.txt",
+      "resumeSha256": "473f0177fffa3bc053f5a4c69f6aa3d7ecdf9c22fafb2ee8360f7be0e877aa55",
+      "jobPath": "docs/audits/2026-11-first-read/resumes/posting_engineering_manager.txt",
+      "jobSha256": "ba9e87de86a1de380c9662b1493dcb8f643dc5bf1558b6ee17529992853c6662",
+      "status": "UNCALIBRATED",
+      "fixtureId": null,
+      "firstRefusal": null,
+      "repaired": false,
+      "score": 91,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/targeted/fr02a_marketing_skills_no_posting__run1.json",
+      "sourceSha256": "f35b6d2bb5797d1664df0fdb400ebb8548647b04de007f8fafb019a014bcdbe2",
+      "caseId": "fr02a_marketing_skills_no_posting",
+      "resumePath": "docs/audits/2026-11-first-read/resumes/fr02_marketing_coordinator_skills.txt",
+      "resumeSha256": "a56c9826825d780214c560c116e9272f32c8b774701907e99832ef6ec0b8e3fe",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "UNCALIBRATED",
+      "fixtureId": null,
+      "firstRefusal": null,
+      "repaired": false,
+      "score": 65,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/targeted/fr02b_marketing_skills_hubspot_posting__run1.json",
+      "sourceSha256": "863c2bd66e2470dcb3e44be5104f6631735211af7835f9718ffcee137869ff2f",
+      "caseId": "fr02b_marketing_skills_hubspot_posting",
+      "resumePath": "docs/audits/2026-11-first-read/resumes/fr02_marketing_coordinator_skills.txt",
+      "resumeSha256": "a56c9826825d780214c560c116e9272f32c8b774701907e99832ef6ec0b8e3fe",
+      "jobPath": "docs/audits/2026-11-first-read/resumes/posting_marketing_hubspot.txt",
+      "jobSha256": "578087583002beab9f80f2b12be305816e621ea1e2f5508af390eb7051a263a8",
+      "status": "UNCALIBRATED",
+      "fixtureId": null,
+      "firstRefusal": null,
+      "repaired": false,
+      "score": 65,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/targeted/fr03_account_executive_quota__run1.json",
+      "sourceSha256": "1aa4595c79c9209bb5a2f483fa79cbb6c22e96f81396f5f2b663bf1a7b8f3f37",
+      "caseId": "fr03_account_executive_quota",
+      "resumePath": "docs/audits/2026-11-first-read/resumes/fr03_account_executive_quota.txt",
+      "resumeSha256": "1af2456444c94158085073ca6a146353414d58ee471e3c70ac1e03fd7f347adf",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "UNCALIBRATED",
+      "fixtureId": null,
+      "firstRefusal": null,
+      "repaired": false,
+      "score": 77,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/targeted/fr04_financial_analyst_frames__run1.json",
+      "sourceSha256": "270de0798915e92208726b617637198ff0ad0ef8d9a73b27f176303f39711642",
+      "caseId": "fr04_financial_analyst_frames",
+      "resumePath": "docs/audits/2026-11-first-read/resumes/fr04_financial_analyst_frames.txt",
+      "resumeSha256": "34f14f6df182002d0555184608a9897ef1688d93d222f353e7a53fca546ddb65",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "UNCALIBRATED",
+      "fixtureId": null,
+      "firstRefusal": null,
+      "repaired": false,
+      "score": 79,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/targeted/fr05_nurse_no_units__run1.json",
+      "sourceSha256": "566ec1e1d59f831992419800184aa2e0d9523d555f8df0d200822596b13db38f",
+      "caseId": "fr05_nurse_no_units",
+      "resumePath": "docs/audits/2026-11-first-read/resumes/fr05_nurse_no_units.txt",
+      "resumeSha256": "46d392485f8498d11852f2d4588d800b42bd628f4fb7e61c5f3747a6fba875dc",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "UNCALIBRATED",
+      "fixtureId": null,
+      "firstRefusal": null,
+      "repaired": false,
+      "score": 65,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/targeted/fr06_senior_director_duties__run1.json",
+      "sourceSha256": "249596a7ec798001bb7ab2e57c1887e9fbe309d8b7153e4267663b676f976176",
+      "caseId": "fr06_senior_director_duties",
+      "resumePath": "docs/audits/2026-11-first-read/resumes/fr06_senior_director_duties.txt",
+      "resumeSha256": "684578d84a894aad532a6ff327def34ebbdb5f9a6b504f71ee8676432a7e2851",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "UNCALIBRATED",
+      "fixtureId": null,
+      "firstRefusal": null,
+      "repaired": false,
+      "score": 64,
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "source": "docs/audits/2026-11-first-read/outputs/upgrades3/targeted/fr07_hidden_text__run1.json",
+      "sourceSha256": "79afd5c9395b4d8aa25c8c64de8e3883acfb4737a8b91b421745eda778e1a8a5",
+      "caseId": "fr07_hidden_text",
+      "resumePath": "docs/audits/2026-11-first-read/resumes/fr07_hidden_text.txt",
+      "resumeSha256": "d30003d33cb9995df652c3950f436508a23053a8f9d7ebf206a7a14caa162afd",
+      "jobPath": null,
+      "jobSha256": null,
+      "status": "UNCALIBRATED",
+      "fixtureId": null,
+      "firstRefusal": "The model response failed the worklist contract at cards.2.example: a line card carries the line with the detail in.",
+      "repaired": true,
+      "score": 72,
+      "errors": [],
+      "warnings": []
+    }
+  ]
+}

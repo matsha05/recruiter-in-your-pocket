@@ -3,14 +3,14 @@
   "counts": {
     "files_scanned": 429,
     "files_with_copy": 260,
-    "strings": 3045,
-    "unique_strings": 2536
+    "strings": 3050,
+    "unique_strings": 2539
   },
   "by_moment": {
     "research": 988,
-    "account": 442,
+    "account": 443,
     "marketing": 418,
-    "report": 323,
+    "report": 327,
     "pricing": 218,
     "upload": 155,
     "legal": 111,
@@ -12947,7 +12947,18 @@
     {
       "text": "We couldn't keep that answer. Try again.",
       "kind": "key:message",
-      "line": 67,
+      "line": 75,
+      "file": "web/app/api/reports/[id]/answers/route.ts",
+      "routes": [
+        "/api/reports/[id]/answers"
+      ],
+      "moment": "account",
+      "table": "api"
+    },
+    {
+      "text": "This report isn't in your account.",
+      "kind": "key:message",
+      "line": 78,
       "file": "web/app/api/reports/[id]/answers/route.ts",
       "routes": [
         "/api/reports/[id]/answers"
@@ -37771,9 +37782,61 @@
       "table": "workspace"
     },
     {
+      "text": "Cleared from this report.",
+      "kind": "const",
+      "line": 171,
+      "file": "web/components/workspace/report/worklist/WorklistCard.tsx",
+      "routes": [
+        "/reports/[id]",
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "Kept with this report.",
+      "kind": "const",
+      "line": 171,
+      "file": "web/components/workspace/report/worklist/WorklistCard.tsx",
+      "routes": [
+        "/reports/[id]",
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "Keeping this with your report…",
+      "kind": "const",
+      "line": 172,
+      "file": "web/components/workspace/report/worklist/WorklistCard.tsx",
+      "routes": [
+        "/reports/[id]",
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "Our bad. We couldn't save these changes.",
+      "kind": "const",
+      "line": 172,
+      "file": "web/components/workspace/report/worklist/WorklistCard.tsx",
+      "routes": [
+        "/reports/[id]",
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
       "text": "Filled in",
       "kind": "jsx-text",
-      "line": 177,
+      "line": 184,
       "file": "web/components/workspace/report/worklist/WorklistCard.tsx",
       "routes": [
         "/reports/[id]",
@@ -37786,7 +37849,7 @@
     {
       "text": "Left as it is. It's optional, and the line already works.",
       "kind": "jsx-text",
-      "line": 255,
+      "line": 262,
       "file": "web/components/workspace/report/worklist/WorklistCard.tsx",
       "routes": [
         "/reports/[id]",
@@ -37799,7 +37862,7 @@
     {
       "text": "Left blank, and that's fine. Not every line needs every detail. Let's make sure the rest of your resume gives a recruiter something to grab onto.",
       "kind": "jsx-text",
-      "line": 256,
+      "line": 263,
       "file": "web/components/workspace/report/worklist/WorklistCard.tsx",
       "routes": [
         "/reports/[id]",
@@ -37812,7 +37875,7 @@
     {
       "text": "Fill it in after all",
       "kind": "jsx-text",
-      "line": 257,
+      "line": 264,
       "file": "web/components/workspace/report/worklist/WorklistCard.tsx",
       "routes": [
         "/reports/[id]",
@@ -37825,7 +37888,7 @@
     {
       "text": "Copy the line",
       "kind": "key:label",
-      "line": 266,
+      "line": 273,
       "file": "web/components/workspace/report/worklist/WorklistCard.tsx",
       "routes": [
         "/reports/[id]",
@@ -37838,7 +37901,7 @@
     {
       "text": "I don't know yet",
       "kind": "jsx-text",
-      "line": 273,
+      "line": 280,
       "file": "web/components/workspace/report/worklist/WorklistCard.tsx",
       "routes": [
         "/reports/[id]",
@@ -37851,7 +37914,7 @@
     {
       "text": "Every fact in it is from your resume or your answers.",
       "kind": "jsx-text",
-      "line": 276,
+      "line": 283,
       "file": "web/components/workspace/report/worklist/WorklistCard.tsx",
       "routes": [
         "/reports/[id]",
@@ -37864,7 +37927,7 @@
     {
       "text": "Couldn&apos;t copy. Select the text and copy it yourself.",
       "kind": "jsx-text",
-      "line": 277,
+      "line": 284,
       "file": "web/components/workspace/report/worklist/WorklistCard.tsx",
       "routes": [
         "/reports/[id]",
@@ -37875,9 +37938,9 @@
       "table": "workspace"
     },
     {
-      "text": "Kept with this report.",
+      "text": "Try saving again",
       "kind": "jsx-text",
-      "line": 280,
+      "line": 291,
       "file": "web/components/workspace/report/worklist/WorklistCard.tsx",
       "routes": [
         "/reports/[id]",

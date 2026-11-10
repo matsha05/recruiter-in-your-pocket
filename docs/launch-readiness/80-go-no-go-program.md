@@ -18,7 +18,7 @@ The promise is simple: upload or paste a resume, optionally add a job, and get t
 - Optional job context
 - Recruiter brief and sample report
 - First report included
-- One non-renewing $29 Job Search Pass with five additional reports over 30 days
+- One non-renewing $29 Job Search Pass with five additional reports over 90 days
 - Authentication and report history
 - PDF export
 - Billing restore and customer portal
@@ -80,6 +80,8 @@ Run the checklist in `95-launch-rehearsal.md` against a production-like preview.
 
 ### Gate 3: Final live quality proof
 
+November 10 update: readiness now binds the active v3 prompt (`15dff271…`) to its November 7 `upgrades3` source records. The bounded offline replay contains 28 calibrated resume-only scenarios across 28 unique resumes: **28 PASS, 0 WARN, 0 FAIL**, with unchanged calibration ranges and launch thresholds. The complete 59-report source cohort also passes production validation; 31 uncalibrated or posting-variant reports remain outside the launch denominator and retain two specificity warnings. The original four mechanical-copy false-positive warnings, narrow checker correction, paired controls and original receipts are disclosed in `tests/fixtures/results/summary_latest_live.md` and `docs/promptops/shipping-gate.md`. No prompt changed or new provider call was made. The October 31 v2 record below is historical, not the active runtime proof.
+
 October 31 update: the resume prompt changed, so the ten synthetic fixtures were rerun live (`eval_1793463473819`: 9 PASS, 1 FAIL retained). Three validator false rejections were fixed with paired controls, and the unchanged outputs replay as **10 PASS, 0 WARN, 0 FAIL** through `09f0b89e3c361f1cc2dcfe5ffaa4ea02eb2d901d`; two fresh Operations runs on that candidate passed. See `docs/promptops/shipping-gate.md`. The October 30 record below is historical.
 
 The October 30 launch used bounded synthetic model checks within Matt’s approved testing budget. The original ten-fixture `gpt-6.1-terra` run `eval_1793394208092` is replayed, without changing or replacing any model output, through candidate `f9d3903813c2449b205ec39baec9f344650006e5`: **10 PASS, 0 WARN, 0 FAIL**. Source JSON SHA-256 is `b6e20c5669bbeb80b7b612993339a6a38a8c033813e2bb60a2502fab4bb41111`. The original 9 PASS, 0 WARN, 1 FAIL is retained; the false rejection of the editorial noun “description” was corrected with a one-word lexical addition and paired negative controls. A separate fresh Operations run on the corrected candidate, `eval_1793395105340`, passed.
@@ -109,7 +111,7 @@ The September 4 Terra 5.6 23-fixture replay (22 PASS, 1 WARN, 0 FAIL, with five 
 The core web product must support customers without live assistance. Promotion and acquisition remain separate from completing the product and its release verification.
 
 - Invite 10 to 25 people who are actively applying or revising a resume.
-- Make the first complete report included and keep one $29 Job Search Pass: five additional reports, one payment, 30-day expiration.
+- Make the first complete report included and keep one $29 Job Search Pass: five additional reports, one payment, 90-day expiration.
 - Describe the product as a recruiter first-read brief, not an AI resume grader.
 - Personally follow up after the first report with three questions: what felt immediately useful, what felt untrustworthy, and what almost stopped you.
 - Track activation, report completion, paywall reach, purchase, return use, and support demand. Keep analytics off until the privacy implementation is deliberately approved.

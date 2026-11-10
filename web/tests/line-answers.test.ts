@@ -32,6 +32,10 @@ assert.equal(parsed!.source, "literal");
 assert.equal(parseLineAnswersPatch({ ...good, fix_index: LINE_ANSWER_LIMITS.fixes }), null, "only a card position the report can have");
 assert.equal(parseLineAnswersPatch({ ...good, fix_index: "0" }), null);
 assert.equal(parseLineAnswersPatch({ ...good, answers: [] }), null, "nothing to keep");
+const clear = { fix_index: 0, answers: [], line: null, source: "literal" as const };
+assert.deepEqual(parseLineAnswersPatch(clear), clear, "empty answers and a null literal line explicitly clear the card");
+assert.equal(parseLineAnswersPatch({ ...clear, source: "polished" }), null, "a clear cannot claim a composed line source");
+assert.equal(parseLineAnswersPatch({ ...clear, line: "old line" }), null, "a clear cannot retain the previous line");
 assert.equal(parseLineAnswersPatch({ ...good, answers: [{ question: "Q?", kind: "answered", text: "" }] }), null, "an empty answer is not an answer");
 assert.equal(parseLineAnswersPatch({ ...good, answers: [{ question: "Q?", kind: "answered", text: "x".repeat(LINE_ANSWER_LIMITS.text + 1) }] }), null);
 assert.equal(parseLineAnswersPatch({ ...good, answers: [{ question: "Q?", kind: "open" }] }), null, "open questions are not stored");
@@ -53,6 +57,10 @@ assert.deepEqual(Object.keys(second).sort(), ["0", "2"]);
 assert.equal(second["0"].line, good.line, "an earlier fix's answers survive a later fix's save");
 const replaced = mergeLineAnswers(second, { fix_index: 0, answers: [{ question: "Q?", kind: "unknown" }], line: null, source: "literal" });
 assert.equal(replaced["0"].line, null, "saving a fix again replaces its entry");
+const cleared = mergeLineAnswers(second, clear);
+assert.deepEqual(Object.keys(cleared), ["2"], "clearing one card keeps the other card");
+assert.deepEqual(mergeLineAnswers(cleared, clear), cleared, "clearing twice is idempotent");
+assert.deepEqual(Object.keys(second).sort(), ["0", "2"], "clearing does not mutate the original object");
 
 assert.deepEqual(parseStoredLineAnswers({ "0": { answers: [{ question: "Q?", kind: "answered", text: "a" }], line: "L", source: "edited", updated_at: "2026-11-02T20:00:00.000Z" }, junk: 1, "5": {} }),
   { "0": { answers: [{ question: "Q?", kind: "answered", text: "a" }], line: "L", source: "edited", updated_at: "2026-11-02T20:00:00.000Z" } },
