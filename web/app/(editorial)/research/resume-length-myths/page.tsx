@@ -2,7 +2,6 @@ import { pageMetadata } from "@/lib/seo/metadata";
 import { Citation } from "@/components/research/ResearchArticle";
 import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
 import { ResearchLink } from "@/components/research/ResearchLink";
-import { PageTwoGateDiagram } from "@/components/research/diagrams/PageTwoGateDiagram";
 
 const PATH = "/research/resume-length-myths";
 
@@ -36,7 +35,6 @@ export default function ResumeLengthPage() {
                     <p className="research-body mb-6">
                         The study ranked finished resumes. Where to put things is our editing advice, not a finding it tested.
                     </p>
-                    <PageTwoGateDiagram />
                 </>
             }
             sources={[

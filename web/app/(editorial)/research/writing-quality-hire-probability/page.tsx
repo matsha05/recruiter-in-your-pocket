@@ -4,7 +4,6 @@ import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticl
 import { ResearchLink } from "@/components/research/ResearchLink";
 import Link from "next/link";
 import { comparison } from "@/components/compare/comparisons";
-import { SignalClarityDiagram } from "@/components/research/diagrams/SignalClarityDiagram";
 
 const PATH = "/research/writing-quality-hire-probability";
 
@@ -42,7 +41,6 @@ export default function WritingQualityHireProbabilityPage() {
                         Clearer writing helped employers recognize ability that was already there.
                         <Citation id="source-1">1</Citation>
                     </p>
-                    <SignalClarityDiagram />
                 </>
             }
             sources={[

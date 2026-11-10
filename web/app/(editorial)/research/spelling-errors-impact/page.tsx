@@ -3,7 +3,6 @@ import { Citation } from "@/components/research/ResearchArticle";
 import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
 import { ResearchLink } from "@/components/research/ResearchLink";
 import { ErrorImpactDiagram } from "@/components/research/diagrams/ErrorImpactDiagram";
-import { InferenceLadderDiagram } from "@/components/research/diagrams/InferenceLadderDiagram";
 
 const PATH = "/research/spelling-errors-impact";
 
@@ -58,10 +57,6 @@ export default function SpellingErrorsPage() {
                 Recruiters also rated applicants with repeated errors lower on interpersonal skills, conscientiousness, and mental ability.
                 <Citation id="source-1">1</Citation>
             </p>
-
-            <div className="not-prose my-10">
-                <InferenceLadderDiagram figureNumber={2} />
-            </div>
 
             <h2 className="research-h2">What this does and does not justify</h2>
             <p className="research-body mb-6">

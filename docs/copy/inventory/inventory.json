@@ -6138,7 +6138,7 @@
     {
       "text": "Why can’t recruiters find me on LinkedIn?",
       "kind": "key:title",
-      "line": 12,
+      "line": 11,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6149,7 +6149,7 @@
     {
       "text": "What LinkedIn documents about recruiter search, which profile fields candidates can control, and what the platform does not disclose.",
       "kind": "key:description",
-      "line": 13,
+      "line": 12,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6160,7 +6160,7 @@
     {
       "text": "They search titles, skills and the words in your profile. LinkedIn’s Skills filter uses the skills you list and those in your headline, titles and experience. It doesn’t publish how it ranks the results.",
       "kind": "jsx-text",
-      "line": 23,
+      "line": 22,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6171,7 +6171,7 @@
     {
       "text": "From LinkedIn’s own Recruiter help pages, which describe its product rather than hiring outcomes.",
       "kind": "jsx-text",
-      "line": 28,
+      "line": 27,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6182,7 +6182,7 @@
     {
       "text": "What affects LinkedIn visibility",
       "kind": "jsx-text",
-      "line": 35,
+      "line": 34,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6193,7 +6193,7 @@
     {
       "text": "LinkedIn Recruiter&apos;s filters include job title, skills, company, location, seniority, and years of experience.",
       "kind": "jsx-text",
-      "line": 37,
+      "line": 36,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6204,7 +6204,7 @@
     {
       "text": "Skills filter in Recruiter and Recruiter Lite",
       "kind": "key:title",
-      "line": 47,
+      "line": 45,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6215,7 +6215,7 @@
     {
       "text": "Recruiter and Recruiter Lite search filters and definitions",
       "kind": "key:title",
-      "line": 54,
+      "line": 52,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6226,7 +6226,7 @@
     {
       "text": "Where skill evidence can come from",
       "kind": "jsx-text",
-      "line": 61,
+      "line": 59,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6237,7 +6237,7 @@
     {
       "text": "Skills you list",
       "kind": "attr:title",
-      "line": 64,
+      "line": 62,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6248,7 +6248,7 @@
     {
       "text": "Standardized skills in the Skills section, sometimes connected to experience, education, or endorsements.",
       "kind": "jsx-text",
-      "line": 67,
+      "line": 65,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6259,7 +6259,7 @@
     {
       "text": "Skills in your profile text",
       "kind": "attr:title",
-      "line": 73,
+      "line": 71,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6270,7 +6270,7 @@
     {
       "text": "Skill terms in your headline, summary, titles, experience descriptions, certificates, and courses.",
       "kind": "jsx-text",
-      "line": 76,
+      "line": 74,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6281,7 +6281,7 @@
     {
       "text": "Skills inferred from experience",
       "kind": "attr:title",
-      "line": 82,
+      "line": 80,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6292,7 +6292,7 @@
     {
       "text": "LinkedIn says it may infer related skills from direct experience. For example, it may treat Tableau experience as evidence of data visualization.",
       "kind": "jsx-text",
-      "line": 85,
+      "line": 83,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6303,7 +6303,7 @@
     {
       "text": "Resume skills, when shared",
       "kind": "attr:title",
-      "line": 91,
+      "line": 89,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6314,7 +6314,7 @@
     {
       "text": "For members who share resume details for discoverability, Recruiter can surface skills found in that resume.",
       "kind": "jsx-text",
-      "line": 94,
+      "line": 92,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6325,7 +6325,7 @@
     {
       "text": "What a useful headline looks like",
       "kind": "jsx-text",
-      "line": 101,
+      "line": 99,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6336,7 +6336,7 @@
     {
       "text": "Easy to search for",
       "kind": "jsx-text",
-      "line": 104,
+      "line": 102,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6347,7 +6347,7 @@
     {
       "text": "Senior product manager · B2B SaaS · onboarding and retention",
       "kind": "jsx-text",
-      "line": 106,
+      "line": 104,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6358,7 +6358,7 @@
     {
       "text": "Data scientist · forecasting · Python and SQL · healthcare",
       "kind": "jsx-text",
-      "line": 107,
+      "line": 105,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6369,7 +6369,7 @@
     {
       "text": "Engineering manager · platform teams · fintech infrastructure",
       "kind": "jsx-text",
-      "line": 108,
+      "line": 106,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6380,7 +6380,7 @@
     {
       "text": "Hard to search for",
       "kind": "jsx-text",
-      "line": 112,
+      "line": 110,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6391,7 +6391,7 @@
     {
       "text": "Product leader building great products",
       "kind": "jsx-text",
-      "line": 114,
+      "line": 112,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6402,7 +6402,7 @@
     {
       "text": "Passionate problem-solver seeking new opportunities",
       "kind": "jsx-text",
-      "line": 115,
+      "line": 113,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6413,7 +6413,7 @@
     {
       "text": "Looking for my next challenge in tech",
       "kind": "jsx-text",
-      "line": 116,
+      "line": 114,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6424,7 +6424,7 @@
     {
       "text": "What LinkedIn does not tell us",
       "kind": "jsx-text",
-      "line": 125,
+      "line": 123,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6435,7 +6435,7 @@
     {
       "text": "The documentation explains usable inputs. It does not reveal a universal recipe for ranking first.",
       "kind": "jsx-text",
-      "line": 127,
+      "line": 125,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6446,7 +6446,7 @@
     {
       "text": "LinkedIn does not publicly disclose exact ranking weights or its complete search-scoring logic.",
       "kind": "jsx-text",
-      "line": 132,
+      "line": 130,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6457,7 +6457,7 @@
     {
       "text": "Recruiters choose different filters and search strategies across roles, industries, and markets.",
       "kind": "jsx-text",
-      "line": 136,
+      "line": 134,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6468,7 +6468,7 @@
     {
       "text": "A discoverable profile can earn consideration. It cannot guarantee ranking, outreach, or an interview.",
       "kind": "jsx-text",
-      "line": 140,
+      "line": 138,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6479,7 +6479,7 @@
     {
       "text": "What you post is read too.",
       "kind": "jsx-text",
-      "line": 144,
+      "line": 142,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6490,7 +6490,7 @@
     {
       "text": "In one experiment, unappealing posts cut candidate ratings by almost two points, and having no profile at all cost more than posts suggesting mental-health problems",
       "kind": "jsx-text",
-      "line": 144,
+      "line": 142,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6501,7 +6501,7 @@
     {
       "text": "The practical rule",
       "kind": "jsx-text",
-      "line": 148,
+      "line": 146,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6512,7 +6512,7 @@
     {
       "text": "Check your title and Skills section, then explain where you used those skills in your experience descriptions. Use the terms that fit your actual work. Repeating a keyword everywhere does not explain what you know how to do.",
       "kind": "jsx-text",
-      "line": 150,
+      "line": 148,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6523,7 +6523,7 @@
     {
       "text": "Name the role plainly.",
       "kind": "jsx-text",
-      "line": 155,
+      "line": 153,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6534,7 +6534,7 @@
     {
       "text": "Use the title a recruiter would reasonably search for. If your official title is unusual, add a truthful, recognizable description beside it. The same plain title helps on the resume, where",
       "kind": "jsx-text",
-      "line": 155,
+      "line": 153,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6545,7 +6545,7 @@
     {
       "text": "Put skills in context.",
       "kind": "jsx-text",
-      "line": 156,
+      "line": 154,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6556,7 +6556,7 @@
     {
       "text": "List the important skills, then connect them to the work in your headline, About section, or experience descriptions where they naturally belong.",
       "kind": "jsx-text",
-      "line": 156,
+      "line": 154,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6567,7 +6567,7 @@
     {
       "text": "A listed skill is a claim; the project behind it is what lets a reader assess it",
       "kind": "jsx-text",
-      "line": 156,
+      "line": 154,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6578,7 +6578,7 @@
     {
       "text": "Explain where you used the skill.",
       "kind": "jsx-text",
-      "line": 157,
+      "line": 155,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6589,7 +6589,7 @@
     {
       "text": "A search term can help someone find your profile. A relevant project or responsibility helps them evaluate your experience.",
       "kind": "jsx-text",
-      "line": 157,
+      "line": 155,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6600,7 +6600,7 @@
     {
       "text": "Does your resume name the role plainly?",
       "kind": "attr:question",
-      "line": 160,
+      "line": 158,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -6611,7 +6611,7 @@
     {
       "text": "Your report reads your resume, not your LinkedIn profile. It cards each line a recruiter trips on, in the order they hit it, and asks for what&apos;s missing instead of inventing it. Fix the resume, then carry the same plain language over to your profile.",
       "kind": "jsx-text",
-      "line": 161,
+      "line": 159,
       "file": "web/app/(editorial)/research/linkedin-visibility/page.tsx",
       "routes": [
         "/research/linkedin-visibility"
@@ -7821,7 +7821,7 @@
     {
       "text": "Does my resume really have to fit on one page?",
       "kind": "key:title",
-      "line": 11,
+      "line": 10,
       "file": "web/app/(editorial)/research/resume-length-myths/page.tsx",
       "routes": [
         "/research/resume-length-myths"
@@ -7832,7 +7832,7 @@
     {
       "text": "One study favored two-page resumes for entry-level accountants. It doesn't settle the best length for every role. What it does and doesn't say.",
       "kind": "key:description",
-      "line": 12,
+      "line": 11,
       "file": "web/app/(editorial)/research/resume-length-myths/page.tsx",
       "routes": [
         "/research/resume-length-myths"
@@ -7843,7 +7843,7 @@
     {
       "text": "No. In one national study, recruiters at major accounting firms ranked two-page versions of strong entry-level resumes above one-page versions. Use a second page when it adds experience that matters for the role.",
       "kind": "jsx-text",
-      "line": 22,
+      "line": 21,
       "file": "web/app/(editorial)/research/resume-length-myths/page.tsx",
       "routes": [
         "/research/resume-length-myths"
@@ -7854,7 +7854,7 @@
     {
       "text": "From a 2001 study that mailed resumes to 570 CPA recruiters (Blackburn-Brockman & Belanger). We could read only its abstract.",
       "kind": "jsx-text",
-      "line": 27,
+      "line": 26,
       "file": "web/app/(editorial)/research/resume-length-myths/page.tsx",
       "routes": [
         "/research/resume-length-myths"
@@ -7865,7 +7865,7 @@
     {
       "text": "When to use a second page",
       "kind": "jsx-text",
-      "line": 35,
+      "line": 34,
       "file": "web/app/(editorial)/research/resume-length-myths/page.tsx",
       "routes": [
         "/research/resume-length-myths"
@@ -7876,7 +7876,7 @@
     {
       "text": "The study ranked finished resumes. Where to put things is our editing advice, not a finding it tested.",
       "kind": "jsx-text",
-      "line": 37,
+      "line": 36,
       "file": "web/app/(editorial)/research/resume-length-myths/page.tsx",
       "routes": [
         "/research/resume-length-myths"
@@ -7887,7 +7887,7 @@
     {
       "text": "One Page or Two?: A National Study of CPA Recruiters' Preferences for Resume Length",
       "kind": "key:title",
-      "line": 45,
+      "line": 43,
       "file": "web/app/(editorial)/research/resume-length-myths/page.tsx",
       "routes": [
         "/research/resume-length-myths"
@@ -7898,7 +7898,7 @@
     {
       "text": "What the study actually tested",
       "kind": "jsx-text",
-      "line": 52,
+      "line": 50,
       "file": "web/app/(editorial)/research/resume-length-myths/page.tsx",
       "routes": [
         "/research/resume-length-myths"
@@ -7909,7 +7909,7 @@
     {
       "text": "Researchers created one-page and two-page versions of resumes for four fictitious, highly qualified graduating accounting students. They mailed mixed sets to 570 personnel recruiters at major accounting firms and asked respondents to rank the candidates as if they were hiring for entry-level roles.",
       "kind": "jsx-text",
-      "line": 54,
+      "line": 52,
       "file": "web/app/(editorial)/research/resume-length-myths/page.tsx",
       "routes": [
         "/research/resume-length-myths"
@@ -7920,7 +7920,7 @@
     {
       "text": "The two-page versions ranked more favorably. That contradicts the claim that a second page is automatically harmful. It does not establish that two pages are better in every market, so use it to reject a rigid one-page rule, not to replace it with a rigid two-page one.",
       "kind": "jsx-text",
-      "line": 58,
+      "line": 56,
       "file": "web/app/(editorial)/research/resume-length-myths/page.tsx",
       "routes": [
         "/research/resume-length-myths"
@@ -7931,7 +7931,7 @@
     {
       "text": "What it does not settle",
       "kind": "jsx-text",
-      "line": 62,
+      "line": 60,
       "file": "web/app/(editorial)/research/resume-length-myths/page.tsx",
       "routes": [
         "/research/resume-length-myths"
@@ -7942,7 +7942,7 @@
     {
       "text": "The study covered entry-level accounting candidates, not every role or career stage.",
       "kind": "jsx-text",
-      "line": 64,
+      "line": 62,
       "file": "web/app/(editorial)/research/resume-length-myths/page.tsx",
       "routes": [
         "/research/resume-length-myths"
@@ -7953,7 +7953,7 @@
     {
       "text": "Recruiters ranked supplied resumes. The study did not measure real callbacks, interviews, or hires.",
       "kind": "jsx-text",
-      "line": 65,
+      "line": 63,
       "file": "web/app/(editorial)/research/resume-length-myths/page.tsx",
       "routes": [
         "/research/resume-length-myths"
@@ -7964,7 +7964,7 @@
     {
       "text": "The study was published in 2001, 25 years ago, when the firms were still the “Big Six” and before today&apos;s digital application workflow.",
       "kind": "jsx-text",
-      "line": 66,
+      "line": 64,
       "file": "web/app/(editorial)/research/resume-length-myths/page.tsx",
       "routes": [
         "/research/resume-length-myths"
@@ -7975,7 +7975,7 @@
     {
       "text": "Packets went to 570 recruiters. We could read only the abstract, which doesn&apos;t say how many replied; the full paper is paywalled.",
       "kind": "jsx-text",
-      "line": 67,
+      "line": 65,
       "file": "web/app/(editorial)/research/resume-length-myths/page.tsx",
       "routes": [
         "/research/resume-length-myths"
@@ -7986,7 +7986,7 @@
     {
       "text": "A better editing rule",
       "kind": "jsx-text",
-      "line": 70,
+      "line": 68,
       "file": "web/app/(editorial)/research/resume-length-myths/page.tsx",
       "routes": [
         "/research/resume-length-myths"
@@ -7997,7 +7997,7 @@
     {
       "text": "Our take:",
       "kind": "jsx-text",
-      "line": 72,
+      "line": 70,
       "file": "web/app/(editorial)/research/resume-length-myths/page.tsx",
       "routes": [
         "/research/resume-length-myths"
@@ -8008,7 +8008,7 @@
     {
       "text": "use the shortest version that preserves the evidence a reviewer needs. Put the experience and results most relevant to the role on page one: in the strongest eye-tracking study,",
       "kind": "jsx-text",
-      "line": 72,
+      "line": 70,
       "file": "web/app/(editorial)/research/resume-length-myths/page.tsx",
       "routes": [
         "/research/resume-length-myths"
@@ -8019,7 +8019,7 @@
     {
       "text": "recruiters who spent longer on Experience were more likely to move a resume forward",
       "kind": "jsx-text",
-      "line": 72,
+      "line": 70,
       "file": "web/app/(editorial)/research/resume-length-myths/page.tsx",
       "routes": [
         "/research/resume-length-myths"
@@ -8030,7 +8030,7 @@
     {
       "text": ". Use page two for additional work only when it adds useful scope, depth, or context.",
       "kind": "jsx-text",
-      "line": 72,
+      "line": 70,
       "file": "web/app/(editorial)/research/resume-length-myths/page.tsx",
       "routes": [
         "/research/resume-length-myths"
@@ -8041,7 +8041,7 @@
     {
       "text": "Every line should pass a simpler test: \"Does this help a reviewer understand my fit for this role?\" A line earns its space when it",
       "kind": "jsx-text",
-      "line": 75,
+      "line": 73,
       "file": "web/app/(editorial)/research/resume-length-myths/page.tsx",
       "routes": [
         "/research/resume-length-myths"
@@ -8052,7 +8052,7 @@
     {
       "text": "says what changed, how you measured it, and what you did to get there",
       "kind": "jsx-text",
-      "line": 75,
+      "line": 73,
       "file": "web/app/(editorial)/research/resume-length-myths/page.tsx",
       "routes": [
         "/research/resume-length-myths"
@@ -8063,7 +8063,7 @@
     {
       "text": ", not when it fills the page.",
       "kind": "jsx-text",
-      "line": 75,
+      "line": 73,
       "file": "web/app/(editorial)/research/resume-length-myths/page.tsx",
       "routes": [
         "/research/resume-length-myths"
@@ -8074,7 +8074,7 @@
     {
       "text": "Make the important details easy to find",
       "kind": "jsx-text",
-      "line": 78,
+      "line": 76,
       "file": "web/app/(editorial)/research/resume-length-myths/page.tsx",
       "routes": [
         "/research/resume-length-myths"
@@ -8085,7 +8085,7 @@
     {
       "text": "If page two repeats earlier points, combine them. If an older role does not help explain your qualifications for this job, shorten it, but keep its dates:",
       "kind": "jsx-text",
-      "line": 80,
+      "line": 78,
       "file": "web/app/(editorial)/research/resume-length-myths/page.tsx",
       "routes": [
         "/research/resume-length-myths"
@@ -8096,7 +8096,7 @@
     {
       "text": ". Check that your recent responsibilities and strongest results remain easy to find.",
       "kind": "jsx-text",
-      "line": 80,
+      "line": 78,
       "file": "web/app/(editorial)/research/resume-length-myths/page.tsx",
       "routes": [
         "/research/resume-length-myths"
@@ -8107,7 +8107,7 @@
     {
       "text": "Which lines are earning their space?",
       "kind": "attr:question",
-      "line": 83,
+      "line": 81,
       "file": "web/app/(editorial)/research/resume-length-myths/page.tsx",
       "routes": [
         "/research/resume-length-myths"
@@ -8118,7 +8118,7 @@
     {
       "text": "Your report reads for relevance, scope, ownership, and results. Page count isn&apos;t a shortcut in your score. It reads your text, not your PDF&apos;s layout, so open the final file at 100% and check the density yourself.",
       "kind": "jsx-text",
-      "line": 84,
+      "line": 82,
       "file": "web/app/(editorial)/research/resume-length-myths/page.tsx",
       "routes": [
         "/research/resume-length-myths"
@@ -8129,7 +8129,7 @@
     {
       "text": "Should I tell a recruiter what I make now?",
       "kind": "key:title",
-      "line": 11,
+      "line": 10,
       "file": "web/app/(editorial)/research/salary-history-bans/page.tsx",
       "routes": [
         "/research/salary-history-bans"
@@ -8140,7 +8140,7 @@
     {
       "text": "Studies of salary history bans and disclosure found different effects. Why neither supports one script for every pay conversation, and how to prepare.",
       "kind": "key:description",
-      "line": 12,
+      "line": 11,
       "file": "web/app/(editorial)/research/salary-history-bans/page.tsx",
       "routes": [
         "/research/salary-history-bans"
@@ -8151,7 +8151,7 @@
     {
       "text": "There’s no one right answer. For higher-paid candidates, disclosing brought higher offers and fewer callbacks, and not disclosing drew negative inferences. Know the local rule, ask for the range, and prepare your own number.",
       "kind": "jsx-text",
-      "line": 22,
+      "line": 21,
       "file": "web/app/(editorial)/research/salary-history-bans/page.tsx",
       "routes": [
         "/research/salary-history-bans"
@@ -8162,7 +8162,7 @@
     {
       "text": "From a field experiment with hundreds of recruiters and more than 2,000 fictional applications (Agan, Cowgill & Gee), described from its 2023 working-paper version.",
       "kind": "jsx-text",
-      "line": 27,
+      "line": 26,
       "file": "web/app/(editorial)/research/salary-history-bans/page.tsx",
       "routes": [
         "/research/salary-history-bans"
@@ -8173,7 +8173,7 @@
     {
       "text": "Choose the reference point you can defend",
       "kind": "jsx-text",
-      "line": 34,
+      "line": 33,
       "file": "web/app/(editorial)/research/salary-history-bans/page.tsx",
       "routes": [
         "/research/salary-history-bans"
@@ -8184,7 +8184,7 @@
     {
       "text": "Across three general negotiation experiments, the party making the first offer did better, and first offers strongly predicted final settlements. That supports preparing a role-based range. It does not prove that withholding salary history improves an individual outcome.",
       "kind": "jsx-text",
-      "line": 36,
+      "line": 35,
       "file": "web/app/(editorial)/research/salary-history-bans/page.tsx",
       "routes": [
         "/research/salary-history-bans"
@@ -8195,7 +8195,7 @@
     {
       "text": "Information and the Persistence of the Gender Wage Gap: Early Evidence from California's Salary History Ban",
       "kind": "key:title",
-      "line": 45,
+      "line": 43,
       "file": "web/app/(editorial)/research/salary-history-bans/page.tsx",
       "routes": [
         "/research/salary-history-bans"
@@ -8206,7 +8206,7 @@
     {
       "text": "Salary History and Employer Demand: Evidence from a Two-Sided Audit",
       "kind": "key:title",
-      "line": 52,
+      "line": 50,
       "file": "web/app/(editorial)/research/salary-history-bans/page.tsx",
       "routes": [
         "/research/salary-history-bans"
@@ -8217,7 +8217,7 @@
     {
       "text": "First offers as anchors: The role of perspective-taking and negotiator focus",
       "kind": "key:title",
-      "line": 59,
+      "line": 57,
       "file": "web/app/(editorial)/research/salary-history-bans/page.tsx",
       "routes": [
         "/research/salary-history-bans"
@@ -8228,7 +8228,7 @@
     {
       "text": "What salary history bans actually changed",
       "kind": "jsx-text",
-      "line": 66,
+      "line": 64,
       "file": "web/app/(editorial)/research/salary-history-bans/page.tsx",
       "routes": [
         "/research/salary-history-bans"
@@ -8239,7 +8239,7 @@
     {
       "text": "Hansen and McNichols studied the early effects of statewide salary history bans. Using difference-in-differences and synthetic-control methods, they found the gender earnings ratio increased by about 1% in states with bans, with the gains concentrated in several subgroups. Their design estimates the net policy effect; it does not show that every employer switched cleanly from past pay to market pricing.",
       "kind": "jsx-text",
-      "line": 68,
+      "line": 66,
       "file": "web/app/(editorial)/research/salary-history-bans/page.tsx",
       "routes": [
         "/research/salary-history-bans"
@@ -8250,7 +8250,7 @@
     {
       "text": "Disclosure can help and hurt",
       "kind": "jsx-text",
-      "line": 72,
+      "line": 70,
       "file": "web/app/(editorial)/research/salary-history-bans/page.tsx",
       "routes": [
         "/research/salary-history-bans"
@@ -8261,7 +8261,7 @@
     {
       "text": "A separate field experiment used hundreds of recruiters and more than 2,000 fictional applications. Employers made negative inferences about candidates who did not disclose, the way",
       "kind": "jsx-text",
-      "line": 74,
+      "line": 72,
       "file": "web/app/(editorial)/research/salary-history-bans/page.tsx",
       "routes": [
         "/research/salary-history-bans"
@@ -8272,7 +8272,7 @@
     {
       "text": "a reader fills in whatever a resume leaves open, and rarely in your favor",
       "kind": "jsx-text",
-      "line": 74,
+      "line": 72,
       "file": "web/app/(editorial)/research/salary-history-bans/page.tsx",
       "routes": [
         "/research/salary-history-bans"
@@ -8283,7 +8283,7 @@
     {
       "text": ". For men and other higher-paid candidates, disclosure produced higher salary offers but also fewer callbacks after accounting for salary. Those results do not identify one choice that improves both outcomes for everyone.",
       "kind": "jsx-text",
-      "line": 74,
+      "line": 72,
       "file": "web/app/(editorial)/research/salary-history-bans/page.tsx",
       "routes": [
         "/research/salary-history-bans"
@@ -8294,7 +8294,7 @@
     {
       "text": "A clean redirect",
       "kind": "attr:title",
-      "line": 80,
+      "line": 78,
       "file": "web/app/(editorial)/research/salary-history-bans/page.tsx",
       "routes": [
         "/research/salary-history-bans"
@@ -8305,7 +8305,7 @@
     {
       "text": "If you name a target",
       "kind": "attr:title",
-      "line": 84,
+      "line": 82,
       "file": "web/app/(editorial)/research/salary-history-bans/page.tsx",
       "routes": [
         "/research/salary-history-bans"
@@ -8316,7 +8316,7 @@
     {
       "text": "Tie it to the role: responsibilities, level, location, market data, and the full compensation mix, with",
       "kind": "jsx-text",
-      "line": 85,
+      "line": 83,
       "file": "web/app/(editorial)/research/salary-history-bans/page.tsx",
       "routes": [
         "/research/salary-history-bans"
@@ -8327,7 +8327,7 @@
     {
       "text": "the cash, the bonus, and the equity separated",
       "kind": "jsx-text",
-      "line": 85,
+      "line": 83,
       "file": "web/app/(editorial)/research/salary-history-bans/page.tsx",
       "routes": [
         "/research/salary-history-bans"
@@ -8338,7 +8338,7 @@
     {
       "text": "What candidates can control",
       "kind": "jsx-text",
-      "line": 89,
+      "line": 87,
       "file": "web/app/(editorial)/research/salary-history-bans/page.tsx",
       "routes": [
         "/research/salary-history-bans"
@@ -8349,7 +8349,7 @@
     {
       "text": "Know the local rule, ask for the employer&apos;s range, and prepare your own walk-away point before the conversation. Prepare to ask, too:",
       "kind": "jsx-text",
-      "line": 91,
+      "line": 89,
       "file": "web/app/(editorial)/research/salary-history-bans/page.tsx",
       "routes": [
         "/research/salary-history-bans"
@@ -8360,7 +8360,7 @@
     {
       "text": "most people don’t, and in one large survey most who did came away with more",
       "kind": "jsx-text",
-      "line": 91,
+      "line": 89,
       "file": "web/app/(editorial)/research/salary-history-bans/page.tsx",
       "routes": [
         "/research/salary-history-bans"
@@ -8371,7 +8371,7 @@
     {
       "text": ". Never invent a current salary. If you choose not to disclose, be ready to redirect calmly; if you do disclose, understand what signal the number may send in that market.",
       "kind": "jsx-text",
-      "line": 91,
+      "line": 89,
       "file": "web/app/(editorial)/research/salary-history-bans/page.tsx",
       "routes": [
         "/research/salary-history-bans"
@@ -8382,7 +8382,7 @@
     {
       "text": "Bring your market evidence.",
       "kind": "jsx-text",
-      "line": 94,
+      "line": 92,
       "file": "web/app/(editorial)/research/salary-history-bans/page.tsx",
       "routes": [
         "/research/salary-history-bans"
@@ -8393,7 +8393,7 @@
     {
       "text": "Compare the responsibilities, level, location, and available salary ranges before choosing your target. Check how recent and relevant each comparison is. When offers arrive,",
       "kind": "jsx-text",
-      "line": 94,
+      "line": 92,
       "file": "web/app/(editorial)/research/salary-history-bans/page.tsx",
       "routes": [
         "/research/salary-history-bans"
@@ -8404,7 +8404,7 @@
     {
       "text": "put salary, bonus, equity, and one-time pay on the same footing",
       "kind": "jsx-text",
-      "line": 94,
+      "line": 92,
       "file": "web/app/(editorial)/research/salary-history-bans/page.tsx",
       "routes": [
         "/research/salary-history-bans"
@@ -8415,7 +8415,7 @@
     {
       "text": "before you compare them.",
       "kind": "jsx-text",
-      "line": 94,
+      "line": 92,
       "file": "web/app/(editorial)/research/salary-history-bans/page.tsx",
       "routes": [
         "/research/salary-history-bans"
@@ -8426,7 +8426,7 @@
     {
       "text": "No universal disclosure rule.",
       "kind": "jsx-text",
-      "line": 95,
+      "line": 93,
       "file": "web/app/(editorial)/research/salary-history-bans/page.tsx",
       "routes": [
         "/research/salary-history-bans"
@@ -8437,7 +8437,7 @@
     {
       "text": "The studies do not establish that every candidate should disclose or refuse. Check the rules where the job is based and decide what information you want to share.",
       "kind": "jsx-text",
-      "line": 95,
+      "line": 93,
       "file": "web/app/(editorial)/research/salary-history-bans/page.tsx",
       "routes": [
         "/research/salary-history-bans"
@@ -8448,7 +8448,7 @@
     {
       "text": "Is the resume that got you here doing its job?",
       "kind": "attr:question",
-      "line": 98,
+      "line": 96,
       "file": "web/app/(editorial)/research/salary-history-bans/page.tsx",
       "routes": [
         "/research/salary-history-bans"
@@ -8459,7 +8459,7 @@
     {
       "text": "Your report won&apos;t tell you what to ask for. It reads your resume: the write-up says what it says first, and each line a recruiter trips on gets a card that asks for what&apos;s missing instead of inventing it.",
       "kind": "jsx-text",
-      "line": 99,
+      "line": 97,
       "file": "web/app/(editorial)/research/salary-history-bans/page.tsx",
       "routes": [
         "/research/salary-history-bans"
@@ -8470,7 +8470,7 @@
     {
       "text": "Legal requirements vary by jurisdiction. This is not legal advice.",
       "kind": "jsx-text",
-      "line": 104,
+      "line": 102,
       "file": "web/app/(editorial)/research/salary-history-bans/page.tsx",
       "routes": [
         "/research/salary-history-bans"
@@ -8481,7 +8481,7 @@
     {
       "text": "Neither study says what will happen in an individual negotiation.",
       "kind": "jsx-text",
-      "line": 105,
+      "line": 103,
       "file": "web/app/(editorial)/research/salary-history-bans/page.tsx",
       "routes": [
         "/research/salary-history-bans"
@@ -8778,7 +8778,7 @@
     {
       "text": "Will employers judge me by my social media?",
       "kind": "key:title",
-      "line": 11,
+      "line": 10,
       "file": "web/app/(editorial)/research/social-screening/page.tsx",
       "routes": [
         "/research/social-screening"
@@ -8789,7 +8789,7 @@
     {
       "text": "Social media content changed candidate ratings in one experiment. What the study didn't test, and why a review questions the fairness of social screening.",
       "kind": "key:description",
-      "line": 12,
+      "line": 11,
       "file": "web/app/(editorial)/research/social-screening/page.tsx",
       "routes": [
         "/research/social-screening"
@@ -8800,7 +8800,7 @@
     {
       "text": "In one experiment, yes. Posts changed how candidates were rated, and having no profile at all cost more than posts suggesting mental-health problems. Nobody showed those ratings predict how you’d do the job.",
       "kind": "jsx-text",
-      "line": 22,
+      "line": 21,
       "file": "web/app/(editorial)/research/social-screening/page.tsx",
       "routes": [
         "/research/social-screening"
@@ -8811,7 +8811,7 @@
     {
       "text": "From a screening experiment with 1,500 US online evaluators and 500 people with hiring experience (Baker, Grimm & Ofek-Shanny). It’s a working paper, not yet peer reviewed.",
       "kind": "jsx-text",
-      "line": 27,
+      "line": 26,
       "file": "web/app/(editorial)/research/social-screening/page.tsx",
       "routes": [
         "/research/social-screening"
@@ -8822,7 +8822,7 @@
     {
       "text": "What the experiment actually showed",
       "kind": "jsx-text",
-      "line": 35,
+      "line": 34,
       "file": "web/app/(editorial)/research/social-screening/page.tsx",
       "routes": [
         "/research/social-screening"
@@ -8833,7 +8833,7 @@
     {
       "text": "Evaluators rated candidates for an office manager job in hospitality while the researchers varied what the candidate&apos;s social media showed. On a 0–10 scale, the general pool marked down unappealing content by 1.94 points, having no profile at all by 0.88, signs of mental-health problems by 0.68, and a two-year unemployment gap by 0.29. People with hiring experience showed the same order.",
       "kind": "jsx-text",
-      "line": 37,
+      "line": 36,
       "file": "web/app/(editorial)/research/social-screening/page.tsx",
       "routes": [
         "/research/social-screening"
@@ -8844,7 +8844,7 @@
     {
       "text": "A gap cost the least here, and",
       "kind": "jsx-text",
-      "line": 39,
+      "line": 38,
       "file": "web/app/(editorial)/research/social-screening/page.tsx",
       "routes": [
         "/research/social-screening"
@@ -8855,7 +8855,7 @@
     {
       "text": "in the largest test of ways to handle one, explaining it did no better than leaving it unexplained",
       "kind": "jsx-text",
-      "line": 39,
+      "line": 38,
       "file": "web/app/(editorial)/research/social-screening/page.tsx",
       "routes": [
         "/research/social-screening"
@@ -8866,7 +8866,7 @@
     {
       "text": "To Be or Not to Be on Social Media: How Social Media Content Impacts Recruitment",
       "kind": "key:title",
-      "line": 47,
+      "line": 45,
       "file": "web/app/(editorial)/research/social-screening/page.tsx",
       "routes": [
         "/research/social-screening"
@@ -8877,7 +8877,7 @@
     {
       "text": "Social Media Screening and Procedural Justice: Towards Fairer Use of Social Media in Selection",
       "kind": "key:title",
-      "line": 54,
+      "line": 52,
       "file": "web/app/(editorial)/research/social-screening/page.tsx",
       "routes": [
         "/research/social-screening"
@@ -8888,7 +8888,7 @@
     {
       "text": "Why social screening can be unreliable",
       "kind": "jsx-text",
-      "line": 61,
+      "line": 59,
       "file": "web/app/(editorial)/research/social-screening/page.tsx",
       "routes": [
         "/research/social-screening"
@@ -8899,7 +8899,7 @@
     {
       "text": "A 2021 literature review by Eva Vosen concluded that social-media screening creates privacy, discrimination, and accuracy concerns when employers lack clear, consistent procedures.",
       "kind": "jsx-text",
-      "line": 63,
+      "line": 61,
       "file": "web/app/(editorial)/research/social-screening/page.tsx",
       "routes": [
         "/research/social-screening"
@@ -8910,7 +8910,7 @@
     {
       "text": "A public post may be incomplete, old, decontextualized, or unrelated to the job.",
       "kind": "jsx-text",
-      "line": 67,
+      "line": 65,
       "file": "web/app/(editorial)/research/social-screening/page.tsx",
       "routes": [
         "/research/social-screening"
@@ -8921,7 +8921,7 @@
     {
       "text": "Profiles can expose protected characteristics before a structured review.",
       "kind": "jsx-text",
-      "line": 68,
+      "line": 66,
       "file": "web/app/(editorial)/research/social-screening/page.tsx",
       "routes": [
         "/research/social-screening"
@@ -8932,7 +8932,7 @@
     {
       "text": "Different reviewers may interpret the same content differently.",
       "kind": "jsx-text",
-      "line": 69,
+      "line": 67,
       "file": "web/app/(editorial)/research/social-screening/page.tsx",
       "routes": [
         "/research/social-screening"
@@ -8943,7 +8943,7 @@
     {
       "text": "What is worth doing",
       "kind": "jsx-text",
-      "line": 72,
+      "line": 70,
       "file": "web/app/(editorial)/research/social-screening/page.tsx",
       "routes": [
         "/research/social-screening"
@@ -8954,7 +8954,7 @@
     {
       "text": "Our advice:",
       "kind": "jsx-text",
-      "line": 74,
+      "line": 72,
       "file": "web/app/(editorial)/research/social-screening/page.tsx",
       "routes": [
         "/research/social-screening"
@@ -8965,7 +8965,7 @@
     {
       "text": "check the professional information you publish and decide what to keep private. The research does not identify a personal profile that every recruiter will interpret favorably. What a recruiter is trying to do with any of it is",
       "kind": "jsx-text",
-      "line": 74,
+      "line": 72,
       "file": "web/app/(editorial)/research/social-screening/page.tsx",
       "routes": [
         "/research/social-screening"
@@ -8976,7 +8976,7 @@
     {
       "text": ", so the public version and the resume should tell the same story.",
       "kind": "jsx-text",
-      "line": 74,
+      "line": 72,
       "file": "web/app/(editorial)/research/social-screening/page.tsx",
       "routes": [
         "/research/social-screening"
@@ -8987,7 +8987,7 @@
     {
       "text": "Reconcile titles, dates, credentials, and public work links.",
       "kind": "jsx-text",
-      "line": 77,
+      "line": 75,
       "file": "web/app/(editorial)/research/social-screening/page.tsx",
       "routes": [
         "/research/social-screening"
@@ -8998,7 +8998,7 @@
     {
       "text": "Recruiters search the titles and skills in your headline and experience",
       "kind": "jsx-text",
-      "line": 77,
+      "line": 75,
       "file": "web/app/(editorial)/research/social-screening/page.tsx",
       "routes": [
         "/research/social-screening"
@@ -9009,7 +9009,7 @@
     {
       "text": ", so the public version should agree with the resume.",
       "kind": "jsx-text",
-      "line": 77,
+      "line": 75,
       "file": "web/app/(editorial)/research/social-screening/page.tsx",
       "routes": [
         "/research/social-screening"
@@ -9020,7 +9020,7 @@
     {
       "text": "Use privacy settings intentionally on personal accounts.",
       "kind": "jsx-text",
-      "line": 78,
+      "line": 76,
       "file": "web/app/(editorial)/research/social-screening/page.tsx",
       "routes": [
         "/research/social-screening"
@@ -9031,7 +9031,7 @@
     {
       "text": "Keep public work samples current when they are part of your candidacy.",
       "kind": "jsx-text",
-      "line": 79,
+      "line": 77,
       "file": "web/app/(editorial)/research/social-screening/page.tsx",
       "routes": [
         "/research/social-screening"
@@ -9042,7 +9042,7 @@
     {
       "text": "Link a portfolio when it shows work evidence your resume can&apos;t show on its own.",
       "kind": "jsx-text",
-      "line": 80,
+      "line": 78,
       "file": "web/app/(editorial)/research/social-screening/page.tsx",
       "routes": [
         "/research/social-screening"
@@ -9053,7 +9053,7 @@
     {
       "text": "What does the page you control say?",
       "kind": "attr:question",
-      "line": 83,
+      "line": 81,
       "file": "web/app/(editorial)/research/social-screening/page.tsx",
       "routes": [
         "/research/social-screening"
@@ -9064,7 +9064,7 @@
     {
       "text": "Your report reads only the resume you send. It doesn&apos;t look up or score your social accounts, and hobbies, politics, and lifestyle don&apos;t go into your score.",
       "kind": "jsx-text",
-      "line": 84,
+      "line": 82,
       "file": "web/app/(editorial)/research/social-screening/page.tsx",
       "routes": [
         "/research/social-screening"
@@ -9075,7 +9075,7 @@
     {
       "text": "The experiment used one hospitality role and designed profile cues; it is not every hiring market. We read a July 2024 version.",
       "kind": "jsx-text",
-      "line": 89,
+      "line": 87,
       "file": "web/app/(editorial)/research/social-screening/page.tsx",
       "routes": [
         "/research/social-screening"
@@ -9086,7 +9086,7 @@
     {
       "text": "Employer practice varies. This article does not establish legal guidance for any jurisdiction.",
       "kind": "jsx-text",
-      "line": 90,
+      "line": 88,
       "file": "web/app/(editorial)/research/social-screening/page.tsx",
       "routes": [
         "/research/social-screening"
@@ -9097,7 +9097,7 @@
     {
       "text": "Will one typo on my resume cost me the interview?",
       "kind": "key:title",
-      "line": 12,
+      "line": 11,
       "file": "web/app/(editorial)/research/spelling-errors-impact/page.tsx",
       "routes": [
         "/research/spelling-errors-impact"
@@ -9108,7 +9108,7 @@
     {
       "text": "What a 2020 experiment with 445 recruiters in Belgium found about spelling errors and hypothetical interview ratings, and why one typo isn't a reason to panic.",
       "kind": "key:description",
-      "line": 13,
+      "line": 12,
       "file": "web/app/(editorial)/research/spelling-errors-impact/page.tsx",
       "routes": [
         "/research/spelling-errors-impact"
@@ -9119,7 +9119,7 @@
     {
       "text": "Don’t panic over one. Five spelling errors cost 1.85 points on a 0–10 interview rating in one experiment. A single typo wasn’t tested.",
       "kind": "jsx-text",
-      "line": 23,
+      "line": 22,
       "file": "web/app/(editorial)/research/spelling-errors-impact/page.tsx",
       "routes": [
         "/research/spelling-errors-impact"
@@ -9130,7 +9130,7 @@
     {
       "text": "Five errors: −1.85 on a 0–10 interview rating, from an experiment with 445 hiring professionals (Sterkens et al., PLOS ONE, 2023).",
       "kind": "jsx-text",
-      "line": 28,
+      "line": 27,
       "file": "web/app/(editorial)/research/spelling-errors-impact/page.tsx",
       "routes": [
         "/research/spelling-errors-impact"
@@ -9141,7 +9141,7 @@
     {
       "text": "What the experiment actually tested",
       "kind": "jsx-text",
-      "line": 34,
+      "line": 33,
       "file": "web/app/(editorial)/research/spelling-errors-impact/page.tsx",
       "routes": [
         "/research/spelling-errors-impact"
@@ -9152,7 +9152,7 @@
     {
       "text": "In April 2020, 445 recruiters in Flanders, Belgium, rated Dutch-language resumes from recent graduates with zero, two, or five spelling errors, across eight occupations. Both error conditions lowered the hypothetical interview rating, with a larger penalty at five errors.",
       "kind": "jsx-text",
-      "line": 36,
+      "line": 35,
       "file": "web/app/(editorial)/research/spelling-errors-impact/page.tsx",
       "routes": [
         "/research/spelling-errors-impact"
@@ -9163,7 +9163,7 @@
     {
       "text": "Costly mistakes: Why and when spelling errors in resumes jeopardise interview chances",
       "kind": "key:title",
-      "line": 45,
+      "line": 44,
       "file": "web/app/(editorial)/research/spelling-errors-impact/page.tsx",
       "routes": [
         "/research/spelling-errors-impact"
@@ -9174,7 +9174,7 @@
     {
       "text": "The penalty grows when errors become a pattern",
       "kind": "jsx-text",
-      "line": 52,
+      "line": 51,
       "file": "web/app/(editorial)/research/spelling-errors-impact/page.tsx",
       "routes": [
         "/research/spelling-errors-impact"
@@ -9185,7 +9185,7 @@
     {
       "text": "The two-error penalty was about the same across applicants, jobs, and recruiters. The five-error penalty varied: it was larger among recruiters who care more about language, and smaller for jobs that require more education and for applicants who listed volunteer work. A larger penalty for jobs with heavy writing demands was borderline.",
       "kind": "jsx-text",
-      "line": 54,
+      "line": 53,
       "file": "web/app/(editorial)/research/spelling-errors-impact/page.tsx",
       "routes": [
         "/research/spelling-errors-impact"
@@ -9196,7 +9196,7 @@
     {
       "text": "Recruiters also rated applicants with repeated errors lower on interpersonal skills, conscientiousness, and mental ability.",
       "kind": "jsx-text",
-      "line": 58,
+      "line": 57,
       "file": "web/app/(editorial)/research/spelling-errors-impact/page.tsx",
       "routes": [
         "/research/spelling-errors-impact"
@@ -9207,7 +9207,7 @@
     {
       "text": "What this does and does not justify",
       "kind": "jsx-text",
-      "line": 66,
+      "line": 61,
       "file": "web/app/(editorial)/research/spelling-errors-impact/page.tsx",
       "routes": [
         "/research/spelling-errors-impact"
@@ -9218,7 +9218,7 @@
     {
       "text": "It justifies a careful spelling pass. It does not justify pretending one typo always ends the process, extending a Dutch-language result from Belgium to every language or labor market, or treating error-free writing as proof of job performance.",
       "kind": "jsx-text",
-      "line": 68,
+      "line": 63,
       "file": "web/app/(editorial)/research/spelling-errors-impact/page.tsx",
       "routes": [
         "/research/spelling-errors-impact"
@@ -9229,7 +9229,7 @@
     {
       "text": "It also can&apos;t say whether spelling matters more than content: the study kept the content the same and changed only the spelling. What it shows is that repeated errors cost points even when the experience on the page is identical. It fits what a much larger experiment found when only the wording changed:",
       "kind": "jsx-text",
-      "line": 70,
+      "line": 65,
       "file": "web/app/(editorial)/research/spelling-errors-impact/page.tsx",
       "routes": [
         "/research/spelling-errors-impact"
@@ -9240,7 +9240,7 @@
     {
       "text": "grammar fixes on short freelance profiles lifted hires from 3.1% to 3.3%",
       "kind": "jsx-text",
-      "line": 70,
+      "line": 65,
       "file": "web/app/(editorial)/research/spelling-errors-impact/page.tsx",
       "routes": [
         "/research/spelling-errors-impact"
@@ -9251,7 +9251,7 @@
     {
       "text": "What to fix first",
       "kind": "jsx-text",
-      "line": 73,
+      "line": 68,
       "file": "web/app/(editorial)/research/spelling-errors-impact/page.tsx",
       "routes": [
         "/research/spelling-errors-impact"
@@ -9262,7 +9262,7 @@
     {
       "text": "Our advice:",
       "kind": "jsx-text",
-      "line": 75,
+      "line": 70,
       "file": "web/app/(editorial)/research/spelling-errors-impact/page.tsx",
       "routes": [
         "/research/spelling-errors-impact"
@@ -9273,7 +9273,7 @@
     {
       "text": "the study tested spelling only, and the section a recruiter weighs is Experience: in the strongest eye-tracking study,",
       "kind": "jsx-text",
-      "line": 75,
+      "line": 70,
       "file": "web/app/(editorial)/research/spelling-errors-impact/page.tsx",
       "routes": [
         "/research/spelling-errors-impact"
@@ -9284,7 +9284,7 @@
     {
       "text": "recruiters who spent longer on Experience were more likely to move a resume forward",
       "kind": "jsx-text",
-      "line": 75,
+      "line": 70,
       "file": "web/app/(editorial)/research/spelling-errors-impact/page.tsx",
       "routes": [
         "/research/spelling-errors-impact"
@@ -9295,7 +9295,7 @@
     {
       "text": ". Fix what that section says, then run these checks.",
       "kind": "jsx-text",
-      "line": 75,
+      "line": 70,
       "file": "web/app/(editorial)/research/spelling-errors-impact/page.tsx",
       "routes": [
         "/research/spelling-errors-impact"
@@ -9306,7 +9306,7 @@
     {
       "text": "Spelling and grammar consistency.",
       "kind": "jsx-text",
-      "line": 78,
+      "line": 73,
       "file": "web/app/(editorial)/research/spelling-errors-impact/page.tsx",
       "routes": [
         "/research/spelling-errors-impact"
@@ -9317,7 +9317,7 @@
     {
       "text": "Date alignment and spacing.",
       "kind": "jsx-text",
-      "line": 79,
+      "line": 74,
       "file": "web/app/(editorial)/research/spelling-errors-impact/page.tsx",
       "routes": [
         "/research/spelling-errors-impact"
@@ -9328,7 +9328,7 @@
     {
       "text": "Repeated tense shifts inside a single role.",
       "kind": "jsx-text",
-      "line": 80,
+      "line": 75,
       "file": "web/app/(editorial)/research/spelling-errors-impact/page.tsx",
       "routes": [
         "/research/spelling-errors-impact"
@@ -9339,7 +9339,7 @@
     {
       "text": "Punctuation, read in the final file.",
       "kind": "jsx-text",
-      "line": 81,
+      "line": 76,
       "file": "web/app/(editorial)/research/spelling-errors-impact/page.tsx",
       "routes": [
         "/research/spelling-errors-impact"
@@ -9350,7 +9350,7 @@
     {
       "text": "What’s worth fixing before the typos?",
       "kind": "attr:question",
-      "line": 84,
+      "line": 79,
       "file": "web/app/(editorial)/research/spelling-errors-impact/page.tsx",
       "routes": [
         "/research/spelling-errors-impact"
@@ -9361,7 +9361,7 @@
     {
       "text": "Your report isn&apos;t a spell-checker. It cards the lines a recruiter trips on, in the order they hit them. Run a spell-check last, after you&apos;ve worked through the cards.",
       "kind": "jsx-text",
-      "line": 85,
+      "line": 80,
       "file": "web/app/(editorial)/research/spelling-errors-impact/page.tsx",
       "routes": [
         "/research/spelling-errors-impact"
@@ -10296,7 +10296,7 @@
     {
       "text": "Can better writing actually get me hired?",
       "kind": "key:title",
-      "line": 13,
+      "line": 12,
       "file": "web/app/(editorial)/research/writing-quality-hire-probability/page.tsx",
       "routes": [
         "/research/writing-quality-hire-probability"
@@ -10307,7 +10307,7 @@
     {
       "text": "What a large field experiment found when freelancers got spelling and grammar suggestions on their profiles, and what it can't tell you about a resume.",
       "kind": "key:description",
-      "line": 14,
+      "line": 13,
       "file": "web/app/(editorial)/research/writing-quality-hire-probability/page.tsx",
       "routes": [
         "/research/writing-quality-hire-probability"
@@ -10318,7 +10318,7 @@
     {
       "text": "It helped in one big experiment. New freelancers whose profile text went through a grammar tool were hired 3.3% of the time, against 3.1%. Only the writing changed, not anyone’s experience.",
       "kind": "jsx-text",
-      "line": 28,
+      "line": 27,
       "file": "web/app/(editorial)/research/writing-quality-hire-probability/page.tsx",
       "routes": [
         "/research/writing-quality-hire-probability"
@@ -10329,7 +10329,7 @@
     {
       "text": "From a randomized experiment on a freelance marketplace: 480,948 jobseekers randomized, 194,700 profiles analyzed (Wiles, Munyikwa & Horton, Management Science, 2025).",
       "kind": "jsx-text",
-      "line": 33,
+      "line": 32,
       "file": "web/app/(editorial)/research/writing-quality-hire-probability/page.tsx",
       "routes": [
         "/research/writing-quality-hire-probability"
@@ -10340,7 +10340,7 @@
     {
       "text": "What changed, and what did not",
       "kind": "jsx-text",
-      "line": 40,
+      "line": 39,
       "file": "web/app/(editorial)/research/writing-quality-hire-probability/page.tsx",
       "routes": [
         "/research/writing-quality-hire-probability"
@@ -10351,7 +10351,7 @@
     {
       "text": "Clearer writing helped employers recognize ability that was already there.",
       "kind": "jsx-text",
-      "line": 42,
+      "line": 41,
       "file": "web/app/(editorial)/research/writing-quality-hire-probability/page.tsx",
       "routes": [
         "/research/writing-quality-hire-probability"
@@ -10362,7 +10362,7 @@
     {
       "text": "Algorithmic Writing Assistance on Jobseekers’ Resumes Increases Hires",
       "kind": "key:title",
-      "line": 51,
+      "line": 49,
       "file": "web/app/(editorial)/research/writing-quality-hire-probability/page.tsx",
       "routes": [
         "/research/writing-quality-hire-probability"
@@ -10373,7 +10373,7 @@
     {
       "text": "What the experiment tested",
       "kind": "jsx-text",
-      "line": 58,
+      "line": 56,
       "file": "web/app/(editorial)/research/writing-quality-hire-probability/page.tsx",
       "routes": [
         "/research/writing-quality-hire-probability"
@@ -10384,7 +10384,7 @@
     {
       "text": "In June and July 2021, a large online freelance marketplace randomly gave about half of its new jobseekers a writing tool inside the profile box. It underlined errors and suggested fixes for spelling, grammar, punctuation, and word choice. It wasn&apos;t generative: it couldn&apos;t be prompted, and it couldn&apos;t write anything for them.",
       "kind": "jsx-text",
-      "line": 60,
+      "line": 58,
       "file": "web/app/(editorial)/research/writing-quality-hire-probability/page.tsx",
       "routes": [
         "/research/writing-quality-hire-probability"
@@ -10395,7 +10395,7 @@
     {
       "text": "The profile served as the resume, and it was short: about 70 words on average. More than 80% of the jobseekers were based outside the US, the UK, Canada, and Australia.",
       "kind": "jsx-text",
-      "line": 64,
+      "line": 62,
       "file": "web/app/(editorial)/research/writing-quality-hire-probability/page.tsx",
       "routes": [
         "/research/writing-quality-hire-probability"
@@ -10406,7 +10406,7 @@
     {
       "text": "What the experiment found",
       "kind": "jsx-text",
-      "line": 68,
+      "line": 66,
       "file": "web/app/(editorial)/research/writing-quality-hire-probability/page.tsx",
       "routes": [
         "/research/writing-quality-hire-probability"
@@ -10417,7 +10417,7 @@
     {
       "text": "In the control group, 3.1% of jobseekers were hired within their first 28 days. With the tool, 3.3% were. That&apos;s an 8% relative increase, with a 95% confidence interval of 3% to 13%. Treated jobseekers didn&apos;t send more applications, and the study found no evidence that employers were less satisfied with them, which argues against the idea that better writing merely disguised weaker candidates. The direction matches a recruiter experiment that varied only the spelling:",
       "kind": "jsx-text",
-      "line": 70,
+      "line": 68,
       "file": "web/app/(editorial)/research/writing-quality-hire-probability/page.tsx",
       "routes": [
         "/research/writing-quality-hire-probability"
@@ -10428,7 +10428,7 @@
     {
       "text": "five spelling errors cost 1.85 points on a 0–10 interview rating",
       "kind": "jsx-text",
-      "line": 70,
+      "line": 68,
       "file": "web/app/(editorial)/research/writing-quality-hire-probability/page.tsx",
       "routes": [
         "/research/writing-quality-hire-probability"
@@ -10439,7 +10439,7 @@
     {
       "text": "Of the 480,948 jobseekers randomized, the analysis covers the 194,700 whose profiles were submitted, approved by the platform, and not empty. The tool didn&apos;t change who submitted a profile or who was approved.",
       "kind": "jsx-text",
-      "line": 74,
+      "line": 72,
       "file": "web/app/(editorial)/research/writing-quality-hire-probability/page.tsx",
       "routes": [
         "/research/writing-quality-hire-probability"
@@ -10450,7 +10450,7 @@
     {
       "text": "What to do with it",
       "kind": "jsx-text",
-      "line": 78,
+      "line": 76,
       "file": "web/app/(editorial)/research/writing-quality-hire-probability/page.tsx",
       "routes": [
         "/research/writing-quality-hire-probability"
@@ -10461,7 +10461,7 @@
     {
       "text": "Our advice:",
       "kind": "jsx-text",
-      "line": 80,
+      "line": 78,
       "file": "web/app/(editorial)/research/writing-quality-hire-probability/page.tsx",
       "routes": [
         "/research/writing-quality-hire-probability"
@@ -10472,7 +10472,7 @@
     {
       "text": "use wording that explains your actual experience. Start with the most useful detail,",
       "kind": "jsx-text",
-      "line": 80,
+      "line": 78,
       "file": "web/app/(editorial)/research/writing-quality-hire-probability/page.tsx",
       "routes": [
         "/research/writing-quality-hire-probability"
@@ -10483,7 +10483,7 @@
     {
       "text": "what changed, how you measured it, and what you did to get there",
       "kind": "jsx-text",
-      "line": 80,
+      "line": 78,
       "file": "web/app/(editorial)/research/writing-quality-hire-probability/page.tsx",
       "routes": [
         "/research/writing-quality-hire-probability"
@@ -10494,7 +10494,7 @@
     {
       "text": ", and cut phrases that repeat the role title or leave your responsibility unclear. On a full resume that ability lives in Experience,",
       "kind": "jsx-text",
-      "line": 80,
+      "line": 78,
       "file": "web/app/(editorial)/research/writing-quality-hire-probability/page.tsx",
       "routes": [
         "/research/writing-quality-hire-probability"
@@ -10505,7 +10505,7 @@
     {
       "text": "Which line buries what you did?",
       "kind": "attr:question",
-      "line": 83,
+      "line": 81,
       "file": "web/app/(editorial)/research/writing-quality-hire-probability/page.tsx",
       "routes": [
         "/research/writing-quality-hire-probability"
@@ -10516,7 +10516,7 @@
     {
       "text": "When a line buries what you did or what changed, the report quotes it and asks for the missing detail. We ask for the number or the scope. We don&apos;t make one up.",
       "kind": "jsx-text",
-      "line": 84,
+      "line": 82,
       "file": "web/app/(editorial)/research/writing-quality-hire-probability/page.tsx",
       "routes": [
         "/research/writing-quality-hire-probability"
@@ -10527,7 +10527,7 @@
     {
       "text": "The setting is narrow: one freelance platform, short profiles, mostly non-native English writers, and hires within 28 days. Treat the 8% as evidence that writing matters, not as a promise for a full resume in salaried hiring.",
       "kind": "jsx-text",
-      "line": 89,
+      "line": 87,
       "file": "web/app/(editorial)/research/writing-quality-hire-probability/page.tsx",
       "routes": [
         "/research/writing-quality-hire-probability"
@@ -10538,7 +10538,7 @@
     {
       "text": "The absolute change is small, about a quarter of a percentage point.",
       "kind": "jsx-text",
-      "line": 90,
+      "line": 88,
       "file": "web/app/(editorial)/research/writing-quality-hire-probability/page.tsx",
       "routes": [
         "/research/writing-quality-hire-probability"
@@ -10549,7 +10549,7 @@
     {
       "text": "It can&apos;t tell you whether letting AI rewrite your resume helps: the tool only suggested corrections to what each person wrote.",
       "kind": "jsx-text",
-      "line": 91,
+      "line": 89,
       "file": "web/app/(editorial)/research/writing-quality-hire-probability/page.tsx",
       "routes": [
         "/research/writing-quality-hire-probability"
@@ -10560,7 +10560,7 @@
     {
       "text": "A builder whose AI writer drafts the bullets from your job title",
       "kind": "jsx-text",
-      "line": 91,
+      "line": 89,
       "file": "web/app/(editorial)/research/writing-quality-hire-probability/page.tsx",
       "routes": [
         "/research/writing-quality-hire-probability"
@@ -10571,7 +10571,7 @@
     {
       "text": "is a different thing. If you use a tool that writes for you, check every line against what you actually did.",
       "kind": "jsx-text",
-      "line": 91,
+      "line": 89,
       "file": "web/app/(editorial)/research/writing-quality-hire-probability/page.tsx",
       "routes": [
         "/research/writing-quality-hire-probability"
@@ -10582,7 +10582,7 @@
     {
       "text": "Two of the authors received funding from the platform where the experiment ran. None received funding from the company that made the writing tool.",
       "kind": "jsx-text",
-      "line": 92,
+      "line": 90,
       "file": "web/app/(editorial)/research/writing-quality-hire-probability/page.tsx",
       "routes": [
         "/research/writing-quality-hire-probability"

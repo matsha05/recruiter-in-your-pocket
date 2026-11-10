@@ -33,12 +33,12 @@ function Ruler({ lost, seen, highlight }: { lost: number; seen: boolean; highlig
     );
 }
 
-/** A resume line with misspellings circled in pen. */
+/** A resume line with five misspellings circled in pen: the five-error case the figure highlights. */
 function CircledLine() {
     const circled = "rounded-[999px] border-[1.5px] border-[hsl(var(--pen))] px-1 py-px -mx-0.5";
     return (
         <p className="rounded-inset border border-line bg-paper px-4 py-3 text-base text-foreground">
-            Led <span className={circled}>onbaording</span> for 40 new hires and <span className={circled}>recieved</span> the team&apos;s <span className={circled}>excellance</span> award.
+            Led <span className={circled}>onbaording</span> for 40 new hires, <span className={circled}>managd</span> the training <span className={circled}>calender</span>, and <span className={circled}>recieved</span> the team&apos;s <span className={circled}>excellance</span> award.
         </p>
     );
 }
@@ -74,7 +74,7 @@ export function ErrorImpactDiagram({ figureNumber = 1 }: { figureNumber?: number
                     </PenNote>
                 </div>
                 <p className="border-t border-line px-5 py-4 text-sm text-muted-foreground md:px-7">
-                    The example line is ours. In the study, recruiters rated fictional resumes; nobody was actually called. One error on its own wasn&apos;t tested.
+                    The example line, with five errors, is ours. In the study, recruiters rated fictional resumes; nobody was actually called. One error on its own wasn&apos;t tested.
                 </p>
             </DiagramFrame>
             <DiagramCaption kicker={`Fig. ${figureNumber} / Sterkens et al.`} title="PLOS ONE, 2023. 445 recruiters across eight occupations." />

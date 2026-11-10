@@ -2,7 +2,6 @@ import { pageMetadata } from "@/lib/seo/metadata";
 import { ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
 import { ResearchLink } from "@/components/research/ResearchLink";
-import { LinkedInVisibilityDiagram } from "@/components/research/diagrams/LinkedInVisibilityDiagram";
 import { RecruiterSearchDiagram } from "@/components/research/diagrams/RecruiterSearchDiagram";
 
 const PATH = "/research/linkedin-visibility";
@@ -38,7 +37,6 @@ export default function LinkedInVisibilityPage() {
                         <Citation id="source-1">1</Citation>
                         <Citation id="source-2">2</Citation>
                     </p>
-                    <LinkedInVisibilityDiagram figureNumber={1} />
                 </>
             }
             sources={[
@@ -119,7 +117,7 @@ export default function LinkedInVisibilityPage() {
             </div>
 
             <div className="not-prose my-10">
-                <RecruiterSearchDiagram figureNumber={2} />
+                <RecruiterSearchDiagram figureNumber={1} />
             </div>
 
             <h2 className="research-h2">What LinkedIn does not tell us</h2>

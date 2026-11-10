@@ -8,14 +8,14 @@ import { PenNote } from "@/components/research/figures/FigureKit";
 // compares the gap, not the rates themselves.
 const differences = [
     { label: "Submitted work on time", points: 11 },
-    { label: "Continued the job", points: 20 },
+    { label: "Asked to keep working", points: 20 },
 ];
 const axisMax = 25;
 const ticks = [0, 5, 10, 15, 20, 25];
 
 export function ReferralQuantifiedDiagram({ figureNumber = 1 }: { figureNumber?: number }) {
     return (
-        <DiagramFigure className="max-w-[46rem]" label="Bar chart: referred workers were 11 percentage points more likely to submit work on time and 20 points more likely to continue the job">
+        <DiagramFigure className="max-w-[46rem]" label="Bar chart: referred workers were 11 percentage points more likely to submit work on time and 20 points more likely to ask to keep working on the task">
             <DiagramFrame>
                 <EvidenceHeader index={String(figureNumber).padStart(2, "0")} title="How much more often referred workers came through" note="Difference from comparable non-referred workers, in percentage points." />
                 <div className="px-5 pb-6 pt-7 md:px-7 md:pb-8">

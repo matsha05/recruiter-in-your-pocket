@@ -44,8 +44,8 @@ export function ProcessRail({ steps, footer }: { steps: ProcessStep[]; footer?: 
                 {steps.map((step, index) => {
                     const tone = step.tone ?? "context";
                     return (
-                        <li key={`${step.label}-${step.title}`} className="relative border-l border-line py-5 pl-6 first:pt-0 last:pb-0 md:border-l-0 md:border-t md:px-4 md:pb-0 md:pt-7 md:first:pl-0 md:last:pr-0">
-                            <span className={cn("absolute -left-[5px] top-6 size-[9px] border-2 bg-paper md:-top-[5px] md:left-4 md:first:left-0", toneClasses[tone])} aria-hidden="true" />
+                        <li key={`${step.label}-${step.title}`} className="relative border-l border-line py-5 pl-6 first:pt-0 last:pb-0 md:border-l-0 md:border-t md:px-4 md:pb-0 md:pt-7 md:first:pl-0 md:first:pt-7 md:last:pr-0">
+                            <span className={cn("absolute -left-[5px] top-6 size-[9px] border-2 bg-paper md:-top-[5px]", index === 0 ? "md:left-0" : "md:left-4", toneClasses[tone])} aria-hidden="true" />
                             <div className={cn("riyp-evidence-label", toneClasses[tone].split(" ").at(-1))}>{step.label}</div>
                             <div className="mt-2 font-display text-xl font-bold tracking-tight text-foreground">{step.title}</div>
                             <p className="mt-2 text-sm text-muted-foreground">{step.detail}</p>

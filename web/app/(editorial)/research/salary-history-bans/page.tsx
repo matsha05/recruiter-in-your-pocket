@@ -2,7 +2,6 @@ import { pageMetadata } from "@/lib/seo/metadata";
 import { ArticleInsight, Citation } from "@/components/research/ResearchArticle";
 import { AnswerArticle, ArticleBridge } from "@/components/research/AnswerArticle";
 import { ResearchLink } from "@/components/research/ResearchLink";
-import { SalaryLeverage } from "@/components/research/diagrams/SalaryLeverage";
 
 const PATH = "/research/salary-history-bans";
 
@@ -36,7 +35,6 @@ export default function SalaryHistoryPage() {
                         Across three general negotiation experiments, the party making the first offer did better, and first offers strongly predicted final settlements. That supports preparing a role-based range. It does not prove that withholding salary history improves an individual outcome.
                         <Citation id="source-3">3</Citation>
                     </p>
-                    <SalaryLeverage />
                 </>
             }
             sources={[

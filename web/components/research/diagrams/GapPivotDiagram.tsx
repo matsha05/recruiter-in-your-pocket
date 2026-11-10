@@ -57,7 +57,7 @@ export function GapPivotDiagram({ figureNumber = 1 }: { figureNumber?: number })
                             </g>
                         ))}
                         <text x={x(1)} y={y(points[1].same) - 14} textAnchor="middle" className="fill-[hsl(var(--foreground))] text-sm font-semibold">16%</text>
-                        <text x={x(3) - 14} y={y(points[3].same) - 12} textAnchor="end" className="fill-[hsl(var(--foreground))] text-sm font-semibold">2%</text>
+                        <text x={x(3) + 10} y={y(points[3].same) - 8} textAnchor="start" className="fill-[hsl(var(--foreground))] text-sm font-semibold">2%</text>
                     </svg>
                     <div className="grid gap-4">
                         <div className="grid gap-2">

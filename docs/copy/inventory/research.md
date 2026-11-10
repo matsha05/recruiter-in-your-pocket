@@ -317,50 +317,50 @@ Routes: `/research`, `/research/asking-for-a-referral`, `/research/ats`, `/resea
 
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
-| 1 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:12` | key:title | Why can’t recruiters find me on LinkedIn? |
-| 2 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:13` | key:description | What LinkedIn documents about recruiter search, which profile fields candidates can control, and what the platform does not disclose. |
-| 3 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:23` | jsx-text | They search titles, skills and the words in your profile. LinkedIn’s Skills filter uses the skills you list and those in your headline, titles and experience. It doesn’t publish how it ranks the results. |
-| 4 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:28` | jsx-text | From LinkedIn’s own Recruiter help pages, which describe its product rather than hiring outcomes. |
-| 5 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:35` | jsx-text | What affects LinkedIn visibility |
-| 6 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:37` | jsx-text | LinkedIn Recruiter&apos;s filters include job title, skills, company, location, seniority, and years of experience. |
-| 7 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:47` | key:title | Skills filter in Recruiter and Recruiter Lite |
-| 8 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:54` | key:title | Recruiter and Recruiter Lite search filters and definitions |
-| 9 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:61` | jsx-text | Where skill evidence can come from |
-| 10 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:64` | attr:title | Skills you list |
-| 11 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:67` | jsx-text | Standardized skills in the Skills section, sometimes connected to experience, education, or endorsements. |
-| 12 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:73` | attr:title | Skills in your profile text |
-| 13 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:76` | jsx-text | Skill terms in your headline, summary, titles, experience descriptions, certificates, and courses. |
-| 14 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:82` | attr:title | Skills inferred from experience |
-| 15 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:85` | jsx-text | LinkedIn says it may infer related skills from direct experience. For example, it may treat Tableau experience as evidence of data visualization. |
-| 16 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:91` | attr:title | Resume skills, when shared |
-| 17 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:94` | jsx-text | For members who share resume details for discoverability, Recruiter can surface skills found in that resume. |
-| 18 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:101` | jsx-text | What a useful headline looks like |
-| 19 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:104` | jsx-text | Easy to search for |
-| 20 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:106` | jsx-text | Senior product manager · B2B SaaS · onboarding and retention |
-| 21 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:107` | jsx-text | Data scientist · forecasting · Python and SQL · healthcare |
-| 22 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:108` | jsx-text | Engineering manager · platform teams · fintech infrastructure |
-| 23 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:112` | jsx-text | Hard to search for |
-| 24 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:114` | jsx-text | Product leader building great products |
-| 25 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:115` | jsx-text | Passionate problem-solver seeking new opportunities |
-| 26 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:116` | jsx-text | Looking for my next challenge in tech |
-| 27 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:125` | jsx-text | What LinkedIn does not tell us |
-| 28 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:127` | jsx-text | The documentation explains usable inputs. It does not reveal a universal recipe for ranking first. |
-| 29 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:132` | jsx-text | LinkedIn does not publicly disclose exact ranking weights or its complete search-scoring logic. |
-| 30 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:136` | jsx-text | Recruiters choose different filters and search strategies across roles, industries, and markets. |
-| 31 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:140` | jsx-text | A discoverable profile can earn consideration. It cannot guarantee ranking, outreach, or an interview. |
-| 32 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:144` | jsx-text | What you post is read too. |
-| 33 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:144` | jsx-text | In one experiment, unappealing posts cut candidate ratings by almost two points, and having no profile at all cost more than posts suggesting mental-health problems |
-| 34 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:148` | jsx-text | The practical rule |
-| 35 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:150` | jsx-text | Check your title and Skills section, then explain where you used those skills in your experience descriptions. Use the terms that fit your actual work. Repeating a keyword everywhere does not explain what you know how to do. |
-| 36 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:155` | jsx-text | Name the role plainly. |
-| 37 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:155` | jsx-text | Use the title a recruiter would reasonably search for. If your official title is unusual, add a truthful, recognizable description beside it. The same plain title helps on the resume, where |
-| 38 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:156` | jsx-text | Put skills in context. |
-| 39 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:156` | jsx-text | List the important skills, then connect them to the work in your headline, About section, or experience descriptions where they naturally belong. |
-| 40 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:156` | jsx-text | A listed skill is a claim; the project behind it is what lets a reader assess it |
-| 41 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:157` | jsx-text | Explain where you used the skill. |
-| 42 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:157` | jsx-text | A search term can help someone find your profile. A relevant project or responsibility helps them evaluate your experience. |
-| 43 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:160` | attr:question | Does your resume name the role plainly? |
-| 44 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:161` | jsx-text | Your report reads your resume, not your LinkedIn profile. It cards each line a recruiter trips on, in the order they hit it, and asks for what&apos;s missing instead of inventing it. Fix the resume, then carry the same plain language over to your profile. |
+| 1 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:11` | key:title | Why can’t recruiters find me on LinkedIn? |
+| 2 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:12` | key:description | What LinkedIn documents about recruiter search, which profile fields candidates can control, and what the platform does not disclose. |
+| 3 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:22` | jsx-text | They search titles, skills and the words in your profile. LinkedIn’s Skills filter uses the skills you list and those in your headline, titles and experience. It doesn’t publish how it ranks the results. |
+| 4 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:27` | jsx-text | From LinkedIn’s own Recruiter help pages, which describe its product rather than hiring outcomes. |
+| 5 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:34` | jsx-text | What affects LinkedIn visibility |
+| 6 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:36` | jsx-text | LinkedIn Recruiter&apos;s filters include job title, skills, company, location, seniority, and years of experience. |
+| 7 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:45` | key:title | Skills filter in Recruiter and Recruiter Lite |
+| 8 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:52` | key:title | Recruiter and Recruiter Lite search filters and definitions |
+| 9 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:59` | jsx-text | Where skill evidence can come from |
+| 10 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:62` | attr:title | Skills you list |
+| 11 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:65` | jsx-text | Standardized skills in the Skills section, sometimes connected to experience, education, or endorsements. |
+| 12 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:71` | attr:title | Skills in your profile text |
+| 13 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:74` | jsx-text | Skill terms in your headline, summary, titles, experience descriptions, certificates, and courses. |
+| 14 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:80` | attr:title | Skills inferred from experience |
+| 15 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:83` | jsx-text | LinkedIn says it may infer related skills from direct experience. For example, it may treat Tableau experience as evidence of data visualization. |
+| 16 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:89` | attr:title | Resume skills, when shared |
+| 17 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:92` | jsx-text | For members who share resume details for discoverability, Recruiter can surface skills found in that resume. |
+| 18 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:99` | jsx-text | What a useful headline looks like |
+| 19 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:102` | jsx-text | Easy to search for |
+| 20 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:104` | jsx-text | Senior product manager · B2B SaaS · onboarding and retention |
+| 21 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:105` | jsx-text | Data scientist · forecasting · Python and SQL · healthcare |
+| 22 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:106` | jsx-text | Engineering manager · platform teams · fintech infrastructure |
+| 23 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:110` | jsx-text | Hard to search for |
+| 24 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:112` | jsx-text | Product leader building great products |
+| 25 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:113` | jsx-text | Passionate problem-solver seeking new opportunities |
+| 26 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:114` | jsx-text | Looking for my next challenge in tech |
+| 27 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:123` | jsx-text | What LinkedIn does not tell us |
+| 28 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:125` | jsx-text | The documentation explains usable inputs. It does not reveal a universal recipe for ranking first. |
+| 29 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:130` | jsx-text | LinkedIn does not publicly disclose exact ranking weights or its complete search-scoring logic. |
+| 30 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:134` | jsx-text | Recruiters choose different filters and search strategies across roles, industries, and markets. |
+| 31 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:138` | jsx-text | A discoverable profile can earn consideration. It cannot guarantee ranking, outreach, or an interview. |
+| 32 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:142` | jsx-text | What you post is read too. |
+| 33 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:142` | jsx-text | In one experiment, unappealing posts cut candidate ratings by almost two points, and having no profile at all cost more than posts suggesting mental-health problems |
+| 34 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:146` | jsx-text | The practical rule |
+| 35 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:148` | jsx-text | Check your title and Skills section, then explain where you used those skills in your experience descriptions. Use the terms that fit your actual work. Repeating a keyword everywhere does not explain what you know how to do. |
+| 36 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:153` | jsx-text | Name the role plainly. |
+| 37 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:153` | jsx-text | Use the title a recruiter would reasonably search for. If your official title is unusual, add a truthful, recognizable description beside it. The same plain title helps on the resume, where |
+| 38 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:154` | jsx-text | Put skills in context. |
+| 39 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:154` | jsx-text | List the important skills, then connect them to the work in your headline, About section, or experience descriptions where they naturally belong. |
+| 40 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:154` | jsx-text | A listed skill is a claim; the project behind it is what lets a reader assess it |
+| 41 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:155` | jsx-text | Explain where you used the skill. |
+| 42 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:155` | jsx-text | A search term can help someone find your profile. A relevant project or responsibility helps them evaluate your experience. |
+| 43 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:158` | attr:question | Does your resume name the role plainly? |
+| 44 | research | `web/app/(editorial)/research/linkedin-visibility/page.tsx:159` | jsx-text | Your report reads your resume, not your LinkedIn profile. It cards each line a recruiter trips on, in the order they hit it, and asks for what&apos;s missing instead of inventing it. Fix the resume, then carry the same plain language over to your profile. |
 
 ## /research/offer
 
@@ -515,72 +515,72 @@ Routes: `/research`, `/research/asking-for-a-referral`, `/research/ats`, `/resea
 
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
-| 1 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:11` | key:title | Does my resume really have to fit on one page? |
-| 2 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:12` | key:description | One study favored two-page resumes for entry-level accountants. It doesn't settle the best length for every role. What it does and doesn't say. |
-| 3 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:22` | jsx-text | No. In one national study, recruiters at major accounting firms ranked two-page versions of strong entry-level resumes above one-page versions. Use a second page when it adds experience that matters for the role. |
-| 4 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:27` | jsx-text | From a 2001 study that mailed resumes to 570 CPA recruiters (Blackburn-Brockman & Belanger). We could read only its abstract. |
-| 5 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:35` | jsx-text | When to use a second page |
-| 6 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:37` | jsx-text | The study ranked finished resumes. Where to put things is our editing advice, not a finding it tested. |
-| 7 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:45` | key:title | One Page or Two?: A National Study of CPA Recruiters' Preferences for Resume Length |
-| 8 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:52` | jsx-text | What the study actually tested |
-| 9 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:54` | jsx-text | Researchers created one-page and two-page versions of resumes for four fictitious, highly qualified graduating accounting students. They mailed mixed sets to 570 personnel recruiters at major accounting firms and asked respondents to rank the candidates as if they were hiring for entry-level roles. |
-| 10 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:58` | jsx-text | The two-page versions ranked more favorably. That contradicts the claim that a second page is automatically harmful. It does not establish that two pages are better in every market, so use it to reject a rigid one-page rule, not to replace it with a rigid two-page one. |
-| 11 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:62` | jsx-text | What it does not settle |
-| 12 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:64` | jsx-text | The study covered entry-level accounting candidates, not every role or career stage. |
-| 13 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:65` | jsx-text | Recruiters ranked supplied resumes. The study did not measure real callbacks, interviews, or hires. |
-| 14 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:66` | jsx-text | The study was published in 2001, 25 years ago, when the firms were still the “Big Six” and before today&apos;s digital application workflow. |
-| 15 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:67` | jsx-text | Packets went to 570 recruiters. We could read only the abstract, which doesn&apos;t say how many replied; the full paper is paywalled. |
-| 16 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:70` | jsx-text | A better editing rule |
-| 17 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:72` | jsx-text | Our take: |
-| 18 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:72` | jsx-text | use the shortest version that preserves the evidence a reviewer needs. Put the experience and results most relevant to the role on page one: in the strongest eye-tracking study, |
-| 19 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:72` | jsx-text | recruiters who spent longer on Experience were more likely to move a resume forward |
-| 20 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:72` | jsx-text | . Use page two for additional work only when it adds useful scope, depth, or context. |
-| 21 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:75` | jsx-text | Every line should pass a simpler test: "Does this help a reviewer understand my fit for this role?" A line earns its space when it |
-| 22 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:75` | jsx-text | says what changed, how you measured it, and what you did to get there |
-| 23 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:75` | jsx-text | , not when it fills the page. |
-| 24 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:78` | jsx-text | Make the important details easy to find |
-| 25 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:80` | jsx-text | If page two repeats earlier points, combine them. If an older role does not help explain your qualifications for this job, shorten it, but keep its dates: |
-| 26 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:80` | jsx-text | . Check that your recent responsibilities and strongest results remain easy to find. |
-| 27 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:83` | attr:question | Which lines are earning their space? |
-| 28 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:84` | jsx-text | Your report reads for relevance, scope, ownership, and results. Page count isn&apos;t a shortcut in your score. It reads your text, not your PDF&apos;s layout, so open the final file at 100% and check the density yourself. |
+| 1 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:10` | key:title | Does my resume really have to fit on one page? |
+| 2 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:11` | key:description | One study favored two-page resumes for entry-level accountants. It doesn't settle the best length for every role. What it does and doesn't say. |
+| 3 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:21` | jsx-text | No. In one national study, recruiters at major accounting firms ranked two-page versions of strong entry-level resumes above one-page versions. Use a second page when it adds experience that matters for the role. |
+| 4 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:26` | jsx-text | From a 2001 study that mailed resumes to 570 CPA recruiters (Blackburn-Brockman & Belanger). We could read only its abstract. |
+| 5 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:34` | jsx-text | When to use a second page |
+| 6 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:36` | jsx-text | The study ranked finished resumes. Where to put things is our editing advice, not a finding it tested. |
+| 7 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:43` | key:title | One Page or Two?: A National Study of CPA Recruiters' Preferences for Resume Length |
+| 8 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:50` | jsx-text | What the study actually tested |
+| 9 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:52` | jsx-text | Researchers created one-page and two-page versions of resumes for four fictitious, highly qualified graduating accounting students. They mailed mixed sets to 570 personnel recruiters at major accounting firms and asked respondents to rank the candidates as if they were hiring for entry-level roles. |
+| 10 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:56` | jsx-text | The two-page versions ranked more favorably. That contradicts the claim that a second page is automatically harmful. It does not establish that two pages are better in every market, so use it to reject a rigid one-page rule, not to replace it with a rigid two-page one. |
+| 11 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:60` | jsx-text | What it does not settle |
+| 12 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:62` | jsx-text | The study covered entry-level accounting candidates, not every role or career stage. |
+| 13 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:63` | jsx-text | Recruiters ranked supplied resumes. The study did not measure real callbacks, interviews, or hires. |
+| 14 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:64` | jsx-text | The study was published in 2001, 25 years ago, when the firms were still the “Big Six” and before today&apos;s digital application workflow. |
+| 15 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:65` | jsx-text | Packets went to 570 recruiters. We could read only the abstract, which doesn&apos;t say how many replied; the full paper is paywalled. |
+| 16 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:68` | jsx-text | A better editing rule |
+| 17 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:70` | jsx-text | Our take: |
+| 18 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:70` | jsx-text | use the shortest version that preserves the evidence a reviewer needs. Put the experience and results most relevant to the role on page one: in the strongest eye-tracking study, |
+| 19 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:70` | jsx-text | recruiters who spent longer on Experience were more likely to move a resume forward |
+| 20 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:70` | jsx-text | . Use page two for additional work only when it adds useful scope, depth, or context. |
+| 21 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:73` | jsx-text | Every line should pass a simpler test: "Does this help a reviewer understand my fit for this role?" A line earns its space when it |
+| 22 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:73` | jsx-text | says what changed, how you measured it, and what you did to get there |
+| 23 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:73` | jsx-text | , not when it fills the page. |
+| 24 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:76` | jsx-text | Make the important details easy to find |
+| 25 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:78` | jsx-text | If page two repeats earlier points, combine them. If an older role does not help explain your qualifications for this job, shorten it, but keep its dates: |
+| 26 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:78` | jsx-text | . Check that your recent responsibilities and strongest results remain easy to find. |
+| 27 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:81` | attr:question | Which lines are earning their space? |
+| 28 | research | `web/app/(editorial)/research/resume-length-myths/page.tsx:82` | jsx-text | Your report reads for relevance, scope, ownership, and results. Page count isn&apos;t a shortcut in your score. It reads your text, not your PDF&apos;s layout, so open the final file at 100% and check the density yourself. |
 
 ## /research/salary-history-bans
 
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
-| 1 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:11` | key:title | Should I tell a recruiter what I make now? |
-| 2 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:12` | key:description | Studies of salary history bans and disclosure found different effects. Why neither supports one script for every pay conversation, and how to prepare. |
-| 3 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:22` | jsx-text | There’s no one right answer. For higher-paid candidates, disclosing brought higher offers and fewer callbacks, and not disclosing drew negative inferences. Know the local rule, ask for the range, and prepare your own number. |
-| 4 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:27` | jsx-text | From a field experiment with hundreds of recruiters and more than 2,000 fictional applications (Agan, Cowgill & Gee), described from its 2023 working-paper version. |
-| 5 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:34` | jsx-text | Choose the reference point you can defend |
-| 6 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:36` | jsx-text | Across three general negotiation experiments, the party making the first offer did better, and first offers strongly predicted final settlements. That supports preparing a role-based range. It does not prove that withholding salary history improves an individual outcome. |
-| 7 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:45` | key:title | Information and the Persistence of the Gender Wage Gap: Early Evidence from California's Salary History Ban |
-| 8 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:52` | key:title | Salary History and Employer Demand: Evidence from a Two-Sided Audit |
-| 9 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:59` | key:title | First offers as anchors: The role of perspective-taking and negotiator focus |
-| 10 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:66` | jsx-text | What salary history bans actually changed |
-| 11 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:68` | jsx-text | Hansen and McNichols studied the early effects of statewide salary history bans. Using difference-in-differences and synthetic-control methods, they found the gender earnings ratio increased by about 1% in states with bans, with the gains concentrated in several subgroups. Their design estimates the net policy effect; it does not show that every employer switched cleanly from past pay to market pricing. |
-| 12 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:72` | jsx-text | Disclosure can help and hurt |
-| 13 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:74` | jsx-text | A separate field experiment used hundreds of recruiters and more than 2,000 fictional applications. Employers made negative inferences about candidates who did not disclose, the way |
-| 14 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:74` | jsx-text | a reader fills in whatever a resume leaves open, and rarely in your favor |
-| 15 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:74` | jsx-text | . For men and other higher-paid candidates, disclosure produced higher salary offers but also fewer callbacks after accounting for salary. Those results do not identify one choice that improves both outcomes for everyone. |
-| 16 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:80` | attr:title | A clean redirect |
-| 17 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:84` | attr:title | If you name a target |
-| 18 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:85` | jsx-text | Tie it to the role: responsibilities, level, location, market data, and the full compensation mix, with |
-| 19 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:85` | jsx-text | the cash, the bonus, and the equity separated |
-| 20 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:89` | jsx-text | What candidates can control |
-| 21 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:91` | jsx-text | Know the local rule, ask for the employer&apos;s range, and prepare your own walk-away point before the conversation. Prepare to ask, too: |
-| 22 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:91` | jsx-text | most people don’t, and in one large survey most who did came away with more |
-| 23 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:91` | jsx-text | . Never invent a current salary. If you choose not to disclose, be ready to redirect calmly; if you do disclose, understand what signal the number may send in that market. |
-| 24 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:94` | jsx-text | Bring your market evidence. |
-| 25 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:94` | jsx-text | Compare the responsibilities, level, location, and available salary ranges before choosing your target. Check how recent and relevant each comparison is. When offers arrive, |
-| 26 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:94` | jsx-text | put salary, bonus, equity, and one-time pay on the same footing |
-| 27 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:94` | jsx-text | before you compare them. |
-| 28 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:95` | jsx-text | No universal disclosure rule. |
-| 29 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:95` | jsx-text | The studies do not establish that every candidate should disclose or refuse. Check the rules where the job is based and decide what information you want to share. |
-| 30 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:98` | attr:question | Is the resume that got you here doing its job? |
-| 31 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:99` | jsx-text | Your report won&apos;t tell you what to ask for. It reads your resume: the write-up says what it says first, and each line a recruiter trips on gets a card that asks for what&apos;s missing instead of inventing it. |
-| 32 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:104` | jsx-text | Legal requirements vary by jurisdiction. This is not legal advice. |
-| 33 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:105` | jsx-text | Neither study says what will happen in an individual negotiation. |
+| 1 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:10` | key:title | Should I tell a recruiter what I make now? |
+| 2 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:11` | key:description | Studies of salary history bans and disclosure found different effects. Why neither supports one script for every pay conversation, and how to prepare. |
+| 3 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:21` | jsx-text | There’s no one right answer. For higher-paid candidates, disclosing brought higher offers and fewer callbacks, and not disclosing drew negative inferences. Know the local rule, ask for the range, and prepare your own number. |
+| 4 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:26` | jsx-text | From a field experiment with hundreds of recruiters and more than 2,000 fictional applications (Agan, Cowgill & Gee), described from its 2023 working-paper version. |
+| 5 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:33` | jsx-text | Choose the reference point you can defend |
+| 6 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:35` | jsx-text | Across three general negotiation experiments, the party making the first offer did better, and first offers strongly predicted final settlements. That supports preparing a role-based range. It does not prove that withholding salary history improves an individual outcome. |
+| 7 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:43` | key:title | Information and the Persistence of the Gender Wage Gap: Early Evidence from California's Salary History Ban |
+| 8 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:50` | key:title | Salary History and Employer Demand: Evidence from a Two-Sided Audit |
+| 9 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:57` | key:title | First offers as anchors: The role of perspective-taking and negotiator focus |
+| 10 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:64` | jsx-text | What salary history bans actually changed |
+| 11 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:66` | jsx-text | Hansen and McNichols studied the early effects of statewide salary history bans. Using difference-in-differences and synthetic-control methods, they found the gender earnings ratio increased by about 1% in states with bans, with the gains concentrated in several subgroups. Their design estimates the net policy effect; it does not show that every employer switched cleanly from past pay to market pricing. |
+| 12 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:70` | jsx-text | Disclosure can help and hurt |
+| 13 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:72` | jsx-text | A separate field experiment used hundreds of recruiters and more than 2,000 fictional applications. Employers made negative inferences about candidates who did not disclose, the way |
+| 14 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:72` | jsx-text | a reader fills in whatever a resume leaves open, and rarely in your favor |
+| 15 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:72` | jsx-text | . For men and other higher-paid candidates, disclosure produced higher salary offers but also fewer callbacks after accounting for salary. Those results do not identify one choice that improves both outcomes for everyone. |
+| 16 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:78` | attr:title | A clean redirect |
+| 17 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:82` | attr:title | If you name a target |
+| 18 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:83` | jsx-text | Tie it to the role: responsibilities, level, location, market data, and the full compensation mix, with |
+| 19 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:83` | jsx-text | the cash, the bonus, and the equity separated |
+| 20 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:87` | jsx-text | What candidates can control |
+| 21 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:89` | jsx-text | Know the local rule, ask for the employer&apos;s range, and prepare your own walk-away point before the conversation. Prepare to ask, too: |
+| 22 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:89` | jsx-text | most people don’t, and in one large survey most who did came away with more |
+| 23 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:89` | jsx-text | . Never invent a current salary. If you choose not to disclose, be ready to redirect calmly; if you do disclose, understand what signal the number may send in that market. |
+| 24 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:92` | jsx-text | Bring your market evidence. |
+| 25 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:92` | jsx-text | Compare the responsibilities, level, location, and available salary ranges before choosing your target. Check how recent and relevant each comparison is. When offers arrive, |
+| 26 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:92` | jsx-text | put salary, bonus, equity, and one-time pay on the same footing |
+| 27 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:92` | jsx-text | before you compare them. |
+| 28 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:93` | jsx-text | No universal disclosure rule. |
+| 29 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:93` | jsx-text | The studies do not establish that every candidate should disclose or refuse. Check the rules where the job is based and decide what information you want to share. |
+| 30 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:96` | attr:question | Is the resume that got you here doing its job? |
+| 31 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:97` | jsx-text | Your report won&apos;t tell you what to ask for. It reads your resume: the write-up says what it says first, and each line a recruiter trips on gets a card that asks for what&apos;s missing instead of inventing it. |
+| 32 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:102` | jsx-text | Legal requirements vary by jurisdiction. This is not legal advice. |
+| 33 | research | `web/app/(editorial)/research/salary-history-bans/page.tsx:103` | jsx-text | Neither study says what will happen in an individual negotiation. |
 
 ## /research/skills-first-promise-reality
 
@@ -617,65 +617,65 @@ Routes: `/research`, `/research/asking-for-a-referral`, `/research/ats`, `/resea
 
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
-| 1 | research | `web/app/(editorial)/research/social-screening/page.tsx:11` | key:title | Will employers judge me by my social media? |
-| 2 | research | `web/app/(editorial)/research/social-screening/page.tsx:12` | key:description | Social media content changed candidate ratings in one experiment. What the study didn't test, and why a review questions the fairness of social screening. |
-| 3 | research | `web/app/(editorial)/research/social-screening/page.tsx:22` | jsx-text | In one experiment, yes. Posts changed how candidates were rated, and having no profile at all cost more than posts suggesting mental-health problems. Nobody showed those ratings predict how you’d do the job. |
-| 4 | research | `web/app/(editorial)/research/social-screening/page.tsx:27` | jsx-text | From a screening experiment with 1,500 US online evaluators and 500 people with hiring experience (Baker, Grimm & Ofek-Shanny). It’s a working paper, not yet peer reviewed. |
-| 5 | research | `web/app/(editorial)/research/social-screening/page.tsx:35` | jsx-text | What the experiment actually showed |
-| 6 | research | `web/app/(editorial)/research/social-screening/page.tsx:37` | jsx-text | Evaluators rated candidates for an office manager job in hospitality while the researchers varied what the candidate&apos;s social media showed. On a 0–10 scale, the general pool marked down unappealing content by 1.94 points, having no profile at all by 0.88, signs of mental-health problems by 0.68, and a two-year unemployment gap by 0.29. People with hiring experience showed the same order. |
-| 7 | research | `web/app/(editorial)/research/social-screening/page.tsx:39` | jsx-text | A gap cost the least here, and |
-| 8 | research | `web/app/(editorial)/research/social-screening/page.tsx:39` | jsx-text | in the largest test of ways to handle one, explaining it did no better than leaving it unexplained |
-| 9 | research | `web/app/(editorial)/research/social-screening/page.tsx:47` | key:title | To Be or Not to Be on Social Media: How Social Media Content Impacts Recruitment |
-| 10 | research | `web/app/(editorial)/research/social-screening/page.tsx:54` | key:title | Social Media Screening and Procedural Justice: Towards Fairer Use of Social Media in Selection |
-| 11 | research | `web/app/(editorial)/research/social-screening/page.tsx:61` | jsx-text | Why social screening can be unreliable |
-| 12 | research | `web/app/(editorial)/research/social-screening/page.tsx:63` | jsx-text | A 2021 literature review by Eva Vosen concluded that social-media screening creates privacy, discrimination, and accuracy concerns when employers lack clear, consistent procedures. |
-| 13 | research | `web/app/(editorial)/research/social-screening/page.tsx:67` | jsx-text | A public post may be incomplete, old, decontextualized, or unrelated to the job. |
-| 14 | research | `web/app/(editorial)/research/social-screening/page.tsx:68` | jsx-text | Profiles can expose protected characteristics before a structured review. |
-| 15 | research | `web/app/(editorial)/research/social-screening/page.tsx:69` | jsx-text | Different reviewers may interpret the same content differently. |
-| 16 | research | `web/app/(editorial)/research/social-screening/page.tsx:72` | jsx-text | What is worth doing |
-| 17 | research | `web/app/(editorial)/research/social-screening/page.tsx:74` | jsx-text | Our advice: |
-| 18 | research | `web/app/(editorial)/research/social-screening/page.tsx:74` | jsx-text | check the professional information you publish and decide what to keep private. The research does not identify a personal profile that every recruiter will interpret favorably. What a recruiter is trying to do with any of it is |
-| 19 | research | `web/app/(editorial)/research/social-screening/page.tsx:74` | jsx-text | , so the public version and the resume should tell the same story. |
-| 20 | research | `web/app/(editorial)/research/social-screening/page.tsx:77` | jsx-text | Reconcile titles, dates, credentials, and public work links. |
-| 21 | research | `web/app/(editorial)/research/social-screening/page.tsx:77` | jsx-text | Recruiters search the titles and skills in your headline and experience |
-| 22 | research | `web/app/(editorial)/research/social-screening/page.tsx:77` | jsx-text | , so the public version should agree with the resume. |
-| 23 | research | `web/app/(editorial)/research/social-screening/page.tsx:78` | jsx-text | Use privacy settings intentionally on personal accounts. |
-| 24 | research | `web/app/(editorial)/research/social-screening/page.tsx:79` | jsx-text | Keep public work samples current when they are part of your candidacy. |
-| 25 | research | `web/app/(editorial)/research/social-screening/page.tsx:80` | jsx-text | Link a portfolio when it shows work evidence your resume can&apos;t show on its own. |
-| 26 | research | `web/app/(editorial)/research/social-screening/page.tsx:83` | attr:question | What does the page you control say? |
-| 27 | research | `web/app/(editorial)/research/social-screening/page.tsx:84` | jsx-text | Your report reads only the resume you send. It doesn&apos;t look up or score your social accounts, and hobbies, politics, and lifestyle don&apos;t go into your score. |
-| 28 | research | `web/app/(editorial)/research/social-screening/page.tsx:89` | jsx-text | The experiment used one hospitality role and designed profile cues; it is not every hiring market. We read a July 2024 version. |
-| 29 | research | `web/app/(editorial)/research/social-screening/page.tsx:90` | jsx-text | Employer practice varies. This article does not establish legal guidance for any jurisdiction. |
+| 1 | research | `web/app/(editorial)/research/social-screening/page.tsx:10` | key:title | Will employers judge me by my social media? |
+| 2 | research | `web/app/(editorial)/research/social-screening/page.tsx:11` | key:description | Social media content changed candidate ratings in one experiment. What the study didn't test, and why a review questions the fairness of social screening. |
+| 3 | research | `web/app/(editorial)/research/social-screening/page.tsx:21` | jsx-text | In one experiment, yes. Posts changed how candidates were rated, and having no profile at all cost more than posts suggesting mental-health problems. Nobody showed those ratings predict how you’d do the job. |
+| 4 | research | `web/app/(editorial)/research/social-screening/page.tsx:26` | jsx-text | From a screening experiment with 1,500 US online evaluators and 500 people with hiring experience (Baker, Grimm & Ofek-Shanny). It’s a working paper, not yet peer reviewed. |
+| 5 | research | `web/app/(editorial)/research/social-screening/page.tsx:34` | jsx-text | What the experiment actually showed |
+| 6 | research | `web/app/(editorial)/research/social-screening/page.tsx:36` | jsx-text | Evaluators rated candidates for an office manager job in hospitality while the researchers varied what the candidate&apos;s social media showed. On a 0–10 scale, the general pool marked down unappealing content by 1.94 points, having no profile at all by 0.88, signs of mental-health problems by 0.68, and a two-year unemployment gap by 0.29. People with hiring experience showed the same order. |
+| 7 | research | `web/app/(editorial)/research/social-screening/page.tsx:38` | jsx-text | A gap cost the least here, and |
+| 8 | research | `web/app/(editorial)/research/social-screening/page.tsx:38` | jsx-text | in the largest test of ways to handle one, explaining it did no better than leaving it unexplained |
+| 9 | research | `web/app/(editorial)/research/social-screening/page.tsx:45` | key:title | To Be or Not to Be on Social Media: How Social Media Content Impacts Recruitment |
+| 10 | research | `web/app/(editorial)/research/social-screening/page.tsx:52` | key:title | Social Media Screening and Procedural Justice: Towards Fairer Use of Social Media in Selection |
+| 11 | research | `web/app/(editorial)/research/social-screening/page.tsx:59` | jsx-text | Why social screening can be unreliable |
+| 12 | research | `web/app/(editorial)/research/social-screening/page.tsx:61` | jsx-text | A 2021 literature review by Eva Vosen concluded that social-media screening creates privacy, discrimination, and accuracy concerns when employers lack clear, consistent procedures. |
+| 13 | research | `web/app/(editorial)/research/social-screening/page.tsx:65` | jsx-text | A public post may be incomplete, old, decontextualized, or unrelated to the job. |
+| 14 | research | `web/app/(editorial)/research/social-screening/page.tsx:66` | jsx-text | Profiles can expose protected characteristics before a structured review. |
+| 15 | research | `web/app/(editorial)/research/social-screening/page.tsx:67` | jsx-text | Different reviewers may interpret the same content differently. |
+| 16 | research | `web/app/(editorial)/research/social-screening/page.tsx:70` | jsx-text | What is worth doing |
+| 17 | research | `web/app/(editorial)/research/social-screening/page.tsx:72` | jsx-text | Our advice: |
+| 18 | research | `web/app/(editorial)/research/social-screening/page.tsx:72` | jsx-text | check the professional information you publish and decide what to keep private. The research does not identify a personal profile that every recruiter will interpret favorably. What a recruiter is trying to do with any of it is |
+| 19 | research | `web/app/(editorial)/research/social-screening/page.tsx:72` | jsx-text | , so the public version and the resume should tell the same story. |
+| 20 | research | `web/app/(editorial)/research/social-screening/page.tsx:75` | jsx-text | Reconcile titles, dates, credentials, and public work links. |
+| 21 | research | `web/app/(editorial)/research/social-screening/page.tsx:75` | jsx-text | Recruiters search the titles and skills in your headline and experience |
+| 22 | research | `web/app/(editorial)/research/social-screening/page.tsx:75` | jsx-text | , so the public version should agree with the resume. |
+| 23 | research | `web/app/(editorial)/research/social-screening/page.tsx:76` | jsx-text | Use privacy settings intentionally on personal accounts. |
+| 24 | research | `web/app/(editorial)/research/social-screening/page.tsx:77` | jsx-text | Keep public work samples current when they are part of your candidacy. |
+| 25 | research | `web/app/(editorial)/research/social-screening/page.tsx:78` | jsx-text | Link a portfolio when it shows work evidence your resume can&apos;t show on its own. |
+| 26 | research | `web/app/(editorial)/research/social-screening/page.tsx:81` | attr:question | What does the page you control say? |
+| 27 | research | `web/app/(editorial)/research/social-screening/page.tsx:82` | jsx-text | Your report reads only the resume you send. It doesn&apos;t look up or score your social accounts, and hobbies, politics, and lifestyle don&apos;t go into your score. |
+| 28 | research | `web/app/(editorial)/research/social-screening/page.tsx:87` | jsx-text | The experiment used one hospitality role and designed profile cues; it is not every hiring market. We read a July 2024 version. |
+| 29 | research | `web/app/(editorial)/research/social-screening/page.tsx:88` | jsx-text | Employer practice varies. This article does not establish legal guidance for any jurisdiction. |
 
 ## /research/spelling-errors-impact
 
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
-| 1 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:12` | key:title | Will one typo on my resume cost me the interview? |
-| 2 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:13` | key:description | What a 2020 experiment with 445 recruiters in Belgium found about spelling errors and hypothetical interview ratings, and why one typo isn't a reason to panic. |
-| 3 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:23` | jsx-text | Don’t panic over one. Five spelling errors cost 1.85 points on a 0–10 interview rating in one experiment. A single typo wasn’t tested. |
-| 4 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:28` | jsx-text | Five errors: −1.85 on a 0–10 interview rating, from an experiment with 445 hiring professionals (Sterkens et al., PLOS ONE, 2023). |
-| 5 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:34` | jsx-text | What the experiment actually tested |
-| 6 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:36` | jsx-text | In April 2020, 445 recruiters in Flanders, Belgium, rated Dutch-language resumes from recent graduates with zero, two, or five spelling errors, across eight occupations. Both error conditions lowered the hypothetical interview rating, with a larger penalty at five errors. |
-| 7 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:45` | key:title | Costly mistakes: Why and when spelling errors in resumes jeopardise interview chances |
-| 8 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:52` | jsx-text | The penalty grows when errors become a pattern |
-| 9 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:54` | jsx-text | The two-error penalty was about the same across applicants, jobs, and recruiters. The five-error penalty varied: it was larger among recruiters who care more about language, and smaller for jobs that require more education and for applicants who listed volunteer work. A larger penalty for jobs with heavy writing demands was borderline. |
-| 10 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:58` | jsx-text | Recruiters also rated applicants with repeated errors lower on interpersonal skills, conscientiousness, and mental ability. |
-| 11 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:66` | jsx-text | What this does and does not justify |
-| 12 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:68` | jsx-text | It justifies a careful spelling pass. It does not justify pretending one typo always ends the process, extending a Dutch-language result from Belgium to every language or labor market, or treating error-free writing as proof of job performance. |
-| 13 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:70` | jsx-text | It also can&apos;t say whether spelling matters more than content: the study kept the content the same and changed only the spelling. What it shows is that repeated errors cost points even when the experience on the page is identical. It fits what a much larger experiment found when only the wording changed: |
-| 14 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:70` | jsx-text | grammar fixes on short freelance profiles lifted hires from 3.1% to 3.3% |
-| 15 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:73` | jsx-text | What to fix first |
-| 16 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:75` | jsx-text | Our advice: |
-| 17 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:75` | jsx-text | the study tested spelling only, and the section a recruiter weighs is Experience: in the strongest eye-tracking study, |
-| 18 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:75` | jsx-text | recruiters who spent longer on Experience were more likely to move a resume forward |
-| 19 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:75` | jsx-text | . Fix what that section says, then run these checks. |
-| 20 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:78` | jsx-text | Spelling and grammar consistency. |
-| 21 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:79` | jsx-text | Date alignment and spacing. |
-| 22 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:80` | jsx-text | Repeated tense shifts inside a single role. |
-| 23 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:81` | jsx-text | Punctuation, read in the final file. |
-| 24 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:84` | attr:question | What’s worth fixing before the typos? |
-| 25 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:85` | jsx-text | Your report isn&apos;t a spell-checker. It cards the lines a recruiter trips on, in the order they hit them. Run a spell-check last, after you&apos;ve worked through the cards. |
+| 1 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:11` | key:title | Will one typo on my resume cost me the interview? |
+| 2 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:12` | key:description | What a 2020 experiment with 445 recruiters in Belgium found about spelling errors and hypothetical interview ratings, and why one typo isn't a reason to panic. |
+| 3 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:22` | jsx-text | Don’t panic over one. Five spelling errors cost 1.85 points on a 0–10 interview rating in one experiment. A single typo wasn’t tested. |
+| 4 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:27` | jsx-text | Five errors: −1.85 on a 0–10 interview rating, from an experiment with 445 hiring professionals (Sterkens et al., PLOS ONE, 2023). |
+| 5 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:33` | jsx-text | What the experiment actually tested |
+| 6 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:35` | jsx-text | In April 2020, 445 recruiters in Flanders, Belgium, rated Dutch-language resumes from recent graduates with zero, two, or five spelling errors, across eight occupations. Both error conditions lowered the hypothetical interview rating, with a larger penalty at five errors. |
+| 7 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:44` | key:title | Costly mistakes: Why and when spelling errors in resumes jeopardise interview chances |
+| 8 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:51` | jsx-text | The penalty grows when errors become a pattern |
+| 9 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:53` | jsx-text | The two-error penalty was about the same across applicants, jobs, and recruiters. The five-error penalty varied: it was larger among recruiters who care more about language, and smaller for jobs that require more education and for applicants who listed volunteer work. A larger penalty for jobs with heavy writing demands was borderline. |
+| 10 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:57` | jsx-text | Recruiters also rated applicants with repeated errors lower on interpersonal skills, conscientiousness, and mental ability. |
+| 11 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:61` | jsx-text | What this does and does not justify |
+| 12 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:63` | jsx-text | It justifies a careful spelling pass. It does not justify pretending one typo always ends the process, extending a Dutch-language result from Belgium to every language or labor market, or treating error-free writing as proof of job performance. |
+| 13 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:65` | jsx-text | It also can&apos;t say whether spelling matters more than content: the study kept the content the same and changed only the spelling. What it shows is that repeated errors cost points even when the experience on the page is identical. It fits what a much larger experiment found when only the wording changed: |
+| 14 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:65` | jsx-text | grammar fixes on short freelance profiles lifted hires from 3.1% to 3.3% |
+| 15 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:68` | jsx-text | What to fix first |
+| 16 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:70` | jsx-text | Our advice: |
+| 17 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:70` | jsx-text | the study tested spelling only, and the section a recruiter weighs is Experience: in the strongest eye-tracking study, |
+| 18 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:70` | jsx-text | recruiters who spent longer on Experience were more likely to move a resume forward |
+| 19 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:70` | jsx-text | . Fix what that section says, then run these checks. |
+| 20 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:73` | jsx-text | Spelling and grammar consistency. |
+| 21 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:74` | jsx-text | Date alignment and spacing. |
+| 22 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:75` | jsx-text | Repeated tense shifts inside a single role. |
+| 23 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:76` | jsx-text | Punctuation, read in the final file. |
+| 24 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:79` | attr:question | What’s worth fixing before the typos? |
+| 25 | research | `web/app/(editorial)/research/spelling-errors-impact/page.tsx:80` | jsx-text | Your report isn&apos;t a spell-checker. It cards the lines a recruiter trips on, in the order they hit them. Run a spell-check last, after you&apos;ve worked through the cards. |
 
 ## /research/star-method
 
@@ -780,30 +780,30 @@ Routes: `/research`, `/research/asking-for-a-referral`, `/research/ats`, `/resea
 
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
-| 1 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:13` | key:title | Can better writing actually get me hired? |
-| 2 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:14` | key:description | What a large field experiment found when freelancers got spelling and grammar suggestions on their profiles, and what it can't tell you about a resume. |
-| 3 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:28` | jsx-text | It helped in one big experiment. New freelancers whose profile text went through a grammar tool were hired 3.3% of the time, against 3.1%. Only the writing changed, not anyone’s experience. |
-| 4 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:33` | jsx-text | From a randomized experiment on a freelance marketplace: 480,948 jobseekers randomized, 194,700 profiles analyzed (Wiles, Munyikwa & Horton, Management Science, 2025). |
-| 5 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:40` | jsx-text | What changed, and what did not |
-| 6 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:42` | jsx-text | Clearer writing helped employers recognize ability that was already there. |
-| 7 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:51` | key:title | Algorithmic Writing Assistance on Jobseekers’ Resumes Increases Hires |
-| 8 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:58` | jsx-text | What the experiment tested |
-| 9 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:60` | jsx-text | In June and July 2021, a large online freelance marketplace randomly gave about half of its new jobseekers a writing tool inside the profile box. It underlined errors and suggested fixes for spelling, grammar, punctuation, and word choice. It wasn&apos;t generative: it couldn&apos;t be prompted, and it couldn&apos;t write anything for them. |
-| 10 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:64` | jsx-text | The profile served as the resume, and it was short: about 70 words on average. More than 80% of the jobseekers were based outside the US, the UK, Canada, and Australia. |
-| 11 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:68` | jsx-text | What the experiment found |
-| 12 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:70` | jsx-text | In the control group, 3.1% of jobseekers were hired within their first 28 days. With the tool, 3.3% were. That&apos;s an 8% relative increase, with a 95% confidence interval of 3% to 13%. Treated jobseekers didn&apos;t send more applications, and the study found no evidence that employers were less satisfied with them, which argues against the idea that better writing merely disguised weaker candidates. The direction matches a recruiter experiment that varied only the spelling: |
-| 13 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:70` | jsx-text | five spelling errors cost 1.85 points on a 0–10 interview rating |
-| 14 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:74` | jsx-text | Of the 480,948 jobseekers randomized, the analysis covers the 194,700 whose profiles were submitted, approved by the platform, and not empty. The tool didn&apos;t change who submitted a profile or who was approved. |
-| 15 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:78` | jsx-text | What to do with it |
-| 16 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:80` | jsx-text | Our advice: |
-| 17 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:80` | jsx-text | use wording that explains your actual experience. Start with the most useful detail, |
-| 18 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:80` | jsx-text | what changed, how you measured it, and what you did to get there |
-| 19 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:80` | jsx-text | , and cut phrases that repeat the role title or leave your responsibility unclear. On a full resume that ability lives in Experience, |
-| 20 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:83` | attr:question | Which line buries what you did? |
-| 21 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:84` | jsx-text | When a line buries what you did or what changed, the report quotes it and asks for the missing detail. We ask for the number or the scope. We don&apos;t make one up. |
-| 22 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:89` | jsx-text | The setting is narrow: one freelance platform, short profiles, mostly non-native English writers, and hires within 28 days. Treat the 8% as evidence that writing matters, not as a promise for a full resume in salaried hiring. |
-| 23 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:90` | jsx-text | The absolute change is small, about a quarter of a percentage point. |
-| 24 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:91` | jsx-text | It can&apos;t tell you whether letting AI rewrite your resume helps: the tool only suggested corrections to what each person wrote. |
-| 25 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:91` | jsx-text | A builder whose AI writer drafts the bullets from your job title |
-| 26 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:91` | jsx-text | is a different thing. If you use a tool that writes for you, check every line against what you actually did. |
-| 27 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:92` | jsx-text | Two of the authors received funding from the platform where the experiment ran. None received funding from the company that made the writing tool. |
+| 1 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:12` | key:title | Can better writing actually get me hired? |
+| 2 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:13` | key:description | What a large field experiment found when freelancers got spelling and grammar suggestions on their profiles, and what it can't tell you about a resume. |
+| 3 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:27` | jsx-text | It helped in one big experiment. New freelancers whose profile text went through a grammar tool were hired 3.3% of the time, against 3.1%. Only the writing changed, not anyone’s experience. |
+| 4 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:32` | jsx-text | From a randomized experiment on a freelance marketplace: 480,948 jobseekers randomized, 194,700 profiles analyzed (Wiles, Munyikwa & Horton, Management Science, 2025). |
+| 5 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:39` | jsx-text | What changed, and what did not |
+| 6 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:41` | jsx-text | Clearer writing helped employers recognize ability that was already there. |
+| 7 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:49` | key:title | Algorithmic Writing Assistance on Jobseekers’ Resumes Increases Hires |
+| 8 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:56` | jsx-text | What the experiment tested |
+| 9 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:58` | jsx-text | In June and July 2021, a large online freelance marketplace randomly gave about half of its new jobseekers a writing tool inside the profile box. It underlined errors and suggested fixes for spelling, grammar, punctuation, and word choice. It wasn&apos;t generative: it couldn&apos;t be prompted, and it couldn&apos;t write anything for them. |
+| 10 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:62` | jsx-text | The profile served as the resume, and it was short: about 70 words on average. More than 80% of the jobseekers were based outside the US, the UK, Canada, and Australia. |
+| 11 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:66` | jsx-text | What the experiment found |
+| 12 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:68` | jsx-text | In the control group, 3.1% of jobseekers were hired within their first 28 days. With the tool, 3.3% were. That&apos;s an 8% relative increase, with a 95% confidence interval of 3% to 13%. Treated jobseekers didn&apos;t send more applications, and the study found no evidence that employers were less satisfied with them, which argues against the idea that better writing merely disguised weaker candidates. The direction matches a recruiter experiment that varied only the spelling: |
+| 13 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:68` | jsx-text | five spelling errors cost 1.85 points on a 0–10 interview rating |
+| 14 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:72` | jsx-text | Of the 480,948 jobseekers randomized, the analysis covers the 194,700 whose profiles were submitted, approved by the platform, and not empty. The tool didn&apos;t change who submitted a profile or who was approved. |
+| 15 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:76` | jsx-text | What to do with it |
+| 16 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:78` | jsx-text | Our advice: |
+| 17 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:78` | jsx-text | use wording that explains your actual experience. Start with the most useful detail, |
+| 18 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:78` | jsx-text | what changed, how you measured it, and what you did to get there |
+| 19 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:78` | jsx-text | , and cut phrases that repeat the role title or leave your responsibility unclear. On a full resume that ability lives in Experience, |
+| 20 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:81` | attr:question | Which line buries what you did? |
+| 21 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:82` | jsx-text | When a line buries what you did or what changed, the report quotes it and asks for the missing detail. We ask for the number or the scope. We don&apos;t make one up. |
+| 22 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:87` | jsx-text | The setting is narrow: one freelance platform, short profiles, mostly non-native English writers, and hires within 28 days. Treat the 8% as evidence that writing matters, not as a promise for a full resume in salaried hiring. |
+| 23 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:88` | jsx-text | The absolute change is small, about a quarter of a percentage point. |
+| 24 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:89` | jsx-text | It can&apos;t tell you whether letting AI rewrite your resume helps: the tool only suggested corrections to what each person wrote. |
+| 25 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:89` | jsx-text | A builder whose AI writer drafts the bullets from your job title |
+| 26 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:89` | jsx-text | is a different thing. If you use a tool that writes for you, check every line against what you actually did. |
+| 27 | research | `web/app/(editorial)/research/writing-quality-hire-probability/page.tsx:90` | jsx-text | Two of the authors received funding from the platform where the experiment ran. None received funding from the company that made the writing tool. |

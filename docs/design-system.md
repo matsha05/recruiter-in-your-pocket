@@ -234,7 +234,21 @@ Research visuals must teach a concrete idea. Every figure needs:
 4. a source or evidence note when applicable
 5. a plain-language takeaway
 
-If removing a diagram loses no understanding, the diagram is decoration and should not ship.
+**The test (rewritten November 10, 2026; the July 2026 version read "If removing a diagram loses no understanding, the diagram is decoration and should not ship"):** a figure ships when it shows something faster or more memorably than the text beside it can, and everything in it is true. The old test measured against a reader who reads every word. Most people skim, so a figure may repeat the article and still earn its place.
+
+A figure earns its place in one of three ways:
+
+- **It draws numbers.** A reader sees the size of a finding (the 500 dots behind "1 in 500").
+- **It shows the artifact.** A resume line, or two versions of the same resume.
+- **It gives a shape to remember.** A structure the article is about, which a skimmer can take in at a glance: STAR's four letters, or the steps where software screens people out.
+
+A figure fails, and comes out, when any of these is true:
+
+- It is the paragraph beside it set in boxes and arrows, with no numbers, no artifact and no structure worth remembering.
+- It says more than the article's sources do, or makes a claim the article doesn't source.
+- It lists labels where the finding was a measurement (the three perception areas from the spelling study, with no sizes).
+
+Applied on November 10, 2026: six concept diagrams were cut (salary anchors, social screening, spelling perceptions, writing clarity, page one and two, the LinkedIn path), and three were kept as shapes worth remembering (STAR, the ATS steps, the four hiring stages).
 
 ### Figures: the recruiter's desk (October 31, 2026)
 
