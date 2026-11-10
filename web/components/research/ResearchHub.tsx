@@ -2,40 +2,55 @@ import Link from "next/link";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import Footer from "@/components/landing/Footer";
 import { Button } from "@/components/ui/button";
-import { HubFindings } from "@/components/research/HubFindings";
-import { ResearchIndex } from "@/components/research/ResearchIndex";
-import { indexedAnswers } from "@/components/research/ResearchHubData";
+import { PillarIcon } from "@/components/research/PillarIcon";
+import { additionalResearch, pillarHref, pillars } from "@/components/research/ResearchHubData";
 import styles from "./ResearchHub.module.css";
 
 export { ResearchAnswerRow } from "@/components/research/ResearchAnswerRow";
 
-const COUNT_WORDS: Record<number, string> = { 14: "Fourteen", 15: "Fifteen", 16: "Sixteen", 17: "Seventeen", 18: "Eighteen", 19: "Nineteen", 20: "Twenty" };
-
 /**
- * The research hub (rebuilt Nov 6, 2026, Matt: "people would go there looking for information mostly"): a
- * reference page. Three findings drawn from their articles' own numbers, then an index where every row is the
- * question, the short answer and what it rests on, with search and four plain topics.
+ * The research hub (rebuilt Nov 10, 2026, Matt: "nobody is going to look at 17 questions"): what we believe as
+ * recruiters, six beliefs, each a card with its name, one icon and the belief in Matt's words. The evidence, the
+ * articles and the way into the product live on each belief's own page. Research that backs no belief follows as
+ * a short list.
  */
 export default function ResearchHub() {
-    const count = indexedAnswers.length;
     return (
         <div className={styles.page} data-visual-anchor="research-hub">
             <div className={styles.inner}>
                 <header className={styles.opening}>
-                    <h1 className={styles.title}>What the research says about getting hired.</h1>
+                    <h1 className={styles.title}>What we look for.</h1>
                     <p className={styles.deck}>
-                        {COUNT_WORDS[count] ?? count} questions job seekers ask, each answered from a named study or the platform&rsquo;s own documentation.
-                        Open one for what it found, how it was done and what it can&rsquo;t tell you.
+                        We&rsquo;ve spent years on the hiring side. Here&rsquo;s what we believe, and the research behind it.
                     </p>
                 </header>
 
-                <ResearchIndex>
-                    <HubFindings />
-                </ResearchIndex>
+                <ul className={styles.pillars} aria-label="What we believe">
+                    {pillars.map((pillar) => (
+                        <li key={pillar.id}>
+                            <Link href={pillarHref(pillar)} className={`focus-ring ${styles.pillar}`} data-testid="research-pillar">
+                                <PillarIcon id={pillar.id} className={styles.icon} />
+                                <span className={styles.name}>
+                                    {pillar.navLabel}
+                                    <ArrowRight className={styles.arrow} aria-hidden="true" />
+                                </span>
+                                <span className={styles.belief}>{pillar.belief}</span>
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
 
-                <p className={styles.after}>
-                    Got the offer? The negotiation guides and the offer calculator are under <Link href="/resources" className="riyp-link">After the offer</Link>.
-                </p>
+                <section className={styles.more} aria-labelledby="additional-research-title">
+                    <h2 id="additional-research-title" className={styles.moreTitle}>Additional research</h2>
+                    <ul className={styles.moreList}>
+                        {additionalResearch.map((article) => (
+                            <li key={article.id}>
+                                <Link href={article.href} className="riyp-link">{article.question}</Link>
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+
                 <p className={styles.method}>
                     Every answer stays inside what its source found, and every page says what its study can&rsquo;t tell you.
                     {" "}<Link href="/methodology#how-we-write-research" className="riyp-link-quiet focus-ring">How we write research</Link>

@@ -8,19 +8,19 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 
 | Measure | Count |
 | --- | --- |
-| Files scanned | 420 |
-| Files with copy | 252 |
-| Strings | 2960 |
-| Unique strings | 2470 |
-| Routes with copy | 112 |
+| Files scanned | 427 |
+| Files with copy | 258 |
+| Strings | 3003 |
+| Unique strings | 2496 |
+| Routes with copy | 118 |
 
 ## By moment
 
 | Moment | Strings |
 | --- | --- |
-| research | 905 |
+| research | 946 |
 | account | 442 |
-| marketing | 416 |
+| marketing | 418 |
 | report | 323 |
 | pricing | 218 |
 | upload | 155 |
@@ -39,9 +39,9 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 
 | Table | Strings | Routes |
 | --- | --- | --- |
-| [research](./research.md) | 601 | `/research`, `/research/ats-myths`, `/research/automation-and-bias`, `/research/career-breaks`, `/research/gaps-and-pivots`, `/research/how-recruiters-read` and 12 more |
-| [workspace](./workspace.md) | 540 | `/api/export-pdf`, `/api/resume-feedback`, `/api/resume-feedback-stream`, `/api/revise-line`, `/auth`, `/extension` and 4 more |
-| [shared](./shared.md) | 418 | `/`, `/api/auth/send-code`, `/api/billing/confirm`, `/api/billing/restore`, `/api/checkout`, `/api/export-pdf` and 87 more |
+| [research](./research.md) | 632 | `/research`, `/research/ats`, `/research/ats-myths`, `/research/automation-and-bias`, `/research/career-breaks`, `/research/gaps-and-pivots` and 18 more |
+| [workspace](./workspace.md) | 542 | `/api/export-pdf`, `/api/resume-feedback`, `/api/resume-feedback-stream`, `/api/revise-line`, `/auth`, `/extension` and 5 more |
+| [shared](./shared.md) | 426 | `/`, `/api/auth/send-code`, `/api/billing/confirm`, `/api/billing/restore`, `/api/checkout`, `/api/export-pdf` and 93 more |
 | [api](./api.md) | 282 | `/api/account/delete`, `/api/account/export`, `/api/analytics`, `/api/auth/send-code`, `/api/auth/sign-out`, `/api/auth/verify-code` and 27 more |
 | [guides](./guides.md) | 264 | `/guides`, `/guides/offer-negotiation`, `/guides/tech-offer-negotiation`, `/guides/tools/comp-calculator`, `/resources`, `/resources/offer-negotiation` and 2 more |
 | [extension](./extension.md) | 130 | `/extension`, `extension` |
@@ -59,7 +59,7 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 | [status](./status.md) | 17 | `/status` |
 | [reports-id](./reports-id.md) | 15 | `/reports/[id]` |
 | [unrouted](./unrouted.md) | 15 |  |
-| [llms.txt](./llms.txt.md) | 13 | `/llms.txt` |
+| [llms.txt](./llms.txt.md) | 15 | `/llms.txt` |
 | [resources](./resources.md) | 10 | `/resources`, `/resources/offer-negotiation`, `/resources/tech-offer-negotiation`, `/resources/tools/comp-calculator` |
 | [auth](./auth.md) | 7 | `/auth` |
 | [sample-report](./sample-report.md) | 6 | `/sample-report` |

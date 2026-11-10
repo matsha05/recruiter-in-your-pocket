@@ -23,6 +23,9 @@ const articles = [
   "/research/writing-quality-hire-probability",
 ] as const;
 
+// The six belief pages the hub links to (Nov 10, 2026).
+const pillarPages = ["/research/story", "/research/impact", "/research/read", "/research/ats", "/research/referrals", "/research/offer"] as const;
+
 const redirects = [
   ["/research/structured-interviews-why-star", "/research/star-method"],
   ["/research/automation-filter-points", "/research/automation-and-bias"],
@@ -51,11 +54,11 @@ test.describe("research system", () => {
       test.setTimeout(180_000);
       await page.setViewportSize(viewport);
 
-      for (const route of ["/research", ...articles]) {
+      for (const route of ["/research", ...pillarPages, ...articles]) {
         await page.goto(route, { waitUntil: "domcontentloaded" });
         await page.evaluate(() => document.fonts.ready);
 
-        const anchor = route === "/research" ? "research-hub" : "research-article";
+        const anchor = route === "/research" ? "research-hub" : (pillarPages as readonly string[]).includes(route) ? "research-pillar" : "research-article";
         await expect(page.locator(`[data-visual-anchor='${anchor}']`)).toBeVisible();
         await expect(page.locator("header.site-header")).toBeVisible();
         await expect(page.locator("footer")).toBeVisible();
@@ -83,6 +86,13 @@ test.describe("research system", () => {
     });
   }
 
+  test("the hub shows six beliefs, each opening its own page", async ({ page }) => {
+    await page.goto("/research", { waitUntil: "domcontentloaded" });
+    const cards = page.getByTestId("research-pillar");
+    await expect(cards).toHaveCount(6);
+    expect(await cards.evaluateAll((links) => links.map((link) => link.getAttribute("href")))).toEqual([...pillarPages]);
+  });
+
   test("legacy research URLs return permanent redirects to their canonical destination", async ({ page, request }) => {
     for (const [from, to] of redirects) {
       const redirect = await request.get(from, { maxRedirects: 0 });
@@ -104,7 +114,7 @@ test.describe("research system", () => {
   test("hub and every canonical article have no serious accessibility violations", async ({ page }) => {
     test.setTimeout(180_000);
 
-    for (const route of ["/research", ...articles]) {
+    for (const route of ["/research", ...pillarPages, ...articles]) {
       await page.goto(route, { waitUntil: "domcontentloaded" });
       const results = await new AxeBuilder({ page }).analyze();
       const blockingViolations = results.violations.filter(

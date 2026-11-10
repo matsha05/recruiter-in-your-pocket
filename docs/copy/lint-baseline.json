@@ -1,6 +1,6 @@
 {
   "note": "Strings the copy lint's pattern checks flag but the gate doesn't block yet: known debt, to be worked down. Regenerate only to remove fixed entries or to keep a flagged string on purpose, and say why in the PR (docs/promptops/shipping-gate.md, Copy).",
-  "updated": "2026-11-07",
+  "updated": "2026-11-10",
   "entries": [
     {
       "text": "The extension reloaded. Refresh the page.",
@@ -186,14 +186,6 @@
         "coined_word"
       ],
       "where": "web/app/(editorial)/research/linkedin-visibility/page.tsx:161"
-    },
-    {
-      "text": "Resume and hiring research: the questions job seekers ask",
-      "moment": "research",
-      "tics": [
-        "colon_fragment"
-      ],
-      "where": "web/app/(editorial)/research/page.tsx:12"
     },
     {
       "text": "When a line says what you did but not what changed, it gets a card. We&apos;ll ask for the result or the scale. We won&apos;t invent one for you.",
@@ -802,7 +794,7 @@
       "tics": [
         "retired_name"
       ],
-      "where": "web/components/workspace/report/ReportStream.tsx:281"
+      "where": "web/components/workspace/report/ReportStream.tsx:283"
     },
     {
       "text": "Five sheets of paper: the Job Search Pass",

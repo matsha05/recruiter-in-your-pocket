@@ -1,4 +1,4 @@
-/* The research hub (Nov 6, 2026): the site's column and rhythm, the opening, three findings, the index. */
+/* The research hub (Nov 10, 2026): the site's column and rhythm, the opening, six belief cards, additional research. */
 
 .page {
     background: hsl(var(--background));
@@ -30,8 +30,83 @@
     font: var(--type-lead);
 }
 
-.after {
-    margin: 2rem 0 0;
+/* Six beliefs: a card each, name and icon in ink, the belief under it. Named, never colored. */
+.pillars {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.pillars > li { display: flex; }
+
+.pillar {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 0.875rem;
+    border: 1px solid hsl(var(--line));
+    border-radius: var(--radius-sheet);
+    background: hsl(var(--card));
+    padding: 1.5rem 1.5rem 1.75rem;
+    color: hsl(var(--text-strong));
+    text-decoration: none;
+    transition: border-color 160ms ease;
+}
+
+.pillar:hover { border-color: hsl(var(--text-strong)); }
+
+.icon {
+    width: 1.75rem;
+    height: 1.75rem;
+    color: hsl(var(--text-strong));
+}
+
+.name {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem;
+    font: var(--type-heading);
+    letter-spacing: var(--tracking-heading);
+}
+
+.arrow {
+    flex: none;
+    width: 1.125rem;
+    height: 1.125rem;
+    color: hsl(var(--text-muted));
+    transition: transform 160ms ease, color 160ms ease;
+}
+
+.pillar:hover .arrow { transform: translateX(2px); color: hsl(var(--text-strong)); }
+
+.belief {
+    color: hsl(var(--text-muted));
+    text-wrap: pretty;
+    font: var(--type-body);
+}
+
+/* Research that backs no belief */
+.more { margin-top: 3.5rem; }
+
+.moreTitle {
+    margin: 0;
+    border-bottom: 1px solid hsl(var(--text-strong));
+    padding-bottom: 0.75rem;
+    font: var(--type-small);
+    font-weight: 600;
+}
+
+.moreList {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem 2rem;
+    margin: 1.25rem 0 0;
+    padding: 0;
+    list-style: none;
     font: var(--type-body);
 }
 
@@ -61,7 +136,17 @@
     letter-spacing: var(--tracking-title);
 }
 
+@media (max-width: 960px) {
+    .pillars { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pillar, .arrow { transition: none; }
+}
+
 @media (max-width: 640px) {
+    .pillars { grid-template-columns: minmax(0, 1fr); }
+    .moreList { grid-template-columns: minmax(0, 1fr); }
     .inner { padding: calc(var(--marketing-header-height-mobile) + 2.5rem) var(--marketing-gutter) 4rem; }
     .opening { margin-bottom: 2.5rem; }
     .close { flex-direction: column; align-items: stretch; gap: 1.25rem; }

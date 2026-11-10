@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 import { Mark, UnitGrid, useSeen } from "@/components/research/figures/FigureKit";
 import { SECTION_FINDINGS } from "@/components/research/diagrams/SectionFindingsFigure";
 import { ERROR_IMPACT } from "@/components/research/diagrams/ErrorImpactDiagram";
-import styles from "./HubFindings.module.css";
+import styles from "./PillarFindings.module.css";
 
 // Applications that reached an interview, per 100: Ashby's customer data, 2021 to 2024, the referral article's
 // opening answer and its source line (40% referred, 3% cold). The article's own figures draw the offer rates.
@@ -15,17 +15,25 @@ const REFERRAL_PER_100 = [
 ] as const;
 
 /**
- * The three findings people ask about most, each drawn from its article's own numbers (Nov 6, 2026): two import
- * the article figures' data and the third states the article's opening answer, so the hub can't say something the
- * article doesn't. One highlighter or one
- * pen series per figure, the way the figure kit draws everything (design-system.md §8).
+ * Findings people ask about most, each drawn from its article's own numbers (Nov 6, 2026), shown on the belief page
+ * they back (Nov 10): two import the article figures' data and the third states the article's opening answer, so a
+ * belief page can't say something the article doesn't. One highlighter or one pen series per figure, the way the
+ * figure kit draws everything (design-system.md §8).
  */
-export function HubFindings() {
+export function ReadFindings() {
     return (
-        <section className={styles.findings} aria-labelledby="hub-findings-title">
-            <h2 id="hub-findings-title" className="sr-only">Three findings, drawn</h2>
+        <section className={styles.findings} aria-labelledby="read-findings-title">
+            <h2 id="read-findings-title" className="sr-only">Two findings, drawn</h2>
             <SixSeconds />
             <Typos />
+        </section>
+    );
+}
+
+export function ReferralFindings() {
+    return (
+        <section className={styles.findings} aria-labelledby="referral-findings-title">
+            <h2 id="referral-findings-title" className="sr-only">One finding, drawn</h2>
             <Referrals />
         </section>
     );

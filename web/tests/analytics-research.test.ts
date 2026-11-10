@@ -51,6 +51,12 @@ assert.deepEqual(
   { name: "landing_cta_clicked", properties: { cta: "report_research_clarity", destination: "/research/how-recruiters-read" } },
 );
 
+// A belief page's hand-off to a guide counts; the same guide link from a non-research page doesn't.
+assert.deepEqual(ctaClick("/research/offer", "research_pillar_offer", "/resources/offer-negotiation"), { cta: "research_pillar_offer", destination: "/resources/offer-negotiation" });
+assert.deepEqual(ctaClick("/research/impact", "research_pillar_impact", "/workspace"), { cta: "research_pillar_impact", destination: "/workspace" });
+assert.equal(ctaClick("/pricing", "research_pillar_offer", "/resources/offer-negotiation"), null);
+assert.equal(researchArticleSlug("/research/impact"), "impact", "a belief page's view counts as research_article_viewed");
+
 // The policy keeps the slug and drops anything else.
 assert.deepEqual(
   sanitizeAnalyticsEvent("research_article_viewed", { slug: "how-recruiters-read", url: "https://www.recruiterinyourpocket.com/research/how-recruiters-read" }),

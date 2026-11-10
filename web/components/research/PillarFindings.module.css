@@ -1,11 +1,12 @@
-/* Three findings, side by side from 1024px: the question, the takeaway in ink, the figure, its source. */
+/* Findings on a belief page, side by side from 1024px: the question, the takeaway in ink, the figure, its source. */
 
 .findings {
     display: grid;
-    margin-top: 3rem;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 3rem 2.5rem;
 }
+
+.findings:has(> .figure:only-of-type) { grid-template-columns: minmax(0, 34rem); }
 
 .figure {
     display: flex;
