@@ -39,12 +39,12 @@ Routes: `/pricing`. Strings: 40 (39 unique).
 | 29 | pricing | `web/components/marketing/PricingPageClient.tsx:149` | jsx-text | Used all five? |
 | 30 | pricing | `web/components/marketing/PricingPageClient.tsx:149` | jsx-text | Your saved reports and their PDFs stay open. |
 | 31 | pricing | `web/components/marketing/PricingPageClient.tsx:149` | jsx-text | Another report needs a new pass. |
-| 32 | pricing | `web/components/marketing/PricingPageClient.tsx:151` | jsx-text | Taxes may apply at checkout. |
-| 33 | pricing | `web/components/marketing/PricingPageClient.tsx:154` | attr:aria-label | Other tools and restoring a purchase |
-| 34 | pricing | `web/components/marketing/PricingPageClient.tsx:157` | jsx-text | Other tools do different jobs. |
-| 35 | pricing | `web/components/marketing/PricingPageClient.tsx:159` | jsx-text | Writers rewrite, keyword scanners match words, builders lay it out. A recruiter decides whether you get the call, and |
-| 36 | pricing | `web/components/marketing/PricingPageClient.tsx:160` | jsx-text | recruiters who spent longer on Experience were more likely to move a resume forward |
-| 37 | pricing | `web/components/marketing/PricingPageClient.tsx:161` | jsx-text | See how we compare with seven tools |
-| 38 | pricing | `web/components/marketing/PricingPageClient.tsx:161` | jsx-text | , Jobscan and TopResume among them, with each one’s own prices. |
-| 39 | pricing | `web/components/marketing/PricingPageClient.tsx:165` | jsx-text | Already paid? |
-| 40 | pricing | `web/components/marketing/PricingPageClient.tsx:167` | jsx-text | Restore access |
+| 32 | pricing | `web/components/marketing/PricingPageClient.tsx:150` | jsx-text | Already paid? |
+| 33 | pricing | `web/components/marketing/PricingPageClient.tsx:150` | jsx-text | Restore access |
+| 34 | pricing | `web/components/marketing/PricingPageClient.tsx:152` | jsx-text | Taxes may apply at checkout. |
+| 35 | pricing | `web/components/marketing/PricingPageClient.tsx:155` | attr:aria-label | Other tools |
+| 36 | pricing | `web/components/marketing/PricingPageClient.tsx:158` | jsx-text | Other tools do different jobs. |
+| 37 | pricing | `web/components/marketing/PricingPageClient.tsx:160` | jsx-text | Writers rewrite, keyword scanners match words, builders lay it out. A recruiter decides whether you get the call, and |
+| 38 | pricing | `web/components/marketing/PricingPageClient.tsx:161` | jsx-text | recruiters who spent longer on Experience were more likely to move a resume forward |
+| 39 | pricing | `web/components/marketing/PricingPageClient.tsx:162` | jsx-text | See how we compare with seven tools |
+| 40 | pricing | `web/components/marketing/PricingPageClient.tsx:162` | jsx-text | , Jobscan and TopResume among them, with each one’s own prices. |

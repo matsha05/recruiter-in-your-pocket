@@ -298,6 +298,24 @@
     }
 }
 
+/* The hub's one table (Nov 10, 2026): the need leads each row in ink, then the tool, its price and its free version.
+   It replaced three lists of the same eight tools. */
+.needs thead th:first-child { width: 34%; }
+.needs thead th:nth-child(2) { width: 16%; }
+.needs tbody th {
+    color: hsl(var(--text-strong));
+    font: var(--type-body);
+    font-weight: var(--weight-control);
+    text-wrap: pretty;
+}
+.needs .tool { color: hsl(var(--text-strong)); font: var(--type-body); font-weight: var(--weight-control); }
+.needs td:last-child { color: hsl(var(--text-muted)); }
+.tableNote { margin: 1rem 0 0; color: hsl(var(--text-muted)); font: var(--type-small); }
+
+.kinds { display: grid; list-style: disc; gap: 0.75rem; max-width: 46rem; margin: 1.5rem 0 0; padding: 0 0 0 1.25rem; color: hsl(var(--text-muted)); font: var(--type-prose); }
+.kinds strong { color: hsl(var(--text-strong)); font-weight: var(--weight-control); }
+.proseHeading { margin: 2.5rem 0 0; font: var(--type-heading); letter-spacing: var(--tracking-heading); }
+
 /* How we compare */
 
 .method {

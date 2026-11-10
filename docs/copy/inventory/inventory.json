@@ -3,19 +3,19 @@
   "counts": {
     "files_scanned": 424,
     "files_with_copy": 256,
-    "strings": 2949,
-    "unique_strings": 2455
+    "strings": 2933,
+    "unique_strings": 2444
   },
   "by_moment": {
     "research": 988,
     "account": 442,
-    "marketing": 418,
+    "marketing": 411,
     "report": 262,
     "pricing": 217,
     "upload": 124,
     "legal": 111,
     "extension": 98,
-    "shared": 82,
+    "shared": 73,
     "rewrite": 62,
     "auth": 54,
     "error": 54,
@@ -389,185 +389,9 @@
       "table": "compare"
     },
     {
-      "text": "You’re starting from a blank page and want it to look finished fast.",
-      "kind": "key:lead",
-      "line": 31,
-      "file": "web/app/(editorial)/compare/page.tsx",
-      "routes": [
-        "/compare"
-      ],
-      "moment": "marketing",
-      "table": "compare"
-    },
-    {
-      "text": "Kickresume. Templates and an AI writer that drafts from your job title, free with four templates.",
-      "kind": "key:body",
-      "line": 31,
-      "file": "web/app/(editorial)/compare/page.tsx",
-      "routes": [
-        "/compare"
-      ],
-      "moment": "marketing",
-      "table": "compare"
-    },
-    {
-      "text": "You want a live score and keywords while you write.",
-      "kind": "key:lead",
-      "line": 32,
-      "file": "web/app/(editorial)/compare/page.tsx",
-      "routes": [
-        "/compare"
-      ],
-      "moment": "marketing",
-      "table": "compare"
-    },
-    {
-      "text": "Rezi. An AI builder with its own score, free for one resume, then $29 a month or $149 once.",
-      "kind": "key:body",
-      "line": 32,
-      "file": "web/app/(editorial)/compare/page.tsx",
-      "routes": [
-        "/compare"
-      ],
-      "moment": "marketing",
-      "table": "compare"
-    },
-    {
-      "text": "You want the page designed.",
-      "kind": "key:lead",
-      "line": 33,
-      "file": "web/app/(editorial)/compare/page.tsx",
-      "routes": [
-        "/compare"
-      ],
-      "moment": "marketing",
-      "table": "compare"
-    },
-    {
-      "text": "Enhancv. The most designed templates here, free for seven days with branding, then by the month, quarter, or half year.",
-      "kind": "key:body",
-      "line": 33,
-      "file": "web/app/(editorial)/compare/page.tsx",
-      "routes": [
-        "/compare"
-      ],
-      "moment": "marketing",
-      "table": "compare"
-    },
-    {
-      "text": "You want someone else to write it.",
-      "kind": "key:lead",
-      "line": 34,
-      "file": "web/app/(editorial)/compare/page.tsx",
-      "routes": [
-        "/compare"
-      ],
-      "moment": "marketing",
-      "table": "compare"
-    },
-    {
-      "text": "TopResume. A writer produces the resume; the intake you give them decides how specific it is.",
-      "kind": "key:body",
-      "line": 34,
-      "file": "web/app/(editorial)/compare/page.tsx",
-      "routes": [
-        "/compare"
-      ],
-      "moment": "marketing",
-      "table": "compare"
-    },
-    {
-      "text": "You tailor keywords for many postings a week.",
-      "kind": "key:lead",
-      "line": 35,
-      "file": "web/app/(editorial)/compare/page.tsx",
-      "routes": [
-        "/compare"
-      ],
-      "moment": "marketing",
-      "table": "compare"
-    },
-    {
-      "text": "Jobscan. Five free scans a month, then a subscription for unlimited matching.",
-      "kind": "key:body",
-      "line": 35,
-      "file": "web/app/(editorial)/compare/page.tsx",
-      "routes": [
-        "/compare"
-      ],
-      "moment": "marketing",
-      "table": "compare"
-    },
-    {
-      "text": "You want a running score on your resume and LinkedIn.",
-      "kind": "key:lead",
-      "line": 36,
-      "file": "web/app/(editorial)/compare/page.tsx",
-      "routes": [
-        "/compare"
-      ],
-      "moment": "marketing",
-      "table": "compare"
-    },
-    {
-      "text": "Resume Worded Pro. A checklist score on as many documents as you like, by the month, quarter, or year.",
-      "kind": "key:body",
-      "line": 36,
-      "file": "web/app/(editorial)/compare/page.tsx",
-      "routes": [
-        "/compare"
-      ],
-      "moment": "marketing",
-      "table": "compare"
-    },
-    {
-      "text": "You’re building a version for every application and tracking them.",
-      "kind": "key:lead",
-      "line": 37,
-      "file": "web/app/(editorial)/compare/page.tsx",
-      "routes": [
-        "/compare"
-      ],
-      "moment": "marketing",
-      "table": "compare"
-    },
-    {
-      "text": "Teal. A builder and tracker, free, with Teal+ for the limits.",
-      "kind": "key:body",
-      "line": 37,
-      "file": "web/app/(editorial)/compare/page.tsx",
-      "routes": [
-        "/compare"
-      ],
-      "moment": "marketing",
-      "table": "compare"
-    },
-    {
-      "text": "You want to know what a recruiter would question on the resume you have.",
-      "kind": "key:lead",
-      "line": 38,
-      "file": "web/app/(editorial)/compare/page.tsx",
-      "routes": [
-        "/compare"
-      ],
-      "moment": "marketing",
-      "table": "compare"
-    },
-    {
-      "text": "{OUR_NAME}. One complete report free, then $29 once for five more. No subscription, and nothing written that you didn’t say.",
-      "kind": "key:body",
-      "line": 38,
-      "file": "web/app/(editorial)/compare/page.tsx",
-      "routes": [
-        "/compare"
-      ],
-      "moment": "marketing",
-      "table": "compare"
-    },
-    {
       "text": "Resume review tools compared",
       "kind": "jsx-text",
-      "line": 59,
+      "line": 61,
       "file": "web/app/(editorial)/compare/page.tsx",
       "routes": [
         "/compare"
@@ -576,9 +400,9 @@
       "table": "compare"
     },
     {
-      "text": "Seven tools people weigh against ours, what each one sells, and what it costs. We quote each tool’s own pricing page and say where it’s the better choice, because a writer, a keyword scanner, a builder, and a recruiter’s read are different purchases.",
+      "text": "A writer, a keyword scanner, a builder, and a recruiter’s read are different purchases. Find the line that sounds like you.",
       "kind": "jsx-text",
-      "line": 62,
+      "line": 64,
       "file": "web/app/(editorial)/compare/page.tsx",
       "routes": [
         "/compare"
@@ -589,7 +413,7 @@
     {
       "text": "Prices read on",
       "kind": "jsx-text",
-      "line": 66,
+      "line": 68,
       "file": "web/app/(editorial)/compare/page.tsx",
       "routes": [
         "/compare"
@@ -600,7 +424,7 @@
     {
       "text": "How we compare",
       "kind": "jsx-text",
-      "line": 68,
+      "line": 70,
       "file": "web/app/(editorial)/compare/page.tsx",
       "routes": [
         "/compare"
@@ -609,9 +433,9 @@
       "table": "compare"
     },
     {
-      "text": "What each one sells",
+      "text": "What you need, and what it costs",
       "kind": "jsx-text",
-      "line": 73,
+      "line": 75,
       "file": "web/app/(editorial)/compare/page.tsx",
       "routes": [
         "/compare"
@@ -620,18 +444,7 @@
       "table": "compare"
     },
     {
-      "text": "What it does",
-      "kind": "jsx-text",
-      "line": 78,
-      "file": "web/app/(editorial)/compare/page.tsx",
-      "routes": [
-        "/compare"
-      ],
-      "moment": "marketing",
-      "table": "compare"
-    },
-    {
-      "text": "What it costs",
+      "text": "If this is you",
       "kind": "jsx-text",
       "line": 79,
       "file": "web/app/(editorial)/compare/page.tsx",
@@ -642,9 +455,31 @@
       "table": "compare"
     },
     {
+      "text": "What it costs",
+      "kind": "jsx-text",
+      "line": 81,
+      "file": "web/app/(editorial)/compare/page.tsx",
+      "routes": [
+        "/compare"
+      ],
+      "moment": "marketing",
+      "table": "compare"
+    },
+    {
       "text": "Free version",
       "kind": "jsx-text",
-      "line": 80,
+      "line": 82,
+      "file": "web/app/(editorial)/compare/page.tsx",
+      "routes": [
+        "/compare"
+      ],
+      "moment": "marketing",
+      "table": "compare"
+    },
+    {
+      "text": "Each tool’s name opens its page, with its prices quoted from its own pricing page.",
+      "kind": "jsx-text",
+      "line": 103,
       "file": "web/app/(editorial)/compare/page.tsx",
       "routes": [
         "/compare"
@@ -655,17 +490,6 @@
     {
       "text": "Which resume tool should I use?",
       "kind": "jsx-text",
-      "line": 105,
-      "file": "web/app/(editorial)/compare/page.tsx",
-      "routes": [
-        "/compare"
-      ],
-      "moment": "marketing",
-      "table": "compare"
-    },
-    {
-      "text": "It depends on what you’re missing. If you don’t have a resume, or you want the page designed for you, you need a builder: Kickresume, Rezi, Enhancv, and Teal all do that, free with limits and by subscription for the rest. If you have a resume and you’re tailoring it to many postings, you need a keyword scanner: Jobscan, or the matching inside Teal and Rezi. If you want it written for you, TopResume. If you have a resume and want to know what a recruiter would question before you send it, you need a recruiter’s read, and that is what the report is.",
-      "kind": "jsx-text",
       "line": 107,
       "file": "web/app/(editorial)/compare/page.tsx",
       "routes": [
@@ -675,9 +499,9 @@
       "table": "compare"
     },
     {
-      "text": "The report’s limits, so you can weigh it fairly: it reads the words we pull from your file, not the design, and it is AI applying a recruiter’s criteria, not a person reading your resume. It gives no keyword score and no interview odds, and it won’t build, design, or track anything. In November 2026 we ran one resume through five of these tools and ours; each of those pages says what came back, under “How we compare”. It was one resume, one role, one day, so these pages still mostly compare what each tool sells. The research behind the read is linked where it applies:",
+      "text": "It depends on what you’re missing. Most people need one builder or none, a scanner only if they apply in volume, and one honest read of the resume before it goes out. The read is free here.",
       "kind": "jsx-text",
-      "line": 110,
+      "line": 109,
       "file": "web/app/(editorial)/compare/page.tsx",
       "routes": [
         "/compare"
@@ -686,9 +510,9 @@
       "table": "compare"
     },
     {
-      "text": "recruiters who spent longer on Experience were more likely to move a resume forward",
+      "text": "If you don’t have a resume, or you want the page designed for you,",
       "kind": "jsx-text",
-      "line": 110,
+      "line": 112,
       "file": "web/app/(editorial)/compare/page.tsx",
       "routes": [
         "/compare"
@@ -697,9 +521,9 @@
       "table": "compare"
     },
     {
-      "text": ", and",
+      "text": ": Kickresume, Rezi, Enhancv, and Teal all do that, free with limits and by subscription for the rest.",
       "kind": "jsx-text",
-      "line": 110,
+      "line": 112,
       "file": "web/app/(editorial)/compare/page.tsx",
       "routes": [
         "/compare"
@@ -708,7 +532,7 @@
       "table": "compare"
     },
     {
-      "text": "Most people need one builder or none, a scanner only if they apply in volume, and one honest read of the resume before it goes out. The read is free here.",
+      "text": "If you have a resume and you’re tailoring it to many postings,",
       "kind": "jsx-text",
       "line": 113,
       "file": "web/app/(editorial)/compare/page.tsx",
@@ -719,9 +543,9 @@
       "table": "compare"
     },
     {
-      "text": "How to choose",
+      "text": ": Jobscan, or the matching inside Teal and Rezi.",
       "kind": "jsx-text",
-      "line": 118,
+      "line": 113,
       "file": "web/app/(editorial)/compare/page.tsx",
       "routes": [
         "/compare"
@@ -730,9 +554,108 @@
       "table": "compare"
     },
     {
-      "text": "Each comparison",
+      "text": "If you want it written for you,",
       "kind": "jsx-text",
-      "line": 131,
+      "line": 114,
+      "file": "web/app/(editorial)/compare/page.tsx",
+      "routes": [
+        "/compare"
+      ],
+      "moment": "marketing",
+      "table": "compare"
+    },
+    {
+      "text": ": TopResume.",
+      "kind": "jsx-text",
+      "line": 114,
+      "file": "web/app/(editorial)/compare/page.tsx",
+      "routes": [
+        "/compare"
+      ],
+      "moment": "marketing",
+      "table": "compare"
+    },
+    {
+      "text": "If you have a resume and want to know what a recruiter would question before you send it,",
+      "kind": "jsx-text",
+      "line": 115,
+      "file": "web/app/(editorial)/compare/page.tsx",
+      "routes": [
+        "/compare"
+      ],
+      "moment": "marketing",
+      "table": "compare"
+    },
+    {
+      "text": "you need a recruiter’s read",
+      "kind": "jsx-text",
+      "line": 115,
+      "file": "web/app/(editorial)/compare/page.tsx",
+      "routes": [
+        "/compare"
+      ],
+      "moment": "marketing",
+      "table": "compare"
+    },
+    {
+      "text": ", and that is what the report is.",
+      "kind": "jsx-text",
+      "line": 115,
+      "file": "web/app/(editorial)/compare/page.tsx",
+      "routes": [
+        "/compare"
+      ],
+      "moment": "marketing",
+      "table": "compare"
+    },
+    {
+      "text": "The report’s limits",
+      "kind": "jsx-text",
+      "line": 117,
+      "file": "web/app/(editorial)/compare/page.tsx",
+      "routes": [
+        "/compare"
+      ],
+      "moment": "marketing",
+      "table": "compare"
+    },
+    {
+      "text": "It reads the words we pull from your file, not the design, and it is AI applying a recruiter’s criteria, not a person reading your resume. It gives no keyword score and no interview odds, and it won’t build, design, or track anything.",
+      "kind": "jsx-text",
+      "line": 119,
+      "file": "web/app/(editorial)/compare/page.tsx",
+      "routes": [
+        "/compare"
+      ],
+      "moment": "marketing",
+      "table": "compare"
+    },
+    {
+      "text": "In November 2026 we ran one resume through five of these tools and ours; each of those pages says what came back, under “How we compare”. It was one resume, one role, one day, so these pages still mostly compare what each tool sells. The research behind the read is linked where it applies:",
+      "kind": "jsx-text",
+      "line": 122,
+      "file": "web/app/(editorial)/compare/page.tsx",
+      "routes": [
+        "/compare"
+      ],
+      "moment": "marketing",
+      "table": "compare"
+    },
+    {
+      "text": "recruiters who spent longer on Experience were more likely to move a resume forward",
+      "kind": "jsx-text",
+      "line": 122,
+      "file": "web/app/(editorial)/compare/page.tsx",
+      "routes": [
+        "/compare"
+      ],
+      "moment": "marketing",
+      "table": "compare"
+    },
+    {
+      "text": ", and",
+      "kind": "jsx-text",
+      "line": 122,
       "file": "web/app/(editorial)/compare/page.tsx",
       "routes": [
         "/compare"
@@ -743,7 +666,7 @@
     {
       "text": "How we compare",
       "kind": "jsx-text",
-      "line": 144,
+      "line": 127,
       "file": "web/app/(editorial)/compare/page.tsx",
       "routes": [
         "/compare"
@@ -754,7 +677,7 @@
     {
       "text": "We read each tool’s own pricing page on the date above and quote what it says. On",
       "kind": "jsx-text",
-      "line": 146,
+      "line": 129,
       "file": "web/app/(editorial)/compare/page.tsx",
       "routes": [
         "/compare"
@@ -765,7 +688,7 @@
     {
       "text": "we also ran one resume, a senior recruiter’s, and one posting through Jobscan, Resume Worded, Teal, Rezi, Kickresume and ours, on their free tiers; those five pages say what each tool said and what ours said. TopResume and Enhancv haven’t been run on the same resume yet. One resume, one role, one day: a record of what came back, not a verdict on quality. Prices change. If we have one wrong, email",
       "kind": "jsx-text",
-      "line": 146,
+      "line": 129,
       "file": "web/app/(editorial)/compare/page.tsx",
       "routes": [
         "/compare"
@@ -776,7 +699,7 @@
     {
       "text": "and we’ll fix it.",
       "kind": "jsx-text",
-      "line": 147,
+      "line": 130,
       "file": "web/app/(editorial)/compare/page.tsx",
       "routes": [
         "/compare"
@@ -787,7 +710,7 @@
     {
       "text": "See what they see in yours.",
       "kind": "jsx-text",
-      "line": 152,
+      "line": 135,
       "file": "web/app/(editorial)/compare/page.tsx",
       "routes": [
         "/compare"
@@ -798,7 +721,7 @@
     {
       "text": "Get your free report",
       "kind": "jsx-text",
-      "line": 155,
+      "line": 138,
       "file": "web/app/(editorial)/compare/page.tsx",
       "routes": [
         "/compare"
@@ -23476,7 +23399,7 @@
     {
       "text": "Recruiter in Your Pocket home",
       "kind": "attr:aria-label",
-      "line": 12,
+      "line": 16,
       "file": "web/components/landing/Footer.tsx",
       "routes": [
         "/",
@@ -23539,7 +23462,7 @@
     {
       "text": "© 2026 Recruiter in Your Pocket",
       "kind": "jsx-text",
-      "line": 30,
+      "line": 28,
       "file": "web/components/landing/Footer.tsx",
       "routes": [
         "/",
@@ -23602,7 +23525,7 @@
     {
       "text": "Restore a purchase",
       "kind": "jsx-text",
-      "line": 31,
+      "line": 32,
       "file": "web/components/landing/Footer.tsx",
       "routes": [
         "/",
@@ -23940,7 +23863,7 @@
     {
       "text": "By the time you finish reading this sentence, a recruiter has finished reading your resume.",
       "kind": "const",
-      "line": 18,
+      "line": 19,
       "file": "web/components/landing/home/ReadBeat.tsx",
       "routes": [
         "/"
@@ -23951,7 +23874,7 @@
     {
       "text": "Nobody tells you why.",
       "kind": "const[]",
-      "line": 19,
+      "line": 20,
       "file": "web/components/landing/home/ReadBeat.tsx",
       "routes": [
         "/"
@@ -23962,7 +23885,7 @@
     {
       "text": "We do, before you apply for the next one.",
       "kind": "const[]",
-      "line": 19,
+      "line": 20,
       "file": "web/components/landing/home/ReadBeat.tsx",
       "routes": [
         "/"
@@ -23973,7 +23896,7 @@
     {
       "text": "Move forward or reject. Reject is circled.",
       "kind": "attr:aria-label",
-      "line": 76,
+      "line": 77,
       "file": "web/components/landing/home/ReadBeat.tsx",
       "routes": [
         "/"
@@ -23984,7 +23907,7 @@
     {
       "text": "Move forward",
       "kind": "jsx-text",
-      "line": 77,
+      "line": 78,
       "file": "web/components/landing/home/ReadBeat.tsx",
       "routes": [
         "/"
@@ -23995,7 +23918,7 @@
     {
       "text": "Get your free report",
       "kind": "jsx-text",
-      "line": 89,
+      "line": 90,
       "file": "web/components/landing/home/ReadBeat.tsx",
       "routes": [
         "/"
@@ -27069,86 +26992,9 @@
       "table": "pricing"
     },
     {
-      "text": "Taxes may apply at checkout.",
-      "kind": "jsx-text",
-      "line": 151,
-      "file": "web/components/marketing/PricingPageClient.tsx",
-      "routes": [
-        "/pricing"
-      ],
-      "moment": "pricing",
-      "table": "pricing"
-    },
-    {
-      "text": "Other tools and restoring a purchase",
-      "kind": "attr:aria-label",
-      "line": 154,
-      "file": "web/components/marketing/PricingPageClient.tsx",
-      "routes": [
-        "/pricing"
-      ],
-      "moment": "pricing",
-      "table": "pricing"
-    },
-    {
-      "text": "Other tools do different jobs.",
-      "kind": "jsx-text",
-      "line": 157,
-      "file": "web/components/marketing/PricingPageClient.tsx",
-      "routes": [
-        "/pricing"
-      ],
-      "moment": "pricing",
-      "table": "pricing"
-    },
-    {
-      "text": "Writers rewrite, keyword scanners match words, builders lay it out. A recruiter decides whether you get the call, and",
-      "kind": "jsx-text",
-      "line": 159,
-      "file": "web/components/marketing/PricingPageClient.tsx",
-      "routes": [
-        "/pricing"
-      ],
-      "moment": "pricing",
-      "table": "pricing"
-    },
-    {
-      "text": "recruiters who spent longer on Experience were more likely to move a resume forward",
-      "kind": "jsx-text",
-      "line": 160,
-      "file": "web/components/marketing/PricingPageClient.tsx",
-      "routes": [
-        "/pricing"
-      ],
-      "moment": "pricing",
-      "table": "pricing"
-    },
-    {
-      "text": "See how we compare with seven tools",
-      "kind": "jsx-text",
-      "line": 161,
-      "file": "web/components/marketing/PricingPageClient.tsx",
-      "routes": [
-        "/pricing"
-      ],
-      "moment": "pricing",
-      "table": "pricing"
-    },
-    {
-      "text": ", Jobscan and TopResume among them, with each one’s own prices.",
-      "kind": "jsx-text",
-      "line": 161,
-      "file": "web/components/marketing/PricingPageClient.tsx",
-      "routes": [
-        "/pricing"
-      ],
-      "moment": "pricing",
-      "table": "pricing"
-    },
-    {
       "text": "Already paid?",
       "kind": "jsx-text",
-      "line": 165,
+      "line": 150,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -27159,7 +27005,84 @@
     {
       "text": "Restore access",
       "kind": "jsx-text",
-      "line": 167,
+      "line": 150,
+      "file": "web/components/marketing/PricingPageClient.tsx",
+      "routes": [
+        "/pricing"
+      ],
+      "moment": "pricing",
+      "table": "pricing"
+    },
+    {
+      "text": "Taxes may apply at checkout.",
+      "kind": "jsx-text",
+      "line": 152,
+      "file": "web/components/marketing/PricingPageClient.tsx",
+      "routes": [
+        "/pricing"
+      ],
+      "moment": "pricing",
+      "table": "pricing"
+    },
+    {
+      "text": "Other tools",
+      "kind": "attr:aria-label",
+      "line": 155,
+      "file": "web/components/marketing/PricingPageClient.tsx",
+      "routes": [
+        "/pricing"
+      ],
+      "moment": "pricing",
+      "table": "pricing"
+    },
+    {
+      "text": "Other tools do different jobs.",
+      "kind": "jsx-text",
+      "line": 158,
+      "file": "web/components/marketing/PricingPageClient.tsx",
+      "routes": [
+        "/pricing"
+      ],
+      "moment": "pricing",
+      "table": "pricing"
+    },
+    {
+      "text": "Writers rewrite, keyword scanners match words, builders lay it out. A recruiter decides whether you get the call, and",
+      "kind": "jsx-text",
+      "line": 160,
+      "file": "web/components/marketing/PricingPageClient.tsx",
+      "routes": [
+        "/pricing"
+      ],
+      "moment": "pricing",
+      "table": "pricing"
+    },
+    {
+      "text": "recruiters who spent longer on Experience were more likely to move a resume forward",
+      "kind": "jsx-text",
+      "line": 161,
+      "file": "web/components/marketing/PricingPageClient.tsx",
+      "routes": [
+        "/pricing"
+      ],
+      "moment": "pricing",
+      "table": "pricing"
+    },
+    {
+      "text": "See how we compare with seven tools",
+      "kind": "jsx-text",
+      "line": 162,
+      "file": "web/components/marketing/PricingPageClient.tsx",
+      "routes": [
+        "/pricing"
+      ],
+      "moment": "pricing",
+      "table": "pricing"
+    },
+    {
+      "text": ", Jobscan and TopResume among them, with each one’s own prices.",
+      "kind": "jsx-text",
+      "line": 162,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -39387,85 +39310,9 @@
       "table": "shared"
     },
     {
-      "text": "How it works",
+      "text": "Compared with other tools",
       "kind": "key:label",
-      "line": 60,
-      "file": "web/lib/navigation.ts",
-      "routes": [
-        "/",
-        "/compare",
-        "/compare/enhancv",
-        "/compare/jobscan",
-        "/compare/kickresume",
-        "/compare/resume-worded",
-        "/compare/rezi",
-        "/compare/teal",
-        "/compare/topresume",
-        "/dashboard",
-        "/extension",
-        "/guides",
-        "/guides/offer-negotiation",
-        "/guides/tech-offer-negotiation",
-        "/guides/tools/comp-calculator",
-        "/help",
-        "/jobs",
-        "/jobs/[id]",
-        "/launch",
-        "/launch/gauntlet",
-        "/llms.txt",
-        "/methodology",
-        "/pricing",
-        "/privacy",
-        "/purchase/confirmed",
-        "/purchase/restore",
-        "/reports",
-        "/reports/[id]",
-        "/research",
-        "/research/asking-for-a-referral",
-        "/research/ats",
-        "/research/ats-myths",
-        "/research/automation-and-bias",
-        "/research/career-breaks",
-        "/research/gaps-and-pivots",
-        "/research/how-recruiters-read",
-        "/research/human-vs-algorithm",
-        "/research/impact",
-        "/research/linkedin-visibility",
-        "/research/offer",
-        "/research/quantifying-impact",
-        "/research/read",
-        "/research/referral-advantage",
-        "/research/referrals",
-        "/research/resume-length-myths",
-        "/research/salary-history-bans",
-        "/research/skills-first-promise-reality",
-        "/research/social-screening",
-        "/research/spelling-errors-impact",
-        "/research/star-method",
-        "/research/story",
-        "/research/who-you-are",
-        "/research/writing-quality-hire-probability",
-        "/resources",
-        "/resources/offer-negotiation",
-        "/resources/tech-offer-negotiation",
-        "/resources/tools/comp-calculator",
-        "/sample-report",
-        "/settings",
-        "/settings/account",
-        "/settings/billing",
-        "/settings/matching",
-        "/settings/support-reply/[emailId]",
-        "/status",
-        "/terms",
-        "/workspace"
-      ],
-      "moment": "shared",
-      "table": "shared"
-    },
-    {
-      "text": "Sample report",
-      "kind": "key:label",
-      "line": 61,
+      "line": 52,
       "file": "web/lib/navigation.ts",
       "routes": [
         "/",
@@ -39541,615 +39388,7 @@
     {
       "text": "How the report works",
       "kind": "key:label",
-      "line": 64,
-      "file": "web/lib/navigation.ts",
-      "routes": [
-        "/",
-        "/compare",
-        "/compare/enhancv",
-        "/compare/jobscan",
-        "/compare/kickresume",
-        "/compare/resume-worded",
-        "/compare/rezi",
-        "/compare/teal",
-        "/compare/topresume",
-        "/dashboard",
-        "/extension",
-        "/guides",
-        "/guides/offer-negotiation",
-        "/guides/tech-offer-negotiation",
-        "/guides/tools/comp-calculator",
-        "/help",
-        "/jobs",
-        "/jobs/[id]",
-        "/launch",
-        "/launch/gauntlet",
-        "/llms.txt",
-        "/methodology",
-        "/pricing",
-        "/privacy",
-        "/purchase/confirmed",
-        "/purchase/restore",
-        "/reports",
-        "/reports/[id]",
-        "/research",
-        "/research/asking-for-a-referral",
-        "/research/ats",
-        "/research/ats-myths",
-        "/research/automation-and-bias",
-        "/research/career-breaks",
-        "/research/gaps-and-pivots",
-        "/research/how-recruiters-read",
-        "/research/human-vs-algorithm",
-        "/research/impact",
-        "/research/linkedin-visibility",
-        "/research/offer",
-        "/research/quantifying-impact",
-        "/research/read",
-        "/research/referral-advantage",
-        "/research/referrals",
-        "/research/resume-length-myths",
-        "/research/salary-history-bans",
-        "/research/skills-first-promise-reality",
-        "/research/social-screening",
-        "/research/spelling-errors-impact",
-        "/research/star-method",
-        "/research/story",
-        "/research/who-you-are",
-        "/research/writing-quality-hire-probability",
-        "/resources",
-        "/resources/offer-negotiation",
-        "/resources/tech-offer-negotiation",
-        "/resources/tools/comp-calculator",
-        "/sample-report",
-        "/settings",
-        "/settings/account",
-        "/settings/billing",
-        "/settings/matching",
-        "/settings/support-reply/[emailId]",
-        "/status",
-        "/terms",
-        "/workspace"
-      ],
-      "moment": "shared",
-      "table": "shared"
-    },
-    {
-      "text": "Compared with other tools",
-      "kind": "key:label",
-      "line": 65,
-      "file": "web/lib/navigation.ts",
-      "routes": [
-        "/",
-        "/compare",
-        "/compare/enhancv",
-        "/compare/jobscan",
-        "/compare/kickresume",
-        "/compare/resume-worded",
-        "/compare/rezi",
-        "/compare/teal",
-        "/compare/topresume",
-        "/dashboard",
-        "/extension",
-        "/guides",
-        "/guides/offer-negotiation",
-        "/guides/tech-offer-negotiation",
-        "/guides/tools/comp-calculator",
-        "/help",
-        "/jobs",
-        "/jobs/[id]",
-        "/launch",
-        "/launch/gauntlet",
-        "/llms.txt",
-        "/methodology",
-        "/pricing",
-        "/privacy",
-        "/purchase/confirmed",
-        "/purchase/restore",
-        "/reports",
-        "/reports/[id]",
-        "/research",
-        "/research/asking-for-a-referral",
-        "/research/ats",
-        "/research/ats-myths",
-        "/research/automation-and-bias",
-        "/research/career-breaks",
-        "/research/gaps-and-pivots",
-        "/research/how-recruiters-read",
-        "/research/human-vs-algorithm",
-        "/research/impact",
-        "/research/linkedin-visibility",
-        "/research/offer",
-        "/research/quantifying-impact",
-        "/research/read",
-        "/research/referral-advantage",
-        "/research/referrals",
-        "/research/resume-length-myths",
-        "/research/salary-history-bans",
-        "/research/skills-first-promise-reality",
-        "/research/social-screening",
-        "/research/spelling-errors-impact",
-        "/research/star-method",
-        "/research/story",
-        "/research/who-you-are",
-        "/research/writing-quality-hire-probability",
-        "/resources",
-        "/resources/offer-negotiation",
-        "/resources/tech-offer-negotiation",
-        "/resources/tools/comp-calculator",
-        "/sample-report",
-        "/settings",
-        "/settings/account",
-        "/settings/billing",
-        "/settings/matching",
-        "/settings/support-reply/[emailId]",
-        "/status",
-        "/terms",
-        "/workspace"
-      ],
-      "moment": "shared",
-      "table": "shared"
-    },
-    {
-      "text": "All research",
-      "kind": "key:label",
-      "line": 72,
-      "file": "web/lib/navigation.ts",
-      "routes": [
-        "/",
-        "/compare",
-        "/compare/enhancv",
-        "/compare/jobscan",
-        "/compare/kickresume",
-        "/compare/resume-worded",
-        "/compare/rezi",
-        "/compare/teal",
-        "/compare/topresume",
-        "/dashboard",
-        "/extension",
-        "/guides",
-        "/guides/offer-negotiation",
-        "/guides/tech-offer-negotiation",
-        "/guides/tools/comp-calculator",
-        "/help",
-        "/jobs",
-        "/jobs/[id]",
-        "/launch",
-        "/launch/gauntlet",
-        "/llms.txt",
-        "/methodology",
-        "/pricing",
-        "/privacy",
-        "/purchase/confirmed",
-        "/purchase/restore",
-        "/reports",
-        "/reports/[id]",
-        "/research",
-        "/research/asking-for-a-referral",
-        "/research/ats",
-        "/research/ats-myths",
-        "/research/automation-and-bias",
-        "/research/career-breaks",
-        "/research/gaps-and-pivots",
-        "/research/how-recruiters-read",
-        "/research/human-vs-algorithm",
-        "/research/impact",
-        "/research/linkedin-visibility",
-        "/research/offer",
-        "/research/quantifying-impact",
-        "/research/read",
-        "/research/referral-advantage",
-        "/research/referrals",
-        "/research/resume-length-myths",
-        "/research/salary-history-bans",
-        "/research/skills-first-promise-reality",
-        "/research/social-screening",
-        "/research/spelling-errors-impact",
-        "/research/star-method",
-        "/research/story",
-        "/research/who-you-are",
-        "/research/writing-quality-hire-probability",
-        "/resources",
-        "/resources/offer-negotiation",
-        "/resources/tech-offer-negotiation",
-        "/resources/tools/comp-calculator",
-        "/sample-report",
-        "/settings",
-        "/settings/account",
-        "/settings/billing",
-        "/settings/matching",
-        "/settings/support-reply/[emailId]",
-        "/status",
-        "/terms",
-        "/workspace"
-      ],
-      "moment": "shared",
-      "table": "shared"
-    },
-    {
-      "text": "How recruiters read",
-      "kind": "key:label",
-      "line": 73,
-      "file": "web/lib/navigation.ts",
-      "routes": [
-        "/",
-        "/compare",
-        "/compare/enhancv",
-        "/compare/jobscan",
-        "/compare/kickresume",
-        "/compare/resume-worded",
-        "/compare/rezi",
-        "/compare/teal",
-        "/compare/topresume",
-        "/dashboard",
-        "/extension",
-        "/guides",
-        "/guides/offer-negotiation",
-        "/guides/tech-offer-negotiation",
-        "/guides/tools/comp-calculator",
-        "/help",
-        "/jobs",
-        "/jobs/[id]",
-        "/launch",
-        "/launch/gauntlet",
-        "/llms.txt",
-        "/methodology",
-        "/pricing",
-        "/privacy",
-        "/purchase/confirmed",
-        "/purchase/restore",
-        "/reports",
-        "/reports/[id]",
-        "/research",
-        "/research/asking-for-a-referral",
-        "/research/ats",
-        "/research/ats-myths",
-        "/research/automation-and-bias",
-        "/research/career-breaks",
-        "/research/gaps-and-pivots",
-        "/research/how-recruiters-read",
-        "/research/human-vs-algorithm",
-        "/research/impact",
-        "/research/linkedin-visibility",
-        "/research/offer",
-        "/research/quantifying-impact",
-        "/research/read",
-        "/research/referral-advantage",
-        "/research/referrals",
-        "/research/resume-length-myths",
-        "/research/salary-history-bans",
-        "/research/skills-first-promise-reality",
-        "/research/social-screening",
-        "/research/spelling-errors-impact",
-        "/research/star-method",
-        "/research/story",
-        "/research/who-you-are",
-        "/research/writing-quality-hire-probability",
-        "/resources",
-        "/resources/offer-negotiation",
-        "/resources/tech-offer-negotiation",
-        "/resources/tools/comp-calculator",
-        "/sample-report",
-        "/settings",
-        "/settings/account",
-        "/settings/billing",
-        "/settings/matching",
-        "/settings/support-reply/[emailId]",
-        "/status",
-        "/terms",
-        "/workspace"
-      ],
-      "moment": "shared",
-      "table": "shared"
-    },
-    {
-      "text": "Bullets that show results",
-      "kind": "key:label",
-      "line": 74,
-      "file": "web/lib/navigation.ts",
-      "routes": [
-        "/",
-        "/compare",
-        "/compare/enhancv",
-        "/compare/jobscan",
-        "/compare/kickresume",
-        "/compare/resume-worded",
-        "/compare/rezi",
-        "/compare/teal",
-        "/compare/topresume",
-        "/dashboard",
-        "/extension",
-        "/guides",
-        "/guides/offer-negotiation",
-        "/guides/tech-offer-negotiation",
-        "/guides/tools/comp-calculator",
-        "/help",
-        "/jobs",
-        "/jobs/[id]",
-        "/launch",
-        "/launch/gauntlet",
-        "/llms.txt",
-        "/methodology",
-        "/pricing",
-        "/privacy",
-        "/purchase/confirmed",
-        "/purchase/restore",
-        "/reports",
-        "/reports/[id]",
-        "/research",
-        "/research/asking-for-a-referral",
-        "/research/ats",
-        "/research/ats-myths",
-        "/research/automation-and-bias",
-        "/research/career-breaks",
-        "/research/gaps-and-pivots",
-        "/research/how-recruiters-read",
-        "/research/human-vs-algorithm",
-        "/research/impact",
-        "/research/linkedin-visibility",
-        "/research/offer",
-        "/research/quantifying-impact",
-        "/research/read",
-        "/research/referral-advantage",
-        "/research/referrals",
-        "/research/resume-length-myths",
-        "/research/salary-history-bans",
-        "/research/skills-first-promise-reality",
-        "/research/social-screening",
-        "/research/spelling-errors-impact",
-        "/research/star-method",
-        "/research/story",
-        "/research/who-you-are",
-        "/research/writing-quality-hire-probability",
-        "/resources",
-        "/resources/offer-negotiation",
-        "/resources/tech-offer-negotiation",
-        "/resources/tools/comp-calculator",
-        "/sample-report",
-        "/settings",
-        "/settings/account",
-        "/settings/billing",
-        "/settings/matching",
-        "/settings/support-reply/[emailId]",
-        "/status",
-        "/terms",
-        "/workspace"
-      ],
-      "moment": "shared",
-      "table": "shared"
-    },
-    {
-      "text": "After the offer",
-      "kind": "key:label",
-      "line": 79,
-      "file": "web/lib/navigation.ts",
-      "routes": [
-        "/",
-        "/compare",
-        "/compare/enhancv",
-        "/compare/jobscan",
-        "/compare/kickresume",
-        "/compare/resume-worded",
-        "/compare/rezi",
-        "/compare/teal",
-        "/compare/topresume",
-        "/dashboard",
-        "/extension",
-        "/guides",
-        "/guides/offer-negotiation",
-        "/guides/tech-offer-negotiation",
-        "/guides/tools/comp-calculator",
-        "/help",
-        "/jobs",
-        "/jobs/[id]",
-        "/launch",
-        "/launch/gauntlet",
-        "/llms.txt",
-        "/methodology",
-        "/pricing",
-        "/privacy",
-        "/purchase/confirmed",
-        "/purchase/restore",
-        "/reports",
-        "/reports/[id]",
-        "/research",
-        "/research/asking-for-a-referral",
-        "/research/ats",
-        "/research/ats-myths",
-        "/research/automation-and-bias",
-        "/research/career-breaks",
-        "/research/gaps-and-pivots",
-        "/research/how-recruiters-read",
-        "/research/human-vs-algorithm",
-        "/research/impact",
-        "/research/linkedin-visibility",
-        "/research/offer",
-        "/research/quantifying-impact",
-        "/research/read",
-        "/research/referral-advantage",
-        "/research/referrals",
-        "/research/resume-length-myths",
-        "/research/salary-history-bans",
-        "/research/skills-first-promise-reality",
-        "/research/social-screening",
-        "/research/spelling-errors-impact",
-        "/research/star-method",
-        "/research/story",
-        "/research/who-you-are",
-        "/research/writing-quality-hire-probability",
-        "/resources",
-        "/resources/offer-negotiation",
-        "/resources/tech-offer-negotiation",
-        "/resources/tools/comp-calculator",
-        "/sample-report",
-        "/settings",
-        "/settings/account",
-        "/settings/billing",
-        "/settings/matching",
-        "/settings/support-reply/[emailId]",
-        "/status",
-        "/terms",
-        "/workspace"
-      ],
-      "moment": "shared",
-      "table": "shared"
-    },
-    {
-      "text": "Negotiate an offer",
-      "kind": "key:label",
-      "line": 81,
-      "file": "web/lib/navigation.ts",
-      "routes": [
-        "/",
-        "/compare",
-        "/compare/enhancv",
-        "/compare/jobscan",
-        "/compare/kickresume",
-        "/compare/resume-worded",
-        "/compare/rezi",
-        "/compare/teal",
-        "/compare/topresume",
-        "/dashboard",
-        "/extension",
-        "/guides",
-        "/guides/offer-negotiation",
-        "/guides/tech-offer-negotiation",
-        "/guides/tools/comp-calculator",
-        "/help",
-        "/jobs",
-        "/jobs/[id]",
-        "/launch",
-        "/launch/gauntlet",
-        "/llms.txt",
-        "/methodology",
-        "/pricing",
-        "/privacy",
-        "/purchase/confirmed",
-        "/purchase/restore",
-        "/reports",
-        "/reports/[id]",
-        "/research",
-        "/research/asking-for-a-referral",
-        "/research/ats",
-        "/research/ats-myths",
-        "/research/automation-and-bias",
-        "/research/career-breaks",
-        "/research/gaps-and-pivots",
-        "/research/how-recruiters-read",
-        "/research/human-vs-algorithm",
-        "/research/impact",
-        "/research/linkedin-visibility",
-        "/research/offer",
-        "/research/quantifying-impact",
-        "/research/read",
-        "/research/referral-advantage",
-        "/research/referrals",
-        "/research/resume-length-myths",
-        "/research/salary-history-bans",
-        "/research/skills-first-promise-reality",
-        "/research/social-screening",
-        "/research/spelling-errors-impact",
-        "/research/star-method",
-        "/research/story",
-        "/research/who-you-are",
-        "/research/writing-quality-hire-probability",
-        "/resources",
-        "/resources/offer-negotiation",
-        "/resources/tech-offer-negotiation",
-        "/resources/tools/comp-calculator",
-        "/sample-report",
-        "/settings",
-        "/settings/account",
-        "/settings/billing",
-        "/settings/matching",
-        "/settings/support-reply/[emailId]",
-        "/status",
-        "/terms",
-        "/workspace"
-      ],
-      "moment": "shared",
-      "table": "shared"
-    },
-    {
-      "text": "Read a tech offer",
-      "kind": "key:label",
-      "line": 82,
-      "file": "web/lib/navigation.ts",
-      "routes": [
-        "/",
-        "/compare",
-        "/compare/enhancv",
-        "/compare/jobscan",
-        "/compare/kickresume",
-        "/compare/resume-worded",
-        "/compare/rezi",
-        "/compare/teal",
-        "/compare/topresume",
-        "/dashboard",
-        "/extension",
-        "/guides",
-        "/guides/offer-negotiation",
-        "/guides/tech-offer-negotiation",
-        "/guides/tools/comp-calculator",
-        "/help",
-        "/jobs",
-        "/jobs/[id]",
-        "/launch",
-        "/launch/gauntlet",
-        "/llms.txt",
-        "/methodology",
-        "/pricing",
-        "/privacy",
-        "/purchase/confirmed",
-        "/purchase/restore",
-        "/reports",
-        "/reports/[id]",
-        "/research",
-        "/research/asking-for-a-referral",
-        "/research/ats",
-        "/research/ats-myths",
-        "/research/automation-and-bias",
-        "/research/career-breaks",
-        "/research/gaps-and-pivots",
-        "/research/how-recruiters-read",
-        "/research/human-vs-algorithm",
-        "/research/impact",
-        "/research/linkedin-visibility",
-        "/research/offer",
-        "/research/quantifying-impact",
-        "/research/read",
-        "/research/referral-advantage",
-        "/research/referrals",
-        "/research/resume-length-myths",
-        "/research/salary-history-bans",
-        "/research/skills-first-promise-reality",
-        "/research/social-screening",
-        "/research/spelling-errors-impact",
-        "/research/star-method",
-        "/research/story",
-        "/research/who-you-are",
-        "/research/writing-quality-hire-probability",
-        "/resources",
-        "/resources/offer-negotiation",
-        "/resources/tech-offer-negotiation",
-        "/resources/tools/comp-calculator",
-        "/sample-report",
-        "/settings",
-        "/settings/account",
-        "/settings/billing",
-        "/settings/matching",
-        "/settings/support-reply/[emailId]",
-        "/status",
-        "/terms",
-        "/workspace"
-      ],
-      "moment": "shared",
-      "table": "shared"
-    },
-    {
-      "text": "Offer calculator",
-      "kind": "key:label",
-      "line": 83,
+      "line": 53,
       "file": "web/lib/navigation.ts",
       "routes": [
         "/",

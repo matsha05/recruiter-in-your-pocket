@@ -45,53 +45,14 @@ export interface MarketingNavItem {
     description?: string;
 }
 
-export interface FooterNavGroup {
-    id: string;
-    label: string;
-    links: MarketingNavItem[];
-}
-
-// Grouped, labeled columns (plan 4.10). Names follow the one-name word list in docs/copy-system.md.
-export const FOOTER_NAV: FooterNavGroup[] = [
-    {
-        id: "product",
-        label: "Product",
-        links: [
-            { label: "How it works", href: "/#how-it-works" },
-            { label: "Sample report", href: "/sample-report" },
-            { label: "Pricing", href: "/pricing" },
-            ...(launchFlags.extensionSync ? [{ label: "Extension", href: "/extension" }] : []),
-            { label: "How the report works", href: "/methodology" },
-            { label: "Compared with other tools", href: "/compare" },
-        ],
-    },
-    {
-        id: "research",
-        label: "Research",
-        links: [
-            { label: "All research", href: "/research" },
-            { label: "How recruiters read", href: "/research/how-recruiters-read" },
-            { label: "Bullets that show results", href: "/research/quantifying-impact" },
-        ],
-    },
-    {
-        id: "after-the-offer",
-        label: "After the offer",
-        links: [
-            { label: "Negotiate an offer", href: "/resources/offer-negotiation" },
-            { label: "Read a tech offer", href: "/resources/tech-offer-negotiation" },
-            { label: "Offer calculator", href: "/resources/tools/comp-calculator" },
-        ],
-    },
-    // Three trust destinations (Matt, Nov 2, 2026): Privacy (which now carries security and data handling),
-    // Terms, and Help (FAQ and support together). /security, /trust, /faq and /support redirect to them.
-    {
-        id: "help",
-        label: "Help",
-        links: [
-            { label: "Help", href: "/help" },
-            { label: "Privacy", href: "/privacy" },
-            { label: "Terms", href: "/terms" },
-        ],
-    },
+// One short row (Matt, Nov 10, 2026: "its SO MUCH TEXT"). The header already carries the report, pricing, research
+// and After the offer, so the footer holds only what the header doesn't: the comparison, the method, and the three
+// trust pages. Names follow the one-name word list in docs/copy-system.md.
+export const FOOTER_LINKS: MarketingNavItem[] = [
+    { label: "Compared with other tools", href: "/compare" },
+    { label: "How the report works", href: "/methodology" },
+    ...(launchFlags.extensionSync ? [{ label: "Extension", href: "/extension" }] : []),
+    { label: "Help", href: "/help" },
+    { label: "Privacy", href: "/privacy" },
+    { label: "Terms", href: "/terms" },
 ];
