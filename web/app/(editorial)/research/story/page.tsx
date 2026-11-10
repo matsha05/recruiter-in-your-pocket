@@ -46,7 +46,7 @@ export default function StoryPillarPage() {
                     },
                 },
             ]}
-            handoff={{ title: "See the one line a recruiter would say about yours.", href: "/workspace", label: "Get your free report" }}
+            handoff={{ heading: "See the one line a recruiter would say about yours.", href: "/workspace", label: "Get your free report" }}
         />
     );
 }

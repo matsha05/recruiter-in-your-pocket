@@ -31,7 +31,7 @@ export default function ReferralAdvantagePage() {
                 linkLabel: "Read the report",
             }}
             painNote="Same resume, different door."
-            nextQuestions={["how-recruiters-read", "quantifying-impact", "linkedin-visibility"]}
+            nextQuestions={["asking-for-a-referral", "how-recruiters-read", "linkedin-visibility"]}
             visualization={
                 <>
                     <h2 className="research-h2">A sliver of applications, a big share of hires</h2>
@@ -128,13 +128,10 @@ export default function ReferralAdvantagePage() {
 
             <h2 className="research-h2">How to get a referral worth having</h2>
             <p className="research-body mb-6">
-                <strong>Ask people who&apos;ve seen your work.</strong> Former managers, teammates, and clients can say what you did. That&apos;s the kind of referral that changes a decision.
+                <strong>Ask people who&apos;ve seen your work.</strong> Former managers, teammates, and clients can say what you did. That&apos;s the kind of referral that changes a decision. Who else to ask, and what to send them, has its own answer: <ResearchLink to="asking-for-a-referral">how to ask for a referral</ResearchLink>.
             </p>
             <p className="research-body mb-6">
                 <strong>Be specific.</strong> &ldquo;I&apos;m looking for a senior PM role at a growth-stage fintech&rdquo; lets someone spot the opening for you. &ldquo;Let me know if you hear of anything&rdquo; doesn&apos;t. Make your profile that plain too, since <ResearchLink to="linkedin-visibility">recruiters search the titles and skills in your headline, summary, and experience</ResearchLink>.
-            </p>
-            <p className="research-body mb-6">
-                <strong>Write the blurb for them.</strong> Send the job link, your resume, and a few sentences they can paste in, like: &ldquo;We worked on the finance-system migration together. She led the data cleanup that shortened our month-end close.&rdquo; Stick to things they saw firsthand, and make it easy for them to say no.
             </p>
 
             <ArticleBridge question="Is it ready for a real read?">

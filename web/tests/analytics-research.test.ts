@@ -55,6 +55,7 @@ assert.deepEqual(
 assert.deepEqual(ctaClick("/research/offer", "research_pillar_offer", "/resources/offer-negotiation"), { cta: "research_pillar_offer", destination: "/resources/offer-negotiation" });
 assert.deepEqual(ctaClick("/research/impact", "research_pillar_impact", "/workspace"), { cta: "research_pillar_impact", destination: "/workspace" });
 assert.equal(ctaClick("/pricing", "research_pillar_offer", "/resources/offer-negotiation"), null);
+assert.deepEqual(ctaClick("/research/referrals", "research_pillar_referrals", "/research/asking-for-a-referral"), { cta: "research_pillar_referrals", destination: "/research/asking-for-a-referral" });
 assert.equal(researchArticleSlug("/research/impact"), "impact", "a belief page's view counts as research_article_viewed");
 
 // The policy keeps the slug and drops anything else.

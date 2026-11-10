@@ -52,7 +52,7 @@ export default function AtsPillarPage() {
                     },
                 },
             ]}
-            handoff={{ title: "See how yours reads to the person after the software.", href: "/workspace", label: "Get your free report" }}
+            handoff={{ heading: "See how yours reads to the person after the software.", href: "/workspace", label: "Get your free report" }}
         />
     );
 }
