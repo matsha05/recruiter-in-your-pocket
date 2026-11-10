@@ -1,11 +1,26 @@
 import { pageMetadata } from "@/lib/seo/metadata";
 import { Citation } from "@/components/research/ResearchArticle";
 import { AdviceList, AnswerArticle, ArticleBridge, EvidenceList } from "@/components/research/AnswerArticle";
+import { CopyPrompt } from "@/components/research/CopyPrompt";
 import { ResearchLink } from "@/components/research/ResearchLink";
 
 const PATH = "/research/asking-for-a-referral";
 const GEE = "https://doi.org/10.1086/686225";
 const RAJKUMAR = "https://doi.org/10.1126/science.abl4476";
+const LINKEDIN_EXPORT = "https://www.linkedin.com/help/linkedin/answer/a566336";
+
+// Our prompt, for any AI assistant that reads an attached spreadsheet. It asks the assistant to list, not to judge
+// relationships, and to draft only from facts the reader gives it.
+const REFERRAL_PROMPT = `I'm applying for [job title] at [company]. Here's the posting: [paste the link or the text].
+
+I've attached my LinkedIn connections (Connections.csv) and my resume.
+
+1. List everyone in the file whose Company is [company], with their name, position, and the date we connected. Put anyone whose title sounds close to this role or its team first.
+2. Don't guess how well I know anyone. After the list, ask me which of these people I know and how.
+3. For each person I pick, draft a short message I could send on LinkedIn. Use only facts from my resume and what I tell you about how we know each other. Don't invent shared history, praise, or details about their work.
+4. Each message should say how we know each other in one line, name the role with the link, ask whether they'd be comfortable referring me, offer to send a few sentences they can paste into the referral form, and make it easy to say no.
+
+Write it the way I'd message a former colleague: warm, plain, and short enough to read on a phone, with no buzzwords.`;
 
 export const metadata = pageMetadata({
     path: PATH,
@@ -74,6 +89,27 @@ export default function AskingForAReferralPage() {
                     },
                 ]}
             />
+
+            <h2 className="research-h2">Find them, then draft the ask</h2>
+            <p className="research-body mb-6">
+                An AI assistant can sort your connections and write a first draft, as long as you give it the list. It can&rsquo;t open your LinkedIn for you.
+            </p>
+            <ol className="mb-6 list-decimal space-y-2 pl-6 marker:text-muted-foreground">
+                <li>
+                    <strong>Download your connections.</strong> On LinkedIn, go to Settings &amp; Privacy, then Data privacy, then Get a copy of your data, and pick the archive that includes connections.
+                    {" "}<a href={LINKEDIN_EXPORT} target="_blank" rel="noopener noreferrer" className="focus-ring riyp-link">LinkedIn&rsquo;s steps<span className="sr-only"> (opens in a new tab)</span></a>. It emails you a link; the list is the file named Connections.csv.
+                </li>
+                <li>
+                    <strong>Delete the email column first.</strong> Those are other people&rsquo;s addresses, and the assistant doesn&rsquo;t need them.
+                </li>
+                <li>
+                    <strong>Attach the file and your resume</strong> to ChatGPT, Claude, Gemini or another assistant, paste the prompt below, and fill in the brackets.
+                </li>
+            </ol>
+            <CopyPrompt label="Our prompt" text={REFERRAL_PROMPT} />
+            <p className="research-body mb-6">
+                Read every draft before you send it. You know the relationship; the assistant only knows a spreadsheet. If a message says something you wouldn&rsquo;t, fix it or don&rsquo;t send it.
+            </p>
 
             <h2 className="research-h2">What a referral does on the recruiter&rsquo;s side</h2>
             <p className="research-body mb-6">
