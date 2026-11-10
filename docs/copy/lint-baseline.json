@@ -108,6 +108,14 @@
       "where": "web/app/(editorial)/methodology/page.tsx:87"
     },
     {
+      "text": "I'm applying for [job title] at [company]. Here's the posting: [paste the link or the text]. I've attached my LinkedIn connections (Connections.csv) and my resume. 1. List everyone in the file whose Company is [company], with their name, position, and the date we connected. Put anyone whose title sounds close to this role or its team first. 2. Don't guess how well I know anyone. After the list, ask me which of these people I know and how. 3. For each person I pick, draft a short message I could send on LinkedIn. Use only facts from my resume and what I tell you about how we know each other. Don't invent shared history, praise, or details about their work. 4. Each message should say how we know each other in one line, name the role with the link, ask whether they'd be comfortable referring me, offer to send a few sentences they can paste into the referral form, and make it easy to say no. Write it the way I'd message a former colleague: warm, plain, and short enough to read on a phone, with no buzzwords.",
+      "moment": "research",
+      "tics": [
+        "punch_fragments"
+      ],
+      "where": "web/app/(editorial)/research/asking-for-a-referral/page.tsx:14"
+    },
+    {
       "text": "which job ads you see, whether you’re eligible, and how you reach a person",
       "moment": "research",
       "tics": [

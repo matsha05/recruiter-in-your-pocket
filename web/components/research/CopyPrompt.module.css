@@ -1,0 +1,69 @@
+/* A copyable prompt inside a research article: a paper sheet, the prompt in the reading face, one quiet button. */
+
+.block {
+    margin: 2rem 0;
+    border: 1px solid hsl(var(--line));
+    border-radius: var(--radius-sheet);
+    background: hsl(var(--card));
+    padding: 1.25rem 1.5rem 0.5rem;
+}
+
+.head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+}
+
+.label {
+    margin: 0;
+    color: hsl(var(--text-strong));
+    font: var(--type-small);
+    font-weight: var(--weight-control);
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    border: 1px solid hsl(var(--text-strong));
+    border-radius: 999px;
+    background: transparent;
+    padding: 0 1.125rem;
+    color: hsl(var(--text-strong));
+    font: var(--type-small);
+    font-weight: var(--weight-control);
+    cursor: pointer;
+    transition: background-color 160ms ease, color 160ms ease;
+}
+
+.button:hover {
+    background: hsl(var(--text-strong));
+    color: hsl(var(--card));
+}
+
+.button svg { width: 1rem; height: 1rem; }
+
+.text {
+    margin: 1rem 0 0;
+    border-top: 1px solid hsl(var(--line));
+    padding-top: 1rem;
+    color: hsl(var(--text-strong));
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    font: var(--type-body);
+    font-family: var(--font-editorial);
+}
+
+.status {
+    min-height: 1.5rem;
+    margin: 0.5rem 0 0;
+    color: hsl(var(--text-muted));
+    font: var(--type-small);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .button { transition: none; }
+}

@@ -1,13 +1,13 @@
 {
   "generated_by": "web/scripts/copy-inventory.cjs",
   "counts": {
-    "files_scanned": 428,
-    "files_with_copy": 259,
-    "strings": 3029,
-    "unique_strings": 2521
+    "files_scanned": 429,
+    "files_with_copy": 260,
+    "strings": 3045,
+    "unique_strings": 2536
   },
   "by_moment": {
-    "research": 972,
+    "research": 988,
     "account": 442,
     "marketing": 418,
     "report": 323,
@@ -3419,9 +3419,20 @@
       "table": "methodology"
     },
     {
+      "text": "I'm applying for [job title] at [company]. Here's the posting: [paste the link or the text]. I've attached my LinkedIn connections (Connections.csv) and my resume. 1. List everyone in the file whose Company is [company], with their name, position, and the date we connected. Put anyone whose title sounds close to this role or its team first. 2. Don't guess how well I know anyone. After the list, ask me which of these people I know and how. 3. For each person I pick, draft a short message I could send on LinkedIn. Use only facts from my resume and what I tell you about how we know each other. Don't invent shared history, praise, or details about their work. 4. Each message should say how we know each other in one line, name the role with the link, ask whether they'd be comfortable referring me, offer to send a few sentences they can paste into the referral form, and make it easy to say no. Write it the way I'd message a former colleague: warm, plain, and short enough to read on a phone, with no buzzwords.",
+      "kind": "const",
+      "line": 14,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
       "text": "How do I ask for a referral?",
       "kind": "key:title",
-      "line": 12,
+      "line": 27,
       "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
       "routes": [
         "/research/asking-for-a-referral"
@@ -3432,7 +3443,7 @@
     {
       "text": "Most job help comes through acquaintances, but one close contact counts for more. Who to ask for a referral, and what to send, from two large network studies.",
       "kind": "key:description",
-      "line": 13,
+      "line": 28,
       "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
       "routes": [
         "/research/asking-for-a-referral"
@@ -3443,7 +3454,7 @@
     {
       "text": "Ask widely, and lean on people who know your work. Across 6 million Facebook users, most job help came through acquaintances, because people have so many. One close tie was worth more.",
       "kind": "jsx-text",
-      "line": 23,
+      "line": 38,
       "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
       "routes": [
         "/research/asking-for-a-referral"
@@ -3454,7 +3465,7 @@
     {
       "text": "From a peer-reviewed study of 6 million Facebook users (Gee, Jones & Burke, Journal of Labor Economics, 2017).",
       "kind": "jsx-text",
-      "line": 27,
+      "line": 42,
       "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
       "routes": [
         "/research/asking-for-a-referral"
@@ -3465,7 +3476,7 @@
     {
       "text": "Social Networks and Labor Markets: How Strong Ties Relate to Job Finding on Facebook's Social Network",
       "kind": "key:title",
-      "line": 35,
+      "line": 50,
       "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
       "routes": [
         "/research/asking-for-a-referral"
@@ -3476,7 +3487,7 @@
     {
       "text": "A causal test of the strength of weak ties",
       "kind": "key:title",
-      "line": 42,
+      "line": 57,
       "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
       "routes": [
         "/research/asking-for-a-referral"
@@ -3487,7 +3498,7 @@
     {
       "text": "Who to ask",
       "kind": "jsx-text",
-      "line": 49,
+      "line": 64,
       "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
       "routes": [
         "/research/asking-for-a-referral"
@@ -3498,7 +3509,7 @@
     {
       "text": "Two large studies of real networks agree on the shape. Most people get job help from someone they know less well, simply because they know so many more of them. But one close contact counts for more than one acquaintance.",
       "kind": "jsx-text",
-      "line": 51,
+      "line": 66,
       "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
       "routes": [
         "/research/asking-for-a-referral"
@@ -3509,7 +3520,7 @@
     {
       "text": "So ask more than your closest friends, and put the most care into the people who’ve seen your work.",
       "kind": "jsx-text",
-      "line": 54,
+      "line": 69,
       "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
       "routes": [
         "/research/asking-for-a-referral"
@@ -3520,7 +3531,7 @@
     {
       "text": "Start with people who've seen your work.",
       "kind": "key:lead",
-      "line": 60,
+      "line": 75,
       "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
       "routes": [
         "/research/asking-for-a-referral"
@@ -3531,7 +3542,7 @@
     {
       "text": "Former managers, teammates and clients can say what you did. In field experiments,",
       "kind": "jsx-text",
-      "line": 61,
+      "line": 76,
       "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
       "routes": [
         "/research/asking-for-a-referral"
@@ -3542,7 +3553,7 @@
     {
       "text": "Then go one step out.",
       "kind": "key:lead",
-      "line": 64,
+      "line": 79,
       "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
       "routes": [
         "/research/asking-for-a-referral"
@@ -3553,7 +3564,7 @@
     {
       "text": "Someone you share a few connections with, like a former teammate’s new colleague, is the kind of tie that went with the most job moves in LinkedIn’s experiments. Ask the person you know well to introduce you.",
       "kind": "jsx-text",
-      "line": 65,
+      "line": 80,
       "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
       "routes": [
         "/research/asking-for-a-referral"
@@ -3564,7 +3575,7 @@
     {
       "text": "Send everything in one message.",
       "kind": "key:lead",
-      "line": 68,
+      "line": 83,
       "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
       "routes": [
         "/research/asking-for-a-referral"
@@ -3575,7 +3586,7 @@
     {
       "text": "The job link, your resume, and two or three sentences they can paste into the referral form: how you know each other, and what you’d bring to this role.",
       "kind": "jsx-text",
-      "line": 69,
+      "line": 84,
       "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
       "routes": [
         "/research/asking-for-a-referral"
@@ -3586,7 +3597,7 @@
     {
       "text": "Make no easy to say.",
       "kind": "key:lead",
-      "line": 72,
+      "line": 87,
       "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
       "routes": [
         "/research/asking-for-a-referral"
@@ -3597,7 +3608,150 @@
     {
       "text": "They’re putting their name next to yours. “No worries if it’s not a fit” keeps the relationship either way.",
       "kind": "jsx-text",
-      "line": 73,
+      "line": 88,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Find them, then draft the ask",
+      "kind": "jsx-text",
+      "line": 93,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "An AI assistant can sort your connections and write a first draft, as long as you give it the list. It can’t open your LinkedIn for you.",
+      "kind": "jsx-text",
+      "line": 95,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Download your connections.",
+      "kind": "jsx-text",
+      "line": 99,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "On LinkedIn, go to Settings & Privacy, then Data privacy, then Get a copy of your data, and pick the archive that includes connections.",
+      "kind": "jsx-text",
+      "line": 99,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "LinkedIn’s steps",
+      "kind": "jsx-text",
+      "line": 100,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "(opens in a new tab)",
+      "kind": "jsx-text",
+      "line": 100,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": ". It emails you a link; the list is the file named Connections.csv.",
+      "kind": "jsx-text",
+      "line": 100,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Delete the email column first.",
+      "kind": "jsx-text",
+      "line": 103,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Those are other people’s addresses, and the assistant doesn’t need them.",
+      "kind": "jsx-text",
+      "line": 103,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Attach the file and your resume",
+      "kind": "jsx-text",
+      "line": 106,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "to ChatGPT, Claude, Gemini or another assistant, paste the prompt below, and fill in the brackets.",
+      "kind": "jsx-text",
+      "line": 106,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Our prompt",
+      "kind": "attr:label",
+      "line": 109,
+      "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Read every draft before you send it. You know the relationship; the assistant only knows a spreadsheet. If a message says something you wouldn’t, fix it or don’t send it.",
+      "kind": "jsx-text",
+      "line": 111,
       "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
       "routes": [
         "/research/asking-for-a-referral"
@@ -3608,7 +3762,7 @@
     {
       "text": "What a referral does on the recruiter’s side",
       "kind": "jsx-text",
-      "line": 78,
+      "line": 114,
       "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
       "routes": [
         "/research/asking-for-a-referral"
@@ -3619,7 +3773,7 @@
     {
       "text": "Our take:",
       "kind": "jsx-text",
-      "line": 80,
+      "line": 116,
       "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
       "routes": [
         "/research/asking-for-a-referral"
@@ -3630,7 +3784,7 @@
     {
       "text": "this is recruiter experience, not a finding from the studies below. Every application a recruiter opens shows whether someone referred you, and when a role has hundreds of applicants, that gets your resume read. It doesn’t make the decision for you. Once it’s open,",
       "kind": "jsx-text",
-      "line": 80,
+      "line": 116,
       "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
       "routes": [
         "/research/asking-for-a-referral"
@@ -3641,7 +3795,7 @@
     {
       "text": ", the same as everyone else’s.",
       "kind": "jsx-text",
-      "line": 80,
+      "line": 116,
       "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
       "routes": [
         "/research/asking-for-a-referral"
@@ -3652,7 +3806,7 @@
     {
       "text": "Is it ready for a real read?",
       "kind": "attr:question",
-      "line": 83,
+      "line": 119,
       "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
       "routes": [
         "/research/asking-for-a-referral"
@@ -3663,7 +3817,7 @@
     {
       "text": "The write-up in your report says what a recruiter takes from your resume first. Check it before someone vouches for you. The report can’t tell you who to ask; it reads the resume they’ll open.",
       "kind": "jsx-text",
-      "line": 84,
+      "line": 120,
       "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
       "routes": [
         "/research/asking-for-a-referral"
@@ -3674,7 +3828,7 @@
     {
       "text": "The evidence",
       "kind": "jsx-text",
-      "line": 87,
+      "line": 123,
       "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
       "routes": [
         "/research/asking-for-a-referral"
@@ -3685,7 +3839,7 @@
     {
       "text": "Whether anyone made a formal referral, or how they asked. Working alongside a friend is a stand-in for help, not a record of it.",
       "kind": "key:limit",
-      "line": 98,
+      "line": 134,
       "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
       "routes": [
         "/research/asking-for-a-referral"
@@ -3696,7 +3850,7 @@
     {
       "text": "Referrals specifically. It measures moving to a new job, on one platform, not who referred whom.",
       "kind": "key:limit",
-      "line": 108,
+      "line": 144,
       "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
       "routes": [
         "/research/asking-for-a-referral"
@@ -3707,7 +3861,7 @@
     {
       "text": "Neither study tested how to word a referral request. The four moves above are our advice.",
       "kind": "jsx-text",
-      "line": 115,
+      "line": 151,
       "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
       "routes": [
         "/research/asking-for-a-referral"
@@ -3718,7 +3872,7 @@
     {
       "text": "Both studies use one platform’s data, so they describe its users, not every job seeker.",
       "kind": "jsx-text",
-      "line": 116,
+      "line": 152,
       "file": "web/app/(editorial)/research/asking-for-a-referral/page.tsx",
       "routes": [
         "/research/asking-for-a-referral"
@@ -29858,6 +30012,28 @@
       ],
       "moment": "research",
       "table": "shared"
+    },
+    {
+      "text": "Copy the prompt",
+      "kind": "jsx-text",
+      "line": 33,
+      "file": "web/components/research/CopyPrompt.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "Couldn’t copy. Select the text above and copy it instead.",
+      "kind": "jsx-text",
+      "line": 38,
+      "file": "web/components/research/CopyPrompt.tsx",
+      "routes": [
+        "/research/asking-for-a-referral"
+      ],
+      "moment": "research",
+      "table": "research"
     },
     {
       "text": "Applied cold",
