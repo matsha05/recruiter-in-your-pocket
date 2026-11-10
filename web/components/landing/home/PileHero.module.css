@@ -4,11 +4,12 @@
 
 .inner {
     display: grid;
-    grid-template-columns: minmax(20rem, 26rem) minmax(0, 1fr);
+    grid-template-columns: minmax(20rem, 27rem) minmax(0, 1fr);
     grid-template-areas: "copy field" "copy source";
-    gap: 1.5rem 5rem;
+    gap: 1.5rem 3.5rem;
     align-items: center;
-    max-width: var(--page-max);
+    /* The site's one column (design-system.md, Nov 10, 2026): the hero starts where every page starts. */
+    max-width: var(--marketing-content);
     margin: 0 auto;
     padding: calc(var(--marketing-header-height-desktop) + 5rem) var(--marketing-gutter) 6rem;
 }
@@ -18,8 +19,9 @@
 /* Explicit line breaks keep the headline put while the number ticks from one digit to three. */
 .title {
     margin: 0;
-    font: var(--weight-marketing) var(--type-headline-size) / 1.05 var(--font-display);
-    letter-spacing: -0.03em;
+    /* The display size: a page's first headline is its largest type. */
+    font: var(--weight-marketing) var(--type-display-size) / 1.05 var(--font-display);
+    letter-spacing: var(--tracking-display);
     white-space: nowrap;
 }
 
@@ -48,6 +50,9 @@
 @keyframes arrive { to { opacity: 1; } }
 
 .actions { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; margin-top: 2.25rem; }
+
+/* The quiet link keeps its padded hit area, pulled back so its text starts on the column's edge. */
+@media (min-width: 641px) { .actions > a + a { margin-left: -0.5rem; } }
 
 .field { grid-area: field; align-self: end; }
 

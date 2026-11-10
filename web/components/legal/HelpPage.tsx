@@ -71,7 +71,7 @@ export function HelpPage() {
 
             {contact && contact.type === "card" ? (
                 <section className={cn(rhythm.section, rhythm.close)} aria-labelledby="help-contact-title">
-                    <h2 id="help-contact-title" className={rhythm.title}>Didn&rsquo;t find it? Write to a person.</h2>
+                    <h2 id="help-contact-title" className={rhythm.sectionTitle}>Didn&rsquo;t find it? Write to a person.</h2>
                     <div className={styles.contact}>
                         {contact.paragraphs.map((paragraph, index) => <p key={index}>{paragraph.map(renderInline)}</p>)}
                     </div>

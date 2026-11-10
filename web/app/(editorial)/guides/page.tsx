@@ -44,7 +44,7 @@ export default function GuidesPage() {
                 </div>
             </section>
             <section className={`${rhythm.section} ${rhythm.close}`} aria-labelledby="offers-research-title">
-                <h2 id="offers-research-title" className={rhythm.title}>The questions behind it.</h2>
+                <h2 id="offers-research-title" className={rhythm.sectionTitle}>The questions behind it.</h2>
                 <div className={styles.related}>
                     {RELATED.map((href) => {
                         const entry = hubEntryForHref(href);

@@ -15,7 +15,7 @@ Routes: `/privacy`, `/status`, `/terms`. Strings: 5 (5 unique).
 
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
-| 1 | legal | `web/components/legal/LegalShell.tsx:51` | jsx-text | Last updated |
+| 1 | legal | `web/components/legal/LegalShell.tsx:37` | jsx-text | Last updated |
 
 ## /privacy, /terms
 

@@ -62,7 +62,7 @@ export default function MethodologyPage() {
             </section>
 
             <section className={rhythm.section} aria-labelledby="verdict-title">
-                <h2 id="verdict-title" className={rhythm.title}>The write-up.</h2>
+                <h2 id="verdict-title" className={rhythm.sectionTitle}>The write-up.</h2>
                 <p className={rhythm.deck}>What your resume says first, in plain words, judged against the criteria.</p>
                 <div className={styles.verdict}>
                     <span className={styles.verdictLabel}>Verdict</span>
@@ -72,7 +72,7 @@ export default function MethodologyPage() {
             </section>
 
             <section className={rhythm.section} aria-labelledby="band-title">
-                <h2 id="band-title" className={rhythm.title}>Where your resume stands.</h2>
+                <h2 id="band-title" className={rhythm.sectionTitle}>Where your resume stands.</h2>
                 <p className={rhythm.deck}>One of five bands, with a line on what it means, and the number beside it. The top one, Ready to send, is earned: it means no line on the page needs work. The band is what a recruiter would do with the resume after one pass.</p>
                 <div className={styles.band}><ScoreBand score={sampleReport.score} /></div>
                 <section aria-label="What goes into the band">
@@ -83,7 +83,7 @@ export default function MethodologyPage() {
             </section>
 
             <section className={rhythm.section} aria-labelledby="lines-title">
-                <h2 id="lines-title" className={rhythm.title}>Lines that need work.</h2>
+                <h2 id="lines-title" className={rhythm.sectionTitle}>Lines that need work.</h2>
                 <p className={rhythm.deck}>Every line a recruiter trips on gets a card: the line as written, what they can&rsquo;t tell from it, an example with the blanks for you to fill, and the question that fills them. Nothing in an example is invented; the facts are your resume&rsquo;s or yours.</p>
                 <Clipping
                     caption="A line from Jordan’s resume, and the report’s question"
@@ -99,12 +99,12 @@ export default function MethodologyPage() {
             </section>
 
             <section className={rhythm.section} aria-labelledby="facts-title">
-                <h2 id="facts-title" className={rhythm.title}>Only from your facts.</h2>
+                <h2 id="facts-title" className={rhythm.sectionTitle}>Only from your facts.</h2>
                 <p className={rhythm.deck}>Every example keeps your facts and leaves blanks for the rest. Your answers go into the blanks word for word, and the line can&rsquo;t be copied until every blank is yours. A recognisable recent employer can lift the resume one band; the write-up says so when it does.</p>
             </section>
 
             <section className={rhythm.section} aria-labelledby="cant-title">
-                <h2 id="cant-title" className={rhythm.title}>What it can&rsquo;t tell you.</h2>
+                <h2 id="cant-title" className={rhythm.sectionTitle}>What it can&rsquo;t tell you.</h2>
                 <ul className={styles.cant}>
                     <li>Whether you&rsquo;ll get an interview or an offer.</li>
                     <li>How a specific employer, team, or hiring process weighs things.</li>
@@ -119,7 +119,7 @@ export default function MethodologyPage() {
             </section>
 
             <section id="how-we-write-research" tabIndex={-1} className={cn(rhythm.section, rhythm.close, "riyp-jump-target")} aria-labelledby="method-title">
-                <h2 id="method-title" className={rhythm.title}>How we write the research.</h2>
+                <h2 id="method-title" className={rhythm.sectionTitle}>How we write the research.</h2>
                 <p className={styles.method}>
                     Every page opens with the question you asked and a straight answer, with the study behind it linked right there. We link the full study when it&rsquo;s public and say so when we could only read the abstract. Each finding travels with its limits: who was studied, where, how many, and what the study can&rsquo;t tell you. When something is our advice rather than a finding, we label it. We&rsquo;d rather print a small, honest number than a big, round one. Each page shows when it last changed, and that date moves for a corrected claim or a new section, never for a redesign.
                 </p>
