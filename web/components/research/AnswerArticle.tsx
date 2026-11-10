@@ -6,7 +6,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { Button } from "@/components/ui/button";
 import { PenNote } from "@/components/research/figures/FigureKit";
 import { ResearchAnswerRow } from "@/components/research/ResearchAnswerRow";
-import { hubEntry, hubEntryForHref, pillarForHref } from "@/components/research/ResearchHubData";
+import { hubEntry, hubEntryForHref, pillarFor, pillarHref } from "@/components/research/ResearchHubData";
 import { publicPage } from "@/lib/seo/public-pages";
 import { SECTION_NAMES } from "@/lib/seo/site";
 import { articleStructuredData, formatMonth } from "@/lib/seo/structured-data";
@@ -48,7 +48,7 @@ export function AnswerArticle({ path, answer, answerSource, painNote, visualizat
     const entry = hubEntryForHref(path);
     if (!entry) throw new Error(`${path} has no question on the Research hub (ResearchHubData.ts).`);
     const { updated } = publicPage(path);
-    const pillar = pillarForHref(path);
+    const pillar = pillarFor(path);
     const next = nextQuestions.map((id) => {
         const article = hubEntry(id);
         if (!article) throw new Error(`${path} lists "${id}" as a next question, but the hub has no such answer.`);
@@ -93,7 +93,7 @@ export function AnswerArticle({ path, answer, answerSource, painNote, visualizat
                             {painNote ? <PenNote className={styles.painNote}>{painNote}</PenNote> : null}
                         </div>
                         <p className={styles.meta}>
-                            {pillar ? <span>{pillar}</span> : null}
+                            {pillar ? <Link href={pillarHref(pillar)} className="focus-ring riyp-link-quiet">{pillar.navLabel}</Link> : null}
                             <span>Updated <time dateTime={updated}>{formatMonth(updated)}</time></span>
                             <a href="#how-we-write" className="focus-ring riyp-link-quiet">How we write these</a>
                         </p>

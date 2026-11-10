@@ -1,0 +1,164 @@
+/* A belief's own page (Nov 10, 2026). Shares the hub's container and left edge, and the articles' section rules. */
+
+.page {
+    background: hsl(var(--background));
+    color: hsl(var(--text-strong));
+}
+
+.inner {
+    max-width: var(--marketing-content);
+    margin: 0 auto;
+    padding: calc(var(--marketing-header-height-desktop) + 2.5rem) var(--marketing-gutter) 5rem;
+}
+
+.opening { margin-top: 2.5rem; }
+
+.eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    margin: 0;
+    font: var(--type-body);
+    font-weight: 600;
+}
+
+.icon {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.belief {
+    max-width: 24ch;
+    margin: 1rem 0 0;
+    text-wrap: balance;
+    font: var(--type-headline);
+    letter-spacing: var(--tracking-headline);
+}
+
+/* Why we believe it: our experience, in the reading face */
+.why {
+    display: grid;
+    grid-template-columns: minmax(0, 12rem) minmax(0, 40rem);
+    gap: 1rem 3rem;
+    margin-top: 2.5rem;
+    border-top: 1px solid hsl(var(--text-strong));
+    padding-top: 1.75rem;
+}
+
+.label {
+    margin: 0;
+    padding-top: 0.25rem;
+    font: var(--type-small);
+    font-weight: 600;
+}
+
+.whyBody {
+    display: grid;
+    gap: 1.125rem;
+    font: var(--type-prose);
+    font-family: var(--font-editorial);
+}
+
+.whyBody p { margin: 0; text-wrap: pretty; }
+
+/* Example lines inside the why: a weak line, then the stronger one */
+.example {
+    display: grid;
+    gap: 0.375rem;
+    margin: 0;
+    border-left: 2px solid hsl(var(--line));
+    padding-left: 1rem;
+    font: var(--type-body);
+}
+
+.weak { color: hsl(var(--text-muted)); }
+.strong { color: hsl(var(--text-strong)); font-weight: 500; }
+.exampleNote { color: hsl(var(--text-muted)); font: var(--type-label); }
+
+.figure { margin-top: 2rem; }
+
+.section { margin-top: 5rem; }
+
+.sectionTitle {
+    margin: 0;
+    border-top: 1px solid hsl(var(--text-strong));
+    padding-top: 1.25rem;
+    font: var(--type-title);
+    letter-spacing: var(--tracking-title);
+}
+
+.evidence {
+    max-width: 46rem;
+    margin: 0.5rem 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.evidence li {
+    display: grid;
+    gap: 0.5rem;
+    border-bottom: 1px solid hsl(var(--line));
+    padding: 1.375rem 0;
+}
+
+.finding {
+    margin: 0;
+    text-wrap: pretty;
+    font: var(--type-lead);
+}
+
+.cite {
+    margin: 0;
+    color: hsl(var(--text-muted));
+    font: var(--type-small);
+}
+
+.kind {
+    color: hsl(var(--text-strong));
+    font-weight: 600;
+}
+
+.more {
+    display: grid;
+    gap: 0.875rem;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+    font: var(--type-lead);
+}
+
+/* The way forward */
+.close {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-top: 5rem;
+    border-top: 1px solid hsl(var(--text-strong));
+    padding-top: 2rem;
+}
+
+.closeTitle {
+    max-width: 24ch;
+    margin: 0;
+    text-wrap: balance;
+    font: var(--type-title);
+    letter-spacing: var(--tracking-title);
+}
+
+.method {
+    max-width: 60ch;
+    margin: 3rem 0 0;
+    color: hsl(var(--text-muted));
+    font: var(--type-small);
+}
+
+@media (max-width: 760px) {
+    .why { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 640px) {
+    .inner { padding: calc(var(--marketing-header-height-mobile) + 1.5rem) var(--marketing-gutter) 4rem; }
+    .section { margin-top: 4rem; }
+    .close { flex-direction: column; align-items: stretch; gap: 1.25rem; margin-top: 4rem; }
+}

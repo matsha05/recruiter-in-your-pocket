@@ -1,4 +1,4 @@
-import { categories } from "@/components/research/ResearchHubData";
+import { categories, pillarHref, pillars } from "@/components/research/ResearchHubData";
 import { PUBLIC_PAGES, publicPage } from "./public-pages";
 import { SITE_NAME, SITE_URL, absoluteUrl } from "./site";
 
@@ -50,6 +50,12 @@ export function llmsText({ comparisons, pricesRead }: LlmsInput) {
     "",
     ...report,
     "",
+    "## What recruiters look for",
+    "",
+    "Six beliefs from recruiters on the hiring side, each page with why we hold it and the evidence behind it.",
+    "",
+    ...pillars.map((pillar) => line(pillar.navLabel, pillarHref(pillar), dated(pillarHref(pillar), pillar.belief))),
+    "",
     "## Research",
     "",
     "Short answers from studies, recruiter experiments, and platform documentation, each with its sources.",
@@ -75,7 +81,7 @@ export function llmsText({ comparisons, pricesRead }: LlmsInput) {
   ];
 
   // Every listed page is a public page, so the file can never point at a retired or private route.
-  for (const entry of [...REPORT_PAGES, ...research, ...guides, ...comparisons]) {
+  for (const entry of [...REPORT_PAGES, ...pillars.map((pillar) => ({ path: pillarHref(pillar) })), ...research, ...guides, ...comparisons]) {
     const path = "href" in entry ? entry.href : entry.path;
     if (!PUBLIC_PAGES.some((page) => page.path === path)) throw new Error(`${path} is in llms.txt but not in PUBLIC_PAGES (lib/seo/public-pages.ts).`);
   }

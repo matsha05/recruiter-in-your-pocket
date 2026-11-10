@@ -28,7 +28,14 @@ export const PUBLIC_PAGES: readonly PublicPage[] = [
   { path: "/pricing", updated: "2026-11-04" },
   { path: "/methodology", updated: "2026-11-02", published: "2026-01-02", card: "how-we-score" },
 
-  { path: "/research", updated: "2026-11-01" },
+  { path: "/research", updated: "2026-11-10" },
+  // The six beliefs, each its own page (Nov 10, 2026): the hub's spokes, with the articles under them.
+  { path: "/research/story", updated: "2026-11-10", published: "2026-11-10" },
+  { path: "/research/impact", updated: "2026-11-10", published: "2026-11-10" },
+  { path: "/research/read", updated: "2026-11-10", published: "2026-11-10" },
+  { path: "/research/ats", updated: "2026-11-10", published: "2026-11-10" },
+  { path: "/research/referrals", updated: "2026-11-10", published: "2026-11-10" },
+  { path: "/research/offer", updated: "2026-11-10", published: "2026-11-10" },
   // Every article was corrected against its sources on Nov 1, 2026 (#35), and cross-linked in its text on Nov 4 (phase 1 of
   // docs/growth/2026-11-aeo-and-internal-linking.md).
   { path: "/research/ats-myths", updated: "2026-11-06", published: "2025-12-10", card: "ats-myths" },

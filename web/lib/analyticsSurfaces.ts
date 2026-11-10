@@ -26,6 +26,8 @@ export function comparisonSlug(pathname: string): string | null {
 const CTA_PAGES = (pathname: string) =>
   pathname === "/" || pathname === "/research" || researchArticleSlug(pathname) !== null || pathname === "/compare" || comparisonSlug(pathname) !== null;
 const CTA_DESTINATIONS = new Set(["/workspace", "/sample-report"]);
+// A belief page hands off to a guide where the report doesn't fit (The offer, Nov 10, 2026), so that click counts too.
+const GUIDE_DESTINATION = (pathname: string, destination: string) => researchArticleSlug(pathname) !== null && destination.startsWith("/resources/");
 
 /** Pages that show a report: the workspace, a saved report, and the sample. */
 const REPORT_PAGES = (pathname: string) => pathname === "/workspace" || pathname === "/sample-report" || /^\/reports\/[^/]+\/?$/.test(pathname);
@@ -41,7 +43,7 @@ const RESEARCH_DESTINATION = (destination: string) => destination === "/methodol
  */
 export function ctaClick(pathname: string, cta: string | undefined, destination: string): { cta: string; destination: string } | null {
   if (!cta) return null;
-  const toReport = CTA_PAGES(pathname) && CTA_DESTINATIONS.has(destination);
+  const toReport = CTA_PAGES(pathname) && (CTA_DESTINATIONS.has(destination) || GUIDE_DESTINATION(pathname, destination));
   const toResearch = REPORT_PAGES(pathname) && RESEARCH_DESTINATION(destination);
   return toReport || toResearch ? { cta, destination } : null;
 }
