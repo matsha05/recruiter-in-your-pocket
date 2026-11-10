@@ -31,7 +31,7 @@ export default function CareerBreaksPage() {
                 text: <>From a preregistered UK experiment with 9,022 employers (Kristal et al., 2023) and a US audit of 3,407 applications (Weisshaar, 2018).</>,
                 href: "https://doi.org/10.1038/s41562-022-01485-6",
             }}
-            nextQuestions={["gaps-and-pivots", "referral-advantage", "who-you-are"]}
+            nextQuestions={["gaps-and-pivots", "asking-for-a-referral", "referral-advantage", "who-you-are"]}
             visualizationLabel="Three moves for a career break"
             visualization={
                 <CareerBreakMoves

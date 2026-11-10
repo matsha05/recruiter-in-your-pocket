@@ -28,7 +28,7 @@ export default function SocialScreeningPage() {
                 linkLabel: "Read the paper",
             }}
             painNote="Deleting everything isn’t as safe as it feels."
-            nextQuestions={["linkedin-visibility", "who-you-are", "referral-advantage"]}
+            nextQuestions={["linkedin-visibility", "who-you-are", "career-breaks", "referral-advantage"]}
             visualization={
                 <>
                     <h2 className="research-h2">What the experiment actually showed</h2>

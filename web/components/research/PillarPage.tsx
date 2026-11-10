@@ -5,7 +5,7 @@ import Footer from "@/components/landing/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Button } from "@/components/ui/button";
 import { PillarIcon } from "@/components/research/PillarIcon";
-import { pillar as pillarById, pillarHref } from "@/components/research/ResearchHubData";
+import { pillar as pillarById, pillarHref, pillars } from "@/components/research/ResearchHubData";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { SECTION_NAMES } from "@/lib/seo/site";
 import { articleStructuredData } from "@/lib/seo/structured-data";
@@ -107,6 +107,17 @@ export function PillarPage({ id, why, figure, evidence, handoff }: PillarPagePro
                                 <li key={article.id}>
                                     <Link href={article.href} className="riyp-link">{article.title ?? article.question}</Link>
                                 </li>
+                            ))}
+                        </ul>
+                    </section>
+
+                    {/* The other five beliefs, so a reader can go sideways without returning to the hub. A list, not a
+                        <nav>: these are the page's own links (scripts/internal-links.mjs counts them as body links). */}
+                    <section className={styles.others} aria-labelledby="others-title">
+                        <h2 id="others-title" className={styles.label}>What else we look for</h2>
+                        <ul>
+                            {pillars.filter((other) => other.id !== pillar.id).map((other) => (
+                                <li key={other.id}><Link href={pillarHref(other)} className="riyp-link">{other.navLabel}</Link></li>
                             ))}
                         </ul>
                     </section>

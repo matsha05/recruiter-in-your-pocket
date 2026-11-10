@@ -28,7 +28,7 @@ export default function LinkedInVisibilityPage() {
                 href: "https://www.linkedin.com/help/recruiter/answer/a596630",
                 linkLabel: "Read LinkedIn’s page",
             }}
-            nextQuestions={["how-recruiters-read", "ats-myths", "social-screening"]}
+            nextQuestions={["how-recruiters-read", "ats-myths", "automation-and-bias", "social-screening"]}
             visualization={
                 <>
                     <h2 className="research-h2">What affects LinkedIn visibility</h2>

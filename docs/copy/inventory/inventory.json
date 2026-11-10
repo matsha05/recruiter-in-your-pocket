@@ -3,11 +3,11 @@
   "counts": {
     "files_scanned": 424,
     "files_with_copy": 256,
-    "strings": 2933,
-    "unique_strings": 2444
+    "strings": 2935,
+    "unique_strings": 2446
   },
   "by_moment": {
-    "research": 988,
+    "research": 990,
     "account": 442,
     "marketing": 411,
     "report": 262,
@@ -6545,7 +6545,7 @@
     {
       "text": "When we make an offer, we expect you to come back with a counter. Asking for more, politely and with a reason, is a normal part of the conversation.",
       "kind": "jsx-text",
-      "line": 16,
+      "line": 17,
       "file": "web/app/(editorial)/research/offer/page.tsx",
       "routes": [
         "/research/offer"
@@ -6554,9 +6554,20 @@
       "table": "research"
     },
     {
-      "text": "Know what the role pays, ask once and clearly, and say what would make you sign. Some companies now call the first offer final. Ask anyway, and be ready to hear no.",
+      "text": "Know what the role pays, ask once and clearly, and say what would make you sign. Some companies now call the first offer final. Ask anyway, and be ready to hear no. Our",
       "kind": "jsx-text",
-      "line": 19,
+      "line": 20,
+      "file": "web/app/(editorial)/research/offer/page.tsx",
+      "routes": [
+        "/research/offer"
+      ],
+      "moment": "research",
+      "table": "research"
+    },
+    {
+      "text": "cover what to say and how to compare two offers.",
+      "kind": "jsx-text",
+      "line": 20,
       "file": "web/app/(editorial)/research/offer/page.tsx",
       "routes": [
         "/research/offer"
@@ -6567,7 +6578,7 @@
     {
       "text": "Most Job Seekers Skip Negotiation — and Pay a High Price",
       "kind": "key:title",
-      "line": 29,
+      "line": 30,
       "file": "web/app/(editorial)/research/offer/page.tsx",
       "routes": [
         "/research/offer"
@@ -6578,7 +6589,7 @@
     {
       "text": "Pushing the Envelope: The Effects of Salary Negotiations",
       "kind": "key:title",
-      "line": 39,
+      "line": 40,
       "file": "web/app/(editorial)/research/offer/page.tsx",
       "routes": [
         "/research/offer"
@@ -6589,7 +6600,7 @@
     {
       "text": "Ready to make your counter?",
       "kind": "key:heading",
-      "line": 45,
+      "line": 46,
       "file": "web/app/(editorial)/research/offer/page.tsx",
       "routes": [
         "/research/offer"
@@ -6600,7 +6611,7 @@
     {
       "text": "Read the negotiation guide",
       "kind": "key:label",
-      "line": 45,
+      "line": 46,
       "file": "web/app/(editorial)/research/offer/page.tsx",
       "routes": [
         "/research/offer"
@@ -29186,9 +29197,25 @@
       "table": "shared"
     },
     {
+      "text": "What else we look for",
+      "kind": "jsx-text",
+      "line": 117,
+      "file": "web/components/research/PillarPage.tsx",
+      "routes": [
+        "/research/ats",
+        "/research/impact",
+        "/research/offer",
+        "/research/read",
+        "/research/referrals",
+        "/research/story"
+      ],
+      "moment": "research",
+      "table": "shared"
+    },
+    {
       "text": "Our experience is our judgment, and we label it that way. Every study above is linked, and each article says what its study can’t tell you.",
       "kind": "jsx-text",
-      "line": 124,
+      "line": 135,
       "file": "web/components/research/PillarPage.tsx",
       "routes": [
         "/research/ats",
@@ -29204,7 +29231,7 @@
     {
       "text": "How we write research",
       "kind": "jsx-text",
-      "line": 125,
+      "line": 136,
       "file": "web/components/research/PillarPage.tsx",
       "routes": [
         "/research/ats",
@@ -29220,7 +29247,7 @@
     {
       "text": "Usual line:",
       "kind": "jsx-text",
-      "line": 138,
+      "line": 149,
       "file": "web/components/research/PillarPage.tsx",
       "routes": [
         "/research/ats",
@@ -29236,7 +29263,7 @@
     {
       "text": "Stronger line:",
       "kind": "jsx-text",
-      "line": 139,
+      "line": 150,
       "file": "web/components/research/PillarPage.tsx",
       "routes": [
         "/research/ats",
@@ -29252,7 +29279,7 @@
     {
       "text": "Example lines, not from a real resume.",
       "kind": "jsx-text",
-      "line": 140,
+      "line": 151,
       "file": "web/components/research/PillarPage.tsx",
       "routes": [
         "/research/ats",

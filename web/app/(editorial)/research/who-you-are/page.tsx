@@ -28,7 +28,7 @@ export default function WhoYouArePage() {
                 href: "https://doi.org/10.1037/a0019918",
             }}
             painNote="A strong career can still read like a list of unrelated jobs."
-            nextQuestions={["star-method", "quantifying-impact", "how-recruiters-read", "gaps-and-pivots"]}
+            nextQuestions={["star-method", "quantifying-impact", "gaps-and-pivots", "career-breaks"]}
             visualization={
                 <>
                     <h2 className="research-h2">What a recruiter is trying to do</h2>

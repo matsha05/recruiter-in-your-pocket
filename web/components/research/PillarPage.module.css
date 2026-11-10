@@ -127,6 +127,10 @@
     font: var(--type-lead);
 }
 
+/* The other five beliefs: one quiet row */
+.others { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 2rem; margin-top: 4rem; }
+.others ul { display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; margin: 0; padding: 0; list-style: none; font: var(--type-body); }
+
 /* The way forward */
 .close {
     display: flex;
