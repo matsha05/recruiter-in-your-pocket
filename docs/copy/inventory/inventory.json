@@ -26418,7 +26418,7 @@
     {
       "text": "Last updated",
       "kind": "jsx-text",
-      "line": 51,
+      "line": 37,
       "file": "web/components/legal/LegalShell.tsx",
       "routes": [
         "/privacy",

@@ -73,7 +73,7 @@ function renderSection(section: LegalSection, index: number) {
       return (
         <section
           key={`${index}-${section.type}-${"title" in section ? section.title : index}`}
-          className="rounded-xl border border-border bg-muted px-4 py-6 md:px-6 md:py-8"
+          className="border-t border-border py-7 first:border-t-0 first:pt-0 last:pb-0 md:py-9"
           aria-labelledby={`legal-table-${index}`}
         >
           <h2 id={`legal-table-${index}`} className="mb-4 font-display text-heading text-foreground">{section.title}</h2>

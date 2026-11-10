@@ -75,5 +75,5 @@ test("the note Jordan never saw is marked when its clipping is in view", async (
     await expect(clipping).not.toHaveAttribute("data-marked", "true");
     await clipping.scrollIntoViewIfNeeded();
     await expect(clipping).toHaveAttribute("data-marked", "true");
-    await expect(clipping.getByText("see what you examined or what you did with the findings", { exact: false })).toBeVisible();
+    await expect(clipping.getByText("What the reviews covered and what followed them would show why they mattered", { exact: false })).toBeVisible();
 });

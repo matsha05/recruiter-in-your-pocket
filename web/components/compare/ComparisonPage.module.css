@@ -7,9 +7,9 @@
 }
 
 .inner {
-    max-width: 79.25rem;
+    max-width: var(--marketing-content);
     margin: 0 auto;
-    padding: calc(var(--marketing-header-height-desktop) + 2.5rem) clamp(1.25rem, 5vw, 5.375rem) 5rem;
+    padding: calc(var(--marketing-header-height-desktop) + 2.5rem) var(--marketing-gutter) 5rem;
 }
 
 /* The two names, and the straight answer about who each is for */
@@ -59,8 +59,8 @@
     margin: 0;
     border-top: 1px solid hsl(var(--text-strong));
     padding-top: 1.25rem;
-    font: var(--type-heading);
-    letter-spacing: var(--tracking-heading);
+    font: var(--type-title);
+    letter-spacing: var(--tracking-title);
 }
 
 .table {

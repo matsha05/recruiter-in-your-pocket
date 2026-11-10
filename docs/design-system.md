@@ -165,6 +165,15 @@ Do not assign errors to missing career evidence or use green/red scores as subst
 
 ## 6. Layout and spacing
 
+### One column, one heading scale (November 10, 2026)
+
+Measured on the live site that day, pages started at seven different left edges (80, 158, 193, 216, 240, 248 and 340px at a 1440px window) and same-level headings ran 14, 24, 32 and 48px. A site reads as finished when every page starts in the same place and uses the same few sizes, so:
+
+- **One column.** Every public page and the upload page put their content in `--marketing-content` with `--marketing-gutter` (216px from the left at 1440px). That includes the homepage hero, compare, privacy and terms. The header may run wider than the column; content may not start anywhere else. A wide object (a table, a figure) may grow to the column's full width, never past its left edge.
+- **A page's first headline is its largest type.** The homepage's two opening statements use the display size (60px, weight 600). Every other page title is the headline (48px, weight 800).
+- **Sections step down.** On the homepage, section titles are the headline (48/800) under the display-size opening. On every other page, section titles are the title step (32/800, `rhythm.sectionTitle` or the page's own `sectionTitle`), never the same size as the page title. Group labels inside a section are the heading step (24/600). Small labels are 14/600.
+- **Not yet on the column:** the report and the signed-in pages, which have their own shell. They are the next pass.
+
 ### Containers
 
 | Surface | Default maximum | Density |

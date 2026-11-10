@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import rhythm from "@/components/materials/Rhythm.module.css";
+import help from "@/components/legal/HelpPage.module.css";
 import Footer from "@/components/landing/Footer";
 import { LegalNav } from "@/components/legal/LegalNav";
 
@@ -13,7 +15,8 @@ type LegalShellProps = {
     contentClassName?: string;
 };
 
-/** Shared reading layout for factual trust and legal surfaces. */
+/** Shared reading layout for factual trust and legal surfaces. On the site's one column since Nov 10, 2026: the
+ *  page starts where every page starts, and the text sits on the ground instead of inside a centered card. */
 export function LegalShell({
     pageKey,
     eyebrow,
@@ -25,40 +28,16 @@ export function LegalShell({
 }: LegalShellProps) {
     return (
         <>
-            <div data-visual-anchor={pageKey ? `legal-${pageKey}` : undefined} className="bg-background pt-28 text-foreground selection:bg-brand/15 md:pt-36">
-                {/* Hero */}
-                <section className="px-5 pb-10 md:px-8 md:pb-14">
-                    <div className="mx-auto max-w-report">
-                        <LegalNav className="mb-10 md:mb-14" />
-                        <div className="mx-auto max-w-form">
-                            {eyebrow ? (
-                                <p className="mb-4 text-label text-muted-foreground">
-                                    {eyebrow}
-                                </p>
-                            ) : null}
-                            <div>
-                                <h1
-                                    id={pageKey ? `legal-${pageKey}-title` : undefined}
-                                    className="max-w-xl text-balance font-display text-headline text-foreground"
-                                >
-                                    {title}
-                                </h1>
-                                {description ? (
-                                    <p className="mt-5 max-w-reading text-pretty text-prose text-muted-foreground">{description}</p>
-                                ) : null}
-                                {lastUpdated && (
-                                    <p className="mt-4 text-xs font-medium text-muted-foreground">
-                                        Last updated {lastUpdated}
-                                    </p>
-                                )}
-                            </div>
-                        </div>
-                    </div>
+            <div data-visual-anchor={pageKey ? `legal-${pageKey}` : undefined} className={cn(rhythm.page, "selection:bg-brand/15")}>
+                <div className={help.nav}><LegalNav /></div>
+                <section className={cn(rhythm.opening, help.opening)}>
+                    {eyebrow ? <p className="mb-4 text-label text-muted-foreground">{eyebrow}</p> : null}
+                    <h1 id={pageKey ? `legal-${pageKey}-title` : undefined} className={rhythm.title}>{title}</h1>
+                    {description ? <p className="max-w-reading text-pretty text-prose text-muted-foreground">{description}</p> : null}
+                    {lastUpdated ? <p className="mt-4 text-label font-medium text-muted-foreground">Last updated {lastUpdated}</p> : null}
                 </section>
-
-                {/* Content */}
-                <section className="px-5 pb-16 md:px-8 md:pb-24">
-                    <div className={cn("mx-auto max-w-form space-y-4 rounded-2xl border border-border bg-card p-4 [overflow-wrap:anywhere] sm:p-6 md:rounded-3xl md:p-8", contentClassName)}>
+                <section className={cn(rhythm.section, "pb-20")}>
+                    <div className={cn("max-w-form space-y-4 [overflow-wrap:anywhere]", contentClassName)}>
                         {children}
                     </div>
                 </section>

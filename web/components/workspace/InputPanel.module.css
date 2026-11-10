@@ -1,12 +1,12 @@
 .root {
     min-height: 100%;
-    padding: 2rem 1rem 3rem;
+    padding: 2rem var(--marketing-gutter) 3rem;
     background: hsl(var(--surface-page));
     color: hsl(var(--text-strong));
     font-family: var(--font-body);
 }
 
-.content { width: 100%; max-width: 60rem; margin-inline: auto; }
+.content { width: 100%; max-width: calc(var(--marketing-content) - 2 * var(--marketing-gutter)); margin-inline: auto; }
 .intro { max-width: 42rem; }
 .title { margin-top: 0.875rem; font: var(--type-headline); letter-spacing: var(--tracking-headline); }
 /* No card around the input (Nov 4, 2026): the sheet of paper is the input, on the ground. */
@@ -40,8 +40,8 @@
 .readPreview .textAction { margin: 0.5rem 0.5rem 0.5rem; }
 
 @media (min-width: 640px) {
-    .root { padding: 2.75rem 1.5rem 4rem; }
-    .sheet { border-radius: 1.5rem; padding: 2rem; }
+    .root { padding: 2.75rem var(--marketing-gutter) 4rem; }
+    .sheet { border-radius: 1.5rem; padding: 2rem 0; }
 }
 
 @media (max-width: 380px) {
