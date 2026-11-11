@@ -32,6 +32,7 @@ export async function runJson<T>({
   messages,
   signal,
   reasoning_effort,
+  response_format,
 }: {
   ctx: LlmRunContext;
   task: LlmTask;
@@ -42,6 +43,8 @@ export async function runJson<T>({
   messages: Messages;
   signal?: AbortSignal;
   reasoning_effort?: ReasoningEffort;
+  /** A contract other than the mode's own; the profile review passes its own. */
+  response_format?: unknown;
 }): Promise<{ parsed: T; raw: string; telemetry: LlmTelemetry }> {
   const startedAt = Date.now();
   logInfo({
@@ -53,7 +56,7 @@ export async function runJson<T>({
   });
 
   try {
-    const data = await callOpenAIChat(messages, mode, model, { signal, reasoningEffort: reasoning_effort });
+    const data = await callOpenAIChat(messages, mode, model, { signal, reasoningEffort: reasoning_effort, responseFormat: response_format });
     const raw = data?.choices?.[0]?.message?.content;
     const parsed = extractJsonFromText(raw) as T;
 
@@ -121,6 +124,7 @@ export async function* streamJson({
   messages,
   reasoning_effort,
   signal,
+  response_format,
 }: {
   ctx: LlmRunContext;
   task: LlmTask;
@@ -131,6 +135,7 @@ export async function* streamJson({
   messages: Messages;
   reasoning_effort?: ReasoningEffort;
   signal?: AbortSignal;
+  response_format?: unknown;
 }): AsyncGenerator<{ type: "chunk"; content: string } | { type: "done"; telemetry: LlmTelemetry }, void, void> {
   const startedAt = Date.now();
   logInfo({
@@ -145,7 +150,7 @@ export async function* streamJson({
 
   try {
     const { stream, usagePromise } = callOpenAIChatStreamingWithUsage(
-      messages, mode, reasoning_effort, model, { signal },
+      messages, mode, reasoning_effort, model, { signal, responseFormat: response_format },
     );
     for await (const chunk of stream) {
       yield { type: "chunk", content: chunk };

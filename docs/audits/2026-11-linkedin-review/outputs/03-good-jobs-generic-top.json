@@ -4,57 +4,57 @@
   "today": "2026-11-11",
   "repaired": false,
   "firstError": null,
-  "seconds": 23,
+  "seconds": 25,
   "report": {
     "contract_version": "v3",
-    "score": 82,
+    "score": 81,
     "lifted_by_employer": false,
-    "verdict": "A marketing manager with strong lifecycle results, but a headline and About that undersell the work.",
+    "verdict": "A marketing manager with strong lifecycle results, hidden behind a generic headline and About.",
     "write_up": [
-      "You’re a marketing manager running lifecycle email and SMS for a camping gear brand, with team and budget responsibilities too. The work is strong, but a common problem gets in its way: your headline and About lean on broad phrases instead of the details that distinguish you.",
-      "The welcome-series line is the model. You name what you rebuilt and how the first-purchase rate changed. Your earlier Fernhill job also names the move from Mailchimp to Klaviyo; that work can help tell the story higher up.",
-      "Start with the headline and About, using the lifecycle work already in your current job. Then give the Lumen Street job a little more substance. A recruiter hiring a marketing manager could understand both your specialty and the work behind it without guessing."
+      "You run lifecycle marketing for a camping gear brand and manage a team and paid social budget. A recruiter has enough to start a conversation, but your headline and About don't show the work as well as the Fernhill job does.",
+      "The welcome series is your model: you say what you rebuilt and how the first-purchase rate changed. That result is already in your current job, ready to bring into your About.",
+      "Start with the headline and About, then fill in what you supported at Lumen Street. A recruiter looking for lifecycle marketing can connect your current work to a result without hunting for it."
     ],
     "cards": [
       {
         "kind": "line",
         "where": "Headline",
         "line": "Marketing Manager | Storyteller | Growth Mindset | Lifelong Learner",
-        "cannot_tell": "The title tells me your role, but the rest could belong to almost any marketer. You run lifecycle email and SMS for a direct-to-consumer camping gear brand. Put that work beside the title.",
-        "example": "Marketing Manager | Lifecycle Email and SMS | Direct-to-Consumer Camping Gear",
-        "question": "Which lifecycle campaign or result best represents your work at Fernhill?"
+        "cannot_tell": "'Storyteller | Growth Mindset | Lifelong Learner' leaves out the lifecycle email and SMS work you do. Keep the personality and put that specialty beside your title.",
+        "example": "Marketing Manager | Lifecycle Email and SMS | Storyteller | Growth Mindset | Lifelong Learner",
+        "question": "What kind of lifecycle campaigns do you run besides the welcome series?"
       },
       {
         "kind": "line",
         "where": "About",
         "line": "Results-driven marketing professional with 8+ years of experience driving growth across multiple channels. Passionate about building brands people love and leading high-performing teams.",
-        "cannot_tell": "“Results-driven” leaves your best result out. The welcome series and its first-purchase rate are already in your Fernhill description, ready to bring up here.",
-        "example": "I run lifecycle email and SMS for a direct-to-consumer camping gear brand with 410,000 subscribers. I rebuilt the welcome series from 3 emails to 7, raising the first-purchase rate from 4.2% to 6.8% over two quarters.",
-        "question": "What kind of marketing work are you looking to take on next?"
+        "cannot_tell": "'Results-driven' could describe almost anyone in marketing. Your welcome series tells a recruiter what you changed and what happened next.",
+        "example": "I run lifecycle email and SMS for a direct-to-consumer camping gear brand with 410,000 subscribers. I rebuilt the welcome series from 3 emails to 7, which raised first-purchase rate from 4.2% to 6.8% over two quarters.",
+        "question": "What did you change in the welcome series besides the number of emails?"
       },
       {
         "kind": "keep",
-        "where": "Fernhill Outdoor Co., Marketing Manager description",
+        "where": "Fernhill Outdoor Co., Marketing Manager",
         "line": "Rebuilt the welcome series from 3 emails to 7, which raised first-purchase rate from 4.2% to 6.8% over two quarters.",
-        "cannot_tell": "This is the line to model the rest on. It names what you changed, the measure that moved and the period over which it moved.",
+        "cannot_tell": "This is the line to copy the rest after. It names the series, your change and the first-purchase rate before and after.",
         "example": "",
         "question": ""
       },
       {
         "kind": "line",
-        "where": "Lumen Street Agency, description",
+        "where": "Lumen Street Agency, Account Coordinator",
         "line": "Supported client accounts and helped with reporting.",
-        "cannot_tell": "“Supported” and “helped” leave the account work hidden. Name the kinds of clients and reports, and what you contributed to them.",
-        "example": "Supported [number and types of client accounts] and helped with [reports and your contribution to them].",
-        "question": "What kinds of client accounts did you support, and what did you do for their reports?"
+        "cannot_tell": "'Supported' and 'helped' leave the client work hidden. Which accounts did you work on, and what reporting did you help produce?",
+        "example": "Supported [number] client accounts and helped with [which reports] for [which clients].",
+        "question": "Which client accounts did you support, how many were there, and what reports did you help produce?"
       },
       {
         "kind": "line",
         "where": "Top skills",
         "line": "Leadership",
-        "cannot_tell": "Leadership matters to your manager role, but email and SMS describe the work you run. Put those specialties among the three skills shown first.",
-        "example": "Email Marketing | Marketing Strategy | SMS",
-        "question": "Which marketing skills from your daily work best represent what you do?"
+        "cannot_tell": "Leadership doesn't name the marketing work your current job describes. Lifecycle email, SMS and paid social give a recruiter more useful skills to filter by.",
+        "example": "lifecycle email | SMS | paid social",
+        "question": "Which of lifecycle email, SMS and paid social are central to your current work?"
       }
     ],
     "fit": {
@@ -62,19 +62,51 @@
         "Marketing Manager",
         "Senior Marketing Specialist"
       ],
-      "why": "Your headline and current job name Marketing Manager, and your Fernhill descriptions center on email, SMS and campaigns.",
-      "level": "manager, the title and two marketing specialists you manage",
-      "note": "“Marketing Manager” is in your headline and current title. “Email Marketing” is among your top skills; “lifecycle email” and “SMS” are in your current job description. “Klaviyo” is in your Senior Marketing Specialist description. Recruiters may also search for segmentation and A/B testing; add those to your current job description if you do them. Marketing automation could go in your About if it describes your work. Move lifecycle email into your headline.",
+      "why": "Your headline and current title name you as a Marketing Manager, and your Fernhill work centers on lifecycle email, SMS and paid social.",
+      "level": "manager, your title and management of two marketing specialists",
+      "note": "'Marketing Manager' is in your headline and current title. 'lifecycle email' and 'SMS' are in your current job, while 'Klaviyo' is in your earlier Fernhill job. Someone hiring for this work may also search for segmentation, A/B testing and retention marketing; none appears on your profile. Add segmentation and A/B testing to your current job description and retention marketing to your About only if they describe your work. Bring lifecycle email into your headline first.",
       "posting": {
         "summary": "",
         "missing": []
       }
     },
+    "parts": [
+      {
+        "name": "Headline",
+        "detail": "",
+        "status": "needs_work"
+      },
+      {
+        "name": "About",
+        "detail": "",
+        "status": "needs_work"
+      },
+      {
+        "name": "Fernhill Outdoor Co.",
+        "detail": "Marketing Manager",
+        "status": "fine"
+      },
+      {
+        "name": "Fernhill Outdoor Co.",
+        "detail": "Senior Marketing Specialist",
+        "status": "fine"
+      },
+      {
+        "name": "Lumen Street Agency",
+        "detail": "Account Coordinator",
+        "status": "needs_work"
+      },
+      {
+        "name": "Top skills",
+        "detail": "",
+        "status": "needs_work"
+      }
+    ],
     "score_label": "Mostly clear",
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 82,
+    "content_score": 81,
     "document": "linkedin"
   }
 }

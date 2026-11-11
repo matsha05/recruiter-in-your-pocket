@@ -57,6 +57,8 @@ export async function validateResumeStreamOutput(input: {
   userIdForLogs?: string;
   validationOptions?: { forceGrounding?: boolean; jobDescription?: string };
   signal?: AbortSignal;
+  /** The contract the first call was made under, when it isn't the mode's own, so the repair matches it. */
+  responseFormat?: unknown;
 }) {
   try {
     const parsedJson = extractJsonFromText(input.raw);
@@ -127,6 +129,7 @@ export async function validateResumeStreamOutput(input: {
           ? buildWorklistRepairMessages(input.messages, input.raw, error)
           : buildResumeRepairMessages(input.messages, input.raw, error),
         signal: input.signal,
+        response_format: input.responseFormat,
       });
       const payload = ensureLayoutAndContentFields(
         validateResumePayload(repaired.parsed, input.text, input.validationOptions)

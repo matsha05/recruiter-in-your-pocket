@@ -309,7 +309,7 @@ test.describe("product motion contracts on real app routes", () => {
     await expect(page.locator("#section-card-1 blockquote, #section-card-1 p").first()).toHaveCSS("transform", "none");
   });
 
-  test("LinkedIn mode asks for the profile PDF on the resume input screen, with no pasted text or posting", async ({ page }) => {
+  test("LinkedIn mode asks for the profile PDF on the resume input screen, with no pasted text, and takes a posting", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.emulateMedia({ reducedMotion: "reduce" });
     await hydrate(page, "/workspace");
@@ -321,8 +321,11 @@ test.describe("product motion contracts on real app routes", () => {
     await expect(page.getByRole("heading", { level: 1, name: "Let’s read your LinkedIn profile." })).toBeVisible();
     await expect(page.getByTestId("workspace-linkedin-help")).toContainText("Save to PDF");
     await expect(page.getByTestId("workspace-paste-mode")).toHaveCount(0);
-    await expect(page.getByTestId("workspace-role-toggle")).toHaveCount(0);
-    await expect(page.getByTestId("workspace-run-report")).toHaveText("Choose your LinkedIn PDF to begin");
+    // A profile review takes a posting like a resume does (Nov 11, 2026).
+    await page.getByTestId("workspace-role-toggle").click();
+    await expect(page.getByTestId("workspace-job-description")).toBeVisible();
+    // The button also holds its hidden loading label, so match the visible words.
+    await expect(page.getByTestId("workspace-run-report")).toContainText("Choose your LinkedIn PDF to begin");
     await page.getByRole("button", { name: "Resume", exact: true }).click();
     await expect(page.getByTestId("workspace-role-toggle")).toBeVisible();
   });

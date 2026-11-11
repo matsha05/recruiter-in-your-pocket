@@ -207,7 +207,8 @@ export async function callOpenAIChat(
   messages: Array<{ role: "system" | "user" | "assistant"; content: string }>,
   mode: Mode,
   model?: string,
-  options?: { signal?: AbortSignal; reasoningEffort?: ReasoningEffort },
+  // responseFormat: a contract other than the mode's own (the profile review's), when the caller has one.
+  options?: { signal?: AbortSignal; reasoningEffort?: ReasoningEffort; responseFormat?: unknown },
 ) {
   const USE_MOCK_OPENAI = ["1", "true", "TRUE"].includes(String(process.env.USE_MOCK_OPENAI || "").trim());
   const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
@@ -259,7 +260,7 @@ export async function callOpenAIChat(
                 ? increaseReasoningEffort(baseReasoningEffort)
                 : baseReasoningEffort,
             }),
-            response_format: getOpenAIResponseFormat(mode),
+            response_format: options?.responseFormat ?? getOpenAIResponseFormat(mode),
             messages
           })
         },
@@ -338,7 +339,7 @@ export function callOpenAIChatStreamingWithUsage(
   mode: Mode,
   reasoningEffort?: ReasoningEffort,
   model?: string,
-  options?: { signal?: AbortSignal },
+  options?: { signal?: AbortSignal; responseFormat?: unknown },
 ): {
   stream: AsyncGenerator<string, void, unknown>;
   usagePromise: Promise<TokenUsage | null>;
@@ -393,7 +394,7 @@ export function callOpenAIChatStreamingWithUsage(
               temperature: mode === "resume_ideas" ? 0.12 : 0,
               reasoningEffort: resolveReasoningEffortForMode(mode, OPENAI_MODEL, reasoningEffort),
             }),
-            response_format: getOpenAIResponseFormat(mode),
+            response_format: options?.responseFormat ?? getOpenAIResponseFormat(mode),
             stream_options: { include_usage: true },
             stream: true,
             messages

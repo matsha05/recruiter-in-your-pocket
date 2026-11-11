@@ -64,6 +64,24 @@ export const MAX_POSTING_MOVES = 3;
 const PostingMoveSchema = z.object({ line: text(MAX_LINE_LENGTH), why: text(320) });
 export type PostingMove = z.infer<typeof PostingMoveSchema>;
 
+/**
+ * A profile review's status for every part of the profile (Nov 11, 2026), so a reader sees the whole profile at
+ * a glance and not only the parts that got a card: the headline, the About, each job, the Top Skills. "empty"
+ * is a part with nothing in it (no About, a job with no description). Written by the profile prompt only; a
+ * resume report never carries it.
+ */
+export const PART_STATUSES = ["fine", "needs_work", "empty"] as const;
+export type PartStatus = typeof PART_STATUSES[number];
+export const MAX_PARTS = 16;
+export const ProfilePartSchema = z.object({
+  /** "Headline", "About", "Top skills", or a job's employer copied from the profile. */
+  name: text(80),
+  /** A job's title, copied from the profile; empty for the other parts. */
+  detail: optionalText(120),
+  status: z.enum(PART_STATUSES),
+});
+export type ProfilePart = z.infer<typeof ProfilePartSchema>;
+
 export const WorklistFitSchema = z.object({
   roles: z.array(text(80)).max(4),
   /**
@@ -101,6 +119,8 @@ export const WorklistReportSchema = z.object({
   // What the report was written about (lib/reports/report-document.ts): set by the route after validation, never
   // by the model, and absent on a resume report, so every report saved before it parses to the same object.
   document: z.literal("linkedin").optional(),
+  // Every part of a profile and how it stands; a profile review only (see ProfilePartSchema).
+  parts: z.array(ProfilePartSchema).max(MAX_PARTS).optional(),
   // Kept by the shared persistence layer (ensureLayoutAndContentFields); never set by the model.
   layout_score: z.number().nullable().optional(),
   layout_band: z.string().optional(),
@@ -181,6 +201,39 @@ export const WORKLIST_REPORT_JSON_SCHEMA = {
   },
   required: ["contract_version", "score", "lifted_by_employer", "verdict", "write_up", "cards", "fit"],
   additionalProperties: false,
+} as const;
+
+/** The profile review's contract: the worklist report plus the status of every part of the profile. */
+export const LINKEDIN_REPORT_JSON_SCHEMA = {
+  ...WORKLIST_REPORT_JSON_SCHEMA,
+  properties: {
+    ...WORKLIST_REPORT_JSON_SCHEMA.properties,
+    parts: {
+      type: "array",
+      minItems: 0,
+      maxItems: MAX_PARTS,
+      items: {
+        type: "object",
+        properties: {
+          name: nonEmptyString,
+          detail: stringValue,
+          status: { type: "string", enum: [...PART_STATUSES] },
+        },
+        required: ["name", "detail", "status"],
+        additionalProperties: false,
+      },
+    },
+  },
+  required: [...WORKLIST_REPORT_JSON_SCHEMA.required, "parts"],
+} as const;
+
+export const LINKEDIN_REPORT_RESPONSE_FORMAT = {
+  type: "json_schema",
+  json_schema: {
+    name: "riyp_profile_review_v3",
+    strict: true,
+    schema: LINKEDIN_REPORT_JSON_SCHEMA,
+  },
 } as const;
 
 export const WORKLIST_REPORT_RESPONSE_FORMAT = {

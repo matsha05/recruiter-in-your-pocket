@@ -62,6 +62,7 @@ import { reserveRebuild } from "@/lib/reports/ask-first-rebuild";
 import { reservePostingRead } from "@/lib/reports/posting-read";
 import { resumePromptVersion, resumeSchemaVersion } from "@/lib/reports/report-shape";
 import { withScreenerText } from "@/lib/reports/screener-text";
+import { LINKEDIN_REPORT_RESPONSE_FORMAT } from "@/lib/llm/worklist-schema";
 import { looksLikeLinkedInExport, NOT_A_LINKEDIN_EXPORT_MESSAGE, withReportDocument } from "@/lib/reports/report-document";
 import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 export const runtime = "nodejs";
@@ -149,9 +150,11 @@ export async function POST(request: Request) {
     // A rebuild and a posting read on the pass both run without a reservation and spend nothing.
     const unmetered = Boolean(rebuild) || Boolean(postingRead);
     // A LinkedIn profile review is the resume report's pipeline with its own prompt (Nov 10, 2026). It has no
-    // posting, no rebuild, and is refused before any report is set aside when the flag is off or the text
-    // isn't LinkedIn's own PDF export.
-    const jobDescription = document ? null : validation.value.jobDescription;
+    // rebuild, and is refused before any report is set aside when the flag is off or the text isn't LinkedIn's
+    // own PDF export. It takes a posting like a resume does (Nov 11, 2026): the review then lists that job's
+    // search words the profile lacks.
+    const jobDescription = validation.value.jobDescription;
+    const responseFormat = document ? LINKEDIN_REPORT_RESPONSE_FORMAT : undefined;
     if (document) {
         const refusal = !isLaunchFlagEnabled("linkedInReview")
             ? { errorCode: "FEATURE_DISABLED", message: "LinkedIn profile reviews aren't available right now." }
@@ -467,6 +470,7 @@ export async function POST(request: Request) {
                             schema_version: mode === "resume_ideas" ? "ideas_v1" : resumeSchemaVersion(),
                             messages,
                             signal: generationController.signal,
+                            response_format: responseFormat,
                             reasoning_effort: streamAttempt > 0
                                 ? increaseReasoningEffort(resolveReasoningEffortForMode(mode, model))
                                 : undefined,
@@ -511,6 +515,7 @@ export async function POST(request: Request) {
                     userIdForLogs: user_id,
                     validationOptions: effectiveJobDescription.validationOptions,
                     signal: generationController.signal,
+                    responseFormat,
                 });
                 if (validated.repairMs) stages.record("repair", validated.repairMs);
                 stages.lap("validation");

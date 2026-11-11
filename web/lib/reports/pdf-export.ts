@@ -18,6 +18,9 @@ export type WorklistForPdf = {
   fit: WorklistReport["fit"];
   /** Lines written to screening software, printed before anything else, as on the web report. */
   screener_text?: WorklistReport["screener_text"];
+  /** A profile review prints the profile's wording, bands and parts; absent on a resume report. */
+  document?: WorklistReport["document"];
+  parts?: WorklistReport["parts"];
 };
 
 export type ReportForPdf = {
@@ -243,6 +246,8 @@ export function normalizeReportForPdf(report: unknown, lineAnswers?: unknown): R
         }),
         fit: report.fit,
         ...(report.screener_text?.length ? { screener_text: report.screener_text } : {}),
+        ...(report.document ? { document: report.document } : {}),
+        ...(report.parts?.length ? { parts: report.parts } : {}),
       },
     };
   }
