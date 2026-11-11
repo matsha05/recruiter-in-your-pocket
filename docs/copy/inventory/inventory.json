@@ -4,7 +4,7 @@
     "files_scanned": 424,
     "files_with_copy": 256,
     "strings": 2944,
-    "unique_strings": 2452
+    "unique_strings": 2451
   },
   "by_moment": {
     "research": 990,
@@ -136,7 +136,7 @@
       "table": "reports"
     },
     {
-      "text": "Every report you’ve saved, with where it stood and what the recruiter took from it.",
+      "text": "Every report you’ve saved, and what the recruiter took from each.",
       "kind": "key:description",
       "line": 26,
       "file": "web/app/(app)/reports/page.tsx",
@@ -14462,7 +14462,7 @@
       "table": "home"
     },
     {
-      "text": "Page not found (404)",
+      "text": "Page not found",
       "kind": "jsx-text",
       "line": 22,
       "file": "web/app/not-found.tsx",

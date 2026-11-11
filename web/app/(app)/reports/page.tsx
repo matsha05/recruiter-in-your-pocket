@@ -23,7 +23,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "My reports",
-  description: "Every report you’ve saved, with where it stood and what the recruiter took from it.",
+  description: "Every report you’ve saved, and what the recruiter took from each.",
 };
 
 export default async function ReportsPage() {

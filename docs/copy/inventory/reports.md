@@ -9,7 +9,7 @@ Routes: `/reports`. Strings: 29 (29 unique).
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
 | 1 | account | `web/app/(app)/reports/page.tsx:25` | key:title | My reports |
-| 2 | account | `web/app/(app)/reports/page.tsx:26` | key:description | Every report you’ve saved, with where it stood and what the recruiter took from it. |
+| 2 | account | `web/app/(app)/reports/page.tsx:26` | key:description | Every report you’ve saved, and what the recruiter took from each. |
 | 3 | account | `web/app/(app)/reports/page.tsx:58` | attr:title | Your saved reports |
 | 4 | account | `web/app/(app)/reports/page.tsx:75` | jsx-text | New report |
 | 5 | account | `web/app/(app)/reports/page.tsx:84` | jsx-text | These are your latest 50 reports. Older ones are still saved, and an account export includes them. |

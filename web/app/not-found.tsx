@@ -19,7 +19,7 @@ export default function NotFound() {
             <main className="px-[var(--marketing-gutter)] pb-16 pt-28 md:pb-24 md:pt-36">
                 {/* On the site's column (Nov 11, 2026): the number is a quiet label over the headline, not a column of its own. */}
                 <div className="mx-auto max-w-column border-t border-line pt-7">
-                    <p className="text-label text-muted-foreground">Page not found (404)</p>
+                    <p className="text-label text-muted-foreground">Page not found</p>
                     <h1 className="mt-4 max-w-[16ch] font-display text-headline text-foreground">
                         We can’t find that page.
                     </h1>
