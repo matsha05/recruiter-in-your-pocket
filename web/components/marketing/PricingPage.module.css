@@ -58,11 +58,10 @@
 .terms strong { color: hsl(var(--text-strong)); font-weight: var(--weight-control); }
 .taxes { margin: 1rem 0 0; color: hsl(var(--text-muted)); font: var(--type-small); }
 
-/* The two asides, side by side on one hairline: other tools, and restoring a purchase. */
-.asides { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2rem 4rem; align-items: start; }
+/* The one aside under the offers: other tools. Restoring a purchase is a line in the terms (Nov 10, 2026). */
+.asides { display: grid; }
 .asides h2 { margin: 0; font: var(--type-heading); letter-spacing: var(--tracking-heading); }
 .asides p { margin: 0.5rem 0 0; max-width: 52ch; color: hsl(var(--text-muted)); font: var(--type-body); text-wrap: pretty; }
-.restore { display: grid; gap: 0.75rem; justify-items: start; }
 
 @media (max-width: 800px) {
     .offers { grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); grid-template-rows: auto auto auto auto auto; gap: 1.25rem 1.5rem; margin-top: 2.5rem; }

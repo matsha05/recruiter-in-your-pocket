@@ -147,11 +147,12 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                     <li><strong>Stripe handles your card.</strong> We never see or store the number.</li>
                     <li><strong>Haven&rsquo;t used a paid report yet?</strong> Full refund within 14 days: write to support from your checkout email. <Link href="/terms" className="riyp-link">Terms</Link></li>
                     <li><strong>Used all five?</strong> Your saved reports and their PDFs stay open. {POSTING_READS_AFTER_FIVE} Another report needs a new pass.</li>
+                    <li><strong>Already paid?</strong> <Link href={getCheckoutRestoreHref(returnTo)} className="riyp-link">Restore access</Link></li>
                 </ul>
                 {billingEnabled ? <p className={styles.taxes}>Taxes may apply at checkout.</p> : null}
             </section>
 
-            <section className={cn(rhythm.section, rhythm.close)} aria-label="Other tools and restoring a purchase">
+            <section className={cn(rhythm.section, rhythm.close)} aria-label="Other tools">
                 <div className={styles.asides}>
                     <div>
                         <h2>Other tools do different jobs.</h2>
@@ -160,12 +161,6 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                             <ResearchLink to="how-recruiters-read">recruiters who spent longer on Experience were more likely to move a resume forward</ResearchLink>.{" "}
                             <Link href="/compare" className="riyp-link">See how we compare with seven tools</Link>, Jobscan and TopResume among them, with each one&rsquo;s own prices.
                         </p>
-                    </div>
-                    <div className={styles.restore}>
-                        <h2>Already paid?</h2>
-                        <Button asChild variant="secondary">
-                            <Link href={getCheckoutRestoreHref(returnTo)}>Restore access <ArrowRight weight="bold" aria-hidden="true" /></Link>
-                        </Button>
                     </div>
                 </div>
             </section>

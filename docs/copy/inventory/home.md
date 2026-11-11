@@ -57,12 +57,12 @@ Routes: `/`, `/methodology`, `/research/career-breaks`. Strings: 66 (60 unique).
 | 47 | marketing | `web/components/landing/home/PileHero.tsx:52` | jsx-text | See Jordan’s report |
 | 48 | marketing | `web/components/landing/home/PileHero.tsx:61` | attr:label | 244 small sheets of paper, eighteen of them green |
 | 49 | marketing | `web/components/landing/home/PileHero.tsx:65` | jsx-text | Greenhouse, The Hire Standard, March 2026: 244 applications per role in 2025, 7.6% past the first screen. |
-| 50 | marketing | `web/components/landing/home/ReadBeat.tsx:18` | const | By the time you finish reading this sentence, a recruiter has finished reading your resume. |
-| 51 | marketing | `web/components/landing/home/ReadBeat.tsx:19` | const[] | Nobody tells you why. |
-| 52 | marketing | `web/components/landing/home/ReadBeat.tsx:19` | const[] | We do, before you apply for the next one. |
-| 53 | marketing | `web/components/landing/home/ReadBeat.tsx:76` | attr:aria-label | Move forward or reject. Reject is circled. |
-| 54 | marketing | `web/components/landing/home/ReadBeat.tsx:77` | jsx-text | Move forward |
-| 55 | marketing | `web/components/landing/home/ReadBeat.tsx:89` | jsx-text | Get your free report |
+| 50 | marketing | `web/components/landing/home/ReadBeat.tsx:19` | const | By the time you finish reading this sentence, a recruiter has finished reading your resume. |
+| 51 | marketing | `web/components/landing/home/ReadBeat.tsx:20` | const[] | Nobody tells you why. |
+| 52 | marketing | `web/components/landing/home/ReadBeat.tsx:20` | const[] | We do, before you apply for the next one. |
+| 53 | marketing | `web/components/landing/home/ReadBeat.tsx:77` | attr:aria-label | Move forward or reject. Reject is circled. |
+| 54 | marketing | `web/components/landing/home/ReadBeat.tsx:78` | jsx-text | Move forward |
+| 55 | marketing | `web/components/landing/home/ReadBeat.tsx:90` | jsx-text | Get your free report |
 | 56 | marketing | `web/components/landing/home/RecheckSection.tsx:19` | jsx-text | Fix it. Then check it again. |
 | 57 | marketing | `web/components/landing/home/RecheckSection.tsx:21` | attr:caption | First report |
 | 58 | marketing | `web/components/landing/home/RecheckSection.tsx:22` | attr:caption | Revision 1 |

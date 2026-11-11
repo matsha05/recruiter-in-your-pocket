@@ -28,7 +28,7 @@ export default function GapsAndPivotsPage() {
                 href: "https://doi.org/10.1038/s41562-022-01485-6",
             }}
             painNote="You can stop drafting the apology."
-            nextQuestions={["career-breaks", "who-you-are", "referral-advantage"]}
+            nextQuestions={["career-breaks", "who-you-are", "referral-advantage", "asking-for-a-referral"]}
             visualization={
                 <>
                     <h2 className="research-h2">A current gap and a career change both cost callbacks</h2>

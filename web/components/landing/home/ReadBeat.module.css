@@ -35,21 +35,19 @@
 .on .choices { opacity: 1; }
 .on .choice:not(.rejected) { color: hsl(var(--text-muted)); }
 
-/* The ending and the button follow the circle, one gesture's pause apart. */
+/* The ending and the button are there from the start (Nov 10, 2026): held back until the circle, they left a
+   385px blank band for the five seconds the pen takes. Only the two choices wait for the pen. */
 .ending {
     margin: 2.5rem 0 0;
     font: var(--type-lead);
     color: hsl(var(--text-strong));
     text-wrap: pretty;
-    opacity: 0;
-    transition: opacity var(--duration-slow) var(--ease) calc(var(--delay-gesture) * 2.5);
 }
 .sentence { display: block; }
-.actions { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; margin-top: 2.5rem; opacity: 0; transition: opacity var(--duration-slow) var(--ease) calc(var(--delay-gesture) * 3); }
-.on .ending, .on .actions { opacity: 1; }
+.actions { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; margin-top: 2.5rem; }
 
 @media (prefers-reduced-motion: reduce) {
-    .choices, .choice, .ending, .actions { transition: none; }
+    .choices, .choice { transition: none; }
 }
 
 @media (max-width: 640px) {

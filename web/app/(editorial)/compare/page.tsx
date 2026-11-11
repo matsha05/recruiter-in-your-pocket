@@ -3,7 +3,7 @@ import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import Footer from "@/components/landing/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Button } from "@/components/ui/button";
-import { comparisons, formatChecked, SAME_RESUME_DATE } from "@/components/compare/comparisons";
+import { comparison, comparisons, formatChecked, SAME_RESUME_DATE } from "@/components/compare/comparisons";
 import { ResearchLink } from "@/components/research/ResearchLink";
 import styles from "@/components/compare/ComparisonPage.module.css";
 import { pageMetadata } from "@/lib/seo/metadata";
@@ -21,21 +21,23 @@ export const metadata = pageMetadata({
 
 const OUR_NAME = "Recruiter in Your Pocket";
 
-const ourRow = {
-    does: "Reads the resume you have the way a recruiter would: the write-up, the lines that need work in the order they hit them, and an example for each built only from your facts.",
+const ours = {
     costs: "$29 once for five more reports, good for 90 days. No renewal.",
     free: "The first complete report. No card, no account.",
 };
 
-const howToChoose = [
-    { lead: "You’re starting from a blank page and want it to look finished fast.", body: "Kickresume. Templates and an AI writer that drafts from your job title, free with four templates.", href: "/compare/kickresume" },
-    { lead: "You want a live score and keywords while you write.", body: "Rezi. An AI builder with its own score, free for one resume, then $29 a month or $149 once.", href: "/compare/rezi" },
-    { lead: "You want the page designed.", body: "Enhancv. The most designed templates here, free for seven days with branding, then by the month, quarter, or half year.", href: "/compare/enhancv" },
-    { lead: "You want someone else to write it.", body: "TopResume. A writer produces the resume; the intake you give them decides how specific it is.", href: "/compare/topresume" },
-    { lead: "You tailor keywords for many postings a week.", body: "Jobscan. Five free scans a month, then a subscription for unlimited matching.", href: "/compare/jobscan" },
-    { lead: "You want a running score on your resume and LinkedIn.", body: "Resume Worded Pro. A checklist score on as many documents as you like, by the month, quarter, or year.", href: "/compare/resume-worded" },
-    { lead: "You’re building a version for every application and tracking them.", body: "Teal. A builder and tracker, free, with Teal+ for the limits.", href: "/compare/teal" },
-    { lead: "You want to know what a recruiter would question on the resume you have.", body: `${OUR_NAME}. One complete report free, then $29 once for five more. No subscription, and nothing written that you didn’t say.`, href: "/workspace" },
+// One row per need, in the order a job search usually meets them: no resume yet, then tailoring, then the read
+// before it goes out. Each need names one tool; the price and free version come from that tool's own row
+// (comparisons.tsx), so the hub can't quote a price its page doesn't.
+const needs: Array<{ need: string; slug?: string }> = [
+    { need: "You’re starting from a blank page and want it to look finished fast.", slug: "kickresume" },
+    { need: "You want a live score and keywords while you write.", slug: "rezi" },
+    { need: "You want the page designed.", slug: "enhancv" },
+    { need: "You want someone else to write it.", slug: "topresume" },
+    { need: "You tailor keywords for many postings a week.", slug: "jobscan" },
+    { need: "You want a running score on your resume and LinkedIn.", slug: "resume-worded" },
+    { need: "You’re building a version for every application and tracking them.", slug: "teal" },
+    { need: "You want to know what a recruiter would question on the resume you have." },
 ];
 
 export default function ComparePage() {
@@ -59,7 +61,7 @@ export default function ComparePage() {
                         <h1 className={styles.title}>Resume review tools compared</h1>
                         <div className={styles.answerGrid}>
                             <p className={styles.answer}>
-                                Seven tools people weigh against ours, what each one sells, and what it costs. We quote each tool’s own pricing page and say where it’s the better choice, because a writer, a keyword scanner, a builder, and a recruiter’s read are different purchases.
+                                A writer, a keyword scanner, a builder, and a recruiter’s read are different purchases. Find the line that sounds like you.
                             </p>
                         </div>
                         <p className={styles.meta}>
@@ -70,74 +72,55 @@ export default function ComparePage() {
                     </header>
 
                     <section className={styles.tableSection} aria-labelledby="tools-title">
-                        <h2 id="tools-title" className={styles.sectionTitle}>What each one sells</h2>
-                        <table className={styles.table}>
+                        <h2 id="tools-title" className={styles.sectionTitle}>What you need, and what it costs</h2>
+                        <table className={`${styles.table} ${styles.needs}`}>
                             <thead>
                                 <tr>
-                                    <th scope="col"><span className="sr-only">Tool</span></th>
-                                    <th scope="col">What it does</th>
+                                    <th scope="col">If this is you</th>
+                                    <th scope="col">Use</th>
                                     <th scope="col">What it costs</th>
                                     <th scope="col">Free version</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">{OUR_NAME}</th>
-                                    <td data-label="What it does">{ourRow.does}</td>
-                                    <td data-label="What it costs">{ourRow.costs}</td>
-                                    <td data-label="Free version">{ourRow.free}</td>
-                                </tr>
-                                {comparisons.map((entry) => (
-                                    <tr key={entry.slug}>
-                                        <th scope="row">
-                                            <Link href={entry.path} className="focus-ring riyp-link">{entry.name}</Link>
-                                        </th>
-                                        <td data-label="What it does">{entry.hub.does}</td>
-                                        <td data-label="What it costs">{entry.hub.costs}</td>
-                                        <td data-label="Free version">{entry.hub.free}</td>
-                                    </tr>
-                                ))}
+                                {needs.map(({ need, slug }) => {
+                                    const entry = slug ? comparison(slug) : null;
+                                    return (
+                                        <tr key={need}>
+                                            <th scope="row">{need}</th>
+                                            <td data-label="Use" className={styles.tool}>
+                                                {entry
+                                                    ? <Link href={entry.path} className="focus-ring riyp-link">{entry.name}</Link>
+                                                    : <Link href="/workspace" className="focus-ring riyp-link" data-analytics-cta="compare_hub_table">{OUR_NAME}</Link>}
+                                            </td>
+                                            <td data-label="What it costs">{entry ? entry.hub.costs : ours.costs}</td>
+                                            <td data-label="Free version">{entry ? entry.hub.free : ours.free}</td>
+                                        </tr>
+                                    );
+                                })}
                             </tbody>
                         </table>
+                        <p className={styles.tableNote}>Each tool’s name opens its page, with its prices quoted from its own pricing page.</p>
                     </section>
 
                     <section id="which-tool" className={`${styles.section} ${styles.prose}`} aria-labelledby="which-tool-title">
                         <h2 id="which-tool-title" className={styles.sectionTitle}>Which resume tool should I use?</h2>
                         <p className={styles.proseBody}>
-                            It depends on what you’re missing. If you don’t have a resume, or you want the page designed for you, you need a builder: Kickresume, Rezi, Enhancv, and Teal all do that, free with limits and by subscription for the rest. If you have a resume and you’re tailoring it to many postings, you need a keyword scanner: Jobscan, or the matching inside Teal and Rezi. If you want it written for you, TopResume. If you have a resume and want to know what a recruiter would question before you send it, you need a recruiter’s read, and that is what the report is.
+                            It depends on what you’re missing. Most people need one builder or none, a scanner only if they apply in volume, and one honest read of the resume before it goes out. The read is free here.
+                        </p>
+                        <ul className={styles.kinds}>
+                            <li>If you don’t have a resume, or you want the page designed for you, <strong>you need a builder</strong>: Kickresume, Rezi, Enhancv, and Teal all do that, free with limits and by subscription for the rest.</li>
+                            <li>If you have a resume and you’re tailoring it to many postings, <strong>you need a keyword scanner</strong>: Jobscan, or the matching inside Teal and Rezi.</li>
+                            <li>If you want it written for you, <strong>you need a writer</strong>: TopResume.</li>
+                            <li>If you have a resume and want to know what a recruiter would question before you send it, <strong>you need a recruiter’s read</strong>, and that is what the report is.</li>
+                        </ul>
+                        <h3 className={styles.proseHeading}>The report’s limits</h3>
+                        <p className={styles.proseBody}>
+                            It reads the words we pull from your file, not the design, and it is AI applying a recruiter’s criteria, not a person reading your resume. It gives no keyword score and no interview odds, and it won’t build, design, or track anything.
                         </p>
                         <p className={styles.proseBody}>
-                            The report’s limits, so you can weigh it fairly: it reads the words we pull from your file, not the design, and it is AI applying a recruiter’s criteria, not a person reading your resume. It gives no keyword score and no interview odds, and it won’t build, design, or track anything. In November 2026 we ran one resume through five of these tools and ours; each of those pages says what came back, under “How we compare”. It was one resume, one role, one day, so these pages still mostly compare what each tool sells. The research behind the read is linked where it applies: <ResearchLink to="how-recruiters-read">recruiters who spent longer on Experience were more likely to move a resume forward</ResearchLink>, and <ResearchLink to="ats-myths">applicant tracking systems pull your text into fields rather than rejecting it on a score</ResearchLink>.
+                            In November 2026 we ran one resume through five of these tools and ours; each of those pages says what came back, under “How we compare”. It was one resume, one role, one day, so these pages still mostly compare what each tool sells. The research behind the read is linked where it applies: <ResearchLink to="how-recruiters-read">recruiters who spent longer on Experience were more likely to move a resume forward</ResearchLink>, and <ResearchLink to="ats-myths">applicant tracking systems pull your text into fields rather than rejecting it on a score</ResearchLink>.
                         </p>
-                        <p className={styles.proseBody}>
-                            Most people need one builder or none, a scanner only if they apply in volume, and one honest read of the resume before it goes out. The read is free here.
-                        </p>
-                    </section>
-
-                    <section className={styles.section} aria-labelledby="choose-title">
-                        <h2 id="choose-title" className={styles.sectionTitle}>How to choose</h2>
-                        <div className={styles.others}>
-                            {howToChoose.map((item) => (
-                                <Link key={item.href} href={item.href} className={`focus-ring ${styles.otherRow} ${styles.chooseRow}`}>
-                                    <span className={styles.otherName}>{item.lead}</span>
-                                    <span className={styles.otherSummary}>{item.body}</span>
-                                    <ArrowRight className="size-4 shrink-0" aria-hidden="true" />
-                                </Link>
-                            ))}
-                        </div>
-                    </section>
-
-                    <section className={styles.section} aria-labelledby="comparisons-title">
-                        <h2 id="comparisons-title" className={styles.sectionTitle}>Each comparison</h2>
-                        <div className={styles.others}>
-                            {comparisons.map((entry) => (
-                                <Link key={entry.slug} href={entry.path} className={`focus-ring ${styles.otherRow}`}>
-                                    <span className={styles.otherName}>{entry.title}</span>
-                                    <span className={styles.otherSummary}>{entry.summary}</span>
-                                    <ArrowRight className="size-4 shrink-0" aria-hidden="true" />
-                                </Link>
-                            ))}
-                        </div>
                     </section>
 
                     <section id="how-we-compare" tabIndex={-1} className={`riyp-jump-target ${styles.method}`} aria-labelledby="how-we-compare-title">

@@ -124,7 +124,8 @@ test.describe("search and sharing foundation", () => {
   });
 
   test("the research and compare hubs carry their lists as ItemList", async ({ page }) => {
-    for (const [path, minimum] of [["/research", 20], ["/compare", 7]] as const) {
+    // The research hub lists its six beliefs and four more answers since Nov 10, 2026; the other answers are on the belief pages.
+    for (const [path, minimum] of [["/research", 10], ["/compare", 7]] as const) {
       await page.goto(path, { waitUntil: "domcontentloaded" });
       const nodes: JsonLdNode[] = (await page.locator('script[type="application/ld+json"]').allTextContents()).flatMap((source) => {
         const data = JSON.parse(source) as JsonLdNode & { "@graph"?: JsonLdNode[] };

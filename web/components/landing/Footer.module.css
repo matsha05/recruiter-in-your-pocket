@@ -1,28 +1,38 @@
+/* The footer: one row on the site's column, then one quiet line (Nov 10, 2026). */
+
 .footer {
     position: relative;
     z-index: 10;
-    padding: 56px clamp(24px, 5.8vw, 88px) 28px;
     border-top: 1px solid hsl(var(--border));
     background: hsl(var(--surface-page));
     color: hsl(var(--muted-foreground));
     font-family: var(--font-body);
 }
 
-/* The brand block, then one labeled column per kind of page. */
-.inner {
-    display: grid;
-    grid-template-columns: minmax(0, 1.4fr) repeat(4, minmax(0, 1fr));
-    gap: 40px;
-    max-width: 1360px;
+.inner,
+.legal {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    max-width: var(--marketing-content);
     margin-inline: auto;
+    padding-inline: var(--marketing-gutter);
 }
 
-.about { max-width: 22rem; }
-.brand { display: inline-flex; min-height: 44px; color: hsl(var(--foreground)); }
-.about .mail { display: flex; width: fit-content; margin-top: 14px; word-break: break-word; }
+.inner { gap: 0.5rem 2.5rem; padding-top: 2.25rem; }
+.brand { display: inline-flex; min-height: 44px; align-items: center; color: hsl(var(--foreground)); }
 
-.label { color: hsl(var(--muted-foreground)); font: var(--type-label); }
-.column ul { margin-top: 8px; }
+.links,
+.small {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.links { gap: 0 2rem; }
+.small { gap: 0 1.5rem; }
 
 .link {
     display: inline-flex;
@@ -38,37 +48,23 @@
     font: var(--type-small);
 }
 .link:hover { text-decoration-color: currentColor; }
-.about .link { color: hsl(var(--muted-foreground)); }
-.about .link:hover { color: hsl(var(--foreground)); }
 
 .legal {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0 24px;
-    max-width: 1360px;
-    margin: 32px auto 0;
-    border-top: 1px solid hsl(var(--border));
-    padding-top: 12px;
+    gap: 0 1.5rem;
+    padding-top: 0.25rem;
+    padding-bottom: 1.5rem;
     font: var(--type-label);
     font-weight: var(--weight-body);
 }
-.legal .link { color: hsl(var(--muted-foreground)); font: inherit; }
+.legal p { margin: 0; }
+.legal .link { color: hsl(var(--muted-foreground)); font: inherit; overflow-wrap: anywhere; }
 .legal .link:hover { color: hsl(var(--foreground)); }
 
-/* Below 1200px the brand block sits above the four columns; phones get two columns. */
-@media (max-width: 1199px) {
-    .inner { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px 24px; }
-    .about { grid-column: 1 / -1; max-width: 30rem; }
-}
-
 @media (max-width: 767px) {
-    .inner { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-
-@media (max-width: 767px) {
-    .footer { padding-top: 40px; }
+    .inner { flex-direction: column; align-items: flex-start; padding-top: 1.75rem; }
+    .links { flex-direction: column; }
+    .legal { flex-direction: column-reverse; align-items: flex-start; gap: 0.75rem; padding-top: 0.75rem; }
+    .small { flex-direction: column; }
 }
 
 @media (prefers-reduced-motion: reduce) { .link { transition: none; } }

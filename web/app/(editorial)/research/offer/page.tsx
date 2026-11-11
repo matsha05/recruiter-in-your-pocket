@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { PillarPage, pillarMetadata } from "@/components/research/PillarPage";
 
 export const metadata = pillarMetadata(
@@ -16,7 +17,7 @@ export default function OfferPillarPage() {
                         When we make an offer, we expect you to come back with a counter. Asking for more, politely and with a reason, is a normal part of the conversation.
                     </p>
                     <p>
-                        Know what the role pays, ask once and clearly, and say what would make you sign. Some companies now call the first offer final. Ask anyway, and be ready to hear no.
+                        Know what the role pays, ask once and clearly, and say what would make you sign. Some companies now call the first offer final. Ask anyway, and be ready to hear no. Our <Link href="/resources" className="focus-ring riyp-link">guides for after the offer</Link> cover what to say and how to compare two offers.
                     </p>
                 </>
             }

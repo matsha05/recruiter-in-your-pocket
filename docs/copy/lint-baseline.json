@@ -36,36 +36,28 @@
       "where": "web/app/(app)/reports/page.tsx:15"
     },
     {
-      "text": "It depends on what you’re missing. If you don’t have a resume, or you want the page designed for you, you need a builder: Kickresume, Rezi, Enhancv, and Teal all do that, free with limits and by subscription for the rest. If you have a resume and you’re tailoring it to many postings, you need a keyword scanner: Jobscan, or the matching inside Teal and Rezi. If you want it written for you, TopResume. If you have a resume and want to know what a recruiter would question before you send it, you need a recruiter’s read, and that is what the report is.",
+      "text": "It depends on what you’re missing. Most people need one builder or none, a scanner only if they apply in volume, and one honest read of the resume before it goes out. The read is free here.",
       "moment": "marketing",
       "tics": [
         "coined_word"
       ],
-      "where": "web/app/(editorial)/compare/page.tsx:107"
+      "where": "web/app/(editorial)/compare/page.tsx:109"
     },
     {
-      "text": "The report’s limits, so you can weigh it fairly: it reads the words we pull from your file, not the design, and it is AI applying a recruiter’s criteria, not a person reading your resume. It gives no keyword score and no interview odds, and it won’t build, design, or track anything. In November 2026 we ran one resume through five of these tools and ours; each of those pages says what came back, under “How we compare”. It was one resume, one role, one day, so these pages still mostly compare what each tool sells. The research behind the read is linked where it applies:",
+      "text": "If you don’t have a resume, or you want the page designed for you,",
       "moment": "marketing",
       "tics": [
         "coined_word"
       ],
-      "where": "web/app/(editorial)/compare/page.tsx:110"
+      "where": "web/app/(editorial)/compare/page.tsx:112"
     },
     {
-      "text": "Most people need one builder or none, a scanner only if they apply in volume, and one honest read of the resume before it goes out. The read is free here.",
+      "text": "In November 2026 we ran one resume through five of these tools and ours; each of those pages says what came back, under “How we compare”. It was one resume, one role, one day, so these pages still mostly compare what each tool sells. The research behind the read is linked where it applies:",
       "moment": "marketing",
       "tics": [
         "coined_word"
       ],
-      "where": "web/app/(editorial)/compare/page.tsx:113"
-    },
-    {
-      "text": "You want the page designed.",
-      "moment": "marketing",
-      "tics": [
-        "coined_word"
-      ],
-      "where": "web/app/(editorial)/compare/page.tsx:33"
+      "where": "web/app/(editorial)/compare/page.tsx:122"
     },
     {
       "text": "Real leverage. In our experience, a competing offer is the most reliable way to move a number, so it&apos;s worth finishing other processes. Never invent one.",

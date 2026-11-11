@@ -16,12 +16,14 @@ export const metadata = pageMetadata({
 export default function ResearchPage() {
     return (
         <>
-            {/* The hub's order, machine-readable: the six beliefs, then the additional research. */}
+            {/* The hub's order, machine-readable. */}
             <JsonLd
                 data={{
                     "@context": "https://schema.org",
                     "@graph": [
                         breadcrumbStructuredData([{ name: SECTION_NAMES[PATH], path: PATH }]),
+                        // What the page links, in its order: the six beliefs, then the additional research. Each belief's own
+                        // page lists the answers under it (tests/ui/search-foundation.spec.ts checks every item is linked here).
                         itemListStructuredData(PATH, "What we look for", [
                             ...pillars.map((pillar) => ({ name: pillar.belief, path: pillarHref(pillar) })),
                             ...additionalResearch.map((article) => ({ name: article.question, path: article.href })),

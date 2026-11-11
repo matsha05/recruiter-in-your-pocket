@@ -12,7 +12,8 @@ import styles from "./ReadBeat.module.css";
  * The second beat (Matt, Nov 4, 2026): the read, in the time it takes to read the sentence. The recruiter's
  * green pen draws a line under the headline at reading pace, starting when a third of the section is in
  * view. When it reaches the end, the two choices a recruiter has appear where the pen stopped, and the pen
- * circles Reject in red: the one red mark on the site, spent on the decision. Then the ending and the button.
+ * circles Reject in red: the one red mark on the site, spent on the decision. The ending and the button are on the
+ * page from the start (Nov 10, 2026), so the section is never a blank band while the pen runs.
  * Under reduced motion everything is simply there.
  */
 const HEADLINE = "By the time you finish reading this sentence, a recruiter has finished reading your resume.";

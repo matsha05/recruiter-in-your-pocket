@@ -5,7 +5,7 @@ const shareDescription = "See what a recruiter sees, line by line. Your first re
 const homepageDescription = "A free resume report that shows what a recruiter takes from your resume, the lines they’d stop on, and what to add to each one before you apply.";
 
 test.describe("homepage feedback and SEO contract", () => {
-  test("the homepage explains the report and keeps the offer tool in the footer", async ({ page }) => {
+  test("the homepage explains the report and keeps a short footer", async ({ page }) => {
     await page.goto("/", { waitUntil: "domcontentloaded" });
     await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true", { timeout: 30_000 });
 
@@ -81,10 +81,13 @@ test.describe("homepage feedback and SEO contract", () => {
     await expect(page.getByRole("heading", { level: 2, name: "Before you apply for the next one." })).toBeVisible();
     await expect(homepage).not.toContainText("Good work deserves a good read.");
 
-    const calculator = page.locator("footer").getByRole("link", { name: "Offer calculator", exact: true });
-    await expect(calculator).toBeVisible();
+    // The offer tools are one click away through the header's "After the offer"; the footer is one short row
+    // (Nov 10, 2026) and no longer lists them.
+    await expect(page.locator("header").getByRole("link", { name: "After the offer", exact: true }).first()).toHaveAttribute("href", "/resources");
     await expect(page.getByRole("heading", { name: "Comparing job offers?" })).toHaveCount(0);
-    await expect(calculator).toHaveAttribute("href", "/resources/tools/comp-calculator");
+    const footer = page.locator("footer");
+    await expect(footer.getByRole("link")).toHaveCount(8);
+    await expect(footer.getByRole("link", { name: "Compared with other tools", exact: true })).toHaveAttribute("href", "/compare");
 
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       "href",
