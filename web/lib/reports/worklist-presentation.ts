@@ -1,6 +1,88 @@
 import { QUOTED_KINDS, WORK_KINDS, type WorklistCard, type WorklistReport } from "../llm/worklist-schema";
 import { canonicalSourceIdentity } from "../llm/source-fidelity";
 import type { StoredLineAnswer, StoredLineAnswers } from "./line-answers";
+import { reportDocumentKind, type ReportDocumentKind } from "./report-document";
+
+/**
+ * The report's fixed words, by what it was written about. A LinkedIn profile review (Nov 10, 2026) is the same
+ * report with the profile named where the resume was, and without the two things a profile doesn't have: a
+ * posting to read it against, and a moment it gets sent.
+ */
+export interface ReportWording {
+  cardsTitle: string;
+  cardsLead: string;
+  nothingTitle: string;
+  unlisted: string;
+  upgradesLeadClean: string;
+  factsNote: string;
+  leftBlank: string;
+  readyEnding: string;
+  readyNote: string;
+  addressed: (count: number) => string;
+  firstPassLabel: string;
+  header: string;
+  scoreNote: string;
+  /** What the source file leaves out, said once under the cards. Only a profile export has one. */
+  sourceLimits: string | null;
+  /**
+   * The one thing the export can't show that we still have a view on (Matt, Nov 10, 2026: the public Open to Work
+   * frame isn't helping candidates). Advice, labelled as ours, with no number: recruiters disagree about the
+   * frame, and LinkedIn's own figures count messages, not hires.
+   */
+  sourceAdvice: string | null;
+  /** The section after the cards: where the experience points (a resume), or the words a recruiter would search (a profile). */
+  fitTitle: string;
+  fitListLabel: string;
+}
+
+const RESUME_WORDING: ReportWording = {
+  cardsTitle: "Lines that need work.",
+  cardsLead: "Top to bottom, the way a recruiter reads.",
+  nothingTitle: "Nothing here needs work.",
+  unlisted: "Lines not listed are fine as written.",
+  upgradesLeadClean: "Your resume probably isn't what stands between you and the call now. Who can refer you, and which jobs you aim at, matter more. If you want it even stronger, start here.",
+  factsNote: "Every fact in it is from your resume or your answers.",
+  leftBlank: "Left blank, and that's fine. Not every line needs every detail. Let's make sure the rest of your resume gives a recruiter something to grab onto.",
+  readyEnding: "This is killer! Send it.",
+  readyNote: "Every line says what you did and what changed, so your resume won't be the reason you don't get the call. Read it against the posting you're going for, and look at whether anyone can bring you in.",
+  addressed: (count) => `${count > 1 ? "Your lines are ready. Drop them" : "Your line is ready. Drop it"} into your resume and see what changed.`,
+  firstPassLabel: "The job your resume was read for",
+  header: "Your resume report",
+  scoreNote: "The band is what a recruiter would do with your resume after one pass. The number says where in the band you sit. Neither predicts interviews or offers.",
+  sourceLimits: null,
+  sourceAdvice: null,
+  fitTitle: "Roles your experience points toward.",
+  fitListLabel: "Roles to consider",
+};
+
+const PROFILE_WORDING: ReportWording = {
+  cardsTitle: "Parts of your profile that need work.",
+  cardsLead: "Top to bottom, the way your profile is laid out.",
+  nothingTitle: "Nothing here needs work.",
+  unlisted: "Parts not listed are fine as written.",
+  upgradesLeadClean: "Your profile probably isn't what stands between you and a recruiter's message now. Who can refer you, and which jobs you go after, matter more. If you want it even stronger, start here.",
+  factsNote: "Every fact in it is from your profile or your answers.",
+  leftBlank: "Left blank, and that's fine. Not every part needs every detail. Let's make sure the rest of your profile gives a recruiter something to grab onto.",
+  readyEnding: "This is killer! There's nothing left to fix.",
+  readyNote: "Every part says what you do and what changed, so your profile won't be the reason a recruiter doesn't message you. Who can refer you, and which jobs you go after, matter more now.",
+  addressed: (count) => `${count > 1 ? "Your lines are ready. Paste them" : "Your line is ready. Paste it"} into your profile and see what changed.`,
+  firstPassLabel: "The job your profile was read for",
+  header: "Your LinkedIn profile review",
+  scoreNote: "The band is what a recruiter would do after landing on your profile. The number says where in the band you sit. Neither predicts messages, interviews or offers, and neither says how often you show up in a search.",
+  sourceLimits: "LinkedIn's PDF leaves out your photo, your banner, your recommendations and your full skills list, so this review says nothing about them.",
+  fitTitle: "The words a recruiter would search for.",
+  fitListLabel: "Titles on your profile",
+  sourceAdvice: "It also can't show whether the green Open to Work frame is on your photo. Our advice: leave the frame off and use the recruiters-only setting. Recruiters who filter for people who are looking will still see you, and your photo won't lead with the search.",
+};
+
+export function reportWording(document: ReportDocumentKind): ReportWording {
+  return document === "linkedin" ? PROFILE_WORDING : RESUME_WORDING;
+}
+
+/** The wording for a report as it stands: fresh, saved or recovered. */
+export function wordingFor(report: unknown): ReportWording {
+  return reportWording(reportDocumentKind(report));
+}
 
 /**
  * What the worklist report shows and says, apart from the model's words: the example's blanks and how
@@ -99,13 +181,13 @@ export function cardsHeading(report: Pick<WorklistReport, "cards">): { title: st
   const work = workCards(report).length;
   if (work === 0) {
     // No lead: the ending says "This is killer! Send it." and what else matters, so the heading stays plain.
-    return { title: "Nothing here needs work.", lead: null };
+    return { title: wordingFor(report).nothingTitle, lead: null };
   }
-  return { title: "Lines that need work.", lead: "Top to bottom, the way a recruiter reads." };
+  return { title: wordingFor(report).cardsTitle, lead: wordingFor(report).cardsLead };
 }
 
 /** The line under the cards. Only when the page has lines the cards didn't list. */
-export const UNLISTED_LINES_NOTE = "Lines not listed are fine as written.";
+export const UNLISTED_LINES_NOTE = RESUME_WORDING.unlisted;
 
 /** The label on a card: the model's `where`, with the keep card named as such. */
 export function cardLabel(card: Pick<WorklistCard, "kind" | "where">) {
@@ -129,7 +211,7 @@ export const KEEP_SECONDARY_LABEL = "Write the others like it.";
 export const UPGRADES_HEADING = "Ways to make it even better.";
 export function upgradesLead(report: Pick<WorklistReport, "cards">) {
   return workCards(report).length === 0
-    ? "Your resume probably isn't what stands between you and the call now. Who can refer you, and which jobs you aim at, matter more. If you want it even stronger, start here."
+    ? wordingFor(report).upgradesLeadClean
     : "Optional, once the lines above are done.";
 }
 /** An upgrade's way out: the fact may simply not exist, and that's an answer, not a gap. */
@@ -150,7 +232,7 @@ export function hasRoleSection(report: Pick<WorklistReport, "fit">) {
 
 /** Headings for the fit section, with and without a posting. */
 export function fitHeading(report: Pick<WorklistReport, "fit">) {
-  return report.fit.posting.summary ? "How your experience fits this role." : "Roles your experience points toward.";
+  return report.fit.posting.summary ? "How your experience fits this role." : wordingFor(report).fitTitle;
 }
 
 export const POSTING_MISSING_LABEL = "What the posting asks for that your resume doesn't show";

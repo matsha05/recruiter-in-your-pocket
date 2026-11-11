@@ -86,6 +86,9 @@ export const WorklistReportSchema = z.object({
     kind: z.enum(["instruction", "score", "posting_copy", "keyword_repeat"]),
     excerpt: text(200),
   })).max(3).optional(),
+  // What the report was written about (lib/reports/report-document.ts): set by the route after validation, never
+  // by the model, and absent on a resume report, so every report saved before it parses to the same object.
+  document: z.literal("linkedin").optional(),
   // Kept by the shared persistence layer (ensureLayoutAndContentFields); never set by the model.
   layout_score: z.number().nullable().optional(),
   layout_band: z.string().optional(),

@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import {
   makeFreeCookie,
@@ -437,7 +437,6 @@ const feedbackRoute = readFileSync(path.join(process.cwd(), "app", "api", "resum
 const streamRoute = readFileSync(path.join(process.cwd(), "app", "api", "resume-feedback-stream", "route.ts"), "utf8");
 const streamFailure = readFileSync(path.join(process.cwd(), "lib", "billing", "generation-stream-failure.ts"), "utf8");
 const ideasRoute = readFileSync(path.join(process.cwd(), "app", "api", "resume-ideas", "route.ts"), "utf8");
-const linkedInRoute = readFileSync(path.join(process.cwd(), "app", "api", "linkedin-feedback-stream", "route.ts"), "utf8");
 const resumeReviewHook = readFileSync(path.join(process.cwd(), "components", "workspace", "hooks", "useResumeReview.ts"), "utf8");
 const launchProgram = readFileSync(path.join(process.cwd(), "lib", "launch", "program.ts"), "utf8");
 const accessLifecycle = readFileSync(path.join(process.cwd(), "lib", "billing", "generationAccess.ts"), "utf8");
@@ -596,19 +595,25 @@ assert.doesNotMatch(
 );
 assert.match(resumeReviewHook, /if \(result\.aborted\) \{\s*const refreshed = await input\.refreshFreeStatus/);
 assert.match(resumeReviewHook, /catch \(error\) \{[\s\S]+await input\.refreshFreeStatus/);
-assert.doesNotMatch(linkedInRoute, /reserveGenerationAccess/);
-const linkedInFlagIndex = linkedInRoute.indexOf('isLaunchFlagEnabled("linkedInReview")');
+// The LinkedIn profile review has no route of its own (Nov 10, 2026): it is the resume stream with its document
+// named, so it spends a report through the same reservation. The flag and the export check come before it.
+assert.equal(existsSync(path.join(process.cwd(), "app", "api", "linkedin-feedback-stream", "route.ts")), false, "the unreserved LinkedIn route must stay removed");
+const linkedInFlagIndex = streamRoute.indexOf('isLaunchFlagEnabled("linkedInReview")');
 assert.ok(linkedInFlagIndex > -1, "LinkedIn generation must enforce its launch flag server-side");
 assert.ok(
-  linkedInFlagIndex < linkedInRoute.indexOf("body = await readJsonWithLimit"),
-  "disabled LinkedIn requests must be rejected before request parsing"
+  linkedInFlagIndex < streamRoute.indexOf("reserveGenerationAccess({"),
+  "disabled LinkedIn requests must be rejected before a report is reserved"
 );
 assert.ok(
-  linkedInFlagIndex < linkedInRoute.indexOf("for await (const ev of streamJson"),
+  streamRoute.indexOf("looksLikeLinkedInExport(text)") < streamRoute.indexOf("reserveGenerationAccess({"),
+  "a file that isn't a LinkedIn export must be refused before a report is reserved"
+);
+assert.ok(
+  linkedInFlagIndex < streamRoute.indexOf("for await (const ev of streamJson"),
   "disabled LinkedIn requests must be rejected before provider work"
 );
-assert.match(linkedInRoute, /errorCode:\s*"FEATURE_DISABLED"/);
-assert.match(launchProgram, /LinkedIn review[\s\S]+Blocked from enablement until its generation route uses the atomic access-reservation lifecycle/);
+assert.match(streamRoute, /errorCode:\s*"FEATURE_DISABLED"/);
+assert.match(launchProgram, /LinkedIn review[\s\S]+runs through the resume report route and its access reservation/);
 
 // A reservation RPC that never answers fails closed within its deadline, before any model call.
 const hangingAdmin: GenerationAccessRpcClient = { rpc: () => new Promise(() => undefined) as any };

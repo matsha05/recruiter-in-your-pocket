@@ -1,6 +1,6 @@
 {
   "note": "Strings the copy lint's pattern checks flag but the gate doesn't block yet: known debt, to be worked down. Regenerate only to remove fixed entries or to keep a flagged string on purpose, and say why in the PR (docs/promptops/shipping-gate.md, Copy).",
-  "updated": "2026-11-10",
+  "updated": "2026-11-11",
   "entries": [
     {
       "text": "The extension reloaded. Refresh the page.",
@@ -193,7 +193,7 @@
       "tics": [
         "coined_word"
       ],
-      "where": "web/app/(editorial)/research/linkedin-visibility/page.tsx:161"
+      "where": "web/app/(editorial)/research/linkedin-visibility/page.tsx:159"
     },
     {
       "text": "When a line says what you did but not what changed, it gets a card. We&apos;ll ask for the result or the scale. We won&apos;t invent one for you.",
@@ -233,7 +233,7 @@
       "tics": [
         "coined_word"
       ],
-      "where": "web/app/(editorial)/research/resume-length-myths/page.tsx:75"
+      "where": "web/app/(editorial)/research/resume-length-myths/page.tsx:73"
     },
     {
       "text": "says what changed, how you measured it, and what you did to get there",
@@ -241,7 +241,7 @@
       "tics": [
         "tricolon"
       ],
-      "where": "web/app/(editorial)/research/resume-length-myths/page.tsx:75"
+      "where": "web/app/(editorial)/research/resume-length-myths/page.tsx:73"
     },
     {
       "text": "the cash, the bonus, and the equity separated",
@@ -249,7 +249,7 @@
       "tics": [
         "tricolon"
       ],
-      "where": "web/app/(editorial)/research/salary-history-bans/page.tsx:85"
+      "where": "web/app/(editorial)/research/salary-history-bans/page.tsx:83"
     },
     {
       "text": ". Never invent a current salary. If you choose not to disclose, be ready to redirect calmly; if you do disclose, understand what signal the number may send in that market.",
@@ -257,7 +257,7 @@
       "tics": [
         "coined_word"
       ],
-      "where": "web/app/(editorial)/research/salary-history-bans/page.tsx:91"
+      "where": "web/app/(editorial)/research/salary-history-bans/page.tsx:89"
     },
     {
       "text": "Your report won&apos;t tell you what to ask for. It reads your resume: the write-up says what it says first, and each line a recruiter trips on gets a card that asks for what&apos;s missing instead of inventing it.",
@@ -265,7 +265,7 @@
       "tics": [
         "coined_word"
       ],
-      "where": "web/app/(editorial)/research/salary-history-bans/page.tsx:99"
+      "where": "web/app/(editorial)/research/salary-history-bans/page.tsx:97"
     },
     {
       "text": "what changed, how you measured it, and what you did to get there",
@@ -281,7 +281,7 @@
       "tics": [
         "coined_word"
       ],
-      "where": "web/app/(editorial)/research/social-screening/page.tsx:83"
+      "where": "web/app/(editorial)/research/social-screening/page.tsx:81"
     },
     {
       "text": "It also can&apos;t say whether spelling matters more than content: the study kept the content the same and changed only the spelling. What it shows is that repeated errors cost points even when the experience on the page is identical. It fits what a much larger experiment found when only the wording changed:",
@@ -289,7 +289,7 @@
       "tics": [
         "coined_word"
       ],
-      "where": "web/app/(editorial)/research/spelling-errors-impact/page.tsx:70"
+      "where": "web/app/(editorial)/research/spelling-errors-impact/page.tsx:65"
     },
     {
       "text": "Your report isn&apos;t a spell-checker. It cards the lines a recruiter trips on, in the order they hit them. Run a spell-check last, after you&apos;ve worked through the cards.",
@@ -297,7 +297,7 @@
       "tics": [
         "coined_word"
       ],
-      "where": "web/app/(editorial)/research/spelling-errors-impact/page.tsx:85"
+      "where": "web/app/(editorial)/research/spelling-errors-impact/page.tsx:80"
     },
     {
       "text": "When a line hides your part or the result, it gets a card that asks for them. Filling it gives you the headline of a story you can tell, and the score weighs how easy it is to follow what you did.",
@@ -701,14 +701,6 @@
       "where": "web/components/legal/StatusClient.tsx:87"
     },
     {
-      "text": "LinkedIn &gt; Resources &gt; Save to PDF",
-      "moment": "upload",
-      "tics": [
-        "retired_name"
-      ],
-      "where": "web/components/linkedin/LinkedInInputPanel.tsx:218"
-    },
-    {
       "text": "Where your resume stands, the recruiter’s write-up, and every line that needs work.",
       "moment": "pricing",
       "tics": [
@@ -787,6 +779,14 @@
         "please"
       ],
       "where": "web/components/settings/DefaultResumeSection.tsx:88"
+    },
+    {
+      "text": "On your LinkedIn profile, choose Resources, then Save to PDF. Upload that file here.",
+      "moment": "upload",
+      "tics": [
+        "retired_name"
+      ],
+      "where": "web/components/workspace/InputPanel.tsx:171"
     },
     {
       "text": "{remaining.length === 1 ? …} still there. Let's start with {remaining.length === 1 ? …} again.",
@@ -875,6 +875,14 @@
         "please"
       ],
       "where": "web/lib/reports/generation-operation-marker.ts:4"
+    },
+    {
+      "text": "That doesn't look like a LinkedIn profile PDF. On your profile, choose Resources, then Save to PDF, and upload that file.",
+      "moment": "report",
+      "tics": [
+        "retired_name"
+      ],
+      "where": "web/lib/reports/report-document.ts:40"
     },
     {
       "text": "The question they'd ask",

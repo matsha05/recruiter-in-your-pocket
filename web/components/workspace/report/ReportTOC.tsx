@@ -14,6 +14,8 @@ interface ReportTOCProps {
     hasRole?: boolean;
     /** The worklist report (Nov 5, 2026) has the write-up, the lines and fit; no Keep section. */
     worklist?: boolean;
+    /** A LinkedIn profile review lists parts of the profile, not resume lines. */
+    profile?: boolean;
 }
 
 // On phones the visible text is the short label; the rest of the name is read, not shown, so what a
@@ -31,10 +33,12 @@ const WORKLIST_TOC_ITEMS = [
     { id: "section-role", label: "Role fit", mobileLabel: "Role fit" },
 ] as const;
 
-export function ReportTOC({ activeId, hasKeep = true, hasRole = true, worklist = false }: ReportTOCProps) {
+export function ReportTOC({ activeId, hasKeep = true, hasRole = true, worklist = false, profile = false }: ReportTOCProps) {
     const items = React.useMemo(
-        () => (worklist ? WORKLIST_TOC_ITEMS : REPORT_TOC_ITEMS).filter((item) => (item.id !== "section-keep" || hasKeep) && (item.id !== "section-role" || hasRole)),
-        [hasKeep, hasRole, worklist],
+        () => (worklist ? WORKLIST_TOC_ITEMS : REPORT_TOC_ITEMS)
+            .filter((item) => (item.id !== "section-keep" || hasKeep) && (item.id !== "section-role" || hasRole))
+            .map((item) => (profile && item.id === "section-fixes" ? { ...item, label: "Parts", mobileLabel: "Parts" } : item)),
+        [hasKeep, hasRole, worklist, profile],
     );
     const { selectedId, navRef, buttonRefs, handleScroll } = useReportNavigation(items, activeId);
     const layoutId = React.useId();

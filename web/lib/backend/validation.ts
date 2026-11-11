@@ -9,6 +9,7 @@ import { ambiguousReportSourceLocators } from "../llm/report-source-locators";
 import { isOptionalReportMetadataPath } from "../llm/optional-report-metadata";
 import { logInfo } from "../observability/logger";
 import { MIN_RESUME_CHARS, RESUME_TOO_SHORT_MESSAGE } from "../resume-input";
+import { parseReportDocument, type ReportDocument } from "../reports/report-document";
 
 const MAX_TEXT_LENGTH = 30000;
 const ALL_MODES = ["resume", "resume_ideas", "case_resume", "case_interview", "case_negotiation", "linkedin"] as const;
@@ -27,7 +28,7 @@ export function validateResumeFeedbackRequest(body: any): {
   ok: boolean;
   message?: string;
   fieldErrors?: Record<string, string>;
-  value?: { text: string; mode: Mode; jobDescription: string | null; rebuild: RebuildRequest | null };
+  value?: { text: string; mode: Mode; jobDescription: string | null; rebuild: RebuildRequest | null; document: ReportDocument | null };
 } {
   const fieldErrors: Record<string, string> = {};
 
@@ -65,6 +66,11 @@ export function validateResumeFeedbackRequest(body: any): {
     else normalizedMode = mode as Mode;
   }
 
+  // What the text is: a resume unless the request says it is a LinkedIn profile export.
+  const rawDocument = (body as any).document;
+  const document = parseReportDocument(rawDocument);
+  if (rawDocument !== undefined && rawDocument !== null && !document) fieldErrors.document = 'Document must be "linkedin" when given.';
+
   let normalizedJob: string | null = null;
   if (jobDescription !== undefined) {
     if (typeof jobDescription !== "string") fieldErrors.jobDescription = "Job description should be plain text.";
@@ -84,7 +90,7 @@ export function validateResumeFeedbackRequest(body: any): {
 
   return {
     ok: true,
-    value: { text: trimmedText, mode: normalizedMode, jobDescription: normalizedJob, rebuild }
+    value: { text: trimmedText, mode: normalizedMode, jobDescription: normalizedJob, rebuild, document }
   };
 }
 

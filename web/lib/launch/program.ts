@@ -77,7 +77,7 @@ export const ROLLBACK_CONTROLS: RollbackControl[] = [
     surface: "LinkedIn review",
     envVar: "NEXT_PUBLIC_ENABLE_LINKEDIN_REVIEW",
     defaultState: "disabled",
-    reason: "Blocked from enablement until its generation route uses the atomic access-reservation lifecycle.",
+    reason: "The profile review runs through the resume report route and its access reservation (Nov 10, 2026). Keep it off until its prompt has passed a live evaluation on real LinkedIn exports.",
   },
   {
     surface: "Experimental resume-ideas API",

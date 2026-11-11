@@ -1,21 +1,21 @@
 {
   "generated_by": "web/scripts/copy-inventory.cjs",
   "counts": {
-    "files_scanned": 429,
-    "files_with_copy": 260,
-    "strings": 3045,
-    "unique_strings": 2536
+    "files_scanned": 422,
+    "files_with_copy": 255,
+    "strings": 2941,
+    "unique_strings": 2447
   },
   "by_moment": {
     "research": 988,
     "account": 442,
     "marketing": 418,
-    "report": 323,
+    "report": 253,
     "pricing": 218,
-    "upload": 155,
+    "upload": 124,
     "legal": 111,
     "extension": 98,
-    "shared": 85,
+    "shared": 82,
     "rewrite": 62,
     "auth": 54,
     "error": 54,
@@ -12582,160 +12582,6 @@
       "table": "api"
     },
     {
-      "text": "LINKEDIN PROFILE ANALYSIS",
-      "kind": "const",
-      "line": 57,
-      "file": "web/app/api/linkedin-feedback-stream/route.ts",
-      "routes": [
-        "/api/linkedin-feedback-stream"
-      ],
-      "moment": "report",
-      "table": "api"
-    },
-    {
-      "text": "LinkedIn review is temporarily unavailable.",
-      "kind": "key:message",
-      "line": 146,
-      "file": "web/app/api/linkedin-feedback-stream/route.ts",
-      "routes": [
-        "/api/linkedin-feedback-stream"
-      ],
-      "moment": "report",
-      "table": "api"
-    },
-    {
-      "text": "Too many requests. Try again shortly.",
-      "kind": "key:message",
-      "line": 158,
-      "file": "web/app/api/linkedin-feedback-stream/route.ts",
-      "routes": [
-        "/api/linkedin-feedback-stream"
-      ],
-      "moment": "report",
-      "table": "api"
-    },
-    {
-      "text": "Upload a PDF exported from your LinkedIn profile.",
-      "kind": "key:message",
-      "line": 189,
-      "file": "web/app/api/linkedin-feedback-stream/route.ts",
-      "routes": [
-        "/api/linkedin-feedback-stream"
-      ],
-      "moment": "report",
-      "table": "api"
-    },
-    {
-      "text": "LinkedIn URL is required.",
-      "kind": "key:message",
-      "line": 199,
-      "file": "web/app/api/linkedin-feedback-stream/route.ts",
-      "routes": [
-        "/api/linkedin-feedback-stream"
-      ],
-      "moment": "report",
-      "table": "api"
-    },
-    {
-      "text": "Upload your LinkedIn PDF before requesting a report.",
-      "kind": "key:message",
-      "line": 209,
-      "file": "web/app/api/linkedin-feedback-stream/route.ts",
-      "routes": [
-        "/api/linkedin-feedback-stream"
-      ],
-      "moment": "report",
-      "table": "api"
-    },
-    {
-      "text": "You've used your free report. A Job Search Pass is required to run another.",
-      "kind": "key:message",
-      "line": 252,
-      "file": "web/app/api/linkedin-feedback-stream/route.ts",
-      "routes": [
-        "/api/linkedin-feedback-stream"
-      ],
-      "moment": "report",
-      "table": "api"
-    },
-    {
-      "text": "Enter your LinkedIn profile address, like linkedin.com/in/yourname.",
-      "kind": "key:message",
-      "line": 267,
-      "file": "web/app/api/linkedin-feedback-stream/route.ts",
-      "routes": [
-        "/api/linkedin-feedback-stream"
-      ],
-      "moment": "report",
-      "table": "api"
-    },
-    {
-      "text": "Profile links are not supported. Upload a PDF exported from LinkedIn instead.",
-      "kind": "key:message",
-      "line": 283,
-      "file": "web/app/api/linkedin-feedback-stream/route.ts",
-      "routes": [
-        "/api/linkedin-feedback-stream"
-      ],
-      "moment": "report",
-      "table": "api"
-    },
-    {
-      "text": "We couldn't read that LinkedIn PDF. Save a fresh PDF from your profile and upload it again.",
-      "kind": "key:message",
-      "line": 298,
-      "file": "web/app/api/linkedin-feedback-stream/route.ts",
-      "routes": [
-        "/api/linkedin-feedback-stream"
-      ],
-      "moment": "report",
-      "table": "api"
-    },
-    {
-      "text": "SOURCE: PDF (Photo and banner cannot be assessed from PDF export)",
-      "kind": "const",
-      "line": 345,
-      "file": "web/app/api/linkedin-feedback-stream/route.ts",
-      "routes": [
-        "/api/linkedin-feedback-stream"
-      ],
-      "moment": "report",
-      "table": "api"
-    },
-    {
-      "text": "SOURCE: URL (Full visual profile available)",
-      "kind": "const",
-      "line": 346,
-      "file": "web/app/api/linkedin-feedback-stream/route.ts",
-      "routes": [
-        "/api/linkedin-feedback-stream"
-      ],
-      "moment": "report",
-      "table": "api"
-    },
-    {
-      "text": "The LinkedIn report could not be completed. Try again.",
-      "kind": "key:message",
-      "line": 386,
-      "file": "web/app/api/linkedin-feedback-stream/route.ts",
-      "routes": [
-        "/api/linkedin-feedback-stream"
-      ],
-      "moment": "report",
-      "table": "api"
-    },
-    {
-      "text": "Could not complete your LinkedIn report. Try again.",
-      "kind": "key:message",
-      "line": 483,
-      "file": "web/app/api/linkedin-feedback-stream/route.ts",
-      "routes": [
-        "/api/linkedin-feedback-stream"
-      ],
-      "moment": "report",
-      "table": "api"
-    },
-    {
       "text": "Too many requests. Try again shortly.",
       "kind": "key:message",
       "line": 56,
@@ -13673,7 +13519,29 @@
     {
       "text": "Too many requests. Try again shortly.",
       "kind": "key:message",
-      "line": 87,
+      "line": 89,
+      "file": "web/app/api/resume-feedback-stream/route.ts",
+      "routes": [
+        "/api/resume-feedback-stream"
+      ],
+      "moment": "report",
+      "table": "api"
+    },
+    {
+      "text": "LinkedIn profile reviews aren't available right now.",
+      "kind": "key:message",
+      "line": 154,
+      "file": "web/app/api/resume-feedback-stream/route.ts",
+      "routes": [
+        "/api/resume-feedback-stream"
+      ],
+      "moment": "report",
+      "table": "api"
+    },
+    {
+      "text": "A LinkedIn profile review can't be rewritten from answers.",
+      "kind": "key:message",
+      "line": 156,
       "file": "web/app/api/resume-feedback-stream/route.ts",
       "routes": [
         "/api/resume-feedback-stream"
@@ -13684,7 +13552,7 @@
     {
       "text": "Your browser is ready. Try creating your report again.",
       "kind": "key:message",
-      "line": 214,
+      "line": 237,
       "file": "web/app/api/resume-feedback-stream/route.ts",
       "routes": [
         "/api/resume-feedback-stream"
@@ -13695,7 +13563,7 @@
     {
       "text": "You've used your free report. The Job Search Pass is five more reports, good for 90 days.",
       "kind": "key:message",
-      "line": 266,
+      "line": 289,
       "file": "web/app/api/resume-feedback-stream/route.ts",
       "routes": [
         "/api/resume-feedback-stream"
@@ -13706,7 +13574,7 @@
     {
       "text": "This is taking longer than usual. Try again in a moment.",
       "kind": "const",
-      "line": 641,
+      "line": 666,
       "file": "web/app/api/resume-feedback-stream/route.ts",
       "routes": [
         "/api/resume-feedback-stream"
@@ -13717,7 +13585,7 @@
     {
       "text": "Connection hiccup. Try again in a moment.",
       "kind": "const",
-      "line": 643,
+      "line": 668,
       "file": "web/app/api/resume-feedback-stream/route.ts",
       "routes": [
         "/api/resume-feedback-stream"
@@ -26594,882 +26462,6 @@
       "table": "status"
     },
     {
-      "text": "Paid access active",
-      "kind": "return",
-      "line": 136,
-      "file": "web/components/linkedin/LinkedInInputPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "{paid} paid report{paid === 1 ? '' : 's'} remaining",
-      "kind": "return",
-      "line": 139,
-      "file": "web/components/linkedin/LinkedInInputPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "Your first report is free",
-      "kind": "return",
-      "line": 141,
-      "file": "web/components/linkedin/LinkedInInputPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "Another report needs a Job Search Pass",
-      "kind": "return",
-      "line": 142,
-      "file": "web/components/linkedin/LinkedInInputPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "Profile source",
-      "kind": "jsx-text",
-      "line": 150,
-      "file": "web/components/linkedin/LinkedInInputPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "LinkedIn / 01",
-      "kind": "jsx-text",
-      "line": 152,
-      "file": "web/components/linkedin/LinkedInInputPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "Choose a LinkedIn PDF",
-      "kind": "attr:aria-label",
-      "line": 162,
-      "file": "web/components/linkedin/LinkedInInputPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "Upload LinkedIn PDF",
-      "kind": "jsx-text",
-      "line": 169,
-      "file": "web/components/linkedin/LinkedInInputPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "Export it from LinkedIn, then upload it here.",
-      "kind": "jsx-text",
-      "line": 172,
-      "file": "web/components/linkedin/LinkedInInputPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "Select file",
-      "kind": "jsx-text",
-      "line": 183,
-      "file": "web/components/linkedin/LinkedInInputPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "Choose or drop a LinkedIn PDF",
-      "kind": "attr:aria-label",
-      "line": 191,
-      "file": "web/components/linkedin/LinkedInInputPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "Drop your LinkedIn PDF here",
-      "kind": "jsx-text",
-      "line": 217,
-      "file": "web/components/linkedin/LinkedInInputPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "LinkedIn &gt; Resources &gt; Save to PDF",
-      "kind": "jsx-text",
-      "line": 218,
-      "file": "web/components/linkedin/LinkedInInputPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "Reading your PDF…",
-      "kind": "jsx-text",
-      "line": 232,
-      "file": "web/components/linkedin/LinkedInInputPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "Open your LinkedIn profile",
-      "kind": "jsx-text",
-      "line": 269,
-      "file": "web/components/linkedin/LinkedInInputPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "See a sample report",
-      "kind": "jsx-text",
-      "line": 278,
-      "file": "web/components/linkedin/LinkedInInputPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "Creating your report…",
-      "kind": "attr:loadingLabel",
-      "line": 292,
-      "file": "web/components/linkedin/LinkedInInputPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "Get my report",
-      "kind": "jsx-text",
-      "line": 295,
-      "file": "web/components/linkedin/LinkedInInputPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "Data handling",
-      "kind": "jsx-text",
-      "line": 306,
-      "file": "web/components/linkedin/LinkedInInputPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "Scoring methodology",
-      "kind": "jsx-text",
-      "line": 310,
-      "file": "web/components/linkedin/LinkedInInputPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "First impression",
-      "kind": "key:label",
-      "line": 46,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "LinkedIn report",
-      "kind": "jsx-text",
-      "line": 58,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Method and limits",
-      "kind": "jsx-text",
-      "line": 70,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "What comes through first",
-      "kind": "jsx-text",
-      "line": 76,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Review score",
-      "kind": "jsx-text",
-      "line": 89,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Summarizes the feedback below.",
-      "kind": "jsx-text",
-      "line": 94,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Likely takeaway",
-      "kind": "attr:title",
-      "line": 113,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "What a recruiter may notice first.",
-      "kind": "attr:subtitle",
-      "line": 114,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Visibility note",
-      "kind": "jsx-text",
-      "line": 132,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Does your headline make your experience clear?",
-      "kind": "attr:subtitle",
-      "line": 144,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Suggested headline",
-      "kind": "attr:label",
-      "line": 167,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "About section",
-      "kind": "attr:title",
-      "line": 176,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "What does your introduction tell a recruiter?",
-      "kind": "attr:subtitle",
-      "line": 177,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Opening strength",
-      "kind": "jsx-text",
-      "line": 182,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Suggested opening",
-      "kind": "attr:label",
-      "line": 187,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Search visibility",
-      "kind": "attr:title",
-      "line": 195,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Which relevant terms appear in your profile?",
-      "kind": "attr:subtitle",
-      "line": 196,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Already present",
-      "kind": "attr:label",
-      "line": 201,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Worth considering",
-      "kind": "attr:label",
-      "line": 202,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Add keywords only when they truthfully describe your work. Search behavior varies by recruiter, query, and platform changes.",
-      "kind": "jsx-text",
-      "line": 207,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Role fit",
-      "kind": "attr:title",
-      "line": 215,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Which roles match the experience you describe?",
-      "kind": "attr:subtitle",
-      "line": 216,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Best-supported roles",
-      "kind": "jsx-text",
-      "line": 221,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "This profile doesn’t point to specific roles yet.",
-      "kind": "jsx-text",
-      "line": 226,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Experience described",
-      "kind": "jsx-text",
-      "line": 231,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "What to clarify",
-      "kind": "jsx-text",
-      "line": 234,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Start with these",
-      "kind": "attr:title",
-      "line": 244,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Each one says why it matters and how much work it takes.",
-      "kind": "attr:subtitle",
-      "line": 245,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "There’s nothing to fix first on this profile.",
-      "kind": "jsx-text",
-      "line": 257,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Suggested rewrites",
-      "kind": "attr:title",
-      "line": 266,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Review these suggestions before you use them.",
-      "kind": "attr:subtitle",
-      "line": 267,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Suggested wording",
-      "kind": "jsx-text",
-      "line": 276,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Use the suggested wording only if every detail is true.",
-      "kind": "jsx-text",
-      "line": 282,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Next step",
-      "kind": "jsx-text",
-      "line": 290,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Get feedback on your own profile.",
-      "kind": "jsx-text",
-      "line": 292,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Update your profile, then review it again when you are ready.",
-      "kind": "jsx-text",
-      "line": 292,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Paid access is active.",
-      "kind": "jsx-text",
-      "line": 297,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Review my profile",
-      "kind": "jsx-text",
-      "line": 306,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Review another profile",
-      "kind": "jsx-text",
-      "line": 310,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Needs work",
-      "kind": "key:label",
-      "line": 344,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Keyword rich",
-      "kind": "key:label",
-      "line": 349,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Not available in PDF",
-      "kind": "key:label",
-      "line": 350,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Strong opening",
-      "kind": "key:label",
-      "line": 358,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Clear opening",
-      "kind": "key:label",
-      "line": 359,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Opening needs more detail",
-      "kind": "key:label",
-      "line": 360,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "None identified.",
-      "kind": "jsx-text",
-      "line": 375,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Try copying again",
-      "kind": "key:label",
-      "line": 419,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Check that every detail describes your experience before using this wording.",
-      "kind": "jsx-text",
-      "line": 426,
-      "file": "web/components/linkedin/LinkedInReportPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "First impression",
-      "kind": "key:label",
-      "line": 17,
-      "file": "web/components/linkedin/LinkedInReportTOC.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "About section",
-      "kind": "key:label",
-      "line": 19,
-      "file": "web/components/linkedin/LinkedInReportTOC.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Search visibility",
-      "kind": "key:label",
-      "line": 20,
-      "file": "web/components/linkedin/LinkedInReportTOC.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Start with these",
-      "kind": "key:label",
-      "line": 21,
-      "file": "web/components/linkedin/LinkedInReportTOC.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "LinkedIn report sections",
-      "kind": "attr:aria-label",
-      "line": 33,
-      "file": "web/components/linkedin/LinkedInReportTOC.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
       "text": "Save a job while you browse",
       "kind": "key:title",
       "line": 25,
@@ -29244,7 +28236,7 @@
     {
       "text": "Saved report",
       "kind": "return",
-      "line": 27,
+      "line": 28,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -29255,7 +28247,7 @@
     {
       "text": "Could not rename this report. Try again.",
       "kind": "call:ClientActionError",
-      "line": 82,
+      "line": 83,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -29266,7 +28258,7 @@
     {
       "text": "Could not delete this report. Try again.",
       "kind": "call:ClientActionError",
-      "line": 105,
+      "line": 106,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -29277,7 +28269,7 @@
     {
       "text": "Report deleted",
       "kind": "call:toast.success",
-      "line": 109,
+      "line": 110,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -29288,7 +28280,7 @@
     {
       "text": "Nothing here yet",
       "kind": "jsx-text",
-      "line": 124,
+      "line": 125,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -29299,7 +28291,7 @@
     {
       "text": "Get my report",
       "kind": "jsx-text",
-      "line": 129,
+      "line": 130,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -29310,7 +28302,7 @@
     {
       "text": "Report name",
       "kind": "jsx-text",
-      "line": 156,
+      "line": 157,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -29321,7 +28313,7 @@
     {
       "text": "Name this version",
       "kind": "attr:placeholder",
-      "line": 168,
+      "line": 169,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -29332,7 +28324,7 @@
     {
       "text": "Saving…",
       "kind": "attr:loadingLabel",
-      "line": 175,
+      "line": 176,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -29343,7 +28335,7 @@
     {
       "text": "Cancel rename",
       "kind": "attr:aria-label",
-      "line": 185,
+      "line": 186,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -29354,7 +28346,7 @@
     {
       "text": "Delete {title}",
       "kind": "attr:aria-label",
-      "line": 219,
+      "line": 220,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -29365,7 +28357,7 @@
     {
       "text": "Delete this report?",
       "kind": "attr:title",
-      "line": 234,
+      "line": 235,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -29376,7 +28368,7 @@
     {
       "text": "{reportToDelete ? reportTi…} will be permanently deleted. Your account and any other saved reports will stay intact.",
       "kind": "attr:description",
-      "line": 235,
+      "line": 236,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -31191,36 +30183,27 @@
       "kind": "key:label",
       "line": 19,
       "file": "web/components/shared/TrustBadges.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
+      "routes": [],
       "moment": "shared",
-      "table": "workspace"
+      "table": "unrouted"
     },
     {
       "text": "Delete saved reports anytime",
       "kind": "key:label",
       "line": 20,
       "file": "web/components/shared/TrustBadges.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
+      "routes": [],
       "moment": "shared",
-      "table": "workspace"
+      "table": "unrouted"
     },
     {
       "text": "We do not sell your data",
       "kind": "key:label",
       "line": 21,
       "file": "web/components/shared/TrustBadges.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
+      "routes": [],
       "moment": "shared",
-      "table": "workspace"
+      "table": "unrouted"
     },
     {
       "text": "Open account menu",
@@ -32418,7 +31401,7 @@
     {
       "text": "{(bytes / 1024 / 1024).toF…} MB",
       "kind": "return",
-      "line": 29,
+      "line": 31,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32430,7 +31413,7 @@
     {
       "text": "This file is {formatMegabytes(selectedF…}. Choose a PDF or DOCX under 4 MB.",
       "kind": "call:setError",
-      "line": 87,
+      "line": 90,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32442,7 +31425,7 @@
     {
       "text": "This file is {formatMegabytes(rejection…}. Choose a PDF or DOCX under 4 MB.",
       "kind": "call:setError",
-      "line": 99,
+      "line": 102,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32454,7 +31437,7 @@
     {
       "text": "That file type won’t open here. Choose a PDF or DOCX.",
       "kind": "call:setError",
-      "line": 101,
+      "line": 104,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32466,7 +31449,7 @@
     {
       "text": "We couldn’t read this file. Try another PDF or DOCX.",
       "kind": "call:setError",
-      "line": 118,
+      "line": 121,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32478,7 +31461,7 @@
     {
       "text": "We couldn’t read this file. Try again or choose another PDF or DOCX.",
       "kind": "call:setError",
-      "line": 127,
+      "line": 130,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32490,31 +31473,7 @@
     {
       "text": "This file is {formatMegabytes(selectedF…}. Choose a PDF or DOCX under 4 MB.",
       "kind": "call:setError",
-      "line": 159,
-      "file": "web/components/upload/ResumeDropzone.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "Upload resume file (PDF or DOCX)",
-      "kind": "attr:aria-label",
-      "line": 188,
-      "file": "web/components/upload/ResumeDropzone.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "Reading your resume file…",
-      "kind": "jsx-text",
-      "line": 202,
+      "line": 162,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32526,7 +31485,7 @@
     {
       "text": "Remove {displayFileName}",
       "kind": "attr:aria-label",
-      "line": 207,
+      "line": 210,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32538,7 +31497,7 @@
     {
       "text": "Remove {rejectedFile.name}",
       "kind": "attr:aria-label",
-      "line": 231,
+      "line": 234,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32550,7 +31509,7 @@
     {
       "text": "Choose another file",
       "kind": "jsx-text",
-      "line": 253,
+      "line": 256,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -32560,31 +31519,7 @@
       "table": "workspace"
     },
     {
-      "text": "Drop your resume here.",
-      "kind": "jsx-text",
-      "line": 270,
-      "file": "web/components/upload/ResumeDropzone.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "Add your resume.",
-      "kind": "jsx-text",
-      "line": 271,
-      "file": "web/components/upload/ResumeDropzone.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "PDF or Word, up to 4 MB.",
+      "text": "Drop your LinkedIn PDF here.",
       "kind": "jsx-text",
       "line": 273,
       "file": "web/components/upload/ResumeDropzone.tsx",
@@ -32596,9 +31531,69 @@
       "table": "workspace"
     },
     {
+      "text": "Drop your resume here.",
+      "kind": "jsx-text",
+      "line": 273,
+      "file": "web/components/upload/ResumeDropzone.tsx",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "upload",
+      "table": "workspace"
+    },
+    {
+      "text": "Add your LinkedIn PDF.",
+      "kind": "jsx-text",
+      "line": 274,
+      "file": "web/components/upload/ResumeDropzone.tsx",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "upload",
+      "table": "workspace"
+    },
+    {
+      "text": "Add your resume.",
+      "kind": "jsx-text",
+      "line": 274,
+      "file": "web/components/upload/ResumeDropzone.tsx",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "upload",
+      "table": "workspace"
+    },
+    {
+      "text": "The PDF LinkedIn saves for you, up to 4 MB.",
+      "kind": "jsx-text",
+      "line": 276,
+      "file": "web/components/upload/ResumeDropzone.tsx",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "upload",
+      "table": "workspace"
+    },
+    {
+      "text": "PDF or Word, up to 4 MB.",
+      "kind": "jsx-text",
+      "line": 276,
+      "file": "web/components/upload/ResumeDropzone.tsx",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "upload",
+      "table": "workspace"
+    },
+    {
       "text": "Choose a file",
       "kind": "jsx-text",
-      "line": 287,
+      "line": 290,
       "file": "web/components/upload/ResumeDropzone.tsx",
       "routes": [
         "/sample-report",
@@ -33202,7 +32197,7 @@
     {
       "text": "{paid} {paid === 1 ? \"report\" : \"…} left on your pass",
       "kind": "return",
-      "line": 135,
+      "line": 139,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33214,7 +32209,7 @@
     {
       "text": "Sign in for your free report, or get a Job Search Pass",
       "kind": "return",
-      "line": 139,
+      "line": 143,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33226,7 +32221,7 @@
     {
       "text": "Another report needs a Job Search Pass",
       "kind": "return",
-      "line": 140,
+      "line": 144,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33238,7 +32233,7 @@
     {
       "text": "Compare my revision",
       "kind": "const",
-      "line": 146,
+      "line": 150,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33250,7 +32245,7 @@
     {
       "text": "Get my report",
       "kind": "const",
-      "line": 147,
+      "line": 151,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33262,7 +32257,7 @@
     {
       "text": "Get your free report",
       "kind": "const",
-      "line": 147,
+      "line": 151,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33274,7 +32269,7 @@
     {
       "text": "Now let’s see what changed.",
       "kind": "jsx-text",
-      "line": 163,
+      "line": 167,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33284,9 +32279,21 @@
       "table": "workspace"
     },
     {
-      "text": "Let’s see what they see.",
+      "text": "On your LinkedIn profile, choose Resources, then Save to PDF. Upload that file here.",
       "kind": "jsx-text",
-      "line": 163,
+      "line": 171,
+      "file": "web/components/workspace/InputPanel.tsx",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "upload",
+      "table": "workspace"
+    },
+    {
+      "text": "Open your profile",
+      "kind": "jsx-text",
+      "line": 172,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33298,7 +32305,7 @@
     {
       "text": "Open your last report",
       "kind": "jsx-text",
-      "line": 167,
+      "line": 177,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33310,7 +32317,7 @@
     {
       "text": "New reports are paused for now.",
       "kind": "jsx-text",
-      "line": 186,
+      "line": 196,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33322,7 +32329,7 @@
     {
       "text": "We&apos;re fixing a problem, so an upload won&apos;t run yet. Saved reports still open.",
       "kind": "jsx-text",
-      "line": 188,
+      "line": 198,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33334,19 +32341,7 @@
     {
       "text": "Check status",
       "kind": "jsx-text",
-      "line": 189,
-      "file": "web/components/workspace/InputPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "Resume input",
-      "kind": "attr:aria-label",
-      "line": 195,
+      "line": 199,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33358,7 +32353,7 @@
     {
       "text": "Paste your resume",
       "kind": "jsx-text",
-      "line": 208,
+      "line": 219,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33370,7 +32365,7 @@
     {
       "text": "Upload a file",
       "kind": "jsx-text",
-      "line": 215,
+      "line": 226,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33382,7 +32377,7 @@
     {
       "text": "Resume text",
       "kind": "jsx-text",
-      "line": 218,
+      "line": 229,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33394,7 +32389,7 @@
     {
       "text": "That&apos;s",
       "kind": "jsx-text",
-      "line": 232,
+      "line": 243,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33406,7 +32401,7 @@
     {
       "text": "characters. We need at least",
       "kind": "jsx-text",
-      "line": 232,
+      "line": 243,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33418,7 +32413,7 @@
     {
       "text": "to review it, so add the whole resume, including your experience.",
       "kind": "jsx-text",
-      "line": 232,
+      "line": 243,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33430,7 +32425,7 @@
     {
       "text": "What we read",
       "kind": "jsx-text",
-      "line": 242,
+      "line": 253,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33440,9 +32435,9 @@
       "table": "workspace"
     },
     {
-      "text": "We could only read",
+      "text": "We could only read {charCount} characters, and we need at least {MIN_RESUME_CHARS}. Save a fresh PDF from your LinkedIn profile and upload that.",
       "kind": "jsx-text",
-      "line": 252,
+      "line": 263,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33452,21 +32447,9 @@
       "table": "workspace"
     },
     {
-      "text": "characters, and we need at least",
+      "text": "We could only read {charCount} characters, and we need at least {MIN_RESUME_CHARS}. A scanned or image-only PDF often does this. Paste the text instead.",
       "kind": "jsx-text",
-      "line": 252,
-      "file": "web/components/workspace/InputPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": ". A scanned or image-only PDF often does this. Paste the text instead.",
-      "kind": "jsx-text",
-      "line": 252,
+      "line": 263,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33478,7 +32461,7 @@
     {
       "text": "Text we read from your file",
       "kind": "attr:aria-label",
-      "line": 255,
+      "line": 266,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33490,7 +32473,7 @@
     {
       "text": "Paste the text instead",
       "kind": "jsx-text",
-      "line": 258,
+      "line": 269,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33502,7 +32485,7 @@
     {
       "text": "Fix the text",
       "kind": "jsx-text",
-      "line": 258,
+      "line": 269,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33514,7 +32497,7 @@
     {
       "text": "Paste the text instead",
       "kind": "jsx-text",
-      "line": 273,
+      "line": 284,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33526,31 +32509,19 @@
     {
       "text": "See Jordan&apos;s report",
       "kind": "jsx-text",
-      "line": 277,
-      "file": "web/components/workspace/InputPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "OpenAI writes the report from your resume, and we don’t opt it into model training.",
-      "kind": "jsx-text",
-      "line": 287,
-      "file": "web/components/workspace/InputPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "OpenAI writes the report from your resume. We don’t store the resume or opt it into model training.",
-      "kind": "jsx-text",
       "line": 288,
+      "file": "web/components/workspace/InputPanel.tsx",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "upload",
+      "table": "workspace"
+    },
+    {
+      "text": "OpenAI writes the review from the PDF you upload, and we don’t opt it into model training. We never sign in to your LinkedIn account.",
+      "kind": "jsx-text",
+      "line": 298,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33562,7 +32533,7 @@
     {
       "text": "How we handle your data",
       "kind": "jsx-text",
-      "line": 289,
+      "line": 302,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33574,7 +32545,7 @@
     {
       "text": "Compare with a job",
       "kind": "jsx-text",
-      "line": 304,
+      "line": 317,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33586,7 +32557,7 @@
     {
       "text": "(optional)",
       "kind": "jsx-text",
-      "line": 304,
+      "line": 317,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33598,7 +32569,7 @@
     {
       "text": "Job posting",
       "kind": "jsx-text",
-      "line": 312,
+      "line": 325,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -33610,18 +32581,6 @@
     {
       "text": "Paste the job posting here…",
       "kind": "attr:placeholder",
-      "line": 320,
-      "file": "web/components/workspace/InputPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "Reading your resume…",
-      "kind": "attr:loadingLabel",
       "line": 333,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
@@ -33634,116 +32593,8 @@
     {
       "text": "Reports are paused",
       "kind": "jsx-text",
-      "line": 335,
+      "line": 348,
       "file": "web/components/workspace/InputPanel.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "LinkedIn report",
-      "kind": "jsx-text",
-      "line": 67,
-      "file": "web/components/workspace/LinkedInModeSection.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "Review your LinkedIn profile.",
-      "kind": "jsx-text",
-      "line": 70,
-      "file": "web/components/workspace/LinkedInModeSection.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "Upload your LinkedIn PDF for feedback on your headline, experience, and missing details.",
-      "kind": "jsx-text",
-      "line": 73,
-      "file": "web/components/workspace/LinkedInModeSection.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "First impression",
-      "kind": "jsx-text",
-      "line": 76,
-      "file": "web/components/workspace/LinkedInModeSection.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "Headline and About section",
-      "kind": "jsx-text",
-      "line": 77,
-      "file": "web/components/workspace/LinkedInModeSection.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "Skills and relevant keywords",
-      "kind": "jsx-text",
-      "line": 78,
-      "file": "web/components/workspace/LinkedInModeSection.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "Feedback on the profile you uploaded.",
-      "kind": "jsx-text",
-      "line": 107,
-      "file": "web/components/workspace/LinkedInModeSection.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "New report",
-      "kind": "jsx-text",
-      "line": 118,
-      "file": "web/components/workspace/LinkedInModeSection.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "upload",
-      "table": "workspace"
-    },
-    {
-      "text": "Get 5 more",
-      "kind": "jsx-text",
-      "line": 128,
-      "file": "web/components/workspace/LinkedInModeSection.tsx",
       "routes": [
         "/sample-report",
         "/workspace"
@@ -34066,7 +32917,7 @@
     {
       "text": "Saving…",
       "kind": "const",
-      "line": 134,
+      "line": 136,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -34079,7 +32930,7 @@
     {
       "text": "Try saving again",
       "kind": "const",
-      "line": 134,
+      "line": 136,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -34092,7 +32943,7 @@
     {
       "text": "Save this version",
       "kind": "const",
-      "line": 134,
+      "line": 136,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -34105,7 +32956,7 @@
     {
       "text": "written from {rebuiltAnswers === 1 ? \"y…}",
       "kind": "const",
-      "line": 140,
+      "line": 142,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -34118,7 +32969,7 @@
     {
       "text": "{rebuiltAnswers} answers",
       "kind": "const",
-      "line": 140,
+      "line": 142,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -34131,7 +32982,7 @@
     {
       "text": "Link copied.",
       "kind": "call:toast.success",
-      "line": 167,
+      "line": 169,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -34144,7 +32995,7 @@
     {
       "text": "Couldn't copy the link. Copy it from the address bar.",
       "kind": "call:toast.error",
-      "line": 169,
+      "line": 171,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -34157,7 +33008,7 @@
     {
       "text": "Sample report · Jordan is fictional",
       "kind": "jsx-text",
-      "line": 206,
+      "line": 208,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -34170,7 +33021,7 @@
     {
       "text": "Get your free report",
       "kind": "jsx-text",
-      "line": 214,
+      "line": 216,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -34183,7 +33034,7 @@
     {
       "text": "Export PDF",
       "kind": "jsx-text",
-      "line": 249,
+      "line": 251,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -34196,7 +33047,7 @@
     {
       "text": "Exporting…",
       "kind": "jsx-text",
-      "line": 250,
+      "line": 252,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -34209,7 +33060,7 @@
     {
       "text": "Share report",
       "kind": "attr:aria-label",
-      "line": 258,
+      "line": 260,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -34222,7 +33073,7 @@
     {
       "text": "Share report",
       "kind": "jsx-text",
-      "line": 262,
+      "line": 264,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -34235,7 +33086,7 @@
     {
       "text": "Still writing the rest.",
       "kind": "jsx-text",
-      "line": 276,
+      "line": 278,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -34248,7 +33099,7 @@
     {
       "text": "Share view is on.",
       "kind": "jsx-text",
-      "line": 284,
+      "line": 286,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -34261,7 +33112,7 @@
     {
       "text": "Some personal details are hidden. Check the report for anything else you want to remove before sharing.",
       "kind": "jsx-text",
-      "line": 286,
+      "line": 288,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -34274,7 +33125,7 @@
     {
       "text": "Copy link",
       "kind": "jsx-text",
-      "line": 293,
+      "line": 295,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -34287,7 +33138,7 @@
     {
       "text": "Exit share",
       "kind": "jsx-text",
-      "line": 297,
+      "line": 299,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -35667,7 +34518,7 @@
     {
       "text": "Report stopped",
       "kind": "call:toast.info",
-      "line": 258,
+      "line": 250,
       "file": "web/components/workspace/WorkspaceClient.tsx",
       "routes": [
         "/sample-report",
@@ -35679,7 +34530,7 @@
     {
       "text": "The sample report didn't load",
       "kind": "call:toast.error",
-      "line": 423,
+      "line": 397,
       "file": "web/components/workspace/WorkspaceClient.tsx",
       "routes": [
         "/sample-report",
@@ -35691,19 +34542,7 @@
     {
       "text": "Refresh to try again, or start with your own resume.",
       "kind": "key:description",
-      "line": 424,
-      "file": "web/components/workspace/WorkspaceClient.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Upload your LinkedIn PDF again to retry.",
-      "kind": "call:toast.message",
-      "line": 437,
+      "line": 398,
       "file": "web/components/workspace/WorkspaceClient.tsx",
       "routes": [
         "/sample-report",
@@ -35715,7 +34554,7 @@
     {
       "text": "This report is missing details needed for a PDF. Contact support for help exporting it.",
       "kind": "call:toast.error",
-      "line": 465,
+      "line": 428,
       "file": "web/components/workspace/WorkspaceClient.tsx",
       "routes": [
         "/sample-report",
@@ -35833,54 +34672,6 @@
       "table": "workspace"
     },
     {
-      "text": "We couldn't finish your LinkedIn report",
-      "kind": "call:toast.error",
-      "line": 107,
-      "file": "web/components/workspace/hooks/useLinkedInReview.ts",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "{REPORT_ACCESS_NOT_USED} Try again, or save a fresh PDF from LinkedIn and upload that.",
-      "kind": "key:description",
-      "line": 108,
-      "file": "web/components/workspace/hooks/useLinkedInReview.ts",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "We couldn't finish your LinkedIn report",
-      "kind": "call:toast.error",
-      "line": 114,
-      "file": "web/components/workspace/hooks/useLinkedInReview.ts",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "{REPORT_ACCESS_NOT_USED} Try again in a moment.",
-      "kind": "key:description",
-      "line": 115,
-      "file": "web/components/workspace/hooks/useLinkedInReview.ts",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
       "text": "Saved to My reports.",
       "kind": "call:toast.success",
       "line": 28,
@@ -35892,7 +34683,7 @@
     {
       "text": "We couldn’t read this resume",
       "kind": "call:toast.error",
-      "line": 74,
+      "line": 76,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -35904,7 +34695,7 @@
     {
       "text": "We couldn’t read this file",
       "kind": "call:toast.error",
-      "line": 80,
+      "line": 82,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -35916,7 +34707,7 @@
     {
       "text": "Try another PDF or DOCX, or paste the resume text.",
       "kind": "key:description",
-      "line": 80,
+      "line": 82,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -35928,7 +34719,7 @@
     {
       "text": "Saved to My reports.",
       "kind": "call:toast.success",
-      "line": 97,
+      "line": 99,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -35940,7 +34731,7 @@
     {
       "text": "We couldn’t save this report to My reports. Keep this tab open and try again.",
       "kind": "key:message",
-      "line": 104,
+      "line": 106,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -35952,7 +34743,7 @@
     {
       "text": "Add your resume first",
       "kind": "call:toast.error",
-      "line": 126,
+      "line": 128,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -35964,7 +34755,7 @@
     {
       "text": "Upload a file or paste the resume text before creating the report.",
       "kind": "key:description",
-      "line": 127,
+      "line": 129,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -35976,7 +34767,7 @@
     {
       "text": "Report stopped",
       "kind": "call:toast.warning",
-      "line": 172,
+      "line": 175,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -35988,7 +34779,7 @@
     {
       "text": "Report stopped",
       "kind": "call:toast.info",
-      "line": 176,
+      "line": 179,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36000,7 +34791,7 @@
     {
       "text": "Report stopped",
       "kind": "call:toast.info",
-      "line": 180,
+      "line": 183,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36012,7 +34803,7 @@
     {
       "text": "{REPORT_ACCESS_NOT_USED} Try again whenever you're ready.",
       "kind": "const",
-      "line": 234,
+      "line": 237,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36024,7 +34815,7 @@
     {
       "text": "The connection dropped",
       "kind": "const",
-      "line": 239,
+      "line": 242,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36036,7 +34827,7 @@
     {
       "text": "We couldn’t finish your report",
       "kind": "const",
-      "line": 239,
+      "line": 242,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36048,7 +34839,7 @@
     {
       "text": "We couldn’t finish your report",
       "kind": "call:toast.error",
-      "line": 256,
+      "line": 259,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36470,22 +35261,9 @@
       "table": "workspace"
     },
     {
-      "text": "This is killer! Send it.",
-      "kind": "const",
-      "line": 37,
-      "file": "web/components/workspace/report/ReportEnding.tsx",
-      "routes": [
-        "/reports/[id]",
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
       "text": "Send it. Then read it against the posting you're going for.",
       "kind": "const",
-      "line": 37,
+      "line": 42,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -36496,9 +35274,9 @@
       "table": "workspace"
     },
     {
-      "text": "Every line says what you did and what changed, so your resume won't be the reason you don't get the call. Read it against the posting you're going for, and look at whether anyone can bring you in.",
+      "text": "Check my updated profile",
       "kind": "const",
-      "line": 38,
+      "line": 44,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -36511,7 +35289,7 @@
     {
       "text": "Read it against a posting",
       "kind": "const",
-      "line": 39,
+      "line": 44,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -36524,46 +35302,7 @@
     {
       "text": "Compare my revision",
       "kind": "const",
-      "line": 39,
-      "file": "web/components/workspace/report/ReportEnding.tsx",
-      "routes": [
-        "/reports/[id]",
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "{revisedCount > 1 ? \"Your …} into your resume and see what changed.",
-      "kind": "const",
-      "line": 40,
-      "file": "web/components/workspace/report/ReportEnding.tsx",
-      "routes": [
-        "/reports/[id]",
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Your lines are ready. Drop them",
-      "kind": "const",
-      "line": 40,
-      "file": "web/components/workspace/report/ReportEnding.tsx",
-      "routes": [
-        "/reports/[id]",
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Your line is ready. Drop it",
-      "kind": "const",
-      "line": 40,
+      "line": 44,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -36576,7 +35315,7 @@
     {
       "text": "That’s Jordan’s. Yours is next.",
       "kind": "jsx-text",
-      "line": 46,
+      "line": 51,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -36589,7 +35328,7 @@
     {
       "text": "Get your free report",
       "kind": "jsx-text",
-      "line": 47,
+      "line": 52,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -36602,7 +35341,7 @@
     {
       "text": "Your line is ready. Save this version.",
       "kind": "jsx-text",
-      "line": 56,
+      "line": 61,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -36615,7 +35354,7 @@
     {
       "text": "Save this version.",
       "kind": "jsx-text",
-      "line": 56,
+      "line": 61,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -36628,7 +35367,7 @@
     {
       "text": "Your answers and the revised line stay with it.",
       "kind": "jsx-text",
-      "line": 58,
+      "line": 63,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -36641,7 +35380,7 @@
     {
       "text": "Saving…",
       "kind": "jsx-text",
-      "line": 61,
+      "line": 66,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -36654,7 +35393,20 @@
     {
       "text": "Save this version",
       "kind": "jsx-text",
-      "line": 61,
+      "line": 66,
+      "file": "web/components/workspace/report/ReportEnding.tsx",
+      "routes": [
+        "/reports/[id]",
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "Check my updated profile",
+      "kind": "jsx-text",
+      "line": 69,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -36667,7 +35419,7 @@
     {
       "text": "Compare my revision",
       "kind": "jsx-text",
-      "line": 64,
+      "line": 69,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -36680,7 +35432,7 @@
     {
       "text": "Kept in",
       "kind": "jsx-text",
-      "line": 81,
+      "line": 86,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -36693,7 +35445,7 @@
     {
       "text": "My reports",
       "kind": "jsx-text",
-      "line": 81,
+      "line": 86,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -36706,7 +35458,7 @@
     {
       "text": "The comparison lasts for this visit. Save the report to keep it.",
       "kind": "jsx-text",
-      "line": 100,
+      "line": 105,
       "file": "web/components/workspace/report/ReportEnding.tsx",
       "routes": [
         "/reports/[id]",
@@ -36875,7 +35627,7 @@
     {
       "text": "Fix these first",
       "kind": "key:label",
-      "line": 23,
+      "line": 25,
       "file": "web/components/workspace/report/ReportTOC.tsx",
       "routes": [
         "/reports/[id]",
@@ -36888,7 +35640,7 @@
     {
       "text": "Keep these",
       "kind": "key:label",
-      "line": 24,
+      "line": 26,
       "file": "web/components/workspace/report/ReportTOC.tsx",
       "routes": [
         "/reports/[id]",
@@ -36901,7 +35653,7 @@
     {
       "text": "Role fit",
       "kind": "key:label",
-      "line": 25,
+      "line": 27,
       "file": "web/components/workspace/report/ReportTOC.tsx",
       "routes": [
         "/reports/[id]",
@@ -36914,7 +35666,7 @@
     {
       "text": "Role fit",
       "kind": "key:label",
-      "line": 31,
+      "line": 33,
       "file": "web/components/workspace/report/ReportTOC.tsx",
       "routes": [
         "/reports/[id]",
@@ -36927,7 +35679,7 @@
     {
       "text": "Resume report sections",
       "kind": "attr:aria-label",
-      "line": 45,
+      "line": 49,
       "file": "web/components/workspace/report/ReportTOC.tsx",
       "routes": [
         "/reports/[id]",
@@ -37525,7 +36277,7 @@
     {
       "text": "{band.name}, band {current + 1} of {scale.length}",
       "kind": "attr:aria-label",
-      "line": 17,
+      "line": 18,
       "file": "web/components/workspace/report/markup/ScoreBand.tsx",
       "routes": [
         "/methodology",
@@ -37693,19 +36445,6 @@
       "table": "workspace"
     },
     {
-      "text": "The job your resume was read for",
-      "kind": "attr:aria-label",
-      "line": 28,
-      "file": "web/components/workspace/report/worklist/FirstPass.tsx",
-      "routes": [
-        "/reports/[id]",
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
       "text": "Which job is this for?",
       "kind": "jsx-text",
       "line": 45,
@@ -37773,7 +36512,7 @@
     {
       "text": "Filled in",
       "kind": "jsx-text",
-      "line": 177,
+      "line": 179,
       "file": "web/components/workspace/report/worklist/WorklistCard.tsx",
       "routes": [
         "/reports/[id]",
@@ -37786,20 +36525,7 @@
     {
       "text": "Left as it is. It's optional, and the line already works.",
       "kind": "jsx-text",
-      "line": 255,
-      "file": "web/components/workspace/report/worklist/WorklistCard.tsx",
-      "routes": [
-        "/reports/[id]",
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Left blank, and that's fine. Not every line needs every detail. Let's make sure the rest of your resume gives a recruiter something to grab onto.",
-      "kind": "jsx-text",
-      "line": 256,
+      "line": 257,
       "file": "web/components/workspace/report/worklist/WorklistCard.tsx",
       "routes": [
         "/reports/[id]",
@@ -37812,7 +36538,7 @@
     {
       "text": "Fill it in after all",
       "kind": "jsx-text",
-      "line": 257,
+      "line": 259,
       "file": "web/components/workspace/report/worklist/WorklistCard.tsx",
       "routes": [
         "/reports/[id]",
@@ -37825,7 +36551,7 @@
     {
       "text": "Copy the line",
       "kind": "key:label",
-      "line": 266,
+      "line": 268,
       "file": "web/components/workspace/report/worklist/WorklistCard.tsx",
       "routes": [
         "/reports/[id]",
@@ -37838,20 +36564,7 @@
     {
       "text": "I don't know yet",
       "kind": "jsx-text",
-      "line": 273,
-      "file": "web/components/workspace/report/worklist/WorklistCard.tsx",
-      "routes": [
-        "/reports/[id]",
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Every fact in it is from your resume or your answers.",
-      "kind": "jsx-text",
-      "line": 276,
+      "line": 275,
       "file": "web/components/workspace/report/worklist/WorklistCard.tsx",
       "routes": [
         "/reports/[id]",
@@ -37864,7 +36577,7 @@
     {
       "text": "Couldn&apos;t copy. Select the text and copy it yourself.",
       "kind": "jsx-text",
-      "line": 277,
+      "line": 279,
       "file": "web/components/workspace/report/worklist/WorklistCard.tsx",
       "routes": [
         "/reports/[id]",
@@ -37877,7 +36590,7 @@
     {
       "text": "Kept with this report.",
       "kind": "jsx-text",
-      "line": 280,
+      "line": 282,
       "file": "web/components/workspace/report/worklist/WorklistCard.tsx",
       "routes": [
         "/reports/[id]",
@@ -37955,20 +36668,7 @@
     {
       "text": "Score {report.score} out of 99",
       "kind": "attr:aria-label",
-      "line": 95,
-      "file": "web/components/workspace/report/worklist/WorklistReport.tsx",
-      "routes": [
-        "/reports/[id]",
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "report",
-      "table": "workspace"
-    },
-    {
-      "text": "Roles to consider",
-      "kind": "jsx-text",
-      "line": 158,
+      "line": 101,
       "file": "web/components/workspace/report/worklist/WorklistReport.tsx",
       "routes": [
         "/reports/[id]",
@@ -37981,7 +36681,7 @@
     {
       "text": "What the score means",
       "kind": "jsx-text",
-      "line": 170,
+      "line": 180,
       "file": "web/components/workspace/report/worklist/WorklistReport.tsx",
       "routes": [
         "/reports/[id]",
@@ -37992,9 +36692,9 @@
       "table": "workspace"
     },
     {
-      "text": "The band is what a recruiter would do with your resume after one pass. The number says where in the band you sit. Neither predicts interviews or offers.",
+      "text": "A recent employer recruiters know on sight moved this profile up one band. The parts under that name still need the work.",
       "kind": "jsx-text",
-      "line": 174,
+      "line": 186,
       "file": "web/components/workspace/report/worklist/WorklistReport.tsx",
       "routes": [
         "/reports/[id]",
@@ -38007,7 +36707,7 @@
     {
       "text": "A recent employer recruiters know on sight moved this resume up one band. The lines under that name still need the work.",
       "kind": "jsx-text",
-      "line": 176,
+      "line": 186,
       "file": "web/components/workspace/report/worklist/WorklistReport.tsx",
       "routes": [
         "/reports/[id]",
@@ -38020,7 +36720,7 @@
     {
       "text": "The connection dropped before your report finished.",
       "kind": "key:message",
-      "line": 154,
+      "line": 156,
       "file": "web/lib/api.ts",
       "routes": [
         "/sample-report",
@@ -38032,7 +36732,7 @@
     {
       "text": "The connection dropped before your report finished.",
       "kind": "key:message",
-      "line": 184,
+      "line": 186,
       "file": "web/lib/api.ts",
       "routes": [
         "/sample-report",
@@ -38044,7 +36744,7 @@
     {
       "text": "The connection dropped before your report finished.",
       "kind": "key:message",
-      "line": 235,
+      "line": 237,
       "file": "web/lib/api.ts",
       "routes": [
         "/sample-report",
@@ -38056,43 +36756,7 @@
     {
       "text": "The connection dropped before your report finished.",
       "kind": "key:message",
-      "line": 364,
-      "file": "web/lib/api.ts",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "shared",
-      "table": "workspace"
-    },
-    {
-      "text": "HTTP error: {res.status}",
-      "kind": "key:message",
-      "line": 424,
-      "file": "web/lib/api.ts",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "shared",
-      "table": "workspace"
-    },
-    {
-      "text": "No response body",
-      "kind": "key:message",
-      "line": 428,
-      "file": "web/lib/api.ts",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "shared",
-      "table": "workspace"
-    },
-    {
-      "text": "Stream ended without completion",
-      "kind": "key:message",
-      "line": 493,
+      "line": 366,
       "file": "web/lib/api.ts",
       "routes": [
         "/sample-report",
@@ -38256,7 +36920,6 @@
         "/api/billing/restore",
         "/api/checkout",
         "/api/export-pdf",
-        "/api/linkedin-feedback-stream",
         "/api/stripe/webhook",
         "/auth",
         "/compare",
@@ -38352,7 +37015,6 @@
         "/api/billing/restore",
         "/api/checkout",
         "/api/export-pdf",
-        "/api/linkedin-feedback-stream",
         "/api/stripe/webhook",
         "/auth",
         "/compare",
@@ -38448,7 +37110,6 @@
         "/api/billing/restore",
         "/api/checkout",
         "/api/export-pdf",
-        "/api/linkedin-feedback-stream",
         "/api/stripe/webhook",
         "/auth",
         "/compare",
@@ -38544,7 +37205,6 @@
         "/api/billing/restore",
         "/api/checkout",
         "/api/export-pdf",
-        "/api/linkedin-feedback-stream",
         "/api/stripe/webhook",
         "/auth",
         "/compare",
@@ -38640,7 +37300,6 @@
         "/api/billing/restore",
         "/api/checkout",
         "/api/export-pdf",
-        "/api/linkedin-feedback-stream",
         "/api/stripe/webhook",
         "/auth",
         "/compare",
@@ -41710,7 +40369,7 @@
     {
       "text": "Report insert failed",
       "kind": "key:message",
-      "line": 114,
+      "line": 115,
       "file": "web/lib/reports/generated-report-store.ts",
       "routes": [
         "/api/reports",
@@ -41725,7 +40384,7 @@
     {
       "text": "Saved job link update failed",
       "kind": "key:message",
-      "line": 131,
+      "line": 132,
       "file": "web/lib/reports/generated-report-store.ts",
       "routes": [
         "/api/reports",
@@ -41740,7 +40399,7 @@
     {
       "text": "Report rollback failed",
       "kind": "key:message",
-      "line": 154,
+      "line": 155,
       "file": "web/lib/reports/generated-report-store.ts",
       "routes": [
         "/api/reports",
@@ -41763,6 +40422,48 @@
       ],
       "moment": "report",
       "table": "workspace"
+    },
+    {
+      "text": "LinkedIn profile review",
+      "kind": "const",
+      "line": 44,
+      "file": "web/lib/reports/report-document.ts",
+      "routes": [
+        "/api/export-pdf",
+        "/api/reports",
+        "/api/reports/recovery",
+        "/api/resume-feedback",
+        "/api/resume-feedback-stream",
+        "/api/resume-ideas",
+        "/api/revise-line",
+        "/reports",
+        "/reports/[id]",
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
+      "text": "That doesn't look like a LinkedIn profile PDF. On your profile, choose Resources, then Save to PDF, and upload that file.",
+      "kind": "const",
+      "line": 51,
+      "file": "web/lib/reports/report-document.ts",
+      "routes": [
+        "/api/export-pdf",
+        "/api/reports",
+        "/api/reports/recovery",
+        "/api/resume-feedback",
+        "/api/resume-feedback-stream",
+        "/api/resume-ideas",
+        "/api/revise-line",
+        "/reports",
+        "/reports/[id]",
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
     },
     {
       "text": "read in {remainder} s",
@@ -42411,51 +41112,166 @@
       "table": "shared"
     },
     {
-      "text": "Nothing here needs work.",
-      "kind": "key:title",
-      "line": 102,
-      "file": "web/lib/reports/worklist-presentation.ts",
+      "text": "Job titles and dates. A recruiter can't tell what you did in them.",
+      "kind": "key:anchor",
+      "line": 73,
+      "file": "web/lib/reports/score-band.ts",
       "routes": [
         "/api/export-pdf",
+        "/api/reports/[id]",
+        "/api/reports/[id]/answers",
+        "/api/resume-feedback",
+        "/api/resume-feedback-stream",
+        "/api/revise-line",
+        "/dashboard",
+        "/launch/gauntlet",
+        "/methodology",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/workspace"
       ],
       "moment": "report",
-      "table": "workspace"
+      "table": "shared"
     },
     {
-      "text": "Lines that need work.",
-      "kind": "key:title",
-      "line": 104,
-      "file": "web/lib/reports/worklist-presentation.ts",
+      "text": "The field is clear. What you did in it mostly isn't.",
+      "kind": "key:anchor",
+      "line": 74,
+      "file": "web/lib/reports/score-band.ts",
       "routes": [
         "/api/export-pdf",
+        "/api/reports/[id]",
+        "/api/reports/[id]/answers",
+        "/api/resume-feedback",
+        "/api/resume-feedback-stream",
+        "/api/revise-line",
+        "/dashboard",
+        "/launch/gauntlet",
+        "/methodology",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/workspace"
       ],
       "moment": "report",
-      "table": "workspace"
+      "table": "shared"
     },
     {
-      "text": "Top to bottom, the way a recruiter reads.",
-      "kind": "key:lead",
-      "line": 104,
-      "file": "web/lib/reports/worklist-presentation.ts",
+      "text": "The recent work is there. A few parts still lean on titles.",
+      "kind": "key:anchor",
+      "line": 75,
+      "file": "web/lib/reports/score-band.ts",
       "routes": [
         "/api/export-pdf",
+        "/api/reports/[id]",
+        "/api/reports/[id]/answers",
+        "/api/resume-feedback",
+        "/api/resume-feedback-stream",
+        "/api/revise-line",
+        "/dashboard",
+        "/launch/gauntlet",
+        "/methodology",
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/workspace"
       ],
       "moment": "report",
-      "table": "workspace"
+      "table": "shared"
     },
     {
-      "text": "Lines not listed are fine as written.",
+      "text": "Your profile says what you do and what changed. One or two parts still hide a detail.",
+      "kind": "key:anchor",
+      "line": 76,
+      "file": "web/lib/reports/score-band.ts",
+      "routes": [
+        "/api/export-pdf",
+        "/api/reports/[id]",
+        "/api/reports/[id]/answers",
+        "/api/resume-feedback",
+        "/api/resume-feedback-stream",
+        "/api/revise-line",
+        "/dashboard",
+        "/launch/gauntlet",
+        "/methodology",
+        "/reports",
+        "/reports/[id]",
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
+      "text": "Every part says what you do and what changed. There's nothing here a recruiter would stop on.",
+      "kind": "key:anchor",
+      "line": 77,
+      "file": "web/lib/reports/score-band.ts",
+      "routes": [
+        "/api/export-pdf",
+        "/api/reports/[id]",
+        "/api/reports/[id]/answers",
+        "/api/resume-feedback",
+        "/api/resume-feedback-stream",
+        "/api/revise-line",
+        "/dashboard",
+        "/launch/gauntlet",
+        "/methodology",
+        "/reports",
+        "/reports/[id]",
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
+      "text": "Your lines are ready. Drop them",
       "kind": "const",
-      "line": 108,
+      "line": 48,
+      "file": "web/lib/reports/worklist-presentation.ts",
+      "routes": [
+        "/api/export-pdf",
+        "/reports/[id]",
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "Your line is ready. Drop it",
+      "kind": "const",
+      "line": 48,
+      "file": "web/lib/reports/worklist-presentation.ts",
+      "routes": [
+        "/api/export-pdf",
+        "/reports/[id]",
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "Your lines are ready. Paste them",
+      "kind": "const",
+      "line": 68,
+      "file": "web/lib/reports/worklist-presentation.ts",
+      "routes": [
+        "/api/export-pdf",
+        "/reports/[id]",
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "Your line is ready. Paste it",
+      "kind": "const",
+      "line": 68,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -42469,7 +41285,7 @@
     {
       "text": "Write the others like it.",
       "kind": "const",
-      "line": 123,
+      "line": 205,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -42483,7 +41299,7 @@
     {
       "text": "Ways to make it even better.",
       "kind": "const",
-      "line": 129,
+      "line": 211,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -42497,7 +41313,7 @@
     {
       "text": "Not true for me",
       "kind": "const",
-      "line": 136,
+      "line": 218,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -42511,7 +41327,7 @@
     {
       "text": "What the posting asks for that your resume doesn't show",
       "kind": "const",
-      "line": 156,
+      "line": 238,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -42525,7 +41341,7 @@
     {
       "text": "If you've done it, say where. If you haven't, leave it out.",
       "kind": "const",
-      "line": 161,
+      "line": 243,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -42539,7 +41355,7 @@
     {
       "text": "This is {SCREENER_WHAT[findings[0]…}. It may be set in white, where you won't see it; software still reads it as text, and a recruiter can see it too. Recruiters who find a line like this often stop reading there.",
       "kind": "return",
-      "line": 226,
+      "line": 308,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -42553,7 +41369,7 @@
     {
       "text": "{what} Lines like these may be set in white, where you won't see them; software still reads them as text, and a recruiter can see them too. Recruiters who find one often stop reading there.",
       "kind": "return",
-      "line": 229,
+      "line": 311,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -42567,7 +41383,7 @@
     {
       "text": "Still nothing that needs work.",
       "kind": "assign",
-      "line": 269,
+      "line": 351,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -42581,7 +41397,7 @@
     {
       "text": "Both versions came back clean.",
       "kind": "assign",
-      "line": 270,
+      "line": 352,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -42595,7 +41411,7 @@
     {
       "text": "The same lines are on the list.",
       "kind": "assign",
-      "line": 272,
+      "line": 354,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -42609,7 +41425,7 @@
     {
       "text": "None of them came off the list this time. Let's start with the first one again.",
       "kind": "assign",
-      "line": 273,
+      "line": 355,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -42623,7 +41439,7 @@
     {
       "text": "Nothing in this version needs work now.",
       "kind": "assign",
-      "line": 276,
+      "line": 358,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -42637,7 +41453,7 @@
     {
       "text": "{count(gone.length, \"line …} off the list.",
       "kind": "assign",
-      "line": 278,
+      "line": 360,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -42651,7 +41467,7 @@
     {
       "text": "Up {delta} since last time. That's the right direction!",
       "kind": "const",
-      "line": 285,
+      "line": 367,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -42665,7 +41481,7 @@
     {
       "text": "Down {Math.abs(delta)} since last time.",
       "kind": "const",
-      "line": 285,
+      "line": 367,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -42711,7 +41527,6 @@
       "routes": [
         "/api/export-pdf",
         "/api/free-status",
-        "/api/linkedin-feedback-stream",
         "/api/ready",
         "/api/reports",
         "/api/reports/[id]",
@@ -42742,7 +41557,6 @@
       "routes": [
         "/api/export-pdf",
         "/api/free-status",
-        "/api/linkedin-feedback-stream",
         "/api/ready",
         "/api/reports",
         "/api/reports/[id]",
@@ -42773,7 +41587,6 @@
       "routes": [
         "/api/export-pdf",
         "/api/free-status",
-        "/api/linkedin-feedback-stream",
         "/api/ready",
         "/api/reports",
         "/api/reports/[id]",
@@ -42804,7 +41617,6 @@
       "routes": [
         "/api/export-pdf",
         "/api/free-status",
-        "/api/linkedin-feedback-stream",
         "/api/ready",
         "/api/reports",
         "/api/reports/[id]",
@@ -42835,7 +41647,6 @@
       "routes": [
         "/api/export-pdf",
         "/api/free-status",
-        "/api/linkedin-feedback-stream",
         "/api/ready",
         "/api/reports",
         "/api/reports/[id]",
@@ -42866,7 +41677,6 @@
       "routes": [
         "/api/export-pdf",
         "/api/free-status",
-        "/api/linkedin-feedback-stream",
         "/api/ready",
         "/api/reports",
         "/api/reports/[id]",
@@ -42897,7 +41707,6 @@
       "routes": [
         "/api/export-pdf",
         "/api/free-status",
-        "/api/linkedin-feedback-stream",
         "/api/ready",
         "/api/reports",
         "/api/reports/[id]",
@@ -42928,7 +41737,6 @@
       "routes": [
         "/api/export-pdf",
         "/api/free-status",
-        "/api/linkedin-feedback-stream",
         "/api/ready",
         "/api/reports",
         "/api/reports/[id]",
@@ -42959,7 +41767,6 @@
       "routes": [
         "/api/export-pdf",
         "/api/free-status",
-        "/api/linkedin-feedback-stream",
         "/api/ready",
         "/api/reports",
         "/api/reports/[id]",
@@ -42990,7 +41797,6 @@
       "routes": [
         "/api/export-pdf",
         "/api/free-status",
-        "/api/linkedin-feedback-stream",
         "/api/ready",
         "/api/reports",
         "/api/reports/[id]",
@@ -43021,7 +41827,6 @@
       "routes": [
         "/api/export-pdf",
         "/api/free-status",
-        "/api/linkedin-feedback-stream",
         "/api/ready",
         "/api/reports",
         "/api/reports/[id]",
@@ -43052,7 +41857,6 @@
       "routes": [
         "/api/export-pdf",
         "/api/free-status",
-        "/api/linkedin-feedback-stream",
         "/api/ready",
         "/api/reports",
         "/api/reports/[id]",
@@ -43083,7 +41887,6 @@
       "routes": [
         "/api/export-pdf",
         "/api/free-status",
-        "/api/linkedin-feedback-stream",
         "/api/ready",
         "/api/reports",
         "/api/reports/[id]",
@@ -43114,7 +41917,6 @@
       "routes": [
         "/api/export-pdf",
         "/api/free-status",
-        "/api/linkedin-feedback-stream",
         "/api/ready",
         "/api/reports",
         "/api/reports/[id]",

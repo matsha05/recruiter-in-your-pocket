@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { streamLinkedInFeedback, streamResumeFeedback } from "../lib/api";
+import { streamResumeFeedback } from "../lib/api";
 import { schemaValidReport } from "./helpers/report-fidelity-fixture";
 
 type StreamEvent = Record<string, unknown>;
@@ -154,14 +154,24 @@ async function run() {
     await Promise.resolve();
     assert.equal(terminalStreamCanceled, true, "the reader should be released without waiting for EOF");
 
-    globalThis.fetch = async () => responseFor([
-      { type: "chunk", content: '{"score":92,"summary":"partial and unvalidated"}' },
-      { type: "complete", data: { score: 77, summary: "authoritative" } },
-    ]);
-    await capturePartials([null], (partials) => streamLinkedInFeedback(
-      { pdfText: "Profile source", source: "pdf" },
+    // A LinkedIn profile review is the resume stream with its document named: the same canonical report,
+    // no raw partials.
+    let profileBody: any = null;
+    globalThis.fetch = async (_input: any, init?: any) => {
+      profileBody = JSON.parse(String(init?.body || "{}"));
+      return responseFor([
+        { type: "chunk", content: '{"score":92,"summary":"partial and unvalidated"}' },
+        { type: "complete", ok: true, data: structuredClone(schemaValidReport) },
+      ]);
+    };
+    await capturePartials([], (partials) => streamResumeFeedback(
+      "Profile source",
+      undefined,
       (_text, partial) => partials.push(partial),
-    ));
+      "resume",
+      { document: "linkedin" },
+    ), schemaValidReport.score);
+    assert.equal(profileBody?.document, "linkedin", "a profile review must name its document in the request");
 
     const failedPartials: unknown[] = [];
     globalThis.fetch = async () => responseFor([

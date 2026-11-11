@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Paper } from "@/components/materials/Paper";
 import type { WorklistReport } from "@/lib/llm/worklist-schema";
-import { POSTING_MISSING_HOW, POSTING_MISSING_LABEL, postingMissingShown, screenerNote, screenerTitle, worklistLevelParts, worklistReadFor } from "@/lib/reports/worklist-presentation";
+import { POSTING_MISSING_HOW, POSTING_MISSING_LABEL, postingMissingShown, screenerNote, screenerTitle, worklistLevelParts, worklistReadFor, wordingFor } from "@/lib/reports/worklist-presentation";
 import { cn } from "@/lib/utils";
 import styles from "./Worklist.module.css";
 
@@ -25,7 +25,7 @@ export function FirstPass({ report, onReadAgainstPosting }: { report: WorklistRe
   const hiddenMissing = posting.missing.length - shownMissing.length;
 
   return (
-    <section className={styles.firstPass} aria-label="The job your resume was read for" data-testid="first-pass">
+    <section className={styles.firstPass} aria-label={wordingFor(report).firstPassLabel} data-testid="first-pass">
       {screener.length > 0 && (
         <div className={styles.stop} data-testid="screener-text">
           <p className={styles.stopTitle}>{screenerTitle(screener.length > 1)}</p>

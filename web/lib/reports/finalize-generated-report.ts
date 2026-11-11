@@ -1,3 +1,4 @@
+import { savedPreviewFor } from "./report-document";
 import crypto from "node:crypto";
 import type {
   GenerationAccessReservation,
@@ -113,7 +114,7 @@ export function buildAtomicGeneratedReport(input: {
       p_evidence_version: trust.evidence_version,
       p_evidence_summary: trust.evidence_summary,
       p_confidence_band: trust.confidence_band,
-      p_resume_preview: resumePreview(input.resumeText),
+      p_resume_preview: savedPreviewFor(input.payload, resumePreview(input.resumeText)),
       p_job_description_text: input.jobDescriptionText || null,
       p_target_role: input.payload.job_alignment?.role_fit?.best_fit_roles?.[0] || input.payload.fit?.roles?.[0] || null,
       p_saved_job_id: input.savedJobId || null,

@@ -6,7 +6,8 @@ import { join } from "node:path";
 import type { ReportForPdf, WorklistForPdf } from "../reports/pdf-export";
 import { criticalCountHeading, fixLabel, fixPlanHeadingForCount, missingFromResume, readCriticalMisses, TIGHTENING_HEADING } from "../reports/report-presentation";
 import { marginNoteFromFix } from "../reports/revised-line";
-import { SCORE_BANDS, WORKLIST_BANDS, reportTone, scoreBandIndex, worklistBandIndex } from "../reports/score-band";
+import { SCORE_BANDS, WORKLIST_BANDS, reportTone, scoreBandIndex, worklistBandIndex, worklistBandsFor } from "../reports/score-band";
+import { reportDocumentKind } from "../reports/report-document";
 import { QUOTED_KINDS, WORK_KINDS } from "../llm/worklist-schema";
 import { cardsHeading, hasRoleSection, UPGRADES_HEADING, upgradesLead, POSTING_MISSING_HOW, POSTING_MISSING_LABEL, screenerNote, screenerTitle, worklistLevelParts, worklistReadFor } from "../reports/worklist-presentation";
 import { pdfReportStyles } from "./pdf-styles";
@@ -56,7 +57,9 @@ function exampleHtml(card: WorklistForPdf["cards"][number]) {
 function renderWorklistHtml(report: ReportForPdf, worklist: WorklistForPdf) {
   const generatedOn = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
   const bandIndex = Math.max(0, worklistBandIndex(report.score));
-  const band = WORKLIST_BANDS[bandIndex];
+  // A LinkedIn profile review prints the profile's band names and score note; the cards' headings follow the report.
+  const profile = reportDocumentKind(worklist) === "linkedin";
+  const band = worklistBandsFor(profile ? "linkedin" : "resume")[bandIndex];
   const work = worklist.cards.filter((card) => WORK_KINDS.has(card.kind));
   const heading = cardsHeading(worklist).title;
   const cardHtml = (card: WorklistForPdf["cards"][number]) => {
@@ -138,7 +141,7 @@ function renderWorklistHtml(report: ReportForPdf, worklist: WorklistForPdf) {
     <h1>${escapeHtml(worklist.verdict)}</h1>
     ${firstPassHtml}
     <div class="write-up">${worklist.write_up.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}</div>
-    <div class="score-note">The band is what a recruiter would do with your resume after one pass; the number says where in the band you sit. Neither predicts interviews or offers.${worklist.lifted_by_employer ? " A recent employer recruiters know on sight moved this resume up one band." : ""}</div>
+    <div class="score-note">${profile ? "The band is what a recruiter would do after landing on your profile; the number says where in the band you sit. Neither predicts messages, interviews or offers." : "The band is what a recruiter would do with your resume after one pass; the number says where in the band you sit. Neither predicts interviews or offers."}${worklist.lifted_by_employer ? " A recent employer recruiters know on sight moved this resume up one band." : ""}</div>
   </section>
 
   <section class="section priority-section">

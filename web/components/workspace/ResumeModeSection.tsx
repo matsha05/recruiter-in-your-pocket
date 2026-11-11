@@ -56,6 +56,8 @@ type ResumeModeSectionProps = {
   rebuilding?: boolean;
   /** How many answers the shown report was written from; 0 for a first read. */
   rebuiltAnswers?: number;
+  /** What is being read: a resume, or a LinkedIn profile from its PDF export. */
+  document?: "resume" | "linkedin";
 };
 
 export default function ResumeModeSection({
@@ -100,13 +102,14 @@ export default function ResumeModeSection({
   onAskFirstSkip,
   rebuilding = false,
   rebuiltAnswers = 0,
+  document = "resume",
 }: ResumeModeSectionProps) {
   if ((!report || rebuilding) && isStreaming) {
     return (
       <div className="workspace-pane h-full overflow-y-auto bg-body">
         <div className="h-full">
           <AnalysisScanning
-            mode="resume"
+            mode={document}
             startedAt={analysisStartedAt}
             stage={analysisStage}
             resumeText={resumeText}
@@ -154,6 +157,7 @@ export default function ResumeModeSection({
           loadedJobContext={loadedJobContext}
           isRevision={Boolean(comparisonBaseline)}
           focusPosting={focusPosting}
+          document={document}
         />
       </div>
     );

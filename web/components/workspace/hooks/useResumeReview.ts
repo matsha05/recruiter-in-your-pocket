@@ -18,10 +18,12 @@ export function useResumeReview(input: {
   resumeText: string;
   jobDescription: string;
   persistedSavedJobId: string | null;
+  /** Set when the upload is a LinkedIn profile export; the run is otherwise the resume run. */
+  document?: "linkedin" | null;
   freeUsesRemaining: number;
   user: any;
   refreshFreeStatus: (options: any) => Promise<boolean>;
-  beginAnalysis: (mode: "resume") => AbortController;
+  beginAnalysis: (mode: "resume" | "linkedin") => AbortController;
   isAnalysisCurrent: (controller: AbortController) => boolean;
   endAnalysis: (controller: AbortController) => boolean;
   setResumeText: Setter<string>;
@@ -139,7 +141,7 @@ export function useResumeReview(input: {
     input.setIsLoading(true);
     input.setIsStreaming(true);
     if (!rebuild) input.setReport(null);
-    const controller = input.beginAnalysis("resume");
+    const controller = input.beginAnalysis(input.document === "linkedin" ? "linkedin" : "resume");
     const hasJobDescription = hasEffectiveJobDescriptionValue(input.jobDescription);
     if (!rebuild) Analytics.reportStarted(hasJobDescription);
     Analytics.track("report_stream_started", { has_jd: hasJobDescription, mode: "resume", rebuild: Boolean(rebuild) });
@@ -154,6 +156,7 @@ export function useResumeReview(input: {
           signal: controller.signal,
           savedJobId: input.persistedSavedJobId,
           rebuild,
+          document: rebuild ? null : input.document ?? null,
           onStage: (stage) => {
             if (input.isAnalysisCurrent(controller)) input.setAnalysisStage?.(stage);
           },

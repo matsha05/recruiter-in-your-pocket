@@ -12,6 +12,7 @@ import { EmptyReportIcon } from "@/components/icons";
 import { scoreBandFor } from "@/lib/reports/score-band";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { LINKEDIN_SAVED_PREVIEW } from "@/lib/reports/report-document";
 
 export type ReportHistoryItem = {
   id: string;
@@ -36,7 +37,7 @@ function formatReportDate(value: string) {
 // targetRole is the report's best-fit role suggestion, not the person's job,
 // so it stays in the meta line and never becomes the title.
 function reportTitle(report: ReportHistoryItem) {
-  return report.name || "Resume report";
+  return report.name || (report.resumePreview === LINKEDIN_SAVED_PREVIEW ? LINKEDIN_SAVED_PREVIEW : "Resume report");
 }
 
 export function ReportHistoryList({ initialReports }: { initialReports: ReportHistoryItem[] }) {
@@ -191,7 +192,7 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
                 ) : (
                   <Link href={`/reports/${report.id}`} className="focus-ring mt-1 block rounded-lg">
                     <h2 className="break-words font-display text-xl font-bold text-foreground">{title}</h2>
-                    {report.resumePreview ? (
+                    {report.resumePreview && (report.name || report.resumePreview !== LINKEDIN_SAVED_PREVIEW) ? (
                       <p className="mt-1 line-clamp-2 max-w-2xl text-sm text-muted-foreground">{report.resumePreview}</p>
                     ) : null}
                   </Link>

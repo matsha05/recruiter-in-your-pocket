@@ -1,3 +1,4 @@
+import { savedPreviewFor } from "./report-document";
 import crypto from "crypto";
 import { logError, logWarn } from "../observability/logger";
 import { buildGroundedReportTrustMetadata, parseTrustedStoredReport } from "./report-trust";
@@ -96,7 +97,7 @@ export async function persistGeneratedReport(input: {
     report_json: input.payload,
     ...buildGroundedReportTrustMetadata(input.payload, input.userId),
     ...(input.savedJobId ? { saved_job_id: input.savedJobId } : {}),
-    resume_preview: resumePreview(input.resumeText),
+    resume_preview: savedPreviewFor(input.payload, resumePreview(input.resumeText)),
     job_description_text: input.jobDescriptionText || null,
     target_role: input.payload.job_alignment?.role_fit?.best_fit_roles?.[0] || input.payload.fit?.roles?.[0] || null,
     created_at: new Date().toISOString(),

@@ -118,6 +118,24 @@ function loadStrongFixtures(root: string): LabFixture[] {
   return fixtures;
 }
 
+// The LinkedIn profile review (Nov 10, 2026; docs/audits/2026-11-linkedin-review/): linkedin_v3.txt's reviews of the
+// made-up exports in tests/fixtures/linkedin, as scripts/run-linkedin-reviews.ts saved them from the live model.
+function loadLinkedInFixtures(root: string): LabFixture[] {
+  const outDir = path.join(root, "..", "docs/audits/2026-11-linkedin-review/outputs");
+  if (!fs.existsSync(outDir)) return [];
+  return fs.readdirSync(outDir).filter((name) => name.endsWith(".json") && !name.endsWith(".failed.json")).sort().map((name) => {
+    const record = JSON.parse(fs.readFileSync(path.join(outDir, name), "utf8"));
+    const stem = name.replace(/\.json$/u, "");
+    const profilePath = path.join(root, "tests/fixtures/linkedin", `${stem}.txt`);
+    return {
+      id: `linkedin-${stem}`,
+      label: `linkedin · ${stem.replace(/^\d+-/u, "").replace(/-/gu, " ")} · ${record.report.score}`,
+      report: record.report,
+      resumeText: fs.existsSync(profilePath) ? fs.readFileSync(profilePath, "utf8") : undefined,
+    };
+  });
+}
+
 // Real production-prompt outputs (synthetic golden resumes), as the eval harness saved them.
 function loadFixtures(): LabFixture[] {
   const root = process.cwd();
@@ -198,7 +216,7 @@ function loadFixtures(): LabFixture[] {
   const sample = JSON.parse(fs.readFileSync(path.join(root, "public/sample-report.json"), "utf8"));
   fixtures.push({ id: "sample", label: `sample report (fictional) · ${sample.score}`, report: sample, sample: true });
   // The worklist fixtures lead: they are the report the route writes now; the rest are the v2 shape saved reports keep.
-  return [...loadWorklistFixtures(root), ...fixtures];
+  return [...loadWorklistFixtures(root), ...loadLinkedInFixtures(root), ...fixtures];
 }
 
 export default async function ReportLabPage({ searchParams }: { searchParams: Promise<{ fixture?: string; as?: string }> }) {

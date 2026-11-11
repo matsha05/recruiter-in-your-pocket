@@ -1,0 +1,57 @@
+{
+  "file": "04-strong.txt",
+  "model": "gpt-6.1-terra",
+  "today": "2026-11-11",
+  "repaired": false,
+  "firstError": null,
+  "seconds": 17,
+  "report": {
+    "contract_version": "v3",
+    "score": 96,
+    "lifted_by_employer": false,
+    "verdict": "An emergency department nurse manager whose profile shows how her team improved patient flow, retention and budget performance.",
+    "write_up": [
+      "This is a strong nurse manager profile! You show the department you run and the changes your team made, so a recruiter has a clear reason to start a conversation.",
+      "The Saguaro Valley manager job is the model: it connects front-door triage and an overflow plan to fewer patients leaving without being seen. It also gives the same concrete treatment to turnover and the labor budget.",
+      "You don't need a rewrite. If you want to show readiness for a broader leadership role, add any work across departments to the budget line. Your profile isn't what stands between you and a message; whether an opportunity fits and whether you're interested matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Saguaro Valley Medical Center, Nurse Manager description",
+        "line": "Brought RN turnover down from 24% to 13% by moving to self-scheduling and a paid preceptor track.",
+        "cannot_tell": "Keep this line. It names the staffing changes and what happened to turnover, without making a recruiter guess what you did.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Saguaro Valley Medical Center, Nurse Manager description",
+        "line": "Own a $14.5M labor budget; finished the last two fiscal years within 1% of plan.",
+        "cannot_tell": "The budget result is strong. For a broader leadership role, a recruiter may also look for how you worked across departments on planning.",
+        "example": "Own a $14.5M labor budget; finished the last two fiscal years within 1% of plan. [How you worked with other departments on budget planning, if applicable].",
+        "question": "Did you work with other departments on budget planning, and what did you do together?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Emergency Department Nurse Manager",
+        "Charge Nurse, Emergency Department",
+        "Registered Nurse, Emergency Department"
+      ],
+      "why": "Your headline and current job both name emergency department nurse management, and your work covers staffing, patient flow and budgeting.",
+      "level": "manager, Nurse Manager, Emergency Department with 96 nurses and techs",
+      "note": "'Emergency Department Nurse Manager' is in your headline. 'Nurse Staffing' is among your top skills, and 'trauma' is in your headline and About. 'Triage' is in your About and current job. Recruiters may also search for 'quality improvement' and 'patient safety'; add those only if they describe your work. If you want to emphasize that specialty, bring 'front-door triage' into your headline.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 96,
+    "document": "linkedin"
+  }
+}

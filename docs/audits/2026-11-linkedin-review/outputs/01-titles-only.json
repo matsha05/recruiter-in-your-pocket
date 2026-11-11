@@ -1,0 +1,80 @@
+{
+  "file": "01-titles-only.txt",
+  "model": "gpt-6.1-terra",
+  "today": "2026-11-11",
+  "repaired": false,
+  "firstError": null,
+  "seconds": 20,
+  "report": {
+    "contract_version": "v3",
+    "score": 45,
+    "lifted_by_employer": false,
+    "verdict": "An office administrator at a dental group, with retail management before that, shown through titles and dates.",
+    "write_up": [
+      "You’re an Office Administrator at Harlow Dental Group, with retail experience before that. It’s common to leave jobs as titles and dates, but here a recruiter has no way to tell what you did, so they’re likely to move on.",
+      "The move from Sales Associate to Assistant Store Manager at Brightway is the clearest part: it shows progression between roles. Neither job has a description, though, so the work behind that move is still a question.",
+      "Start with the Harlow job and add two or three lines about what you handle. Then update the headline and About, followed by the Brightway management job. That would give someone hiring for dental office administration a better account of your work."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Office Administrator at Harlow Dental Group",
+        "cannot_tell": "This repeats your current title and employer but leaves your specialty at the dental group to the imagination. Add the kind of office work you do most.",
+        "example": "Office Administrator | Dental Group | [what you run]",
+        "question": "What part of the dental office’s work do you spend most of your time on?"
+      },
+      {
+        "kind": "structure",
+        "where": "About",
+        "line": "There is no About section.",
+        "cannot_tell": "There’s no introduction to the work you do at Harlow or the experience you bring from Brightway. A short first-person opening can connect the two.",
+        "example": "I’m an Office Administrator at Harlow Dental Group, where I [what you handle]. Before that, I was an Assistant Store Manager at Brightway Home Goods, where I [one piece of work you did].",
+        "question": "What do you handle at Harlow, and what’s one part of the Brightway management job you’d want someone to know about?"
+      },
+      {
+        "kind": "structure",
+        "where": "Harlow Dental Group, description",
+        "line": "The Office Administrator job at Harlow Dental Group has no description.",
+        "cannot_tell": "This is the job a recruiter will look to first, and there’s nothing under it about your work. Add the responsibilities that are yours and how much of that work you handle.",
+        "example": "[The dental office work you manage] for [number of dentists or patients you support], including [a specific task].",
+        "question": "Do you handle the schedule, billing or the front desk at Harlow? Which are yours, and for how many dentists or patients?"
+      },
+      {
+        "kind": "structure",
+        "where": "Brightway Home Goods, Assistant Store Manager description",
+        "line": "The Assistant Store Manager job at Brightway Home Goods has no description.",
+        "cannot_tell": "The title shows a move into management, but not what you managed or handled at the store. Give this job a line about your responsibilities on a shift.",
+        "example": "[Your responsibilities during a store shift], including [a specific task] for [number of staff or customers].",
+        "question": "As Assistant Store Manager, did you run the schedule, open and close, or handle the cash office? How many people were on a shift?"
+      },
+      {
+        "kind": "line",
+        "where": "Top skills",
+        "line": "Teamwork",
+        "cannot_tell": "Teamwork doesn’t tell a recruiter which dental office work you can do. The three skills shown would be more useful if they named the systems or specialties you use.",
+        "example": "[The scheduling or billing software you use] | [Insurance verification, if you do it] | [Another dental office skill you use]",
+        "question": "Which software, office processes or dental administration skills do you use regularly?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Office Administrator",
+        "Assistant Store Manager"
+      ],
+      "why": "Your headline and current job both name Office Administrator, with an Assistant Store Manager role before it.",
+      "level": "mid-level, Office Administrator is your current title after Assistant Store Manager",
+      "note": "‘Office Administrator’ is in your headline and current title. ‘Dental Group’ is in your headline and employer name. ‘Assistant Store Manager’ is in your earlier job, and ‘Microsoft Office’ is among your top skills. Someone hiring for dental office administration may also look for scheduling, billing and insurance verification. None appears on your profile, so add the ones you do. Put your most relevant dental office specialty in the headline.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 45,
+    "document": "linkedin"
+  }
+}
