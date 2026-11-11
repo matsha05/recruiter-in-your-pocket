@@ -1,4 +1,5 @@
 const { spawn } = require("child_process");
+const { rmSync } = require("fs");
 const path = require("path");
 
 const { startNextServer } = require(path.resolve(process.cwd(), "..", "scripts", "next_server"));
@@ -7,6 +8,10 @@ async function main() {
   // The production build is gated separately. Mock journeys use Next dev so
   // the explicitly local anonymous ledger remains available while production
   // continues to fail closed when Redis is unavailable.
+  // Start with the same empty development cache as a fresh CI checkout.
+  // Reusing Turbopack output across release candidates can loop Fast Refresh
+  // before the first page hydrates. Production build output stays separate.
+  rmSync(path.join(process.cwd(), ".next", "dev"), { recursive: true, force: true });
   const next = await startNextServer({ ensureBuild: false, dev: true });
 
   try {
