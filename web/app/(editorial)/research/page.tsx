@@ -22,13 +22,10 @@ export default function ResearchPage() {
                     "@context": "https://schema.org",
                     "@graph": [
                         breadcrumbStructuredData([{ name: SECTION_NAMES[PATH], path: PATH }]),
-                        // Each belief, then the answers under it, then the additional research: the whole library in the
-                        // hub's order, though the page itself shows only the beliefs.
+                        // What the page links, in its order: the six beliefs, then the additional research. Each belief's own
+                        // page lists the answers under it (tests/ui/search-foundation.spec.ts checks every item is linked here).
                         itemListStructuredData(PATH, "What we look for", [
-                            ...pillars.flatMap((pillar) => [
-                                { name: pillar.belief, path: pillarHref(pillar) },
-                                ...pillar.articles.map((article) => ({ name: article.title ?? article.question, path: article.href })),
-                            ]),
+                            ...pillars.map((pillar) => ({ name: pillar.belief, path: pillarHref(pillar) })),
                             ...additionalResearch.map((article) => ({ name: article.question, path: article.href })),
                         ]),
                     ],
