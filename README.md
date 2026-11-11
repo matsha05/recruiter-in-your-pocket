@@ -49,6 +49,7 @@ Load `extension/dist` in `chrome://extensions` (Developer Mode).
 - `npm run build` - web build
 - `npm run lint` - web lint
 - `npm run test` - contract tests and smoke checks
+- `npm run local-ci` - the full CI on this machine; on a clean, pushed commit it marks the commit green or red on GitHub as `local-ci` (GitHub's own CI workflow now runs only when started by hand). `--no-status` skips GitHub, `--list` shows the steps
 - `npm run eval:dry-run` - offline evaluation harness sanity check
 - `npm run eval:smoke` - paid smoke evaluation harness
 - `npm run eval:judge` - paid Critical Miss judge on synthetic fixtures; `compare` is the prompt-change gate ([how to read it](docs/evals/critical-miss-judge.md))

@@ -13,6 +13,7 @@
     "lint": "npm run lint --prefix web",
     "launch:gate": "node scripts/launch-go-no-go.cjs",
     "launch:gate:strict": "node scripts/launch-go-no-go.cjs --strict",
+    "local-ci": "node scripts/local-ci.cjs",
     "launch:env-report": "node scripts/launch-env-report.cjs",
     "launch:rehearsal": "node scripts/launch-rehearsal.cjs",
     "launch:autopilot": "node scripts/launch-autopilot.cjs",
