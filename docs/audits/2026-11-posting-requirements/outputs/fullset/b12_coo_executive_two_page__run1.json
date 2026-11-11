@@ -1,0 +1,249 @@
+{
+  "case_id": "b12_coo_executive_two_page",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Executive, two pages.",
+  "resume_file": "../2026-11-live-judgment/resumes/b_coo_executive.txt",
+  "resume_sha256": "213474e9b27355f8a085204e3dac05f65782d74d43b9b531cb2afd6a3afe1b79",
+  "resume_words": 463,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-11T20:25:26.652Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 8105,
+        "completion_tokens": 1414,
+        "total_tokens": 9519,
+        "cached_prompt_tokens": 6393,
+        "cache_write_prompt_tokens": 1709,
+        "reasoning_tokens": 687
+      },
+      "cost_usd": 0.0095289,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 22957
+    }
+  ],
+  "resume_prompt_sha256": "758861acede37f06fbbd892e6c3084b98d8c45be3963b8b393e1d05896ca26d8",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 92,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare COO with a substantial operating remit and measurable results across growth, integration and retention.",
+    "write_up": [
+      "This is a strong COO resume! You show the business you run at Lakeshore and connect your work to faster integrations and lower turnover. The earlier clinic roles make the progression into multi-site leadership easy to follow.",
+      "The integration line is a great model: it names the playbook you standardized and the change in time. Your current role also puts the practice count, workforce, revenue and board relationship up front, so a recruiter doesn't have to guess how big the job is.",
+      "Your resume isn't the thing standing between you and a callback. The match with a company's needs and how competitive the role is will matter too. If you're aiming for a CEO role, we can add an enterprise-wide decision and more about your board work where you can substantiate them."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, integration line",
+        "line": "- Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "cannot_tell": "Keep this as a model. It gives the recruiter both the operating change you made and a before-and-after measure.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Operating Officer, operating plan line",
+        "line": "- Own the annual operating plan and the $410M P&L with the CFO",
+        "cannot_tell": "For a CEO role, an enterprise-wide strategic decision would add to the substantial financial responsibility already shown here.",
+        "example": "Own the annual operating plan and the $410M P&L with the CFO, and [enterprise-wide strategic decision you made], leading to [what changed]",
+        "question": "What enterprise-wide strategic decision did you make, and what changed as a result, if you can point to one?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Board and Advisory, board member line",
+        "line": "Board member, Chicago Community Health Fund, 2021 - Present",
+        "cannot_tell": "Your board service is relevant to executive roles. Adding your responsibilities could show more of what you contribute there.",
+        "example": "Board member, Chicago Community Health Fund, 2021 - Present; [board responsibility]",
+        "question": "What responsibilities do you hold on the Chicago Community Health Fund board?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Operating Officer"
+      ],
+      "why": "Your headline and current role both position you as a COO running multi-site healthcare operations.",
+      "level": "executive, leads operations for 140 practices and owns the $410M P&L with the CFO",
+      "note": "Your experience points toward COO roles in multi-site healthcare, including organizations growing through acquisitions. Your earlier physician group work also gives you a story beyond dental services.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 92,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare COO with a substantial operating remit and measurable results across growth, integration and retention.",
+    "write_up": [
+      "This is a strong COO resume! You show the business you run at Lakeshore and connect your work to faster integrations and lower turnover. The earlier clinic roles make the progression into multi-site leadership easy to follow.",
+      "The integration line is a great model: it names the playbook you standardized and the change in time. Your current role also puts the practice count, workforce, revenue and board relationship up front, so a recruiter doesn't have to guess how big the job is.",
+      "Your resume isn't the thing standing between you and a callback. The match with a company's needs and how competitive the role is will matter too. If you're aiming for a CEO role, we can add an enterprise-wide decision and more about your board work where you can substantiate them."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, integration line",
+        "line": "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "cannot_tell": "Keep this as a model. It gives the recruiter both the operating change you made and a before-and-after measure.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Operating Officer, operating plan line",
+        "line": "Own the annual operating plan and the $410M P&L with the CFO",
+        "cannot_tell": "For a CEO role, an enterprise-wide strategic decision would add to the substantial financial responsibility already shown here.",
+        "example": "Own the annual operating plan and the $410M P&L with the CFO, and [enterprise-wide strategic decision you made], leading to [what changed]",
+        "question": "What enterprise-wide strategic decision did you make, and what changed as a result, if you can point to one?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Board and Advisory, board member line",
+        "line": "Board member, Chicago Community Health Fund, 2021 - Present",
+        "cannot_tell": "Your board service is relevant to executive roles. Adding your responsibilities could show more of what you contribute there.",
+        "example": "Board member, Chicago Community Health Fund, 2021 - Present; [board responsibility]",
+        "question": "What responsibilities do you hold on the Chicago Community Health Fund board?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Operating Officer"
+      ],
+      "why": "Your headline and current role both position you as a COO running multi-site healthcare operations.",
+      "level": "executive, leads operations for 140 practices and owns the $410M P&L with the CFO",
+      "note": "Your experience points toward COO roles in multi-site healthcare, including organizations growing through acquisitions. Your earlier physician group work also gives you a story beyond dental services.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 92
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 92,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare COO with a substantial operating remit and measurable results across growth, integration and retention.",
+    "write_up": [
+      "This is a strong COO resume! You show the business you run at Lakeshore and connect your work to faster integrations and lower turnover. The earlier clinic roles make the progression into multi-site leadership easy to follow.",
+      "The integration line is a great model: it names the playbook you standardized and the change in time. Your current role also puts the practice count, workforce, revenue and board relationship up front, so a recruiter doesn't have to guess how big the job is.",
+      "Your resume isn't the thing standing between you and a callback. The match with a company's needs and how competitive the role is will matter too. If you're aiming for a CEO role, we can add an enterprise-wide decision and more about your board work where you can substantiate them."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, integration line",
+        "line": "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "cannot_tell": "Keep this as a model. It gives the recruiter both the operating change you made and a before-and-after measure.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Operating Officer, operating plan line",
+        "line": "Own the annual operating plan and the $410M P&L with the CFO",
+        "cannot_tell": "For a CEO role, an enterprise-wide strategic decision would add to the substantial financial responsibility already shown here.",
+        "example": "Own the annual operating plan and the $410M P&L with the CFO, and [enterprise-wide strategic decision you made], leading to [what changed]",
+        "question": "What enterprise-wide strategic decision did you make, and what changed as a result, if you can point to one?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Board and Advisory, board member line",
+        "line": "Board member, Chicago Community Health Fund, 2021 - Present",
+        "cannot_tell": "Your board service is relevant to executive roles. Adding your responsibilities could show more of what you contribute there.",
+        "example": "Board member, Chicago Community Health Fund, 2021 - Present; [board responsibility]",
+        "question": "What responsibilities do you hold on the Chicago Community Health Fund board?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Operating Officer"
+      ],
+      "why": "Your headline and current role both position you as a COO running multi-site healthcare operations.",
+      "level": "executive, leads operations for 140 practices and owns the $410M P&L with the CFO",
+      "note": "Your experience points toward COO roles in multi-site healthcare, including organizations growing through acquisitions. Your earlier physician group work also gives you a story beyond dental services.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 92
+  },
+  "presentation": {
+    "score": 92,
+    "band": "Clear and specific",
+    "model_score": 92,
+    "lifted_by_employer": false,
+    "verdict": "A healthcare COO with a substantial operating remit and measurable results across growth, integration and retention.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 132,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Chief Operating Officer, integration line",
+        "line": "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Operating Officer, operating plan line",
+        "line": "Own the annual operating plan and the $410M P&L with the CFO",
+        "blanks": 2,
+        "question": "What enterprise-wide strategic decision did you make, and what changed as a result, if you can point to one?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Board and Advisory, board member line",
+        "line": "Board member, Chicago Community Health Fund, 2021 - Present",
+        "blanks": 1,
+        "question": "What responsibilities do you hold on the Chicago Community Health Fund board?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "keep": 1,
+      "upgrade": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Chief Operating Officer"
+      ],
+      "why": "Your headline and current role both position you as a COO running multi-site healthcare operations.",
+      "level": "executive, leads operations for 140 practices and owns the $410M P&L with the CFO",
+      "note": "Your experience points toward COO roles in multi-site healthcare, including organizations growing through acquisitions. Your earlier physician group work also gives you a story beyond dental services.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0095289,
+  "latency_ms": 22963
+}

@@ -1,0 +1,218 @@
+{
+  "case_id": "b05_paralegal",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_paralegal_1.txt",
+  "resume_sha256": "1860914f19aa0734b31d49c2046f7d394bc16dd5acb16f4c1fd6ee102a7f8568",
+  "resume_words": 144,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-11T20:24:44.370Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7073,
+        "completion_tokens": 1537,
+        "total_tokens": 8610,
+        "cached_prompt_tokens": 6393,
+        "cache_write_prompt_tokens": 677,
+        "reasoning_tokens": 969
+      },
+      "cost_usd": 0.0088539,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 24547
+    }
+  ],
+  "resume_prompt_sha256": "758861acede37f06fbbd892e6c3084b98d8c45be3963b8b393e1d05896ca26d8",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 79,
+    "lifted_by_employer": false,
+    "verdict": "A senior litigation paralegal with clear case work and a headline that overstates the dated commercial and employment experience.",
+    "write_up": [
+      "Your resume points to senior litigation paralegal work: you support four partners at Harlan & Pike, manage document productions and prepare for trial. A recruiter can follow that work and would likely move it forward with a question about the headline.",
+      "The Relativity line is a strong model because it names both the work and how much it can involve. Your headline says seven years supporting commercial and employment cases, but those case types appear only under Harlan & Pike; the earlier role names personal injury.",
+      "Let’s start by making the headline match the experience shown below it. Then use the document production line as a model wherever you can add a meaningful detail without stretching what you did."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Litigation paralegal with seven years supporting commercial and employment cases.",
+        "cannot_tell": "The dated roles don't show seven years of commercial and employment case work. Your earlier role names personal injury, so a recruiter may question the headline.",
+        "example": "Litigation paralegal supporting commercial and employment cases, with prior experience in personal injury cases.",
+        "question": "Did you support commercial or employment cases before Harlan & Pike?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Litigation Paralegal, line 2",
+        "line": "- Manage document productions of up to 250,000 pages in Relativity",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a concrete sense of the productions you manage and names the tool you use.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Litigation Paralegal"
+      ],
+      "why": "Your current role combines litigation support for four partners with discovery, document production and trial preparation.",
+      "level": "senior, supports four partners and manages document productions",
+      "note": "Your experience points toward litigation paralegal roles involving discovery and trial preparation. Relativity and the paralegal certificate give recruiters useful details to find quickly.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 79,
+    "lifted_by_employer": false,
+    "verdict": "A senior litigation paralegal with clear case work and a headline that overstates the dated commercial and employment experience.",
+    "write_up": [
+      "Your resume points to senior litigation paralegal work: you support four partners at Harlan & Pike, manage document productions and prepare for trial. A recruiter can follow that work and would likely move it forward with a question about the headline.",
+      "The Relativity line is a strong model because it names both the work and how much it can involve. Your headline says seven years supporting commercial and employment cases, but those case types appear only under Harlan & Pike; the earlier role names personal injury.",
+      "Let’s start by making the headline match the experience shown below it. Then use the document production line as a model wherever you can add a meaningful detail without stretching what you did."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Litigation paralegal with seven years supporting commercial and employment cases.",
+        "cannot_tell": "The dated roles don't show seven years of commercial and employment case work. Your earlier role names personal injury, so a recruiter may question the headline.",
+        "example": "Litigation paralegal supporting commercial and employment cases, with prior experience in personal injury cases.",
+        "question": "Did you support commercial or employment cases before Harlan & Pike?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Litigation Paralegal, line 2",
+        "line": "Manage document productions of up to 250,000 pages in Relativity",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a concrete sense of the productions you manage and names the tool you use.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Litigation Paralegal"
+      ],
+      "why": "Your current role combines litigation support for four partners with discovery, document production and trial preparation.",
+      "level": "senior, supports four partners and manages document productions",
+      "note": "Your experience points toward litigation paralegal roles involving discovery and trial preparation. Relativity and the paralegal certificate give recruiters useful details to find quickly.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 79
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 79,
+    "lifted_by_employer": false,
+    "verdict": "A senior litigation paralegal with clear case work and a headline that overstates the dated commercial and employment experience.",
+    "write_up": [
+      "Your resume points to senior litigation paralegal work: you support four partners at Harlan & Pike, manage document productions and prepare for trial. A recruiter can follow that work and would likely move it forward with a question about the headline.",
+      "The Relativity line is a strong model because it names both the work and how much it can involve. Your headline says seven years supporting commercial and employment cases, but those case types appear only under Harlan & Pike; the earlier role names personal injury.",
+      "Let’s start by making the headline match the experience shown below it. Then use the document production line as a model wherever you can add a meaningful detail without stretching what you did."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Litigation paralegal with seven years supporting commercial and employment cases.",
+        "cannot_tell": "The dated roles don't show seven years of commercial and employment case work. Your earlier role names personal injury, so a recruiter may question the headline.",
+        "example": "Litigation paralegal supporting commercial and employment cases, with prior experience in personal injury cases.",
+        "question": "Did you support commercial or employment cases before Harlan & Pike?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Litigation Paralegal, line 2",
+        "line": "Manage document productions of up to 250,000 pages in Relativity",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a concrete sense of the productions you manage and names the tool you use.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Litigation Paralegal"
+      ],
+      "why": "Your current role combines litigation support for four partners with discovery, document production and trial preparation.",
+      "level": "senior, supports four partners and manages document productions",
+      "note": "Your experience points toward litigation paralegal roles involving discovery and trial preparation. Relativity and the paralegal certificate give recruiters useful details to find quickly.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 79
+  },
+  "presentation": {
+    "score": 79,
+    "band": "Mostly clear",
+    "model_score": 79,
+    "lifted_by_employer": false,
+    "verdict": "A senior litigation paralegal with clear case work and a headline that overstates the dated commercial and employment experience.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 119,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Litigation paralegal with seven years supporting commercial and employment cases.",
+        "blanks": 0,
+        "question": "Did you support commercial or employment cases before Harlan & Pike?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Litigation Paralegal, line 2",
+        "line": "Manage document productions of up to 250,000 pages in Relativity",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "line": 1,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Litigation Paralegal"
+      ],
+      "why": "Your current role combines litigation support for four partners with discovery, document production and trial preparation.",
+      "level": "senior, supports four partners and manages document productions",
+      "note": "Your experience points toward litigation paralegal roles involving discovery and trial preparation. Relativity and the paralegal certificate give recruiters useful details to find quickly.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0088539,
+  "latency_ms": 24559
+}

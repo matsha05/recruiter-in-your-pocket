@@ -1,0 +1,56 @@
+# b40_senior_ic_wei, run 1
+Resume: ../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/4-senior-ic-wei.txt (361 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 758861ac; severity check off
+Outcome: report; cost $0.0117; 29.5s
+Case note: Senior IC (bar persona).
+
+## Mostly clear (score 78; model wrote 78)
+## Verdict
+A staff engineer with substantial payments work, but few measures of the platform or team they lead.
+
+## Write-up
+Your resume points clearly to staff-level payments infrastructure work, from Brightline's fraud pipeline to its ledger and settlement platform. A recruiter could move it forward, but would have questions about how big the team is and what the ledger redesign changed.
+
+The fraud scoring line is a model: it names the pipeline, the tools and its p99 latency. Your current role shows technical leadership and a concrete win against duplicate charges, but leaves the scale of the team and the effects of the ledger work open.
+
+Let's start with the team lead line, then add a measure of what changed after the ledger redesign if you have one. After that, fill in your part of the multi-currency roadmap and the Kubernetes migration. The rest already gives a recruiter plenty to discuss.
+
+## Cards (7; {"line":6,"keep":1}); severity off; added []
+1. [line] Staff Software Engineer, line 1
+   line: "Technical lead for the ledger and settlement platform team"
+   can't tell: A recruiter can't tell how many engineers you lead on the ledger and settlement team. That matters when comparing staff-level technical leadership.
+   example: Technical lead for the ledger and settlement platform team of [number] engineers
+   question: How many engineers are on the team you lead?
+2. [line] Staff Software Engineer, line 2
+   line: "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB"
+   can't tell: The architecture change is clear, but a recruiter can't tell what changed for the ledger after the redesign. A measure would show why the work mattered.
+   example: Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, resulting in [measured change]
+   question: What changed after the redesign, and how was it measured?
+3. [line] Staff Software Engineer, line 6
+   line: "Partnered with product and finance on the roadmap for multi-currency settlement"
+   can't tell: The roadmap is named, but your part in shaping it is still open. A recruiter will want to know what you contributed alongside product and finance.
+   example: Partnered with product and finance on the roadmap for multi-currency settlement, contributing [your contribution]
+   question: What did you contribute to the multi-currency settlement roadmap?
+4. [keep] Senior Software Engineer, line 1
+   line: "Built the real-time fraud scoring pipeline (Flink, Kafka) processing payment events with p99 latency under 50ms"
+   can't tell: Keep this as a model. It connects your ownership of a specific pipeline to a performance measure without making the reader guess what was built.
+5. [line] Senior Software Engineer, line 3
+   line: "Reduced reconciliation break rate and manual ops effort"
+   can't tell: Both improvements matter to payments operations, but a recruiter can't tell how much either changed or what you did to reduce them.
+   example: Reduced reconciliation break rate by [amount] and manual ops effort by [amount] through [your work]
+   question: What did you do to reduce the break rate and manual ops effort, and how were the changes measured?
+6. [line] Software Engineer II, line 3
+   line: "Improved API latency and availability through caching and request coalescing"
+   can't tell: The techniques are clear, but the change in latency and availability isn't. Before-and-after measures would show what the caching and request coalescing achieved.
+   example: Improved API latency from [before] to [after] and availability from [before] to [after] through caching and request coalescing
+   question: What were the latency and availability measures before and after this work?
+7. [line] Software Engineer II, line 4
+   line: "Contributed to the migration of the control plane to Kubernetes"
+   can't tell: Contributed could mean several things. A recruiter can't tell which part of the migration was yours.
+   example: Contributed to the migration of the control plane to Kubernetes by [your contribution]
+   question: What part of the Kubernetes migration did you work on?
+
+## Fit
+Roles: ["Staff Software Engineer"]
+Level: lead, technical lead for the ledger and settlement platform team
+Note: Your experience points toward technical leadership in distributed payments systems. The earlier storage and fraud work gives that direction a solid technical foundation.

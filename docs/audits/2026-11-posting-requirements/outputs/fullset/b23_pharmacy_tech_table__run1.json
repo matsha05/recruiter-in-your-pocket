@@ -1,0 +1,250 @@
+{
+  "case_id": "b23_pharmacy_tech_table",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Tables rendered to tab-separated text.",
+  "resume_file": "../2026-11-live-judgment/resumes/b_pharmacy_tech_table.txt",
+  "resume_sha256": "872695c37eba2c67784784b9af67edda0387ea5b8bbb90cd54d25ac0f2941367",
+  "resume_words": 209,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-11T20:26:40.374Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7291,
+        "completion_tokens": 1592,
+        "total_tokens": 8883,
+        "cached_prompt_tokens": 6393,
+        "cache_write_prompt_tokens": 895,
+        "reasoning_tokens": 889
+      },
+      "cost_usd": 0.0094014,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 25391
+    }
+  ],
+  "resume_prompt_sha256": "758861acede37f06fbbd892e6c3084b98d8c45be3963b8b393e1d05896ca26d8",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A certified pharmacy technician with inpatient and retail experience, backed by concrete measures of the work.",
+    "write_up": [
+      "Your resume makes a strong case for pharmacy technician work! It connects inpatient sterile compounding and dispensing cabinet work to the amount you handle, while showing your earlier retail experience.",
+      "The cabinet restocking line is a great model: it names the six nursing units and shows how stockout reports changed. The main friction is that the job dates and duties sit in separate sections, so a recruiter has to match them up.",
+      "Put each set of duties directly under its job, and keep the certifications easy to find. Your resume is unlikely to be the reason you don't get a call back, though competition for a particular role still matters."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience and Duties and Results",
+        "line": "Job details and duties are in separate sections.",
+        "cannot_tell": "A recruiter has to move between sections to connect your work to each employer and date. Putting the duties under their jobs makes the progression from retail to inpatient pharmacy easier to follow.",
+        "example": "",
+        "question": "Can you move each duty under the job where you did it?"
+      },
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, line 2",
+        "line": "Pharmacy Technician II\tManage the automated dispensing cabinet restocking for 6 nursing units\tStockout reports down from 9 to 2 per week in 2024",
+        "cannot_tell": "Keep this as a model. It pairs a named responsibility with a before-and-after measure, without making a reader guess which work the numbers belong to.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Pharmacy Technician II, line 3",
+        "line": "Pharmacy Technician II\tTrain new technicians on sterile compounding\t5 trained since 2023",
+        "cannot_tell": "For a more senior technician role, responsibility for the training program itself could show how your work extends beyond training individual technicians.",
+        "example": "Train new technicians on sterile compounding; 5 trained since 2023. [Responsibility for the training program]",
+        "question": "What responsibility for the technician training program have you taken beyond training new technicians?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Certified Pharmacy Technician (CPhT)"
+      ],
+      "why": "Your headline names the certification, and your current and prior technician roles show inpatient and retail pharmacy work.",
+      "level": "mid-level, current Pharmacy Technician II role with sterile compounding and technician training",
+      "note": "Your current work points especially toward inpatient pharmacy, with retail experience as another option. Keep the sterile compounding certification and California license prominent for roles that ask for them.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A certified pharmacy technician with inpatient and retail experience, backed by concrete measures of the work.",
+    "write_up": [
+      "Your resume makes a strong case for pharmacy technician work! It connects inpatient sterile compounding and dispensing cabinet work to the amount you handle, while showing your earlier retail experience.",
+      "The cabinet restocking line is a great model: it names the six nursing units and shows how stockout reports changed. The main friction is that the job dates and duties sit in separate sections, so a recruiter has to match them up.",
+      "Put each set of duties directly under its job, and keep the certifications easy to find. Your resume is unlikely to be the reason you don't get a call back, though competition for a particular role still matters."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience and Duties and Results",
+        "line": "Job details and duties are in separate sections.",
+        "cannot_tell": "A recruiter has to move between sections to connect your work to each employer and date. Putting the duties under their jobs makes the progression from retail to inpatient pharmacy easier to follow.",
+        "example": "",
+        "question": "Can you move each duty under the job where you did it?"
+      },
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, line 2",
+        "line": "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024",
+        "cannot_tell": "Keep this as a model. It pairs a named responsibility with a before-and-after measure, without making a reader guess which work the numbers belong to.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Pharmacy Technician II, line 3",
+        "line": "Pharmacy Technician II Train new technicians on sterile compounding 5 trained since 2023",
+        "cannot_tell": "For a more senior technician role, responsibility for the training program itself could show how your work extends beyond training individual technicians.",
+        "example": "Train new technicians on sterile compounding; 5 trained since 2023. [Responsibility for the training program]",
+        "question": "What responsibility for the technician training program have you taken beyond training new technicians?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Certified Pharmacy Technician (CPhT)"
+      ],
+      "why": "Your headline names the certification, and your current and prior technician roles show inpatient and retail pharmacy work.",
+      "level": "mid-level, current Pharmacy Technician II role with sterile compounding and technician training",
+      "note": "Your current work points especially toward inpatient pharmacy, with retail experience as another option. Keep the sterile compounding certification and California license prominent for roles that ask for them.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A certified pharmacy technician with inpatient and retail experience, backed by concrete measures of the work.",
+    "write_up": [
+      "Your resume makes a strong case for pharmacy technician work! It connects inpatient sterile compounding and dispensing cabinet work to the amount you handle, while showing your earlier retail experience.",
+      "The cabinet restocking line is a great model: it names the six nursing units and shows how stockout reports changed. The main friction is that the job dates and duties sit in separate sections, so a recruiter has to match them up.",
+      "Put each set of duties directly under its job, and keep the certifications easy to find. Your resume is unlikely to be the reason you don't get a call back, though competition for a particular role still matters."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience and Duties and Results",
+        "line": "Job details and duties are in separate sections.",
+        "cannot_tell": "A recruiter has to move between sections to connect your work to each employer and date. Putting the duties under their jobs makes the progression from retail to inpatient pharmacy easier to follow.",
+        "example": "",
+        "question": "Can you move each duty under the job where you did it?"
+      },
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, line 2",
+        "line": "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024",
+        "cannot_tell": "Keep this as a model. It pairs a named responsibility with a before-and-after measure, without making a reader guess which work the numbers belong to.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Pharmacy Technician II, line 3",
+        "line": "Pharmacy Technician II Train new technicians on sterile compounding 5 trained since 2023",
+        "cannot_tell": "For a more senior technician role, responsibility for the training program itself could show how your work extends beyond training individual technicians.",
+        "example": "Train new technicians on sterile compounding; 5 trained since 2023. [Responsibility for the training program]",
+        "question": "What responsibility for the technician training program have you taken beyond training new technicians?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Certified Pharmacy Technician (CPhT)"
+      ],
+      "why": "Your headline names the certification, and your current and prior technician roles show inpatient and retail pharmacy work.",
+      "level": "mid-level, current Pharmacy Technician II role with sterile compounding and technician training",
+      "note": "Your current work points especially toward inpatient pharmacy, with retail experience as another option. Keep the sterile compounding certification and California license prominent for roles that ask for them.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  },
+  "presentation": {
+    "score": 88,
+    "band": "Clear and specific",
+    "model_score": 88,
+    "lifted_by_employer": false,
+    "verdict": "A certified pharmacy technician with inpatient and retail experience, backed by concrete measures of the work.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 110,
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience and Duties and Results",
+        "line": "Job details and duties are in separate sections.",
+        "blanks": 0,
+        "question": "Can you move each duty under the job where you did it?"
+      },
+      {
+        "kind": "keep",
+        "where": "Pharmacy Technician II, line 2",
+        "line": "Pharmacy Technician II Manage the automated dispensing cabinet restocking for 6 nursing units Stockout reports down from 9 to 2 per week in 2024",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Pharmacy Technician II, line 3",
+        "line": "Pharmacy Technician II Train new technicians on sterile compounding 5 trained since 2023",
+        "blanks": 1,
+        "question": "What responsibility for the technician training program have you taken beyond training new technicians?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "structure": 1,
+      "keep": 1,
+      "upgrade": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Certified Pharmacy Technician (CPhT)"
+      ],
+      "why": "Your headline names the certification, and your current and prior technician roles show inpatient and retail pharmacy work.",
+      "level": "mid-level, current Pharmacy Technician II role with sterile compounding and technician training",
+      "note": "Your current work points especially toward inpatient pharmacy, with retail experience as another option. Keep the sterile compounding certification and California license prominent for roles that ask for them.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0094014,
+  "latency_ms": 25395
+}

@@ -1,0 +1,38 @@
+# b18_military_to_civilian, run 1
+Resume: ../2026-11-live-judgment/resumes/b_military_to_civilian.txt (268 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 758861ac; severity check off
+Outcome: report; cost $0.0086; 21.5s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+An Army logistics leader with a clear record of managing people, equipment, and vehicle readiness.
+
+## Write-up
+This is a strong transition resume! Your Army roles show the people, equipment, and maintenance work behind your move toward operations supervision. A recruiter can see both what you managed and what changed under your leadership.
+
+The vehicle-readiness line is the standout: it gives the starting and ending rates and names the changes you made. Your progression from mechanic to platoon sergeant is easy to follow, and your in-progress supply chain degree supports the direction you've named.
+
+Start by adding what you taught the junior mechanics, then move the readiness result higher in your latest role. Your resume itself is unlikely to be the main obstacle; the competitiveness of the jobs you target will also matter.
+
+## Cards (4; {"line":1,"keep":1,"upgrade":2}); severity off; added []
+1. [line] Wheeled Vehicle Mechanic, line 2
+   line: "Trained 9 junior mechanics"
+   can't tell: A recruiter can see how many mechanics you trained, but not what you taught them. The subject would show what expertise you passed on.
+   example: Trained 9 junior mechanics in [skills taught]
+   question: What skills did you teach the junior mechanics?
+2. [keep] Platoon Sergeant, line 2
+   line: "Accountable for $14M of vehicles, tools, and equipment with zero losses on three annual inventories"
+   can't tell: Keep this as a model. It names the assets you were accountable for and gives the inventory record a recruiter can take away.
+3. [upgrade] Platoon Sergeant, line 1
+   line: "Led, trained, and evaluated 38 soldiers across maintenance, supply, and fuel sections"
+   can't tell: For a role one level above supervisor, the priorities and decisions behind your leadership would add another dimension.
+   example: Led, trained, and evaluated 38 soldiers across maintenance, supply, and fuel sections, with responsibility for [team priorities] and [a decision you made]
+   question: What priorities and decisions were yours across those sections?
+4. [upgrade] Platoon Sergeant, line 4
+   line: "Cut the unit's vehicle non-mission-capable rate from 18% to 6% in a year by changing the parts ordering process and the weekly maintenance schedule"
+   can't tell: Move this above the other Platoon Sergeant lines. It's your strongest example of changing a process and measuring the result.
+
+## Fit
+Roles: ["operations supervisor","Platoon Sergeant (E-7), Forward Support Company"]
+Level: manager, led 38 soldiers and had 6 direct-report sergeants
+Note: Your maintenance and logistics background also gives you a strong basis for supply chain supervision. When tailoring your resume, explain Army terms in language the employer uses without changing what you did.

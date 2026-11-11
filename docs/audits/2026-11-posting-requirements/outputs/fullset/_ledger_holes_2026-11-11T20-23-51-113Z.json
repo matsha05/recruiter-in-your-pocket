@@ -1,0 +1,108 @@
+{
+  "batch": "holes",
+  "model": "gpt-6.1-terra",
+  "effort": "medium",
+  "today": "2026-11-07",
+  "severity_check": false,
+  "budget_usd": 2,
+  "spent_usd": 0.13139875,
+  "calls": 9,
+  "runs": [
+    {
+      "stem": "h4a_academic_cv_15_pages__run1",
+      "outcome": "request_refused",
+      "cost_usd": 0,
+      "score": null,
+      "band": null,
+      "cards": null,
+      "structural_from_model": null,
+      "severity_added": null,
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "h2_thin_resume__run1",
+      "outcome": "report",
+      "cost_usd": 0.00891515,
+      "score": 64,
+      "band": "Needs more context",
+      "cards": 7,
+      "structural_from_model": 1,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "h3_strong_resume__run1",
+      "outcome": "report",
+      "cost_usd": 0.0097014,
+      "score": 96,
+      "band": "Clear and specific",
+      "cards": 3,
+      "structural_from_model": 0,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "h1_bad_resume__run1",
+      "outcome": "report",
+      "cost_usd": 0.01242015,
+      "score": 35,
+      "band": "Needs more context",
+      "cards": 12,
+      "structural_from_model": 4,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "h4c_one_paragraph__run1",
+      "outcome": "report",
+      "cost_usd": 0.0049989,
+      "score": 81,
+      "band": "Mostly clear",
+      "cards": 1,
+      "structural_from_model": 0,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "h4b_academic_cv_under_cap__run1",
+      "outcome": "report",
+      "cost_usd": 0.0666735,
+      "score": 76,
+      "band": "Mostly clear",
+      "cards": 3,
+      "structural_from_model": 1,
+      "severity_added": [],
+      "repaired": true,
+      "refusal": "The model response failed the worklist contract at cards.0.question: a card that needs work carries the question that fills its blanks."
+    },
+    {
+      "stem": "h6_unverifiable_claim__run1",
+      "outcome": "report",
+      "cost_usd": 0.0112064,
+      "score": 64,
+      "band": "Needs more context",
+      "cards": 10,
+      "structural_from_model": 1,
+      "severity_added": [],
+      "repaired": false,
+      "refusal": null
+    },
+    {
+      "stem": "h5_mismatched_posting__run1",
+      "outcome": "report",
+      "cost_usd": 0.01748325,
+      "score": 82,
+      "band": "Mostly clear",
+      "cards": 2,
+      "structural_from_model": 0,
+      "severity_added": [],
+      "repaired": true,
+      "refusal": "The model response failed the worklist contract at fit.posting.missing.5: Too big: expected string to have <=120 characters."
+    }
+  ]
+}

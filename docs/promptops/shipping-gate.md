@@ -184,7 +184,7 @@ If shipping with known WARNs, add a comment to the PR:
 | Metric | Current corpus / historical baseline |
 |--------|-------------------------------------|
 | Golden fixtures in current corpus | 23 |
-| Latest candidate validation | 9 PASS, 1 WARN, 0 FAIL on the worklist prompt (November 11, 2026); saved-output replay |
+| Latest candidate validation | 9 PASS, 1 WARN, 0 FAIL on the worklist prompt with the requirements table (November 11, 2026; [details](../audits/2026-11-posting-requirements.md)); saved-output replay |
 | Expected score ranges | Redrawn November 11, 2026 for the worklist prompt, from seven runs per fixture ([details](../audits/2026-11-posting-tailoring.md#the-golden-ranges-redrawn)) |
 | Current evaluated subset | 10 synthetic golden fixtures; 13 stored golden fixtures not newly generated |
 | Historical V2 baseline run (2025-12-28) | 17 fixtures |

@@ -102,7 +102,7 @@ const base = {
 // The model is asked for both lists every time, so a strict response format has somewhere to put an empty one.
 {
   const posting = WORKLIST_REPORT_JSON_SCHEMA.properties.fit.properties.posting;
-  assert.deepEqual([...posting.required], ["summary", "missing", "lead", "trim"]);
+  assert.deepEqual([...posting.required], ["summary", "missing", "lead", "trim", "covered"]);
   assert.equal(posting.properties.lead.maxItems, 3);
 }
 
@@ -110,6 +110,45 @@ const base = {
 for (const text of [POSTING_LEAD_LABEL, POSTING_LEAD_HOW, POSTING_TRIM_LABEL, POSTING_TRIM_HOW]) {
   assert.doesNotMatch(text, /delete|remove|recruiters? (?:read|spend|always)/iu);
   assert.doesNotMatch(text, /—/u);
+}
+
+// ---- Covered requirements (Nov 11, 2026): each must-have is covered or missing ----
+{
+  const posting = WORKLIST_REPORT_JSON_SCHEMA.properties.fit.properties.posting;
+  assert.ok((posting.required as readonly string[]).includes("covered"), "the model always returns the covered list");
+  const prompt = require("node:fs").readFileSync(require("node:path").join(__dirname, "../prompts/resume_v3.txt"), "utf8");
+  assert.match(prompt, /each one is either covered or missing, never both/);
+  assert.match(prompt, /"covered": \[\{ "requirement": "", "line": "" \}\]/);
+  const { POSTING_TABLE_LABEL, POSTING_COVERED_LABEL, POSTING_NOT_COVERED } = require("../lib/reports/worklist-presentation");
+  for (const label of [POSTING_TABLE_LABEL, POSTING_COVERED_LABEL, POSTING_NOT_COVERED]) assert.ok(label.length > 0 && label.length < 40);
+  assert.equal(WorklistReportSchema.safeParse(null).success, false);
+
+  const draft = structuredClone(base) as typeof base & { fit: { posting: { covered?: Array<{ requirement: string; line: string }> } } };
+  draft.fit.posting.covered = [
+    { requirement: "Ledger experience at volume", line: "Moved the payouts ledger to a sharded store that handles 2.1 million transactions a day." },
+    { requirement: "Kubernetes in production", line: "Ran the Kubernetes migration for the platform." },
+    { requirement: "ledger experience at volume", line: "Wrote the on-call runbook for the payouts service." },
+    { requirement: "Leading a migration across several teams", line: "Built the public API gateway used by partner integrations." },
+    { requirement: "On-call for the payouts path", line: "Wrote the on-call runbook for the payouts service." },
+    { requirement: "5+ years building backend systems", line: "Northwind Pay, Senior Backend Engineer, March 2021 - Present" },
+  ];
+  const report = validateWorklistPayload(draft, RESUME, { forceGrounding: true });
+  assert.deepEqual(report.fit.posting.covered?.map((item) => item.requirement), ["Ledger experience at volume", "On-call for the payouts path"],
+    "a line that isn't on the resume, a repeated requirement, a requirement also listed as missing, and a years-of-experience ask are all dropped");
+
+  const long = structuredClone(base);
+  long.fit.posting.missing = [`Partner with Finance and Risk on reconciliation and controls, ${"including month-end close support and audit evidence, ".repeat(6)}as needed.`];
+  const cut = validateWorklistPayload(long, RESUME, { forceGrounding: true }).fit.posting.missing[0];
+  assert.ok(cut.length <= 200 && cut.startsWith("Partner with Finance and Risk") && !/[,;:. ]$/u.test(cut), "a requirement copied as a paragraph is cut to a clause, not sent back");
+
+  const none = structuredClone(draft);
+  none.fit.posting.summary = "";
+  none.fit.posting.missing = [];
+  assert.equal("covered" in validateWorklistPayload(none, RESUME, { forceGrounding: true }).fit.posting, false, "no posting, no table");
+
+  const saved = structuredClone(base) as { fit: { posting: Record<string, unknown> } };
+  delete saved.fit.posting.covered;
+  assert.equal("covered" in WorklistReportSchema.parse(saved).fit.posting, false, "a report saved before the table parses to the same object");
 }
 
 console.log("posting tailoring tests passed");

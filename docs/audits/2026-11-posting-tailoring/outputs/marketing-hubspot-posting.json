@@ -11,76 +11,76 @@
     "trim": 0
   },
   "usage": {
-    "tokens_in": 6983,
-    "tokens_out": 2398,
-    "cost_estimate_usd": 0.0132384
+    "tokens_in": 7260,
+    "tokens_out": 2714,
+    "cost_estimate_usd": 0.01393585
   },
   "report": {
     "contract_version": "v3",
-    "score": 66,
+    "score": 65,
     "lifted_by_employer": false,
-    "verdict": "B2B marketing work fits the setting, but hands-on marketing operations experience isn't established.",
+    "verdict": "A B2B marketing coordinator with relevant tools, but too little detail about how the campaigns were run.",
     "write_up": [
-      "It's common for a marketing coordinator resume to list the work without showing the person's part in it. Yours points to B2B marketing at Brightfield Software and Keystone Benefits Group, but a recruiter considering you for marketing operations has to guess how hands-on you were with campaigns and reporting.",
-      "Your content calendar line is the best model: it names what you managed and where the content went. Your experience is easy to follow, and your tools are listed, but the resume doesn't connect those tools to the work.",
-      "Let's start with the Brightfield newsletter and work down through the webinar and reporting lines. Add what you personally did, then connect tools to those tasks where that's true. Your event registration work is worth keeping for this application."
+      "Your resume points to Marketing Coordinator work in B2B software and services. For the Tallgrass role, the newsletter, webinars and campaign reporting are relevant, but a recruiter would have to guess which parts you handled and how you used the listed tools.",
+      "Your content calendar line is the strongest model: it names what you managed and both channels. HubSpot, Salesforce and Google Analytics 4 are all listed, but the jobs don't connect them to the work Tallgrass needs.",
+      "It's common for coordinator resumes to list the regular duties without showing the work behind them. That makes it tough to stand out in a pile. Let's start with the Brightfield newsletter and webinar lines, then connect the tools to your responsibilities wherever you can do so accurately."
     ],
     "cards": [
       {
         "kind": "structure",
-        "where": "Experience",
-        "line": "Neither employer has a company description.",
-        "cannot_tell": "Your headline says B2B software and services, but it doesn't say what each company sells or who its buyers are. A short description could give the marketing work useful context.",
+        "where": "Brightfield Software",
+        "line": "Brightfield Software's size isn't stated.",
+        "cannot_tell": "A recruiter may not know Brightfield. A short description of its customers, product or company size could give the marketing work useful context.",
         "example": "",
-        "question": "What products or services does each company sell, and to whom?"
+        "question": "What can you share about Brightfield's product, customers or company size?"
       },
       {
         "kind": "line",
         "where": "Marketing Coordinator, line 1",
         "line": "Coordinated the monthly customer newsletter and product announcement emails",
-        "cannot_tell": "Coordinated could mean writing, building, scheduling or reviewing. The distinction matters for a job that asks you to build and send campaigns.",
-        "example": "Coordinated the monthly customer newsletter and product announcement emails by [your contribution] for [audience]",
-        "question": "What parts of those emails did you handle, and who received them?"
+        "cannot_tell": "The monthly newsletter is relevant to Tallgrass, but coordinating can cover several different jobs. Your part in preparing and sending the emails isn't clear.",
+        "example": "Coordinated the monthly customer newsletter and product announcement emails by [what you did], reaching [number] recipients",
+        "question": "What parts of the emails did you handle, and how many recipients did they reach?"
       },
       {
         "kind": "line",
         "where": "Marketing Coordinator, line 2",
         "line": "Supported webinar planning with the product marketing team",
-        "cannot_tell": "A recruiter can't tell which planning tasks were yours. The posting asks about work from registration through follow-up, so name the parts you handled.",
-        "example": "Supported webinar planning with the product marketing team by [your contribution]",
-        "question": "What did you do to help plan the webinars?"
-      },
-      {
-        "kind": "line",
-        "where": "Marketing Coordinator, line 4",
-        "line": "Pulled weekly campaign reports for the marketing manager",
-        "cannot_tell": "The reports have a clear recipient and cadence, but a recruiter can't tell what they measured or how you pulled them. That's important for a reporting-focused role.",
-        "example": "Pulled weekly campaign reports on [measures] for the marketing manager using [tool]",
-        "question": "What did the reports measure, and which tool did you use to pull them?"
-      },
-      {
-        "kind": "line",
-        "where": "Marketing Assistant, line 2",
-        "line": "Helped prepare slide decks and one-pagers for the sales team",
-        "cannot_tell": "Helped leaves your contribution open. A recruiter can't tell whether you gathered information, wrote content or prepared the materials in another way.",
-        "example": "Helped prepare slide decks and one-pagers for the sales team by [your contribution]",
-        "question": "What part of preparing those materials was yours?"
-      },
-      {
-        "kind": "line",
-        "where": "Marketing Assistant, line 3",
-        "line": "Kept the brand asset library organized",
-        "cannot_tell": "The library is named, but not what you did to organize it or who used it. One detail about the work would make this less generic.",
-        "example": "Kept the brand asset library organized by [your contribution] for [users]",
-        "question": "How did you organize the library, and who used it?"
+        "cannot_tell": "Tallgrass asks for support from registration through follow-up. Your line doesn't say which parts of webinar planning were yours.",
+        "example": "Supported webinar planning with the product marketing team by [what you did]",
+        "question": "What did you handle when planning webinars?"
       },
       {
         "kind": "keep",
         "where": "Marketing Coordinator, line 3",
         "line": "Managed the content calendar for LinkedIn and the company blog",
-        "cannot_tell": "Keep this as a model. It gives you ownership of a named piece of work and tells a recruiter which channels it covered.",
+        "cannot_tell": "Keep this as a model. It gives you clear ownership of a named deliverable and shows where the content went.",
         "example": "",
         "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 4",
+        "line": "Pulled weekly campaign reports for the marketing manager",
+        "cannot_tell": "The weekly reports are a useful match, but a recruiter can't tell what you reported on or which tools you used.",
+        "example": "Pulled weekly campaign reports on [metrics] in [tool] for the marketing manager",
+        "question": "Which metrics did the reports cover, and what did you use to pull them?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Assistant, line 2",
+        "line": "Helped prepare slide decks and one-pagers for the sales team",
+        "cannot_tell": "The sales materials are named, but 'helped prepare' leaves your contribution open. Your part could give a recruiter a better sense of your work with sales.",
+        "example": "Helped prepare slide decks and one-pagers for the sales team by [what you did]",
+        "question": "What did you contribute to the slide decks and one-pagers?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Assistant, line 3",
+        "line": "Kept the brand asset library organized",
+        "cannot_tell": "A recruiter can't tell what was in the library or what you did to keep it usable.",
+        "example": "Kept the brand asset library organized by [what you did] for [asset types]",
+        "question": "What assets did the library hold, and how did you organize them?"
       }
     ],
     "fit": {
@@ -88,16 +88,28 @@
         "Marketing Coordinator",
         "Marketing Operations Coordinator"
       ],
-      "why": "Your headline and current Brightfield role both name Marketing Coordinator, with B2B campaigns and reporting in the work.",
-      "level": "mid-level, current Marketing Coordinator role and earlier Marketing Assistant role",
-      "note": "Your B2B background and webinar and event work fit the setting at Tallgrass. Connect the tools on your skills list to tasks you personally performed, wherever you can do that accurately.",
+      "why": "Your headline and current role both name Marketing Coordinator, with B2B email, content and campaign reporting work.",
+      "level": "mid-level, a current coordinator role following a marketing assistant role",
+      "note": "Your B2B background and the tools listed in Skills give you a foundation for this application. Use the Brightfield lines to show where you worked in those tools, if you did, rather than leaving them only in the skills list.",
       "posting": {
-        "summary": "Tallgrass wants a B2B marketing coordinator who can run campaigns and support events, with hands-on work across HubSpot, Salesforce and Google Analytics 4.",
+        "summary": "Tallgrass needs a B2B marketing coordinator who can run HubSpot campaigns, maintain Salesforce and HubSpot data, report on performance and support events.",
         "missing": [
-          "Hands-on HubSpot experience: workflows, lists, email and reporting (required)",
+          "Build and send email campaigns and nurture programs in HubSpot",
           "Keep Salesforce and HubSpot in sync: lead routing, campaign attribution and list hygiene",
-          "building simple reports",
-          "follow-up"
+          "Report on campaign performance in Google Analytics 4 and HubSpot dashboards; building simple reports",
+          "Support webinars and events from registration through follow-up",
+          "Hands-on HubSpot experience: workflows, lists, email and reporting",
+          "a record of running campaigns on deadline"
+        ],
+        "covered": [
+          {
+            "requirement": "Working knowledge of Salesforce",
+            "line": "HubSpot, Salesforce, Google Analytics 4, Canva, WordPress, Hootsuite, Asana, Excel"
+          },
+          {
+            "requirement": "Comfortable with Google Analytics 4",
+            "line": "HubSpot, Salesforce, Google Analytics 4, Canva, WordPress, Hootsuite, Asana, Excel"
+          }
         ]
       }
     },
@@ -105,6 +117,6 @@
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 66
+    "content_score": 65
   }
 }

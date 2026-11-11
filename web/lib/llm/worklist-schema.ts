@@ -82,6 +82,15 @@ export const ProfilePartSchema = z.object({
 });
 export type ProfilePart = z.infer<typeof ProfilePartSchema>;
 
+/**
+ * A posting's must-have that the resume answers (Nov 11, 2026): the requirement in the posting's words, and the
+ * one resume line that answers it, quoted like a card. With "missing" it makes the table of what the posting asks
+ * for: each must-have is covered or missing, never both. Optional with no default, like lead and trim.
+ */
+export const MAX_POSTING_COVERED = 6;
+const PostingCoveredSchema = z.object({ requirement: text(200), line: text(MAX_LINE_LENGTH) });
+export type PostingCovered = z.infer<typeof PostingCoveredSchema>;
+
 export const WorklistFitSchema = z.object({
   roles: z.array(text(80)).max(4),
   /**
@@ -94,9 +103,11 @@ export const WorklistFitSchema = z.object({
   note: optionalText(800),
   posting: z.object({
     summary: optionalText(600),
-    missing: z.array(text(120)).max(6),
+    // A requirement in the posting's own words; some postings write long ones, and a repair over a few characters costs the person a second wait.
+    missing: z.array(text(200)).max(6),
     lead: z.array(PostingMoveSchema).max(MAX_POSTING_MOVES).optional(),
     trim: z.array(PostingMoveSchema).max(MAX_POSTING_MOVES).optional(),
+    covered: z.array(PostingCoveredSchema).max(MAX_POSTING_COVERED).optional(),
   }),
 });
 
@@ -190,8 +201,19 @@ export const WORKLIST_REPORT_JSON_SCHEMA = {
             missing: { type: "array", minItems: 0, maxItems: 6, items: nonEmptyString },
             lead: POSTING_MOVES_JSON_SCHEMA,
             trim: POSTING_MOVES_JSON_SCHEMA,
+            covered: {
+              type: "array",
+              minItems: 0,
+              maxItems: MAX_POSTING_COVERED,
+              items: {
+                type: "object",
+                properties: { requirement: nonEmptyString, line: { type: "string", minLength: 1, maxLength: MAX_LINE_LENGTH } },
+                required: ["requirement", "line"],
+                additionalProperties: false,
+              },
+            },
           },
-          required: ["summary", "missing", "lead", "trim"],
+          required: ["summary", "missing", "lead", "trim", "covered"],
           additionalProperties: false,
         },
       },

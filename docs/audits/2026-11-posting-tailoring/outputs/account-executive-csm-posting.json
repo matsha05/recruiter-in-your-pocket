@@ -4,65 +4,49 @@
   "posting": "../../2026-11-live-judgment/resumes/b_posting_customer_success_manager.txt",
   "model": "gpt-6.1-terra",
   "today": "2026-11-07",
-  "repaired": false,
-  "firstError": null,
+  "repaired": true,
+  "firstError": "The model response failed the worklist contract at fit.posting.missing.0: Too big: expected string to have <=200 characters.",
   "drafted": {
-    "lead": 0,
+    "lead": 1,
     "trim": 0
   },
   "usage": {
-    "tokens_in": 7083,
-    "tokens_out": 2117,
-    "cost_estimate_usd": 0.0119584
+    "tokens_in": 7360,
+    "tokens_out": 2158,
+    "cost_estimate_usd": 0.01116085
   },
   "report": {
     "contract_version": "v3",
-    "score": 75,
+    "score": 78,
     "lifted_by_employer": false,
-    "verdict": "A quota-beating Account Executive whose resume doesn't yet show the customer success work this role requires.",
+    "verdict": "Your sales record is clear, but this customer success role asks for a different track.",
     "write_up": [
-      "Brightline's role is a different track from the one your resume shows. You moved from sales development to Account Executive at Vantage Fleet Software, with quota attainment and new business leading your story. A recruiter can see your sales results, but not whether you've owned renewals or managed customers after the sale.",
-      "The meetings line in your Sales Development Representative role is a good model: it names what you booked, for whom, and how often. Your Account Executive results are strong too, but the quota and closed-business figures need more context to compare them with other sales resumes.",
-      "Let's start with the FY2025 quota line, then add the period and deal context for the new business you closed. For Brightline, add any real post-sale account work you can speak to, without presenting sales work as customer success work."
+      "Brightline is hiring for customer success, while your resume points to new-business sales. I read it for Account Executive roles: your promotion at Vantage Fleet Software and your quota and closing results give a sales recruiter a reason to move it forward.",
+      "The meeting-booking line is a good model: it names the work, the volume and who received the meetings. In your current role, the missing piece is what your quota was against and whether you can show attainment in another year.",
+      "Start with the quota and new-business lines, adding the figures and timeframes you can document. For Brightline, bring forward any real post-sale account work you haven't included; don't recast prospecting or closing as retention."
     ],
     "cards": [
-      {
-        "kind": "structure",
-        "where": "Vantage Fleet Software",
-        "line": "Vantage Fleet Software has no company description.",
-        "cannot_tell": "A recruiter may not know what Vantage sells or who its customers are. One short description can give your sales results a setting.",
-        "example": "",
-        "question": "What does Vantage Fleet Software sell, and who are its customers?"
-      },
       {
         "kind": "line",
         "where": "Account Executive, line 1",
         "line": "Achieved 132% of quota in FY2025",
-        "cannot_tell": "132% is a strong result, but a recruiter can't compare it without knowing the quota or territory behind it.",
-        "example": "Achieved 132% of quota in FY2025 against a [quota] quota for [territory]",
-        "question": "What was your FY2025 quota, and what territory did it cover?"
+        "cannot_tell": "A recruiter can see you beat quota, but not what the target was or how you performed in another year. Those details give the result context for a sales role.",
+        "example": "Achieved 132% of quota in FY2025 against a [quota amount] target; achieved [quota attainment] in [other year]",
+        "question": "What was your FY2025 quota, and what attainment can you document for another year?"
       },
       {
         "kind": "line",
         "where": "Account Executive, line 2",
         "line": "Closed $1.4M in new business",
-        "cannot_tell": "The amount is clear, but the period and typical deal size aren't. Those details would help a sales recruiter understand the work behind it.",
-        "example": "Closed $1.4M in new business over [period], with a typical deal size of [deal size]",
-        "question": "What period does the $1.4M cover, and what was your typical deal size?"
-      },
-      {
-        "kind": "line",
-        "where": "Account Executive, line 5",
-        "line": "Partnered with solutions engineers on demos and pilots",
-        "cannot_tell": "A recruiter knows who you worked with, but not your part in the demos and pilots.",
-        "example": "Partnered with solutions engineers on demos and pilots, [your contribution]",
-        "question": "What was your part in the demos and pilots?"
+        "cannot_tell": "That's a useful sales figure, but the timeframe and typical deal value aren't stated. A recruiter can't tell whether this describes a quarter, a year or another period.",
+        "example": "Closed $1.4M in new business in [period], with a typical deal value of [deal value]",
+        "question": "What period does the $1.4M cover, and what was your typical deal value?"
       },
       {
         "kind": "keep",
         "where": "Sales Development Representative, line 1",
         "line": "Booked 25+ meetings per month for the account executive team",
-        "cannot_tell": "Keep this as a model. The action and monthly measure sit together, so a recruiter doesn't have to guess what the number counts.",
+        "cannot_tell": "Keep this as a model. It tells a recruiter what you delivered, how often and who it was for without making them guess.",
         "example": "",
         "question": ""
       }
@@ -72,18 +56,30 @@
         "Account Executive",
         "Customer Success Manager, Mid-Market"
       ],
-      "why": "Your headline and current role both name Account Executive, and your recent work centers on quota and closing new business.",
-      "level": "mid-level, current Account Executive role and prior Sales Development Representative role",
-      "note": "Your full-cycle sales work and Salesforce experience are relevant to a move into customer-facing SaaS work. If you've done work with customers after closing, describe your part in it rather than leaving the recruiter to infer it.",
+      "why": "Your headline and current Vantage role center on full-cycle sales and new business.",
+      "level": "mid-level, promoted from Sales Development Representative to Account Executive",
+      "note": "Salesforce and your work with solutions engineers on demos and pilots are relevant to a SaaS customer-facing role. If you used Salesforce for post-sale account work, describe that work in the Vantage role.",
       "posting": {
-        "summary": "Brightline seeks a mid-market Customer Success Manager to own accounts, drive retention and expansion, and work with customer usage data.",
+        "summary": "Brightline seeks a mid-market customer success manager to own accounts, renewals, onboarding and customer relationships.",
         "missing": [
+          "Own a book of 60 to 80 mid-market accounts representing about $4M in ARR; gross retention of 92% and net retention of 110%; track record of hitting retention or expansion targets",
+          "Run onboarding for new accounts and quarterly business reviews with executive sponsors; Experience running QBRs with VP-level sponsors",
+          "Identify at-risk accounts early using product usage data and build save plans with Sales",
+          "Be the voice of the customer to Product; log and prioritize feature requests",
           "3+ years in customer success or account management at a SaaS company",
-          "A track record of hitting retention or expansion targets, with numbers you can talk about",
-          "usage data",
-          "Gainsight",
-          "a BI tool such as Looker",
-          "Experience running QBRs with VP-level sponsors"
+          "Comfortable with usage data; Gainsight; a BI tool such as Looker"
+        ],
+        "lead": [
+          {
+            "line": "Salesforce, Outreach, Gong, LinkedIn Sales Navigator",
+            "why": "The posting names Salesforce, and it's in Skills. Bring it into the Vantage role if you used it there."
+          }
+        ],
+        "covered": [
+          {
+            "requirement": "Salesforce",
+            "line": "Salesforce, Outreach, Gong, LinkedIn Sales Navigator"
+          }
         ]
       }
     },
@@ -91,6 +87,6 @@
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 75
+    "content_score": 78
   }
 }

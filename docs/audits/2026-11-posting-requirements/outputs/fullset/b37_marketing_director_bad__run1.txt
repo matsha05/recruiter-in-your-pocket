@@ -1,0 +1,50 @@
+# b37_marketing_director_bad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_marketing_director_bad_1.txt (167 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 758861ac; severity check off
+Outcome: report; cost $0.0120; 36.8s
+Case note: Title above the work; key says no_recent_work, no_target_role, title_level_mismatch.
+
+## Needs more context (score 59; model wrote 59)
+## Verdict
+A director title sits above hands-on marketing work, with no recent activity or target job named.
+
+## Write-up
+It’s common for a resume to pair a senior title with day-to-day work, but yours leaves a recruiter guessing about your level. I read it for Director of Marketing, your latest title. The Lumen role shows social posts and product descriptions, while your earlier work spans title records and laboratory preparation. That mix won’t stand out for a director search without a clearer direction and a fuller account of the marketing role.
+
+The Hill Country Title line about entering 150 property records a day is a good model: it names the work, the system and its pace. At Lumen, the title suggests a broader remit than the bullets show, and nothing explains the time after January 2025.
+
+Let’s start with the Lumen title and establish what marketing work was yours, including any leadership or budget responsibility if you had it. Then account honestly for the time since the role ended and name the job you want next.
+
+## Cards (6; {"line":3,"dates":1,"structure":1,"keep":1}); severity off; added []
+1. [line] Lumen Candle Co., title
+   line: "Director of Marketing"
+   can't tell: The title points to director-level responsibility, but the bullets show individual marketing and fulfillment tasks. A recruiter can't tell whether you directed a team, budget or marketing plan.
+   example: Director of Marketing | [marketing responsibilities] | [team or budget responsibility]
+   question: What marketing responsibilities did you have, and did they include a team, budget or marketing plan?
+2. [dates] Dates
+   line: "Nothing is dated after January 2025."
+   can't tell: A recruiter can't tell what you've been doing since the Lumen role. Add an honest line for the time if there's something to share, whether that was caregiving, a career break with activities, or real freelance work.
+   example: January 2025 - Present [what you did]
+   question: What have you been doing since January 2025 that you'd like to include?
+3. [structure] Structure
+   line: "Your resume doesn't name a target job, and your roles span marketing, data entry and laboratory work."
+   can't tell: A recruiter has to guess which direction you want to take. A target job near the top can help them understand which experience to focus on.
+   question: Which job do you want this resume to target?
+4. [line] Director of Marketing, line 3
+   line: "Packed online orders during the holiday rush"
+   can't tell: This shows you helped with fulfillment, but not how many orders you handled. If you're targeting marketing, consider whether this deserves space beside your marketing work.
+   example: Packed [number] online orders during the holiday rush
+   question: How many online orders did you pack during the holiday rush?
+5. [line] Director of Marketing, line 4
+   line: "Answered customer emails about shipping"
+   can't tell: A recruiter can see that you handled shipping questions, but not which issues came up or how many customers you helped. Those details can show what the work involved.
+   example: Answered customer emails about shipping, addressing [shipping issues] for [number] customers [time period]
+   question: Which shipping issues did you address, and how many customers did you help over what period?
+6. [keep] Data Entry Clerk, line 1
+   line: "Entered 150 property records a day into the county title system"
+   can't tell: Keep this as a model. It gives a recruiter a concrete picture of your daily work without relying on a vague claim about being detail-oriented.
+
+## Fit
+Roles: ["Director of Marketing"]
+Level: entry level, marketing work shown in one role with no team or budget listed
+Note: Your Lumen work points toward hands-on content and social marketing, while your earlier roles show different kinds of work. Choose the direction you want to pursue and put the most relevant work first.

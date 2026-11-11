@@ -3,14 +3,14 @@
   "counts": {
     "files_scanned": 424,
     "files_with_copy": 256,
-    "strings": 2946,
-    "unique_strings": 2453
+    "strings": 2949,
+    "unique_strings": 2456
   },
   "by_moment": {
     "research": 990,
     "account": 450,
     "marketing": 411,
-    "report": 264,
+    "report": 267,
     "pricing": 217,
     "upload": 124,
     "legal": 111,
@@ -36495,7 +36495,7 @@
     {
       "text": "Which job is this for?",
       "kind": "jsx-text",
-      "line": 49,
+      "line": 50,
       "file": "web/components/workspace/report/worklist/FirstPass.tsx",
       "routes": [
         "/reports/[id]",
@@ -36508,7 +36508,7 @@
     {
       "text": "What level?",
       "kind": "jsx-text",
-      "line": 56,
+      "line": 57,
       "file": "web/components/workspace/report/worklist/FirstPass.tsx",
       "routes": [
         "/reports/[id]",
@@ -36521,7 +36521,7 @@
     {
       "text": "Your posting",
       "kind": "jsx-text",
-      "line": 63,
+      "line": 64,
       "file": "web/components/workspace/report/worklist/FirstPass.tsx",
       "routes": [
         "/reports/[id]",
@@ -36534,7 +36534,7 @@
     {
       "text": "Going for something else?",
       "kind": "jsx-text",
-      "line": 104,
+      "line": 128,
       "file": "web/components/workspace/report/worklist/FirstPass.tsx",
       "routes": [
         "/reports/[id]",
@@ -36547,7 +36547,7 @@
     {
       "text": "Read it against a posting",
       "kind": "jsx-text",
-      "line": 105,
+      "line": 129,
       "file": "web/components/workspace/report/worklist/FirstPass.tsx",
       "routes": [
         "/reports/[id]",
@@ -40784,7 +40784,7 @@
       "table": "workspace"
     },
     {
-      "text": "Your whole profile, part by part",
+      "text": "What this posting asks for",
       "kind": "const",
       "line": 252,
       "file": "web/lib/reports/worklist-presentation.ts",
@@ -40798,9 +40798,51 @@
       "table": "workspace"
     },
     {
+      "text": "Your resume answers it here",
+      "kind": "const",
+      "line": 253,
+      "file": "web/lib/reports/worklist-presentation.ts",
+      "routes": [
+        "/api/export-pdf",
+        "/reports/[id]",
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "Not on your resume",
+      "kind": "const",
+      "line": 254,
+      "file": "web/lib/reports/worklist-presentation.ts",
+      "routes": [
+        "/api/export-pdf",
+        "/reports/[id]",
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "Your whole profile, part by part",
+      "kind": "const",
+      "line": 257,
+      "file": "web/lib/reports/worklist-presentation.ts",
+      "routes": [
+        "/api/export-pdf",
+        "/reports/[id]",
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
       "text": "Nothing here yet",
       "kind": "key:empty",
-      "line": 256,
+      "line": 261,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -40814,7 +40856,7 @@
     {
       "text": "What the posting asks for that your resume doesn't show",
       "kind": "const",
-      "line": 259,
+      "line": 264,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -40828,7 +40870,7 @@
     {
       "text": "If you've done it, say where. If you haven't, leave it out.",
       "kind": "const",
-      "line": 264,
+      "line": 269,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -40842,7 +40884,7 @@
     {
       "text": "Move these up for this posting",
       "kind": "const",
-      "line": 271,
+      "line": 276,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -40856,7 +40898,7 @@
     {
       "text": "They're already on your resume, further down than this posting needs.",
       "kind": "const",
-      "line": 272,
+      "line": 277,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -40870,7 +40912,7 @@
     {
       "text": "Trim these first if you need the room",
       "kind": "const",
-      "line": 273,
+      "line": 278,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -40884,7 +40926,7 @@
     {
       "text": "Good lines this posting doesn't ask about. Keep them for the next one.",
       "kind": "const",
-      "line": 274,
+      "line": 279,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -40898,7 +40940,7 @@
     {
       "text": "This is {SCREENER_WHAT[findings[0]…}. It may be set in white, where you won't see it; software still reads it as text, and a recruiter can see it too. Recruiters who find a line like this often stop reading there.",
       "kind": "return",
-      "line": 339,
+      "line": 344,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -40912,7 +40954,7 @@
     {
       "text": "{what} Lines like these may be set in white, where you won't see them; software still reads them as text, and a recruiter can see them too. Recruiters who find one often stop reading there.",
       "kind": "return",
-      "line": 342,
+      "line": 347,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -40926,7 +40968,7 @@
     {
       "text": "Still nothing that needs work.",
       "kind": "assign",
-      "line": 382,
+      "line": 387,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -40940,7 +40982,7 @@
     {
       "text": "Both versions came back clean.",
       "kind": "assign",
-      "line": 383,
+      "line": 388,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -40954,7 +40996,7 @@
     {
       "text": "The same lines are on the list.",
       "kind": "assign",
-      "line": 385,
+      "line": 390,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -40968,7 +41010,7 @@
     {
       "text": "None of them came off the list this time. Let's start with the first one again.",
       "kind": "assign",
-      "line": 386,
+      "line": 391,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -40982,7 +41024,7 @@
     {
       "text": "Nothing in this version needs work now.",
       "kind": "assign",
-      "line": 389,
+      "line": 394,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -40996,7 +41038,7 @@
     {
       "text": "{count(gone.length, \"line …} off the list.",
       "kind": "assign",
-      "line": 391,
+      "line": 396,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -41010,7 +41052,7 @@
     {
       "text": "Up {delta} since last time. That's the right direction!",
       "kind": "const",
-      "line": 398,
+      "line": 403,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",
@@ -41024,7 +41066,7 @@
     {
       "text": "Down {Math.abs(delta)} since last time.",
       "kind": "const",
-      "line": 398,
+      "line": 403,
       "file": "web/lib/reports/worklist-presentation.ts",
       "routes": [
         "/api/export-pdf",

@@ -1,0 +1,40 @@
+# b26_construction_pm_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_construction_pm_strong_1.txt (136 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 758861ac; severity check off
+Outcome: report; cost $0.0079; 20.4s
+
+## Clear and specific (score 87; model wrote 87)
+## Verdict
+A construction project manager with project values, trade counts, and delivery results a recruiter can follow.
+
+## Write-up
+This is a strong construction project manager resume! Your Capitol Builders work shows the projects you run, their values, and results on schedule and change orders. A recruiter can quickly see your commercial construction work and how much you handle.
+
+The line about running 4 to 6 concurrent tenant-improvement projects is a good model: it names the work and the value of each project. Experience leads Education, and your move from assistant project manager to project manager is easy to follow.
+
+Let's add what you did to get the grocery build ahead of schedule and keep change orders under 3%. Your resume gives a recruiter plenty to work with already; how competitive a particular opening is will matter too.
+
+## Cards (4; {"keep":1,"line":2,"upgrade":1}); severity off; added []
+1. [keep] Project Manager, line 1
+   line: "Run 4 to 6 concurrent tenant-improvement projects worth $1M to $8M each"
+   can't tell: Keep this as a model. It puts the number of concurrent projects and their individual values right next to the work you run.
+2. [line] Project Manager, line 2
+   line: "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024"
+   can't tell: The early delivery is a strong result. A recruiter can't yet see what you did to get the build there.
+   example: Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024 by [what you did to keep the build ahead of schedule]
+   question: What did you do to bring the grocery store build in ahead of schedule?
+3. [line] Project Manager, line 4
+   line: "Kept change orders under 3% of contract value across 2024 and 2025 projects"
+   can't tell: This gives a recruiter a useful figure across multiple projects. It doesn't say how you managed changes to keep them there.
+   example: Kept change orders under 3% of contract value across 2024 and 2025 projects by [what you did to manage changes]
+   question: What did you do to manage changes across those projects?
+4. [upgrade] Project Manager, line 3
+   line: "Manage subcontractor bids and buyout for 20 to 30 trades per project"
+   can't tell: For a role above project manager, a decision you made across projects could show responsibility beyond individual trade buyouts.
+   example: Manage subcontractor bids and buyout for 20 to 30 trades per project and [a decision you made across projects]
+   question: What decisions, if any, have you made across projects beyond individual trade buyouts?
+
+## Fit
+Roles: ["Project Manager","Assistant Project Manager"]
+Level: manager, runs concurrent projects and manages subcontractor bids and buyout
+Note: Your experience points toward commercial construction project management, particularly tenant improvements and retail builds. The grocery store delivery also gives you a concrete example of ground-up retail work.

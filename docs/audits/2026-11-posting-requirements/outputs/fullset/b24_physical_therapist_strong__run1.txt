@@ -1,0 +1,35 @@
+# b24_physical_therapist_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_physical_therapist_strong_1.txt (154 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 758861ac; severity check off
+Outcome: report; cost $0.0087; 23.5s
+
+## Clear and specific (score 85; model wrote 85)
+## Verdict
+A senior outpatient physical therapist with a clear caseload, a rehab program and patient-reported results.
+
+## Write-up
+Your resume makes a strong case for outpatient orthopedic physical therapy! At North Loop and Lakes Regional, you show the patients you treat, the programs you've run and how much work you've taken on. A recruiter doesn't have to guess what your days look like.
+
+The return-to-run program is a good model: you name what you built and how many patients completed it. Your Minnesota license and DPT are easy to find. The patient function result is promising too, but the measure and number of patients behind the percentage aren't named.
+
+Start with the function scores, then consider moving the return-to-run program above the caseload line. Your resume itself is unlikely to be the obstacle; the clinic's needs and how competitive the job is matter too.
+
+## Cards (3; {"line":1,"upgrade":2}); severity off; added []
+1. [line] Senior Physical Therapist, line 4
+   line: "In 2025, 92% of discharged patients improved their patient-reported function scores"
+   can't tell: That's a strong patient result, but a recruiter can't tell which function measure you used or how many discharged patients were included. Both give the percentage useful context.
+   example: In 2025, 92% of [number] discharged patients improved their patient-reported function scores on [measure]
+   question: Which patient-reported measure did you use, and how many discharged patients were included in 2025?
+2. [upgrade] Senior Physical Therapist, line 3
+   line: "Mentor 2 newer therapists and set the PT aide schedule"
+   can't tell: For a lead role, a recruiter will also look for decisions you made across the team. Add one if that was part of your work.
+   example: Mentor 2 newer therapists, set the PT aide schedule, and [a clinical decision made across the team]
+   question: What clinical decision, if any, did you make across the team?
+3. [upgrade] Senior Physical Therapist, line 2
+   line: "Built a return-to-run program that 85 patients completed in 2025"
+   can't tell: This program is more distinctive than the caseload line above it. Move it to the first line under North Loop so a recruiter sees it sooner.
+
+## Fit
+Roles: ["Senior Physical Therapist"]
+Level: senior, mentors 2 newer therapists and sets the PT aide schedule
+Note: Your experience points toward outpatient orthopedic and sports rehabilitation roles. The program and mentoring work also give you material to draw on for a lead role.

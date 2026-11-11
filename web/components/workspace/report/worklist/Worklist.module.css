@@ -553,6 +553,50 @@
     font: var(--type-small);
 }
 
+/* ---------- A posting's requirements: each must-have, with the line that answers it or the plain fact that none does ---------- */
+
+.requirements {
+    display: grid;
+    gap: 0.375rem;
+    margin-top: 1rem;
+}
+
+.requirements dl {
+    border-top: 1px solid hsl(var(--line));
+}
+
+.requirements dl > div {
+    display: grid;
+    gap: 0.375rem;
+    padding-block: 0.75rem;
+    border-bottom: 1px solid hsl(var(--line));
+}
+
+.requirements dt {
+    color: hsl(var(--text-strong));
+    font: var(--type-small);
+    font-weight: var(--weight-label);
+    text-wrap: pretty;
+}
+
+.requirements dd {
+    display: grid;
+    gap: 0.375rem;
+}
+
+.requirementState {
+    color: hsl(var(--muted-foreground));
+    font: var(--type-small);
+}
+
+.requirementMissing {
+    justify-self: start;
+    padding-inline: 0.25rem;
+    background: hsl(var(--marker) / 0.7);
+    color: hsl(var(--text-strong));
+    font: var(--type-small);
+}
+
 /* ---------- A profile's parts: every part once, with how it stands ---------- */
 
 .parts {

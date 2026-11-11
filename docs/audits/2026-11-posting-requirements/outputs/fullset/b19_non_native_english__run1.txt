@@ -1,0 +1,45 @@
+# b19_non_native_english, run 1
+Resume: ../2026-11-live-judgment/resumes/b_non_native_english.txt (237 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 758861ac; severity check off
+Outcome: report; cost $0.0086; 22.6s
+
+## Mostly clear (score 79; model wrote 79)
+## Verdict
+An accountant with substantial ledger and payable work, though some closing and audit contributions need detail.
+
+## Write-up
+Your resume points toward Staff Accountant work: you bring senior accounting experience from Minh Phat Trading Company and current accounts payable work at Bayou Industrial Supply. A recruiter can see the work and its scale, though a few lines leave your part in closing and audit work open to question.
+
+The strongest model is your month-end closing line at Minh Phat. It gives the old and new timelines and names the checklist and template you made. Your current role also grounds the work with around 400 vendor invoices a month in QuickBooks.
+
+Let's start with what you help the controller do at month end, then add the work behind your ledger, team and audit responsibilities at Minh Phat. Those details can connect your current payables work to the broader accounting work you're seeking.
+
+## Cards (5; {"line":4,"keep":1}); severity off; added []
+1. [line] Accounts Payable Clerk, line 4
+   line: "Help the controller for month end closing"
+   can't tell: A recruiter can't tell which closing tasks you handle. That matters for a Staff Accountant role, where month-end work is part of your story.
+   example: Help the controller with month end closing by [closing tasks]
+   question: Which month-end closing tasks do you help the controller with?
+2. [line] Senior Accountant, line 1
+   line: "Responsible for general ledger, fixed assets and monthly financial statements of company with 150 employees and revenue about 20 million USD"
+   can't tell: The company details show how big the work was, but 'responsible for' leaves the accounting tasks unclear. Name the work you handled within those areas.
+   example: Responsible for general ledger, fixed assets and monthly financial statements, including [accounting tasks], for company with 150 employees and revenue about 20 million USD
+   question: What accounting tasks did you handle for the ledger, fixed assets and financial statements?
+3. [line] Senior Accountant, line 2
+   line: "Lead team of 3 junior accountants"
+   can't tell: The team count is useful, but a recruiter can't tell what the junior accountants worked on under your leadership.
+   example: Lead team of 3 junior accountants who [team responsibilities]
+   question: What work did the junior accountants on your team handle?
+4. [line] Senior Accountant, line 3
+   line: "Work with external auditor for year end audit, no major finding in 5 years"
+   can't tell: No major finding in 5 years is worth keeping. The line doesn't say what you provided or handled during the audits.
+   example: Work with external auditor for year end audit by [audit contribution]; no major finding in 5 years
+   question: What did you handle or provide for the external auditor?
+5. [keep] Senior Accountant, line 4
+   line: "Reduce the month end closing from 12 days to 7 days by make new checklist and template"
+   can't tell: Keep this as your model. It connects a change in the closing timeline to the materials you made, so a recruiter can see your contribution.
+
+## Fit
+Roles: ["Staff Accountant","Accounts Payable Specialist"]
+Level: mid-level, prior Senior Accountant role leading 3 junior accountants
+Note: Your current payables work and earlier general ledger responsibilities give you a basis for both jobs named in your profile. The closing and audit details can make the broader accounting experience easier to carry into a Staff Accountant application.

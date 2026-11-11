@@ -1,0 +1,51 @@
+# b34_bank_branch_manager_gap, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_bank_branch_manager_gap_1.txt (129 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 758861ac; severity check off
+Outcome: report; cost $0.0107; 30.0s
+Case note: Gap with nothing after it.
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+A branch manager with deposit growth and unaccounted time since December 2024.
+
+## Write-up
+You worked your way from Personal Banker to Branch Manager at Magnolia Community Bank, growing deposits along the way. It's common for a resume to stop at the last job, but the unaccounted time since December 2024 gives a recruiter a question they may not stop to ask.
+
+Your deposit-growth line is the model: it names the business measure and shows where it started and finished. The branch's 11 employees also give a recruiter a useful picture of your management responsibility, though the resume says less about what the team handled.
+
+Let's start with the time after the Branch Manager role, then add detail to the team, coaching and audit work. Those answers can help a recruiter see both where you've been and how you ran the branch.
+
+## Cards (6; {"dates":1,"line":4,"keep":1}); severity off; added []
+1. [dates] Dates
+   line: "Nothing is dated after December 2024."
+   can't tell: A recruiter can't tell what you've done since the Branch Manager role ended. A dated line can answer that question without making the time into something it wasn't. If you were caring for someone, you can say so; a career break can include a course, project or travel. Include freelance work only if it was real.
+   example: December 2024 - Present [what you did: caregiving, a career break, study, travel, freelance work if real]
+   question: What have you been doing since the Branch Manager role ended?
+2. [line] Branch Manager, line 1
+   line: "Managed a branch of 11 employees"
+   can't tell: The team count is useful, but a recruiter can't tell what those employees handled. That matters when comparing branch management roles.
+   example: Managed a branch of 11 employees who handled [team responsibilities]
+   question: What did the 11 employees handle at the branch?
+3. [line] Branch Manager, line 3
+   line: "Led weekly sales huddles and coached bankers on referrals"
+   can't tell: The weekly huddles and referral coaching are clear, but the coaching itself is still broad. Give the recruiter a glimpse of what you worked on with the bankers.
+   example: Led weekly sales huddles and coached bankers on referrals using [coaching approach]
+   question: How did you coach the bankers on referrals?
+4. [line] Branch Manager, line 4
+   line: "Oversaw audits and compliance reviews for the branch"
+   can't tell: A recruiter knows you oversaw the reviews, but not what that involved. Your part in preparing for or following up on them would make the responsibility more concrete.
+   example: Oversaw audits and compliance reviews for the branch, including [oversight responsibilities]
+   question: What did you handle when overseeing the audits and compliance reviews?
+5. [line] Branch Manager, line 5
+   line: "Handled escalated customer complaints"
+   can't tell: A recruiter can't tell what kinds of complaints reached you or how you handled them. One example of the work would give this line more to say.
+   example: Handled escalated customer complaints about [complaint type] by [how you addressed them]
+   question: What kinds of escalated complaints did you handle, and how did you address them?
+6. [keep] Branch Manager, line 2
+   line: "Grew branch deposits from $48M to $63M over five years"
+   can't tell: Keep this. It gives the recruiter a branch measure, a starting point, an ending point and a time frame without making them guess.
+
+## Fit
+Roles: ["Branch Manager"]
+Level: manager, managed a branch of 11 employees
+Note: Your progression at Magnolia Community Bank points toward branch management in retail banking. The deposit figures are especially useful for showing the business you managed.

@@ -1,0 +1,37 @@
+# h4b_academic_cv_under_cap, run 1
+Resume: ../2026-11-live-judgment/resumes/h4b_academic_cv_under_cap.txt (3253 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 758861ac; severity check off
+Outcome: report; cost $0.0667; repair ran; 40.3s
+Case note: The same CV trimmed under the cap, to see what the model does with a CV shape.
+
+Validator refused the first draft: The model response failed the worklist contract at cards.0.question: a card that needs work carries the question that fills its blanks.
+
+## Mostly clear (score 76; model wrote 76)
+## Verdict
+A tenured molecular biology professor with funded research and strong teaching, but publication entries need checking.
+
+## Write-up
+Your resume points to an Associate Professor with tenure at Riverbend State University, supported by NIH funding, teaching and mentoring. A recruiter could move it forward, but the repeated publication titles and author lists raise a question that matters in an academic search: which entries represent distinct papers?
+
+The MB 310 redesign is a great model: it names the change you made and the evaluation scores that followed. Your grant amounts and mentoring placements also give a reader something concrete to hold onto. Education currently sits above your academic appointments, so your current role doesn't lead.
+
+Let's put your appointments first, then check the publication list against the published records, starting with the repeated Drp1 entries. Keep the grant and mentoring detail; it makes your work as a faculty member easy to see.
+
+## Cards (3; {"structure":1,"line":1,"keep":1}); severity off; added []
+1. [structure] Structure
+   line: "Education sits above Academic Appointments."
+   can't tell: Your current faculty role comes after your degrees, even though it is the strongest starting point for an experienced professor. Put Academic Appointments above Education.
+   question: Can you move Academic Appointments above Education?
+2. [line] Publications, entry 1
+   line: "1. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2026). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 107(2), 1037-1052."
+   can't tell: The same title and author list appear again in entries 21, 41 and 61 with different years and citation details. A reader can't tell whether these are distinct papers. Check these entries and the other repeated titles against the published records.
+   example: [citation as published]
+   question: Are these distinct Drp1 papers, and what are their published citations?
+3. [keep] Teaching, course redesign
+   line: "Course redesign: converted MB 310 to a flipped format in 2019; student evaluations rose from 3.9 to 4.5 of 5 over the following three offerings."
+   can't tell: Keep this as a model. It gives the course, the format and the period over which the evaluations changed, without claiming the redesign caused the rise.
+
+## Fit
+Roles: ["Associate Professor (with tenure)"]
+Level: senior, tenured associate professor and principal investigator
+Note: Your experience points toward research and teaching faculty roles in molecular biology. The grant record and mentoring placements are particularly useful for showing the breadth of your faculty work.

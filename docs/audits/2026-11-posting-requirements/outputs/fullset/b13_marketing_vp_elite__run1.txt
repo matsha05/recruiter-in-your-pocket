@@ -1,0 +1,44 @@
+# b13_marketing_vp_elite, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/golden/synth_marketing_manager_vp_elite_1766960221358.txt (730 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 758861ac; severity check off
+Outcome: report; cost $0.0153; 35.8s
+Case note: Executive, strong (golden).
+
+## Clear and specific (score 89; model wrote 89)
+## Verdict
+A chief marketing officer whose resume connects global leadership to revenue, demand generation and customer growth.
+
+## Write-up
+This is a strong executive marketing resume! Your work at Novara and Viridian connects team and budget leadership to growth in lead flow, revenue and retention. A recruiter can see both the size of the jobs and what changed under your leadership.
+
+The customer advocacy line at Viridian is a good model: it names the program you launched and ties it to retention and upsell revenue. Your progression from marketing manager to CMO is easy to follow, and your latest role puts the global team and budget up front.
+
+A recruiter would likely move this resume forward. The resume itself is unlikely to be the reason you don't get a callback; the competitiveness of the role will also matter. Before sending it, define launch success and add context to the P&L claim.
+
+## Cards (5; {"line":2,"keep":1,"upgrade":2}); severity off; added []
+1. [line] Chief Marketing Officer, line 3
+   line: "I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years."
+   can't tell: The revenue and time-to-market figures are strong. A recruiter can't tell what counted as a successful launch or what changed in the process.
+   example: I decided to revamp the product launch process by [process change], shortening time-to-market by 30% and increasing launch success rate to 90% based on [success measure], resulting in a $15M incremental revenue increase over 2 years.
+   question: What changed in the launch process, and how did you measure launch success?
+2. [line] Skills, Budget & P&L Management
+   line: "Budget & P&L Management ($25M+)"
+   can't tell: Your Novara role names a $25M annual budget, but it doesn't explain your P&L responsibility. That distinction matters when a recruiter is reading for executive accountability.
+   example: Budget & P&L Management ($25M+; [P&L responsibility])
+   question: What P&L responsibility did you hold, and in which role?
+3. [keep] Vice President, Global Marketing, line 3
+   line: "I led the development and launch of a new customer advocacy program that increased customer retention by 12% and generated $4M in upsell revenue within 18 months."
+   can't tell: Keep this as a model. It shows your part in building the program and gives a recruiter two business measures with a timeframe.
+4. [upgrade] Chief Marketing Officer, line 1
+   line: "I led a 45-person global marketing organization managing a $25M annual budget, driving company-wide brand and demand generation strategy for a SaaS platform serving 2M+ users across 40 countries."
+   can't tell: For a CEO role, a company-wide decision beyond marketing would show how your leadership extends across the business, if you made one.
+   example: I led a 45-person global marketing organization managing a $25M annual budget, driving company-wide brand and demand generation strategy for a SaaS platform serving 2M+ users across 40 countries, and made [company-wide decision].
+   question: What company-wide decision did you make beyond marketing, if any?
+5. [upgrade] Vice President, Global Marketing, line 2
+   line: "I built and executed a comprehensive account-based marketing (ABM) program that increased pipeline contribution by $50M annually, lifting win rates by 15% among Fortune 500 clients."
+   can't tell: This is the strongest result in the Viridian role. Move it above the team and budget line to lead with the program and its commercial results.
+
+## Fit
+Roles: ["Chief Marketing Officer","Vice President, Global Marketing"]
+Level: executive, leads a 45-person global marketing organization with a $25M annual budget
+Note: Your experience points toward senior marketing leadership in SaaS and other technology businesses. The demand generation, brand and product launch work gives you several relevant stories to bring forward for a particular role.

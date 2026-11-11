@@ -10,7 +10,7 @@ import {
   ungroundedTokensInExample,
   ungroundedTokensInStatement,
 } from "./worklist-grounding";
-import { QUOTED_KINDS, WORK_KINDS, WorklistReportSchema, type PostingMove, type WorklistCard, type WorklistReport, type ProfilePart } from "./worklist-schema";
+import { QUOTED_KINDS, WORK_KINDS, WorklistReportSchema, type PostingMove, type WorklistCard, type WorklistReport, type ProfilePart, type PostingCovered } from "./worklist-schema";
 
 /**
  * The worklist report's validator. Shape first (Zod), then the mechanical grounding, then the house
@@ -81,6 +81,29 @@ function groundPostingMoves(moves: PostingMove[] | undefined, resumeText: string
   return kept;
 }
 
+const sameWords = (a: string, b: string) => a.toLowerCase().replace(/[^a-z0-9]+/gu, " ").trim() === b.toLowerCase().replace(/[^a-z0-9]+/gu, " ").trim();
+
+/** Covered requirements: the line must be on the resume, a requirement is listed once, and never also as missing. */
+function groundPostingCovered(covered: PostingCovered[] | undefined, resumeText: string | undefined, missing: string[]): PostingCovered[] {
+  const kept: PostingCovered[] = [];
+  for (const item of covered ?? []) {
+    const requirement = normaliseProse(item.requirement);
+    let line = item.line.replace(/\s+/gu, " ").trim();
+    if (!requirement) continue;
+    // An ask for years of experience is answered by the dates, which a recruiter reads without a line pointing at
+    // them; the model's row for one quotes an employer-and-dates line that shows nothing of the work.
+    if (/\b\d+\s*\+?\s*(?:or more\s+)?years?\b/iu.test(requirement)) continue;
+    if (resumeText) {
+      const resolved = resolveCardLine(line, resumeText);
+      if (resolved.status === "missing" || resolved.status === "ambiguous") continue;
+      if (resolved.status === "resolved") line = resolved.line;
+    }
+    if (missing.some((other) => sameWords(other, requirement)) || kept.some((other) => sameWords(other.requirement, requirement))) continue;
+    kept.push({ requirement, line });
+  }
+  return kept;
+}
+
 function proseFields(report: WorklistReport): Array<{ path: string; value: string }> {
   const fields: Array<{ path: string; value: string }> = [{ path: "verdict", value: report.verdict }];
   report.write_up.forEach((paragraph, index) => fields.push({ path: `write_up[${index}]`, value: paragraph }));
@@ -94,6 +117,7 @@ function proseFields(report: WorklistReport): Array<{ path: string; value: strin
   if (report.fit.why) fields.push({ path: "fit.why", value: report.fit.why });
   (report.fit.posting.lead ?? []).forEach((move, index) => fields.push({ path: `fit.posting.lead[${index}].why`, value: move.why }));
   (report.fit.posting.trim ?? []).forEach((move, index) => fields.push({ path: `fit.posting.trim[${index}].why`, value: move.why }));
+  (report.fit.posting.covered ?? []).forEach((item, index) => fields.push({ path: `fit.posting.covered[${index}].requirement`, value: item.requirement }));
   return fields;
 }
 
@@ -125,11 +149,43 @@ function groundProfileParts(parts: ProfilePart[], sourceText: string | undefined
   return kept;
 }
 
+const MAX_REQUIREMENT = 200;
+
+/**
+ * A posting sometimes writes a requirement as a paragraph, and the model copies it whole. Sending the report
+ * back for that costs the person a second wait, so a long requirement is cut to its first clause instead.
+ */
+function shortRequirement(value: unknown): unknown {
+  if (typeof value !== "string" || value.trim().length <= MAX_REQUIREMENT) return value;
+  const text = value.trim();
+  const head = text.slice(0, MAX_REQUIREMENT);
+  const clause = Math.max(head.lastIndexOf(". "), head.lastIndexOf("; "), head.lastIndexOf(": "), head.lastIndexOf(", "));
+  const cut = clause > 40 ? clause : head.lastIndexOf(" ");
+  return head.slice(0, cut > 0 ? cut : MAX_REQUIREMENT).replace(/[\s,;:.]+$/u, "");
+}
+
+function withShortRequirements(obj: object): object {
+  const posting = (obj as { fit?: { posting?: { missing?: unknown; covered?: unknown } } }).fit?.posting;
+  if (!posting || (!Array.isArray(posting.missing) && !Array.isArray(posting.covered))) return obj;
+  const draft = obj as { fit: { posting: Record<string, unknown> } };
+  return {
+    ...draft,
+    fit: {
+      ...draft.fit,
+      posting: {
+        ...draft.fit.posting,
+        ...(Array.isArray(posting.missing) ? { missing: posting.missing.map(shortRequirement) } : {}),
+        ...(Array.isArray(posting.covered) ? { covered: posting.covered.map((item) => item && typeof item === "object" ? { ...item, requirement: shortRequirement((item as { requirement?: unknown }).requirement) } : item) } : {}),
+      },
+    },
+  };
+}
+
 export function validateWorklistPayload(obj: unknown, resumeText?: string, options: ValidationOptions = {}): WorklistReport {
   if (!obj || typeof obj !== "object") {
     throw createAppError("OPENAI_RESPONSE_SHAPE_INVALID", "The model response did not match the expected format.", 502);
   }
-  const parsed = WorklistReportSchema.safeParse(obj);
+  const parsed = WorklistReportSchema.safeParse(withShortRequirements(obj));
   if (!parsed.success) {
     fail(parsed.error.issues.map((issue) => ({ path: issue.path.join(".") || "response", message: issue.message })));
   }
@@ -150,12 +206,13 @@ export function validateWorklistPayload(obj: unknown, resumeText?: string, optio
 
   // Tailoring exists only with a posting. An empty list is left off, so a report without moves keeps its old shape.
   {
-    const { lead: draftLead, trim: draftTrim, ...posting } = report.fit.posting;
+    const { lead: draftLead, trim: draftTrim, covered: draftCovered, ...posting } = report.fit.posting;
     const hasPosting = Boolean(posting.summary);
     const groundingText = isMockRun() && !options.forceGrounding ? undefined : resumeText;
     const lead = hasPosting ? groundPostingMoves(draftLead, groundingText, []) : [];
     const trim = hasPosting ? groundPostingMoves(draftTrim, groundingText, lead.map((move) => move.line)) : [];
-    report.fit = { ...report.fit, posting: { ...posting, ...(lead.length ? { lead } : {}), ...(trim.length ? { trim } : {}) } };
+    const covered = hasPosting ? groundPostingCovered(draftCovered, groundingText, posting.missing) : [];
+    report.fit = { ...report.fit, posting: { ...posting, ...(lead.length ? { lead } : {}), ...(trim.length ? { trim } : {}), ...(covered.length ? { covered } : {}) } };
   }
 
   // A profile's parts: names and titles are checked against the profile; a part that isn't on it is dropped,

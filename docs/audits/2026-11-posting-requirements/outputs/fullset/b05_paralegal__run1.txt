@@ -1,0 +1,30 @@
+# b05_paralegal, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_paralegal_1.txt (144 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 758861ac; severity check off
+Outcome: report; cost $0.0089; 24.6s
+
+## Mostly clear (score 79; model wrote 79)
+## Verdict
+A senior litigation paralegal with clear case work and a headline that overstates the dated commercial and employment experience.
+
+## Write-up
+Your resume points to senior litigation paralegal work: you support four partners at Harlan & Pike, manage document productions and prepare for trial. A recruiter can follow that work and would likely move it forward with a question about the headline.
+
+The Relativity line is a strong model because it names both the work and how much it can involve. Your headline says seven years supporting commercial and employment cases, but those case types appear only under Harlan & Pike; the earlier role names personal injury.
+
+Let’s start by making the headline match the experience shown below it. Then use the document production line as a model wherever you can add a meaningful detail without stretching what you did.
+
+## Cards (2; {"line":1,"keep":1}); severity off; added []
+1. [line] Headline
+   line: "Litigation paralegal with seven years supporting commercial and employment cases."
+   can't tell: The dated roles don't show seven years of commercial and employment case work. Your earlier role names personal injury, so a recruiter may question the headline.
+   example: Litigation paralegal supporting commercial and employment cases, with prior experience in personal injury cases.
+   question: Did you support commercial or employment cases before Harlan & Pike?
+2. [keep] Senior Litigation Paralegal, line 2
+   line: "Manage document productions of up to 250,000 pages in Relativity"
+   can't tell: Keep this as a model. It gives a recruiter a concrete sense of the productions you manage and names the tool you use.
+
+## Fit
+Roles: ["Senior Litigation Paralegal"]
+Level: senior, supports four partners and manages document productions
+Note: Your experience points toward litigation paralegal roles involving discovery and trial preparation. Relativity and the paralegal certificate give recruiters useful details to find quickly.

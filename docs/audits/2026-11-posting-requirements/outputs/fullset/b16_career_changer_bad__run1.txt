@@ -1,0 +1,50 @@
+# b16_career_changer_bad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_career_changer_bad_1.txt (140 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 758861ac; severity check off
+Outcome: report; cost $0.0095; 24.7s
+Case note: Career changer, weak; key says missing_dates, no_evidence_latest_role, no_target_role.
+
+## Needs more context (score 64; model wrote 64)
+## Verdict
+A retail supervisor with web and billing experience, but no stated target and little detail on the current role.
+
+## Write-up
+It’s common for a resume to collect several kinds of work without naming the next job. Yours moves from medical billing to web development and a current Shift Supervisor role at Saguaro Market. I read it for Shift Supervisor, but a recruiter has to guess which direction you want and how much responsibility you have at the store.
+
+The medical billing line about entering claims for a 4-physician practice is your best model: it names the work and the practice it served. The freelance role has no dates, so its place alongside your other jobs is unclear.
+
+Let’s start with the Saguaro Market role. Add the team count and your part in ordering and resets, then date the freelance work and name the job you’re targeting. As it stands, the current duties are familiar enough that they may not stand out in a pile.
+
+## Cards (6; {"structure":1,"dates":1,"line":3,"keep":1}); severity off; added []
+1. [structure] Structure
+   line: "Your resume doesn't name a target job, and your work spans retail, web development and medical billing."
+   can't tell: A recruiter can't tell which of these paths you want to follow. Naming the job at the top helps them read the rest with that job in mind.
+   question: Which job are you applying for with this resume?
+2. [dates] Freelance Web Developer
+   line: "The Freelance Web Developer role has no dates."
+   can't tell: A recruiter can't tell when you built the websites or whether the work is current. Dates also show how it fits alongside your other jobs.
+   example: [Month Year] - [Month Year] Freelance Web Developer, Self-employed
+   question: When did you start and finish the freelance work, or is it ongoing?
+3. [line] Shift Supervisor, line 1
+   line: "Supervise cashiers and stockers on evening shifts"
+   can't tell: Supervising cashiers and stockers is central to this job, but a recruiter can't tell how many people you supervise. That number helps show the responsibility you carry on a shift.
+   example: Supervise [number] cashiers and stockers on evening shifts
+   question: How many cashiers and stockers do you supervise on an evening shift?
+4. [line] Shift Supervisor, line 2
+   line: "Count and reconcile registers at close"
+   can't tell: The closing work is clear, but a recruiter can't tell how many registers you handle or what you do when the counts don't match.
+   example: Count and reconcile [number] registers at close, [how you handle discrepancies]
+   question: How many registers do you reconcile at close, and what do you do when a count doesn't match?
+5. [line] Shift Supervisor, line 3
+   line: "Help with weekly ordering and store resets"
+   can't tell: Helping with ordering and resets could mean several different jobs. Your part in each is the useful detail here.
+   example: Help with weekly ordering and store resets by [your part in ordering and resets]
+   question: What do you do for weekly ordering and store resets?
+6. [keep] Medical Billing Assistant, line 1
+   line: "Entered insurance claims for a 4-physician practice"
+   can't tell: Keep this as a model. It pairs a concrete task with a fact about the practice, so the work has a setting a recruiter can picture.
+
+## Fit
+Roles: ["Shift Supervisor"]
+Level: lead, supervises cashiers and stockers on evening shifts
+Note: Your web development certificate and freelance work also give you a separate direction to pursue. If you apply across fields, make a version for each direction so the most relevant work leads.

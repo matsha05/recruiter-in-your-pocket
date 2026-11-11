@@ -7,48 +7,40 @@
   "repaired": false,
   "firstError": null,
   "drafted": {
-    "lead": 2,
+    "lead": 1,
     "trim": 0
   },
   "usage": {
-    "tokens_in": 7354,
-    "tokens_out": 1854,
-    "cost_estimate_usd": 0.01846175
+    "tokens_in": 7631,
+    "tokens_out": 2369,
+    "cost_estimate_usd": 0.0122294
   },
   "report": {
     "contract_version": "v3",
-    "score": 88,
+    "score": 90,
     "lifted_by_employer": false,
-    "verdict": "A senior backend engineer with payments, ledger and production migration work that fits much of Cobalt Pay's role.",
+    "verdict": "A senior payments engineer with strong Go and ledger work, but some leadership and partnership details aren't shown.",
     "write_up": [
-      "Your resume tells a strong story: you build payment services at Lumen Ledger, after backend work in freight and insurance. The payouts service, ledger migration and balance API improvements give a recruiter concrete reasons to consider you for a senior backend role.",
-      "The balance API line is a great model: it names the latency before and after and explains what you changed. Your experience is also easy to follow, with recent payments work leading the resume. Cobalt Pay will still look for details about your role in on-call, design reviews and financial controls.",
-      "Start by tailoring the Lumen Ledger section to those responsibilities where you have firsthand experience. Then add detail to the older claims service line. Your resume is strong as it stands; the match to Cobalt Pay's remaining requirements and how competitive the role is will also matter."
+      "Your resume is strong because it connects payments engineering work to the demands placed on it: payout volume, a zero-downtime ledger migration and faster balance reads. A recruiter can see why your Lumen Ledger work belongs in the conversation for Cobalt Pay.",
+      "The balance API line is a great model: it names the change, the before and after, and the approach you used. Your experience also leads your education, and the progression from insurance to freight technology to payments is easy to follow.",
+      "For this posting, bring your Kafka work forward and add any relevant collaboration or technical leadership you can substantiate. Your resume is unlikely to be the thing holding you back; the competition for the role and a referral can also matter."
     ],
     "cards": [
       {
-        "kind": "line",
-        "where": "Software Engineer, Northgate Insurance, line 1",
-        "line": "Maintained the claims intake services in Java",
-        "cannot_tell": "A recruiter knows which services you worked on, but not what maintaining them involved. A concrete change would show more of your Java work.",
-        "example": "Maintained the claims intake services in Java by [work you did]",
-        "question": "What work did you do on the claims intake services?"
-      },
-      {
         "kind": "keep",
-        "where": "Senior Software Engineer, Payments Platform, line 3",
+        "where": "Lumen Ledger, line 3",
         "line": "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
-        "cannot_tell": "Keep this as a model. The API, the change and the two latency figures give a recruiter something concrete to remember.",
+        "cannot_tell": "Keep this as a model. It gives the recruiter a concrete service and a measurable improvement without making them guess what you changed.",
         "example": "",
         "question": ""
       },
       {
         "kind": "upgrade",
-        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "where": "Lumen Ledger, line 2",
         "line": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends",
-        "cannot_tell": "For a role one level above senior, a recruiter will look for technical decisions that reach beyond one migration. Add one if you made it.",
-        "example": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends, making [a decision you made] affecting [systems or teams]",
-        "question": "What decision did you make during the migration that affected other systems or teams?"
+        "cannot_tell": "For a role above senior engineer, a cross-team architecture decision would show how your leadership reached beyond the migration itself.",
+        "example": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends, with [cross-team architecture decision] for [systems affected]",
+        "question": "Did you make a cross-team architecture decision for this migration, and which systems did it affect?"
       }
     ],
     "fit": {
@@ -56,24 +48,38 @@
         "Senior Backend Engineer",
         "Senior Backend Engineer, Money Movement"
       ],
-      "why": "Your headline and current role point to senior backend work, with Go payouts, a ledger migration and production reliability improvements.",
-      "level": "senior, leads a ledger migration and mentors two engineers",
-      "note": "The Go payouts service and PostgreSQL ledger work are especially relevant to Cobalt Pay. Put your most relevant firsthand responsibilities near those results so a recruiter can see the connection quickly.",
+      "why": "Your headline and current payments platform role both point to senior backend engineering.",
+      "level": "senior, leads a ledger migration and mentors two mid-level engineers",
+      "note": "Your payouts service, ledger migration and Kafka-fed cache are directly relevant to money movement. Bring the event-driven billing line higher in the Harborview role to make that experience easier to spot.",
       "posting": {
-        "summary": "Cobalt Pay seeks a senior backend engineer to build and operate payment services, lead technical work and partner on financial controls.",
+        "summary": "Cobalt Pay wants a senior backend engineer to build and run reliable money movement services, lead technical work, and partner across functions.",
         "missing": [
           "Own the reliability of the payouts path end to end, including on-call",
-          "Lead technical design reviews",
+          "Lead technical design reviews and mentor engineers on the team",
           "Partner with Finance and Risk on reconciliation and controls"
         ],
         "lead": [
           {
-            "line": "Mentor two mid-level engineers through code review and design docs",
-            "why": "This answers the posting's ask to mentor engineers on the team. Move it above the runbooks line in the Lumen Ledger role."
+            "line": "Moved nightly batch billing jobs to an event-driven pipeline on Kafka, ending the 6-hour overnight run",
+            "why": "This directly answers the posting's ask for event-driven systems such as Kafka. Move it to the first line under Harborview Freight Tech."
+          }
+        ],
+        "covered": [
+          {
+            "requirement": "Design and build high-throughput, idempotent payment services in Go",
+            "line": "Designed and built the idempotent payouts service in Go and PostgreSQL that now settles about 1.8M payouts a month"
           },
           {
-            "line": "Moved nightly batch billing jobs to an event-driven pipeline on Kafka, ending the 6-hour overnight run",
-            "why": "This directly answers the ask for experience with event-driven systems such as Kafka. Move it to the first line under Harborview Freight Tech."
+            "requirement": "Strong Go or Java, and deep experience with PostgreSQL",
+            "line": "Designed and built the idempotent payouts service in Go and PostgreSQL that now settles about 1.8M payouts a month"
+          },
+          {
+            "requirement": "Experience with event-driven systems such as Kafka",
+            "line": "Moved nightly batch billing jobs to an event-driven pipeline on Kafka, ending the 6-hour overnight run"
+          },
+          {
+            "requirement": "A record of leading migrations or reliability work on production systems",
+            "line": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends"
           }
         ]
       }
@@ -82,6 +88,6 @@
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 88
+    "content_score": 90
   }
 }

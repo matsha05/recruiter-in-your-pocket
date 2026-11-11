@@ -1,0 +1,405 @@
+{
+  "case_id": "b30_social_worker",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_social_worker_1.txt",
+  "resume_sha256": "220fc861657d503d71b84a4240b5f5bc70c869aa0f1b595da07293db985b982f",
+  "resume_words": 127,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-11T20:27:26.179Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6985,
+        "completion_tokens": 1641,
+        "total_tokens": 8626,
+        "cached_prompt_tokens": 6393,
+        "cache_write_prompt_tokens": 589,
+        "reasoning_tokens": 434
+      },
+      "cost_usd": 0.0092639,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 26911
+    }
+  ],
+  "resume_prompt_sha256": "758861acede37f06fbbd892e6c3084b98d8c45be3963b8b393e1d05896ca26d8",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "A licensed social worker with child welfare experience, but little detail about the caseload or casework.",
+    "write_up": [
+      "You’re a licensed social worker doing family services casework after an intake role at Lakeview Community Center. It’s common for resumes in this field to list essential duties, but yours gives a recruiter little to distinguish your casework from another caseworker’s. They’d likely hesitate and move on unless the applicant pool is thin.",
+      "Your intake line about screening walk-in clients names the people and the assistance they needed. That’s a useful model for the family services role. Your license and education are easy to find, and your experience leads the resume.",
+      "Let’s start with your current caseload: add how many families you carry if you can share that. Then give the assessments, service coordination and court reports a little more substance, without identifying clients."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Cuyahoga Family Partners",
+        "line": "The resume doesn't describe Cuyahoga Family Partners.",
+        "cannot_tell": "A recruiter may not know the organization or its place in child welfare. A brief description could establish the setting for your work.",
+        "example": "",
+        "question": "How would you describe the organization and the families it serves?"
+      },
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 1",
+        "line": "- Carry a caseload of families involved with child protective services",
+        "cannot_tell": "A recruiter can see who you work with, but not how many families you carry. That number helps them understand the demands of the role.",
+        "example": "Carry a caseload of [number] families involved with child protective services",
+        "question": "How many families are typically on your caseload?"
+      },
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 2",
+        "line": "- Complete safety and risk assessments during home visits",
+        "cannot_tell": "The home visits are clear, but a recruiter can't tell what your assessments address or how they're used in the case.",
+        "example": "Complete safety and risk assessments during home visits, documenting [assessment findings] for [case use]",
+        "question": "What do you document in the assessments, and how is that information used?"
+      },
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 3",
+        "line": "- Coordinate services with schools, courts, and mental health providers",
+        "cannot_tell": "The partners are named, but the services and your part in coordinating them aren't. Give a recruiter one concrete example of the work.",
+        "example": "Coordinate [services] with schools, courts, and mental health providers by [coordination work]",
+        "question": "Which services do you coordinate, and what do you do to coordinate them?"
+      },
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 4",
+        "line": "- Write case plans and court reports",
+        "cannot_tell": "A recruiter can see the documents you write, but not what goes into them or what decisions they inform.",
+        "example": "Write case plans and court reports covering [case information] for [decision or use]",
+        "question": "What do your plans and reports cover, and how are they used?"
+      },
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 5",
+        "line": "- Facilitate monthly family team meetings",
+        "cannot_tell": "The monthly schedule is useful. What's missing is who takes part and what the meetings address.",
+        "example": "Facilitate monthly family team meetings with [participants] to address [meeting purpose]",
+        "question": "Who takes part in the meetings, and what do you work through together?"
+      },
+      {
+        "kind": "keep",
+        "where": "Intake Specialist, line 1",
+        "line": "- Screened walk-in clients for housing, food, and utility assistance",
+        "cannot_tell": "Keep this as a model: it names the clients and the three kinds of assistance you screened for, so the work is immediately recognizable.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Intake Specialist, line 2",
+        "line": "- Connected clients to county benefit programs",
+        "cannot_tell": "A recruiter can't tell which programs you connected clients to or what you did to make the connection.",
+        "example": "Connected clients to [county benefit programs] by [referral work]",
+        "question": "Which county programs did you connect clients to, and what did you do to help them access those programs?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Family Services Caseworker"
+      ],
+      "why": "Your current role and headline both point to child welfare and family services.",
+      "level": "mid-level, carries a family services caseload",
+      "note": "Your current work points toward family services casework, with intake experience supporting that direction. Your Ohio LMSW and social work degree are easy for a recruiter to find.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "A licensed social worker with child welfare experience, but little detail about the caseload or casework.",
+    "write_up": [
+      "You’re a licensed social worker doing family services casework after an intake role at Lakeview Community Center. It’s common for resumes in this field to list essential duties, but yours gives a recruiter little to distinguish your casework from another caseworker’s. They’d likely hesitate and move on unless the applicant pool is thin.",
+      "Your intake line about screening walk-in clients names the people and the assistance they needed. That’s a useful model for the family services role. Your license and education are easy to find, and your experience leads the resume.",
+      "Let’s start with your current caseload: add how many families you carry if you can share that. Then give the assessments, service coordination and court reports a little more substance, without identifying clients."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Cuyahoga Family Partners",
+        "line": "The resume doesn't describe Cuyahoga Family Partners.",
+        "cannot_tell": "A recruiter may not know the organization or its place in child welfare. A brief description could establish the setting for your work.",
+        "example": "",
+        "question": "How would you describe the organization and the families it serves?"
+      },
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 1",
+        "line": "Carry a caseload of families involved with child protective services",
+        "cannot_tell": "A recruiter can see who you work with, but not how many families you carry. That number helps them understand the demands of the role.",
+        "example": "Carry a caseload of [number] families involved with child protective services",
+        "question": "How many families are typically on your caseload?"
+      },
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 2",
+        "line": "Complete safety and risk assessments during home visits",
+        "cannot_tell": "The home visits are clear, but a recruiter can't tell what your assessments address or how they're used in the case.",
+        "example": "Complete safety and risk assessments during home visits, documenting [assessment findings] for [case use]",
+        "question": "What do you document in the assessments, and how is that information used?"
+      },
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 3",
+        "line": "Coordinate services with schools, courts, and mental health providers",
+        "cannot_tell": "The partners are named, but the services and your part in coordinating them aren't. Give a recruiter one concrete example of the work.",
+        "example": "Coordinate [services] with schools, courts, and mental health providers by [coordination work]",
+        "question": "Which services do you coordinate, and what do you do to coordinate them?"
+      },
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 4",
+        "line": "Write case plans and court reports",
+        "cannot_tell": "A recruiter can see the documents you write, but not what goes into them or what decisions they inform.",
+        "example": "Write case plans and court reports covering [case information] for [decision or use]",
+        "question": "What do your plans and reports cover, and how are they used?"
+      },
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 5",
+        "line": "Facilitate monthly family team meetings",
+        "cannot_tell": "The monthly schedule is useful. What's missing is who takes part and what the meetings address.",
+        "example": "Facilitate monthly family team meetings with [participants] to address [meeting purpose]",
+        "question": "Who takes part in the meetings, and what do you work through together?"
+      },
+      {
+        "kind": "keep",
+        "where": "Intake Specialist, line 1",
+        "line": "Screened walk-in clients for housing, food, and utility assistance",
+        "cannot_tell": "Keep this as a model: it names the clients and the three kinds of assistance you screened for, so the work is immediately recognizable.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Intake Specialist, line 2",
+        "line": "Connected clients to county benefit programs",
+        "cannot_tell": "A recruiter can't tell which programs you connected clients to or what you did to make the connection.",
+        "example": "Connected clients to [county benefit programs] by [referral work]",
+        "question": "Which county programs did you connect clients to, and what did you do to help them access those programs?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Family Services Caseworker"
+      ],
+      "why": "Your current role and headline both point to child welfare and family services.",
+      "level": "mid-level, carries a family services caseload",
+      "note": "Your current work points toward family services casework, with intake experience supporting that direction. Your Ohio LMSW and social work degree are easy for a recruiter to find.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 67
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 67,
+    "lifted_by_employer": false,
+    "verdict": "A licensed social worker with child welfare experience, but little detail about the caseload or casework.",
+    "write_up": [
+      "You’re a licensed social worker doing family services casework after an intake role at Lakeview Community Center. It’s common for resumes in this field to list essential duties, but yours gives a recruiter little to distinguish your casework from another caseworker’s. They’d likely hesitate and move on unless the applicant pool is thin.",
+      "Your intake line about screening walk-in clients names the people and the assistance they needed. That’s a useful model for the family services role. Your license and education are easy to find, and your experience leads the resume.",
+      "Let’s start with your current caseload: add how many families you carry if you can share that. Then give the assessments, service coordination and court reports a little more substance, without identifying clients."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Cuyahoga Family Partners",
+        "line": "The resume doesn't describe Cuyahoga Family Partners.",
+        "cannot_tell": "A recruiter may not know the organization or its place in child welfare. A brief description could establish the setting for your work.",
+        "example": "",
+        "question": "How would you describe the organization and the families it serves?"
+      },
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 1",
+        "line": "Carry a caseload of families involved with child protective services",
+        "cannot_tell": "A recruiter can see who you work with, but not how many families you carry. That number helps them understand the demands of the role.",
+        "example": "Carry a caseload of [number] families involved with child protective services",
+        "question": "How many families are typically on your caseload?"
+      },
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 2",
+        "line": "Complete safety and risk assessments during home visits",
+        "cannot_tell": "The home visits are clear, but a recruiter can't tell what your assessments address or how they're used in the case.",
+        "example": "Complete safety and risk assessments during home visits, documenting [assessment findings] for [case use]",
+        "question": "What do you document in the assessments, and how is that information used?"
+      },
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 3",
+        "line": "Coordinate services with schools, courts, and mental health providers",
+        "cannot_tell": "The partners are named, but the services and your part in coordinating them aren't. Give a recruiter one concrete example of the work.",
+        "example": "Coordinate [services] with schools, courts, and mental health providers by [coordination work]",
+        "question": "Which services do you coordinate, and what do you do to coordinate them?"
+      },
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 4",
+        "line": "Write case plans and court reports",
+        "cannot_tell": "A recruiter can see the documents you write, but not what goes into them or what decisions they inform.",
+        "example": "Write case plans and court reports covering [case information] for [decision or use]",
+        "question": "What do your plans and reports cover, and how are they used?"
+      },
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 5",
+        "line": "Facilitate monthly family team meetings",
+        "cannot_tell": "The monthly schedule is useful. What's missing is who takes part and what the meetings address.",
+        "example": "Facilitate monthly family team meetings with [participants] to address [meeting purpose]",
+        "question": "Who takes part in the meetings, and what do you work through together?"
+      },
+      {
+        "kind": "keep",
+        "where": "Intake Specialist, line 1",
+        "line": "Screened walk-in clients for housing, food, and utility assistance",
+        "cannot_tell": "Keep this as a model: it names the clients and the three kinds of assistance you screened for, so the work is immediately recognizable.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Intake Specialist, line 2",
+        "line": "Connected clients to county benefit programs",
+        "cannot_tell": "A recruiter can't tell which programs you connected clients to or what you did to make the connection.",
+        "example": "Connected clients to [county benefit programs] by [referral work]",
+        "question": "Which county programs did you connect clients to, and what did you do to help them access those programs?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Family Services Caseworker"
+      ],
+      "why": "Your current role and headline both point to child welfare and family services.",
+      "level": "mid-level, carries a family services caseload",
+      "note": "Your current work points toward family services casework, with intake experience supporting that direction. Your Ohio LMSW and social work degree are easy for a recruiter to find.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 67
+  },
+  "presentation": {
+    "score": 67,
+    "band": "Needs more context",
+    "model_score": 67,
+    "lifted_by_employer": false,
+    "verdict": "A licensed social worker with child welfare experience, but little detail about the caseload or casework.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 124,
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Cuyahoga Family Partners",
+        "line": "The resume doesn't describe Cuyahoga Family Partners.",
+        "blanks": 0,
+        "question": "How would you describe the organization and the families it serves?"
+      },
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 1",
+        "line": "Carry a caseload of families involved with child protective services",
+        "blanks": 1,
+        "question": "How many families are typically on your caseload?"
+      },
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 2",
+        "line": "Complete safety and risk assessments during home visits",
+        "blanks": 2,
+        "question": "What do you document in the assessments, and how is that information used?"
+      },
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 3",
+        "line": "Coordinate services with schools, courts, and mental health providers",
+        "blanks": 2,
+        "question": "Which services do you coordinate, and what do you do to coordinate them?"
+      },
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 4",
+        "line": "Write case plans and court reports",
+        "blanks": 2,
+        "question": "What do your plans and reports cover, and how are they used?"
+      },
+      {
+        "kind": "line",
+        "where": "Family Services Caseworker, line 5",
+        "line": "Facilitate monthly family team meetings",
+        "blanks": 2,
+        "question": "Who takes part in the meetings, and what do you work through together?"
+      },
+      {
+        "kind": "keep",
+        "where": "Intake Specialist, line 1",
+        "line": "Screened walk-in clients for housing, food, and utility assistance",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Intake Specialist, line 2",
+        "line": "Connected clients to county benefit programs",
+        "blanks": 2,
+        "question": "Which county programs did you connect clients to, and what did you do to help them access those programs?"
+      }
+    ],
+    "card_count": 8,
+    "kinds": {
+      "structure": 1,
+      "line": 6,
+      "keep": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Family Services Caseworker"
+      ],
+      "why": "Your current role and headline both point to child welfare and family services.",
+      "level": "mid-level, carries a family services caseload",
+      "note": "Your current work points toward family services casework, with intake experience supporting that direction. Your Ohio LMSW and social work degree are easy for a recruiter to find.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0092639,
+  "latency_ms": 26919
+}

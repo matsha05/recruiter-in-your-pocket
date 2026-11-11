@@ -1,0 +1,35 @@
+# h5_mismatched_posting, run 1
+Resume: ../2026-11-live-judgment/resumes/h5_data_analyst.txt (166 words), posting: ../2026-11-live-judgment/resumes/h5_nursing_posting.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 758861ac; severity check off
+Outcome: report; cost $0.0175; repair ran; 39.6s
+Case note: Data analyst against a registered nurse posting.
+
+Validator refused the first draft: The model response failed the worklist contract at fit.posting.missing.5: Too big: expected string to have <=120 characters.
+
+## Mostly clear (score 82; model wrote 82)
+## Verdict
+Your resume points to data analysis, while this posting is for a registered nurse.
+
+## Write-up
+This nursing role is a different track from your experience as a Data Analyst at Carolina Home Goods and Junior Analyst at Piedmont Insurance Services. Your resume makes a solid case for data analyst roles, with reporting work that names the tools, users, and business decisions.
+
+The SQL model that replaced a 3-day manual weekly sales report is your best model: it connects your work to a concrete change. Your current role also shows dashboards used across three teams and a markdown recommendation that merchandising adopted.
+
+For analyst applications, start with the ad hoc work for the VP of Sales and name the kinds of decisions it informed. For this nursing application, use a separate resume only if you can add qualifying nursing training and experience that aren't shown here.
+
+## Cards (2; {"keep":1,"line":1}); severity off; added []
+1. [keep] Data Analyst, line 2
+   line: "Wrote the SQL model that replaced a 3-day manual weekly sales report with an automated one"
+   can't tell: Keep this as a model. You name the thing you built, the task it replaced, and the tool you used.
+2. [line] Data Analyst, line 4
+   line: "Pull ad hoc analyses for the VP of Sales, about 10 requests a month"
+   can't tell: The frequency and audience are clear, but a recruiter can't tell what the analyses cover or what decisions they inform.
+   example: Pull ad hoc analyses on [subjects] for the VP of Sales, about 10 requests a month, to inform [decisions]
+   question: What subjects do you analyze for the VP of Sales, and what decisions do those analyses inform?
+
+## Fit
+Roles: ["Data Analyst","Registered Nurse, Medical-Surgical Unit (Nights)"]
+Level: mid-level, current Data Analyst role and prior Junior Analyst role
+Note: Your SQL reporting and dashboard work fit data analyst applications. If nursing is your goal, use a nursing-focused resume that reflects any qualifying clinical work you have.
+Posting: The posting is for a night-shift medical-surgical nurse providing direct patient care.
+Missing: ["Current unrestricted North Carolina RN license or compact state license","BLS certification required; ACLS within six months of hire","Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered","Experience with Epic or a comparable EHR","Ability to manage a patient assignment of 5 to 6 patients","Assess, plan, implement, and evaluate patient care; Administer medications and treatments per orders and unit protocol"]

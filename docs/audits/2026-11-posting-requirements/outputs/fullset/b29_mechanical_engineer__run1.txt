@@ -1,0 +1,45 @@
+# b29_mechanical_engineer, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_mechanical_engineer_1.txt (143 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 758861ac; severity check off
+Outcome: report; cost $0.0080; 21.0s
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+A mechanical engineer with named product design work, but little to show what that work changed.
+
+## Write-up
+Your resume tells a familiar story: you progressed from Mechanical Engineer I to Mechanical Engineer II at Westhaven, where you lead design for a desk platform. It's common to describe engineering work as a list of tasks, but without project results or measures, this won't stand out in a pile of product design resumes.
+
+Your SolidWorks line is a good model: it names the deliverables, the tool and the drawing practice. Elsewhere, a recruiter can see the kinds of work you do, but not yet the decisions you made or what came of the designs.
+
+Let's start with the Arlo platform. Add the design work you led and a result you can document, then give the supplier and manufacturing lines the same treatment.
+
+## Cards (5; {"line":4,"keep":1}); severity off; added []
+1. [line] Mechanical Engineer II, line 1
+   line: "Lead mechanical design for the Arlo height-adjustable desk platform"
+   can't tell: The product is named, but a recruiter can't tell which design work you led or what came of it. This is your lead line, so give it the strongest detail you can document.
+   example: Lead mechanical design for the Arlo height-adjustable desk platform, including [design work], with [project result]
+   question: What design work did you lead on Arlo, and what result can you document?
+2. [keep] Mechanical Engineer II, line 2
+   line: "Create 3D models and drawings in SolidWorks with GD&T"
+   can't tell: Keep this as a model for naming the things you produce and the methods you use. A recruiter can tell what goes into your design work without guessing.
+3. [line] Mechanical Engineer II, line 3
+   line: "Work with suppliers in Mexico and Taiwan on tooling and first-article inspection"
+   can't tell: The suppliers and stages are clear, but 'work with' leaves your part open. Name what you handled in the tooling or inspections.
+   example: Work with suppliers in Mexico and Taiwan on tooling and first-article inspection, handling [your work]
+   question: What did you handle with the suppliers on tooling and first-article inspection?
+4. [line] Mechanical Engineer II, line 4
+   line: "Run tolerance stack-ups and FEA on load-bearing components"
+   can't tell: This names two useful analyses, but not what they informed. A design decision or finding would show how you used the work.
+   example: Run tolerance stack-ups and FEA on load-bearing components, informing [design decision]
+   question: What design decision did your stack-ups or FEA inform?
+5. [line] Mechanical Engineer II, line 5
+   line: "Support manufacturing with engineering change orders"
+   can't tell: Supporting manufacturing can cover a lot. The changes you handled and the manufacturing need behind them would show your part.
+   example: Support manufacturing with engineering change orders for [changes handled] and [manufacturing need]
+   question: What changes did you handle, and what manufacturing need did they address?
+
+## Fit
+Roles: ["Mechanical Engineer II"]
+Level: mid-level, Mechanical Engineer II leading mechanical design for a product platform
+Note: Your experience points toward mechanical product design roles involving sheet metal, supplier coordination and manufacturing. Your BIFMA testing and furniture work also give you relevant industry context.
