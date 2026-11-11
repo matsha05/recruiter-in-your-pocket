@@ -4,8 +4,8 @@ import { FREE_REPORT_ENTITLEMENT } from "@/lib/billing/pricing";
 
 const homepageDescription = "A free resume report that shows what a recruiter takes from your resume, the lines they’d stop on, and what to add to each one before you apply.";
 
-// A shared link leads with the hero's story; search results keep the plain description.
-const shareTitle = "See what a recruiter sees: free resume report";
+// The title is the hook (docs/copy-system.md §8, Matt, November 11, 2026); the descriptions say what the page is.
+const shareTitle = "You’re qualified. Your resume isn’t saying so.";
 const shareDescription = "See what a recruiter sees, line by line. Your first report is free. No account or card.";
 const shareImage = {
   url: "/og/home?v=20261104",
@@ -15,7 +15,7 @@ const shareImage = {
 };
 
 export const metadata: Metadata = {
-  title: { absolute: "See what a recruiter sees: free resume report" },
+  title: { absolute: shareTitle },
   description: homepageDescription,
   alternates: {
     canonical: "/",

@@ -416,30 +416,30 @@ Routes: `/api/export-pdf`, `/api/resume-feedback`, `/api/resume-feedback-stream`
 | 104 | upload | `web/components/workspace/InputPanel.tsx:343` | attr:placeholder | Paste the job posting here… |
 | 105 | upload | `web/components/workspace/InputPanel.tsx:358` | jsx-text | Reports are paused |
 | 106 | pricing | `web/components/workspace/PaywallModal.tsx:44` | const[] | Re-check a revision and see which lines came off the list |
-| 107 | pricing | `web/components/workspace/PaywallModal.tsx:49` | const | Five more reads. |
-| 108 | pricing | `web/components/workspace/PaywallModal.tsx:88` | jsx-text | Sign in for your free report |
-| 109 | pricing | `web/components/workspace/PaywallModal.tsx:114` | call:setError | Enter the email address you want to use for billing. |
-| 110 | pricing | `web/components/workspace/PaywallModal.tsx:147` | call:setError | Checkout didn’t start. Try again, or restore a purchase you’ve already made. |
-| 111 | pricing | `web/components/workspace/PaywallModal.tsx:169` | const | The free report on this device or network has been used. Each account gets its own, so sign in to get yours. |
-| 112 | pricing | `web/components/workspace/PaywallModal.tsx:171` | const | Your existing report stays available. |
-| 113 | pricing | `web/components/workspace/PaywallModal.tsx:178` | jsx-text | Your free report needs an account |
-| 114 | pricing | `web/components/workspace/PaywallModal.tsx:178` | jsx-text | Passes are paused for now |
-| 115 | pricing | `web/components/workspace/PaywallModal.tsx:186` | jsx-text | Back to my report |
-| 116 | pricing | `web/components/workspace/PaywallModal.tsx:186` | jsx-text | Back to my resume |
-| 117 | pricing | `web/components/workspace/PaywallModal.tsx:198` | jsx-text | Your free report needs an account |
-| 118 | pricing | `web/components/workspace/PaywallModal.tsx:202` | jsx-text | The free report on this device or network has been used. Each account gets its own, so sign in to get yours. |
-| 119 | pricing | `web/components/workspace/PaywallModal.tsx:219` | jsx-text | Good for 90 days. No automatic renewal. |
-| 120 | pricing | `web/components/workspace/PaywallModal.tsx:233` | jsx-text | Continue with |
-| 121 | pricing | `web/components/workspace/PaywallModal.tsx:240` | attr:loadingLabel | Opening checkout… |
-| 122 | pricing | `web/components/workspace/PaywallModal.tsx:242` | jsx-text | Continue to checkout |
-| 123 | pricing | `web/components/workspace/PaywallModal.tsx:248` | jsx-text | Your email |
-| 124 | pricing | `web/components/workspace/PaywallModal.tsx:268` | attr:loadingLabel | Opening checkout… |
-| 125 | pricing | `web/components/workspace/PaywallModal.tsx:270` | jsx-text | Continue to checkout |
-| 126 | pricing | `web/components/workspace/PaywallModal.tsx:281` | attr:loadingLabel | Checking access… |
-| 127 | pricing | `web/components/workspace/PaywallModal.tsx:284` | jsx-text | Restore access |
-| 128 | pricing | `web/components/workspace/PaywallModal.tsx:294` | jsx-text | Payment by Stripe. Unused passes are refundable within 14 days (see the |
-| 129 | pricing | `web/components/workspace/PaywallModal.tsx:294` | jsx-text | ). By continuing, you agree to the |
-| 130 | pricing | `web/components/workspace/PaywallModal.tsx:294` | jsx-text | Privacy Policy |
+| 107 | pricing | `web/components/workspace/PaywallModal.tsx:50` | const | Don’t send the next one blind. |
+| 108 | pricing | `web/components/workspace/PaywallModal.tsx:89` | jsx-text | Sign in for your free report |
+| 109 | pricing | `web/components/workspace/PaywallModal.tsx:115` | call:setError | Enter the email address you want to use for billing. |
+| 110 | pricing | `web/components/workspace/PaywallModal.tsx:148` | call:setError | Checkout didn’t start. Try again, or restore a purchase you’ve already made. |
+| 111 | pricing | `web/components/workspace/PaywallModal.tsx:170` | const | The free report on this device or network has been used. Each account gets its own, so sign in to get yours. |
+| 112 | pricing | `web/components/workspace/PaywallModal.tsx:172` | const | Your existing report stays available. |
+| 113 | pricing | `web/components/workspace/PaywallModal.tsx:179` | jsx-text | Your free report needs an account |
+| 114 | pricing | `web/components/workspace/PaywallModal.tsx:179` | jsx-text | Passes are paused for now |
+| 115 | pricing | `web/components/workspace/PaywallModal.tsx:187` | jsx-text | Back to my report |
+| 116 | pricing | `web/components/workspace/PaywallModal.tsx:187` | jsx-text | Back to my resume |
+| 117 | pricing | `web/components/workspace/PaywallModal.tsx:199` | jsx-text | Your free report needs an account |
+| 118 | pricing | `web/components/workspace/PaywallModal.tsx:203` | jsx-text | The free report on this device or network has been used. Each account gets its own, so sign in to get yours. |
+| 119 | pricing | `web/components/workspace/PaywallModal.tsx:220` | jsx-text | Good for 90 days. No automatic renewal. |
+| 120 | pricing | `web/components/workspace/PaywallModal.tsx:234` | jsx-text | Continue with |
+| 121 | pricing | `web/components/workspace/PaywallModal.tsx:241` | attr:loadingLabel | Opening checkout… |
+| 122 | pricing | `web/components/workspace/PaywallModal.tsx:243` | jsx-text | Continue to checkout |
+| 123 | pricing | `web/components/workspace/PaywallModal.tsx:249` | jsx-text | Your email |
+| 124 | pricing | `web/components/workspace/PaywallModal.tsx:269` | attr:loadingLabel | Opening checkout… |
+| 125 | pricing | `web/components/workspace/PaywallModal.tsx:271` | jsx-text | Continue to checkout |
+| 126 | pricing | `web/components/workspace/PaywallModal.tsx:282` | attr:loadingLabel | Checking access… |
+| 127 | pricing | `web/components/workspace/PaywallModal.tsx:285` | jsx-text | Restore access |
+| 128 | pricing | `web/components/workspace/PaywallModal.tsx:295` | jsx-text | Payment by Stripe. Unused passes are refundable within 14 days (see the |
+| 129 | pricing | `web/components/workspace/PaywallModal.tsx:295` | jsx-text | ). By continuing, you agree to the |
+| 130 | pricing | `web/components/workspace/PaywallModal.tsx:295` | jsx-text | Privacy Policy |
 | 131 | rewrite | `web/components/workspace/report/AskFirst.tsx:26` | key:label | I did this |
 | 132 | rewrite | `web/components/workspace/report/AskFirst.tsx:27` | key:label | I did related work |
 | 133 | rewrite | `web/components/workspace/report/AskFirst.tsx:28` | key:label | I haven't done this |

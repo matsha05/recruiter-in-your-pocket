@@ -11,7 +11,7 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 | Files scanned | 424 |
 | Files with copy | 256 |
 | Strings | 2949 |
-| Unique strings | 2456 |
+| Unique strings | 2455 |
 | Routes with copy | 118 |
 
 ## By moment

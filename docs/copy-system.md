@@ -6,9 +6,9 @@ The working system for every word a reader sees: the site, the app, the report's
 - Every string on the site today, by route: [`docs/copy/inventory/`](./copy/inventory/README.md) (`npm run copy:inventory` from `web/`).
 - The evidence for the voice: Matt's own answers ([`matt-voice-2026-11-06.md`](./copy/calibration/matt-voice-2026-11-06.md)) and what ChatGPT found in his past conversations ([`chatgpt-style-read-2026-11-06.md`](./copy/calibration/chatgpt-style-read-2026-11-06.md)).
 
-Last updated: 2026-11-06. Matt decides brand calls: the voice, the dial, names, founder facts. Everything else follows this file. Where two rules disagree, Matt's newest dated decision wins.
+Last updated: 2026-11-11. Matt decides brand calls: the voice, the dial, names, founder facts. Everything else follows this file. Where two rules disagree, Matt's newest dated decision wins.
 
-How to use it: find the moment in §2, check the names in §5, write the string, then run §7. The tics in §4 are what the voice judge checks.
+How to use it: find the moment in §2, check the names in §5, write the string, then run §7. The tics in §4 are what the voice judge checks. Marketing headings, the paywall heading and search titles open with a hook (§8).
 
 The report's model-written words (the verdict, the write-up, the notes, the questions, the examples) come from `web/prompts/`. They follow this voice too, but they change only through a gated prompt update, never through a copy edit.
 
@@ -44,7 +44,7 @@ The rows follow Torrey Podmajersky's voice chart, so each trait turns into rules
 | Grammar | Contractions. "You" for the candidate. "We" for the candidate and us, working on it. "I" only in the founder note. Active voice. A question only when the reader can answer it. |
 | Punctuation | Periods by default. One exclamation point on a screen when something good really happened: a score that went up, a strong resume, a purchase that went through, a line filled in. Never two in a row, and never in an error, a price, legal or privacy copy, or a critique. No em dashes. "…" only for something in progress. Straight facts in parentheses are fine; asides in parentheses are not. |
 | Capitalization | Sentence case everywhere: buttons, tabs, headings, labels. Proper nouns keep their capitals: Job Search Pass, Recruiter in Your Pocket, LinkedIn, Stripe. |
-| Feelings | Acknowledge, don't diagnose (Matt, November 6). Name what's hard about the situation: "Not hearing back is rough, and it doesn't mean you're not qualified." Never claim to know how they feel: no "You're probably discouraged", no "Don't worry". Matt hates having a feeling invented for him. |
+| Feelings | Acknowledge, don't diagnose (Matt, November 6). Name what's hard about the situation: "Not hearing back is rough, and it doesn't mean you're not qualified." Never claim to know how they feel: no "You're probably discouraged", no "Don't worry". Matt hates having a feeling invented for him. Saying what happened to them is not naming a feeling: "You matched the keywords and still heard nothing." is a hook (§8, November 11). |
 | Praise | Big when it's earned, and always with the reason: "This is killer! You say what you did and what it changed." Praise with no reason ("Great job!") is a cheerleader's. |
 | Coaching | Show the way out and walk it with them: "Let's start with the most recent one." "Every strong resume started somewhere like this." Encouragement points at real work on the resume, never at the person's potential. |
 | Facts about Matt | Allowed: fifteen years in hiring, thousands of people hired. Never: his name, an employer, a profile link, a photograph. |
@@ -67,13 +67,13 @@ The voice never changes. What changes with the moment is how much we say, and wh
 
 | Moment | The reader is | We sound | Aside | Three lines from the site |
 | --- | --- | --- | --- | --- |
-| Marketing | deciding whether to bother | a true thing about hiring, then what we do about it | one a section, at most | "244 people applied for the job you wanted." / "Eighteen got called back. The other 226 have no idea why the recruiter passed." / "Nobody tells you why. We do, before you apply for the next one." |
+| Marketing | deciding whether to bother | a hook on their situation (§8), then a true thing about hiring, then what we do about it | one a section, at most | "244 people applied for the job you wanted." / "Eighteen got called back. The other 226 have no idea why the recruiter passed." / "Nobody tells you why. We do, before you apply for the next one." |
 | Upload | about to hand over a resume | calm and literal: what to add, what's optional, what happens to it | one, beside the privacy facts | "That's 412 characters. We need at least 800 to review it, so add the whole resume, including your experience." / "We could only read 300 characters. A scanned or image-only PDF often does this. Paste the text instead." / "OpenAI writes the report from your resume. We don't store the resume or opt it into model training." |
 | Waiting | watching a clock | what's happening now and how long it usually takes; no faked progress | none | "Checking every quote against your resume" / "The first pass came back incomplete, so we started it again." / "If you retry and this one also finishes, both count as reports. Waiting is usually the better bet." |
 | Report shell | reading a judgment about their own work | direct, then encouraging: the problem, then the way out, walked together; plain enough that the recruiter's words carry | one, on the strong or the clean ending; one exclamation point on a win | "Lines not listed are fine as written." / "Every fact in it is from your resume or your answers." / "Neither predicts interviews or offers." |
 | Rewrite | about to copy a line into their resume | protective of facts: the original, the example, what's still theirs to fill | none | "This adds a detail that isn't in your line or your answers. Use the words you wrote, or add it as an answer if it's true." / "This draft changes a detail from your resume. Edit it back to what's true before copying." / "Every fact in it is from your resume or your answers." |
 | Research | checking whether to believe us | the question, the finding, the source, the limit | one, in the figure's margin note | "That study was about interviews, not resumes." / "These are audit studies: fictitious resumes and callbacks, not hires." / "No study we know of isolates a quantified bullet against a duty-style one." |
-| Pricing | deciding whether to pay | blunt and literal: the price, the term, the refund, what's included | none before the purchase; one exclamation point on the confirmation | "Your first report is free. Five more are $29." / "Stripe handles your card. We never see or store the number." / "Checkout canceled. Nothing was charged." |
+| Pricing | deciding whether to pay | blunt and literal: the price, the term, the refund, what's included. The paywall's heading may be a hook about the next application (§8); nothing under it is | none before the purchase; one exclamation point on the confirmation | "Your first report is free. Five more are $29." / "Stripe handles your card. We never see or store the number." / "Checkout canceled. Nothing was charged." |
 | Sign-in | trying to get back in | plain steps | one, in the email only | "No password. The code works once and expires soon." / "We sent an 8-digit code to {email}" / "That code didn't work. Check the email or request a new code." |
 | Account | looking after their own things | quiet and exact; nothing sold; glad when a score goes up | one, in an empty state; one exclamation point when a version improved | "Run a report and save it. Your next version will have something honest to measure against." / "Scores compare versions of your own resume. They don't predict interviews or offers." / "Skip it, and this browser can still bring the report back for up to 24 hours." |
 | Error | stuck | ours: own it in Matt's words, then what happened and what to do. Theirs: plain, no ownership | none | "Something broke on our end, not yours. Saved reports aren't affected." / "We gave that report back. Try again whenever you're ready." / "That email address doesn't look right. Check it and try again." |
@@ -146,13 +146,13 @@ The habits this codebase keeps producing. Most come from how language models wri
 | question_heading | A heading asked for effect, the reader can't really answer: "Want another read?", several on one screen ("Already paid?" "Used all five?") | A statement that names the thing. The recruiter's real questions are the voice ("How many per month?"); questions asked for effect are not |
 | copula_avoidance | "serves as", "boasts", "features", "marks" where "is" or "has" would do | "is", "has" |
 | ing_analysis | A trailing "-ing" clause that sounds like analysis: "…, highlighting your leadership", "…, reflecting real growth" | Say the thing, or cut it |
-| invented_emotion | Telling the reader how they feel: "You're probably feeling discouraged", "Don't worry", "We know this is stressful" | Acknowledge the situation: "Not hearing back is rough, and it doesn't mean you're not qualified." |
+| invented_emotion | Telling the reader how they feel: "You're probably feeling discouraged", "Don't worry", "We know this is stressful". A hook that says what happened to them ("You matched the keywords and still heard nothing.") is not this | Acknowledge the situation: "Not hearing back is rough, and it doesn't mean you're not qualified." |
 | please | "Please" in an instruction or error | Cut it; the instruction stands |
 | title_case | Title Case on a button, tab or label: "Upload Resume", "Run Another" | Sentence case |
 | generic_ai_word | unlock, elevate, transform, seamless, empower, journey, supercharge, streamline, effortless | Say what it does |
 | slogan | A line any product could put on a billboard, or a signature line outside marketing | A sentence with a subject and a fact |
 | hedge_stack | may, likely, suggests and could piled into one sentence | One hedge, or a plain statement of what the evidence shows |
-| invented_number | A statistic the research library doesn't source: "recruiters spend six seconds" | Drop it, or cite the page that sources it |
+| invented_number | A statistic the research library doesn't source: "recruiters spend six seconds". A hook gets no exemption: every figure in one is on the site with its source or its date | Drop it, or cite the page that sources it |
 | exclamation | An exclamation point that isn't earned: two in a row, more than one on a screen, one on something that isn't a win ("Upload your resume!"), or one in an error, a price, legal or privacy copy, or a critique | A period. One earned exclamation point on a real win is the voice (Matt, November 6) |
 | empty_praise | Praise with no reason: "Great job!", "Amazing work!", "You've got this!" | Name what earned it: "This is killer! You say what you did and what it changed." |
 | fake_intimacy | "Trust me", "We've got you", "We know exactly how you feel" | A specific, useful sentence. Coaching that walks the next step ("Let's start with the most recent one") is the voice, not this |
@@ -379,7 +379,7 @@ Run this on any new or changed string before a PR. A banned-word scan can't do i
    2. Does it name the actual subject, with nothing the reader has to translate (§4, coined_word)?
    3. Does the reader know what happens next: what the button does, what to fix, what was charged?
    4. Does every judgment point to something visible on the resume, and is it no more certain than the source allows?
-   5. Does it criticize the resume, never the person, and acknowledge the situation without diagnosing their feelings? When it praises or encourages, does it say why?
+   5. Does it criticize the resume, never the person, and acknowledge the situation without diagnosing their feelings? When it praises or encourages, does it say why? If it is a hook, does it pass §8's four checks?
    6. Does it keep the candidate's facts and their control?
    7. Is there at most one aside and at most one exclamation point on the screen, and neither in a button, price, legal term, error fact or critique?
    8. Is every name the glossary's name (§5)?
@@ -387,6 +387,54 @@ Run this on any new or changed string before a PR. A banned-word scan can't do i
    10. Does it say exactly what happened, including what didn't happen?
 5. **The free check, then the voice judge.** `npm run copy:check` from `web/` confirms the inventory is current, that no string trips a pattern check outside the known baseline (`docs/copy/lint-baseline.json`), and that the judge's tests pass; it also runs in the launch gate. Then `npm run copy:judge -- file <strings.json>` (or `inventory --tables <names>`) from `web/` scores strings against §1 to §4 and proposes a rewrite for each. It is a paid local check (`RIYP_ALLOW_PAID_EVALS=true`, a spend ceiling on every run) and never runs in production; `--dry-run` runs the free pattern checks only. The judge is a second reader, not the decision: when it and the read-aloud disagree, the read-aloud wins, and the disagreement goes back into its examples.
 6. **Brand-level lines go to Matt.** The dial, the homepage's lines, anything that states a founder fact, and any new aside on the homepage, pricing or the report's ending. Ask through the question UI, recommendation first, once per batch.
+
+## 8. The hook (Matt, November 11, 2026)
+
+Matt picked the boldest of three versions of the same surfaces and said the voice rules could change to allow it. The method is Hook, Spike, Payoff, from Ilias Ism's blitz-copy skill (github.com/Illyism/seo-skills, MIT), with the parts that aren't true here taken out.
+
+### The three moves
+
+| Move | What it does | On the site |
+| --- | --- | --- |
+| Hook | Says what happened to the reader, or takes their side, before the product is named | "You matched the keywords and still heard nothing." / "You're qualified. Your resume isn't saying so." |
+| Spike | Opens the gap with a fact we can source: a number from the site, a dated test, a price read from the tool's own page | "On the resume we ran through both, Jobscan returned a 35% match and 55 items, 18 of them about that resume." |
+| Payoff | One specific thing they get, said literally | "The first report is free, and it lists the lines a recruiter would question." |
+
+### Which triggers we use
+
+| Use | Because |
+| --- | --- |
+| Curiosity | Nobody tells a candidate why the recruiter passed. That gap is the product |
+| Recognition | The reader has sent the applications and heard nothing. Saying so is true of the person the product is for |
+| Relief | A first report that is complete and free is a real answer |
+| Advantage | A recruiter's view of your own resume is one most candidates never get |
+| The next application | A real deadline. "Don't send the next one blind." |
+
+| Leave out | Because |
+| --- | --- |
+| A number we can't source | `AGENTS.md`: never invent numerical results. blitz-copy's own example ("We tested this on 1,324 people") would fail here |
+| A promise of interviews, callbacks or offers | We can't keep it, and the score note says so |
+| An invented deadline, a countdown, scarcity, "secret", "exclusive" | Nothing about the pass is scarce or secret |
+| A feeling named for the reader | Matt, November 6. The situation is theirs to feel about |
+| Emoji and hype words | §4, generic_ai_word |
+
+### Where it applies
+
+| Surface | The hook goes | What stays literal |
+| --- | --- | --- |
+| Homepage, compare pages, the sample report's page | The h1, and one line after it | The comparison's answer paragraph, the table, prices, sources, "How we compare" |
+| Paywall | The dialog's heading | The pass list, the price, the term, the refund line, the buttons |
+| Search titles and share cards | The title, within 60 characters | The description says what the page is |
+| The report, the PDF, errors, sign-in, privacy, terms, research findings | Nowhere | Everything |
+
+A compare page keeps "<Tool> vs Recruiter in Your Pocket" as its search title, its breadcrumb and its name in lists, because that is what people type. The hook is the h1.
+
+### Four checks before a hook ships
+
+1. Is every number in it on the site already, with its source or its date?
+2. Is it true of the person the page is for, and fair to a reader it isn't true of? ("You matched the keywords and still heard nothing." is fine on a page someone reached by searching for a keyword scanner.)
+3. Is the stake real? The next application is. A deadline we made up isn't.
+4. Is the line after it a fact, and is there only one hook on the screen?
 
 ## Homepage copy, November 4, 2026
 
