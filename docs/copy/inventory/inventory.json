@@ -1,10 +1,10 @@
 {
   "generated_by": "web/scripts/copy-inventory.cjs",
   "counts": {
-    "files_scanned": 425,
+    "files_scanned": 426,
     "files_with_copy": 257,
-    "strings": 2960,
-    "unique_strings": 2464
+    "strings": 2959,
+    "unique_strings": 2463
   },
   "by_moment": {
     "research": 990,
@@ -18,7 +18,7 @@
     "shared": 73,
     "rewrite": 62,
     "error": 55,
-    "auth": 54,
+    "auth": 53,
     "analysis": 16,
     "other": 11,
     "pdf": 6,
@@ -15911,7 +15911,7 @@
     {
       "text": "You&apos;re already signed in.",
       "kind": "jsx-text",
-      "line": 40,
+      "line": 43,
       "file": "web/components/auth/AuthClient.tsx",
       "routes": [
         "/auth"
@@ -15922,7 +15922,7 @@
     {
       "text": "You&apos;re signed in as",
       "kind": "jsx-text",
-      "line": 42,
+      "line": 45,
       "file": "web/components/auth/AuthClient.tsx",
       "routes": [
         "/auth"
@@ -15933,7 +15933,7 @@
     {
       "text": "Go to my reports",
       "kind": "jsx-text",
-      "line": 47,
+      "line": 50,
       "file": "web/components/auth/AuthClient.tsx",
       "routes": [
         "/auth"
@@ -15944,7 +15944,7 @@
     {
       "text": "Sign out",
       "kind": "jsx-text",
-      "line": 52,
+      "line": 55,
       "file": "web/components/auth/AuthClient.tsx",
       "routes": [
         "/auth"
@@ -15955,7 +15955,7 @@
     {
       "text": "Enter your email address.",
       "kind": "const",
-      "line": 28,
+      "line": 31,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -15968,7 +15968,7 @@
     {
       "text": "That email address doesn’t look right. Check it and try again.",
       "kind": "const",
-      "line": 29,
+      "line": 32,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -15981,7 +15981,7 @@
     {
       "text": "Email sign-in is temporarily unavailable. Contact support if you need access now.",
       "kind": "call:ClientActionError",
-      "line": 126,
+      "line": 132,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -15994,7 +15994,7 @@
     {
       "text": "We’ve sent several codes already. Wait a little before you ask for another.",
       "kind": "call:ClientActionError",
-      "line": 129,
+      "line": 135,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -16007,7 +16007,7 @@
     {
       "text": "We couldn’t send a code. Try again.",
       "kind": "call:ClientActionError",
-      "line": 131,
+      "line": 137,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -16020,7 +16020,7 @@
     {
       "text": "That code didn’t work. Check the email or request a new code.",
       "kind": "call:ClientActionError",
-      "line": 181,
+      "line": 193,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -16033,7 +16033,7 @@
     {
       "text": "Add a first name, or choose Skip for now.",
       "kind": "call:setError",
-      "line": 211,
+      "line": 223,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -16046,7 +16046,7 @@
     {
       "text": "We couldn’t save your name. Try again.",
       "kind": "call:setError",
-      "line": 228,
+      "line": 240,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -16059,7 +16059,7 @@
     {
       "text": "Check your inbox",
       "kind": "return",
-      "line": 244,
+      "line": 256,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -16072,7 +16072,7 @@
     {
       "text": "What should we call you?",
       "kind": "return",
-      "line": 245,
+      "line": 257,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -16085,7 +16085,7 @@
     {
       "text": "We sent an 8-digit code to",
       "kind": "jsx-text",
-      "line": 251,
+      "line": 263,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -16098,7 +16098,7 @@
     {
       "text": "Not there? Check spam and Promotions.",
       "kind": "jsx-text",
-      "line": 252,
+      "line": 264,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -16111,7 +16111,7 @@
     {
       "text": "Email address",
       "kind": "jsx-text",
-      "line": 283,
+      "line": 295,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -16124,7 +16124,7 @@
     {
       "text": "Sending sign-in code…",
       "kind": "attr:loadingLabel",
-      "line": 308,
+      "line": 320,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -16137,7 +16137,7 @@
     {
       "text": "Send sign-in code",
       "kind": "jsx-text",
-      "line": 309,
+      "line": 321,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -16150,7 +16150,7 @@
     {
       "text": "No password. The code works once and expires soon.",
       "kind": "jsx-text",
-      "line": 313,
+      "line": 325,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -16163,7 +16163,7 @@
     {
       "text": "Sign-in code",
       "kind": "jsx-text",
-      "line": 321,
+      "line": 333,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -16176,7 +16176,7 @@
     {
       "text": "Verify code",
       "kind": "jsx-text",
-      "line": 349,
+      "line": 361,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -16189,7 +16189,7 @@
     {
       "text": "Use a different email",
       "kind": "jsx-text",
-      "line": 367,
+      "line": 379,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -16202,7 +16202,7 @@
     {
       "text": "Resend in {resendCooldown}s",
       "kind": "jsx-text",
-      "line": 378,
+      "line": 390,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -16215,7 +16215,7 @@
     {
       "text": "Resend code",
       "kind": "jsx-text",
-      "line": 378,
+      "line": 390,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -16228,20 +16228,7 @@
     {
       "text": "First name",
       "kind": "jsx-text",
-      "line": 387,
-      "file": "web/components/auth/AuthFlow.tsx",
-      "routes": [
-        "/auth",
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "auth",
-      "table": "workspace"
-    },
-    {
-      "text": "Saving your name…",
-      "kind": "attr:loadingLabel",
-      "line": 404,
+      "line": 399,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",
@@ -16254,7 +16241,7 @@
     {
       "text": "Skip for now",
       "kind": "jsx-text",
-      "line": 413,
+      "line": 426,
       "file": "web/components/auth/AuthFlow.tsx",
       "routes": [
         "/auth",

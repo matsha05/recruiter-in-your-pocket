@@ -32,7 +32,9 @@ async function buildAuthHarness() {
         function Harness() {
           const [isOpen, setOpen] = useState(true);
           window.__authHarness = {setOpen};
-          return <AuthFlow variant="modal" isOpen={isOpen} onSuccess={() => { window.__authSuccesses += 1; }} />;
+          // "/signin?plain=1" is the sign-in page reached from the header, with no destination of its own.
+          const plain = new URLSearchParams(window.location.search).get("plain") === "1";
+          return <AuthFlow variant={plain ? "page" : "modal"} landOnSavedReports={plain} isOpen={isOpen} onSuccess={() => { window.__authSuccesses += 1; }} />;
         }
         createRoot(document.getElementById("root")).render(<StrictMode><Harness /></StrictMode>);`,
       loader: "tsx", resolveDir: WEB_ROOT, sourcefile: "auth-code-retry-harness.tsx",
@@ -75,14 +77,15 @@ async function installAuthHarness(page: Page) {
     });
     if (url.pathname === "/auth-harness.js") return route.fulfill({ contentType: "text/javascript", body: harnessScript });
     if (url.pathname === "/favicon.ico") return route.fulfill({ status: 204 });
+    if (url.pathname === "/reports" || url.pathname === "/workspace") return route.fulfill({ contentType: "text/html", body: `<!doctype html><title>${url.pathname}</title>` });
     await route.abort("blockedbyclient");
     throw new Error(`Unmocked auth test request: ${url.pathname}`);
   });
   await page.route("**/api/auth/send-code", (route) => route.fulfill({ json: { ok: true } }));
 }
 
-async function enterCodeStep(page: Page) {
-  await page.goto(`${ORIGIN}/signin`);
+async function enterCodeStep(page: Page, path = "/signin") {
+  await page.goto(`${ORIGIN}${path}`);
   await expect(page.getByLabel("Email address", { exact: true })).toHaveAttribute("placeholder", "you@example.com");
   await page.getByLabel("Email address", { exact: true }).fill("candidate@example.test");
   await page.getByRole("button", { name: "Send sign-in code", exact: true }).click();
@@ -229,5 +232,49 @@ test.describe("one-time sign-in code verification", () => {
     await expect(page).toHaveURL(`${ORIGIN}/signin`);
     await page.evaluate(() => (window as unknown as { __authHarness: { setOpen(value: boolean): void } }).__authHarness.setOpen(true));
     await expect(page.getByRole("button", { name: "Send sign-in code", exact: true })).toBeEnabled();
+  });
+
+  // A plain sign-in from the header lands on My reports when there is a saved report (lib/auth/landing.ts).
+  const SAVED_REPORTS = /\/api\/reports\?limit=1$/;
+  async function verifyPlainSignIn(page: Page) {
+    await page.route("**/api/auth/verify-code", (route) => route.fulfill({ json: { ok: true, user: { firstName: "Candidate" } } }));
+    await enterCodeStep(page, "/signin?plain=1");
+    await page.getByLabel("Sign-in code", { exact: true }).fill(EDITED_CODE);
+  }
+
+  test("a plain sign-in with a saved report lands on My reports, and stays busy while it checks", async ({ page }) => {
+    await installAuthHarness(page);
+    const asked: Route[] = [];
+    await page.route(SAVED_REPORTS, (route) => { asked.push(route); });
+    await verifyPlainSignIn(page);
+    await expect.poll(() => asked.length).toBe(1);
+    await expect(page.getByRole("button", { name: "Signing you in…", exact: true })).toBeDisabled();
+    await expect(page).toHaveURL(`${ORIGIN}/signin?plain=1`);
+    await asked[0].fulfill({ json: { ok: true, reports: [{ id: "r1" }] } });
+    await expect(page).toHaveURL(`${ORIGIN}/reports`);
+    expect(asked).toHaveLength(1);
+  });
+
+  test("a plain sign-in with no saved report lands on the upload page", async ({ page }) => {
+    await installAuthHarness(page);
+    await page.route(SAVED_REPORTS, (route) => route.fulfill({ json: { ok: true, reports: [] } }));
+    await verifyPlainSignIn(page);
+    await expect(page).toHaveURL(`${ORIGIN}/workspace`);
+  });
+
+  test("a saved-report check that fails or never answers cannot hold up the sign-in", async ({ page }) => {
+    await installAuthHarness(page);
+    await page.route(SAVED_REPORTS, (route) => route.fulfill({ status: 500, json: { ok: false } }));
+    await verifyPlainSignIn(page);
+    await expect(page).toHaveURL(`${ORIGIN}/workspace`);
+
+    await page.unroute(SAVED_REPORTS);
+    const hung: Route[] = [];
+    await page.route(SAVED_REPORTS, (route) => { hung.push(route); });
+    await verifyPlainSignIn(page);
+    await expect.poll(() => hung.length).toBe(1);
+    await expect(page).toHaveURL(`${ORIGIN}/signin?plain=1`);
+    await page.clock.runFor(2_500);
+    await expect(page).toHaveURL(`${ORIGIN}/workspace`);
   });
 });

@@ -31,7 +31,7 @@
     "test:screener-text": "node scripts/run-ts-test.cjs tests/screener-text.test.ts",
     "test:pii": "node scripts/run-ts-test.cjs tests/pii.test.ts",
     "test:extension-cors": "node scripts/run-ts-test.cjs tests/extension-cors.test.ts",
-    "test:auth-redirect": "node scripts/run-ts-test.cjs tests/auth-redirect.test.ts",
+    "test:auth-redirect": "node scripts/run-ts-test.cjs tests/auth-redirect.test.ts && node scripts/run-ts-test.cjs tests/sign-in-landing.test.ts",
     "test:auth-email": "node scripts/run-ts-test.cjs tests/auth-email.test.ts",
     "test:support-inbound": "node scripts/run-ts-test.cjs tests/support-inbound.test.ts",
     "test:support-reply": "node scripts/run-ts-test.cjs tests/support-reply.test.ts",
