@@ -32,6 +32,9 @@ export default function AuthClient() {
     const context = normalizeAuthContext(from);
     const fallback = from === "settings" ? "/settings" : "/workspace";
     const redirectTo = safeAuthRedirect(nextParam, fallback);
+    // A plain sign-in from the header names no destination: it lands on My reports when there is a saved report.
+    // One that started somewhere (a report, checkout, settings, a link with `next`) goes back there.
+    const landOnSavedReports = !nextParam && context === "default";
 
     if (arrivedSignedIn && user) {
         return (
@@ -62,6 +65,7 @@ export default function AuthClient() {
             variant="page"
             context={context}
             redirectTo={redirectTo}
+            landOnSavedReports={landOnSavedReports}
             initialError={initialError}
         />
     );
