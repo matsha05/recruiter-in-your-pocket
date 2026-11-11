@@ -33,6 +33,16 @@ Outputs:
 
 Existing manual notes, including November's consumer ChatGPT observations, are preserved. An API section is appended between explicit markers and only that section is replaced on rerun. The filename names the reporting cycle; AI answers and sitemap metadata are observed **on the run date**, not reconstructed for the previous month.
 
+## Read by hand with each monthly PR
+
+The job measures search and AI answers; it does not check that the site is still crawlable. With each monthly PR, run the deployed-site check and read its findings:
+
+```sh
+npm run check:site
+```
+
+It fetches the production sitemap and every page in it, read-only, and exits 1 when anything is flagged (a page that is not a 200, a wrong canonical, a stray `noindex`, a broken internal link, and the rest listed under Measure in [the plan](2026-11-aeo-and-internal-linking.md)). It uses no credentials and no paid API. A month whose impressions fall should be read beside this output before anything else is blamed.
+
 ## Credentials
 
 The script parses only `~/.config/riyp/monthly.env`, never a repository `.env` file or shell-provided API key. The product key was copied there once with the owner's authorization. Do not put real credentials in documentation, a PR, a command-line argument, or a log.
