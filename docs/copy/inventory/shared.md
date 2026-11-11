@@ -40,30 +40,30 @@ Routes: `/`, `/api/auth/send-code`, `/api/billing/confirm`, `/api/billing/restor
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
 | 1 | marketing | `web/components/compare/ComparisonPage.tsx:16` (7 routes) | const | Recruiter in Your Pocket |
-| 2 | marketing | `web/components/compare/ComparisonPage.tsx:37` (7 routes) | jsx-text | All comparisons |
-| 3 | marketing | `web/components/compare/ComparisonPage.tsx:47` (7 routes) | jsx-text | ’s prices read on |
-| 4 | marketing | `web/components/compare/ComparisonPage.tsx:49` (7 routes) | jsx-text | How we compare |
-| 5 | marketing | `web/components/compare/ComparisonPage.tsx:54` (7 routes) | jsx-text | Side by side |
-| 6 | marketing | `web/components/compare/ComparisonPage.tsx:58` (7 routes) | jsx-text | What we compared |
-| 7 | marketing | `web/components/compare/ComparisonPage.tsx:83` (7 routes) | attr:aria-label | See it on your own resume |
-| 8 | marketing | `web/components/compare/ComparisonPage.tsx:85` (7 routes) | jsx-text | See what a recruiter would question on yours. |
-| 9 | marketing | `web/components/compare/ComparisonPage.tsx:87` (7 routes) | jsx-text | The free report is the complete report: the write-up, every line that needs work, and the example for each. No card, no account, and nothing held back for the pass. |
-| 10 | marketing | `web/components/compare/ComparisonPage.tsx:87` (7 routes) | jsx-text | See a complete report on a fictional resume |
-| 11 | marketing | `web/components/compare/ComparisonPage.tsx:87` (7 routes) | jsx-text | before you run yours. |
-| 12 | marketing | `web/components/compare/ComparisonPage.tsx:92` (7 routes) | jsx-text | Get your free report |
-| 13 | marketing | `web/components/compare/ComparisonPage.tsx:112` (7 routes) | jsx-text | (opens in a new tab) |
-| 14 | marketing | `web/components/compare/ComparisonPage.tsx:122` (7 routes) | jsx-text | Other comparisons |
-| 15 | marketing | `web/components/compare/ComparisonPage.tsx:135` (7 routes) | jsx-text | How we compare |
-| 16 | marketing | `web/components/compare/ComparisonPage.tsx:137` (7 routes) | jsx-text | We read |
-| 17 | marketing | `web/components/compare/ComparisonPage.tsx:137` (7 routes) | jsx-text | ’s own pricing page on the date above and quote what it says. Prices change. If we have one wrong, email |
-| 18 | marketing | `web/components/compare/ComparisonPage.tsx:138` (7 routes) | jsx-text | and we’ll fix it. |
-| 19 | marketing | `web/components/compare/ComparisonPage.tsx:143` (7 routes) | jsx-text | , on |
-| 20 | marketing | `web/components/compare/ComparisonPage.tsx:143` (7 routes) | jsx-text | ’s free tier. |
-| 21 | marketing | `web/components/compare/ComparisonPage.tsx:145` (7 routes) | jsx-text | That is what each one said, not a verdict on which is better. |
-| 22 | marketing | `web/components/compare/ComparisonPage.tsx:149` (7 routes) | jsx-text | We haven’t run |
-| 23 | marketing | `web/components/compare/ComparisonPage.tsx:149` (7 routes) | jsx-text | on the same resume, so this page compares what each one sells, not the quality of what comes back. |
-| 24 | marketing | `web/components/compare/ComparisonPage.tsx:155` (7 routes) | jsx-text | See what they see in yours. |
-| 25 | marketing | `web/components/compare/ComparisonPage.tsx:158` (7 routes) | jsx-text | Get your free report |
+| 2 | marketing | `web/components/compare/ComparisonPage.tsx:39` (7 routes) | jsx-text | All comparisons |
+| 3 | marketing | `web/components/compare/ComparisonPage.tsx:49` (7 routes) | jsx-text | ’s prices read on |
+| 4 | marketing | `web/components/compare/ComparisonPage.tsx:51` (7 routes) | jsx-text | How we compare |
+| 5 | marketing | `web/components/compare/ComparisonPage.tsx:56` (7 routes) | jsx-text | Side by side |
+| 6 | marketing | `web/components/compare/ComparisonPage.tsx:60` (7 routes) | jsx-text | What we compared |
+| 7 | marketing | `web/components/compare/ComparisonPage.tsx:85` (7 routes) | attr:aria-label | See it on your own resume |
+| 8 | marketing | `web/components/compare/ComparisonPage.tsx:87` (7 routes) | jsx-text | See what a recruiter would question on yours. |
+| 9 | marketing | `web/components/compare/ComparisonPage.tsx:89` (7 routes) | jsx-text | The free report is the complete report: the write-up, every line that needs work, and the example for each. No card, no account, and nothing held back for the pass. |
+| 10 | marketing | `web/components/compare/ComparisonPage.tsx:89` (7 routes) | jsx-text | See a complete report on a fictional resume |
+| 11 | marketing | `web/components/compare/ComparisonPage.tsx:89` (7 routes) | jsx-text | before you run yours. |
+| 12 | marketing | `web/components/compare/ComparisonPage.tsx:94` (7 routes) | jsx-text | Get your free report |
+| 13 | marketing | `web/components/compare/ComparisonPage.tsx:114` (7 routes) | jsx-text | (opens in a new tab) |
+| 14 | marketing | `web/components/compare/ComparisonPage.tsx:124` (7 routes) | jsx-text | Other comparisons |
+| 15 | marketing | `web/components/compare/ComparisonPage.tsx:137` (7 routes) | jsx-text | How we compare |
+| 16 | marketing | `web/components/compare/ComparisonPage.tsx:139` (7 routes) | jsx-text | We read |
+| 17 | marketing | `web/components/compare/ComparisonPage.tsx:139` (7 routes) | jsx-text | ’s own pricing page on the date above and quote what it says. Prices change. If we have one wrong, email |
+| 18 | marketing | `web/components/compare/ComparisonPage.tsx:140` (7 routes) | jsx-text | and we’ll fix it. |
+| 19 | marketing | `web/components/compare/ComparisonPage.tsx:145` (7 routes) | jsx-text | , on |
+| 20 | marketing | `web/components/compare/ComparisonPage.tsx:145` (7 routes) | jsx-text | ’s free tier. |
+| 21 | marketing | `web/components/compare/ComparisonPage.tsx:147` (7 routes) | jsx-text | That is what each one said, not a verdict on which is better. |
+| 22 | marketing | `web/components/compare/ComparisonPage.tsx:151` (7 routes) | jsx-text | We haven’t run |
+| 23 | marketing | `web/components/compare/ComparisonPage.tsx:151` (7 routes) | jsx-text | on the same resume, so this page compares what each one sells, not the quality of what comes back. |
+| 24 | marketing | `web/components/compare/ComparisonPage.tsx:157` (7 routes) | jsx-text | See what they see in yours. |
+| 25 | marketing | `web/components/compare/ComparisonPage.tsx:160` (7 routes) | jsx-text | Get your free report |
 
 ## web/components/compare/comparisons.tsx
 
