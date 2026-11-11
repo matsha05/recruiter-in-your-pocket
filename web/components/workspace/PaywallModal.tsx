@@ -1,5 +1,6 @@
 "use client";
 
+import { POSTING_READS_FEATURE } from "@/lib/reports/posting-read-terms";
 import { useEffect, useMemo, useState } from "react";
 import { useAuth } from "@/components/providers/AuthProvider";
 import {
@@ -41,7 +42,7 @@ const COMPLETE_REPORT_SUBTITLE = `${JOB_SEARCH_PASS_DECISION.freeBoundary} ${JOB
 const PASS_BULLETS = [
     "5 more complete reports",
     "Re-check a revision and see which lines came off the list",
-    "Read your resume against each job posting",
+    POSTING_READS_FEATURE,
 ];
 
 // The title names what the visitor was doing when the pass came up; the list and price are the same every time.

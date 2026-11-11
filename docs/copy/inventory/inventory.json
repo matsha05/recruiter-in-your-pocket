@@ -3,15 +3,15 @@
   "counts": {
     "files_scanned": 424,
     "files_with_copy": 256,
-    "strings": 2946,
-    "unique_strings": 2452
+    "strings": 2949,
+    "unique_strings": 2456
   },
   "by_moment": {
     "research": 988,
     "account": 442,
     "marketing": 418,
-    "report": 258,
-    "pricing": 218,
+    "report": 262,
+    "pricing": 217,
     "upload": 124,
     "legal": 111,
     "extension": 98,
@@ -26785,7 +26785,7 @@
     {
       "text": "Checkout didn’t open. Try again, and if it keeps happening, write to support.",
       "kind": "const",
-      "line": 41,
+      "line": 42,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -26796,7 +26796,7 @@
     {
       "text": "Your first report is free. Five more are $29.",
       "kind": "jsx-text",
-      "line": 73,
+      "line": 74,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -26807,7 +26807,7 @@
     {
       "text": "Checkout canceled.",
       "kind": "jsx-text",
-      "line": 78,
+      "line": 79,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -26818,7 +26818,7 @@
     {
       "text": "Nothing was charged.",
       "kind": "jsx-text",
-      "line": 78,
+      "line": 79,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -26829,7 +26829,7 @@
     {
       "text": "Your pass has",
       "kind": "jsx-text",
-      "line": 86,
+      "line": 87,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -26840,7 +26840,7 @@
     {
       "text": ", good for {passDaysLeft} more {passDaysLeft === 1 ? \"day…}",
       "kind": "jsx-text",
-      "line": 86,
+      "line": 87,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -26851,7 +26851,7 @@
     {
       "text": "New report",
       "kind": "jsx-text",
-      "line": 87,
+      "line": 88,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -26862,7 +26862,7 @@
     {
       "text": "Back to my comparison",
       "kind": "jsx-text",
-      "line": 93,
+      "line": 94,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -26873,7 +26873,7 @@
     {
       "text": "One sheet of paper: your first report",
       "kind": "attr:label",
-      "line": 97,
+      "line": 98,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -26884,7 +26884,7 @@
     {
       "text": "Five sheets of paper: the Job Search Pass",
       "kind": "attr:label",
-      "line": 98,
+      "line": 99,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -26895,7 +26895,7 @@
     {
       "text": "First report",
       "kind": "jsx-text",
-      "line": 101,
+      "line": 102,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -26906,7 +26906,7 @@
     {
       "text": "Where your resume stands, the recruiter’s write-up, and every line that needs work.",
       "kind": "jsx-text",
-      "line": 103,
+      "line": 104,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -26917,7 +26917,7 @@
     {
       "text": "Job Search Pass",
       "kind": "jsx-text",
-      "line": 106,
+      "line": 107,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -26928,7 +26928,7 @@
     {
       "text": "Pricing actions",
       "kind": "attr:aria-label",
-      "line": 115,
+      "line": 117,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -26939,7 +26939,7 @@
     {
       "text": "Get your free report",
       "kind": "jsx-text",
-      "line": 123,
+      "line": 125,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -26950,7 +26950,7 @@
     {
       "text": "Opening checkout…",
       "kind": "jsx-text",
-      "line": 130,
+      "line": 132,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -26961,7 +26961,7 @@
     {
       "text": "Passes are paused for now",
       "kind": "jsx-text",
-      "line": 135,
+      "line": 137,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -26972,7 +26972,7 @@
     {
       "text": "One payment.",
       "kind": "jsx-text",
-      "line": 144,
+      "line": 146,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -26983,7 +26983,7 @@
     {
       "text": "The pass ends after 90 days and never renews.",
       "kind": "jsx-text",
-      "line": 144,
+      "line": 146,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -26994,7 +26994,7 @@
     {
       "text": "Stripe handles your card.",
       "kind": "jsx-text",
-      "line": 145,
+      "line": 147,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -27005,7 +27005,7 @@
     {
       "text": "We never see or store the number.",
       "kind": "jsx-text",
-      "line": 145,
+      "line": 147,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -27016,7 +27016,7 @@
     {
       "text": "Haven’t used a paid report yet?",
       "kind": "jsx-text",
-      "line": 146,
+      "line": 148,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -27027,7 +27027,7 @@
     {
       "text": "Full refund within 14 days: write to support from your checkout email.",
       "kind": "jsx-text",
-      "line": 146,
+      "line": 148,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -27038,7 +27038,7 @@
     {
       "text": "Used all five?",
       "kind": "jsx-text",
-      "line": 147,
+      "line": 149,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -27047,18 +27047,7 @@
       "table": "pricing"
     },
     {
-      "text": "Your saved reports and their PDFs stay open. Another report needs a new pass.",
-      "kind": "jsx-text",
-      "line": 147,
-      "file": "web/components/marketing/PricingPageClient.tsx",
-      "routes": [
-        "/pricing"
-      ],
-      "moment": "pricing",
-      "table": "pricing"
-    },
-    {
-      "text": "Taxes may apply at checkout.",
+      "text": "Your saved reports and their PDFs stay open.",
       "kind": "jsx-text",
       "line": 149,
       "file": "web/components/marketing/PricingPageClient.tsx",
@@ -27069,9 +27058,31 @@
       "table": "pricing"
     },
     {
+      "text": "Another report needs a new pass.",
+      "kind": "jsx-text",
+      "line": 149,
+      "file": "web/components/marketing/PricingPageClient.tsx",
+      "routes": [
+        "/pricing"
+      ],
+      "moment": "pricing",
+      "table": "pricing"
+    },
+    {
+      "text": "Taxes may apply at checkout.",
+      "kind": "jsx-text",
+      "line": 151,
+      "file": "web/components/marketing/PricingPageClient.tsx",
+      "routes": [
+        "/pricing"
+      ],
+      "moment": "pricing",
+      "table": "pricing"
+    },
+    {
       "text": "Other tools and restoring a purchase",
       "kind": "attr:aria-label",
-      "line": 152,
+      "line": 154,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -27082,7 +27093,7 @@
     {
       "text": "Other tools do different jobs.",
       "kind": "jsx-text",
-      "line": 155,
+      "line": 157,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -27093,7 +27104,7 @@
     {
       "text": "Writers rewrite, keyword scanners match words, builders lay it out. A recruiter decides whether you get the call, and",
       "kind": "jsx-text",
-      "line": 157,
+      "line": 159,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -27104,7 +27115,7 @@
     {
       "text": "recruiters who spent longer on Experience were more likely to move a resume forward",
       "kind": "jsx-text",
-      "line": 158,
+      "line": 160,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -27115,7 +27126,7 @@
     {
       "text": "See how we compare with seven tools",
       "kind": "jsx-text",
-      "line": 159,
+      "line": 161,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -27126,7 +27137,7 @@
     {
       "text": ", Jobscan and TopResume among them, with each one’s own prices.",
       "kind": "jsx-text",
-      "line": 159,
+      "line": 161,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -27137,7 +27148,7 @@
     {
       "text": "Already paid?",
       "kind": "jsx-text",
-      "line": 163,
+      "line": 165,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -27148,7 +27159,7 @@
     {
       "text": "Restore access",
       "kind": "jsx-text",
-      "line": 165,
+      "line": 167,
       "file": "web/components/marketing/PricingPageClient.tsx",
       "routes": [
         "/pricing"
@@ -32305,7 +32316,7 @@
     {
       "text": "Open your last report",
       "kind": "jsx-text",
-      "line": 182,
+      "line": 187,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32317,7 +32328,7 @@
     {
       "text": "New reports are paused for now.",
       "kind": "jsx-text",
-      "line": 201,
+      "line": 206,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32329,7 +32340,7 @@
     {
       "text": "We&apos;re fixing a problem, so an upload won&apos;t run yet. Saved reports still open.",
       "kind": "jsx-text",
-      "line": 203,
+      "line": 208,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32341,7 +32352,7 @@
     {
       "text": "Check status",
       "kind": "jsx-text",
-      "line": 204,
+      "line": 209,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32353,7 +32364,7 @@
     {
       "text": "Paste your resume",
       "kind": "jsx-text",
-      "line": 224,
+      "line": 229,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32365,7 +32376,7 @@
     {
       "text": "Upload a file",
       "kind": "jsx-text",
-      "line": 231,
+      "line": 236,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32377,7 +32388,7 @@
     {
       "text": "Resume text",
       "kind": "jsx-text",
-      "line": 234,
+      "line": 239,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32389,7 +32400,7 @@
     {
       "text": "That&apos;s",
       "kind": "jsx-text",
-      "line": 248,
+      "line": 253,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32401,7 +32412,7 @@
     {
       "text": "characters. We need at least",
       "kind": "jsx-text",
-      "line": 248,
+      "line": 253,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32413,7 +32424,7 @@
     {
       "text": "to review it, so add the whole resume, including your experience.",
       "kind": "jsx-text",
-      "line": 248,
+      "line": 253,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32425,7 +32436,7 @@
     {
       "text": "What we read",
       "kind": "jsx-text",
-      "line": 258,
+      "line": 263,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32437,7 +32448,7 @@
     {
       "text": "We could only read {charCount} characters, and we need at least {MIN_RESUME_CHARS}. Save a fresh PDF from your LinkedIn profile and upload that.",
       "kind": "jsx-text",
-      "line": 268,
+      "line": 273,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32449,7 +32460,7 @@
     {
       "text": "We could only read {charCount} characters, and we need at least {MIN_RESUME_CHARS}. A scanned or image-only PDF often does this. Paste the text instead.",
       "kind": "jsx-text",
-      "line": 268,
+      "line": 273,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32461,7 +32472,7 @@
     {
       "text": "Text we read from your file",
       "kind": "attr:aria-label",
-      "line": 271,
+      "line": 276,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32473,7 +32484,7 @@
     {
       "text": "Paste the text instead",
       "kind": "jsx-text",
-      "line": 274,
+      "line": 279,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32485,7 +32496,7 @@
     {
       "text": "Fix the text",
       "kind": "jsx-text",
-      "line": 274,
+      "line": 279,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32497,7 +32508,7 @@
     {
       "text": "Paste the text instead",
       "kind": "jsx-text",
-      "line": 289,
+      "line": 294,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32509,7 +32520,7 @@
     {
       "text": "See Jordan&apos;s report",
       "kind": "jsx-text",
-      "line": 293,
+      "line": 298,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32521,7 +32532,7 @@
     {
       "text": "OpenAI writes the review from the PDF you upload, and we don’t opt it into model training. We never sign in to your LinkedIn account.",
       "kind": "jsx-text",
-      "line": 303,
+      "line": 308,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32533,7 +32544,7 @@
     {
       "text": "How we handle your data",
       "kind": "jsx-text",
-      "line": 307,
+      "line": 312,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32545,7 +32556,7 @@
     {
       "text": "Compare with a job",
       "kind": "jsx-text",
-      "line": 322,
+      "line": 327,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32557,7 +32568,7 @@
     {
       "text": "(optional)",
       "kind": "jsx-text",
-      "line": 322,
+      "line": 327,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32569,7 +32580,7 @@
     {
       "text": "Job posting",
       "kind": "jsx-text",
-      "line": 330,
+      "line": 335,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32581,7 +32592,7 @@
     {
       "text": "Paste the job posting here…",
       "kind": "attr:placeholder",
-      "line": 338,
+      "line": 343,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32593,7 +32604,7 @@
     {
       "text": "Reports are paused",
       "kind": "jsx-text",
-      "line": 353,
+      "line": 358,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32604,18 +32615,6 @@
     },
     {
       "text": "Re-check a revision and see which lines came off the list",
-      "kind": "const[]",
-      "line": 43,
-      "file": "web/components/workspace/PaywallModal.tsx",
-      "routes": [
-        "/sample-report",
-        "/workspace"
-      ],
-      "moment": "pricing",
-      "table": "workspace"
-    },
-    {
-      "text": "Read your resume against each job posting",
       "kind": "const[]",
       "line": 44,
       "file": "web/components/workspace/PaywallModal.tsx",
@@ -32629,7 +32628,7 @@
     {
       "text": "Five more reads.",
       "kind": "const",
-      "line": 48,
+      "line": 49,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -32641,7 +32640,7 @@
     {
       "text": "Sign in for your free report",
       "kind": "jsx-text",
-      "line": 87,
+      "line": 88,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -32653,7 +32652,7 @@
     {
       "text": "Enter the email address you want to use for billing.",
       "kind": "call:setError",
-      "line": 113,
+      "line": 114,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -32665,7 +32664,7 @@
     {
       "text": "Checkout didn’t start. Try again, or restore a purchase you’ve already made.",
       "kind": "call:setError",
-      "line": 146,
+      "line": 147,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -32677,7 +32676,7 @@
     {
       "text": "The free report on this device or network has been used. Each account gets its own, so sign in to get yours.",
       "kind": "const",
-      "line": 168,
+      "line": 169,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -32689,7 +32688,7 @@
     {
       "text": "Your existing report stays available.",
       "kind": "const",
-      "line": 170,
+      "line": 171,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -32701,7 +32700,7 @@
     {
       "text": "Your free report needs an account",
       "kind": "jsx-text",
-      "line": 177,
+      "line": 178,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -32713,7 +32712,7 @@
     {
       "text": "Passes are paused for now",
       "kind": "jsx-text",
-      "line": 177,
+      "line": 178,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -32725,7 +32724,7 @@
     {
       "text": "Back to my report",
       "kind": "jsx-text",
-      "line": 185,
+      "line": 186,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -32737,7 +32736,7 @@
     {
       "text": "Back to my resume",
       "kind": "jsx-text",
-      "line": 185,
+      "line": 186,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -32749,7 +32748,7 @@
     {
       "text": "Your free report needs an account",
       "kind": "jsx-text",
-      "line": 197,
+      "line": 198,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -32761,7 +32760,7 @@
     {
       "text": "The free report on this device or network has been used. Each account gets its own, so sign in to get yours.",
       "kind": "jsx-text",
-      "line": 201,
+      "line": 202,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -32773,7 +32772,7 @@
     {
       "text": "Good for 90 days. No automatic renewal.",
       "kind": "jsx-text",
-      "line": 218,
+      "line": 219,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -32785,7 +32784,7 @@
     {
       "text": "Continue with",
       "kind": "jsx-text",
-      "line": 232,
+      "line": 233,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -32797,7 +32796,7 @@
     {
       "text": "Opening checkout…",
       "kind": "attr:loadingLabel",
-      "line": 239,
+      "line": 240,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -32809,7 +32808,7 @@
     {
       "text": "Continue to checkout",
       "kind": "jsx-text",
-      "line": 241,
+      "line": 242,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -32821,7 +32820,7 @@
     {
       "text": "Your email",
       "kind": "jsx-text",
-      "line": 247,
+      "line": 248,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -32833,7 +32832,7 @@
     {
       "text": "Opening checkout…",
       "kind": "attr:loadingLabel",
-      "line": 267,
+      "line": 268,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -32845,7 +32844,7 @@
     {
       "text": "Continue to checkout",
       "kind": "jsx-text",
-      "line": 269,
+      "line": 270,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -32857,7 +32856,7 @@
     {
       "text": "Checking access…",
       "kind": "attr:loadingLabel",
-      "line": 280,
+      "line": 281,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -32869,7 +32868,7 @@
     {
       "text": "Restore access",
       "kind": "jsx-text",
-      "line": 283,
+      "line": 284,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -32881,7 +32880,7 @@
     {
       "text": "Payment by Stripe. Unused passes are refundable within 14 days (see the",
       "kind": "jsx-text",
-      "line": 293,
+      "line": 294,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -32893,7 +32892,7 @@
     {
       "text": "). By continuing, you agree to the",
       "kind": "jsx-text",
-      "line": 293,
+      "line": 294,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -32905,7 +32904,7 @@
     {
       "text": "Privacy Policy",
       "kind": "jsx-text",
-      "line": 293,
+      "line": 294,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -34518,7 +34517,7 @@
     {
       "text": "Report stopped",
       "kind": "call:toast.info",
-      "line": 253,
+      "line": 261,
       "file": "web/components/workspace/WorkspaceClient.tsx",
       "routes": [
         "/sample-report",
@@ -34530,7 +34529,7 @@
     {
       "text": "The sample report didn't load",
       "kind": "call:toast.error",
-      "line": 406,
+      "line": 416,
       "file": "web/components/workspace/WorkspaceClient.tsx",
       "routes": [
         "/sample-report",
@@ -34542,7 +34541,7 @@
     {
       "text": "Refresh to try again, or start with your own resume.",
       "kind": "key:description",
-      "line": 407,
+      "line": 417,
       "file": "web/components/workspace/WorkspaceClient.tsx",
       "routes": [
         "/sample-report",
@@ -34554,7 +34553,7 @@
     {
       "text": "This report is missing details needed for a PDF. Contact support for help exporting it.",
       "kind": "call:toast.error",
-      "line": 437,
+      "line": 447,
       "file": "web/components/workspace/WorkspaceClient.tsx",
       "routes": [
         "/sample-report",
@@ -34683,7 +34682,7 @@
     {
       "text": "We couldn’t read this resume",
       "kind": "call:toast.error",
-      "line": 78,
+      "line": 79,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -34695,7 +34694,7 @@
     {
       "text": "We couldn’t read this file",
       "kind": "call:toast.error",
-      "line": 84,
+      "line": 85,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -34707,7 +34706,7 @@
     {
       "text": "Try another PDF or DOCX, or paste the resume text.",
       "kind": "key:description",
-      "line": 84,
+      "line": 85,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -34719,7 +34718,7 @@
     {
       "text": "Saved to My reports.",
       "kind": "call:toast.success",
-      "line": 101,
+      "line": 102,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -34731,7 +34730,7 @@
     {
       "text": "We couldn’t save this report to My reports. Keep this tab open and try again.",
       "kind": "key:message",
-      "line": 108,
+      "line": 109,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -34743,7 +34742,7 @@
     {
       "text": "Add your resume first",
       "kind": "call:toast.error",
-      "line": 130,
+      "line": 131,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -34755,7 +34754,7 @@
     {
       "text": "Upload a file or paste the resume text before creating the report.",
       "kind": "key:description",
-      "line": 131,
+      "line": 132,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -34767,7 +34766,7 @@
     {
       "text": "Report stopped",
       "kind": "call:toast.warning",
-      "line": 182,
+      "line": 183,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -34779,7 +34778,7 @@
     {
       "text": "Report stopped",
       "kind": "call:toast.info",
-      "line": 186,
+      "line": 187,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -34791,7 +34790,7 @@
     {
       "text": "Report stopped",
       "kind": "call:toast.info",
-      "line": 190,
+      "line": 191,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -34803,7 +34802,7 @@
     {
       "text": "{REPORT_ACCESS_NOT_USED} Try again whenever you're ready.",
       "kind": "const",
-      "line": 244,
+      "line": 249,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -34815,7 +34814,7 @@
     {
       "text": "The connection dropped",
       "kind": "const",
-      "line": 249,
+      "line": 254,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -34827,7 +34826,7 @@
     {
       "text": "We couldn’t finish your report",
       "kind": "const",
-      "line": 249,
+      "line": 254,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -34839,7 +34838,7 @@
     {
       "text": "We couldn’t finish your report",
       "kind": "call:toast.error",
-      "line": 266,
+      "line": 271,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -37671,7 +37670,7 @@
     {
       "text": "Your first complete report is free. No card required.",
       "kind": "key:promise",
-      "line": 15,
+      "line": 17,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -37692,7 +37691,7 @@
     {
       "text": "Repeat use across browsers or shared networks can affect eligibility. Daily capacity limits apply.",
       "kind": "key:boundary",
-      "line": 16,
+      "line": 18,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -37713,7 +37712,7 @@
     {
       "text": "Anonymous use is limited to one free report per calendar month. Repeat use across browsers or shared networks can affect eligibility. Daily capacity limits apply.",
       "kind": "key:anonymousBoundary",
-      "line": 17,
+      "line": 19,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -37734,7 +37733,7 @@
     {
       "text": "Everything in your free report is yours. Nothing is held back.",
       "kind": "key:freeBoundary",
-      "line": 21,
+      "line": 23,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -37755,7 +37754,7 @@
     {
       "text": "The Job Search Pass is for what comes next: checking your revision, or tailoring your resume to another job.",
       "kind": "key:whenToBuy",
-      "line": 22,
+      "line": 24,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -37776,7 +37775,7 @@
     {
       "text": "5 more reports, good for 90 days. No automatic renewal.",
       "kind": "key:terms",
-      "line": 23,
+      "line": 25,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -37797,7 +37796,7 @@
     {
       "text": "Get 5 more reports · $29",
       "kind": "key:cta",
-      "line": 24,
+      "line": 26,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -37818,7 +37817,7 @@
     {
       "text": "Get your free report",
       "kind": "key:buttonText",
-      "line": 35,
+      "line": 37,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -37839,7 +37838,7 @@
     {
       "text": "One complete resume report",
       "kind": "key:text",
-      "line": 37,
+      "line": 39,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -37860,7 +37859,7 @@
     {
       "text": "Where your resume stands, and why",
       "kind": "key:text",
-      "line": 38,
+      "line": 40,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -37881,7 +37880,7 @@
     {
       "text": "Every line that needs work, with the line as written and what to add",
       "kind": "key:text",
-      "line": 39,
+      "line": 41,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -37902,7 +37901,7 @@
     {
       "text": "A revised line, written only from your facts",
       "kind": "key:text",
-      "line": 40,
+      "line": 42,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -37923,7 +37922,7 @@
     {
       "text": "PDF export and saved reports when you sign in. No card needed.",
       "kind": "key:text",
-      "line": 41,
+      "line": 43,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -37944,7 +37943,7 @@
     {
       "text": "Job Search Pass",
       "kind": "key:label",
-      "line": 46,
+      "line": 48,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -37965,7 +37964,7 @@
     {
       "text": "Get 5 more reports · $29",
       "kind": "key:buttonText",
-      "line": 49,
+      "line": 51,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -37986,28 +37985,7 @@
     {
       "text": "Re-check a revision and see which lines came off the list",
       "kind": "key:text",
-      "line": 52,
-      "file": "web/lib/billing/pricing.ts",
-      "routes": [
-        "/",
-        "/help",
-        "/pricing",
-        "/privacy",
-        "/reports/[id]",
-        "/sample-report",
-        "/settings/account",
-        "/settings/billing",
-        "/settings/matching",
-        "/terms",
-        "/workspace"
-      ],
-      "moment": "pricing",
-      "table": "shared"
-    },
-    {
-      "text": "Read your resume against each job posting",
-      "kind": "key:text",
-      "line": 53,
+      "line": 54,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -38028,7 +38006,7 @@
     {
       "text": "$29 once. Good for 90 days. No automatic renewal.",
       "kind": "key:text",
-      "line": 54,
+      "line": 56,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -40429,17 +40407,114 @@
       "table": "workspace"
     },
     {
-      "text": "Included with your pass. This one doesn't use a report.",
+      "text": "Read a resume you've already run against any job posting, up to {POSTING_READS_PER_DAY} a day, without using a report",
       "kind": "const",
       "line": 11,
       "file": "web/lib/reports/posting-read-terms.ts",
       "routes": [
+        "/",
         "/api/resume-feedback-stream",
+        "/help",
+        "/pricing",
+        "/privacy",
+        "/reports/[id]",
         "/sample-report",
+        "/settings/account",
+        "/settings/billing",
+        "/settings/matching",
+        "/terms",
         "/workspace"
       ],
       "moment": "report",
-      "table": "workspace"
+      "table": "shared"
+    },
+    {
+      "text": "Once a resume has its report, reading it against a job posting doesn't use another (up to {POSTING_READS_PER_DAY} a day).",
+      "kind": "const",
+      "line": 14,
+      "file": "web/lib/reports/posting-read-terms.ts",
+      "routes": [
+        "/",
+        "/api/resume-feedback-stream",
+        "/help",
+        "/pricing",
+        "/privacy",
+        "/reports/[id]",
+        "/sample-report",
+        "/settings/account",
+        "/settings/billing",
+        "/settings/matching",
+        "/terms",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
+      "text": "Reading a resume you've already run against a posting keeps working until the pass ends.",
+      "kind": "const",
+      "line": 17,
+      "file": "web/lib/reports/posting-read-terms.ts",
+      "routes": [
+        "/",
+        "/api/resume-feedback-stream",
+        "/help",
+        "/pricing",
+        "/privacy",
+        "/reports/[id]",
+        "/sample-report",
+        "/settings/account",
+        "/settings/billing",
+        "/settings/matching",
+        "/terms",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
+      "text": "Add the resume that report was written on, then paste the posting.",
+      "kind": "const",
+      "line": 20,
+      "file": "web/lib/reports/posting-read-terms.ts",
+      "routes": [
+        "/",
+        "/api/resume-feedback-stream",
+        "/help",
+        "/pricing",
+        "/privacy",
+        "/reports/[id]",
+        "/sample-report",
+        "/settings/account",
+        "/settings/billing",
+        "/settings/matching",
+        "/terms",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
+      "text": "Included with your pass. This one doesn't use a report.",
+      "kind": "const",
+      "line": 23,
+      "file": "web/lib/reports/posting-read-terms.ts",
+      "routes": [
+        "/",
+        "/api/resume-feedback-stream",
+        "/help",
+        "/pricing",
+        "/privacy",
+        "/reports/[id]",
+        "/sample-report",
+        "/settings/account",
+        "/settings/billing",
+        "/settings/matching",
+        "/terms",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
     },
     {
       "text": "LinkedIn profile review",

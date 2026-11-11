@@ -10,30 +10,35 @@
     "lead": 0,
     "trim": 0
   },
+  "usage": {
+    "tokens_in": 6942,
+    "tokens_out": 1629,
+    "cost_estimate_usd": 0.01682175
+  },
   "report": {
     "contract_version": "v3",
-    "score": 89,
+    "score": 88,
     "lifted_by_employer": false,
-    "verdict": "A senior backend engineer with substantial payments work and results a recruiter can understand.",
+    "verdict": "A senior backend engineer whose payments work comes with scale and measurable results.",
     "write_up": [
-      "Your resume tells a strong senior backend story! At Lumen Ledger, you built payments infrastructure, led a ledger migration and improved API performance, with the scale or result attached to each.",
-      "The balance API line is especially good: it shows the latency before and after and names the change you made. Your earlier freight work carries the same specificity, though the claims services line leaves more to the imagination.",
-      "Start by adding one concrete piece of work from Northgate, then consider leading with the latency result. Your resume gives a recruiter a strong reason to keep reading; competition for senior backend roles will still matter."
+      "This is a strong senior backend resume! At Lumen Ledger, you show how you built payments infrastructure, migrated the ledger and improved API performance. A recruiter can connect the technical choices to the scale of the work and what changed.",
+      "The balance API line is a model: it names the latency problem, the change you made and the before-and-after numbers. The move from insurance to freight technology to payments is easy to follow, and your current role backs up your senior headline.",
+      "Your resume isn't likely to be the thing holding you back on its own. Competition for a particular job will still matter. I'd add one concrete detail to the older Northgate role, then consider whether your ledger migration can also show a broader technical decision."
     ],
     "cards": [
       {
         "kind": "line",
         "where": "Software Engineer, Northgate Insurance, line 1",
         "line": "Maintained the claims intake services in Java",
-        "cannot_tell": "A recruiter knows which services you worked on, but not what maintaining them involved. One change or problem you handled would make the work more concrete.",
-        "example": "Maintained the claims intake services in Java by [work performed]",
-        "question": "What did you work on in the claims intake services?"
+        "cannot_tell": "A recruiter knows which services you worked on, but not what maintaining them involved. One change you made would give them something concrete to take away.",
+        "example": "Maintained the claims intake services in Java by [changes made]",
+        "question": "What changes did you make to the claims intake services?"
       },
       {
         "kind": "keep",
-        "where": "Senior Software Engineer, Payments Platform, line 1",
-        "line": "Designed and built the idempotent payouts service in Go and PostgreSQL that now settles about 1.8M payouts a month",
-        "cannot_tell": "Keep this as a model. It names your part, the service, the tools and how much the service handles.",
+        "where": "Senior Software Engineer, Payments Platform, line 3",
+        "line": "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
+        "cannot_tell": "Keep this as a model. It gives the reader a precise performance measure and ties it to a technical choice you made.",
         "example": "",
         "question": ""
       },
@@ -41,26 +46,18 @@
         "kind": "upgrade",
         "where": "Senior Software Engineer, Payments Platform, line 2",
         "line": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends",
-        "cannot_tell": "For roles above senior engineer, a platform-wide decision would show how you shaped the larger system, if you made one.",
-        "example": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends, including [a platform-wide decision you made]",
-        "question": "What platform-wide decision, if any, did you make during the migration?"
-      },
-      {
-        "kind": "upgrade",
-        "where": "Senior Software Engineer, Payments Platform, line 3",
-        "line": "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
-        "cannot_tell": "Consider putting this first in the Lumen Ledger role. The before and after makes the performance improvement immediately visible.",
-        "example": "",
-        "question": ""
+        "cannot_tell": "For a role above senior engineer, a recruiter will also look for technical direction across teams. If this migration involved a broader architectural decision, your part in it could strengthen the story.",
+        "example": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends, with [cross-team architectural decision and your role]",
+        "question": "Was there a cross-team architectural decision behind the migration, and what was your part in it?"
       }
     ],
     "fit": {
       "roles": [
         "Senior Backend Engineer"
       ],
-      "why": "Your headline and your payments platform work point directly to senior backend engineering.",
+      "why": "Your headline and current payments role point to senior backend work in services, databases and distributed systems.",
       "level": "senior, leads a ledger migration and mentors two mid-level engineers",
-      "note": "Your payments and freight work points toward backend roles involving distributed services and data systems. For a role above senior, bring forward any broader technical decisions you made if you can describe them.",
+      "note": "Your experience points toward senior backend roles, particularly those involving payments or high-volume services. The freight work also shows you can bring API and event-driven experience beyond payments.",
       "posting": {
         "summary": "",
         "missing": []
@@ -70,6 +67,6 @@
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 89
+    "content_score": 88
   }
 }

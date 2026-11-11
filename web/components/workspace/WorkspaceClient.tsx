@@ -81,7 +81,15 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     const [postingRequested, setPostingRequested] = useState(false);
     // "Read it against a posting" on a saved report of this resume: with a pass, that read spends no report
     // (lib/reports/posting-read.ts). Kept only while the resume text is the one that report was written on.
-    const [postingSource, setPostingSource] = useState<{ reportId: string; text: string } | null>(null);
+    // `text` is the resume as it was in this visit; null when the person arrived from a saved report, which keeps
+    // no resume, and the server checks the one they add.
+    const [postingSource, setPostingSource] = useState<{ reportId: string; text: string | null } | null>(null);
+    const postingParam = searchParams.get("posting");
+    useEffect(() => {
+        if (!postingParam || !/^[0-9a-f-]{36}$/iu.test(postingParam)) return;
+        setPostingRequested(true);
+        setPostingSource((current) => current ?? { reportId: postingParam.toLowerCase(), text: null });
+    }, [postingParam]);
     // Ask-first (Nov 5, 2026): a page the server read as not ready shows its questions before the report;
     // the report is then written again from the resume with the answers in it, and the first stays put
     // until the second arrives. `rebuiltAnswers` is how many answers the shown report was written from.
@@ -280,9 +288,11 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
 
     const persistedSavedJobId = getPersistedSavedJobId(loadedJobContext);
     // Included with the pass: the same resume as the saved report, read against a posting.
-    const postingReadReportId = user?.postingReads && !reportDocument && postingSource && postingSource.text === resumeText ? postingSource.reportId : null;
+    const postingReadReportId = user?.postingReads && !reportDocument && postingSource && (postingSource.text === null || postingSource.text === resumeText) ? postingSource.reportId : null;
     const { handleFileSelect, handleRequestSaveAuth, handleRun, saveReportForCurrentUser, reportSaveState } = useResumeReview({
         resumeText, jobDescription, persistedSavedJobId, freeUsesRemaining, user, document: reportDocument, postingReadReportId,
+        // Refused as a posting read (a changed resume, no pass): the next run is an ordinary report, and says so.
+        onPostingReadRefused: () => setPostingSource(null),
         refreshFreeStatus, beginAnalysis, isAnalysisCurrent, endAnalysis, setResumeText, setReport, setIsLoading,
         setIsStreaming, setAnalysisStage, setIsPaywallOpen, setPendingReportForSave, setIsSavePromptOpen,
         setIsAuthOpen, setAuthContext,

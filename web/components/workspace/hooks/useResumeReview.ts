@@ -22,6 +22,7 @@ export function useResumeReview(input: {
   document?: "linkedin" | null;
   /** Set when this run is a posting read on the pass: the saved report of the same resume. It spends no report. */
   postingReadReportId?: string | null;
+  onPostingReadRefused?: () => void;
   freeUsesRemaining: number;
   user: any;
   refreshFreeStatus: (options: any) => Promise<boolean>;
@@ -227,6 +228,10 @@ export function useResumeReview(input: {
         input.setIsPaywallOpen(true);
         Analytics.paywallViewed("free_uses_exhausted");
         return;
+      }
+      // The day's limit and a missing posting leave the posting read standing; anything else makes the next run a report.
+      if (result.errorCode?.startsWith("POSTING_READ_") && result.errorCode !== "POSTING_READ_RATE_LIMITED" && result.errorCode !== "POSTING_READ_NO_POSTING") {
+        input.onPostingReadRefused?.();
       }
       console.error("Failed to generate report:", result.message);
       const refreshed = await input.refreshFreeStatus({

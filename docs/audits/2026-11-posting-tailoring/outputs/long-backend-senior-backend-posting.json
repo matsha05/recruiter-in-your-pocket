@@ -1,0 +1,114 @@
+{
+  "id": "long-backend-senior-backend-posting",
+  "resume": "../../2026-11-posting-tailoring/resumes/long_backend_two_pages.txt",
+  "posting": "posting_senior_backend.txt",
+  "model": "gpt-6.1-terra",
+  "today": "2026-11-11",
+  "repaired": false,
+  "firstError": null,
+  "drafted": {
+    "lead": 3,
+    "trim": 3
+  },
+  "usage": {
+    "tokens_in": 7747,
+    "tokens_out": 2294,
+    "cost_estimate_usd": 0.021153
+  },
+  "report": {
+    "contract_version": "v3",
+    "score": 88,
+    "lifted_by_employer": false,
+    "verdict": "Senior backend experience with strong payments and reliability work, though payouts ownership isn't shown.",
+    "write_up": [
+      "This is a strong senior backend resume! At Tidewater, you connect Go services and production reliability work to numbers a recruiter can use. The payments work and your payq project make Cobalt Pay a sensible target.",
+      "The payment provider failover line is the model: it names your lead role, your partners and the change in failed checkouts. Your Experience section leads, but some of the most relevant Tidewater work sits below office activities. PostgreSQL and Kafka appear in Skills without examples of how you used them.",
+      "Let's bring the Go, failover and reconciliation work forward. Then add what you can about the PHP admin panel and the front-desk dashboard. For Cobalt Pay, be explicit about relevant work you've actually done in design reviews or on-call; competition for the role will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, Platform, line 9",
+        "line": "Maintained the legacy PHP admin panel until it was retired in 2022",
+        "cannot_tell": "A recruiter can see which system you maintained, but not what that involved. One example would show how you kept it useful until retirement.",
+        "example": "Maintained the legacy PHP admin panel until it was retired in 2022, including [maintenance work]",
+        "question": "What maintenance work did you do on the PHP admin panel?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer, line 6",
+        "line": "Built a jQuery dashboard for the front-desk staff",
+        "cannot_tell": "The users and tool are clear, but a recruiter can't tell what the dashboard showed or helped the staff do.",
+        "example": "Built a jQuery dashboard for the front-desk staff to [dashboard purpose]",
+        "question": "What did the front-desk dashboard show or help staff do?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Platform, line 3",
+        "line": "Migrated 60 services from EC2 to Kubernetes on EKS over nine months with no customer-facing downtime",
+        "cannot_tell": "For a role above senior engineer, the direction you set across teams would show how you guided a migration beyond your own work.",
+        "example": "Migrated 60 services from EC2 to Kubernetes on EKS over nine months with no customer-facing downtime, setting [cross-team migration direction]",
+        "question": "What direction, if any, did you set across teams for the migration?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Platform, line 8",
+        "line": "Led the payment provider failover project with the payments team, cutting failed checkouts during provider outages from 3.1% to 0.4%",
+        "cannot_tell": "This is one of your strongest results. Move it above the book club and office side project so a recruiter sees the payments work sooner.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Software Engineer",
+        "Senior Backend Engineer, Money Movement"
+      ],
+      "why": "Your headline and current platform role point to senior software engineering, with backend work in Go, Kubernetes and payments.",
+      "level": "senior, leads a payment provider failover project and mentors interns",
+      "note": "Your Go rate-limiting service, payq library and finance reconciliation work are relevant to Cobalt Pay. Bring those closer to the top, and use concrete examples wherever you can substantiate the posting's requirements.",
+      "posting": {
+        "summary": "Senior backend role building reliable money movement services in Go, with technical leadership and finance partnership.",
+        "missing": [
+          "Own the reliability of the payouts path end to end, including on-call",
+          "Lead technical design reviews",
+          "deep experience with PostgreSQL",
+          "Experience with event-driven systems such as Kafka"
+        ],
+        "lead": [
+          {
+            "line": "Designed the checkout rate-limiting service in Go that handles 4,000 requests a second at peak",
+            "why": "This shows high-throughput work in Go, part of the posting's first ask. Move it near the top of the Tidewater role."
+          },
+          {
+            "line": "Reconciled daily claim payments against the ledger with a nightly Python job, flagging about 40 mismatches a week for finance",
+            "why": "This answers the ask to partner with Finance on reconciliation. Move it to the top of the Cascade Health Systems role."
+          },
+          {
+            "line": "Led the payment provider failover project with the payments team, cutting failed checkouts during provider outages from 3.1% to 0.4%",
+            "why": "This answers the requirement for a record of reliability work on production systems. Move it near the top of the Tidewater role."
+          }
+        ],
+        "trim": [
+          {
+            "line": "Redesigned the office seating chart tool for the facilities team as a side project",
+            "why": "This is useful work, but the posting doesn't ask for facilities tools; trim it to make room for payments work."
+          },
+          {
+            "line": "Volunteered as a tour guide for prospective interns during summer recruiting",
+            "why": "The recruiting help is generous, but this posting doesn't ask for it, so you can trim it."
+          },
+          {
+            "line": "Managed the team's snack budget and planned two offsite events",
+            "why": "These are helpful team contributions, but the posting doesn't ask for them; trim this line for room."
+          }
+        ]
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 88
+  }
+}

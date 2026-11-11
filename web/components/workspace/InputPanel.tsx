@@ -14,7 +14,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ResumeDropzone } from "@/components/upload/ResumeDropzone";
 import { MIN_RESUME_CHARS } from "@/lib/resume-input";
-import { POSTING_READ_INCLUDED_HINT } from "@/lib/reports/posting-read-terms";
+import { POSTING_READ_ADD_RESUME, POSTING_READ_INCLUDED_HINT } from "@/lib/reports/posting-read-terms";
 import { cn } from "@/lib/utils";
 import styles from "./InputPanel.module.css";
 
@@ -175,6 +175,11 @@ export default function InputPanel({
                         <p className="mt-3 max-w-[34rem] text-base text-muted-foreground" data-testid="workspace-linkedin-help">
                             On your LinkedIn profile, choose Resources, then Save to PDF. Upload that file here.{" "}
                             <a href="https://www.linkedin.com/in/me" target="_blank" rel="noopener noreferrer" className="riyp-link-quiet">Open your profile</a>
+                        </p>
+                    )}
+                    {postingReadIncluded && !isProfile && !fileName && resumeText.trim().length === 0 && (
+                        <p className="mt-3 max-w-[34rem] text-base text-muted-foreground" data-testid="workspace-posting-read-help">
+                            {POSTING_READ_ADD_RESUME} {POSTING_READ_INCLUDED_HINT}
                         </p>
                     )}
                     {onOpenLastReport && !isProfile && (

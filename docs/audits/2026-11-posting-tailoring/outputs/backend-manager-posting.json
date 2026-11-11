@@ -10,32 +10,37 @@
     "lead": 2,
     "trim": 0
   },
+  "usage": {
+    "tokens_in": 7267,
+    "tokens_out": 1754,
+    "cost_estimate_usd": 0.0104814
+  },
   "report": {
     "contract_version": "v3",
     "score": 90,
     "lifted_by_employer": false,
-    "verdict": "Strong senior backend experience, but the management track Cobalt Pay requires isn't shown.",
+    "verdict": "A strong senior backend resume for a management role that asks for direct-report experience it doesn't show.",
     "write_up": [
-      "Cobalt Pay is hiring an engineering manager, while your resume shows a senior backend engineer who mentors others. Your payouts and ledger work is directly relevant, but a recruiter can't see the direct-report management the role requires. I'm reading your resume for Senior Backend Engineer, where it makes a much stronger case.",
-      "Your balance API line is a great model: it names the latency problem, the change you made, and the before and after. The rest of the Lumen Ledger role also makes your work tangible, from payout volume to a zero-downtime ledger migration. Your experience leads, and the dates are easy to follow.",
-      "For senior backend roles, this is a strong resume and is unlikely to be the thing holding you back. For Cobalt Pay, move your mentoring and incident-review work higher, and add direct management work if you've done it. The role's requirements and the competition for it will still matter."
+      "Cobalt Pay is looking for an engineering manager, while your resume points to senior backend engineering. Your payments work is strong: you built a payouts service and led a ledger migration, but the resume doesn't show the people management this role asks for.",
+      "Your balance API line is a great model! It names the change you made and shows the latency before and after. The rest of your recent work is similarly easy to follow, and your progression from insurance to freight to payments makes sense.",
+      "For this application, bring your mentoring and incident-review work closer to the top. If you've managed direct reports, hired or handled performance reviews, add that experience plainly. For senior backend roles, your resume itself is unlikely to be the sticking point; the competition for a particular job matters too."
     ],
     "cards": [
       {
         "kind": "keep",
         "where": "Senior Software Engineer, Payments Platform, line 3",
         "line": "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
-        "cannot_tell": "Keep this as a model. You give the recruiter the technical decision and a clear measure of what changed, without making them guess how the two connect.",
+        "cannot_tell": "Keep this as a model. It connects a technical choice to a measurable improvement without making the reader guess what you did.",
         "example": "",
         "question": ""
       },
       {
         "kind": "upgrade",
-        "where": "Senior Software Engineer, Payments Platform, line 5",
-        "line": "Mentor two mid-level engineers through code review and design docs",
-        "cannot_tell": "For a manager role, direct-report responsibilities would show a step beyond mentoring. Add them only if you've held them.",
-        "example": "Mentor two mid-level engineers through code review and design docs; [management responsibilities] for [number] direct reports",
-        "question": "Have you managed engineers directly, and if so, what were your responsibilities?"
+        "where": "Senior Software Engineer, Payments Platform, line 2",
+        "line": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends",
+        "cannot_tell": "For the next technical level, a cross-team decision would show how your leadership reached beyond the migration itself.",
+        "example": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends, including [cross-team technical decision you led]",
+        "question": "What cross-team technical decision, if any, did you lead during the migration?"
       }
     ],
     "fit": {
@@ -43,26 +48,26 @@
         "Senior Backend Engineer",
         "Engineering Manager, Payments Platform"
       ],
-      "why": "Your headline and current role center on senior backend work in payouts, the ledger and payments operations.",
+      "why": "Your headline and recent work building payouts and ledger services point to senior backend engineering.",
       "level": "senior, leads technical projects and mentors two mid-level engineers",
-      "note": "Your payouts, ledger migration, mentoring and incident-review work match the team's work. Bring the mentoring and operations lines higher for this application, and add management responsibilities only if you've held them.",
+      "note": "Your payouts, ledger and production operations work fits the team's subject matter. Bring the mentoring and incident-review lines forward for this application, and add any relevant management work the resume leaves out.",
       "posting": {
-        "summary": "The role leads a payments engineering team, with responsibility for people management, the roadmap and reliable operations.",
+        "summary": "Lead a backend payments team responsible for payouts, the ledger, delivery and production operations.",
         "missing": [
           "2+ years managing engineers with direct reports, including hiring and performance management",
-          "A record of growing engineers into senior roles",
           "Own the team's roadmap and delivery with your product partner",
           "Experience leading teams that run production systems with on-call",
+          "A record of growing engineers into senior roles",
           "Build relationships with Finance, Risk and Support"
         ],
         "lead": [
           {
-            "line": "Wrote the on-call runbooks for the payments services and ran the incident reviews for the platform group",
-            "why": "The posting asks for incident reviews and on-call health. Move this line into the first three bullets of the Lumen Ledger role."
+            "line": "Mentor two mid-level engineers through code review and design docs",
+            "why": "The role asks you to develop engineers. Move this mentoring line closer to the top, while keeping it distinct from formal management."
           },
           {
-            "line": "Mentor two mid-level engineers through code review and design docs",
-            "why": "The role asks you to grow and coach engineers. Move this line higher in the Lumen Ledger role so that work isn't the last thing a recruiter sees there."
+            "line": "Wrote the on-call runbooks for the payments services and ran the incident reviews for the platform group",
+            "why": "The role includes running incident reviews and looking after on-call health. Move this into the first two bullets to make your operations work visible sooner."
           }
         ]
       }

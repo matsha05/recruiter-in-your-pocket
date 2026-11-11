@@ -144,7 +144,7 @@ function loadTailoringFixtures(root: string): LabFixture[] {
   if (!fs.existsSync(outDir)) return [];
   return fs.readdirSync(outDir).filter((name) => name.endsWith(".json")).sort().map((name) => {
     const record = JSON.parse(fs.readFileSync(path.join(outDir, name), "utf8"));
-    const resumePath = path.join(inputs, String(record.resume || ""));
+    const resumePath = path.resolve(inputs, String(record.resume || ""));
     return {
       id: `tailor-${record.id}`,
       label: `tailor · ${String(record.id).replace(/-/gu, " ")} · ${record.report.score}`,

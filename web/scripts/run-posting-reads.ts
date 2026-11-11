@@ -16,11 +16,14 @@ import path from "node:path";
 
 const WEB_ROOT = path.resolve(__dirname, "..");
 const INPUTS = path.resolve(WEB_ROOT, "../docs/audits/2026-11-first-read/resumes");
+// A two-page resume with lines no payments posting asks about, so "trim" has something to find.
+const LONG = "../../2026-11-posting-tailoring/resumes/long_backend_two_pages.txt";
 const CASES: Array<{ id: string; resume: string; posting: string | null }> = [
     { id: "backend-senior-backend-posting", resume: "fr01_backend_ic_senior.txt", posting: "posting_senior_backend.txt" },
     { id: "backend-manager-posting", resume: "fr01_backend_ic_senior.txt", posting: "posting_engineering_manager.txt" },
     { id: "marketing-hubspot-posting", resume: "fr02_marketing_coordinator_skills.txt", posting: "posting_marketing_hubspot.txt" },
     { id: "backend-no-posting", resume: "fr01_backend_ic_senior.txt", posting: null },
+    { id: "long-backend-senior-backend-posting", resume: LONG, posting: "posting_senior_backend.txt" },
 ];
 
 type Resolver = { _resolveFilename: (request: string, ...rest: unknown[]) => string };
@@ -91,8 +94,8 @@ async function main() {
             repaired = true;
         }
         const report = payload as { score: number; cards: unknown[]; fit: { posting: { lead?: unknown[]; trim?: unknown[] } } };
-        await writeFile(path.join(outputDir, `${item.id}.json`), `${JSON.stringify({ id: item.id, resume: item.resume, posting: item.posting, model, today, repaired, firstError, drafted: { lead: draftPosting?.lead?.length ?? 0, trim: draftPosting?.trim?.length ?? 0 }, report }, null, 2)}\n`);
-        console.log(`${item.id}: score ${report.score}, ${report.cards.length} cards, lead ${report.fit.posting.lead?.length ?? 0} (drafted ${draftPosting?.lead?.length ?? 0}), trim ${report.fit.posting.trim?.length ?? 0} (drafted ${draftPosting?.trim?.length ?? 0}), ${Math.round((Date.now() - startedAt) / 1000)} s${repaired ? `, repaired (${firstError})` : ""}`);
+        await writeFile(path.join(outputDir, `${item.id}.json`), `${JSON.stringify({ id: item.id, resume: item.resume, posting: item.posting, model, today, repaired, firstError, drafted: { lead: draftPosting?.lead?.length ?? 0, trim: draftPosting?.trim?.length ?? 0 }, usage: { tokens_in: initial.telemetry.tokens_in, tokens_out: initial.telemetry.tokens_out, cost_estimate_usd: initial.telemetry.cost_estimate_usd }, report }, null, 2)}\n`);
+        console.log(`${item.id}: score ${report.score}, ${report.cards.length} cards, lead ${report.fit.posting.lead?.length ?? 0} (drafted ${draftPosting?.lead?.length ?? 0}), trim ${report.fit.posting.trim?.length ?? 0} (drafted ${draftPosting?.trim?.length ?? 0}), ${Math.round((Date.now() - startedAt) / 1000)} s, $${initial.telemetry.cost_estimate_usd ?? "?"} (${initial.telemetry.tokens_in} in, ${initial.telemetry.tokens_out} out)${repaired ? `, repaired (${firstError})` : ""}`);
     }
 }
 
