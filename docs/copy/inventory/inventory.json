@@ -23597,7 +23597,7 @@
     {
       "text": "Before you apply for the next one.",
       "kind": "jsx-text",
-      "line": 22,
+      "line": 26,
       "file": "web/components/landing/home/CloseField.tsx",
       "routes": [
         "/"
@@ -23608,7 +23608,7 @@
     {
       "text": "Get your free report",
       "kind": "jsx-text",
-      "line": 24,
+      "line": 28,
       "file": "web/components/landing/home/CloseField.tsx",
       "routes": [
         "/"
@@ -23617,9 +23617,9 @@
       "table": "home"
     },
     {
-      "text": "244 sheets of paper, one of them outlined: yours",
+      "text": "244 sheets of paper, and a light on one of them: yours",
       "kind": "attr:label",
-      "line": 27,
+      "line": 31,
       "file": "web/components/landing/home/CloseField.tsx",
       "routes": [
         "/"
