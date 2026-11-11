@@ -15,9 +15,18 @@ Matt answered fourteen prompts the way he'd say them out loud, and ChatGPT descr
 - **One exception: the research beliefs (Matt, November 10, 2026).** On the research hub and the six belief pages (`/research`, `/research/story` and the rest), "we" means the recruiters behind RIYP, speaking about the hiring side: "We need to say who you are in one line, and picture you in the job." More than one recruiter stands behind it, so the plural is true. Keep it to those pages, and to beliefs and experience, never to a claim about a study. Everywhere else the rule above holds.
 - **The resume is one variable.** When the resume is strong, say so, and say what else matters: "I cannot imagine the resume is going to be the reason you don't get called back." Referrals, how competitive the job is, and a stepping-stone role are fair to name. Never as a statistic.
 - **The recruiter's real questions are the voice.** "How many per month?" "Responsible, what does that even mean?" A question asked for effect ("Want another read?") is not.
-- **Acknowledge, don't diagnose.** Name what's hard about the situation: "Not hearing back is rough, and it doesn't mean you're not qualified." Never claim to know their feelings: no "You're probably discouraged", no "Don't worry". Matt hates having a feeling invented for him.
+- **Acknowledge, don't diagnose.** Name what's hard about the situation: "Not hearing back is rough, and it doesn't mean you're not qualified." Never claim to know their feelings: no "You're probably discouraged", no "Don't worry". Matt hates having a feeling invented for him. Since November 11, 2026 this rule covers feelings only. A marketing hook may say what happened to the reader and take their side (see "The hook" below).
 - **Errors that are ours, in his words.** "Our bad. Let's try that again." Then the facts, literally. No jokes in errors; ownership is not a joke.
 - **Founder facts.** Fifteen years in hiring, and thousands of people hired, may appear. Never his name, an employer or a profile.
+
+## The hook (Matt, November 11, 2026)
+
+Matt read three surfaces written three ways and picked the boldest column, saying he didn't mind changing the voice rules to get it. The method is Hook, Spike, Payoff, taken from Ilias Ism's blitz-copy skill and cut to what is true here. The working version, with where it applies and the lines on the site, is `copy-system.md` §8.
+
+- **Open on the reader, never on the product.** The first line says what happened to them: "You matched the keywords and still heard nothing." The homepage has done this since November 4 ("244 people applied for the job you wanted.").
+- **Take their side as the premise.** "You're qualified. Your resume isn't saying so." That is the stance the product is built on, not a finding about one person. The report never repeats it as a judgment; a report says only what the resume shows.
+- **Real stakes are fair to name.** The next application is a real deadline, so "Don't send the next one blind." is allowed, on the paywall too. An invented deadline, a countdown or a scarcity claim is not.
+- **What did not change.** No number the product or the research library can't source. No promise of interviews, callbacks or offers. No feeling named for the reader. No emoji, no hype words. Prices, terms, refunds, errors, privacy and the report itself stay literal.
 
 ## Personality (Matt, October 30, 2026)
 
@@ -71,7 +80,7 @@ The voice is **plainspoken expertise**: an experienced recruiter with excellent 
 - Light in low-stakes moments; direct and unadorned when trust matters.
 - Skeptical of ATS folklore, magic scores, and invented achievements without sounding bitter about the category.
 
-The brand should be recognizable even without the logo. It notices the gap between what a candidate meant and what the page actually communicates. It does not manufacture anxiety and then sell relief.
+The brand should be recognizable even without the logo. It notices the gap between what a candidate meant and what the page actually communicates. It names the stakes that are already there (the next application, the call that didn't come) and never invents one: no countdown, no scarcity, no danger the reader didn't already have (Matt, November 11, 2026).
 
 Human tone comes from relevant detail, honest limits, and respect for the candidate's control. Joy comes from noticing what is already working and making the next step feel possible. It does not come from slogans, slang, exclamation marks used for volume, forced empathy, or pretending the product has feelings. One earned exclamation point on a real win is fine (Matt, November 6, 2026).
 
@@ -135,7 +144,7 @@ Prefer the concrete meaning: role, result, scope, decision, question, detail, re
 ## Avoid
 
 - Hiring promises: “land more interviews,” “get hired faster,” “beat the ATS.”
-- Fake certainty: “This is what recruiters think,” “This will get you hired.”
+- Fake certainty: “This is what recruiters think,” “This will get you hired.” A hook that takes the reader's side (“You're qualified.”) is a stance, not a finding, and is allowed in marketing (November 11, 2026).
 - Fake intimacy: “Trust me,” “I've got you,” “We know exactly how you feel.”
 - Generic AI language: unlock, elevate, transform, seamless, empower, journey, game-changing.
 - Formulaic slogans, repeated tricolons, and repeated “not X, but Y” constructions.
@@ -194,10 +203,10 @@ Use normal labels such as “What the research found,” “What this means for 
 
 The language should fit the reader's immediate question.
 
-- Marketing can have rhythm and personality. Read the heading and paragraph together: repeated punchlines and slogans usually weaken the explanation.
+- Marketing can have rhythm and personality, and since November 11, 2026 it opens with a hook: the reader's situation first, then the gap, then one specific thing they get. One hook a screen. Read the heading and paragraph together: repeated punchlines and slogans usually weaken the explanation.
 - Research should answer the question, show its sources and limits, and explain the practical implication.
 - Reports stay evidence-led and calibrated because the user is making decisions from them.
-- Errors, privacy, and billing never use wit. An error that is ours still owns it plainly ("Our bad."), which is not wit.
+- Errors, privacy, and billing never use wit. An error that is ours still owns it plainly ("Our bad."), which is not wit. The paywall's heading may carry a hook about the next application; the price, the term and the refund under it stay literal.
 - Never turn the candidate, recruiter, or job search into the butt of the joke.
 - Keep humor out of trust surfaces. A warm, natural sentence is enough.
 

@@ -38,8 +38,9 @@ export function ComparisonPage({ entry }: { entry: Comparison }) {
                     </Link>
 
                     <header className={styles.opening}>
-                        <h1 className={styles.title}>{entry.title}</h1>
+                        <h1 className={styles.title}>{entry.hook}</h1>
                         <div className={styles.answerGrid}>
+                            <p className={styles.answer}>{entry.spike}</p>
                             <p className={styles.answer}>{entry.answer}</p>
                         </div>
                         <p className={styles.meta}>

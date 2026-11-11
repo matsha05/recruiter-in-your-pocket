@@ -40,6 +40,10 @@
     font: var(--type-verdict);
 }
 
+.answer + .answer {
+    margin-top: 1.25rem;
+}
+
 .meta {
     display: flex;
     flex-wrap: wrap;

@@ -29,8 +29,12 @@ export type Comparison = {
     /** The other tool's name, as it writes it. */
     name: string;
     path: string;
-    /** The H1 and the search title: "<Tool> vs Recruiter in Your Pocket". */
+    /** The search title, the breadcrumb and the name in lists: "<Tool> vs Recruiter in Your Pocket". */
     title: string;
+    /** The H1: the reader's situation first (docs/copy-system.md §8, Matt, November 11, 2026). */
+    hook: string;
+    /** The line after the hook: a fact from this file, with its source or its date further down the page. */
+    spike: string;
     /** One line for the "Other comparisons" list. */
     summary: string;
     /** The hub table's three cells. */
@@ -68,6 +72,8 @@ export const comparisons: Comparison[] = [
         name: "TopResume",
         path: "/compare/topresume",
         title: "TopResume vs Recruiter in Your Pocket",
+        hook: "Don’t pay $179 to find out what’s wrong.",
+        spike: "TopResume’s packages start at $179, and its free review leads into them. The first report here is complete and free, and it quotes the lines a recruiter would question.",
         summary: "A human writer rewrites your resume, from $179 a package.",
         hub: {
             does: "A human writer rewrites your resume. Larger packages add a cover letter, a LinkedIn makeover, and coaching.",
@@ -187,6 +193,8 @@ export const comparisons: Comparison[] = [
         name: "Jobscan",
         path: "/compare/jobscan",
         title: "Jobscan vs Recruiter in Your Pocket",
+        hook: "You matched the keywords and still heard nothing.",
+        spike: "A match rate can’t tell you why. On the resume we ran through both, Jobscan returned a 35% match and 55 items, 18 of them about that resume.",
         summary: "Scores your keyword match against one job posting, $29.98 to $49.95 a month.",
         sameResume: {
             them: "Jobscan returned a 35% match rate in under a minute, with 55 items: 18 about this resume, the rest generic or keyword rules. It couldn’t find the education section because the heading reads “Education and Certifications”, and it congratulated a summary the resume doesn’t have. With the posting field empty it wouldn’t run at all.",
@@ -305,6 +313,8 @@ export const comparisons: Comparison[] = [
         name: "Resume Worded",
         path: "/compare/resume-worded",
         title: "Resume Worded vs Recruiter in Your Pocket",
+        hook: "You got a score. You still don’t know what to fix.",
+        spike: "On the resume we ran through both, Resume Worded scored it 74 out of 100 and set three useful comments among 78 generic items and 13 locked ones.",
         summary: "Scores your resume and LinkedIn against its checklist, $19 to $49 a month.",
         sameResume: {
             them: "Resume Worded scored it 74 out of 100 and opened with three comments that quote real lines, the closest thing to a recruiter’s read we saw. Around them sat 78 generic items and 13 locked ones. Its one rewrite suggestion added an applicant tracking system and “bar calibration” work the resume never claims, on the reasoning that the employer “makes them believable”. A sales email followed 77 minutes later.",
@@ -423,6 +433,8 @@ export const comparisons: Comparison[] = [
         name: "Teal",
         path: "/compare/teal",
         title: "Teal vs Recruiter in Your Pocket",
+        hook: "You’re tracking every application. Nobody’s calling back.",
+        spike: "A tracker can’t tell you why. On the resume we ran through both, Teal scored it 45% and locked all sixteen reasons behind Teal+.",
         summary: "A resume builder and job tracker, free, with Teal+ at $13 a week to $79 a quarter.",
         sameResume: {
             them: "Teal rebuilt the resume in its own template, scored it 45%, and locked all sixteen reasons behind Teal+. With the posting it showed an 18% match and five missing phrases, one of which the resume contains in other words (“Full-cycle recruiting” for “Full Lifecycle Recruiting”).",
@@ -536,6 +548,8 @@ export const comparisons: Comparison[] = [
         name: "Kickresume",
         path: "/compare/kickresume",
         title: "Kickresume vs Recruiter in Your Pocket",
+        hook: "A new template won’t tell you why they passed.",
+        spike: "On the resume we ran through both, Kickresume rebuilt it into its own template, scored the rebuild 80 out of 100, and put every fix behind Premium.",
         summary: "An AI resume builder with 40 templates, free with limits, Premium from $8 a month on the yearly plan.",
         sameResume: {
             them: "Kickresume rebuilt the resume into its template before scoring the rebuild 80 out of 100, then put every fix and its “recruiter feedback” behind Premium. The checker is the way into the builder, not a read of the file you uploaded.",
@@ -654,6 +668,8 @@ export const comparisons: Comparison[] = [
         name: "Rezi",
         path: "/compare/rezi",
         title: "Rezi vs Recruiter in Your Pocket",
+        hook: "Rezi scored the same resume 56, then 96.",
+        spike: "That was 56 without a job posting and 96 with one, after it rebuilt the file and added a summary and a skills section the person didn’t write. Neither number says what a recruiter would stop on.",
         summary: "An AI resume builder with its own live score and keyword targeting, free with limits, $29 a month or $149 once.",
         sameResume: {
             them: "Rezi scored the same file 56 (“Needs improvement”) without a posting and 96 (“Excellent”) with one, after rebuilding it, adding a summary and a skills section the person didn’t write, and misreading a company name. Its readable advice was verb and punctuation rules, one of which flagged a correctly punctuated bullet.",
@@ -772,6 +788,8 @@ export const comparisons: Comparison[] = [
         name: "Enhancv",
         path: "/compare/enhancv",
         title: "Enhancv vs Recruiter in Your Pocket",
+        hook: "You made it beautiful. Does it say what you did?",
+        spike: "Enhancv works on how the page looks. This report reads what the lines say, and the first one is free.",
         summary: "A design-first resume builder, free for seven days with branding, Pro from $16.50 a month on a six-month plan.",
         hub: {
             does: "Builds a visually designed resume with drag-and-drop sections, content suggestions, and an ATS check. The free plan lasts seven days and carries Enhancv branding.",

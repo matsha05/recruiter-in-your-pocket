@@ -10778,7 +10778,7 @@
       "table": "home"
     },
     {
-      "text": "See what a recruiter sees: free resume report",
+      "text": "You’re qualified. Your resume isn’t saying so.",
       "kind": "const",
       "line": 8,
       "file": "web/app/(marketing)/page.tsx",
@@ -16488,7 +16488,7 @@
     {
       "text": "’s prices read on",
       "kind": "jsx-text",
-      "line": 46,
+      "line": 47,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16505,7 +16505,7 @@
     {
       "text": "How we compare",
       "kind": "jsx-text",
-      "line": 48,
+      "line": 49,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16522,7 +16522,7 @@
     {
       "text": "Side by side",
       "kind": "jsx-text",
-      "line": 53,
+      "line": 54,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16539,7 +16539,7 @@
     {
       "text": "What we compared",
       "kind": "jsx-text",
-      "line": 57,
+      "line": 58,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16556,7 +16556,7 @@
     {
       "text": "See it on your own resume",
       "kind": "attr:aria-label",
-      "line": 82,
+      "line": 83,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16573,7 +16573,7 @@
     {
       "text": "See what a recruiter would question on yours.",
       "kind": "jsx-text",
-      "line": 84,
+      "line": 85,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16590,7 +16590,7 @@
     {
       "text": "The free report is the complete report: the write-up, every line that needs work, and the example for each. No card, no account, and nothing held back for the pass.",
       "kind": "jsx-text",
-      "line": 86,
+      "line": 87,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16607,7 +16607,7 @@
     {
       "text": "See a complete report on a fictional resume",
       "kind": "jsx-text",
-      "line": 86,
+      "line": 87,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16624,7 +16624,7 @@
     {
       "text": "before you run yours.",
       "kind": "jsx-text",
-      "line": 86,
+      "line": 87,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16641,7 +16641,7 @@
     {
       "text": "Get your free report",
       "kind": "jsx-text",
-      "line": 91,
+      "line": 92,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16658,7 +16658,7 @@
     {
       "text": "(opens in a new tab)",
       "kind": "jsx-text",
-      "line": 111,
+      "line": 112,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16675,7 +16675,7 @@
     {
       "text": "Other comparisons",
       "kind": "jsx-text",
-      "line": 121,
+      "line": 122,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16692,7 +16692,7 @@
     {
       "text": "How we compare",
       "kind": "jsx-text",
-      "line": 134,
+      "line": 135,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16709,7 +16709,7 @@
     {
       "text": "We read",
       "kind": "jsx-text",
-      "line": 136,
+      "line": 137,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16726,7 +16726,7 @@
     {
       "text": "’s own pricing page on the date above and quote what it says. Prices change. If we have one wrong, email",
       "kind": "jsx-text",
-      "line": 136,
+      "line": 137,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16743,7 +16743,7 @@
     {
       "text": "and we’ll fix it.",
       "kind": "jsx-text",
-      "line": 137,
+      "line": 138,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16760,7 +16760,7 @@
     {
       "text": ", on",
       "kind": "jsx-text",
-      "line": 142,
+      "line": 143,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16777,7 +16777,7 @@
     {
       "text": "’s free tier.",
       "kind": "jsx-text",
-      "line": 142,
+      "line": 143,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16794,7 +16794,7 @@
     {
       "text": "That is what each one said, not a verdict on which is better.",
       "kind": "jsx-text",
-      "line": 144,
+      "line": 145,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16811,7 +16811,7 @@
     {
       "text": "We haven’t run",
       "kind": "jsx-text",
-      "line": 148,
+      "line": 149,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16828,7 +16828,7 @@
     {
       "text": "on the same resume, so this page compares what each one sells, not the quality of what comes back.",
       "kind": "jsx-text",
-      "line": 148,
+      "line": 149,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16845,7 +16845,7 @@
     {
       "text": "See what they see in yours.",
       "kind": "jsx-text",
-      "line": 154,
+      "line": 155,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16862,7 +16862,7 @@
     {
       "text": "Get your free report",
       "kind": "jsx-text",
-      "line": 157,
+      "line": 158,
       "file": "web/components/compare/ComparisonPage.tsx",
       "routes": [
         "/compare/enhancv",
@@ -16879,7 +16879,7 @@
     {
       "text": "Recruiter in Your Pocket",
       "kind": "const",
-      "line": 47,
+      "line": 51,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -16901,7 +16901,7 @@
     {
       "text": "Ours led with the resume’s own numbers, put one line first with the line it came from, and questioned a “300% reduction in time to hire” as a figure that can’t be right. Thirty-six seconds without the posting, a minute and a half with it, and no line misread. One resume, one role, one day, on the report as it ran then; the report now cards every line a recruiter trips on, not one.",
       "kind": "const",
-      "line": 53,
+      "line": 57,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -16923,7 +16923,7 @@
     {
       "text": "TopResume vs Recruiter in Your Pocket",
       "kind": "key:title",
-      "line": 70,
+      "line": 74,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -16945,7 +16945,7 @@
     {
       "text": "A human writer rewrites your resume, from $179 a package.",
       "kind": "key:summary",
-      "line": 71,
+      "line": 77,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -16967,7 +16967,7 @@
     {
       "text": "TopResume sells a rewrite: a human writer produces a new resume, in packages from $179.",
       "kind": "jsx-text",
-      "line": 79,
+      "line": 85,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -16989,7 +16989,7 @@
     {
       "text": "reads the resume you already have the way a recruiter would, free for the first report, and leaves the writing to you. If you want someone else to do the writing, TopResume is the closer fit. If you want to know what a recruiter would question and fix it yourself, start here.",
       "kind": "jsx-text",
-      "line": 79,
+      "line": 85,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17011,7 +17011,7 @@
     {
       "text": "What it is",
       "kind": "key:label",
-      "line": 85,
+      "line": 91,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17033,7 +17033,7 @@
     {
       "text": "Who does the work",
       "kind": "key:label",
-      "line": 90,
+      "line": 96,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17055,7 +17055,7 @@
     {
       "text": "What you get back",
       "kind": "key:label",
-      "line": 95,
+      "line": 101,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17077,7 +17077,7 @@
     {
       "text": "Free option",
       "kind": "key:label",
-      "line": 105,
+      "line": 111,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17099,7 +17099,7 @@
     {
       "text": "How long it takes",
       "kind": "key:label",
-      "line": 120,
+      "line": 126,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17121,7 +17121,7 @@
     {
       "text": "Is TopResume worth it?",
       "kind": "key:title",
-      "line": 128,
+      "line": 134,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17143,7 +17143,7 @@
     {
       "text": "If the writing is the part you keep putting off, a writer who does it for you is worth more than any critique. The packages from $229 up also bundle a cover letter and a LinkedIn makeover, so if you need all three done at once, one purchase covers it.",
       "kind": "jsx-text",
-      "line": 131,
+      "line": 137,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17165,7 +17165,7 @@
     {
       "text": "What the price can’t buy is the writer’s knowledge of your work. They describe jobs they didn’t see, from the intake you give them, so the result is only as specific as what you hand over. Read the draft you get back the way a recruiter would: every number, every claim of ownership, every result should be something you can back up, because",
       "kind": "jsx-text",
-      "line": 134,
+      "line": 140,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17187,7 +17187,7 @@
     {
       "text": "When {OUR_NAME} is the better choice",
       "kind": "key:title",
-      "line": 140,
+      "line": 146,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17209,7 +17209,7 @@
     {
       "text": "You want to know what’s wrong before you pay anyone. The first report is complete, and it quotes the lines a recruiter would question, so you can see whether the problem is the writing or the missing facts.",
       "kind": "jsx-text",
-      "line": 143,
+      "line": 149,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17231,7 +17231,7 @@
     {
       "text": "Your resume is close and you have the facts. The report asks for the details you left off, such as how many people, what changed, and whether you owned the decision, then rewrites the line from your answer. Nothing gets added that you didn’t say.",
       "kind": "jsx-text",
-      "line": 146,
+      "line": 152,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17253,7 +17253,7 @@
     {
       "text": "What it won’t do: write the resume for you. You make the final edit, and there is no cover letter or LinkedIn service.",
       "kind": "jsx-text",
-      "line": 149,
+      "line": 155,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17275,7 +17275,7 @@
     {
       "text": "What the prices cover",
       "kind": "key:title",
-      "line": 155,
+      "line": 161,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17297,7 +17297,7 @@
     {
       "text": "TopResume’s resume-writing page listed four packages on",
       "kind": "jsx-text",
-      "line": 158,
+      "line": 164,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17319,7 +17319,7 @@
     {
       "text": ": Professional Growth at $179 for the resume, Career Evolution at $229 with a cover letter, Career Confidence at $349 with a LinkedIn makeover and an interview coaching session from a writer it places in its top 20%, and Executive Priority at $599 with two coaching sessions from a top-10% writer. The page was also advertising a 25% promotion; the figures here are the list prices.",
       "kind": "jsx-text",
-      "line": 158,
+      "line": 164,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17341,7 +17341,7 @@
     {
       "text": "’s first report is free, with no card or account. The Job Search Pass is $29 once for five more reports, good for 90 days, and never renews.",
       "kind": "jsx-text",
-      "line": 161,
+      "line": 167,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17363,7 +17363,7 @@
     {
       "text": "The full pricing page",
       "kind": "jsx-text",
-      "line": 161,
+      "line": 167,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17385,7 +17385,7 @@
     {
       "text": "has the details.",
       "kind": "jsx-text",
-      "line": 161,
+      "line": 167,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17407,7 +17407,7 @@
     {
       "text": "Using both",
       "kind": "key:title",
-      "line": 167,
+      "line": 173,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17429,7 +17429,7 @@
     {
       "text": "Run the free report before you buy a rewrite, so you know what the writer has to fix and what facts to put in the intake. Run it again on the draft that comes back, and check that the lines it carded the first time are off the list.",
       "kind": "jsx-text",
-      "line": 170,
+      "line": 176,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17451,7 +17451,7 @@
     {
       "text": "Professional resume writing services (packages and prices)",
       "kind": "key:title",
-      "line": 178,
+      "line": 184,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17473,7 +17473,7 @@
     {
       "text": "Jobscan vs Recruiter in Your Pocket",
       "kind": "key:title",
-      "line": 189,
+      "line": 195,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17495,7 +17495,7 @@
     {
       "text": "Scores your keyword match against one job posting, $29.98 to $49.95 a month.",
       "kind": "key:summary",
-      "line": 190,
+      "line": 198,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17517,7 +17517,7 @@
     {
       "text": "Jobscan compares your resume to one job posting and scores the keyword match, with five free scans a month and a subscription for more.",
       "kind": "jsx-text",
-      "line": 202,
+      "line": 210,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17539,7 +17539,7 @@
     {
       "text": "reads the whole resume the way a recruiter would and lists every line that needs work, with the first report free and no subscription. If you tailor the wording for many applications a week, Jobscan is built for that. If you want to know whether the resume itself holds up, start here.",
       "kind": "jsx-text",
-      "line": 202,
+      "line": 210,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17561,7 +17561,7 @@
     {
       "text": "What it is",
       "kind": "key:label",
-      "line": 208,
+      "line": 216,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17583,7 +17583,7 @@
     {
       "text": "What it checks",
       "kind": "key:label",
-      "line": 213,
+      "line": 221,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17605,7 +17605,7 @@
     {
       "text": "What you get back",
       "kind": "key:label",
-      "line": 218,
+      "line": 226,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17627,7 +17627,7 @@
     {
       "text": "Free option",
       "kind": "key:label",
-      "line": 228,
+      "line": 236,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17649,7 +17649,7 @@
     {
       "text": "When you stop paying",
       "kind": "key:label",
-      "line": 238,
+      "line": 246,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17671,7 +17671,7 @@
     {
       "text": "Is Jobscan worth it?",
       "kind": "key:title",
-      "line": 246,
+      "line": 254,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17693,7 +17693,7 @@
     {
       "text": "If you send many applications and each posting uses its own vocabulary, a scanner that lists the terms you’re missing saves real time, and the free plan’s five scans a month may be all you need. The subscription is the price of doing that without a limit.",
       "kind": "jsx-text",
-      "line": 249,
+      "line": 257,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17715,7 +17715,7 @@
     {
       "text": "What a match rate can’t tell you is whether a recruiter believes the bullets. A resume can match most of the keywords and still read as a list of duties with no results. Jobscan’s score is also its own model of an applicant tracking system, and the documentation from the systems employers actually use says",
       "kind": "jsx-text",
-      "line": 252,
+      "line": 260,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17737,7 +17737,7 @@
     {
       "text": "the software pulls your text into fields, and automatic rejection runs on application questions, not on a match score",
       "kind": "jsx-text",
-      "line": 252,
+      "line": 260,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17759,7 +17759,7 @@
     {
       "text": ". Whether a recruiter believes a line is a different question, and",
       "kind": "jsx-text",
-      "line": 252,
+      "line": 260,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17781,7 +17781,7 @@
     {
       "text": "recruiters who spent longer on Experience were more likely to move a resume forward",
       "kind": "jsx-text",
-      "line": 252,
+      "line": 260,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17803,7 +17803,7 @@
     {
       "text": "When {OUR_NAME} is the better choice",
       "kind": "key:title",
-      "line": 258,
+      "line": 266,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17825,7 +17825,7 @@
     {
       "text": "You have one resume and you want to know what it says to the person reading it. The report quotes the line behind every note and starts with the one problem most likely to cost you the interview.",
       "kind": "jsx-text",
-      "line": 261,
+      "line": 269,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17847,7 +17847,7 @@
     {
       "text": "You’d rather pay once. Five reports for $29 covers a revision and a few target roles, and when you add a job posting the report reads your resume against that role without turning it into a keyword count.",
       "kind": "jsx-text",
-      "line": 264,
+      "line": 272,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17869,7 +17869,7 @@
     {
       "text": "What it won’t do: give you a match percentage, a list of missing keywords, or an application tracker.",
       "kind": "jsx-text",
-      "line": 267,
+      "line": 275,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17891,7 +17891,7 @@
     {
       "text": "What the prices cover",
       "kind": "key:title",
-      "line": 273,
+      "line": 281,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17913,7 +17913,7 @@
     {
       "text": "Jobscan’s plan page listed three plans on",
       "kind": "jsx-text",
-      "line": 276,
+      "line": 284,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17935,7 +17935,7 @@
     {
       "text": ": Free at $0 with five resume scans a month, Quarterly at $89.95 every three months (shown as $29.98 a month) with a 7-day free trial, and Monthly at $49.95. Paid plans add unlimited scans, AI optimizations, a cover letter generator, a LinkedIn optimizer, and auto-apply credits. You can cancel any time and keep access to the end of the period you paid for.",
       "kind": "jsx-text",
-      "line": 276,
+      "line": 284,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17957,7 +17957,7 @@
     {
       "text": "’s first report is free, with no card or account. The Job Search Pass is $29 once for five more reports, good for 90 days, and never renews.",
       "kind": "jsx-text",
-      "line": 279,
+      "line": 287,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -17979,7 +17979,7 @@
     {
       "text": "The full pricing page",
       "kind": "jsx-text",
-      "line": 279,
+      "line": 287,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18001,7 +18001,7 @@
     {
       "text": "has the details.",
       "kind": "jsx-text",
-      "line": 279,
+      "line": 287,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18023,7 +18023,7 @@
     {
       "text": "Using both",
       "kind": "key:title",
-      "line": 285,
+      "line": 293,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18045,7 +18045,7 @@
     {
       "text": "Fix the resume first, then tailor it. Run the free report on your base resume and work through the lines it lists, then use Jobscan’s free scans for the vocabulary of a specific posting. Use a term only where it truthfully describes what you did; the report will flag a line that claims more than it shows.",
       "kind": "jsx-text",
-      "line": 288,
+      "line": 296,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18067,7 +18067,7 @@
     {
       "text": "Choose your plan (prices and plan features)",
       "kind": "key:title",
-      "line": 296,
+      "line": 304,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18089,7 +18089,7 @@
     {
       "text": "Resume Worded vs Recruiter in Your Pocket",
       "kind": "key:title",
-      "line": 307,
+      "line": 315,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18111,7 +18111,7 @@
     {
       "text": "Scores your resume and LinkedIn against its checklist, $19 to $49 a month.",
       "kind": "key:summary",
-      "line": 308,
+      "line": 318,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18133,7 +18133,7 @@
     {
       "text": "Resume Worded scores your resume and LinkedIn profile against its own checklist and sells the full line-by-line report as a subscription, from $19 to $49 a month depending on the term.",
       "kind": "jsx-text",
-      "line": 320,
+      "line": 330,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18155,7 +18155,7 @@
     {
       "text": "gives you the complete report on one resume free, then $29 once for five more. If you want an ongoing score on your resume and LinkedIn in one place, Resume Worded Pro is the closer fit. If you want a recruiter’s read of one resume without a subscription, start here.",
       "kind": "jsx-text",
-      "line": 320,
+      "line": 330,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18176,50 +18176,6 @@
     },
     {
       "text": "What it is",
-      "kind": "key:label",
-      "line": 326,
-      "file": "web/components/compare/comparisons.tsx",
-      "routes": [
-        "/compare",
-        "/compare/enhancv",
-        "/compare/jobscan",
-        "/compare/kickresume",
-        "/compare/resume-worded",
-        "/compare/rezi",
-        "/compare/teal",
-        "/compare/topresume",
-        "/llms.txt",
-        "/research/ats-myths",
-        "/research/human-vs-algorithm",
-        "/research/writing-quality-hire-probability"
-      ],
-      "moment": "marketing",
-      "table": "shared"
-    },
-    {
-      "text": "What you get back",
-      "kind": "key:label",
-      "line": 331,
-      "file": "web/components/compare/comparisons.tsx",
-      "routes": [
-        "/compare",
-        "/compare/enhancv",
-        "/compare/jobscan",
-        "/compare/kickresume",
-        "/compare/resume-worded",
-        "/compare/rezi",
-        "/compare/teal",
-        "/compare/topresume",
-        "/llms.txt",
-        "/research/ats-myths",
-        "/research/human-vs-algorithm",
-        "/research/writing-quality-hire-probability"
-      ],
-      "moment": "marketing",
-      "table": "shared"
-    },
-    {
-      "text": "Who does the work",
       "kind": "key:label",
       "line": 336,
       "file": "web/components/compare/comparisons.tsx",
@@ -18241,7 +18197,29 @@
       "table": "shared"
     },
     {
-      "text": "Free option",
+      "text": "What you get back",
+      "kind": "key:label",
+      "line": 341,
+      "file": "web/components/compare/comparisons.tsx",
+      "routes": [
+        "/compare",
+        "/compare/enhancv",
+        "/compare/jobscan",
+        "/compare/kickresume",
+        "/compare/resume-worded",
+        "/compare/rezi",
+        "/compare/teal",
+        "/compare/topresume",
+        "/llms.txt",
+        "/research/ats-myths",
+        "/research/human-vs-algorithm",
+        "/research/writing-quality-hire-probability"
+      ],
+      "moment": "marketing",
+      "table": "shared"
+    },
+    {
+      "text": "Who does the work",
       "kind": "key:label",
       "line": 346,
       "file": "web/components/compare/comparisons.tsx",
@@ -18263,9 +18241,31 @@
       "table": "shared"
     },
     {
+      "text": "Free option",
+      "kind": "key:label",
+      "line": 356,
+      "file": "web/components/compare/comparisons.tsx",
+      "routes": [
+        "/compare",
+        "/compare/enhancv",
+        "/compare/jobscan",
+        "/compare/kickresume",
+        "/compare/resume-worded",
+        "/compare/rezi",
+        "/compare/teal",
+        "/compare/topresume",
+        "/llms.txt",
+        "/research/ats-myths",
+        "/research/human-vs-algorithm",
+        "/research/writing-quality-hire-probability"
+      ],
+      "moment": "marketing",
+      "table": "shared"
+    },
+    {
       "text": "Is Resume Worded worth it?",
       "kind": "key:title",
-      "line": 364,
+      "line": 374,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18287,7 +18287,7 @@
     {
       "text": "If you want a score you can check on several documents over a few months, and a LinkedIn checkup in the same account, the annual plan at $229 is the cheapest way to get that from Resume Worded. The monthly plan at $49 makes sense only for a short, intense search.",
       "kind": "jsx-text",
-      "line": 367,
+      "line": 377,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18309,7 +18309,7 @@
     {
       "text": "The score comes from Resume Worded’s own checklist. Its page describes a line-by-line analysis, keyword analysis, and ATS checking, which are useful and are not the same as a recruiter deciding whether the work is real. The sample lines from “top candidates” are other people’s facts; anything you borrow has to be rebuilt around your own:",
       "kind": "jsx-text",
-      "line": 370,
+      "line": 380,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18331,7 +18331,7 @@
     {
       "text": "what changed, how you measured it, and what you did to get there",
       "kind": "jsx-text",
-      "line": 370,
+      "line": 380,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18353,7 +18353,7 @@
     {
       "text": "When {OUR_NAME} is the better choice",
       "kind": "key:title",
-      "line": 376,
+      "line": 386,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18375,7 +18375,7 @@
     {
       "text": "You want the whole report once, without a subscription. The free report holds nothing back, and $29 buys five more for the revisions and target roles that follow.",
       "kind": "jsx-text",
-      "line": 379,
+      "line": 389,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18397,7 +18397,7 @@
     {
       "text": "You want the feedback tied to your own lines. Every note quotes the line it’s about, and when a line needs more, the report asks you for the fact instead of offering someone else’s sentence.",
       "kind": "jsx-text",
-      "line": 382,
+      "line": 392,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18419,7 +18419,7 @@
     {
       "text": "What it won’t do: review your LinkedIn profile, supply templates, or keep a running score over time. Saved reports, when you sign in, are the history.",
       "kind": "jsx-text",
-      "line": 385,
+      "line": 395,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18441,7 +18441,7 @@
     {
       "text": "What the prices cover",
       "kind": "key:title",
-      "line": 391,
+      "line": 401,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18463,7 +18463,7 @@
     {
       "text": "Resume Worded’s Pro page listed three terms on",
       "kind": "jsx-text",
-      "line": 394,
+      "line": 404,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18485,7 +18485,7 @@
     {
       "text": ": $49 a month, $99 every three months (shown as $33 a month), and one payment of $229 for a year (shown as $19 a month), each marked “cancel anytime.” Pro includes the full Score My Resume report with the line-by-line analysis, the full LinkedIn analysis, sample resume lines, AI rewrites, unlimited uploads, and resume templates.",
       "kind": "jsx-text",
-      "line": 394,
+      "line": 404,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18507,7 +18507,7 @@
     {
       "text": "’s first report is free, with no card or account. The Job Search Pass is $29 once for five more reports, good for 90 days, and never renews.",
       "kind": "jsx-text",
-      "line": 397,
+      "line": 407,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18529,7 +18529,7 @@
     {
       "text": "The full pricing page",
       "kind": "jsx-text",
-      "line": 397,
+      "line": 407,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18551,7 +18551,7 @@
     {
       "text": "has the details.",
       "kind": "jsx-text",
-      "line": 397,
+      "line": 407,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18573,7 +18573,7 @@
     {
       "text": "Using both",
       "kind": "key:title",
-      "line": 403,
+      "line": 413,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18595,7 +18595,7 @@
     {
       "text": "Resume Worded’s free score is a quick check on structure. Use the",
       "kind": "jsx-text",
-      "line": 406,
+      "line": 416,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18617,7 +18617,7 @@
     {
       "text": "report for the question the score can’t answer: which line a recruiter would doubt, and what fact would settle it.",
       "kind": "jsx-text",
-      "line": 406,
+      "line": 416,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18639,7 +18639,7 @@
     {
       "text": "Upgrade to Resume Worded Pro (plans and prices)",
       "kind": "key:title",
-      "line": 414,
+      "line": 424,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18661,7 +18661,7 @@
     {
       "text": "Teal vs Recruiter in Your Pocket",
       "kind": "key:title",
-      "line": 425,
+      "line": 435,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18683,7 +18683,7 @@
     {
       "text": "A resume builder and job tracker, free, with Teal+ at $13 a week to $79 a quarter.",
       "kind": "key:summary",
-      "line": 426,
+      "line": 438,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18705,7 +18705,7 @@
     {
       "text": "Teal is a resume builder and application tracker with a free plan and a Teal+ subscription at $13 a week, $29 a month, or $79 a quarter.",
       "kind": "jsx-text",
-      "line": 438,
+      "line": 450,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18727,7 +18727,7 @@
     {
       "text": "doesn’t build or track. It reads the resume you have and tells you what a recruiter would question, free for the first report. If you’re running many applications and want to build each resume in one place, Teal is built for that. If you want a second opinion on the resume itself, start here.",
       "kind": "jsx-text",
-      "line": 438,
+      "line": 450,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18749,7 +18749,7 @@
     {
       "text": "What it is",
       "kind": "key:label",
-      "line": 444,
+      "line": 456,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18771,7 +18771,7 @@
     {
       "text": "What it checks",
       "kind": "key:label",
-      "line": 449,
+      "line": 461,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18793,7 +18793,7 @@
     {
       "text": "What you get back",
       "kind": "key:label",
-      "line": 454,
+      "line": 466,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18815,7 +18815,7 @@
     {
       "text": "Free option",
       "kind": "key:label",
-      "line": 464,
+      "line": 476,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18837,7 +18837,7 @@
     {
       "text": "Is Teal worth it?",
       "kind": "key:title",
-      "line": 477,
+      "line": 489,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18859,7 +18859,7 @@
     {
       "text": "For volume, yes. If you’re tracking dozens of applications and building a version of your resume for each, the free plan already does most of it, and Teal+ removes the template and AI limits. The 30-day plan is $29; the weekly plan at $13 costs more than that once you keep it past two weeks, so pick the term before you start.",
       "kind": "jsx-text",
-      "line": 480,
+      "line": 492,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18881,7 +18881,7 @@
     {
       "text": "What a builder can’t do is tell you whether the bullets hold up. Teal’s analysis and match score check structure and keywords against its own rules. Whether a recruiter would believe a line, or stop on it, is a different question:",
       "kind": "jsx-text",
-      "line": 483,
+      "line": 495,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -18902,94 +18902,6 @@
     },
     {
       "text": "recruiters who spent longer on Experience were more likely to move a resume forward",
-      "kind": "jsx-text",
-      "line": 483,
-      "file": "web/components/compare/comparisons.tsx",
-      "routes": [
-        "/compare",
-        "/compare/enhancv",
-        "/compare/jobscan",
-        "/compare/kickresume",
-        "/compare/resume-worded",
-        "/compare/rezi",
-        "/compare/teal",
-        "/compare/topresume",
-        "/llms.txt",
-        "/research/ats-myths",
-        "/research/human-vs-algorithm",
-        "/research/writing-quality-hire-probability"
-      ],
-      "moment": "marketing",
-      "table": "shared"
-    },
-    {
-      "text": ", and a match score doesn’t read that section the way a person does.",
-      "kind": "jsx-text",
-      "line": 483,
-      "file": "web/components/compare/comparisons.tsx",
-      "routes": [
-        "/compare",
-        "/compare/enhancv",
-        "/compare/jobscan",
-        "/compare/kickresume",
-        "/compare/resume-worded",
-        "/compare/rezi",
-        "/compare/teal",
-        "/compare/topresume",
-        "/llms.txt",
-        "/research/ats-myths",
-        "/research/human-vs-algorithm",
-        "/research/writing-quality-hire-probability"
-      ],
-      "moment": "marketing",
-      "table": "shared"
-    },
-    {
-      "text": "When {OUR_NAME} is the better choice",
-      "kind": "key:title",
-      "line": 489,
-      "file": "web/components/compare/comparisons.tsx",
-      "routes": [
-        "/compare",
-        "/compare/enhancv",
-        "/compare/jobscan",
-        "/compare/kickresume",
-        "/compare/resume-worded",
-        "/compare/rezi",
-        "/compare/teal",
-        "/compare/topresume",
-        "/llms.txt",
-        "/research/ats-myths",
-        "/research/human-vs-algorithm",
-        "/research/writing-quality-hire-probability"
-      ],
-      "moment": "marketing",
-      "table": "shared"
-    },
-    {
-      "text": "You’ve already written the resume. The report doesn’t ask you to rebuild it in a new tool; it reads the one you have, quotes the lines that need work, and tells you which to fix first.",
-      "kind": "jsx-text",
-      "line": 492,
-      "file": "web/components/compare/comparisons.tsx",
-      "routes": [
-        "/compare",
-        "/compare/enhancv",
-        "/compare/jobscan",
-        "/compare/kickresume",
-        "/compare/resume-worded",
-        "/compare/rezi",
-        "/compare/teal",
-        "/compare/topresume",
-        "/llms.txt",
-        "/research/ats-myths",
-        "/research/human-vs-algorithm",
-        "/research/writing-quality-hire-probability"
-      ],
-      "moment": "marketing",
-      "table": "shared"
-    },
-    {
-      "text": "You don’t want another subscription. One free report, then $29 once for five more, is the whole price.",
       "kind": "jsx-text",
       "line": 495,
       "file": "web/components/compare/comparisons.tsx",
@@ -19011,9 +18923,9 @@
       "table": "shared"
     },
     {
-      "text": "What it won’t do: build the resume, store templates, or track applications.",
+      "text": ", and a match score doesn’t read that section the way a person does.",
       "kind": "jsx-text",
-      "line": 498,
+      "line": 495,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19033,8 +18945,30 @@
       "table": "shared"
     },
     {
-      "text": "What the prices cover",
+      "text": "When {OUR_NAME} is the better choice",
       "kind": "key:title",
+      "line": 501,
+      "file": "web/components/compare/comparisons.tsx",
+      "routes": [
+        "/compare",
+        "/compare/enhancv",
+        "/compare/jobscan",
+        "/compare/kickresume",
+        "/compare/resume-worded",
+        "/compare/rezi",
+        "/compare/teal",
+        "/compare/topresume",
+        "/llms.txt",
+        "/research/ats-myths",
+        "/research/human-vs-algorithm",
+        "/research/writing-quality-hire-probability"
+      ],
+      "moment": "marketing",
+      "table": "shared"
+    },
+    {
+      "text": "You’ve already written the resume. The report doesn’t ask you to rebuild it in a new tool; it reads the one you have, quotes the lines that need work, and tells you which to fix first.",
+      "kind": "jsx-text",
       "line": 504,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
@@ -19055,7 +18989,7 @@
       "table": "shared"
     },
     {
-      "text": "Teal’s pricing page listed Teal+ at $13 every 7 days, $29 every 30 days, and $79 every 90 days on",
+      "text": "You don’t want another subscription. One free report, then $29 once for five more, is the whole price.",
       "kind": "jsx-text",
       "line": 507,
       "file": "web/components/compare/comparisons.tsx",
@@ -19077,29 +19011,7 @@
       "table": "shared"
     },
     {
-      "text": ", with no card required to start on the free plan and the option to change or cancel at any time. The free plan includes unlimited resumes and job tracking, 10 templates, top-five keyword matching, basic analysis, and a few AI credits. Teal+ adds unlimited templates, keywords, analysis, and AI generation, plus the full match score and advanced design settings.",
-      "kind": "jsx-text",
-      "line": 507,
-      "file": "web/components/compare/comparisons.tsx",
-      "routes": [
-        "/compare",
-        "/compare/enhancv",
-        "/compare/jobscan",
-        "/compare/kickresume",
-        "/compare/resume-worded",
-        "/compare/rezi",
-        "/compare/teal",
-        "/compare/topresume",
-        "/llms.txt",
-        "/research/ats-myths",
-        "/research/human-vs-algorithm",
-        "/research/writing-quality-hire-probability"
-      ],
-      "moment": "marketing",
-      "table": "shared"
-    },
-    {
-      "text": "’s first report is free, with no card or account. The Job Search Pass is $29 once for five more reports, good for 90 days, and never renews.",
+      "text": "What it won’t do: build the resume, store templates, or track applications.",
       "kind": "jsx-text",
       "line": 510,
       "file": "web/components/compare/comparisons.tsx",
@@ -19121,51 +19033,7 @@
       "table": "shared"
     },
     {
-      "text": "The full pricing page",
-      "kind": "jsx-text",
-      "line": 510,
-      "file": "web/components/compare/comparisons.tsx",
-      "routes": [
-        "/compare",
-        "/compare/enhancv",
-        "/compare/jobscan",
-        "/compare/kickresume",
-        "/compare/resume-worded",
-        "/compare/rezi",
-        "/compare/teal",
-        "/compare/topresume",
-        "/llms.txt",
-        "/research/ats-myths",
-        "/research/human-vs-algorithm",
-        "/research/writing-quality-hire-probability"
-      ],
-      "moment": "marketing",
-      "table": "shared"
-    },
-    {
-      "text": "has the details.",
-      "kind": "jsx-text",
-      "line": 510,
-      "file": "web/components/compare/comparisons.tsx",
-      "routes": [
-        "/compare",
-        "/compare/enhancv",
-        "/compare/jobscan",
-        "/compare/kickresume",
-        "/compare/resume-worded",
-        "/compare/rezi",
-        "/compare/teal",
-        "/compare/topresume",
-        "/llms.txt",
-        "/research/ats-myths",
-        "/research/human-vs-algorithm",
-        "/research/writing-quality-hire-probability"
-      ],
-      "moment": "marketing",
-      "table": "shared"
-    },
-    {
-      "text": "Using both",
+      "text": "What the prices cover",
       "kind": "key:title",
       "line": 516,
       "file": "web/components/compare/comparisons.tsx",
@@ -19187,7 +19055,7 @@
       "table": "shared"
     },
     {
-      "text": "Build and track in Teal, then export the resume you plan to send and run it through the free report before it goes out. If the report cards a line, fix it in Teal and export again.",
+      "text": "Teal’s pricing page listed Teal+ at $13 every 7 days, $29 every 30 days, and $79 every 90 days on",
       "kind": "jsx-text",
       "line": 519,
       "file": "web/components/compare/comparisons.tsx",
@@ -19209,9 +19077,141 @@
       "table": "shared"
     },
     {
+      "text": ", with no card required to start on the free plan and the option to change or cancel at any time. The free plan includes unlimited resumes and job tracking, 10 templates, top-five keyword matching, basic analysis, and a few AI credits. Teal+ adds unlimited templates, keywords, analysis, and AI generation, plus the full match score and advanced design settings.",
+      "kind": "jsx-text",
+      "line": 519,
+      "file": "web/components/compare/comparisons.tsx",
+      "routes": [
+        "/compare",
+        "/compare/enhancv",
+        "/compare/jobscan",
+        "/compare/kickresume",
+        "/compare/resume-worded",
+        "/compare/rezi",
+        "/compare/teal",
+        "/compare/topresume",
+        "/llms.txt",
+        "/research/ats-myths",
+        "/research/human-vs-algorithm",
+        "/research/writing-quality-hire-probability"
+      ],
+      "moment": "marketing",
+      "table": "shared"
+    },
+    {
+      "text": "’s first report is free, with no card or account. The Job Search Pass is $29 once for five more reports, good for 90 days, and never renews.",
+      "kind": "jsx-text",
+      "line": 522,
+      "file": "web/components/compare/comparisons.tsx",
+      "routes": [
+        "/compare",
+        "/compare/enhancv",
+        "/compare/jobscan",
+        "/compare/kickresume",
+        "/compare/resume-worded",
+        "/compare/rezi",
+        "/compare/teal",
+        "/compare/topresume",
+        "/llms.txt",
+        "/research/ats-myths",
+        "/research/human-vs-algorithm",
+        "/research/writing-quality-hire-probability"
+      ],
+      "moment": "marketing",
+      "table": "shared"
+    },
+    {
+      "text": "The full pricing page",
+      "kind": "jsx-text",
+      "line": 522,
+      "file": "web/components/compare/comparisons.tsx",
+      "routes": [
+        "/compare",
+        "/compare/enhancv",
+        "/compare/jobscan",
+        "/compare/kickresume",
+        "/compare/resume-worded",
+        "/compare/rezi",
+        "/compare/teal",
+        "/compare/topresume",
+        "/llms.txt",
+        "/research/ats-myths",
+        "/research/human-vs-algorithm",
+        "/research/writing-quality-hire-probability"
+      ],
+      "moment": "marketing",
+      "table": "shared"
+    },
+    {
+      "text": "has the details.",
+      "kind": "jsx-text",
+      "line": 522,
+      "file": "web/components/compare/comparisons.tsx",
+      "routes": [
+        "/compare",
+        "/compare/enhancv",
+        "/compare/jobscan",
+        "/compare/kickresume",
+        "/compare/resume-worded",
+        "/compare/rezi",
+        "/compare/teal",
+        "/compare/topresume",
+        "/llms.txt",
+        "/research/ats-myths",
+        "/research/human-vs-algorithm",
+        "/research/writing-quality-hire-probability"
+      ],
+      "moment": "marketing",
+      "table": "shared"
+    },
+    {
+      "text": "Using both",
+      "kind": "key:title",
+      "line": 528,
+      "file": "web/components/compare/comparisons.tsx",
+      "routes": [
+        "/compare",
+        "/compare/enhancv",
+        "/compare/jobscan",
+        "/compare/kickresume",
+        "/compare/resume-worded",
+        "/compare/rezi",
+        "/compare/teal",
+        "/compare/topresume",
+        "/llms.txt",
+        "/research/ats-myths",
+        "/research/human-vs-algorithm",
+        "/research/writing-quality-hire-probability"
+      ],
+      "moment": "marketing",
+      "table": "shared"
+    },
+    {
+      "text": "Build and track in Teal, then export the resume you plan to send and run it through the free report before it goes out. If the report cards a line, fix it in Teal and export again.",
+      "kind": "jsx-text",
+      "line": 531,
+      "file": "web/components/compare/comparisons.tsx",
+      "routes": [
+        "/compare",
+        "/compare/enhancv",
+        "/compare/jobscan",
+        "/compare/kickresume",
+        "/compare/resume-worded",
+        "/compare/rezi",
+        "/compare/teal",
+        "/compare/topresume",
+        "/llms.txt",
+        "/research/ats-myths",
+        "/research/human-vs-algorithm",
+        "/research/writing-quality-hire-probability"
+      ],
+      "moment": "marketing",
+      "table": "shared"
+    },
+    {
       "text": "Teal+ pricing (plans and what each includes)",
       "kind": "key:title",
-      "line": 527,
+      "line": 539,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19233,7 +19233,7 @@
     {
       "text": "Kickresume vs Recruiter in Your Pocket",
       "kind": "key:title",
-      "line": 538,
+      "line": 550,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19255,7 +19255,7 @@
     {
       "text": "An AI resume builder with 40 templates, free with limits, Premium from $8 a month on the yearly plan.",
       "kind": "key:summary",
-      "line": 539,
+      "line": 553,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19277,7 +19277,7 @@
     {
       "text": "Kickresume builds the resume: pick a template, give it your job title, and its AI writer drafts the summary and the bullets, free with four templates and from $8 a month on a yearly plan for the rest.",
       "kind": "jsx-text",
-      "line": 551,
+      "line": 565,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19299,7 +19299,7 @@
     {
       "text": "doesn’t build anything. It reads the resume you already have the way a recruiter would, free for the first report. If you’re starting from a blank page and want it to look finished fast, Kickresume is built for that. If you have a resume and want to know what a recruiter would question, start here.",
       "kind": "jsx-text",
-      "line": 551,
+      "line": 565,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19321,7 +19321,7 @@
     {
       "text": "What it is",
       "kind": "key:label",
-      "line": 557,
+      "line": 571,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19343,7 +19343,7 @@
     {
       "text": "Who does the work",
       "kind": "key:label",
-      "line": 562,
+      "line": 576,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19365,7 +19365,7 @@
     {
       "text": "What you get back",
       "kind": "key:label",
-      "line": 567,
+      "line": 581,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19387,7 +19387,7 @@
     {
       "text": "Free option",
       "kind": "key:label",
-      "line": 577,
+      "line": 591,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19409,7 +19409,7 @@
     {
       "text": "Is Kickresume worth it?",
       "kind": "key:title",
-      "line": 595,
+      "line": 609,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19431,7 +19431,7 @@
     {
       "text": "If you don’t have a resume yet, or yours is a plain document you dread opening, a builder earns its price: the templates are finished designs, and the yearly plan at $96 is the cheapest way to keep them for a whole search. Kickresume’s own FAQ recommends that plan because most searches take months.",
       "kind": "jsx-text",
-      "line": 598,
+      "line": 612,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19453,7 +19453,7 @@
     {
       "text": "What the AI writer can’t know is what you did. It drafts from a job title and a library of phrases, so the bullets it writes are the ones anyone with that title could have written, and that is the section a reader weighs:",
       "kind": "jsx-text",
-      "line": 601,
+      "line": 615,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19475,7 +19475,7 @@
     {
       "text": "recruiters who spent longer on Experience were more likely to move a resume forward",
       "kind": "jsx-text",
-      "line": 601,
+      "line": 615,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19497,7 +19497,7 @@
     {
       "text": ". Read every generated line as a claim you’ll be asked about. Its ATS checker scores you against Kickresume’s own database of resumes;",
       "kind": "jsx-text",
-      "line": 601,
+      "line": 615,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19519,7 +19519,7 @@
     {
       "text": "the systems employers use pull your text into fields, and automatic rejection runs on application questions, not on a score",
       "kind": "jsx-text",
-      "line": 601,
+      "line": 615,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19541,7 +19541,7 @@
     {
       "text": "When {OUR_NAME} is the better choice",
       "kind": "key:title",
-      "line": 607,
+      "line": 621,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19563,7 +19563,7 @@
     {
       "text": "You already have a resume and the question is whether it holds up. The report quotes the lines a recruiter would question and starts with the one most likely to cost you the interview.",
       "kind": "jsx-text",
-      "line": 610,
+      "line": 624,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19585,7 +19585,7 @@
     {
       "text": "You wrote it yourself and want the text to survive a reader, not a template. Where a bullet is generic, the report asks for",
       "kind": "jsx-text",
-      "line": 613,
+      "line": 627,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19607,7 +19607,7 @@
     {
       "text": "what changed, how you measured it, and what you did to get there",
       "kind": "jsx-text",
-      "line": 613,
+      "line": 627,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19629,7 +19629,7 @@
     {
       "text": ", then rewrites the line from your answer. Nothing gets added that you didn’t say.",
       "kind": "jsx-text",
-      "line": 613,
+      "line": 627,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19651,7 +19651,7 @@
     {
       "text": "What it won’t do: design the page, write a resume from a job title, or build you a website.",
       "kind": "jsx-text",
-      "line": 616,
+      "line": 630,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19673,7 +19673,7 @@
     {
       "text": "What the prices cover",
       "kind": "key:title",
-      "line": 622,
+      "line": 636,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19695,7 +19695,7 @@
     {
       "text": "Kickresume’s pricing page listed four plans on",
       "kind": "jsx-text",
-      "line": 625,
+      "line": 639,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19717,7 +19717,7 @@
     {
       "text": ": Free at $0 with four basic resume templates, four matching cover letter templates, one basic website template, 20,000 pre-written phrases, 1,500 resume examples, and unlimited downloads; Monthly at $24; Quarterly at $54 every three months, shown as $18 a month; and Yearly at $96 every twelve months, shown as $8 a month and marked as a 25% saving. The paid plans share one feature list: 40 resume and 40 cover letter templates, all colors and typefaces, the AI Writer, the ATS Resume Checker, Career Map, LinkedIn and PDF import, the mobile apps, seven personal website templates, priority support, and a 14-day money-back guarantee. A human grammar correction is $30 per resume. Students who verify with ISIC, ITIC, or UNiDAYS get Premium free.",
       "kind": "jsx-text",
-      "line": 625,
+      "line": 639,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19739,7 +19739,7 @@
     {
       "text": "’s first report is free, with no card or account. The Job Search Pass is $29 once for five more reports, good for 90 days, and never renews.",
       "kind": "jsx-text",
-      "line": 628,
+      "line": 642,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19761,7 +19761,7 @@
     {
       "text": "The full pricing page",
       "kind": "jsx-text",
-      "line": 628,
+      "line": 642,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19783,7 +19783,7 @@
     {
       "text": "has the details.",
       "kind": "jsx-text",
-      "line": 628,
+      "line": 642,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19805,7 +19805,7 @@
     {
       "text": "Using both",
       "kind": "key:title",
-      "line": 634,
+      "line": 648,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19827,7 +19827,7 @@
     {
       "text": "Build in Kickresume if you want the design, then export the PDF and run it through the free report before you send it. The report reads the words, not the template, so it will tell you whether the AI’s bullets say anything a recruiter can check. Fix those in Kickresume and export again.",
       "kind": "jsx-text",
-      "line": 637,
+      "line": 651,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19849,7 +19849,7 @@
     {
       "text": "Pricing (plans, prices, and what each includes)",
       "kind": "key:title",
-      "line": 645,
+      "line": 659,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19871,7 +19871,7 @@
     {
       "text": "Rezi vs Recruiter in Your Pocket",
       "kind": "key:title",
-      "line": 656,
+      "line": 670,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19893,7 +19893,7 @@
     {
       "text": "An AI resume builder with its own live score and keyword targeting, free with limits, $29 a month or $149 once.",
       "kind": "key:summary",
-      "line": 657,
+      "line": 673,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19915,7 +19915,7 @@
     {
       "text": "Rezi builds the resume with AI and scores it as you type, free for one resume and three downloads, then $29 a month or $149 once for everything.",
       "kind": "jsx-text",
-      "line": 669,
+      "line": 685,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19937,7 +19937,7 @@
     {
       "text": "reads the resume you already have the way a recruiter would, free for the first report, and never scores it against a checklist. If you want a builder that keeps a live score and feeds you keywords from the posting, Rezi is built for that. If you want to know what a person would question on the resume you have, start here.",
       "kind": "jsx-text",
-      "line": 669,
+      "line": 685,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19959,7 +19959,7 @@
     {
       "text": "What it is",
       "kind": "key:label",
-      "line": 675,
+      "line": 691,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -19981,7 +19981,7 @@
     {
       "text": "What it checks",
       "kind": "key:label",
-      "line": 680,
+      "line": 696,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20003,7 +20003,7 @@
     {
       "text": "Who does the work",
       "kind": "key:label",
-      "line": 685,
+      "line": 701,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20025,7 +20025,7 @@
     {
       "text": "What you get back",
       "kind": "key:label",
-      "line": 690,
+      "line": 706,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20047,7 +20047,7 @@
     {
       "text": "Free option",
       "kind": "key:label",
-      "line": 700,
+      "line": 716,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20069,7 +20069,7 @@
     {
       "text": "Is Rezi worth it?",
       "kind": "key:title",
-      "line": 713,
+      "line": 729,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20091,7 +20091,7 @@
     {
       "text": "If you’re writing from scratch and want a nudge on every line, the live score is the draw, and $149 once is a fair price for a builder you’ll use across several searches. The $29 month is for a short, intense one.",
       "kind": "jsx-text",
-      "line": 716,
+      "line": 732,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20113,7 +20113,7 @@
     {
       "text": "What a score can’t tell you is whether the line is true, or whether a person would believe it. The Rezi Score is Rezi’s own checklist, and a score is still an algorithm’s recommendation: in one experiment,",
       "kind": "jsx-text",
-      "line": 719,
+      "line": 735,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20135,7 +20135,7 @@
     {
       "text": "an algorithm’s recommendation swayed recruiters even when they said they trusted it less than a person",
       "kind": "jsx-text",
-      "line": 719,
+      "line": 735,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20157,7 +20157,7 @@
     {
       "text": ". Treat it as a prompt to check the line, not a verdict on it. Its keyword targeting is also Rezi’s own model of an applicant tracking system;",
       "kind": "jsx-text",
-      "line": 719,
+      "line": 735,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20179,7 +20179,7 @@
     {
       "text": "the systems employers use pull your text into fields, and automatic rejection runs on application questions, not on keyword counts",
       "kind": "jsx-text",
-      "line": 719,
+      "line": 735,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20201,7 +20201,7 @@
     {
       "text": "When {OUR_NAME} is the better choice",
       "kind": "key:title",
-      "line": 725,
+      "line": 741,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20223,7 +20223,7 @@
     {
       "text": "You have a resume and want a reader’s opinion, not a meter. The report quotes the line behind every note and starts with the one problem most likely to cost you the interview.",
       "kind": "jsx-text",
-      "line": 728,
+      "line": 744,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20245,7 +20245,7 @@
     {
       "text": "You’d rather fix the facts than the score. When a line says what you did but not what changed, the report asks for",
       "kind": "jsx-text",
-      "line": 731,
+      "line": 747,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20267,7 +20267,7 @@
     {
       "text": "what changed, how you measured it, and what you did to get there",
       "kind": "jsx-text",
-      "line": 731,
+      "line": 747,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20289,7 +20289,7 @@
     {
       "text": ", and rewrites from your answer.",
       "kind": "jsx-text",
-      "line": 731,
+      "line": 747,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20311,7 +20311,7 @@
     {
       "text": "What it won’t do: build the resume, keep a running score, write cover letters, or run a mock interview.",
       "kind": "jsx-text",
-      "line": 734,
+      "line": 750,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20333,7 +20333,7 @@
     {
       "text": "What the prices cover",
       "kind": "key:title",
-      "line": 740,
+      "line": 756,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20355,7 +20355,7 @@
     {
       "text": "Rezi’s pricing page listed four plans on",
       "kind": "jsx-text",
-      "line": 743,
+      "line": 759,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20377,7 +20377,7 @@
     {
       "text": ": Free at $0 with one resume, one AI interview, three PDF downloads, the standard templates, and the AI writer and editor, with the Rezi Score, keyword targeting, and real-time analysis limited; Pro at $29 a month with unlimited resumes, interviews, and downloads, all templates, the full score and keyword targeting, Word and Google Drive export, and one expert resume review a month; a Lifetime plan at $149 for one payment, described as all features; and Enterprise at $99 a month per 200 users. The page’s title says all plans include a 30-day money-back guarantee.",
       "kind": "jsx-text",
-      "line": 743,
+      "line": 759,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20399,7 +20399,7 @@
     {
       "text": "’s first report is free, with no card or account. The Job Search Pass is $29 once for five more reports, good for 90 days, and never renews.",
       "kind": "jsx-text",
-      "line": 746,
+      "line": 762,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20421,7 +20421,7 @@
     {
       "text": "The full pricing page",
       "kind": "jsx-text",
-      "line": 746,
+      "line": 762,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20443,7 +20443,7 @@
     {
       "text": "has the details.",
       "kind": "jsx-text",
-      "line": 746,
+      "line": 762,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20465,7 +20465,7 @@
     {
       "text": "Using both",
       "kind": "key:title",
-      "line": 752,
+      "line": 768,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20487,7 +20487,7 @@
     {
       "text": "Build in Rezi if the live score keeps you writing, then export the PDF and run the free report before it goes out. Where the score says you’re done and the report cards a line, trust the card: it’s the question a recruiter would ask.",
       "kind": "jsx-text",
-      "line": 755,
+      "line": 771,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20509,7 +20509,7 @@
     {
       "text": "Pricing (plans and the feature comparison)",
       "kind": "key:title",
-      "line": 763,
+      "line": 779,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20531,7 +20531,7 @@
     {
       "text": "Enhancv vs Recruiter in Your Pocket",
       "kind": "key:title",
-      "line": 774,
+      "line": 790,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20553,7 +20553,7 @@
     {
       "text": "A design-first resume builder, free for seven days with branding, Pro from $16.50 a month on a six-month plan.",
       "kind": "key:summary",
-      "line": 775,
+      "line": 793,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20575,7 +20575,7 @@
     {
       "text": "Enhancv is a resume builder for people who want the page to look designed: hundreds of templates, drag-and-drop sections, and content suggestions, free for seven days with its branding on the PDF, then from $16.50 a month on a six-month plan.",
       "kind": "jsx-text",
-      "line": 783,
+      "line": 801,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20597,7 +20597,7 @@
     {
       "text": "doesn’t touch the design. It reads the words on the resume you have the way a recruiter would, free for the first report. If the look of the page is what you’re after, Enhancv is built for that. If you want to know whether the words hold up, start here.",
       "kind": "jsx-text",
-      "line": 783,
+      "line": 801,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20619,7 +20619,7 @@
     {
       "text": "What it is",
       "kind": "key:label",
-      "line": 789,
+      "line": 807,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20641,7 +20641,7 @@
     {
       "text": "What it checks",
       "kind": "key:label",
-      "line": 794,
+      "line": 812,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20663,7 +20663,7 @@
     {
       "text": "What you get back",
       "kind": "key:label",
-      "line": 799,
+      "line": 817,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20685,7 +20685,7 @@
     {
       "text": "Free option",
       "kind": "key:label",
-      "line": 809,
+      "line": 827,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20707,7 +20707,7 @@
     {
       "text": "Is Enhancv worth it?",
       "kind": "key:title",
-      "line": 827,
+      "line": 845,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20729,7 +20729,7 @@
     {
       "text": "If a plain document is the problem, Enhancv solves it well: the templates are the most designed of the tools on these pages, and the six-month plan at $99 is the cheapest way to keep them for a search. The free week is a trial, not a free tier, so decide inside it.",
       "kind": "jsx-text",
-      "line": 830,
+      "line": 848,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20751,7 +20751,7 @@
     {
       "text": "What a design can’t do is make a recruiter believe the bullets, and a heavy one can get in the way:",
       "kind": "jsx-text",
-      "line": 833,
+      "line": 851,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20773,7 +20773,7 @@
     {
       "text": "Greenhouse lists graphics, columns, tables, and text boxes among the layouts that can parse badly",
       "kind": "jsx-text",
-      "line": 833,
+      "line": 851,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20795,7 +20795,7 @@
     {
       "text": ", and a failed parse means someone retyping your details by hand. Enhancv’s own ATS check is one answer to that. Keep the sections and headings a reader recognizes anyway, because",
       "kind": "jsx-text",
-      "line": 833,
+      "line": 851,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20817,7 +20817,7 @@
     {
       "text": "recruiters who spent longer on Experience were more likely to move a resume forward",
       "kind": "jsx-text",
-      "line": 833,
+      "line": 851,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20839,7 +20839,7 @@
     {
       "text": ", and no template fills that section for you.",
       "kind": "jsx-text",
-      "line": 833,
+      "line": 851,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20861,7 +20861,7 @@
     {
       "text": "When {OUR_NAME} is the better choice",
       "kind": "key:title",
-      "line": 839,
+      "line": 857,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20883,7 +20883,7 @@
     {
       "text": "You care more about what your resume says than how it looks. The report quotes the lines a recruiter would question, in the order they’d read them.",
       "kind": "jsx-text",
-      "line": 842,
+      "line": 860,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20905,7 +20905,7 @@
     {
       "text": "You want the resume to say who you are, which is a sentence, not a template:",
       "kind": "jsx-text",
-      "line": 845,
+      "line": 863,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20927,7 +20927,7 @@
     {
       "text": ". Your report opens with that line, written from your resume. If it isn’t who you are, that’s what to fix first.",
       "kind": "jsx-text",
-      "line": 845,
+      "line": 863,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20949,7 +20949,7 @@
     {
       "text": "What it won’t do: design the page, offer templates, or export a styled resume. The PDF you can download is the report.",
       "kind": "jsx-text",
-      "line": 848,
+      "line": 866,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20971,7 +20971,7 @@
     {
       "text": "What the prices cover",
       "kind": "key:title",
-      "line": 854,
+      "line": 872,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -20993,7 +20993,7 @@
     {
       "text": "Enhancv’s pricing page, shown to us in US dollars, listed a free plan and three Pro terms on",
       "kind": "jsx-text",
-      "line": 857,
+      "line": 875,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -21015,7 +21015,7 @@
     {
       "text": ": Free at $0, valid for seven days, with all templates, basic sections, a maximum of 12 section items, and Enhancv branding; Pro Monthly at $39 billed once a month; Pro Quarterly at $69 billed every three months, shown as $23 a month; and Pro Semiannual at $99 billed every six months, shown as $16.50 a month. Pro includes 300 resumes and cover letters, all templates, real-time content suggestions, the ATS check, Pro sections, no branding, unlimited section items, and the full set of design options. The FAQ says a refund is available when a problem is Enhancv’s fault; no general refund window is stated.",
       "kind": "jsx-text",
-      "line": 857,
+      "line": 875,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -21037,7 +21037,7 @@
     {
       "text": "’s first report is free, with no card or account. The Job Search Pass is $29 once for five more reports, good for 90 days, and never renews.",
       "kind": "jsx-text",
-      "line": 860,
+      "line": 878,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -21059,7 +21059,7 @@
     {
       "text": "The full pricing page",
       "kind": "jsx-text",
-      "line": 860,
+      "line": 878,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -21081,7 +21081,7 @@
     {
       "text": "has the details.",
       "kind": "jsx-text",
-      "line": 860,
+      "line": 878,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -21103,7 +21103,7 @@
     {
       "text": "Using both",
       "kind": "key:title",
-      "line": 866,
+      "line": 884,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -21125,7 +21125,7 @@
     {
       "text": "Design in Enhancv, then export the PDF and run the free report before you send it. If the lines the report quotes come out scrambled, the layout didn’t survive being read as text, and a parser may struggle with it too. Fix the words in Enhancv, keep the sections a reader expects, and export again.",
       "kind": "jsx-text",
-      "line": 869,
+      "line": 887,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -21147,7 +21147,7 @@
     {
       "text": "Pricing (free plan and Pro terms)",
       "kind": "key:title",
-      "line": 877,
+      "line": 895,
       "file": "web/components/compare/comparisons.tsx",
       "routes": [
         "/compare",
@@ -33776,9 +33776,9 @@
       "table": "workspace"
     },
     {
-      "text": "Five more reads.",
+      "text": "Don’t send the next one blind.",
       "kind": "const",
-      "line": 48,
+      "line": 49,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -33790,7 +33790,7 @@
     {
       "text": "Sign in for your free report",
       "kind": "jsx-text",
-      "line": 87,
+      "line": 88,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -33802,7 +33802,7 @@
     {
       "text": "Enter the email address you want to use for billing.",
       "kind": "call:setError",
-      "line": 113,
+      "line": 114,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -33814,7 +33814,7 @@
     {
       "text": "Checkout didn’t start. Try again, or restore a purchase you’ve already made.",
       "kind": "call:setError",
-      "line": 146,
+      "line": 147,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -33826,7 +33826,7 @@
     {
       "text": "The free report on this device or network has been used. Each account gets its own, so sign in to get yours.",
       "kind": "const",
-      "line": 168,
+      "line": 169,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -33838,7 +33838,7 @@
     {
       "text": "Your existing report stays available.",
       "kind": "const",
-      "line": 170,
+      "line": 171,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -33850,7 +33850,7 @@
     {
       "text": "Your free report needs an account",
       "kind": "jsx-text",
-      "line": 177,
+      "line": 178,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -33862,7 +33862,7 @@
     {
       "text": "Passes are paused for now",
       "kind": "jsx-text",
-      "line": 177,
+      "line": 178,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -33874,7 +33874,7 @@
     {
       "text": "Back to my report",
       "kind": "jsx-text",
-      "line": 185,
+      "line": 186,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -33886,7 +33886,7 @@
     {
       "text": "Back to my resume",
       "kind": "jsx-text",
-      "line": 185,
+      "line": 186,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -33898,7 +33898,7 @@
     {
       "text": "Your free report needs an account",
       "kind": "jsx-text",
-      "line": 197,
+      "line": 198,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -33910,7 +33910,7 @@
     {
       "text": "The free report on this device or network has been used. Each account gets its own, so sign in to get yours.",
       "kind": "jsx-text",
-      "line": 201,
+      "line": 202,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -33922,7 +33922,7 @@
     {
       "text": "Good for 90 days. No automatic renewal.",
       "kind": "jsx-text",
-      "line": 218,
+      "line": 219,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -33934,7 +33934,7 @@
     {
       "text": "Continue with",
       "kind": "jsx-text",
-      "line": 232,
+      "line": 233,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -33946,7 +33946,7 @@
     {
       "text": "Opening checkout…",
       "kind": "attr:loadingLabel",
-      "line": 239,
+      "line": 240,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -33958,7 +33958,7 @@
     {
       "text": "Continue to checkout",
       "kind": "jsx-text",
-      "line": 241,
+      "line": 242,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -33970,7 +33970,7 @@
     {
       "text": "Your email",
       "kind": "jsx-text",
-      "line": 247,
+      "line": 248,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -33982,7 +33982,7 @@
     {
       "text": "Opening checkout…",
       "kind": "attr:loadingLabel",
-      "line": 267,
+      "line": 268,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -33994,7 +33994,7 @@
     {
       "text": "Continue to checkout",
       "kind": "jsx-text",
-      "line": 269,
+      "line": 270,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -34006,7 +34006,7 @@
     {
       "text": "Checking access…",
       "kind": "attr:loadingLabel",
-      "line": 280,
+      "line": 281,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -34018,7 +34018,7 @@
     {
       "text": "Restore access",
       "kind": "jsx-text",
-      "line": 283,
+      "line": 284,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -34030,7 +34030,7 @@
     {
       "text": "Payment by Stripe. Unused passes are refundable within 14 days (see the",
       "kind": "jsx-text",
-      "line": 293,
+      "line": 294,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -34042,7 +34042,7 @@
     {
       "text": "). By continuing, you agree to the",
       "kind": "jsx-text",
-      "line": 293,
+      "line": 294,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",
@@ -34054,7 +34054,7 @@
     {
       "text": "Privacy Policy",
       "kind": "jsx-text",
-      "line": 293,
+      "line": 294,
       "file": "web/components/workspace/PaywallModal.tsx",
       "routes": [
         "/sample-report",

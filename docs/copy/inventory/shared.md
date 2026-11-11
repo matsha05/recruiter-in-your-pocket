@@ -41,229 +41,229 @@ Routes: `/`, `/api/auth/send-code`, `/api/billing/confirm`, `/api/billing/restor
 | --- | --- | --- | --- | --- |
 | 1 | marketing | `web/components/compare/ComparisonPage.tsx:16` (7 routes) | const | Recruiter in Your Pocket |
 | 2 | marketing | `web/components/compare/ComparisonPage.tsx:37` (7 routes) | jsx-text | All comparisons |
-| 3 | marketing | `web/components/compare/ComparisonPage.tsx:46` (7 routes) | jsx-text | ’s prices read on |
-| 4 | marketing | `web/components/compare/ComparisonPage.tsx:48` (7 routes) | jsx-text | How we compare |
-| 5 | marketing | `web/components/compare/ComparisonPage.tsx:53` (7 routes) | jsx-text | Side by side |
-| 6 | marketing | `web/components/compare/ComparisonPage.tsx:57` (7 routes) | jsx-text | What we compared |
-| 7 | marketing | `web/components/compare/ComparisonPage.tsx:82` (7 routes) | attr:aria-label | See it on your own resume |
-| 8 | marketing | `web/components/compare/ComparisonPage.tsx:84` (7 routes) | jsx-text | See what a recruiter would question on yours. |
-| 9 | marketing | `web/components/compare/ComparisonPage.tsx:86` (7 routes) | jsx-text | The free report is the complete report: the write-up, every line that needs work, and the example for each. No card, no account, and nothing held back for the pass. |
-| 10 | marketing | `web/components/compare/ComparisonPage.tsx:86` (7 routes) | jsx-text | See a complete report on a fictional resume |
-| 11 | marketing | `web/components/compare/ComparisonPage.tsx:86` (7 routes) | jsx-text | before you run yours. |
-| 12 | marketing | `web/components/compare/ComparisonPage.tsx:91` (7 routes) | jsx-text | Get your free report |
-| 13 | marketing | `web/components/compare/ComparisonPage.tsx:111` (7 routes) | jsx-text | (opens in a new tab) |
-| 14 | marketing | `web/components/compare/ComparisonPage.tsx:121` (7 routes) | jsx-text | Other comparisons |
-| 15 | marketing | `web/components/compare/ComparisonPage.tsx:134` (7 routes) | jsx-text | How we compare |
-| 16 | marketing | `web/components/compare/ComparisonPage.tsx:136` (7 routes) | jsx-text | We read |
-| 17 | marketing | `web/components/compare/ComparisonPage.tsx:136` (7 routes) | jsx-text | ’s own pricing page on the date above and quote what it says. Prices change. If we have one wrong, email |
-| 18 | marketing | `web/components/compare/ComparisonPage.tsx:137` (7 routes) | jsx-text | and we’ll fix it. |
-| 19 | marketing | `web/components/compare/ComparisonPage.tsx:142` (7 routes) | jsx-text | , on |
-| 20 | marketing | `web/components/compare/ComparisonPage.tsx:142` (7 routes) | jsx-text | ’s free tier. |
-| 21 | marketing | `web/components/compare/ComparisonPage.tsx:144` (7 routes) | jsx-text | That is what each one said, not a verdict on which is better. |
-| 22 | marketing | `web/components/compare/ComparisonPage.tsx:148` (7 routes) | jsx-text | We haven’t run |
-| 23 | marketing | `web/components/compare/ComparisonPage.tsx:148` (7 routes) | jsx-text | on the same resume, so this page compares what each one sells, not the quality of what comes back. |
-| 24 | marketing | `web/components/compare/ComparisonPage.tsx:154` (7 routes) | jsx-text | See what they see in yours. |
-| 25 | marketing | `web/components/compare/ComparisonPage.tsx:157` (7 routes) | jsx-text | Get your free report |
+| 3 | marketing | `web/components/compare/ComparisonPage.tsx:47` (7 routes) | jsx-text | ’s prices read on |
+| 4 | marketing | `web/components/compare/ComparisonPage.tsx:49` (7 routes) | jsx-text | How we compare |
+| 5 | marketing | `web/components/compare/ComparisonPage.tsx:54` (7 routes) | jsx-text | Side by side |
+| 6 | marketing | `web/components/compare/ComparisonPage.tsx:58` (7 routes) | jsx-text | What we compared |
+| 7 | marketing | `web/components/compare/ComparisonPage.tsx:83` (7 routes) | attr:aria-label | See it on your own resume |
+| 8 | marketing | `web/components/compare/ComparisonPage.tsx:85` (7 routes) | jsx-text | See what a recruiter would question on yours. |
+| 9 | marketing | `web/components/compare/ComparisonPage.tsx:87` (7 routes) | jsx-text | The free report is the complete report: the write-up, every line that needs work, and the example for each. No card, no account, and nothing held back for the pass. |
+| 10 | marketing | `web/components/compare/ComparisonPage.tsx:87` (7 routes) | jsx-text | See a complete report on a fictional resume |
+| 11 | marketing | `web/components/compare/ComparisonPage.tsx:87` (7 routes) | jsx-text | before you run yours. |
+| 12 | marketing | `web/components/compare/ComparisonPage.tsx:92` (7 routes) | jsx-text | Get your free report |
+| 13 | marketing | `web/components/compare/ComparisonPage.tsx:112` (7 routes) | jsx-text | (opens in a new tab) |
+| 14 | marketing | `web/components/compare/ComparisonPage.tsx:122` (7 routes) | jsx-text | Other comparisons |
+| 15 | marketing | `web/components/compare/ComparisonPage.tsx:135` (7 routes) | jsx-text | How we compare |
+| 16 | marketing | `web/components/compare/ComparisonPage.tsx:137` (7 routes) | jsx-text | We read |
+| 17 | marketing | `web/components/compare/ComparisonPage.tsx:137` (7 routes) | jsx-text | ’s own pricing page on the date above and quote what it says. Prices change. If we have one wrong, email |
+| 18 | marketing | `web/components/compare/ComparisonPage.tsx:138` (7 routes) | jsx-text | and we’ll fix it. |
+| 19 | marketing | `web/components/compare/ComparisonPage.tsx:143` (7 routes) | jsx-text | , on |
+| 20 | marketing | `web/components/compare/ComparisonPage.tsx:143` (7 routes) | jsx-text | ’s free tier. |
+| 21 | marketing | `web/components/compare/ComparisonPage.tsx:145` (7 routes) | jsx-text | That is what each one said, not a verdict on which is better. |
+| 22 | marketing | `web/components/compare/ComparisonPage.tsx:149` (7 routes) | jsx-text | We haven’t run |
+| 23 | marketing | `web/components/compare/ComparisonPage.tsx:149` (7 routes) | jsx-text | on the same resume, so this page compares what each one sells, not the quality of what comes back. |
+| 24 | marketing | `web/components/compare/ComparisonPage.tsx:155` (7 routes) | jsx-text | See what they see in yours. |
+| 25 | marketing | `web/components/compare/ComparisonPage.tsx:158` (7 routes) | jsx-text | Get your free report |
 
 ## web/components/compare/comparisons.tsx
 
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
-| 1 | marketing | `web/components/compare/comparisons.tsx:47` (12 routes) | const | Recruiter in Your Pocket |
-| 2 | marketing | `web/components/compare/comparisons.tsx:53` (12 routes) | const | Ours led with the resume’s own numbers, put one line first with the line it came from, and questioned a “300% reduction in time to hire” as a figure that can’t be right. Thirty-six seconds without the posting, a minute and a half with it, and no line misread. One resume, one role, one day, on the report as it ran then; the report now cards every line a recruiter trips on, not one. |
-| 3 | marketing | `web/components/compare/comparisons.tsx:70` (12 routes) | key:title | TopResume vs Recruiter in Your Pocket |
-| 4 | marketing | `web/components/compare/comparisons.tsx:71` (12 routes) | key:summary | A human writer rewrites your resume, from $179 a package. |
-| 5 | marketing | `web/components/compare/comparisons.tsx:79` (12 routes) | jsx-text | TopResume sells a rewrite: a human writer produces a new resume, in packages from $179. |
-| 6 | marketing | `web/components/compare/comparisons.tsx:79` (12 routes) | jsx-text | reads the resume you already have the way a recruiter would, free for the first report, and leaves the writing to you. If you want someone else to do the writing, TopResume is the closer fit. If you want to know what a recruiter would question and fix it yourself, start here. |
-| 7 | marketing | `web/components/compare/comparisons.tsx:85` (12 routes) | key:label | What it is |
-| 8 | marketing | `web/components/compare/comparisons.tsx:90` (12 routes) | key:label | Who does the work |
-| 9 | marketing | `web/components/compare/comparisons.tsx:95` (12 routes) | key:label | What you get back |
-| 10 | marketing | `web/components/compare/comparisons.tsx:105` (12 routes) | key:label | Free option |
-| 11 | marketing | `web/components/compare/comparisons.tsx:120` (12 routes) | key:label | How long it takes |
-| 12 | marketing | `web/components/compare/comparisons.tsx:128` (12 routes) | key:title | Is TopResume worth it? |
-| 13 | marketing | `web/components/compare/comparisons.tsx:131` (12 routes) | jsx-text | If the writing is the part you keep putting off, a writer who does it for you is worth more than any critique. The packages from $229 up also bundle a cover letter and a LinkedIn makeover, so if you need all three done at once, one purchase covers it. |
-| 14 | marketing | `web/components/compare/comparisons.tsx:134` (12 routes) | jsx-text | What the price can’t buy is the writer’s knowledge of your work. They describe jobs they didn’t see, from the intake you give them, so the result is only as specific as what you hand over. Read the draft you get back the way a recruiter would: every number, every claim of ownership, every result should be something you can back up, because |
-| 15 | marketing | `web/components/compare/comparisons.tsx:140` (12 routes) | key:title | When {OUR_NAME} is the better choice |
-| 16 | marketing | `web/components/compare/comparisons.tsx:143` (12 routes) | jsx-text | You want to know what’s wrong before you pay anyone. The first report is complete, and it quotes the lines a recruiter would question, so you can see whether the problem is the writing or the missing facts. |
-| 17 | marketing | `web/components/compare/comparisons.tsx:146` (12 routes) | jsx-text | Your resume is close and you have the facts. The report asks for the details you left off, such as how many people, what changed, and whether you owned the decision, then rewrites the line from your answer. Nothing gets added that you didn’t say. |
-| 18 | marketing | `web/components/compare/comparisons.tsx:149` (12 routes) | jsx-text | What it won’t do: write the resume for you. You make the final edit, and there is no cover letter or LinkedIn service. |
-| 19 | marketing | `web/components/compare/comparisons.tsx:155` (12 routes) | key:title | What the prices cover |
-| 20 | marketing | `web/components/compare/comparisons.tsx:158` (12 routes) | jsx-text | TopResume’s resume-writing page listed four packages on |
-| 21 | marketing | `web/components/compare/comparisons.tsx:158` (12 routes) | jsx-text | : Professional Growth at $179 for the resume, Career Evolution at $229 with a cover letter, Career Confidence at $349 with a LinkedIn makeover and an interview coaching session from a writer it places in its top 20%, and Executive Priority at $599 with two coaching sessions from a top-10% writer. The page was also advertising a 25% promotion; the figures here are the list prices. |
-| 22 | marketing | `web/components/compare/comparisons.tsx:161` (12 routes) | jsx-text | ’s first report is free, with no card or account. The Job Search Pass is $29 once for five more reports, good for 90 days, and never renews. |
-| 23 | marketing | `web/components/compare/comparisons.tsx:161` (12 routes) | jsx-text | The full pricing page |
-| 24 | marketing | `web/components/compare/comparisons.tsx:161` (12 routes) | jsx-text | has the details. |
-| 25 | marketing | `web/components/compare/comparisons.tsx:167` (12 routes) | key:title | Using both |
-| 26 | marketing | `web/components/compare/comparisons.tsx:170` (12 routes) | jsx-text | Run the free report before you buy a rewrite, so you know what the writer has to fix and what facts to put in the intake. Run it again on the draft that comes back, and check that the lines it carded the first time are off the list. |
-| 27 | marketing | `web/components/compare/comparisons.tsx:178` (12 routes) | key:title | Professional resume writing services (packages and prices) |
-| 28 | marketing | `web/components/compare/comparisons.tsx:189` (12 routes) | key:title | Jobscan vs Recruiter in Your Pocket |
-| 29 | marketing | `web/components/compare/comparisons.tsx:190` (12 routes) | key:summary | Scores your keyword match against one job posting, $29.98 to $49.95 a month. |
-| 30 | marketing | `web/components/compare/comparisons.tsx:202` (12 routes) | jsx-text | Jobscan compares your resume to one job posting and scores the keyword match, with five free scans a month and a subscription for more. |
-| 31 | marketing | `web/components/compare/comparisons.tsx:202` (12 routes) | jsx-text | reads the whole resume the way a recruiter would and lists every line that needs work, with the first report free and no subscription. If you tailor the wording for many applications a week, Jobscan is built for that. If you want to know whether the resume itself holds up, start here. |
-| 32 | marketing | `web/components/compare/comparisons.tsx:208` (12 routes) | key:label | What it is |
-| 33 | marketing | `web/components/compare/comparisons.tsx:213` (12 routes) | key:label | What it checks |
-| 34 | marketing | `web/components/compare/comparisons.tsx:218` (12 routes) | key:label | What you get back |
-| 35 | marketing | `web/components/compare/comparisons.tsx:228` (12 routes) | key:label | Free option |
-| 36 | marketing | `web/components/compare/comparisons.tsx:238` (12 routes) | key:label | When you stop paying |
-| 37 | marketing | `web/components/compare/comparisons.tsx:246` (12 routes) | key:title | Is Jobscan worth it? |
-| 38 | marketing | `web/components/compare/comparisons.tsx:249` (12 routes) | jsx-text | If you send many applications and each posting uses its own vocabulary, a scanner that lists the terms you’re missing saves real time, and the free plan’s five scans a month may be all you need. The subscription is the price of doing that without a limit. |
-| 39 | marketing | `web/components/compare/comparisons.tsx:252` (12 routes) | jsx-text | What a match rate can’t tell you is whether a recruiter believes the bullets. A resume can match most of the keywords and still read as a list of duties with no results. Jobscan’s score is also its own model of an applicant tracking system, and the documentation from the systems employers actually use says |
-| 40 | marketing | `web/components/compare/comparisons.tsx:252` (12 routes) | jsx-text | the software pulls your text into fields, and automatic rejection runs on application questions, not on a match score |
-| 41 | marketing | `web/components/compare/comparisons.tsx:252` (12 routes) | jsx-text | . Whether a recruiter believes a line is a different question, and |
-| 42 | marketing | `web/components/compare/comparisons.tsx:252` (12 routes) | jsx-text | recruiters who spent longer on Experience were more likely to move a resume forward |
-| 43 | marketing | `web/components/compare/comparisons.tsx:258` (12 routes) | key:title | When {OUR_NAME} is the better choice |
-| 44 | marketing | `web/components/compare/comparisons.tsx:261` (12 routes) | jsx-text | You have one resume and you want to know what it says to the person reading it. The report quotes the line behind every note and starts with the one problem most likely to cost you the interview. |
-| 45 | marketing | `web/components/compare/comparisons.tsx:264` (12 routes) | jsx-text | You’d rather pay once. Five reports for $29 covers a revision and a few target roles, and when you add a job posting the report reads your resume against that role without turning it into a keyword count. |
-| 46 | marketing | `web/components/compare/comparisons.tsx:267` (12 routes) | jsx-text | What it won’t do: give you a match percentage, a list of missing keywords, or an application tracker. |
-| 47 | marketing | `web/components/compare/comparisons.tsx:273` (12 routes) | key:title | What the prices cover |
-| 48 | marketing | `web/components/compare/comparisons.tsx:276` (12 routes) | jsx-text | Jobscan’s plan page listed three plans on |
-| 49 | marketing | `web/components/compare/comparisons.tsx:276` (12 routes) | jsx-text | : Free at $0 with five resume scans a month, Quarterly at $89.95 every three months (shown as $29.98 a month) with a 7-day free trial, and Monthly at $49.95. Paid plans add unlimited scans, AI optimizations, a cover letter generator, a LinkedIn optimizer, and auto-apply credits. You can cancel any time and keep access to the end of the period you paid for. |
-| 50 | marketing | `web/components/compare/comparisons.tsx:279` (12 routes) | jsx-text | ’s first report is free, with no card or account. The Job Search Pass is $29 once for five more reports, good for 90 days, and never renews. |
-| 51 | marketing | `web/components/compare/comparisons.tsx:279` (12 routes) | jsx-text | The full pricing page |
-| 52 | marketing | `web/components/compare/comparisons.tsx:279` (12 routes) | jsx-text | has the details. |
-| 53 | marketing | `web/components/compare/comparisons.tsx:285` (12 routes) | key:title | Using both |
-| 54 | marketing | `web/components/compare/comparisons.tsx:288` (12 routes) | jsx-text | Fix the resume first, then tailor it. Run the free report on your base resume and work through the lines it lists, then use Jobscan’s free scans for the vocabulary of a specific posting. Use a term only where it truthfully describes what you did; the report will flag a line that claims more than it shows. |
-| 55 | marketing | `web/components/compare/comparisons.tsx:296` (12 routes) | key:title | Choose your plan (prices and plan features) |
-| 56 | marketing | `web/components/compare/comparisons.tsx:307` (12 routes) | key:title | Resume Worded vs Recruiter in Your Pocket |
-| 57 | marketing | `web/components/compare/comparisons.tsx:308` (12 routes) | key:summary | Scores your resume and LinkedIn against its checklist, $19 to $49 a month. |
-| 58 | marketing | `web/components/compare/comparisons.tsx:320` (12 routes) | jsx-text | Resume Worded scores your resume and LinkedIn profile against its own checklist and sells the full line-by-line report as a subscription, from $19 to $49 a month depending on the term. |
-| 59 | marketing | `web/components/compare/comparisons.tsx:320` (12 routes) | jsx-text | gives you the complete report on one resume free, then $29 once for five more. If you want an ongoing score on your resume and LinkedIn in one place, Resume Worded Pro is the closer fit. If you want a recruiter’s read of one resume without a subscription, start here. |
-| 60 | marketing | `web/components/compare/comparisons.tsx:326` (12 routes) | key:label | What it is |
-| 61 | marketing | `web/components/compare/comparisons.tsx:331` (12 routes) | key:label | What you get back |
-| 62 | marketing | `web/components/compare/comparisons.tsx:336` (12 routes) | key:label | Who does the work |
-| 63 | marketing | `web/components/compare/comparisons.tsx:346` (12 routes) | key:label | Free option |
-| 64 | marketing | `web/components/compare/comparisons.tsx:364` (12 routes) | key:title | Is Resume Worded worth it? |
-| 65 | marketing | `web/components/compare/comparisons.tsx:367` (12 routes) | jsx-text | If you want a score you can check on several documents over a few months, and a LinkedIn checkup in the same account, the annual plan at $229 is the cheapest way to get that from Resume Worded. The monthly plan at $49 makes sense only for a short, intense search. |
-| 66 | marketing | `web/components/compare/comparisons.tsx:370` (12 routes) | jsx-text | The score comes from Resume Worded’s own checklist. Its page describes a line-by-line analysis, keyword analysis, and ATS checking, which are useful and are not the same as a recruiter deciding whether the work is real. The sample lines from “top candidates” are other people’s facts; anything you borrow has to be rebuilt around your own: |
-| 67 | marketing | `web/components/compare/comparisons.tsx:370` (12 routes) | jsx-text | what changed, how you measured it, and what you did to get there |
-| 68 | marketing | `web/components/compare/comparisons.tsx:376` (12 routes) | key:title | When {OUR_NAME} is the better choice |
-| 69 | marketing | `web/components/compare/comparisons.tsx:379` (12 routes) | jsx-text | You want the whole report once, without a subscription. The free report holds nothing back, and $29 buys five more for the revisions and target roles that follow. |
-| 70 | marketing | `web/components/compare/comparisons.tsx:382` (12 routes) | jsx-text | You want the feedback tied to your own lines. Every note quotes the line it’s about, and when a line needs more, the report asks you for the fact instead of offering someone else’s sentence. |
-| 71 | marketing | `web/components/compare/comparisons.tsx:385` (12 routes) | jsx-text | What it won’t do: review your LinkedIn profile, supply templates, or keep a running score over time. Saved reports, when you sign in, are the history. |
-| 72 | marketing | `web/components/compare/comparisons.tsx:391` (12 routes) | key:title | What the prices cover |
-| 73 | marketing | `web/components/compare/comparisons.tsx:394` (12 routes) | jsx-text | Resume Worded’s Pro page listed three terms on |
-| 74 | marketing | `web/components/compare/comparisons.tsx:394` (12 routes) | jsx-text | : $49 a month, $99 every three months (shown as $33 a month), and one payment of $229 for a year (shown as $19 a month), each marked “cancel anytime.” Pro includes the full Score My Resume report with the line-by-line analysis, the full LinkedIn analysis, sample resume lines, AI rewrites, unlimited uploads, and resume templates. |
-| 75 | marketing | `web/components/compare/comparisons.tsx:397` (12 routes) | jsx-text | ’s first report is free, with no card or account. The Job Search Pass is $29 once for five more reports, good for 90 days, and never renews. |
-| 76 | marketing | `web/components/compare/comparisons.tsx:397` (12 routes) | jsx-text | The full pricing page |
-| 77 | marketing | `web/components/compare/comparisons.tsx:397` (12 routes) | jsx-text | has the details. |
-| 78 | marketing | `web/components/compare/comparisons.tsx:403` (12 routes) | key:title | Using both |
-| 79 | marketing | `web/components/compare/comparisons.tsx:406` (12 routes) | jsx-text | Resume Worded’s free score is a quick check on structure. Use the |
-| 80 | marketing | `web/components/compare/comparisons.tsx:406` (12 routes) | jsx-text | report for the question the score can’t answer: which line a recruiter would doubt, and what fact would settle it. |
-| 81 | marketing | `web/components/compare/comparisons.tsx:414` (12 routes) | key:title | Upgrade to Resume Worded Pro (plans and prices) |
-| 82 | marketing | `web/components/compare/comparisons.tsx:425` (12 routes) | key:title | Teal vs Recruiter in Your Pocket |
-| 83 | marketing | `web/components/compare/comparisons.tsx:426` (12 routes) | key:summary | A resume builder and job tracker, free, with Teal+ at $13 a week to $79 a quarter. |
-| 84 | marketing | `web/components/compare/comparisons.tsx:438` (12 routes) | jsx-text | Teal is a resume builder and application tracker with a free plan and a Teal+ subscription at $13 a week, $29 a month, or $79 a quarter. |
-| 85 | marketing | `web/components/compare/comparisons.tsx:438` (12 routes) | jsx-text | doesn’t build or track. It reads the resume you have and tells you what a recruiter would question, free for the first report. If you’re running many applications and want to build each resume in one place, Teal is built for that. If you want a second opinion on the resume itself, start here. |
-| 86 | marketing | `web/components/compare/comparisons.tsx:444` (12 routes) | key:label | What it is |
-| 87 | marketing | `web/components/compare/comparisons.tsx:449` (12 routes) | key:label | What it checks |
-| 88 | marketing | `web/components/compare/comparisons.tsx:454` (12 routes) | key:label | What you get back |
-| 89 | marketing | `web/components/compare/comparisons.tsx:464` (12 routes) | key:label | Free option |
-| 90 | marketing | `web/components/compare/comparisons.tsx:477` (12 routes) | key:title | Is Teal worth it? |
-| 91 | marketing | `web/components/compare/comparisons.tsx:480` (12 routes) | jsx-text | For volume, yes. If you’re tracking dozens of applications and building a version of your resume for each, the free plan already does most of it, and Teal+ removes the template and AI limits. The 30-day plan is $29; the weekly plan at $13 costs more than that once you keep it past two weeks, so pick the term before you start. |
-| 92 | marketing | `web/components/compare/comparisons.tsx:483` (12 routes) | jsx-text | What a builder can’t do is tell you whether the bullets hold up. Teal’s analysis and match score check structure and keywords against its own rules. Whether a recruiter would believe a line, or stop on it, is a different question: |
-| 93 | marketing | `web/components/compare/comparisons.tsx:483` (12 routes) | jsx-text | recruiters who spent longer on Experience were more likely to move a resume forward |
-| 94 | marketing | `web/components/compare/comparisons.tsx:483` (12 routes) | jsx-text | , and a match score doesn’t read that section the way a person does. |
-| 95 | marketing | `web/components/compare/comparisons.tsx:489` (12 routes) | key:title | When {OUR_NAME} is the better choice |
-| 96 | marketing | `web/components/compare/comparisons.tsx:492` (12 routes) | jsx-text | You’ve already written the resume. The report doesn’t ask you to rebuild it in a new tool; it reads the one you have, quotes the lines that need work, and tells you which to fix first. |
-| 97 | marketing | `web/components/compare/comparisons.tsx:495` (12 routes) | jsx-text | You don’t want another subscription. One free report, then $29 once for five more, is the whole price. |
-| 98 | marketing | `web/components/compare/comparisons.tsx:498` (12 routes) | jsx-text | What it won’t do: build the resume, store templates, or track applications. |
-| 99 | marketing | `web/components/compare/comparisons.tsx:504` (12 routes) | key:title | What the prices cover |
-| 100 | marketing | `web/components/compare/comparisons.tsx:507` (12 routes) | jsx-text | Teal’s pricing page listed Teal+ at $13 every 7 days, $29 every 30 days, and $79 every 90 days on |
-| 101 | marketing | `web/components/compare/comparisons.tsx:507` (12 routes) | jsx-text | , with no card required to start on the free plan and the option to change or cancel at any time. The free plan includes unlimited resumes and job tracking, 10 templates, top-five keyword matching, basic analysis, and a few AI credits. Teal+ adds unlimited templates, keywords, analysis, and AI generation, plus the full match score and advanced design settings. |
-| 102 | marketing | `web/components/compare/comparisons.tsx:510` (12 routes) | jsx-text | ’s first report is free, with no card or account. The Job Search Pass is $29 once for five more reports, good for 90 days, and never renews. |
-| 103 | marketing | `web/components/compare/comparisons.tsx:510` (12 routes) | jsx-text | The full pricing page |
-| 104 | marketing | `web/components/compare/comparisons.tsx:510` (12 routes) | jsx-text | has the details. |
-| 105 | marketing | `web/components/compare/comparisons.tsx:516` (12 routes) | key:title | Using both |
-| 106 | marketing | `web/components/compare/comparisons.tsx:519` (12 routes) | jsx-text | Build and track in Teal, then export the resume you plan to send and run it through the free report before it goes out. If the report cards a line, fix it in Teal and export again. |
-| 107 | marketing | `web/components/compare/comparisons.tsx:527` (12 routes) | key:title | Teal+ pricing (plans and what each includes) |
-| 108 | marketing | `web/components/compare/comparisons.tsx:538` (12 routes) | key:title | Kickresume vs Recruiter in Your Pocket |
-| 109 | marketing | `web/components/compare/comparisons.tsx:539` (12 routes) | key:summary | An AI resume builder with 40 templates, free with limits, Premium from $8 a month on the yearly plan. |
-| 110 | marketing | `web/components/compare/comparisons.tsx:551` (12 routes) | jsx-text | Kickresume builds the resume: pick a template, give it your job title, and its AI writer drafts the summary and the bullets, free with four templates and from $8 a month on a yearly plan for the rest. |
-| 111 | marketing | `web/components/compare/comparisons.tsx:551` (12 routes) | jsx-text | doesn’t build anything. It reads the resume you already have the way a recruiter would, free for the first report. If you’re starting from a blank page and want it to look finished fast, Kickresume is built for that. If you have a resume and want to know what a recruiter would question, start here. |
-| 112 | marketing | `web/components/compare/comparisons.tsx:557` (12 routes) | key:label | What it is |
-| 113 | marketing | `web/components/compare/comparisons.tsx:562` (12 routes) | key:label | Who does the work |
-| 114 | marketing | `web/components/compare/comparisons.tsx:567` (12 routes) | key:label | What you get back |
-| 115 | marketing | `web/components/compare/comparisons.tsx:577` (12 routes) | key:label | Free option |
-| 116 | marketing | `web/components/compare/comparisons.tsx:595` (12 routes) | key:title | Is Kickresume worth it? |
-| 117 | marketing | `web/components/compare/comparisons.tsx:598` (12 routes) | jsx-text | If you don’t have a resume yet, or yours is a plain document you dread opening, a builder earns its price: the templates are finished designs, and the yearly plan at $96 is the cheapest way to keep them for a whole search. Kickresume’s own FAQ recommends that plan because most searches take months. |
-| 118 | marketing | `web/components/compare/comparisons.tsx:601` (12 routes) | jsx-text | What the AI writer can’t know is what you did. It drafts from a job title and a library of phrases, so the bullets it writes are the ones anyone with that title could have written, and that is the section a reader weighs: |
-| 119 | marketing | `web/components/compare/comparisons.tsx:601` (12 routes) | jsx-text | recruiters who spent longer on Experience were more likely to move a resume forward |
-| 120 | marketing | `web/components/compare/comparisons.tsx:601` (12 routes) | jsx-text | . Read every generated line as a claim you’ll be asked about. Its ATS checker scores you against Kickresume’s own database of resumes; |
-| 121 | marketing | `web/components/compare/comparisons.tsx:601` (12 routes) | jsx-text | the systems employers use pull your text into fields, and automatic rejection runs on application questions, not on a score |
-| 122 | marketing | `web/components/compare/comparisons.tsx:607` (12 routes) | key:title | When {OUR_NAME} is the better choice |
-| 123 | marketing | `web/components/compare/comparisons.tsx:610` (12 routes) | jsx-text | You already have a resume and the question is whether it holds up. The report quotes the lines a recruiter would question and starts with the one most likely to cost you the interview. |
-| 124 | marketing | `web/components/compare/comparisons.tsx:613` (12 routes) | jsx-text | You wrote it yourself and want the text to survive a reader, not a template. Where a bullet is generic, the report asks for |
-| 125 | marketing | `web/components/compare/comparisons.tsx:613` (12 routes) | jsx-text | what changed, how you measured it, and what you did to get there |
-| 126 | marketing | `web/components/compare/comparisons.tsx:613` (12 routes) | jsx-text | , then rewrites the line from your answer. Nothing gets added that you didn’t say. |
-| 127 | marketing | `web/components/compare/comparisons.tsx:616` (12 routes) | jsx-text | What it won’t do: design the page, write a resume from a job title, or build you a website. |
-| 128 | marketing | `web/components/compare/comparisons.tsx:622` (12 routes) | key:title | What the prices cover |
-| 129 | marketing | `web/components/compare/comparisons.tsx:625` (12 routes) | jsx-text | Kickresume’s pricing page listed four plans on |
-| 130 | marketing | `web/components/compare/comparisons.tsx:625` (12 routes) | jsx-text | : Free at $0 with four basic resume templates, four matching cover letter templates, one basic website template, 20,000 pre-written phrases, 1,500 resume examples, and unlimited downloads; Monthly at $24; Quarterly at $54 every three months, shown as $18 a month; and Yearly at $96 every twelve months, shown as $8 a month and marked as a 25% saving. The paid plans share one feature list: 40 resume and 40 cover letter templates, all colors and typefaces, the AI Writer, the ATS Resume Checker, Career Map, LinkedIn and PDF import, the mobile apps, seven personal website templates, priority support, and a 14-day money-back guarantee. A human grammar correction is $30 per resume. Students who verify with ISIC, ITIC, or UNiDAYS get Premium free. |
-| 131 | marketing | `web/components/compare/comparisons.tsx:628` (12 routes) | jsx-text | ’s first report is free, with no card or account. The Job Search Pass is $29 once for five more reports, good for 90 days, and never renews. |
-| 132 | marketing | `web/components/compare/comparisons.tsx:628` (12 routes) | jsx-text | The full pricing page |
-| 133 | marketing | `web/components/compare/comparisons.tsx:628` (12 routes) | jsx-text | has the details. |
-| 134 | marketing | `web/components/compare/comparisons.tsx:634` (12 routes) | key:title | Using both |
-| 135 | marketing | `web/components/compare/comparisons.tsx:637` (12 routes) | jsx-text | Build in Kickresume if you want the design, then export the PDF and run it through the free report before you send it. The report reads the words, not the template, so it will tell you whether the AI’s bullets say anything a recruiter can check. Fix those in Kickresume and export again. |
-| 136 | marketing | `web/components/compare/comparisons.tsx:645` (12 routes) | key:title | Pricing (plans, prices, and what each includes) |
-| 137 | marketing | `web/components/compare/comparisons.tsx:656` (12 routes) | key:title | Rezi vs Recruiter in Your Pocket |
-| 138 | marketing | `web/components/compare/comparisons.tsx:657` (12 routes) | key:summary | An AI resume builder with its own live score and keyword targeting, free with limits, $29 a month or $149 once. |
-| 139 | marketing | `web/components/compare/comparisons.tsx:669` (12 routes) | jsx-text | Rezi builds the resume with AI and scores it as you type, free for one resume and three downloads, then $29 a month or $149 once for everything. |
-| 140 | marketing | `web/components/compare/comparisons.tsx:669` (12 routes) | jsx-text | reads the resume you already have the way a recruiter would, free for the first report, and never scores it against a checklist. If you want a builder that keeps a live score and feeds you keywords from the posting, Rezi is built for that. If you want to know what a person would question on the resume you have, start here. |
-| 141 | marketing | `web/components/compare/comparisons.tsx:675` (12 routes) | key:label | What it is |
-| 142 | marketing | `web/components/compare/comparisons.tsx:680` (12 routes) | key:label | What it checks |
-| 143 | marketing | `web/components/compare/comparisons.tsx:685` (12 routes) | key:label | Who does the work |
-| 144 | marketing | `web/components/compare/comparisons.tsx:690` (12 routes) | key:label | What you get back |
-| 145 | marketing | `web/components/compare/comparisons.tsx:700` (12 routes) | key:label | Free option |
-| 146 | marketing | `web/components/compare/comparisons.tsx:713` (12 routes) | key:title | Is Rezi worth it? |
-| 147 | marketing | `web/components/compare/comparisons.tsx:716` (12 routes) | jsx-text | If you’re writing from scratch and want a nudge on every line, the live score is the draw, and $149 once is a fair price for a builder you’ll use across several searches. The $29 month is for a short, intense one. |
-| 148 | marketing | `web/components/compare/comparisons.tsx:719` (12 routes) | jsx-text | What a score can’t tell you is whether the line is true, or whether a person would believe it. The Rezi Score is Rezi’s own checklist, and a score is still an algorithm’s recommendation: in one experiment, |
-| 149 | marketing | `web/components/compare/comparisons.tsx:719` (12 routes) | jsx-text | an algorithm’s recommendation swayed recruiters even when they said they trusted it less than a person |
-| 150 | marketing | `web/components/compare/comparisons.tsx:719` (12 routes) | jsx-text | . Treat it as a prompt to check the line, not a verdict on it. Its keyword targeting is also Rezi’s own model of an applicant tracking system; |
-| 151 | marketing | `web/components/compare/comparisons.tsx:719` (12 routes) | jsx-text | the systems employers use pull your text into fields, and automatic rejection runs on application questions, not on keyword counts |
-| 152 | marketing | `web/components/compare/comparisons.tsx:725` (12 routes) | key:title | When {OUR_NAME} is the better choice |
-| 153 | marketing | `web/components/compare/comparisons.tsx:728` (12 routes) | jsx-text | You have a resume and want a reader’s opinion, not a meter. The report quotes the line behind every note and starts with the one problem most likely to cost you the interview. |
-| 154 | marketing | `web/components/compare/comparisons.tsx:731` (12 routes) | jsx-text | You’d rather fix the facts than the score. When a line says what you did but not what changed, the report asks for |
-| 155 | marketing | `web/components/compare/comparisons.tsx:731` (12 routes) | jsx-text | what changed, how you measured it, and what you did to get there |
-| 156 | marketing | `web/components/compare/comparisons.tsx:731` (12 routes) | jsx-text | , and rewrites from your answer. |
-| 157 | marketing | `web/components/compare/comparisons.tsx:734` (12 routes) | jsx-text | What it won’t do: build the resume, keep a running score, write cover letters, or run a mock interview. |
-| 158 | marketing | `web/components/compare/comparisons.tsx:740` (12 routes) | key:title | What the prices cover |
-| 159 | marketing | `web/components/compare/comparisons.tsx:743` (12 routes) | jsx-text | Rezi’s pricing page listed four plans on |
-| 160 | marketing | `web/components/compare/comparisons.tsx:743` (12 routes) | jsx-text | : Free at $0 with one resume, one AI interview, three PDF downloads, the standard templates, and the AI writer and editor, with the Rezi Score, keyword targeting, and real-time analysis limited; Pro at $29 a month with unlimited resumes, interviews, and downloads, all templates, the full score and keyword targeting, Word and Google Drive export, and one expert resume review a month; a Lifetime plan at $149 for one payment, described as all features; and Enterprise at $99 a month per 200 users. The page’s title says all plans include a 30-day money-back guarantee. |
-| 161 | marketing | `web/components/compare/comparisons.tsx:746` (12 routes) | jsx-text | ’s first report is free, with no card or account. The Job Search Pass is $29 once for five more reports, good for 90 days, and never renews. |
-| 162 | marketing | `web/components/compare/comparisons.tsx:746` (12 routes) | jsx-text | The full pricing page |
-| 163 | marketing | `web/components/compare/comparisons.tsx:746` (12 routes) | jsx-text | has the details. |
-| 164 | marketing | `web/components/compare/comparisons.tsx:752` (12 routes) | key:title | Using both |
-| 165 | marketing | `web/components/compare/comparisons.tsx:755` (12 routes) | jsx-text | Build in Rezi if the live score keeps you writing, then export the PDF and run the free report before it goes out. Where the score says you’re done and the report cards a line, trust the card: it’s the question a recruiter would ask. |
-| 166 | marketing | `web/components/compare/comparisons.tsx:763` (12 routes) | key:title | Pricing (plans and the feature comparison) |
-| 167 | marketing | `web/components/compare/comparisons.tsx:774` (12 routes) | key:title | Enhancv vs Recruiter in Your Pocket |
-| 168 | marketing | `web/components/compare/comparisons.tsx:775` (12 routes) | key:summary | A design-first resume builder, free for seven days with branding, Pro from $16.50 a month on a six-month plan. |
-| 169 | marketing | `web/components/compare/comparisons.tsx:783` (12 routes) | jsx-text | Enhancv is a resume builder for people who want the page to look designed: hundreds of templates, drag-and-drop sections, and content suggestions, free for seven days with its branding on the PDF, then from $16.50 a month on a six-month plan. |
-| 170 | marketing | `web/components/compare/comparisons.tsx:783` (12 routes) | jsx-text | doesn’t touch the design. It reads the words on the resume you have the way a recruiter would, free for the first report. If the look of the page is what you’re after, Enhancv is built for that. If you want to know whether the words hold up, start here. |
-| 171 | marketing | `web/components/compare/comparisons.tsx:789` (12 routes) | key:label | What it is |
-| 172 | marketing | `web/components/compare/comparisons.tsx:794` (12 routes) | key:label | What it checks |
-| 173 | marketing | `web/components/compare/comparisons.tsx:799` (12 routes) | key:label | What you get back |
-| 174 | marketing | `web/components/compare/comparisons.tsx:809` (12 routes) | key:label | Free option |
-| 175 | marketing | `web/components/compare/comparisons.tsx:827` (12 routes) | key:title | Is Enhancv worth it? |
-| 176 | marketing | `web/components/compare/comparisons.tsx:830` (12 routes) | jsx-text | If a plain document is the problem, Enhancv solves it well: the templates are the most designed of the tools on these pages, and the six-month plan at $99 is the cheapest way to keep them for a search. The free week is a trial, not a free tier, so decide inside it. |
-| 177 | marketing | `web/components/compare/comparisons.tsx:833` (12 routes) | jsx-text | What a design can’t do is make a recruiter believe the bullets, and a heavy one can get in the way: |
-| 178 | marketing | `web/components/compare/comparisons.tsx:833` (12 routes) | jsx-text | Greenhouse lists graphics, columns, tables, and text boxes among the layouts that can parse badly |
-| 179 | marketing | `web/components/compare/comparisons.tsx:833` (12 routes) | jsx-text | , and a failed parse means someone retyping your details by hand. Enhancv’s own ATS check is one answer to that. Keep the sections and headings a reader recognizes anyway, because |
-| 180 | marketing | `web/components/compare/comparisons.tsx:833` (12 routes) | jsx-text | recruiters who spent longer on Experience were more likely to move a resume forward |
-| 181 | marketing | `web/components/compare/comparisons.tsx:833` (12 routes) | jsx-text | , and no template fills that section for you. |
-| 182 | marketing | `web/components/compare/comparisons.tsx:839` (12 routes) | key:title | When {OUR_NAME} is the better choice |
-| 183 | marketing | `web/components/compare/comparisons.tsx:842` (12 routes) | jsx-text | You care more about what your resume says than how it looks. The report quotes the lines a recruiter would question, in the order they’d read them. |
-| 184 | marketing | `web/components/compare/comparisons.tsx:845` (12 routes) | jsx-text | You want the resume to say who you are, which is a sentence, not a template: |
-| 185 | marketing | `web/components/compare/comparisons.tsx:845` (12 routes) | jsx-text | . Your report opens with that line, written from your resume. If it isn’t who you are, that’s what to fix first. |
-| 186 | marketing | `web/components/compare/comparisons.tsx:848` (12 routes) | jsx-text | What it won’t do: design the page, offer templates, or export a styled resume. The PDF you can download is the report. |
-| 187 | marketing | `web/components/compare/comparisons.tsx:854` (12 routes) | key:title | What the prices cover |
-| 188 | marketing | `web/components/compare/comparisons.tsx:857` (12 routes) | jsx-text | Enhancv’s pricing page, shown to us in US dollars, listed a free plan and three Pro terms on |
-| 189 | marketing | `web/components/compare/comparisons.tsx:857` (12 routes) | jsx-text | : Free at $0, valid for seven days, with all templates, basic sections, a maximum of 12 section items, and Enhancv branding; Pro Monthly at $39 billed once a month; Pro Quarterly at $69 billed every three months, shown as $23 a month; and Pro Semiannual at $99 billed every six months, shown as $16.50 a month. Pro includes 300 resumes and cover letters, all templates, real-time content suggestions, the ATS check, Pro sections, no branding, unlimited section items, and the full set of design options. The FAQ says a refund is available when a problem is Enhancv’s fault; no general refund window is stated. |
-| 190 | marketing | `web/components/compare/comparisons.tsx:860` (12 routes) | jsx-text | ’s first report is free, with no card or account. The Job Search Pass is $29 once for five more reports, good for 90 days, and never renews. |
-| 191 | marketing | `web/components/compare/comparisons.tsx:860` (12 routes) | jsx-text | The full pricing page |
-| 192 | marketing | `web/components/compare/comparisons.tsx:860` (12 routes) | jsx-text | has the details. |
-| 193 | marketing | `web/components/compare/comparisons.tsx:866` (12 routes) | key:title | Using both |
-| 194 | marketing | `web/components/compare/comparisons.tsx:869` (12 routes) | jsx-text | Design in Enhancv, then export the PDF and run the free report before you send it. If the lines the report quotes come out scrambled, the layout didn’t survive being read as text, and a parser may struggle with it too. Fix the words in Enhancv, keep the sections a reader expects, and export again. |
-| 195 | marketing | `web/components/compare/comparisons.tsx:877` (12 routes) | key:title | Pricing (free plan and Pro terms) |
+| 1 | marketing | `web/components/compare/comparisons.tsx:51` (12 routes) | const | Recruiter in Your Pocket |
+| 2 | marketing | `web/components/compare/comparisons.tsx:57` (12 routes) | const | Ours led with the resume’s own numbers, put one line first with the line it came from, and questioned a “300% reduction in time to hire” as a figure that can’t be right. Thirty-six seconds without the posting, a minute and a half with it, and no line misread. One resume, one role, one day, on the report as it ran then; the report now cards every line a recruiter trips on, not one. |
+| 3 | marketing | `web/components/compare/comparisons.tsx:74` (12 routes) | key:title | TopResume vs Recruiter in Your Pocket |
+| 4 | marketing | `web/components/compare/comparisons.tsx:77` (12 routes) | key:summary | A human writer rewrites your resume, from $179 a package. |
+| 5 | marketing | `web/components/compare/comparisons.tsx:85` (12 routes) | jsx-text | TopResume sells a rewrite: a human writer produces a new resume, in packages from $179. |
+| 6 | marketing | `web/components/compare/comparisons.tsx:85` (12 routes) | jsx-text | reads the resume you already have the way a recruiter would, free for the first report, and leaves the writing to you. If you want someone else to do the writing, TopResume is the closer fit. If you want to know what a recruiter would question and fix it yourself, start here. |
+| 7 | marketing | `web/components/compare/comparisons.tsx:91` (12 routes) | key:label | What it is |
+| 8 | marketing | `web/components/compare/comparisons.tsx:96` (12 routes) | key:label | Who does the work |
+| 9 | marketing | `web/components/compare/comparisons.tsx:101` (12 routes) | key:label | What you get back |
+| 10 | marketing | `web/components/compare/comparisons.tsx:111` (12 routes) | key:label | Free option |
+| 11 | marketing | `web/components/compare/comparisons.tsx:126` (12 routes) | key:label | How long it takes |
+| 12 | marketing | `web/components/compare/comparisons.tsx:134` (12 routes) | key:title | Is TopResume worth it? |
+| 13 | marketing | `web/components/compare/comparisons.tsx:137` (12 routes) | jsx-text | If the writing is the part you keep putting off, a writer who does it for you is worth more than any critique. The packages from $229 up also bundle a cover letter and a LinkedIn makeover, so if you need all three done at once, one purchase covers it. |
+| 14 | marketing | `web/components/compare/comparisons.tsx:140` (12 routes) | jsx-text | What the price can’t buy is the writer’s knowledge of your work. They describe jobs they didn’t see, from the intake you give them, so the result is only as specific as what you hand over. Read the draft you get back the way a recruiter would: every number, every claim of ownership, every result should be something you can back up, because |
+| 15 | marketing | `web/components/compare/comparisons.tsx:146` (12 routes) | key:title | When {OUR_NAME} is the better choice |
+| 16 | marketing | `web/components/compare/comparisons.tsx:149` (12 routes) | jsx-text | You want to know what’s wrong before you pay anyone. The first report is complete, and it quotes the lines a recruiter would question, so you can see whether the problem is the writing or the missing facts. |
+| 17 | marketing | `web/components/compare/comparisons.tsx:152` (12 routes) | jsx-text | Your resume is close and you have the facts. The report asks for the details you left off, such as how many people, what changed, and whether you owned the decision, then rewrites the line from your answer. Nothing gets added that you didn’t say. |
+| 18 | marketing | `web/components/compare/comparisons.tsx:155` (12 routes) | jsx-text | What it won’t do: write the resume for you. You make the final edit, and there is no cover letter or LinkedIn service. |
+| 19 | marketing | `web/components/compare/comparisons.tsx:161` (12 routes) | key:title | What the prices cover |
+| 20 | marketing | `web/components/compare/comparisons.tsx:164` (12 routes) | jsx-text | TopResume’s resume-writing page listed four packages on |
+| 21 | marketing | `web/components/compare/comparisons.tsx:164` (12 routes) | jsx-text | : Professional Growth at $179 for the resume, Career Evolution at $229 with a cover letter, Career Confidence at $349 with a LinkedIn makeover and an interview coaching session from a writer it places in its top 20%, and Executive Priority at $599 with two coaching sessions from a top-10% writer. The page was also advertising a 25% promotion; the figures here are the list prices. |
+| 22 | marketing | `web/components/compare/comparisons.tsx:167` (12 routes) | jsx-text | ’s first report is free, with no card or account. The Job Search Pass is $29 once for five more reports, good for 90 days, and never renews. |
+| 23 | marketing | `web/components/compare/comparisons.tsx:167` (12 routes) | jsx-text | The full pricing page |
+| 24 | marketing | `web/components/compare/comparisons.tsx:167` (12 routes) | jsx-text | has the details. |
+| 25 | marketing | `web/components/compare/comparisons.tsx:173` (12 routes) | key:title | Using both |
+| 26 | marketing | `web/components/compare/comparisons.tsx:176` (12 routes) | jsx-text | Run the free report before you buy a rewrite, so you know what the writer has to fix and what facts to put in the intake. Run it again on the draft that comes back, and check that the lines it carded the first time are off the list. |
+| 27 | marketing | `web/components/compare/comparisons.tsx:184` (12 routes) | key:title | Professional resume writing services (packages and prices) |
+| 28 | marketing | `web/components/compare/comparisons.tsx:195` (12 routes) | key:title | Jobscan vs Recruiter in Your Pocket |
+| 29 | marketing | `web/components/compare/comparisons.tsx:198` (12 routes) | key:summary | Scores your keyword match against one job posting, $29.98 to $49.95 a month. |
+| 30 | marketing | `web/components/compare/comparisons.tsx:210` (12 routes) | jsx-text | Jobscan compares your resume to one job posting and scores the keyword match, with five free scans a month and a subscription for more. |
+| 31 | marketing | `web/components/compare/comparisons.tsx:210` (12 routes) | jsx-text | reads the whole resume the way a recruiter would and lists every line that needs work, with the first report free and no subscription. If you tailor the wording for many applications a week, Jobscan is built for that. If you want to know whether the resume itself holds up, start here. |
+| 32 | marketing | `web/components/compare/comparisons.tsx:216` (12 routes) | key:label | What it is |
+| 33 | marketing | `web/components/compare/comparisons.tsx:221` (12 routes) | key:label | What it checks |
+| 34 | marketing | `web/components/compare/comparisons.tsx:226` (12 routes) | key:label | What you get back |
+| 35 | marketing | `web/components/compare/comparisons.tsx:236` (12 routes) | key:label | Free option |
+| 36 | marketing | `web/components/compare/comparisons.tsx:246` (12 routes) | key:label | When you stop paying |
+| 37 | marketing | `web/components/compare/comparisons.tsx:254` (12 routes) | key:title | Is Jobscan worth it? |
+| 38 | marketing | `web/components/compare/comparisons.tsx:257` (12 routes) | jsx-text | If you send many applications and each posting uses its own vocabulary, a scanner that lists the terms you’re missing saves real time, and the free plan’s five scans a month may be all you need. The subscription is the price of doing that without a limit. |
+| 39 | marketing | `web/components/compare/comparisons.tsx:260` (12 routes) | jsx-text | What a match rate can’t tell you is whether a recruiter believes the bullets. A resume can match most of the keywords and still read as a list of duties with no results. Jobscan’s score is also its own model of an applicant tracking system, and the documentation from the systems employers actually use says |
+| 40 | marketing | `web/components/compare/comparisons.tsx:260` (12 routes) | jsx-text | the software pulls your text into fields, and automatic rejection runs on application questions, not on a match score |
+| 41 | marketing | `web/components/compare/comparisons.tsx:260` (12 routes) | jsx-text | . Whether a recruiter believes a line is a different question, and |
+| 42 | marketing | `web/components/compare/comparisons.tsx:260` (12 routes) | jsx-text | recruiters who spent longer on Experience were more likely to move a resume forward |
+| 43 | marketing | `web/components/compare/comparisons.tsx:266` (12 routes) | key:title | When {OUR_NAME} is the better choice |
+| 44 | marketing | `web/components/compare/comparisons.tsx:269` (12 routes) | jsx-text | You have one resume and you want to know what it says to the person reading it. The report quotes the line behind every note and starts with the one problem most likely to cost you the interview. |
+| 45 | marketing | `web/components/compare/comparisons.tsx:272` (12 routes) | jsx-text | You’d rather pay once. Five reports for $29 covers a revision and a few target roles, and when you add a job posting the report reads your resume against that role without turning it into a keyword count. |
+| 46 | marketing | `web/components/compare/comparisons.tsx:275` (12 routes) | jsx-text | What it won’t do: give you a match percentage, a list of missing keywords, or an application tracker. |
+| 47 | marketing | `web/components/compare/comparisons.tsx:281` (12 routes) | key:title | What the prices cover |
+| 48 | marketing | `web/components/compare/comparisons.tsx:284` (12 routes) | jsx-text | Jobscan’s plan page listed three plans on |
+| 49 | marketing | `web/components/compare/comparisons.tsx:284` (12 routes) | jsx-text | : Free at $0 with five resume scans a month, Quarterly at $89.95 every three months (shown as $29.98 a month) with a 7-day free trial, and Monthly at $49.95. Paid plans add unlimited scans, AI optimizations, a cover letter generator, a LinkedIn optimizer, and auto-apply credits. You can cancel any time and keep access to the end of the period you paid for. |
+| 50 | marketing | `web/components/compare/comparisons.tsx:287` (12 routes) | jsx-text | ’s first report is free, with no card or account. The Job Search Pass is $29 once for five more reports, good for 90 days, and never renews. |
+| 51 | marketing | `web/components/compare/comparisons.tsx:287` (12 routes) | jsx-text | The full pricing page |
+| 52 | marketing | `web/components/compare/comparisons.tsx:287` (12 routes) | jsx-text | has the details. |
+| 53 | marketing | `web/components/compare/comparisons.tsx:293` (12 routes) | key:title | Using both |
+| 54 | marketing | `web/components/compare/comparisons.tsx:296` (12 routes) | jsx-text | Fix the resume first, then tailor it. Run the free report on your base resume and work through the lines it lists, then use Jobscan’s free scans for the vocabulary of a specific posting. Use a term only where it truthfully describes what you did; the report will flag a line that claims more than it shows. |
+| 55 | marketing | `web/components/compare/comparisons.tsx:304` (12 routes) | key:title | Choose your plan (prices and plan features) |
+| 56 | marketing | `web/components/compare/comparisons.tsx:315` (12 routes) | key:title | Resume Worded vs Recruiter in Your Pocket |
+| 57 | marketing | `web/components/compare/comparisons.tsx:318` (12 routes) | key:summary | Scores your resume and LinkedIn against its checklist, $19 to $49 a month. |
+| 58 | marketing | `web/components/compare/comparisons.tsx:330` (12 routes) | jsx-text | Resume Worded scores your resume and LinkedIn profile against its own checklist and sells the full line-by-line report as a subscription, from $19 to $49 a month depending on the term. |
+| 59 | marketing | `web/components/compare/comparisons.tsx:330` (12 routes) | jsx-text | gives you the complete report on one resume free, then $29 once for five more. If you want an ongoing score on your resume and LinkedIn in one place, Resume Worded Pro is the closer fit. If you want a recruiter’s read of one resume without a subscription, start here. |
+| 60 | marketing | `web/components/compare/comparisons.tsx:336` (12 routes) | key:label | What it is |
+| 61 | marketing | `web/components/compare/comparisons.tsx:341` (12 routes) | key:label | What you get back |
+| 62 | marketing | `web/components/compare/comparisons.tsx:346` (12 routes) | key:label | Who does the work |
+| 63 | marketing | `web/components/compare/comparisons.tsx:356` (12 routes) | key:label | Free option |
+| 64 | marketing | `web/components/compare/comparisons.tsx:374` (12 routes) | key:title | Is Resume Worded worth it? |
+| 65 | marketing | `web/components/compare/comparisons.tsx:377` (12 routes) | jsx-text | If you want a score you can check on several documents over a few months, and a LinkedIn checkup in the same account, the annual plan at $229 is the cheapest way to get that from Resume Worded. The monthly plan at $49 makes sense only for a short, intense search. |
+| 66 | marketing | `web/components/compare/comparisons.tsx:380` (12 routes) | jsx-text | The score comes from Resume Worded’s own checklist. Its page describes a line-by-line analysis, keyword analysis, and ATS checking, which are useful and are not the same as a recruiter deciding whether the work is real. The sample lines from “top candidates” are other people’s facts; anything you borrow has to be rebuilt around your own: |
+| 67 | marketing | `web/components/compare/comparisons.tsx:380` (12 routes) | jsx-text | what changed, how you measured it, and what you did to get there |
+| 68 | marketing | `web/components/compare/comparisons.tsx:386` (12 routes) | key:title | When {OUR_NAME} is the better choice |
+| 69 | marketing | `web/components/compare/comparisons.tsx:389` (12 routes) | jsx-text | You want the whole report once, without a subscription. The free report holds nothing back, and $29 buys five more for the revisions and target roles that follow. |
+| 70 | marketing | `web/components/compare/comparisons.tsx:392` (12 routes) | jsx-text | You want the feedback tied to your own lines. Every note quotes the line it’s about, and when a line needs more, the report asks you for the fact instead of offering someone else’s sentence. |
+| 71 | marketing | `web/components/compare/comparisons.tsx:395` (12 routes) | jsx-text | What it won’t do: review your LinkedIn profile, supply templates, or keep a running score over time. Saved reports, when you sign in, are the history. |
+| 72 | marketing | `web/components/compare/comparisons.tsx:401` (12 routes) | key:title | What the prices cover |
+| 73 | marketing | `web/components/compare/comparisons.tsx:404` (12 routes) | jsx-text | Resume Worded’s Pro page listed three terms on |
+| 74 | marketing | `web/components/compare/comparisons.tsx:404` (12 routes) | jsx-text | : $49 a month, $99 every three months (shown as $33 a month), and one payment of $229 for a year (shown as $19 a month), each marked “cancel anytime.” Pro includes the full Score My Resume report with the line-by-line analysis, the full LinkedIn analysis, sample resume lines, AI rewrites, unlimited uploads, and resume templates. |
+| 75 | marketing | `web/components/compare/comparisons.tsx:407` (12 routes) | jsx-text | ’s first report is free, with no card or account. The Job Search Pass is $29 once for five more reports, good for 90 days, and never renews. |
+| 76 | marketing | `web/components/compare/comparisons.tsx:407` (12 routes) | jsx-text | The full pricing page |
+| 77 | marketing | `web/components/compare/comparisons.tsx:407` (12 routes) | jsx-text | has the details. |
+| 78 | marketing | `web/components/compare/comparisons.tsx:413` (12 routes) | key:title | Using both |
+| 79 | marketing | `web/components/compare/comparisons.tsx:416` (12 routes) | jsx-text | Resume Worded’s free score is a quick check on structure. Use the |
+| 80 | marketing | `web/components/compare/comparisons.tsx:416` (12 routes) | jsx-text | report for the question the score can’t answer: which line a recruiter would doubt, and what fact would settle it. |
+| 81 | marketing | `web/components/compare/comparisons.tsx:424` (12 routes) | key:title | Upgrade to Resume Worded Pro (plans and prices) |
+| 82 | marketing | `web/components/compare/comparisons.tsx:435` (12 routes) | key:title | Teal vs Recruiter in Your Pocket |
+| 83 | marketing | `web/components/compare/comparisons.tsx:438` (12 routes) | key:summary | A resume builder and job tracker, free, with Teal+ at $13 a week to $79 a quarter. |
+| 84 | marketing | `web/components/compare/comparisons.tsx:450` (12 routes) | jsx-text | Teal is a resume builder and application tracker with a free plan and a Teal+ subscription at $13 a week, $29 a month, or $79 a quarter. |
+| 85 | marketing | `web/components/compare/comparisons.tsx:450` (12 routes) | jsx-text | doesn’t build or track. It reads the resume you have and tells you what a recruiter would question, free for the first report. If you’re running many applications and want to build each resume in one place, Teal is built for that. If you want a second opinion on the resume itself, start here. |
+| 86 | marketing | `web/components/compare/comparisons.tsx:456` (12 routes) | key:label | What it is |
+| 87 | marketing | `web/components/compare/comparisons.tsx:461` (12 routes) | key:label | What it checks |
+| 88 | marketing | `web/components/compare/comparisons.tsx:466` (12 routes) | key:label | What you get back |
+| 89 | marketing | `web/components/compare/comparisons.tsx:476` (12 routes) | key:label | Free option |
+| 90 | marketing | `web/components/compare/comparisons.tsx:489` (12 routes) | key:title | Is Teal worth it? |
+| 91 | marketing | `web/components/compare/comparisons.tsx:492` (12 routes) | jsx-text | For volume, yes. If you’re tracking dozens of applications and building a version of your resume for each, the free plan already does most of it, and Teal+ removes the template and AI limits. The 30-day plan is $29; the weekly plan at $13 costs more than that once you keep it past two weeks, so pick the term before you start. |
+| 92 | marketing | `web/components/compare/comparisons.tsx:495` (12 routes) | jsx-text | What a builder can’t do is tell you whether the bullets hold up. Teal’s analysis and match score check structure and keywords against its own rules. Whether a recruiter would believe a line, or stop on it, is a different question: |
+| 93 | marketing | `web/components/compare/comparisons.tsx:495` (12 routes) | jsx-text | recruiters who spent longer on Experience were more likely to move a resume forward |
+| 94 | marketing | `web/components/compare/comparisons.tsx:495` (12 routes) | jsx-text | , and a match score doesn’t read that section the way a person does. |
+| 95 | marketing | `web/components/compare/comparisons.tsx:501` (12 routes) | key:title | When {OUR_NAME} is the better choice |
+| 96 | marketing | `web/components/compare/comparisons.tsx:504` (12 routes) | jsx-text | You’ve already written the resume. The report doesn’t ask you to rebuild it in a new tool; it reads the one you have, quotes the lines that need work, and tells you which to fix first. |
+| 97 | marketing | `web/components/compare/comparisons.tsx:507` (12 routes) | jsx-text | You don’t want another subscription. One free report, then $29 once for five more, is the whole price. |
+| 98 | marketing | `web/components/compare/comparisons.tsx:510` (12 routes) | jsx-text | What it won’t do: build the resume, store templates, or track applications. |
+| 99 | marketing | `web/components/compare/comparisons.tsx:516` (12 routes) | key:title | What the prices cover |
+| 100 | marketing | `web/components/compare/comparisons.tsx:519` (12 routes) | jsx-text | Teal’s pricing page listed Teal+ at $13 every 7 days, $29 every 30 days, and $79 every 90 days on |
+| 101 | marketing | `web/components/compare/comparisons.tsx:519` (12 routes) | jsx-text | , with no card required to start on the free plan and the option to change or cancel at any time. The free plan includes unlimited resumes and job tracking, 10 templates, top-five keyword matching, basic analysis, and a few AI credits. Teal+ adds unlimited templates, keywords, analysis, and AI generation, plus the full match score and advanced design settings. |
+| 102 | marketing | `web/components/compare/comparisons.tsx:522` (12 routes) | jsx-text | ’s first report is free, with no card or account. The Job Search Pass is $29 once for five more reports, good for 90 days, and never renews. |
+| 103 | marketing | `web/components/compare/comparisons.tsx:522` (12 routes) | jsx-text | The full pricing page |
+| 104 | marketing | `web/components/compare/comparisons.tsx:522` (12 routes) | jsx-text | has the details. |
+| 105 | marketing | `web/components/compare/comparisons.tsx:528` (12 routes) | key:title | Using both |
+| 106 | marketing | `web/components/compare/comparisons.tsx:531` (12 routes) | jsx-text | Build and track in Teal, then export the resume you plan to send and run it through the free report before it goes out. If the report cards a line, fix it in Teal and export again. |
+| 107 | marketing | `web/components/compare/comparisons.tsx:539` (12 routes) | key:title | Teal+ pricing (plans and what each includes) |
+| 108 | marketing | `web/components/compare/comparisons.tsx:550` (12 routes) | key:title | Kickresume vs Recruiter in Your Pocket |
+| 109 | marketing | `web/components/compare/comparisons.tsx:553` (12 routes) | key:summary | An AI resume builder with 40 templates, free with limits, Premium from $8 a month on the yearly plan. |
+| 110 | marketing | `web/components/compare/comparisons.tsx:565` (12 routes) | jsx-text | Kickresume builds the resume: pick a template, give it your job title, and its AI writer drafts the summary and the bullets, free with four templates and from $8 a month on a yearly plan for the rest. |
+| 111 | marketing | `web/components/compare/comparisons.tsx:565` (12 routes) | jsx-text | doesn’t build anything. It reads the resume you already have the way a recruiter would, free for the first report. If you’re starting from a blank page and want it to look finished fast, Kickresume is built for that. If you have a resume and want to know what a recruiter would question, start here. |
+| 112 | marketing | `web/components/compare/comparisons.tsx:571` (12 routes) | key:label | What it is |
+| 113 | marketing | `web/components/compare/comparisons.tsx:576` (12 routes) | key:label | Who does the work |
+| 114 | marketing | `web/components/compare/comparisons.tsx:581` (12 routes) | key:label | What you get back |
+| 115 | marketing | `web/components/compare/comparisons.tsx:591` (12 routes) | key:label | Free option |
+| 116 | marketing | `web/components/compare/comparisons.tsx:609` (12 routes) | key:title | Is Kickresume worth it? |
+| 117 | marketing | `web/components/compare/comparisons.tsx:612` (12 routes) | jsx-text | If you don’t have a resume yet, or yours is a plain document you dread opening, a builder earns its price: the templates are finished designs, and the yearly plan at $96 is the cheapest way to keep them for a whole search. Kickresume’s own FAQ recommends that plan because most searches take months. |
+| 118 | marketing | `web/components/compare/comparisons.tsx:615` (12 routes) | jsx-text | What the AI writer can’t know is what you did. It drafts from a job title and a library of phrases, so the bullets it writes are the ones anyone with that title could have written, and that is the section a reader weighs: |
+| 119 | marketing | `web/components/compare/comparisons.tsx:615` (12 routes) | jsx-text | recruiters who spent longer on Experience were more likely to move a resume forward |
+| 120 | marketing | `web/components/compare/comparisons.tsx:615` (12 routes) | jsx-text | . Read every generated line as a claim you’ll be asked about. Its ATS checker scores you against Kickresume’s own database of resumes; |
+| 121 | marketing | `web/components/compare/comparisons.tsx:615` (12 routes) | jsx-text | the systems employers use pull your text into fields, and automatic rejection runs on application questions, not on a score |
+| 122 | marketing | `web/components/compare/comparisons.tsx:621` (12 routes) | key:title | When {OUR_NAME} is the better choice |
+| 123 | marketing | `web/components/compare/comparisons.tsx:624` (12 routes) | jsx-text | You already have a resume and the question is whether it holds up. The report quotes the lines a recruiter would question and starts with the one most likely to cost you the interview. |
+| 124 | marketing | `web/components/compare/comparisons.tsx:627` (12 routes) | jsx-text | You wrote it yourself and want the text to survive a reader, not a template. Where a bullet is generic, the report asks for |
+| 125 | marketing | `web/components/compare/comparisons.tsx:627` (12 routes) | jsx-text | what changed, how you measured it, and what you did to get there |
+| 126 | marketing | `web/components/compare/comparisons.tsx:627` (12 routes) | jsx-text | , then rewrites the line from your answer. Nothing gets added that you didn’t say. |
+| 127 | marketing | `web/components/compare/comparisons.tsx:630` (12 routes) | jsx-text | What it won’t do: design the page, write a resume from a job title, or build you a website. |
+| 128 | marketing | `web/components/compare/comparisons.tsx:636` (12 routes) | key:title | What the prices cover |
+| 129 | marketing | `web/components/compare/comparisons.tsx:639` (12 routes) | jsx-text | Kickresume’s pricing page listed four plans on |
+| 130 | marketing | `web/components/compare/comparisons.tsx:639` (12 routes) | jsx-text | : Free at $0 with four basic resume templates, four matching cover letter templates, one basic website template, 20,000 pre-written phrases, 1,500 resume examples, and unlimited downloads; Monthly at $24; Quarterly at $54 every three months, shown as $18 a month; and Yearly at $96 every twelve months, shown as $8 a month and marked as a 25% saving. The paid plans share one feature list: 40 resume and 40 cover letter templates, all colors and typefaces, the AI Writer, the ATS Resume Checker, Career Map, LinkedIn and PDF import, the mobile apps, seven personal website templates, priority support, and a 14-day money-back guarantee. A human grammar correction is $30 per resume. Students who verify with ISIC, ITIC, or UNiDAYS get Premium free. |
+| 131 | marketing | `web/components/compare/comparisons.tsx:642` (12 routes) | jsx-text | ’s first report is free, with no card or account. The Job Search Pass is $29 once for five more reports, good for 90 days, and never renews. |
+| 132 | marketing | `web/components/compare/comparisons.tsx:642` (12 routes) | jsx-text | The full pricing page |
+| 133 | marketing | `web/components/compare/comparisons.tsx:642` (12 routes) | jsx-text | has the details. |
+| 134 | marketing | `web/components/compare/comparisons.tsx:648` (12 routes) | key:title | Using both |
+| 135 | marketing | `web/components/compare/comparisons.tsx:651` (12 routes) | jsx-text | Build in Kickresume if you want the design, then export the PDF and run it through the free report before you send it. The report reads the words, not the template, so it will tell you whether the AI’s bullets say anything a recruiter can check. Fix those in Kickresume and export again. |
+| 136 | marketing | `web/components/compare/comparisons.tsx:659` (12 routes) | key:title | Pricing (plans, prices, and what each includes) |
+| 137 | marketing | `web/components/compare/comparisons.tsx:670` (12 routes) | key:title | Rezi vs Recruiter in Your Pocket |
+| 138 | marketing | `web/components/compare/comparisons.tsx:673` (12 routes) | key:summary | An AI resume builder with its own live score and keyword targeting, free with limits, $29 a month or $149 once. |
+| 139 | marketing | `web/components/compare/comparisons.tsx:685` (12 routes) | jsx-text | Rezi builds the resume with AI and scores it as you type, free for one resume and three downloads, then $29 a month or $149 once for everything. |
+| 140 | marketing | `web/components/compare/comparisons.tsx:685` (12 routes) | jsx-text | reads the resume you already have the way a recruiter would, free for the first report, and never scores it against a checklist. If you want a builder that keeps a live score and feeds you keywords from the posting, Rezi is built for that. If you want to know what a person would question on the resume you have, start here. |
+| 141 | marketing | `web/components/compare/comparisons.tsx:691` (12 routes) | key:label | What it is |
+| 142 | marketing | `web/components/compare/comparisons.tsx:696` (12 routes) | key:label | What it checks |
+| 143 | marketing | `web/components/compare/comparisons.tsx:701` (12 routes) | key:label | Who does the work |
+| 144 | marketing | `web/components/compare/comparisons.tsx:706` (12 routes) | key:label | What you get back |
+| 145 | marketing | `web/components/compare/comparisons.tsx:716` (12 routes) | key:label | Free option |
+| 146 | marketing | `web/components/compare/comparisons.tsx:729` (12 routes) | key:title | Is Rezi worth it? |
+| 147 | marketing | `web/components/compare/comparisons.tsx:732` (12 routes) | jsx-text | If you’re writing from scratch and want a nudge on every line, the live score is the draw, and $149 once is a fair price for a builder you’ll use across several searches. The $29 month is for a short, intense one. |
+| 148 | marketing | `web/components/compare/comparisons.tsx:735` (12 routes) | jsx-text | What a score can’t tell you is whether the line is true, or whether a person would believe it. The Rezi Score is Rezi’s own checklist, and a score is still an algorithm’s recommendation: in one experiment, |
+| 149 | marketing | `web/components/compare/comparisons.tsx:735` (12 routes) | jsx-text | an algorithm’s recommendation swayed recruiters even when they said they trusted it less than a person |
+| 150 | marketing | `web/components/compare/comparisons.tsx:735` (12 routes) | jsx-text | . Treat it as a prompt to check the line, not a verdict on it. Its keyword targeting is also Rezi’s own model of an applicant tracking system; |
+| 151 | marketing | `web/components/compare/comparisons.tsx:735` (12 routes) | jsx-text | the systems employers use pull your text into fields, and automatic rejection runs on application questions, not on keyword counts |
+| 152 | marketing | `web/components/compare/comparisons.tsx:741` (12 routes) | key:title | When {OUR_NAME} is the better choice |
+| 153 | marketing | `web/components/compare/comparisons.tsx:744` (12 routes) | jsx-text | You have a resume and want a reader’s opinion, not a meter. The report quotes the line behind every note and starts with the one problem most likely to cost you the interview. |
+| 154 | marketing | `web/components/compare/comparisons.tsx:747` (12 routes) | jsx-text | You’d rather fix the facts than the score. When a line says what you did but not what changed, the report asks for |
+| 155 | marketing | `web/components/compare/comparisons.tsx:747` (12 routes) | jsx-text | what changed, how you measured it, and what you did to get there |
+| 156 | marketing | `web/components/compare/comparisons.tsx:747` (12 routes) | jsx-text | , and rewrites from your answer. |
+| 157 | marketing | `web/components/compare/comparisons.tsx:750` (12 routes) | jsx-text | What it won’t do: build the resume, keep a running score, write cover letters, or run a mock interview. |
+| 158 | marketing | `web/components/compare/comparisons.tsx:756` (12 routes) | key:title | What the prices cover |
+| 159 | marketing | `web/components/compare/comparisons.tsx:759` (12 routes) | jsx-text | Rezi’s pricing page listed four plans on |
+| 160 | marketing | `web/components/compare/comparisons.tsx:759` (12 routes) | jsx-text | : Free at $0 with one resume, one AI interview, three PDF downloads, the standard templates, and the AI writer and editor, with the Rezi Score, keyword targeting, and real-time analysis limited; Pro at $29 a month with unlimited resumes, interviews, and downloads, all templates, the full score and keyword targeting, Word and Google Drive export, and one expert resume review a month; a Lifetime plan at $149 for one payment, described as all features; and Enterprise at $99 a month per 200 users. The page’s title says all plans include a 30-day money-back guarantee. |
+| 161 | marketing | `web/components/compare/comparisons.tsx:762` (12 routes) | jsx-text | ’s first report is free, with no card or account. The Job Search Pass is $29 once for five more reports, good for 90 days, and never renews. |
+| 162 | marketing | `web/components/compare/comparisons.tsx:762` (12 routes) | jsx-text | The full pricing page |
+| 163 | marketing | `web/components/compare/comparisons.tsx:762` (12 routes) | jsx-text | has the details. |
+| 164 | marketing | `web/components/compare/comparisons.tsx:768` (12 routes) | key:title | Using both |
+| 165 | marketing | `web/components/compare/comparisons.tsx:771` (12 routes) | jsx-text | Build in Rezi if the live score keeps you writing, then export the PDF and run the free report before it goes out. Where the score says you’re done and the report cards a line, trust the card: it’s the question a recruiter would ask. |
+| 166 | marketing | `web/components/compare/comparisons.tsx:779` (12 routes) | key:title | Pricing (plans and the feature comparison) |
+| 167 | marketing | `web/components/compare/comparisons.tsx:790` (12 routes) | key:title | Enhancv vs Recruiter in Your Pocket |
+| 168 | marketing | `web/components/compare/comparisons.tsx:793` (12 routes) | key:summary | A design-first resume builder, free for seven days with branding, Pro from $16.50 a month on a six-month plan. |
+| 169 | marketing | `web/components/compare/comparisons.tsx:801` (12 routes) | jsx-text | Enhancv is a resume builder for people who want the page to look designed: hundreds of templates, drag-and-drop sections, and content suggestions, free for seven days with its branding on the PDF, then from $16.50 a month on a six-month plan. |
+| 170 | marketing | `web/components/compare/comparisons.tsx:801` (12 routes) | jsx-text | doesn’t touch the design. It reads the words on the resume you have the way a recruiter would, free for the first report. If the look of the page is what you’re after, Enhancv is built for that. If you want to know whether the words hold up, start here. |
+| 171 | marketing | `web/components/compare/comparisons.tsx:807` (12 routes) | key:label | What it is |
+| 172 | marketing | `web/components/compare/comparisons.tsx:812` (12 routes) | key:label | What it checks |
+| 173 | marketing | `web/components/compare/comparisons.tsx:817` (12 routes) | key:label | What you get back |
+| 174 | marketing | `web/components/compare/comparisons.tsx:827` (12 routes) | key:label | Free option |
+| 175 | marketing | `web/components/compare/comparisons.tsx:845` (12 routes) | key:title | Is Enhancv worth it? |
+| 176 | marketing | `web/components/compare/comparisons.tsx:848` (12 routes) | jsx-text | If a plain document is the problem, Enhancv solves it well: the templates are the most designed of the tools on these pages, and the six-month plan at $99 is the cheapest way to keep them for a search. The free week is a trial, not a free tier, so decide inside it. |
+| 177 | marketing | `web/components/compare/comparisons.tsx:851` (12 routes) | jsx-text | What a design can’t do is make a recruiter believe the bullets, and a heavy one can get in the way: |
+| 178 | marketing | `web/components/compare/comparisons.tsx:851` (12 routes) | jsx-text | Greenhouse lists graphics, columns, tables, and text boxes among the layouts that can parse badly |
+| 179 | marketing | `web/components/compare/comparisons.tsx:851` (12 routes) | jsx-text | , and a failed parse means someone retyping your details by hand. Enhancv’s own ATS check is one answer to that. Keep the sections and headings a reader recognizes anyway, because |
+| 180 | marketing | `web/components/compare/comparisons.tsx:851` (12 routes) | jsx-text | recruiters who spent longer on Experience were more likely to move a resume forward |
+| 181 | marketing | `web/components/compare/comparisons.tsx:851` (12 routes) | jsx-text | , and no template fills that section for you. |
+| 182 | marketing | `web/components/compare/comparisons.tsx:857` (12 routes) | key:title | When {OUR_NAME} is the better choice |
+| 183 | marketing | `web/components/compare/comparisons.tsx:860` (12 routes) | jsx-text | You care more about what your resume says than how it looks. The report quotes the lines a recruiter would question, in the order they’d read them. |
+| 184 | marketing | `web/components/compare/comparisons.tsx:863` (12 routes) | jsx-text | You want the resume to say who you are, which is a sentence, not a template: |
+| 185 | marketing | `web/components/compare/comparisons.tsx:863` (12 routes) | jsx-text | . Your report opens with that line, written from your resume. If it isn’t who you are, that’s what to fix first. |
+| 186 | marketing | `web/components/compare/comparisons.tsx:866` (12 routes) | jsx-text | What it won’t do: design the page, offer templates, or export a styled resume. The PDF you can download is the report. |
+| 187 | marketing | `web/components/compare/comparisons.tsx:872` (12 routes) | key:title | What the prices cover |
+| 188 | marketing | `web/components/compare/comparisons.tsx:875` (12 routes) | jsx-text | Enhancv’s pricing page, shown to us in US dollars, listed a free plan and three Pro terms on |
+| 189 | marketing | `web/components/compare/comparisons.tsx:875` (12 routes) | jsx-text | : Free at $0, valid for seven days, with all templates, basic sections, a maximum of 12 section items, and Enhancv branding; Pro Monthly at $39 billed once a month; Pro Quarterly at $69 billed every three months, shown as $23 a month; and Pro Semiannual at $99 billed every six months, shown as $16.50 a month. Pro includes 300 resumes and cover letters, all templates, real-time content suggestions, the ATS check, Pro sections, no branding, unlimited section items, and the full set of design options. The FAQ says a refund is available when a problem is Enhancv’s fault; no general refund window is stated. |
+| 190 | marketing | `web/components/compare/comparisons.tsx:878` (12 routes) | jsx-text | ’s first report is free, with no card or account. The Job Search Pass is $29 once for five more reports, good for 90 days, and never renews. |
+| 191 | marketing | `web/components/compare/comparisons.tsx:878` (12 routes) | jsx-text | The full pricing page |
+| 192 | marketing | `web/components/compare/comparisons.tsx:878` (12 routes) | jsx-text | has the details. |
+| 193 | marketing | `web/components/compare/comparisons.tsx:884` (12 routes) | key:title | Using both |
+| 194 | marketing | `web/components/compare/comparisons.tsx:887` (12 routes) | jsx-text | Design in Enhancv, then export the PDF and run the free report before you send it. If the lines the report quotes come out scrambled, the layout didn’t survive being read as text, and a parser may struggle with it too. Fix the words in Enhancv, keep the sections a reader expects, and export again. |
+| 195 | marketing | `web/components/compare/comparisons.tsx:895` (12 routes) | key:title | Pricing (free plan and Pro terms) |
 
 ## web/components/icons/Wordmark.tsx
 

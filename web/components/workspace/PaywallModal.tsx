@@ -44,13 +44,14 @@ const PASS_BULLETS = [
     "Read your resume against each job posting",
 ];
 
-// The title names what the visitor was doing when the pass came up; the list and price are the same every time.
-const DEFAULT_UNLOCK_TITLE = "Five more reads.";
+// The title is the hook: what the visitor was doing when the pass came up, and the application it's for
+// (docs/copy-system.md §8, Matt, November 11, 2026). The list, the price and the terms under it stay literal.
+const DEFAULT_UNLOCK_TITLE = "Don’t send the next one blind.";
 const CONTEXT_UNLOCK_TITLE: Record<UnlockSection, string> = {
-    evidence_ledger: "Check your revised resume",
-    bullet_upgrades: "See what your edits changed",
-    missing_wins: "Check the details you add",
-    job_alignment: "Read it against another role",
+    evidence_ledger: "Don’t send the revision blind.",
+    bullet_upgrades: "You changed the lines. Find out if it worked.",
+    missing_wins: "You added the details. See what a recruiter makes of them.",
+    job_alignment: "Another job will read this resume differently.",
     export_pdf: "PDFs come with a signed-in report",
 };
 
