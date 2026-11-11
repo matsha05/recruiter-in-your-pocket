@@ -31743,7 +31743,7 @@
     {
       "text": "Starting over",
       "kind": "const",
-      "line": 141,
+      "line": 142,
       "file": "web/components/workspace/AnalysisScanning.tsx",
       "routes": [
         "/reports/[id]",
@@ -31754,9 +31754,9 @@
       "table": "workspace"
     },
     {
-      "text": "Still working on your {subject} report. You can keep waiting, retry, or stop.",
+      "text": "Still working on your {mode === \"linkedin\" ? \"pr…}. You can keep waiting, retry, or stop.",
       "kind": "jsx-text",
-      "line": 165,
+      "line": 166,
       "file": "web/components/workspace/AnalysisScanning.tsx",
       "routes": [
         "/reports/[id]",
@@ -31769,7 +31769,7 @@
     {
       "text": "· usually under two minutes",
       "kind": "jsx-text",
-      "line": 177,
+      "line": 178,
       "file": "web/components/workspace/AnalysisScanning.tsx",
       "routes": [
         "/reports/[id]",
@@ -31782,7 +31782,7 @@
     {
       "text": "Report progress",
       "kind": "attr:aria-label",
-      "line": 181,
+      "line": 182,
       "file": "web/components/workspace/AnalysisScanning.tsx",
       "routes": [
         "/reports/[id]",
@@ -31795,7 +31795,7 @@
     {
       "text": "Done:",
       "kind": "jsx-text",
-      "line": 186,
+      "line": 187,
       "file": "web/components/workspace/AnalysisScanning.tsx",
       "routes": [
         "/reports/[id]",
@@ -31808,7 +31808,7 @@
     {
       "text": "The first pass came back incomplete, so we started it again.",
       "kind": "jsx-text",
-      "line": 194,
+      "line": 195,
       "file": "web/components/workspace/AnalysisScanning.tsx",
       "routes": [
         "/reports/[id]",
@@ -31821,7 +31821,7 @@
     {
       "text": "Report still in progress",
       "kind": "attr:aria-label",
-      "line": 198,
+      "line": 199,
       "file": "web/components/workspace/AnalysisScanning.tsx",
       "routes": [
         "/reports/[id]",
@@ -31834,7 +31834,7 @@
     {
       "text": "Still going. Longer resumes can take a little more time.",
       "kind": "jsx-text",
-      "line": 200,
+      "line": 201,
       "file": "web/components/workspace/AnalysisScanning.tsx",
       "routes": [
         "/reports/[id]",
@@ -31847,7 +31847,7 @@
     {
       "text": "Retry stops this one and starts over. Waiting is usually faster.",
       "kind": "jsx-text",
-      "line": 201,
+      "line": 202,
       "file": "web/components/workspace/AnalysisScanning.tsx",
       "routes": [
         "/reports/[id]",
@@ -31860,7 +31860,7 @@
     {
       "text": "Keep this tab open.",
       "kind": "jsx-text",
-      "line": 234,
+      "line": 235,
       "file": "web/components/workspace/AnalysisScanning.tsx",
       "routes": [
         "/reports/[id]",

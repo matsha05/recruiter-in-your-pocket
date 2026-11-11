@@ -4,23 +4,31 @@
   "today": "2026-11-11",
   "repaired": false,
   "firstError": null,
-  "seconds": 24,
+  "seconds": 20,
   "report": {
     "contract_version": "v3",
-    "score": 95,
+    "score": 91,
     "lifted_by_employer": false,
-    "verdict": "An emergency department nurse manager whose profile shows how her team improved patient flow and nurse retention.",
+    "verdict": "An emergency department nurse manager whose profile connects staffing decisions to patient flow and nurse retention.",
     "write_up": [
-      "You lead an emergency department at a Level II trauma center, and a recruiter can see what changed under your leadership! Your headline names the job, and your About gets straight to the patient flow work.",
-      "The Saguaro Valley manager job is the model: it connects front-door triage and an overflow plan to fewer patients leaving without being seen. It also gives the turnover and labor budget results, so a recruiter doesn't have to guess what you manage.",
-      "Your profile isn't likely to be the thing standing between you and a message. Whether someone reaches out also depends on the roles available and your stated preference that you're not looking. If you later pursue a director role, you could add any work you've done planning resources beyond the ED."
+      "You lead an emergency department at a Level II trauma center, and your profile makes the work clear. It gives a recruiter reasons to remember you: changes to triage, nurse retention and a $14.5M labor budget. Your profile isn't likely to be the reason someone moves on, though the needs of a particular role and competition still matter.",
+      "The Saguaro Valley Medical Center manager job is the model for the rest. It names the department you lead, the changes you made and what happened afterward. Your About also brings the triage work right to the top.",
+      "If you want to round out the profile, start with the Desert Ridge bedside job: name the patients and care you handled there. For a future director-level conversation, you could also add any budget planning beyond the ED. A recruiter can already see the manager work without guessing."
     ],
     "cards": [
+      {
+        "kind": "line",
+        "where": "Desert Ridge Hospital, description",
+        "line": "Bedside care in a 28-bed community ED.",
+        "cannot_tell": "Bedside care tells me where you worked, but not which patients you cared for or what that care involved. One line about the work would round out your nursing background.",
+        "example": "Bedside care in a 28-bed community ED, including [types of patients and care you provided].",
+        "question": "What types of patients did you care for at Desert Ridge, and what nursing care did you provide?"
+      },
       {
         "kind": "keep",
         "where": "Saguaro Valley Medical Center, Nurse Manager description",
         "line": "Cut left-without-being-seen from 5.1% to 2.3% in two years with front-door triage and a new overflow plan.",
-        "cannot_tell": "This is the line to keep as a model. It names the changes your team made and the patient flow measure that moved.",
+        "cannot_tell": "Keep this line. It connects the triage and overflow changes to a specific change in patients leaving before being seen.",
         "example": "",
         "question": ""
       },
@@ -28,9 +36,9 @@
         "kind": "upgrade",
         "where": "Saguaro Valley Medical Center, Nurse Manager description",
         "line": "Own a $14.5M labor budget; finished the last two fiscal years within 1% of plan.",
-        "cannot_tell": "The budget result is strong. For a director role, a recruiter may also look for resource planning beyond the ED, if that's work you've done.",
-        "example": "Own a $14.5M labor budget; [how you plan staffing or resources beyond the ED].",
-        "question": "If you've planned staffing or resources beyond the ED, what did you do?"
+        "cannot_tell": "The budget line is strong. For a director-level role, a recruiter may also look for budget planning beyond the ED, if that has been part of your work.",
+        "example": "Own a $14.5M labor budget; [your part in budget planning beyond the ED, if applicable].",
+        "question": "What part, if any, have you had in budget planning beyond the ED?"
       }
     ],
     "fit": {
@@ -39,9 +47,9 @@
         "Charge Nurse, Emergency Department",
         "Registered Nurse, Emergency Department"
       ],
-      "why": "Your headline and current job both describe leading an emergency department, with earlier bedside and charge nurse work.",
-      "level": "manager, your current Nurse Manager, Emergency Department title",
-      "note": "'Emergency Department Nurse Manager' is in your headline. 'Nurse Staffing' and 'Trauma Care' are in your top skills, and 'split-flow' is in your About. Patient safety and quality improvement are other terms someone hiring for this work might use, if they describe your responsibilities.",
+      "why": "Your headline and current job name emergency department management, and your descriptions show staffing, patient flow and budget work.",
+      "level": "manager, you lead a 42-bed ED with 96 nurses and techs",
+      "note": "'Emergency Department Nurse Manager' is in your headline. 'Nurse Staffing' and 'Trauma Care' are in your top skills. 'Split-flow' is in your About. 'Quality improvement' and 'capital budgeting' are not on your profile; they are optional terms if they describe your work.",
       "posting": {
         "summary": "",
         "missing": []
@@ -51,7 +59,7 @@
     "layout_score": null,
     "layout_band": "unknown",
     "layout_notes": "",
-    "content_score": 95,
+    "content_score": 91,
     "document": "linkedin"
   }
 }

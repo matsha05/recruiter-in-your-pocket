@@ -340,7 +340,7 @@ test.describe("product motion contracts on real app routes", () => {
     await page.keyboard.press("Control+k");
     const dialog = page.getByRole("dialog", { name: "Commands", exact: true });
     await expect(dialog).toBeVisible();
-    await dialog.getByRole("combobox").fill("Go to Home");
+    await dialog.getByRole("combobox").fill("Go home");
     await page.keyboard.press("Enter");
     await expect(page).toHaveURL(/\/$/);
     await expect(dialog).toBeHidden();

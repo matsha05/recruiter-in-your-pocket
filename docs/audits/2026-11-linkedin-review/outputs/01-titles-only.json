@@ -4,57 +4,57 @@
   "today": "2026-11-11",
   "repaired": false,
   "firstError": null,
-  "seconds": 24,
+  "seconds": 32,
   "report": {
     "contract_version": "v3",
     "score": 45,
     "lifted_by_employer": false,
-    "verdict": "A dental office administrator with retail management experience, shown through titles and dates alone.",
+    "verdict": "A dental office administrator with retail management experience, but no account of the work in either job.",
     "write_up": [
-      "You’re an office administrator at Harlow Dental Group, with retail work before that. This is a common profile pattern: the jobs have titles and dates but no descriptions. A recruiter knows where you worked, not what you did, and is likely to move on.",
-      "Your move from Sales Associate to Assistant Store Manager at Brightway is worth keeping visible. It shows a change in role, but neither job says what you handled. There isn’t a job description to use as a model yet.",
-      "Start with the Harlow job: add the office work that’s yours and who relies on it. Then update the headline and About, followed by the Brightway management job. A recruiter could then compare your dental office work with the job they’re filling."
+      "You're an office administrator at a dental group, with retail management before that. This is a common profile pattern: a headline that repeats the current job, no About section, and job titles without descriptions. A recruiter knows where you've worked but not what you did, so they're likely to move on.",
+      "The clearest thread is your move from Assistant Store Manager to Office Administrator, backed by a Business Management degree. The earlier Sales Associate job is blank too, and there isn't a job description to use as a model yet.",
+      "Start with the Harlow job, because it's the work a recruiter will look for first. Add the office work that's yours, then update the headline and describe the Brightway management job. That gives someone hiring for dental office administration a reason to ask about your work rather than guess."
     ],
     "cards": [
       {
         "kind": "line",
         "where": "Headline",
         "line": "Office Administrator at Harlow Dental Group",
-        "cannot_tell": "This repeats your current title without saying what you manage. Put the dental setting and your office work beside the role.",
-        "example": "Office Administrator | Dental Group | [office work you manage]",
-        "question": "What office work is yours at Harlow Dental Group?"
+        "cannot_tell": "This repeats your current job but doesn't say which part of the dental office you work on. Put the specialty beside your title so a recruiter has more than the employer name to go on.",
+        "example": "Office Administrator | Harlow Dental Group | [office specialty]",
+        "question": "Which part of the dental office work is yours?"
       },
       {
         "kind": "structure",
         "where": "About",
         "line": "There is no About section.",
-        "cannot_tell": "A recruiter has no introduction to your work before reaching the job titles. A short first-person opening can say what you do at Harlow.",
-        "example": "I work as an Office Administrator at Harlow Dental Group. I [office work you manage] for [who relies on your work].",
-        "question": "What do you manage at Harlow, and who relies on that work?"
+        "cannot_tell": "Your move from retail management to a dental office has no introduction. A short first-person opening can connect the jobs and name the work you do now.",
+        "example": "I work as an Office Administrator at Harlow Dental Group. My work includes [what you do at the dental office], and I previously worked as an Assistant Store Manager at Brightway Home Goods.",
+        "question": "What work do you do at the dental office, and who do you support?"
       },
       {
         "kind": "structure",
-        "where": "Harlow Dental Group, Office Administrator",
+        "where": "Harlow Dental Group, description",
         "line": "The Office Administrator job at Harlow Dental Group has no description.",
-        "cannot_tell": "The dental office job is the first place a recruiter will look for your current work, but the title is all they have. Start with the responsibilities that are yours.",
-        "example": "[The office work you manage] for [who relies on that work].",
-        "question": "Do you handle the schedule, billing, the front desk or something else at Harlow, and how many dentists or patients do you support?"
+        "cannot_tell": "The dental office job is the first place to show what you do, but there's nothing under the title. Scheduling, insurance verification and billing are common search terms for this work, and none appears under this job. Add the ones that are yours.",
+        "example": "[Office work you handled] for [who you supported], including [a task you completed regularly].",
+        "question": "Did you handle scheduling, insurance claims or the front desk, and how many dentists or patients did you support?"
       },
       {
         "kind": "structure",
-        "where": "Brightway Home Goods, Assistant Store Manager",
+        "where": "Brightway Home Goods, Assistant Store Manager description",
         "line": "The Assistant Store Manager job at Brightway Home Goods has no description.",
-        "cannot_tell": "Your move into management is visible, but what you managed at the store isn’t. Add the work that belonged to you.",
-        "example": "[The store work you managed], including [a named responsibility].",
-        "question": "Did you run the schedule, open and close the store, handle the cash office or manage other work? How many people were on a shift?"
+        "cannot_tell": "The title tells a recruiter you were in store management, but not what you managed. Show which shift responsibilities were yours and how much of the work you handled.",
+        "example": "[Shift responsibilities that were yours], including [a task you handled] for [number of people on a shift].",
+        "question": "As Assistant Store Manager, did you run the schedule, open and close the store, or handle the cash office? How many people were on a shift?"
       },
       {
         "kind": "line",
         "where": "Top skills",
         "line": "Teamwork",
-        "cannot_tell": "Teamwork doesn’t name the office work or systems you use. The three skills shown are Microsoft Office, Teamwork and Communication; use those places for the work your target job turns on.",
-        "example": "[Dental office system you use] | [administrative method you use] | [retail management skill you use]",
-        "question": "Which office systems, administrative methods or store management skills have you used in these jobs?"
+        "cannot_tell": "Teamwork, Communication and Microsoft Office don't tell a recruiter which dental office work you know. Use the three shown for the software and office tasks you use, where those are true for you.",
+        "example": "[Scheduling or billing software you use] | [insurance work you do] | [another dental office skill you use]",
+        "question": "Which software and dental office tasks do you use in your work?"
       }
     ],
     "fit": {
@@ -62,9 +62,9 @@
         "Office Administrator",
         "Assistant Store Manager"
       ],
-      "why": "Your headline and current title both name office administration at Harlow Dental Group, with retail management before it.",
-      "level": "mid-level, your current title is Office Administrator",
-      "note": "'Office Administrator' is in your headline and current title. 'Dental Group' is in your headline and employer name. 'Assistant Store Manager' is in your earlier experience, and 'Microsoft Office' is among your top skills. Someone hiring a dental office administrator may also search for scheduling, insurance verification and billing; those terms aren't on your profile. Add the ones you do, and bring the most relevant one into your headline.",
+      "why": "Your headline and current title name office administration at Harlow Dental Group, with store management before it.",
+      "level": "mid-level, your current Office Administrator role and earlier Assistant Store Manager role",
+      "note": "'Office Administrator' is in your headline and current title. 'Dental' is in your headline and employer name. 'Microsoft Office' is in your top skills. Recruiters also search for scheduling, insurance verification and billing, none of which appears on your profile. If you do that work, put the relevant terms in your Harlow job description and name your main specialty in your headline. Start by moving your main office specialty into the headline.",
       "posting": {
         "summary": "",
         "missing": []
