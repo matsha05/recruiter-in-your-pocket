@@ -1,13 +1,14 @@
 "use client";
 
-import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 import { Check, CircleNotch, Copy, PencilSimple } from "@phosphor-icons/react";
 import { LiftedTrace } from "@/components/shared/LiftedTrace";
 import { ActionFeedback } from "@/components/ui/action-feedback";
 import { Button } from "@/components/ui/button";
 import { Analytics } from "@/lib/analytics";
 import { useTransientFeedback } from "@/hooks/use-transient-feedback";
-import type { LineSource } from "@/lib/reports/line-answers";
+import { useLineAnswerSave } from "@/hooks/use-line-answer-save";
+import { getPendingLineAnswers, liftAnswersFromStored, LINE_ANSWER_LIMITS, storedAnswersFromLift, type LineAnswersPatch, type LineSource } from "@/lib/reports/line-answers";
 import {
   answeredValues,
   composeRevisedLine,
@@ -49,15 +50,8 @@ export interface LiftInitial {
 /** The question a fix asks when the report gave it none. */
 export const DEFAULT_LIFT_QUESTION = "What would you add to this line?";
 
-/** What to keep with the report when the answers or the chosen line change. Resolves false when it wasn't kept. */
-export interface LiftPersist {
-  /** The questions as shown, in order, so the answers can be matched back by text. */
-  questions: string[];
-  answers: LiftAnswer[];
-  line: string | null;
-  source: LineSource;
-}
-export type LiftPersistHandler = (change: LiftPersist) => Promise<boolean> | boolean | void;
+/** Resolves false when the answers or chosen line weren't kept. */
+export type LiftPersistHandler = (change: LineAnswersPatch) => Promise<boolean> | boolean | void;
 
 /** Why the full resume line isn't here, so the note under the line can say so accurately. */
 export type ResumeSource = "attached" | "recovered" | "saved" | "sample";
@@ -81,8 +75,9 @@ export function LineLift({
   onChange,
   onReattach,
   polishContext,
-  initial,
+  initial: storedInitial,
   onPersist,
+  fixIndex = 0,
 }: {
   excerpt: string;
   /** The resume, when this visit has it (or the candidate pasted it back). */
@@ -99,8 +94,18 @@ export function LineLift({
   initial?: LiftInitial;
   /** Keeps the answers and the chosen line with the saved report. Absent when there is nowhere to keep them. */
   onPersist?: LiftPersistHandler;
+  /** Stable position in the saved report, shared with the answer writer. */
+  fixIndex?: number;
 }) {
   const asked = useMemo(() => (questions.length > 0 ? questions : [DEFAULT_LIFT_QUESTION]), [questions]);
+  const reportId = polishContext?.reportId;
+  const [pendingSave] = useState(() => reportId ? getPendingLineAnswers(reportId, fixIndex) : null);
+  // A clear or an unfinished edit in this tab takes precedence over the last server response.
+  const initial = pendingSave
+    ? liftAnswersFromStored({ ...pendingSave.patch, updated_at: "" }, asked) ?? undefined
+    : storedInitial;
+  const saveContext = useMemo(() => reportId ? { reportId, fixIndex, draft: pendingSave } : undefined, [fixIndex, pendingSave, reportId]);
+  const { state: kept, schedule, retry } = useLineAnswerSave(onPersist, Boolean(storedInitial), saveContext);
   // Answers are kept by question, so a report still streaming in can add questions without losing any.
   const [byQuestion, setByQuestion] = useState<Record<string, LiftAnswer>>(() => {
     if (!initial) return {};
@@ -131,12 +136,13 @@ export function LineLift({
   const [polished, setPolished] = useState<{ literal: string; line: string } | null>(null);
   const [useExact, setUseExact] = useState(initial?.source === "literal");
   // A kept polished line shows at once; the server is asked again only when the answers change.
-  const [keptPolish] = useState<string | null>(initial?.source === "polished" ? initial.line : null);
-  const reportId = polishContext?.reportId;
+  const [keptPolish] = useState(() => initial?.source === "polished" && initial.line && composed
+    ? { literal: composed, line: initial.line }
+    : null);
   const recoveryId = polishContext?.recoveryId;
   useEffect(() => {
     if ((!reportId && !recoveryId) || !composed || edited !== null || !allResolved) return;
-    if (polished?.literal === composed) return;
+    if (polished?.literal === composed || keptPolish?.literal === composed) return;
     const values = answeredValues(answers);
     const controller = new AbortController();
     const timer = setTimeout(async () => {
@@ -152,8 +158,8 @@ export function LineLift({
       clearTimeout(timer);
       controller.abort();
     };
-  }, [allResolved, answers, composed, edited, excerpt, polished?.literal, recoveryId, reportId, sourceLine.line]);
-  const polishedLine = polished && polished.literal === composed ? polished.line : (keptPolish && composed && initial?.answers && answeredValues(initial.answers).join("\n") === answeredValues(answers).join("\n") ? keptPolish : null);
+  }, [allResolved, answers, composed, edited, excerpt, keptPolish?.literal, polished?.literal, recoveryId, reportId, sourceLine.line]);
+  const polishedLine = polished && polished.literal === composed ? polished.line : (keptPolish && keptPolish.literal === composed ? keptPolish.line : null);
   const showPolished = edited === null && Boolean(polishedLine) && !useExact;
 
   const line = edited ?? (showPolished ? polishedLine! : composed);
@@ -180,32 +186,64 @@ export function LineLift({
 
   useEffect(() => { if (editing) editRef.current?.focus(); }, [editing]);
 
-  // Keep the answers with the saved report once they settle (W3). Nothing is kept until something is answered.
-  const [kept, setKept] = useState<"idle" | "saving" | "kept" | "failed">(initial ? "kept" : "idle");
   const lineSource: LineSource = edited !== null ? "edited" : showPolished ? "polished" : "literal";
-  // Only a line whose facts check out is kept; a refused edit keeps the answers and drops the line.
-  const persistKey = JSON.stringify({ answers, line: copyableLine ?? null, lineSource });
-  const lastPersisted = useRef<string | null>(initial ? persistKey : null);
+  const lineTooLong = lineSource !== "literal" && Boolean(copyableLine && copyableLine.length > LINE_ANSWER_LIMITS.line);
+  const makePatch = useCallback((nextAnswers: LiftAnswer[], nextLine: string | null | undefined, nextSource: LineSource): LineAnswersPatch => {
+    const stored = storedAnswersFromLift(asked, nextAnswers);
+    return {
+      fix_index: fixIndex,
+      answers: stored,
+      // A literal line can be rebuilt from its answers. Custom wording must remain in the
+      // pending draft if the server rejects its length, never be acknowledged as a null line.
+      line: stored.length && nextLine && (nextSource !== "literal" || nextLine.length <= LINE_ANSWER_LIMITS.line) ? nextLine : null,
+      source: stored.length ? nextSource : "literal",
+    };
+  }, [asked, fixIndex]);
+  const patch = useMemo(() => makePatch(answers, copyableLine, lineSource), [answers, copyableLine, lineSource, makePatch]);
+  const lastScheduled = useRef(JSON.stringify(patch));
+  const hasEdited = useRef(false);
+  const schedulePatch = useCallback((next: LineAnswersPatch) => {
+    const key = JSON.stringify(next);
+    if (lastScheduled.current === key) return;
+    lastScheduled.current = key;
+    schedule(next);
+  }, [schedule]);
+  // User actions stage synchronously below so leaving during the debounce keeps them.
+  // Follow later guarded polish too, but mounting a failed draft must never silently retry it.
   useEffect(() => {
-    if (!onPersist) return;
-    if (answers.every((answer) => answer.kind === "open")) return;
-    if (lastPersisted.current === persistKey) return;
-    let cancelled = false;
-    const timer = setTimeout(() => {
-      lastPersisted.current = persistKey;
-      setKept("saving");
-      Promise.resolve(onPersist({ questions: asked, answers, line: copyableLine ?? null, source: lineSource }))
-        .then((ok) => { if (!cancelled) setKept(ok === false ? "failed" : "kept"); })
-        .catch(() => { if (!cancelled) setKept("failed"); });
-    }, 1500);
-    return () => { cancelled = true; clearTimeout(timer); };
-  }, [answers, asked, copyableLine, lineSource, onPersist, persistKey]);
+    if (hasEdited.current) schedulePatch(patch);
+  }, [patch, schedulePatch]);
 
   const setAnswer = (index: number, next: LiftAnswer) => {
+    hasEdited.current = true;
+    const nextAnswers = answers.map((answer, position) => position === index ? next : answer);
+    const literal = composeRevisedLine(sourceLine.line, nextAnswers);
+    const safe = literal && revisedLinePolicy({ resumeText, excerpt, line: literal, answers: nextAnswers }).copyable;
+    schedulePatch(makePatch(nextAnswers, safe ? literal : null, "literal"));
     setByQuestion((current) => ({ ...current, [asked[index]]: next }));
     // A new answer rebuilds the line from the resume and the answers.
     setEdited(null);
     setEditing(false);
+    copied.reset();
+  };
+
+  const editLine = (value: string) => {
+    hasEdited.current = true;
+    const safe = revisedLinePolicy({ resumeText, excerpt, line: value, answers }).copyable;
+    schedulePatch(makePatch(answers, safe ? value : null, "edited"));
+    setEdited(value);
+  };
+
+  const chooseLine = (exact: boolean) => {
+    hasEdited.current = true;
+    const selected = exact ? composed : polishedLine;
+    const safe = selected && (exact
+      ? revisedLinePolicy({ resumeText, excerpt, line: selected, answers }).copyable
+      : composed && checkPolishedLine({ sourceLine: sourceLine.line, answers: answeredValues(answers), literal: composed, polished: selected }, { allowJoiners: POLISH_ALLOWS_JOINERS }).ok);
+    schedulePatch(makePatch(answers, safe ? selected : null, exact ? "literal" : "polished"));
+    setEdited(null);
+    setEditing(false);
+    setUseExact(exact);
     copied.reset();
   };
 
@@ -228,6 +266,10 @@ export function LineLift({
     const error = onReattach?.(pasted) ?? null;
     setReattachError(error);
     if (!error) {
+      hasEdited.current = true;
+      const literal = composeRevisedLine(liftSourceLine(excerpt, pasted).line, answers);
+      const safe = literal && revisedLinePolicy({ resumeText: pasted, excerpt, line: literal, answers }).copyable;
+      schedulePatch(makePatch(answers, safe ? literal : null, "literal"));
       setReattaching(false);
       setPasted("");
       setEdited(null);
@@ -269,6 +311,7 @@ export function LineLift({
                     className={styles.liftInput}
                     value={answer.kind === "answered" ? answer.value : ""}
                     onChange={(event) => setAnswer(index, { kind: "answered", value: event.target.value })}
+                    maxLength={LINE_ANSWER_LIMITS.text}
                     autoComplete="off"
                   />
                   <div className={styles.liftSkips}>
@@ -320,7 +363,8 @@ export function LineLift({
             ref={editRef}
             className={styles.revisedInput}
             value={line}
-            onChange={(event) => setEdited(event.target.value)}
+            onChange={(event) => editLine(event.target.value)}
+            maxLength={LINE_ANSWER_LIMITS.line}
             aria-label="Edit your revised line"
             rows={4}
           />
@@ -348,21 +392,23 @@ export function LineLift({
               : guardNote}
           </p>
         )}
-        {copyableLine && onPersist && kept !== "idle" && (
+        {onPersist && kept !== "idle" && (
           <p className={styles.revisedNote} data-testid="line-kept" aria-live="polite">
-            {kept === "kept" ? "Kept with this report."
+            {lineTooLong ? "Shorten this line to 600 characters to save it."
+              : kept === "kept" ? (patch.answers.length ? "Kept with this report." : "Cleared from this report.")
               : kept === "saving" ? "Keeping this with your report…"
-                : "We couldn't keep this with your report just now. Copy the line to be safe."}
+                : "Our bad. We couldn't save these changes."}
+            {kept === "failed" && !lineTooLong && <>{" "}<Button type="button" variant="quiet" size="sm" onClick={retry}>Try saving again</Button></>}
           </p>
         )}
         {line && !copyableLine && edited !== null && guardOffersExactWords(verdict) && (
           <div className={styles.liftSkips}>
-            <Button type="button" variant="quiet" size="sm" onClick={() => { setEdited(null); setEditing(false); copied.reset(); }}>Use my exact words</Button>
+            <Button type="button" variant="quiet" size="sm" onClick={() => chooseLine(true)}>Use my exact words</Button>
           </div>
         )}
         {edited === null && polishedLine && (
           <div className={styles.liftSkips}>
-            <Button type="button" variant="quiet" size="sm" onClick={() => { setUseExact(!useExact); copied.reset(); }} aria-pressed={useExact}>
+            <Button type="button" variant="quiet" size="sm" onClick={() => chooseLine(!useExact)} aria-pressed={useExact}>
               {showPolished ? "Use my exact words" : "Use the smoothed line"}
             </Button>
           </div>

@@ -20,7 +20,7 @@
     "test:redteam-journeys": "node scripts/run-redteam-journeys.cjs",
     "preflight:stripe": "node scripts/stripe-launch-preflight.cjs",
     "preflight:stripe:remote": "node scripts/stripe-launch-preflight.cjs --remote",
-    "qa:design-system": "node scripts/qa/design-system-guardrails.mjs",
+    "qa:design-system": "node --test scripts/qa/design-system-contracts.test.mjs && node scripts/qa/design-system-guardrails.mjs",
     "copy:inventory": "node scripts/copy-inventory.cjs",
     "copy:inventory:check": "node scripts/copy-inventory.cjs --check",
     "copy:judge": "node scripts/run-ts-script.cjs scripts/run-copy-judge.ts",

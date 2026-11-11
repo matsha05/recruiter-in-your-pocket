@@ -63,10 +63,10 @@ function productFiles(exts) {
   return ["app", "components", "lib"].flatMap((dir) => walk(dir, exts)).filter((file) => !NON_PRODUCT.some((prefix) => file.startsWith(prefix)));
 }
 
-/** Rules outside @font-face and keyframes, as [selector, body, insideMedia]. */
+/** Rules outside @font-face and keyframes, as [selector, body, enclosingAtRules]. */
 function cssRules(source) {
   const rules = [];
-  const visit = (text, inMedia) => {
+  const visit = (text, enclosingAtRules = []) => {
     let i = 0;
     while (true) {
       const open = text.indexOf("{", i);
@@ -79,17 +79,41 @@ function cssRules(source) {
       }
       const prelude = text.slice(i, open).replace(/\/\*[\s\S]*?\*\//g, "").trim();
       const body = text.slice(open + 1, close);
-      if (/^@(media|supports|layer)/.test(prelude)) visit(body, true);
-      else if (!/^@(font-face|keyframes)/.test(prelude) && !/^(from|to|\d+%)/.test(prelude)) rules.push([prelude, body, inMedia]);
+      if (/^@(media|supports|layer)/.test(prelude)) visit(body, [...enclosingAtRules, prelude]);
+      else if (!/^@(font-face|keyframes)/.test(prelude) && !/^(from|to|\d+%)/.test(prelude)) rules.push([prelude, body, enclosingAtRules]);
       i = close + 1;
     }
   };
-  visit(source.replace(/\/\*[\s\S]*?\*\//g, ""), false);
+  visit(source.replace(/\/\*[\s\S]*?\*\//g, ""));
   return rules;
 }
 
 function declarations(body, prop) {
   return [...body.matchAll(new RegExp(`(?:^|;|\\s)${prop}\\s*:\\s*([^;]+)`, "g"))].map((match) => match[1].trim());
+}
+
+// The approved worklist score is numeric apparatus, not a thirteenth prose role. The Nov 6
+// typography brief explicitly keeps the score unchanged. Pin its token, owner, breakpoint and font
+// instead of exempting the component or allowing 44/52px throughout the interface.
+const WORKLIST_SCORE_FILE = "components/workspace/report/worklist/Worklist.module.css";
+const WORKLIST_SCORE_FONT = "var(--weight-display) var(--report-score-size) / 1 var(--font-display)";
+
+export function validateWorklistScore(source) {
+  const errors = [];
+  const rules = cssRules(source);
+  const tokenRules = rules.filter(([, body]) => declarations(body, "--report-score-size").length);
+  const scoreRules = rules.filter(([selector]) => selector === ".score");
+  const base = tokenRules.find(([selector, , atRules]) => selector === ".score" && atRules.length === 0);
+  const wide = tokenRules.find(([selector, , atRules]) => selector === ".score" && atRules.length === 1 && /^@media\s*\(min-width:\s*640px\)$/.test(atRules[0]));
+  if (tokenRules.length !== 2 || scoreRules.length !== 2 || !base || !wide ||
+      declarations(base[1], "--report-score-size").join() !== "2.75rem" ||
+      declarations(wide[1], "--report-score-size").join() !== "3.25rem" ||
+      declarations(base[1], "font").join() !== WORKLIST_SCORE_FONT ||
+      declarations(wide[1], "font").length ||
+      [base, wide].some(([, body]) => ["font-size", "font-weight", "font-family", "line-height"].some((property) => declarations(body, property).length))) {
+    errors.push("Worklist numeric score must keep its scoped 44px/52px token at 640px, weight 800, unit leading, and display face (approved Nov 6 typography brief).");
+  }
+  return errors;
 }
 
 function countTextRoles(globals) {
@@ -217,6 +241,7 @@ function validateTypeDeclarations(errors) {
   const badWeights = [];
   for (const file of productFiles([".css"])) {
     const source = read(file);
+    if (file === WORKLIST_SCORE_FILE) errors.push(...validateWorklistScore(source));
     for (const [selector, body] of cssRules(source)) {
       for (const value of declarations(body, "font-size")) {
         if (/var\(--type-[a-z-]+-size\)|^inherit$|^[\d.]+em$/.test(value)) continue;
@@ -227,7 +252,7 @@ function validateTypeDeclarations(errors) {
         if (!RAW_SIZE_EXEMPT.has(file)) badWeights.push(`${file} ${selector} -> ${value}`);
       }
       const font = declarations(body, "font").find((value) => !/^var\(--type-[a-z-]+\)$|var\(--type-[a-z-]+-size\)|^inherit$/.test(value));
-      if (font && !RAW_SIZE_EXEMPT.has(file)) rawSizes.push(`${file} ${selector} -> font: ${font}`);
+      if (font && !RAW_SIZE_EXEMPT.has(file) && !(file === WORKLIST_SCORE_FILE && selector === ".score" && font === WORKLIST_SCORE_FONT)) rawSizes.push(`${file} ${selector} -> font: ${font}`);
     }
   }
   for (const file of productFiles([".tsx", ".ts"])) {

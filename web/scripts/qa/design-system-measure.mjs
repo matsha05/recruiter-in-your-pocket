@@ -13,8 +13,9 @@ export const DEFAULT_ROUTES = [
   "/methodology", "/privacy", "/terms", "/help", "/status", "/auth", "/this-page-does-not-exist",
 ];
 
-// Every rendered size comes from a role step in app/globals.css (whole pixels only).
-export const ROLE_SIZES = [13, 14, 16, 18, 20, 24, 28, 32, 36, 44, 48, 64, 72];
+// Prose/interface sizes are the twelve canonical roles in app/globals.css (whole pixels only).
+// The approved numeric worklist score has its own tightly scoped check below.
+export const ROLE_SIZES = [13, 14, 16, 18, 20, 22, 24, 28, 32, 36, 48, 60];
 export const RUNTIME_BUDGETS = {
   textStyles: 40,
   primaryBuildsPerSize: 1,
@@ -43,6 +44,7 @@ function collect() {
         family: style.fontFamily.split(",")[0].replace(/["']/g, "").trim(),
         size: style.fontSize, weight: style.fontWeight, leading: style.lineHeight,
         text: ownText.slice(0, 48), tag: el.tagName.toLowerCase(),
+        numericScore: el.matches('[data-testid="worklist-score"]'),
       });
     }
     const tag = el.tagName.toLowerCase();
@@ -96,6 +98,12 @@ export async function measureSite(base, routes = DEFAULT_ROUTES, widths = [1440,
   return pages;
 }
 
+export function isApprovedScoreMeasurement(style) {
+  const size = style.width >= 640 ? "52px" : "44px";
+  return style.numericScore === true && style.tag === "p" && /^\d{1,2}$/.test(style.text) &&
+    style.family === "Schibsted Grotesk" && style.weight === "800" && style.size === size && style.leading === size;
+}
+
 export function evaluateMeasurements(pages) {
   const errors = [];
   const loaded = pages.filter((page) => !page.error);
@@ -106,7 +114,9 @@ export function evaluateMeasurements(pages) {
   for (const style of styles) if (!distinct.has(key(style))) distinct.set(key(style), style);
   const sizes = new Map();
   for (const style of styles) if (!sizes.has(style.size)) sizes.set(style.size, style);
-  const offScale = [...sizes.values()].filter((style) => !ROLE_SIZES.includes(Number(parseFloat(style.size).toFixed(2))));
+  const offScale = styles.filter((style) => style.numericScore
+    ? !isApprovedScoreMeasurement(style)
+    : !ROLE_SIZES.includes(Number(parseFloat(style.size).toFixed(2))));
   for (const style of offScale) errors.push(`Off-scale size ${style.size}: ${style.route} @${style.width} <${style.tag}> "${style.text}"`);
   const weights = new Set(styles.map((style) => style.weight));
   for (const weight of weights) if (!["400", "600", "800"].includes(weight)) {

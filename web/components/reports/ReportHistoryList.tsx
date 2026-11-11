@@ -1,5 +1,7 @@
 "use client";
 
+import { discardPendingLineAnswers } from "@/lib/reports/line-answers";
+
 import { ClientActionError, getClientActionError } from "@/lib/client-action-error";
 
 import Link from "next/link";
@@ -104,6 +106,7 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
       const data = await response.json().catch(() => ({}));
       if (!response.ok || !data?.ok) throw new ClientActionError(data?.message, "Could not delete this report. Try again.");
 
+      discardPendingLineAnswers(reportId);
       setReports((current) => current.filter((report) => report.id !== reportId));
       setDeleteId(null);
       toast.success("Report deleted");

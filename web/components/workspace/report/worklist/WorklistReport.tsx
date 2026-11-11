@@ -116,6 +116,7 @@ export function WorklistReport({
                 resumeText={resumeText}
                 isSample={isSample}
                 initial={storedLineAnswers?.[String(index)]}
+                reportId={reportId}
                 onPersist={persist}
                 onStateChange={onStateChange}
               />
@@ -139,6 +140,7 @@ export function WorklistReport({
                 resumeText={resumeText}
                 isSample={isSample}
                 initial={storedLineAnswers?.[String(index)]}
+                reportId={reportId}
                 onPersist={persist}
                 onStateChange={onStateChange}
               />

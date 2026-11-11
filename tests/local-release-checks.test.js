@@ -3,7 +3,7 @@ const { mkdtempSync, mkdirSync, rmSync, symlinkSync, writeFileSync } = require("
 const os = require("node:os");
 const path = require("node:path");
 const { execFileSync } = require("node:child_process");
-const { buildTestEnvironment, fingerprint, resolveWorkflowEnv, summarize, workflowSteps } = require("../scripts/local-release-checks.cjs");
+const { buildStepEnvironment, buildTestEnvironment, fingerprint, resolveWorkflowEnv, summarize, workflowSteps } = require("../scripts/local-release-checks.cjs");
 const { localTestPort } = require("../web/scripts/local-test-port.cjs");
 
 const directory = mkdtempSync(path.join(os.tmpdir(), "riyp-local-release-checks-"));
@@ -20,7 +20,10 @@ try {
   assert.equal(env.NEXT_PUBLIC_SUPABASE_URL, "https://riyp-launch-test.supabase.co");
   assert.equal(env.NEXT_PUBLIC_SUPABASE_ANON_KEY, "riyp-local-check-public-key");
   assert.equal(env.RIYP_ALLOW_PAID_EVALS, "false");
-  assert.equal(env.USE_MOCK_OPENAI, "1");
+  assert.equal(env.USE_MOCK_OPENAI, "", "ordinary contracts must not disable grounding through mock mode");
+  assert.equal(buildStepEnvironment(env).USE_MOCK_OPENAI, "");
+  assert.equal(buildStepEnvironment(env, { USE_MOCK_OPENAI: "1" }).USE_MOCK_OPENAI, "1", "the launch gate keeps its explicit mock setting");
+  assert.equal(buildStepEnvironment(env, { RIYP_ALLOW_PAID_EVALS: "true" }).RIYP_ALLOW_PAID_EVALS, "false");
   assert.equal(env.RIYP_LOCAL_TEST_PORT, "3100");
   assert.equal(buildTestEnvironment(directory, { PATH: "/bin", RIYP_LOCAL_TEST_PORT: "3113" }).RIYP_LOCAL_TEST_PORT, "3113");
   assert.equal(localTestPort(), 3100);

@@ -362,6 +362,55 @@ test.describe("workspace command and completion handoffs", () => {
     expect(submissions[1].jobDescription).toBeUndefined();
   });
 
+  test("enabled saved-job context is cleared when its report is revised", async ({ page }) => {
+    const submissions: Array<{ savedJobId?: string; jobDescription?: string }> = [];
+    await page.route("**/api/resume-feedback-stream", async (route) => {
+      submissions.push(route.request().postDataJSON());
+      await completeReport(route);
+    });
+    await page.goto(`${ORIGIN}/workspace?job=${JOB.id}`);
+    await expect(page.getByText(JOB.title, { exact: true })).toBeVisible();
+    await expect(page.getByTestId("workspace-job-description")).toHaveValue(JOB.jobDescription);
+    await startReport(page);
+    await expect(reportHeading(page)).toBeVisible();
+    expect(submissions[0].savedJobId).toBe(JOB.id);
+
+    await page.getByRole("button", { name: "Compare my revision", exact: true }).click();
+    await expect(page).toHaveURL(`${ORIGIN}/workspace?revision=1`);
+    await expect(page.getByText(JOB.title, { exact: true })).toHaveCount(0);
+    await page.getByTestId("workspace-paste-mode").click();
+    await expect(page.getByTestId("workspace-resume-text")).toHaveValue("");
+    await page.getByTestId("workspace-resume-text").fill(`${RESUME_TEXT}\nRevised with clearer examples.`);
+    await expect(page.getByTestId("workspace-run-report")).toContainText("Compare my revision");
+    await page.getByTestId("workspace-run-report").click();
+    await expect(reportHeading(page)).toBeVisible();
+    expect(submissions).toHaveLength(2);
+    expect(submissions[1].savedJobId).toBeUndefined();
+    expect(submissions[1].jobDescription).toBeUndefined();
+  });
+
+  test("enabled saved-job context ignores a late reply after navigation", async ({ page }) => {
+    const otherJob = { ...JOB, id: "44444444-4444-4444-8444-444444444444", title: "Another saved role", company: "Company B" };
+    let firstRequest: Route | undefined;
+    await page.route(`**/api/extension/saved-jobs/${JOB.id}`, (route) => { firstRequest = route; });
+    await page.route(`**/api/extension/saved-jobs/${otherJob.id}`, (route) => route.fulfill({ json: { success: true, data: otherJob } }));
+    await page.goto(`${ORIGIN}/workspace?job=${JOB.id}`);
+    await expect.poll(() => Boolean(firstRequest)).toBe(true);
+    await page.evaluate((id) => {
+      window.history.pushState(null, "", `/workspace?job=${id}`);
+      window.dispatchEvent(new PopStateEvent("popstate"));
+    }, otherJob.id);
+    await expect(page.getByText(otherJob.title, { exact: true })).toBeVisible();
+    await firstRequest!.fulfill({ json: { success: true, data: JOB } });
+    await expect(page.getByText(JOB.title, { exact: true })).toHaveCount(0);
+    await expect(page.getByText(otherJob.title, { exact: true })).toBeVisible();
+    await page.evaluate(() => {
+      window.history.pushState(null, "", "/workspace");
+      window.dispatchEvent(new PopStateEvent("popstate"));
+    });
+    await expect(page.getByText(otherJob.title, { exact: true })).toHaveCount(0);
+  });
+
   test("report completion announces readiness and moves focus from Stop to the actual report heading", async ({ page }) => {
     let pendingReport: Route | undefined;
     await page.route("**/api/resume-feedback-stream", (route) => { pendingReport = route; });

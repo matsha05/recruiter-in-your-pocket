@@ -34,6 +34,16 @@
     text-wrap: balance;
 }
 
+/* A section's title on a page whose own title is the headline (Nov 10, 2026): one step down, so the page title
+   stays the largest type. The homepage's sections keep `.title`, under its display-size opening. */
+.sectionTitle {
+    margin: 0 0 2rem;
+    max-width: 26ch;
+    font: var(--type-title);
+    letter-spacing: var(--tracking-title);
+    text-wrap: balance;
+}
+
 /* The one short paragraph a section may have, under its title. */
 .deck {
     max-width: 44ch;

@@ -185,7 +185,7 @@ export function ResumeDropzone({
 
     return (
         <div className={cn("w-full", className)}>
-            <input {...getInputProps()} onChangeCapture={handleNativeFileChange} suppressHydrationWarning aria-label="Upload resume file (PDF or DOCX)" />
+            <input {...getInputProps()} type="file" onChangeCapture={handleNativeFileChange} suppressHydrationWarning aria-label="Upload resume file (PDF or DOCX)" />
             {readingFileName || (displayFileName && !error) ? (
                 <Paper kind="plain" className={cn(styles.accepted, "ui-state-enter")} aria-busy={isBusy}>
                     <span

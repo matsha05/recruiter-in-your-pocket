@@ -58,7 +58,7 @@ test.describe("homepage feedback and SEO contract", () => {
     await expect(progress).toContainText("Up 11 since the first report.");
     await expect(progress).not.toContainText("fixed");
     const truths = homepage.locator("#what-we-look-for");
-    await expect(truths.getByRole("heading", { level: 2 })).toHaveText("What we look for, line by line.");
+    await expect(truths.getByRole("heading", { level: 2 })).toHaveText("What we fix, line by line.");
     await expect(truths).toContainText("We show you where. The lines a recruiter would stop on, in the order they’d read them.");
     await expect(truths).toContainText("Nobody can score you against an ATS or tell you your interview odds.");
 

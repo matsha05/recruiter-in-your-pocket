@@ -11,7 +11,7 @@ import { useSeen } from "@/hooks/use-seen";
 import { useTransientFeedback } from "@/hooks/use-transient-feedback";
 import { Analytics } from "@/lib/analytics";
 import { QUOTED_KINDS, type WorklistCard as Card } from "@/lib/llm/worklist-schema";
-import { LINE_ANSWER_LIMITS, type LineAnswersPatch, type StoredLineAnswers } from "@/lib/reports/line-answers";
+import { getPendingLineAnswers, LINE_ANSWER_LIMITS, type LineAnswersPatch, type StoredLineAnswers } from "@/lib/reports/line-answers";
 import {
   blankAnswersFromStored,
   blankLabels,
@@ -90,6 +90,7 @@ export interface WorklistCardProps {
   /** The sample can be played with, but nothing is kept; a saved report keeps the answers. */
   isSample?: boolean;
   initial?: StoredLineAnswers;
+  reportId?: string;
   onPersist?: (patch: LineAnswersPatch) => Promise<boolean> | boolean | void;
   onStateChange?: (index: number, state: CardState) => void;
 }
@@ -102,17 +103,42 @@ export interface WorklistCardProps {
  * sentence, in the candidate's blue; their words go in as written. Nothing outside a bracket was invented:
  * the validator held every fact in the example to the resume. Copy waits until every blank is filled.
  */
-export function WorklistCard({ card, index, cards, resumeText, isSample = false, initial, onPersist, onStateChange }: WorklistCardProps) {
+export function WorklistCard({ card, index, cards, resumeText, isSample = false, initial, reportId, onPersist, onStateChange }: WorklistCardProps) {
   const labels = useMemo(() => blankLabels(card.example), [card.example]);
   const segments = useMemo(() => exampleSegments(card.example), [card.example]);
-  const restored = useMemo(() => blankAnswersFromStored(card.example, initial), [card.example, initial]);
+  // Only unfinished edits are cached. A confirmed save is read from the server as usual.
+  const [pendingSave] = useState(() => reportId ? getPendingLineAnswers(reportId, index) : null);
+  const restored = useMemo(() => blankAnswersFromStored(card.example, pendingSave
+    ? { ...pendingSave.patch, updated_at: "" }
+    : initial), [card.example, initial, pendingSave]);
+  const restoredSave = useMemo(() => reportId
+    ? { reportId, fixIndex: index, draft: pendingSave }
+    : undefined, [index, pendingSave, reportId]);
   const [answers, setAnswers] = useState<BlankAnswers>(() => restored?.answers ?? labels.map(() => ""));
   const [left, setLeft] = useState(restored?.left ?? false);
   const [copying, setCopying] = useState(false);
   const [copyError, setCopyError] = useState(false);
   const copied = useTransientFeedback();
   const baseId = useId();
+  const blankSelection = useRef<{
+    id: string;
+    start: number | null;
+    end: number | null;
+    direction: "forward" | "backward" | "none" | null;
+  } | null>(null);
   const { ref: lineRef, seen } = useSeen<HTMLQuoteElement>(0.6);
+
+  // A growing answer swaps its inline input for a textarea. Keep the user's caret
+  // on the replacement field so the remaining keystrokes still reach the answer.
+  useLayoutEffect(() => {
+    const selection = blankSelection.current;
+    if (!selection) return;
+    blankSelection.current = null;
+    const field = document.getElementById(selection.id);
+    if (!(field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement)) return;
+    field.focus({ preventScroll: true });
+    field.setSelectionRange(selection.start, selection.end, selection.direction ?? undefined);
+  }, [answers]);
 
   const quoted = QUOTED_KINDS.has(card.kind);
   const around = quoted ? neighbours(resumeText, card.line) : {};
@@ -124,7 +150,7 @@ export function WorklistCard({ card, index, cards, resumeText, isSample = false,
 
   useEffect(() => { onStateChange?.(index, state); }, [index, onStateChange, state]);
 
-  const { state: kept, schedule: keepAnswers, retry: retrySave } = useLineAnswerSave(onPersist, Boolean(initial));
+  const { state: kept, schedule: keepAnswers, retry: retrySave } = useLineAnswerSave(onPersist, Boolean(initial), restoredSave);
   const persistAnswers = (nextAnswers: BlankAnswers, nextLeft: boolean) => {
     const nextLine = nextLeft ? null : composeExample(card.example, nextAnswers);
     keepAnswers({
@@ -138,6 +164,14 @@ export function WorklistCard({ card, index, cards, resumeText, isSample = false,
   };
 
   const setAnswer = (position: number, value: string) => {
+    const wasLong = Math.max(labels[position].length, answers[position].trim().length) > LONG_BLANK;
+    const willBeLong = Math.max(labels[position].length, value.trim().length) > LONG_BLANK;
+    const field = document.activeElement;
+    if (wasLong !== willBeLong &&
+      (field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement) &&
+      field.id === `${baseId}-blank-${position}`) {
+      blankSelection.current = { id: field.id, start: field.selectionStart, end: field.selectionEnd, direction: field.selectionDirection };
+    }
     const nextAnswers = answers.map((answer, i) => (i === position ? value : answer));
     setAnswers(nextAnswers);
     setLeft(false);

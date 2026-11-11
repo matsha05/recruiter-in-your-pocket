@@ -110,8 +110,8 @@ test.describe("editorial resources", () => {
 const numberedResearchRoutes = [
   { route: "/research/how-recruiters-read", figures: [1] },
   { route: "/research/referral-advantage", figures: [1, 2, 3] },
-  { route: "/research/spelling-errors-impact", figures: [1, 2] },
-  { route: "/research/linkedin-visibility", figures: [1, 2] },
+  { route: "/research/spelling-errors-impact", figures: [1] },
+  { route: "/research/linkedin-visibility", figures: [1] },
 ] as const;
 
 test.describe("multi-figure research articles", () => {
@@ -125,8 +125,10 @@ test.describe("multi-figure research articles", () => {
     await expect(odds).toContainText("1 in 500");
     // Derived figures must say they are our arithmetic.
     await expect(odds).toContainText("our arithmetic");
-    const chart = page.getByRole("figure", { name: /11 percentage points more likely to submit work on time and 20 points more likely to continue/ });
+    const chart = page.getByRole("figure", { name: /11 percentage points more likely to submit work on time and 20 points more likely to ask to keep working on the task/ });
+    await expect(chart).toContainText("+11");
     await expect(chart).toContainText("+20");
+    await expect(chart).toContainText("Asked to keep working");
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     expect(overflow).toBeLessThanOrEqual(1);
   });

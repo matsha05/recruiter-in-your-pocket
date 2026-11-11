@@ -1,5 +1,7 @@
 "use client";
 
+import { discardPendingLineAnswers } from "@/lib/reports/line-answers";
+
 import { createContext, useCallback, useContext, useEffect, useRef, useState, ReactNode } from "react";
 import type { User } from "@supabase/supabase-js";
 import { identifyUser, resetAnalytics } from "@/lib/analytics";
@@ -69,6 +71,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const mountedRef = useRef(false);
     const revisionRef = useRef(0);
     const accountIdRef = useRef<string | null>(null);
+    // A transient empty session must not erase the owner of private drafts.
+    const answerOwnerRef = useRef<string | null>(null);
     const refreshAbortRef = useRef<AbortController | null>(null);
     const deferredRefreshRef = useRef<number | null>(null);
     const signingOutRef = useRef(false);
@@ -110,6 +114,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             if (error && error.name !== "AuthSessionMissingError") throw error;
             if (expectedAccountId && supabaseUser && supabaseUser.id !== expectedAccountId) return;
             const baseUser = mapUser(supabaseUser);
+            if (answerOwnerRef.current && answerOwnerRef.current !== (baseUser?.id ?? null)) discardPendingLineAnswers();
+            answerOwnerRef.current = baseUser?.id ?? null;
             if (accountIdRef.current !== (baseUser?.id ?? null)) {
                 resetAnalytics();
                 // Keep this immediate identity snapshot separate from the
@@ -210,6 +216,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             // identity decision; an old sign-out result cannot clear it.
             if (accountIdRef.current !== null && accountIdRef.current !== startingAccount) return;
             invalidateRefresh();
+            discardPendingLineAnswers();
+            answerOwnerRef.current = null;
             accountIdRef.current = null;
             setUser(null);
             resetAnalytics(); // Clear analytics state
@@ -256,6 +264,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                     if (!mountedRef.current) return;
                     invalidateRefresh();
                     const nextUser = mapUser(session?.user ?? null);
+                    if (_event === "SIGNED_OUT") {
+                        discardPendingLineAnswers();
+                        answerOwnerRef.current = null;
+                    } else if (nextUser) {
+                        if (answerOwnerRef.current && answerOwnerRef.current !== nextUser.id) discardPendingLineAnswers();
+                        answerOwnerRef.current = nextUser.id;
+                    }
                     if (accountIdRef.current !== (nextUser?.id ?? null)) resetAnalytics();
                     accountIdRef.current = nextUser?.id ?? null;
                     setUser((previous) => previous?.id === nextUser?.id && nextUser

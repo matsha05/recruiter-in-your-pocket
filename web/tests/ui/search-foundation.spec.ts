@@ -123,16 +123,28 @@ test.describe("search and sharing foundation", () => {
     }
   });
 
-  test("the research and compare hubs carry their lists as ItemList", async ({ page }) => {
-    for (const [path, minimum] of [["/research", 20], ["/compare", 7]] as const) {
+  test("the research and compare hubs carry their visible lists in order as ItemList", async ({ page }) => {
+    const hubs = [
+      // The research hub lists beliefs, then additional research; their articles live on the belief pages.
+      { path: "/research", links: '[data-visual-anchor="research-hub"] [data-testid="research-pillar"], section[aria-labelledby="additional-research-title"] li > a' },
+      { path: "/compare", links: '[data-visual-anchor="comparison-hub"] table tbody th[scope="row"] a' },
+    ] as const;
+    for (const { path, links } of hubs) {
       await page.goto(path, { waitUntil: "domcontentloaded" });
+      const visibleLinks = page.locator(links);
+      await expect(visibleLinks.first(), `${path} has a visible list`).toBeVisible();
+      const visiblePaths = await visibleLinks.evaluateAll((anchors) => anchors.map((anchor) => anchor.getAttribute("href")));
+      expect(new Set(visiblePaths).size, `${path} links each list entry once`).toBe(visiblePaths.length);
       const nodes: JsonLdNode[] = (await page.locator('script[type="application/ld+json"]').allTextContents()).flatMap((source) => {
         const data = JSON.parse(source) as JsonLdNode & { "@graph"?: JsonLdNode[] };
         return data["@graph"] ?? [data];
       });
-      const list = nodes.find((node) => node["@type"] === "ItemList");
-      expect(list, `${path} has an ItemList`).toBeTruthy();
-      expect((list!.itemListElement as unknown[]).length, path).toBeGreaterThanOrEqual(minimum);
+      const lists = nodes.filter((node) => node["@type"] === "ItemList");
+      expect(lists, `${path} has one ItemList`).toHaveLength(1);
+      const items = lists[0].itemListElement as Array<{ position: number; url: string }>;
+      expect(items.map((item) => localPath(item.url)), `${path} lists every visible entry exactly once, in reading order`).toEqual(visiblePaths);
+      expect(items.map((item) => item.position), path).toEqual(items.map((_, index) => index + 1));
+      expect(lists[0].numberOfItems, path).toBe(visiblePaths.length);
       expect(nodes.filter((node) => node["@type"] === "BreadcrumbList"), `${path} has one breadcrumb trail`).toHaveLength(1);
     }
   });

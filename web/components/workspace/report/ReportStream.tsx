@@ -7,7 +7,7 @@ import { isWorklistReport } from "@/lib/llm/worklist-schema";
 import { bracketPlaceholderKeys } from "@/lib/llm/report-placeholder-policy";
 import { resolveUniqueSourceLine } from "@/lib/llm/source-fidelity";
 import { readAnonymousReportRecoveryMarker } from "@/lib/reports/anonymous-report-recovery-client";
-import { liftAnswersFromStored, sendLineAnswers, storedAnswersFromLift, type StoredLineAnswersByFix } from "@/lib/reports/line-answers";
+import { liftAnswersFromStored, sendLineAnswers, type LineAnswersPatch, type StoredLineAnswersByFix } from "@/lib/reports/line-answers";
 import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
 import { sendReportFeedback } from "@/lib/reports/report-feedback";
 import {
@@ -33,7 +33,7 @@ import { ReportEnding } from "./ReportEnding";
 import { WorklistReport } from "./worklist/WorklistReport";
 import { ResearchReceipts } from "./ResearchReceipts";
 import type { ReportData } from "./ReportTypes";
-import { DEFAULT_LIFT_QUESTION, type LiftChange, type LiftPersist, type ResumeSource } from "./markup/LineLift";
+import { DEFAULT_LIFT_QUESTION, type LiftChange, type ResumeSource } from "./markup/LineLift";
 import { CriticalMissRow, FixRow, PageNote, excerptOf, marksLine } from "./markup/MarkedRows";
 import { ScoreBand } from "./markup/ScoreBand";
 import { hiddenFixesKey, useHiddenFixes } from "./markup/useHiddenFixes";
@@ -197,12 +197,7 @@ function CriticalMissReport({
   // Answers are kept with the report when it has a row of its own, which only a signed-in report does (W3).
   const askedFor = (index: number) => { const asked = questionsFor(index); return asked.length > 0 ? asked : [DEFAULT_LIFT_QUESTION]; };
   const liftInitial = (index: number) => liftAnswersFromStored(storedLineAnswers?.[String(index)], askedFor(index)) ?? undefined;
-  const persistHandlers = useMemo(() => (!reportId || isSample ? [] : [0, 1, 2].map((index) => (change: LiftPersist) => sendLineAnswers(reportId, {
-    fix_index: index,
-    answers: storedAnswersFromLift(change.questions, change.answers),
-    line: change.line,
-    source: change.source,
-  }))), [isSample, reportId]);
+  const persistAnswers = useMemo(() => !reportId || isSample ? undefined : (patch: LineAnswersPatch) => sendLineAnswers(reportId, patch), [isSample, reportId]);
 
   const liftProps = { resumeText: sourceText, source, onReattach: isSample ? undefined : reattach, polishContext };
 
@@ -262,7 +257,7 @@ function CriticalMissReport({
               liftState={lifts[index]?.state ?? "open"}
               questions={questionsFor(index)}
               initial={liftInitial(index)}
-              onPersist={persistHandlers[index]}
+              onPersist={persistAnswers}
               feedback={isSample || index > 0 ? undefined : {
                 question: "Was this the right thing to fix first?",
                 onSubmit: ({ right, note }) => sendReportFeedback({
@@ -309,7 +304,7 @@ function CriticalMissReport({
                 onUnlock={handleUnlock}
                 questions={questionsFor(index)}
                 initial={liftInitial(index)}
-                onPersist={persistHandlers[index]}
+                onPersist={persistAnswers}
                 {...liftProps}
               />
             );

@@ -88,8 +88,14 @@ function buildTestEnvironment(repoRoot, inherited = process.env) {
     PATH: `${path.dirname(process.execPath)}${path.delimiter}${inherited.PATH || ""}`,
     RIYP_LOCAL_TEST_PORT: String(localTestPort(inherited.RIYP_LOCAL_TEST_PORT)),
     CI: "true", FORCE_COLOR: "0", NEXT_TELEMETRY_DISABLED: "1", DO_NOT_TRACK: "1",
-    USE_MOCK_OPENAI: "1", RIYP_ALLOW_PAID_EVALS: "false", BYPASS_PAYWALL: "false",
+    USE_MOCK_OPENAI: "", RIYP_ALLOW_PAID_EVALS: "false", BYPASS_PAYWALL: "false",
   };
+}
+
+// Unit contracts must exercise real validators. Only the workflow or a browser
+// server may opt into mocks; blank credentials and paid-eval=false prevent spend.
+function buildStepEnvironment(base, overrides = {}) {
+  return { ...base, ...overrides, RIYP_ALLOW_PAID_EVALS: "false" };
 }
 
 function resolveWorkflowEnv(values = {}) {
@@ -175,7 +181,7 @@ async function runStep(step, repoRoot, env, logPath) {
     const effectiveCommand = process.platform === "darwin" && step.command === "npx playwright install --with-deps chromium"
       ? "npx playwright install chromium" : step.command;
     const child = spawn("/bin/sh", ["-c", effectiveCommand], {
-      cwd: path.resolve(repoRoot, step.cwd), env: { ...env, ...step.env, RIYP_ALLOW_PAID_EVALS: "false", USE_MOCK_OPENAI: "1" },
+      cwd: path.resolve(repoRoot, step.cwd), env: buildStepEnvironment(env, step.env),
       detached: process.platform !== "win32", stdio: ["ignore", "pipe", "pipe"],
     });
     let spawnError = null;
@@ -249,5 +255,5 @@ async function main(argv = process.argv.slice(2)) {
   return receipt.checksPassed ? 0 : 1;
 }
 
-module.exports = { argsFrom, buildTestEnvironment, fingerprint, readWorkflow, resolveWorkflowEnv, summarize, workflowSteps };
+module.exports = { argsFrom, buildStepEnvironment, buildTestEnvironment, fingerprint, readWorkflow, resolveWorkflowEnv, summarize, workflowSteps };
 if (require.main === module) main().then((code) => { process.exitCode = code; }).catch((error) => { console.error(error.message); process.exitCode = 1; });

@@ -9,17 +9,17 @@ Routes: `/reports/[id]`. Strings: 15 (15 unique).
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
 | 1 | account | `web/app/(app)/reports/[id]/page.tsx:10` | key:description | Detailed report view with evidence-backed recruiter feedback. |
-| 2 | report | `web/components/reports/ReportDetailClient.tsx:102` | call:toast.error | This report is missing details needed for a PDF. Contact support for help exporting it. |
-| 3 | report | `web/components/reports/ReportDetailClient.tsx:116` | call:ClientActionError | The PDF couldn’t download. Try exporting again. |
-| 4 | report | `web/components/reports/ReportDetailClient.tsx:144` | jsx-text | My reports |
-| 5 | report | `web/components/reports/ReportDetailClient.tsx:148` | jsx-text | Compare my revision |
-| 6 | report | `web/components/reports/ReportDetailClient.tsx:148` | jsx-text | New report |
-| 7 | report | `web/components/reports/ReportDetailClient.tsx:157` | jsx-text | Loading report… |
-| 8 | report | `web/components/reports/ReportDetailClient.tsx:166` | jsx-text | Report not found |
-| 9 | report | `web/components/reports/ReportDetailClient.tsx:171` | jsx-text | Back to your workspace |
-| 10 | report | `web/components/reports/ReportDetailClient.tsx:182` | jsx-text | Sign in to view this report |
-| 11 | report | `web/components/reports/ReportDetailClient.tsx:185` | jsx-text | Sign in |
-| 12 | report | `web/components/reports/ReportDetailClient.tsx:196` | jsx-text | We couldn’t load this report. |
-| 13 | report | `web/components/reports/ReportDetailClient.tsx:198` | jsx-text | Your report is safe. |
-| 14 | report | `web/components/reports/ReportDetailClient.tsx:205` | jsx-text | Try again |
-| 15 | report | `web/components/reports/ReportDetailClient.tsx:211` | jsx-text | Contact support |
+| 2 | report | `web/components/reports/ReportDetailClient.tsx:106` | call:toast.error | This report is missing details needed for a PDF. Contact support for help exporting it. |
+| 3 | report | `web/components/reports/ReportDetailClient.tsx:120` | call:ClientActionError | The PDF couldn’t download. Try exporting again. |
+| 4 | report | `web/components/reports/ReportDetailClient.tsx:148` | jsx-text | My reports |
+| 5 | report | `web/components/reports/ReportDetailClient.tsx:152` | jsx-text | Compare my revision |
+| 6 | report | `web/components/reports/ReportDetailClient.tsx:152` | jsx-text | New report |
+| 7 | report | `web/components/reports/ReportDetailClient.tsx:161` | jsx-text | Loading report… |
+| 8 | report | `web/components/reports/ReportDetailClient.tsx:170` | jsx-text | Report not found |
+| 9 | report | `web/components/reports/ReportDetailClient.tsx:175` | jsx-text | Back to your workspace |
+| 10 | report | `web/components/reports/ReportDetailClient.tsx:186` | jsx-text | Sign in to view this report |
+| 11 | report | `web/components/reports/ReportDetailClient.tsx:189` | jsx-text | Sign in |
+| 12 | report | `web/components/reports/ReportDetailClient.tsx:200` | jsx-text | We couldn’t load this report. |
+| 13 | report | `web/components/reports/ReportDetailClient.tsx:202` | jsx-text | Your report is safe. |
+| 14 | report | `web/components/reports/ReportDetailClient.tsx:209` | jsx-text | Try again |
+| 15 | report | `web/components/reports/ReportDetailClient.tsx:215` | jsx-text | Contact support |

@@ -1,5 +1,7 @@
 "use client";
 
+import { discardPendingLineAnswers } from "@/lib/reports/line-answers";
+
 import { useState, useEffect } from "react";
 import { Check, Clock, PencilSimple, Trash, TrendUp, Warning } from "@phosphor-icons/react";
 import { EmptyReportIcon } from "@/components/icons";
@@ -157,6 +159,7 @@ export default function HistorySidebar({
             const res = await fetch(`/api/reports/${reportId}`, { method: "DELETE" });
             const data = await res.json();
             if (data.ok) {
+                discardPendingLineAnswers(reportId);
                 setReports(prev => prev.filter(r => r.id !== reportId));
                 toast.success("Report deleted");
             } else {
