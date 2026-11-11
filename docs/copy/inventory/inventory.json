@@ -1,16 +1,16 @@
 {
   "generated_by": "web/scripts/copy-inventory.cjs",
   "counts": {
-    "files_scanned": 426,
-    "files_with_copy": 257,
-    "strings": 2958,
-    "unique_strings": 2463
+    "files_scanned": 427,
+    "files_with_copy": 258,
+    "strings": 2968,
+    "unique_strings": 2471
   },
   "by_moment": {
     "research": 990,
     "account": 459,
     "marketing": 410,
-    "report": 269,
+    "report": 279,
     "pricing": 217,
     "upload": 124,
     "legal": 111,
@@ -13651,7 +13651,7 @@
     {
       "text": "Sign in to manage your default resume.",
       "kind": "key:error",
-      "line": 21,
+      "line": 24,
       "file": "web/app/api/user/default-resume/route.ts",
       "routes": [
         "/api/user/default-resume"
@@ -13662,7 +13662,7 @@
     {
       "text": "Too many resume updates. Try again later.",
       "kind": "key:error",
-      "line": 33,
+      "line": 36,
       "file": "web/app/api/user/default-resume/route.ts",
       "routes": [
         "/api/user/default-resume"
@@ -13673,7 +13673,7 @@
     {
       "text": "Add your resume text before saving.",
       "kind": "key:error",
-      "line": 46,
+      "line": 49,
       "file": "web/app/api/user/default-resume/route.ts",
       "routes": [
         "/api/user/default-resume"
@@ -13684,7 +13684,7 @@
     {
       "text": "Add at least 100 characters of resume text.",
       "kind": "key:error",
-      "line": 53,
+      "line": 56,
       "file": "web/app/api/user/default-resume/route.ts",
       "routes": [
         "/api/user/default-resume"
@@ -13695,7 +13695,7 @@
     {
       "text": "Keep your resume text to 30,000 characters or fewer.",
       "kind": "key:error",
-      "line": 60,
+      "line": 63,
       "file": "web/app/api/user/default-resume/route.ts",
       "routes": [
         "/api/user/default-resume"
@@ -13706,7 +13706,7 @@
     {
       "text": "Filename must be 255 characters or fewer",
       "kind": "key:error",
-      "line": 71,
+      "line": 74,
       "file": "web/app/api/user/default-resume/route.ts",
       "routes": [
         "/api/user/default-resume"
@@ -13717,7 +13717,7 @@
     {
       "text": "Could not check your saved resume. Try again.",
       "kind": "key:error",
-      "line": 93,
+      "line": 96,
       "file": "web/app/api/user/default-resume/route.ts",
       "routes": [
         "/api/user/default-resume"
@@ -13728,7 +13728,7 @@
     {
       "text": "Could not rename your resume. Try again.",
       "kind": "key:error",
-      "line": 107,
+      "line": 110,
       "file": "web/app/api/user/default-resume/route.ts",
       "routes": [
         "/api/user/default-resume"
@@ -13739,7 +13739,7 @@
     {
       "text": "Could not save your default resume. Try again. If this continues, contact support.",
       "kind": "const",
-      "line": 170,
+      "line": 175,
       "file": "web/app/api/user/default-resume/route.ts",
       "routes": [
         "/api/user/default-resume"
@@ -13750,7 +13750,7 @@
     {
       "text": "Request body too large",
       "kind": "key:error",
-      "line": 194,
+      "line": 199,
       "file": "web/app/api/user/default-resume/route.ts",
       "routes": [
         "/api/user/default-resume"
@@ -13761,7 +13761,7 @@
     {
       "text": "Sign in to manage your default resume.",
       "kind": "key:error",
-      "line": 212,
+      "line": 217,
       "file": "web/app/api/user/default-resume/route.ts",
       "routes": [
         "/api/user/default-resume"
@@ -13772,7 +13772,7 @@
     {
       "text": "Could not load your default resume. Try again.",
       "kind": "key:error",
-      "line": 232,
+      "line": 237,
       "file": "web/app/api/user/default-resume/route.ts",
       "routes": [
         "/api/user/default-resume"
@@ -13783,7 +13783,7 @@
     {
       "text": "Could not access your default resume. Refresh the page and try again.",
       "kind": "key:error",
-      "line": 263,
+      "line": 283,
       "file": "web/app/api/user/default-resume/route.ts",
       "routes": [
         "/api/user/default-resume"
@@ -13794,7 +13794,7 @@
     {
       "text": "Sign in to manage your default resume.",
       "kind": "key:error",
-      "line": 277,
+      "line": 297,
       "file": "web/app/api/user/default-resume/route.ts",
       "routes": [
         "/api/user/default-resume"
@@ -13805,7 +13805,7 @@
     {
       "text": "Filename is required and must be 255 characters or fewer",
       "kind": "key:error",
-      "line": 290,
+      "line": 310,
       "file": "web/app/api/user/default-resume/route.ts",
       "routes": [
         "/api/user/default-resume"
@@ -13816,7 +13816,7 @@
     {
       "text": "Could not rename your resume. Try again.",
       "kind": "key:error",
-      "line": 303,
+      "line": 323,
       "file": "web/app/api/user/default-resume/route.ts",
       "routes": [
         "/api/user/default-resume"
@@ -13827,7 +13827,7 @@
     {
       "text": "Request body too large",
       "kind": "key:error",
-      "line": 316,
+      "line": 336,
       "file": "web/app/api/user/default-resume/route.ts",
       "routes": [
         "/api/user/default-resume"
@@ -13838,7 +13838,7 @@
     {
       "text": "Sign in to manage your default resume.",
       "kind": "key:error",
-      "line": 334,
+      "line": 354,
       "file": "web/app/api/user/default-resume/route.ts",
       "routes": [
         "/api/user/default-resume"
@@ -13849,7 +13849,7 @@
     {
       "text": "Could not remove your default resume. Try again.",
       "kind": "key:error",
-      "line": 347,
+      "line": 367,
       "file": "web/app/api/user/default-resume/route.ts",
       "routes": [
         "/api/user/default-resume"
@@ -13860,7 +13860,7 @@
     {
       "text": "Could not access your default resume. Refresh the page and try again.",
       "kind": "key:error",
-      "line": 356,
+      "line": 376,
       "file": "web/app/api/user/default-resume/route.ts",
       "routes": [
         "/api/user/default-resume"
@@ -32332,7 +32332,7 @@
     {
       "text": "{paid} {paid === 1 ? \"report\" : \"…} left on your pass",
       "kind": "return",
-      "line": 144,
+      "line": 148,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32344,7 +32344,7 @@
     {
       "text": "Sign in for your free report, or get a Job Search Pass",
       "kind": "return",
-      "line": 148,
+      "line": 152,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32356,7 +32356,7 @@
     {
       "text": "Another report needs a Job Search Pass",
       "kind": "return",
-      "line": 149,
+      "line": 153,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32368,7 +32368,7 @@
     {
       "text": "Compare my revision",
       "kind": "const",
-      "line": 155,
+      "line": 159,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32380,7 +32380,7 @@
     {
       "text": "Get my report",
       "kind": "const",
-      "line": 156,
+      "line": 160,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32392,7 +32392,7 @@
     {
       "text": "Get your free report",
       "kind": "const",
-      "line": 156,
+      "line": 160,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32404,7 +32404,7 @@
     {
       "text": "Now let’s see what changed.",
       "kind": "jsx-text",
-      "line": 172,
+      "line": 176,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32416,7 +32416,7 @@
     {
       "text": "On your LinkedIn profile, choose Resources (or the ⋯ button), then Save to PDF. Upload that file here.",
       "kind": "jsx-text",
-      "line": 176,
+      "line": 180,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32428,7 +32428,7 @@
     {
       "text": "Open your profile",
       "kind": "jsx-text",
-      "line": 177,
+      "line": 181,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32440,7 +32440,7 @@
     {
       "text": "Open your last report",
       "kind": "jsx-text",
-      "line": 187,
+      "line": 191,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32452,7 +32452,7 @@
     {
       "text": "New reports are paused for now.",
       "kind": "jsx-text",
-      "line": 206,
+      "line": 210,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32464,7 +32464,7 @@
     {
       "text": "We&apos;re fixing a problem, so an upload won&apos;t run yet. Saved reports still open.",
       "kind": "jsx-text",
-      "line": 208,
+      "line": 212,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32476,7 +32476,7 @@
     {
       "text": "Check status",
       "kind": "jsx-text",
-      "line": 209,
+      "line": 213,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32488,7 +32488,7 @@
     {
       "text": "Paste your resume",
       "kind": "jsx-text",
-      "line": 229,
+      "line": 233,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32500,7 +32500,7 @@
     {
       "text": "Upload a file",
       "kind": "jsx-text",
-      "line": 236,
+      "line": 240,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32512,7 +32512,7 @@
     {
       "text": "Resume text",
       "kind": "jsx-text",
-      "line": 239,
+      "line": 243,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32524,7 +32524,7 @@
     {
       "text": "That&apos;s",
       "kind": "jsx-text",
-      "line": 253,
+      "line": 257,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32536,7 +32536,7 @@
     {
       "text": "characters. We need at least",
       "kind": "jsx-text",
-      "line": 253,
+      "line": 257,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32548,7 +32548,7 @@
     {
       "text": "to review it, so add the whole resume, including your experience.",
       "kind": "jsx-text",
-      "line": 253,
+      "line": 257,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32560,7 +32560,7 @@
     {
       "text": "What we read",
       "kind": "jsx-text",
-      "line": 263,
+      "line": 267,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32572,7 +32572,7 @@
     {
       "text": "We could only read {charCount} characters, and we need at least {MIN_RESUME_CHARS}. Save a fresh PDF from your LinkedIn profile and upload that.",
       "kind": "jsx-text",
-      "line": 273,
+      "line": 277,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32584,7 +32584,7 @@
     {
       "text": "We could only read {charCount} characters, and we need at least {MIN_RESUME_CHARS}. A scanned or image-only PDF often does this. Paste the text instead.",
       "kind": "jsx-text",
-      "line": 273,
+      "line": 277,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32596,7 +32596,7 @@
     {
       "text": "Text we read from your file",
       "kind": "attr:aria-label",
-      "line": 276,
+      "line": 280,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32608,7 +32608,7 @@
     {
       "text": "Paste the text instead",
       "kind": "jsx-text",
-      "line": 279,
+      "line": 283,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32620,7 +32620,7 @@
     {
       "text": "Fix the text",
       "kind": "jsx-text",
-      "line": 279,
+      "line": 283,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32632,7 +32632,7 @@
     {
       "text": "Paste the text instead",
       "kind": "jsx-text",
-      "line": 294,
+      "line": 298,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32644,7 +32644,7 @@
     {
       "text": "See Jordan&apos;s report",
       "kind": "jsx-text",
-      "line": 298,
+      "line": 302,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32656,7 +32656,7 @@
     {
       "text": "OpenAI writes the review from the PDF you upload, and we don’t opt it into model training. We never sign in to your LinkedIn account.",
       "kind": "jsx-text",
-      "line": 308,
+      "line": 312,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32668,7 +32668,7 @@
     {
       "text": "How we handle your data",
       "kind": "jsx-text",
-      "line": 312,
+      "line": 316,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32680,7 +32680,7 @@
     {
       "text": "Compare with a job",
       "kind": "jsx-text",
-      "line": 327,
+      "line": 347,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32692,7 +32692,7 @@
     {
       "text": "(optional)",
       "kind": "jsx-text",
-      "line": 327,
+      "line": 347,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32704,7 +32704,7 @@
     {
       "text": "Job posting",
       "kind": "jsx-text",
-      "line": 335,
+      "line": 355,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32716,7 +32716,7 @@
     {
       "text": "Paste the job posting here…",
       "kind": "attr:placeholder",
-      "line": 343,
+      "line": 363,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32728,7 +32728,7 @@
     {
       "text": "Reports are paused",
       "kind": "jsx-text",
-      "line": 358,
+      "line": 378,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -34641,7 +34641,7 @@
     {
       "text": "Report stopped",
       "kind": "call:toast.info",
-      "line": 261,
+      "line": 262,
       "file": "web/components/workspace/WorkspaceClient.tsx",
       "routes": [
         "/sample-report",
@@ -34653,7 +34653,7 @@
     {
       "text": "The sample report didn't load",
       "kind": "call:toast.error",
-      "line": 416,
+      "line": 427,
       "file": "web/components/workspace/WorkspaceClient.tsx",
       "routes": [
         "/sample-report",
@@ -34665,7 +34665,7 @@
     {
       "text": "Refresh to try again, or start with your own resume.",
       "kind": "key:description",
-      "line": 417,
+      "line": 428,
       "file": "web/components/workspace/WorkspaceClient.tsx",
       "routes": [
         "/sample-report",
@@ -34677,7 +34677,7 @@
     {
       "text": "This report is missing details needed for a PDF. Contact support for help exporting it.",
       "kind": "call:toast.error",
-      "line": 447,
+      "line": 458,
       "file": "web/components/workspace/WorkspaceClient.tsx",
       "routes": [
         "/sample-report",
@@ -34802,6 +34802,54 @@
       "routes": [],
       "moment": "other",
       "table": "unrouted"
+    },
+    {
+      "text": "We couldn't keep your resume on file. Try again.",
+      "kind": "key:message",
+      "line": 64,
+      "file": "web/components/workspace/hooks/useResumeOnFile.ts",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "We couldn't keep your resume on file. Try again.",
+      "kind": "key:message",
+      "line": 69,
+      "file": "web/components/workspace/hooks/useResumeOnFile.ts",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "We couldn't remove your resume from file. Try again.",
+      "kind": "key:message",
+      "line": 77,
+      "file": "web/components/workspace/hooks/useResumeOnFile.ts",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "We couldn't remove your resume from file. Try again.",
+      "kind": "key:message",
+      "line": 82,
+      "file": "web/components/workspace/hooks/useResumeOnFile.ts",
+      "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
     },
     {
       "text": "We couldn’t read this resume",
@@ -37045,6 +37093,7 @@
         "/api/export-pdf",
         "/api/resume-feedback-stream",
         "/api/stripe/webhook",
+        "/api/user/default-resume",
         "/auth",
         "/compare",
         "/compare/enhancv",
@@ -37141,6 +37190,7 @@
         "/api/export-pdf",
         "/api/resume-feedback-stream",
         "/api/stripe/webhook",
+        "/api/user/default-resume",
         "/auth",
         "/compare",
         "/compare/enhancv",
@@ -37237,6 +37287,7 @@
         "/api/export-pdf",
         "/api/resume-feedback-stream",
         "/api/stripe/webhook",
+        "/api/user/default-resume",
         "/auth",
         "/compare",
         "/compare/enhancv",
@@ -37333,6 +37384,7 @@
         "/api/export-pdf",
         "/api/resume-feedback-stream",
         "/api/stripe/webhook",
+        "/api/user/default-resume",
         "/auth",
         "/compare",
         "/compare/enhancv",
@@ -37429,6 +37481,7 @@
         "/api/export-pdf",
         "/api/resume-feedback-stream",
         "/api/stripe/webhook",
+        "/api/user/default-resume",
         "/auth",
         "/compare",
         "/compare/enhancv",
@@ -37548,10 +37601,11 @@
         "/api/free-status",
         "/api/resume-feedback",
         "/api/resume-feedback-stream",
-        "/api/resume-ideas"
+        "/api/resume-ideas",
+        "/api/user/default-resume"
       ],
       "moment": "pricing",
-      "table": "api"
+      "table": "shared"
     },
     {
       "text": "We couldn't set aside a report for you just now. Nothing was used. Try again in a minute.",
@@ -37562,10 +37616,11 @@
         "/api/free-status",
         "/api/resume-feedback",
         "/api/resume-feedback-stream",
-        "/api/resume-ideas"
+        "/api/resume-ideas",
+        "/api/user/default-resume"
       ],
       "moment": "pricing",
-      "table": "api"
+      "table": "shared"
     },
     {
       "text": "Your report finished, but we couldn't confirm it against your account. Check My reports before running it again.",
@@ -37576,10 +37631,11 @@
         "/api/free-status",
         "/api/resume-feedback",
         "/api/resume-feedback-stream",
-        "/api/resume-ideas"
+        "/api/resume-ideas",
+        "/api/user/default-resume"
       ],
       "moment": "pricing",
-      "table": "api"
+      "table": "shared"
     },
     {
       "text": "We couldn't give that report back cleanly. Check My reports before running it again.",
@@ -37590,10 +37646,11 @@
         "/api/free-status",
         "/api/resume-feedback",
         "/api/resume-feedback-stream",
-        "/api/resume-ideas"
+        "/api/resume-ideas",
+        "/api/user/default-resume"
       ],
       "moment": "pricing",
-      "table": "api"
+      "table": "shared"
     },
     {
       "text": "This didn't use one of your reports.",
@@ -39799,7 +39856,8 @@
         "/api/reports/recovery",
         "/api/resume-feedback",
         "/api/resume-feedback-stream",
-        "/api/revise-line"
+        "/api/revise-line",
+        "/api/user/default-resume"
       ],
       "moment": "report",
       "table": "shared"
@@ -39814,7 +39872,8 @@
         "/api/reports/recovery",
         "/api/resume-feedback",
         "/api/resume-feedback-stream",
-        "/api/revise-line"
+        "/api/revise-line",
+        "/api/user/default-resume"
       ],
       "moment": "report",
       "table": "shared"
@@ -39829,7 +39888,8 @@
         "/api/reports/recovery",
         "/api/resume-feedback",
         "/api/resume-feedback-stream",
-        "/api/revise-line"
+        "/api/revise-line",
+        "/api/user/default-resume"
       ],
       "moment": "report",
       "table": "shared"
@@ -39854,6 +39914,7 @@
       "routes": [
         "/",
         "/api/resume-feedback-stream",
+        "/api/user/default-resume",
         "/help",
         "/pricing",
         "/privacy",
@@ -39876,6 +39937,7 @@
       "routes": [
         "/",
         "/api/resume-feedback-stream",
+        "/api/user/default-resume",
         "/help",
         "/pricing",
         "/privacy",
@@ -39898,6 +39960,7 @@
       "routes": [
         "/",
         "/api/resume-feedback-stream",
+        "/api/user/default-resume",
         "/help",
         "/pricing",
         "/privacy",
@@ -39920,6 +39983,145 @@
       "routes": [
         "/",
         "/api/resume-feedback-stream",
+        "/api/user/default-resume",
+        "/help",
+        "/pricing",
+        "/privacy",
+        "/reports/[id]",
+        "/sample-report",
+        "/settings/account",
+        "/settings/billing",
+        "/settings/matching",
+        "/terms",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
+      "text": "Applying to more than one job? Keep this resume on file and next time you only paste the posting.",
+      "kind": "const",
+      "line": 23,
+      "file": "web/lib/reports/posting-read-terms.ts",
+      "routes": [
+        "/",
+        "/api/resume-feedback-stream",
+        "/api/user/default-resume",
+        "/help",
+        "/pricing",
+        "/privacy",
+        "/reports/[id]",
+        "/sample-report",
+        "/settings/account",
+        "/settings/billing",
+        "/settings/matching",
+        "/terms",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
+      "text": "Keep it on file",
+      "kind": "const",
+      "line": 24,
+      "file": "web/lib/reports/posting-read-terms.ts",
+      "routes": [
+        "/",
+        "/api/resume-feedback-stream",
+        "/api/user/default-resume",
+        "/help",
+        "/pricing",
+        "/privacy",
+        "/reports/[id]",
+        "/sample-report",
+        "/settings/account",
+        "/settings/billing",
+        "/settings/matching",
+        "/terms",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
+      "text": "On file. We store the text of this resume in your account until you remove it.",
+      "kind": "const",
+      "line": 26,
+      "file": "web/lib/reports/posting-read-terms.ts",
+      "routes": [
+        "/",
+        "/api/resume-feedback-stream",
+        "/api/user/default-resume",
+        "/help",
+        "/pricing",
+        "/privacy",
+        "/reports/[id]",
+        "/sample-report",
+        "/settings/account",
+        "/settings/billing",
+        "/settings/matching",
+        "/terms",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
+      "text": "We filled in the resume you keep on file. Paste the posting and you're set.",
+      "kind": "const",
+      "line": 28,
+      "file": "web/lib/reports/posting-read-terms.ts",
+      "routes": [
+        "/",
+        "/api/resume-feedback-stream",
+        "/api/user/default-resume",
+        "/help",
+        "/pricing",
+        "/privacy",
+        "/reports/[id]",
+        "/sample-report",
+        "/settings/account",
+        "/settings/billing",
+        "/settings/matching",
+        "/terms",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
+      "text": "Remove it from file",
+      "kind": "const",
+      "line": 29,
+      "file": "web/lib/reports/posting-read-terms.ts",
+      "routes": [
+        "/",
+        "/api/resume-feedback-stream",
+        "/api/user/default-resume",
+        "/help",
+        "/pricing",
+        "/privacy",
+        "/reports/[id]",
+        "/sample-report",
+        "/settings/account",
+        "/settings/billing",
+        "/settings/matching",
+        "/terms",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "shared"
+    },
+    {
+      "text": "Removed. Your resume is no longer on file.",
+      "kind": "const",
+      "line": 30,
+      "file": "web/lib/reports/posting-read-terms.ts",
+      "routes": [
+        "/",
+        "/api/resume-feedback-stream",
+        "/api/user/default-resume",
         "/help",
         "/pricing",
         "/privacy",
@@ -39937,11 +40139,12 @@
     {
       "text": "Included with your pass. This one doesn't use a report.",
       "kind": "const",
-      "line": 23,
+      "line": 33,
       "file": "web/lib/reports/posting-read-terms.ts",
       "routes": [
         "/",
         "/api/resume-feedback-stream",
+        "/api/user/default-resume",
         "/help",
         "/pricing",
         "/privacy",
@@ -39969,6 +40172,7 @@
         "/api/resume-feedback-stream",
         "/api/resume-ideas",
         "/api/revise-line",
+        "/api/user/default-resume",
         "/reports",
         "/reports/[id]",
         "/sample-report",
@@ -39990,6 +40194,7 @@
         "/api/resume-feedback-stream",
         "/api/resume-ideas",
         "/api/revise-line",
+        "/api/user/default-resume",
         "/reports",
         "/reports/[id]",
         "/sample-report",
@@ -41224,6 +41429,7 @@
         "/api/resume-ideas",
         "/api/revise-line",
         "/api/status",
+        "/api/user/default-resume",
         "/dashboard",
         "/launch",
         "/launch/gauntlet",
@@ -41254,6 +41460,7 @@
         "/api/resume-ideas",
         "/api/revise-line",
         "/api/status",
+        "/api/user/default-resume",
         "/dashboard",
         "/launch",
         "/launch/gauntlet",
@@ -41284,6 +41491,7 @@
         "/api/resume-ideas",
         "/api/revise-line",
         "/api/status",
+        "/api/user/default-resume",
         "/dashboard",
         "/launch",
         "/launch/gauntlet",
@@ -41314,6 +41522,7 @@
         "/api/resume-ideas",
         "/api/revise-line",
         "/api/status",
+        "/api/user/default-resume",
         "/dashboard",
         "/launch",
         "/launch/gauntlet",
@@ -41344,6 +41553,7 @@
         "/api/resume-ideas",
         "/api/revise-line",
         "/api/status",
+        "/api/user/default-resume",
         "/dashboard",
         "/launch",
         "/launch/gauntlet",
@@ -41374,6 +41584,7 @@
         "/api/resume-ideas",
         "/api/revise-line",
         "/api/status",
+        "/api/user/default-resume",
         "/dashboard",
         "/launch",
         "/launch/gauntlet",
@@ -41404,6 +41615,7 @@
         "/api/resume-ideas",
         "/api/revise-line",
         "/api/status",
+        "/api/user/default-resume",
         "/dashboard",
         "/launch",
         "/launch/gauntlet",
@@ -41434,6 +41646,7 @@
         "/api/resume-ideas",
         "/api/revise-line",
         "/api/status",
+        "/api/user/default-resume",
         "/dashboard",
         "/launch",
         "/launch/gauntlet",
@@ -41464,6 +41677,7 @@
         "/api/resume-ideas",
         "/api/revise-line",
         "/api/status",
+        "/api/user/default-resume",
         "/dashboard",
         "/launch",
         "/launch/gauntlet",
@@ -41494,6 +41708,7 @@
         "/api/resume-ideas",
         "/api/revise-line",
         "/api/status",
+        "/api/user/default-resume",
         "/dashboard",
         "/launch",
         "/launch/gauntlet",
@@ -41524,6 +41739,7 @@
         "/api/resume-ideas",
         "/api/revise-line",
         "/api/status",
+        "/api/user/default-resume",
         "/dashboard",
         "/launch",
         "/launch/gauntlet",
@@ -41554,6 +41770,7 @@
         "/api/resume-ideas",
         "/api/revise-line",
         "/api/status",
+        "/api/user/default-resume",
         "/dashboard",
         "/launch",
         "/launch/gauntlet",
@@ -41584,6 +41801,7 @@
         "/api/resume-ideas",
         "/api/revise-line",
         "/api/status",
+        "/api/user/default-resume",
         "/dashboard",
         "/launch",
         "/launch/gauntlet",
@@ -41614,6 +41832,7 @@
         "/api/resume-ideas",
         "/api/revise-line",
         "/api/status",
+        "/api/user/default-resume",
         "/dashboard",
         "/launch",
         "/launch/gauntlet",
