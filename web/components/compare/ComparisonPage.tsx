@@ -24,7 +24,9 @@ export function ComparisonPage({ entry }: { entry: Comparison }) {
             <JsonLd
                 data={articleStructuredData({
                     path: entry.path,
-                    headline: entry.title,
+                    // The headline a reader sees (the h1), so the structured data describes the page as shown; the
+                    // "X vs Recruiter in Your Pocket" title stays in the breadcrumb and the search title.
+                    headline: entry.hook,
                     description: entry.summary,
                     trail: [{ name: SECTION_NAMES["/compare"], path: "/compare" }, { name: entry.title, path: entry.path }],
                     citations: entry.sources,
