@@ -50,5 +50,10 @@ assert.equal(changes.has("x"), false, "a report with no score is skipped, and do
 assert.equal(scoreChangeLabel({ delta: 6, since: "x" }, "Nov 1, 2026"), "Up 6 since Nov 1, 2026");
 assert.equal(scoreChangeLabel({ delta: -3, since: "x" }, "Nov 1, 2026"), "Down 3 since Nov 1, 2026");
 assert.equal(scoreChangeLabel({ delta: 0, since: "x" }, "Nov 1, 2026"), "Same score as Nov 1, 2026");
+// Two reports for the same role on one day: "since" that date would read as if nothing came before it.
+assert.equal(scoreChangeLabel({ delta: -2, since: "x" }, "Nov 5, 2026", "Nov 5, 2026"), "Down 2 from your earlier report that day");
+assert.equal(scoreChangeLabel({ delta: 4, since: "x" }, "Nov 5, 2026", "Nov 5, 2026"), "Up 4 from your earlier report that day");
+assert.equal(scoreChangeLabel({ delta: 0, since: "x" }, "Nov 5, 2026", "Nov 5, 2026"), "Same score as your earlier report that day");
+assert.equal(scoreChangeLabel({ delta: -2, since: "x" }, "Nov 1, 2026", "Nov 5, 2026"), "Down 2 since Nov 1, 2026");
 
 console.log("report history: lines answered and score changes");

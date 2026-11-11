@@ -3,14 +3,14 @@
   "counts": {
     "files_scanned": 425,
     "files_with_copy": 257,
-    "strings": 2960,
-    "unique_strings": 2464
+    "strings": 2957,
+    "unique_strings": 2461
   },
   "by_moment": {
     "research": 990,
     "account": 459,
     "marketing": 411,
-    "report": 269,
+    "report": 266,
     "pricing": 217,
     "upload": 124,
     "legal": 111,
@@ -40037,39 +40037,6 @@
       "text": "{answered} of {total} {lines} answered",
       "kind": "return",
       "line": 49,
-      "file": "web/lib/reports/report-history.ts",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "report",
-      "table": "reports"
-    },
-    {
-      "text": "Up {change.delta} since {sinceLabel}",
-      "kind": "return",
-      "line": 89,
-      "file": "web/lib/reports/report-history.ts",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "report",
-      "table": "reports"
-    },
-    {
-      "text": "Down {Math.abs(change.delta)} since {sinceLabel}",
-      "kind": "return",
-      "line": 90,
-      "file": "web/lib/reports/report-history.ts",
-      "routes": [
-        "/reports"
-      ],
-      "moment": "report",
-      "table": "reports"
-    },
-    {
-      "text": "Same score as {sinceLabel}",
-      "kind": "return",
-      "line": 91,
       "file": "web/lib/reports/report-history.ts",
       "routes": [
         "/reports"
