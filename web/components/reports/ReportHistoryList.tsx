@@ -8,16 +8,20 @@ import { useMemo, useState } from "react";
 import { ArrowRight, PencilSimple, Trash, X } from "@phosphor-icons/react";
 import { toast } from "sonner";
 import ConfirmModal from "@/components/shared/ConfirmModal";
-import { EmptyReportIcon } from "@/components/icons";
 import { scoreBandFor } from "@/lib/reports/score-band";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { LINKEDIN_SAVED_PREVIEW } from "@/lib/reports/report-document";
+import { useAuth } from "@/components/providers/AuthProvider";
+import styles from "./ReportHistoryList.module.css";
 
 export type ReportHistoryItem = {
   id: string;
   score: number | null;
-  resumePreview: string | null;
+  /** A LinkedIn profile review; otherwise a resume report. */
+  isProfile: boolean;
+  /** The report's one-sentence verdict, the line the report itself opens with. Never the resume's own text. */
+  verdict: string | null;
   name: string | null;
   targetRole: string | null;
   createdAt: string;
@@ -34,14 +38,31 @@ function formatReportDate(value: string) {
   }).format(date);
 }
 
-// targetRole is the report's best-fit role suggestion, not the person's job,
-// so it stays in the meta line and never becomes the title.
+// What a row is called when it has to be named in a sentence (the delete dialog, a button's label). On the page a
+// row leads with its verdict (Nov 11, 2026): five rows all titled "Resume report" told nobody which was which, and
+// the old preview was the resume's opening text, contact details included.
+// targetRole is the report's best-fit role suggestion, not the person's job, so it stays in the meta line.
 function reportTitle(report: ReportHistoryItem) {
-  return report.name || (report.resumePreview === LINKEDIN_SAVED_PREVIEW ? LINKEDIN_SAVED_PREVIEW : "Resume report");
+  return report.name || (report.isProfile ? LINKEDIN_SAVED_PREVIEW : "Resume report");
+}
+
+/** What the signed-in person has left, in the words the upload page and Settings use. */
+function accessLine(user: { membership?: string | null; paidUsesLeft?: number | null; freeUsesLeft?: number | null } | null | undefined) {
+  if (!user) return null;
+  if (user.membership === "lifetime") return "Lifetime access";
+  if (user.membership === "monthly") return "Monthly plan";
+  if (user.membership === "credit") {
+    const paid = Number(user.paidUsesLeft || 0);
+    return `${paid} ${paid === 1 ? "report" : "reports"} left on your pass`;
+  }
+  const free = Number(user.freeUsesLeft || 0);
+  return `${free} free report${free === 1 ? "" : "s"} left`;
 }
 
 export function ReportHistoryList({ initialReports }: { initialReports: ReportHistoryItem[] }) {
   const router = useRouter();
+  const { user } = useAuth();
+  const access = accessLine(user);
   const [reports, setReports] = useState(initialReports);
   const [renamingId, setRenamingId] = useState<string | null>(null);
   const [draftName, setDraftName] = useState("");
@@ -118,15 +139,11 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
 
   if (reports.length === 0) {
     return (
-      <div className="rounded-2xl border border-border bg-card px-5 py-10 text-center sm:rounded-3xl sm:p-12">
-        <div className="mx-auto mb-5 flex size-16 items-center justify-center rounded-2xl bg-brand-tint text-brand">
-          <EmptyReportIcon className="size-12" />
-        </div>
-        <h2 className="font-display text-heading text-foreground">Nothing here yet</h2>
+      <div className={styles.empty}>
+        <h2 className={styles.emptyTitle}>Nothing saved yet.</h2>
+        <p className={styles.emptyBody}>A report you save shows up here with what the recruiter took from it, so you can come back to it or check a revision against it.</p>
         <Button asChild className="mt-6">
-          <Link
-            href="/workspace"
-          >
+          <Link href="/workspace">
             Get my report
             <ArrowRight className="size-4" weight="bold" aria-hidden="true" />
           </Link>
@@ -137,23 +154,28 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
 
   return (
     <>
-      <div className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-card sm:rounded-3xl">
+      <p className={styles.summary} data-testid="reports-summary">
+        <span>{reports.length} {reports.length === 1 ? "report" : "reports"} saved</span>
+        {access ? <><span aria-hidden="true">·</span> <Link href="/settings/billing" className="riyp-link-quiet focus-ring">{access}</Link></> : null}
+      </p>
+
+      <ol className={styles.list}>
         {reports.map((report) => {
           const title = reportTitle(report);
           const isRenaming = renamingId === report.id;
+          const kind = report.isProfile ? "LinkedIn profile" : "Resume";
 
           return (
-            <article key={report.id} className="riyp-surface-link grid grid-cols-[6.5rem_minmax(0,1fr)] gap-x-4 gap-y-3 p-5 sm:grid-cols-[8rem_minmax(0,1fr)_auto] sm:gap-x-6 sm:p-6">
+            <li key={report.id} className={styles.row}>
               {/* The band, as the report shows it; the score shows only as a change, on a re-check (Nov 6, 2026). */}
-              <p className="pt-1 text-label text-foreground" data-testid="report-band">{scoreBandFor(report.score ?? 0).name}</p>
-              <div className="min-w-0">
-                <p className="text-xs text-muted-foreground [overflow-wrap:anywhere]">
-                  {formatReportDate(report.createdAt)}
-                  {report.targetRole ? <> · {report.targetRole}</> : null}
-                </p>
+              <div className={styles.when}>
+                <p className={styles.band} data-testid="report-band">{scoreBandFor(report.score ?? 0).name}</p>
+                <p className={styles.date}>{formatReportDate(report.createdAt)}</p>
+              </div>
 
+              <div className={styles.main}>
                 {isRenaming ? (
-                  <div className="mt-2 flex max-w-xl flex-col gap-2 sm:flex-row">
+                  <div className="flex max-w-xl flex-col gap-2 sm:flex-row">
                     <label htmlFor={`report-name-${report.id}`} className="sr-only">Report name</label>
                     <Input
                       id={`report-name-${report.id}`}
@@ -190,26 +212,25 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
                     </div>
                   </div>
                 ) : (
-                  <Link href={`/reports/${report.id}`} className="focus-ring mt-1 block rounded-lg">
-                    <h2 className="break-words font-display text-xl font-bold text-foreground">{title}</h2>
-                    {report.resumePreview && (report.name || report.resumePreview !== LINKEDIN_SAVED_PREVIEW) ? (
-                      <p className="mt-1 line-clamp-2 max-w-2xl text-sm text-muted-foreground">{report.resumePreview}</p>
-                    ) : null}
+                  <Link href={`/reports/${report.id}`} className={`focus-ring ${styles.open}`}>
+                    {report.name ? <h2 className={styles.name}>{report.name}</h2> : null}
+                    {report.verdict
+                      ? report.name
+                        ? <p className={styles.verdictUnderName}>{report.verdict}</p>
+                        : <h2 className={styles.verdict}>{report.verdict}</h2>
+                      : report.name ? null : <h2 className={styles.name}>{title}</h2>}
+                    <p className={styles.meta}>
+                      {kind}
+                      {report.targetRole ? <> · {report.targetRole}</> : null}
+                    </p>
                   </Link>
                 )}
               </div>
 
               {!isRenaming ? (
-                <div className="col-start-2 -ml-3 flex flex-wrap items-center gap-1 sm:col-start-3 sm:ml-0 sm:self-start">
-                  <Button asChild variant="quiet" size="sm">
-                    <Link href={`/reports/${report.id}`}>
-                      Open
-                      <ArrowRight className="size-4" weight="bold" aria-hidden="true" />
-                    </Link>
-                  </Button>
-                  <Button type="button" variant="quiet" size="sm" onClick={() => beginRename(report)}>
+                <div className={styles.actions}>
+                  <Button type="button" variant="quiet" size="icon" onClick={() => beginRename(report)} aria-label={`Rename ${title}`} title="Rename">
                     <PencilSimple className="size-4" aria-hidden="true" />
-                    Rename
                   </Button>
                   <Button
                     type="button"
@@ -218,15 +239,19 @@ export function ReportHistoryList({ initialReports }: { initialReports: ReportHi
                     onClick={() => setDeleteId(report.id)}
                     className="text-muted-foreground hover:text-destructive"
                     aria-label={`Delete ${title}`}
+                    title="Delete"
                   >
                     <Trash className="size-4" aria-hidden="true" />
                   </Button>
+                  <Link href={`/reports/${report.id}`} className={`focus-ring ${styles.arrow}`} aria-label={`Open ${title}`} tabIndex={-1}>
+                    <ArrowRight className="size-4" weight="bold" aria-hidden="true" />
+                  </Link>
                 </div>
               ) : null}
-            </article>
+            </li>
           );
         })}
-      </div>
+      </ol>
 
       <ConfirmModal
         isOpen={Boolean(deleteId)}

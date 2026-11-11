@@ -3,12 +3,12 @@
   "counts": {
     "files_scanned": 424,
     "files_with_copy": 256,
-    "strings": 2937,
-    "unique_strings": 2447
+    "strings": 2946,
+    "unique_strings": 2453
   },
   "by_moment": {
     "research": 990,
-    "account": 442,
+    "account": 450,
     "marketing": 411,
     "report": 264,
     "pricing": 217,
@@ -17,8 +17,8 @@
     "extension": 98,
     "shared": 73,
     "rewrite": 62,
+    "error": 55,
     "auth": 54,
-    "error": 54,
     "analysis": 16,
     "other": 11,
     "pdf": 6,
@@ -127,7 +127,7 @@
     {
       "text": "My reports",
       "kind": "key:title",
-      "line": 14,
+      "line": 25,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -136,9 +136,9 @@
       "table": "reports"
     },
     {
-      "text": "Every report you’ve saved, with its score and the lines that needed work.",
+      "text": "Every report you’ve saved, and what the recruiter took from each.",
       "kind": "key:description",
-      "line": 15,
+      "line": 26,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -149,7 +149,7 @@
     {
       "text": "Your saved reports",
       "kind": "attr:title",
-      "line": 45,
+      "line": 58,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -160,7 +160,7 @@
     {
       "text": "New report",
       "kind": "jsx-text",
-      "line": 62,
+      "line": 75,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -171,7 +171,7 @@
     {
       "text": "These are your latest 50 reports. Older ones are still saved, and an account export includes them.",
       "kind": "jsx-text",
-      "line": 71,
+      "line": 84,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -182,7 +182,7 @@
     {
       "text": "We couldn’t load My reports.",
       "kind": "jsx-text",
-      "line": 77,
+      "line": 90,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -193,7 +193,7 @@
     {
       "text": "Try again",
       "kind": "jsx-text",
-      "line": 83,
+      "line": 96,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -204,7 +204,7 @@
     {
       "text": "Contact support",
       "kind": "jsx-text",
-      "line": 90,
+      "line": 103,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -14462,9 +14462,20 @@
       "table": "home"
     },
     {
+      "text": "Page not found",
+      "kind": "jsx-text",
+      "line": 22,
+      "file": "web/app/not-found.tsx",
+      "routes": [
+        "/"
+      ],
+      "moment": "error",
+      "table": "home"
+    },
+    {
       "text": "We can’t find that page.",
       "kind": "jsx-text",
-      "line": 27,
+      "line": 24,
       "file": "web/app/not-found.tsx",
       "routes": [
         "/"
@@ -14475,7 +14486,7 @@
     {
       "text": "The link may be old, or the address has a typo.",
       "kind": "jsx-text",
-      "line": 30,
+      "line": 27,
       "file": "web/app/not-found.tsx",
       "routes": [
         "/"
@@ -14486,7 +14497,7 @@
     {
       "text": "Get your free report",
       "kind": "jsx-text",
-      "line": 35,
+      "line": 32,
       "file": "web/app/not-found.tsx",
       "routes": [
         "/"
@@ -14497,7 +14508,7 @@
     {
       "text": "Read the research",
       "kind": "jsx-text",
-      "line": 42,
+      "line": 39,
       "file": "web/app/not-found.tsx",
       "routes": [
         "/"
@@ -28181,7 +28192,51 @@
     {
       "text": "Saved report",
       "kind": "return",
-      "line": 28,
+      "line": 32,
+      "file": "web/components/reports/ReportHistoryList.tsx",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "account",
+      "table": "reports"
+    },
+    {
+      "text": "Lifetime access",
+      "kind": "return",
+      "line": 52,
+      "file": "web/components/reports/ReportHistoryList.tsx",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "account",
+      "table": "reports"
+    },
+    {
+      "text": "Monthly plan",
+      "kind": "return",
+      "line": 53,
+      "file": "web/components/reports/ReportHistoryList.tsx",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "account",
+      "table": "reports"
+    },
+    {
+      "text": "{paid} {paid === 1 ? \"report\" : \"…} left on your pass",
+      "kind": "return",
+      "line": 56,
+      "file": "web/components/reports/ReportHistoryList.tsx",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "account",
+      "table": "reports"
+    },
+    {
+      "text": "{free} free report{free === 1 ? \"\" : \"s\"} left",
+      "kind": "return",
+      "line": 59,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28192,7 +28247,7 @@
     {
       "text": "Could not rename this report. Try again.",
       "kind": "call:ClientActionError",
-      "line": 83,
+      "line": 104,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28203,7 +28258,7 @@
     {
       "text": "Could not delete this report. Try again.",
       "kind": "call:ClientActionError",
-      "line": 106,
+      "line": 127,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28214,7 +28269,7 @@
     {
       "text": "Report deleted",
       "kind": "call:toast.success",
-      "line": 110,
+      "line": 131,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28223,9 +28278,20 @@
       "table": "reports"
     },
     {
-      "text": "Nothing here yet",
+      "text": "Nothing saved yet.",
       "kind": "jsx-text",
-      "line": 125,
+      "line": 143,
+      "file": "web/components/reports/ReportHistoryList.tsx",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "account",
+      "table": "reports"
+    },
+    {
+      "text": "A report you save shows up here with what the recruiter took from it, so you can come back to it or check a revision against it.",
+      "kind": "jsx-text",
+      "line": 144,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28236,7 +28302,18 @@
     {
       "text": "Get my report",
       "kind": "jsx-text",
-      "line": 130,
+      "line": 147,
+      "file": "web/components/reports/ReportHistoryList.tsx",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "account",
+      "table": "reports"
+    },
+    {
+      "text": "LinkedIn profile",
+      "kind": "const",
+      "line": 166,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28247,7 +28324,7 @@
     {
       "text": "Report name",
       "kind": "jsx-text",
-      "line": 157,
+      "line": 179,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28258,7 +28335,7 @@
     {
       "text": "Name this version",
       "kind": "attr:placeholder",
-      "line": 169,
+      "line": 191,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28269,7 +28346,7 @@
     {
       "text": "Saving…",
       "kind": "attr:loadingLabel",
-      "line": 176,
+      "line": 198,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28280,7 +28357,18 @@
     {
       "text": "Cancel rename",
       "kind": "attr:aria-label",
-      "line": 186,
+      "line": 208,
+      "file": "web/components/reports/ReportHistoryList.tsx",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "account",
+      "table": "reports"
+    },
+    {
+      "text": "Rename {title}",
+      "kind": "attr:aria-label",
+      "line": 232,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28291,7 +28379,18 @@
     {
       "text": "Delete {title}",
       "kind": "attr:aria-label",
-      "line": 220,
+      "line": 241,
+      "file": "web/components/reports/ReportHistoryList.tsx",
+      "routes": [
+        "/reports"
+      ],
+      "moment": "account",
+      "table": "reports"
+    },
+    {
+      "text": "Open {title}",
+      "kind": "attr:aria-label",
+      "line": 246,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28302,7 +28401,7 @@
     {
       "text": "Delete this report?",
       "kind": "attr:title",
-      "line": 235,
+      "line": 260,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -28313,7 +28412,7 @@
     {
       "text": "{reportToDelete ? reportTi…} will be permanently deleted. Your account and any other saved reports will stay intact.",
       "kind": "attr:description",
-      "line": 236,
+      "line": 261,
       "file": "web/components/reports/ReportHistoryList.tsx",
       "routes": [
         "/reports"
@@ -32957,7 +33056,7 @@
     {
       "text": "Sample report · Jordan is fictional",
       "kind": "jsx-text",
-      "line": 208,
+      "line": 209,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -32970,7 +33069,7 @@
     {
       "text": "Get your free report",
       "kind": "jsx-text",
-      "line": 216,
+      "line": 217,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -32983,7 +33082,7 @@
     {
       "text": "Export PDF",
       "kind": "jsx-text",
-      "line": 251,
+      "line": 252,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -32996,7 +33095,7 @@
     {
       "text": "Exporting…",
       "kind": "jsx-text",
-      "line": 252,
+      "line": 253,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -33009,7 +33108,7 @@
     {
       "text": "Share report",
       "kind": "attr:aria-label",
-      "line": 260,
+      "line": 261,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -33022,7 +33121,7 @@
     {
       "text": "Share report",
       "kind": "jsx-text",
-      "line": 264,
+      "line": 265,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -33035,7 +33134,7 @@
     {
       "text": "Still writing the rest.",
       "kind": "jsx-text",
-      "line": 278,
+      "line": 279,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -33048,7 +33147,7 @@
     {
       "text": "Share view is on.",
       "kind": "jsx-text",
-      "line": 286,
+      "line": 287,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -33061,7 +33160,7 @@
     {
       "text": "Some personal details are hidden. Check the report for anything else you want to remove before sharing.",
       "kind": "jsx-text",
-      "line": 288,
+      "line": 289,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -33074,7 +33173,7 @@
     {
       "text": "Copy link",
       "kind": "jsx-text",
-      "line": 295,
+      "line": 296,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",
@@ -33087,7 +33186,7 @@
     {
       "text": "Exit share",
       "kind": "jsx-text",
-      "line": 299,
+      "line": 300,
       "file": "web/components/workspace/ReportPanel.tsx",
       "routes": [
         "/reports/[id]",

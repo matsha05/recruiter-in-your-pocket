@@ -21,6 +21,13 @@ const JOB_DESCRIPTION = `We are hiring a Senior Program Manager to run complex B
 You will coordinate cross-functional teams, manage stakeholder communication, track risks,
 and improve launch operations with measurable process improvements.`;
 
+// A real anonymous report needs the free-report ledger. Playwright's own server is a production build with
+// Redis blanked, where the ledger fails closed on purpose (lib/billing/anonymousAccessFallback.ts), so the
+// two journeys that write a real anonymous report run through `npm run test:redteam-journeys`, which
+// serves Next dev and sets PLAYWRIGHT_SKIP_WEB_SERVER.
+const anonymousLedgerUnavailable = process.env.PLAYWRIGHT_SKIP_WEB_SERVER !== "1";
+const ANONYMOUS_LEDGER_SKIP = "Needs the local anonymous ledger: run npm run test:redteam-journeys";
+
 async function openPasteMode(page: Page) {
   await page.goto("/workspace");
   await page.getByTestId("workspace-paste-mode").click();
@@ -169,6 +176,7 @@ test.describe("launch red-team journeys", () => {
   });
 
   test("4. anonymous pasted resume report with a JD produces a usable result", async ({ page }) => {
+    test.skip(anonymousLedgerUnavailable, ANONYMOUS_LEDGER_SKIP);
     await runAnonymousReview(page, "198.51.100.4");
     await expect(page.locator("#section-role")).toBeVisible();
     await expect(page.locator("#section-first-impression h1")).toBeVisible();
@@ -218,6 +226,7 @@ test.describe("launch red-team journeys", () => {
   });
 
   test("5. guest save prompt opens only after Save this version and requires verified sign-in", async ({ page }) => {
+    test.skip(anonymousLedgerUnavailable, ANONYMOUS_LEDGER_SKIP);
     await runAnonymousReview(page, "198.51.100.5");
     const saveDialog = page.getByRole("dialog", { name: /Save this report/i });
     const keepReport = page.getByTestId("workspace-keep-report");
