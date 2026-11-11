@@ -3,13 +3,13 @@
   "counts": {
     "files_scanned": 425,
     "files_with_copy": 257,
-    "strings": 2960,
+    "strings": 2959,
     "unique_strings": 2464
   },
   "by_moment": {
     "research": 990,
     "account": 459,
-    "marketing": 411,
+    "marketing": 410,
     "report": 269,
     "pricing": 217,
     "upload": 124,
@@ -23885,7 +23885,7 @@
     {
       "text": "By the time you finish reading this sentence, a recruiter has finished reading your resume.",
       "kind": "const",
-      "line": 19,
+      "line": 18,
       "file": "web/components/landing/home/ReadBeat.tsx",
       "routes": [
         "/"
@@ -23896,7 +23896,7 @@
     {
       "text": "Nobody tells you why.",
       "kind": "const[]",
-      "line": 20,
+      "line": 19,
       "file": "web/components/landing/home/ReadBeat.tsx",
       "routes": [
         "/"
@@ -23907,7 +23907,7 @@
     {
       "text": "We do, before you apply for the next one.",
       "kind": "const[]",
-      "line": 20,
+      "line": 19,
       "file": "web/components/landing/home/ReadBeat.tsx",
       "routes": [
         "/"
@@ -23918,7 +23918,7 @@
     {
       "text": "Move forward or reject. Reject is circled.",
       "kind": "attr:aria-label",
-      "line": 77,
+      "line": 76,
       "file": "web/components/landing/home/ReadBeat.tsx",
       "routes": [
         "/"
@@ -23929,18 +23929,7 @@
     {
       "text": "Move forward",
       "kind": "jsx-text",
-      "line": 78,
-      "file": "web/components/landing/home/ReadBeat.tsx",
-      "routes": [
-        "/"
-      ],
-      "moment": "marketing",
-      "table": "home"
-    },
-    {
-      "text": "Get your free report",
-      "kind": "jsx-text",
-      "line": 90,
+      "line": 77,
       "file": "web/components/landing/home/ReadBeat.tsx",
       "routes": [
         "/"

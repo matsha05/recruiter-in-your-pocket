@@ -10,7 +10,7 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 | --- | --- |
 | Files scanned | 425 |
 | Files with copy | 257 |
-| Strings | 2960 |
+| Strings | 2959 |
 | Unique strings | 2464 |
 | Routes with copy | 118 |
 
@@ -20,7 +20,7 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 | --- | --- |
 | research | 990 |
 | account | 459 |
-| marketing | 411 |
+| marketing | 410 |
 | report | 269 |
 | pricing | 217 |
 | upload | 124 |
@@ -48,7 +48,7 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 | [settings](./settings.md) | 122 | `/settings/account`, `/settings/billing`, `/settings/matching`, `/settings/support-reply/[emailId]` |
 | [help](./help.md) | 87 | `/help`, `/privacy`, `/status`, `/terms` |
 | [jobs](./jobs.md) | 71 | `/jobs` |
-| [home](./home.md) | 67 | `/`, `/methodology`, `/research/career-breaks` |
+| [home](./home.md) | 66 | `/`, `/methodology`, `/research/career-breaks` |
 | [jobs-id](./jobs-id.md) | 56 | `/jobs/[id]` |
 | [purchase](./purchase.md) | 51 | `/purchase/confirmed`, `/purchase/restore` |
 | [compare](./compare.md) | 48 | `/compare`, `/compare/enhancv`, `/compare/jobscan`, `/compare/kickresume`, `/compare/resume-worded`, `/compare/rezi` and 2 more |
