@@ -183,6 +183,8 @@ Measured on the live site that day, pages started at seven different left edges 
 
 A saved report's row leads with the report's own one-sentence verdict, in the verdict face, because that is what tells two reports apart. A name the person gave the version leads instead when there is one, with the verdict under it. The band and the date sit in the margin; the kind (Resume, LinkedIn profile) and the target role sit under the verdict. The row never shows the resume's own text: the old preview was the resume's opening lines, contact details included. Rows are hairlines on the ground, not a card. The line above the list says how many reports are saved and what the person has left, linked to Billing. `/internal/reports-lab` shows the rows with fixtures.
 
+Since the same day the page is also a returning person's home. The newest report is set larger at the top ("Your latest report") with its two next steps as buttons, Open the report and Check a revision; the rest follow as "Earlier reports". Under the kind and role a row says where the report stands, in plain words: how many of its lines are answered ("3 of 6 lines answered"), and the change in score from the person's previous report for the same role ("Up 6 since Nov 1, 2026"). The pen marks the two good states only: every line answered, and a score that rose. The number itself still never appears, only the change (the Nov 6 rule). The comparison is between two reports with the same role, not a claim that one revises the other: a saved report doesn't record which report it revises (`lib/reports/report-history.ts`). The pass is drawn as sheets beside the count, one for each report left, with the day it ends.
+
 ### Containers
 
 | Surface | Default maximum | Density |
