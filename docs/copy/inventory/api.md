@@ -359,10 +359,10 @@ Routes: `/api/account/delete`, `/api/account/export`, `/api/analytics`, `/api/au
 | 1 | report | `web/app/api/resume-feedback/route.ts:91` | key:message | Too many requests. Try again shortly. |
 | 2 | report | `web/app/api/resume-feedback/route.ts:172` | key:message | Your browser is ready. Try creating your report again. |
 | 3 | report | `web/app/api/resume-feedback/route.ts:206` | key:message | You've used your free report. The Job Search Pass is five more reports, good for 90 days. |
-| 4 | report | `web/app/api/resume-feedback/route.ts:452` | const | This is taking longer than usual. Try again in a moment. |
-| 5 | report | `web/app/api/resume-feedback/route.ts:454` | const | Connection hiccup. Try again in a moment. |
-| 6 | report | `web/app/api/resume-feedback/route.ts:457` | const | We couldn't read the report that came back. Try again. |
-| 7 | report | `web/app/api/resume-feedback/route.ts:459` | const | We couldn’t finish this report on our side. Your resume wasn’t the problem. |
+| 4 | report | `web/app/api/resume-feedback/route.ts:462` | const | This is taking longer than usual. Try again in a moment. |
+| 5 | report | `web/app/api/resume-feedback/route.ts:464` | const | Connection hiccup. Try again in a moment. |
+| 6 | report | `web/app/api/resume-feedback/route.ts:467` | const | We couldn't read the report that came back. Try again. |
+| 7 | report | `web/app/api/resume-feedback/route.ts:469` | const | We couldn’t finish this report on our side. Your resume wasn’t the problem. |
 
 ## /api/resume-feedback-stream
 
@@ -373,8 +373,8 @@ Routes: `/api/account/delete`, `/api/account/export`, `/api/analytics`, `/api/au
 | 3 | report | `web/app/api/resume-feedback-stream/route.ts:162` | key:message | A LinkedIn profile review can't be rewritten from answers. |
 | 4 | report | `web/app/api/resume-feedback-stream/route.ts:243` | key:message | Your browser is ready. Try creating your report again. |
 | 5 | report | `web/app/api/resume-feedback-stream/route.ts:301` | key:message | You've used your free report. The Job Search Pass is five more reports, good for 90 days. |
-| 6 | report | `web/app/api/resume-feedback-stream/route.ts:682` | const | This is taking longer than usual. Try again in a moment. |
-| 7 | report | `web/app/api/resume-feedback-stream/route.ts:684` | const | Connection hiccup. Try again in a moment. |
+| 6 | report | `web/app/api/resume-feedback-stream/route.ts:692` | const | This is taking longer than usual. Try again in a moment. |
+| 7 | report | `web/app/api/resume-feedback-stream/route.ts:694` | const | Connection hiccup. Try again in a moment. |
 
 ## /api/resume-feedback, /api/resume-feedback-stream
 

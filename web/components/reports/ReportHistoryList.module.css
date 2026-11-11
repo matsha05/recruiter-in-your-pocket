@@ -184,6 +184,66 @@
 
 .row:hover .arrow { transform: translateX(2px); color: hsl(var(--pen)); }
 
+/* The earlier versions of a resume, under its newest report: closed until asked for, then the same parts as a
+   row at reading size. A version's number takes the band's place in the margin; the band sits under its verdict. */
+.versions { margin-top: 0.5rem; }
+.latest .versions { margin-top: 1.5rem; }
+
+.versionsSummary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    border-radius: var(--radius);
+    color: hsl(var(--text-strong));
+    font: var(--type-small);
+    font-weight: var(--weight-control);
+    cursor: pointer;
+    list-style: none;
+    transition: color var(--duration-fast) var(--ease);
+}
+.versionsSummary::-webkit-details-marker { display: none; }
+.versionsSummary:hover { color: hsl(var(--pen)); }
+
+.caret { flex: none; transition: transform var(--duration-fast) var(--ease); }
+.versions[open] .caret { transform: rotate(90deg); }
+
+.versionList {
+    margin: 0.25rem 0 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid hsl(var(--line));
+}
+
+.versionRow {
+    display: grid;
+    grid-template-columns: 7.5rem minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 0.5rem 1.5rem;
+    border-bottom: 1px solid hsl(var(--line));
+    padding: 1rem 0;
+}
+.row .versionRow:last-child { border-bottom: 0; padding-bottom: 0; }
+
+.versionName {
+    margin: 0 0 0.25rem;
+    font: var(--type-small);
+    font-weight: var(--weight-control);
+    overflow-wrap: anywhere;
+}
+
+.versionVerdict {
+    max-width: 60ch;
+    margin: 0;
+    color: hsl(var(--text-strong));
+    font: var(--weight-body) var(--type-body-size) / var(--type-body-leading) var(--font-editorial);
+    text-wrap: pretty;
+    transition: color var(--duration-fast) var(--ease);
+}
+.versionVerdict:empty { display: none; }
+.open:hover .versionVerdict { color: hsl(var(--pen)); }
+.versionRow .meta { margin-top: 0.25rem; }
+
 /* No reports yet: plain words on the ground under the same rule the list would start with. */
 .empty { border-top: 1px solid hsl(var(--text-strong)); padding-top: 2rem; }
 .emptyTitle { margin: 0; font: var(--type-heading); letter-spacing: var(--tracking-heading); }
@@ -196,8 +256,9 @@
     .when { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.75rem; padding-top: 0; }
     .date { margin: 0; }
     .arrow { display: none; }
+    .versionRow { grid-template-columns: minmax(0, 1fr) auto; gap: 0.25rem 1rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .verdict, .name, .arrow { transition: none; }
+    .verdict, .name, .arrow, .versionVerdict, .versionsSummary, .caret { transition: none; }
 }

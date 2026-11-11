@@ -5,7 +5,7 @@ import { ClientActionError, getClientActionError } from "@/lib/client-action-err
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
-import { ArrowRight, PencilSimple, Trash, X } from "@phosphor-icons/react";
+import { ArrowRight, CaretRight, PencilSimple, Trash, X } from "@phosphor-icons/react";
 import { toast } from "sonner";
 import ConfirmModal from "@/components/shared/ConfirmModal";
 import { scoreBandFor } from "@/lib/reports/score-band";
@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import { LINKEDIN_SAVED_PREVIEW } from "@/lib/reports/report-document";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { Pile } from "@/components/materials/Pile";
-import { lineProgressLabel, scoreChangeLabel, type LineProgress, type ScoreChange } from "@/lib/reports/report-history";
+import { earlierVersionsLabel, groupReportVersions, lineProgressLabel, reportVersions, scoreChangeLabel, versionChangeLabel, type LineProgress, type ScoreChange } from "@/lib/reports/report-history";
 import { getSavedReportRevisionHref } from "@/lib/reports/saved-report-revision";
 import styles from "./ReportHistoryList.module.css";
 
@@ -32,6 +32,8 @@ export type ReportHistoryItem = {
   progress?: LineProgress | null;
   /** The change in score from the person's previous report for the same role. */
   change?: ScoreChange | null;
+  /** The saved report this one revises, when it was run as a re-check of it. */
+  revises?: string | null;
 };
 
 /** The active pass, when the person has one that counts reports: what's left and the day it ends. */
@@ -82,6 +84,9 @@ export function ReportHistoryList({ initialReports, pass = null }: { initialRepo
   const [savingId, setSavingId] = useState<string | null>(null);
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [deletingId, setDeletingId] = useState<string | null>(null);
+
+  const groups = useMemo(() => groupReportVersions(reports), [reports]);
+  const versions = useMemo(() => reportVersions(groups), [groups]);
 
   const reportToDelete = useMemo(
     () => reports.find((report) => report.id === deleteId) || null,
@@ -165,7 +170,27 @@ export function ReportHistoryList({ initialReports, pass = null }: { initialRepo
     );
   }
 
-  const [latest, ...earlier] = reports;
+  // Reports joined by a re-check are versions of one resume: the newest stands for it, the rest sit under it.
+  const [latestGroup, ...earlierGroups] = groups;
+  const latest = latestGroup[0];
+
+  /**
+   * Where a report stands: lines answered, and how its score moved. A version is measured against the version it
+   * revises; a report on its own, against the person's previous report for the same role.
+   */
+  const standing = (report: ReportHistoryItem) => {
+    const version = versions.get(report.id);
+    const moved = version
+      ? version.change ? { up: version.change.delta > 0, label: versionChangeLabel(version.change) } : null
+      : report.change ? { up: report.change.delta > 0, label: scoreChangeLabel(report.change, formatReportDate(report.change.since), formatReportDate(report.createdAt)) } : null;
+    if (!report.progress && !moved) return null;
+    return (
+      <p className={styles.standing} data-testid="report-standing">
+        {report.progress ? <span data-done={report.progress.answered >= report.progress.total || undefined}>{lineProgressLabel(report.progress)}</span> : null}
+        {moved ? <span data-up={moved.up || undefined}>{moved.label}</span> : null}
+      </p>
+    );
+  };
 
   /** What a row adds under its verdict: its kind and role, then how far along it is and how its score moved. */
   const details = (report: ReportHistoryItem) => (
@@ -173,15 +198,46 @@ export function ReportHistoryList({ initialReports, pass = null }: { initialRepo
       <p className={styles.meta}>
         {report.isProfile ? "LinkedIn profile" : "Resume"}
         {report.targetRole ? <> · {report.targetRole}</> : null}
+        {versions.get(report.id) ? <> · Version {versions.get(report.id)?.number}</> : null}
       </p>
-      {report.progress || report.change ? (
-        <p className={styles.standing} data-testid="report-standing">
-          {report.progress ? <span data-done={report.progress.answered >= report.progress.total || undefined}>{lineProgressLabel(report.progress)}</span> : null}
-          {report.change ? <span data-up={report.change.delta > 0 || undefined}>{scoreChangeLabel(report.change, formatReportDate(report.change.since), formatReportDate(report.createdAt))}</span> : null}
-        </p>
-      ) : null}
+      {standing(report)}
     </>
   );
+
+  /** One earlier version of a resume, under the newest: its number and date, its verdict, how its score moved. */
+  const versionRow = (report: ReportHistoryItem) => {
+    const version = versions.get(report.id);
+    return (
+      <li key={report.id} className={styles.versionRow} data-testid="report-version">
+        <div className={styles.when}>
+          <p className={styles.band}>Version {version?.number}</p>
+          <p className={styles.date}>{formatReportDate(report.createdAt)}</p>
+        </div>
+        <div className={styles.main}>
+          {renamingId === report.id ? renameForm(report) : (
+            <Link href={`/reports/${report.id}`} className={`focus-ring ${styles.open}`}>
+              {report.name ? <p className={styles.versionName}>{report.name}</p> : null}
+              <p className={styles.versionVerdict}>{report.verdict || (report.name ? null : reportTitle(report))}</p>
+              <p className={styles.meta}>{scoreBandFor(report.score ?? 0).name}</p>
+              {standing(report)}
+            </Link>
+          )}
+        </div>
+        {renamingId !== report.id ? <div className={styles.actions}>{tools(report)}</div> : null}
+      </li>
+    );
+  };
+
+  /** The earlier versions of a resume, closed until asked for. */
+  const earlierVersions = (group: ReportHistoryItem[]) => group.length > 1 ? (
+    <details className={styles.versions} data-testid="report-versions">
+      <summary className={`focus-ring ${styles.versionsSummary}`}>
+        <CaretRight className={`size-3.5 ${styles.caret}`} weight="bold" aria-hidden="true" />
+        {earlierVersionsLabel(group.length - 1)}
+      </summary>
+      <ol className={styles.versionList}>{group.slice(1).map(versionRow)}</ol>
+    </details>
+  ) : null;
 
   const renameForm = (report: ReportHistoryItem) => (
     <div className="flex max-w-xl flex-col gap-2 sm:flex-row">
@@ -269,13 +325,15 @@ export function ReportHistoryList({ initialReports, pass = null }: { initialRepo
             </div>
           </>
         )}
+        {earlierVersions(latestGroup)}
       </section>
 
-      {earlier.length > 0 ? (
+      {earlierGroups.length > 0 ? (
         <section aria-labelledby="earlier-reports-title">
           <h2 id="earlier-reports-title" className={styles.earlierTitle}>Earlier reports</h2>
           <ol className={styles.list}>
-            {earlier.map((report) => {
+            {earlierGroups.map((group) => {
+              const report = group[0];
               const title = reportTitle(report);
               const isRenaming = renamingId === report.id;
               const revise = revisionHref(report);
@@ -301,6 +359,7 @@ export function ReportHistoryList({ initialReports, pass = null }: { initialRepo
                         {revise ? <Link href={revise} className={`riyp-link-quiet focus-ring ${styles.revise}`}>Check a revision</Link> : null}
                       </>
                     )}
+                    {earlierVersions(group)}
                   </div>
 
                   {!isRenaming ? (

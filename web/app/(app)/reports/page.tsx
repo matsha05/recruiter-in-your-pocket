@@ -52,6 +52,13 @@ export default async function ReportsPage() {
     console.error("[ReportsPage] Failed to load report history", reportsError);
   }
 
+  // Which report each one revises (migration 026), read on its own so the page still loads where the column
+  // doesn't exist yet: without it every report simply stands alone, as before.
+  const { data: links } = reportsError
+    ? { data: null }
+    : await supabase.from("reports").select("id, revises_report_id").eq("user_id", user.id).not("revises_report_id", "is", null).limit(200);
+  const revises = new Map((links || []).map((link: { id: string; revises_report_id: string | null }) => [link.id, link.revises_report_id] as const));
+
   const hasMoreReports = (reports?.length || 0) > 50;
   const items = (reports || []).slice(0, 50);
 
@@ -136,6 +143,7 @@ export default async function ReportsPage() {
               isProfile: report.resume_preview === LINKEDIN_SAVED_PREVIEW,
               progress: lineProgress(report.cards, report.line_answers),
               change: changes.get(report.id) ?? null,
+              revises: revises.get(report.id) ?? null,
               // An earlier report's first impression runs two or three sentences; its row shows the first, the way
               // that report opens (lib/reports/report-opening.ts). The worklist verdict is already one sentence.
               verdict: verdictLine(report.verdict || (typeof report.first_impression === "string" && report.first_impression.trim() ? splitVerdict(report.first_impression).lead : null) || report.takeaway),

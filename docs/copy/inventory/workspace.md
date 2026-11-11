@@ -376,20 +376,20 @@ Routes: `/api/export-pdf`, `/api/resume-feedback`, `/api/resume-feedback-stream`
 | 55 | report | `web/components/workspace/hooks/useResumeOnFile.ts:69` | key:message | We couldn't keep your resume on file. Try again. |
 | 56 | report | `web/components/workspace/hooks/useResumeOnFile.ts:77` | key:message | We couldn't remove your resume from file. Try again. |
 | 57 | report | `web/components/workspace/hooks/useResumeOnFile.ts:82` | key:message | We couldn't remove your resume from file. Try again. |
-| 58 | report | `web/components/workspace/hooks/useResumeReview.ts:79` | call:toast.error | We couldn’t read this resume |
-| 59 | report | `web/components/workspace/hooks/useResumeReview.ts:85` | call:toast.error | We couldn’t read this file |
-| 60 | report | `web/components/workspace/hooks/useResumeReview.ts:85` | key:description | Try another PDF or DOCX, or paste the resume text. |
-| 61 | report | `web/components/workspace/hooks/useResumeReview.ts:102` | call:toast.success | Saved to My reports. |
-| 62 | report | `web/components/workspace/hooks/useResumeReview.ts:109` | key:message | We couldn’t save this report to My reports. Keep this tab open and try again. |
-| 63 | report | `web/components/workspace/hooks/useResumeReview.ts:131` | call:toast.error | Add your resume first |
-| 64 | report | `web/components/workspace/hooks/useResumeReview.ts:132` | key:description | Upload a file or paste the resume text before creating the report. |
-| 65 | report | `web/components/workspace/hooks/useResumeReview.ts:183` | call:toast.warning | Report stopped |
-| 66 | report | `web/components/workspace/hooks/useResumeReview.ts:187` | call:toast.info | Report stopped |
-| 67 | report | `web/components/workspace/hooks/useResumeReview.ts:191` | call:toast.info | Report stopped |
-| 68 | report | `web/components/workspace/hooks/useResumeReview.ts:249` | const | {REPORT_ACCESS_NOT_USED} Try again whenever you're ready. |
-| 69 | report | `web/components/workspace/hooks/useResumeReview.ts:254` | const | The connection dropped |
-| 70 | report | `web/components/workspace/hooks/useResumeReview.ts:254` | const | We couldn’t finish your report |
-| 71 | report | `web/components/workspace/hooks/useResumeReview.ts:271` | call:toast.error | We couldn’t finish your report |
+| 58 | report | `web/components/workspace/hooks/useResumeReview.ts:81` | call:toast.error | We couldn’t read this resume |
+| 59 | report | `web/components/workspace/hooks/useResumeReview.ts:87` | call:toast.error | We couldn’t read this file |
+| 60 | report | `web/components/workspace/hooks/useResumeReview.ts:87` | key:description | Try another PDF or DOCX, or paste the resume text. |
+| 61 | report | `web/components/workspace/hooks/useResumeReview.ts:104` | call:toast.success | Saved to My reports. |
+| 62 | report | `web/components/workspace/hooks/useResumeReview.ts:111` | key:message | We couldn’t save this report to My reports. Keep this tab open and try again. |
+| 63 | report | `web/components/workspace/hooks/useResumeReview.ts:133` | call:toast.error | Add your resume first |
+| 64 | report | `web/components/workspace/hooks/useResumeReview.ts:134` | key:description | Upload a file or paste the resume text before creating the report. |
+| 65 | report | `web/components/workspace/hooks/useResumeReview.ts:186` | call:toast.warning | Report stopped |
+| 66 | report | `web/components/workspace/hooks/useResumeReview.ts:190` | call:toast.info | Report stopped |
+| 67 | report | `web/components/workspace/hooks/useResumeReview.ts:194` | call:toast.info | Report stopped |
+| 68 | report | `web/components/workspace/hooks/useResumeReview.ts:252` | const | {REPORT_ACCESS_NOT_USED} Try again whenever you're ready. |
+| 69 | report | `web/components/workspace/hooks/useResumeReview.ts:257` | const | The connection dropped |
+| 70 | report | `web/components/workspace/hooks/useResumeReview.ts:257` | const | We couldn’t finish your report |
+| 71 | report | `web/components/workspace/hooks/useResumeReview.ts:274` | call:toast.error | We couldn’t finish your report |
 | 72 | report | `web/components/workspace/hooks/useSampleReport.ts:36` | call:toast.error | The sample report didn't load |
 | 73 | report | `web/components/workspace/hooks/useSampleReport.ts:37` | key:description | Refresh to try again, or start with your own resume. |
 | 74 | report | `web/components/workspace/hooks/useWorkspaceCommands.ts:22` | call:toast.success | Link copied to clipboard |
@@ -491,19 +491,19 @@ Routes: `/api/export-pdf`, `/api/resume-feedback`, `/api/resume-feedback-stream`
 | 170 | report | `web/components/workspace/VersionComparisonView.tsx:36` | jsx-text | Compare reports |
 | 171 | report | `web/components/workspace/VersionComparisonView.tsx:40` | jsx-text | The lines, score and verdict from your earlier report beside the newer one. |
 | 172 | report | `web/components/workspace/WorkspaceClient.tsx:262` | call:toast.info | Report stopped |
-| 173 | report | `web/components/workspace/WorkspaceClient.tsx:427` | call:toast.error | The sample report didn't load |
-| 174 | report | `web/components/workspace/WorkspaceClient.tsx:428` | key:description | Refresh to try again, or start with your own resume. |
-| 175 | report | `web/components/workspace/WorkspaceClient.tsx:458` | call:toast.error | This report is missing details needed for a PDF. Contact support for help exporting it. |
+| 173 | report | `web/components/workspace/WorkspaceClient.tsx:430` | call:toast.error | The sample report didn't load |
+| 174 | report | `web/components/workspace/WorkspaceClient.tsx:431` | key:description | Refresh to try again, or start with your own resume. |
+| 175 | report | `web/components/workspace/WorkspaceClient.tsx:461` | call:toast.error | This report is missing details needed for a PDF. Contact support for help exporting it. |
 | 176 | upload | `web/components/workspace/WorkspaceResumePicker.tsx:21` | call:toast.message | Wait for this report to finish or stop it before uploading another resume. |
 | 177 | upload | `web/components/workspace/WorkspaceResumePicker.tsx:35` | attr:aria-label | Upload a resume file |
 | 178 | upload | `web/components/workspace/WorkspaceResumePicker.tsx:41` | call:toast.error | Choose a PDF or DOCX under 4 MB. |
 | 179 | upload | `web/components/workspace/WorkspaceResumePicker.tsx:50` | call:toast.error | We couldn’t read this file. Try again or choose another PDF or DOCX. |
 | 180 | upload | `web/components/workspace/WorkspaceResumePicker.tsx:57` | jsx-text | Reading your resume file. |
 | 181 | upload | `web/components/workspace/WorkspaceResumePicker.tsx:57` | const | Reading your resume file. |
-| 182 | shared | `web/lib/api.ts:158` | key:message | The connection dropped before your report finished. |
-| 183 | shared | `web/lib/api.ts:188` | key:message | The connection dropped before your report finished. |
-| 184 | shared | `web/lib/api.ts:239` | key:message | The connection dropped before your report finished. |
-| 185 | shared | `web/lib/api.ts:368` | key:message | The connection dropped before your report finished. |
+| 182 | shared | `web/lib/api.ts:160` | key:message | The connection dropped before your report finished. |
+| 183 | shared | `web/lib/api.ts:190` | key:message | The connection dropped before your report finished. |
+| 184 | shared | `web/lib/api.ts:241` | key:message | The connection dropped before your report finished. |
+| 185 | shared | `web/lib/api.ts:370` | key:message | The connection dropped before your report finished. |
 | 186 | report | `web/lib/reports/client-report-save.ts:30` | call:ClientActionError | We couldn’t save this report. Try again. |
 | 187 | report | `web/lib/reports/client-report-save.ts:33` | call:ClientActionError | We couldn’t confirm that this report was saved. Try again. |
 | 188 | report | `web/lib/reports/generation-operation-marker.ts:4` | const | The report request failed with status {response.status}. Please try again. |

@@ -300,8 +300,11 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         enabled: Boolean(user?.postingReads) && !reportDocument,
         onLoaded: handleResumeOnFileLoaded,
     });
+    // A re-check, from a saved report or from the report just on screen, makes a version of that report when it was saved.
+    const revisionBaseline = (savedRevision.active ? savedRevision.baseline : comparisonBaseline) as (ReportData & { report_id?: string | null }) | null;
+    const revisesReportId = revisionBaseline?.report_id || revisionBaseline?.id || null;
     const { handleFileSelect, handleRequestSaveAuth, handleRun, saveReportForCurrentUser, reportSaveState } = useResumeReview({
-        resumeText, jobDescription, persistedSavedJobId, freeUsesRemaining, user, document: reportDocument, postingReadReportId,
+        resumeText, jobDescription, persistedSavedJobId, freeUsesRemaining, user, document: reportDocument, postingReadReportId, revisesReportId,
         // Refused as a posting read (a changed resume, no pass): the next run is an ordinary report, and says so.
         onPostingReadRefused: () => setPostingSource(null),
         refreshFreeStatus, beginAnalysis, isAnalysisCurrent, endAnalysis, setResumeText, setReport, setIsLoading,
