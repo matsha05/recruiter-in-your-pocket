@@ -7,11 +7,11 @@ import { PrivacyPreferencesButton } from "@/components/privacy/PrivacyPreference
 /**
  * The footer (cut down Nov 10, 2026: Matt, "its SO MUCH TEXT"): the wordmark and one row of the links the header
  * doesn't carry, then one quiet line for the copyright, support, privacy choices and restoring a purchase. It sits on
- * the site's one column.
+ * the site's one column, on the deep pen: every page ends on the same ground (Matt chose the green close, Nov 11, 2026).
  */
 export default function Footer() {
     return (
-        <footer className={styles.footer}>
+        <footer className={`riyp-inverted ${styles.footer}`}>
             <div className={styles.inner}>
                 <Link href="/" aria-label="Recruiter in Your Pocket home" className={`focus-ring ${styles.brand}`}>
                     <Wordmark />

@@ -127,7 +127,7 @@
     {
       "text": "My reports",
       "kind": "key:title",
-      "line": 25,
+      "line": 26,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -138,7 +138,7 @@
     {
       "text": "Every report you’ve saved, and what the recruiter took from each.",
       "kind": "key:description",
-      "line": 26,
+      "line": 27,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -149,7 +149,7 @@
     {
       "text": "Your saved reports",
       "kind": "attr:title",
-      "line": 58,
+      "line": 59,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -160,7 +160,7 @@
     {
       "text": "New report",
       "kind": "jsx-text",
-      "line": 75,
+      "line": 76,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -171,7 +171,7 @@
     {
       "text": "These are your latest 50 reports. Older ones are still saved, and an account export includes them.",
       "kind": "jsx-text",
-      "line": 84,
+      "line": 85,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -182,7 +182,7 @@
     {
       "text": "We couldn’t load My reports.",
       "kind": "jsx-text",
-      "line": 90,
+      "line": 91,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -193,7 +193,7 @@
     {
       "text": "Try again",
       "kind": "jsx-text",
-      "line": 96,
+      "line": 97,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -204,7 +204,7 @@
     {
       "text": "Contact support",
       "kind": "jsx-text",
-      "line": 103,
+      "line": 104,
       "file": "web/app/(app)/reports/page.tsx",
       "routes": [
         "/reports"
@@ -39929,6 +39929,7 @@
       "line": 90,
       "file": "web/lib/reports/report-opening.ts",
       "routes": [
+        "/reports",
         "/reports/[id]",
         "/sample-report",
         "/workspace"
