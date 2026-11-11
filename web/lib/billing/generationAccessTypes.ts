@@ -7,7 +7,9 @@ export type GenerationEntitlementKind =
   | "anonymous_free"
   | "bypass"
   /** A second read of a not-ready page written from the person's answers (ask-first): no reservation, nothing spent. */
-  | "rebuild";
+  | "rebuild"
+  /** A resume already read under the pass, read against a posting (lib/reports/posting-read.ts): no reservation, nothing spent. */
+  | "posting_read";
 
 export type GenerationPassSnapshot = {
   id: string;

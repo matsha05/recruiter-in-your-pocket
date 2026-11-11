@@ -36,12 +36,12 @@ async function run() {
   assert.equal(hasPdfExportAccess(null), false);
   assert.deepEqual(
     readAuthoritativePassAccess(true, { ok: true, passes: [exhaustedPass] }, now),
-    { membership: "free", canExportPdf: true },
-    "the final credit changes generation membership; the PDF stays",
+    { membership: "free", canExportPdf: true, postingReads: true },
+    "the final credit changes generation membership; the PDF and the posting reads stay for the pass's term",
   );
   assert.deepEqual(
     readAuthoritativePassAccess(true, { ok: true, passes: [lastCreditPass] }, now),
-    { membership: "credit", paidUsesLeft: 1, canExportPdf: true },
+    { membership: "credit", paidUsesLeft: 1, canExportPdf: true, postingReads: true },
   );
   const invalidPasses: Array<PassLike | null> = [
     null, {}, { ...exhaustedPass, tier: "unknown" },

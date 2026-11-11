@@ -79,6 +79,9 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     const [comparisonBaseline, setComparisonBaseline] = useState<ReportData | null>(null);
     // A report's "Read it against a posting" kept the resume: open the posting field when the input returns.
     const [postingRequested, setPostingRequested] = useState(false);
+    // "Read it against a posting" on a saved report of this resume: with a pass, that read spends no report
+    // (lib/reports/posting-read.ts). Kept only while the resume text is the one that report was written on.
+    const [postingSource, setPostingSource] = useState<{ reportId: string; text: string } | null>(null);
     // Ask-first (Nov 5, 2026): a page the server read as not ready shows its questions before the report;
     // the report is then written again from the resume with the answers in it, and the first stays put
     // until the second arrives. `rebuiltAnswers` is how many answers the shown report was written from.
@@ -259,6 +262,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         setResumeText("");
         setJobDescription("");
         setPostingRequested(false);
+        setPostingSource(null);
         setReport(null);
         setJustUnlocked(false);
         setComparisonBaseline(null);
@@ -275,8 +279,10 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     const revisionBlocked = savedRevision.active && savedRevision.state !== "ready";
 
     const persistedSavedJobId = getPersistedSavedJobId(loadedJobContext);
+    // Included with the pass: the same resume as the saved report, read against a posting.
+    const postingReadReportId = user?.postingReads && !reportDocument && postingSource && postingSource.text === resumeText ? postingSource.reportId : null;
     const { handleFileSelect, handleRequestSaveAuth, handleRun, saveReportForCurrentUser, reportSaveState } = useResumeReview({
-        resumeText, jobDescription, persistedSavedJobId, freeUsesRemaining, user, document: reportDocument,
+        resumeText, jobDescription, persistedSavedJobId, freeUsesRemaining, user, document: reportDocument, postingReadReportId,
         refreshFreeStatus, beginAnalysis, isAnalysisCurrent, endAnalysis, setResumeText, setReport, setIsLoading,
         setIsStreaming, setAnalysisStage, setIsPaywallOpen, setPendingReportForSave, setIsSavePromptOpen,
         setIsAuthOpen, setAuthContext,
@@ -355,9 +361,12 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     const handleReadAgainstPosting = useCallback(() => {
         if (!report) return;
         const kept = resumeText;
+        const sourceId = typeof (report as { report_id?: unknown }).report_id === "string" ? (report as { report_id: string }).report_id : null;
+        const fromResume = !isLinkedInReport(report);
         resetWorkspaceInput();
         setResumeText(kept);
         setPostingRequested(true);
+        if (sourceId && fromResume && kept.trim()) setPostingSource({ reportId: sourceId, text: kept });
         replace("/workspace", { scroll: false });
     }, [report, resumeText, resetWorkspaceInput, replace]);
 
@@ -609,6 +618,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
                             onStartRevision={handleStartRevision}
                             onReadAgainstPosting={handleReadAgainstPosting}
                             focusPosting={postingRequested}
+                            postingReadIncluded={Boolean(postingReadReportId)}
                             readDurationMs={readDurationMs}
                             askFirst={askFirst}
                             onAskFirstWrite={handleAskFirstWrite}

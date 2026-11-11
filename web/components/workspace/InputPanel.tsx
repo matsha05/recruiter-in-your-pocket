@@ -14,6 +14,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ResumeDropzone } from "@/components/upload/ResumeDropzone";
 import { MIN_RESUME_CHARS } from "@/lib/resume-input";
+import { POSTING_READ_INCLUDED_HINT } from "@/lib/reports/posting-read-terms";
 import { cn } from "@/lib/utils";
 import styles from "./InputPanel.module.css";
 
@@ -43,6 +44,8 @@ interface InputPanelProps {
     focusPosting?: boolean;
     /** A LinkedIn profile review takes LinkedIn's own PDF export: no pasted text, no posting (Nov 10, 2026). */
     document?: "resume" | "linkedin";
+    /** With a pass, reading an already-read resume against a posting spends no report; say so once the posting is in. */
+    postingReadIncluded?: boolean;
 }
 
 export default function InputPanel({
@@ -62,6 +65,7 @@ export default function InputPanel({
     isRevision = false,
     focusPosting = false,
     document = "resume",
+    postingReadIncluded = false,
 }: InputPanelProps) {
     const isProfile = document === "linkedin";
     const [fileName, setFileName] = useState<string | null>(null);
@@ -132,6 +136,7 @@ export default function InputPanel({
 
     // The line under the button says what the next report costs, only when the button can't.
     const getRunHint = () => {
+        if (postingReadIncluded && jobDescription.trim().length > 0) return POSTING_READ_INCLUDED_HINT;
         const membership = user?.membership;
         if (membership === "monthly" || membership === "lifetime") return null;
         if (membership === "credit") {

@@ -21,6 +21,9 @@ export type Mode = (typeof ALL_MODES)[number];
 
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/iu;
 
+/** The saved resume report a posting read belongs to: the same resume, read against a posting, on the pass. */
+export type PostingReadRequest = { reportId: string };
+
 /** The first report a rebuild is written from: the signed-in person's saved report, or the anonymous recovery. */
 export type RebuildRequest = { reportId: string | null; recoveryId: string | null };
 
@@ -28,7 +31,7 @@ export function validateResumeFeedbackRequest(body: any): {
   ok: boolean;
   message?: string;
   fieldErrors?: Record<string, string>;
-  value?: { text: string; mode: Mode; jobDescription: string | null; rebuild: RebuildRequest | null; document: ReportDocument | null };
+  value?: { text: string; mode: Mode; jobDescription: string | null; rebuild: RebuildRequest | null; document: ReportDocument | null; postingRead: PostingReadRequest | null };
 } {
   const fieldErrors: Record<string, string> = {};
 
@@ -71,6 +74,15 @@ export function validateResumeFeedbackRequest(body: any): {
   const document = parseReportDocument(rawDocument);
   if (rawDocument !== undefined && rawDocument !== null && !document) fieldErrors.document = 'Document must be "linkedin" when given.';
 
+  // A posting read names the saved report of the resume it reads; it is never also a rebuild or a profile review.
+  const postingInput = (body as any).posting_read;
+  let postingRead: PostingReadRequest | null = null;
+  if (postingInput !== undefined && postingInput !== null) {
+    const reportId = typeof postingInput?.report_id === "string" && UUID_PATTERN.test(postingInput.report_id) ? postingInput.report_id.toLowerCase() : null;
+    if (!reportId || rebuild || document) fieldErrors.posting_read = "A posting read must name the resume report it belongs to.";
+    else postingRead = { reportId };
+  }
+
   let normalizedJob: string | null = null;
   if (jobDescription !== undefined) {
     if (typeof jobDescription !== "string") fieldErrors.jobDescription = "Job description should be plain text.";
@@ -90,7 +102,7 @@ export function validateResumeFeedbackRequest(body: any): {
 
   return {
     ok: true,
-    value: { text: trimmedText, mode: normalizedMode, jobDescription: normalizedJob, rebuild, document }
+    value: { text: trimmedText, mode: normalizedMode, jobDescription: normalizedJob, rebuild, document, postingRead }
   };
 }
 

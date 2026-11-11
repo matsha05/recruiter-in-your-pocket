@@ -103,7 +103,7 @@ export async function streamResumeFeedback(
   onChunk: (partialJson: string, partialReport: any | null) => void,
   mode: "resume" | "resume_ideas" | "case_resume" | "case_interview" | "case_negotiation" = "resume",
   // `rebuild` (ask-first): write the report again from the resume with the person's answers in it, bound to the first report; free, no recovery marker of its own.
-  options?: { signal?: AbortSignal; savedJobId?: string | null; onStage?: (stage: GenerationStage) => void; rebuild?: { reportId?: string | null; recoveryId?: string | null } | null; /** A LinkedIn profile export instead of a resume. */ document?: "linkedin" | null }
+  options?: { signal?: AbortSignal; savedJobId?: string | null; onStage?: (stage: GenerationStage) => void; rebuild?: { reportId?: string | null; recoveryId?: string | null } | null; /** A LinkedIn profile export instead of a resume. */ document?: "linkedin" | null; /** The saved report of this same resume: a posting read on the pass, which spends no report. */ postingRead?: { reportId: string } | null }
 ): Promise<{
   ok: boolean; report?: any; message?: string; errorCode?: string; aborted?: boolean; reportId?: string | null;
   accessConsumed?: boolean; attemptConsumed?: boolean; creditRestored?: boolean;
@@ -113,7 +113,8 @@ export async function streamResumeFeedback(
 }> {
   const rebuild = options?.rebuild ? { report_id: options.rebuild.reportId || undefined, recovery_id: options.rebuild.recoveryId || undefined } : undefined;
   const document = options?.document === "linkedin" ? { document: "linkedin" as const } : {};
-  const attached = mode === "resume" && !rebuild
+  const postingRead = options?.postingRead?.reportId && !rebuild ? { posting_read: { report_id: options.postingRead.reportId } } : null;
+  const attached = mode === "resume" && !rebuild && !postingRead
     ? attachAnonymousReportRecoveryMarker({
       text: resumeText,
       jobDescription,
@@ -130,6 +131,7 @@ export async function streamResumeFeedback(
         savedJobId: options?.savedJobId || undefined,
         mode,
         ...(rebuild ? { rebuild } : {}),
+        ...(postingRead ?? {}),
       },
     };
   const recoveryMarker = attached.marker;

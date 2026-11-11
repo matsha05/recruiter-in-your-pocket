@@ -20,6 +20,8 @@ export function useResumeReview(input: {
   persistedSavedJobId: string | null;
   /** Set when the upload is a LinkedIn profile export; the run is otherwise the resume run. */
   document?: "linkedin" | null;
+  /** Set when this run is a posting read on the pass: the saved report of the same resume. It spends no report. */
+  postingReadReportId?: string | null;
   freeUsesRemaining: number;
   user: any;
   refreshFreeStatus: (options: any) => Promise<boolean>;
@@ -131,7 +133,9 @@ export function useResumeReview(input: {
       return;
     }
     const hasPaidAccess = Boolean(input.user?.membership && input.user.membership !== "free");
-    if (!rebuild && input.freeUsesRemaining <= 0 && !hasPaidAccess) {
+    // A posting read on the pass spends nothing, so a pass with no reports left still runs it.
+    const postingReadOnPass = Boolean(!rebuild && !input.document && input.postingReadReportId && hasEffectiveJobDescriptionValue(input.jobDescription));
+    if (!rebuild && !postingReadOnPass && input.freeUsesRemaining <= 0 && !hasPaidAccess) {
       input.setIsPaywallOpen(true);
       Analytics.paywallViewed("free_uses_exhausted");
       return;
@@ -143,6 +147,8 @@ export function useResumeReview(input: {
     if (!rebuild) input.setReport(null);
     const controller = input.beginAnalysis(input.document === "linkedin" ? "linkedin" : "resume");
     const hasJobDescription = hasEffectiveJobDescriptionValue(input.jobDescription);
+    // A posting read on the pass spends nothing, so the count is refreshed and never decremented for it.
+    const unmeteredPostingRead = Boolean(!rebuild && !input.document && input.postingReadReportId && hasJobDescription);
     if (!rebuild) Analytics.reportStarted(hasJobDescription);
     Analytics.track("report_stream_started", { has_jd: hasJobDescription, mode: "resume", rebuild: Boolean(rebuild) });
 
@@ -157,6 +163,7 @@ export function useResumeReview(input: {
           savedJobId: input.persistedSavedJobId,
           rebuild,
           document: rebuild ? null : input.document ?? null,
+          postingRead: !rebuild && !input.document && input.postingReadReportId && hasJobDescription ? { reportId: input.postingReadReportId } : null,
           onStage: (stage) => {
             if (input.isAnalysisCurrent(controller)) input.setAnalysisStage?.(stage);
           },
@@ -201,7 +208,7 @@ export function useResumeReview(input: {
           },
           // A rebuild spent nothing: the counter is refreshed, never decremented on its account.
           refresh: () => input.refreshFreeStatus({
-            fallbackDecrement: !rebuild,
+            fallbackDecrement: !rebuild && !unmeteredPostingRead,
             includeUserRefresh: true,
             requireOk: true,
             shouldApply: () => input.isAnalysisCurrent(controller),

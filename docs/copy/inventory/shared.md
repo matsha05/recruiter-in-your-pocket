@@ -367,7 +367,7 @@ Routes: `/`, `/api/auth/send-code`, `/api/billing/confirm`, `/api/billing/restor
 
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
-| 1 | shared | `web/components/providers/AuthProvider.tsx:224` (80 routes) | call:toast.error | We couldn't sign you out. Try again. |
+| 1 | shared | `web/components/providers/AuthProvider.tsx:226` (80 routes) | call:toast.error | We couldn't sign you out. Try again. |
 
 ## web/components/research/AnswerArticle.tsx
 
@@ -476,11 +476,11 @@ Routes: `/`, `/api/auth/send-code`, `/api/billing/confirm`, `/api/billing/restor
 
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
-| 1 | pricing | `web/lib/billing/entitlements.ts:141` (85 routes) | return | Monthly plan |
-| 2 | pricing | `web/lib/billing/entitlements.ts:142` (85 routes) | return | Lifetime access |
-| 3 | pricing | `web/lib/billing/entitlements.ts:143` (85 routes) | return | Job Search Pass |
-| 4 | pricing | `web/lib/billing/entitlements.ts:144` (85 routes) | return | Extended pack |
-| 5 | pricing | `web/lib/billing/entitlements.ts:145` (85 routes) | return | Single report |
+| 1 | pricing | `web/lib/billing/entitlements.ts:151` (86 routes) | return | Monthly plan |
+| 2 | pricing | `web/lib/billing/entitlements.ts:152` (86 routes) | return | Lifetime access |
+| 3 | pricing | `web/lib/billing/entitlements.ts:153` (86 routes) | return | Job Search Pass |
+| 4 | pricing | `web/lib/billing/entitlements.ts:154` (86 routes) | return | Extended pack |
+| 5 | pricing | `web/lib/billing/entitlements.ts:155` (86 routes) | return | Single report |
 
 ## web/lib/billing/pricing.ts
 

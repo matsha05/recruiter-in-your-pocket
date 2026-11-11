@@ -1,16 +1,16 @@
 {
   "generated_by": "web/scripts/copy-inventory.cjs",
   "counts": {
-    "files_scanned": 422,
-    "files_with_copy": 255,
-    "strings": 2945,
-    "unique_strings": 2451
+    "files_scanned": 424,
+    "files_with_copy": 256,
+    "strings": 2946,
+    "unique_strings": 2452
   },
   "by_moment": {
     "research": 988,
     "account": 442,
     "marketing": 418,
-    "report": 257,
+    "report": 258,
     "pricing": 218,
     "upload": 124,
     "legal": 111,
@@ -13519,7 +13519,7 @@
     {
       "text": "Too many requests. Try again shortly.",
       "kind": "key:message",
-      "line": 89,
+      "line": 90,
       "file": "web/app/api/resume-feedback-stream/route.ts",
       "routes": [
         "/api/resume-feedback-stream"
@@ -13530,7 +13530,7 @@
     {
       "text": "LinkedIn profile reviews aren't available right now.",
       "kind": "key:message",
-      "line": 154,
+      "line": 157,
       "file": "web/app/api/resume-feedback-stream/route.ts",
       "routes": [
         "/api/resume-feedback-stream"
@@ -13541,7 +13541,7 @@
     {
       "text": "A LinkedIn profile review can't be rewritten from answers.",
       "kind": "key:message",
-      "line": 156,
+      "line": 159,
       "file": "web/app/api/resume-feedback-stream/route.ts",
       "routes": [
         "/api/resume-feedback-stream"
@@ -13552,7 +13552,7 @@
     {
       "text": "Your browser is ready. Try creating your report again.",
       "kind": "key:message",
-      "line": 237,
+      "line": 240,
       "file": "web/app/api/resume-feedback-stream/route.ts",
       "routes": [
         "/api/resume-feedback-stream"
@@ -13563,7 +13563,7 @@
     {
       "text": "You've used your free report. The Job Search Pass is five more reports, good for 90 days.",
       "kind": "key:message",
-      "line": 289,
+      "line": 298,
       "file": "web/app/api/resume-feedback-stream/route.ts",
       "routes": [
         "/api/resume-feedback-stream"
@@ -13574,7 +13574,7 @@
     {
       "text": "This is taking longer than usual. Try again in a moment.",
       "kind": "const",
-      "line": 666,
+      "line": 677,
       "file": "web/app/api/resume-feedback-stream/route.ts",
       "routes": [
         "/api/resume-feedback-stream"
@@ -13585,7 +13585,7 @@
     {
       "text": "Connection hiccup. Try again in a moment.",
       "kind": "const",
-      "line": 668,
+      "line": 679,
       "file": "web/app/api/resume-feedback-stream/route.ts",
       "routes": [
         "/api/resume-feedback-stream"
@@ -27519,7 +27519,7 @@
     {
       "text": "We couldn't sign you out. Try again.",
       "kind": "call:toast.error",
-      "line": 224,
+      "line": 226,
       "file": "web/components/providers/AuthProvider.tsx",
       "routes": [
         "/",
@@ -32197,7 +32197,7 @@
     {
       "text": "{paid} {paid === 1 ? \"report\" : \"…} left on your pass",
       "kind": "return",
-      "line": 139,
+      "line": 144,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32209,7 +32209,7 @@
     {
       "text": "Sign in for your free report, or get a Job Search Pass",
       "kind": "return",
-      "line": 143,
+      "line": 148,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32221,7 +32221,7 @@
     {
       "text": "Another report needs a Job Search Pass",
       "kind": "return",
-      "line": 144,
+      "line": 149,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32233,7 +32233,7 @@
     {
       "text": "Compare my revision",
       "kind": "const",
-      "line": 150,
+      "line": 155,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32245,7 +32245,7 @@
     {
       "text": "Get my report",
       "kind": "const",
-      "line": 151,
+      "line": 156,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32257,7 +32257,7 @@
     {
       "text": "Get your free report",
       "kind": "const",
-      "line": 151,
+      "line": 156,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32269,7 +32269,7 @@
     {
       "text": "Now let’s see what changed.",
       "kind": "jsx-text",
-      "line": 167,
+      "line": 172,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32281,7 +32281,7 @@
     {
       "text": "On your LinkedIn profile, choose Resources, then Save to PDF. Upload that file here.",
       "kind": "jsx-text",
-      "line": 171,
+      "line": 176,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32293,7 +32293,7 @@
     {
       "text": "Open your profile",
       "kind": "jsx-text",
-      "line": 172,
+      "line": 177,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32305,7 +32305,7 @@
     {
       "text": "Open your last report",
       "kind": "jsx-text",
-      "line": 177,
+      "line": 182,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32317,7 +32317,7 @@
     {
       "text": "New reports are paused for now.",
       "kind": "jsx-text",
-      "line": 196,
+      "line": 201,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32329,7 +32329,7 @@
     {
       "text": "We&apos;re fixing a problem, so an upload won&apos;t run yet. Saved reports still open.",
       "kind": "jsx-text",
-      "line": 198,
+      "line": 203,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32341,7 +32341,7 @@
     {
       "text": "Check status",
       "kind": "jsx-text",
-      "line": 199,
+      "line": 204,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32353,7 +32353,7 @@
     {
       "text": "Paste your resume",
       "kind": "jsx-text",
-      "line": 219,
+      "line": 224,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32365,7 +32365,7 @@
     {
       "text": "Upload a file",
       "kind": "jsx-text",
-      "line": 226,
+      "line": 231,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32377,7 +32377,7 @@
     {
       "text": "Resume text",
       "kind": "jsx-text",
-      "line": 229,
+      "line": 234,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32389,7 +32389,7 @@
     {
       "text": "That&apos;s",
       "kind": "jsx-text",
-      "line": 243,
+      "line": 248,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32401,7 +32401,7 @@
     {
       "text": "characters. We need at least",
       "kind": "jsx-text",
-      "line": 243,
+      "line": 248,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32413,7 +32413,7 @@
     {
       "text": "to review it, so add the whole resume, including your experience.",
       "kind": "jsx-text",
-      "line": 243,
+      "line": 248,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32425,7 +32425,7 @@
     {
       "text": "What we read",
       "kind": "jsx-text",
-      "line": 253,
+      "line": 258,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32437,7 +32437,7 @@
     {
       "text": "We could only read {charCount} characters, and we need at least {MIN_RESUME_CHARS}. Save a fresh PDF from your LinkedIn profile and upload that.",
       "kind": "jsx-text",
-      "line": 263,
+      "line": 268,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32449,7 +32449,7 @@
     {
       "text": "We could only read {charCount} characters, and we need at least {MIN_RESUME_CHARS}. A scanned or image-only PDF often does this. Paste the text instead.",
       "kind": "jsx-text",
-      "line": 263,
+      "line": 268,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32461,7 +32461,7 @@
     {
       "text": "Text we read from your file",
       "kind": "attr:aria-label",
-      "line": 266,
+      "line": 271,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32473,7 +32473,7 @@
     {
       "text": "Paste the text instead",
       "kind": "jsx-text",
-      "line": 269,
+      "line": 274,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32485,7 +32485,7 @@
     {
       "text": "Fix the text",
       "kind": "jsx-text",
-      "line": 269,
+      "line": 274,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32497,7 +32497,7 @@
     {
       "text": "Paste the text instead",
       "kind": "jsx-text",
-      "line": 284,
+      "line": 289,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32509,7 +32509,7 @@
     {
       "text": "See Jordan&apos;s report",
       "kind": "jsx-text",
-      "line": 288,
+      "line": 293,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32521,7 +32521,7 @@
     {
       "text": "OpenAI writes the review from the PDF you upload, and we don’t opt it into model training. We never sign in to your LinkedIn account.",
       "kind": "jsx-text",
-      "line": 298,
+      "line": 303,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32533,7 +32533,7 @@
     {
       "text": "How we handle your data",
       "kind": "jsx-text",
-      "line": 302,
+      "line": 307,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32545,7 +32545,7 @@
     {
       "text": "Compare with a job",
       "kind": "jsx-text",
-      "line": 317,
+      "line": 322,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32557,7 +32557,7 @@
     {
       "text": "(optional)",
       "kind": "jsx-text",
-      "line": 317,
+      "line": 322,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32569,7 +32569,7 @@
     {
       "text": "Job posting",
       "kind": "jsx-text",
-      "line": 325,
+      "line": 330,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32581,7 +32581,7 @@
     {
       "text": "Paste the job posting here…",
       "kind": "attr:placeholder",
-      "line": 333,
+      "line": 338,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -32593,7 +32593,7 @@
     {
       "text": "Reports are paused",
       "kind": "jsx-text",
-      "line": 348,
+      "line": 353,
       "file": "web/components/workspace/InputPanel.tsx",
       "routes": [
         "/sample-report",
@@ -34518,7 +34518,7 @@
     {
       "text": "Report stopped",
       "kind": "call:toast.info",
-      "line": 250,
+      "line": 253,
       "file": "web/components/workspace/WorkspaceClient.tsx",
       "routes": [
         "/sample-report",
@@ -34530,7 +34530,7 @@
     {
       "text": "The sample report didn't load",
       "kind": "call:toast.error",
-      "line": 397,
+      "line": 406,
       "file": "web/components/workspace/WorkspaceClient.tsx",
       "routes": [
         "/sample-report",
@@ -34542,7 +34542,7 @@
     {
       "text": "Refresh to try again, or start with your own resume.",
       "kind": "key:description",
-      "line": 398,
+      "line": 407,
       "file": "web/components/workspace/WorkspaceClient.tsx",
       "routes": [
         "/sample-report",
@@ -34554,7 +34554,7 @@
     {
       "text": "This report is missing details needed for a PDF. Contact support for help exporting it.",
       "kind": "call:toast.error",
-      "line": 428,
+      "line": 437,
       "file": "web/components/workspace/WorkspaceClient.tsx",
       "routes": [
         "/sample-report",
@@ -34683,7 +34683,7 @@
     {
       "text": "We couldn’t read this resume",
       "kind": "call:toast.error",
-      "line": 76,
+      "line": 78,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -34695,7 +34695,7 @@
     {
       "text": "We couldn’t read this file",
       "kind": "call:toast.error",
-      "line": 82,
+      "line": 84,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -34707,7 +34707,7 @@
     {
       "text": "Try another PDF or DOCX, or paste the resume text.",
       "kind": "key:description",
-      "line": 82,
+      "line": 84,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -34719,7 +34719,7 @@
     {
       "text": "Saved to My reports.",
       "kind": "call:toast.success",
-      "line": 99,
+      "line": 101,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -34731,7 +34731,7 @@
     {
       "text": "We couldn’t save this report to My reports. Keep this tab open and try again.",
       "kind": "key:message",
-      "line": 106,
+      "line": 108,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -34743,7 +34743,7 @@
     {
       "text": "Add your resume first",
       "kind": "call:toast.error",
-      "line": 128,
+      "line": 130,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -34755,7 +34755,7 @@
     {
       "text": "Upload a file or paste the resume text before creating the report.",
       "kind": "key:description",
-      "line": 129,
+      "line": 131,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -34767,7 +34767,7 @@
     {
       "text": "Report stopped",
       "kind": "call:toast.warning",
-      "line": 175,
+      "line": 182,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -34779,7 +34779,7 @@
     {
       "text": "Report stopped",
       "kind": "call:toast.info",
-      "line": 179,
+      "line": 186,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -34791,7 +34791,7 @@
     {
       "text": "Report stopped",
       "kind": "call:toast.info",
-      "line": 183,
+      "line": 190,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -34803,7 +34803,7 @@
     {
       "text": "{REPORT_ACCESS_NOT_USED} Try again whenever you're ready.",
       "kind": "const",
-      "line": 237,
+      "line": 244,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -34815,7 +34815,7 @@
     {
       "text": "The connection dropped",
       "kind": "const",
-      "line": 242,
+      "line": 249,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -34827,7 +34827,7 @@
     {
       "text": "We couldn’t finish your report",
       "kind": "const",
-      "line": 242,
+      "line": 249,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -34839,7 +34839,7 @@
     {
       "text": "We couldn’t finish your report",
       "kind": "call:toast.error",
-      "line": 259,
+      "line": 266,
       "file": "web/components/workspace/hooks/useResumeReview.ts",
       "routes": [
         "/sample-report",
@@ -36720,7 +36720,7 @@
     {
       "text": "The connection dropped before your report finished.",
       "kind": "key:message",
-      "line": 156,
+      "line": 158,
       "file": "web/lib/api.ts",
       "routes": [
         "/sample-report",
@@ -36732,7 +36732,7 @@
     {
       "text": "The connection dropped before your report finished.",
       "kind": "key:message",
-      "line": 186,
+      "line": 188,
       "file": "web/lib/api.ts",
       "routes": [
         "/sample-report",
@@ -36744,7 +36744,7 @@
     {
       "text": "The connection dropped before your report finished.",
       "kind": "key:message",
-      "line": 237,
+      "line": 239,
       "file": "web/lib/api.ts",
       "routes": [
         "/sample-report",
@@ -36756,7 +36756,7 @@
     {
       "text": "The connection dropped before your report finished.",
       "kind": "key:message",
-      "line": 366,
+      "line": 368,
       "file": "web/lib/api.ts",
       "routes": [
         "/sample-report",
@@ -36912,7 +36912,7 @@
     {
       "text": "Monthly plan",
       "kind": "return",
-      "line": 141,
+      "line": 151,
       "file": "web/lib/billing/entitlements.ts",
       "routes": [
         "/",
@@ -36920,6 +36920,7 @@
         "/api/billing/restore",
         "/api/checkout",
         "/api/export-pdf",
+        "/api/resume-feedback-stream",
         "/api/stripe/webhook",
         "/auth",
         "/compare",
@@ -37007,7 +37008,7 @@
     {
       "text": "Lifetime access",
       "kind": "return",
-      "line": 142,
+      "line": 152,
       "file": "web/lib/billing/entitlements.ts",
       "routes": [
         "/",
@@ -37015,6 +37016,7 @@
         "/api/billing/restore",
         "/api/checkout",
         "/api/export-pdf",
+        "/api/resume-feedback-stream",
         "/api/stripe/webhook",
         "/auth",
         "/compare",
@@ -37102,7 +37104,7 @@
     {
       "text": "Job Search Pass",
       "kind": "return",
-      "line": 143,
+      "line": 153,
       "file": "web/lib/billing/entitlements.ts",
       "routes": [
         "/",
@@ -37110,6 +37112,7 @@
         "/api/billing/restore",
         "/api/checkout",
         "/api/export-pdf",
+        "/api/resume-feedback-stream",
         "/api/stripe/webhook",
         "/auth",
         "/compare",
@@ -37197,7 +37200,7 @@
     {
       "text": "Extended pack",
       "kind": "return",
-      "line": 144,
+      "line": 154,
       "file": "web/lib/billing/entitlements.ts",
       "routes": [
         "/",
@@ -37205,6 +37208,7 @@
         "/api/billing/restore",
         "/api/checkout",
         "/api/export-pdf",
+        "/api/resume-feedback-stream",
         "/api/stripe/webhook",
         "/auth",
         "/compare",
@@ -37292,7 +37296,7 @@
     {
       "text": "Single report",
       "kind": "return",
-      "line": 145,
+      "line": 155,
       "file": "web/lib/billing/entitlements.ts",
       "routes": [
         "/",
@@ -37300,6 +37304,7 @@
         "/api/billing/restore",
         "/api/checkout",
         "/api/export-pdf",
+        "/api/resume-feedback-stream",
         "/api/stripe/webhook",
         "/auth",
         "/compare",
@@ -40417,6 +40422,19 @@
       "line": 4,
       "file": "web/lib/reports/generation-operation-marker.ts",
       "routes": [
+        "/sample-report",
+        "/workspace"
+      ],
+      "moment": "report",
+      "table": "workspace"
+    },
+    {
+      "text": "Included with your pass. This one doesn't use a report.",
+      "kind": "const",
+      "line": 11,
+      "file": "web/lib/reports/posting-read-terms.ts",
+      "routes": [
+        "/api/resume-feedback-stream",
         "/sample-report",
         "/workspace"
       ],
