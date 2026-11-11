@@ -6,13 +6,17 @@ import { cn } from "@/lib/utils";
 import styles from "./CloseField.module.css";
 
 const PILE = 244;
-/** The sheet that is yours: near the end of the pile, where a late application lands. */
-const YOURS = 229;
+/**
+ * The sheet that is yours: late in the pile, where a late application lands, and in from the edge at every
+ * width so the light around it isn't cut off.
+ */
+const YOURS = 204;
 
 /**
- * The close: the pile from the top of the page comes back, pale, and one sheet takes an ink outline when the
- * section is in view, yours. No green sheets, no promise. The ask is the one thing the product can do. Since
- * Nov 11, 2026 it sits on the deep pen, a band that runs into the footer; the sheets stay dim and yours is outlined.
+ * The close: the pile from the top of the page comes back, pale, and when the section is in view a light finds
+ * one sheet, yours: it turns paper white, the sheets around it catch the light, and the rest fall back (Matt,
+ * Nov 11, 2026: "showcasing that one square better like a spotlight"). No green sheets, no promise. The ask is
+ * the one thing the product can do. It sits on the deep pen, a band that runs into the footer.
  */
 export function CloseField() {
     return (
@@ -24,7 +28,7 @@ export function CloseField() {
                         <Link href="/workspace" data-analytics-cta="closing_report">Get your free report <ArrowRight weight="bold" aria-hidden="true" /></Link>
                     </Button>
                 </div>
-                <Pile count={PILE} pale size="sm" outlined={YOURS} label="244 sheets of paper, one of them outlined: yours" className={styles.pile} />
+                <Pile count={PILE} pale size="sm" spotlit={YOURS} label="244 sheets of paper, and a light on one of them: yours" className={styles.pile} />
             </div>
         </section>
     );

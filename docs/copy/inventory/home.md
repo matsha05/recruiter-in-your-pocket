@@ -33,9 +33,9 @@ Routes: `/`, `/methodology`, `/research/career-breaks`. Strings: 66 (60 unique).
 | 23 | marketing | `web/app/opengraph-image.tsx:50` | jsx-text | Managed 32 B2B SaaS accounts with $2.4M in annual recurring revenue |
 | 24 | marketing | `web/app/opengraph-image.tsx:54` | jsx-text | Ran quarterly business reviews with customer leadership teams |
 | 25 | marketing | `web/app/opengraph-image.tsx:66` | jsx-text | Fictional example. Jordan is made up; the note is the kind a recruiter writes. |
-| 26 | marketing | `web/components/landing/home/CloseField.tsx:22` | jsx-text | Before you apply for the next one. |
-| 27 | marketing | `web/components/landing/home/CloseField.tsx:24` | jsx-text | Get your free report |
-| 28 | marketing | `web/components/landing/home/CloseField.tsx:27` | attr:label | 244 sheets of paper, one of them outlined: yours |
+| 26 | marketing | `web/components/landing/home/CloseField.tsx:26` | jsx-text | Before you apply for the next one. |
+| 27 | marketing | `web/components/landing/home/CloseField.tsx:28` | jsx-text | Get your free report |
+| 28 | marketing | `web/components/landing/home/CloseField.tsx:31` | attr:label | 244 sheets of paper, and a light on one of them: yours |
 | 29 | marketing | `web/components/landing/home/FounderNote.tsx:18` | const | I’ve passed on more people than I can count. A few seconds a resume, fifteen years, at companies you’ve heard of and small ones around the world. The reasons were almost always the same, and nobody told you. I wrote them down. |
 | 30 | marketing | `web/components/landing/home/FounderNote.tsx:30` | attr:alt | A line drawing of the recruiter who wrote the review criteria: a cap, round glasses, and a smile. |
 | 31 | marketing | `web/components/landing/home/FounderNote.tsx:34` | jsx-text | How the report works |
