@@ -489,21 +489,21 @@ Routes: `/`, `/api/auth/send-code`, `/api/billing/confirm`, `/api/billing/restor
 | 1 | pricing | `web/lib/billing/pricing.ts:15` (11 routes) | key:promise | Your first complete report is free. No card required. |
 | 2 | pricing | `web/lib/billing/pricing.ts:16` (11 routes) | key:boundary | Repeat use across browsers or shared networks can affect eligibility. Daily capacity limits apply. |
 | 3 | pricing | `web/lib/billing/pricing.ts:17` (11 routes) | key:anonymousBoundary | Anonymous use is limited to one free report per calendar month. Repeat use across browsers or shared networks can affect eligibility. Daily capacity limits apply. |
-| 4 | pricing | `web/lib/billing/pricing.ts:21` (11 routes) | key:freeBoundary | Everything in your free report is yours. Nothing is held back. |
-| 5 | pricing | `web/lib/billing/pricing.ts:22` (11 routes) | key:whenToBuy | The Job Search Pass is for what comes next: checking your revision, or tailoring your resume to another job. |
-| 6 | pricing | `web/lib/billing/pricing.ts:23` (11 routes) | key:terms | 5 more reports, good for 90 days. No automatic renewal. |
-| 7 | pricing | `web/lib/billing/pricing.ts:24` (11 routes) | key:cta | Get 5 more reports · $29 |
-| 8 | pricing | `web/lib/billing/pricing.ts:35` (11 routes) | key:buttonText | Get your free report |
-| 9 | pricing | `web/lib/billing/pricing.ts:37` (11 routes) | key:text | One complete resume report |
-| 10 | pricing | `web/lib/billing/pricing.ts:38` (11 routes) | key:text | Where your resume stands, and why |
-| 11 | pricing | `web/lib/billing/pricing.ts:39` (11 routes) | key:text | Every line that needs work, with the line as written and what to add |
-| 12 | pricing | `web/lib/billing/pricing.ts:40` (11 routes) | key:text | A revised line, written only from your facts |
-| 13 | pricing | `web/lib/billing/pricing.ts:41` (11 routes) | key:text | PDF export and saved reports when you sign in. No card needed. |
-| 14 | pricing | `web/lib/billing/pricing.ts:46` (11 routes) | key:label | Job Search Pass |
-| 15 | pricing | `web/lib/billing/pricing.ts:49` (11 routes) | key:buttonText | Get 5 more reports · $29 |
-| 16 | pricing | `web/lib/billing/pricing.ts:52` (11 routes) | key:text | Re-check a revision and see which lines came off the list |
-| 17 | pricing | `web/lib/billing/pricing.ts:53` (11 routes) | key:text | Read your resume against each job posting |
-| 18 | pricing | `web/lib/billing/pricing.ts:54` (11 routes) | key:text | $29 once. Good for 90 days. No automatic renewal. |
+| 4 | pricing | `web/lib/billing/pricing.ts:28` (11 routes) | key:freeBoundary | Everything in your free report is yours. Nothing is held back. |
+| 5 | pricing | `web/lib/billing/pricing.ts:29` (11 routes) | key:whenToBuy | The Job Search Pass is for what comes next: checking your revision, or tailoring your resume to another job. |
+| 6 | pricing | `web/lib/billing/pricing.ts:30` (11 routes) | key:terms | 5 more reports, good for 90 days. No automatic renewal. |
+| 7 | pricing | `web/lib/billing/pricing.ts:31` (11 routes) | key:cta | Get 5 more reports · $29 |
+| 8 | pricing | `web/lib/billing/pricing.ts:42` (11 routes) | key:buttonText | Get your free report |
+| 9 | pricing | `web/lib/billing/pricing.ts:44` (11 routes) | key:text | One complete resume report |
+| 10 | pricing | `web/lib/billing/pricing.ts:45` (11 routes) | key:text | Where your resume stands, and why |
+| 11 | pricing | `web/lib/billing/pricing.ts:46` (11 routes) | key:text | Every line that needs work, with the line as written and what to add |
+| 12 | pricing | `web/lib/billing/pricing.ts:47` (11 routes) | key:text | A revised line, written only from your facts |
+| 13 | pricing | `web/lib/billing/pricing.ts:48` (11 routes) | key:text | PDF export and saved reports when you sign in. No card needed. |
+| 14 | pricing | `web/lib/billing/pricing.ts:53` (11 routes) | key:label | Job Search Pass |
+| 15 | pricing | `web/lib/billing/pricing.ts:56` (11 routes) | key:buttonText | Get 5 more reports · $29 |
+| 16 | pricing | `web/lib/billing/pricing.ts:59` (11 routes) | key:text | Re-check a revision and see which lines came off the list |
+| 17 | pricing | `web/lib/billing/pricing.ts:60` (11 routes) | key:text | Read your resume against each job posting |
+| 18 | pricing | `web/lib/billing/pricing.ts:61` (11 routes) | key:text | $29 once. Good for 90 days. No automatic renewal. |
 
 ## web/lib/navigation.ts
 

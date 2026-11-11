@@ -17,6 +17,13 @@ export const FREE_REPORT_ENTITLEMENT = {
   anonymousBoundary: "Anonymous use is limited to one free report per calendar month. Repeat use across browsers or shared networks can affect eligibility. Daily capacity limits apply.",
 } as const;
 
+/**
+ * How long after purchase an unused pass can be refunded in full (Terms, section 4). Nothing in the
+ * code enforces it: refunds are issued by hand in Stripe. It lives here so every sentence that states
+ * the window is checked against one number (tests/product-facts.test.ts).
+ */
+export const REFUND_WINDOW_DAYS = 14;
+
 export const JOB_SEARCH_PASS_DECISION = {
   freeBoundary: "Everything in your free report is yours. Nothing is held back.",
   whenToBuy: "The Job Search Pass is for what comes next: checking your revision, or tailoring your resume to another job.",

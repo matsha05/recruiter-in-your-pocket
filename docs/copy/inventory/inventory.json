@@ -4,7 +4,7 @@
     "files_scanned": 429,
     "files_with_copy": 260,
     "strings": 3045,
-    "unique_strings": 2536
+    "unique_strings": 2535
   },
   "by_moment": {
     "research": 988,
@@ -13748,7 +13748,7 @@
       "table": "api"
     },
     {
-      "text": "You've used your free report. The Job Search Pass includes five additional reports and PDF export for 30 days.",
+      "text": "You've used your free report. The Job Search Pass is five more reports, good for 90 days.",
       "kind": "key:message",
       "line": 169,
       "file": "web/app/api/resume-ideas/route.ts",
@@ -39070,7 +39070,7 @@
     {
       "text": "Everything in your free report is yours. Nothing is held back.",
       "kind": "key:freeBoundary",
-      "line": 21,
+      "line": 28,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -39091,7 +39091,7 @@
     {
       "text": "The Job Search Pass is for what comes next: checking your revision, or tailoring your resume to another job.",
       "kind": "key:whenToBuy",
-      "line": 22,
+      "line": 29,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -39112,7 +39112,7 @@
     {
       "text": "5 more reports, good for 90 days. No automatic renewal.",
       "kind": "key:terms",
-      "line": 23,
+      "line": 30,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -39133,7 +39133,7 @@
     {
       "text": "Get 5 more reports · $29",
       "kind": "key:cta",
-      "line": 24,
+      "line": 31,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -39154,7 +39154,7 @@
     {
       "text": "Get your free report",
       "kind": "key:buttonText",
-      "line": 35,
+      "line": 42,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -39175,7 +39175,7 @@
     {
       "text": "One complete resume report",
       "kind": "key:text",
-      "line": 37,
+      "line": 44,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -39196,7 +39196,7 @@
     {
       "text": "Where your resume stands, and why",
       "kind": "key:text",
-      "line": 38,
+      "line": 45,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -39217,7 +39217,7 @@
     {
       "text": "Every line that needs work, with the line as written and what to add",
       "kind": "key:text",
-      "line": 39,
+      "line": 46,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -39238,7 +39238,7 @@
     {
       "text": "A revised line, written only from your facts",
       "kind": "key:text",
-      "line": 40,
+      "line": 47,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -39259,7 +39259,7 @@
     {
       "text": "PDF export and saved reports when you sign in. No card needed.",
       "kind": "key:text",
-      "line": 41,
+      "line": 48,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -39280,7 +39280,7 @@
     {
       "text": "Job Search Pass",
       "kind": "key:label",
-      "line": 46,
+      "line": 53,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -39301,7 +39301,7 @@
     {
       "text": "Get 5 more reports · $29",
       "kind": "key:buttonText",
-      "line": 49,
+      "line": 56,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -39322,7 +39322,7 @@
     {
       "text": "Re-check a revision and see which lines came off the list",
       "kind": "key:text",
-      "line": 52,
+      "line": 59,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -39343,7 +39343,7 @@
     {
       "text": "Read your resume against each job posting",
       "kind": "key:text",
-      "line": 53,
+      "line": 60,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
@@ -39364,7 +39364,7 @@
     {
       "text": "$29 once. Good for 90 days. No automatic renewal.",
       "kind": "key:text",
-      "line": 54,
+      "line": 61,
       "file": "web/lib/billing/pricing.ts",
       "routes": [
         "/",
