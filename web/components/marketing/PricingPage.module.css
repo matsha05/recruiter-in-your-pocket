@@ -64,7 +64,8 @@
 .asides p { margin: 0.5rem 0 0; max-width: 52ch; color: hsl(var(--text-muted)); font: var(--type-body); text-wrap: pretty; }
 
 @media (max-width: 800px) {
-    .offers { grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); grid-template-rows: auto auto auto auto auto; gap: 1.25rem 1.5rem; margin-top: 2.5rem; }
+    /* Tightened Nov 11, 2026: the pass's second sentence (posting reads) pushed the buttons past the first screen. */
+    .offers { grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); grid-template-rows: auto auto auto auto auto; gap: 0.875rem 1.5rem; margin-top: 1.5rem; }
     /* Smaller sheets, so the five fit on one row and both buttons stay in the first screen. */
     .offers .sheetFree, .offers .sheetPass { --sheet-w: 2rem; --sheet-gap: 0.5rem; }
     .buttonFree { grid-column: 1 / -1; grid-row: 3; justify-self: stretch; }

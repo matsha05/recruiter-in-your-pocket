@@ -196,6 +196,8 @@ module.exports = {
 				inset: 'var(--radius-inset)'
 			},
 			maxWidth: {
+				// The site's one column (design-system.md §6): the content width inside --marketing-content's gutters.
+				column: 'calc(var(--marketing-content) - 2 * var(--marketing-gutter))',
 				marketing: '85rem', workspace: '60rem', form: '47.5rem',
 				report: '75rem', auth: '27.5rem', account: '47.5rem',
 				// About 69 characters per line at any size: Schibsted Grotesk text averages 0.46em a glyph, a "0" is 0.61em.

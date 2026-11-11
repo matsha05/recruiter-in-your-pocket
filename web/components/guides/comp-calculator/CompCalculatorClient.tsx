@@ -94,14 +94,14 @@ export function CompCalculatorClient() {
   return (
     <div data-calculator-hydrated={isHydrated ? "true" : "false"} className="marketing-header-offset bg-background text-foreground selection:bg-brand/15">
       <div className="border-b border-border">
-        <nav aria-label="Breadcrumb" className="mx-auto flex max-w-marketing flex-wrap items-center gap-2 px-5 py-4 text-sm sm:px-8">
+        <nav aria-label="Breadcrumb" className="mx-auto box-content flex max-w-column flex-wrap items-center gap-2 px-[var(--marketing-gutter)] py-4 text-sm">
           <Link href="/resources" className="focus-ring min-h-11 rounded-sm py-3 text-muted-foreground transition-colors hover:text-foreground">After the offer</Link>
           <CaretRight aria-hidden="true" className="size-3 text-muted-foreground" weight="bold" />
           <span className="font-medium text-foreground">Offer calculator</span>
         </nav>
       </div>
 
-      <div className="mx-auto max-w-marketing px-5 py-12 sm:px-8 md:py-20">
+      <div className="mx-auto box-content max-w-column px-[var(--marketing-gutter)] py-12 md:py-20">
         <header className="mb-12 grid gap-8 border-b border-border pb-12 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:items-end lg:gap-16">
           <h1 className={`${styles.pageTitle} max-w-3xl`}>
             Compare your offers over four years.

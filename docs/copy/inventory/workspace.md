@@ -281,17 +281,17 @@ Routes: `/api/export-pdf`, `/api/resume-feedback`, `/api/resume-feedback-stream`
 | 149 | report | `web/components/workspace/ReportPanel.tsx:142` | const | {rebuiltAnswers} answers |
 | 150 | report | `web/components/workspace/ReportPanel.tsx:169` | call:toast.success | Link copied. |
 | 151 | report | `web/components/workspace/ReportPanel.tsx:171` | call:toast.error | Couldn't copy the link. Copy it from the address bar. |
-| 152 | report | `web/components/workspace/ReportPanel.tsx:208` | jsx-text | Sample report · Jordan is fictional |
-| 153 | report | `web/components/workspace/ReportPanel.tsx:216` | jsx-text | Get your free report |
-| 154 | report | `web/components/workspace/ReportPanel.tsx:251` | jsx-text | Export PDF |
-| 155 | report | `web/components/workspace/ReportPanel.tsx:252` | jsx-text | Exporting… |
-| 156 | report | `web/components/workspace/ReportPanel.tsx:260` | attr:aria-label | Share report |
-| 157 | report | `web/components/workspace/ReportPanel.tsx:264` | jsx-text | Share report |
-| 158 | report | `web/components/workspace/ReportPanel.tsx:278` | jsx-text | Still writing the rest. |
-| 159 | report | `web/components/workspace/ReportPanel.tsx:286` | jsx-text | Share view is on. |
-| 160 | report | `web/components/workspace/ReportPanel.tsx:288` | jsx-text | Some personal details are hidden. Check the report for anything else you want to remove before sharing. |
-| 161 | report | `web/components/workspace/ReportPanel.tsx:295` | jsx-text | Copy link |
-| 162 | report | `web/components/workspace/ReportPanel.tsx:299` | jsx-text | Exit share |
+| 152 | report | `web/components/workspace/ReportPanel.tsx:209` | jsx-text | Sample report · Jordan is fictional |
+| 153 | report | `web/components/workspace/ReportPanel.tsx:217` | jsx-text | Get your free report |
+| 154 | report | `web/components/workspace/ReportPanel.tsx:252` | jsx-text | Export PDF |
+| 155 | report | `web/components/workspace/ReportPanel.tsx:253` | jsx-text | Exporting… |
+| 156 | report | `web/components/workspace/ReportPanel.tsx:261` | attr:aria-label | Share report |
+| 157 | report | `web/components/workspace/ReportPanel.tsx:265` | jsx-text | Share report |
+| 158 | report | `web/components/workspace/ReportPanel.tsx:279` | jsx-text | Still writing the rest. |
+| 159 | report | `web/components/workspace/ReportPanel.tsx:287` | jsx-text | Share view is on. |
+| 160 | report | `web/components/workspace/ReportPanel.tsx:289` | jsx-text | Some personal details are hidden. Check the report for anything else you want to remove before sharing. |
+| 161 | report | `web/components/workspace/ReportPanel.tsx:296` | jsx-text | Copy link |
+| 162 | report | `web/components/workspace/ReportPanel.tsx:300` | jsx-text | Exit share |
 | 163 | pricing | `web/components/workspace/UnlockBanner.tsx:79` | jsx-text | Your Job Search Pass is ready. |
 | 164 | pricing | `web/components/workspace/UnlockBanner.tsx:82` | jsx-text | Five more reports, good for 90 days. |
 | 165 | pricing | `web/components/workspace/UnlockBanner.tsx:92` | jsx-text | See what to fix first |

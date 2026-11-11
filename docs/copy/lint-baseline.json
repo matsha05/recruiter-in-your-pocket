@@ -28,14 +28,6 @@
       "where": "web/app/(app)/jobs/page.tsx:17"
     },
     {
-      "text": "Every report you’ve saved, with its score and the lines that needed work.",
-      "moment": "account",
-      "tics": [
-        "tricolon"
-      ],
-      "where": "web/app/(app)/reports/page.tsx:15"
-    },
-    {
       "text": "It depends on what you’re missing. Most people need one builder or none, a scanner only if they apply in volume, and one honest read of the resume before it goes out. The read is free here.",
       "moment": "marketing",
       "tics": [

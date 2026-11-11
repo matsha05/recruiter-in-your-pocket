@@ -203,7 +203,8 @@ export default function ReportPanel({
                     head={
                         /* Whose resume, the role it reads toward, and how long the read took (W1, Nov 2, 2026). */
                         <>
-                            <div className="min-w-0">
+                            {/* On a phone the name and the job share a line when they fit, so the row stays one line tall. */}
+                            <div className="min-w-0 max-sm:flex max-sm:flex-wrap max-sm:items-baseline max-sm:gap-x-2">
                                 <p className="text-small font-semibold text-foreground">
                                     {isSample ? "Sample report · Jordan is fictional" : (!shareMode && !isLinkedInReport(displayReport) && candidateNameOf(resumeText)) || wordingFor(displayReport).header}
                                 </p>

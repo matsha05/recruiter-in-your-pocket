@@ -808,6 +808,14 @@
 
 /* ---------- Wider screens ---------- */
 
+/* Phones: three 4px steps tighter, so the first question of a report with a structural gap stays on the first
+   screen now that the header row carries the job (Nov 11, 2026; tests/ui/report-first-screen.spec.ts). */
+@media (max-width: 639px) {
+    .band { margin-top: 0.5rem; }
+    .gapRow { margin-block: 0.5rem 0; }
+    .countHead { padding-bottom: 0.375rem; }
+}
+
 @media (min-width: 640px) {
     .opening {
         padding-bottom: 1rem;
