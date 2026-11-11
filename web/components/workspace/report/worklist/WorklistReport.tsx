@@ -8,7 +8,7 @@ import { sendLineAnswers, type LineAnswersPatch, type StoredLineAnswersByFix } f
 import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
 import { worklistBandIndex, worklistBandsFor } from "@/lib/reports/score-band";
 import { reportDocumentKind } from "@/lib/reports/report-document";
-import { cardsHeading, fitHeading, hasRoleSection, reportWording, UPGRADES_HEADING, upgradesLead, workCards } from "@/lib/reports/worklist-presentation";
+import { cardsHeading, fitHeading, hasRoleSection, PART_STATUS_LABEL, PARTS_LABEL, reportWording, UPGRADES_HEADING, upgradesLead, workCards } from "@/lib/reports/worklist-presentation";
 import { cn } from "@/lib/utils";
 import { ReportEnding } from "../ReportEnding";
 import { ResearchReceipts } from "../ResearchReceipts";
@@ -109,6 +109,19 @@ export function WorklistReport({
       </section>
 
       <section id="section-fixes" className={cn(styles.page, "scroll-mt-36")} aria-labelledby="fixes-title" data-ready={ready || undefined}>
+        {report.parts && report.parts.length > 0 && (
+          <div className={styles.parts} data-testid="profile-parts">
+            <p className={styles.partsLabel}>{PARTS_LABEL}</p>
+            <ul>
+              {report.parts.map((part) => (
+                <li key={`${part.name}|${part.detail}`} data-status={part.status}>
+                  <span className={styles.partName}>{part.name}{part.detail && <span className={styles.partDetail}>{part.detail}</span>}</span>
+                  <span className={styles.partStatus}>{PART_STATUS_LABEL[part.status]}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
         <h2 id="fixes-title" className={styles.sectionTitle}>{heading.title}</h2>
         {heading.lead && <p className={styles.sectionLead}>{heading.lead}</p>}
         {mainCards.length > 0 && (

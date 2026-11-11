@@ -152,7 +152,7 @@ export const comparisons: Comparison[] = [
                         Your resume is close and you have the facts. The report asks for the details you left off, such as how many people, what changed, and whether you owned the decision, then rewrites the line from your answer. Nothing gets added that you didn’t say.
                     </>,
                     <>
-                        What it won’t do: write the resume for you. You make the final edit, and there is no cover letter or LinkedIn service.
+                        What it won’t do: write the resume for you. You make the final edit, and there is no cover letter. The LinkedIn profile review tells you what to change; it doesn’t rewrite the profile for you.
                     </>,
                 ],
             },
@@ -272,7 +272,7 @@ export const comparisons: Comparison[] = [
                         You’d rather pay once. Five reports for $29 covers a revision and a few target roles, and when you add a job posting the report reads your resume against that role without turning it into a keyword count.
                     </>,
                     <>
-                        What it won’t do: give you a match percentage, a list of missing keywords, or an application tracker.
+                        What it won’t do: give you a match percentage or an application tracker. Add a posting and the report lists what it asks for that your resume doesn’t show, without a score for it.
                     </>,
                 ],
             },
@@ -293,7 +293,7 @@ export const comparisons: Comparison[] = [
                 title: "Using both",
                 paragraphs: [
                     <>
-                        Fix the resume first, then tailor it. Run the free report on your base resume and work through the lines it lists, then use Jobscan’s free scans for the vocabulary of a specific posting. Use a term only where it truthfully describes what you did; the report will flag a line that claims more than it shows.
+                        Fix the resume first, then tailor it. Run the free report on your base resume and work through the lines it lists, then add the posting you’re going for and read what it asks for that your resume doesn’t show. Jobscan’s free scans give you a match rate for the same posting if you want a number. Use a term only where it truthfully describes what you did; the report will flag a line that claims more than it shows.
                     </>,
                 ],
             },
@@ -365,7 +365,7 @@ export const comparisons: Comparison[] = [
             {
                 label: "LinkedIn",
                 them: "A full LinkedIn analysis is part of Pro.",
-                us: "Not included.",
+                us: "A profile review from LinkedIn’s own PDF of your profile. It uses one report.",
             },
         ],
         sections: [
@@ -392,7 +392,7 @@ export const comparisons: Comparison[] = [
                         You want the feedback tied to your own lines. Every note quotes the line it’s about, and when a line needs more, the report asks you for the fact instead of offering someone else’s sentence.
                     </>,
                     <>
-                        What it won’t do: review your LinkedIn profile, supply templates, or keep a running score over time. Saved reports, when you sign in, are the history.
+                        What it won’t do: supply templates or keep a running score over time. Saved reports, when you sign in, are the history.
                     </>,
                 ],
             },
