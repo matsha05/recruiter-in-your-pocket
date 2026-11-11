@@ -1,0 +1,435 @@
+{
+  "case_id": "b37_marketing_director_bad",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Title above the work; key says no_recent_work, no_target_role, title_level_mismatch.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_marketing_director_bad_1.txt",
+  "resume_sha256": "f0624d59dceceb9ee73afca05ff983f8205d3da2ebe4712711eb2596bd129439",
+  "resume_words": 167,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-11T16:02:51.818Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6856,
+        "completion_tokens": 2280,
+        "total_tokens": 9136,
+        "cached_prompt_tokens": 6116,
+        "cache_write_prompt_tokens": 737,
+        "reasoning_tokens": 1328
+      },
+      "cost_usd": 0.01263005,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 43370
+    },
+    {
+      "kind": "repair",
+      "usage": {
+        "prompt_tokens": 8026,
+        "completion_tokens": 2261,
+        "total_tokens": 10287,
+        "cached_prompt_tokens": 6116,
+        "cache_write_prompt_tokens": 1907,
+        "reasoning_tokens": 1172
+      },
+      "cost_usd": 0.01399755,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 29487
+    }
+  ],
+  "resume_prompt_sha256": "e122fb00655b92e22574f13af1e038ff8846f6c54459bfa431be988d44f4cdc4",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 59,
+    "lifted_by_employer": false,
+    "verdict": "A Director of Marketing title sits above hands-on duties, with no recent work or target role named.",
+    "write_up": [
+      "It's common for a resume to leave a formal title and the work beneath it telling different stories. At Lumen Candle Co., you posted on Instagram and wrote product descriptions; before that, you handled property records and supported biology labs. I'm reading this for Director of Marketing, but a recruiter hiring at that level would likely pass because the resume doesn't show the decisions or leadership the title suggests.",
+      "Your property-records line is a useful model: it names the work, the system and how much you handled. The resume also leaves a stretch after January 2025 unexplained, and it doesn't say whether you want to continue in marketing or return to another kind of work.",
+      "Let's start with the Lumen role. Keep your official title, then add any marketing decisions, team responsibility or budget you actually had. Account honestly for the time since that role, and choose the direction you want the resume to lead with."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Director of Marketing title",
+        "line": "Director of Marketing",
+        "cannot_tell": "The title suggests responsibility for marketing direction, but the bullets show posting, product copy and customer orders. A recruiter can't tell whether you also set marketing priorities or had a team or budget. Keep the title if it was official, and add those responsibilities only if they were yours.",
+        "example": "Director of Marketing | [marketing responsibilities] | [team size or budget]",
+        "question": "What marketing decisions did you make, and did you have a team or budget?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after January 2025.",
+        "cannot_tell": "A recruiter can't tell what you've done since the Lumen role. An honest line can account for that time, whether it was a career break, caregiving, study or work you actually did.",
+        "example": "January 2025 - Present  [what you did]",
+        "question": "What have you done since January 2025 that you'd like to include?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "The resume doesn't name a target job.",
+        "cannot_tell": "Marketing, property records and lab work point in different directions. A short headline naming the job you're seeking would tell a recruiter which experience to focus on.",
+        "example": "",
+        "question": "Which kind of job are you applying for now?"
+      },
+      {
+        "kind": "structure",
+        "where": "Lumen Candle Co.",
+        "line": "The resume doesn't say how large Lumen Candle Co. is.",
+        "cannot_tell": "The company name and candle work give some context, but a recruiter can't tell how large the business was. A brief description could help them understand the setting for your marketing work.",
+        "example": "",
+        "question": "How large was Lumen Candle Co., if you're able to share that?"
+      },
+      {
+        "kind": "keep",
+        "where": "Data Entry Clerk, line 1",
+        "line": "- Entered 150 property records a day into the county title system",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a concrete daily workload and names where the records went, without making them guess what the job involved.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Director of Marketing"
+      ],
+      "why": "Your most recent role is Director of Marketing, and its bullets include Instagram and product-description work.",
+      "level": "entry level, marketing work includes Instagram posts and product descriptions, with no team or budget responsibility stated",
+      "note": "Your Instagram and product-copy work points toward hands-on marketing roles. Your property-records work also gives you an administrative direction, so choose which experience to emphasize for each application.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": []
+      }
+    }
+  },
+  "initial_validation_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the worklist contract at fit.level: Too big: expected string to have <=120 characters.",
+    "issues": [
+      {
+        "path": "fit.level",
+        "message": "Too big: expected string to have <=120 characters"
+      }
+    ]
+  },
+  "model_output_repaired": {
+    "contract_version": "v3",
+    "score": 59,
+    "lifted_by_employer": false,
+    "verdict": "A marketing director title sits above hands-on duties, with time since January 2025 unaccounted for.",
+    "write_up": [
+      "It's common for a resume to leave a formal title and the work beneath it telling different stories. At Lumen Candle Co., you posted on Instagram and wrote product descriptions; before that, you handled property records and supported biology labs. I'm reading this for Director of Marketing, but a recruiter hiring at that level would likely pass because the resume doesn't show the decisions or leadership the title suggests.",
+      "Your property-records line is a useful model: it names the work, the system and how much you handled. The resume also leaves time after January 2025 unexplained, and it doesn't say whether you want to continue in marketing or return to another kind of work.",
+      "Let's start with the Lumen role. Keep your official title, then add any marketing decisions, team responsibility or budget you actually had. Account honestly for the time since that role, and choose the direction you want the resume to lead with."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Director of Marketing title",
+        "line": "Director of Marketing",
+        "cannot_tell": "The title suggests responsibility for marketing direction, but the bullets show posting, product copy and customer orders. A recruiter can't tell whether you also set marketing priorities or had a team or budget. Keep the title if it was official, and add those responsibilities only if they were yours.",
+        "example": "Director of Marketing | [marketing responsibilities] | [team size or budget]",
+        "question": "What marketing decisions did you make, and did you have a team or budget?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after January 2025.",
+        "cannot_tell": "A recruiter can't tell what you've done since the Lumen role. An honest line can account for that time, whether it was a career break, caregiving, study or work you actually did.",
+        "example": "January 2025 - Present  [what you did]",
+        "question": "What have you done since January 2025 that you'd like to include?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "The resume doesn't name a target job.",
+        "cannot_tell": "Marketing, property records and lab work point in different directions. A short headline naming the job you're seeking would tell a recruiter which experience to focus on.",
+        "example": "",
+        "question": "Which kind of job are you applying for now?"
+      },
+      {
+        "kind": "structure",
+        "where": "Lumen Candle Co.",
+        "line": "The resume doesn't say how large Lumen Candle Co. is.",
+        "cannot_tell": "The company name and candle work give some context, but a recruiter can't tell how large the business was. A brief description could help them understand the setting for your marketing work.",
+        "example": "",
+        "question": "How large was Lumen Candle Co., if you're able to share that?"
+      },
+      {
+        "kind": "line",
+        "where": "Director of Marketing, line 1",
+        "line": "- Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers",
+        "cannot_tell": "A recruiter can see how often you posted and the account's follower count, but not what the posts were meant to do or whether they worked.",
+        "example": "Posted [content] 3 to 5 times a week on the company Instagram, which has 2,100 followers; [what changed]",
+        "question": "What did you post, and what changed, if you tracked it?"
+      },
+      {
+        "kind": "keep",
+        "where": "Data Entry Clerk, line 1",
+        "line": "- Entered 150 property records a day into the county title system",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a concrete daily workload and names where the records went, without making them guess what the job involved.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Director of Marketing"
+      ],
+      "why": "Your most recent role is Director of Marketing, and its bullets include Instagram and product-description work.",
+      "level": "entry level, one marketing role with hands-on posting and product-copy work",
+      "note": "Your Instagram and product-copy work points toward hands-on marketing roles. Your property-records work also gives you an administrative direction, so choose which experience to emphasize for each application.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": []
+      }
+    }
+  },
+  "repaired": true,
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 59,
+    "lifted_by_employer": false,
+    "verdict": "A marketing director title sits above hands-on duties, with time since January 2025 unaccounted for.",
+    "write_up": [
+      "It's common for a resume to leave a formal title and the work beneath it telling different stories. At Lumen Candle Co., you posted on Instagram and wrote product descriptions; before that, you handled property records and supported biology labs. I'm reading this for Director of Marketing, but a recruiter hiring at that level would likely pass because the resume doesn't show the decisions or leadership the title suggests.",
+      "Your property-records line is a useful model: it names the work, the system and how much you handled. The resume also leaves time after January 2025 unexplained, and it doesn't say whether you want to continue in marketing or return to another kind of work.",
+      "Let's start with the Lumen role. Keep your official title, then add any marketing decisions, team responsibility or budget you actually had. Account honestly for the time since that role, and choose the direction you want the resume to lead with."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Director of Marketing title",
+        "line": "Director of Marketing",
+        "cannot_tell": "The title suggests responsibility for marketing direction, but the bullets show posting, product copy and customer orders. A recruiter can't tell whether you also set marketing priorities or had a team or budget. Keep the title if it was official, and add those responsibilities only if they were yours.",
+        "example": "Director of Marketing | [marketing responsibilities] | [team size or budget]",
+        "question": "What marketing decisions did you make, and did you have a team or budget?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after January 2025.",
+        "cannot_tell": "A recruiter can't tell what you've done since the Lumen role. An honest line can account for that time, whether it was a career break, caregiving, study or work you actually did.",
+        "example": "January 2025 - Present [what you did]",
+        "question": "What have you done since January 2025 that you'd like to include?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "The resume doesn't name a target job.",
+        "cannot_tell": "Marketing, property records and lab work point in different directions. A short headline naming the job you're seeking would tell a recruiter which experience to focus on.",
+        "example": "",
+        "question": "Which kind of job are you applying for now?"
+      },
+      {
+        "kind": "structure",
+        "where": "Lumen Candle Co.",
+        "line": "The resume doesn't say how large Lumen Candle Co. is.",
+        "cannot_tell": "The company name and candle work give some context, but a recruiter can't tell how large the business was. A brief description could help them understand the setting for your marketing work.",
+        "example": "",
+        "question": "How large was Lumen Candle Co., if you're able to share that?"
+      },
+      {
+        "kind": "line",
+        "where": "Director of Marketing, line 1",
+        "line": "Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers",
+        "cannot_tell": "A recruiter can see how often you posted and the account's follower count, but not what the posts were meant to do or whether they worked.",
+        "example": "Posted [content] 3 to 5 times a week on the company Instagram, which has 2,100 followers; [what changed]",
+        "question": "What did you post, and what changed, if you tracked it?"
+      },
+      {
+        "kind": "keep",
+        "where": "Data Entry Clerk, line 1",
+        "line": "Entered 150 property records a day into the county title system",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a concrete daily workload and names where the records went, without making them guess what the job involved.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Director of Marketing"
+      ],
+      "why": "Your most recent role is Director of Marketing, and its bullets include Instagram and product-description work.",
+      "level": "entry level, one marketing role with hands-on posting and product-copy work",
+      "note": "Your Instagram and product-copy work points toward hands-on marketing roles. Your property-records work also gives you an administrative direction, so choose which experience to emphasize for each application.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 59
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 59,
+    "lifted_by_employer": false,
+    "verdict": "A marketing director title sits above hands-on duties, with time since January 2025 unaccounted for.",
+    "write_up": [
+      "It's common for a resume to leave a formal title and the work beneath it telling different stories. At Lumen Candle Co., you posted on Instagram and wrote product descriptions; before that, you handled property records and supported biology labs. I'm reading this for Director of Marketing, but a recruiter hiring at that level would likely pass because the resume doesn't show the decisions or leadership the title suggests.",
+      "Your property-records line is a useful model: it names the work, the system and how much you handled. The resume also leaves time after January 2025 unexplained, and it doesn't say whether you want to continue in marketing or return to another kind of work.",
+      "Let's start with the Lumen role. Keep your official title, then add any marketing decisions, team responsibility or budget you actually had. Account honestly for the time since that role, and choose the direction you want the resume to lead with."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Director of Marketing title",
+        "line": "Director of Marketing",
+        "cannot_tell": "The title suggests responsibility for marketing direction, but the bullets show posting, product copy and customer orders. A recruiter can't tell whether you also set marketing priorities or had a team or budget. Keep the title if it was official, and add those responsibilities only if they were yours.",
+        "example": "Director of Marketing | [marketing responsibilities] | [team size or budget]",
+        "question": "What marketing decisions did you make, and did you have a team or budget?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after January 2025.",
+        "cannot_tell": "A recruiter can't tell what you've done since the Lumen role. An honest line can account for that time, whether it was a career break, caregiving, study or work you actually did.",
+        "example": "January 2025 - Present [what you did]",
+        "question": "What have you done since January 2025 that you'd like to include?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "The resume doesn't name a target job.",
+        "cannot_tell": "Marketing, property records and lab work point in different directions. A short headline naming the job you're seeking would tell a recruiter which experience to focus on.",
+        "example": "",
+        "question": "Which kind of job are you applying for now?"
+      },
+      {
+        "kind": "structure",
+        "where": "Lumen Candle Co.",
+        "line": "The resume doesn't say how large Lumen Candle Co. is.",
+        "cannot_tell": "The company name and candle work give some context, but a recruiter can't tell how large the business was. A brief description could help them understand the setting for your marketing work.",
+        "example": "",
+        "question": "How large was Lumen Candle Co., if you're able to share that?"
+      },
+      {
+        "kind": "line",
+        "where": "Director of Marketing, line 1",
+        "line": "Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers",
+        "cannot_tell": "A recruiter can see how often you posted and the account's follower count, but not what the posts were meant to do or whether they worked.",
+        "example": "Posted [content] 3 to 5 times a week on the company Instagram, which has 2,100 followers; [what changed]",
+        "question": "What did you post, and what changed, if you tracked it?"
+      },
+      {
+        "kind": "keep",
+        "where": "Data Entry Clerk, line 1",
+        "line": "Entered 150 property records a day into the county title system",
+        "cannot_tell": "Keep this as a model. It gives a recruiter a concrete daily workload and names where the records went, without making them guess what the job involved.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Director of Marketing"
+      ],
+      "why": "Your most recent role is Director of Marketing, and its bullets include Instagram and product-description work.",
+      "level": "entry level, one marketing role with hands-on posting and product-copy work",
+      "note": "Your Instagram and product-copy work points toward hands-on marketing roles. Your property-records work also gives you an administrative direction, so choose which experience to emphasize for each application.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 59
+  },
+  "presentation": {
+    "score": 59,
+    "band": "Needs more context",
+    "model_score": 59,
+    "lifted_by_employer": false,
+    "verdict": "A marketing director title sits above hands-on duties, with time since January 2025 unaccounted for.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 155,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Director of Marketing title",
+        "line": "Director of Marketing",
+        "blanks": 2,
+        "question": "What marketing decisions did you make, and did you have a team or budget?"
+      },
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after January 2025.",
+        "blanks": 1,
+        "question": "What have you done since January 2025 that you'd like to include?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "The resume doesn't name a target job.",
+        "blanks": 0,
+        "question": "Which kind of job are you applying for now?"
+      },
+      {
+        "kind": "structure",
+        "where": "Lumen Candle Co.",
+        "line": "The resume doesn't say how large Lumen Candle Co. is.",
+        "blanks": 0,
+        "question": "How large was Lumen Candle Co., if you're able to share that?"
+      },
+      {
+        "kind": "line",
+        "where": "Director of Marketing, line 1",
+        "line": "Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers",
+        "blanks": 2,
+        "question": "What did you post, and what changed, if you tracked it?"
+      },
+      {
+        "kind": "keep",
+        "where": "Data Entry Clerk, line 1",
+        "line": "Entered 150 property records a day into the county title system",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 6,
+    "kinds": {
+      "line": 2,
+      "dates": 1,
+      "structure": 2,
+      "keep": 1
+    },
+    "structural_from_model": 3,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Director of Marketing"
+      ],
+      "why": "Your most recent role is Director of Marketing, and its bullets include Instagram and product-description work.",
+      "level": "entry level, one marketing role with hands-on posting and product-copy work",
+      "note": "Your Instagram and product-copy work points toward hands-on marketing roles. Your property-records work also gives you an administrative direction, so choose which experience to emphasize for each application.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0266276,
+  "latency_ms": 72865
+}

@@ -1,0 +1,55 @@
+# b30_social_worker, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_social_worker_1.txt (127 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt e122fb00; severity check off
+Outcome: report; cost $0.0174; 70.8s
+
+## Needs more context (score 66; model wrote 66)
+## Verdict
+An Ohio LMSW with child welfare experience, but little sense of caseload or what the work informs.
+
+## Write-up
+Your resume shows an Ohio LMSW working with families involved with child protective services, after intake work at Lakeview Community Center. It's common to describe casework as a list of duties, but here a recruiter has to guess how many families you carry and what your assessments and plans inform. That makes it harder to stand out for a Family Services Caseworker role.
+
+The line about facilitating family team meetings is a good model: it puts you in the room doing the work, without a generic claim. Your current role and Ohio LMSW are also easy to find.
+
+Let's start with the caseload line and add how many families you carry. Then show what your assessments inform and which services you coordinate. You can describe the plans and reports without identifying families.
+
+## Cards (7; {"structure":1,"line":5,"keep":1}); severity off; added []
+1. [structure] Cuyahoga Family Partners
+   line: "The resume doesn't describe Cuyahoga Family Partners."
+   can't tell: A recruiter can see which families you work with, but not what kind of organization employs you. A short description can place the role.
+   example: Cuyahoga Family Partners, Cleveland, OH | [organization type]
+   question: What kind of organization is Cuyahoga Family Partners?
+2. [line] Family Services Caseworker, line 1
+   line: "Carry a caseload of families involved with child protective services"
+   can't tell: The families you serve are clear, but a recruiter can't tell how many cases you carry. Caseload is an important measure of this work.
+   example: Carry a caseload of [number] families involved with child protective services
+   question: How many families are on your caseload?
+3. [line] Family Services Caseworker, line 2
+   line: "Complete safety and risk assessments during home visits"
+   can't tell: The home visits and assessments are clear. What those assessments inform would show how they fit into your work with families.
+   example: Complete safety and risk assessments during home visits to inform [decisions or next steps]
+   question: What decisions or next steps do your assessments inform?
+4. [line] Family Services Caseworker, line 3
+   line: "Coordinate services with schools, courts, and mental health providers"
+   can't tell: A recruiter can see who you work with, but not which services you coordinate. Naming them would make your part more concrete.
+   example: Coordinate [services] with schools, courts, and mental health providers
+   question: Which services do you coordinate with schools, courts, and mental health providers?
+5. [line] Family Services Caseworker, line 4
+   line: "Write case plans and court reports"
+   can't tell: These are important documents, but a recruiter can't tell what your plans address or what your reports cover. You can explain that without identifying families.
+   example: Write case plans addressing [family needs] and court reports covering [report topics]
+   question: What do your case plans address, and what do your court reports cover?
+6. [line] Intake Specialist, line 2
+   line: "Connected clients to county benefit programs"
+   can't tell: The connection to benefits is useful experience, but the programs and your part in connecting clients are still open questions.
+   example: Connected clients to [county benefit programs] by [what you did]
+   question: Which county benefit programs did you connect clients to, and what did you do to connect them?
+7. [keep] Family Services Caseworker, line 5
+   line: "Facilitate monthly family team meetings"
+   can't tell: Keep this as a model. It names the work and tells a recruiter how often you do it.
+
+## Fit
+Roles: ["Family Services Caseworker","Intake Specialist"]
+Level: mid-level, current caseworker role and an earlier intake role
+Note: Your intake work also shows experience with housing, food, and utility assistance. Your current role keeps the emphasis on child welfare and family services.

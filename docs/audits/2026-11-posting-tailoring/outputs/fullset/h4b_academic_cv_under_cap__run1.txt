@@ -1,0 +1,35 @@
+# h4b_academic_cv_under_cap, run 1
+Resume: ../2026-11-live-judgment/resumes/h4b_academic_cv_under_cap.txt (3253 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt e122fb00; severity check off
+Outcome: report; cost $0.0268; 32.3s
+Case note: The same CV trimmed under the cap, to see what the model does with a CV shape.
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+A tenured molecular biology professor with strong funding and mentoring, but repeated publication entries raise questions.
+
+## Write-up
+You moved from postdoctoral research to a tenured Associate Professor role at Riverbend State, with NIH funding, teaching and student supervision. Academic CVs often put those accomplishments in separate lists. Here, repeated article titles and author lists across different years make the publication record hard to trust without checking, and a recruiter may hesitate or pass.
+
+Your MB 310 redesign is a strong model: it names the change and shows how evaluations moved. The R01 also gives a reader the project, your role, dates and funding. Education comes before your appointments, so your current position takes longer to find.
+
+Let's start with the publication list. Check the repeated entries against the published records and distinguish any genuinely separate articles. Then move Academic Appointments above Education and keep the detailed teaching and mentoring sections.
+
+## Cards (3; {"structure":1,"line":1,"keep":1}); severity off; added []
+1. [structure] Section order
+   line: "Education sits above Academic Appointments."
+   can't tell: Your current tenured role is the first thing a reader needs to place your work. Put Academic Appointments first, followed by Education.
+   question: Can you move Academic Appointments above Education?
+2. [line] Publications, entry 1
+   line: "1. Delgado M, Jorgensen P, Petrov D, Okonkwo-Fitzgerald A*. (2026). Drp1 phosphorylation: a live-cell analysis in cultured fibroblasts. Molecular Biology of the Cell, 107(2), 1037-1052."
+   can't tell: The same authors, title and journal appear again in the 2024 and 2021 entries, with different citation details. A reader can't tell whether these are distinct articles or repeated entries. Check the other recurring titles in the list too.
+   example: [Complete published citation]
+   question: Which published record belongs to each entry, and are they distinct articles?
+3. [keep] Teaching, course redesign
+   line: "Course redesign: converted MB 310 to a flipped format in 2019; student evaluations rose from 3.9 to 4.5 of 5 over the following three offerings."
+   can't tell: Keep this as a model for a short research or teaching summary: it gives the reader a concrete change and a measure over a stated period.
+
+## Fit
+Roles: ["Associate Professor (with tenure)"]
+Level: senior, tenured faculty member and principal investigator on an R01
+Note: Your experience points toward research-focused faculty work with substantial teaching and mentoring. The funding and student placements give a reader useful context alongside the publication list.

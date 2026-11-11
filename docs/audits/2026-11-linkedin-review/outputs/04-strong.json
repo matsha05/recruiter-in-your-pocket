@@ -1,0 +1,49 @@
+{
+  "file": "04-strong.txt",
+  "model": "gpt-6.1-terra",
+  "today": "2026-11-11",
+  "repaired": false,
+  "firstError": null,
+  "seconds": 14,
+  "report": {
+    "contract_version": "v3",
+    "score": 95,
+    "lifted_by_employer": false,
+    "verdict": "An emergency nurse manager whose profile shows how she improved patient flow, retention and budget performance.",
+    "write_up": [
+      "You lead an emergency department at a Level II trauma center, and your profile makes the work unmistakable! It shows the people and budget you manage, as well as what changed under your leadership.",
+      "The Saguaro Valley manager job is the model: you connect front-door triage and the overflow plan to fewer patients leaving without being seen. You also show the changes behind lower RN turnover.",
+      "There's no urgent rewrite here. Your About already brings the patient-flow result to the top, and the experience underneath backs it up. Your profile isn't the reason a recruiter would pass; the requirements and timing of a particular role still matter."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Saguaro Valley Medical Center, Nurse Manager description",
+        "line": "Cut left-without-being-seen from 5.1% to 2.3% in two years with front-door triage and a new overflow plan.",
+        "cannot_tell": "This is the line to keep as a model. It names what changed and the two steps behind it, so a recruiter can understand your work without guessing.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Emergency Department Nurse Manager",
+        "Nurse Manager, Emergency Department",
+        "Charge Nurse, Emergency Department"
+      ],
+      "why": "Your headline and current job both name emergency department management, and your experience describes staffing, patient flow and budget responsibility.",
+      "level": "manager, your current title and leadership of 96 nurses and techs",
+      "note": "'Emergency Department Nurse Manager' and 'Staffing and throughput' are in your headline. 'Nurse Staffing' and 'Trauma Care' are in your top skills. 'Split-flow' is in your About. Patient safety and quality improvement aren't named; they're optional terms to add only if they reflect your work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 95,
+    "document": "linkedin"
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "file": "02-one-line-jobs.txt",
+  "model": "gpt-6.1-terra",
+  "today": "2026-11-11",
+  "repaired": false,
+  "firstError": null,
+  "seconds": 19,
+  "report": {
+    "contract_version": "v3",
+    "score": 68,
+    "lifted_by_employer": false,
+    "verdict": "A senior backend engineer with a notable ledger project, but little about the work in recent jobs.",
+    "write_up": [
+      "You're a senior backend engineer working on payouts and ledger services. It's common to see a default headline and a thin job description, but a recruiter may move on when they can't tell what you did on those services.",
+      "The strongest detail is in Projects: ledger-recon is an open-source Go library with 1,200 GitHub stars, used by three payment companies. That's a much more memorable introduction than the adjectives in your About section.",
+      "Start with the Northwind Pay job: name what you worked on and what changed. Then bring ledger-recon into your About and sharpen the headline. That would give someone hiring for backend payments work a better reason to write to you."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Headline",
+        "line": "Senior Backend Engineer at Northwind Pay",
+        "cannot_tell": "This headline stops at your title and employer. Your payouts and ledger work gives it a specialty a recruiter can recognize.",
+        "example": "Senior Backend Engineer | Payouts and ledger services | Go",
+        "question": "What kind of backend work have you done most on payouts and ledger services?"
+      },
+      {
+        "kind": "line",
+        "where": "About",
+        "line": "Passionate engineer with a track record of delivering scalable solutions. I enjoy hard problems and working with great teams.",
+        "cannot_tell": "'Scalable solutions' could describe almost any engineer. Your ledger-recon project is specific, and it's currently much further down your profile.",
+        "example": "I work on payouts and ledger services. My projects include ledger-recon, an open-source ledger reconciliation library in Go with 1,200 GitHub stars, used by three payment companies.",
+        "question": "What was your role in ledger-recon?"
+      },
+      {
+        "kind": "line",
+        "where": "Northwind Pay, description",
+        "line": "Worked on payouts and ledger services.",
+        "cannot_tell": "This names the services but leaves your work on them blank. A recruiter can't tell what you built or changed, or who used it.",
+        "example": "Worked on payouts and ledger services, [what you built or changed] for [who used it].",
+        "question": "What did you build or change on payouts or ledger services, and who used it?"
+      },
+      {
+        "kind": "structure",
+        "where": "Kestrel Labs, description",
+        "line": "The Software Engineer job at Kestrel Labs has no description.",
+        "cannot_tell": "The title doesn't say what software you worked on or which tools you used. One line about a project would give the earlier job a place in your story.",
+        "example": "[Software or systems you worked on] using [tools or methods] for [who used it].",
+        "question": "At Kestrel Labs, did you build, maintain or test software, and what tools did you use?"
+      },
+      {
+        "kind": "keep",
+        "where": "ledger-recon, description",
+        "line": "Open-source ledger reconciliation library in Go. 1,200 GitHub stars, used by three payment companies.",
+        "cannot_tell": "This is the line to use as a model: it names the library, the language and who uses it. A recruiter can see why the project matters without guessing.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer",
+        "Software Engineer"
+      ],
+      "why": "Your headline and current title name senior backend engineering, and your work and project focus on payouts and ledgers.",
+      "level": "senior, your current title is Senior Backend Engineer",
+      "note": "'Senior Backend Engineer' is in your headline and current title. 'Payouts' is in your Northwind Pay description, while 'ledger reconciliation' is in your project. 'Go' appears in your top skills and project. Recruiters may also search for API design, distributed systems and payment processing; those terms aren't on your profile, so add any that describe your work. Move ledger reconciliation into your headline to make your specialty clear sooner.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 68,
+    "document": "linkedin"
+  }
+}

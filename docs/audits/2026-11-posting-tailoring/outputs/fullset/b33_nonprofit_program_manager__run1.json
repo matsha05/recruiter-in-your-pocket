@@ -1,0 +1,247 @@
+{
+  "case_id": "b33_nonprofit_program_manager",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_nonprofit_program_manager_1.txt",
+  "resume_sha256": "eed001bb0dd40fc28e9488669ec9cea7f7a73eecaca46214d5f584dae2b6d5c9",
+  "resume_words": 146,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-11T16:02:29.662Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6779,
+        "completion_tokens": 1876,
+        "total_tokens": 8655,
+        "cached_prompt_tokens": 6116,
+        "cache_write_prompt_tokens": 660,
+        "reasoning_tokens": 1168
+      },
+      "cost_usd": 0.0105138,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 36815
+    }
+  ],
+  "resume_prompt_sha256": "e122fb00655b92e22574f13af1e038ff8846f6c54459bfa431be988d44f4cdc4",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 72,
+    "lifted_by_employer": false,
+    "verdict": "A youth workforce program manager whose team is clear, but whose program results are still missing.",
+    "write_up": [
+      "Your resume tells a consistent story: you moved from tutoring at City Year Baltimore to coordinating and then managing youth workforce programs at Harbor Pathways. A recruiter can follow the work, but has to guess how many students and employers the programs reach.",
+      "The supervision line is your best model: it names both groups you manage and gives their numbers. Your promotion is easy to follow, and your current role sits where a recruiter will see it first.",
+      "Let's start with the summer jobs program. Add the number of students placed and any results you can substantiate, then show what your staff handle and how many employer partners you recruit."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 1",
+        "line": "- Manage a summer jobs program placing high school students with local employers",
+        "cannot_tell": "A recruiter can see the program you manage, but not how many students it places or what happens after placement. Those details matter for a youth workforce role.",
+        "example": "Manage a summer jobs program placing [number] high school students with local employers [time period], with [program result]",
+        "question": "How many students did the program place, over what period, and what results can you document?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 2",
+        "line": "- Supervise 4 program coordinators and 20 seasonal staff",
+        "cannot_tell": "The team numbers are useful, but a recruiter can't tell what the coordinators and seasonal staff handle. That matters when comparing program management roles.",
+        "example": "Supervise 4 program coordinators and 20 seasonal staff who [work handled]",
+        "question": "What do the coordinators and seasonal staff handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 4",
+        "line": "- Recruit and onboard employer partners",
+        "cannot_tell": "Recruiting employer partners is relevant to the summer jobs program, but the number you bring on isn't shown.",
+        "example": "Recruit and onboard [number] employer partners [time period]",
+        "question": "How many employer partners have you recruited and onboarded, and over what period?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Program Manager, Youth Workforce"
+      ],
+      "why": "Your headline and progression at Harbor Pathways both point to managing youth workforce programs.",
+      "level": "manager, supervises 4 program coordinators and 20 seasonal staff",
+      "note": "Your experience points toward nonprofit youth workforce program management, particularly roles involving employer partnerships and grant reporting. The move from coordinator to manager also shows growing responsibility at Harbor Pathways.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 72,
+    "lifted_by_employer": false,
+    "verdict": "A youth workforce program manager whose team is clear, but whose program results are still missing.",
+    "write_up": [
+      "Your resume tells a consistent story: you moved from tutoring at City Year Baltimore to coordinating and then managing youth workforce programs at Harbor Pathways. A recruiter can follow the work, but has to guess how many students and employers the programs reach.",
+      "The supervision line is your best model: it names both groups you manage and gives their numbers. Your promotion is easy to follow, and your current role sits where a recruiter will see it first.",
+      "Let's start with the summer jobs program. Add the number of students placed and any results you can substantiate, then show what your staff handle and how many employer partners you recruit."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 1",
+        "line": "Manage a summer jobs program placing high school students with local employers",
+        "cannot_tell": "A recruiter can see the program you manage, but not how many students it places or what happens after placement. Those details matter for a youth workforce role.",
+        "example": "Manage a summer jobs program placing [number] high school students with local employers [time period], with [program result]",
+        "question": "How many students did the program place, over what period, and what results can you document?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 2",
+        "line": "Supervise 4 program coordinators and 20 seasonal staff",
+        "cannot_tell": "The team numbers are useful, but a recruiter can't tell what the coordinators and seasonal staff handle. That matters when comparing program management roles.",
+        "example": "Supervise 4 program coordinators and 20 seasonal staff who [work handled]",
+        "question": "What do the coordinators and seasonal staff handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 4",
+        "line": "Recruit and onboard employer partners",
+        "cannot_tell": "Recruiting employer partners is relevant to the summer jobs program, but the number you bring on isn't shown.",
+        "example": "Recruit and onboard [number] employer partners [time period]",
+        "question": "How many employer partners have you recruited and onboarded, and over what period?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Program Manager, Youth Workforce"
+      ],
+      "why": "Your headline and progression at Harbor Pathways both point to managing youth workforce programs.",
+      "level": "manager, supervises 4 program coordinators and 20 seasonal staff",
+      "note": "Your experience points toward nonprofit youth workforce program management, particularly roles involving employer partnerships and grant reporting. The move from coordinator to manager also shows growing responsibility at Harbor Pathways.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 72
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 72,
+    "lifted_by_employer": false,
+    "verdict": "A youth workforce program manager whose team is clear, but whose program results are still missing.",
+    "write_up": [
+      "Your resume tells a consistent story: you moved from tutoring at City Year Baltimore to coordinating and then managing youth workforce programs at Harbor Pathways. A recruiter can follow the work, but has to guess how many students and employers the programs reach.",
+      "The supervision line is your best model: it names both groups you manage and gives their numbers. Your promotion is easy to follow, and your current role sits where a recruiter will see it first.",
+      "Let's start with the summer jobs program. Add the number of students placed and any results you can substantiate, then show what your staff handle and how many employer partners you recruit."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 1",
+        "line": "Manage a summer jobs program placing high school students with local employers",
+        "cannot_tell": "A recruiter can see the program you manage, but not how many students it places or what happens after placement. Those details matter for a youth workforce role.",
+        "example": "Manage a summer jobs program placing [number] high school students with local employers [time period], with [program result]",
+        "question": "How many students did the program place, over what period, and what results can you document?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 2",
+        "line": "Supervise 4 program coordinators and 20 seasonal staff",
+        "cannot_tell": "The team numbers are useful, but a recruiter can't tell what the coordinators and seasonal staff handle. That matters when comparing program management roles.",
+        "example": "Supervise 4 program coordinators and 20 seasonal staff who [work handled]",
+        "question": "What do the coordinators and seasonal staff handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 4",
+        "line": "Recruit and onboard employer partners",
+        "cannot_tell": "Recruiting employer partners is relevant to the summer jobs program, but the number you bring on isn't shown.",
+        "example": "Recruit and onboard [number] employer partners [time period]",
+        "question": "How many employer partners have you recruited and onboarded, and over what period?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Program Manager, Youth Workforce"
+      ],
+      "why": "Your headline and progression at Harbor Pathways both point to managing youth workforce programs.",
+      "level": "manager, supervises 4 program coordinators and 20 seasonal staff",
+      "note": "Your experience points toward nonprofit youth workforce program management, particularly roles involving employer partnerships and grant reporting. The move from coordinator to manager also shows growing responsibility at Harbor Pathways.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 72
+  },
+  "presentation": {
+    "score": 72,
+    "band": "Mostly clear",
+    "model_score": 72,
+    "lifted_by_employer": false,
+    "verdict": "A youth workforce program manager whose team is clear, but whose program results are still missing.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 110,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 1",
+        "line": "Manage a summer jobs program placing high school students with local employers",
+        "blanks": 3,
+        "question": "How many students did the program place, over what period, and what results can you document?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 2",
+        "line": "Supervise 4 program coordinators and 20 seasonal staff",
+        "blanks": 1,
+        "question": "What do the coordinators and seasonal staff handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Program Manager, Youth Workforce, line 4",
+        "line": "Recruit and onboard employer partners",
+        "blanks": 2,
+        "question": "How many employer partners have you recruited and onboarded, and over what period?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "line": 3
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Program Manager, Youth Workforce"
+      ],
+      "why": "Your headline and progression at Harbor Pathways both point to managing youth workforce programs.",
+      "level": "manager, supervises 4 program coordinators and 20 seasonal staff",
+      "note": "Your experience points toward nonprofit youth workforce program management, particularly roles involving employer partnerships and grant reporting. The move from coordinator to manager also shows growing responsibility at Harbor Pathways.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0105138,
+  "latency_ms": 36817
+}

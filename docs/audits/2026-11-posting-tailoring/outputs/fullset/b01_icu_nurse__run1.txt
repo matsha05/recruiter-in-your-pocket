@@ -1,0 +1,35 @@
+# b01_icu_nurse, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_icu_nurse_1.txt (153 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt e122fb00; severity check off
+Outcome: report; cost $0.0074; 22.5s
+
+## Mostly clear (score 82; model wrote 82)
+## Verdict
+A medical ICU nurse with a clear bedside care record and a few questions about team contributions.
+
+## Write-up
+Your resume points clearly to medical ICU nursing: you care for critically ill patients at Desert Valley and previously worked in telemetry at Saguaro. A recruiter can see the patient load, therapies and credentials that matter for this work, so I’d expect them to move forward with a couple of questions.
+
+The direct care line is a strong model because it puts your patient assignment and unit together. Your current role and dates are easy to find, and your licenses and certifications lead the resume. The committee and rapid response lines leave more room to explain your part.
+
+Let’s start with the sepsis committee. Add what you contributed there, then explain your role on rapid response calls. Leave the patient care lines alone: they already name the work a recruiter needs to see.
+
+## Cards (3; {"keep":1,"line":2}); severity off; added []
+1. [keep] Staff Nurse, Medical ICU, line 1
+   line: "Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU"
+   can't tell: Keep this as your model. It gives a recruiter both your assignment per shift and the setting where you work.
+2. [line] Staff Nurse, Medical ICU, line 5
+   line: "Member of the unit's sepsis bundle compliance committee"
+   can't tell: Committee membership tells a recruiter where you participated, but not what you contributed to sepsis bundle compliance.
+   example: Member of the unit's sepsis bundle compliance committee; contributed [your committee contribution]
+   question: What did you contribute to the committee's work on sepsis bundle compliance?
+3. [line] Staff Nurse, Telemetry, line 2
+   line: "Responded to rapid response calls as part of the floor team"
+   can't tell: A recruiter can see you were part of the response, but not what you did during those calls.
+   example: Responded to rapid response calls as part of the floor team, where I [your role during calls]
+   question: What did you do during rapid response calls as part of the floor team?
+
+## Fit
+Roles: ["Staff Nurse, Medical ICU","Staff Nurse, Telemetry"]
+Level: mid-level, current ICU staff nurse who also serves as charge nurse
+Note: Your telemetry work adds cardiac patient care to your ICU background. Charge shifts and precepting also show leadership and teaching alongside bedside care.

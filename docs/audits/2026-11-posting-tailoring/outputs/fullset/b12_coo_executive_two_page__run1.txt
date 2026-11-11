@@ -1,0 +1,34 @@
+# b12_coo_executive_two_page, run 1
+Resume: ../2026-11-live-judgment/resumes/b_coo_executive.txt (463 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt e122fb00; severity check off
+Outcome: report; cost $0.0082; 20.4s
+Case note: Executive, two pages.
+
+## Clear and specific (score 95; model wrote 95)
+## Verdict
+A healthcare COO whose growth, operating results, and executive responsibilities are easy to follow.
+
+## Write-up
+This is a strong executive resume! Your progression from clinic operations to COO is backed by practice growth, margin improvement, and the operating changes behind them. A recruiter can see both how much you lead and what changed.
+
+The new-practice integration line is a great model: it gives the starting point, the improvement, and the playbook you standardized. Your current remit, board reporting, and earlier healthcare leadership are easy to find.
+
+Your resume isn't what stands between you and a call back; competition for a particular role matters too. If you're aiming for a CEO role next, add a company-wide decision you made and what followed, if you can share it.
+
+## Cards (3; {"keep":1,"upgrade":2}); severity off; added []
+1. [keep] Chief Operating Officer, Lakeshore Dental Partners
+   line: "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook"
+   can't tell: Keep this as a model. It ties a change in integration time to the work you led, without making a recruiter guess what you did.
+2. [upgrade] Chief Operating Officer, Lakeshore Dental Partners
+   line: "Own the annual operating plan and the $410M P&L with the CFO"
+   can't tell: For a CEO role, a company-wide decision and what followed would show how you shape the business beyond owning the plan.
+   example: Own the annual operating plan and the $410M P&L with the CFO; made [company-wide decision], resulting in [what changed]
+   question: Which company-wide decision did you make as part of the operating plan, and what changed?
+3. [upgrade] Chief Operating Officer, Lakeshore Dental Partners
+   line: "Grew the practice count from 38 to 140 through 61 acquisitions and 41 de novo openings while raising same-store EBITDA margin from 17% to 23%"
+   can't tell: This is your strongest growth result. Consider moving it above the remit line, while keeping your remit immediately after it.
+
+## Fit
+Roles: ["Chief Operating Officer"]
+Level: executive, leads operations for 140 practices and reports to the CEO
+Note: Your experience points to executive operating roles in multi-site healthcare. The board and advisory work adds another dimension to that story.

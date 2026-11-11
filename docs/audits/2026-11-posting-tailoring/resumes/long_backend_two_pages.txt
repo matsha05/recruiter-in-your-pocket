@@ -1,0 +1,44 @@
+DEVON ACHEBE
+Portland, OR | devon.achebe@example.com | github.com/dachebe-example
+
+Senior Software Engineer
+
+EXPERIENCE
+
+Senior Software Engineer, Platform
+Tidewater Commerce (e-commerce platform, 900 employees), Portland, OR | January 2021 - Present
+- Built the internal developer portal in React and TypeScript that 140 engineers use to scaffold services
+- Ran the engineering book club and organized the annual hack week for the Portland office
+- Migrated 60 services from EC2 to Kubernetes on EKS over nine months with no customer-facing downtime
+- Redesigned the office seating chart tool for the facilities team as a side project
+- Wrote the CI pipeline templates in GitHub Actions that cut median build time from 14 minutes to 6
+- Volunteered as a tour guide for prospective interns during summer recruiting
+- Designed the checkout rate-limiting service in Go that handles 4,000 requests a second at peak
+- Led the payment provider failover project with the payments team, cutting failed checkouts during provider outages from 3.1% to 0.4%
+- Maintained the legacy PHP admin panel until it was retired in 2022
+
+Software Engineer
+Cascade Health Systems, Portland, OR | June 2017 - December 2020
+- Built appointment reminder services in Java and Spring Boot sending 2 million SMS messages a month
+- Added HL7 message validation that caught malformed lab results before they reached clinicians
+- Managed the team's snack budget and planned two offsite events
+- Reconciled daily claim payments against the ledger with a nightly Python job, flagging about 40 mismatches a week for finance
+- Wrote the on-call handbook for the integrations team and ran the weekly incident review
+- Built a jQuery dashboard for the front-desk staff
+- Mentored three interns, two of whom returned as full-time engineers
+
+Junior Developer
+Bridgetown Web Studio, Portland, OR | August 2015 - May 2017
+- Built WordPress themes and plugins for 30 small-business clients
+- Set up hosting and email for client sites
+- Designed logos and business cards for four clients in Photoshop
+
+PROJECTS
+- payq: an open-source Go library for idempotent payment retries, 800 GitHub stars
+- A recipe app for my family built in Flutter
+
+EDUCATION
+B.S. Computer Science, Portland State University, 2015
+
+SKILLS
+Go, Java, TypeScript, React, Python, PHP, jQuery, PostgreSQL, Kafka, Kubernetes, AWS (EKS, RDS, SQS), Terraform, GitHub Actions, Photoshop, WordPress

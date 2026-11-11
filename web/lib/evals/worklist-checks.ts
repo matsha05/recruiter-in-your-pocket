@@ -94,7 +94,8 @@ export function runWorklistChecks(input: WorklistChecksInput): { errors: Array<{
   }
   // A card that needs work with no blank in its example asks for nothing the person can fill in.
   report.cards.forEach((card, index) => {
-    if (card.kind === "line" && blanksOf(card.example).length === 0) warnings.push({ code: "W_SPECIFICITY_LOW", message: `Card ${index + 1} example has no blank to fill` });
+    // A headline or summary rewritten from the page's own facts is a finished line: it has nothing to fill in.
+    if (card.kind === "line" && !/^(headline|summary)$/iu.test(card.where.trim()) && blanksOf(card.example).length === 0) warnings.push({ code: "W_SPECIFICITY_LOW", message: `Card ${index + 1} example has no blank to fill` });
   });
   return { errors, warnings };
 }

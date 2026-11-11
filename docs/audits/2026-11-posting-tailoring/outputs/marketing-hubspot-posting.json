@@ -1,0 +1,110 @@
+{
+  "id": "marketing-hubspot-posting",
+  "resume": "fr02_marketing_coordinator_skills.txt",
+  "posting": "posting_marketing_hubspot.txt",
+  "model": "gpt-6.1-terra",
+  "today": "2026-11-07",
+  "repaired": false,
+  "firstError": null,
+  "drafted": {
+    "lead": 0,
+    "trim": 0
+  },
+  "usage": {
+    "tokens_in": 6983,
+    "tokens_out": 2398,
+    "cost_estimate_usd": 0.0132384
+  },
+  "report": {
+    "contract_version": "v3",
+    "score": 66,
+    "lifted_by_employer": false,
+    "verdict": "B2B marketing work fits the setting, but hands-on marketing operations experience isn't established.",
+    "write_up": [
+      "It's common for a marketing coordinator resume to list the work without showing the person's part in it. Yours points to B2B marketing at Brightfield Software and Keystone Benefits Group, but a recruiter considering you for marketing operations has to guess how hands-on you were with campaigns and reporting.",
+      "Your content calendar line is the best model: it names what you managed and where the content went. Your experience is easy to follow, and your tools are listed, but the resume doesn't connect those tools to the work.",
+      "Let's start with the Brightfield newsletter and work down through the webinar and reporting lines. Add what you personally did, then connect tools to those tasks where that's true. Your event registration work is worth keeping for this application."
+    ],
+    "cards": [
+      {
+        "kind": "structure",
+        "where": "Experience",
+        "line": "Neither employer has a company description.",
+        "cannot_tell": "Your headline says B2B software and services, but it doesn't say what each company sells or who its buyers are. A short description could give the marketing work useful context.",
+        "example": "",
+        "question": "What products or services does each company sell, and to whom?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 1",
+        "line": "Coordinated the monthly customer newsletter and product announcement emails",
+        "cannot_tell": "Coordinated could mean writing, building, scheduling or reviewing. The distinction matters for a job that asks you to build and send campaigns.",
+        "example": "Coordinated the monthly customer newsletter and product announcement emails by [your contribution] for [audience]",
+        "question": "What parts of those emails did you handle, and who received them?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 2",
+        "line": "Supported webinar planning with the product marketing team",
+        "cannot_tell": "A recruiter can't tell which planning tasks were yours. The posting asks about work from registration through follow-up, so name the parts you handled.",
+        "example": "Supported webinar planning with the product marketing team by [your contribution]",
+        "question": "What did you do to help plan the webinars?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Coordinator, line 4",
+        "line": "Pulled weekly campaign reports for the marketing manager",
+        "cannot_tell": "The reports have a clear recipient and cadence, but a recruiter can't tell what they measured or how you pulled them. That's important for a reporting-focused role.",
+        "example": "Pulled weekly campaign reports on [measures] for the marketing manager using [tool]",
+        "question": "What did the reports measure, and which tool did you use to pull them?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Assistant, line 2",
+        "line": "Helped prepare slide decks and one-pagers for the sales team",
+        "cannot_tell": "Helped leaves your contribution open. A recruiter can't tell whether you gathered information, wrote content or prepared the materials in another way.",
+        "example": "Helped prepare slide decks and one-pagers for the sales team by [your contribution]",
+        "question": "What part of preparing those materials was yours?"
+      },
+      {
+        "kind": "line",
+        "where": "Marketing Assistant, line 3",
+        "line": "Kept the brand asset library organized",
+        "cannot_tell": "The library is named, but not what you did to organize it or who used it. One detail about the work would make this less generic.",
+        "example": "Kept the brand asset library organized by [your contribution] for [users]",
+        "question": "How did you organize the library, and who used it?"
+      },
+      {
+        "kind": "keep",
+        "where": "Marketing Coordinator, line 3",
+        "line": "Managed the content calendar for LinkedIn and the company blog",
+        "cannot_tell": "Keep this as a model. It gives you ownership of a named piece of work and tells a recruiter which channels it covered.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Marketing Coordinator",
+        "Marketing Operations Coordinator"
+      ],
+      "why": "Your headline and current Brightfield role both name Marketing Coordinator, with B2B campaigns and reporting in the work.",
+      "level": "mid-level, current Marketing Coordinator role and earlier Marketing Assistant role",
+      "note": "Your B2B background and webinar and event work fit the setting at Tallgrass. Connect the tools on your skills list to tasks you personally performed, wherever you can do that accurately.",
+      "posting": {
+        "summary": "Tallgrass wants a B2B marketing coordinator who can run campaigns and support events, with hands-on work across HubSpot, Salesforce and Google Analytics 4.",
+        "missing": [
+          "Hands-on HubSpot experience: workflows, lists, email and reporting (required)",
+          "Keep Salesforce and HubSpot in sync: lead routing, campaign attribution and list hygiene",
+          "building simple reports",
+          "follow-up"
+        ]
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 66
+  }
+}

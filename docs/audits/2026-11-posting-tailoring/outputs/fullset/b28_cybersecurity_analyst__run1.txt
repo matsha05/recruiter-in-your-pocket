@@ -1,0 +1,30 @@
+# b28_cybersecurity_analyst, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_cybersecurity_analyst_1.txt (154 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt e122fb00; severity check off
+Outcome: report; cost $0.0082; 25.6s
+
+## Clear and specific (score 90; model wrote 90)
+## Verdict
+A senior security analyst with detection and incident response work backed by measurable results.
+
+## Write-up
+Your resume is strong because it connects detection engineering to a measurable reduction in false positives! A recruiter sees a move from monitoring client environments at Northgate to building detections and leading incident response at Capital Ridge Bank.
+
+The Splunk detection line is the model: it names the work, the framework, and the 35% reduction in false-positive alerts. Your incident response line also puts a useful measure beside the work, showing median containment time falling from 9 hours to 3.
+
+Your resume makes a strong case on its own. For a lead role, consider adding any detection or response direction you've set beyond mentoring. Competition for the particular role will still matter.
+
+## Cards (2; {"keep":1,"upgrade":1}); severity off; added []
+1. [keep] Senior Security Analyst, line 1
+   line: "Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%"
+   can't tell: Keep this as the model for the rest. It brings the tool, the framework, the amount of work and the change together without making a recruiter guess.
+2. [upgrade] Senior Security Analyst, line 5
+   line: "Mentor 2 analysts on the night rotation"
+   can't tell: For a lead role, a recruiter will look for how you've set detection or response direction beyond mentoring.
+   example: Mentor 2 analysts on the night rotation; [detection or response direction you set]
+   question: What detection or response direction have you set beyond mentoring, if any?
+
+## Fit
+Roles: ["Senior Security Analyst, Detection and Response"]
+Level: senior, leads incident response and mentors 2 analysts
+Note: Your experience points toward senior detection and response roles in financial services. Your earlier work across client environments also shows security operations experience outside a bank.

@@ -22,6 +22,8 @@ import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
 import { reconcileReport } from "@/lib/reports/report-integrity";
 import { candidateNameOf, formatReadTime, targetRoleOf } from "@/lib/reports/report-opening";
 import { isWorklistReport } from "@/lib/llm/worklist-schema";
+import { isLinkedInReport } from "@/lib/reports/report-document";
+import { wordingFor } from "@/lib/reports/worklist-presentation";
 import { hasRoleSection, worklistTargetRole } from "@/lib/reports/worklist-presentation";
 
 // Re-export specific props if needed, but mainly we ingest ReportData
@@ -197,13 +199,13 @@ export default function ReportPanel({
             {showReport && !isLoading && displayReport && (
                 <ReportLayout
                     mobileReading
-                    toc={<ReportTOC activeId={tocActiveId} hasKeep={hasKeepSection} hasRole={worklist ? isWorklistReport(displayReport) && hasRoleSection(displayReport) : Boolean(displayReport.job_alignment)} worklist={worklist} />}
+                    toc={<ReportTOC activeId={tocActiveId} hasKeep={hasKeepSection} hasRole={worklist ? isWorklistReport(displayReport) && hasRoleSection(displayReport) : Boolean(displayReport.job_alignment)} worklist={worklist} profile={isLinkedInReport(displayReport)} />}
                     head={
                         /* Whose resume, the role it reads toward, and how long the read took (W1, Nov 2, 2026). */
                         <>
                             <div className="min-w-0">
                                 <p className="text-small font-semibold text-foreground">
-                                    {isSample ? "Sample report · Jordan is fictional" : (!shareMode && candidateNameOf(resumeText)) || "Your resume report"}
+                                    {isSample ? "Sample report · Jordan is fictional" : (!shareMode && !isLinkedInReport(displayReport) && candidateNameOf(resumeText)) || wordingFor(displayReport).header}
                                 </p>
                                 {(targetRole || readTime) && (
                                     <p className="text-label font-normal text-muted-foreground">{[targetRole, readTime].filter(Boolean).join(" · ")}</p>

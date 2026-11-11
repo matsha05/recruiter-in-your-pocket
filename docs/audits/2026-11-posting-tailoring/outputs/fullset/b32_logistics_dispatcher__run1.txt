@@ -1,0 +1,57 @@
+# b32_logistics_dispatcher, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_logistics_dispatcher_1.txt (105 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt e122fb00; severity check off
+Outcome: report; cost $0.0092; 26.3s
+
+## Needs more context (score 63; model wrote 63)
+## Verdict
+A regional trucking dispatcher whose current work needs more detail to stand out.
+
+## Write-up
+It’s common to describe dispatch work as a list of daily duties. Your move from Dispatch Assistant to Dispatcher at Crossroads Regional Freight is easy to follow, but the current role doesn’t show how many drivers or loads you handle, or what your work changes. A recruiter looking for a dispatcher may finish your resume and still have trouble comparing your experience with others.
+
+The line about tracking loads and updating customers is the best model: it names the work and who receives the updates. Your current role is easy to find, and McLeod TMS is named in Skills. What’s missing is a picture of the operation and your part in keeping it moving.
+
+Let’s start with dispatching drivers. Add the number you handle and how you make assignments, if you can confirm those details. Then give the road issues, TMS work and safety coordination the same treatment.
+
+## Cards (7; {"structure":1,"line":6}); severity off; added []
+1. [structure] Crossroads Regional Freight
+   line: "Crossroads Regional Freight has no company description."
+   can't tell: You identify your work as regional trucking, but a recruiter can’t tell how large the operation is. A short company description can give the dispatch work context.
+   example: Crossroads Regional Freight, Indianapolis, IN | [fleet size]
+   question: What was the fleet size, if you know it?
+2. [line] Dispatcher, line 1
+   line: "Responsible for dispatching drivers"
+   can't tell: This names the core job but not how many drivers you dispatch or how you assign their work. That’s a useful starting point for a recruiter comparing dispatch roles.
+   example: Dispatch [number] drivers by [assignment process]
+   question: How many drivers do you dispatch, and how do you assign their work?
+3. [line] Dispatcher, line 2
+   line: "Track loads and update customers on delivery status"
+   can't tell: This names the loads and the customer updates. Add how many loads you track and how often you update customers to show the pace of the work.
+   example: Track [number] loads and update customers on delivery status [frequency]
+   question: How many loads do you track, and how often do you update customers?
+4. [line] Dispatcher, line 3
+   line: "Handle driver issues on the road"
+   can't tell: A recruiter can’t tell which road issues come to you or what you do to resolve them. One real example would show how you handle the job.
+   example: Handle [driver issue] on the road by [action]
+   question: What’s one road issue you handle, and what do you do about it?
+5. [line] Dispatcher, line 4
+   line: "Use TMS software daily"
+   can't tell: McLeod TMS is already in your Skills section. What’s missing is what you use the software to do during a dispatch day.
+   example: Use TMS software daily to [tasks]
+   question: What dispatch tasks do you use the TMS for?
+6. [line] Dispatcher, line 5
+   line: "Work with the safety team on driver hours"
+   can't tell: The safety team and driver hours are named, but your part in that work isn’t. A recruiter needs to know what you do with the hours information.
+   example: Work with the safety team on driver hours by [action]
+   question: What do you do with driver hours when working with the safety team?
+7. [line] Dispatch Assistant, line 2
+   line: "Helped dispatchers with paperwork"
+   can't tell: The paperwork could cover several parts of dispatch. Naming the documents and what you did with them would show the support you provided.
+   example: Helped dispatchers with [paperwork] by [action]
+   question: Which paperwork did you help with, and what did you do with it?
+
+## Fit
+Roles: ["Dispatcher"]
+Level: mid-level, current Dispatcher after a Dispatch Assistant role
+Note: Your experience points toward dispatcher roles in trucking, with earlier warehouse work alongside it. McLeod TMS and customer updates give you useful details to build on.

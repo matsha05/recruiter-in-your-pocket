@@ -1,0 +1,216 @@
+{
+  "case_id": "b25_fpa_analyst_strong",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_fpa_analyst_strong_1.txt",
+  "resume_sha256": "e8604c5c03930c475f944d36090e8f6db4af1ffc417c634667c5450ff68f9cd2",
+  "resume_words": 138,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-11T16:01:42.227Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6746,
+        "completion_tokens": 1459,
+        "total_tokens": 8205,
+        "cached_prompt_tokens": 6116,
+        "cache_write_prompt_tokens": 627,
+        "reasoning_tokens": 888
+      },
+      "cost_usd": 0.00838755,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 26428
+    }
+  ],
+  "resume_prompt_sha256": "e122fb00655b92e22574f13af1e038ff8846f6c54459bfa431be988d44f4cdc4",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 92,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst with a substantial budget and measurable forecasting and pricing work.",
+    "write_up": [
+      "This is a strong FP&A resume: your work at Lakeshore Foods connects a division budget with forecasting, pricing and conversations with finance and brand leaders. A recruiter can see both the work you own and the numbers that matter.",
+      "The forecast line is a model for the rest: it names what you built and shows the error rate before and after. Your earlier Power BI automation also makes its benefit easy to understand. Experience leads Education, and your current role is easy to find.",
+      "Your resume isn't likely to be the reason you don't get a call back. For a more senior move, add a budgeting decision you made across the division if you can substantiate one. The competition for the role will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "upgrade",
+        "where": "Senior Financial Analyst, FP&A, line 1",
+        "line": "- Own the $240M annual operating budget for the snacks division",
+        "cannot_tell": "For a manager-level role, a budgeting decision made across the division would add to the picture of your responsibilities.",
+        "example": "Own the $240M annual operating budget for the snacks division and [a budgeting decision you made across the division]",
+        "question": "What budgeting decision did you make across the division, if any?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "- Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "Consider moving this above the budget line so your measured forecasting result leads the role. Keep the budget line close behind it.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A"
+      ],
+      "why": "Your headline and current role center on budgeting, forecasting and pricing for a consumer brand.",
+      "level": "senior, owns the snacks division's $240M annual operating budget",
+      "note": "Your experience points toward senior FP&A work in consumer brands. The forecast and pricing work give you strong examples to lead with.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 92,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst with a substantial budget and measurable forecasting and pricing work.",
+    "write_up": [
+      "This is a strong FP&A resume: your work at Lakeshore Foods connects a division budget with forecasting, pricing and conversations with finance and brand leaders. A recruiter can see both the work you own and the numbers that matter.",
+      "The forecast line is a model for the rest: it names what you built and shows the error rate before and after. Your earlier Power BI automation also makes its benefit easy to understand. Experience leads Education, and your current role is easy to find.",
+      "Your resume isn't likely to be the reason you don't get a call back. For a more senior move, add a budgeting decision you made across the division if you can substantiate one. The competition for the role will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "upgrade",
+        "where": "Senior Financial Analyst, FP&A, line 1",
+        "line": "Own the $240M annual operating budget for the snacks division",
+        "cannot_tell": "For a manager-level role, a budgeting decision made across the division would add to the picture of your responsibilities.",
+        "example": "Own the $240M annual operating budget for the snacks division and [a budgeting decision you made across the division]",
+        "question": "What budgeting decision did you make across the division, if any?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "Consider moving this above the budget line so your measured forecasting result leads the role. Keep the budget line close behind it.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A"
+      ],
+      "why": "Your headline and current role center on budgeting, forecasting and pricing for a consumer brand.",
+      "level": "senior, owns the snacks division's $240M annual operating budget",
+      "note": "Your experience points toward senior FP&A work in consumer brands. The forecast and pricing work give you strong examples to lead with.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 92
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 92,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst with a substantial budget and measurable forecasting and pricing work.",
+    "write_up": [
+      "This is a strong FP&A resume: your work at Lakeshore Foods connects a division budget with forecasting, pricing and conversations with finance and brand leaders. A recruiter can see both the work you own and the numbers that matter.",
+      "The forecast line is a model for the rest: it names what you built and shows the error rate before and after. Your earlier Power BI automation also makes its benefit easy to understand. Experience leads Education, and your current role is easy to find.",
+      "Your resume isn't likely to be the reason you don't get a call back. For a more senior move, add a budgeting decision you made across the division if you can substantiate one. The competition for the role will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "upgrade",
+        "where": "Senior Financial Analyst, FP&A, line 1",
+        "line": "Own the $240M annual operating budget for the snacks division",
+        "cannot_tell": "For a manager-level role, a budgeting decision made across the division would add to the picture of your responsibilities.",
+        "example": "Own the $240M annual operating budget for the snacks division and [a budgeting decision you made across the division]",
+        "question": "What budgeting decision did you make across the division, if any?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "cannot_tell": "Consider moving this above the budget line so your measured forecasting result leads the role. Keep the budget line close behind it.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A"
+      ],
+      "why": "Your headline and current role center on budgeting, forecasting and pricing for a consumer brand.",
+      "level": "senior, owns the snacks division's $240M annual operating budget",
+      "note": "Your experience points toward senior FP&A work in consumer brands. The forecast and pricing work give you strong examples to lead with.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 92
+  },
+  "presentation": {
+    "score": 92,
+    "band": "Clear and specific",
+    "model_score": 92,
+    "lifted_by_employer": false,
+    "verdict": "A senior FP&A analyst with a substantial budget and measurable forecasting and pricing work.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 125,
+    "cards": [
+      {
+        "kind": "upgrade",
+        "where": "Senior Financial Analyst, FP&A, line 1",
+        "line": "Own the $240M annual operating budget for the snacks division",
+        "blanks": 1,
+        "question": "What budgeting decision did you make across the division, if any?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Financial Analyst, FP&A, line 2",
+        "line": "Built a driver-based forecast that cut full-year forecast error from 7% to 2.5%",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 2,
+    "kinds": {
+      "upgrade": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Senior Financial Analyst, FP&A"
+      ],
+      "why": "Your headline and current role center on budgeting, forecasting and pricing for a consumer brand.",
+      "level": "senior, owns the snacks division's $240M annual operating budget",
+      "note": "Your experience points toward senior FP&A work in consumer brands. The forecast and pricing work give you strong examples to lead with.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00838755,
+  "latency_ms": 26428
+}

@@ -1,0 +1,34 @@
+# b13_marketing_vp_elite, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/golden/synth_marketing_manager_vp_elite_1766960221358.txt (730 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt e122fb00; severity check off
+Outcome: report; cost $0.0104; 24.1s
+Case note: Executive, strong (golden).
+
+## Clear and specific (score 95; model wrote 95)
+## Verdict
+A marketing executive whose resume connects leadership, campaigns and launches to business results.
+
+## Write-up
+This is a strong executive marketing resume! From NexGen through Novara, you show the teams and budgets you led alongside changes in leads, revenue and customer acquisition. A recruiter can follow both your progression and what your work accomplished.
+
+The customer advocacy line at Viridian is a good model: it names the program you led and connects it to retention and upsell revenue. Your current role leads with the organization, budget and business you serve, so a recruiter doesn't have to guess how much you oversee.
+
+Your resume isn't likely to be the thing standing between you and a callback. Competition for executive roles still matters. If you've made decisions beyond marketing, adding one could show what you bring to an even broader executive role.
+
+## Cards (3; {"keep":1,"upgrade":2}); severity off; added []
+1. [keep] Vice President, Global Marketing, line 3
+   line: "I led the development and launch of a new customer advocacy program that increased customer retention by 12% and generated $4M in upsell revenue within 18 months."
+   can't tell: Keep this as a model. It names the program, your part in launching it and two business measures over a stated period.
+2. [upgrade] Chief Marketing Officer, line 1
+   line: "I led a 45-person global marketing organization managing a $25M annual budget, driving company-wide brand and demand generation strategy for a SaaS platform serving 2M+ users across 40 countries."
+   can't tell: For a broader executive role, a decision beyond marketing would show how you shape the company as a whole.
+   example: I led a 45-person global marketing organization managing a $25M annual budget and made [company-wide decision].
+   question: What company-wide decision did you make beyond marketing, if any?
+3. [upgrade] Skills
+   line: "Strategic Marketing Leadership"
+   can't tell: Trim this broad skills line if you need room. Your Novara role already shows your marketing leadership in action.
+
+## Fit
+Roles: ["Chief Marketing Officer"]
+Level: executive, leads a 45-person global marketing organization and manages a $25M annual budget
+Note: Your experience points toward executive marketing roles at technology companies. Your work spans demand generation, brand, launches and customer retention.

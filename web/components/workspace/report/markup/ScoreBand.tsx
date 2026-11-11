@@ -1,4 +1,4 @@
-import { SCORE_BANDS, WORKLIST_BANDS, scoreBandIndex, worklistBandIndex } from "@/lib/reports/score-band";
+import { PROFILE_BANDS, SCORE_BANDS, WORKLIST_BANDS, scoreBandIndex, worklistBandIndex } from "@/lib/reports/score-band";
 import styles from "./MarkedReport.module.css";
 
 /**
@@ -6,9 +6,10 @@ import styles from "./MarkedReport.module.css";
  * The anchor sentence waits for wider screens, except where the band is the screen's point.
  */
 /** The worklist report has five bands (Nov 6, 2026); the v2 report keeps its four. */
-export function ScoreBand({ score, anchorOnPhones = false, bands = "report" }: { score: number; anchorOnPhones?: boolean; bands?: "report" | "worklist" }) {
-  const scale = bands === "worklist" ? WORKLIST_BANDS : SCORE_BANDS;
-  const current = Math.max(0, bands === "worklist" ? worklistBandIndex(score) : scoreBandIndex(score));
+export function ScoreBand({ score, anchorOnPhones = false, bands = "report" }: { score: number; anchorOnPhones?: boolean; bands?: "report" | "worklist" | "profile" }) {
+  // A profile review has the worklist's five bands under its own names and anchors.
+  const scale = bands === "profile" ? PROFILE_BANDS : bands === "worklist" ? WORKLIST_BANDS : SCORE_BANDS;
+  const current = Math.max(0, bands === "report" ? scoreBandIndex(score) : worklistBandIndex(score));
   const band = scale[current];
 
   return (

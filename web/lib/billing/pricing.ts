@@ -1,3 +1,5 @@
+import { POSTING_READS_FEATURE } from "../reports/posting-read-terms";
+
 export type PricingTierId = "free" | "30d";
 
 export type PricingFeature = { text: string; bold?: boolean };
@@ -57,7 +59,7 @@ export const PRICING_PLANS: Record<PricingTierId, PricingPlan> = {
     features: [
       { text: "5 more complete reports", bold: true },
       { text: "Re-check a revision and see which lines came off the list" },
-      { text: "Read your resume against each job posting" },
+      { text: POSTING_READS_FEATURE },
       { text: "$29 once. Good for 90 days. No automatic renewal." }
     ]
   },

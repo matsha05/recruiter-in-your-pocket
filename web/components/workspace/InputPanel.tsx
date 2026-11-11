@@ -14,6 +14,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ResumeDropzone } from "@/components/upload/ResumeDropzone";
 import { MIN_RESUME_CHARS } from "@/lib/resume-input";
+import { POSTING_READ_ADD_RESUME, POSTING_READ_INCLUDED_HINT } from "@/lib/reports/posting-read-terms";
 import { cn } from "@/lib/utils";
 import styles from "./InputPanel.module.css";
 
@@ -41,6 +42,10 @@ interface InputPanelProps {
     isRevision?: boolean;
     /** Arrived from a report's "Read it against a posting": the resume is kept, so open the posting field and focus it. */
     focusPosting?: boolean;
+    /** A LinkedIn profile review takes LinkedIn's own PDF export: no pasted text, no posting (Nov 10, 2026). */
+    document?: "resume" | "linkedin";
+    /** With a pass, reading an already-read resume against a posting spends no report; say so once the posting is in. */
+    postingReadIncluded?: boolean;
 }
 
 export default function InputPanel({
@@ -59,7 +64,10 @@ export default function InputPanel({
     loadedJobContext,
     isRevision = false,
     focusPosting = false,
+    document = "resume",
+    postingReadIncluded = false,
 }: InputPanelProps) {
+    const isProfile = document === "linkedin";
     const [fileName, setFileName] = useState<string | null>(null);
     const [showJD, setShowJD] = useState(!!loadedJobContext || focusPosting);
     const postingRef = useRef<HTMLTextAreaElement>(null);
@@ -128,6 +136,7 @@ export default function InputPanel({
 
     // The line under the button says what the next report costs, only when the button can't.
     const getRunHint = () => {
+        if (postingReadIncluded && jobDescription.trim().length > 0) return POSTING_READ_INCLUDED_HINT;
         const membership = user?.membership;
         if (membership === "monthly" || membership === "lifetime") return null;
         if (membership === "credit") {
@@ -160,9 +169,20 @@ export default function InputPanel({
             <div className={styles.content}>
                 <header className={styles.intro}>
                     <h1 className={styles.title}>
-                        {isRevision ? "Now let’s see what changed." : "Let’s see what they see."}
+                        {isRevision ? "Now let’s see what changed." : isProfile ? "Let’s read your LinkedIn profile." : "Let’s see what they see."}
                     </h1>
-                    {onOpenLastReport && (
+                    {isProfile && (
+                        <p className="mt-3 max-w-[34rem] text-base text-muted-foreground" data-testid="workspace-linkedin-help">
+                            On your LinkedIn profile, choose Resources, then Save to PDF. Upload that file here.{" "}
+                            <a href="https://www.linkedin.com/in/me" target="_blank" rel="noopener noreferrer" className="riyp-link-quiet">Open your profile</a>
+                        </p>
+                    )}
+                    {postingReadIncluded && !isProfile && !fileName && resumeText.trim().length === 0 && (
+                        <p className="mt-3 max-w-[34rem] text-base text-muted-foreground" data-testid="workspace-posting-read-help">
+                            {POSTING_READ_ADD_RESUME} {POSTING_READ_INCLUDED_HINT}
+                        </p>
+                    )}
+                    {onOpenLastReport && !isProfile && (
                         <button type="button" data-testid="workspace-open-last-report" onClick={onOpenLastReport} className="riyp-link mt-3 min-h-11 text-sm font-semibold">
                             Open your last report
                         </button>
@@ -192,10 +212,11 @@ export default function InputPanel({
                     </div>
                 )}
 
-                <section className={styles.sheet} aria-label="Resume input">
+                <section className={styles.sheet} aria-label={isProfile ? "LinkedIn profile input" : "Resume input"}>
                     <div>
-                        {!showPaste ? (
+                        {!showPaste || isProfile ? (
                             <ResumeDropzone
+                                document={document}
                                 onFileSelect={handleFileSelect}
                                 fileName={fileName}
                                 onRemoveFile={handleRemoveFile}
@@ -249,18 +270,18 @@ export default function InputPanel({
                                 {isTooShort && (
                                     <p id="workspace-resume-length" data-testid="workspace-resume-too-short" className={styles.lengthGuard}>
                                         <Info className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
-                                        <span>We could only read {charCount} characters, and we need at least {MIN_RESUME_CHARS}. A scanned or image-only PDF often does this. Paste the text instead.</span>
+                                        <span>{isProfile ? `We could only read ${charCount} characters, and we need at least ${MIN_RESUME_CHARS}. Save a fresh PDF from your LinkedIn profile and upload that.` : `We could only read ${charCount} characters, and we need at least ${MIN_RESUME_CHARS}. A scanned or image-only PDF often does this. Paste the text instead.`}</span>
                                     </p>
                                 )}
                                 <pre className={styles.readText} tabIndex={0} aria-label="Text we read from your file">{resumeText.trim()}</pre>
-                                <button type="button" data-testid="workspace-edit-read-text" onClick={handleEditReadText} className={styles.textAction}>
+                                {!isProfile && <button type="button" data-testid="workspace-edit-read-text" onClick={handleEditReadText} className={styles.textAction}>
                                     <TextAlignLeft className="size-4" aria-hidden="true" />
                                     {isTooShort ? "Paste the text instead" : "Fix the text"}
-                                </button>
+                                </button>}
                             </details>
                         )}
 
-                        {!fileName && !showPaste && (
+                        {!fileName && !showPaste && !isProfile && (
                             <div className={cn(hasRejectedResume ? "mt-4" : "mt-3", "flex flex-wrap items-center justify-center gap-x-6")}>
                                 <button
                                     type="button"
@@ -283,14 +304,16 @@ export default function InputPanel({
                         <p className={cn(styles.privacy, "mt-4 flex items-start gap-2")} data-testid="workspace-privacy-line">
                             <LockKey className="mt-0.5 size-4 shrink-0 text-brand" weight="bold" aria-hidden="true" />
                             <span>
-                                {user
-                                    ? "OpenAI writes the report from your resume, and we don’t opt it into model training."
-                                    : "OpenAI writes the report from your resume. We don’t store the resume or opt it into model training."}{" "}
+                                {isProfile
+                                    ? "OpenAI writes the review from the PDF you upload, and we don’t opt it into model training. We never sign in to your LinkedIn account."
+                                    : user
+                                        ? "OpenAI writes the report from your resume, and we don’t opt it into model training."
+                                        : "OpenAI writes the report from your resume. We don’t store the resume or opt it into model training."}{" "}
                                 <Link href="/privacy" className="riyp-link-quiet">How we handle your data</Link>
                             </span>
                         </p>
 
-                        <div className={styles.jobSection}>
+                        {!isProfile && <div className={styles.jobSection}>
                             <button
                                 type="button"
                                 data-testid="workspace-role-toggle"
@@ -321,7 +344,7 @@ export default function InputPanel({
                                     />
                                 </div>
                             )}
-                        </div>
+                        </div>}
 
                         <Button
                             data-testid="workspace-run-report"
@@ -330,13 +353,13 @@ export default function InputPanel({
                             onClick={onRun}
                             disabled={!hasContent || isTooShort || isReadingFile || generationPaused}
                             isLoading={isLoading}
-                            loadingLabel="Reading your resume…"
+                            loadingLabel={isProfile ? "Reading your profile…" : "Reading your resume…"}
                         >
-                            {generationPaused ? "Reports are paused" : isTooShort ? "Add more of your resume to begin" : hasContent ? (
+                            {generationPaused ? "Reports are paused" : isTooShort ? (isProfile ? "That PDF is too short to review" : "Add more of your resume to begin") : hasContent ? (
                                 <span className="flex items-center gap-2">
                                     {runLabel} <ArrowRight className="size-5" weight="bold" />
                                 </span>
-                            ) : showPaste ? "Paste your resume to begin" : hasRejectedResume ? "Choose a valid resume to begin" : "Choose a resume to begin"}
+                            ) : isProfile ? "Choose your LinkedIn PDF to begin" : showPaste ? "Paste your resume to begin" : hasRejectedResume ? "Choose a valid resume to begin" : "Choose a resume to begin"}
                         </Button>
 
                         {getRunHint() && (

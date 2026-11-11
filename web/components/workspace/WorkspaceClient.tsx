@@ -15,12 +15,11 @@ import SavedRevisionNotice from "./SavedRevisionNotice";
 import { WorkspaceResumePicker, type WorkspaceResumePickerHandle } from "./WorkspaceResumePicker";
 import { ModeSwitcher, type ReviewMode } from "@/components/workspace/ModeSwitcher";
 import ResumeModeSection from "@/components/workspace/ResumeModeSection";
-import LinkedInModeSection from "@/components/workspace/LinkedInModeSection";
 import { useWorkspaceInit } from "@/components/workspace/hooks/useWorkspaceInit";
 import { useJobContextFromExtension, type LoadedJobContext } from "@/components/workspace/hooks/useJobContextFromExtension";
 import { useSampleReport } from "@/components/workspace/hooks/useSampleReport";
 import { useFreeStatus } from "@/components/workspace/hooks/useFreeStatus";
-import { useLinkedInReview } from "@/components/workspace/hooks/useLinkedInReview";
+import { isLinkedInReport, reportDocumentKind } from "@/lib/reports/report-document";
 import { useResumeReview } from "@/components/workspace/hooks/useResumeReview";
 import { cancelOwnedAnalysisRun, finishOwnedAnalysisRun, ownsAnalysisRun } from "@/lib/analysis-run-ownership";
 import { useCheckoutReportRestoration } from "@/components/workspace/hooks/useCheckoutReportRestoration";
@@ -80,6 +79,17 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     const [comparisonBaseline, setComparisonBaseline] = useState<ReportData | null>(null);
     // A report's "Read it against a posting" kept the resume: open the posting field when the input returns.
     const [postingRequested, setPostingRequested] = useState(false);
+    // "Read it against a posting" on a saved report of this resume: with a pass, that read spends no report
+    // (lib/reports/posting-read.ts). Kept only while the resume text is the one that report was written on.
+    // `text` is the resume as it was in this visit; null when the person arrived from a saved report, which keeps
+    // no resume, and the server checks the one they add.
+    const [postingSource, setPostingSource] = useState<{ reportId: string; text: string | null } | null>(null);
+    const postingParam = searchParams.get("posting");
+    useEffect(() => {
+        if (!postingParam || !/^[0-9a-f-]{36}$/iu.test(postingParam)) return;
+        setPostingRequested(true);
+        setPostingSource((current) => current ?? { reportId: postingParam.toLowerCase(), text: null });
+    }, [postingParam]);
     // Ask-first (Nov 5, 2026): a page the server read as not ready shows its questions before the report;
     // the report is then written again from the resume with the answers in it, and the first stays put
     // until the second arrives. `rebuiltAnswers` is how many answers the shown report was written from.
@@ -108,16 +118,12 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         setReadDurationMs(null);
     }, [analysisStartedAt]);
     const [analysisMode, setAnalysisMode] = useState<"resume" | "linkedin">("resume");
-    const [lastLinkedInPdf, setLastLinkedInPdf] = useState<string | null>(null);
     const linkedInReviewEnabled = isLaunchFlagEnabled("linkedInReview");
 
-    // Mode switcher state (Resume vs LinkedIn)
+    // Resume or LinkedIn profile. A profile review is the same report, written from LinkedIn's PDF export
+    // (Nov 10, 2026): one input screen, one run, one report component; the mode only names the document.
     const [reviewMode, setReviewMode] = useState<ReviewMode>('resume');
-
-    // LinkedIn-specific state
-    const [linkedInReport, setLinkedInReport] = useState<any>(null);
-    const [linkedInProfileName, setLinkedInProfileName] = useState<string>('');
-    const [linkedInProfileHeadline, setLinkedInProfileHeadline] = useState<string>('');
+    const reportDocument = linkedInReviewEnabled && reviewMode === "linkedin" ? "linkedin" as const : null;
 
     // History sidebar, paywall modal, auth modal, and save prompt state
     const [isHistoryOpen, setIsHistoryOpen] = useState(false);
@@ -137,11 +143,9 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     const abortControllerRef = useRef<AbortController | null>(null);
     const latestAnalysisControllerRef = useRef<AbortController | null>(null);
     const currentReportRef = useRef(report);
-    const currentLinkedInReportRef = useRef(linkedInReport);
     useLayoutEffect(() => {
         currentReportRef.current = report;
-        currentLinkedInReportRef.current = linkedInReport;
-    }, [report, linkedInReport]);
+    }, [report]);
     const captureRecoveryOwner = useCallback(
         () => latestAnalysisControllerRef.current,
         [],
@@ -150,13 +154,12 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         (_recoveryId: string, owner: unknown) => (
             latestAnalysisControllerRef.current === owner
             && currentReportRef.current === null
-            && currentLinkedInReportRef.current === null
         ),
         [],
     );
 
     useAnonymousReportRecovery({
-        enabled: !isLoading && !isStreaming && report === null && linkedInReport === null && !recoveryDismissed && !savedRevisionRequested,
+        enabled: !isLoading && !isStreaming && report === null && !recoveryDismissed && !savedRevisionRequested,
         setReport, setSkipSample, setReviewMode,
         captureRestoreOwner: captureRecoveryOwner,
         isRestoreCurrent: isRecoveryOwnerCurrent,
@@ -267,6 +270,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         setResumeText("");
         setJobDescription("");
         setPostingRequested(false);
+        setPostingSource(null);
         setReport(null);
         setJustUnlocked(false);
         setComparisonBaseline(null);
@@ -274,9 +278,6 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         setRebuilding(false);
         setRebuiltAnswers(0);
         setCommandUploadName(null);
-        setLinkedInReport(null);
-        setLinkedInProfileName('');
-        setLinkedInProfileHeadline('');
         setReviewMode('resume');
     }, [handleCancelAnalysis, clearJobContext, resetReportCompletion]);
     const savedRevision = useSavedReportRevision({
@@ -285,26 +286,13 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     const { clearSavedRevision } = savedRevision;
     const revisionBlocked = savedRevision.active && savedRevision.state !== "ready";
 
-    const { handleLinkedInPdfSubmit, handleLinkedInSample } = useLinkedInReview({
-        user,
-        freeUsesRemaining,
-        refreshFreeStatus,
-        setIsPaywallOpen,
-        setIsLoading,
-        setIsStreaming,
-        setLinkedInReport,
-        setLinkedInProfileName,
-        setLinkedInProfileHeadline,
-        setReviewMode,
-        beginAnalysis,
-        isAnalysisCurrent,
-        endAnalysis,
-        setLastLinkedInPdf
-    });
-
     const persistedSavedJobId = getPersistedSavedJobId(loadedJobContext);
+    // Included with the pass: the same resume as the saved report, read against a posting.
+    const postingReadReportId = user?.postingReads && !reportDocument && postingSource && (postingSource.text === null || postingSource.text === resumeText) ? postingSource.reportId : null;
     const { handleFileSelect, handleRequestSaveAuth, handleRun, saveReportForCurrentUser, reportSaveState } = useResumeReview({
-        resumeText, jobDescription, persistedSavedJobId, freeUsesRemaining, user,
+        resumeText, jobDescription, persistedSavedJobId, freeUsesRemaining, user, document: reportDocument, postingReadReportId,
+        // Refused as a posting read (a changed resume, no pass): the next run is an ordinary report, and says so.
+        onPostingReadRefused: () => setPostingSource(null),
         refreshFreeStatus, beginAnalysis, isAnalysisCurrent, endAnalysis, setResumeText, setReport, setIsLoading,
         setIsStreaming, setAnalysisStage, setIsPaywallOpen, setPendingReportForSave, setIsSavePromptOpen,
         setIsAuthOpen, setAuthContext,
@@ -366,13 +354,13 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     // The header's "New report" link lands here with ?new=1, including while a report is open.
     useEffect(() => {
         if (!newReportRequested) return;
-        if (report || linkedInReport) {
+        if (report) {
             handleNewReport();
         } else {
             setRecoveryDismissed(true);
             replace("/workspace", { scroll: false });
         }
-    }, [newReportRequested, report, linkedInReport, handleNewReport, replace]);
+    }, [newReportRequested, report, handleNewReport, replace]);
 
     useEffect(() => {
         setHasRecoverableReport(recoveryDismissed && !user && readAnonymousReportRecoveryMarker() !== null);
@@ -383,9 +371,12 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     const handleReadAgainstPosting = useCallback(() => {
         if (!report) return;
         const kept = resumeText;
+        const sourceId = typeof (report as { report_id?: unknown }).report_id === "string" ? (report as { report_id: string }).report_id : null;
+        const fromResume = !isLinkedInReport(report);
         resetWorkspaceInput();
         setResumeText(kept);
         setPostingRequested(true);
+        if (sourceId && fromResume && kept.trim()) setPostingSource({ reportId: sourceId, text: kept });
         replace("/workspace", { scroll: false });
     }, [report, resumeText, resetWorkspaceInput, replace]);
 
@@ -394,6 +385,8 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
         resetWorkspaceInput();
         clearSavedRevision();
         setComparisonBaseline(report as ReportData);
+        // A profile is re-checked against a profile: the next upload is read as a LinkedIn PDF again.
+        if (isLinkedInReport(report)) setReviewMode("linkedin");
         replace("/workspace?revision=1", { scroll: false });
     }, [resetWorkspaceInput, clearSavedRevision, replace, report]);
 
@@ -427,20 +420,9 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     }, [showSampleReport]);
 
     const handleRetryAnalysis = useCallback(() => {
-        if (analysisMode === "resume") {
-            handleCancelAnalysis(true);
-            handleRunRef.current();
-            return;
-        }
-        if (analysisMode === "linkedin") {
-            if (!lastLinkedInPdf) {
-                toast.message("Upload your LinkedIn PDF again to retry.");
-                return;
-            }
-            handleCancelAnalysis(true);
-            handleLinkedInPdfSubmit(lastLinkedInPdf);
-        }
-    }, [analysisMode, handleCancelAnalysis, lastLinkedInPdf, handleLinkedInPdfSubmit]);
+        handleCancelAnalysis(true);
+        handleRunRef.current();
+    }, [handleCancelAnalysis]);
 
     // PDF export state
     const [isExporting, setIsExporting] = useState(false);
@@ -505,18 +487,35 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
 
     useEffect(() => {
         window.dispatchEvent(new CustomEvent("riyp-report-visibility", {
-            detail: { visible: Boolean(report || linkedInReport) }
+            detail: { visible: Boolean(report) }
         }));
         return () => {
             window.dispatchEvent(new CustomEvent("riyp-report-visibility", { detail: { visible: false } }));
         };
-    }, [report, linkedInReport]);
+    }, [report]);
 
     useEffect(() => {
         if (!linkedInReviewEnabled && reviewMode !== "resume") {
             setReviewMode("resume");
         }
     }, [linkedInReviewEnabled, reviewMode]);
+
+    // A saved profile review opened for a re-check: the next upload is a LinkedIn PDF.
+    const savedBaselineIsProfile = savedRevision.active && isLinkedInReport(savedRevision.baseline);
+    useEffect(() => {
+        if (linkedInReviewEnabled && savedBaselineIsProfile) setReviewMode("linkedin");
+    }, [linkedInReviewEnabled, savedBaselineIsProfile]);
+
+    // Switching documents starts the input over: a resume is never sent as a profile, or the other way round.
+    const handleModeChange = useCallback((mode: ReviewMode) => {
+        if (mode === reviewMode) return;
+        setResumeText("");
+        setJobDescription("");
+        setPostingRequested(false);
+        setCommandUploadName(null);
+        setReviewMode(mode);
+    }, [reviewMode]);
+    const activeDocument = report ? reportDocumentKind(report) : reportDocument ?? "resume";
 
     useEffect(() => {
         if (!hasPaidAccess) return;
@@ -565,22 +564,22 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
 
     return (
         <>
-            <WorkspaceResumePicker ref={resumePickerRef} onFileSelect={handleFileSelect} onStartFresh={report || linkedInReport ? handleNewReport : undefined} onUploaded={setCommandUploadName} onOpen={() => setCommandUploadName(null)} isBusy={isLoading || isStreaming || revisionBlocked} />
+            <WorkspaceResumePicker ref={resumePickerRef} onFileSelect={handleFileSelect} onStartFresh={report ? handleNewReport : undefined} onUploaded={setCommandUploadName} onOpen={() => setCommandUploadName(null)} isBusy={isLoading || isStreaming || revisionBlocked} />
             <p role="status" aria-live="polite" aria-atomic="true" className="sr-only">{announcement}</p>
             <section
                 aria-label="Workspace"
                 data-visual-anchor="workspace-shell"
                 data-workspace-mode={reviewMode}
-                data-document={report && !isLoading && (!linkedInReviewEnabled || reviewMode === "resume") ? "" : undefined}
+                data-document={report && !isLoading ? "" : undefined}
                 className="workspace-product-shell flex flex-col overflow-hidden bg-body"
             >
                 <div className="flex-1 flex flex-col min-h-0 relative overflow-hidden">
                     {/* Mode Switcher - show only when no report is displayed */}
-                    {linkedInReviewEnabled && !report && !linkedInReport && (
+                    {linkedInReviewEnabled && !report && !comparisonBaseline && !savedRevision.active && (
                         <div className="flex items-center justify-end border-b border-border bg-body px-5 py-2 md:px-8">
                             <ModeSwitcher
                                 mode={reviewMode}
-                                onModeChange={setReviewMode}
+                                onModeChange={handleModeChange}
                                 disabled={isLoading || isStreaming}
                             />
                         </div>
@@ -589,8 +588,9 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
                     {/* Content Area - Mode-aware */}
                     {revisionBlocked ? (
                         <SavedRevisionNotice loading={savedRevision.state === "loading" || savedRevision.state === "idle"} error={savedRevision.error} signedOut={savedRevision.state === "signed_out"} signInHref={`/auth?from=reports&next=${encodeURIComponent(`/workspace?${searchParams}`)}`} onRetry={savedRevision.retrySavedRevision} onNewReport={handleNewReport} />
-                    ) : !linkedInReviewEnabled || reviewMode === 'resume' ? (
+                    ) : (
                         <ResumeModeSection
+                            document={activeDocument}
                             report={report}
                             isLoading={isLoading}
                             isStreaming={isStreaming}
@@ -628,29 +628,13 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
                             onStartRevision={handleStartRevision}
                             onReadAgainstPosting={handleReadAgainstPosting}
                             focusPosting={postingRequested}
+                            postingReadIncluded={Boolean(postingReadReportId)}
                             readDurationMs={readDurationMs}
                             askFirst={askFirst}
                             onAskFirstWrite={handleAskFirstWrite}
                             onAskFirstSkip={handleAskFirstSkip}
                             rebuilding={rebuilding}
                             rebuiltAnswers={rebuiltAnswers}
-                        />
-                    ) : (
-                        <LinkedInModeSection
-                            linkedInReport={linkedInReport}
-                            linkedInProfileName={linkedInProfileName}
-                            linkedInProfileHeadline={linkedInProfileHeadline}
-                            isLoading={isLoading}
-                            isStreaming={isStreaming}
-                            freeUsesRemaining={effectiveUsesRemaining}
-                            user={user}
-                            onPdfSubmit={handleLinkedInPdfSubmit}
-                            onSampleReport={handleLinkedInSample}
-                            onNewReport={handleNewReport}
-                            onUpgrade={() => setIsPaywallOpen(true)}
-                            analysisStartedAt={analysisStartedAt}
-                            onCancelAnalysis={() => handleCancelAnalysis()}
-                            onRetryAnalysis={handleRetryAnalysis}
                         />
                     )}
                 </div>

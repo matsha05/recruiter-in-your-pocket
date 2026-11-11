@@ -1,0 +1,34 @@
+# h3_strong_resume, run 1
+Resume: ../2026-11-live-judgment/resumes/h3_strong_resume.txt (311 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt e122fb00; severity check off
+Outcome: report; cost $0.0082; 23.4s
+Case note: Senior product manager whose resume is already good.
+
+## Clear and specific (score 96; model wrote 96)
+## Verdict
+A senior product manager whose payments and billing work comes with concrete results and a clear progression.
+
+## Write-up
+This is a strong product resume! Your progression from onboarding and APIs at Peakline to payments and billing at Northwind is easy to follow, and you connect product decisions to customer and business results.
+
+The payment failure line is an excellent model: it names the change you led, the before and after, and the estimated revenue recovered for customers. Your current role also shows the teams and customers behind your roadmap, plus the product managers you've hired and developed.
+
+Your resume isn't the weak point here. For a more senior product role, add an organization-wide decision if you can substantiate one. Beyond the resume, the competitiveness of the role will matter too.
+
+## Cards (3; {"keep":1,"upgrade":2}); severity off; added []
+1. [keep] Senior Product Manager, Payments Platform, line 3
+   line: "Cut payment failure rate from 4.1% to 1.6% by leading the move to network tokenization and smart retries, recovering an estimated $6.2M in annual revenue for customers"
+   can't tell: Keep this as a model. It gives a recruiter the technical move and its business value without losing the estimated qualifier.
+2. [upgrade] Senior Product Manager, Payments Platform, line 1
+   line: "Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers"
+   can't tell: For a role one level up, an organization-wide product decision would show how you set direction beyond the roadmap.
+   example: Own the payments platform roadmap for 4 product teams (22 engineers) serving 11,000 business customers; made [organization-wide product decision] for [business priority]
+   question: What organization-wide product decision did you make, and what business priority did it address?
+3. [upgrade] Senior Product Manager, Payments Platform, line 2
+   line: "Led the launch of Northwind Pay, which grew from $0 to $48M ARR in 26 months and reached 31% attach rate on new accounts"
+   can't tell: Consider moving this above the roadmap line. The launch and its growth give a recruiter a memorable result immediately.
+
+## Fit
+Roles: ["Senior Product Manager"]
+Level: senior, manages 3 product managers and owns the roadmap for 4 product teams
+Note: Your experience points toward senior product roles in payments and billing. Your work developing product managers also gives you a foundation for roles with broader people leadership.

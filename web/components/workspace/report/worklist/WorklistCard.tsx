@@ -21,8 +21,7 @@ import {
   KEEP_SECONDARY_LABEL,
   storedAnswersForCard,
   UPGRADE_LEAVE_LABEL,
-  type BlankAnswers,
-} from "@/lib/reports/worklist-presentation";
+  type BlankAnswers, reportWording } from "@/lib/reports/worklist-presentation";
 import { cn } from "@/lib/utils";
 import styles from "./Worklist.module.css";
 
@@ -86,6 +85,8 @@ export interface WorklistCardProps {
   /** Every card, so the label can say where this one sits among the ones that need work. */
   cards: ReadonlyArray<Card>;
   resumeText?: string;
+  /** What the report is about; a profile review names the profile in the two notes under a filled line. */
+  document?: "resume" | "linkedin";
   /** The sample can be played with, but nothing is kept; a saved report keeps the answers. */
   isSample?: boolean;
   initial?: StoredLineAnswers;
@@ -101,7 +102,8 @@ export interface WorklistCardProps {
  * sentence, in the candidate's blue; their words go in as written. Nothing outside a bracket was invented:
  * the validator held every fact in the example to the resume. Copy waits until every blank is filled.
  */
-export function WorklistCard({ card, index, cards, resumeText, isSample = false, initial, onPersist, onStateChange }: WorklistCardProps) {
+export function WorklistCard({ card, index, cards, resumeText, document = "resume", isSample = false, initial, onPersist, onStateChange }: WorklistCardProps) {
+  const wording = reportWording(document);
   const labels = useMemo(() => blankLabels(card.example), [card.example]);
   const segments = useMemo(() => exampleSegments(card.example), [card.example]);
   const restored = useMemo(() => blankAnswersFromStored(card.example, initial), [card.example, initial]);
@@ -253,7 +255,7 @@ export function WorklistCard({ card, index, cards, resumeText, isSample = false,
               <p className={styles.note} data-testid="worklist-left">
                 {card.kind === "upgrade"
                   ? "Left as it is. It's optional, and the line already works."
-                  : "Left blank, and that's fine. Not every line needs every detail. Let's make sure the rest of your resume gives a recruiter something to grab onto."}{" "}
+                  : wording.leftBlank}{" "}
                 <Button type="button" variant="quiet" size="sm" className={styles.quiet} onClick={() => setLeft(false)}>Fill it in after all</Button>
               </p>
             ) : (
@@ -273,7 +275,7 @@ export function WorklistCard({ card, index, cards, resumeText, isSample = false,
                     <Button type="button" variant="quiet" size="sm" className={styles.quiet} onClick={() => setLeft(true)}>{card.kind === "upgrade" ? UPGRADE_LEAVE_LABEL : "I don't know yet"}</Button>
                   )}
                 </div>
-                {composed && <p className={styles.note}>Every fact in it is from your resume or your answers.</p>}
+                {composed && <p className={styles.note}>{wording.factsNote}</p>}
                 {copyError && <p role="status" className={styles.note}>Couldn&apos;t copy. Select the text and copy it yourself.</p>}
                 {onPersist && kept !== "idle" && (
                   <p className={styles.note} data-testid="worklist-kept" aria-live="polite">

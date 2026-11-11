@@ -693,14 +693,6 @@
       "where": "web/components/legal/StatusClient.tsx:87"
     },
     {
-      "text": "LinkedIn &gt; Resources &gt; Save to PDF",
-      "moment": "upload",
-      "tics": [
-        "retired_name"
-      ],
-      "where": "web/components/linkedin/LinkedInInputPanel.tsx:218"
-    },
-    {
       "text": "Where your resume stands, the recruiter’s write-up, and every line that needs work.",
       "moment": "pricing",
       "tics": [
@@ -779,6 +771,14 @@
         "please"
       ],
       "where": "web/components/settings/DefaultResumeSection.tsx:88"
+    },
+    {
+      "text": "On your LinkedIn profile, choose Resources, then Save to PDF. Upload that file here.",
+      "moment": "upload",
+      "tics": [
+        "retired_name"
+      ],
+      "where": "web/components/workspace/InputPanel.tsx:171"
     },
     {
       "text": "{remaining.length === 1 ? …} still there. Let's start with {remaining.length === 1 ? …} again.",
@@ -867,6 +867,14 @@
         "please"
       ],
       "where": "web/lib/reports/generation-operation-marker.ts:4"
+    },
+    {
+      "text": "That doesn't look like a LinkedIn profile PDF. On your profile, choose Resources, then Save to PDF, and upload that file.",
+      "moment": "report",
+      "tics": [
+        "retired_name"
+      ],
+      "where": "web/lib/reports/report-document.ts:40"
     },
     {
       "text": "The question they'd ask",

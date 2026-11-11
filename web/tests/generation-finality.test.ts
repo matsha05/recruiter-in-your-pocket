@@ -140,7 +140,7 @@ async function run() {
   assert.throws(() => readAuthoritativeFreeUses(false, { ok: false }));
   assert.deepEqual(
     paidAccess,
-    { membership: "credit", paidUsesLeft: 4, canExportPdf: true },
+    { membership: "credit", paidUsesLeft: 4, canExportPdf: true, postingReads: true },
     "a free-status parse failure cannot erase authoritative paid pass state"
   );
 

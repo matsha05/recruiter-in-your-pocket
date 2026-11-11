@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Paper } from "@/components/materials/Paper";
 import type { WorklistReport } from "@/lib/llm/worklist-schema";
-import { POSTING_MISSING_HOW, POSTING_MISSING_LABEL, postingMissingShown, screenerNote, screenerTitle, worklistLevelParts, worklistReadFor } from "@/lib/reports/worklist-presentation";
+import { POSTING_LEAD_HOW, POSTING_LEAD_LABEL, POSTING_MISSING_HOW, POSTING_TRIM_HOW, POSTING_TRIM_LABEL, POSTING_MISSING_LABEL, postingMissingShown, screenerNote, screenerTitle, worklistLevelParts, worklistReadFor, wordingFor } from "@/lib/reports/worklist-presentation";
 import { cn } from "@/lib/utils";
 import styles from "./Worklist.module.css";
 
@@ -19,13 +19,15 @@ export function FirstPass({ report, onReadAgainstPosting }: { report: WorklistRe
   const level = worklistLevelParts(read.level, read.role);
   const screener = report.screener_text ?? [];
   const posting = report.fit.posting;
+  const lead = posting.lead ?? [];
+  const trim = posting.trim ?? [];
   const [showAll, setShowAll] = useState(false);
   if (!read.role && !level && screener.length === 0) return null;
   const shownMissing = showAll ? posting.missing : postingMissingShown(posting.missing);
   const hiddenMissing = posting.missing.length - shownMissing.length;
 
   return (
-    <section className={styles.firstPass} aria-label="The job your resume was read for" data-testid="first-pass">
+    <section className={styles.firstPass} aria-label={wordingFor(report).firstPassLabel} data-testid="first-pass">
       {screener.length > 0 && (
         <div className={styles.stop} data-testid="screener-text">
           <p className={styles.stopTitle}>{screenerTitle(screener.length > 1)}</p>
@@ -64,7 +66,7 @@ export function FirstPass({ report, onReadAgainstPosting }: { report: WorklistRe
       )}
 
       {read.hasPosting ? (
-        (report.fit.note || posting.missing.length > 0) && (
+        (report.fit.note || posting.missing.length > 0 || lead.length > 0 || trim.length > 0) && (
           <div className={styles.postingFit} data-testid="first-pass-posting">
             {report.fit.note && <p className={styles.postingNote}>{report.fit.note}</p>}
             {posting.missing.length > 0 && (
@@ -79,6 +81,20 @@ export function FirstPass({ report, onReadAgainstPosting }: { report: WorklistRe
                 <p className={styles.missingHow}>{POSTING_MISSING_HOW}</p>
               </div>
             )}
+            {[{ id: "lead", label: POSTING_LEAD_LABEL, how: POSTING_LEAD_HOW, moves: lead }, { id: "trim", label: POSTING_TRIM_LABEL, how: POSTING_TRIM_HOW, moves: trim }].map((group) => group.moves.length > 0 && (
+              <div key={group.id} className={styles.moves} data-testid={`posting-${group.id}`}>
+                <p className={styles.missingLabel}>{group.label}</p>
+                <p className={styles.missingHow}>{group.how}</p>
+                <ul className={styles.moveList}>
+                  {group.moves.map((move) => (
+                    <li key={move.line}>
+                      <Paper kind="strip" className={styles.strip}><p className={styles.quote}>{move.line}</p></Paper>
+                      <p className={styles.postingNote}>{move.why}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         )
       ) : onReadAgainstPosting ? (

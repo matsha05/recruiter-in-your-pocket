@@ -1,0 +1,88 @@
+{
+  "id": "backend-manager-posting",
+  "resume": "fr01_backend_ic_senior.txt",
+  "posting": "posting_engineering_manager.txt",
+  "model": "gpt-6.1-terra",
+  "today": "2026-11-07",
+  "repaired": false,
+  "firstError": null,
+  "drafted": {
+    "lead": 2,
+    "trim": 0
+  },
+  "usage": {
+    "tokens_in": 7357,
+    "tokens_out": 1914,
+    "cost_estimate_usd": 0.0112859
+  },
+  "report": {
+    "contract_version": "v3",
+    "score": 87,
+    "lifted_by_employer": false,
+    "verdict": "Strong senior payments engineering experience, but Cobalt Pay seeks a people manager with direct reports.",
+    "write_up": [
+      "Cobalt Pay is hiring an engineering manager; your resume shows senior backend engineering and mentoring, but not management of direct reports. I read it for Senior Backend Engineer, the job your headline and payments work support. For that role, your resume makes a strong case: a recruiter can see the systems you built and what changed.",
+      "The balance API line is a great model: it names the latency reduction and the cache change behind it. Your experience leads your education, and the move from insurance to freight to payments is easy to follow.",
+      "For Cobalt Pay, bring your incident review and mentoring work closer to the top. Add any people management work you've actually done, without turning mentoring into direct management. For senior backend roles, the resume itself is unlikely to be the main obstacle; the competitiveness of the job still matters."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Software Engineer, Northgate Insurance, line 1",
+        "line": "Maintained the claims intake services in Java",
+        "cannot_tell": "A recruiter can see the service and language, but not what maintaining it involved. One example would make your work on claims intake more concrete.",
+        "example": "Maintained the claims intake services in Java, including [work performed] on [problem or feature]",
+        "question": "What did you change or fix in the claims intake services?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Payments Platform, line 3",
+        "line": "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
+        "cannot_tell": "Keep this as a model. It gives a recruiter the starting point, the finish and the technical choice in one line.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Payments Platform, line 5",
+        "line": "Mentor two mid-level engineers through code review and design docs",
+        "cannot_tell": "The mentoring is useful for a manager application. Any direct people management you've done would show a recruiter more about your work at the next level.",
+        "example": "Mentor two mid-level engineers through code review and design docs; [people management action] for [team]",
+        "question": "Have you managed direct reports or taken part in hiring or performance reviews, and what was your responsibility?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Backend Engineer",
+        "Engineering Manager, Payments Platform"
+      ],
+      "why": "Your headline and current role point to senior backend work on payouts, the ledger and production reliability.",
+      "level": "senior, leads technical work and mentors two engineers",
+      "note": "Your payouts, ledger and incident review work are directly relevant to Cobalt Pay's platform. Lead with that work and add any management responsibilities you can substantiate.",
+      "posting": {
+        "summary": "Cobalt Pay seeks a manager for a payments engineering team, combining people management and roadmap ownership with reliable payouts operations.",
+        "missing": [
+          "2+ years managing engineers with direct reports, including hiring and performance management",
+          "Own the team's roadmap and delivery with your product partner",
+          "Experience leading teams that run production systems with on-call",
+          "A record of growing engineers into senior roles"
+        ],
+        "lead": [
+          {
+            "line": "Mentor two mid-level engineers through code review and design docs",
+            "why": "This speaks to the posting's ask to grow and coach engineers. Move it closer to the top of the Lumen Ledger role."
+          },
+          {
+            "line": "Wrote the on-call runbooks for the payments services and ran the incident reviews for the platform group",
+            "why": "This answers the incident review part of running the team's operations. Move it above the later technical bullets in the Lumen Ledger role."
+          }
+        ]
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 87
+  }
+}

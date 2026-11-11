@@ -1,0 +1,730 @@
+{
+  "totals": {
+    "reads": 11,
+    "lead": {
+      "total": 12,
+      "yes": 8,
+      "partly": 4,
+      "no": 0
+    },
+    "missing": {
+      "total": 48,
+      "absent": 32,
+      "partly": 16,
+      "wrong": 0
+    },
+    "trim": {
+      "total": 6,
+      "safe": 6,
+      "wrong": 0
+    },
+    "overlooked": 4,
+    "contradictions": 1,
+    "judge_model": "gpt-6.1-sol",
+    "judge_calls": 11,
+    "judge_cost_usd": 0.080832
+  },
+  "rows": [
+    {
+      "id": "account-executive-csm-posting",
+      "lists": {
+        "summary": "Brightline seeks a mid-market Customer Success Manager to own accounts, drive retention and expansion, and work with customer usage data.",
+        "missing": [
+          "3+ years in customer success or account management at a SaaS company",
+          "A track record of hitting retention or expansion targets, with numbers you can talk about",
+          "usage data",
+          "Gainsight",
+          "a BI tool such as Looker",
+          "Experience running QBRs with VP-level sponsors"
+        ]
+      },
+      "verdict": {
+        "lead": [],
+        "missing": [
+          {
+            "number": 1,
+            "absent": "yes",
+            "note": "The resume shows sales roles, not customer success or account management experience."
+          },
+          {
+            "number": 2,
+            "absent": "yes",
+            "note": "Quota attainment and new-business revenue do not demonstrate retention or expansion results."
+          },
+          {
+            "number": 3,
+            "absent": "yes",
+            "note": "No resume line shows work with product usage data."
+          },
+          {
+            "number": 4,
+            "absent": "yes",
+            "note": "Gainsight is not listed on the resume."
+          },
+          {
+            "number": 5,
+            "absent": "yes",
+            "note": "The resume lists no BI tool."
+          },
+          {
+            "number": 6,
+            "absent": "yes",
+            "note": "Demos and pilots do not show experience running QBRs with VP-level sponsors."
+          }
+        ],
+        "trim": [],
+        "overlooked": [
+          {
+            "requirement": "Salesforce",
+            "resume_line": "Salesforce, Outreach, Gong, LinkedIn Sales Navigator"
+          }
+        ],
+        "contradiction": false,
+        "contradiction_note": "There are no MOVE UP lines to contradict the MISSING items."
+      },
+      "cost_usd": 0.0051515
+    },
+    {
+      "id": "analyst-nursing-posting",
+      "lists": {
+        "summary": "The role calls for licensed medical-surgical nursing, patient care and EHR documentation on a night shift.",
+        "missing": [
+          "Current unrestricted North Carolina RN license or compact state license",
+          "BLS certification required; ACLS within six months of hire",
+          "Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered",
+          "Experience with Epic or a comparable EHR",
+          "Ability to manage a patient assignment of 5 to 6 patients",
+          "Administer medications and treatments per orders and unit protocol"
+        ]
+      },
+      "verdict": {
+        "lead": [],
+        "missing": [
+          {
+            "number": 1,
+            "absent": "yes",
+            "note": "The resume shows no North Carolina RN license or compact state license."
+          },
+          {
+            "number": 2,
+            "absent": "yes",
+            "note": "The resume lists neither BLS nor ACLS certification."
+          },
+          {
+            "number": 3,
+            "absent": "yes",
+            "note": "The resume shows neither acute care nursing experience nor a clinical rotation."
+          },
+          {
+            "number": 4,
+            "absent": "yes",
+            "note": "The resume shows no experience with Epic or a comparable EHR."
+          },
+          {
+            "number": 5,
+            "absent": "yes",
+            "note": "The resume shows no experience managing a patient assignment."
+          },
+          {
+            "number": 6,
+            "absent": "yes",
+            "note": "The resume shows no administration of medications or treatments."
+          }
+        ],
+        "trim": [],
+        "overlooked": [],
+        "contradiction": false,
+        "contradiction_note": "There are no MOVE UP lines to contradict the MISSING items."
+      },
+      "cost_usd": 0.005851
+    },
+    {
+      "id": "backend-manager-posting",
+      "lists": {
+        "summary": "Cobalt Pay seeks a manager for a payments engineering team, combining people management and roadmap ownership with reliable payouts operations.",
+        "missing": [
+          "2+ years managing engineers with direct reports, including hiring and performance management",
+          "Own the team's roadmap and delivery with your product partner",
+          "Experience leading teams that run production systems with on-call",
+          "A record of growing engineers into senior roles"
+        ],
+        "lead": [
+          {
+            "line": "Mentor two mid-level engineers through code review and design docs",
+            "why": "This speaks to the posting's ask to grow and coach engineers. Move it closer to the top of the Lumen Ledger role."
+          },
+          {
+            "line": "Wrote the on-call runbooks for the payments services and ran the incident reviews for the platform group",
+            "why": "This answers the incident review part of running the team's operations. Move it above the later technical bullets in the Lumen Ledger role."
+          }
+        ]
+      },
+      "verdict": {
+        "lead": [
+          {
+            "number": 1,
+            "answers": "partly",
+            "requirement": "Manage, hire and develop a team of 6 to 8 engineers, including performance reviews and career growth",
+            "note": "Mentoring two engineers shows development work, but not managing the stated team size, hiring or performance reviews."
+          },
+          {
+            "number": 2,
+            "answers": "yes",
+            "requirement": "Run the team's operations: on-call health, incident reviews and planning",
+            "note": "Writing on-call runbooks and running incident reviews directly answer the on-call and incident-review responsibilities."
+          }
+        ],
+        "missing": [
+          {
+            "number": 1,
+            "absent": "yes",
+            "note": "The resume shows mentoring but no direct reports, hiring, performance management or management tenure."
+          },
+          {
+            "number": 2,
+            "absent": "yes",
+            "note": "No resume line shows ownership of a team roadmap and delivery with a product partner."
+          },
+          {
+            "number": 3,
+            "absent": "partly",
+            "note": "The resume shows production systems, on-call runbooks and incident reviews, but not leadership of a team running those systems."
+          },
+          {
+            "number": 4,
+            "absent": "partly",
+            "note": "Mentoring mid-level engineers touches development but does not show anyone growing into a senior role."
+          }
+        ],
+        "trim": [],
+        "overlooked": [],
+        "contradiction": false,
+        "contradiction_note": "The MOVE UP lines partially address the management-related gaps but do not establish team leadership or growth into senior roles."
+      },
+      "cost_usd": 0.0093585
+    },
+    {
+      "id": "backend-senior-backend-posting",
+      "lists": {
+        "summary": "Cobalt Pay seeks a senior backend engineer to build and operate payment services, lead technical work and partner on financial controls.",
+        "missing": [
+          "Own the reliability of the payouts path end to end, including on-call",
+          "Lead technical design reviews",
+          "Partner with Finance and Risk on reconciliation and controls"
+        ],
+        "lead": [
+          {
+            "line": "Mentor two mid-level engineers through code review and design docs",
+            "why": "This answers the posting's ask to mentor engineers on the team. Move it above the runbooks line in the Lumen Ledger role."
+          },
+          {
+            "line": "Moved nightly batch billing jobs to an event-driven pipeline on Kafka, ending the 6-hour overnight run",
+            "why": "This directly answers the ask for experience with event-driven systems such as Kafka. Move it to the first line under Harborview Freight Tech."
+          }
+        ]
+      },
+      "verdict": {
+        "lead": [
+          {
+            "number": 1,
+            "answers": "yes",
+            "requirement": "Lead technical design reviews and mentor engineers on the team",
+            "note": "The line directly shows mentoring engineers, though not leading technical design reviews."
+          },
+          {
+            "number": 2,
+            "answers": "yes",
+            "requirement": "Experience with event-driven systems such as Kafka",
+            "note": "The line explicitly describes building an event-driven pipeline on Kafka."
+          }
+        ],
+        "missing": [
+          {
+            "number": 1,
+            "absent": "partly",
+            "note": "Writing payments on-call runbooks and running incident reviews shows reliability work, but not end-to-end ownership of the payouts path including on-call."
+          },
+          {
+            "number": 2,
+            "absent": "partly",
+            "note": "Mentoring through design docs shows related design work, but does not establish leadership of technical design reviews."
+          },
+          {
+            "number": 3,
+            "absent": "yes",
+            "note": "No resume line shows partnering with Finance and Risk on reconciliation and controls."
+          }
+        ],
+        "trim": [],
+        "overlooked": [],
+        "contradiction": false,
+        "contradiction_note": "Neither MOVE UP line establishes a capability claimed as missing."
+      },
+      "cost_usd": 0.0081685
+    },
+    {
+      "id": "csm-csm-posting",
+      "lists": {
+        "summary": "A mid-market customer success role owning renewals, expansion and customer relationships for a B2B SaaS account book.",
+        "missing": [
+          "A track record of hitting retention or expansion targets, with numbers you can talk about",
+          "Comfortable with usage data",
+          "a BI tool such as Looker",
+          "Experience running QBRs with VP-level sponsors",
+          "Run onboarding for new accounts",
+          "log and prioritize feature requests"
+        ]
+      },
+      "verdict": {
+        "lead": [],
+        "missing": [
+          {
+            "number": 1,
+            "absent": "yes",
+            "note": "The resume mentions renewal strategy but gives no retention or expansion targets achieved."
+          },
+          {
+            "number": 2,
+            "absent": "partly",
+            "note": "Gainsight and Salesforce are listed, but the resume does not show work with product usage data."
+          },
+          {
+            "number": 3,
+            "absent": "yes",
+            "note": "No BI tool is listed on the resume."
+          },
+          {
+            "number": 4,
+            "absent": "partly",
+            "note": "The resume shows QBRs with finance and HR leads but does not establish VP-level sponsors."
+          },
+          {
+            "number": 5,
+            "absent": "partly",
+            "note": "Building an onboarding checklist touches onboarding but does not show running onboarding for new accounts."
+          },
+          {
+            "number": 6,
+            "absent": "yes",
+            "note": "Handling escalations with Product does not show logging or prioritizing feature requests."
+          }
+        ],
+        "trim": [],
+        "overlooked": [],
+        "contradiction": false,
+        "contradiction_note": "There are no MOVE UP lines to contradict the MISSING items."
+      },
+      "cost_usd": 0.0075785
+    },
+    {
+      "id": "finance-hubspot-posting",
+      "lists": {
+        "summary": "Tallgrass wants a marketing operations coordinator to run campaigns, maintain lead data, report on performance and support events.",
+        "missing": [
+          "2+ years in marketing for a B2B company",
+          "Hands-on HubSpot experience: workflows, lists, email and reporting",
+          "Working knowledge of Salesforce",
+          "Comfortable with Google Analytics 4 and building simple reports",
+          "a record of running campaigns on deadline"
+        ]
+      },
+      "verdict": {
+        "lead": [],
+        "missing": [
+          {
+            "number": 1,
+            "absent": "yes",
+            "note": "The resume shows finance roles, not 2+ years in marketing for a B2B company."
+          },
+          {
+            "number": 2,
+            "absent": "yes",
+            "note": "The resume shows no HubSpot workflows, lists, email or reporting experience."
+          },
+          {
+            "number": 3,
+            "absent": "yes",
+            "note": "Salesforce is not mentioned in the resume."
+          },
+          {
+            "number": 4,
+            "absent": "partly",
+            "note": "The monthly variance report shows report-building experience, but the resume shows no Google Analytics 4 experience."
+          },
+          {
+            "number": 5,
+            "absent": "yes",
+            "note": "The resume shows no record of running campaigns on deadline."
+          }
+        ],
+        "trim": [],
+        "overlooked": [],
+        "contradiction": false,
+        "contradiction_note": "There are no MOVE UP lines to contradict the MISSING items."
+      },
+      "cost_usd": 0.0055985
+    },
+    {
+      "id": "long-backend-manager-posting",
+      "lists": {
+        "summary": "Cobalt Pay seeks an engineering manager to lead backend engineers responsible for payouts and the ledger, including people management, roadmap delivery and operations.",
+        "missing": [
+          "2+ years managing engineers with direct reports, including hiring and performance management",
+          "Own the team's roadmap and delivery with your product partner",
+          "Experience leading teams that run production systems with on-call",
+          "A record of growing engineers into senior roles"
+        ],
+        "lead": [
+          {
+            "line": "Mentored three interns, two of whom returned as full-time engineers",
+            "why": "The role asks you to grow and coach engineers. Move this higher in the Cascade Health Systems role to show the mentoring you have done."
+          },
+          {
+            "line": "Wrote the on-call handbook for the integrations team and ran the weekly incident review",
+            "why": "The posting asks for on-call health and incident reviews. Move this higher in the Cascade Health Systems role to make that operations work visible."
+          },
+          {
+            "line": "Led the payment provider failover project with the payments team, cutting failed checkouts during provider outages from 3.1% to 0.4%",
+            "why": "Payments experience is a bonus for the role. Make this the first line under Tidewater Commerce."
+          }
+        ],
+        "trim": [
+          {
+            "line": "Redesigned the office seating chart tool for the facilities team as a side project",
+            "why": "A useful project, but the posting doesn't ask for facilities tools; trim it to make room for payments work."
+          },
+          {
+            "line": "Volunteered as a tour guide for prospective interns during summer recruiting",
+            "why": "This shows involvement in recruiting, but the posting focuses on hiring and developing engineers; trim it if you need room."
+          },
+          {
+            "line": "Managed the team's snack budget and planned two offsite events",
+            "why": "This shows care for the team, but the posting doesn't ask for event planning; trim it to give the engineering work more room."
+          }
+        ]
+      },
+      "verdict": {
+        "lead": [
+          {
+            "number": 1,
+            "answers": "partly",
+            "requirement": "Manage, hire and develop a team of 6 to 8 engineers, including performance reviews and career growth",
+            "note": "Mentoring interns shows development work, but not managing the specified team or conducting performance reviews."
+          },
+          {
+            "number": 2,
+            "answers": "yes",
+            "requirement": "Run the team's operations: on-call health, incident reviews and planning",
+            "note": "Writing the on-call handbook and running weekly incident reviews directly address the requested operations work."
+          },
+          {
+            "number": 3,
+            "answers": "yes",
+            "requirement": "Bonus: payments or financial services experience",
+            "note": "Leading payment provider failover work plainly shows payments experience."
+          }
+        ],
+        "missing": [
+          {
+            "number": 1,
+            "absent": "yes",
+            "note": "The resume does not show direct reports, hiring authority, performance management or two years managing engineers."
+          },
+          {
+            "number": 2,
+            "absent": "yes",
+            "note": "Project leadership does not establish ownership of a team roadmap and delivery with a product partner."
+          },
+          {
+            "number": 3,
+            "absent": "partly",
+            "note": "The on-call handbook and incident reviews show operational involvement, but not leadership of a team running production systems."
+          },
+          {
+            "number": 4,
+            "absent": "partly",
+            "note": "Mentoring interns who became full-time engineers shows some development, but not growth into senior roles."
+          }
+        ],
+        "trim": [
+          {
+            "number": 1,
+            "posting_asks": "no",
+            "note": "The posting does not ask for facilities tools or office seating projects."
+          },
+          {
+            "number": 2,
+            "posting_asks": "no",
+            "note": "Giving recruiting tours does not demonstrate the hiring responsibility the posting requests."
+          },
+          {
+            "number": 3,
+            "posting_asks": "no",
+            "note": "Snack budgeting and offsite planning do not demonstrate the engineering management responsibilities requested."
+          }
+        ],
+        "overlooked": [],
+        "contradiction": false,
+        "contradiction_note": "The mentoring and on-call lines partially address missing requirements but do not establish senior-role development or production-team leadership."
+      },
+      "cost_usd": 0.0112235
+    },
+    {
+      "id": "long-backend-senior-backend-posting",
+      "lists": {
+        "summary": "The role centers on Go money movement services, payouts reliability, technical leadership, and reconciliation with Finance and Risk.",
+        "missing": [
+          "Own the reliability of the payouts path end to end, including on-call",
+          "Lead technical design reviews",
+          "Partner with Finance and Risk on reconciliation and controls",
+          "deep experience with PostgreSQL"
+        ],
+        "lead": [
+          {
+            "line": "Designed the checkout rate-limiting service in Go that handles 4,000 requests a second at peak",
+            "why": "This supports the ask for high-throughput payment services in Go. Move it near the top of the Tidewater role."
+          },
+          {
+            "line": "Mentored three interns, two of whom returned as full-time engineers",
+            "why": "This speaks to mentoring engineers on the team. Move it higher in the Cascade role."
+          },
+          {
+            "line": "Reconciled daily claim payments against the ledger with a nightly Python job, flagging about 40 mismatches a week for finance",
+            "why": "This shows reconciliation work with finance, part of the posting's Finance and Risk requirement. Move it near the top of the Cascade role."
+          }
+        ],
+        "trim": [
+          {
+            "line": "Redesigned the office seating chart tool for the facilities team as a side project",
+            "why": "Useful work for the facilities team, but the posting doesn't ask for it; trim it to make room for payments work."
+          },
+          {
+            "line": "Volunteered as a tour guide for prospective interns during summer recruiting",
+            "why": "A generous contribution, but the posting doesn't ask for recruiting support; trim it for this version."
+          },
+          {
+            "line": "Managed the team's snack budget and planned two offsite events",
+            "why": "This helped the team, but the posting doesn't ask for event planning; trim it to give the reconciliation work more room."
+          }
+        ]
+      },
+      "verdict": {
+        "lead": [
+          {
+            "number": 1,
+            "answers": "partly",
+            "requirement": "Design and build high-throughput, idempotent payment services in Go",
+            "note": "The line shows a high-throughput Go rate-limiting service for checkout, not an idempotent payment service."
+          },
+          {
+            "number": 2,
+            "answers": "yes",
+            "requirement": "Lead technical design reviews and mentor engineers on the team",
+            "note": "Mentoring three engineering interns directly answers the mentoring portion of this responsibility."
+          },
+          {
+            "number": 3,
+            "answers": "partly",
+            "requirement": "Partner with Finance and Risk on reconciliation and controls",
+            "note": "The line shows reconciliation and flags mismatches for finance, but does not show Risk partnership or controls."
+          }
+        ],
+        "missing": [
+          {
+            "number": 1,
+            "absent": "partly",
+            "note": "Payment failover work and an on-call handbook show related reliability work, but not end-to-end ownership of payouts including on-call."
+          },
+          {
+            "number": 2,
+            "absent": "yes",
+            "note": "No resume line shows leading technical design reviews."
+          },
+          {
+            "number": 3,
+            "absent": "partly",
+            "note": "The claim-payment reconciliation job flags ledger mismatches for finance, but Risk partnership and controls are not shown."
+          },
+          {
+            "number": 4,
+            "absent": "partly",
+            "note": "PostgreSQL appears in Skills, but no line demonstrates deep experience with it."
+          }
+        ],
+        "trim": [
+          {
+            "number": 1,
+            "posting_asks": "no",
+            "note": "The posting does not ask for facilities tooling."
+          },
+          {
+            "number": 2,
+            "posting_asks": "no",
+            "note": "The posting does not ask for recruiting tours."
+          },
+          {
+            "number": 3,
+            "posting_asks": "no",
+            "note": "The posting does not ask for snack-budget management or event planning."
+          }
+        ],
+        "overlooked": [
+          {
+            "requirement": "A record of leading migrations or reliability work on production systems",
+            "resume_line": "Migrated 60 services from EC2 to Kubernetes on EKS over nine months with no customer-facing downtime"
+          }
+        ],
+        "contradiction": true,
+        "contradiction_note": "MOVE UP 3 partially answers MISSING 3 by showing ledger reconciliation work for finance, so that requirement is not wholly absent."
+      },
+      "cost_usd": 0.0118485
+    },
+    {
+      "id": "marketing-hubspot-posting",
+      "lists": {
+        "summary": "Tallgrass wants a B2B marketing coordinator who can run campaigns and support events, with hands-on work across HubSpot, Salesforce and Google Analytics 4.",
+        "missing": [
+          "Hands-on HubSpot experience: workflows, lists, email and reporting (required)",
+          "Keep Salesforce and HubSpot in sync: lead routing, campaign attribution and list hygiene",
+          "building simple reports",
+          "follow-up"
+        ]
+      },
+      "verdict": {
+        "lead": [],
+        "missing": [
+          {
+            "number": 1,
+            "absent": "partly",
+            "note": "The resume lists HubSpot and email coordination but does not show hands-on HubSpot workflows, lists, email and reporting."
+          },
+          {
+            "number": 2,
+            "absent": "yes",
+            "note": "Listing Salesforce and HubSpot does not show syncing them, lead routing, campaign attribution or list hygiene."
+          },
+          {
+            "number": 3,
+            "absent": "partly",
+            "note": "Pulling weekly campaign reports touches reporting but does not show building simple reports."
+          },
+          {
+            "number": 4,
+            "absent": "yes",
+            "note": "The resume shows webinar planning and event registration work but no follow-up."
+          }
+        ],
+        "trim": [],
+        "overlooked": [
+          {
+            "requirement": "2+ years in marketing for a B2B company",
+            "resume_line": "Marketing Coordinator with three years in B2B marketing for software and services companies."
+          }
+        ],
+        "contradiction": false,
+        "contradiction_note": "There are no MOVE UP lines."
+      },
+      "cost_usd": 0.006246
+    },
+    {
+      "id": "nurse-nursing-posting",
+      "lists": {
+        "summary": "The role is a night-shift medical-surgical RN position in Raleigh, with 12-hour shifts and rotating weekends.",
+        "missing": [
+          "Current unrestricted North Carolina RN license or compact state license",
+          "Ability to manage a patient assignment of 5 to 6 patients"
+        ],
+        "lead": [
+          {
+            "line": "Documented assessments and care plans in Epic",
+            "why": "The posting asks for experience with Epic or a comparable EHR. Move this line higher in the Mount Carmel East RN role so the system is easier to find."
+          },
+          {
+            "line": "Precept new graduate nurses",
+            "why": "The role includes precepting students and new graduates. Move this higher in the Riverside Methodist role to bring that match forward."
+          }
+        ]
+      },
+      "verdict": {
+        "lead": [
+          {
+            "number": 1,
+            "answers": "yes",
+            "requirement": "Experience with Epic or a comparable EHR",
+            "note": "Documenting assessments and care plans in Epic directly demonstrates Epic experience."
+          },
+          {
+            "number": 2,
+            "answers": "yes",
+            "requirement": "Precept students and new graduates as assigned",
+            "note": "Precepting new graduate nurses directly matches the new-graduate precepting responsibility."
+          }
+        ],
+        "missing": [
+          {
+            "number": 1,
+            "absent": "partly",
+            "note": "The resume lists an RN license but does not establish its state, unrestricted status, or compact eligibility."
+          },
+          {
+            "number": 2,
+            "absent": "yes",
+            "note": "No resume line specifies managing an assignment of five to six patients."
+          }
+        ],
+        "trim": [],
+        "overlooked": [
+          {
+            "requirement": "BLS certification required; ACLS within six months of hire",
+            "resume_line": "RN, BLS, ACLS"
+          }
+        ],
+        "contradiction": false,
+        "contradiction_note": "Neither MOVE UP line answers either MISSING item."
+      },
+      "cost_usd": 0.0071985
+    },
+    {
+      "id": "operations-director-manager-posting",
+      "lists": {
+        "summary": "Cobalt Pay seeks an engineering manager to lead backend engineers responsible for payouts and the ledger.",
+        "missing": [
+          "2+ years managing engineers with direct reports, including hiring and performance management",
+          "5+ years of backend engineering before moving into management",
+          "Experience leading teams that run production systems with on-call",
+          "A record of growing engineers into senior roles"
+        ]
+      },
+      "verdict": {
+        "lead": [],
+        "missing": [
+          {
+            "number": 1,
+            "absent": "yes",
+            "note": "The resume shows operations management and technician hiring, not managing engineers with direct reports, hiring and performance management."
+          },
+          {
+            "number": 2,
+            "absent": "yes",
+            "note": "The resume shows no backend engineering experience."
+          },
+          {
+            "number": 3,
+            "absent": "yes",
+            "note": "The resume does not show leadership of teams running production systems with on-call."
+          },
+          {
+            "number": 4,
+            "absent": "yes",
+            "note": "The resume does not show growing engineers into senior roles."
+          }
+        ],
+        "trim": [],
+        "overlooked": [],
+        "contradiction": false,
+        "contradiction_note": "There are no MOVE UP lines to contradict the MISSING items."
+      },
+      "cost_usd": 0.0026093
+    }
+  ]
+}

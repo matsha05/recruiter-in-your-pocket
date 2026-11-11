@@ -1,0 +1,487 @@
+{
+  "case_id": "b10_it_support_recent_grad",
+  "batch": "breadth",
+  "run": 1,
+  "note": "First job.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_it_support_recent_grad_1.txt",
+  "resume_sha256": "6aac1aade9d7a63c473e324e9d4010a6421ea06868ff0b898b625a8534cf26dc",
+  "resume_words": 119,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-11T16:00:05.933Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6699,
+        "completion_tokens": 1888,
+        "total_tokens": 8587,
+        "cached_prompt_tokens": 6116,
+        "cache_write_prompt_tokens": 580,
+        "reasoning_tokens": 721
+      },
+      "cost_usd": 0.0104738,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 32799
+    },
+    {
+      "kind": "repair",
+      "usage": {
+        "prompt_tokens": 8056,
+        "completion_tokens": 1818,
+        "total_tokens": 9874,
+        "cached_prompt_tokens": 0,
+        "cache_write_prompt_tokens": 8053,
+        "reasoning_tokens": 828
+      },
+      "cost_usd": 0.01915925,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 23039
+    }
+  ],
+  "resume_prompt_sha256": "e122fb00655b92e22574f13af1e038ff8846f6c54459bfa431be988d44f4cdc4",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 59,
+    "lifted_by_employer": false,
+    "verdict": "Help desk and retail device experience point toward IT support, but the work lacks scale and recent dates.",
+    "write_up": [
+      "Your resume points toward IT support through the Chattahoochee County Schools internship and earlier device work at Peachtree Electronics. It's common for an early-career resume to list duties without much context, but this one may get passed over because a recruiter can't tell how much help desk work you handled or what you've done since your last dated job.",
+      "The Active Directory line is your best model: it names both the task and the system you used. Your A.A.S. and CompTIA A+ belong here, but your work experience should come before education. The resume also doesn't account for time after May 2025.",
+      "Let's start with the internship's ticket and laptop lines. Add the kinds of problems you handled and the number of tickets or devices if you know them. Then account honestly for the time since your last role, whether that was work, study, caregiving or a career break."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "No work is dated after May 2025.",
+        "cannot_tell": "A recruiter can't tell what you've been doing since the internship. A brief, honest entry can answer that question; caregiving is real work, and a career break can include study, projects, volunteering or travel. List freelance work only if you did it.",
+        "example": "May 2025 - Present  [what you did]",
+        "question": "What have you been doing since May 2025 that you'd like to account for?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "cannot_tell": "Your retail job and internship give a recruiter work to look at before your degree. Move Experience above Education, while keeping the degree and A+ easy to find.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 1",
+        "line": "- Answered help desk tickets from teachers and staff",
+        "cannot_tell": "A recruiter knows who you supported, but not what problems you handled or how many tickets came your way. Those details matter for a desktop support role.",
+        "example": "Answered help desk tickets from teachers and staff about [ticket types], handling [number] tickets [time period]",
+        "question": "What kinds of tickets did you handle, and how many did you typically receive?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 2",
+        "line": "- Imaged and set up laptops for classrooms",
+        "cannot_tell": "Classroom laptops are a useful detail, but a recruiter can't tell how many you set up or what you used to image them.",
+        "example": "Imaged and set up [number] laptops for classrooms using [tool]",
+        "question": "How many laptops did you image and set up, and what tool did you use?"
+      },
+      {
+        "kind": "keep",
+        "where": "IT Help Desk Intern, line 3",
+        "line": "- Reset passwords and accounts in Active Directory",
+        "cannot_tell": "Keep this as a model: it pairs an action a support recruiter recognizes with the system where you did it.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Retail Associate, line 2",
+        "line": "- Set up new devices for customers at the service counter",
+        "cannot_tell": "This connects your retail work to IT support, but setup can mean several things. Name the tasks you performed so a recruiter can see what carries over.",
+        "example": "Set up new devices for customers at the service counter, including [setup tasks]",
+        "question": "What setup tasks did you perform for customers?"
+      },
+      {
+        "kind": "line",
+        "where": "Skills",
+        "line": "Windows 10/11, Active Directory, Microsoft 365 administration, basic networking, ticketing systems",
+        "cannot_tell": "A recruiter can see that you've used ticketing systems, but not which ones. A name gives them something concrete to match to a support role.",
+        "example": "Windows 10/11, Active Directory, Microsoft 365 administration, basic networking, [ticketing system name]",
+        "question": "Which ticketing system did you use, if you can name it?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "IT support specialist",
+        "IT Help Desk Intern"
+      ],
+      "why": "Your headline names IT support, and your internship covers tickets, classroom laptops and Active Directory.",
+      "level": "entry level, one IT help desk internship",
+      "note": "Your internship, A.A.S. and CompTIA A+ point toward entry-level desktop support work. Your retail device setup also gives you relevant customer-facing experience.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": []
+      }
+    }
+  },
+  "initial_validation_error": {
+    "code": "OPENAI_RESPONSE_SHAPE_INVALID",
+    "message": "The model response failed the worklist contract at cards.1.question: a card that needs work carries the question that fills its blanks.",
+    "issues": [
+      {
+        "path": "cards.1.question",
+        "message": "a card that needs work carries the question that fills its blanks"
+      }
+    ]
+  },
+  "model_output_repaired": {
+    "contract_version": "v3",
+    "score": 59,
+    "lifted_by_employer": false,
+    "verdict": "Help desk and retail device experience point toward IT support, but the work lacks scale and recent dates.",
+    "write_up": [
+      "Your resume points toward IT support through the Chattahoochee County Schools internship and earlier device work at Peachtree Electronics. It’s common for an early-career resume to list duties without much context, but this one may get passed over because a recruiter can’t tell how much help desk work you handled or what you’ve done since your last dated job.",
+      "The Active Directory line is your best model: it names both the task and the system you used. Your A.A.S. and CompTIA A+ belong here, but your work experience should come before education. The resume also doesn’t account for time after May 2025.",
+      "Let’s start with the internship’s ticket and laptop lines. Add the kinds of problems you handled and the number of tickets or devices if you know them. Then account honestly for the time since your last role, whether that was work, study, caregiving or a career break."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "No work is dated after May 2025.",
+        "cannot_tell": "A recruiter can’t tell what you’ve been doing since the internship. If you cared for a family member, you can name caregiving. A career break can say what you did; list freelance or consulting work only if it was real.",
+        "example": "May 2025 - Present  [what you did]",
+        "question": "What have you been doing since May 2025 that you’d like to account for?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "cannot_tell": "Your retail job and internship give a recruiter work to look at before your degree. Move Experience above Education, while keeping the degree and A+ easy to find.",
+        "example": "",
+        "question": "Can you put Experience above Education so your internship and retail work come first?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 1",
+        "line": "- Answered help desk tickets from teachers and staff",
+        "cannot_tell": "A recruiter knows who you supported, but not what problems you handled or how many tickets came your way. Those details matter for a desktop support role.",
+        "example": "Answered help desk tickets from teachers and staff about [ticket types], handling [number] tickets [time period]",
+        "question": "What kinds of tickets did you handle, and how many did you typically receive?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 2",
+        "line": "- Imaged and set up laptops for classrooms",
+        "cannot_tell": "Classroom laptops are a useful detail, but a recruiter can’t tell how many you set up or what you used to image them.",
+        "example": "Imaged and set up [number] laptops for classrooms using [tool]",
+        "question": "How many laptops did you image and set up, and what tool did you use?"
+      },
+      {
+        "kind": "keep",
+        "where": "IT Help Desk Intern, line 3",
+        "line": "- Reset passwords and accounts in Active Directory",
+        "cannot_tell": "Keep this as a model: it pairs an action a support recruiter recognizes with the system where you did it.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Retail Associate, line 2",
+        "line": "- Set up new devices for customers at the service counter",
+        "cannot_tell": "This connects your retail work to IT support, but setup can mean several things. Name the tasks you performed so a recruiter can see what carries over.",
+        "example": "Set up new devices for customers at the service counter, including [setup tasks]",
+        "question": "What setup tasks did you perform for customers?"
+      },
+      {
+        "kind": "line",
+        "where": "Skills",
+        "line": "Windows 10/11, Active Directory, Microsoft 365 administration, basic networking, ticketing systems",
+        "cannot_tell": "A recruiter can see that you’ve used ticketing systems, but not which ones. A name gives them something concrete to match to a support role.",
+        "example": "Windows 10/11, Active Directory, Microsoft 365 administration, basic networking, [ticketing system name]",
+        "question": "Which ticketing system did you use, if you can name it?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "IT support specialist",
+        "IT Help Desk Intern"
+      ],
+      "why": "Your headline names IT support, and your internship covers tickets, classroom laptops and Active Directory.",
+      "level": "entry level, one IT help desk internship",
+      "note": "Your internship, A.A.S. and CompTIA A+ point toward entry-level desktop support work. Your retail device setup also gives you relevant customer-facing experience.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": []
+      }
+    }
+  },
+  "repaired": true,
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 59,
+    "lifted_by_employer": false,
+    "verdict": "Help desk and retail device experience point toward IT support, but the work lacks scale and recent dates.",
+    "write_up": [
+      "Your resume points toward IT support through the Chattahoochee County Schools internship and earlier device work at Peachtree Electronics. It’s common for an early-career resume to list duties without much context, but this one may get passed over because a recruiter can’t tell how much help desk work you handled or what you’ve done since your last dated job.",
+      "The Active Directory line is your best model: it names both the task and the system you used. Your A.A.S. and CompTIA A+ belong here, but your work experience should come before education. The resume also doesn’t account for time after May 2025.",
+      "Let’s start with the internship’s ticket and laptop lines. Add the kinds of problems you handled and the number of tickets or devices if you know them. Then account honestly for the time since your last role, whether that was work, study, caregiving or a career break."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "No work is dated after May 2025.",
+        "cannot_tell": "A recruiter can’t tell what you’ve been doing since the internship. If you cared for a family member, you can name caregiving. A career break can say what you did; list freelance or consulting work only if it was real.",
+        "example": "May 2025 - Present [what you did]",
+        "question": "What have you been doing since May 2025 that you’d like to account for?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "cannot_tell": "Your retail job and internship give a recruiter work to look at before your degree. Move Experience above Education, while keeping the degree and A+ easy to find.",
+        "example": "",
+        "question": "Can you put Experience above Education so your internship and retail work come first?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 1",
+        "line": "Answered help desk tickets from teachers and staff",
+        "cannot_tell": "A recruiter knows who you supported, but not what problems you handled or how many tickets came your way. Those details matter for a desktop support role.",
+        "example": "Answered help desk tickets from teachers and staff about [ticket types], handling [number] tickets [time period]",
+        "question": "What kinds of tickets did you handle, and how many did you typically receive?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 2",
+        "line": "Imaged and set up laptops for classrooms",
+        "cannot_tell": "Classroom laptops are a useful detail, but a recruiter can’t tell how many you set up or what you used to image them.",
+        "example": "Imaged and set up [number] laptops for classrooms using [tool]",
+        "question": "How many laptops did you image and set up, and what tool did you use?"
+      },
+      {
+        "kind": "keep",
+        "where": "IT Help Desk Intern, line 3",
+        "line": "Reset passwords and accounts in Active Directory",
+        "cannot_tell": "Keep this as a model: it pairs an action a support recruiter recognizes with the system where you did it.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Retail Associate, line 2",
+        "line": "Set up new devices for customers at the service counter",
+        "cannot_tell": "This connects your retail work to IT support, but setup can mean several things. Name the tasks you performed so a recruiter can see what carries over.",
+        "example": "Set up new devices for customers at the service counter, including [setup tasks]",
+        "question": "What setup tasks did you perform for customers?"
+      },
+      {
+        "kind": "line",
+        "where": "Skills",
+        "line": "Windows 10/11, Active Directory, Microsoft 365 administration, basic networking, ticketing systems",
+        "cannot_tell": "A recruiter can see that you’ve used ticketing systems, but not which ones. A name gives them something concrete to match to a support role.",
+        "example": "Windows 10/11, Active Directory, Microsoft 365 administration, basic networking, [ticketing system name]",
+        "question": "Which ticketing system did you use, if you can name it?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "IT support specialist",
+        "IT Help Desk Intern"
+      ],
+      "why": "Your headline names IT support, and your internship covers tickets, classroom laptops and Active Directory.",
+      "level": "entry level, one IT help desk internship",
+      "note": "Your internship, A.A.S. and CompTIA A+ point toward entry-level desktop support work. Your retail device setup also gives you relevant customer-facing experience.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 59
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 59,
+    "lifted_by_employer": false,
+    "verdict": "Help desk and retail device experience point toward IT support, but the work lacks scale and recent dates.",
+    "write_up": [
+      "Your resume points toward IT support through the Chattahoochee County Schools internship and earlier device work at Peachtree Electronics. It’s common for an early-career resume to list duties without much context, but this one may get passed over because a recruiter can’t tell how much help desk work you handled or what you’ve done since your last dated job.",
+      "The Active Directory line is your best model: it names both the task and the system you used. Your A.A.S. and CompTIA A+ belong here, but your work experience should come before education. The resume also doesn’t account for time after May 2025.",
+      "Let’s start with the internship’s ticket and laptop lines. Add the kinds of problems you handled and the number of tickets or devices if you know them. Then account honestly for the time since your last role, whether that was work, study, caregiving or a career break."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "No work is dated after May 2025.",
+        "cannot_tell": "A recruiter can’t tell what you’ve been doing since the internship. If you cared for a family member, you can name caregiving. A career break can say what you did; list freelance or consulting work only if it was real.",
+        "example": "May 2025 - Present [what you did]",
+        "question": "What have you been doing since May 2025 that you’d like to account for?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "cannot_tell": "Your retail job and internship give a recruiter work to look at before your degree. Move Experience above Education, while keeping the degree and A+ easy to find.",
+        "example": "",
+        "question": "Can you put Experience above Education so your internship and retail work come first?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 1",
+        "line": "Answered help desk tickets from teachers and staff",
+        "cannot_tell": "A recruiter knows who you supported, but not what problems you handled or how many tickets came your way. Those details matter for a desktop support role.",
+        "example": "Answered help desk tickets from teachers and staff about [ticket types], handling [number] tickets [time period]",
+        "question": "What kinds of tickets did you handle, and how many did you typically receive?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 2",
+        "line": "Imaged and set up laptops for classrooms",
+        "cannot_tell": "Classroom laptops are a useful detail, but a recruiter can’t tell how many you set up or what you used to image them.",
+        "example": "Imaged and set up [number] laptops for classrooms using [tool]",
+        "question": "How many laptops did you image and set up, and what tool did you use?"
+      },
+      {
+        "kind": "keep",
+        "where": "IT Help Desk Intern, line 3",
+        "line": "Reset passwords and accounts in Active Directory",
+        "cannot_tell": "Keep this as a model: it pairs an action a support recruiter recognizes with the system where you did it.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Retail Associate, line 2",
+        "line": "Set up new devices for customers at the service counter",
+        "cannot_tell": "This connects your retail work to IT support, but setup can mean several things. Name the tasks you performed so a recruiter can see what carries over.",
+        "example": "Set up new devices for customers at the service counter, including [setup tasks]",
+        "question": "What setup tasks did you perform for customers?"
+      },
+      {
+        "kind": "line",
+        "where": "Skills",
+        "line": "Windows 10/11, Active Directory, Microsoft 365 administration, basic networking, ticketing systems",
+        "cannot_tell": "A recruiter can see that you’ve used ticketing systems, but not which ones. A name gives them something concrete to match to a support role.",
+        "example": "Windows 10/11, Active Directory, Microsoft 365 administration, basic networking, [ticketing system name]",
+        "question": "Which ticketing system did you use, if you can name it?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "IT support specialist",
+        "IT Help Desk Intern"
+      ],
+      "why": "Your headline names IT support, and your internship covers tickets, classroom laptops and Active Directory.",
+      "level": "entry level, one IT help desk internship",
+      "note": "Your internship, A.A.S. and CompTIA A+ point toward entry-level desktop support work. Your retail device setup also gives you relevant customer-facing experience.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 59
+  },
+  "presentation": {
+    "score": 59,
+    "band": "Needs more context",
+    "model_score": 59,
+    "lifted_by_employer": false,
+    "verdict": "Help desk and retail device experience point toward IT support, but the work lacks scale and recent dates.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 149,
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "No work is dated after May 2025.",
+        "blanks": 1,
+        "question": "What have you been doing since May 2025 that you’d like to account for?"
+      },
+      {
+        "kind": "structure",
+        "where": "Structure",
+        "line": "Education sits above Experience.",
+        "blanks": 0,
+        "question": "Can you put Experience above Education so your internship and retail work come first?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 1",
+        "line": "Answered help desk tickets from teachers and staff",
+        "blanks": 3,
+        "question": "What kinds of tickets did you handle, and how many did you typically receive?"
+      },
+      {
+        "kind": "line",
+        "where": "IT Help Desk Intern, line 2",
+        "line": "Imaged and set up laptops for classrooms",
+        "blanks": 2,
+        "question": "How many laptops did you image and set up, and what tool did you use?"
+      },
+      {
+        "kind": "keep",
+        "where": "IT Help Desk Intern, line 3",
+        "line": "Reset passwords and accounts in Active Directory",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Retail Associate, line 2",
+        "line": "Set up new devices for customers at the service counter",
+        "blanks": 1,
+        "question": "What setup tasks did you perform for customers?"
+      },
+      {
+        "kind": "line",
+        "where": "Skills",
+        "line": "Windows 10/11, Active Directory, Microsoft 365 administration, basic networking, ticketing systems",
+        "blanks": 1,
+        "question": "Which ticketing system did you use, if you can name it?"
+      }
+    ],
+    "card_count": 7,
+    "kinds": {
+      "dates": 1,
+      "structure": 1,
+      "line": 4,
+      "keep": 1
+    },
+    "structural_from_model": 2,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "IT support specialist",
+        "IT Help Desk Intern"
+      ],
+      "why": "Your headline names IT support, and your internship covers tickets, classroom laptops and Active Directory.",
+      "level": "entry level, one IT help desk internship",
+      "note": "Your internship, A.A.S. and CompTIA A+ point toward entry-level desktop support work. Your retail device setup also gives you relevant customer-facing experience.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.02963305,
+  "latency_ms": 55844
+}

@@ -21,6 +21,8 @@ interface ResumeDropzoneProps {
     onValidationStateChange?: (hasError: boolean) => void;
     /** Replaces "Ready to review" when the file was read but can't be reviewed. */
     readyLabel?: string;
+    /** What is being uploaded; a LinkedIn profile PDF gets its own words (Nov 10, 2026). */
+    document?: "resume" | "linkedin";
 }
 
 const MAX_FILE_SIZE_BYTES = 4 * 1024 * 1024;
@@ -35,6 +37,7 @@ export function ResumeDropzone({
     className,
     fileName,
     readyLabel = "Ready to review",
+    document = "resume",
     onRemoveFile,
     onValidationStateChange,
 }: ResumeDropzoneProps) {
@@ -185,7 +188,7 @@ export function ResumeDropzone({
 
     return (
         <div className={cn("w-full", className)}>
-            <input {...getInputProps()} onChangeCapture={handleNativeFileChange} suppressHydrationWarning aria-label="Upload resume file (PDF or DOCX)" />
+            <input {...getInputProps()} onChangeCapture={handleNativeFileChange} suppressHydrationWarning aria-label={document === "linkedin" ? "Upload your LinkedIn profile PDF" : "Upload resume file (PDF or DOCX)"} />
             {readingFileName || (displayFileName && !error) ? (
                 <Paper kind="plain" className={cn(styles.accepted, "ui-state-enter")} aria-busy={isBusy}>
                     <span
@@ -199,7 +202,7 @@ export function ResumeDropzone({
                         </span>
                         <span className="min-w-0">
                             <span className="block truncate text-base font-medium text-foreground">{readingFileName || displayFileName}</span>
-                            <span className="mt-1 block text-xs font-normal text-muted-foreground">{isBusy ? "Reading your resume file…" : readyLabel}</span>
+                            <span className="mt-1 block text-xs font-normal text-muted-foreground">{isBusy ? (document === "linkedin" ? "Reading your LinkedIn PDF…" : "Reading your resume file…") : readyLabel}</span>
                         </span>
                     </span>
                     <Button
@@ -267,10 +270,10 @@ export function ResumeDropzone({
                 >
                     <div className={styles.details}>
                         <p className={styles.title}>
-                            <span className={styles.desktopTitle}>Drop your resume here.</span>
-                            <span className={styles.mobileTitle}>Add your resume.</span>
+                            <span className={styles.desktopTitle}>{document === "linkedin" ? "Drop your LinkedIn PDF here." : "Drop your resume here."}</span>
+                            <span className={styles.mobileTitle}>{document === "linkedin" ? "Add your LinkedIn PDF." : "Add your resume."}</span>
                         </p>
-                        <p className={styles.quiet}>PDF or Word, up to 4 MB.</p>
+                        <p className={styles.quiet}>{document === "linkedin" ? "The PDF LinkedIn saves for you, up to 4 MB." : "PDF or Word, up to 4 MB."}</p>
                     </div>
                     <Button
                         type="button"

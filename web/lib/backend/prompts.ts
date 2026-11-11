@@ -1,14 +1,13 @@
 import caseInterviewPrompt from "../../prompts/case_interview_v1.txt";
 import caseNegotiationPrompt from "../../prompts/case_negotiation_v1.txt";
 import caseResumePrompt from "../../prompts/case_resume_v1.txt";
-import linkedinPrompt from "../../prompts/linkedin_v1.txt";
-import linkedinV2Prompt from "../../prompts/linkedin_v2.txt";
+import linkedinV3Prompt from "../../prompts/linkedin_v3.txt";
 import resumeIdeasPrompt from "../../prompts/resume_ideas_v1.txt";
 import resumePrompt from "../../prompts/resume_v2.txt";
 import resumeWorklistPrompt from "../../prompts/resume_v3.txt";
 import { isWorklistReportEnabled } from "../reports/report-shape";
 
-type Mode = "resume" | "resume_ideas" | "case_resume" | "case_interview" | "case_negotiation" | "linkedin" | "linkedin_v2";
+type Mode = "resume" | "resume_ideas" | "case_resume" | "case_interview" | "case_negotiation" | "linkedin" | "linkedin_v3";
 
 const promptCache = new Map<string, string>();
 
@@ -18,8 +17,9 @@ const promptByMode: Record<Mode, string> = {
   case_resume: caseResumePrompt,
   case_interview: caseInterviewPrompt,
   case_negotiation: caseNegotiationPrompt,
-  linkedin: linkedinPrompt,
-  linkedin_v2: linkedinV2Prompt,
+  // The LinkedIn profile review on the worklist contract (Nov 10, 2026); the resume route loads it for a profile.
+  linkedin: linkedinV3Prompt,
+  linkedin_v3: linkedinV3Prompt,
 };
 
 /**

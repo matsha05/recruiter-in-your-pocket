@@ -1,0 +1,38 @@
+# h5_mismatched_posting, run 1
+Resume: ../2026-11-live-judgment/resumes/h5_data_analyst.txt (166 words), posting: ../2026-11-live-judgment/resumes/h5_nursing_posting.txt
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt e122fb00; severity check off
+Outcome: report; cost $0.0096; 28.2s
+Case note: Data analyst against a registered nurse posting.
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A strong data analyst resume, but the nursing role asks for a different professional track.
+
+## Write-up
+This medical-surgical nursing role is a different track from your experience as a data analyst. Read for analyst jobs, your resume is strong: it shows reporting work at Carolina Home Goods and Piedmont Insurance Services, with the tools, audiences and decisions attached.
+
+The SQL model that replaced a 3-day manual weekly sales report is your best model for the rest: it names the old process and what you built instead. Your experience also comes before education, so a recruiter reaches that work quickly.
+
+For analyst roles, your resume makes a strong case on its own; competition for a particular job will still matter. Let's add a little more about the sales analyses, then bring your strongest result to the top of the Carolina Home Goods role.
+
+## Cards (3; {"line":1,"keep":1,"upgrade":1}); severity off; added []
+1. [line] Data Analyst, line 4
+   line: "Pull ad hoc analyses for the VP of Sales, about 10 requests a month"
+   can't tell: The audience and frequency are clear, but a recruiter can't tell what the analyses cover or what decisions they inform.
+   example: Pull ad hoc analyses for the VP of Sales, about 10 requests a month, covering [analysis topics] and informing [decisions]
+   question: What do those analyses cover, and what decisions do they inform?
+2. [keep] Data Analyst, line 2
+   line: "Wrote the SQL model that replaced a 3-day manual weekly sales report with an automated one"
+   can't tell: Keep this as your model. It shows your own contribution alongside a concrete change in how the report gets made.
+3. [upgrade] Data Analyst, line 1
+   line: "Build and maintain 14 Power BI dashboards used by the sales, merchandising, and finance teams"
+   can't tell: For a more senior analyst role, a decision about shared reporting standards could show how you shape work across teams.
+   example: Build and maintain 14 Power BI dashboards used by the sales, merchandising, and finance teams; made [decision about reporting standards] for [teams]
+   question: Have you made a decision about reporting standards across teams, and what was it?
+
+## Fit
+Roles: ["Data Analyst","Registered Nurse, Medical-Surgical Unit (Nights)"]
+Level: mid-level, current analyst role with prior junior analyst experience
+Note: Your work with sales, merchandising and finance shows cross-team reporting. If you have relevant clinical training not shown here, add it in its own dated section rather than recasting analytics as patient care.
+Posting: The role calls for licensed medical-surgical nursing, patient care and EHR documentation on a night shift.
+Missing: ["Current unrestricted North Carolina RN license or compact state license","BLS certification required; ACLS within six months of hire","Minimum 1 year of acute care nursing experience preferred; new graduates with a strong clinical rotation considered","Experience with Epic or a comparable EHR","Ability to manage a patient assignment of 5 to 6 patients"]

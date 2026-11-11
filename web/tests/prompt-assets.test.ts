@@ -8,7 +8,7 @@ const modes = [
   "case_interview",
   "case_negotiation",
   "linkedin",
-  "linkedin_v2",
+  "linkedin_v3",
 ] as const;
 
 void Promise.all(modes.map((mode) => loadPromptForMode(mode)))
@@ -16,6 +16,13 @@ void Promise.all(modes.map((mode) => loadPromptForMode(mode)))
     for (const [index, prompt] of prompts.entries()) {
       assert.ok(prompt.length > 100, `${modes[index]} prompt must be bundled and non-empty`);
     }
+    // The LinkedIn profile review (linkedin_v3.txt) writes the worklist contract and never reads what the PDF omits.
+    const profilePrompt = prompts[modes.indexOf("linkedin_v3")];
+    assert.equal(prompts[modes.indexOf("linkedin")], profilePrompt);
+    assert.match(profilePrompt, /"contract_version": "v3"/);
+    assert.match(profilePrompt, /WHAT YOU ARE READING/);
+    assert.match(profilePrompt, /never mention, judge or guess at it: the photo, the banner, recommendations/);
+    assert.doesNotMatch(profilePrompt, /your resume/);
     const resumePrompt = prompts[0];
     if (/"contract_version": "v3"/.test(resumePrompt)) {
       // The worklist prompt (resume_v3.txt): judgment first, cards, no Critical Miss anywhere in it.

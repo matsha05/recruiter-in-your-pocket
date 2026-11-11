@@ -1,0 +1,50 @@
+# b36_product_designer_unrelated, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_product_designer_unrelated_1.txt (147 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt e122fb00; severity check off
+Outcome: report; cost $0.0108; 32.8s
+Case note: Current job outside the field.
+
+## Needs more context (score 67; model wrote 67)
+## Verdict
+Your product design work is easy to follow, but its results and recent design activity are unclear.
+
+## Write-up
+You’re a product designer who worked on fitness apps at Loop Fitness and client projects at Brightpath Studio, and you’re now a barista at Ferry Street Coffee. It’s common for design resumes to list deliverables without saying what changed. Here, that makes it harder to stand out against other product designers.
+
+Your best model is the line about creating Loop Fitness’s first design system in Figma: it names what you made and the tool you used. Your current job accounts for your time, but the latest dated design role ended in February 2024, so a recruiter can’t see whether you’ve done any design work since.
+
+Let’s start with the Loop Fitness booking flow and show what you designed and what happened after launch, if you can substantiate it. Then add the decisions that came from your usability tests. If you’ve done design projects or study since Loop Fitness, date and include those too.
+
+## Cards (6; {"structure":1,"line":4,"keep":1}); severity off; added []
+1. [structure] Recent design work
+   line: "The latest dated Product Designer role ended February 2024; the Barista role is current."
+   can't tell: A recruiter can see what you’re doing now, but not whether you’ve kept working on design. Recent projects or study could show where your design work stands today.
+   question: Have you done any design projects, freelance work or study since February 2024?
+2. [line] Product Designer, Loop Fitness, line 1
+   line: "Designed the class booking flow for the iOS and Android apps"
+   can't tell: The apps and flow are clear, but a recruiter can’t tell which parts of booking you designed or what changed after launch.
+   example: Designed [booking steps] in the class booking flow for the iOS and Android apps, resulting in [what changed]
+   question: Which booking steps did you design, and what happened after they launched?
+3. [line] Product Designer, Loop Fitness, line 2
+   line: "Worked with two engineers and a product manager on weekly releases"
+   can't tell: The team and release rhythm are there, but your contribution to those releases isn’t. A recruiter needs to know what you brought to the work.
+   example: Worked with two engineers and a product manager on weekly releases, contributing [your design work]
+   question: What design work did you contribute to the weekly releases?
+4. [keep] Product Designer, Loop Fitness, line 3
+   line: "Created the app's first design system in Figma"
+   can't tell: Keep this as a model. It gives you direct ownership of a named deliverable, so nobody has to guess what you made.
+5. [line] Product Designer, Loop Fitness, line 4
+   line: "Ran usability tests with members before launches"
+   can't tell: Running the tests is useful product design work. What you tested and what you learned would show how the tests informed a launch.
+   example: Ran usability tests with members on [feature] before launches and used [finding] to inform [design decision]
+   question: What did you test with members, and which finding informed a design decision?
+6. [line] Junior Product Designer, Brightpath Studio, line 2
+   line: "Made prototypes for client presentations"
+   can't tell: A recruiter can tell you made prototypes, but not what they showed clients or what the presentations were meant to decide.
+   example: Made prototypes of [design] for client presentations to inform [decision]
+   question: What did the prototypes show, and what decisions were the presentations meant to inform?
+
+## Fit
+Roles: ["Product Designer"]
+Level: mid-level, held a Product Designer role after a Junior Product Designer role
+Note: Your experience points toward product design roles involving mobile apps, prototyping and design systems. Your portfolio is a useful place to show the booking flow and the decisions behind it.

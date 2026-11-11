@@ -14,6 +14,8 @@ export interface AuthUser {
     daysLeft?: number;
     freeUsesLeft?: number;
     paidUsesLeft?: number;
+    /** A pass still in its term: posting reads on an already-read resume spend no report. */
+    postingReads?: boolean;
     canExportPdf?: boolean;
 }
 

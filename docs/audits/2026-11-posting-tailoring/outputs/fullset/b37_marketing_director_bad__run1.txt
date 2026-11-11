@@ -1,0 +1,51 @@
+# b37_marketing_director_bad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_marketing_director_bad_1.txt (167 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt e122fb00; severity check off
+Outcome: report; cost $0.0266; repair ran; 72.9s
+Case note: Title above the work; key says no_recent_work, no_target_role, title_level_mismatch.
+
+Validator refused the first draft: The model response failed the worklist contract at fit.level: Too big: expected string to have <=120 characters.
+
+## Needs more context (score 59; model wrote 59)
+## Verdict
+A marketing director title sits above hands-on duties, with time since January 2025 unaccounted for.
+
+## Write-up
+It's common for a resume to leave a formal title and the work beneath it telling different stories. At Lumen Candle Co., you posted on Instagram and wrote product descriptions; before that, you handled property records and supported biology labs. I'm reading this for Director of Marketing, but a recruiter hiring at that level would likely pass because the resume doesn't show the decisions or leadership the title suggests.
+
+Your property-records line is a useful model: it names the work, the system and how much you handled. The resume also leaves time after January 2025 unexplained, and it doesn't say whether you want to continue in marketing or return to another kind of work.
+
+Let's start with the Lumen role. Keep your official title, then add any marketing decisions, team responsibility or budget you actually had. Account honestly for the time since that role, and choose the direction you want the resume to lead with.
+
+## Cards (6; {"line":2,"dates":1,"structure":2,"keep":1}); severity off; added []
+1. [line] Director of Marketing title
+   line: "Director of Marketing"
+   can't tell: The title suggests responsibility for marketing direction, but the bullets show posting, product copy and customer orders. A recruiter can't tell whether you also set marketing priorities or had a team or budget. Keep the title if it was official, and add those responsibilities only if they were yours.
+   example: Director of Marketing | [marketing responsibilities] | [team size or budget]
+   question: What marketing decisions did you make, and did you have a team or budget?
+2. [dates] Dates
+   line: "Nothing is dated after January 2025."
+   can't tell: A recruiter can't tell what you've done since the Lumen role. An honest line can account for that time, whether it was a career break, caregiving, study or work you actually did.
+   example: January 2025 - Present [what you did]
+   question: What have you done since January 2025 that you'd like to include?
+3. [structure] Structure
+   line: "The resume doesn't name a target job."
+   can't tell: Marketing, property records and lab work point in different directions. A short headline naming the job you're seeking would tell a recruiter which experience to focus on.
+   question: Which kind of job are you applying for now?
+4. [structure] Lumen Candle Co.
+   line: "The resume doesn't say how large Lumen Candle Co. is."
+   can't tell: The company name and candle work give some context, but a recruiter can't tell how large the business was. A brief description could help them understand the setting for your marketing work.
+   question: How large was Lumen Candle Co., if you're able to share that?
+5. [line] Director of Marketing, line 1
+   line: "Posted 3 to 5 times a week on the company Instagram, which has 2,100 followers"
+   can't tell: A recruiter can see how often you posted and the account's follower count, but not what the posts were meant to do or whether they worked.
+   example: Posted [content] 3 to 5 times a week on the company Instagram, which has 2,100 followers; [what changed]
+   question: What did you post, and what changed, if you tracked it?
+6. [keep] Data Entry Clerk, line 1
+   line: "Entered 150 property records a day into the county title system"
+   can't tell: Keep this as a model. It gives a recruiter a concrete daily workload and names where the records went, without making them guess what the job involved.
+
+## Fit
+Roles: ["Director of Marketing"]
+Level: entry level, one marketing role with hands-on posting and product-copy work
+Note: Your Instagram and product-copy work points toward hands-on marketing roles. Your property-records work also gives you an administrative direction, so choose which experience to emphasize for each application.

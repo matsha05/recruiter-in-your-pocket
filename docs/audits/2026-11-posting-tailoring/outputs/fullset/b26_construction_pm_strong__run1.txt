@@ -1,0 +1,38 @@
+# b26_construction_pm_strong, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_construction_pm_strong_1.txt (136 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt e122fb00; severity check off
+Outcome: report; cost $0.0093; 29.3s
+
+## Clear and specific (score 88; model wrote 88)
+## Verdict
+A construction project manager with project values, trade counts and delivery results a recruiter can quickly grasp.
+
+## Write-up
+This is a strong construction project management resume: you show the projects you run at Capitol Builders and the results you've delivered! A recruiter can see both tenant-improvement and ground-up retail work without guessing how big the jobs are.
+
+The $14M grocery store line is the standout. It names the build, its value and the schedule result. Your move from assistant project manager to project manager is easy to follow, and Experience sits where it should, above Education.
+
+Let's add what you did to keep change orders down. For a more senior role, you can also show a decision you made across projects, if you have one to share. Your resume isn't likely to be the thing holding you back; the competition and the match between your projects and the job will matter too.
+
+## Cards (4; {"line":1,"keep":1,"upgrade":2}); severity off; added []
+1. [line] Project Manager, line 4
+   line: "Kept change orders under 3% of contract value across 2024 and 2025 projects"
+   can't tell: That's a useful measure, but a recruiter can't see what you did to keep change orders down. Your part in managing them would make the result more valuable.
+   example: Kept change orders under 3% of contract value across 2024 and 2025 projects by [work you did]
+   question: What did you do to keep change orders under 3%?
+2. [keep] Project Manager, line 3
+   line: "Manage subcontractor bids and buyout for 20 to 30 trades per project"
+   can't tell: Keep this as a model. It pairs a defined part of the job with the number of trades involved, so a recruiter can picture the work.
+3. [upgrade] Project Manager, line 1
+   line: "Run 4 to 6 concurrent tenant-improvement projects worth $1M to $8M each"
+   can't tell: For a role above project manager, a decision you made across projects could show the broader direction you set.
+   example: Run 4 to 6 concurrent tenant-improvement projects worth $1M to $8M each and [decision you made across projects]
+   question: What decision did you make across these projects that shaped their delivery?
+4. [upgrade] Project Manager, line 2
+   line: "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024"
+   can't tell: Move this above the concurrent-projects line. It leads with your strongest delivery result.
+
+## Fit
+Roles: ["Project Manager"]
+Level: manager, runs 4 to 6 concurrent tenant-improvement projects
+Note: Your experience points toward commercial construction project management, with both tenant improvements and a grocery store build. The assistant project manager role also shows earlier work on office and retail projects.

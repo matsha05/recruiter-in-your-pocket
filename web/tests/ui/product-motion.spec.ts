@@ -309,7 +309,7 @@ test.describe("product motion contracts on real app routes", () => {
     await expect(page.locator("#section-card-1 blockquote, #section-card-1 p").first()).toHaveCSS("transform", "none");
   });
 
-  test("LinkedIn section navigation tracks actual selection and keeps its mobile keyboard target visible", async ({ page }) => {
+  test("LinkedIn mode asks for the profile PDF on the resume input screen, with no pasted text or posting", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.emulateMedia({ reducedMotion: "reduce" });
     await hydrate(page, "/workspace");
@@ -318,21 +318,13 @@ test.describe("product motion contracts on real app routes", () => {
     // smoke build can keep LinkedIn review behind its existing launch flag.
     test.skip(await linkedIn.count() === 0, "LinkedIn review is disabled in this app build");
     await linkedIn.click();
-    await page.getByRole("button", { name: "See a sample report", exact: true }).click();
-    const navigation = page.getByRole("navigation", { name: "LinkedIn report sections", exact: true });
-    await expectCurrent(navigation, "First impression");
-    for (const name of ["Headline", "About section", "First impression"]) {
-      const button = navigation.getByRole("button", { name, exact: true });
-      await button.focus();
-      await page.keyboard.press("Enter");
-      await expectCurrent(navigation, name);
-      await expect(button).toBeFocused();
-      await expect.poll(() => button.evaluate((element) => {
-        const rect = element.getBoundingClientRect();
-        const nav = element.closest("nav")!.getBoundingClientRect();
-        return rect.left >= nav.left - 1 && rect.right <= nav.right + 1;
-      })).toBe(true);
-    }
+    await expect(page.getByRole("heading", { level: 1, name: "Let’s read your LinkedIn profile." })).toBeVisible();
+    await expect(page.getByTestId("workspace-linkedin-help")).toContainText("Save to PDF");
+    await expect(page.getByTestId("workspace-paste-mode")).toHaveCount(0);
+    await expect(page.getByTestId("workspace-role-toggle")).toHaveCount(0);
+    await expect(page.getByTestId("workspace-run-report")).toHaveText("Choose your LinkedIn PDF to begin");
+    await page.getByRole("button", { name: "Resume", exact: true }).click();
+    await expect(page.getByTestId("workspace-role-toggle")).toBeVisible();
   });
 
   test("command navigation tolerates malformed recent items and blocked optional storage", async ({ page }) => {

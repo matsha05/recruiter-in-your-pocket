@@ -1,0 +1,57 @@
+# b10_it_support_recent_grad, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_it_support_recent_grad_1.txt (119 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt e122fb00; severity check off
+Outcome: report; cost $0.0296; repair ran; 55.8s
+Case note: First job.
+
+Validator refused the first draft: The model response failed the worklist contract at cards.1.question: a card that needs work carries the question that fills its blanks.
+
+## Needs more context (score 59; model wrote 59)
+## Verdict
+Help desk and retail device experience point toward IT support, but the work lacks scale and recent dates.
+
+## Write-up
+Your resume points toward IT support through the Chattahoochee County Schools internship and earlier device work at Peachtree Electronics. It’s common for an early-career resume to list duties without much context, but this one may get passed over because a recruiter can’t tell how much help desk work you handled or what you’ve done since your last dated job.
+
+The Active Directory line is your best model: it names both the task and the system you used. Your A.A.S. and CompTIA A+ belong here, but your work experience should come before education. The resume also doesn’t account for time after May 2025.
+
+Let’s start with the internship’s ticket and laptop lines. Add the kinds of problems you handled and the number of tickets or devices if you know them. Then account honestly for the time since your last role, whether that was work, study, caregiving or a career break.
+
+## Cards (7; {"dates":1,"structure":1,"line":4,"keep":1}); severity off; added []
+1. [dates] Dates
+   line: "No work is dated after May 2025."
+   can't tell: A recruiter can’t tell what you’ve been doing since the internship. If you cared for a family member, you can name caregiving. A career break can say what you did; list freelance or consulting work only if it was real.
+   example: May 2025 - Present [what you did]
+   question: What have you been doing since May 2025 that you’d like to account for?
+2. [structure] Structure
+   line: "Education sits above Experience."
+   can't tell: Your retail job and internship give a recruiter work to look at before your degree. Move Experience above Education, while keeping the degree and A+ easy to find.
+   question: Can you put Experience above Education so your internship and retail work come first?
+3. [line] IT Help Desk Intern, line 1
+   line: "Answered help desk tickets from teachers and staff"
+   can't tell: A recruiter knows who you supported, but not what problems you handled or how many tickets came your way. Those details matter for a desktop support role.
+   example: Answered help desk tickets from teachers and staff about [ticket types], handling [number] tickets [time period]
+   question: What kinds of tickets did you handle, and how many did you typically receive?
+4. [line] IT Help Desk Intern, line 2
+   line: "Imaged and set up laptops for classrooms"
+   can't tell: Classroom laptops are a useful detail, but a recruiter can’t tell how many you set up or what you used to image them.
+   example: Imaged and set up [number] laptops for classrooms using [tool]
+   question: How many laptops did you image and set up, and what tool did you use?
+5. [keep] IT Help Desk Intern, line 3
+   line: "Reset passwords and accounts in Active Directory"
+   can't tell: Keep this as a model: it pairs an action a support recruiter recognizes with the system where you did it.
+6. [line] Retail Associate, line 2
+   line: "Set up new devices for customers at the service counter"
+   can't tell: This connects your retail work to IT support, but setup can mean several things. Name the tasks you performed so a recruiter can see what carries over.
+   example: Set up new devices for customers at the service counter, including [setup tasks]
+   question: What setup tasks did you perform for customers?
+7. [line] Skills
+   line: "Windows 10/11, Active Directory, Microsoft 365 administration, basic networking, ticketing systems"
+   can't tell: A recruiter can see that you’ve used ticketing systems, but not which ones. A name gives them something concrete to match to a support role.
+   example: Windows 10/11, Active Directory, Microsoft 365 administration, basic networking, [ticketing system name]
+   question: Which ticketing system did you use, if you can name it?
+
+## Fit
+Roles: ["IT support specialist","IT Help Desk Intern"]
+Level: entry level, one IT help desk internship
+Note: Your internship, A.A.S. and CompTIA A+ point toward entry-level desktop support work. Your retail device setup also gives you relevant customer-facing experience.

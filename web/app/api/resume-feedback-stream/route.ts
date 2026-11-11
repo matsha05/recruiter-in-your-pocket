@@ -59,8 +59,11 @@ import { requireAnonymousReportRecoveryId } from "@/lib/reports/anonymous-report
 import { severityCheckReport } from "@/lib/reports/severity-check-report";
 import { askFirstOffered, isAskFirstEnabled } from "@/lib/reports/ask-first";
 import { reserveRebuild } from "@/lib/reports/ask-first-rebuild";
+import { reservePostingRead } from "@/lib/reports/posting-read";
 import { resumePromptVersion, resumeSchemaVersion } from "@/lib/reports/report-shape";
 import { withScreenerText } from "@/lib/reports/screener-text";
+import { looksLikeLinkedInExport, NOT_A_LINKEDIN_EXPORT_MESSAGE, withReportDocument } from "@/lib/reports/report-document";
+import { isLaunchFlagEnabled } from "@/lib/launch/flags";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 // Worst case: main call 90 s, one incomplete retry, a repair call, the severity check and persistence.
@@ -142,7 +145,30 @@ export async function POST(request: Request) {
             access_consumed: false,
         }));
     }
-    const { text, mode, jobDescription, rebuild } = validation.value;
+    const { text, mode, rebuild, document, postingRead } = validation.value;
+    // A rebuild and a posting read on the pass both run without a reservation and spend nothing.
+    const unmetered = Boolean(rebuild) || Boolean(postingRead);
+    // A LinkedIn profile review is the resume report's pipeline with its own prompt (Nov 10, 2026). It has no
+    // posting, no rebuild, and is refused before any report is set aside when the flag is off or the text
+    // isn't LinkedIn's own PDF export.
+    const jobDescription = document ? null : validation.value.jobDescription;
+    if (document) {
+        const refusal = !isLaunchFlagEnabled("linkedInReview")
+            ? { errorCode: "FEATURE_DISABLED", message: "LinkedIn profile reviews aren't available right now." }
+            : rebuild
+                ? { errorCode: "VALIDATION_ERROR", message: "A LinkedIn profile review can't be rewritten from answers." }
+                : !looksLikeLinkedInExport(text)
+                    ? { errorCode: "VALIDATION_ERROR", message: NOT_A_LINKEDIN_EXPORT_MESSAGE }
+                    : null;
+        if (refusal) {
+            return respond(singleGenerationStreamEvent(request_id, {
+                type: "error",
+                errorCode: refusal.errorCode,
+                message: withGenerationAccessOutcome(refusal.message, false),
+                access_consumed: false,
+            }));
+        }
+    }
     const effectiveJobDescription = resolveEffectiveJobDescription(jobDescription);
     if (rebuild && mode !== "resume") {
         return respond(singleGenerationStreamEvent(request_id, {
@@ -202,7 +228,7 @@ export async function POST(request: Request) {
         if (!user) firstAttempt = freeMeta.used === 0 ? "yes" : "no";
         // A rebuild (ask-first) is bound to the first report instead of a recovery or operation of its own.
         requestedRecoveryId = requireAnonymousReportRecoveryId({
-            mode, userId: user?.id || null, bypass: bypass || Boolean(rebuild), recoveryId: body?.recovery_id,
+            mode, userId: user?.id || null, bypass: bypass || unmetered, recoveryId: body?.recovery_id,
         });
         if (mode === "resume" && !user && !bypass && !hadAnonymousIdentity) {
             recordLaunchSignal("riyp.free_gate.check", {
@@ -218,7 +244,7 @@ export async function POST(request: Request) {
             }, 409));
         }
         authenticatedOperationId = requireAuthenticatedGenerationOperationId({
-            mode, userId: user?.id, bypass: bypass || Boolean(rebuild), operationId: requestedOperationId,
+            mode, userId: user?.id, bypass: bypass || unmetered, operationId: requestedOperationId,
         });
         accessReservation = rebuild ? await reserveRebuild({
             rebuild,
@@ -226,6 +252,12 @@ export async function POST(request: Request) {
             userId: user?.id || null,
             admin,
             anonymousIdentityHash: user ? null : hashAnonymousIdentity(anonymousIdentity.identity),
+        }) : postingRead ? await reservePostingRead({
+            reportId: postingRead.reportId,
+            text,
+            hasPosting: effectiveJobDescription.hasValue,
+            userId: user?.id || null,
+            admin,
         }) : await reserveGenerationAccess({
             userId: user?.id || null,
             admin,
@@ -318,7 +350,7 @@ export async function POST(request: Request) {
     }
 
     const grantedReservation = accessReservation;
-    if (!bypass && !rebuild) {
+    if (!bypass && !unmetered) {
         recordLaunchSignal("riyp.free_gate.check", {
             result: "allowed", reason: "none", first_attempt: firstAttempt, viewer: user ? "signed_in" : "anonymous",
         });
@@ -414,6 +446,7 @@ export async function POST(request: Request) {
                     text,
                     mode,
                     jobDescription,
+                    document,
                     requestId: request_id,
                     route,
                     userIdForLogs: user_id,
@@ -430,7 +463,7 @@ export async function POST(request: Request) {
                             task: mode === "resume_ideas" ? "resume_ideas" : "resume_feedback",
                             mode,
                             model,
-                            prompt_version: mode === "resume_ideas" ? "resume_ideas_v1" : resumePromptVersion(),
+                            prompt_version: mode === "resume_ideas" ? "resume_ideas_v1" : document ? "linkedin_v3" : resumePromptVersion(),
                             schema_version: mode === "resume_ideas" ? "ideas_v1" : resumeSchemaVersion(),
                             messages,
                             signal: generationController.signal,
@@ -491,7 +524,8 @@ export async function POST(request: Request) {
                 // screen may show these now. Informational, like a stage: only "complete" is the report.
                 sendPreview(validated.payload);
                 // Further Critical Misses, when RIYP_SEVERITY_CHECK is on. Any failure keeps the report as validated.
-                const { payload: checkedPayload, outcome: severity } = await severityCheckReport({
+                // A profile review skips the severity check, which reads a resume report for what it missed.
+                const { payload: checkedPayload, outcome: severity } = document ? { payload: validated.payload, outcome: null } : await severityCheckReport({
                     payload: validated.payload,
                     mode,
                     resumeText: canonicalResumeText,
@@ -503,7 +537,7 @@ export async function POST(request: Request) {
                 });
                 // Lines written to screening software, found in the text as the person sent it (before the
                 // sanitizer redacts them), so the report can tell them first. Kept with the report and its PDF.
-                const payload = withScreenerText(checkedPayload, text, jobDescription);
+                const payload = withReportDocument(withScreenerText(checkedPayload, text, jobDescription), document);
                 if (severity) {
                     const call = severity.call_latency_ms ?? severity.latency_ms;
                     stages.record("severity_call", call, severity.outcome === "error" ? "failed" : "ok");
@@ -511,7 +545,7 @@ export async function POST(request: Request) {
                 }
                 stages.skip();
                 throwIfClientDisconnected();
-                const unreserved = grantedReservation.entitlementKind === "bypass" || grantedReservation.entitlementKind === "rebuild";
+                const unreserved = grantedReservation.entitlementKind === "bypass" || grantedReservation.entitlementKind === "rebuild" || grantedReservation.entitlementKind === "posting_read";
                 if (user && mode === "resume" && !unreserved) {
                     if (!reservationAdmin) throw new Error("Report finalization is unavailable.");
                     const finalized = await finalizeAuthenticatedGeneratedReport({
@@ -556,7 +590,7 @@ export async function POST(request: Request) {
 
                 // The page isn't ready: the client shows the questions a recruiter would ask before this
                 // report, and may write it again from the answers (ask-first, Nov 5, 2026). Never on a rebuild.
-                const askFirst = mode === "resume" && !rebuild && isAskFirstEnabled() && askFirstOffered(payload as Parameters<typeof askFirstOffered>[0]);
+                const askFirst = mode === "resume" && !unmetered && !document && isAskFirstEnabled() && askFirstOffered(payload as Parameters<typeof askFirstOffered>[0]);
                 controller.enqueue(encoder.encode(JSON.stringify({
                     type: "complete",
                     ok: true,
@@ -569,8 +603,10 @@ export async function POST(request: Request) {
                     operation_id: authenticatedOperationId,
                     ask_first: askFirst,
                     rebuilt: Boolean(rebuild),
+                    // A posting read on the pass: the client says so, and leaves the report count alone.
+                    posting_read: Boolean(postingRead),
                     // A rebuild spends nothing, so it says nothing about what's left.
-                    ...(rebuild ? {} : {
+                    ...(unmetered ? {} : {
                         free_run_index: newFreeUsed,
                         free_uses_remaining: bypass || activePass ? freeUsesRemaining : newFreeRemaining,
                     }),

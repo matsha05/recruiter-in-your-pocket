@@ -1,0 +1,122 @@
+{
+  "id": "long-backend-manager-posting",
+  "resume": "../../2026-11-posting-tailoring/resumes/long_backend_two_pages.txt",
+  "posting": "posting_engineering_manager.txt",
+  "model": "gpt-6.1-terra",
+  "today": "2026-11-07",
+  "repaired": false,
+  "firstError": null,
+  "drafted": {
+    "lead": 3,
+    "trim": 3
+  },
+  "usage": {
+    "tokens_in": 7803,
+    "tokens_out": 2356,
+    "cost_estimate_usd": 0.0140534
+  },
+  "report": {
+    "contract_version": "v3",
+    "score": 87,
+    "lifted_by_employer": false,
+    "verdict": "Strong senior engineering work, but the payments manager role asks for direct management your resume doesn't show.",
+    "write_up": [
+      "Cobalt Pay is looking for an engineering manager, while your resume points to senior software engineering. At Tidewater Commerce, you show platform and payments work with clear measures; at Cascade Health Systems, you add backend services and finance work. A recruiter can see what you built, but can't tell whether you've managed engineers directly.",
+      "Your engineering results are excellent! The CI pipeline line names the tool and shows build time falling from 14 minutes to 6. That gives the rest of your resume a model to follow. Your strongest payments result sits well below several less relevant Tidewater lines, though, so a recruiter may reach it later than you'd want.",
+      "For this application, lead Tidewater with the payment failover work and bring your mentoring and incident review work forward. If you've managed direct reports or owned a team roadmap, add the details you can substantiate. Otherwise, your resume makes a stronger case for senior engineering roles than for this particular manager role."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, Platform, line 9",
+        "line": "Maintained the legacy PHP admin panel until it was retired in 2022",
+        "cannot_tell": "A recruiter can see which system you maintained, but not what that involved. The work may be more useful than the word maintained lets on.",
+        "example": "Maintained the legacy PHP admin panel until it was retired in 2022, including [maintenance work]",
+        "question": "What work did you do to maintain the PHP admin panel?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer, line 6",
+        "line": "Built a jQuery dashboard for the front-desk staff",
+        "cannot_tell": "The audience and tool are there, but the dashboard's purpose isn't. What did the front-desk staff use it to do?",
+        "example": "Built a jQuery dashboard for the front-desk staff to [dashboard purpose]",
+        "question": "What did the front-desk staff use the dashboard to do?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, Platform, line 5",
+        "line": "Wrote the CI pipeline templates in GitHub Actions that cut median build time from 14 minutes to 6",
+        "cannot_tell": "Keep this as a model: it connects something you wrote to a change an engineering team can recognize.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Platform, line 1",
+        "line": "Built the internal developer portal in React and TypeScript that 140 engineers use to scaffold services",
+        "cannot_tell": "For a role above senior engineer, a recruiter will look for decisions that shaped engineering beyond the implementation.",
+        "example": "Built the internal developer portal in React and TypeScript that 140 engineers use to scaffold services, and [a broader engineering decision you made]",
+        "question": "What broader engineering decision did you make alongside building the portal, if any?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Senior Software Engineer, Platform, line 8",
+        "line": "Led the payment provider failover project with the payments team, cutting failed checkouts during provider outages from 3.1% to 0.4%",
+        "cannot_tell": "Move this to the top of the Tidewater role. It shows payments leadership and a concrete reliability result before the less relevant work.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Senior Software Engineer",
+        "Engineering Manager, Payments Platform"
+      ],
+      "why": "Your headline and current platform role show senior engineering work across developer infrastructure and payments.",
+      "level": "senior, leads a payment provider failover project and mentors interns",
+      "note": "Your payments reliability work, finance-facing ledger job, mentoring and incident reviews are worth bringing forward for Cobalt Pay. If you have additional management work to add, describe your own responsibilities rather than presenting project leadership as direct management.",
+      "posting": {
+        "summary": "Cobalt Pay seeks an engineering manager to lead backend engineers responsible for payouts and the ledger, including people management, roadmap delivery and operations.",
+        "missing": [
+          "2+ years managing engineers with direct reports, including hiring and performance management",
+          "Own the team's roadmap and delivery with your product partner",
+          "Experience leading teams that run production systems with on-call",
+          "A record of growing engineers into senior roles"
+        ],
+        "lead": [
+          {
+            "line": "Mentored three interns, two of whom returned as full-time engineers",
+            "why": "The role asks you to grow and coach engineers. Move this higher in the Cascade Health Systems role to show the mentoring you have done."
+          },
+          {
+            "line": "Wrote the on-call handbook for the integrations team and ran the weekly incident review",
+            "why": "The posting asks for on-call health and incident reviews. Move this higher in the Cascade Health Systems role to make that operations work visible."
+          },
+          {
+            "line": "Led the payment provider failover project with the payments team, cutting failed checkouts during provider outages from 3.1% to 0.4%",
+            "why": "Payments experience is a bonus for the role. Make this the first line under Tidewater Commerce."
+          }
+        ],
+        "trim": [
+          {
+            "line": "Redesigned the office seating chart tool for the facilities team as a side project",
+            "why": "A useful project, but the posting doesn't ask for facilities tools; trim it to make room for payments work."
+          },
+          {
+            "line": "Volunteered as a tour guide for prospective interns during summer recruiting",
+            "why": "This shows involvement in recruiting, but the posting focuses on hiring and developing engineers; trim it if you need room."
+          },
+          {
+            "line": "Managed the team's snack budget and planned two offsite events",
+            "why": "This shows care for the team, but the posting doesn't ask for event planning; trim it to give the engineering work more room."
+          }
+        ]
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 87
+  }
+}

@@ -1,0 +1,51 @@
+# b35_marketing_coordinator_gap, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_marketing_coordinator_gap_1.txt (126 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt e122fb00; severity check off
+Outcome: report; cost $0.0091; 27.9s
+Case note: Gap with nothing after it.
+
+## Needs more context (score 68; model wrote 68)
+## Verdict
+A marketing coordinator with a substantial email list, but no work dated after March 2024.
+
+## Write-up
+Your resume points to Marketing Coordinator work across email, events and social media at Juniper Outdoor Co. and Fernwood Coffee Roasters. The work is easy to follow, but a recruiter has to account for the time since your last dated role before moving forward.
+
+The weekly email calendar is your strongest line: it names the work, its frequency and the list of 120,000 subscribers. Your headline fits the jobs, and Experience is in the right place above Education. Nothing on the resume explains the time after March 2024.
+
+Let's start with what you've done since Juniper, if there's something you can add honestly. Then give the social posts and earlier tasting events a little more detail about your part. You can leave the trade show line alone: four events a year tells a recruiter something useful.
+
+## Cards (6; {"dates":1,"keep":1,"line":4}); severity off; added []
+1. [dates] Dates
+   line: "Nothing is dated after March 2024."
+   can't tell: A recruiter can't tell what you've done since the Juniper role. If you were caring for a family member, taking a career break, studying, volunteering or doing real freelance work, you can name that honestly. A referral may matter more when the time isn't explained.
+   example: March 2024 - Present [what you did after March 2024]
+   question: What have you done since March 2024 that you'd be comfortable adding?
+2. [keep] Marketing Coordinator, line 1
+   line: "Managed the weekly email calendar for a list of 120,000 subscribers"
+   can't tell: Keep this as a model. It gives the recruiter a concrete responsibility and a useful measure without making them guess.
+3. [line] Marketing Coordinator, line 4
+   line: "Scheduled social posts across Instagram and Facebook"
+   can't tell: The platforms are clear, but a recruiter can't tell how often you posted or what the posts supported. That would show more of your social media work.
+   example: Scheduled social posts across Instagram and Facebook [how often] for [campaign or product]
+   question: How often did you schedule posts, and what campaigns or products did they support?
+4. [line] Marketing Coordinator, line 5
+   line: "Tracked campaign results in a monthly report for the marketing director"
+   can't tell: The monthly report has a clear audience, but the campaign results could mean several things. Naming what you tracked would show what the director could use.
+   example: Tracked [campaign metrics] in a monthly report for the marketing director
+   question: Which campaign metrics did you track in the report?
+5. [line] Marketing Assistant, line 1
+   line: "Helped plan in-store tasting events"
+   can't tell: Helped could mean a lot of different jobs. A recruiter can't tell what part of the tasting events was yours.
+   example: Helped plan in-store tasting events by [your contribution]
+   question: What did you do to help plan the tasting events?
+6. [line] Marketing Assistant, line 2
+   line: "Updated the company blog and newsletter"
+   can't tell: Updating could mean writing, editing or publishing. Your part in the blog and newsletter is worth naming.
+   example: Updated the company blog and newsletter by [your contribution]
+   question: What did you do when updating the blog and newsletter?
+
+## Fit
+Roles: ["Marketing Coordinator","Marketing Assistant"]
+Level: mid-level, managed a weekly email calendar for a list of 120,000 subscribers
+Note: Your experience points toward marketing coordinator roles with a mix of campaign and event work. Your named email and social tools can also help a recruiter place the work.

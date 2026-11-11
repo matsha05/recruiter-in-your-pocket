@@ -8,6 +8,9 @@ import { evaluateReportIntegrity } from "../lib/evals/integrity-checks";
 import { generateMarkdownReport } from "../lib/evals/report";
 import type { ErrorCode, EvalRunOutput, FixtureResult, WarningCode } from "../lib/evals/types";
 import { resumeTextFromFixture } from "../lib/evals/fixture-input";
+import { runWorklistChecks, worklistMetrics } from "../lib/evals/worklist-checks";
+import { isWorklistReport } from "../lib/llm/worklist-schema";
+import { validateWorklistPayload } from "../lib/llm/worklist-validator";
 
 function argumentValue(name: string) {
   const index = process.argv.indexOf(name);
@@ -42,17 +45,30 @@ async function main() {
       "utf8",
     ));
 
-    const replayChanges = canonicalizeResumeReportEvidence(structuredClone(original.model_output ?? original.raw_output), resumeText).changes;
+    // A worklist report (contract v3) replays through its own validator and checks, as the runner does.
+    const saved = original.model_output ?? original.raw_output;
+    const worklist = isWorklistReport(saved);
+    const replayChanges = worklist ? [] : canonicalizeResumeReportEvidence(structuredClone(saved), resumeText).changes;
     try {
-      const output = validateResumeModelPayload(structuredClone(original.model_output ?? original.raw_output), resumeText, { forceGrounding: true });
-      const checks = runAllChecks({
-        output,
-        resumeText,
-        fixture,
-        globalBanned: calibration.global_banned_phrases,
-        globalDiscouraged: calibration.global_discouraged_phrases,
-        expectedContractVersion: calibration.contract_version,
-      });
+      const output: any = worklist
+        ? validateWorklistPayload(structuredClone(saved), resumeText, { forceGrounding: true })
+        : validateResumeModelPayload(structuredClone(saved), resumeText, { forceGrounding: true });
+      const checks = worklist
+        ? runWorklistChecks({
+          output,
+          resumeText,
+          fixture,
+          globalBanned: calibration.global_banned_phrases,
+          globalDiscouraged: calibration.global_discouraged_phrases,
+        })
+        : runAllChecks({
+          output,
+          resumeText,
+          fixture,
+          globalBanned: calibration.global_banned_phrases,
+          globalDiscouraged: calibration.global_discouraged_phrases,
+          expectedContractVersion: calibration.contract_version,
+        });
       const errors = checks.errors.map((item) => ({
         code: (item.code || "E_SCHEMA") as ErrorCode,
         message: item.message || "Validation failed",
@@ -71,7 +87,8 @@ async function main() {
         actual_score: output.score,
         expected_range: [fixture.expected_score.min, fixture.expected_score.max],
         raw_output: output,
-        integrity: evaluateReportIntegrity(output),
+        integrity: worklist ? undefined : evaluateReportIntegrity(output),
+        ...(worklist ? { worklist: worklistMetrics(output) } : {}),
       });
     } catch (error) {
       results.push({

@@ -231,6 +231,8 @@ export default function ReportDetailClient({ reportId }: ReportDetailClientProps
             isSample={false}
             onNewReport={() => push("/workspace")}
             onStartRevision={revisionHref ? () => push(revisionHref) : undefined}
+            // Saved reports don't keep the resume: the workspace asks for it again, and with a pass the read spends no report.
+            onReadAgainstPosting={() => push(`/workspace?posting=${encodeURIComponent(reportId)}`)}
             freeUsesRemaining={freeUsesRemaining}
             onUpgrade={() => push(getCheckoutPricingHref(revisionHref))}
             isGated={false}

@@ -1,0 +1,252 @@
+{
+  "case_id": "b01_icu_nurse",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_icu_nurse_1.txt",
+  "resume_sha256": "a52d8cb032163bcc7edaa524fe56cb06594cccf78f90a9ba023148de11fe18ef",
+  "resume_words": 153,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-11T15:59:36.986Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 6794,
+        "completion_tokens": 1259,
+        "total_tokens": 8053,
+        "cached_prompt_tokens": 6116,
+        "cache_write_prompt_tokens": 675,
+        "reasoning_tokens": 553
+      },
+      "cost_usd": 0.00744755,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 22518
+    }
+  ],
+  "resume_prompt_sha256": "e122fb00655b92e22574f13af1e038ff8846f6c54459bfa431be988d44f4cdc4",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 82,
+    "lifted_by_employer": false,
+    "verdict": "A medical ICU nurse with a clear bedside care record and a few questions about team contributions.",
+    "write_up": [
+      "Your resume points clearly to medical ICU nursing: you care for critically ill patients at Desert Valley and previously worked in telemetry at Saguaro. A recruiter can see the patient load, therapies and credentials that matter for this work, so I’d expect them to move forward with a couple of questions.",
+      "The direct care line is a strong model because it puts your patient assignment and unit together. Your current role and dates are easy to find, and your licenses and certifications lead the resume. The committee and rapid response lines leave more room to explain your part.",
+      "Let’s start with the sepsis committee. Add what you contributed there, then explain your role on rapid response calls. Leave the patient care lines alone: they already name the work a recruiter needs to see."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Staff Nurse, Medical ICU, line 1",
+        "line": "- Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU",
+        "cannot_tell": "Keep this as your model. It gives a recruiter both your assignment per shift and the setting where you work.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 5",
+        "line": "- Member of the unit's sepsis bundle compliance committee",
+        "cannot_tell": "Committee membership tells a recruiter where you participated, but not what you contributed to sepsis bundle compliance.",
+        "example": "Member of the unit's sepsis bundle compliance committee; contributed [your committee contribution]",
+        "question": "What did you contribute to the committee's work on sepsis bundle compliance?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Telemetry, line 2",
+        "line": "- Responded to rapid response calls as part of the floor team",
+        "cannot_tell": "A recruiter can see you were part of the response, but not what you did during those calls.",
+        "example": "Responded to rapid response calls as part of the floor team, where I [your role during calls]",
+        "question": "What did you do during rapid response calls as part of the floor team?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Nurse, Medical ICU",
+        "Staff Nurse, Telemetry"
+      ],
+      "why": "Your current role, CCRN and work with ventilated patients, vasoactive drips and continuous renal replacement therapy point to medical ICU nursing.",
+      "level": "mid-level, current ICU staff nurse who also serves as charge nurse",
+      "note": "Your telemetry work adds cardiac patient care to your ICU background. Charge shifts and precepting also show leadership and teaching alongside bedside care.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 82,
+    "lifted_by_employer": false,
+    "verdict": "A medical ICU nurse with a clear bedside care record and a few questions about team contributions.",
+    "write_up": [
+      "Your resume points clearly to medical ICU nursing: you care for critically ill patients at Desert Valley and previously worked in telemetry at Saguaro. A recruiter can see the patient load, therapies and credentials that matter for this work, so I’d expect them to move forward with a couple of questions.",
+      "The direct care line is a strong model because it puts your patient assignment and unit together. Your current role and dates are easy to find, and your licenses and certifications lead the resume. The committee and rapid response lines leave more room to explain your part.",
+      "Let’s start with the sepsis committee. Add what you contributed there, then explain your role on rapid response calls. Leave the patient care lines alone: they already name the work a recruiter needs to see."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Staff Nurse, Medical ICU, line 1",
+        "line": "Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU",
+        "cannot_tell": "Keep this as your model. It gives a recruiter both your assignment per shift and the setting where you work.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 5",
+        "line": "Member of the unit's sepsis bundle compliance committee",
+        "cannot_tell": "Committee membership tells a recruiter where you participated, but not what you contributed to sepsis bundle compliance.",
+        "example": "Member of the unit's sepsis bundle compliance committee; contributed [your committee contribution]",
+        "question": "What did you contribute to the committee's work on sepsis bundle compliance?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Telemetry, line 2",
+        "line": "Responded to rapid response calls as part of the floor team",
+        "cannot_tell": "A recruiter can see you were part of the response, but not what you did during those calls.",
+        "example": "Responded to rapid response calls as part of the floor team, where I [your role during calls]",
+        "question": "What did you do during rapid response calls as part of the floor team?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Nurse, Medical ICU",
+        "Staff Nurse, Telemetry"
+      ],
+      "why": "Your current role, CCRN and work with ventilated patients, vasoactive drips and continuous renal replacement therapy point to medical ICU nursing.",
+      "level": "mid-level, current ICU staff nurse who also serves as charge nurse",
+      "note": "Your telemetry work adds cardiac patient care to your ICU background. Charge shifts and precepting also show leadership and teaching alongside bedside care.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 82
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 82,
+    "lifted_by_employer": false,
+    "verdict": "A medical ICU nurse with a clear bedside care record and a few questions about team contributions.",
+    "write_up": [
+      "Your resume points clearly to medical ICU nursing: you care for critically ill patients at Desert Valley and previously worked in telemetry at Saguaro. A recruiter can see the patient load, therapies and credentials that matter for this work, so I’d expect them to move forward with a couple of questions.",
+      "The direct care line is a strong model because it puts your patient assignment and unit together. Your current role and dates are easy to find, and your licenses and certifications lead the resume. The committee and rapid response lines leave more room to explain your part.",
+      "Let’s start with the sepsis committee. Add what you contributed there, then explain your role on rapid response calls. Leave the patient care lines alone: they already name the work a recruiter needs to see."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Staff Nurse, Medical ICU, line 1",
+        "line": "Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU",
+        "cannot_tell": "Keep this as your model. It gives a recruiter both your assignment per shift and the setting where you work.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 5",
+        "line": "Member of the unit's sepsis bundle compliance committee",
+        "cannot_tell": "Committee membership tells a recruiter where you participated, but not what you contributed to sepsis bundle compliance.",
+        "example": "Member of the unit's sepsis bundle compliance committee; contributed [your committee contribution]",
+        "question": "What did you contribute to the committee's work on sepsis bundle compliance?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Telemetry, line 2",
+        "line": "Responded to rapid response calls as part of the floor team",
+        "cannot_tell": "A recruiter can see you were part of the response, but not what you did during those calls.",
+        "example": "Responded to rapid response calls as part of the floor team, where I [your role during calls]",
+        "question": "What did you do during rapid response calls as part of the floor team?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Nurse, Medical ICU",
+        "Staff Nurse, Telemetry"
+      ],
+      "why": "Your current role, CCRN and work with ventilated patients, vasoactive drips and continuous renal replacement therapy point to medical ICU nursing.",
+      "level": "mid-level, current ICU staff nurse who also serves as charge nurse",
+      "note": "Your telemetry work adds cardiac patient care to your ICU background. Charge shifts and precepting also show leadership and teaching alongside bedside care.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 82
+  },
+  "presentation": {
+    "score": 82,
+    "band": "Mostly clear",
+    "model_score": 82,
+    "lifted_by_employer": false,
+    "verdict": "A medical ICU nurse with a clear bedside care record and a few questions about team contributions.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 133,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Staff Nurse, Medical ICU, line 1",
+        "line": "Provide direct care for 2 critically ill patients per shift in a 24-bed medical ICU",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Medical ICU, line 5",
+        "line": "Member of the unit's sepsis bundle compliance committee",
+        "blanks": 1,
+        "question": "What did you contribute to the committee's work on sepsis bundle compliance?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Nurse, Telemetry, line 2",
+        "line": "Responded to rapid response calls as part of the floor team",
+        "blanks": 1,
+        "question": "What did you do during rapid response calls as part of the floor team?"
+      }
+    ],
+    "card_count": 3,
+    "kinds": {
+      "keep": 1,
+      "line": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Staff Nurse, Medical ICU",
+        "Staff Nurse, Telemetry"
+      ],
+      "why": "Your current role, CCRN and work with ventilated patients, vasoactive drips and continuous renal replacement therapy point to medical ICU nursing.",
+      "level": "mid-level, current ICU staff nurse who also serves as charge nurse",
+      "note": "Your telemetry work adds cardiac patient care to your ICU background. Charge shifts and precepting also show leadership and teaching alongside bedside care.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00744755,
+  "latency_ms": 22539
+}

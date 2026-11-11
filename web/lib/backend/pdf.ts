@@ -6,9 +6,10 @@ import { join } from "node:path";
 import type { ReportForPdf, WorklistForPdf } from "../reports/pdf-export";
 import { criticalCountHeading, fixLabel, fixPlanHeadingForCount, missingFromResume, readCriticalMisses, TIGHTENING_HEADING } from "../reports/report-presentation";
 import { marginNoteFromFix } from "../reports/revised-line";
-import { SCORE_BANDS, WORKLIST_BANDS, reportTone, scoreBandIndex, worklistBandIndex } from "../reports/score-band";
+import { SCORE_BANDS, WORKLIST_BANDS, reportTone, scoreBandIndex, worklistBandIndex, worklistBandsFor } from "../reports/score-band";
+import { reportDocumentKind } from "../reports/report-document";
 import { QUOTED_KINDS, WORK_KINDS } from "../llm/worklist-schema";
-import { cardsHeading, hasRoleSection, UPGRADES_HEADING, upgradesLead, POSTING_MISSING_HOW, POSTING_MISSING_LABEL, screenerNote, screenerTitle, worklistLevelParts, worklistReadFor } from "../reports/worklist-presentation";
+import { cardsHeading, hasRoleSection, UPGRADES_HEADING, upgradesLead, POSTING_LEAD_HOW, POSTING_LEAD_LABEL, POSTING_MISSING_HOW, POSTING_MISSING_LABEL, POSTING_TRIM_HOW, POSTING_TRIM_LABEL, screenerNote, screenerTitle, worklistLevelParts, worklistReadFor } from "../reports/worklist-presentation";
 import { pdfReportStyles } from "./pdf-styles";
 
 /**
@@ -56,7 +57,9 @@ function exampleHtml(card: WorklistForPdf["cards"][number]) {
 function renderWorklistHtml(report: ReportForPdf, worklist: WorklistForPdf) {
   const generatedOn = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
   const bandIndex = Math.max(0, worklistBandIndex(report.score));
-  const band = WORKLIST_BANDS[bandIndex];
+  // A LinkedIn profile review prints the profile's band names and score note; the cards' headings follow the report.
+  const profile = reportDocumentKind(worklist) === "linkedin";
+  const band = worklistBandsFor(profile ? "linkedin" : "resume")[bandIndex];
   const work = worklist.cards.filter((card) => WORK_KINDS.has(card.kind));
   const heading = cardsHeading(worklist).title;
   const cardHtml = (card: WorklistForPdf["cards"][number]) => {
@@ -88,6 +91,11 @@ function renderWorklistHtml(report: ReportForPdf, worklist: WorklistForPdf) {
   // The first pass, as on the web report (Nov 7, 2026): a line written to screening software, then which job,
   // what level and the posting, each with its reason, then the posting's fit.
   const read = worklistReadFor(worklist);
+  // Tailoring to the posting, as the report shows it: the lines to move up, then the lines to trim, each with its reason.
+  const movesHtml = (label: string, how: string, moves: Array<{ line: string; why: string }> | undefined) => moves?.length
+    ? `<div class="label">${escapeHtml(label)}</div><div class="how">${escapeHtml(how)}</div><ul>${moves.map((move) => `<li>${escapeHtml(move.line)}<br><span class="note">${escapeHtml(move.why)}</span></li>`).join("")}</ul>`
+    : "";
+  const postingMoves = movesHtml(POSTING_LEAD_LABEL, POSTING_LEAD_HOW, worklist.fit.posting.lead) + movesHtml(POSTING_TRIM_LABEL, POSTING_TRIM_HOW, worklist.fit.posting.trim);
   const level = worklistLevelParts(read.level, read.role);
   const screener = worklist.screener_text ?? [];
   const sortCell = (question: string, answer: string, why?: string | null) =>
@@ -104,9 +112,10 @@ function renderWorklistHtml(report: ReportForPdf, worklist: WorklistForPdf) {
         ${level ? sortCell("What level?", level.level, level.because) : ""}
         ${read.hasPosting ? sortCell("Your posting", read.postingRole || "The job you added") : ""}
       </div>` : ""}
-      ${read.hasPosting && (fit.note || fit.posting.missing.length) ? `<div class="posting-fit">
+      ${read.hasPosting && (fit.note || fit.posting.missing.length || postingMoves) ? `<div class="posting-fit">
         ${fit.note ? `<p class="note">${escapeHtml(fit.note)}</p>` : ""}
         ${fit.posting.missing.length ? `<div class="label">${escapeHtml(POSTING_MISSING_LABEL)}</div><ul>${fit.posting.missing.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul><div class="how">${escapeHtml(POSTING_MISSING_HOW)}</div>` : ""}
+        ${postingMoves}
       </div>` : ""}
     </div>` : "";
 
@@ -138,7 +147,7 @@ function renderWorklistHtml(report: ReportForPdf, worklist: WorklistForPdf) {
     <h1>${escapeHtml(worklist.verdict)}</h1>
     ${firstPassHtml}
     <div class="write-up">${worklist.write_up.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}</div>
-    <div class="score-note">The band is what a recruiter would do with your resume after one pass; the number says where in the band you sit. Neither predicts interviews or offers.${worklist.lifted_by_employer ? " A recent employer recruiters know on sight moved this resume up one band." : ""}</div>
+    <div class="score-note">${profile ? "The band is what a recruiter would do after landing on your profile; the number says where in the band you sit. Neither predicts messages, interviews or offers." : "The band is what a recruiter would do with your resume after one pass; the number says where in the band you sit. Neither predicts interviews or offers."}${worklist.lifted_by_employer ? " A recent employer recruiters know on sight moved this resume up one band." : ""}</div>
   </section>
 
   <section class="section priority-section">

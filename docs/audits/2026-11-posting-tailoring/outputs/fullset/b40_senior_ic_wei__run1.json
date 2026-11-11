@@ -1,0 +1,376 @@
+{
+  "case_id": "b40_senior_ic_wei",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Senior IC (bar persona).",
+  "resume_file": "../2026-11-live-judgment/../../../docs/design/2026-11-bar/resumes/4-senior-ic-wei.txt",
+  "resume_sha256": "e95b41ee5391398ba259810d134ff4a7392766f8e7fa117ad93d5d19b8ed94a5",
+  "resume_words": 361,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-11T16:03:19.430Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7495,
+        "completion_tokens": 1971,
+        "total_tokens": 9466,
+        "cached_prompt_tokens": 6116,
+        "cache_write_prompt_tokens": 1376,
+        "reasoning_tokens": 660
+      },
+      "cost_usd": 0.0118838,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 31148
+    }
+  ],
+  "resume_prompt_sha256": "e122fb00655b92e22574f13af1e038ff8846f6c54459bfa431be988d44f4cdc4",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 81,
+    "lifted_by_employer": false,
+    "verdict": "A staff engineer with strong payments architecture work and too few measures of its reach.",
+    "write_up": [
+      "Your resume points clearly to staff engineering in payments: you moved from storage systems at Nimbus Cloud to fraud, reconciliation, and then ledger and settlement leadership at Brightline Payments. A recruiter can see the technical work and would likely move it forward, but has to ask how much the staff-level projects changed and how large the team was.",
+      "The fraud pipeline line is a strong model: it names what you built, the technologies, and a latency measure. Your current role also shows a real win in eliminating a class of duplicate-charge incidents. The experience comes before education, and the progression into technical leadership is easy to follow.",
+      "Let's start with the ledger team and redesign. Add the team size and a measure of what the redesign changed if you can substantiate them, then give the reconciliation and storage improvements the same treatment. Keep the technical details that make the work distinct."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 1",
+        "line": "- Technical lead for the ledger and settlement platform team",
+        "cannot_tell": "A recruiter can see the team you lead technically, but not how many people are on it. That makes the remit difficult to compare with other staff roles.",
+        "example": "Technical lead for the ledger and settlement platform team of [team size], working on [team's work]",
+        "question": "How many people were on the team, and what work did it handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 2",
+        "line": "- Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "cannot_tell": "The architecture change is concrete, but a recruiter can't tell what the redesign changed for the service. A measure of scale or performance would make the technical decision more meaningful.",
+        "example": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, resulting in [measured change]",
+        "question": "What changed for the ledger service after the redesign, and how was it measured?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 4",
+        "line": "- Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services",
+        "cannot_tell": "The incident leadership and reliability practices are clear. What isn't here is whether the error budgets and SLOs changed how the team handled reliability.",
+        "example": "Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services, leading to [change in reliability practices]",
+        "question": "What changed in the team's reliability practices after you introduced the error budgets and SLOs?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 6",
+        "line": "- Partnered with product and finance on the roadmap for multi-currency settlement",
+        "cannot_tell": "A recruiter can see who you worked with, but not your contribution to the roadmap. The decision or technical work you brought would show your part.",
+        "example": "Partnered with product and finance on the roadmap for multi-currency settlement, contributing [your contribution]",
+        "question": "What did you contribute to the multi-currency settlement roadmap?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, line 1",
+        "line": "- Built the real-time fraud scoring pipeline (Flink, Kafka) processing payment events with p99 latency under 50ms",
+        "cannot_tell": "Keep this as a model. It puts your ownership and a concrete performance measure together, so a recruiter can understand the work without guessing.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, line 3",
+        "line": "- Reduced reconciliation break rate and manual ops effort",
+        "cannot_tell": "Both changes matter in payments, but a recruiter can't tell how much either fell or what you did to reduce them.",
+        "example": "Reduced reconciliation break rate by [measured change] and manual ops effort by [measured change] through [your work]",
+        "question": "What did you do to reduce the break rate and manual effort, and how were the changes measured?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, line 3",
+        "line": "- Improved API latency and availability through caching and request coalescing",
+        "cannot_tell": "The methods are named, but the extent of the latency and availability improvements isn't. A measure would show what the changes achieved.",
+        "example": "Improved API latency by [measured change] and availability by [measured change] through caching and request coalescing",
+        "question": "How did API latency and availability change after the caching and request coalescing work?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Software Engineer",
+        "Senior Software Engineer"
+      ],
+      "why": "Your headline and current Brightline Payments role both point to staff engineering in distributed payments systems.",
+      "level": "lead, technical lead for the ledger and settlement platform team",
+      "note": "Your ledger, settlement, fraud, and storage work points toward senior technical roles in distributed infrastructure. The strongest next addition is a measure of the team and the changes your staff-level work produced.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 81,
+    "lifted_by_employer": false,
+    "verdict": "A staff engineer with strong payments architecture work and too few measures of its reach.",
+    "write_up": [
+      "Your resume points clearly to staff engineering in payments: you moved from storage systems at Nimbus Cloud to fraud, reconciliation, and then ledger and settlement leadership at Brightline Payments. A recruiter can see the technical work and would likely move it forward, but has to ask how much the staff-level projects changed and how large the team was.",
+      "The fraud pipeline line is a strong model: it names what you built, the technologies, and a latency measure. Your current role also shows a real win in eliminating a class of duplicate-charge incidents. The experience comes before education, and the progression into technical leadership is easy to follow.",
+      "Let's start with the ledger team and redesign. Add the team size and a measure of what the redesign changed if you can substantiate them, then give the reconciliation and storage improvements the same treatment. Keep the technical details that make the work distinct."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 1",
+        "line": "Technical lead for the ledger and settlement platform team",
+        "cannot_tell": "A recruiter can see the team you lead technically, but not how many people are on it. That makes the remit difficult to compare with other staff roles.",
+        "example": "Technical lead for the ledger and settlement platform team of [team size], working on [team's work]",
+        "question": "How many people were on the team, and what work did it handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 2",
+        "line": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "cannot_tell": "The architecture change is concrete, but a recruiter can't tell what the redesign changed for the service. A measure of scale or performance would make the technical decision more meaningful.",
+        "example": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, resulting in [measured change]",
+        "question": "What changed for the ledger service after the redesign, and how was it measured?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 4",
+        "line": "Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services",
+        "cannot_tell": "The incident leadership and reliability practices are clear. What isn't here is whether the error budgets and SLOs changed how the team handled reliability.",
+        "example": "Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services, leading to [change in reliability practices]",
+        "question": "What changed in the team's reliability practices after you introduced the error budgets and SLOs?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 6",
+        "line": "Partnered with product and finance on the roadmap for multi-currency settlement",
+        "cannot_tell": "A recruiter can see who you worked with, but not your contribution to the roadmap. The decision or technical work you brought would show your part.",
+        "example": "Partnered with product and finance on the roadmap for multi-currency settlement, contributing [your contribution]",
+        "question": "What did you contribute to the multi-currency settlement roadmap?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, line 1",
+        "line": "Built the real-time fraud scoring pipeline (Flink, Kafka) processing payment events with p99 latency under 50ms",
+        "cannot_tell": "Keep this as a model. It puts your ownership and a concrete performance measure together, so a recruiter can understand the work without guessing.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, line 3",
+        "line": "Reduced reconciliation break rate and manual ops effort",
+        "cannot_tell": "Both changes matter in payments, but a recruiter can't tell how much either fell or what you did to reduce them.",
+        "example": "Reduced reconciliation break rate by [measured change] and manual ops effort by [measured change] through [your work]",
+        "question": "What did you do to reduce the break rate and manual effort, and how were the changes measured?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, line 3",
+        "line": "Improved API latency and availability through caching and request coalescing",
+        "cannot_tell": "The methods are named, but the extent of the latency and availability improvements isn't. A measure would show what the changes achieved.",
+        "example": "Improved API latency by [measured change] and availability by [measured change] through caching and request coalescing",
+        "question": "How did API latency and availability change after the caching and request coalescing work?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Software Engineer",
+        "Senior Software Engineer"
+      ],
+      "why": "Your headline and current Brightline Payments role both point to staff engineering in distributed payments systems.",
+      "level": "lead, technical lead for the ledger and settlement platform team",
+      "note": "Your ledger, settlement, fraud, and storage work points toward senior technical roles in distributed infrastructure. The strongest next addition is a measure of the team and the changes your staff-level work produced.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 81
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 81,
+    "lifted_by_employer": false,
+    "verdict": "A staff engineer with strong payments architecture work and too few measures of its reach.",
+    "write_up": [
+      "Your resume points clearly to staff engineering in payments: you moved from storage systems at Nimbus Cloud to fraud, reconciliation, and then ledger and settlement leadership at Brightline Payments. A recruiter can see the technical work and would likely move it forward, but has to ask how much the staff-level projects changed and how large the team was.",
+      "The fraud pipeline line is a strong model: it names what you built, the technologies, and a latency measure. Your current role also shows a real win in eliminating a class of duplicate-charge incidents. The experience comes before education, and the progression into technical leadership is easy to follow.",
+      "Let's start with the ledger team and redesign. Add the team size and a measure of what the redesign changed if you can substantiate them, then give the reconciliation and storage improvements the same treatment. Keep the technical details that make the work distinct."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 1",
+        "line": "Technical lead for the ledger and settlement platform team",
+        "cannot_tell": "A recruiter can see the team you lead technically, but not how many people are on it. That makes the remit difficult to compare with other staff roles.",
+        "example": "Technical lead for the ledger and settlement platform team of [team size], working on [team's work]",
+        "question": "How many people were on the team, and what work did it handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 2",
+        "line": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "cannot_tell": "The architecture change is concrete, but a recruiter can't tell what the redesign changed for the service. A measure of scale or performance would make the technical decision more meaningful.",
+        "example": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB, resulting in [measured change]",
+        "question": "What changed for the ledger service after the redesign, and how was it measured?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 4",
+        "line": "Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services",
+        "cannot_tell": "The incident leadership and reliability practices are clear. What isn't here is whether the error budgets and SLOs changed how the team handled reliability.",
+        "example": "Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services, leading to [change in reliability practices]",
+        "question": "What changed in the team's reliability practices after you introduced the error budgets and SLOs?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 6",
+        "line": "Partnered with product and finance on the roadmap for multi-currency settlement",
+        "cannot_tell": "A recruiter can see who you worked with, but not your contribution to the roadmap. The decision or technical work you brought would show your part.",
+        "example": "Partnered with product and finance on the roadmap for multi-currency settlement, contributing [your contribution]",
+        "question": "What did you contribute to the multi-currency settlement roadmap?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, line 1",
+        "line": "Built the real-time fraud scoring pipeline (Flink, Kafka) processing payment events with p99 latency under 50ms",
+        "cannot_tell": "Keep this as a model. It puts your ownership and a concrete performance measure together, so a recruiter can understand the work without guessing.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, line 3",
+        "line": "Reduced reconciliation break rate and manual ops effort",
+        "cannot_tell": "Both changes matter in payments, but a recruiter can't tell how much either fell or what you did to reduce them.",
+        "example": "Reduced reconciliation break rate by [measured change] and manual ops effort by [measured change] through [your work]",
+        "question": "What did you do to reduce the break rate and manual effort, and how were the changes measured?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, line 3",
+        "line": "Improved API latency and availability through caching and request coalescing",
+        "cannot_tell": "The methods are named, but the extent of the latency and availability improvements isn't. A measure would show what the changes achieved.",
+        "example": "Improved API latency by [measured change] and availability by [measured change] through caching and request coalescing",
+        "question": "How did API latency and availability change after the caching and request coalescing work?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Software Engineer",
+        "Senior Software Engineer"
+      ],
+      "why": "Your headline and current Brightline Payments role both point to staff engineering in distributed payments systems.",
+      "level": "lead, technical lead for the ledger and settlement platform team",
+      "note": "Your ledger, settlement, fraud, and storage work points toward senior technical roles in distributed infrastructure. The strongest next addition is a measure of the team and the changes your staff-level work produced.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 81
+  },
+  "presentation": {
+    "score": 81,
+    "band": "Mostly clear",
+    "model_score": 81,
+    "lifted_by_employer": false,
+    "verdict": "A staff engineer with strong payments architecture work and too few measures of its reach.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 151,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 1",
+        "line": "Technical lead for the ledger and settlement platform team",
+        "blanks": 2,
+        "question": "How many people were on the team, and what work did it handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 2",
+        "line": "Led the redesign of the core ledger service from a monolithic Postgres-backed system to a horizontally scalable event-sourced architecture on Kafka and CockroachDB",
+        "blanks": 1,
+        "question": "What changed for the ledger service after the redesign, and how was it measured?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 4",
+        "line": "Led incident response and postmortems for Sev1 payment outages; introduced error budgets and SLOs for tier-1 services",
+        "blanks": 1,
+        "question": "What changed in the team's reliability practices after you introduced the error budgets and SLOs?"
+      },
+      {
+        "kind": "line",
+        "where": "Staff Software Engineer, line 6",
+        "line": "Partnered with product and finance on the roadmap for multi-currency settlement",
+        "blanks": 1,
+        "question": "What did you contribute to the multi-currency settlement roadmap?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Software Engineer, line 1",
+        "line": "Built the real-time fraud scoring pipeline (Flink, Kafka) processing payment events with p99 latency under 50ms",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Senior Software Engineer, line 3",
+        "line": "Reduced reconciliation break rate and manual ops effort",
+        "blanks": 3,
+        "question": "What did you do to reduce the break rate and manual effort, and how were the changes measured?"
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer II, line 3",
+        "line": "Improved API latency and availability through caching and request coalescing",
+        "blanks": 2,
+        "question": "How did API latency and availability change after the caching and request coalescing work?"
+      }
+    ],
+    "card_count": 7,
+    "kinds": {
+      "line": 6,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Staff Software Engineer",
+        "Senior Software Engineer"
+      ],
+      "why": "Your headline and current Brightline Payments role both point to staff engineering in distributed payments systems.",
+      "level": "lead, technical lead for the ledger and settlement platform team",
+      "note": "Your ledger, settlement, fraud, and storage work points toward senior technical roles in distributed infrastructure. The strongest next addition is a measure of the team and the changes your staff-level work produced.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0118838,
+  "latency_ms": 31149
+}

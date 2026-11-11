@@ -6,8 +6,9 @@ import type { WorklistReport as Report } from "@/lib/llm/worklist-schema";
 import { isWorklistReport } from "@/lib/llm/worklist-schema";
 import { sendLineAnswers, type LineAnswersPatch, type StoredLineAnswersByFix } from "@/lib/reports/line-answers";
 import { buildPdfExportRequest } from "@/lib/reports/pdf-export";
-import { worklistBandFor } from "@/lib/reports/score-band";
-import { cardsHeading, fitHeading, hasRoleSection, UNLISTED_LINES_NOTE, UPGRADES_HEADING, upgradesLead, workCards } from "@/lib/reports/worklist-presentation";
+import { worklistBandIndex, worklistBandsFor } from "@/lib/reports/score-band";
+import { reportDocumentKind } from "@/lib/reports/report-document";
+import { cardsHeading, fitHeading, hasRoleSection, reportWording, UPGRADES_HEADING, upgradesLead, workCards } from "@/lib/reports/worklist-presentation";
 import { cn } from "@/lib/utils";
 import { ReportEnding } from "../ReportEnding";
 import { ResearchReceipts } from "../ResearchReceipts";
@@ -62,7 +63,11 @@ export function WorklistReport({
   onSaveReport,
   isSavingReport = false,
 }: WorklistReportProps) {
-  const band = worklistBandFor(report.score);
+  // A LinkedIn profile review is this report with the profile's words and bands, and no posting or research strip.
+  const document = reportDocumentKind(report);
+  const isProfile = document === "linkedin";
+  const wording = reportWording(document);
+  const band = worklistBandsFor(document)[Math.max(0, worklistBandIndex(report.score))];
   const heading = cardsHeading(report);
   const work = workCards(report);
   // Upgrades are their own group after the list (Nov 7, 2026); each card keeps its place in report.cards for its answers.
@@ -84,7 +89,8 @@ export function WorklistReport({
 
   // Answers are kept with the report when it has a row of its own, which only a signed-in report does (W3).
   const persist = useMemo(() => (reportId && !isSample ? (patch: LineAnswersPatch) => sendLineAnswers(reportId, patch) : undefined), [isSample, reportId]);
-  const previous = comparisonBaseline && isWorklistReport(comparisonBaseline) ? comparisonBaseline : null;
+  // A re-check compares like with like: a profile with a profile, a resume with a resume.
+  const previous = comparisonBaseline && isWorklistReport(comparisonBaseline) && reportDocumentKind(comparisonBaseline) === reportDocumentKind(report) ? comparisonBaseline : null;
 
   return (
     <div className={cn(styles.root, className)} data-testid="worklist-report">
@@ -93,10 +99,10 @@ export function WorklistReport({
       <section id="section-first-impression" className={cn(styles.opening, "scroll-mt-36")} aria-labelledby="report-verdict">
         <div className={styles.top}>
           <p className={styles.score} aria-label={`Score ${report.score} out of 99`} data-testid="worklist-score">{report.score}</p>
-          <ScoreBand score={report.score} bands="worklist" />
+          <ScoreBand score={report.score} bands={isProfile ? "profile" : "worklist"} />
         </div>
         <h1 id="report-verdict" className={styles.verdict}>{report.verdict}</h1>
-        <FirstPass report={report} onReadAgainstPosting={isSample ? undefined : onReadAgainstPosting} />
+        <FirstPass report={report} onReadAgainstPosting={isSample || isProfile ? undefined : onReadAgainstPosting} />
         <div className={styles.writeUp} data-testid="worklist-write-up">
           {report.write_up.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
         </div>
@@ -114,6 +120,7 @@ export function WorklistReport({
                 index={index}
                 cards={report.cards}
                 resumeText={resumeText}
+                document={document}
                 isSample={isSample}
                 initial={storedLineAnswers?.[String(index)]}
                 onPersist={persist}
@@ -122,7 +129,9 @@ export function WorklistReport({
             ))}
           </ol>
         )}
-        {work.length > 0 && <p className={styles.unlisted}>{UNLISTED_LINES_NOTE}</p>}
+        {work.length > 0 && <p className={styles.unlisted}>{wording.unlisted}</p>}
+        {wording.sourceLimits && <p className={styles.unlisted} data-testid="report-source-limits">{wording.sourceLimits}</p>}
+        {wording.sourceAdvice && <p className={styles.unlisted} data-testid="report-source-advice">{wording.sourceAdvice}</p>}
       </section>
 
       {upgrades.length > 0 && (
@@ -137,6 +146,7 @@ export function WorklistReport({
                 index={index}
                 cards={report.cards}
                 resumeText={resumeText}
+                document={document}
                 isSample={isSample}
                 initial={storedLineAnswers?.[String(index)]}
                 onPersist={persist}
@@ -155,7 +165,7 @@ export function WorklistReport({
             {report.fit.note && <p className={shared.bodyText}>{report.fit.note}</p>}
             {report.fit.roles.length > 0 && (
               <div className={styles.fitList}>
-                <p className={shared.keepLabel}>Roles to consider</p>
+                <p className={shared.keepLabel}>{wording.fitListLabel}</p>
                 <ul>{report.fit.roles.slice(0, 4).map((role) => <li key={role}>{role}</li>)}</ul>
               </div>
             )}
@@ -163,7 +173,7 @@ export function WorklistReport({
         </section>
       )}
 
-      <ResearchReceipts />
+      {!isProfile && <ResearchReceipts />}
 
       <details id="section-score" className={cn("ui-disclosure group scroll-mt-36", shared.disclosure)} data-testid="score-basis">
         <summary className={cn("focus-ring", shared.disclosureSummary)}>
@@ -171,13 +181,14 @@ export function WorklistReport({
           <CaretDown className="size-4 shrink-0 text-brand transition-transform duration-fast ease-snap group-open:rotate-180 motion-reduce:transition-none" aria-hidden="true" />
         </summary>
         <div className={shared.disclosureBody}>
-          <p>The band is what a recruiter would do with your resume after one pass. The number says where in the band you sit. Neither predicts interviews or offers.</p>
+          <p>{wording.scoreNote}</p>
           <p>{band.name}: {band.anchor}</p>
-          {report.lifted_by_employer && <p>A recent employer recruiters know on sight moved this resume up one band. The lines under that name still need the work.</p>}
+          {report.lifted_by_employer && <p>{isProfile ? "A recent employer recruiters know on sight moved this profile up one band. The parts under that name still need the work." : "A recent employer recruiters know on sight moved this resume up one band. The lines under that name still need the work."}</p>}
         </div>
       </details>
 
       <ReportEnding
+        document={document}
         isSample={isSample}
         isSignedIn={isSignedIn}
         isExhausted={isExhausted}

@@ -1,5 +1,6 @@
 "use client";
 
+import { POSTING_READS_AFTER_FIVE, POSTING_READS_SENTENCE } from "@/lib/reports/posting-read-terms";
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Info, LockKey } from "@phosphor-icons/react";
@@ -106,6 +107,7 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                         <h2>Job Search Pass</h2>
                         <span className={styles.price}>$29</span>
                         <p>{JOB_SEARCH_PASS_DECISION.terms} {JOB_SEARCH_PASS_DECISION.whenToBuy}</p>
+                        <p data-testid="pricing-posting-reads">{POSTING_READS_SENTENCE}</p>
                     </div>
 
                     <p className={styles.boundary}>{FREE_REPORT_ENTITLEMENT.boundary}</p>
@@ -144,7 +146,7 @@ export default function PricingPageClient({ returnTo: requestedReturnTo = null, 
                     <li><strong>One payment.</strong> The pass ends after 90 days and never renews.</li>
                     <li><strong>Stripe handles your card.</strong> We never see or store the number.</li>
                     <li><strong>Haven&rsquo;t used a paid report yet?</strong> Full refund within 14 days: write to support from your checkout email. <Link href="/terms" className="riyp-link">Terms</Link></li>
-                    <li><strong>Used all five?</strong> Your saved reports and their PDFs stay open. Another report needs a new pass.</li>
+                    <li><strong>Used all five?</strong> Your saved reports and their PDFs stay open. {POSTING_READS_AFTER_FIVE} Another report needs a new pass.</li>
                 </ul>
                 {billingEnabled ? <p className={styles.taxes}>Taxes may apply at checkout.</p> : null}
             </section>

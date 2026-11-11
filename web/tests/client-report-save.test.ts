@@ -92,7 +92,7 @@ async function run() {
   assert.match(workspace, /payload = await saveReceiptValidatedReport\(payload\)/);
   assert.match(
     workspace,
-    /enabled:\s*!isLoading && !isStreaming && report === null && linkedInReport === null/,
+    /enabled:\s*!isLoading && !isStreaming && report === null && !recoveryDismissed/,
     "the recovery watcher must restart after a competing run ends without a report",
   );
 }

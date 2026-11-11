@@ -103,7 +103,7 @@ export async function streamResumeFeedback(
   onChunk: (partialJson: string, partialReport: any | null) => void,
   mode: "resume" | "resume_ideas" | "case_resume" | "case_interview" | "case_negotiation" = "resume",
   // `rebuild` (ask-first): write the report again from the resume with the person's answers in it, bound to the first report; free, no recovery marker of its own.
-  options?: { signal?: AbortSignal; savedJobId?: string | null; onStage?: (stage: GenerationStage) => void; rebuild?: { reportId?: string | null; recoveryId?: string | null } | null }
+  options?: { signal?: AbortSignal; savedJobId?: string | null; onStage?: (stage: GenerationStage) => void; rebuild?: { reportId?: string | null; recoveryId?: string | null } | null; /** A LinkedIn profile export instead of a resume. */ document?: "linkedin" | null; /** The saved report of this same resume: a posting read on the pass, which spends no report. */ postingRead?: { reportId: string } | null }
 ): Promise<{
   ok: boolean; report?: any; message?: string; errorCode?: string; aborted?: boolean; reportId?: string | null;
   accessConsumed?: boolean; attemptConsumed?: boolean; creditRestored?: boolean;
@@ -112,12 +112,15 @@ export async function streamResumeFeedback(
   askFirst?: boolean;
 }> {
   const rebuild = options?.rebuild ? { report_id: options.rebuild.reportId || undefined, recovery_id: options.rebuild.recoveryId || undefined } : undefined;
-  const attached = mode === "resume" && !rebuild
+  const document = options?.document === "linkedin" ? { document: "linkedin" as const } : {};
+  const postingRead = options?.postingRead?.reportId && !rebuild ? { posting_read: { report_id: options.postingRead.reportId } } : null;
+  const attached = mode === "resume" && !rebuild && !postingRead
     ? attachAnonymousReportRecoveryMarker({
       text: resumeText,
       jobDescription,
       savedJobId: options?.savedJobId || undefined,
       mode,
+      ...document,
     })
     : {
       marker: null,
@@ -128,6 +131,7 @@ export async function streamResumeFeedback(
         savedJobId: options?.savedJobId || undefined,
         mode,
         ...(rebuild ? { rebuild } : {}),
+        ...(postingRead ?? {}),
       },
     };
   const recoveryMarker = attached.marker;
@@ -367,128 +371,4 @@ export async function streamResumeFeedback(
     attemptDisposition,
     creditRestored,
   };
-}
-
-// ============================================
-// LinkedIn API Functions
-// ============================================
-
-export type LinkedInFeedbackRequest = {
-  profileUrl?: string;
-  pdfText?: string;
-  source: 'url' | 'pdf';
-};
-
-export type LinkedInStreamResult = {
-  ok: boolean;
-  report?: any;
-  profile?: any;
-  message?: string;
-  errorCode?: string;
-  fallback?: 'pdf';
-};
-
-/**
- * Streaming LinkedIn profile feedback.
- * Calls onChunk with raw progress only. A report object is exposed only after
- * the server sends the authoritative complete event.
- * Returns the complete report when done.
- */
-export async function streamLinkedInFeedback(
-  input: LinkedInFeedbackRequest,
-  onChunk: (partialJson: string, partialReport: any | null) => void,
-  onMeta?: (meta: { name?: string; headline?: string; source?: string }) => void,
-  options?: { signal?: AbortSignal }
-): Promise<LinkedInStreamResult & { aborted?: boolean }> {
-  let res: Response;
-  try {
-    res = await fetch("/api/linkedin-feedback-stream", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-      body: JSON.stringify({
-        profileUrl: input.profileUrl,
-        pdfText: input.pdfText,
-        source: input.source,
-      }),
-      signal: options?.signal
-    });
-  } catch (err: any) {
-    if (err?.name === "AbortError") {
-      return { ok: false, message: "Canceled", aborted: true };
-    }
-    throw err;
-  }
-
-  if (!res.ok) {
-    return { ok: false, message: `HTTP error: ${res.status}` };
-  }
-
-  if (!res.body) {
-    return { ok: false, message: "No response body" };
-  }
-
-  const reader = res.body.getReader();
-  const decoder = new TextDecoder();
-  let buffer = "";
-  let accumulatedJson = "";
-  let finalReport: any = null;
-  let finalProfile: any = null;
-  let errorMessage: string | null = null;
-  let errorCode: string | null = null;
-  let fallback: 'pdf' | undefined = undefined;
-
-  while (true) {
-    let readResult: ReadableStreamReadResult<Uint8Array>;
-    try {
-      readResult = await reader.read();
-    } catch (err: any) {
-      if (err?.name === "AbortError") {
-        return { ok: false, message: "Canceled", aborted: true };
-      }
-      throw err;
-    }
-    const { done, value } = readResult;
-    if (done) {
-      break;
-    }
-
-    buffer += decoder.decode(value, { stream: true });
-    const lines = buffer.split("\n");
-    buffer = lines.pop() || "";
-
-    for (const line of lines) {
-      if (!line.trim()) continue;
-
-      try {
-        const event = JSON.parse(line);
-
-        if (event.type === "chunk") {
-          accumulatedJson += event.content;
-          onChunk(accumulatedJson, null);
-        } else if (event.type === "complete") {
-          finalReport = event.data;
-          finalProfile = event.profile;
-        } else if (event.type === "error") {
-          errorMessage = event.message;
-          errorCode = event.errorCode;
-          if (event.fallback) fallback = event.fallback;
-        } else if (event.type === "meta") {
-          onMeta?.(event.profile || {});
-        }
-      } catch {
-        // Ignore malformed lines
-      }
-    }
-  }
-
-  if (errorMessage) {
-    return { ok: false, message: errorMessage, errorCode: errorCode || undefined, fallback };
-  }
-
-  if (finalReport) {
-    return { ok: true, report: finalReport, profile: finalProfile };
-  }
-
-  return { ok: false, message: "Stream ended without completion" };
 }

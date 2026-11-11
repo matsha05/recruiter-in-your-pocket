@@ -108,6 +108,16 @@ export function getPassStatusLabel(pass: PassLike | null | undefined, now = new 
   return "Unavailable";
 }
 
+/**
+ * Posting reads last for the pass's term, not its report count (Nov 10, 2026): a pass whose five reports are
+ * spent still reads an already-read resume against a posting until it expires. A revoked, refunded or expired
+ * pass doesn't.
+ */
+export function passIncludesPostingReads(pass: PassLike | null | undefined, now = new Date()): boolean {
+  const status = getPassStatus(pass, now);
+  return status === "active" || status === "used";
+}
+
 export function isPassActive(pass: PassLike | null | undefined, now = new Date()): boolean {
   return getPassStatus(pass, now) === "active";
 }

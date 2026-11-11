@@ -64,6 +64,24 @@ export const WORKLIST_BANDS: readonly ScoreBand[] = [
   { name: "Ready to send", anchor: "Every line says what you did and what changed. There's nothing here a recruiter would stop on." },
 ];
 
+/**
+ * The same five bands for a LinkedIn profile review (Nov 10, 2026): the thresholds and the first four names are
+ * the worklist's; the anchors are about a profile, and the top band can't be "Ready to send", because a profile
+ * is never sent.
+ */
+export const PROFILE_BANDS: readonly ScoreBand[] = [
+  { name: WORKLIST_BANDS[0].name, anchor: "Job titles and dates. A recruiter can't tell what you did in them." },
+  { name: WORKLIST_BANDS[1].name, anchor: "The field is clear. What you did in it mostly isn't." },
+  { name: WORKLIST_BANDS[2].name, anchor: "The recent work is there. A few parts still lean on titles." },
+  { name: WORKLIST_BANDS[3].name, anchor: "Your profile says what you do and what changed. One or two parts still hide a detail." },
+  { name: "Nothing left to fix", anchor: "Every part says what you do and what changed. There's nothing here a recruiter would stop on." },
+];
+
+/** The band scale a worklist report shows: the profile's for a LinkedIn review, the worklist's otherwise. */
+export function worklistBandsFor(document: "resume" | "linkedin"): readonly ScoreBand[] {
+  return document === "linkedin" ? PROFILE_BANDS : WORKLIST_BANDS;
+}
+
 export function worklistBandIndex(score: number) {
   const index = WORKLIST_BANDS.findIndex((band) => band.name === getWorklistScoreLabel(score));
   if (index === NEEDS_CONTEXT && readsNotReady(score)) return NOT_READY;

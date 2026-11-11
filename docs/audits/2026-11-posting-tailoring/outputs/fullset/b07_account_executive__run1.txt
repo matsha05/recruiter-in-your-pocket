@@ -1,0 +1,45 @@
+# b07_account_executive, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_account_executive_1.txt (145 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt e122fb00; severity check off
+Outcome: report; cost $0.0096; 31.2s
+
+## Mostly clear (score 83; model wrote 83)
+## Verdict
+A mid-market HR software seller with a promotion, a strong revenue year and a few details still missing.
+
+## Write-up
+You moved from SDR to mid-market account executive at Crestview HR Cloud, and your resume makes a solid case for another account executive role. A recruiter can see the revenue you closed, the companies you sell to and a referral program you built. The main question is how your sales performance compares beyond the one year shown.
+
+The referral program is a great model for the rest: it names the partners and the deals they sourced without making a claim about deals closed. Your promotion is clear, and Experience is in the right place above Education.
+
+Let's start with the 2025 revenue line: add the quota amount and, if available, another period's attainment. Then give the demo work and your SDR results a little more detail. The core sales story is already there.
+
+## Cards (5; {"line":4,"keep":1}); severity off; added []
+1. [line] Account Executive, Mid-Market, line 1
+   line: "Closed $1.1M in new annual recurring revenue in 2025, 108% of quota"
+   can't tell: This is a strong sales result, but the quota amount isn't stated, and a recruiter only sees attainment for one year. Another period would show whether the performance held.
+   example: Closed $1.1M in new annual recurring revenue in 2025, 108% of a [quota amount] quota
+   question: What was your 2025 quota, and what was your attainment in another period, if available?
+2. [line] Account Executive, Mid-Market, line 4
+   line: "Work with solutions engineers on demos and security reviews"
+   can't tell: A recruiter knows who you work with, but not your part in the demos or security reviews.
+   example: Work with solutions engineers on demos and security reviews, handling [your part]
+   question: What do you handle in the demos and security reviews?
+3. [line] Sales Development Representative, line 1
+   line: "Booked meetings for three account executives"
+   can't tell: Three account executives gives the work context, but the number of meetings or the target you worked toward would show more of your performance.
+   example: Booked [number] meetings for three account executives against a target of [target]
+   question: How many meetings did you book, and what was your target?
+4. [line] Sales Development Representative, line 3
+   line: "Top SDR in two quarters"
+   can't tell: That's a distinction worth keeping. The measure behind it is missing, so a recruiter can't tell what you led on.
+   example: Top SDR in two quarters for [performance measure]
+   question: What measure earned you the top SDR distinction?
+5. [keep] Account Executive, Mid-Market, line 3
+   line: "Built a referral program with two payroll partners that sourced 9 deals"
+   can't tell: Keep this as a model: it makes your ownership clear and gives the deal count its proper context.
+
+## Fit
+Roles: ["Account Executive, Mid-Market","Sales Development Representative"]
+Level: mid-level, promoted from SDR to account executive and runs full-cycle sales
+Note: Your experience points toward mid-market account executive roles, especially in software sales. The payroll partner program also gives you a useful story about generating opportunities beyond direct prospecting.
