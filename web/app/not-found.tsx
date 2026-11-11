@@ -16,34 +16,29 @@ export default function NotFound() {
     return (
         <div className="min-h-screen bg-paper text-foreground">
             <SiteHeader />
-            <main className="px-5 pb-16 pt-28 md:px-8 md:pb-24 md:pt-36">
-                <div className="mx-auto max-w-[72rem] border-t border-line pt-7">
-                    <div className="grid gap-10 md:grid-cols-[13rem_minmax(0,1fr)] md:gap-12">
-                        <div>
-                            <p className="font-display text-headline text-muted-foreground" aria-hidden="true">404</p>
-                        </div>
-                        <div className="max-w-[46rem]">
-                            <h1 className="max-w-[16ch] font-display text-headline text-foreground">
-                                We can’t find that page.
-                            </h1>
-                            <p className="mt-6 max-w-[38rem] text-lg text-muted-foreground">
-                                The link may be old, or the address has a typo.
-                            </p>
-                            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                                <Button asChild>
-                                    <Link href="/workspace">
-                                    Get your free report
-                                    <ArrowRight className="size-4" weight="bold" />
-                                </Link>
-                                </Button>
-                                <Button asChild variant="secondary">
-                                    <Link href="/research">
-                                    <MagnifyingGlass className="size-4" weight="bold" />
-                                    Read the research
-                                </Link>
-                                </Button>
-                            </div>
-                        </div>
+            <main className="px-[var(--marketing-gutter)] pb-16 pt-28 md:pb-24 md:pt-36">
+                {/* On the site's column (Nov 11, 2026): the number is a quiet label over the headline, not a column of its own. */}
+                <div className="mx-auto max-w-column border-t border-line pt-7">
+                    <p className="text-label text-muted-foreground">Page not found (404)</p>
+                    <h1 className="mt-4 max-w-[16ch] font-display text-headline text-foreground">
+                        We can’t find that page.
+                    </h1>
+                    <p className="mt-6 max-w-[38rem] text-lg text-muted-foreground">
+                        The link may be old, or the address has a typo.
+                    </p>
+                    <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+                        <Button asChild>
+                            <Link href="/workspace">
+                                Get your free report
+                                <ArrowRight className="size-4" weight="bold" />
+                            </Link>
+                        </Button>
+                        <Button asChild variant="secondary">
+                            <Link href="/research">
+                                <MagnifyingGlass className="size-4" weight="bold" />
+                                Read the research
+                            </Link>
+                        </Button>
                     </div>
                 </div>
             </main>

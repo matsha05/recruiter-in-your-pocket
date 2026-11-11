@@ -172,7 +172,13 @@ Measured on the live site that day, pages started at seven different left edges 
 - **One column.** Every public page and the upload page put their content in `--marketing-content` with `--marketing-gutter` (216px from the left at 1440px). That includes the homepage hero, compare, privacy and terms. The header may run wider than the column; content may not start anywhere else. A wide object (a table, a figure) may grow to the column's full width, never past its left edge.
 - **A page's first headline is its largest type.** The homepage's two opening statements use the display size (60px, weight 600). Every other page title is the headline (48px, weight 800).
 - **Sections step down.** On the homepage, section titles are the headline (48/800) under the display-size opening. On every other page, section titles are the title step (32/800, `rhythm.sectionTitle` or the page's own `sectionTitle`), never the same size as the page title. Group labels inside a section are the heading step (24/600). Small labels are 14/600.
-- **Not yet on the column:** the report and the signed-in pages, which have their own shell. They are the next pass.
+- **The signed-in pages are on it too (November 11, 2026).** My reports, Settings, the purchase pages, the 404, the offer guides and the calculator use `max-w-column` (the column's content width, in `tailwind.config.js`) with the site gutter. Utility pages (My reports, Settings) title themselves on the title step; it is still the largest type on the page.
+- **The report is a sheet on the column.** The sheet is wider than the column by its own padding, so the report's text starts on the column's edge (`ReportLayout.module.css`).
+- **Deliberately off it:** the sign-in page, which is a centered form under the wordmark alone (Matt, Nov 4, 2026).
+
+### My reports (November 11, 2026)
+
+A saved report's row leads with the report's own one-sentence verdict, in the verdict face, because that is what tells two reports apart. A name the person gave the version leads instead when there is one, with the verdict under it. The band and the date sit in the margin; the kind (Resume, LinkedIn profile) and the target role sit under the verdict. The row never shows the resume's own text: the old preview was the resume's opening lines, contact details included. Rows are hairlines on the ground, not a card. The line above the list says how many reports are saved and what the person has left, linked to Billing. `/internal/reports-lab` shows the rows with fixtures.
 
 ### Containers
 

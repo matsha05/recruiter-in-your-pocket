@@ -1,4 +1,7 @@
-.shell { position: relative; width: 100%; max-width: 75rem; margin-inline: auto; padding: 0 1rem 3rem; font-family: var(--font-body); }
+/* The sheet is wider than the site's column by its own padding, so the report's text starts on the column's edge
+   (design-system.md §6, Nov 11, 2026): the column, plus the sheet's 3rem padding and 1px border each side, plus the
+   shell's own 1.5rem padding each side. */
+.shell { position: relative; width: 100%; max-width: calc(var(--marketing-content) - 2 * var(--marketing-gutter) + 9rem + 2px); margin-inline: auto; padding: 0 1rem 3rem; font-family: var(--font-body); }
 /* The report scrolls with the page, so the tabs stick below whichever header the route shows. The section tabs
    take the row; Save and Export sit at its end, reachable wherever the reader is (W1, Nov 2, 2026). */
 .navigation { position: sticky; top: var(--report-sticky-top, var(--product-header-height)); z-index: 40; display: flex; align-items: center; gap: 0.25rem; padding-block: 0.5rem; background: hsl(var(--surface-page)); border-bottom: 1px solid hsl(var(--line)); }

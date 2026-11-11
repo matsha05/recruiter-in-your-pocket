@@ -448,7 +448,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
     if (authLoading) {
         return (
             <div data-visual-anchor="settings-loading" className="min-h-full bg-background pb-20" role="status" aria-live="polite">
-                <div className="mx-auto box-content w-auto max-w-account px-4 pt-8 sm:px-6 sm:pt-12">
+                <div className="mx-auto box-content w-auto max-w-column px-[var(--marketing-gutter)] pt-8 sm:pt-12 [&>*]:max-w-account">
                     <AppPageIntro
                         anchor="settings-loading"
                         title="Opening your settings"
@@ -465,7 +465,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
     if (!user) {
         return (
             <div data-visual-anchor="settings-page" className="min-h-full bg-background pb-20">
-                <div className="mx-auto box-content w-auto max-w-account px-4 pt-8 sm:px-6 sm:pt-12 space-y-6">
+                <div className="mx-auto box-content w-auto max-w-column px-[var(--marketing-gutter)] pt-8 sm:pt-12 [&>*]:max-w-account space-y-6">
                     <AppPageIntro
                         anchor="settings-page"
                         title="Settings"
@@ -498,7 +498,7 @@ export default function SettingsClient({ initialTab = "account" }: SettingsClien
 
     return (
         <div data-visual-anchor="settings-page" className="min-h-full bg-background pb-20">
-            <div className="mx-auto box-content w-auto max-w-account px-4 pt-8 sm:px-6 sm:pt-12">
+            <div className="mx-auto box-content w-auto max-w-column px-[var(--marketing-gutter)] pt-8 sm:pt-12 [&>*]:max-w-account">
                 <AppPageIntro
                     anchor="settings-page"
                     title="Settings"

@@ -10,8 +10,8 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 | --- | --- |
 | Files scanned | 424 |
 | Files with copy | 256 |
-| Strings | 2935 |
-| Unique strings | 2446 |
+| Strings | 2944 |
+| Unique strings | 2452 |
 | Routes with copy | 118 |
 
 ## By moment
@@ -19,7 +19,7 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 | Moment | Strings |
 | --- | --- |
 | research | 990 |
-| account | 442 |
+| account | 450 |
 | marketing | 411 |
 | report | 262 |
 | pricing | 217 |
@@ -28,8 +28,8 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 | extension | 98 |
 | shared | 73 |
 | rewrite | 62 |
+| error | 55 |
 | auth | 54 |
-| error | 54 |
 | analysis | 16 |
 | other | 11 |
 | pdf | 6 |
@@ -48,14 +48,14 @@ Not in the inventory, on purpose: the model's words (`web/prompts`, the sample r
 | [settings](./settings.md) | 122 | `/settings/account`, `/settings/billing`, `/settings/matching`, `/settings/support-reply/[emailId]` |
 | [help](./help.md) | 87 | `/help`, `/privacy`, `/status`, `/terms` |
 | [jobs](./jobs.md) | 71 | `/jobs` |
-| [home](./home.md) | 66 | `/`, `/methodology`, `/research/career-breaks` |
+| [home](./home.md) | 67 | `/`, `/methodology`, `/research/career-breaks` |
 | [jobs-id](./jobs-id.md) | 56 | `/jobs/[id]` |
 | [purchase](./purchase.md) | 51 | `/purchase/confirmed`, `/purchase/restore` |
 | [compare](./compare.md) | 48 | `/compare`, `/compare/enhancv`, `/compare/jobscan`, `/compare/kickresume`, `/compare/resume-worded`, `/compare/rezi` and 2 more |
 | [pricing](./pricing.md) | 40 | `/pricing` |
 | [methodology](./methodology.md) | 32 | `/methodology` |
+| [reports](./reports.md) | 29 | `/reports` |
 | [dashboard](./dashboard.md) | 29 | `/dashboard` |
-| [reports](./reports.md) | 21 | `/reports` |
 | [unrouted](./unrouted.md) | 18 |  |
 | [status](./status.md) | 17 | `/status` |
 | [reports-id](./reports-id.md) | 15 | `/reports/[id]` |

@@ -1,0 +1,123 @@
+/* My reports (Nov 11, 2026): one hairline row per report on the ground, no card. A row leads with what the
+   recruiter took from the resume, in the report's own verdict face, so two reports on the same resume read as two
+   different things. The band and the date sit in the margin; the type and the target role sit under the verdict. */
+
+.summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.5rem;
+    margin: -1rem 0 0;
+    color: hsl(var(--text-muted));
+    font: var(--type-small);
+}
+
+.list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid hsl(var(--text-strong));
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 10.5rem minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 0.5rem 2rem;
+    border-bottom: 1px solid hsl(var(--line));
+    padding: 1.5rem 0;
+}
+
+.when { padding-top: 0.25rem; }
+
+.band {
+    margin: 0;
+    color: hsl(var(--text-strong));
+    font: var(--type-small);
+    font-weight: var(--weight-control);
+}
+
+.date {
+    margin: 0.125rem 0 0;
+    color: hsl(var(--text-muted));
+    font: var(--type-small);
+}
+
+.main { min-width: 0; }
+
+.open {
+    display: block;
+    border-radius: 0.5rem;
+    color: hsl(var(--text-strong));
+    text-decoration: none;
+}
+
+/* The verdict: the report's opening sentence, in the face the report sets it in. */
+.verdict {
+    max-width: 44ch;
+    margin: 0;
+    font: var(--type-verdict);
+    text-wrap: pretty;
+    transition: color var(--duration-fast) var(--ease);
+}
+
+.open:hover .verdict, .open:hover .name { color: hsl(var(--pen)); }
+
+/* A name the person gave the version leads; the verdict follows it at reading size. */
+.name {
+    margin: 0;
+    font: var(--type-heading);
+    letter-spacing: var(--tracking-heading);
+    overflow-wrap: anywhere;
+    transition: color var(--duration-fast) var(--ease);
+}
+
+.verdictUnderName {
+    max-width: 60ch;
+    margin: 0.375rem 0 0;
+    color: hsl(var(--text-strong));
+    font: var(--weight-body) var(--type-body-size) / var(--type-body-leading) var(--font-editorial);
+    text-wrap: pretty;
+}
+
+.meta {
+    margin: 0.5rem 0 0;
+    color: hsl(var(--text-muted));
+    font: var(--type-small);
+    overflow-wrap: anywhere;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 0.125rem;
+    margin-right: -0.5rem;
+}
+
+.arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 999px;
+    color: hsl(var(--text-strong));
+    transition: transform var(--duration-fast) var(--ease), color var(--duration-fast) var(--ease);
+}
+
+.row:hover .arrow { transform: translateX(2px); color: hsl(var(--pen)); }
+
+/* No reports yet: plain words on the ground under the same rule the list would start with. */
+.empty { border-top: 1px solid hsl(var(--text-strong)); padding-top: 2rem; }
+.emptyTitle { margin: 0; font: var(--type-heading); letter-spacing: var(--tracking-heading); }
+.emptyBody { max-width: 52ch; margin: 0.5rem 0 0; color: hsl(var(--text-muted)); font: var(--type-body); text-wrap: pretty; }
+
+@media (max-width: 720px) {
+    .row { grid-template-columns: minmax(0, 1fr) auto; gap: 0.5rem 1rem; padding: 1.25rem 0; }
+    .when { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.75rem; padding-top: 0; }
+    .date { margin: 0; }
+    .arrow { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .verdict, .name, .arrow { transition: none; }
+}

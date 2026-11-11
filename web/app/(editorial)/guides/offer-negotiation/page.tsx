@@ -32,14 +32,14 @@ export default function OfferNegotiationGuidePage() {
         <>
         <div className="bg-background text-foreground selection:bg-brand/15">
             <div className="border-b border-border">
-                <nav aria-label="Breadcrumb" className="mx-auto flex max-w-marketing flex-wrap items-center gap-2 px-5 py-4 text-sm text-muted-foreground sm:px-8">
+                <nav aria-label="Breadcrumb" className="mx-auto box-content flex max-w-column flex-wrap items-center gap-2 px-[var(--marketing-gutter)] py-4 text-sm text-muted-foreground">
                     <Link href="/resources" className="focus-ring inline-flex min-h-11 items-center rounded-sm transition-colors hover:text-foreground">After the offer</Link>
                     <CaretRight aria-hidden className="size-3" weight="bold" />
                     <span className="text-foreground">Offer negotiation</span>
                 </nav>
             </div>
 
-            <article className="mx-auto max-w-report px-5 pb-24 pt-28 sm:px-8 sm:pt-36">
+            <article className="mx-auto box-content max-w-column px-[var(--marketing-gutter)] pb-24 pt-28 sm:pt-36">
                 <GuideOpening
                     eyebrow="Offer negotiation · a twelve-minute guide"
                     title={<>Most offers have some room. Here&apos;s how to find it.</>}

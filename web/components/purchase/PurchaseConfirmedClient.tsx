@@ -87,9 +87,9 @@ export default function PurchaseConfirmedClient() {
     <>
       <div
         data-visual-anchor="purchase-confirmed"
-        className="bg-background px-4 pb-20 pt-28 text-foreground selection:bg-brand/15 sm:px-6 md:pt-36"
+        className="bg-background px-[var(--marketing-gutter)] pb-20 pt-28 text-foreground selection:bg-brand/15 md:pt-36"
       >
-        <section className="mx-auto max-w-form" aria-labelledby="purchase-confirmed-title">
+        <section className="mx-auto max-w-column [&>*]:max-w-form" aria-labelledby="purchase-confirmed-title">
           <header className="border-b border-border pb-8" role="status" aria-live="polite">
             <h1
               id="purchase-confirmed-title"
