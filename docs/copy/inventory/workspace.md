@@ -388,7 +388,7 @@ Routes: `/api/export-pdf`, `/api/resume-feedback`, `/api/resume-feedback-stream`
 | 76 | upload | `web/components/workspace/InputPanel.tsx:156` | const | Get my report |
 | 77 | upload | `web/components/workspace/InputPanel.tsx:156` | const | Get your free report |
 | 78 | upload | `web/components/workspace/InputPanel.tsx:172` | jsx-text | Now let’s see what changed. |
-| 79 | upload | `web/components/workspace/InputPanel.tsx:176` | jsx-text | On your LinkedIn profile, choose Resources, then Save to PDF. Upload that file here. |
+| 79 | upload | `web/components/workspace/InputPanel.tsx:176` | jsx-text | On your LinkedIn profile, choose Resources (or the ⋯ button), then Save to PDF. Upload that file here. |
 | 80 | upload | `web/components/workspace/InputPanel.tsx:177` | jsx-text | Open your profile |
 | 81 | upload | `web/components/workspace/InputPanel.tsx:187` | jsx-text | Open your last report |
 | 82 | upload | `web/components/workspace/InputPanel.tsx:206` | jsx-text | New reports are paused for now. |

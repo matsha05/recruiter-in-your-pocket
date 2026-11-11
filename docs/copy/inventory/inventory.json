@@ -32240,7 +32240,7 @@
       "table": "workspace"
     },
     {
-      "text": "On your LinkedIn profile, choose Resources, then Save to PDF. Upload that file here.",
+      "text": "On your LinkedIn profile, choose Resources (or the ⋯ button), then Save to PDF. Upload that file here.",
       "kind": "jsx-text",
       "line": 176,
       "file": "web/components/workspace/InputPanel.tsx",
@@ -39804,7 +39804,7 @@
       "table": "shared"
     },
     {
-      "text": "That doesn't look like a LinkedIn profile PDF. On your profile, choose Resources, then Save to PDF, and upload that file.",
+      "text": "That doesn't look like a LinkedIn profile PDF. On your profile, choose Resources (or the ⋯ button), then Save to PDF, and upload that file.",
       "kind": "const",
       "line": 51,
       "file": "web/lib/reports/report-document.ts",

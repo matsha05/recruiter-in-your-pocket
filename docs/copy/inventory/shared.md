@@ -538,7 +538,7 @@ Routes: `/`, `/api/auth/send-code`, `/api/billing/confirm`, `/api/billing/restor
 | # | Moment | Where | Kind | String |
 | --- | --- | --- | --- | --- |
 | 1 | report | `web/lib/reports/report-document.ts:44` (11 routes) | const | LinkedIn profile review |
-| 2 | report | `web/lib/reports/report-document.ts:51` (11 routes) | const | That doesn't look like a LinkedIn profile PDF. On your profile, choose Resources, then Save to PDF, and upload that file. |
+| 2 | report | `web/lib/reports/report-document.ts:51` (11 routes) | const | That doesn't look like a LinkedIn profile PDF. On your profile, choose Resources (or the ⋯ button), then Save to PDF, and upload that file. |
 
 ## web/lib/reports/report-presentation.ts
 

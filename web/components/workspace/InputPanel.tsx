@@ -173,7 +173,7 @@ export default function InputPanel({
                     </h1>
                     {isProfile && (
                         <p className="mt-3 max-w-[34rem] text-base text-muted-foreground" data-testid="workspace-linkedin-help">
-                            On your LinkedIn profile, choose Resources, then Save to PDF. Upload that file here.{" "}
+                            On your LinkedIn profile, choose Resources (or the ⋯ button), then Save to PDF. Upload that file here.{" "}
                             <a href="https://www.linkedin.com/in/me" target="_blank" rel="noopener noreferrer" className="riyp-link-quiet">Open your profile</a>
                         </p>
                     )}

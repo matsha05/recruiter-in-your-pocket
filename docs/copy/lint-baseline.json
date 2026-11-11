@@ -765,7 +765,7 @@
       "where": "web/components/settings/DefaultResumeSection.tsx:88"
     },
     {
-      "text": "On your LinkedIn profile, choose Resources, then Save to PDF. Upload that file here.",
+      "text": "On your LinkedIn profile, choose Resources (or the ⋯ button), then Save to PDF. Upload that file here.",
       "moment": "upload",
       "tics": [
         "retired_name"
@@ -861,7 +861,7 @@
       "where": "web/lib/reports/generation-operation-marker.ts:4"
     },
     {
-      "text": "That doesn't look like a LinkedIn profile PDF. On your profile, choose Resources, then Save to PDF, and upload that file.",
+      "text": "That doesn't look like a LinkedIn profile PDF. On your profile, choose Resources (or the ⋯ button), then Save to PDF, and upload that file.",
       "moment": "report",
       "tics": [
         "retired_name"

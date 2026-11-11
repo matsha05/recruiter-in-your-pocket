@@ -4,36 +4,44 @@
   "today": "2026-11-11",
   "repaired": false,
   "firstError": null,
-  "seconds": 14,
+  "seconds": 24,
   "report": {
     "contract_version": "v3",
     "score": 95,
     "lifted_by_employer": false,
-    "verdict": "An emergency nurse manager whose profile shows how she improved patient flow, retention and budget performance.",
+    "verdict": "An emergency department nurse manager whose profile shows how her team improved patient flow and nurse retention.",
     "write_up": [
-      "You lead an emergency department at a Level II trauma center, and your profile makes the work unmistakable! It shows the people and budget you manage, as well as what changed under your leadership.",
-      "The Saguaro Valley manager job is the model: you connect front-door triage and the overflow plan to fewer patients leaving without being seen. You also show the changes behind lower RN turnover.",
-      "There's no urgent rewrite here. Your About already brings the patient-flow result to the top, and the experience underneath backs it up. Your profile isn't the reason a recruiter would pass; the requirements and timing of a particular role still matter."
+      "You lead an emergency department at a Level II trauma center, and a recruiter can see what changed under your leadership! Your headline names the job, and your About gets straight to the patient flow work.",
+      "The Saguaro Valley manager job is the model: it connects front-door triage and an overflow plan to fewer patients leaving without being seen. It also gives the turnover and labor budget results, so a recruiter doesn't have to guess what you manage.",
+      "Your profile isn't likely to be the thing standing between you and a message. Whether someone reaches out also depends on the roles available and your stated preference that you're not looking. If you later pursue a director role, you could add any work you've done planning resources beyond the ED."
     ],
     "cards": [
       {
         "kind": "keep",
         "where": "Saguaro Valley Medical Center, Nurse Manager description",
         "line": "Cut left-without-being-seen from 5.1% to 2.3% in two years with front-door triage and a new overflow plan.",
-        "cannot_tell": "This is the line to keep as a model. It names what changed and the two steps behind it, so a recruiter can understand your work without guessing.",
+        "cannot_tell": "This is the line to keep as a model. It names the changes your team made and the patient flow measure that moved.",
         "example": "",
         "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Saguaro Valley Medical Center, Nurse Manager description",
+        "line": "Own a $14.5M labor budget; finished the last two fiscal years within 1% of plan.",
+        "cannot_tell": "The budget result is strong. For a director role, a recruiter may also look for resource planning beyond the ED, if that's work you've done.",
+        "example": "Own a $14.5M labor budget; [how you plan staffing or resources beyond the ED].",
+        "question": "If you've planned staffing or resources beyond the ED, what did you do?"
       }
     ],
     "fit": {
       "roles": [
         "Emergency Department Nurse Manager",
-        "Nurse Manager, Emergency Department",
-        "Charge Nurse, Emergency Department"
+        "Charge Nurse, Emergency Department",
+        "Registered Nurse, Emergency Department"
       ],
-      "why": "Your headline and current job both name emergency department management, and your experience describes staffing, patient flow and budget responsibility.",
-      "level": "manager, your current title and leadership of 96 nurses and techs",
-      "note": "'Emergency Department Nurse Manager' and 'Staffing and throughput' are in your headline. 'Nurse Staffing' and 'Trauma Care' are in your top skills. 'Split-flow' is in your About. Patient safety and quality improvement aren't named; they're optional terms to add only if they reflect your work.",
+      "why": "Your headline and current job both describe leading an emergency department, with earlier bedside and charge nurse work.",
+      "level": "manager, your current Nurse Manager, Emergency Department title",
+      "note": "'Emergency Department Nurse Manager' is in your headline. 'Nurse Staffing' and 'Trauma Care' are in your top skills, and 'split-flow' is in your About. Patient safety and quality improvement are other terms someone hiring for this work might use, if they describe your responsibilities.",
       "posting": {
         "summary": "",
         "missing": []
