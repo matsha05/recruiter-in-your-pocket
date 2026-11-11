@@ -24,7 +24,8 @@ export function FirstPass({ report, onReadAgainstPosting }: { report: WorklistRe
   const wording = wordingFor(report);
   const [showAll, setShowAll] = useState(false);
   if (!read.role && !level && screener.length === 0) return null;
-  const shownMissing = showAll ? posting.missing : postingMissingShown(posting.missing);
+  // A resume's missing items are requirement sentences, so the first few show; a profile's are single search words, so all do.
+  const shownMissing = showAll || report.document === "linkedin" ? posting.missing : postingMissingShown(posting.missing);
   const hiddenMissing = posting.missing.length - shownMissing.length;
 
   return (

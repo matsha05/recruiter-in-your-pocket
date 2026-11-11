@@ -255,11 +255,11 @@ Routes: `/api/export-pdf`, `/api/resume-feedback`, `/api/resume-feedback-stream`
 | 121 | report | `web/components/workspace/report/ResearchReceipts.tsx:25` | jsx-text | (opens in a new tab) |
 | 122 | report | `web/components/workspace/report/ResearchReceipts.tsx:32` | jsx-text | How the score is built |
 | 123 | report | `web/components/workspace/report/ResearchReceipts.tsx:32` | jsx-text | (opens in a new tab) |
-| 124 | report | `web/components/workspace/report/worklist/FirstPass.tsx:48` | jsx-text | Which job is this for? |
-| 125 | report | `web/components/workspace/report/worklist/FirstPass.tsx:55` | jsx-text | What level? |
-| 126 | report | `web/components/workspace/report/worklist/FirstPass.tsx:62` | jsx-text | Your posting |
-| 127 | report | `web/components/workspace/report/worklist/FirstPass.tsx:103` | jsx-text | Going for something else? |
-| 128 | report | `web/components/workspace/report/worklist/FirstPass.tsx:104` | jsx-text | Read it against a posting |
+| 124 | report | `web/components/workspace/report/worklist/FirstPass.tsx:49` | jsx-text | Which job is this for? |
+| 125 | report | `web/components/workspace/report/worklist/FirstPass.tsx:56` | jsx-text | What level? |
+| 126 | report | `web/components/workspace/report/worklist/FirstPass.tsx:63` | jsx-text | Your posting |
+| 127 | report | `web/components/workspace/report/worklist/FirstPass.tsx:104` | jsx-text | Going for something else? |
+| 128 | report | `web/components/workspace/report/worklist/FirstPass.tsx:105` | jsx-text | Read it against a posting |
 | 129 | report | `web/components/workspace/report/worklist/WorklistCard.tsx:179` | jsx-text | Filled in |
 | 130 | report | `web/components/workspace/report/worklist/WorklistCard.tsx:257` | jsx-text | Left as it is. It's optional, and the line already works. |
 | 131 | report | `web/components/workspace/report/worklist/WorklistCard.tsx:259` | jsx-text | Fill it in after all |
