@@ -4,65 +4,65 @@
   "today": "2026-11-11",
   "repaired": false,
   "firstError": null,
-  "seconds": 29,
+  "seconds": 24,
   "report": {
     "contract_version": "v3",
     "score": 79,
     "lifted_by_employer": false,
-    "verdict": "A customer success profile with strong renewal work, hidden behind a job-search headline and a thin About.",
+    "verdict": "Customer success work with a strong renewal record, hidden behind a job-search headline and an in-house title.",
     "write_up": [
-      "You managed mid-market shipping software accounts after working in support. A recruiter has a reason to message you, though the headline and About make them work to find that reason.",
-      "The Parcelwise renewal line is the model: it names the conversations you ran and the share of accounts renewed by revenue. Your account book and onboarding guide give you more to draw on for the About.",
-      "Start by putting customer success and shipping software in the headline, then bring the account and renewal work into the About. Give the earlier support job a little more substance too. A recruiter can then see both your customer success work and the support experience behind it."
+      "You managed mid-market accounts for a shipping software company and handled renewals. A recruiter would have a reason to message you, but the headline and About focus on your search rather than that work.",
+      "The Parcelwise renewal line is the model: it names the conversations you ran and the percentage of accounts renewed by revenue in 2025. Your onboarding guide is another useful piece of work already on your profile.",
+      "Start by bringing those facts into your headline and About, then make the Parcelwise title understandable outside the company. Add the kinds of issues you handled in the Support Specialist job. Together, those changes would let a recruiter see both your customer success and support work without guessing."
     ],
     "cards": [
       {
         "kind": "line",
         "where": "Headline",
         "line": "Open to work | Seeking new opportunities in Customer Success",
-        "cannot_tell": "The headline spends most of its space on your search. You managed mid-market accounts for a shipping software company, and that's the work to put first.",
-        "example": "Customer Success | Mid-market accounts | Shipping software",
-        "question": "What kind of customer success work did you spend the most time doing?"
+        "cannot_tell": "This headline tells a recruiter what you're seeking, not the work you've done. Your mid-market accounts and shipping software experience give you a stronger introduction.",
+        "example": "Customer Success | Mid-market accounts | Shipping software | Zendesk",
+        "question": "What kind of shipping software did your accounts use?"
       },
       {
         "kind": "line",
         "where": "About",
         "line": "Customer success professional currently seeking my next opportunity. Open to remote roles. Please reach out if you think I could be a fit for your team.",
-        "cannot_tell": "This tells a recruiter what you're looking for, but not what you did for customers. Your Parcelwise job has the account and renewal work to open with.",
+        "cannot_tell": "Your About doesn't mention the accounts or renewals you've managed. Bring the strongest facts from Parcelwise up here, so they appear before someone opens the rest of the section.",
         "example": "I managed a book of 85 mid-market accounts for a shipping software company. I ran quarterly business reviews and renewal conversations, renewing 91% of accounts by revenue in 2025. I also wrote the onboarding guide new accounts get in their first week.",
-        "question": "What did customers use the onboarding guide to do in their first week?"
+        "question": "What did the onboarding guide cover?"
       },
       {
         "kind": "line",
-        "where": "Parcelwise, Customer Happiness Hero II",
+        "where": "Parcelwise, latest title",
         "line": "Customer Happiness Hero II",
-        "cannot_tell": "This title doesn't tell a stranger that you managed accounts and renewals. Keep the Parcelwise title, and add the standard title that accurately describes your work beside it.",
-        "example": "Customer Happiness Hero II | [standard title for your work]",
-        "question": "At another company, would this work be called Customer Success Manager or Account Manager?"
+        "cannot_tell": "This title makes a recruiter work out what the job is called outside Parcelwise. Your account book and renewal conversations point to customer success or account management work. Put the standard title beside the original if it fits.",
+        "example": "Customer Happiness Hero II ([standard job title])",
+        "question": "At another company, would this job be called Customer Success Manager or Account Manager?"
       },
       {
         "kind": "keep",
-        "where": "Parcelwise, Customer Happiness Hero II, description",
+        "where": "Parcelwise, latest job description",
         "line": "Ran quarterly business reviews and renewal conversations; renewed 91% of accounts by revenue in 2025.",
-        "cannot_tell": "This is the line to use as a model. It names the work and the renewal figure, so a recruiter doesn't have to guess what you did.",
+        "cannot_tell": "Keep this line. It names the work and the renewal figure, with the revenue qualifier and year intact. It's a useful model for the rest of your profile.",
         "example": "",
         "question": ""
       },
       {
         "kind": "line",
-        "where": "Parcelwise, Support Specialist, description",
+        "where": "Parcelwise, Support Specialist description",
         "line": "Answered support tickets in Zendesk.",
-        "cannot_tell": "Zendesk names the tool, but the tickets could cover many kinds of customer problems. Add the issues you handled and who contacted you.",
-        "example": "Answered support tickets in Zendesk for [who contacted you], including [types of issues].",
-        "question": "What kinds of issues did you handle in Zendesk, and who was sending the tickets?"
+        "cannot_tell": "Zendesk tells a recruiter where the tickets were handled, but not what customers needed help with. Name the issues you worked on and how you resolved them.",
+        "example": "Answered support tickets in Zendesk about [types of issues] and [how you resolved them].",
+        "question": "What kinds of issues came through Zendesk, and how did you resolve them?"
       },
       {
         "kind": "line",
         "where": "Top skills",
         "line": "Problem Solving",
-        "cannot_tell": "Problem Solving is a broad trait. Your quarterly business reviews and renewal conversations name the customer success work more directly.",
-        "example": "Quarterly business reviews | Renewal conversations | Zendesk",
-        "question": "Which of those three did you use most often in your Parcelwise work?"
+        "cannot_tell": "Problem Solving could describe almost any job, and Customer Service is broader than your account work. Customer Success and quarterly business reviews are already named on your profile and say more about what you do.",
+        "example": "Customer Success | quarterly business reviews | Zendesk",
+        "question": "Which of your customer success and support skills did you use most in the Parcelwise jobs?"
       }
     ],
     "fit": {
@@ -70,9 +70,9 @@
         "Customer Success",
         "Support Specialist"
       ],
-      "why": "Your headline names Customer Success, and your Parcelwise job describes managing accounts, renewals and onboarding.",
-      "level": "mid-level, the Customer Happiness Hero II title and responsibility for a book of 85 mid-market accounts",
-      "note": "'Customer Success' is in your headline. 'Mid-market accounts', 'quarterly business reviews' and 'renewal conversations' are in your Parcelwise description. 'Zendesk' is in your top skills and Support Specialist description. Someone hiring for this work may also search for Customer Success Manager, customer health and churn; those terms aren't on your profile. Add them only if they accurately describe your work. Move 'mid-market accounts' into your headline.",
+      "why": "Your headline names Customer Success, and your latest Parcelwise job describes managing accounts and renewals.",
+      "level": "mid-level, the Customer Happiness Hero II title and a book of 85 mid-market accounts",
+      "note": "'Customer Success' is in your headline. 'mid-market accounts' and 'quarterly business reviews' are in your latest Parcelwise description. 'Zendesk' is in your top skills and Support Specialist description. Recruiters may also search for account management, customer retention and churn; none of those phrases is on your profile. If they describe your work, add account management to your headline and customer retention and churn to the Parcelwise description. Move mid-market accounts into the headline first.",
       "posting": {
         "summary": "",
         "missing": []

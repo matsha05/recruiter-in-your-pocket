@@ -137,16 +137,16 @@ Routes: `/api/export-pdf`, `/api/resume-feedback`, `/api/resume-feedback-stream`
 | 5 | analysis | `web/components/workspace/AnalysisScanning.tsx:33` | key:now | Writing the notes |
 | 6 | analysis | `web/components/workspace/AnalysisScanning.tsx:36` | key:label | Checking every quote |
 | 7 | analysis | `web/components/workspace/AnalysisScanning.tsx:36` | key:now | Checking every quote against your resume |
-| 8 | analysis | `web/components/workspace/AnalysisScanning.tsx:141` | const | Starting over |
-| 9 | analysis | `web/components/workspace/AnalysisScanning.tsx:165` | jsx-text | Still working on your {subject} report. You can keep waiting, retry, or stop. |
-| 10 | analysis | `web/components/workspace/AnalysisScanning.tsx:177` | jsx-text | · usually under two minutes |
-| 11 | analysis | `web/components/workspace/AnalysisScanning.tsx:181` | attr:aria-label | Report progress |
-| 12 | analysis | `web/components/workspace/AnalysisScanning.tsx:186` | jsx-text | Done: |
-| 13 | analysis | `web/components/workspace/AnalysisScanning.tsx:194` | jsx-text | The first pass came back incomplete, so we started it again. |
-| 14 | analysis | `web/components/workspace/AnalysisScanning.tsx:198` | attr:aria-label | Report still in progress |
-| 15 | analysis | `web/components/workspace/AnalysisScanning.tsx:200` | jsx-text | Still going. Longer resumes can take a little more time. |
-| 16 | analysis | `web/components/workspace/AnalysisScanning.tsx:201` | jsx-text | Retry stops this one and starts over. Waiting is usually faster. |
-| 17 | analysis | `web/components/workspace/AnalysisScanning.tsx:234` | jsx-text | Keep this tab open. |
+| 8 | analysis | `web/components/workspace/AnalysisScanning.tsx:142` | const | Starting over |
+| 9 | analysis | `web/components/workspace/AnalysisScanning.tsx:166` | jsx-text | Still working on your {mode === "linkedin" ? "pr…}. You can keep waiting, retry, or stop. |
+| 10 | analysis | `web/components/workspace/AnalysisScanning.tsx:178` | jsx-text | · usually under two minutes |
+| 11 | analysis | `web/components/workspace/AnalysisScanning.tsx:182` | attr:aria-label | Report progress |
+| 12 | analysis | `web/components/workspace/AnalysisScanning.tsx:187` | jsx-text | Done: |
+| 13 | analysis | `web/components/workspace/AnalysisScanning.tsx:195` | jsx-text | The first pass came back incomplete, so we started it again. |
+| 14 | analysis | `web/components/workspace/AnalysisScanning.tsx:199` | attr:aria-label | Report still in progress |
+| 15 | analysis | `web/components/workspace/AnalysisScanning.tsx:201` | jsx-text | Still going. Longer resumes can take a little more time. |
+| 16 | analysis | `web/components/workspace/AnalysisScanning.tsx:202` | jsx-text | Retry stops this one and starts over. Waiting is usually faster. |
+| 17 | analysis | `web/components/workspace/AnalysisScanning.tsx:235` | jsx-text | Keep this tab open. |
 | 18 | report | `web/components/workspace/report/IndependentAdvice.tsx:38` | const | This draft changes a detail from your resume. Edit it back to what's true before copying. |
 | 19 | report | `web/components/workspace/report/IndependentAdvice.tsx:75` | attr:label | Details to add |
 | 20 | report | `web/components/workspace/report/IndependentAdvice.tsx:82` | jsx-text | View draft template |
