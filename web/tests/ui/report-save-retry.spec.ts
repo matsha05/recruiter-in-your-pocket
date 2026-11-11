@@ -115,6 +115,11 @@ async function installSaveHarness(page: Page) {
   await page.route("**/api/free-status", (route) => route.fulfill({ json: { ok: true, free_uses_left: 0 } }));
   await page.route("**/api/generation-status", (route) => route.fulfill({ json: { ok: true, paused: false } }));
   await page.route("**/api/reports/recovery?*", (route) => route.fulfill({ json: { ok: true, recovery_id: RECOVERY_ID, report: REPORT } }));
+  // A signed-in workspace asks for the person's last saved report, to offer it back. This account has none.
+  await page.route((url) => url.pathname === "/api/reports" && url.search === "?limit=1", (route) => {
+    if (route.request().method() !== "GET") throw new Error("Unexpected saved-report mutation in save-retry test");
+    return route.fulfill({ json: { ok: true, reports: [] } });
+  });
 }
 
 test.describe("saving an anonymous report after sign-in", () => {

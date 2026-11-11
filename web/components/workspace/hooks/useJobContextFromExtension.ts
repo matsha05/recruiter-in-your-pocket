@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef } from "react";
 import type { ReadonlyURLSearchParams } from "next/navigation";
 import type { Dispatch, SetStateAction } from "react";
-import { isLaunchFlagEnabled } from "@/lib/launch/flags";
+import { requestedLaunchFlags } from "@/lib/launch/flags";
 
 type JobContext = {
   id: string;
@@ -45,7 +45,9 @@ export function useJobContextFromExtension({
 
   useEffect(() => {
     // Saved jobs come from the extension; with it held back, ?job= and extension-local links load nothing.
-    if (!isLaunchFlagEnabled("extensionSync")) return;
+    // The browser reads the public flag alone: the allowed extension origins are server configuration that
+    // never reaches a client bundle, so the combined flag is always off here. The saved-jobs API enforces both.
+    if (!requestedLaunchFlags.extensionSync) return;
     if (dismissedQueryRef.current === query) return;
     dismissedQueryRef.current = null;
     const params = new URLSearchParams(query);

@@ -25,7 +25,36 @@ async function pasteAndRun(page: Page) {
   await expect(page.locator("#section-first-impression h1")).toBeVisible();
 }
 
+// Saved jobs come from the extension, which is held back: a default build loads nothing for a ?job= link.
+// The saved-job contracts below run on a build made with NEXT_PUBLIC_ENABLE_EXTENSION_SYNC=true.
+const extensionSyncBuilt = ["1", "true", "yes", "on"].includes(
+  String(process.env.NEXT_PUBLIC_ENABLE_EXTENSION_SYNC || "").trim().toLowerCase(),
+);
+
+test.describe("workspace saved-job links while the extension is held back", () => {
+  test.skip(extensionSyncBuilt, "This build has extension sync on; the saved-job contracts below cover it");
+
+  test("a saved-job link asks for nothing and opens the ordinary workspace", async ({ page }) => {
+    await mockFreeStatus(page);
+    const savedJobRequests: string[] = [];
+    await page.route("**/api/extension/saved-jobs/**", (route) => {
+      savedJobRequests.push(route.request().url());
+      return route.fulfill({ json: { success: true, data: JOB_A } });
+    });
+
+    await page.goto(`/workspace?job=${JOB_A.id}`);
+    await expect(page.locator("html")).toHaveAttribute("data-app-hydrated", "true", { timeout: 30_000 });
+    await expect(page.getByTestId("workspace-run-report")).toBeVisible();
+    await page.getByTestId("workspace-role-toggle").click();
+    await expect(page.getByTestId("workspace-job-description")).toHaveValue("");
+    await expect(page.getByText(JOB_A.title, { exact: true })).toHaveCount(0);
+    expect(savedJobRequests).toEqual([]);
+  });
+});
+
 test.describe("workspace saved-job context", () => {
+  test.skip(!extensionSyncBuilt, "Extension sync is held back in this build, so saved-job links load nothing");
+
   test("a saved-job report can be revised without attaching the new report to its old job", async ({ page }) => {
     await mockFreeStatus(page);
     await page.route(`**/api/extension/saved-jobs/${JOB_A.id}`, (route) => route.fulfill({
