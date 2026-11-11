@@ -15,7 +15,8 @@ import { writeFile } from "node:fs/promises";
 import path from "node:path";
 
 const WEB_ROOT = path.resolve(__dirname, "..");
-const FIXTURES = path.join(WEB_ROOT, "tests/fixtures/linkedin");
+// RIYP_LINKEDIN_INPUTS points the run at another folder of export text, such as a real export kept outside the repo.
+const FIXTURES = process.env.RIYP_LINKEDIN_INPUTS || path.join(WEB_ROOT, "tests/fixtures/linkedin");
 
 // run-ts-script transpiles without path mapping or loaders; resolve "@/..." and .txt prompts as the sample script does.
 type Resolver = { _resolveFilename: (request: string, ...rest: unknown[]) => string };

@@ -49,4 +49,4 @@ export function savedPreviewFor(payload: unknown, resumePreview: string) {
 }
 
 export const NOT_A_LINKEDIN_EXPORT_MESSAGE =
-  "That doesn't look like a LinkedIn profile PDF. On your profile, choose Resources, then Save to PDF, and upload that file.";
+  "That doesn't look like a LinkedIn profile PDF. On your profile, choose Resources (or the ⋯ button), then Save to PDF, and upload that file.";
