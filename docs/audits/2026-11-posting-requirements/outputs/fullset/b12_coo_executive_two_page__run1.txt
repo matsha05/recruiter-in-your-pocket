@@ -1,0 +1,36 @@
+# b12_coo_executive_two_page, run 1
+Resume: ../2026-11-live-judgment/resumes/b_coo_executive.txt (463 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 758861ac; severity check off
+Outcome: report; cost $0.0095; 23.0s
+Case note: Executive, two pages.
+
+## Clear and specific (score 92; model wrote 92)
+## Verdict
+A healthcare COO with a substantial operating remit and measurable results across growth, integration and retention.
+
+## Write-up
+This is a strong COO resume! You show the business you run at Lakeshore and connect your work to faster integrations and lower turnover. The earlier clinic roles make the progression into multi-site leadership easy to follow.
+
+The integration line is a great model: it names the playbook you standardized and the change in time. Your current role also puts the practice count, workforce, revenue and board relationship up front, so a recruiter doesn't have to guess how big the job is.
+
+Your resume isn't the thing standing between you and a callback. The match with a company's needs and how competitive the role is will matter too. If you're aiming for a CEO role, we can add an enterprise-wide decision and more about your board work where you can substantiate them.
+
+## Cards (3; {"keep":1,"upgrade":2}); severity off; added []
+1. [keep] Chief Operating Officer, integration line
+   line: "Cut new-practice integration time from 7 months to 10 weeks by standardizing the 90-day integration playbook"
+   can't tell: Keep this as a model. It gives the recruiter both the operating change you made and a before-and-after measure.
+2. [upgrade] Chief Operating Officer, operating plan line
+   line: "Own the annual operating plan and the $410M P&L with the CFO"
+   can't tell: For a CEO role, an enterprise-wide strategic decision would add to the substantial financial responsibility already shown here.
+   example: Own the annual operating plan and the $410M P&L with the CFO, and [enterprise-wide strategic decision you made], leading to [what changed]
+   question: What enterprise-wide strategic decision did you make, and what changed as a result, if you can point to one?
+3. [upgrade] Board and Advisory, board member line
+   line: "Board member, Chicago Community Health Fund, 2021 - Present"
+   can't tell: Your board service is relevant to executive roles. Adding your responsibilities could show more of what you contribute there.
+   example: Board member, Chicago Community Health Fund, 2021 - Present; [board responsibility]
+   question: What responsibilities do you hold on the Chicago Community Health Fund board?
+
+## Fit
+Roles: ["Chief Operating Officer"]
+Level: executive, leads operations for 140 practices and owns the $410M P&L with the CFO
+Note: Your experience points toward COO roles in multi-site healthcare, including organizations growing through acquisitions. Your earlier physician group work also gives you a story beyond dental services.

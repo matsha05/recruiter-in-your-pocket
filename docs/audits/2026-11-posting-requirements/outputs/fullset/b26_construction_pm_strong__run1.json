@@ -1,0 +1,285 @@
+{
+  "case_id": "b26_construction_pm_strong",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/countcheck/synth_cc_construction_pm_strong_1.txt",
+  "resume_sha256": "548c7db64c756b5fab695853a27156e8aa67858a31cab50680d65e1ef14cc181",
+  "resume_words": 136,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-11T20:27:05.772Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7041,
+        "completion_tokens": 1351,
+        "total_tokens": 8392,
+        "cached_prompt_tokens": 6393,
+        "cache_write_prompt_tokens": 645,
+        "reasoning_tokens": 512
+      },
+      "cost_usd": 0.0078839,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 20390
+    }
+  ],
+  "resume_prompt_sha256": "758861acede37f06fbbd892e6c3084b98d8c45be3963b8b393e1d05896ca26d8",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 87,
+    "lifted_by_employer": false,
+    "verdict": "A construction project manager with project values, trade counts, and delivery results a recruiter can follow.",
+    "write_up": [
+      "This is a strong construction project manager resume! Your Capitol Builders work shows the projects you run, their values, and results on schedule and change orders. A recruiter can quickly see your commercial construction work and how much you handle.",
+      "The line about running 4 to 6 concurrent tenant-improvement projects is a good model: it names the work and the value of each project. Experience leads Education, and your move from assistant project manager to project manager is easy to follow.",
+      "Let's add what you did to get the grocery build ahead of schedule and keep change orders under 3%. Your resume gives a recruiter plenty to work with already; how competitive a particular opening is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Project Manager, line 1",
+        "line": "- Run 4 to 6 concurrent tenant-improvement projects worth $1M to $8M each",
+        "cannot_tell": "Keep this as a model. It puts the number of concurrent projects and their individual values right next to the work you run.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Project Manager, line 2",
+        "line": "- Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024",
+        "cannot_tell": "The early delivery is a strong result. A recruiter can't yet see what you did to get the build there.",
+        "example": "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024 by [what you did to keep the build ahead of schedule]",
+        "question": "What did you do to bring the grocery store build in ahead of schedule?"
+      },
+      {
+        "kind": "line",
+        "where": "Project Manager, line 4",
+        "line": "- Kept change orders under 3% of contract value across 2024 and 2025 projects",
+        "cannot_tell": "This gives a recruiter a useful figure across multiple projects. It doesn't say how you managed changes to keep them there.",
+        "example": "Kept change orders under 3% of contract value across 2024 and 2025 projects by [what you did to manage changes]",
+        "question": "What did you do to manage changes across those projects?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Project Manager, line 3",
+        "line": "- Manage subcontractor bids and buyout for 20 to 30 trades per project",
+        "cannot_tell": "For a role above project manager, a decision you made across projects could show responsibility beyond individual trade buyouts.",
+        "example": "Manage subcontractor bids and buyout for 20 to 30 trades per project and [a decision you made across projects]",
+        "question": "What decisions, if any, have you made across projects beyond individual trade buyouts?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Project Manager",
+        "Assistant Project Manager"
+      ],
+      "why": "Your headline and Capitol Builders role both point to construction project management for commercial projects.",
+      "level": "manager, runs concurrent projects and manages subcontractor bids and buyout",
+      "note": "Your experience points toward commercial construction project management, particularly tenant improvements and retail builds. The grocery store delivery also gives you a concrete example of ground-up retail work.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 87,
+    "lifted_by_employer": false,
+    "verdict": "A construction project manager with project values, trade counts, and delivery results a recruiter can follow.",
+    "write_up": [
+      "This is a strong construction project manager resume! Your Capitol Builders work shows the projects you run, their values, and results on schedule and change orders. A recruiter can quickly see your commercial construction work and how much you handle.",
+      "The line about running 4 to 6 concurrent tenant-improvement projects is a good model: it names the work and the value of each project. Experience leads Education, and your move from assistant project manager to project manager is easy to follow.",
+      "Let's add what you did to get the grocery build ahead of schedule and keep change orders under 3%. Your resume gives a recruiter plenty to work with already; how competitive a particular opening is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Project Manager, line 1",
+        "line": "Run 4 to 6 concurrent tenant-improvement projects worth $1M to $8M each",
+        "cannot_tell": "Keep this as a model. It puts the number of concurrent projects and their individual values right next to the work you run.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Project Manager, line 2",
+        "line": "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024",
+        "cannot_tell": "The early delivery is a strong result. A recruiter can't yet see what you did to get the build there.",
+        "example": "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024 by [what you did to keep the build ahead of schedule]",
+        "question": "What did you do to bring the grocery store build in ahead of schedule?"
+      },
+      {
+        "kind": "line",
+        "where": "Project Manager, line 4",
+        "line": "Kept change orders under 3% of contract value across 2024 and 2025 projects",
+        "cannot_tell": "This gives a recruiter a useful figure across multiple projects. It doesn't say how you managed changes to keep them there.",
+        "example": "Kept change orders under 3% of contract value across 2024 and 2025 projects by [what you did to manage changes]",
+        "question": "What did you do to manage changes across those projects?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Project Manager, line 3",
+        "line": "Manage subcontractor bids and buyout for 20 to 30 trades per project",
+        "cannot_tell": "For a role above project manager, a decision you made across projects could show responsibility beyond individual trade buyouts.",
+        "example": "Manage subcontractor bids and buyout for 20 to 30 trades per project and [a decision you made across projects]",
+        "question": "What decisions, if any, have you made across projects beyond individual trade buyouts?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Project Manager",
+        "Assistant Project Manager"
+      ],
+      "why": "Your headline and Capitol Builders role both point to construction project management for commercial projects.",
+      "level": "manager, runs concurrent projects and manages subcontractor bids and buyout",
+      "note": "Your experience points toward commercial construction project management, particularly tenant improvements and retail builds. The grocery store delivery also gives you a concrete example of ground-up retail work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 87
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 87,
+    "lifted_by_employer": false,
+    "verdict": "A construction project manager with project values, trade counts, and delivery results a recruiter can follow.",
+    "write_up": [
+      "This is a strong construction project manager resume! Your Capitol Builders work shows the projects you run, their values, and results on schedule and change orders. A recruiter can quickly see your commercial construction work and how much you handle.",
+      "The line about running 4 to 6 concurrent tenant-improvement projects is a good model: it names the work and the value of each project. Experience leads Education, and your move from assistant project manager to project manager is easy to follow.",
+      "Let's add what you did to get the grocery build ahead of schedule and keep change orders under 3%. Your resume gives a recruiter plenty to work with already; how competitive a particular opening is will matter too."
+    ],
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Project Manager, line 1",
+        "line": "Run 4 to 6 concurrent tenant-improvement projects worth $1M to $8M each",
+        "cannot_tell": "Keep this as a model. It puts the number of concurrent projects and their individual values right next to the work you run.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Project Manager, line 2",
+        "line": "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024",
+        "cannot_tell": "The early delivery is a strong result. A recruiter can't yet see what you did to get the build there.",
+        "example": "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024 by [what you did to keep the build ahead of schedule]",
+        "question": "What did you do to bring the grocery store build in ahead of schedule?"
+      },
+      {
+        "kind": "line",
+        "where": "Project Manager, line 4",
+        "line": "Kept change orders under 3% of contract value across 2024 and 2025 projects",
+        "cannot_tell": "This gives a recruiter a useful figure across multiple projects. It doesn't say how you managed changes to keep them there.",
+        "example": "Kept change orders under 3% of contract value across 2024 and 2025 projects by [what you did to manage changes]",
+        "question": "What did you do to manage changes across those projects?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Project Manager, line 3",
+        "line": "Manage subcontractor bids and buyout for 20 to 30 trades per project",
+        "cannot_tell": "For a role above project manager, a decision you made across projects could show responsibility beyond individual trade buyouts.",
+        "example": "Manage subcontractor bids and buyout for 20 to 30 trades per project and [a decision you made across projects]",
+        "question": "What decisions, if any, have you made across projects beyond individual trade buyouts?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Project Manager",
+        "Assistant Project Manager"
+      ],
+      "why": "Your headline and Capitol Builders role both point to construction project management for commercial projects.",
+      "level": "manager, runs concurrent projects and manages subcontractor bids and buyout",
+      "note": "Your experience points toward commercial construction project management, particularly tenant improvements and retail builds. The grocery store delivery also gives you a concrete example of ground-up retail work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 87
+  },
+  "presentation": {
+    "score": 87,
+    "band": "Clear and specific",
+    "model_score": 87,
+    "lifted_by_employer": false,
+    "verdict": "A construction project manager with project values, trade counts, and delivery results a recruiter can follow.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 119,
+    "cards": [
+      {
+        "kind": "keep",
+        "where": "Project Manager, line 1",
+        "line": "Run 4 to 6 concurrent tenant-improvement projects worth $1M to $8M each",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Project Manager, line 2",
+        "line": "Delivered a $14M grocery store build 3 weeks ahead of schedule in 2024",
+        "blanks": 1,
+        "question": "What did you do to bring the grocery store build in ahead of schedule?"
+      },
+      {
+        "kind": "line",
+        "where": "Project Manager, line 4",
+        "line": "Kept change orders under 3% of contract value across 2024 and 2025 projects",
+        "blanks": 1,
+        "question": "What did you do to manage changes across those projects?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Project Manager, line 3",
+        "line": "Manage subcontractor bids and buyout for 20 to 30 trades per project",
+        "blanks": 1,
+        "question": "What decisions, if any, have you made across projects beyond individual trade buyouts?"
+      }
+    ],
+    "card_count": 4,
+    "kinds": {
+      "keep": 1,
+      "line": 2,
+      "upgrade": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Project Manager",
+        "Assistant Project Manager"
+      ],
+      "why": "Your headline and Capitol Builders role both point to construction project management for commercial projects.",
+      "level": "manager, runs concurrent projects and manages subcontractor bids and buyout",
+      "note": "Your experience points toward commercial construction project management, particularly tenant improvements and retail builds. The grocery store delivery also gives you a concrete example of ground-up retail work.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0078839,
+  "latency_ms": 20405
+}

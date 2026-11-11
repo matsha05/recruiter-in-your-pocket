@@ -1,0 +1,47 @@
+# b33_nonprofit_program_manager, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_nonprofit_program_manager_1.txt (146 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 758861ac; severity check off
+Outcome: report; cost $0.0094; 26.1s
+
+## Mostly clear (score 72; model wrote 72)
+## Verdict
+A youth workforce manager with a clear progression and a summer jobs program that needs more detail.
+
+## Write-up
+You’ve moved from Program Coordinator to Program Manager at Harbor Pathways, working with students, employers and funders. A recruiter can follow that path and see your management responsibilities. I’d move this forward for a youth workforce program role, with questions about how many students and employers the program reaches.
+
+The summer jobs line is your best model: it names the program, the students and where they’re placed. Your supervision line also gives a recruiter a concrete view of your team. The rest of the recent role names useful work, but leaves the program’s reach and what the team handles less clear.
+
+Let’s start with the summer jobs line, then add what your coordinators and seasonal staff do. From there, give the grant reports and employer partnerships a little more substance using details you can confirm.
+
+## Cards (5; {"line":5}); severity off; added []
+1. [line] Program Manager, line 1
+   line: "Manage a summer jobs program placing high school students with local employers"
+   can't tell: A recruiter can picture the program, but not how many students or employers it reaches. Those numbers would help show how big the program is.
+   example: Manage a summer jobs program placing [number] high school students with [number] local employers
+   question: How many students and employers take part in the summer jobs program?
+2. [line] Program Manager, line 2
+   line: "Supervise 4 program coordinators and 20 seasonal staff"
+   can't tell: The team numbers are useful. What the coordinators and seasonal staff handle would show a recruiter more about the work you manage.
+   example: Supervise 4 program coordinators and 20 seasonal staff who [work the team handles]
+   question: What work do the coordinators and seasonal staff handle?
+3. [line] Program Manager, line 3
+   line: "Write grant reports for city and foundation funders"
+   can't tell: A recruiter knows who receives the reports, but not what you report on. The program information you pull together would make this work more concrete.
+   example: Write grant reports for city and foundation funders on [program information reported]
+   question: What program information do you report to funders?
+4. [line] Program Manager, line 4
+   line: "Recruit and onboard employer partners"
+   can't tell: Recruiting and onboarding are clear responsibilities, but the number of partners and what onboarding involves are missing.
+   example: Recruit and onboard [number] employer partners by [onboarding work]
+   question: How many employer partners do you recruit and onboard, and what does onboarding involve?
+5. [line] Program Coordinator, line 3
+   line: "Organized an annual career fair"
+   can't tell: The annual fair is a useful event to name. A recruiter can’t tell who attended or how many people it reached.
+   example: Organized an annual career fair for [attendees], with [number] attendees
+   question: Who attended the career fair, and how many people came?
+
+## Fit
+Roles: ["Program Manager, Youth Workforce","Program Coordinator"]
+Level: manager, supervises 4 program coordinators and 20 seasonal staff
+Note: Your work points toward nonprofit youth workforce program management, with a progression from coordination to supervision. Your experience with funders and employer partners adds to that story.

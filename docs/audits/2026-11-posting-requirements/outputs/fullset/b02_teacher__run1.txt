@@ -1,0 +1,35 @@
+# b02_teacher, run 1
+Resume: ../2026-11-live-judgment/resumes/b_teacher.txt (202 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 758861ac; severity check off
+Outcome: report; cost $0.0102; 29.1s
+
+## Clear and specific (score 86; model wrote 86)
+## Verdict
+A Washington elementary teacher whose resume pairs classroom work with a clear reading-growth result.
+
+## Write-up
+This is a strong elementary teaching resume! Your Lincoln Heights role shows the students you teach, the teachers you lead and the reading growth your class made. A recruiter can see both classroom work and leadership.
+
+The reading assessment line is especially effective: it gives the starting point, the later result and the time over which you measured it. Your certification and English Language Learner endorsement are easy to find, too.
+
+Start by adding what you did on Whitman's behavior support committee. Then consider leading the Lincoln Heights bullets with the reading result. Your resume is unlikely to be the reason you don't get a callback; the competition for a particular teaching job will matter too.
+
+## Cards (3; {"line":1,"upgrade":2}); severity off; added []
+1. [line] 2nd Grade Teacher, line 3
+   line: "Served on the school's positive behavior support committee"
+   can't tell: A recruiter can see that you served on the committee, but not what you contributed or what the group worked on.
+   example: Served on the school's positive behavior support committee, [what you did] to support [committee goal]
+   question: What did you do on the committee, and what was the group working toward?
+2. [upgrade] 4th Grade Teacher, line 3
+   line: "Lead the grade-level team of 4 teachers in weekly planning and data meetings"
+   can't tell: For a teacher leadership role, the priorities and decisions behind those meetings would show more of how you direct the team's work.
+   example: Lead the grade-level team of 4 teachers in weekly planning and data meetings focused on [team priority] and [a decision you made]
+   question: What priorities or decisions, if any, did you set for the team?
+3. [upgrade] 4th Grade Teacher, line 2
+   line: "Raised the class's average reading growth on the district assessment from 0.8 to 1.4 grade levels per year over three years"
+   can't tell: This is your most memorable result. Move it to the first bullet under Lincoln Heights so a recruiter sees it sooner.
+
+## Fit
+Roles: ["4th Grade Teacher","2nd Grade Teacher"]
+Level: lead, leads the grade-level team of 4 teachers
+Note: Your experience points toward elementary classroom teaching, with grade-level leadership also part of your current work. The English Language Learner endorsement adds to the picture of whom you teach.

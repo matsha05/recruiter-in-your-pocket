@@ -1,0 +1,343 @@
+{
+  "case_id": "b17_hr_generalist_career_break",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Returner after caregiving, break dated and named.",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_hr_generalist_career_break_1.txt",
+  "resume_sha256": "59c9f2306490959a56a0d7a38268e6b5db0ff40531b47983bc495f857cae8f0b",
+  "resume_words": 145,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-11T20:26:03.547Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7084,
+        "completion_tokens": 1400,
+        "total_tokens": 8484,
+        "cached_prompt_tokens": 6393,
+        "cache_write_prompt_tokens": 688,
+        "reasoning_tokens": 415
+      },
+      "cost_usd": 0.00818265,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 21973
+    }
+  ],
+  "resume_prompt_sha256": "758861acede37f06fbbd892e6c3084b98d8c45be3963b8b393e1d05896ca26d8",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 64,
+    "lifted_by_employer": false,
+    "verdict": "A manufacturing HR generalist with a clearly named career break and recent duties that need more detail.",
+    "write_up": [
+      "Your resume points to HR Generalist work in manufacturing, with a progression from HR Assistant at Northstar Plastics. It's common for HR resumes to list duties this way, but most of your recent HR lines don't show enough of what you handled to stand out in a pile.",
+      "The new hire orientation line is a good model: it names work you ran and how often. You've also named your family caregiving break plainly. The dates stop at June 2025, so a recruiter can't tell what you've done since then.",
+      "Let's start with the Northstar HR Generalist role. Add what you handled in investigations and enrollment, then consider a brief, honest line for the time after your caregiving break if there's something you want to share."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after June 2025.",
+        "cannot_tell": "A recruiter can't tell what you've done since your caregiving break ended. If you were still caring for family, studying, volunteering, working or taking a career break, you can name what is true.",
+        "example": "June 2025 - Present  [what you did]",
+        "question": "What would you like to share about your time since June 2025?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 1",
+        "line": "- Supported HR for a plant of 400 employees across three shifts",
+        "cannot_tell": "The plant and shifts give a recruiter useful context. What did your HR support cover across them?",
+        "example": "Supported HR for a plant of 400 employees across three shifts by [HR activities]",
+        "question": "Which HR activities did you support across the shifts?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 2",
+        "line": "- Handled employee relations questions and investigations with the HR manager",
+        "cannot_tell": "A recruiter can see that you worked with the HR manager, but not what your part in the questions and investigations involved.",
+        "example": "Handled employee relations questions and investigations with the HR manager by [your responsibilities]",
+        "question": "What did you handle in employee relations questions and investigations?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 3",
+        "line": "- Coordinated open enrollment for medical and dental benefits",
+        "cannot_tell": "Open enrollment is named, but coordination can cover several different jobs. What was yours?",
+        "example": "Coordinated open enrollment for medical and dental benefits, including [your responsibilities]",
+        "question": "What did you handle during open enrollment?"
+      },
+      {
+        "kind": "keep",
+        "where": "HR Generalist, line 4",
+        "line": "- Ran new hire orientation every two weeks",
+        "cannot_tell": "Keep this as a model. It gives you ownership of a recognizable HR task without making a recruiter guess whether you led it or assisted.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 5",
+        "line": "- Kept personnel files and HRIS records up to date",
+        "cannot_tell": "A recruiter can't tell which records you maintained or what updates you handled.",
+        "example": "Kept personnel files and HRIS records up to date, including [record updates]",
+        "question": "What kinds of personnel and HRIS updates did you handle?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "HR Generalist"
+      ],
+      "why": "Your headline and Northstar role both point to HR Generalist work in employee relations, benefits and onboarding.",
+      "level": "mid-level, HR Generalist experience following an HR Assistant role",
+      "note": "Your manufacturing plant experience and SHRM-CP give recruiters useful context for generalist roles. Your HR work at Northstar is the place to show more of what you handled day to day.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 64,
+    "lifted_by_employer": false,
+    "verdict": "A manufacturing HR generalist with a clearly named career break and recent duties that need more detail.",
+    "write_up": [
+      "Your resume points to HR Generalist work in manufacturing, with a progression from HR Assistant at Northstar Plastics. It's common for HR resumes to list duties this way, but most of your recent HR lines don't show enough of what you handled to stand out in a pile.",
+      "The new hire orientation line is a good model: it names work you ran and how often. You've also named your family caregiving break plainly. The dates stop at June 2025, so a recruiter can't tell what you've done since then.",
+      "Let's start with the Northstar HR Generalist role. Add what you handled in investigations and enrollment, then consider a brief, honest line for the time after your caregiving break if there's something you want to share."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after June 2025.",
+        "cannot_tell": "A recruiter can't tell what you've done since your caregiving break ended. If you were still caring for family, studying, volunteering, working or taking a career break, you can name what is true.",
+        "example": "June 2025 - Present [what you did]",
+        "question": "What would you like to share about your time since June 2025?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 1",
+        "line": "Supported HR for a plant of 400 employees across three shifts",
+        "cannot_tell": "The plant and shifts give a recruiter useful context. What did your HR support cover across them?",
+        "example": "Supported HR for a plant of 400 employees across three shifts by [HR activities]",
+        "question": "Which HR activities did you support across the shifts?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 2",
+        "line": "Handled employee relations questions and investigations with the HR manager",
+        "cannot_tell": "A recruiter can see that you worked with the HR manager, but not what your part in the questions and investigations involved.",
+        "example": "Handled employee relations questions and investigations with the HR manager by [your responsibilities]",
+        "question": "What did you handle in employee relations questions and investigations?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 3",
+        "line": "Coordinated open enrollment for medical and dental benefits",
+        "cannot_tell": "Open enrollment is named, but coordination can cover several different jobs. What was yours?",
+        "example": "Coordinated open enrollment for medical and dental benefits, including [your responsibilities]",
+        "question": "What did you handle during open enrollment?"
+      },
+      {
+        "kind": "keep",
+        "where": "HR Generalist, line 4",
+        "line": "Ran new hire orientation every two weeks",
+        "cannot_tell": "Keep this as a model. It gives you ownership of a recognizable HR task without making a recruiter guess whether you led it or assisted.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 5",
+        "line": "Kept personnel files and HRIS records up to date",
+        "cannot_tell": "A recruiter can't tell which records you maintained or what updates you handled.",
+        "example": "Kept personnel files and HRIS records up to date, including [record updates]",
+        "question": "What kinds of personnel and HRIS updates did you handle?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "HR Generalist"
+      ],
+      "why": "Your headline and Northstar role both point to HR Generalist work in employee relations, benefits and onboarding.",
+      "level": "mid-level, HR Generalist experience following an HR Assistant role",
+      "note": "Your manufacturing plant experience and SHRM-CP give recruiters useful context for generalist roles. Your HR work at Northstar is the place to show more of what you handled day to day.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 64
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 64,
+    "lifted_by_employer": false,
+    "verdict": "A manufacturing HR generalist with a clearly named career break and recent duties that need more detail.",
+    "write_up": [
+      "Your resume points to HR Generalist work in manufacturing, with a progression from HR Assistant at Northstar Plastics. It's common for HR resumes to list duties this way, but most of your recent HR lines don't show enough of what you handled to stand out in a pile.",
+      "The new hire orientation line is a good model: it names work you ran and how often. You've also named your family caregiving break plainly. The dates stop at June 2025, so a recruiter can't tell what you've done since then.",
+      "Let's start with the Northstar HR Generalist role. Add what you handled in investigations and enrollment, then consider a brief, honest line for the time after your caregiving break if there's something you want to share."
+    ],
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after June 2025.",
+        "cannot_tell": "A recruiter can't tell what you've done since your caregiving break ended. If you were still caring for family, studying, volunteering, working or taking a career break, you can name what is true.",
+        "example": "June 2025 - Present [what you did]",
+        "question": "What would you like to share about your time since June 2025?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 1",
+        "line": "Supported HR for a plant of 400 employees across three shifts",
+        "cannot_tell": "The plant and shifts give a recruiter useful context. What did your HR support cover across them?",
+        "example": "Supported HR for a plant of 400 employees across three shifts by [HR activities]",
+        "question": "Which HR activities did you support across the shifts?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 2",
+        "line": "Handled employee relations questions and investigations with the HR manager",
+        "cannot_tell": "A recruiter can see that you worked with the HR manager, but not what your part in the questions and investigations involved.",
+        "example": "Handled employee relations questions and investigations with the HR manager by [your responsibilities]",
+        "question": "What did you handle in employee relations questions and investigations?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 3",
+        "line": "Coordinated open enrollment for medical and dental benefits",
+        "cannot_tell": "Open enrollment is named, but coordination can cover several different jobs. What was yours?",
+        "example": "Coordinated open enrollment for medical and dental benefits, including [your responsibilities]",
+        "question": "What did you handle during open enrollment?"
+      },
+      {
+        "kind": "keep",
+        "where": "HR Generalist, line 4",
+        "line": "Ran new hire orientation every two weeks",
+        "cannot_tell": "Keep this as a model. It gives you ownership of a recognizable HR task without making a recruiter guess whether you led it or assisted.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 5",
+        "line": "Kept personnel files and HRIS records up to date",
+        "cannot_tell": "A recruiter can't tell which records you maintained or what updates you handled.",
+        "example": "Kept personnel files and HRIS records up to date, including [record updates]",
+        "question": "What kinds of personnel and HRIS updates did you handle?"
+      }
+    ],
+    "fit": {
+      "roles": [
+        "HR Generalist"
+      ],
+      "why": "Your headline and Northstar role both point to HR Generalist work in employee relations, benefits and onboarding.",
+      "level": "mid-level, HR Generalist experience following an HR Assistant role",
+      "note": "Your manufacturing plant experience and SHRM-CP give recruiters useful context for generalist roles. Your HR work at Northstar is the place to show more of what you handled day to day.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Needs more context",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 64
+  },
+  "presentation": {
+    "score": 64,
+    "band": "Needs more context",
+    "model_score": 64,
+    "lifted_by_employer": false,
+    "verdict": "A manufacturing HR generalist with a clearly named career break and recent duties that need more detail.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 125,
+    "cards": [
+      {
+        "kind": "dates",
+        "where": "Dates",
+        "line": "Nothing is dated after June 2025.",
+        "blanks": 1,
+        "question": "What would you like to share about your time since June 2025?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 1",
+        "line": "Supported HR for a plant of 400 employees across three shifts",
+        "blanks": 1,
+        "question": "Which HR activities did you support across the shifts?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 2",
+        "line": "Handled employee relations questions and investigations with the HR manager",
+        "blanks": 1,
+        "question": "What did you handle in employee relations questions and investigations?"
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 3",
+        "line": "Coordinated open enrollment for medical and dental benefits",
+        "blanks": 1,
+        "question": "What did you handle during open enrollment?"
+      },
+      {
+        "kind": "keep",
+        "where": "HR Generalist, line 4",
+        "line": "Ran new hire orientation every two weeks",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "HR Generalist, line 5",
+        "line": "Kept personnel files and HRIS records up to date",
+        "blanks": 1,
+        "question": "What kinds of personnel and HRIS updates did you handle?"
+      }
+    ],
+    "card_count": 6,
+    "kinds": {
+      "dates": 1,
+      "line": 4,
+      "keep": 1
+    },
+    "structural_from_model": 1,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "HR Generalist"
+      ],
+      "why": "Your headline and Northstar role both point to HR Generalist work in employee relations, benefits and onboarding.",
+      "level": "mid-level, HR Generalist experience following an HR Assistant role",
+      "note": "Your manufacturing plant experience and SHRM-CP give recruiters useful context for generalist roles. Your HR work at Northstar is the place to show more of what you handled day to day.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.00818265,
+  "latency_ms": 21979
+}

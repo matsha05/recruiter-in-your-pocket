@@ -1,0 +1,36 @@
+# b14_teacher_to_instructional_designer, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_teacher_to_instructional_designer_1.txt (164 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 758861ac; severity check off
+Outcome: report; cost $0.0072; 19.8s
+Case note: Career changer.
+
+## Mostly clear (score 78; model wrote 78)
+## Verdict
+A mathematics teacher with a clear classroom remit and an emerging digital learning design portfolio.
+
+## Write-up
+Your resume points first to Mathematics Teacher roles, with digital learning design emerging from your classroom work. A recruiter can see what you teach and how your Canvas module connects to it, though the department leadership work needs more detail.
+
+The line about teaching five sections of 28 to 32 students is a strong model: it names the subjects and gives a recruiter a clear picture of your classroom. Your in-progress certificate and Storyline workshop also show where you're building your design skills.
+
+Let's start with the Canvas module and the math department's professional learning community. A little more about what you built and led will give both teaching and learning design recruiters more to work with.
+
+## Cards (3; {"line":2,"keep":1}); severity off; added []
+1. [line] Cedar Creek High School, line 2
+   line: "Redesigned the Algebra II unit on functions into a self-paced online module in Canvas"
+   can't tell: The Canvas module is a useful example of your design work, but a recruiter can't tell what you put in it. The content would show more of how you approached self-paced learning.
+   example: Redesigned the Algebra II unit on functions into a self-paced online module in Canvas, including [module elements]
+   question: What did the module include?
+2. [line] Cedar Creek High School, line 3
+   line: "Lead the math department's professional learning community"
+   can't tell: You lead the community, but a recruiter can't see what the group works on or what you do as its lead.
+   example: Lead the math department's professional learning community by [leadership activities] focused on [group's work]
+   question: What do you do as the community's lead, and what does the group work on?
+3. [keep] Cedar Creek High School, line 1
+   line: "Teach Algebra II and AP Statistics to five sections of 28 to 32 students"
+   can't tell: Keep this as a model. The subjects and section counts let a recruiter understand your teaching assignment without guessing.
+
+## Fit
+Roles: ["Mathematics Teacher"]
+Level: mid-level, classroom teacher who leads the math department's professional learning community
+Note: Your Canvas module and professional development also point toward learning design work. Use the portfolio to show more of what you built and explain your part in each project.

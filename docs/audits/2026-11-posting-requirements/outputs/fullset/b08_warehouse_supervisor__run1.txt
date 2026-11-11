@@ -1,0 +1,40 @@
+# b08_warehouse_supervisor, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_warehouse_supervisor_1.txt (173 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 758861ac; severity check off
+Outcome: report; cost $0.0070; 18.5s
+
+## Mostly clear (score 76; model wrote 76)
+## Verdict
+A distribution supervisor with a clear progression and team size, but few results attached to the work.
+
+## Write-up
+Your resume follows a clear path from order picker to outbound shift supervisor. A recruiter can see the kind of operation you run and how many people you supervise. The main question is what changed under your supervision, especially around labor, safety and outbound flow.
+
+The line about supervising 35 associates across picking, packing and loading is your best model: it puts the people and their work together. Your work history and certifications are easy to find, and the dates make your progression easy to follow.
+
+Start with the labor scheduling line. Add the order volume you planned for if you can document it, then show what you taught new leads and what part of the scanner rollout was yours.
+
+## Cards (4; {"line":3,"keep":1}); severity off; added []
+1. [line] Shift Supervisor, line 2
+   line: "Schedule labor and assign zones based on daily order volume"
+   can't tell: A recruiter can see how you make the assignments, but not the order volume you plan for. That helps show how much work the shift handles.
+   example: Schedule labor and assign zones for [number] orders per [time period]
+   question: What order volume did you typically schedule labor for?
+2. [line] Shift Supervisor, line 5
+   line: "Train new leads on the warehouse management system"
+   can't tell: Training new leads is useful work. The missing piece is what you taught them to do in the system.
+   example: Train new leads on the warehouse management system to [tasks]
+   question: What tasks did you teach new leads to perform in the system?
+3. [line] Lead Associate, line 3
+   line: "Helped roll out handheld scanners on the pick floor"
+   can't tell: The scanner rollout is a concrete project, but 'helped' leaves your part open. A recruiter can't tell what you contributed.
+   example: Helped roll out handheld scanners on the pick floor by [your contribution]
+   question: What did you do during the handheld scanner rollout?
+4. [keep] Shift Supervisor, line 1
+   line: "Supervise a night shift of 35 associates across picking, packing, and loading"
+   can't tell: Keep this as a model. It names your responsibility, the team and the operations they handle without making a recruiter guess.
+
+## Fit
+Roles: ["Shift Supervisor, Outbound Operations"]
+Level: manager, supervises a night shift of 35 associates
+Note: Your experience points toward distribution center and outbound operations supervision. Your OSHA certification, equipment experience and Manhattan WMS skills also belong alongside that work.

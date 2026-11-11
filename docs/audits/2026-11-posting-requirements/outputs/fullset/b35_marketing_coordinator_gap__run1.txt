@@ -1,0 +1,51 @@
+# b35_marketing_coordinator_gap, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_marketing_coordinator_gap_1.txt (126 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 758861ac; severity check off
+Outcome: report; cost $0.0087; 23.2s
+Case note: Gap with nothing after it.
+
+## Needs more context (score 67; model wrote 67)
+## Verdict
+A marketing coordinator with useful campaign experience, but no account of the time since March 2024.
+
+## Write-up
+Your resume tells a familiar story: you moved from marketing assistant at Fernwood Coffee Roasters to marketing coordinator at Juniper Outdoor Co., working across email, events and social media. The work is recognizable, but most lines stop at the task, and nothing accounts for the time after March 2024. Together, those gaps make it less likely to stand out in a pile.
+
+The weekly email calendar is your best model: it names your responsibility, the cadence and the 120,000-subscriber list. Your trade show line also gives a recruiter something concrete to hold onto. The dates are easy to follow until the most recent role ends.
+
+Let's start with what you've done since March 2024, described honestly. Then build out the social and campaign reporting lines at Juniper with the details you can confirm. You don't need a number on every line; the work itself can do plenty.
+
+## Cards (6; {"dates":1,"line":4,"keep":1}); severity off; added []
+1. [dates] Dates
+   line: "Nothing is dated after March 2024."
+   can't tell: A recruiter can't tell what you've been doing since the Juniper role. If you took care of a family member, you can name that; if you took a career break, you can say what you did during it. Include freelance or consulting work only if it was real.
+   example: March 2024 - Present [what you did]
+   question: What have you done since March 2024 that you'd be comfortable putting on your resume?
+2. [line] Marketing Coordinator, line 4
+   line: "Scheduled social posts across Instagram and Facebook"
+   can't tell: The platforms are clear, but a recruiter can't tell what you scheduled or how often. Those details would show how social media fit into your work at Juniper.
+   example: Scheduled [content] across Instagram and Facebook [posting cadence]
+   question: What kinds of posts did you schedule, and how often?
+3. [line] Marketing Coordinator, line 5
+   line: "Tracked campaign results in a monthly report for the marketing director"
+   can't tell: The monthly report has a clear audience, but campaign results could mean several things. Name the measures you tracked so a recruiter knows what was in it.
+   example: Tracked [campaign measures] in a monthly report for the marketing director
+   question: Which campaign measures did you track in the report?
+4. [line] Marketing Assistant, line 1
+   line: "Helped plan in-store tasting events"
+   can't tell: Helped could cover a lot of different work. Your part in the tasting events is the piece a recruiter can't see yet.
+   example: Helped plan in-store tasting events by [your contribution]
+   question: What did you handle when planning the tasting events?
+5. [line] Marketing Assistant, line 2
+   line: "Updated the company blog and newsletter"
+   can't tell: A recruiter knows where the work appeared, but not what you updated. Were you writing, editing or publishing the content?
+   example: Updated the company blog and newsletter by [your contribution]
+   question: What did updating the blog and newsletter involve?
+6. [keep] Marketing Coordinator, line 1
+   line: "Managed the weekly email calendar for a list of 120,000 subscribers"
+   can't tell: Keep this as a model. It puts your own responsibility next to a meaningful measure, without making a recruiter guess how big the list was.
+
+## Fit
+Roles: ["Marketing Coordinator"]
+Level: mid-level, marketing coordinator role following a marketing assistant role
+Note: Your experience points toward coordinator roles that combine campaign scheduling, content and events. Bring the most relevant channel work forward for each role you pursue.

@@ -1,0 +1,33 @@
+# b27_backend_engineer_senior, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_backend_engineer_senior_1.txt (190 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 758861ac; severity check off
+Outcome: report; cost $0.0068; 17.6s
+
+## Clear and specific (score 94; model wrote 94)
+## Verdict
+A senior payments engineer whose resume connects substantial technical work to measurable results.
+
+## Write-up
+This is a strong payments resume! At Tidewater Commerce, you show both the systems you built and what changed, from fewer reconciliation breaks to fewer integration incidents. Your earlier billing work makes the move into payments easy to follow.
+
+The invoice generation line is a great model: it names the change in time and the database work behind it. Your headline matches the jobs beneath it, and your current role leads with substantial engineering work.
+
+Your resume isn't likely to be the thing holding you back. For a role above senior engineer, you could add a broader technical decision if you made one; the competitiveness of the job and a referral can matter too.
+
+## Cards (3; {"keep":1,"upgrade":2}); severity off; added []
+1. [keep] Software Engineer, line 2
+   line: "Reduced invoice generation time from 6 hours to 25 minutes by batching database writes"
+   can't tell: Keep this as a model. It gives the before and after and names the engineering choice that made the difference.
+2. [upgrade] Senior Software Engineer, Payments Platform, line 1
+   line: "Designed and led the migration of card authorization from a monolith to a Go service handling 4,500 requests per second at p99 under 80 ms"
+   can't tell: For the next level up, a decision that shaped the broader payments system would show how your work reached beyond this migration.
+   example: Designed and led the migration of card authorization from a monolith to a Go service handling 4,500 requests per second at p99 under 80 ms, with [a decision you made] guiding [the broader payments system]
+   question: Did you make a decision that shaped the broader payments system, and what did it guide?
+3. [upgrade] Senior Software Engineer, Payments Platform, line 2
+   line: "Built an idempotent ledger service that cut reconciliation breaks from about 300 a month to under 10"
+   can't tell: Consider moving this above the migration line. Its before and after puts a concrete change in payments operations first.
+
+## Fit
+Roles: ["Senior Software Engineer, Payments Platform"]
+Level: senior, leads payment migrations and mentors engineers
+Note: Your experience points toward senior backend work in payments or billing. The audit leadership and on-call work also show experience beyond building services.

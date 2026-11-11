@@ -1,0 +1,35 @@
+# b28_cybersecurity_analyst, run 1
+Resume: ../2026-11-live-judgment/../../../tests/resumes/blindpick/synth_bp_cybersecurity_analyst_1.txt (154 words)
+Model: gpt-6.1-terra, effort medium, today 2026-11-07; prompt 758861ac; severity check off
+Outcome: report; cost $0.0083; 22.7s
+
+## Clear and specific (score 90; model wrote 90)
+## Verdict
+A senior security analyst whose detection and response work comes with measurable results.
+
+## Write-up
+This is a strong security resume! At Capital Ridge Bank, your detection rules and incident response work are paired with numbers a recruiter can use. Your earlier managed security work adds experience across client environments.
+
+The Splunk detection line is the model: it names the rules, the framework and the reduction in false-positive alerts. Your headline matches the work, and the experience comes before education.
+
+You can send this as it stands. The resume itself isn't an obvious reason for a missed callback; competition for a particular role will matter too. If you have the details, add what your automation changed and a decision you made beyond mentoring.
+
+## Cards (3; {"keep":1,"upgrade":2}); severity off; added []
+1. [keep] Senior Security Analyst, line 1
+   line: "Built 140+ detection rules in Splunk mapped to MITRE ATT&CK, cutting false-positive alerts by 35%"
+   can't tell: Keep this one. It gives a recruiter the tool, the scale of the work and the change that followed without making them guess.
+2. [upgrade] Senior Security Analyst, line 5
+   line: "Mentor 2 analysts on the night rotation"
+   can't tell: For a lead role, a recruiter will also look for decisions you made about the team's detection work. Add one if that was part of your job.
+   example: Mentor 2 analysts on the night rotation and [a decision you made about the team's detection work]
+   question: Did you make a decision about the team's detection work, and what was it?
+3. [upgrade] Senior Security Analyst, line 4
+   line: "Automated alert enrichment with Python and the Splunk SOAR platform"
+   can't tell: The automation and tools are already clear. A measured change in alert handling would make this accomplishment more memorable.
+   example: Automated alert enrichment with Python and the Splunk SOAR platform, changing [alert handling measure] from [before] to [after]
+   question: Did you track a change in alert handling after the automation, and what were the before and after figures?
+
+## Fit
+Roles: ["Senior Security Analyst, Detection and Response"]
+Level: senior, leads incident response and mentors 2 analysts
+Note: Your resume points toward senior detection and response work in security operations. Your banking role and earlier managed security work give you examples from both an internal team and client environments.

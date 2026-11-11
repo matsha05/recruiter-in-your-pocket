@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Paper } from "@/components/materials/Paper";
 import type { WorklistReport } from "@/lib/llm/worklist-schema";
-import { POSTING_TRIM_HOW, POSTING_TRIM_LABEL, postingMissingShown, screenerNote, screenerTitle, worklistLevelParts, worklistReadFor, wordingFor } from "@/lib/reports/worklist-presentation";
+import { POSTING_COVERED_LABEL, POSTING_NOT_COVERED, POSTING_TABLE_LABEL, POSTING_TRIM_HOW, POSTING_TRIM_LABEL, postingMissingShown, screenerNote, screenerTitle, worklistLevelParts, worklistReadFor, wordingFor } from "@/lib/reports/worklist-presentation";
 import { cn } from "@/lib/utils";
 import styles from "./Worklist.module.css";
 
@@ -21,6 +21,7 @@ export function FirstPass({ report, onReadAgainstPosting }: { report: WorklistRe
   const posting = report.fit.posting;
   const lead = posting.lead ?? [];
   const trim = posting.trim ?? [];
+  const covered = posting.covered ?? [];
   const wording = wordingFor(report);
   const [showAll, setShowAll] = useState(false);
   if (!read.role && !level && screener.length === 0) return null;
@@ -68,10 +69,33 @@ export function FirstPass({ report, onReadAgainstPosting }: { report: WorklistRe
       )}
 
       {read.hasPosting ? (
-        (report.fit.note || posting.missing.length > 0 || lead.length > 0 || trim.length > 0) && (
+        (report.fit.note || posting.missing.length > 0 || covered.length > 0 || lead.length > 0 || trim.length > 0) && (
           <div className={styles.postingFit} data-testid="first-pass-posting">
             {report.fit.note && <p className={styles.postingNote}>{report.fit.note}</p>}
-            {posting.missing.length > 0 && (
+            {covered.length > 0 && (
+              <div className={styles.requirements} data-testid="posting-requirements">
+                <p className={styles.missingLabel}>{POSTING_TABLE_LABEL}</p>
+                <dl>
+                  {covered.map((item) => (
+                    <div key={item.requirement} data-covered="true">
+                      <dt>{item.requirement}</dt>
+                      <dd>
+                        <span className={styles.requirementState}>{POSTING_COVERED_LABEL}</span>
+                        <Paper kind="strip" className={styles.strip}><p className={styles.quote}>{item.line}</p></Paper>
+                      </dd>
+                    </div>
+                  ))}
+                  {posting.missing.map((item) => (
+                    <div key={item}>
+                      <dt>{item}</dt>
+                      <dd><span className={styles.requirementMissing}>{POSTING_NOT_COVERED}</span></dd>
+                    </div>
+                  ))}
+                </dl>
+                {posting.missing.length > 0 && <p className={styles.missingHow}>{wording.postingMissingHow}</p>}
+              </div>
+            )}
+            {covered.length === 0 && posting.missing.length > 0 && (
               <div className={styles.missing}>
                 <p className={styles.missingLabel}>{wording.postingMissingLabel}</p>
                 <ul>{shownMissing.map((item) => <li key={item}>{item}</li>)}</ul>

@@ -11,62 +11,53 @@
     "trim": 0
   },
   "usage": {
-    "tokens_in": 7032,
-    "tokens_out": 1307,
-    "cost_estimate_usd": 0.00798505
+    "tokens_in": 7309,
+    "tokens_out": 1323,
+    "cost_estimate_usd": 0.0069833
   },
   "report": {
     "contract_version": "v3",
     "score": 89,
     "lifted_by_employer": false,
-    "verdict": "A senior backend engineer with substantial payments work and results a recruiter can follow.",
+    "verdict": "A senior backend engineer whose payments and infrastructure work comes with scale and results.",
     "write_up": [
-      "This is a strong senior backend resume! At Lumen Ledger, you show payments infrastructure work at scale, then explain how you migrated the ledger and made the balance API faster. A recruiter can see both the systems you built and what changed.",
-      "The balance API line is a model: it gives the starting and ending latency and names the technical change. Your progression from insurance to freight to payments is easy to follow. The oldest role is thinner, but it doesn't obscure your recent work.",
-      "Let's give the claims intake line a little more substance, then consider adding a broader technical decision from the ledger migration for roles above senior. Your resume isn't likely to be the thing standing between you and a callback; the competition for a particular role and a referral can still matter."
+      "Your resume makes a strong case for senior backend work! At Lumen Ledger, you show both the engineering behind the payments platform and the scale it handles. The earlier freight and insurance roles make the progression easy to follow.",
+      "The balance API line is a great model: it names the change you made and shows latency before and after. Your headline fits the work, and Experience is easy to find above Education.",
+      "Let’s add a little more about what maintaining the claims services involved. If you made a wider platform decision during the ledger migration, that could also show what you’re ready to take on next. Your resume is unlikely to be the reason you’re passed over; how competitive a role is will matter too."
     ],
     "cards": [
-      {
-        "kind": "line",
-        "where": "Software Engineer, Northgate Insurance, line 1",
-        "line": "Maintained the claims intake services in Java",
-        "cannot_tell": "Maintained could cover several kinds of work. A recruiter can't tell what you changed in the claims services.",
-        "example": "Maintained the claims intake services in Java by [work performed]",
-        "question": "What work did you do on the claims intake services?"
-      },
       {
         "kind": "keep",
         "where": "Senior Software Engineer, Payments Platform, line 3",
         "line": "Cut p99 latency on the balance API from 900 ms to 140 ms by moving reads to a Kafka-fed cache",
-        "cannot_tell": "Keep this as a model. It puts a measurable improvement next to the engineering choice that produced it.",
+        "cannot_tell": "Keep this as a model. It connects a technical choice to a measurable improvement without making the reader guess what you did.",
         "example": "",
         "question": ""
+      },
+      {
+        "kind": "line",
+        "where": "Software Engineer, line 1",
+        "line": "Maintained the claims intake services in Java",
+        "cannot_tell": "Maintaining the services could cover several kinds of work. A concrete fix or improvement would show what you handled there.",
+        "example": "Maintained the claims intake services in Java by [maintenance work]",
+        "question": "What fix or improvement did you make to the claims intake services?"
       },
       {
         "kind": "upgrade",
         "where": "Senior Software Engineer, Payments Platform, line 2",
         "line": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends",
-        "cannot_tell": "For a role above senior, a broader technical decision behind this migration would show how you shaped the system.",
-        "example": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends, including [a broader technical decision you made]",
-        "question": "What broader technical decision did you make for the ledger migration, if any?"
-      },
-      {
-        "kind": "upgrade",
-        "where": "Senior Software Engineer, Payments Platform, line 4",
-        "line": "Wrote the on-call runbooks for the payments services and ran the incident reviews for the platform group",
-        "cannot_tell": "A change adopted after an incident review would show what the platform group took forward from that work.",
-        "example": "Wrote the on-call runbooks for the payments services and ran the incident reviews for the platform group, leading to [change adopted]",
-        "question": "What change, if any, followed the incident reviews?"
+        "cannot_tell": "The migration already shows strong technical leadership. A wider platform decision, if you made one, could show how your work reached beyond the migration itself.",
+        "example": "Led the migration of the ledger from a single Postgres instance to a sharded cluster with zero downtime over six weekends; made [platform-wide decision]",
+        "question": "What platform-wide decision did you make in connection with the migration?"
       }
     ],
     "fit": {
       "roles": [
-        "Senior Backend Engineer",
-        "Senior Software Engineer, Payments Platform"
+        "Senior Backend Engineer"
       ],
-      "why": "Your headline and recent work both point to senior backend engineering, particularly payments services and data infrastructure.",
+      "why": "Your headline and current role point to senior backend work, with payments services, a ledger migration and API performance improvements.",
       "level": "senior, leads a ledger migration and mentors two mid-level engineers",
-      "note": "Your experience points toward backend roles working on payments and distributed systems. The payouts service, ledger migration and balance API give you distinct work to lead with.",
+      "note": "Your experience points toward backend platform and payments engineering roles. The Go, PostgreSQL and Kafka work gives a recruiter concrete technologies to match against a role.",
       "posting": {
         "summary": "",
         "missing": []

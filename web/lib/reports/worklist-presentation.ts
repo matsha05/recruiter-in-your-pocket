@@ -248,6 +248,11 @@ export function fitHeading(report: Pick<WorklistReport, "fit">) {
   return report.fit.posting.summary ? "How your experience fits this role." : wordingFor(report).fitTitle;
 }
 
+/** The requirements table on a posting read: what the posting asks for, and the resume line that answers each. */
+export const POSTING_TABLE_LABEL = "What this posting asks for";
+export const POSTING_COVERED_LABEL = "Your resume answers it here";
+export const POSTING_NOT_COVERED = "Not on your resume";
+
 /** The profile's parts and how each stands (lib/llm/worklist-schema.ts, ProfilePartSchema). */
 export const PARTS_LABEL = "Your whole profile, part by part";
 export const PART_STATUS_LABEL: Record<"fine" | "needs_work" | "empty", string> = {

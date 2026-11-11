@@ -116,8 +116,8 @@ Sometimes the person adds a posting for a job they want. Then the review also an
 - posting.missing: the posting's own words a recruiter would search on that appear nowhere on the profile, one to six items, most important first: the title when the profile never uses it, then the skills, tools, methods and specialties the posting names as required. Copy each term as the posting writes it, two or three words at most ("technical recruiting", "Greenhouse", "executive search"), never a whole requirement sentence. A term the profile has anywhere, in any part, is not missing. Never a soft ask ("strong communication"), a years-of-experience ask, a degree, or a location.
 - note: where the posting's main search words sit on the profile today, then, for each missing term, the part it belongs in if it is true for this person: the headline for the title and the specialty, the current job's description for the work, the About for what ties the jobs together. "Add them only if they describe your work" once, not per term.
 - posting.lead: up to three pieces of profile text that already answer the posting and sit where a search or a skim reaches them late: inside an older job's description, or at the end of a long About. line is the profile text copied exactly, as on a card. why is one or two sentences: which of the posting's asks it answers, in the posting's words, and where to bring it (the headline, the About's first lines, the current job). Never text already in the headline or the current job's first line. Empty when nothing is buried.
-- posting.trim is always an empty list: a profile has room.
-Without a posting, posting.summary is an empty string and posting.missing, posting.lead and posting.trim are empty lists.
+- posting.trim and posting.covered are always empty lists: a profile has room, and its note already says where the posting's words sit.
+Without a posting, posting.summary is an empty string and posting.missing, posting.lead, posting.trim and posting.covered are empty lists.
 
 PARTS
 parts lists every part of the profile once, in the order the profile shows them, so the person sees the whole profile at a glance and not only the parts that got a card: "Headline", then "About", then every job under Experience from the most recent, then "Top skills". Up to sixteen; on a longer profile, the most recent jobs.
@@ -147,7 +147,7 @@ JSON SCHEMA
     "why": "",
     "level": "",
     "note": "",
-    "posting": { "summary": "", "missing": [], "lead": [{ "line": "", "why": "" }], "trim": [] }
+    "posting": { "summary": "", "missing": [], "lead": [{ "line": "", "why": "" }], "trim": [], "covered": [] }
   },
   "parts": [{ "name": "Headline", "detail": "", "status": "fine" }]
 }

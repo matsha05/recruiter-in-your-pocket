@@ -7,88 +7,80 @@
   "repaired": false,
   "firstError": null,
   "drafted": {
-    "lead": 2,
+    "lead": 3,
     "trim": 0
   },
   "usage": {
-    "tokens_in": 7097,
-    "tokens_out": 2360,
-    "cost_estimate_usd": 0.0131909
+    "tokens_in": 7374,
+    "tokens_out": 2111,
+    "cost_estimate_usd": 0.01092655
   },
   "report": {
     "contract_version": "v3",
     "score": 65,
     "lifted_by_employer": false,
-    "verdict": "Hospital nursing experience fits the role, but the resume leaves your patient assignment and license eligibility unclear.",
+    "verdict": "Hospital nursing experience fits the role, but the resume leaves patient assignments and North Carolina licensure unclear.",
     "write_up": [
-      "Your resume points to registered nursing work: adult patient care at Riverside Methodist, earlier surgical care at Mount Carmel East, and weekend charge nurse duties. It's common for hospital resumes to list core duties this way, but yours won't stand out in a pile until a recruiter can see more about your assignments and what you handle on a shift.",
-      "The Epic line is your best model: it names the work and the system you used. Your BLS and ACLS are also relevant to this posting. For the Raleigh role, a recruiter still needs to know your license eligibility and whether your patient assignments match the unit's needs.",
-      "Let's start with your first Riverside line: add your unit and typical patient assignment if you can. Then show what your charge nurse and preceptor duties involve. If Raleigh and nights work for you, make that clear in your application."
+      "Your hospital nursing background fits much of this medical-surgical role: you care for adult patients, administer medications, teach families and precept new nurses. This is a common nursing resume pattern, but the Riverside lines mostly list duties without showing the patient assignment or the care behind them. That makes it harder to stand out for a job that names a 5 to 6 patient assignment.",
+      "Your Epic line is the best model: it names both the documentation and the system. Your RN, BLS and ACLS are listed, but the resume doesn't say whether your RN license meets the North Carolina requirement. The role is also in Raleigh, while your resume lists Columbus.",
+      "Let's start with your first Riverside line. Add your patient assignment if you can confirm it, then show what you handle as charge nurse and what you teach new graduates. State your license status accurately and make your location plans clear if you're pursuing the Raleigh job."
     ],
     "cards": [
       {
         "kind": "line",
-        "where": "Riverside Methodist, line 1",
+        "where": "Riverside Registered Nurse, line 1",
         "line": "Provide direct patient care for adult patients across 12-hour shifts",
-        "cannot_tell": "A recruiter can't tell what unit you work on or how many patients you typically care for. The posting asks for a 5 to 6 patient assignment.",
-        "example": "Provide direct patient care for [number] adult patients in [unit] across 12-hour shifts",
-        "question": "What unit do you work on, and how many patients are typically in your assignment?"
+        "cannot_tell": "A recruiter can't tell how many patients you care for on a shift. The posting asks for an assignment of 5 to 6 patients.",
+        "example": "Provide direct patient care for [number] adult patients across 12-hour shifts, including [care provided]",
+        "question": "How many patients are in your usual assignment, and what care do you provide?"
       },
       {
         "kind": "line",
-        "where": "Riverside Methodist, line 2",
+        "where": "Riverside Registered Nurse, line 2",
         "line": "Administer medications and monitor patient response",
-        "cannot_tell": "Medication administration matters for this job, but a recruiter can't tell what you monitor or how you respond to changes.",
-        "example": "Administer medications and monitor patient response, including [what you monitor] and [actions you take]",
-        "question": "What responses do you monitor, and what actions do you take when a patient's condition changes?"
+        "cannot_tell": "Medication administration is central to this job, but a recruiter can't tell what you administer or what responses you monitor.",
+        "example": "Administer [medications] and monitor patient response, including [responses monitored]",
+        "question": "Which medications do you administer, and what patient responses do you monitor?"
       },
       {
         "kind": "line",
-        "where": "Riverside Methodist, line 3",
+        "where": "Riverside Registered Nurse, line 3",
         "line": "Educate patients and families on discharge plans",
-        "cannot_tell": "Discharge education is a good match for the posting. The topics you cover and how you check understanding would show more of that work.",
-        "example": "Educate patients and families on discharge plans, including [topics], and [how you check understanding]",
-        "question": "What do you cover in discharge teaching, and how do you check that patients and families understand?"
+        "cannot_tell": "Discharge education fits the posting. A little more about what you teach would show what patients and families take home.",
+        "example": "Educate patients and families on discharge plans, including [topics taught]",
+        "question": "What do you teach patients and families as part of their discharge plans?"
       },
       {
         "kind": "line",
-        "where": "Riverside Methodist, line 4",
+        "where": "Riverside Registered Nurse, line 4",
         "line": "Serve as charge nurse on weekends",
-        "cannot_tell": "Charge nurse duties can vary by unit. A recruiter can't tell what you coordinate or how many staff or patients your duties cover.",
-        "example": "Serve as charge nurse on weekends for [number] [staff or patients], coordinating [responsibilities]",
-        "question": "What are your weekend charge nurse responsibilities, and how many staff or patients do they cover?"
+        "cannot_tell": "Charge nurse work adds leadership to your nursing story, but the weekend responsibilities aren't named.",
+        "example": "Serve as charge nurse on weekends, coordinating [charge nurse responsibilities] for [number] [staff or patients]",
+        "question": "What do you coordinate as charge nurse, and how many staff or patients are involved?"
       },
       {
         "kind": "line",
-        "where": "Riverside Methodist, line 5",
+        "where": "Riverside Registered Nurse, line 5",
         "line": "Precept new graduate nurses",
-        "cannot_tell": "Precepting matches the posting, but your resume doesn't say what you teach or how many new nurses you've precepted.",
-        "example": "Precept [number] new graduate nurses in [skills or tasks]",
-        "question": "How many new graduate nurses have you precepted, and what did you teach them?"
+        "cannot_tell": "Precepting is a direct match for the job. A recruiter can't tell what you teach or how many new graduates you've worked with.",
+        "example": "Precept [number] new graduate nurses in [skills or care taught]",
+        "question": "How many new graduate nurses have you precepted, and what have you taught them?"
       },
       {
         "kind": "line",
-        "where": "Mount Carmel East RN, line 1",
+        "where": "Mount Carmel East Registered Nurse, line 1",
         "line": "Cared for patients before and after surgery",
-        "cannot_tell": "A recruiter can see the surgical setting, but not which parts of preoperative or postoperative care were yours.",
-        "example": "Cared for patients before and after surgery, including [care responsibilities]",
-        "question": "What care did you provide before and after surgery?"
+        "cannot_tell": "This names the patient group, but not the care you provided before or after surgery.",
+        "example": "Cared for patients before and after surgery, including [care provided]",
+        "question": "What care did you provide to patients before and after surgery?"
       },
       {
         "kind": "keep",
-        "where": "Mount Carmel East RN, line 2",
+        "where": "Mount Carmel East Registered Nurse, line 2",
         "line": "Documented assessments and care plans in Epic",
-        "cannot_tell": "Keep this as a model: it pairs two nursing tasks with the system you used, and Epic is named in the posting.",
+        "cannot_tell": "Keep this as a model: it pairs the work with a tool the Raleigh role asks for, without making a recruiter guess where you used it.",
         "example": "",
         "question": ""
-      },
-      {
-        "kind": "line",
-        "where": "Licenses and certifications",
-        "line": "RN, BLS, ACLS",
-        "cannot_tell": "Your resume lists an RN license, but not its state or status. The posting requires a current unrestricted North Carolina RN license or compact state license.",
-        "example": "RN, BLS, ACLS; [RN license state and status]",
-        "question": "Which state issued your RN license, and what are its current and compact license statuses?"
       }
     ],
     "fit": {
@@ -96,11 +88,11 @@
         "Registered Nurse",
         "Registered Nurse, Medical-Surgical Unit (Nights)"
       ],
-      "why": "Your two most recent roles are Registered Nurse positions, with adult patient care, medication administration, discharge education and Epic documentation.",
-      "level": "mid-level, hospital RN experience with charge nurse and preceptor duties",
-      "note": "Your BLS, ACLS and Epic work align with the posting, as does your experience educating patients and families. Bring the Epic and precepting lines forward so those matches are easier to find.",
+      "why": "Your current and previous hospital roles are both Registered Nurse positions, with direct patient care, medication administration and discharge education.",
+      "level": "mid-level, hospital RN roles and weekend charge nurse duties",
+      "note": "Your Epic documentation and new graduate precepting are useful matches for the Raleigh role. If you're available to work there, make your location plans clear.",
       "posting": {
-        "summary": "The role is a night-shift medical-surgical RN position in Raleigh, with 12-hour shifts and rotating weekends.",
+        "summary": "A night-shift medical-surgical RN role caring for a 5 to 6 patient assignment, with Epic documentation, patient education and precepting.",
         "missing": [
           "Current unrestricted North Carolina RN license or compact state license",
           "Ability to manage a patient assignment of 5 to 6 patients"
@@ -108,11 +100,37 @@
         "lead": [
           {
             "line": "Documented assessments and care plans in Epic",
-            "why": "The posting asks for experience with Epic or a comparable EHR. Move this line higher in the Mount Carmel East RN role so the system is easier to find."
+            "why": "The posting asks for Epic or a comparable EHR. Bring this older line forward within the Mount Carmel East role, or name Epic in your current role if you use it there."
+          },
+          {
+            "line": "Educate patients and families on discharge plans",
+            "why": "The posting asks for patient and family education on discharge plans. Move this into the first two lines under Riverside."
           },
           {
             "line": "Precept new graduate nurses",
-            "why": "The role includes precepting students and new graduates. Move this higher in the Riverside Methodist role to bring that match forward."
+            "why": "The posting asks for precepting new graduates. Move this higher under Riverside after the direct patient care lines."
+          }
+        ],
+        "covered": [
+          {
+            "requirement": "BLS certification required; ACLS within six months of hire",
+            "line": "RN, BLS, ACLS"
+          },
+          {
+            "requirement": "Experience with Epic or a comparable EHR",
+            "line": "Documented assessments and care plans in Epic"
+          },
+          {
+            "requirement": "Administer medications and treatments per orders and unit protocol",
+            "line": "Administer medications and monitor patient response"
+          },
+          {
+            "requirement": "Educate patients and families on conditions, medications, and discharge plans",
+            "line": "Educate patients and families on discharge plans"
+          },
+          {
+            "requirement": "Precept students and new graduates as assigned",
+            "line": "Precept new graduate nurses"
           }
         ]
       }

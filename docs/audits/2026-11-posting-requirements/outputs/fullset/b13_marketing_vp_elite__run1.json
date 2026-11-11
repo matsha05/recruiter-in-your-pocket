@@ -1,0 +1,316 @@
+{
+  "case_id": "b13_marketing_vp_elite",
+  "batch": "breadth",
+  "run": 1,
+  "note": "Executive, strong (golden).",
+  "resume_file": "../2026-11-live-judgment/../../../tests/resumes/golden/synth_marketing_manager_vp_elite_1766960221358.txt",
+  "resume_sha256": "a5f6a1bba91362463218b3e6ea358e8bc5b470add84f7b5eee7d69f1078c2bf0",
+  "resume_words": 730,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-11T20:25:31.874Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 8785,
+        "completion_tokens": 2391,
+        "total_tokens": 11176,
+        "cached_prompt_tokens": 6393,
+        "cache_write_prompt_tokens": 2389,
+        "reasoning_tokens": 1283
+      },
+      "cost_usd": 0.0152639,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 35787
+    }
+  ],
+  "resume_prompt_sha256": "758861acede37f06fbbd892e6c3084b98d8c45be3963b8b393e1d05896ca26d8",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A chief marketing officer whose resume connects global leadership to revenue, demand generation and customer growth.",
+    "write_up": [
+      "This is a strong executive marketing resume! Your work at Novara and Viridian connects team and budget leadership to growth in lead flow, revenue and retention. A recruiter can see both the size of the jobs and what changed under your leadership.",
+      "The customer advocacy line at Viridian is a good model: it names the program you launched and ties it to retention and upsell revenue. Your progression from marketing manager to CMO is easy to follow, and your latest role puts the global team and budget up front.",
+      "A recruiter would likely move this resume forward. The resume itself is unlikely to be the reason you don't get a callback; the competitiveness of the role will also matter. Before sending it, define launch success and add context to the P&L claim."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Chief Marketing Officer, line 3",
+        "line": "- I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.",
+        "cannot_tell": "The revenue and time-to-market figures are strong. A recruiter can't tell what counted as a successful launch or what changed in the process.",
+        "example": "I decided to revamp the product launch process by [process change], shortening time-to-market by 30% and increasing launch success rate to 90% based on [success measure], resulting in a $15M incremental revenue increase over 2 years.",
+        "question": "What changed in the launch process, and how did you measure launch success?"
+      },
+      {
+        "kind": "line",
+        "where": "Skills, Budget & P&L Management",
+        "line": "- Budget & P&L Management ($25M+)",
+        "cannot_tell": "Your Novara role names a $25M annual budget, but it doesn't explain your P&L responsibility. That distinction matters when a recruiter is reading for executive accountability.",
+        "example": "Budget & P&L Management ($25M+; [P&L responsibility])",
+        "question": "What P&L responsibility did you hold, and in which role?"
+      },
+      {
+        "kind": "keep",
+        "where": "Vice President, Global Marketing, line 3",
+        "line": "- I led the development and launch of a new customer advocacy program that increased customer retention by 12% and generated $4M in upsell revenue within 18 months.",
+        "cannot_tell": "Keep this as a model. It shows your part in building the program and gives a recruiter two business measures with a timeframe.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Marketing Officer, line 1",
+        "line": "- I led a 45-person global marketing organization managing a $25M annual budget, driving company-wide brand and demand generation strategy for a SaaS platform serving 2M+ users across 40 countries.",
+        "cannot_tell": "For a CEO role, a company-wide decision beyond marketing would show how your leadership extends across the business, if you made one.",
+        "example": "I led a 45-person global marketing organization managing a $25M annual budget, driving company-wide brand and demand generation strategy for a SaaS platform serving 2M+ users across 40 countries, and made [company-wide decision].",
+        "question": "What company-wide decision did you make beyond marketing, if any?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Vice President, Global Marketing, line 2",
+        "line": "- I built and executed a comprehensive account-based marketing (ABM) program that increased pipeline contribution by $50M annually, lifting win rates by 15% among Fortune 500 clients.",
+        "cannot_tell": "This is the strongest result in the Viridian role. Move it above the team and budget line to lead with the program and its commercial results.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Marketing Officer",
+        "Vice President, Global Marketing"
+      ],
+      "why": "Your current Chief Marketing Officer role leads a global marketing organization, and your earlier roles follow the same marketing leadership path.",
+      "level": "executive, leads a 45-person global marketing organization with a $25M annual budget",
+      "note": "Your experience points toward senior marketing leadership in SaaS and other technology businesses. The demand generation, brand and product launch work gives you several relevant stories to bring forward for a particular role.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A chief marketing officer whose resume connects global leadership to revenue, demand generation and customer growth.",
+    "write_up": [
+      "This is a strong executive marketing resume! Your work at Novara and Viridian connects team and budget leadership to growth in lead flow, revenue and retention. A recruiter can see both the size of the jobs and what changed under your leadership.",
+      "The customer advocacy line at Viridian is a good model: it names the program you launched and ties it to retention and upsell revenue. Your progression from marketing manager to CMO is easy to follow, and your latest role puts the global team and budget up front.",
+      "A recruiter would likely move this resume forward. The resume itself is unlikely to be the reason you don't get a callback; the competitiveness of the role will also matter. Before sending it, define launch success and add context to the P&L claim."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Chief Marketing Officer, line 3",
+        "line": "I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.",
+        "cannot_tell": "The revenue and time-to-market figures are strong. A recruiter can't tell what counted as a successful launch or what changed in the process.",
+        "example": "I decided to revamp the product launch process by [process change], shortening time-to-market by 30% and increasing launch success rate to 90% based on [success measure], resulting in a $15M incremental revenue increase over 2 years.",
+        "question": "What changed in the launch process, and how did you measure launch success?"
+      },
+      {
+        "kind": "line",
+        "where": "Skills, Budget & P&L Management",
+        "line": "Budget & P&L Management ($25M+)",
+        "cannot_tell": "Your Novara role names a $25M annual budget, but it doesn't explain your P&L responsibility. That distinction matters when a recruiter is reading for executive accountability.",
+        "example": "Budget & P&L Management ($25M+; [P&L responsibility])",
+        "question": "What P&L responsibility did you hold, and in which role?"
+      },
+      {
+        "kind": "keep",
+        "where": "Vice President, Global Marketing, line 3",
+        "line": "I led the development and launch of a new customer advocacy program that increased customer retention by 12% and generated $4M in upsell revenue within 18 months.",
+        "cannot_tell": "Keep this as a model. It shows your part in building the program and gives a recruiter two business measures with a timeframe.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Marketing Officer, line 1",
+        "line": "I led a 45-person global marketing organization managing a $25M annual budget, driving company-wide brand and demand generation strategy for a SaaS platform serving 2M+ users across 40 countries.",
+        "cannot_tell": "For a CEO role, a company-wide decision beyond marketing would show how your leadership extends across the business, if you made one.",
+        "example": "I led a 45-person global marketing organization managing a $25M annual budget, driving company-wide brand and demand generation strategy for a SaaS platform serving 2M+ users across 40 countries, and made [company-wide decision].",
+        "question": "What company-wide decision did you make beyond marketing, if any?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Vice President, Global Marketing, line 2",
+        "line": "I built and executed a comprehensive account-based marketing (ABM) program that increased pipeline contribution by $50M annually, lifting win rates by 15% among Fortune 500 clients.",
+        "cannot_tell": "This is the strongest result in the Viridian role. Move it above the team and budget line to lead with the program and its commercial results.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Marketing Officer",
+        "Vice President, Global Marketing"
+      ],
+      "why": "Your current Chief Marketing Officer role leads a global marketing organization, and your earlier roles follow the same marketing leadership path.",
+      "level": "executive, leads a 45-person global marketing organization with a $25M annual budget",
+      "note": "Your experience points toward senior marketing leadership in SaaS and other technology businesses. The demand generation, brand and product launch work gives you several relevant stories to bring forward for a particular role.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A chief marketing officer whose resume connects global leadership to revenue, demand generation and customer growth.",
+    "write_up": [
+      "This is a strong executive marketing resume! Your work at Novara and Viridian connects team and budget leadership to growth in lead flow, revenue and retention. A recruiter can see both the size of the jobs and what changed under your leadership.",
+      "The customer advocacy line at Viridian is a good model: it names the program you launched and ties it to retention and upsell revenue. Your progression from marketing manager to CMO is easy to follow, and your latest role puts the global team and budget up front.",
+      "A recruiter would likely move this resume forward. The resume itself is unlikely to be the reason you don't get a callback; the competitiveness of the role will also matter. Before sending it, define launch success and add context to the P&L claim."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Chief Marketing Officer, line 3",
+        "line": "I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.",
+        "cannot_tell": "The revenue and time-to-market figures are strong. A recruiter can't tell what counted as a successful launch or what changed in the process.",
+        "example": "I decided to revamp the product launch process by [process change], shortening time-to-market by 30% and increasing launch success rate to 90% based on [success measure], resulting in a $15M incremental revenue increase over 2 years.",
+        "question": "What changed in the launch process, and how did you measure launch success?"
+      },
+      {
+        "kind": "line",
+        "where": "Skills, Budget & P&L Management",
+        "line": "Budget & P&L Management ($25M+)",
+        "cannot_tell": "Your Novara role names a $25M annual budget, but it doesn't explain your P&L responsibility. That distinction matters when a recruiter is reading for executive accountability.",
+        "example": "Budget & P&L Management ($25M+; [P&L responsibility])",
+        "question": "What P&L responsibility did you hold, and in which role?"
+      },
+      {
+        "kind": "keep",
+        "where": "Vice President, Global Marketing, line 3",
+        "line": "I led the development and launch of a new customer advocacy program that increased customer retention by 12% and generated $4M in upsell revenue within 18 months.",
+        "cannot_tell": "Keep this as a model. It shows your part in building the program and gives a recruiter two business measures with a timeframe.",
+        "example": "",
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Marketing Officer, line 1",
+        "line": "I led a 45-person global marketing organization managing a $25M annual budget, driving company-wide brand and demand generation strategy for a SaaS platform serving 2M+ users across 40 countries.",
+        "cannot_tell": "For a CEO role, a company-wide decision beyond marketing would show how your leadership extends across the business, if you made one.",
+        "example": "I led a 45-person global marketing organization managing a $25M annual budget, driving company-wide brand and demand generation strategy for a SaaS platform serving 2M+ users across 40 countries, and made [company-wide decision].",
+        "question": "What company-wide decision did you make beyond marketing, if any?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Vice President, Global Marketing, line 2",
+        "line": "I built and executed a comprehensive account-based marketing (ABM) program that increased pipeline contribution by $50M annually, lifting win rates by 15% among Fortune 500 clients.",
+        "cannot_tell": "This is the strongest result in the Viridian role. Move it above the team and budget line to lead with the program and its commercial results.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Chief Marketing Officer",
+        "Vice President, Global Marketing"
+      ],
+      "why": "Your current Chief Marketing Officer role leads a global marketing organization, and your earlier roles follow the same marketing leadership path.",
+      "level": "executive, leads a 45-person global marketing organization with a $25M annual budget",
+      "note": "Your experience points toward senior marketing leadership in SaaS and other technology businesses. The demand generation, brand and product launch work gives you several relevant stories to bring forward for a particular role.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Clear and specific",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 89
+  },
+  "presentation": {
+    "score": 89,
+    "band": "Clear and specific",
+    "model_score": 89,
+    "lifted_by_employer": false,
+    "verdict": "A chief marketing officer whose resume connects global leadership to revenue, demand generation and customer growth.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 132,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Chief Marketing Officer, line 3",
+        "line": "I decided to revamp the product launch process, shortening time-to-market by 30% and increasing launch success rate to 90%, resulting in a $15M incremental revenue increase over 2 years.",
+        "blanks": 2,
+        "question": "What changed in the launch process, and how did you measure launch success?"
+      },
+      {
+        "kind": "line",
+        "where": "Skills, Budget & P&L Management",
+        "line": "Budget & P&L Management ($25M+)",
+        "blanks": 1,
+        "question": "What P&L responsibility did you hold, and in which role?"
+      },
+      {
+        "kind": "keep",
+        "where": "Vice President, Global Marketing, line 3",
+        "line": "I led the development and launch of a new customer advocacy program that increased customer retention by 12% and generated $4M in upsell revenue within 18 months.",
+        "blanks": 0,
+        "question": ""
+      },
+      {
+        "kind": "upgrade",
+        "where": "Chief Marketing Officer, line 1",
+        "line": "I led a 45-person global marketing organization managing a $25M annual budget, driving company-wide brand and demand generation strategy for a SaaS platform serving 2M+ users across 40 countries.",
+        "blanks": 1,
+        "question": "What company-wide decision did you make beyond marketing, if any?"
+      },
+      {
+        "kind": "upgrade",
+        "where": "Vice President, Global Marketing, line 2",
+        "line": "I built and executed a comprehensive account-based marketing (ABM) program that increased pipeline contribution by $50M annually, lifting win rates by 15% among Fortune 500 clients.",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "line": 2,
+      "keep": 1,
+      "upgrade": 2
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Chief Marketing Officer",
+        "Vice President, Global Marketing"
+      ],
+      "why": "Your current Chief Marketing Officer role leads a global marketing organization, and your earlier roles follow the same marketing leadership path.",
+      "level": "executive, leads a 45-person global marketing organization with a $25M annual budget",
+      "note": "Your experience points toward senior marketing leadership in SaaS and other technology businesses. The demand generation, brand and product launch work gives you several relevant stories to bring forward for a particular role.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0152639,
+  "latency_ms": 35835
+}

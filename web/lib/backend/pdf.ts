@@ -9,7 +9,7 @@ import { marginNoteFromFix } from "../reports/revised-line";
 import { SCORE_BANDS, WORKLIST_BANDS, reportTone, scoreBandIndex, worklistBandIndex, worklistBandsFor } from "../reports/score-band";
 import { reportDocumentKind } from "../reports/report-document";
 import { QUOTED_KINDS, WORK_KINDS } from "../llm/worklist-schema";
-import { cardsHeading, hasRoleSection, UPGRADES_HEADING, upgradesLead, PART_STATUS_LABEL, PARTS_LABEL, POSTING_TRIM_HOW, POSTING_TRIM_LABEL, wordingFor, screenerNote, screenerTitle, worklistLevelParts, worklistReadFor } from "../reports/worklist-presentation";
+import { cardsHeading, hasRoleSection, UPGRADES_HEADING, upgradesLead, PART_STATUS_LABEL, PARTS_LABEL, POSTING_COVERED_LABEL, POSTING_TABLE_LABEL, POSTING_TRIM_HOW, POSTING_TRIM_LABEL, wordingFor, screenerNote, screenerTitle, worklistLevelParts, worklistReadFor } from "../reports/worklist-presentation";
 import { pdfReportStyles } from "./pdf-styles";
 
 /**
@@ -120,6 +120,7 @@ function renderWorklistHtml(report: ReportForPdf, worklist: WorklistForPdf) {
       </div>` : ""}
       ${read.hasPosting && (fit.note || fit.posting.missing.length || postingMoves) ? `<div class="posting-fit">
         ${fit.note ? `<p class="note">${escapeHtml(fit.note)}</p>` : ""}
+        ${fit.posting.covered?.length ? `<div class="label">${escapeHtml(POSTING_TABLE_LABEL)}</div><ul>${fit.posting.covered.map((item) => `<li>${escapeHtml(item.requirement)}<br><span class="note">${escapeHtml(POSTING_COVERED_LABEL)}: ${escapeHtml(item.line)}</span></li>`).join("")}</ul>` : ""}
         ${fit.posting.missing.length ? `<div class="label">${escapeHtml(postingWording.postingMissingLabel)}</div><ul>${fit.posting.missing.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul><div class="how">${escapeHtml(postingWording.postingMissingHow)}</div>` : ""}
         ${postingMoves}
       </div>` : ""}

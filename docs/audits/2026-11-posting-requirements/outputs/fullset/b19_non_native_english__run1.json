@@ -1,0 +1,315 @@
+{
+  "case_id": "b19_non_native_english",
+  "batch": "breadth",
+  "run": 1,
+  "note": null,
+  "resume_file": "../2026-11-live-judgment/resumes/b_non_native_english.txt",
+  "resume_sha256": "b6a26fe36825d1810e73236e21445163948f02ce6be0d9328e9ccaf50cb59c16",
+  "resume_words": 237,
+  "job_description_file": null,
+  "today": "2026-11-07",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "severity_check": false,
+  "started_at": "2026-11-11T20:26:17.739Z",
+  "calls": [
+    {
+      "kind": "report",
+      "usage": {
+        "prompt_tokens": 7283,
+        "completion_tokens": 1443,
+        "total_tokens": 8726,
+        "cached_prompt_tokens": 6393,
+        "cache_write_prompt_tokens": 887,
+        "reasoning_tokens": 486
+      },
+      "cost_usd": 0.0086464,
+      "model": "gpt-6.1-terra",
+      "latency_ms": 22628
+    }
+  ],
+  "resume_prompt_sha256": "758861acede37f06fbbd892e6c3084b98d8c45be3963b8b393e1d05896ca26d8",
+  "severity_prompt_sha256": "f1bb4571f3f4cfbf8ed82e78193d543448789f076fec95cb6e79a19f1bc19c90",
+  "model_output": {
+    "contract_version": "v3",
+    "score": 79,
+    "lifted_by_employer": false,
+    "verdict": "An accountant with substantial ledger and payable work, though some closing and audit contributions need detail.",
+    "write_up": [
+      "Your resume points toward Staff Accountant work: you bring senior accounting experience from Minh Phat Trading Company and current accounts payable work at Bayou Industrial Supply. A recruiter can see the work and its scale, though a few lines leave your part in closing and audit work open to question.",
+      "The strongest model is your month-end closing line at Minh Phat. It gives the old and new timelines and names the checklist and template you made. Your current role also grounds the work with around 400 vendor invoices a month in QuickBooks.",
+      "Let's start with what you help the controller do at month end, then add the work behind your ledger, team and audit responsibilities at Minh Phat. Those details can connect your current payables work to the broader accounting work you're seeking."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 4",
+        "line": "- Help the controller for month end closing",
+        "cannot_tell": "A recruiter can't tell which closing tasks you handle. That matters for a Staff Accountant role, where month-end work is part of your story.",
+        "example": "Help the controller with month end closing by [closing tasks]",
+        "question": "Which month-end closing tasks do you help the controller with?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 1",
+        "line": "- Responsible for general ledger, fixed assets and monthly financial statements of company with 150 employees and revenue about 20 million USD",
+        "cannot_tell": "The company details show how big the work was, but 'responsible for' leaves the accounting tasks unclear. Name the work you handled within those areas.",
+        "example": "Responsible for general ledger, fixed assets and monthly financial statements, including [accounting tasks], for company with 150 employees and revenue about 20 million USD",
+        "question": "What accounting tasks did you handle for the ledger, fixed assets and financial statements?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 2",
+        "line": "- Lead team of 3 junior accountants",
+        "cannot_tell": "The team count is useful, but a recruiter can't tell what the junior accountants worked on under your leadership.",
+        "example": "Lead team of 3 junior accountants who [team responsibilities]",
+        "question": "What work did the junior accountants on your team handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 3",
+        "line": "- Work with external auditor for year end audit, no major finding in 5 years",
+        "cannot_tell": "No major finding in 5 years is worth keeping. The line doesn't say what you provided or handled during the audits.",
+        "example": "Work with external auditor for year end audit by [audit contribution]; no major finding in 5 years",
+        "question": "What did you handle or provide for the external auditor?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Accountant, line 4",
+        "line": "- Reduce the month end closing from 12 days to 7 days by make new checklist and template",
+        "cannot_tell": "Keep this as your model. It connects a change in the closing timeline to the materials you made, so a recruiter can see your contribution.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Specialist"
+      ],
+      "why": "Your profile names Staff Accountant, and your ledger, financial statement, bookkeeping and payables work all point toward it.",
+      "level": "mid-level, prior Senior Accountant role leading 3 junior accountants",
+      "note": "Your current payables work and earlier general ledger responsibilities give you a basis for both jobs named in your profile. The closing and audit details can make the broader accounting experience easier to carry into a Staff Accountant application.",
+      "posting": {
+        "summary": "",
+        "missing": [],
+        "lead": [],
+        "trim": [],
+        "covered": []
+      }
+    }
+  },
+  "validated_report": {
+    "contract_version": "v3",
+    "score": 79,
+    "lifted_by_employer": false,
+    "verdict": "An accountant with substantial ledger and payable work, though some closing and audit contributions need detail.",
+    "write_up": [
+      "Your resume points toward Staff Accountant work: you bring senior accounting experience from Minh Phat Trading Company and current accounts payable work at Bayou Industrial Supply. A recruiter can see the work and its scale, though a few lines leave your part in closing and audit work open to question.",
+      "The strongest model is your month-end closing line at Minh Phat. It gives the old and new timelines and names the checklist and template you made. Your current role also grounds the work with around 400 vendor invoices a month in QuickBooks.",
+      "Let's start with what you help the controller do at month end, then add the work behind your ledger, team and audit responsibilities at Minh Phat. Those details can connect your current payables work to the broader accounting work you're seeking."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 4",
+        "line": "Help the controller for month end closing",
+        "cannot_tell": "A recruiter can't tell which closing tasks you handle. That matters for a Staff Accountant role, where month-end work is part of your story.",
+        "example": "Help the controller with month end closing by [closing tasks]",
+        "question": "Which month-end closing tasks do you help the controller with?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 1",
+        "line": "Responsible for general ledger, fixed assets and monthly financial statements of company with 150 employees and revenue about 20 million USD",
+        "cannot_tell": "The company details show how big the work was, but 'responsible for' leaves the accounting tasks unclear. Name the work you handled within those areas.",
+        "example": "Responsible for general ledger, fixed assets and monthly financial statements, including [accounting tasks], for company with 150 employees and revenue about 20 million USD",
+        "question": "What accounting tasks did you handle for the ledger, fixed assets and financial statements?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 2",
+        "line": "Lead team of 3 junior accountants",
+        "cannot_tell": "The team count is useful, but a recruiter can't tell what the junior accountants worked on under your leadership.",
+        "example": "Lead team of 3 junior accountants who [team responsibilities]",
+        "question": "What work did the junior accountants on your team handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 3",
+        "line": "Work with external auditor for year end audit, no major finding in 5 years",
+        "cannot_tell": "No major finding in 5 years is worth keeping. The line doesn't say what you provided or handled during the audits.",
+        "example": "Work with external auditor for year end audit by [audit contribution]; no major finding in 5 years",
+        "question": "What did you handle or provide for the external auditor?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Accountant, line 4",
+        "line": "Reduce the month end closing from 12 days to 7 days by make new checklist and template",
+        "cannot_tell": "Keep this as your model. It connects a change in the closing timeline to the materials you made, so a recruiter can see your contribution.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Specialist"
+      ],
+      "why": "Your profile names Staff Accountant, and your ledger, financial statement, bookkeeping and payables work all point toward it.",
+      "level": "mid-level, prior Senior Accountant role leading 3 junior accountants",
+      "note": "Your current payables work and earlier general ledger responsibilities give you a basis for both jobs named in your profile. The closing and audit details can make the broader accounting experience easier to carry into a Staff Accountant application.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 79
+  },
+  "shipped_report": {
+    "contract_version": "v3",
+    "score": 79,
+    "lifted_by_employer": false,
+    "verdict": "An accountant with substantial ledger and payable work, though some closing and audit contributions need detail.",
+    "write_up": [
+      "Your resume points toward Staff Accountant work: you bring senior accounting experience from Minh Phat Trading Company and current accounts payable work at Bayou Industrial Supply. A recruiter can see the work and its scale, though a few lines leave your part in closing and audit work open to question.",
+      "The strongest model is your month-end closing line at Minh Phat. It gives the old and new timelines and names the checklist and template you made. Your current role also grounds the work with around 400 vendor invoices a month in QuickBooks.",
+      "Let's start with what you help the controller do at month end, then add the work behind your ledger, team and audit responsibilities at Minh Phat. Those details can connect your current payables work to the broader accounting work you're seeking."
+    ],
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 4",
+        "line": "Help the controller for month end closing",
+        "cannot_tell": "A recruiter can't tell which closing tasks you handle. That matters for a Staff Accountant role, where month-end work is part of your story.",
+        "example": "Help the controller with month end closing by [closing tasks]",
+        "question": "Which month-end closing tasks do you help the controller with?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 1",
+        "line": "Responsible for general ledger, fixed assets and monthly financial statements of company with 150 employees and revenue about 20 million USD",
+        "cannot_tell": "The company details show how big the work was, but 'responsible for' leaves the accounting tasks unclear. Name the work you handled within those areas.",
+        "example": "Responsible for general ledger, fixed assets and monthly financial statements, including [accounting tasks], for company with 150 employees and revenue about 20 million USD",
+        "question": "What accounting tasks did you handle for the ledger, fixed assets and financial statements?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 2",
+        "line": "Lead team of 3 junior accountants",
+        "cannot_tell": "The team count is useful, but a recruiter can't tell what the junior accountants worked on under your leadership.",
+        "example": "Lead team of 3 junior accountants who [team responsibilities]",
+        "question": "What work did the junior accountants on your team handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 3",
+        "line": "Work with external auditor for year end audit, no major finding in 5 years",
+        "cannot_tell": "No major finding in 5 years is worth keeping. The line doesn't say what you provided or handled during the audits.",
+        "example": "Work with external auditor for year end audit by [audit contribution]; no major finding in 5 years",
+        "question": "What did you handle or provide for the external auditor?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Accountant, line 4",
+        "line": "Reduce the month end closing from 12 days to 7 days by make new checklist and template",
+        "cannot_tell": "Keep this as your model. It connects a change in the closing timeline to the materials you made, so a recruiter can see your contribution.",
+        "example": "",
+        "question": ""
+      }
+    ],
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Specialist"
+      ],
+      "why": "Your profile names Staff Accountant, and your ledger, financial statement, bookkeeping and payables work all point toward it.",
+      "level": "mid-level, prior Senior Accountant role leading 3 junior accountants",
+      "note": "Your current payables work and earlier general ledger responsibilities give you a basis for both jobs named in your profile. The closing and audit details can make the broader accounting experience easier to carry into a Staff Accountant application.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    },
+    "score_label": "Mostly clear",
+    "layout_score": null,
+    "layout_band": "unknown",
+    "layout_notes": "",
+    "content_score": 79
+  },
+  "presentation": {
+    "score": 79,
+    "band": "Mostly clear",
+    "model_score": 79,
+    "lifted_by_employer": false,
+    "verdict": "An accountant with substantial ledger and payable work, though some closing and audit contributions need detail.",
+    "write_up_paragraphs": 3,
+    "write_up_words": 133,
+    "cards": [
+      {
+        "kind": "line",
+        "where": "Accounts Payable Clerk, line 4",
+        "line": "Help the controller for month end closing",
+        "blanks": 1,
+        "question": "Which month-end closing tasks do you help the controller with?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 1",
+        "line": "Responsible for general ledger, fixed assets and monthly financial statements of company with 150 employees and revenue about 20 million USD",
+        "blanks": 1,
+        "question": "What accounting tasks did you handle for the ledger, fixed assets and financial statements?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 2",
+        "line": "Lead team of 3 junior accountants",
+        "blanks": 1,
+        "question": "What work did the junior accountants on your team handle?"
+      },
+      {
+        "kind": "line",
+        "where": "Senior Accountant, line 3",
+        "line": "Work with external auditor for year end audit, no major finding in 5 years",
+        "blanks": 1,
+        "question": "What did you handle or provide for the external auditor?"
+      },
+      {
+        "kind": "keep",
+        "where": "Senior Accountant, line 4",
+        "line": "Reduce the month end closing from 12 days to 7 days by make new checklist and template",
+        "blanks": 0,
+        "question": ""
+      }
+    ],
+    "card_count": 5,
+    "kinds": {
+      "line": 4,
+      "keep": 1
+    },
+    "structural_from_model": 0,
+    "severity_added": [],
+    "severity_skipped": [],
+    "severity_outcome": "off",
+    "fit": {
+      "roles": [
+        "Staff Accountant",
+        "Accounts Payable Specialist"
+      ],
+      "why": "Your profile names Staff Accountant, and your ledger, financial statement, bookkeeping and payables work all point toward it.",
+      "level": "mid-level, prior Senior Accountant role leading 3 junior accountants",
+      "note": "Your current payables work and earlier general ledger responsibilities give you a basis for both jobs named in your profile. The closing and audit details can make the broader accounting experience easier to carry into a Staff Accountant application.",
+      "posting": {
+        "summary": "",
+        "missing": []
+      }
+    }
+  },
+  "outcome": "report",
+  "cost_usd": 0.0086464,
+  "latency_ms": 22633
+}
