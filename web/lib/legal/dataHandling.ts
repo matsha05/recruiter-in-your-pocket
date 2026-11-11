@@ -43,9 +43,9 @@ export const DATA_HANDLING_ROWS: DataHandlingRow[] = [
   },
   {
     dataType: "Saved resume profile (default resume)",
-    purpose: "Job matching and extension workflows.",
-    retention: "Stored until you replace it, remove it, or delete your account. Includes raw resume text for matching plus derived skills, seniority signals, embeddings, hash, and preview.",
-    userControl: "Replace or remove it in Settings > Matching, or delete your account.",
+    purpose: "Only if you choose to keep a resume on file: so a posting read with your pass doesn't ask for the resume again. Also used for job matching where that is turned on.",
+    retention: "Stored until you replace it, remove it, or delete your account. Includes the raw resume text plus derived skills, seniority signals, a hash and a preview. A resume kept only for posting reads is not sent for an embedding.",
+    userControl: "Remove it from the new-report screen where it is filled in or kept, or delete your account.",
     processor: "Supabase, OpenAI (embeddings)"
   },
   {

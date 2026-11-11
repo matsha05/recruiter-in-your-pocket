@@ -19,5 +19,15 @@ export const POSTING_READS_AFTER_FIVE = "Reading a resume you've already run aga
 /** Arriving from a saved report: saved reports don't keep the resume, so the person adds it again. */
 export const POSTING_READ_ADD_RESUME = "Add the resume that report was written on, then paste the posting.";
 
+/** The opt-in to keep the resume on file, shown once a posting read has its resume. */
+export const RESUME_ON_FILE_OFFER = "Applying to more than one job? Keep this resume on file and next time you only paste the posting.";
+export const RESUME_ON_FILE_KEEP = "Keep it on file";
+/** After keeping it: where it lives and how it leaves, said once. */
+export const RESUME_ON_FILE_KEPT = "On file. We store the text of this resume in your account until you remove it.";
+/** A posting read that found the resume on file. */
+export const RESUME_ON_FILE_LOADED = "We filled in the resume you keep on file. Paste the posting and you're set.";
+export const RESUME_ON_FILE_REMOVE = "Remove it from file";
+export const RESUME_ON_FILE_REMOVED = "Removed. Your resume is no longer on file.";
+
 /** Under the run button when the read is included: what it costs the person, said once. */
 export const POSTING_READ_INCLUDED_HINT = "Included with your pass. This one doesn't use a report.";

@@ -1,3 +1,4 @@
+import type { ResumeOnFileState } from "./hooks/useResumeOnFile";
 import type { AuthUser } from "@/components/providers/AuthProvider";
 import type { LoadedJobContext } from "@/components/workspace/hooks/useJobContextFromExtension";
 import InputPanel from "@/components/workspace/InputPanel";
@@ -48,6 +49,7 @@ type ResumeModeSectionProps = {
   focusPosting?: boolean;
   /** This run is a posting read on the pass; the input says it doesn't use a report. */
   postingReadIncluded?: boolean;
+  resumeOnFile?: { state: ResumeOnFileState; onKeep: () => void; onRemove: () => void } | null;
   /** How long this visit's report took to arrive; null when it was restored or sampled. */
   readDurationMs?: number | null;
   /** Ask-first: the questions to show before this report, until the person writes or skips. */
@@ -99,6 +101,7 @@ export default function ResumeModeSection({
   onReadAgainstPosting,
   focusPosting = false,
   postingReadIncluded = false,
+  resumeOnFile = null,
   readDurationMs = null,
   askFirst = null,
   onAskFirstWrite,
@@ -161,6 +164,7 @@ export default function ResumeModeSection({
           isRevision={Boolean(comparisonBaseline)}
           focusPosting={focusPosting}
           postingReadIncluded={postingReadIncluded}
+          resumeOnFile={resumeOnFile}
           document={document}
         />
       </div>
