@@ -44,7 +44,6 @@
     text-wrap: pretty;
 }
 .sentence { display: block; }
-.actions { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; margin-top: 2.5rem; }
 
 @media (prefers-reduced-motion: reduce) {
     .choices, .choice { transition: none; }
@@ -55,5 +54,4 @@
     .line { letter-spacing: -0.03em; }
     .pen { margin-top: 1.25rem; }
     .choices { gap: 1.75rem; }
-    .actions { align-items: stretch; }
 }

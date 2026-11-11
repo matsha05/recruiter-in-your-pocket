@@ -39,6 +39,42 @@
 .outlined { outline: 1.5px solid transparent; outline-offset: -0.5px; transition: outline-color var(--duration-slow) var(--ease) var(--delay-gesture), transform var(--duration-slow) var(--ease) var(--delay-gesture); }
 .seen .outlined { outline-color: hsl(var(--text-strong)); transform: translateY(-1px); }
 
+/* The spotlight (the close, Nov 11, 2026): when the pile is in view a light finds one sheet. It turns paper
+   white and sits in a pool of light; each sheet near it catches a share of the light (--lit, set from its distance
+   by Pile.tsx); the rest of the pile falls back. Made once, like every gesture, and simply there when motion is
+   reduced. The light is a gradient, never a shadow, so the site keeps its one box-shadow. */
+.spot .sheet { position: relative; transition: opacity var(--duration-slow) var(--ease) var(--delay-gesture); }
+.spot .sheet::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: hsl(var(--text-strong));
+    opacity: 0;
+    transition: opacity var(--duration-slow) var(--ease) var(--delay-gesture);
+}
+.spot.seen .sheet { opacity: calc(0.62 + var(--lit, 0) * 0.38); }
+.spot.seen .sheet::after { opacity: calc(var(--lit, 0) * 0.4); }
+
+.spotlit { z-index: 1; outline: 1.5px solid transparent; transition: opacity var(--duration-slow) var(--ease) var(--delay-gesture), outline-color var(--duration-slow) var(--ease) var(--delay-gesture), transform var(--duration-slow) var(--ease) var(--delay-gesture); }
+.spot.seen .spotlit { opacity: 1; outline-color: hsl(var(--text-strong)); transform: scale(1.18); }
+.spot.seen .spotlit::after { opacity: 1; }
+/* The pool of light on the pile around it. */
+.spotlit::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 15em;
+    aspect-ratio: 1;
+    translate: -50% -50%;
+    border-radius: 50%;
+    background: radial-gradient(circle, hsl(var(--text-strong) / 0.26) 0, hsl(var(--text-strong) / 0.1) 22%, hsl(var(--text-strong) / 0.03) 46%, transparent 68%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--duration-slow) var(--ease) var(--delay-gesture);
+}
+.spot.seen .spotlit::before { opacity: 1; }
+
 .sm { --sheet-w: 1rem; --sheet-gap: 0.5rem; }
 .lg { --sheet-w: 2.5rem; --sheet-gap: 0.875rem; }
 .xl { --sheet-w: 4.5rem; --sheet-gap: 1.25rem; }
@@ -68,6 +104,7 @@
     .arrive .sheet { animation: none; opacity: 1; }
     .arrive .marked { background: hsl(var(--pen)); --sheet-edge: 0 0 0 0.5px hsl(var(--pen)); }
     .outlined { transition: none; }
+    .spot .sheet, .spot .sheet::after, .spotlit, .spotlit::before { transition: none; }
 }
 
 @media (max-width: 640px) {

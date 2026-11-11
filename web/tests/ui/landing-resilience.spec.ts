@@ -64,7 +64,8 @@ test("the read starts when the visitor reaches it and ends on the decision", asy
     await expect(read).toHaveAttribute("data-on", "true", { timeout: 15_000 });
     await expect(read.getByText("Reject", { exact: true })).toBeVisible();
     await expect(read.getByText("We do, before you apply for the next one.", { exact: true })).toBeVisible();
-    await expect(read.getByRole("link", { name: "Get your free report" })).toHaveAttribute("href", "/workspace");
+    // The read doesn't ask again (Nov 11, 2026): the hero's button is one scroll up and the header's stays on screen.
+    await expect(read.getByRole("link", { name: "Get your free report" })).toHaveCount(0);
 });
 
 test("the note Jordan never saw is marked when its clipping is in view", async ({ page }) => {
