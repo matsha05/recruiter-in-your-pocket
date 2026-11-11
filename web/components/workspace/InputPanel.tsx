@@ -14,7 +14,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ResumeDropzone } from "@/components/upload/ResumeDropzone";
 import { MIN_RESUME_CHARS } from "@/lib/resume-input";
-import { POSTING_READ_ADD_RESUME, POSTING_READ_INCLUDED_HINT } from "@/lib/reports/posting-read-terms";
+import { POSTING_READ_ADD_RESUME, POSTING_READ_INCLUDED_HINT, RESUME_ON_FILE_KEEP, RESUME_ON_FILE_KEPT, RESUME_ON_FILE_LOADED, RESUME_ON_FILE_OFFER, RESUME_ON_FILE_REMOVE, RESUME_ON_FILE_REMOVED } from "@/lib/reports/posting-read-terms";
+import type { ResumeOnFileState } from "./hooks/useResumeOnFile";
 import { cn } from "@/lib/utils";
 import styles from "./InputPanel.module.css";
 
@@ -46,6 +47,8 @@ interface InputPanelProps {
     document?: "resume" | "linkedin";
     /** With a pass, reading an already-read resume against a posting spends no report; say so once the posting is in. */
     postingReadIncluded?: boolean;
+    /** Keeping the resume on file for posting reads (components/workspace/hooks/useResumeOnFile.ts). */
+    resumeOnFile?: { state: ResumeOnFileState; onKeep: () => void; onRemove: () => void } | null;
 }
 
 export default function InputPanel({
@@ -66,6 +69,7 @@ export default function InputPanel({
     focusPosting = false,
     document = "resume",
     postingReadIncluded = false,
+    resumeOnFile = null,
 }: InputPanelProps) {
     const isProfile = document === "linkedin";
     const [fileName, setFileName] = useState<string | null>(null);
@@ -312,6 +316,22 @@ export default function InputPanel({
                                 <Link href="/privacy" className="riyp-link-quiet">How we handle your data</Link>
                             </span>
                         </p>
+
+                        {resumeOnFile && postingReadIncluded && !isProfile && resumeText.trim().length > 0 && (
+                            <p className="mt-4 text-sm text-muted-foreground" role="status" data-testid="resume-on-file" data-state={resumeOnFile.state.status}>
+                                {resumeOnFile.state.status === "loaded" ? (
+                                    <>{RESUME_ON_FILE_LOADED}{" "}<button type="button" className="riyp-link-quiet" onClick={resumeOnFile.onRemove} data-testid="resume-on-file-remove">{RESUME_ON_FILE_REMOVE}</button></>
+                                ) : resumeOnFile.state.status === "kept" ? (
+                                    <>{RESUME_ON_FILE_KEPT}{" "}<button type="button" className="riyp-link-quiet" onClick={resumeOnFile.onRemove} data-testid="resume-on-file-remove">{RESUME_ON_FILE_REMOVE}</button></>
+                                ) : resumeOnFile.state.status === "removed" ? (
+                                    RESUME_ON_FILE_REMOVED
+                                ) : resumeOnFile.state.status === "error" ? (
+                                    resumeOnFile.state.message
+                                ) : (
+                                    <>{RESUME_ON_FILE_OFFER}{" "}<button type="button" className="riyp-link-quiet" onClick={resumeOnFile.onKeep} disabled={resumeOnFile.state.status === "saving"} data-testid="resume-on-file-keep">{RESUME_ON_FILE_KEEP}</button></>
+                                )}
+                            </p>
+                        )}
 
                         <div className={styles.jobSection}>
                             <button

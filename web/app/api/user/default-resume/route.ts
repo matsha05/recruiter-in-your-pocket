@@ -6,6 +6,9 @@ import { hashForLogs } from "@/lib/observability/logger";
 import { rateLimitAsync } from "@/lib/security/rateLimit";
 import { readJsonWithLimit } from "@/lib/security/requestBody";
 import crypto from "crypto";
+import { createSupabaseAdminClient } from "@/lib/supabase/adminClient";
+import { lookupOwnedTrustedReport } from "@/lib/reports/generated-report-store";
+import { isSameResume } from "@/lib/reports/posting-read";
 
 const MAX_RESUME_CHARACTERS = 30_000;
 const MAX_FILENAME_CHARACTERS = 255;
@@ -138,7 +141,9 @@ export async function POST(request: NextRequest) {
 
         // 3. Compute embedding (optional - may fail if no API key)
         let embedding: number[] | null = null;
-        const embeddingResult = await createEmbedding(resumeText);
+        // Kept on file for posting reads only (Nov 11, 2026): nothing matches against it, so it isn't sent for
+        // an embedding. Job matching computes one when its own setting saves the resume.
+        const embeddingResult = body?.purpose === "posting_reads" ? null : await createEmbedding(resumeText);
         if (embeddingResult) {
             embedding = embeddingResult.embedding;
         }
@@ -243,6 +248,20 @@ export async function GET(request: NextRequest) {
 
         const profileRecord = profile as any;
 
+        // A posting read from a saved report asks whether the resume on file is the one that report was
+        // written on. Only the owner's own report is looked up; a revised resume doesn't match.
+        const forReport = request.nextUrl.searchParams.get("forReport");
+        let matchesReport: boolean | undefined;
+        if (includeText && forReport && /^[0-9a-f-]{36}$/iu.test(forReport)) {
+            matchesReport = false;
+            try {
+                const lookup = await lookupOwnedTrustedReport(createSupabaseAdminClient(), user.id, forReport.toLowerCase());
+                matchesReport = lookup.status === "found" && isSameResume(lookup.report, profileRecord.resume_text || "");
+            } catch {
+                matchesReport = false;
+            }
+        }
+
         return NextResponse.json({
             success: true,
             data: {
@@ -255,6 +274,7 @@ export async function GET(request: NextRequest) {
                     : 0,
                 hasEmbedding: profileRecord.resume_embedding !== null,
                 ...(includeText ? { resumeText: profileRecord.resume_text || "" } : {}),
+                ...(matchesReport !== undefined ? { matchesReport } : {}),
             },
         });
     } catch (error) {

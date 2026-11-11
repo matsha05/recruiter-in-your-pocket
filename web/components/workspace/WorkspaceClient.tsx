@@ -12,6 +12,7 @@ import { useWorkspaceCommands } from "./hooks/useWorkspaceCommands";
 import { useReportCompletion } from "./hooks/useReportCompletion";
 import { useSavedReportRevision } from "./hooks/useSavedReportRevision";
 import SavedRevisionNotice from "./SavedRevisionNotice";
+import { resumeOnFileStateFor, useResumeOnFile } from "./hooks/useResumeOnFile";
 import { WorkspaceResumePicker, type WorkspaceResumePickerHandle } from "./WorkspaceResumePicker";
 import { ModeSwitcher, type ReviewMode } from "@/components/workspace/ModeSwitcher";
 import ResumeModeSection from "@/components/workspace/ResumeModeSection";
@@ -289,6 +290,16 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
     const persistedSavedJobId = getPersistedSavedJobId(loadedJobContext);
     // Included with the pass: the same resume as the saved report, read against a posting.
     const postingReadReportId = user?.postingReads && !reportDocument && postingSource && (postingSource.text === null || postingSource.text === resumeText) ? postingSource.reportId : null;
+    // A resume kept on file fills in a posting read that came from a saved report (useResumeOnFile).
+    const handleResumeOnFileLoaded = useCallback((text: string, filename: string | null) => {
+        setResumeText((current) => current.trim() ? current : text);
+        setCommandUploadName((current) => current ?? filename);
+    }, []);
+    const resumeOnFile = useResumeOnFile({
+        reportId: postingSource && postingSource.text === null && !resumeText.trim() ? postingSource.reportId : null,
+        enabled: Boolean(user?.postingReads) && !reportDocument,
+        onLoaded: handleResumeOnFileLoaded,
+    });
     const { handleFileSelect, handleRequestSaveAuth, handleRun, saveReportForCurrentUser, reportSaveState } = useResumeReview({
         resumeText, jobDescription, persistedSavedJobId, freeUsesRemaining, user, document: reportDocument, postingReadReportId,
         // Refused as a posting read (a changed resume, no pass): the next run is an ordinary report, and says so.
@@ -629,6 +640,7 @@ export default function WorkspaceClient({ initialReport = null }: WorkspaceClien
                             onReadAgainstPosting={handleReadAgainstPosting}
                             focusPosting={postingRequested}
                             postingReadIncluded={Boolean(postingReadReportId)}
+                            resumeOnFile={user?.postingReads ? { state: resumeOnFileStateFor(resumeOnFile.state, resumeText), onKeep: () => void resumeOnFile.keep(resumeText, commandUploadName), onRemove: () => void resumeOnFile.remove() } : null}
                             readDurationMs={readDurationMs}
                             askFirst={askFirst}
                             onAskFirstWrite={handleAskFirstWrite}
